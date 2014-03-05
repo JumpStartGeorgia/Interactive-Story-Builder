@@ -1,0 +1,233 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+
+ *= require formtastic
+ *= require formtastic-bootstrap
+ *= require jquery.ui.core
+ *= require jquery.ui.theme
+ *= require dataTables/jquery.dataTables.bootstrap
+ *= require_tree .
+ *= require vendor
+ *= require_self
+*/
+
+/* clear floats */
+.clearfix:after, .clear:after {
+    visibility: hidden;
+    display: block;
+    content: "";
+    clear: both;
+    height: 0;
+}
+* html .clearfix, * html .clear             		{ zoom: 1; } /* IE6 */
+*:first-child+html .clearfix, *:first-child+html .clear { zoom: 1; } /* IE7 */
+
+/* make bootstrap button link color stay white */
+a.btn, a.btn:visited {
+	color: #000 !important;
+}
+a.btn-primary, a.btn-primary:visited, a.btn-info, a.btn-info:visited, a.btn-success, a.btn-success:visited,
+a.btn-warning, a.btn-warning:visited, a.btn-danger, a.btn-danger:visited, a.btn-inverse, a.btn-inverse:visited {
+	color: #fff !important;
+}
+
+/* general */
+a, a:link, a:hover, a:visited, a:active
+{
+  color: #555;
+  background-color: transparent;
+}
+.content a {
+  text-decoration: underline;
+}
+a:hover {
+  color: #348BE8;
+  background-color: none;
+  text-decoration: underline;
+}
+a.brand:hover{
+  background-color: transparent;
+}
+
+h1, h2, h3 {
+   font-family: Arial;
+   color: #555;
+  font-weight: bold;
+}
+h1 {
+   font-size: 18pt;
+}
+h1 small {
+   color: inherit;
+   font-size: 16pt;
+	display: block;
+	padding-top: 0.3em;
+	margin-left: 1em;
+}
+
+h2 {
+   font-size: 16pt;
+	margin-bottom: 0.5em;
+}
+
+h3 {
+  font-size: 12pt;
+}
+
+.page-header h1 {
+  color: #348be8;
+}
+strong {
+	font-weight: bold;
+}
+
+p {
+margin: 0.5em 0;
+}
+
+hr {
+	color: #ccc !important;
+	background-color: #ccc !important;
+	height: 2px;
+}
+
+ul.standard, ol.standard, ul.standard ul, ol.standard ol,
+ul.standard ol, ol.standard ul {
+	padding-left: 2em;
+}
+
+ul.standard li {
+	list-style-type:disc;
+	line-height: 1.1;
+}
+ol.standard li {
+	list-style-type:decimal;
+	line-height: 1.1;
+}
+
+/* so ie will display the correct color background */
+.navbar-fixed-top .navbar-inner, .navbar-fixed-bottom .navbar-inner {
+	filter: none; 
+}
+
+/* multilanguage form styles */
+div#form-en {
+	background-color:#ddd;
+	padding: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+div#form-ka {
+	background-color:#999;
+	padding: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+/* error message styling */
+.errorExplanation
+{
+    padding: 0.8em;
+    margin-bottom: 1em;
+    border: 2px solid #ddd;
+    background: #F2DEDE;
+    color: #B94A48;
+    border: 1px solid #EED3D7;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.errorExplanation h2
+{
+    color: #B94A48 !important;
+}
+
+.errorExplanation a
+{
+    color: #B94A48;
+}
+
+/* footer */
+footer {
+	margin-top: -54px; /* negative value of footer height */
+	min-height: 41px !important;
+	background: #D4D4D4 !important;
+	padding: 0 20px;
+	padding-top: 13px;
+	font-size: 10pt;
+}
+
+footer div#left {
+	margin: 0 !important;
+	float: left;
+	width: 30%;
+	margin-top: 20px;
+  padding-top: 3px;
+}
+footer a:hover {
+	background-color: #D4D4D4;
+}
+
+footer #middle {
+   margin: 0;
+	font-size: 12px;
+	width: 38%;
+	text-align: center;
+	float: left;
+}
+footer #middle ul {
+/*	margin-top: 20px;*/
+}
+
+footer #middle ul li {
+	display: inline;
+	font-family: Arial;
+}
+footer #middle ul li.spacer {
+  display: inline;
+}
+footer #middle ul li a {
+	padding: 0 10px;
+}
+
+footer div#right {
+	margin: 0 !important;
+	float: right;
+	width: 30%;
+	text-align: right;
+}
+footer div#right ul li {
+	display:inline;
+}
+footer div#right #js_link_text{
+	text-align: right;
+}
+footer div#right #js_logo{
+	text-align: left;
+}
+footer div#right #js_logo img {
+	vertical-align: middle;
+}
+
+footer, footer ul li, footer div#right ul li {
+  color: #4f4f4f;
+}
+
+
+/* nested form styles */
+#nested_form_container {
+	margin: 0.5em 0;
+  padding: 1em;
+  background-color: #ddd;
+}
+
+#nested_form_container h3 {
+
+}
+
+#nested_form_container .nested_form_item {
+  background-color: #eee;
+  padding: 0.5em 1em;
+}

@@ -1,0 +1,180 @@
+# encoding: utf-8
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+ka:
+  date:
+    #order: [ :year, :month, :day ]
+    formats:
+      default: "%d-%m-%Y"
+      short: "%d %b"
+      long: "%B %d, %Y"
+    day_names: [კვირა, ორშაბათი, სამშაბათი, ოთხშაბათი, ხუთშაბათი, პარასკევი, შაბათი]
+    abbr_day_names: [კვ, ორშ, სამშ, ოთხშ, ხუთშ, პარ, შაბ]
+    month_names: [~, იანვარი, თებერვალი, მარტი, აპრილი, მაისი, ივნისი, ივლისი, აგვისტო, სექტემბერი, ოქტომბერი, ნოემბერი,  დეკემბერი]
+    abbr_month_names: [~, იანვ, თებ, მარ, აპრ, მაისი, ივნ, ივლ, აგვ, სექტ, ოქტ, ნოემ,  დეკ]
+    order:
+      - :day
+      - :month
+      - :year
+
+  time:
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      short: "%d %b %H:%M"
+      long: "%d %b %Y %H:%M"
+      file: "%Y %m %d %H:%M:%S"
+    am: "am"
+    pm: "pm"
+
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " და "
+      last_word_connector: ", და "
+
+    select:
+      prompt: "გთხოვთ, აირჩიოთ"
+
+  number:
+    format:
+      separator: "."
+      delimiter: ","
+      precision: 2
+      significant: false
+      strip_insignificant_zeros: true
+
+    currency:
+      format:
+        format: "%u%n"
+        unit: "$"
+        separator: "."
+        delimiter: ","
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
+
+    percentage:
+      format:
+        delimiter: ""
+
+    precision:
+      format:
+        delimiter: ""
+
+    human:
+      format:
+        delimiter: ""
+        precision: 2
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one:   "ბაიტი"
+            other: "ბაიტები"
+          kb: "კბ"
+          mb: "მბ"
+          gb: "გბ"
+          tb: "ტბ"
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""
+          thousand: ათასი
+          million: მილიონი
+          billion: ბილიარდი
+          trillion: ტრილიონი
+          quadrillion: კვადრილიონი
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "წუთის ნახევარი"
+      less_than_x_seconds:
+        one:   "წამზე ნაკლები"
+        other: "%{count} წუთზე ნაკლები"
+      x_seconds:
+        one:   "1 წამი"
+        other: "%{count} წამი"
+      less_than_x_minutes:
+        one:   "წუთზე ნაკლები"
+        other: "%{count} წუთზე ნაკლები"
+      x_minutes:
+        one:   "1 წუთი"
+        other: "%{count} წუთი"
+      about_x_hours:
+        one:   "დაახლოებით 1 საათი"
+        other: "დაახლოებით %{count} საათი"
+      x_days:
+        one:   "1 დღე"
+        other: "%{count} დღე"
+      about_x_months:
+        one:   "დაახლოებით 1 თვე"
+        other: "დაახლოებით %{count} თვე"
+      x_months:
+        one:   "1 თვე"
+        other: "%{count} თვე"
+      about_x_years:
+        one:   "დაახლოებით 1 წელი"
+        other: "დაახლოებით %{count} წელი"
+      over_x_years:
+        one:   "წელიწადზე მეტი "
+        other: "%{count} წელზე მეტი"
+      almost_x_years:
+        one:   "თითქმის 1 წელი"
+        other: "თითქმის %{count} წელი"
+    prompts:
+      year:   "წელი"
+      month:  "თვე"
+      day:    "დღე"
+      hour:   "საათი"
+      minute: "წუთი"
+      second: "წამი"
+
+  helpers:
+    select:
+      prompt: "გთხოვთ, აირჩიოთ"
+    submit:
+      create: 'შექმნა %{model}'
+      update: 'განახლება %{model}'
+      submit: 'შენახვა %{model}'
+
+  errors:
+    format: "%{attribute} %{message}"
+
+    messages: &errors_messages
+      inclusion: "არ არის სიაში"
+      exclusion: "დაკავებულია"
+      invalid: "არასწორია"
+      confirmation: "ვერ დასტურდება"
+      accepted: "საჭიროებს თანხმობას"
+      empty: "არ უნდა იყოს ცარიელი"
+      blank: "არ უნდა იყოს ცარიელი"
+      too_long: "ძალიან გრძელია (სიმბოლოების მაქსიმალური რაოდენობა %{count} )"
+      too_short: "ძალიან მოკლეა (სიმბოლოების მინიმალური რაოდენობა %{count} )"
+      wrong_length: "არასწორი სიგრძე (უნდა იყოს %{count} სიმბოლო)"
+      not_a_number: "არ არის რიცხვი"
+      not_an_integer: "უნდა იყოს მთელი რიცხვი"
+      greater_than: "უნდა იყოს %{count} -ზე მეტი"
+      greater_than_or_equal_to: "უნდა იყოს %{count} -ზე მეტი ან ტოლი"
+      equal_to: "უნდა იყოს %{count} -ს ტოლი"
+      less_than: "უნდა იყოს %{count} -ზე ნაკლები"
+      less_than_or_equal_to: "უნდა იყოს %{count} -ზე ნაკლები ან ტოლი"
+      odd: "უნდა იყოს კენტი"
+      even: "უნდა იყოს ლუწი"
+
+  activerecord:
+    errors:
+      template:
+        header:
+          one:    "გამო შეუძლებელია -ის შენახვა"
+          other:  "გამო შეუძლებელია -ის შენახვა"
+        body: "აღმოჩენილია შემდეგ ველებთან დაკავშირებული პრობლემები:"
+
+      messages:
+        taken: "უკვე დაკავებულია"
+        record_invalid: "ვალიდაცია ჩავარდა: %{errors}"
+        <<: *errors_messages
+
+      full_messages:
+        format: "%{attribute}%{message}"

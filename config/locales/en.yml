@@ -1,0 +1,91 @@
+# encoding: utf-8
+en:
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        email: Email Address
+        password: Password
+        password_confirmation: Password Confirmation
+        role: Role
+        remember_me: Remeber Me
+    errors:
+      messages:
+        required_field: "is a required field."
+        already_exists: 'already exists in the database.'
+  helpers:
+    actions: Actions
+    links:
+      admin: Admin Section
+      edit: Edit
+      confirm: Are you sure?
+      destroy: Delete
+      new: New
+      list: View All
+      back: View All
+      cancel: Cancel
+      reset: Reset
+      view: View
+    titles:
+      new: "New %{model}"
+      edit: "Edit %{model}"
+  app:
+    language:
+      en: English
+      ka: ქართული
+    buttons:
+      back: View All
+      list: View All
+      admin: Admin Section
+      delete: Delete
+      edit: Edit
+      show: Show
+      cancel: Cancel
+      update: Update
+      save: Save
+      create: Create
+      reset: Reset
+      remove: Remove
+      confirm: Are you sure?
+      new: New
+    common:
+      app_name: Bootstrap Starter Project
+      added_on: "Added on: %{date}" 
+    msgs:
+      does_not_exist: You tried to access a page that does not exist.
+      not_authorized: You are not authorized to view that page.
+      success_created: "%{obj} was successfully created."
+      success_updated: "%{obj} was successfully updated."
+  layouts:
+    application:
+      admin: Admin
+      sign_out: Sign Out
+      js_link_title: JumpStart Georgia - We communicate data better!
+      js_link_text: Built by
+    unsupported_browser:
+      title: Unsupported Browser
+      p1: We are sorry to report that your browser is out of date and will not properly render the content from this website.
+      p2: On the bright side, there are several free browsers that you can download that are compatible with this site.
+      chrome: Chrome
+      firefox: Firefox
+      ie: Internet Explorer (Windows only)
+      opera: Opera
+      Safari: Safari
+      admin: Admin
+      sign_out: Sign Out
+      js_link_title: JumpStart Georgia - We communicate data better!
+      js_link_text: Built by
+  admin:
+    index:
+      title: Administration Section
+      users: Users
+    users:
+      edit:
+        title: Editing User
+      index:
+        title: Users
+      new:
+        title: New User
+      show:
+        title: User Details

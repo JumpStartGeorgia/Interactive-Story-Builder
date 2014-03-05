@@ -1,0 +1,13 @@
+# encoding: utf-8
+
+ka:
+  formtastic:
+    :yes: 'დიახ'
+    :no: 'არა'
+    :create: 'შექმნა %{model}'
+    :update: 'შენახვა %{model}'
+    :submit: 'შენახვა %{model}'
+    :cancel: 'გაუქმება %{model}'
+    :reset: 'გადატვირთვა %{model}'
+    :required: 'საჭირო'      
+

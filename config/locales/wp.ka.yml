@@ -1,0 +1,7 @@
+# encoding: utf-8
+
+ka:
+  will_paginate:
+    next_label: შემდეგი &#8594;
+    page_gap: ! '&hellip;'
+    previous_label: ! '&#8592; წინა'

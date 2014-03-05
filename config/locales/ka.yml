@@ -1,0 +1,91 @@
+# encoding: utf-8
+ka:
+  activerecord:
+    models:
+      user: მომხმარებელი
+    attributes:
+      user:
+        email: ელ.ფოსტა
+        password: პაროლი
+        password_confirmation: გაიმეორეთ პაროლი
+        role: როლი
+        remember_me: დამიმახსოვრე
+    errors:
+      messages:
+        required_field: "სავალდებულოა"
+        already_exists: 'უკვე არსებობს მონაცემთა ბაზაში'
+  helpers:
+    actions: აირჩიეთ
+    links:
+      admin: ადმინისტრატორის განყოფილება
+      edit: შეცვლა
+      confirm: დარწმუნებული ხართ?
+      destroy: წაშლა
+      new: ახალი
+      list: იხილეთ სრულად
+      back: იხილეთ სრულად
+      cancel: გაუქმება
+      reset: საწყის კონფიგურაციაზე დაბრუნება
+      view: ნახვა
+    titles:
+      new: "ახალი %{model}"
+      edit: "შეცვლა %{model}"
+  app:
+    language:
+      en: English
+      ka: ქართული
+    buttons:
+      back: იხილეთ სრულად
+      list: იხილეთ სრულად
+      admin: ადმინისტრატორის განყოფილება
+      delete: წაშლა
+      edit: შეცვლა
+      show: ჩვენება
+      cancel: გაუქმება
+      update: განახლება
+      save: შენახვა
+      create: შექმნა
+      reset: საწყის კონფიგურაციაზე დაბრუნება
+      remove: მოშორება
+      confirm: დარწმუნებული ხართ?
+      new: ახალი
+    common:
+      app_name: Bootstrap Starter Project
+      added_on: "დამატებულია: %{date}" 
+    msgs:
+      does_not_exist: თქვენ ცდილობთ იხილოთ გვერდი, რომელიც არ არსებობს.
+      not_authorized: თქვენ არ გაქვთ უფლება იხილოთ ეს გვერდი.
+      success_created: "%{obj} შექმნილია."
+      success_updated: "%{obj} განახლებულია."
+  layouts:
+    application:
+      admin: ადმინისტრატო
+      sign_out: გასვლა
+      js_link_title: ჯამპსტარტ ჯორჯიას - ჩვენ გაწვდით ინფორმაციას უკეთ!
+      js_link_text: აგებულია
+    unsupported_browser:
+      title: არასათანადო ბრაუზერი
+      p1: სამწუხაროდ თქვენი ინტერნეტ ბრაუზერის მოხმარების ვადა გასულია და ვერ მოხდება ვებ-გვერდთან სრულად დაკავშირება.
+      p2: არსებობს რამდენიმე უფასო ბრაუზერი რომელის გადმოწერის შემდეგ შეძლებთ ვებ-გვერდით სარგებლობას.
+      chrome: Chrome
+      firefox: Firefox
+      ie: Internet Explorer (მხოლოდ Windows-ზე)
+      opera: Opera
+      Safari: Safari
+      admin: ადმინისტრატო
+      sign_out: გასვლა
+      js_link_title: ჯამპსტარტ ჯორჯიას - ჩვენ გაწვდით ინფორმაციას უკეთ!
+      js_link_text: აგებულია
+  admin:
+    index:
+      title: ადმინისტრატორის განყოფილება
+      users: მომხმარებლები
+    users:
+      edit:
+        title: ცვლილებების შეტანა მომხმარებლის გვერდზე
+      index:
+        title: მომხმარებლები
+      new:
+        title: ახალი მომხმარებელი
+      show:
+        title: მომხმარებლის დეტალები
