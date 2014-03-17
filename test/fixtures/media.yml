@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  section_id: 1
+  media_type: 1
+  title: MyString
+  caption: MyString
+  caption_align: 1
+  summary: MyString
+  source: MyString
+  audio_path: MyString
+  video_path: MyString
+
+two:
+  section_id: 1
+  media_type: 1
+  title: MyString
+  caption: MyString
+  caption_align: 1
+  summary: MyString
+  source: MyString
+  audio_path: MyString
+  video_path: MyString

@@ -3,6 +3,7 @@ en:
   activerecord:
     models:
       user: User
+      content: Content
     attributes:
       user:
         email: Email Address
@@ -10,6 +11,10 @@ en:
         password_confirmation: Password Confirmation
         role: Role
         remember_me: Remeber Me
+      content:        
+        title: Title
+        subtitle: SubTitle
+        content: Article
     errors:
       messages:
         required_field: "is a required field."
@@ -50,7 +55,7 @@ en:
       confirm: Are you sure?
       new: New
     common:
-      app_name: Bootstrap Starter Project
+      app_name: Interactive Story Builder
       added_on: "Added on: %{date}" 
     msgs:
       does_not_exist: You tried to access a page that does not exist.

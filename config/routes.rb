@@ -1,4 +1,6 @@
 BootstrapStarter::Application.routes.draw do
+  
+
 	#--------------------------------
 	# all resources should be within the scope block below
 	#--------------------------------
@@ -10,8 +12,22 @@ BootstrapStarter::Application.routes.draw do
 		namespace :admin do
 			resources :users
 		end
+		
+		resources :stories do
+			member do
+    			get 'sections'    			
+    			post 'new_section'
+    			post 'new_content'
+    			post 'new_media'
+    			post 'save_content'
+    			post 'save_media'
+    			post 'upload_file'
+    			get 'get_section'
+    			get 'get_content'
+    			get 'get_media'
+  			end
 
-
+		end
 		root :to => 'root#index'
 	  match "*path", :to => redirect("/#{I18n.default_locale}") # handles /en/fake/path/whatever
 	end

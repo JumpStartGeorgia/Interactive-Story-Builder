@@ -1,0 +1,20 @@
+<%= semantic_form_for(@media, url: save_media_story_path(id:params[:id])) do |f| %>
+
+  <%= f.inputs do %>
+    <%= f.input :title, :input_html => { :id => "mediaTitle" } %>
+    <%= f.input :media_type, :as => :select,  :include_blank => false, :collection => { 'Image' => 1, 'Video' => 2 } , :selected => 0 , :input_html => { :id => "mediaType" }   %>	
+    <%= f.input :caption, :input_html => { :id => "mediaCaption" ,:placeholder =>"Caption for slide"} %>
+    <%= f.input :caption_align, :as => :select,  :include_blank => false, :collection => { 'Left' => -1, 'Center' => 0, 'Right' => 1 } , :selected => 0 , :input_html => { :id => "mediaCaptionAlign" } %>
+ 	<%= f.input :video_path, :as => :file , :input_html => { :id => "mediaItemPath" } %>
+    <%= f.input :summary, :input_html => { :id => "mediaSummary" } %>
+    <%= f.input :source, :input_html => { :id => "mediaSource" } %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>
+
+
+
+

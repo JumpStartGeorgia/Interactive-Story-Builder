@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  story_id: 1
+  type_id: 1
+  title: MyString
+  sort_order: 1
+  audio: MyString
+
+two:
+  story_id: 1
+  type_id: 1
+  title: MyString
+  sort_order: 1
+  audio: MyString

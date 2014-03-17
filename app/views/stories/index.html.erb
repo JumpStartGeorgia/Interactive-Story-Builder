@@ -1,0 +1,36 @@
+
+<h1>Listing stories</h1>    </br> <%= link_to 'New Story', new_story_path %>
+
+<div class='row'>
+  <div class='span3'>
+    <table id='storiesTable'>
+      <tr>
+        <th>Title</th>
+        <th>User</th>
+        <th>Author</th>
+        <th></th>
+        <th>a</th>
+        <th>b</th>
+        <th>c</th>
+      </tr>
+
+    <% @stories.each do |story| %>
+      <tr>
+        <td><%= story.title %></td>
+        <td><%= story.user_id %></td>
+        <td><%= story.author %></td>        
+        <td><%= link_to 'Show', story %></td>
+        <td><%= link_to 'Edit', edit_story_path(story) %></td>
+        <td><%= link_to 'Destroy', story, confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+    <% end %>
+    </table>
+
+    <br />
+
+ 
+  </div>
+  <div class='span9'>
+    <div id="map" style="width:100%; height:400px;"></div>
+  </div>
+</div>
