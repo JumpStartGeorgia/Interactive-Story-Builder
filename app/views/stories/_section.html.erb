@@ -1,0 +1,12 @@
+<%= semantic_form_for(@section, url: get_section_story_path(id:params[:id])) do |f| %>
+
+  <%= f.inputs do %>
+    <%= f.input :title, :input_html => { :id => "sectionTitle" } %>
+    <%= f.input :type_id, :as => :select,  :include_blank => false, :collection => { 'Content' => 1, 'Media' => 2 } , :selected => 0 , :input_html => { :id => "sectionType" }   %>  
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>
+

@@ -84,29 +84,15 @@ class StoriesController < ApplicationController
  
 
   def get_section
-    @section = Section.find_by_id(params[:section_id])   
+    logger.debug(params);
+
+    @section = Section.find_by_id(params[:section_id])       
     logger.debug(@section)
-    respond_to do |format|       
-      format.json { render json: @section.to_json }     
-    end    
-  end
-  def get_content
-    if params[:s]!='new'
-    
-      @content = Content.find_by_id(params[:item_id])
-    
-   else @content = Content.new(:section_id => params[:id])
-   end
     respond_to do |format|
       format.js
     end
-    
-    #logger.debug(@content)
-    #respond_to do |format|       
-     # format.json { render json: @content.to_json }     
-
-    
   end
+
     def get_media
 
 
@@ -135,20 +121,7 @@ class StoriesController < ApplicationController
         end
       end    
   end
-  def new_content
-    logger.debug(params)
-     @content = Content.new(params[:content])
-   
-     respond_to do |format|
-        if @content.save
-          #format.html { redirect_to @section, notice: 'Content was successfully created.' }
-          format.json { render json: @content.to_json, status: :created, location: @content }
-        else
-          format.html { render action: "new" }
-          format.json { render json: @content.errors, status: :unprocessable_entity }
-        end
-      end    
-  end
+
     def new_media
     logger.debug(params)
      @content = Content.new(params[:content])
@@ -163,13 +136,37 @@ class StoriesController < ApplicationController
         end
       end    
   end
-  def save_content
 
-  @story = Story.find(params[:id])
+  def get_content
+    if params[:s]!='new'
+      @content = Content.find_by_id(params[:item_id])
+    else 
+      @content = Content.new()#:section_id => params[:id]
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
 
-
+    def new_content
     logger.debug(params)
-     @content = Content.find_by_id(params[:content_id])
+     @content = Content.new(params[:content])
+   
+     respond_to do |format|
+        if @content.save
+          #format.html { redirect_to @section, notice: 'Content was successfully created.' }
+          format.json { render json: @content.to_json, status: :created, location: @content }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @content.errors, status: :unprocessable_entity }
+        end
+      end    
+  end
+    
+  def save_content
+  
+    #@story = Story.find(params[:id])
+    @content = Content.find_by_id(params[:content][:id])
    
      respond_to do |format|
         if @content.update_attributes(params[:content])
@@ -181,6 +178,19 @@ class StoriesController < ApplicationController
         end
       end    
   end
+  # DELETE /stories/1
+  # DELETE /stories/1.json
+  def destroy_item
+    logger.debug(params)
+    #@content =  Content.find_by_id(params[:content][:id])
+    #@content.destroy
+    respond_to do |format|     
+      format.json { head :ok }
+    end
+  end
+
+
+
  def save_media
 
     # @media = Medium.find(params[:item_id])

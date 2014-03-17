@@ -46,7 +46,9 @@
       <div class="btn-group">
         <button type="button btn-small" id='btnAddSection' class="btn btn-primary btn-small"><i class="icon-align-justify icon-white"></i></button>
         <button type="button" id='btnAddItem' class="btn btn-primary btn-small"><i class="icon-film icon-white"></i></button>
-        <button type="button" class="btn btn-small btn-danger"><i class="icon-remove icon-white"></i></button>
+        <button type="button" id='btnDelete' class="btn btn-small btn-danger" ><i class="icon-remove icon-white">
+          
+        </i></button>
         <button type="button" class="btn btn-info  btn-small"> <i class="icon-arrow-up icon-white"></i> </button>
         <button type="button" class="btn btn-info  btn-small"> <i class="icon-arrow-down icon-white"></i></button>
       </div>
@@ -70,100 +72,11 @@
       </ul>  
     </div>    
   </div>  
-
   <div class='span9 story-viewer'>
-
-      <div id='sectionForm' style='display:none;'>
-        <h2>Create/Edit section</h2>
-        <div class='fields-row full'>
-          <div class='field-tl full'>
-            <label>Choose section type</label>
-            <div><select id='sectionType'><option selected='selected' value='1'>Content</option><option value='2'>Media</option>
-            </select>            
-            </div>
-          </div>
-        </div>  
-        <div class='fields-row'>
-            <div class='field-tl'>
-               <label>Title</label>
-               <div><input type='text' id='sectionTitle'/></div>
-            </div>
-        </div>      
-        <div class='fields-row'>
-            <div class='field-mr'>
-                <label>Bind audio to section</label>
-                <div><input type="checkbox" name="section_audio" id="sectionAudio"/></div>
-              </div>
-          </div>  
-            <div class='fields-row'>
-      <div class='field-mr'>
-          <label id="lll"></label>
-          <div><input type="file"  value="" id="sectionAudioPath"  accept="audio/*|video/*|image/*" style='display:none;'/></div>
-    
-
-              </div>
-      </div>       
-      </div>
-
+      <div id='sectionForm' style='display:none;'></div>
       <div id='contentForm'  style='display:none;'></div>
-      <div id='contentPreview'  style='display:none;' style="float:left; width:500px; height:310px; overflow:scroll;"></div>
-      
-
-
-      <!-- Media Form Block -->
-      <div id='mediaForm' style='display:none;'></div>
-      <div id='submitForm'>
-            <input type="button" id="btnSave" value="Save" style='float:right;'/>            
-             <input type="button" id="btnTest" value="Save" style='float:right;'/>       
-      </div>
+      <div id='contentPreview'  style='display:none;' style="float:left; width:500px; height:310px; overflow:scroll;"></div>      
+      <div id='mediaForm' style='display:none;'></div>     
   </div>
 
 </div>
-
-
-
-
-   <!--    <label>Title</label>
-      <input type='text' id='contentTitle'/>
-
-       <label>Sub Title</label>
-       <input type='text' id='contentSubTitle'/>
-        <label>Article</label>
-       <textarea rows='15' cols='120' id='contentArticle'></textarea>
-         <label>Preview</label>
-          <div id='tinemcePreview' style="float:left; width:500px; height:310px; overflow:scroll;"></div>
-          <%= form_for Content.new, :url => 'new_content', :html => { :multipart => true } do |f| %>
-          <%= f.label( :title) %> 
-          <%= f.text_field( :title) %> 
-          <%= f.label( :subtitle) %> 
-          <%= f.text_field( :subtitle) %>  
-          <%= f.label( :content ) %> 
-          <%= f.text_area( :content) %>              
-          <div class='fields-row'>
-            <div class='field-tl'>
-               
-               <div></div>
-              </div>
-            </div>      
-          
-          <div class='fields-row'>
-            <div class='field-tl'>
-               
-                <div><input type='text' id='contentSubTitle'/></div>
-              </div>
-            </div>      
-          
-            <div class='fields-row'>
-            <div class='field-tl'>
-               <label>Article</label>
-                <div id='tinemce'><textarea rows='15' cols='120' id='contentArticle'></textarea></div>
-               
-              </div>
-                
-             <div class='field-tl'>
-               <label>Preview</label>
-                
-                <div id='tinemcePreview' style="float:left; width:500px; height:310px; overflow:scroll;"></div>
-              </div>
-            </div>  
-            <% end %>                    -->

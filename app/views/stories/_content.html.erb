@@ -1,12 +1,14 @@
-<%= semantic_form_for(@content, url: save_content_story_path(id:params[:id])) do |f| %>
-
+<%= semantic_form_for(@content, url: content_story_path(id:params[:id]), remote: true) do |f| %>
   <%= f.inputs do %>
     <%= f.input :title, :input_html => { :id => "contentTitle" } %>
     <%= f.input :subtitle, :input_html => { :id => "contentSubtitle" } %>
     <%= f.input :content, :input_html => { :id => "contentArticle" }  %>
+    <%= f.input :section_id, :as => :hidden , :input_html => { :id => "contentSection" }  %>
+    <% if @content.id.present? %>
+    	<%= f.input :id, :as => :hidden , :input_html => { :id => "contentId" }  %>    
+    <% end %>
   <% end %>
-
-  <%= f.actions do %>
-    <%= f.action :submit, :as => :input %>
-  <% end %>
+    <%= f.actions do %>
+      <%= f.action :submit, :label => 'Submit' %>   
+    <% end %>    
 <% end %>

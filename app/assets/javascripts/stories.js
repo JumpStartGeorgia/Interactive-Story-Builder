@@ -49,6 +49,22 @@ $(document).ready(function() {
 	    return false;
 	});
 
+
+	
+	$('#btnDelete').click(function(){
+		$.ajax
+		({
+			url: 'destroy_item',			  
+			data: {'_method':'delete','type':'c','id':'5'},
+			type: "POST",
+			cache: false,
+	        dataType: 'json',	        
+		}).done(function(d) 
+		{
+			console.log(d);
+			
+		});
+	});
 	$('#btnSave').click(function(){
 
 		//send ajax data
@@ -86,36 +102,39 @@ console.log(formData);
 			break;
 			case 'content':
 
-				var title = $('#contentForm #contentTitle').val();
-				var subtitle = $('#contentForm #contentSubTitle').val();
-				var article = $('#contentForm #contentArticle').val();	
+				//var title = $('#contentForm #contentTitle').val();
+				//var subtitle = $('#contentForm #contentSubTitle').val();
+				//var article = $('#contentForm #contentArticle').val();	
+				 
+
 				// put validation here				
-				aData = {'content[section_id]' : section_id, 'content_id' : item_id, 'content[title]' : title, 'content[subtitle]': subtitle, 'content[content]': article};
+				//aData = {'content[section_id]' : section_id, 'content_id' : item_id, 'content[title]' : title, 'content[subtitle]': subtitle, 'content[content]': article};
 				
-				if(item_id != -1)
-				{
-					aUrl = 'save_content';
-				}
-				else
-				{
-					aUrl = 'new_content';
-				}
+				
+				// if(item_id != -1)
+				// {
+				// 	aUrl = 'save_content';
+				// }
+				// else
+				// {
+				// 	aUrl = 'new_content';
+				// }
 			break;
 		}
-		$.ajax
-		({
-			url: aUrl,			  
-			data: formData,
-			type: "POST",
-			cache: false,
-	        dataType: 'json',
-	        processData: false, // Don't process the files
-	        contentType: false
-		}).done(function(d) 
-		{
-			console.log(d);
+		// $.ajax
+		// ({
+		// 	url: aUrl,			  
+		// 	data: formData,
+		// 	type: "POST",
+		// 	cache: false,
+	 //        dataType: 'json',
+	 //        processData: false, // Don't process the files
+	 //        contentType: false
+		// }).done(function(d) 
+		// {
+		// 	console.log(d);
 			
-		});
+		// });
 		
 	});
 
@@ -209,19 +228,6 @@ function getStory(id , subid)
 		{
 			$('.story-viewer #mediaForm').show();	
 			fillMedia();
-			// 			SELECT `media`.`id`,
-			//     `media`.`section_id`,
-			//     `media`.`media_type`,
-			//     `media`.`title`,
-			//     `media`.`caption`,
-			//     `media`.`caption_align`,
-			//     `media`.`summary`,
-			//     `media`.`source`,
-			//     `media`.`audio_path`,
-			//     `media`.`video_path`,
-			//     `media`.`created_at`,
-			//     `media`.`updated_at`
-			// FROM `parallax`.`media`;
 
 		}
 	}
@@ -249,65 +255,32 @@ function hideForms()
 	
 	view.find('#mediaForm').hide();	
 }
-function clearSectionForm()
-{
-	$('#sectionForm #sectionType > option[value="1"]').prop('selected', true);	//.attr("selected", "selected");		
-	$('#sectionForm #sectionTitle').attr("value", '');	
-	$('#sectionForm #sectionAudio').prop('checked', false);	
-	$('#sectionForm #sectionAudioPath').hide();
-}
-function clearContentForm()
-{
-	$('#contentForm #contentTitle').val('');
-	$('#contentForm #contentSubTitle').val('');
-	$('#contentForm #contentArticle').val('');
-}
-function clearMediaForm()
-{
-	var story_tree = $('.story-viewer');
-	story_tree.find('#mediaTitle').val('');
-	story_tree.find('#mediaType > option[value="1"]').prop('selected', true);
-	story_tree.find('#mediaAudio').prop('checked', false);	
-	story_tree.find('#mediaAudioUploader').hide();
-	// mediaAudioPath
-	story_tree.find('#mediaCaption').val('');
-	story_tree.find('#mediaCaptionAlign > option[value="-1"]').prop('selected', true);
-	story_tree.find('#mediaItemPath').prop('files','');
-	
-	story_tree.find('#mediaSummary').val('');
-	story_tree.find('#mediaSource').val('');
 
-	  // mediaAudio
-	  // mediaAudioUploader
-	  // mediaAudioPath
-	  // mediaCaption
-	  // mediaCaptionAlign
-	  // mediaItemPath
-	  // mediaSummary
-	  // mediaSource	
-}
 
 
 function fillSection()
-{
-	clearContentForm();
+{	
 	$.ajax
 		({
-		  url: 'get_section',			  
-		  data: {'section_id' : section_id },
-		  type: 'GET'
-		}).done(function(d) 
-		{
-			if(d != null)
-			{
-				$('#sectionForm #sectionType > option[value="'+d.type_id+'"]').prop('selected', true);
-				$('#sectionForm #sectionTitle').attr("value", d.title);	
-				$('#sectionForm #sectionAudio').prop('checked', d.audio_path != null ? true : false);
-				$('#sectionForm #sectionAudioPathLabel').text("asdf");
-				if(d.audio_path != null) $('#sectionAudioPath').show();
-				else $('#sectionAudioPath').hide();
-			}				
-		});			
+		  url: 'get_section',
+		  data: {'section_id' : section_id, 's':method },
+		  dataType: 'script',
+	      cache: true
+		});
+
+
+		// .done(function(d) 
+		// {
+		// 	if(d != null)
+		// 	{
+		// 		$('#sectionForm #sectionType > option[value="'+d.type_id+'"]').prop('selected', true);
+		// 		$('#sectionForm #sectionTitle').attr("value", d.title);	
+		// 		$('#sectionForm #sectionAudio').prop('checked', d.audio_path != null ? true : false);
+		// 		$('#sectionForm #sectionAudioPathLabel').text("asdf");
+		// 		if(d.audio_path != null) $('#sectionAudioPath').show();
+		// 		else $('#sectionAudioPath').hide();
+		// 	}				
+		// });			
 	return true;	
 }
 function newContent()
@@ -370,56 +343,6 @@ function fillMedia()
 		  data: {'section_id' : section_id, 's':method, 'item_id' : item_id },
 		  dataType: 'script',
 	      cache: true
-		}).done(function(d) 
-		{
-// 			if(d != null)
-// 			{
-// 				console.log(d);
-
-// 				var story_tree = $('.story-viewer');
-// 				story_tree.find('#mediaTitle').val(d.title);
-// 				story_tree.find('#mediaType > option[value="'+d.media_type+'"]').prop('selected', true);
-// 				story_tree.find('#mediaCaption').val(d.caption);
-// 				story_tree.find('#mediaCaptionAlign > option[value="'+(d.caption_align-1)+'"]').prop('selected', true);
-// 				story_tree.find('#mediaItemPath').prop('files',d.video_path);
-				
-// 				story_tree.find('#mediaSummary').val(d.summary);
-// 				story_tree.find('#mediaSource').val(d.source);
-							
-
-
-				
-// 				story_tree.find('#mediaAudio').prop('checked', d.audio_path != null ? true : false);
-				
-// 				if(d.audio_path != null) 
-// 				{
-// 						$('#mediaAudioUploader').show();
-// 						story_tree.find('#mediaAudioPath').prop('files',d.audio_path);
-// 				}
-// 				else 
-// 				{
-// 					$('#mediaAudioUploader').hide();
-// 					story_tree.find('#mediaAudioPath').prop('files','');
-// 				}
-
-// 				// mediaAudioPath
-				
-
-// // 	SELECT `media`.`id`,
-// //     `media`.`section_id`,
-// //     `media`.`media_type`,
-// //     `media`.`title`,
-// //     `media`.`caption`,
-// //     `media`.`caption_align`,
-// //     `media`.`summary`,
-// //     `media`.`source`,
-// //     `media`.`audio_path`,
-// //     `media`.`video_path`,
-// //     `media`.`created_at`,
-// //     `media`.`updated_at`
-// // FROM `parallax`.`media`;
-					
-// 			}				
-		});			
+		});		
 	return true;	
 }

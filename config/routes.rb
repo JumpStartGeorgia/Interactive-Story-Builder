@@ -15,16 +15,21 @@ BootstrapStarter::Application.routes.draw do
 		
 		resources :stories do
 			member do
+				put 'content', to: 'stories#save_content'
+				post 'content', to: 'stories#new_content'
+				delete 'content', to: 'stories#destroy_content'
+
     			get 'sections'    			
     			post 'new_section'
     			post 'new_content'
     			post 'new_media'
-    			post 'save_content'
+    			
     			post 'save_media'
     			post 'upload_file'
     			get 'get_section'
     			get 'get_content'
     			get 'get_media'
+
   			end
 
 		end
