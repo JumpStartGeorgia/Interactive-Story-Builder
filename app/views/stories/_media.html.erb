@@ -1,18 +1,31 @@
-<%= semantic_form_for(@media, url: save_media_story_path(id:params[:id])) do |f| %>
+<%= semantic_form_for(@item, url: media_story_path(id:@item.id), :html => { :multipart=> true } , remote: true) do |f| %>
 
   <%= f.inputs do %>
     <%= f.input :title, :input_html => { :id => "mediaTitle" } %>
     <%= f.input :media_type, :as => :select,  :include_blank => false, :collection => { 'Image' => 1, 'Video' => 2 } , :selected => 0 , :input_html => { :id => "mediaType" }   %>	
     <%= f.input :caption, :input_html => { :id => "mediaCaption" ,:placeholder =>"Caption for slide"} %>
-    <%= f.input :caption_align, :as => :select,  :include_blank => false, :collection => { 'Left' => -1, 'Center' => 0, 'Right' => 1 } , :selected => 0 , :input_html => { :id => "mediaCaptionAlign" } %>
- 	<%= f.input :video_path, :as => :file , :input_html => { :id => "mediaItemPath" } %>
+    <%= f.input :caption_align, :as => :select,  :include_blank => false, :collection => { 'Left' => -1, 'Center' => 0, 'Right' => 1 } , :default => 0 , :input_html => { :id => "mediaCaptionAlign" } %>
+    <%= f.input :image, :as => :file , :input_html => { :id => "mediaImage" } %>
+    <% if @item.image.exists? %>
+      <a class='btn' data-reveal-id="modalImage">Preview</a>      
+    <% end %>
+ 	  <%= f.input :video, :as => :file , :input_html => { :id => "mediaVideo" } %>
+    <% if @item.video.exists? %>
+      <a class='btn' data-reveal-id="modalVideo">Preview</a>
+    <% end %>
+   
     <%= f.input :summary, :input_html => { :id => "mediaSummary" } %>
     <%= f.input :source, :input_html => { :id => "mediaSource" } %>
+    <%= f.input :section_id, :as => :hidden , :input_html => { :id => "mediaSection" }  %>
+    <% if @item.id.present? %>
+      <%= f.input :id, :as => :hidden , :input_html => { :id => "mediaId" }  %>    
+    <% end %>
   <% end %>
 
-  <%= f.actions do %>
-    <%= f.action :submit, :as => :input %>
-  <% end %>
+  <div class="pull-right spacer">
+    <%= f.submit nil, :class => 'btn' %>
+    <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>      
+  </div>
 <% end %>
 
 

@@ -1,1 +1,14 @@
-$("#mediaForm").html("<%= escape_javascript( render :partial => 'media') %>");
+$("#storyViewer").html("<div id='mediaForm'><%= escape_javascript( render :partial => 'media') %></div>");
+<% imageTemp = '' %>
+<% videoTemp = '' %>
+<% if @item.image.exists? %>
+	<%	imageTemp = "<img  width='100%' src='#{@item.image.url}'/>" %>
+<% end %>
+
+$("#modalImage .modal-data").html("<%= imageTemp.html_safe %>");
+
+<% if @item.video.exists? %>
+	<%	videoTemp = "<source src='#{@item.video.url}' type='#{@item.video.content_type}'>" %>  
+<% end %>
+
+$("#modalVideo .modal-data video").html("<%= videoTemp.html_safe %>");

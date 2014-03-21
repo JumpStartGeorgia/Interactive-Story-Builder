@@ -72,11 +72,20 @@
       </ul>  
     </div>    
   </div>  
-  <div class='span9 story-viewer'>
-      <div id='sectionForm' style='display:none;'></div>
-      <div id='contentForm'  style='display:none;'></div>
-      <div id='contentPreview'  style='display:none;' style="float:left; width:500px; height:310px; overflow:scroll;"></div>      
-      <div id='mediaForm' style='display:none;'></div>     
-  </div>
+  <div class='span9 story-viewer' id='storyViewer'></div>
 
+</div>
+
+<div id="modalVideo" class="reveal-modal" style='width:853px; height:480px'>   
+    <div class='modal-data'>  
+        <video preload="auto" width="853px" height="480px" controls>
+          Your browser does not support this video.
+
+        </video>
+      </div>     
+     <a class="close-reveal-modal">&#215;</a>
+</div>
+<div id="modalImage" class="reveal-modal">     
+      <div class='modal-data'></div>
+      <a class="close-reveal-modal">&#215;</a>
 </div>

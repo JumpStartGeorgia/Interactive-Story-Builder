@@ -1,1 +1,2 @@
-$("#contentForm").html("<%= escape_javascript( render :partial => 'content') %>");
+$("#storyViewer").html(" <div id='contentForm'><%= escape_javascript( render :partial => 'content') %></div>");
+$("#contentPreview").html($("#contentArticle").val());

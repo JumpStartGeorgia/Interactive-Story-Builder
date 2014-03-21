@@ -1,32 +1,11 @@
 
-/*$(document).ready(function() {
-	
-    //$('#storiesTable').dataTable();
-
-	  var map = L.map('map',{scrollWheelZoom: false, zoom:13, center: L.LatLng(41.703656435,44.7840714455)}).setView([41.69,44.80], 14);
-
-	// add an OpenStreetMap tile layer
-	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-	}).addTo(map);
-
-	// add a marker in the given location, attach some popup content to it and open the popup
-	L.marker([51.5, -0.09]).addTo(map)
-	    .bindPopup('A pretty CSS3 popup. <br> Easily customizable.')
-	    .openPopup();
-
-	//    alert(<%= story.title %>);
-});
-
-*/
 	var story_id = -1;
 	var section_id = -1;
 	var item_id = -1;
-	var el_type = 'section';
-	var method = 'new';
+	var el_type = 's';
+	var method = 'n';
 
 $(document).ready(function() {
-
 
 	$('.story-tree ul li.item').click(function() {
 		item_id = -1;
@@ -52,19 +31,27 @@ $(document).ready(function() {
 
 	
 	$('#btnDelete').click(function(){
+
+		var dataTemp = {'_method':'delete','section_id' : section_id, 'type':el_type };
+		
+		if(el_type!='s') 
+		{		
+			dataTemp['item_id'] = item_id;
+		}
 		$.ajax
 		({
-			url: 'destroy_item',			  
-			data: {'_method':'delete','type':'c','id':'5'},
-			type: "POST",
-			cache: false,
-	        dataType: 'json',	        
+			url: 'content',			  
+			data: dataTemp,
+			type: "POST",			
+	        dataType: 'json'
 		}).done(function(d) 
 		{
 			console.log(d);
 			
-		});
+		}).error(function(e){console.log(e);});
+		return true;	
 	});
+
 	$('#btnSave').click(function(){
 
 		//send ajax data
@@ -72,11 +59,11 @@ $(document).ready(function() {
 		var aUrl = null;
 		switch(el_type)
 		{
-			case 'section':
+			case 's':
 				aUrl = 'new_section';
 				aData = { 'section[story_id]':'1','section[type_id]':'1', 'section[title]':'New Title','section[audio_path]':''};
 			break;
-			case 'media':		
+			case 'm':		
 				var title = $('#mediaForm #mediaTitle').val();				
 //				var files = $('#mediaForm #mediaItemPath').prop('files');				
 				
@@ -100,7 +87,7 @@ console.log(formData);
 					aUrl = 'new_media';
 				}
 			break;
-			case 'content':
+			case 'c':
 
 				//var title = $('#contentForm #contentTitle').val();
 				//var subtitle = $('#contentForm #contentSubTitle').val();
@@ -138,36 +125,25 @@ console.log(formData);
 		
 	});
 
-	$('#btnAddSection').click(function(){	
-		getStory(-1,-1);
-		$('.story-viewer #sectionForm').show();
-	});
+	$('#btnAddSection').click(function(){ method = 'n';	el_type = 's';  getStory(-1,-1);});
 
 	$('#btnAddItem').click(function(){	
-		if(section_id == -1) alert("Select section for new item");
+		var temp;
+		if(section_id == -1) {alert("Select section for new item"); return true;}
+		else  { temp = $('.story-tree ul li.item[id='+ section_id + ']'); }
+		
+		if( temp.data('type')[0] == 'c' && temp.has('ul').length==1 )
+		{			
+			alert("Only one content can be added to content type section");
+		}
 		else 
-		{
-			hideForms();
-		//	clearContentForm();
-			method = 'new';
-			if(el_type == 'content')
-			{
-				fillContent();
-				$('.story-viewer #contentForm').show();
-				$('.story-viewer #contentPreview').show();
-			}
-			else 
-			{
-				$('.story-viewer #mediaForm').show();
-			}
+		{		
+			method = 'n';				
+			getStory(section_id,-1);			
 		}	
 	});
 
-	$('#sectionForm #sectionAudio').click(function(){
-		if($(this).prop('checked'))
-			$('#sectionAudioPath').show();
-		else $('#sectionAudioPath').hide();
-	});
+	
 
 	$('#contentForm #contentArticle').change(function(){
 		$('#contentPreview').html($(this).val());
@@ -205,88 +181,70 @@ function getStory(id , subid)
 {
 	if(id != -1)
 	{
-		selectedSection = $('.story-tree ul li.item[id='+ id + ']');
-		el_type = selectedSection.data('type');	
-	}
-	
-	hideForms();
+		var selectedSection = $('.story-tree ul li.item[id='+ id + ']');
+		el_type = selectedSection.data('type')[0];	
+	}		
 
 	if(subid != -1)
-	{				
-	
-		if(el_type == 'content')
-		{
-
-			method = 'save';
-
-			$('.story-viewer #contentForm').show();
-			$('.story-viewer #contentPreview').show();
-			//col.find('#columnTitle').val(selectedSection.find('ul li.sub[id='+subid+'] span').text());
-			fillContent();
-		}
-		else 
-		{
-			$('.story-viewer #mediaForm').show();	
-			fillMedia();
-
-		}
+	{		
+		method = 's';		
+		getData();
+					
 	}
 	else if(id != -1)
 	{		
-		fillSection();			
-		$('.story-viewer #sectionForm').show();
-		//$('.story-viewer').html(selectedSection.find('span').text());	
+		el_type='s';
+		method = 's';
+		getData();					
 	}
 	else
 	{
 		item_id = -1;
 		section_id = -1;
 		$('.story-tree ul li').removeClass('active');
-		el_type = 'section'; 
+		getData();
+		//if(el_type)
+		//el_type = 's'; 
+		//method = 'new';
 
 	}
 }
-function hideForms()
+function getData()
 {
-	var view = $('.story-viewer');
-	view.find('#sectionForm').hide();
-	view.find('#contentForm').hide();
-	view.find('#contentPreview').hide();
+	var dataTemp = {'section_id' : section_id, 'command':method, 'type':el_type};
 	
-	view.find('#mediaForm').hide();	
-}
+	if(el_type!='s') 
+	{		
+		dataTemp['item_id'] = item_id;
+	}
 
-
-
-function fillSection()
-{	
 	$.ajax
 		({
-		  url: 'get_section',
-		  data: {'section_id' : section_id, 's':method },
+		  url: 'get_data',
+		  data: dataTemp,
 		  dataType: 'script',
 	      cache: true
+		}).error(function(e){console.log(e)}).done(function(){
+			//$('#contentPreview').html($('#contentForm #contentArticle').val());	
 		});
-
-
-		// .done(function(d) 
-		// {
-		// 	if(d != null)
-		// 	{
-		// 		$('#sectionForm #sectionType > option[value="'+d.type_id+'"]').prop('selected', true);
-		// 		$('#sectionForm #sectionTitle').attr("value", d.title);	
-		// 		$('#sectionForm #sectionAudio').prop('checked', d.audio_path != null ? true : false);
-		// 		$('#sectionForm #sectionAudioPathLabel').text("asdf");
-		// 		if(d.audio_path != null) $('#sectionAudioPath').show();
-		// 		else $('#sectionAudioPath').hide();
-		// 	}				
-		// });			
 	return true;	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 function newContent()
 {
 
-	//clearContentForm();
 	$.ajax
 		({
 		  url: 'new_content',
@@ -295,54 +253,34 @@ function newContent()
 	      cache: true
 		  		 
 		}).done(function(d) 
-		{
-			console.log(d);
-			// if(d != null)
-			// {
-			// 	console.log(d);
-			// 	$('#contentForm #contentTitle').val(d.title);
-			// 	$('#contentForm #contentSubTitle').val(d.subtitle);
-			// 	$('#contentForm #contentArticle').val(d.content);	
-			// 	$('#tinemcePreview').html(d.content)						
-			// }				
+		{		
 		});		
 	return true;	
 }
-function fillContent()
-{
 
-	//clearContentForm();
-	$.ajax
-		({
-		  url: 'get_content',
-		  data: {'section_id' : section_id, 's':method, 'item_id' : item_id },
-		  dataType: 'script',
-	      cache: true
-		  		 
-		}).done(function(d) 
-		{
-			console.log(d);
-			// if(d != null)
-			// {
-			// 	console.log(d);
-			// 	$('#contentForm #contentTitle').val(d.title);
-			// 	$('#contentForm #contentSubTitle').val(d.subtitle);
-			// 	$('#contentForm #contentArticle').val(d.content);	
-			 	$('#contentPreview').html($('#contentForm #contentArticle').val());					
-			// }				
-		});		
-	return true;	
-}
-function fillMedia()
-{
 
-	//clearMediaForm();
-	$.ajax
-		({
-		 url: 'get_media',
-		  data: {'section_id' : section_id, 's':method, 'item_id' : item_id },
-		  dataType: 'script',
-	      cache: true
-		});		
-	return true;	
-}
+
+
+
+
+
+
+
+// $('#sectionForm #sectionAudio').click(function(){
+// 		if($(this).prop('checked'))
+// 			$('#sectionAudioPath').show();
+// 		else $('#sectionAudioPath').hide();
+// 	});
+
+
+
+// function hideForms()
+// {
+// 	var view = $('.story-viewer');
+// 	view.find('#sectionForm').hide();
+// 	view.find('#contentForm').hide();
+// 	view.find('#contentPreview').hide();
+	
+// 	view.find('#mediaForm').hide();	
+// }
+

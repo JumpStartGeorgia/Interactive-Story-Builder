@@ -13,26 +13,36 @@ BootstrapStarter::Application.routes.draw do
 			resources :users
 		end
 		
-		resources :stories do
+		resources :stories, :except => :show do
+				#get 'show', to: 'storyteller#index'
+				
 			member do
+
+				get 'get_data'
+
 				put 'content', to: 'stories#save_content'
 				post 'content', to: 'stories#new_content'
-				delete 'content', to: 'stories#destroy_content'
+				delete 'content', to: 'stories#destroy_data'
+
+				put 'media', to: 'stories#save_media'
+				post 'media', to: 'stories#new_media'
+				delete 'media', to: 'stories#destroy_data'
+
+				put 'section', to: 'stories#save_section'
+				post 'section', to: 'stories#new_section'
+				delete 'section', to: 'stories#destroy_data'
 
     			get 'sections'    			
-    			post 'new_section'
-    			post 'new_content'
-    			post 'new_media'
-    			
-    			post 'save_media'
+    			    			    		
     			post 'upload_file'
-    			get 'get_section'
-    			get 'get_content'
-    			get 'get_media'
+    	
 
   			end
-
+			
 		end
+
+		match "stories/:id" => "storyteller#index", as: 'storyteller_show'
+
 		root :to => 'root#index'
 	  match "*path", :to => redirect("/#{I18n.default_locale}") # handles /en/fake/path/whatever
 	end

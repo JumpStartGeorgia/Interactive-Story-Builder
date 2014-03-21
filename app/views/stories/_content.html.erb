@@ -1,14 +1,17 @@
-<%= semantic_form_for(@content, url: content_story_path(id:params[:id]), remote: true) do |f| %>
+<%= semantic_form_for(@item, url: content_story_path(id:params[:id]), remote: true) do |f| %>
   <%= f.inputs do %>
-    <%= f.input :title, :input_html => { :id => "contentTitle" } %>
+    <%= f.input :title, :placeholder=>'Title for content part', :input_html => { :id => "contentTitle" } %>
     <%= f.input :subtitle, :input_html => { :id => "contentSubtitle" } %>
-    <%= f.input :content, :input_html => { :id => "contentArticle" }  %>
+    <%= f.input :content,:placeholder=>'Article text, can be any styling html tag with styles', :input_html => { :id => "contentArticle" }  %>
+    <div id='contentPreview' style='float:left; width:72%; height:310px; overflow:scroll;'></div>
     <%= f.input :section_id, :as => :hidden , :input_html => { :id => "contentSection" }  %>
-    <% if @content.id.present? %>
+    <% if @item.id.present? %>
     	<%= f.input :id, :as => :hidden , :input_html => { :id => "contentId" }  %>    
     <% end %>
   <% end %>
-    <%= f.actions do %>
-      <%= f.action :submit, :label => 'Submit' %>   
-    <% end %>    
+  <div class="pull-right spacer">
+    <%= f.submit nil, :class => 'btn' %>
+    <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>      
+    </div>
 <% end %>
+

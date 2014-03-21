@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 	before_filter :set_locale
 	before_filter :is_browser_supported?
 	before_filter :initialize_gon
+	after_filter :flash_to_headers
 
 	unless Rails.application.config.consider_all_requests_local
 		rescue_from Exception,
@@ -82,6 +83,30 @@ logger.debug "////////////////////////// BROWSER NOT SUPPORTED"
 		  .exception_notification(request.env, exception)
 		  .deliver
 		render :file => "#{Rails.root}/public/500.html", :status => 500
+	end
+
+ def flash_to_headers
+      return unless request.xhr?
+      response.headers['X-Message'] = flash_message
+      response.headers["X-Message-Type"] = flash_type.to_s
+
+      flash.discard # don't want the flash to appear when you reload page
+    end
+ 
+private
+
+	def flash_message
+	   [:success, :error, :notice, :alert, nil].each do |type|
+	     return "" if type.nil?
+	     return flash[type] unless flash[type].blank?
+	   end
+	end
+
+	def flash_type
+	   [:success, :error, :notice, :alert, nil].each do |type|
+	       return "" if type.nil?
+	       return type unless flash[type].blank?
+	   end
 	end
 
 end

@@ -1,8 +1,7 @@
 class Section < ActiveRecord::Base
 	belongs_to :story
 	has_one :content
-	has_many :media
-
+	has_many :media  
 	TYPE = {content: 1, media: 2}
 	
 	def to_json(options={})

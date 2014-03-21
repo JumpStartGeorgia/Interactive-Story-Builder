@@ -2,14 +2,15 @@
  * This is a manifest file that'll automatically include all the stylesheets available in this directory
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
-
- *= require formtastic
+ 
+ *= require formtastic 
  *= require formtastic-bootstrap
  *= require jquery.ui.core
  *= require jquery.ui.theme
  *= require dataTables/jquery.dataTables.bootstrap
  *= require_tree .
  *= require vendor
+ *= require reveal
  *= require_self
 */
 
@@ -40,12 +41,12 @@ a, a:link, a:hover, a:visited, a:active
   background-color: transparent;
 }
 .content a {
-  text-decoration: underline;
+  text-decoration: none; /*underline*/
 }
 a:hover {
   color: #348BE8;
   background-color: none;
-  text-decoration: underline;
+  text-decoration: none; /*underline*/
 }
 a.brand:hover{
   background-color: transparent;
@@ -230,4 +231,10 @@ footer, footer ul li, footer div#right ul li {
 #nested_form_container .nested_form_item {
   background-color: #eee;
   padding: 0.5em 1em;
+}
+/* bootstrap button takes it styles from formtastic styles */
+.formtastic input
+{
+	padding:4px 14px !important;
+	font-size:14px !important;
 }

@@ -8,11 +8,13 @@
 //= require i18n/translations
 //= require jquery
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require jquery-ui
 //= require twitter/bootstrap
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
 //= require vendor
+//= require jquery.reveal
 //= require_tree .
 
 $(document).ready(function(){
@@ -26,4 +28,16 @@ $(document).ready(function(){
 		.off('click.dropdown touchstart.dropdown.data-api', '.dropdown')
 		.on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() });
 
+});
+$(document).ajaxComplete(function(event, request) {
+  var msg = request.getResponseHeader('X-Message');
+  var types = {'notice':'alert-info','success':'alert-success','error':'alert-error','alert':'alert-error'};
+  var type = types[request.getResponseHeader("X-Message-Type")];
+  if (msg && type)
+  {
+  	  $('.flash-message').prepend('<div class="alert '+ type +' %> fade in">' +
+									'<a href="#" data-dismiss="alert" class="close">×</a>' +
+									 msg +
+									'</div>'); 
+  }
 });

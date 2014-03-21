@@ -176,6 +176,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.1)
       json (~> 1.4)
+    remotipart (1.2.1)
     sass (3.2.1)
     sass-rails (3.1.4)
       actionpack (~> 3.1.0)
@@ -215,7 +216,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.2.0)
+  bundler
   cancan (~> 1.6.8)
   capistrano (~> 2.12.0)
   coffee-rails (~> 3.1.1)
@@ -239,6 +240,7 @@ DEPENDENCIES
   rails (= 3.1.10)
   rails-dev-boost!
   rb-inotify (~> 0.8.8)
+  remotipart (~> 1.0)
   sass-rails (= 3.1.4)
   therubyracer
   twitter-bootstrap-rails (~> 2.1.0)

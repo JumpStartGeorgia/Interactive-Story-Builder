@@ -19,7 +19,7 @@
         <td><%= story.title %></td>
         <td><%= story.user_id %></td>
         <td><%= story.author %></td>        
-        <td><%= link_to 'Show', story %></td>
+        <td><%= link_to 'Show', storyteller_show_path(story) %></td>
         <td><%= link_to 'Edit', edit_story_path(story) %></td>
         <td><%= link_to 'Destroy', story, confirm: 'Are you sure?', method: :delete %></td>
       </tr>
