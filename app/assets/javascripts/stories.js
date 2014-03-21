@@ -177,6 +177,7 @@ console.log(formData);
 	
 
 });
+
 function getStory(id , subid)
 {
 	if(id != -1)

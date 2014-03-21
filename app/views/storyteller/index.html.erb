@@ -46,6 +46,7 @@
 
 <div class="navigation">
   <div class="navigation-left">
+    <a class="navigation-logo" href="http://www.jumpstart.ge" alt="Jumpstart"></a>    
     <a class="navigation-headline" href="#"><%= @story.title %></a>    
   </div>
   <div class="navigation-right">
@@ -109,7 +110,7 @@
             <% if section.has_marker == 1 %>
                <a class="navigation-marker" id="<%= navCounter %>"></a>
             <% end %>
-            <%= section.content.content %>     
+            <%= section.content.content.html_safe %>     
           </div>
         <% else %>
           <div class="section video-sequence">
@@ -117,21 +118,24 @@
                <a class="navigation-marker" id="<%= navCounter %>"></a>
             <% end %>
             <% section.media.each do |m| %>
-              <div class="video" <%= 'data-video=' + m.image_file_name %>>
-                  <div class="video-container">
+                <% dataVideo = '' %>
+                <% if m.media_type == 2 && m.video.exists? %>                
+                  <% dataVideo = "data-video='#{File.basename(m.video_file_name,'.mp4')}'".html_safe %>
+                <% end %> 
+                
 
+              <div class="video"  <%=  dataVideo.html_safe %> >                
+                  <div class="video-container">
                     <% if m.media_type == 1 %>                                                                            
                       <img src="<%= m.image.url %>">
                     <% elsif m.media_type == 2  %>
                         <% if  m.image.exists? %>                       
                         <!--[if lte IE 8]><img src="<%= m.image.url %>"><![endif]-->
                         <% end %>                                           
-                    <% end %>    
-                    
+                    <% end %>                        
                     <% if m.source.present? %>
                        <div class="video-source"><%= m.source %></div>                       
-                    <% end %>    
-                   
+                    <% end %>                       
                   </div>
                   <% if m.caption.present? %>
                     <% if navCounter == 1 %>
@@ -152,13 +156,9 @@
         <% end %>        
         <% navCounter+=1 %>    
      <% end %>      
+    <!--
 
-    <div class="section video-sequence">
-      <a class="navigation-marker" id="1"></a>
-      <div class="video">
-
-        <div class="video-container"><img src="http://temurkikava.files.wordpress.com/2013/12/1258985453_oac6jm.jpg"></div>        
-        <div class="video-caption video-caption--head">
+      <div class="video-caption video-caption--head">
           <div class="video-headline headline" >წმ. ღირსი მამა გაბრიელი<br/>აღმსარებელი-სალოსი</div>
           <div class="video-summary">ღმერთი არ იძლევა დიდი ნიჭს დიდი განსაცდელის გარეშე. ღმერთი ყველა იმ ზომით მოგვივლენს განსაცდელს, რისი ატანაც შეგვიძლია, შესაბამისად გვეძლევა ღვთის მადლიც.</div>
           <div class="scroll-prompt">
@@ -168,106 +168,21 @@
             </svg>
           </div>
         </div>
-      </div>
-      <div class="video" data-video="_Archimandrite_Gabriel" data-animation>
-        <div class="video-container">
-          <!--[if lte IE 8]><img src="http://temurkikava.files.wordpress.com/2013/12/1258985453_oac6jm.jpg"><![endif]-->
-          <div class="video-source">http://www.monkgabriel.ge/geo/video.htm</div>
-        </div>
-        <div class="video-caption video-caption--right">მამა გაბრიელის ანდერძი კითხულობს: დავით გიორგობიანი</div>
-      </div>
-     
-    </div>
-
-    <div class="section column" style="margin-top:50px;">
-          <a class="navigation-marker" id="2"></a>
-      <p> <div class="image">
-        <img src="http://www.monkgabriel.ge/mama_gabrieli/mama-gabrieli-1.jpg">
-        <div class="caption">არქიმანდრიტი გაბრიელი (ურგებაძე).</div>
-      </div></p>
-
- <p>არქიმანდრიტი გაბრიელი, ერისკაცობაში გოდერძი ვასილის ძე ურგებაძე, დაიბადა 1929 წლის 26 აგვისტოს, თბილისში. გოდერძი ჩვილობაშივე მოუნათლავთ წმ. დიდმოწამე ბარბარეს ტაძარში, ნავთლუღის უბანში. გოდერძის ნათლია გახლდათ ყოფილი “მოწყალების და” თამარ ბეგიაშვილი. იმ პერიოდში საქართველოში მძვინვარებდა კომუნისტური რეჟიმი; იდევნებიდა სარწმუნოება; ინგრეოდა თუ იხურებოდა ეკლესიები; უდანაშაულოდ კლავდნენ და ასახლებდნენ მოსახლეობას. დაახლოებით ორი წლის იყო გოდერძი, როდესაც გაურკვეველ ვითარებაში მოუკლეს მამა, ვასილ ურგებაძე. შემდგომში, ოჯახის წევრები მამის საპატივცემოდ ბავშვს ვასიკოს ეძახდნენ. პატარა ვასიკო ბავშვობიდანვე ღვთიური მადლით გამოირჩეოდა. კენჭებისგან პატარა ეკლესიებს აშენებდა და შიგ ასანთის ღერებს ანთებდა. დედას (შემდგომში მონოზონი ანა. დაკრძალულია სამთავროს დედათა მონასტრის ეზოში, შვილის გვერდით) ეშინოდა, რომ არავის შეენიშნა ვასიკოს ამგვარი გატაცება, რადგან არ იყო გამორიცხული ოჯახის დასმენა ბავშვის კომუნისტური იდეოლოგიის საწინააღმდეგოდ აღზრდისთვის. ვასიკო ყრმობიდანვე უცნაურად იქცეოდა - თანატოლებთან თამაშს განერიდებოდა ხოლმე და ამჯობინებდა მარტოობას და მდუმარებას. ბავშვს ერთი საკვირველი გართობა მაინც ჰქონდა: ხელში მოგრძო ჯოხს დაიჭერდა და გაიქცეოდა. ირგვლივ მყოფი ჩიტები ამ ჯოხს მოეხვეოდნენ და ჟღურტულით დაჰყვებოდნენ. ეს მოვლენა ყველას აკვირვებდა. ვასიკო საოცრად ლმობიერი იყო. სახლში თაგვის ხაფანგი არაფრით დაადგმევინა; თაგვს ცოცხლად იჭერდა გალიაში და შემდეგ ეზოს გარეთ უშვებდა. სკოლაში 6 წლის ასაკში შეიყვანეს. წერა-კითხვა და არითმეტიკა ადვილად შეისწავლა, ხოლო კეთილი ზნეობით საყოველთაო სიყვარული დაიმსახურა. ქრისტეს სახელი პირველად 7 წლის ასაკში გაიგო, რამაც ვასიკოს ჩვეული ცხოვრება სრულიად შეცვალა. მალევე შეაგროვა ფული და შეიძინა სახარება, რაც ახალი ცხოვრების საწყისად იქცა. იმ დღიდან აღსასრულამდე გაბრიელ ბერი ერთი აზრით და სურვილით განიმსჭვალა – ეცხოვრა მხოლოდ ქრისტესთვის. დღემუდამ თავის სახარებას კითხულობდა და სხვა არაფერი აინტერესებდა; გაკვეთილებს კი მცირე ხნით თუ გადაავლებდა თვალს, ბევრი დრო რომ არ წართმეოდა. დაძინებისას, თავის ოთახში შევიდოდა და ხატების კუთხეში ხანგრძლივად ლოცულობდა. სიკვდილამდე რამდენიმე დღით ადრე გაბრიელ ბერს მოუგონებია თავისი ბავშვობის ის პერიოდი: - მეორე სართულზე, აივანზე ვიჯექი ჩემთვის ჩაფიქრებული, როდესაც შინაგანი კარნახივით მომეცა – ცას ახედეო. ავდექი, აივნის ნაპირთან მივედი, ავიხედე და ვხედავ, ცაზე დიდი ჯვარი იყო აღმართული. მაშინ ვერა, მაგრამ ახლა კი ვიცი, რომ ეს იყო ჩემი ჯვარი, რომელიც ღმრთისა და მოყვასის სიყვარულით უნდა მეტვირთა და მეტარებინა.</p>
-    </div>
 
 
-
- <div class="section column" style="margin-top:50px;">
-          <a class="navigation-marker" id="3"></a>
-    <h1>მამა გაბრიელის საფლავის გახსნის კადრებს პირველი არხი ავრცელებს.</h1>
-
-    <p>სამთავროს ფერიცვალების დედათა მონასტერში მამა გაბრიელის საფლავის გათხრა დაიწყო. მონასტერში იმყოფებიან მხოლოდ მონაზვნები, სასულიერო პირები, საპატრიარქოს წარმომადგენლები და ის ადამიანები, რომლებიც უშუალოდ მონაწილეობენ საფლავის გათხრაში.</p>
-    </div>
-
-    <div class="section video-sequence">      
-           <div class="video">
-            <div class="video-container"><img src="http://www.ambioni.ge/wp-content/fancygallery/170/170/1.jpg"></div>
-            <div class="video-caption">სამთავროს ფერიცვალების დედათა მონასტერში მამა გაბრიელის საფლავის გათხრა დაიწყო. მონასტერში იმყოფებიან მხოლოდ მონაზვნები, სასულიერო პირები, საპატრიარქოს წარმომადგენლები და ის ადამიანები, რომლებიც უშუალოდ მონაწილეობენ საფლავის გათხრაში. </div>
-        </div>
-     
-      <div class="video" data-video="_Archimandrite_Gabriel" data-animation>
-        <div class="video-container">
-          <!--[if lte IE 8]><img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/720/zoom-to-ayungin-poster.jpg"><![endif]-->
-          <div class="video-source">http://www.monkgabriel.ge/geo/video.htm</div>
-        </div>
-        <div class="video-caption video-caption--right">მამა გაბრიელის საფლავის გახსნა</div>
-      </div>
-       <div class="video">
-            <div class="video-container"><img src="http://www.ambioni.ge/wp-content/fancygallery/170/170/2.jpg"></div>
-            <div class="video-caption">სამთავროს ფერიცვალების დედათა მონასტერში მამა გაბრიელის საფლავის გათხრა დაიწყო. მონასტერში იმყოფებიან მხოლოდ მონაზვნები, სასულიერო პირები, საპატრიარქოს წარმომადგენლები და ის ადამიანები, რომლებიც უშუალოდ მონაწილეობენ საფლავის გათხრაში. </div>
-        </div>
-         <div class="video">
-            <div class="video-container"><img src="http://www.ambioni.ge/wp-content/fancygallery/170/170/3.jpg"></div>
-            <div class="video-caption video-caption--right"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </div>
-        </div>
-         <div class="video">
-            <div class="video-container"><img src="http://www.ambioni.ge/wp-content/fancygallery/170/170/4.jpg"></div>
-            <div class="video-caption video-caption--right">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </div>
-        </div>
-    </div>
-
-
-
-    <div class="section video-sequence" data-audio="below-deck">
-
-      <div class="video">
-        <div class="video-container"><img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/720/window-boat.jpg"></div>
-        <div class="video-caption">With the tropical sun blasting down on it, the ship was ravaged by rust. Whole sections of the deck were riddled with holes.</div>
-      </div>
+       <div class="section video-sequence" data-audio="below-deck">
       <div class="video" data-video="under-flash-light">
-        <div class="video-container"><!--[if lte IE 8]><img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/mobile-1024/under-flash-light.jpg"><![endif]--></div>
-        <div class="video-caption video-caption--right">Old doors and metal sheets dotted paths where the men walked, to prevent them from plunging into the cavernous tank space below.</div>
+
+       <div class="image image--diptych">
+        <img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/696/island-pag-asa.jpg">
+        <img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/696/kids.jpg">
+        <div class="caption">About 120 people live at any one time on Pag-asa, including civilians.</div>
       </div>
-      <div class="video">
-        <div class="video-container"><img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/720/below-deck.jpg"></div>
-        <div class="video-caption">It was hard to imagine how such a forsaken place could become a flash point in a geopolitical power struggle.</div>
-      </div>
-    </div>
-    <div class="section column">
-      <p>But before we had much time to think about that, someone pointed out that the Chinese boats had started to move. They left their positions to the east and west of the reef and began to converge just off the starboard side, where the reef came closest to the ship.
-      <div class="image">
+       <div class="image">
         <img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/696/chinese-coast-guards.jpg">
         <div class="caption">Chinese Coast Guard cutters patrol within sight of the Sierra Madre.</div>
-      </div>
-      <p>The mayor and several others stood quietly on deck, watching them as they came. The message from the Chinese was unmistakable: We see you, we’ve got our eye on you, we are here.
-      <p>As the Chinese boats made their half-circle in front of the Sierra Madre, the mayor mimed the act of them filming us. “Wave,” he said. “We’re going to be big on YouTube.”
-    </div>
-    <div class="section column">
-      <a class="navigation-marker" id="4"></a>
-      <h3>Dangerous Ground</h3>
-      <p>To understand how Ayungin (known to the Western world as Second Thomas Shoal) could become contested ground is to confront, in miniature, both the rise of China and the potential future of U.S. foreign policy. It is also to enter into a morass of competing historical, territorial and even moral claims in an area where defining what is true or fair may be no easier than it has proved to be in the Middle East.
-      <p>The Spratly Islands sprawl over roughly 160,000 square miles in the waters of the coasts of the Philippines, Malaysia, Brunei, Taiwan and China — all of whom claim part of the islands.
-    </div>
-
-    <div class="section column">
-      <a class="navigation-marker" id="5"></a>
-      <h3>The Cabbage Strategy</h3>
-     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-    </div>
-
-   
-
-
+      </div>     
+     -->
   </div>
 </div>
 
@@ -275,6 +190,14 @@
   *  data hash for mobile devices , they use different images   
   *----------------------------------------------------------------------- -->
   <script>
+    <% navCounter = 1 %>
+    <% @story.sections.order('sort_order').each do |section| %>
+        <% if section.type_id == 2 %>
+
+        <% end %>
+    <% navCounter+=1 %>    
+    <% end %>
+
     var mobileImages = [
 
       // SECTION 1 - INTRO
@@ -377,985 +300,6 @@
       },*/
     ];</script>
 
-  <!-- -----------------------------------------------------------------------
-  *  map label definitions i think it used for correct font sizes when resizing   
-  *----------------------------------------------------------------------- -->  
-
-  <script id="nytg-tabletmap-0-spratlys-template" type="text/template">
-    <!-- tablet map 0 - spratlys -->
-    <style type='text/css' media='screen,print'>
-      #nytg-tabletmap-0-spratlys .nytg-aiPstyle0 {
-        font-size:18px;
-        line-height:26px;
-        font-style:italic;
-        text-align:center;
-        letter-spacing:0.166em;
-        opacity:0.2;
-      }
-      #nytg-tabletmap-0-spratlys .nytg-aiPstyle1 {
-        font-size:18px;
-        line-height:20px;
-        font-style:italic;
-        text-align:center;
-        letter-spacing:0.166em;
-        opacity:0.2;
-      }
-      #nytg-tabletmap-0-spratlys .nytg-aiPstyle2 {
-        font-size:14px;
-        line-height:12px;
-        text-align:right;
-        letter-spacing:0.0833em;
-        opacity:0.4;
-      }
-      #nytg-tabletmap-0-spratlys .nytg-aiPstyle3 {
-        font-size:14px;
-        line-height:12px;
-        text-align:center;
-        letter-spacing:0.0833em;
-        opacity:0.5;
-      }
-      #nytg-tabletmap-0-spratlys .nytg-aiPstyle4 {
-        font-size:14px;
-        line-height:17px;
-        font-style:italic;
-        text-align:center;
-        letter-spacing:0.05em;
-        opacity:0.3;
-      }
-      #nytg-tabletmap-0-spratlys .nytg-aiPstyle5 {
-        font-size:14px;
-        line-height:14px;
-        letter-spacing:0.05em;
-      }
-    </style>
-    <div class='nytg-tabletmap' id='nytg-tabletmap-0-spratlys'>
-      <img src='http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/mobile-maps/map-0-spratlys-1022-1744.jpg' width=100% />
-      <!-- <div style='left:82.5521%;width:105px;top:12.5000%;'>
-        <p class='nytg-aiPstyle0'>PACIFIC</p>
-        <p class='nytg-aiPstyle0'>OCEAN</p>
-      </div> -->
-      <div style='left: 41.4531%;top: 40.9219%;width: 100px;'>
-        <p class='nytg-aiPstyle1'>SOUTH CHINA SEA</p>
-      </div>
-      <div style='right: 32.2448%;top: 84.5234%;'>
-        <p class='nytg-aiPstyle2'>MALAYSIA</p>
-      </div>
-      <div style='left:10.9375%;width:58px;top:15.0391%;'>
-        <p class='nytg-aiPstyle3'>LAOS</p>
-      </div>
-      <div style='left:5.8594%;width:93px;top:35.1562%;'>
-        <p class='nytg-aiPstyle3'>THAILAND</p>
-      </div>
-      <div style='left: 16.099%;width: 99px;top: 49.4141%;'>
-        <p class='nytg-aiPstyle3'>CAMBODIA</p>
-      </div>
-      <div style='left:18.2292%;width:86px;top:8.5938%;'>
-        <p class='nytg-aiPstyle3'>VIETNAM</p>
-      </div>
-      <div style='left: 70.2135%;width: 113px;top: 69.3047%;'>
-        <p class='nytg-aiPstyle3'>PHILIPPINES</p>
-      </div>
-      <!--  <div style='left:74.6094%;width:76px;top:2.3438%;'>
-        <p class='nytg-aiPstyle3'>TAIWAN</p>
-      </div> -->
-      <div style='left:36.0677%;width:66px;top:3.7109%;'>
-        <p class='nytg-aiPstyle3'>CHINA</p>
-      </div>
-      <div style='left:42.1875%;width:83px;top:62.1094%;'>
-        <p class='nytg-aiPstyle4'>SPRATLY</p>
-        <p class='nytg-aiPstyle4'>ISLANDS</p>
-      </div>
-      <div style='left:57.9427%;top:59.1797%;'>
-        <p class='nytg-aiPstyle5'>Ayungin</p>
-      </div>
-    </div>
-  </script>
-
-  <script id="nytg-tabletmap-1-spratlys-template" type="text/template">
-    <!-- tablet map 1 - occupations -->
-    <style type='text/css' media='screen,print'>
-
-      #nytg-tabletmap-1-occupations .nytg-aiPstyle0 {
-        font-size:20px;
-        line-height:27px;
-        font-style:italic;
-        text-align:center;
-        letter-spacing:0.166em;
-        opacity:0.2;
-      }
-      #nytg-tabletmap-1-occupations .nytg-aiPstyle1 {
-        font-size:12px;
-        line-height:14px;
-        font-style:italic;
-        text-align:center;
-        letter-spacing:0.05em;
-        opacity:0.3;
-      }
-      #nytg-tabletmap-1-occupations .nytg-aiPstyle2 {
-        line-height:15px;
-        letter-spacing:0.05em;
-        opacity:0.5;
-      }
-      #nytg-tabletmap-1-occupations .nytg-aiPstyle3 {
-        line-height:15px;
-        text-align:right;
-        letter-spacing:0.05em;
-        opacity:0.5;
-      }
-      #nytg-tabletmap-1-occupations .nytg-aiPstyle4 {
-        line-height:15px;
-        letter-spacing:0.05em;
-      }
-      #nytg-tabletmap-1-occupations .nytg-aiPstyle5 {
-        font-size:12px;
-        line-height:14px;
-        font-style:italic;
-        text-align:center;
-        letter-spacing:0.05em;
-        opacity:0.3;
-      }
-      #nytg-tabletmap-1-occupations .nytg-aiPstyle6 {
-        line-height:16px;
-        text-align:right;
-        opacity:0.5;
-      }
-      #nytg-tabletmap-1-occupations .nytg-aiPstyle7 {
-        font-size:14px;
-        line-height:15px;
-        text-align:center;
-        letter-spacing:0.0833em;
-        opacity:0.5;
-      }
-      #nytg-tabletmap-1-occupations .nytg-aiPstyle8 {
-        font-size:14px;
-        line-height:15px;
-        letter-spacing:0.0833em;
-        opacity:0.5;
-      }
-      #nytg-tabletmap-1-occupations .nytg-aiPstyle9 {
-        font-size:14px;
-        line-height:15px;
-        text-align:right;
-        letter-spacing:0.0833em;
-        opacity:0.5;
-      }
-      #nytg-tabletmap-1-occupations .nytg-aiPstyle10 {
-        font-size:14px;
-        line-height:15px;
-      }
-      #nytg-tabletmap-1-occupations .nytg-aiPstyle11 {
-        font-size:14px;
-        line-height:15px;
-        font-weight:bold;
-      }
-
-    </style>
-    <div class='nytg-tabletmap' id='nytg-tabletmap-1-occupations'>
-      <img src='http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/mobile-maps/map-1-occupations-1022-1744.jpg' width=100% />
-      <div style='left:34.8958%;width:263px;top:16.2109%;'>
-        <p class='nytg-aiPstyle0'>SOUTH CHINA SEA</p>
-      </div>
-      <div style='left:48.5677%;width:71px;top:50.8%;'>
-        <p class='nytg-aiPstyle1'>SPRATLY</p>
-        <p class='nytg-aiPstyle1'>ISLANDS</p>
-      </div>
-      <div style='left:88.4115%;top:49.0234%;'>
-        <p class='nytg-aiPstyle2'>Palawan</p>
-        <p class='nytg-aiPstyle2'>Island</p>
-      </div>
-      <div style='left:65.3646%;top:43.9453%;'>
-        <p class='nytg-aiPstyle2'>Mischief Reef</p>
-      </div>
-      <div style='right:44.9219%;top:39.0625%;'>
-        <p class='nytg-aiPstyle3'>Subi Reef</p>
-      </div>
-      <div style='right:43.3594%;top:33.5938%;'>
-        <p class='nytg-aiPstyle3'>Pag-asa</p>
-      </div>
-      <div style='left:68.2292%;top:39.8438%;'>
-        <p class='nytg-aiPstyle2'>Lawak</p>
-      </div>
-      <div style='left:68.2292%;top:51.7578%;'>
-        <p class='nytg-aiPstyle4'>Ayungin</p>
-      </div>
-      <div style='left:72.7865%;width:53px;top:26.9531%;'>
-        <p class='nytg-aiPstyle5'>REED</p>
-        <p class='nytg-aiPstyle5'>BANK</p>
-      </div>
-      <div style='right:60.5469%;top:86.7188%;'>
-        <p class='nytg-aiPstyle6'>200 n.m. limit of</p>
-        <p class='nytg-aiPstyle6'>Exclusive Economic Zones</p>
-      </div>
-      <div style='left:70.3125%;width:93px;top:92.5781%;'>
-        <p class='nytg-aiPstyle7'>MALAYSIA</p>
-      </div>
-      <div style='left:-0.2604%;width:99px;top:20.1172%;'>
-        <p class='nytg-aiPstyle7'>CAMBODIA</p>
-      </div>
-      <div style='left:9.2448%;top:29.8828%;'>
-        <p class='nytg-aiPstyle8'>VIETNAM</p>
-      </div>
-      <div style='right:2.6042%;top:16.7969%;'>
-        <p class='nytg-aiPstyle9'>PHILIPPINES</p>
-      </div>
-      <div style='left:89.1927%;top:81.4453%;'>
-        <p class='nytg-aiPstyle10'>Taiwan</p>
-      </div>
-      <div style='left:89.1927%;top:77.5391%;'>
-        <p class='nytg-aiPstyle10'>Malaysia</p>
-      </div>
-      <div style='left:89.1927%;top:73.8281%;'>
-        <p class='nytg-aiPstyle10'>Vietnam</p>
-      </div>
-      <div style='left:89.1927%;top:69.9219%;'>
-        <p class='nytg-aiPstyle10'>Philippines</p>
-      </div>
-      <div style='left:89.1927%;top:66.2109%;'>
-        <p class='nytg-aiPstyle10'>China</p>
-      </div>
-      <div style='left:86.7188%;top:62.1094%;'>
-        <p class='nytg-aiPstyle11'>Occupied by</p>
-      </div>
-    </div>
-  </script>
-
-  <script id="nytg-tabletmap-2-spratlys-template" type="text/template">
-    <!-- tablet map 2 - claims -->
-    <style type='text/css' media='screen,print'>
-
-      #nytg-tabletmap-2-claims .nytg-aiPstyle0 {
-        line-height:15px;
-        text-align:right;
-      }
-      #nytg-tabletmap-2-claims .nytg-aiPstyle1 {
-        line-height:15px;
-      }
-      #nytg-tabletmap-2-claims .nytg-aiPstyle2 {
-        font-size:18px;
-        line-height:26px;
-        font-style:italic;
-        text-align:center;
-        letter-spacing:0.166em;
-        opacity:0.2;
-      }
-      #nytg-tabletmap-2-claims .nytg-aiPstyle3 {
-        font-size:18px;
-        line-height:20px;
-        font-style:italic;
-        text-align:center;
-        letter-spacing:0.166em;
-        opacity:0.2;
-      }
-      #nytg-tabletmap-2-claims .nytg-aiPstyle4 {
-        line-height:12px;
-        text-align:right;
-        letter-spacing:0.0833em;
-        opacity:0.5;
-      }
-      #nytg-tabletmap-2-claims .nytg-aiPstyle5 {
-        line-height:12px;
-        text-align:center;
-        letter-spacing:0.0833em;
-        opacity:0.5;
-      }
-      #nytg-tabletmap-2-claims .nytg-aiPstyle6 {
-        font-size:12px;
-        line-height:14px;
-        font-style:italic;
-        text-align:center;
-        letter-spacing:0.05em;
-        opacity:0.4;
-      }
-      #nytg-tabletmap-2-claims .nytg-aiPstyle7 {
-        font-size:12px;
-        line-height:14px;
-        letter-spacing:0.05em;
-        opacity:0.6;
-      }
-      #nytg-tabletmap-2-claims .nytg-aiPstyle8 {
-        font-size:12px;
-        line-height:14px;
-        text-align:right;
-        letter-spacing:0.05em;
-        opacity:0.6;
-      }
-
-    </style>
-    <div class='nytg-tabletmap' id='nytg-tabletmap-2-claims'>
-      <img src='http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/mobile-maps/map-2-claims-1022-1745.jpg' width=100% />
-      <div style='right:26.9531%;top:12.6953%;'>
-        <p class='nytg-aiPstyle0'>China&rsquo;s claim,</p>
-        <p class='nytg-aiPstyle0'>the nine-dash line</p>
-      </div>
-      <div style='right:51.1719%;top:85.7422%;'>
-        <p class='nytg-aiPstyle0'>200 n.m. limit of</p>
-        <p class='nytg-aiPstyle0'>Exclusive Economic Zones</p>
-      </div>
-      <div style='left:66.0156%;top:68.1641%;'>
-        <p class='nytg-aiPstyle1'>The Philippines claims these islands, </p>
-        <p class='nytg-aiPstyle1'>along with Scarborough Shoal.</p>
-      </div>
-      <div style='left:83.7240%;width:105px;top:13.8672%;'>
-        <p class='nytg-aiPstyle2'>PACIFIC</p>
-        <p class='nytg-aiPstyle2'>OCEAN</p>
-      </div>
-      <div style='left:38.6719%;width:219px;top:46.4844%;'>
-        <p class='nytg-aiPstyle3'>SOUTH CHINA SEA</p>
-      </div>
-      <div style='right:34.3750%;top:86.5234%;'>
-        <p class='nytg-aiPstyle4'>MALAYSIA</p>
-      </div>
-      <div style='left:11.0677%;width:55px;top:15.0391%;'>
-        <p class='nytg-aiPstyle5'>LAOS</p>
-      </div>
-      <div style='left:6.2500%;width:88px;top:35.1562%;'>
-        <p class='nytg-aiPstyle5'>THAILAND</p>
-      </div>
-      <div style='left:18.4896%;width:93px;top:49.6094%;'>
-        <p class='nytg-aiPstyle5'>CAMBODIA</p>
-      </div>
-      <div style='left:7.4219%;width:87px;top:88.8672%;'>
-        <p class='nytg-aiPstyle5'>MALAYSIA</p>
-      </div>
-      <div style='left:18.6198%;width:81px;top:8.7891%;'>
-        <p class='nytg-aiPstyle5'>VIETNAM</p>
-      </div>
-      <div style='left:77.7344%;width:106px;top:37.5000%;'>
-        <p class='nytg-aiPstyle5'>PHILIPPINES</p>
-      </div>
-      <div style='left:74.8698%;width:72px;top:2.3438%;'>
-        <p class='nytg-aiPstyle5'>TAIWAN</p>
-      </div>
-      <div style='left:36.1979%;width:63px;top:3.7109%;'>
-        <p class='nytg-aiPstyle5'>CHINA</p>
-      </div>
-      <div style='left:47.1354%;width:71px;top:65.4297%;'>
-        <p class='nytg-aiPstyle6'>SPRATLY</p>
-        <p class='nytg-aiPstyle6'>ISLANDS</p>
-      </div>
-      <div style='left:57.8125%;top:60.7422%;'>
-        <p class='nytg-aiPstyle7'>Ayungin</p>
-      </div>
-      <div style='right:37.8906%;top:37.1094%;'>
-        <p class='nytg-aiPstyle8'>Scarborough</p>
-        <p class='nytg-aiPstyle8'>Shoal</p>
-      </div>
-    </div>
-  </script>
-
-  <script id="nytg-tabletmap-3-spratlys-template" type="text/template">
-  <!-- tablet map 3 - shipping -->
-    <style type='text/css' media='screen,print'>
-
-      #nytg-tabletmap-3-shipping .nytg-aiPstyle0 {
-        font-size:12px;
-        line-height:13px;
-        text-align:right;
-        letter-spacing:0.05em;
-        opacity:0.4;
-      }
-      #nytg-tabletmap-3-shipping .nytg-aiPstyle1 {
-        line-height:15px;
-      }
-      #nytg-tabletmap-3-shipping .nytg-aiPstyle2 {
-        font-size:18px;
-        line-height:26px;
-        font-style:italic;
-        text-align:center;
-        letter-spacing:0.166em;
-        opacity:0.2;
-      }
-
-      #nytg-tabletmap-3-shipping .nytg-aiPstyle4 {
-        line-height:12px;
-        text-align:right;
-        letter-spacing:0.0833em;
-        opacity:0.4;
-      }
-      #nytg-tabletmap-3-shipping .nytg-aiPstyle5 {
-        line-height:12px;
-        text-align:center;
-        letter-spacing:0.0833em;
-        opacity:0.4;
-      }
-      #nytg-tabletmap-3-shipping .nytg-aiPstyle6 {
-        font-size:12px;
-        line-height:13px;
-        font-style:italic;
-        text-align:center;
-        letter-spacing:0.05em;
-        opacity:0.4;
-      }
-      #nytg-tabletmap-3-shipping .nytg-aiPstyle7 {
-        font-size:12px;
-        line-height:14px;
-        font-style:italic;
-        text-align:center;
-        letter-spacing:0.05em;
-        opacity:0.4;
-      }
-
-    </style>
-    <div class='nytg-tabletmap' id='nytg-tabletmap-3-shipping'>
-      <img src='http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/mobile-maps/map-3-shipping-1022-1745.jpg' width=100% />
-      <div style='right:37.8906%;top:30.6641%;'>
-        <p class='nytg-aiPstyle0'>Scarborough</p>
-        <p class='nytg-aiPstyle0'>Shoal</p>
-      </div>
-      <div style='left:39.5833%;top:69.7266%;'>
-        <p class='nytg-aiPstyle1'>Major shipping</p>
-        <p class='nytg-aiPstyle1'>lanes</p>
-      </div>
-      <div style='left:78.7760%;width:105px;top:14.6484%;'>
-        <p class='nytg-aiPstyle2'>PACIFIC</p>
-        <p class='nytg-aiPstyle2'>OCEAN</p>
-      </div>
-      <div style='left:39.5833%;width:219px;top:41.2109%;'>
-        <p class='nytg-aiPstyle2'>SOUTH CHINA SEA</p>
-      </div>
-      <div style='right:40.4948%;top:95.5078%;'>
-        <p class='nytg-aiPstyle4'>INDONESIA</p>
-      </div>
-      <div style='right:47.1354%;top:88.2812%;'>
-        <p class='nytg-aiPstyle4'>MALAYSIA</p>
-      </div>
-      <div style='left:1.4323%;width:89px;top:10.3516%;'>
-        <p class='nytg-aiPstyle5'>MYANMAR</p>
-      </div>
-      <div style='left:15.3646%;width:55px;top:15.4297%;'>
-        <p class='nytg-aiPstyle5'>LAOS</p>
-      </div>
-      <div style='left:10.8073%;width:88px;top:32.4219%;'>
-        <p class='nytg-aiPstyle5'>THAILAND</p>
-      </div>
-      <div style='left:21.4844%;width:93px;top:45.1172%;'>
-        <p class='nytg-aiPstyle5'>CAMBODIA</p>
-      </div>
-      <div style='left:8.5938%;width:87px;top:93.5547%;'>
-        <p class='nytg-aiPstyle5'>MALAYSIA</p>
-      </div>
-      <div style='left:21.8750%;width:81px;top:9.7656%;'>
-        <p class='nytg-aiPstyle5'>VIETNAM</p>
-      </div>
-      <div style='left:72.3958%;width:106px;top:34.3750%;'>
-        <p class='nytg-aiPstyle5'>PHILIPPINES</p>
-      </div>
-      <div style='left:70.9635%;width:72px;top:4.4922%;'>
-        <p class='nytg-aiPstyle5'>TAIWAN</p>
-      </div>
-      <div style='left:38.4115%;width:63px;top:3.3203%;'>
-        <p class='nytg-aiPstyle5'>CHINA</p>
-      </div>
-      <div style='left:38.5417%;width:72px;top:27.1484%;'>
-        <p class='nytg-aiPstyle6'>PARACEL</p>
-        <p class='nytg-aiPstyle6'>ISLANDS</p>
-      </div>
-      <div style='left:46.6146%;width:71px;top:59.3750%;'>
-        <p class='nytg-aiPstyle7'>SPRATLY</p>
-        <p class='nytg-aiPstyle7'>ISLANDS</p>
-      </div>
-    </div>
-  </script>
-
-  <script id="nytg-tabletmap-4-spratlys-template" type="text/template">
-  <!-- tablet map 4 - scarborough -->
-    <style type='text/css' media='screen,print'>
-
-      #nytg-tabletmap-4-scarborough .nytg-aiPstyle0 {
-        font-size:20px;
-        line-height:27px;
-        font-style:italic;
-        text-align:center;
-        letter-spacing:0.166em;
-        opacity:0.2;
-      }
-      #nytg-tabletmap-4-scarborough .nytg-aiPstyle1 {
-        font-size:12px;
-        line-height:15px;
-        font-style:italic;
-        text-align:center;
-        letter-spacing:0.05em;
-        opacity:0.5;
-      }
-      #nytg-tabletmap-4-scarborough .nytg-aiPstyle2 {
-        line-height:15px;
-        letter-spacing:0.05em;
-        opacity:0.5;
-      }
-      #nytg-tabletmap-4-scarborough .nytg-aiPstyle3 {
-        line-height:15px;
-        text-align:right;
-        letter-spacing:0.05em;
-      }
-      #nytg-tabletmap-4-scarborough .nytg-aiPstyle4 {
-        font-size:16px;
-        line-height:15px;
-        text-align:right;
-        letter-spacing:0.0833em;
-        opacity:0.7;
-      }
-
-    </style>
-    <div class='nytg-tabletmap' id='nytg-tabletmap-4-scarborough'>
-      <img src='http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/mobile-maps/map-4-scarborough-1022-1745.jpg' width=100% />
-      <div style='left:31.1198%;width:263px;top:44.9219%;'>
-        <p class='nytg-aiPstyle0'>SOUTH CHINA SEA</p>
-      </div>
-      <div style='left:6.2500%;width:72px;top:65.2344%;'>
-        <p class='nytg-aiPstyle1'>PARACEL</p>
-        <p class='nytg-aiPstyle1'>ISLANDS</p>
-      </div>
-      <div style='left:10.2865%;top:38.0859%;'>
-        <p class='nytg-aiPstyle2'>Hainan Island</p>
-      </div>
-      <div style='right:28.9062%;top:71.0938%;'>
-        <p class='nytg-aiPstyle3'>Scarborough Shoal</p>
-      </div>
-      <div style='right:80.3385%;top:17.3828%;'>
-        <p class='nytg-aiPstyle4'>CHINA</p>
-      </div>
-      <div style='right:13.6719%;top:39.2578%;'>
-        <p class='nytg-aiPstyle4'>PHILIPPINES</p>
-      </div>
-    </div>
-  </script>
-
-
-  <script id="nytg-phonemap_0_spratlys-template" type="text/template">
-    <!-- phonemap 0 - spratlys -->
-    <style type='text/css' media='screen,print'>
-      #nytg-phonemap_0_spratlys .s0 {
-        font-size:15px;
-        line-height:20px;
-        font-style:italic;
-        text-align:center;
-        letter-spacing:0.083em;
-        opacity:0.2;
-      }
-      #nytg-phonemap_0_spratlys .s1 {
-        letter-spacing:0.083em;
-        opacity:0.6;
-      }
-      #nytg-phonemap_0_spratlys .s2 { }
-      #nytg-phonemap_0_spratlys .s3 {
-        font-size:11px;
-        line-height:14px;
-        font-style:italic;
-        text-align:center;
-        opacity:0.5;
-      }
-      #nytg-phonemap_0_spratlys .s4 {
-        font-size:14px;
-        line-height:14px;
-      }
-    </style>
-    <div class='nytg-phonemap' id='nytg-phonemap_0_spratlys'>
-      <img src='http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/mobile-maps/PHONEmap-0-spratlys-1023-1102.jpg' width=100% />
-      <div style='left:34.0000%;width:128px;top:33.5938%;'>
-        <p class='s0'>SOUTH CHINA</p>
-        <p class='s0'>SEA</p>
-      </div>
-      <div style='left:70.3333%;top:67.9688%;'>
-        <p class='s1'>PHILIPPINES</p>
-      </div>
-      <div style='left:32.6667%;top:1.9531%;'>
-        <p class='s1'>CHINA</p>
-      </div>
-      <div style='left:36.0000%;top:92.5781%;'>
-        <p class='s1'>MALAYSIA</p>
-      </div>
-      <div style='left:16.3333%;top:62.5000%;'>
-        <p class='s1'>VIETNAM</p>
-      </div>
-      <div style='left: 64.3333%;top: 53.9062%;margin-left: -20px;'>
-        <p class='s2'>Ayungin</p>
-      </div>
-      <div style='left:39.0000%;width:66px;top:67.5781%;'>
-        <p class='s3'>SPRATLY</p>
-        <p class='s3'>ISLANDS</p>
-      </div>
-    </div>
-  </script>
-
-  <script id="nytg-phonemap_1_spratlys-template" type="text/template">
-    <!-- phonemap 1 - occupations -->
-    <style type='text/css' media='screen,print'>
-      #nytg-phonemap_1_occupations .s0 {
-        font-size:15px;
-        line-height:20px;
-        font-style:italic;
-        text-align:center;
-        letter-spacing:0.083em;
-        opacity:0.2;
-      }
-      #nytg-phonemap_1_occupations .s1 {
-        font-size:11px;
-        line-height:14px;
-        font-style:italic;
-        text-align:center;
-        opacity:0.5;
-      }
-      #nytg-phonemap_1_occupations .s2 {}
-      #nytg-phonemap_1_occupations .s3 {
-        text-align:center;
-        letter-spacing:0.083em;
-        opacity:.6;
-      }
-      #nytg-phonemap_1_occupations .s4 {
-        letter-spacing:0.083em;
-        opacity:.6;
-      }
-      #nytg-phonemap_1_occupations .s5 {
-        text-align:right;
-        letter-spacing:0.083em;
-        opacity:.6;
-      }
-      #nytg-phonemap_1_occupations .s6 {
-        font-size:11px;
-        line-height:8px;
-        opacity:.9;
-      }
-      #nytg-phonemap_1_occupations .s7 {
-        line-height:8px;
-        font-weight:bold;
-        opacity:.9;
-      }
-    </style>
-    <div class='nytg-phonemap' id='nytg-phonemap_1_occupations'>
-      <img src='http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/mobile-maps/PHONEmap-1-occupations-1022-2035.jpg' width=100% />
-      <div style='left:23.3333%;width:163px;top:16.4062%;'>
-        <p class='s0'>SOUTH CHINA SEA</p>
-      </div>
-      <div style='left:24.3333%;width:66px;top:33.9844%;'>
-        <p class='s1'>SPRATLY</p>
-        <p class='s1'>ISLANDS</p>
-      </div>
-      <div style='left:65.6667%;top:45.3125%;'>
-        <p class='s2'>Ayungin</p>
-      </div>
-      <div style='left:66.0000%;width:50px;top:28.1250%;'>
-        <p class='s1'>REED</p>
-        <p class='s1'>BANK</p>
-      </div>
-      <div style='left:62.0000%;width:82px;top:90.2344%;'>
-        <p class='s3'>MALAYSIA</p>
-      </div>
-      <div style='left:1.6667%;top:25.0000%;'>
-        <p class='s4'>VIETNAM</p>
-      </div>
-      <div style='right:2.6667%;top:58.2031%;'>
-        <p class='s5'>PHILIPPINES</p>
-      </div>
-      <div style='left:87.6667%;top:8.2031%;'>
-        <p class='s6'>Taiwan</p>
-      </div>
-      <div style='left:67.0000%;top:8.5938%;'>
-        <p class='s6'>Malaysia</p>
-      </div>
-      <div style='left:46.6667%;top:8.5938%;'>
-        <p class='s6'>Vietnam</p>
-      </div>
-      <div style='left:22.3333%;top:8.5938%;'>
-        <p class='s6'>Philippines</p>
-      </div>
-      <div style='left:6.0000%;top:8.5938%;'>
-        <p class='s6'>China</p>
-      </div>
-      <div style='left:1.6667%;top:2.3438%;'>
-        <p class='s7'>Occupied by</p>
-      </div>
-
-    </div>
-  </script>
-
-  <script id="nytg-phonemap_2_spratlys-template" type="text/template">
-    <!-- phonemap 2 - claims -->
-    <style type='text/css' media='screen,print'>
-      #nytg-phonemap_2_claims .s0 {
-        text-align:right;
-      }
-      #nytg-phonemap_2_claims .s1 {}
-      #nytg-phonemap_2_claims .s2 {
-        line-height:20px;
-        font-style:italic;
-        text-align:center;
-        letter-spacing:0.083em;
-        opacity:0.2;
-      }
-      #nytg-phonemap_2_claims .s3 {
-        font-size:10px;
-        line-height:12px;
-        text-align:center;
-        letter-spacing:0.083em;
-        opacity:0.5;
-      }
-      #nytg-phonemap_2_claims .s4 {
-        font-size:10px;
-        line-height:12px;
-        letter-spacing:0.083em;
-        opacity:0.5;
-      }
-      #nytg-phonemap_2_claims .s5 {
-        line-height:14px;
-        opacity:0.6;
-      }
-      #nytg-phonemap_2_claims .s6 {
-        font-size:11px;
-        line-height:12px;
-        text-align:right;
-        opacity:0.6;
-      }
-    </style>
-    <div class='nytg-phonemap' id='nytg-phonemap_2_claims'>
-      <img src='http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/mobile-maps/PHONEmap-2-claims-1022-2021.jpg' width=100% />
-      <div style='right:27.0000%;top:5.0781%;'>
-        <p class='s0'>China&rsquo;s claim,</p>
-        <p class='s0'>the nine-dash line</p>
-      </div>
-      <div style='left:2.6667%;top:86.7186%;'>
-        <p class='s1'>Extent of Exclusive</p>
-        <p class='s1'>Economic Zones</p>
-      </div>
-      <div style='right:1.6667%;top:80.8592%;'>
-        <p class='s0'>The Philippines claims </p>
-        <p class='s0'>these islands, along with </p>
-        <p class='s0'>Scarborough Shoal.</p>
-      </div>
-      <div style='left:27.3333%;width:144px;top:45.7030%;'>
-        <p class='s2'>SOUTH CHINA SEA</p>
-      </div>
-      <div style='left:0.0000%;width:67px;top:7.8125%;'>
-        <p class='s3'>VIETNAM</p>
-      </div>
-      <div style='left:69.0000%;width:87px;top:56.2499%;'>
-        <p class='s3'>PHILIPPINES</p>
-      </div>
-      <div style='left:79.3333%;top:1.1719%;'>
-        <p class='s4'>TAIWAN</p>
-      </div>
-      <div style='left:24.0000%;width:53px;top:2.7344%;'>
-        <p class='s3'>CHINA</p>
-      </div>
-      <div style='left:47.6667%;top:57.0311%;'>
-        <p class='s5'>Ayungin</p>
-      </div>
-      <div style='right:40.3333%;top:35.5468%;'>
-        <p class='s6'>Scarborough</p>
-        <p class='s6'>Shoal</p>
-      </div>
-
-    </div>
-  </script>
-
-  <script id="nytg-phonemap_3_spratlys-template" type="text/template">
-    <!-- phonemap 3 - shipping -->
-    <style type='text/css' media='screen,print'>
-      #nytg-phonemap_3_shipping .s0 {
-        line-height:13px;
-        opacity:0.5;
-      }
-      #nytg-phonemap_3_shipping .s1 {
-      }
-      #nytg-phonemap_3_shipping .s2 {
-        letter-spacing:0.083em;
-        opacity:0.6;
-      }
-      #nytg-phonemap_3_shipping .s3 {
-        font-size:11px;
-        line-height:14px;
-        font-style:italic;
-        text-align:center;
-        opacity:0.5;
-      }
-    </style>
-    <div class='nytg-phonemap' id='nytg-phonemap_3_shipping'>
-      <img src='http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/mobile-maps/PHONEmap-3-shipping-1023-1109.jpg' width=100% />
-      <div style='left:52.0000%;top:19.9219%;'>
-        <p class='s0'>Scarborough</p>
-        <p class='s0'>Shoal</p>
-      </div>
-      <div style='left:35.3333%;top:71.4844%;'>
-        <p class='s1'>Major shipping</p>
-        <p class='s1'>lanes</p>
-      </div>
-      <div style='left:71.3333%;top:58.5938%;'>
-        <p class='s2'>PHILIPPINES</p>
-      </div>
-      <div style='left:36.6667%;top:1.5625%;'>
-        <p class='s2'>CHINA</p>
-      </div>
-      <div style='left:44.6667%;width:66px;top:53.5156%;'>
-        <p class='s3'>SPRATLY</p>
-        <p class='s3'>ISLANDS</p>
-      </div>
-
-    </div>
-  </script>
-
-  <script id="nytg-phonemap_5_spratlys-template" type="text/template">
-    <!-- phonemap 5 - obscure places -->
-    <style type='text/css' media='screen,print'>
-      #nytg-phonemap_5_obscureplaces .s0 {
-        font-size:11px;
-        line-height:8px;
-        opacity:0.7;
-      }
-      #nytg-phonemap_5_obscureplaces .s1 {
-        font-size:11px;
-        line-height:8px;
-        text-align:right;
-        opacity:0.7;
-      }
-      #nytg-phonemap_5_obscureplaces .s2 {
-        font-size:11px;
-        line-height:11px;
-        text-align:right;
-        opacity:0.7;
-      }
-      #nytg-phonemap_5_obscureplaces .s3 {
-        line-height:13px;
-        font-style:italic;
-        text-align:center;
-        opacity:0.3;
-      }
-    </style>
-    <div class='nytg-phonemap' id='nytg-phonemap_5_obscureplaces'>
-      <img src='http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/mobile-maps/PHONEmap-5-obscureplaces-1023-1125.jpg' width=100% />
-      <div style='left:50.0000%;top:30.4688%;'>
-        <p class='s0'>Panata</p>
-      </div>
-      <div style='left:69.3333%;top:38.6719%;'>
-        <p class='s0'>Ayungin</p>
-      </div>
-      <div style='left:54.3333%;top:82.4219%;'>
-        <p class='s0'>Rizal Reef</p>
-      </div>
-      <div style='right:33.3333%;top:21.0938%;'>
-        <p class='s1'>Lawak</p>
-      </div>
-      <div style='left:74.0000%;top:24.2188%;'>
-        <p class='s0'>Patag</p>
-      </div>
-      <div style='right:39.3333%;top:46.4844%;'>
-        <p class='s2'>Mischief</p>
-        <p class='s2'>Reef</p>
-      </div>
-      <div style='left:48.6667%;top:10.1562%;'>
-        <p class='s0'>Likas</p>
-      </div>
-      <div style='right:55.3333%;top:3.1250%;'>
-        <p class='s1'>Parola</p>
-      </div>
-      <div style='right:59.0000%;top:29.6875%;'>
-        <p class='s1'>Kota</p>
-      </div>
-      <div style='right:67.0000%;top:22.2656%;'>
-        <p class='s1'>Subi Reef</p>
-      </div>
-      <div style='left:3.3333%;top:90.2344%;'>
-        <p class='s0'>100 MILES</p>
-      </div>
-      <div style='right:4.0000%;top:63.6719%;'>
-        <p class='s1'>Palawan Island</p>
-      </div>
-      <div style='left:19.3333%;width:71px;top:49.6094%;'>
-        <p class='s3'>SPRATLY</p>
-        <p class='s3'>ISLANDS</p>
-      </div>
-      <div style='left:80.3333%;width:53px;top:5.4688%;'>
-        <p class='s3'>REED</p>
-        <p class='s3'>BANK</p>
-      </div>
-      <div style='right:62.6667%;top:14.4531%;'>
-        <p class='s1'>Pag-asa</p>
-      </div>
-
-    </div>
-  </script>
-
-  <script id="nytg-phonemap_6_spratlys-template" type="text/template">
-    <!-- phonemap 6 - ayungin & mischief -->
-    <style type='text/css' media='screen,print'>
-      #nytg-phonemap_6_ayungin_mischief .s0 {
-        font-size:11px;
-        line-height:11px;
-        text-align:center;
-        opacity:0.7;
-      }
-      #nytg-phonemap_6_ayungin_mischief .s1 {
-        font-size:14px;
-        line-height:9px;
-        font-weight:bold;
-        text-align:right;
-      }
-      #nytg-phonemap_6_ayungin_mischief .s2 {
-        font-size:14px;
-        line-height:8px;
-        font-weight:bold;
-      }
-      #nytg-phonemap_6_ayungin_mischief .s3 {
-        font-size:11px;
-        line-height:6px;
-        opacity:0.5;
-      }
-      #nytg-phonemap_6_ayungin_mischief .s4 {
-        font-size:11px;
-        line-height:6px;
-        text-align:right;
-        opacity:0.5;
-      }
-      #nytg-phonemap_6_ayungin_mischief .s5 {
-        font-size:11px;
-        line-height:11px;
-        font-style:italic;
-        text-align:center;
-        opacity:0.7;
-      }
-      #nytg-phonemap_6_ayungin_mischief .s6 {
-        font-size:10px;
-        line-height:12px;
-        font-style:italic;
-        text-align:center;
-        opacity:0.5;
-      }
-      #nytg-phonemap_6_ayungin_mischief .s7 {
-        font-size:10px;
-        line-height:10px;
-      }
-      #nytg-phonemap_6_ayungin_mischief .s-new1 {
-              font-size:11px;
-              line-height:8px;
-              opacity:0.7;
-          }
-    </style>
-    <div class='nytg-phonemap' id='nytg-phonemap_6_ayungin_mischief'>
-      <img src='http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/mobile-maps/PHONEmap-6-ayungin_mischief-1023-1910.jpg' width=100% />
-      <div style='left:4.0000%;top:86.6359%;'>
-              <p class='s-new1'>5 MILES</p>
-          </div>
-      <div style='left:0.3333%;width:67px;top:35.0230%;'>
-        <p class='s0'>Chinese</p>
-        <p class='s0'>structures</p>
-      </div>
-      <div style='right:19.3333%;top:54.3779%;'>
-        <p class='s1'>Ayungin</p>
-      </div>
-      <div style='left:25.3333%;top:9.2166%;'>
-        <p class='s2'>Mischief Reef</p>
-      </div>
-      <div style='left:25.3333%;top:15.6682%;'>
-        <p class='s3'>China</p>
-      </div>
-      <div style='right:19.3333%;top:61.5%;'>
-        <p class='s4'>Philippines</p>
-      </div>
-      <div style='left:80.6667%;width:50px;top:28.1106%;'>
-        <p class='s5'>Sierra</p>
-        <p class='s5'>Madre</p>
-      </div>
-    </div>
-  </script>
-
   <script>
 
     function mobileReorient() {
@@ -1383,7 +327,7 @@
     /* Only do if we're on iPad, iPhone or Android -- TG */
     if (!isMobile()) return false;
 
-    var _mobile_assets = "image/";
+    var _mobile_assets =  "/system/places/image/<%= @story.id %>/",
 
     d3.select(window)
       .on("resize", mobileReorient)
@@ -1429,7 +373,7 @@
 
     /* if device is phone then change path from 1024 to 640 */
         if (isPhone()) {
-          if (image.file) image.file = image.file.replace("mobile-1024", "mobile-640");
+          if (image.file) image.file = image.file.replace("mobile_1024", "mobile_640");
         }
 
         /* on section missing stop here current loop */
@@ -1530,17 +474,16 @@
 
 
     });</script>
-  /* this scripts included when device is not mobile */
+ 
   <script>
-
+ /* this scripts included when device is not mobile */
       defer(function() {
 
       /* Just skip if we're on iPad, iPhone or Android -- TG */
       if (isMobile()) return false;
-
-      var _video_assets = "video/",
-          _image_assets = "image/",
-          _audio_assets = "audio/";
+      var _video_assets = "/system/places/video/<%= @story.id %>/original/",
+          _image_assets = "/system/places/image/<%= @story.id %>/original/",
+          _audio_assets = "/system/places/audio/<%= @story.id %>/original/";
 
       var mute = false,
           muteVolume = "volume",
@@ -1599,9 +542,9 @@
           .attr("src", function(d) { return _video_assets + d.video + ".mp4"; })
           .attr("type", "video/mp4");
 
-      video.append("source")
-          .attr("src", function(d) { return _video_assets + d.video + ".webm"; })
-          .attr("type", "video/webm");
+      // video.append("source")
+      //     .attr("src", function(d) { return _video_assets + d.video + ".webm"; })
+      //     .attr("type", "video/webm");
 
       if (!supportsViewportUnits()) sectionFixed.append("div")
           .style("height", fixHeight + "px");
@@ -1781,44 +724,6 @@
 
       });</script>
 
-
-
-  <style>
-
-    .footer-section {
-      background: #000;
-      margin-top: 0;
-      padding: 7px 0;
-      text-align: center;
-      width: 100%;
-    }
-
-    .footer-section a {
-      border-right: 1px solid #ccc;
-      color: #aaa;
-      font: 10px sans-serif;
-      margin-right: 7px;
-      padding-right: 7px;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .footer-section a:last-child {
-      border-right: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .footer-section a:hover {
-      text-dceoration: underline;
-    }
-
-    .footer-section ~ * {
-      position: absolute;
-      top: -1000px;
-    }</style>
-
-
 <div class="section footer-section">
   <a href="http://www.jumpstart.ge">Contact Us</a>
 </div>
@@ -1827,8 +732,7 @@
   <!-- -----------------------------------------------------------------------
   *  D3 library
   *----------------------------------------------------------------------- -->  
-  <script src="http://d3js.org/d3.v3.min.js"></script>
-
+  <%= javascript_include_tag 'd3' %>
 
 <script>
 

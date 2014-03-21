@@ -811,7 +811,7 @@ a:hover {
   .ios .video-sequence:first-child .video:first-of-type .video-container {
     background-size: cover;
     background-position: 60%;
-    background-image: url(http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/mobile-1024/sierra-madre-big-thin.jpg);
+  /*  background-image: url(http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/mobile-1024/sierra-madre-big-thin.jpg);*/
   }
 
   .ios .align-left {
@@ -964,7 +964,7 @@ a:hover {
 }
 @font-face {
   font-family: "nyt-cheltenham";
-  src: url(http://graphics8.nytimes.com/newsgraphics/2013/10/27/south-china-sea/assets/nyt-cheltenham-200-normal.woff) format("woff");
+  src: url(/assets/nyt-cheltenham-200-normal.woff) format("woff");
   font-style: normal;
   font-weight: 200;
 }
@@ -1013,9 +1013,9 @@ a:hover {
 
 .navigation-logo {
   float: left;
-  background: url(http://graphics8.nytimes.com/newsgraphics/2013/10/27/south-china-sea/d4ddc253fb0e8783d3e57b3c5a189fcd2af63c5b/icons.png) 0 -6px;
-  height: 17px;
-  margin: 11px 0 0 0;
+  background: url(/assets/jumpstart-logo.png) no-repeat;
+  height: 30px;
+  margin: 4px 0 0 0;
   width: 199px;
 }
 
@@ -1043,7 +1043,6 @@ a:hover {
   padding-right: 0;
 }
 
-.navigation-logo,
 .navigation-section,
 .navigation-volume {
   opacity: .5;
@@ -1070,15 +1069,9 @@ a:hover {
 .navigation-icon {
   width: 18px;
   height: 18px;
-  background-image: url(http://graphics8.nytimes.com/newsgraphics/2013/10/27/south-china-sea/d4ddc253fb0e8783d3e57b3c5a189fcd2af63c5b/icons.png);
+  background-image: url(/assets/icons.png);
 }
 
-.navigation-share--twitter .navigation-icon { background-position: -6px -28px; }
-.navigation-share--twitter:hover .navigation-icon { background-position: -6px -48px; }
-.navigation-share--facebook .navigation-icon { background-position: -26px -28px; }
-.navigation-share--facebook:hover .navigation-icon { background-position: -26px -48px; }
-.navigation-share--email .navigation-icon { background-position: -28px -68px; width: 22px; }
-.navigation-share--email:hover .navigation-icon { background-position: -5px -68px; }
 .navigation-volume .navigation-icon { background-position: -52px -68px; }
 .navigation-volume.navigation-volume--muted .navigation-icon { background-position: -72px -68px; }
 
@@ -1106,7 +1099,7 @@ a:hover {
 
   .ios .navigation-logo {
     margin-top: 20px;
-    background-image: url(http://graphics8.nytimes.com/newsgraphics/2013/10/27/south-china-sea/d4ddc253fb0e8783d3e57b3c5a189fcd2af63c5b/nyt-magazine-logo@2x.png);
+    background-image: url(/assets/jumpstart-logo.png) no-repeat;
     background-position: 0px 0px;
     background-size: 220px 24px;
     width: 220px;
@@ -1144,4 +1137,39 @@ a:hover {
   .ios .navigation-right {
     display: none;
   }
+}
+
+
+
+.footer-section {
+  background: #000;
+  margin-top: 0;
+  padding: 7px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.footer-section a {
+  border-right: 1px solid #ccc;
+  color: #aaa;
+  font: 10px sans-serif;
+  margin-right: 7px;
+  padding-right: 7px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.footer-section a:last-child {
+  border-right: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-section a:hover {
+  text-dceoration: underline;
+}
+
+.footer-section ~ * {
+  position: absolute;
+  top: -1000px;
 }
