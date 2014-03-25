@@ -1,4 +1,4 @@
-<%= semantic_form_for(@item, url: media_story_path(id:@item.id), :html => { :multipart=> true } , remote: true) do |f| %>
+<%= semantic_form_for(@item, url: media_story_path(id:params[:id]), :html => { :multipart=> true } , remote: true) do |f| %>
 
   <%= f.inputs do %>
     <%= f.input :title, :input_html => { :id => "mediaTitle" } %>
@@ -9,6 +9,7 @@
     <% if @item.image.exists? %>
       <a class='btn' data-reveal-id="modalImage">Preview</a>      
     <% end %>
+
  	  <%= f.input :video, :as => :file , :input_html => { :id => "mediaVideo" } %>
     <% if @item.video.exists? %>
       <a class='btn' data-reveal-id="modalVideo">Preview</a>
@@ -27,7 +28,5 @@
     <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>      
   </div>
 <% end %>
-
-
 
 

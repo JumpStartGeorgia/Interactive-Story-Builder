@@ -95,7 +95,7 @@ class StoriesController < ApplicationController
       if params[:command]!='n'
         @item = Section.find_by_id(params[:section_id])    
       else 
-        @item = Section.new()
+        @item = Section.new(story_id: params[:id])
       end  
            
       respond_to do |format|
@@ -107,7 +107,7 @@ class StoriesController < ApplicationController
       if params[:command]!='n'
         @item = Content.find_by_id(params[:item_id])
       else 
-        @item = Content.new()#:section_id => params[:id]
+        @item = Content.new(:section_id => params[:section_id], :content => '')
       end
       respond_to do |format|
         format.js  {render :action => "get_content" }
@@ -117,7 +117,8 @@ class StoriesController < ApplicationController
 
         if params[:command]!='n'    
           @item = Medium.find_by_id(params[:item_id])   
-        else @item = Medium.new(:section_id => params[:id])
+        else 
+          @item = Medium.new(:section_id => params[:section_id])
         end
         respond_to do |format|
           format.js {render :action => "get_media" }
@@ -129,47 +130,44 @@ class StoriesController < ApplicationController
 
 
   def new_section
-     @section = Section.new(params[:section])
-   
+     @item = Section.new(params[:section])        
      respond_to do |format|
-        if @section.save
-          #format.html { redirect_to @section, notice: 'Content was successfully created.' }
-          format.json { render json: @section.to_json, status: :created, location: @section }
-        else
-          format.html { render action: "new" }
-          format.json { render json: @section.errors, status: :unprocessable_entity }
+        if @item.save                    
+          flash[:success] = "Section was successfully created."
+          format.js { render action: "change_tree", status: :created  }
+        else          
+          flash[:error] = "Section wasn't created, please try again later [ " +  @item.errors.full_messages.to_sentence + " ]"            
+          format.js {render json: nil, status: :unprocessable_entity }      
         end
       end    
   end
 
-    def new_media
-    logger.debug(params)
-     @content = Content.new(params[:content])
-   
+    def new_media    
+     @item = Medium.new(params[:medium])   
      respond_to do |format|
-        if @content.save
-          #format.html { redirect_to @section, notice: 'Content was successfully created.' }
-          format.json { render json: @content.to_json, status: :created, location: @content }
+        if @item.save
+          logger.debug('---------------------------save')
+          flash[:success] = "Media was successfully created."
+          format.js { render action: "change_sub_tree", status: :created  }
         else
-          format.html { render action: "new" }
-          format.json { render json: @content.errors, status: :unprocessable_entity }
+          
+
+          flash[:error] = "Media wasn't created, please try again later [ "# +  @item.errors.full_messages.to_sentence + " ]"            
+          logger.debug('---------------------------errror')
+          format.js {render json: nil, status: :unprocessable_entity }     
         end
       end    
   end
 
-
-
-    def new_content
-    logger.debug(params)
-     @content = Content.new(params[:content])
-   
+    def new_content    
+     @item = Content.new(params[:content])   
      respond_to do |format|
-        if @content.save
-          #format.html { redirect_to @section, notice: 'Content was successfully created.' }
-          format.json { render json: @content.to_json, status: :created, location: @content }
+        if @item.save
+          flash[:success] = "Content was successfully created."
+          format.js { render action: "change_sub_tree", status: :created  }
         else
-          format.html { render action: "new" }
-          format.json { render json: @content.errors, status: :unprocessable_entity }
+          flash[:error] = "Content wasn't created, please try again later [ " +  @item.errors.full_messages.to_sentence + " ]"            
+          format.js {render json: nil, status: :unprocessable_entity }       
         end
       end    
   end
@@ -211,12 +209,9 @@ class StoriesController < ApplicationController
         end
       end    
   end
-
-    # DELETE /stories/1
-  # DELETE /stories/1.json
-  def destroy_data    
-    item = nil
-    logger.debug(params)
+    
+  def destroy_tree_item  
+    item = nil    
     type = params[:type]
     if type == 's'
       item = Section.find_by_id(params[:section_id])               
@@ -228,10 +223,14 @@ class StoriesController < ApplicationController
 
     item.destroy
 
+    
    respond_to do |format|
       if item.destroyed?   
-         format.json { render json: item.to_json, status: :created }
-      else  format.json { render json: item.errors, status: :unprocessable_entity }
+         flash[:success] = "Item was removed from the tree."
+           format.js {render action: "remove_tree_item", status: :created }    
+      else  
+          flash[:error] = "Removing data failed [" +  @item.errors.full_messages.to_sentence + "]"            
+          format.js {render json: nil, status: :unprocessable_entity }  
       end
     end
   end

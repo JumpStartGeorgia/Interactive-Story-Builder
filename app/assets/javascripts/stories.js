@@ -7,7 +7,7 @@
 
 $(document).ready(function() {
 
-	$('.story-tree ul li.item').click(function() {
+	$('.story-tree ul').on('click','li.item',function() {
 		item_id = -1;
 		section_id = $(this).attr('id');
 
@@ -18,7 +18,7 @@ $(document).ready(function() {
 	    return false;
 	});
 
-	$('.story-tree ul li.item ul li.sub').click(function() {
+	$('.story-tree ul li.item').on('click','ul li.sub',function() {
 		section_id = $(this).parent().parent().attr('id');
 		item_id = $(this).attr('id');
 		$('.story-tree ul li').removeClass('active');
@@ -58,10 +58,10 @@ $(document).ready(function() {
 		}
 		$.ajax
 		({
-			url: 'content',			  
+			url: 'tree',			  
 			data: dataTemp,
 			type: "POST",			
-	        dataType: 'json'
+	        dataType: 'script'
 		}).done(function(d) 
 		{
 			console.log(d);
@@ -79,14 +79,16 @@ $(document).ready(function() {
 		if(section_id == -1) {alert("Select section for new item"); return true;}
 		else  { temp = $('.story-tree ul li.item[id='+ section_id + ']'); }
 		
-		if( temp.data('type')[0] == 'c' && temp.has('ul').length==1 )
+		var tempType = temp.data('type')[0];
+		if( tempType == 'c' && temp.has('ul').length==1 )
 		{			
 			alert("Only one content can be added to content type section");
 		}
 		else 
 		{		
-			method = 'n';				
-			getStory(section_id,-1);			
+			method = 'n';
+			el_type = tempType;				
+			getData();
 		}	
 	});
 });
@@ -145,7 +147,7 @@ function getData()
 		  url: 'get_data',
 		  data: dataTemp,
 		  dataType: 'script',
-	      cache: true
+	      cache: true 
 		}).error(function(e){console.log(e)}).done(function(){
 			//$('#contentPreview').html($('#contentForm #contentArticle').val());	
 		});

@@ -34,7 +34,7 @@ $(document).ajaxComplete(function(event, request) {
   var type = types[request.getResponseHeader("X-Message-Type")];
   if (msg && type)
   {
-  	  $('.flash-message').prepend('<div class="alert '+ type +' %> fade in">' +
+  	  $('.flash-message').html('<div class="alert '+ type +' %> fade in">' +
 									'<a href="#" data-dismiss="alert" class="close">×</a>' +
 									 msg +
 									'</div>'); 

@@ -1,17 +1,24 @@
 <%= semantic_form_for(@item, url: content_story_path(id:params[:id]), remote: true) do |f| %>
   <%= f.inputs do %>
-    <%= f.input :title, :placeholder=>'Title for content part', :input_html => { :id => "contentTitle" } %>
-    <%= f.input :subtitle, :input_html => { :id => "contentSubtitle" } %>
+    <%= f.input :title, :placeholder=>'Title ... ', :input_html => { :id => "contentTitle" } %>
+    <%= f.input :subtitle, :placeholder=>'Subtitle ... ', :input_html => { :id => "contentSubtitle" } %>
     <%= f.input :content,:placeholder=>'Article text, can be any styling html tag with styles', :input_html => { :id => "contentArticle" }  %>
-    <div id='contentPreview' style='float:left; width:72%; height:310px; overflow:scroll;'></div>
+
+    
+     <a class='btn' data-reveal-id="modalContent">Preview</a>          
+     
+    
     <%= f.input :section_id, :as => :hidden , :input_html => { :id => "contentSection" }  %>
     <% if @item.id.present? %>
     	<%= f.input :id, :as => :hidden , :input_html => { :id => "contentId" }  %>    
     <% end %>
-  <% end %>
-  <div class="pull-right spacer">
-    <%= f.submit nil, :class => 'btn' %>
-    <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>      
+
+     <div class="pull-right spacer">
+   
+      <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>    
+      <%= f.submit nil, :class => 'btn' %>  
     </div>
+  <% end %>
+
 <% end %>
 

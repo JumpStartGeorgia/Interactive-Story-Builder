@@ -1,23 +1,29 @@
 class Medium < ActiveRecord::Base
 	belongs_to :section	
-	
-  	#attr_accessible :image,:video
-	
-
-  	has_attached_file :image,  	
+	  	
+	has_attached_file :image,  	
     :url => "/system/places/images/:story_id/:style/:basename.:extension",
 		:styles => {
 					:mobile_640 => {:geometry => "640x427"},
 					:mobile_1024 => {:geometry => "1024x623"},					 				
 				}
+
 	has_attached_file :video,
 	:url => "/system/places/video/:story_id/:basename.:extension"
 
+  validates :section_id, :presence => {:message => 'Media out of section.'}
+  validates :media_type, :presence => true, :inclusion => { :in => [1,2] }  
+  validates :title, :presence => {:message => 'Media should have title.'}, length: { maximum: 255, :message => 'Title max length is 255 symbols' }  
+  validates :caption, :presence => {:message => 'Media should have caption.'}, length: { maximum: 255, :message => 'Caption max length is 255 symbols' }  
+    
 	validates_attachment :image, :presence => true,
   	:content_type => { :content_type => ["image/jpeg"] }#, "image/gif", "image/png"
   	
-  	validates_attachment :video, :presence => true,
+  	validates_attachment :video ,
   	:content_type => { :content_type => ["video/mp4","video/ogg","video/webm"] } 
+
+
+    validates_attachment_presence :video, if:  :video_type? 
 
 	def to_json(options={})
      options[:except] ||= [:created_at, :updated_at]
@@ -25,6 +31,8 @@ class Medium < ActiveRecord::Base
    end
 
 before_post_process :transliterate_file_name
+
+
 require 'iconv'
 
 def transliterate(str)
@@ -55,29 +63,19 @@ end
    private
 
 def transliterate_file_name
+
   extension = File.extname(image_file_name).gsub(/^\.+/, '')
   filename = image_file_name.gsub(/\.#{extension}$/, '')
   self.image.instance_write(:file_name, "#{transliterate(filename)}.#{transliterate(extension)}")
 
-  extension = File.extname(video_file_name).gsub(/^\.+/, '')
-  filename = video_file_name.gsub(/\.#{extension}$/, '')
-  self.video.instance_write(:file_name, "#{transliterate(filename)}.#{transliterate(extension)}")
+  if video_file_name.present?
+    extension = File.extname(video_file_name).gsub(/^\.+/, '')
+    filename = video_file_name.gsub(/\.#{extension}$/, '')
+    self.video.instance_write(:file_name, "#{transliterate(filename)}.#{transliterate(extension)}")
+  end
 end
 
-
-
+  def video_type?    
+    self.media_type == 2
+  end
 end
-
-
-
-
-
-#,"video/x-msvideo"
-# media.image.reprocess!
-# For video:
-# video/ogg
-# video/mp4
-# video/webm
-# For audio:
-# audio/ogg
-# audio/mpeg

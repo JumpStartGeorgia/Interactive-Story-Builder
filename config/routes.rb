@@ -21,15 +21,13 @@ BootstrapStarter::Application.routes.draw do
 
 				put 'content', to: 'stories#save_content'
 				post 'content', to: 'stories#new_content'
-				delete 'content', to: 'stories#destroy_data'
+				delete 'tree', to: 'stories#destroy_tree_item'
 
 				put 'media', to: 'stories#save_media'
-				post 'media', to: 'stories#new_media'
-				delete 'media', to: 'stories#destroy_data'
+				post 'media', to: 'stories#new_media'				
 
 				put 'section', to: 'stories#save_section'
-				post 'section', to: 'stories#new_section'
-				delete 'section', to: 'stories#destroy_data'
+				post 'section', to: 'stories#new_section'				
 
     			get 'sections'    			    			    			    	    			
   			end			

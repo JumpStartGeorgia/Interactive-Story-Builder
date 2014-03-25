@@ -1,0 +1,13 @@
+ $(document).ready(function() 
+ {
+ 	var secTemp = $('.story-tree ul li.item[id='+ section_id + ']');
+ 	if(secTemp.has('ul').length != 0)
+ 	{
+		secTemp.append("<li id='<%= @item.id %>' class='sub' ><span><%= @item.title %></span></li>");	 		
+ 	}
+ 	else 
+ 	{
+ 		secTemp.append("<ul><li id='<%= @item.id %>' class='sub' ><span><%= @item.title %></span></li></ul>");	 			
+ 	} 	
+	$("html, body").animate({ scrollTop: 0 }, "slow");
+});

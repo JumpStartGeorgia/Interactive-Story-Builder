@@ -1,5 +1,6 @@
 $("#storyViewer").html(" <div id='contentForm'><%= escape_javascript( render :partial => 'content') %></div>");
-$("#contentPreview").html($("#contentArticle").val());
+
 $("#contentArticle").change(function(){
-		$('#contentPreview').html($(this).val());});	
-		
+		$("#modalContent .modal-data").html($(this).val());});	
+$("#modalContent .modal-data").html("<%= escape_javascript( @item.content.html_safe ) %>");
+	
