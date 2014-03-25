@@ -243,7 +243,7 @@ DEPENDENCIES
   rails (= 3.1.10)
   rails-dev-boost!
   rb-inotify (~> 0.8.8)
-  remotipart (~> 1.0)
+  remotipart (~> 1.2)
   sass-rails (= 3.1.4)
   therubyracer
   twitter-bootstrap-rails (~> 2.1.0)

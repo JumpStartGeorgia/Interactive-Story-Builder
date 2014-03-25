@@ -1,5 +1,5 @@
-<%= semantic_form_for(@item, url: media_story_path(id:params[:id]), :html => { :multipart=> true } , remote: true) do |f| %>
-
+<%= semantic_form_for(@item, url: media_story_path(id:params[:id],:format => :json), :html => { :multipart=> true } , remote: true) do |f| %>
+  <%= error_messages_for f.object %>
   <%= f.inputs do %>
     <%= f.input :title, :input_html => { :id => "mediaTitle" } %>
     <%= f.input :media_type, :as => :select,  :include_blank => false, :collection => { 'Image' => 1, 'Video' => 2 } , :selected => 0 , :input_html => { :id => "mediaType" }   %>	

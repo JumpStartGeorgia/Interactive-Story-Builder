@@ -6,7 +6,7 @@ gem "mysql2", "~> 0.3.11" # this gem works better with utf-8
 
 gem "json"
 gem "jquery-rails", "~> 1.0.19"
-gem "remotipart", "~> 1.0" # ajax file upload
+gem "remotipart", '~> 1.2' # ajax file upload
 gem "d3-rails" # d3 library
 gem "devise", "~> 2.0.4" # user authentication
 gem "cancan", "~> 1.6.8" # user authorization

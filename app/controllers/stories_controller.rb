@@ -137,27 +137,43 @@ class StoriesController < ApplicationController
           format.js { render action: "change_tree", status: :created  }
         else          
           flash[:error] = "Section wasn't created, please try again later [ " +  @item.errors.full_messages.to_sentence + " ]"            
-          format.js {render json: nil, status: :unprocessable_entity }      
-        end
-      end    
-  end
-
-    def new_media    
-     @item = Medium.new(params[:medium])   
-     respond_to do |format|
-        if @item.save
-          logger.debug('---------------------------save')
-          flash[:success] = "Media was successfully created."
-          format.js { render action: "change_sub_tree", status: :created  }
-        else
           
-
-          flash[:error] = "Media wasn't created, please try again later [ "# +  @item.errors.full_messages.to_sentence + " ]"            
-          logger.debug('---------------------------errror')
-          format.js {render json: nil, status: :unprocessable_entity }     
         end
       end    
   end
+
+  #   def new_media    
+  #    @item = Medium.new(params[:medium])   
+  #    respond_to do |format|
+  #       if @item.save
+  #         logger.debug('---------------------------save')
+  #         flash[:success] = "Media was successfully created."
+  #         format.js { render action: "change_sub_tree" , status: :created }
+  #       else
+          
+  #           logger.debug(@item.errors.inspect)
+  #         flash[:error] = "Media wasn't created, please try again later [ " +  @item.errors.full_messages.to_sentence + " ]"            
+          
+  #       end
+  #     end    
+  # end
+
+ def new_media
+    @item = Medium.new(params[:medium])
+    respond_to do |format|
+        if @item.save
+          
+          flash[:success] = "Media was successfully updated------------."        
+          format.html { redirect_to sections_story_path(@story), notice: 'Media was successfully created.' }
+          format.js {render action: "build_tree", status: :created }          
+        else          
+          flash[:error] = "Media wasn't updated, please try again later---------------"            
+          format.js {render json: nil, status: :ok }
+        end
+      end    
+  end
+
+
 
     def new_content    
      @item = Content.new(params[:content])   

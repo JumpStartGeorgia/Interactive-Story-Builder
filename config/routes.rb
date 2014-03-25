@@ -13,14 +13,14 @@ BootstrapStarter::Application.routes.draw do
 			resources :users
 		end
 
-		resources :stories do # :except => :show 
-				#get 'show', to: 'storyteller#index'				
+		resources :stories do				
 			member do
 
 				get 'get_data'
 
 				put 'content', to: 'stories#save_content'
 				post 'content', to: 'stories#new_content'
+
 				delete 'tree', to: 'stories#destroy_tree_item'
 
 				put 'media', to: 'stories#save_media'
