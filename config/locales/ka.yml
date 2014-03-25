@@ -48,7 +48,11 @@ ka:
       reset: საწყის კონფიგურაციაზე დაბრუნება
       remove: მოშორება
       confirm: დარწმუნებული ხართ?
-      new: ახალი
+      new: ახალი            
+      add_section: ახალი სექცია
+      add_item: ახალი პუნქტი
+      up: Order Up
+      down: Order Down
     common:
       app_name: Bootstrap Starter Project
       added_on: "დამატებულია: %{date}" 

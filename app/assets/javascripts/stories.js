@@ -28,8 +28,26 @@ $(document).ready(function() {
 	    return false;
 	});
 
+    $('#storiesTable').dataTable({
+ 		"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+ 		"sPaginationType": "bootstrap",	  	
+		"bAutoWidth": true,    	
+	    "oLanguage": {
+	      "sUrl": gon.datatable_i18n_url
+	    },
+    	//"aaSorting": [[2, 'desc']]
+    	"aoColumns": [
+	      { "bSortable": true },
+	      { "bSortable": true },
+			{ "bSortable": true },	      	      
+			{ "bSortable": false },
+			{ "bSortable": false },
+			{ "bSortable": false },
+			{ "bSortable": false }
+	    ]
+    });  
+	$('#storiesTable > tbody').on('click','tr',function(){ $(this).find('td a.preview')[0].click(); });
 
-	
 	$('#btnDelete').click(function(){
 
 		var dataTemp = {'_method':'delete','section_id' : section_id, 'type':el_type };
@@ -52,78 +70,7 @@ $(document).ready(function() {
 		return true;	
 	});
 
-	$('#btnSave').click(function(){
-
-		//send ajax data
-		var aData = null;
-		var aUrl = null;
-		switch(el_type)
-		{
-			case 's':
-				aUrl = 'new_section';
-				aData = { 'section[story_id]':'1','section[type_id]':'1', 'section[title]':'New Title','section[audio_path]':''};
-			break;
-			case 'm':		
-				var title = $('#mediaForm #mediaTitle').val();				
-//				var files = $('#mediaForm #mediaItemPath').prop('files');				
-				
-
-				 var file = document.getElementById("mediaItemPath");
-				     
-			      /* Create a FormData instance */
-			      var formData = new FormData();
-			      /* Add the file */ 
-			      formData.append("upload", file.files[0]);
-
-console.log(formData);
-			//	aData = {'media[section_id]' : section_id, 'item_id' : item_id, 'media[title]' : title, 'files_in' : files};
-				
-				if(item_id != -1)
-				{
-					aUrl = 'save_media';
-				}
-				else
-				{
-					aUrl = 'new_media';
-				}
-			break;
-			case 'c':
-
-				//var title = $('#contentForm #contentTitle').val();
-				//var subtitle = $('#contentForm #contentSubTitle').val();
-				//var article = $('#contentForm #contentArticle').val();	
-				 
-
-				// put validation here				
-				//aData = {'content[section_id]' : section_id, 'content_id' : item_id, 'content[title]' : title, 'content[subtitle]': subtitle, 'content[content]': article};
-				
-				
-				// if(item_id != -1)
-				// {
-				// 	aUrl = 'save_content';
-				// }
-				// else
-				// {
-				// 	aUrl = 'new_content';
-				// }
-			break;
-		}
-		// $.ajax
-		// ({
-		// 	url: aUrl,			  
-		// 	data: formData,
-		// 	type: "POST",
-		// 	cache: false,
-	 //        dataType: 'json',
-	 //        processData: false, // Don't process the files
-	 //        contentType: false
-		// }).done(function(d) 
-		// {
-		// 	console.log(d);
-			
-		// });
-		
-	});
+	
 
 	$('#btnAddSection').click(function(){ method = 'n';	el_type = 's';  getStory(-1,-1);});
 
@@ -142,42 +89,16 @@ console.log(formData);
 			getStory(section_id,-1);			
 		}	
 	});
-
-	
-
-	$('#contentForm #contentArticle').change(function(){
-		$('#contentPreview').html($(this).val());
-	});	
-
-	$('#btnTest').click(function(){
-
-
-		 var file = document.getElementById("mediaItemPath");
-		     
-	      /* Create a FormData instance */
-	      var formData = new FormData();
-	      /* Add the file */ 
-	      formData.append("image", file.files[0]);
-	      formData.append("section_id",2)
-		$.ajax
-		({
-			url: 'upload_file',			  
-			data: formData,
-			type: "POST",
-			cache: false,
-	        dataType: 'json',
-	        processData: false, // Don't process the files
-	        contentType: false
-		}).done(function(d) 
-		{
-			console.log(d);
-			
-		});
-	});	
-	
-
 });
 
+function treeAdd(id, subid)
+{
+
+}
+function treeDelete(id, subid)
+{
+	
+}
 function getStory(id , subid)
 {
 	if(id != -1)
@@ -230,58 +151,3 @@ function getData()
 		});
 	return true;	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-function newContent()
-{
-
-	$.ajax
-		({
-		  url: 'new_content',
-		  data: {'section_id' : section_id },
-		  dataType: 'script',
-	      cache: true
-		  		 
-		}).done(function(d) 
-		{		
-		});		
-	return true;	
-}
-
-
-
-
-
-
-
-
-
-// $('#sectionForm #sectionAudio').click(function(){
-// 		if($(this).prop('checked'))
-// 			$('#sectionAudioPath').show();
-// 		else $('#sectionAudioPath').hide();
-// 	});
-
-
-
-// function hideForms()
-// {
-// 	var view = $('.story-viewer');
-// 	view.find('#sectionForm').hide();
-// 	view.find('#contentForm').hide();
-// 	view.find('#contentPreview').hide();
-	
-// 	view.find('#mediaForm').hide();	
-// }
-

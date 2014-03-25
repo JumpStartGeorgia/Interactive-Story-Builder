@@ -51,10 +51,9 @@
   </div>
   <div class="navigation-right">
     <a href="#" class="navigation-volume"><div class="navigation-icon"></div></a>
-    <div class="navigation-sections">
-     <% navCounter = 1 %>
-     <% @story.sections.where("has_marker = 1").each do |section| %>
-      <a href="#<%= navCounter %>" class="navigation-section" title="<%= section.title %>"><%= navCounter %><% navCounter+=1 %></a>
+    <div class="navigation-sections">     
+     <% @story.sections.where("has_marker = 1").each_with_index do |s,s_i| %>
+      <a href="#<%= s_i+1 %>" class="navigation-section" title="<%= s.title %>"><%= s_i+1 %></a>
      <% end %>          
     </div>
   </div>
@@ -102,22 +101,21 @@
       });</script>
  <% alignment = { "left" => -1, "center" => 0, "right" => 1 } %>
 <div class="main">
-  <div class="article">
-     <% navCounter = 1 %>
-     <% @story.sections.order('sort_order').each do |section| %>
+  <div class="article">     
+     <% @story.sections.order('sort_order').each_with_index do |section,s_i| %>
         <% if section.type_id == 1 %>
           <div class="section column">
             <% if section.has_marker == 1 %>
-               <a class="navigation-marker" id="<%= navCounter %>"></a>
+               <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
             <% end %>
             <%= section.content.content.html_safe %>     
           </div>
         <% else %>
           <div class="section video-sequence">
             <% if section.has_marker == 1 %>
-               <a class="navigation-marker" id="<%= navCounter %>"></a>
+               <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
             <% end %>
-            <% section.media.each do |m| %>
+            <% section.media.each_with_index do |m,m_i| %>
                 <% dataVideo = '' %>
                 <% if m.media_type == 2 && m.video.exists? %>                
                   <% dataVideo = "data-video='#{File.basename(m.video_file_name,'.mp4')}'".html_safe %>
@@ -138,23 +136,41 @@
                     <% end %>                       
                   </div>
                   <% if m.caption.present? %>
-                    <% if navCounter == 1 %>
-                      <% caption_class = 'head' %>
-                    <% else %>
-                      <% if m.caption.length < 160 %>
+
+                   <% if m.caption.length < 160 %>
                         <% caption_class = alignment.index(m.caption_align) %>
                       <% else %>
                        <% caption_class = 'long' %>
                       <% end %>
+
+
+                    <% if s_i == 0 && m_i == 0 %>
+                      <% caption_class = 'head' %>
+                    <% else %>
+                     
                     
                     <% end %>
-                    <div class="video-caption video-caption--<%= caption_class %>"><%= m.caption %></div>
+                    <div class="video-caption video-caption--<%= caption_class %>">
+                    <% if caption_class == 'head'  %>                      
+                          <div class="video-headline headline"> <%= m.caption %> </div>
+                          <div class="video-summary"> <%= m.summary %> </div>
+                          <div class="scroll-prompt">
+                            Scroll<br>
+                            <svg width="18" height="8">
+                              <path d="M0,0L9,7L18,0"></path>
+                            </svg>
+                          </div>                      
+                  <% else 
+                     puts m.caption 
+                      end  %>
+
+                    </div>
                   <% end %>                                    
               </div>        
             <% end %>        
           </div>
         <% end %>        
-        <% navCounter+=1 %>    
+        
      <% end %>      
     <!--
 
@@ -190,114 +206,36 @@
   *  data hash for mobile devices , they use different images   
   *----------------------------------------------------------------------- -->
   <script>
-    <% navCounter = 1 %>
-    <% @story.sections.order('sort_order').each do |section| %>
-        <% if section.type_id == 2 %>
 
-        <% end %>
-    <% navCounter+=1 %>    
-    <% end %>
 
-    var mobileImages = [
+    var mobileImages = 
+    [
+      
+    <%  @story.sections.order('sort_order').each_with_index do |s,s_i|       
+         
+          if s.type_id == 2 
+            secLength = s.media.length   
+            s.media.each_with_index do |m,m_i| 
+          %>
+            {
+              file: "mobile_1024/<%= m.image_file_name %>",
+              section: <%= s_i+1 %>,
+              slide: <%= m_i+1 %>,      
+              align: <%= alignment.index(m.caption_align) %>
+              <% if secLength == m_i+1 %>
+                hideRule: true
+              <% end %>         
+            }
+            <% if secLength != (m_i+1) %>
+              ,
+    <%        end            
+            end 
+          
 
-      // SECTION 1 - INTRO
-    /*  {
-        file: "mobile-1024/s1s1.jpg",
-        section: 1,
-        slide: 1,
-        hideRule: true
-      },*/
-      {
-        file: "mobile-1024/s1s3.jpg",
-        section: 1,
-        slide: 2,
-        hideRule: true
-      }
 
-      /*,
-
-      // SECTION 4 - RUSTED SHIP
-      {
-        file: "mobile-1024/_Archimandrite_Gabriel-poster.jpg",
-        section: 4,
-        slide: 1
-      },
-      {
-        file: "mobile-1024/window-boat.jpg",
-        section: 4,
-        slide: 2,
-        align: "bottom"
-      },
-      {
-        file: "mobile-1024/under-flash-light.jpg",
-        section: 4,
-        slide: 3,
-        align: "right"
-      },
-      {
-        file: "mobile-1024/below-deck.jpg",
-        section: 4,
-        slide: 4,
-        hideRule: true,
-        align: "bottom"
-      },
-
-      {
-        file: "mobile-1024/chinese-coast-guards.jpg",
-        section: 5,
-        slide: 4,
-        type: "image",
-        hideRule: true
-      },
-
-      // SECTION 7 - FLY OVER
-      {
-        file: "720/fo1-poster.jpg",
-        section: 7,
-        slide: 1,
-        type: "hide",
-        hideRule: true
-      },
-      {
-        file: "#nytg-tabletmap-1-spratlys-template",
-        section: 7,
-        slide: 2,
-        type: "map",
-        hideRule: true,
-        phone: {
-          file: "#nytg-phonemap_1_spratlys-template"
-        }
-      },
-      {
-        file: "#nytg-tabletmap-2-spratlys-template",
-        section: 7,
-        slide: 3,
-        type: "map",
-        hideRule: true,
-        phone: {
-          file: "#nytg-phonemap_2_spratlys-template"
-        }
-      },
-      {
-        file: "#nytg-tabletmap-3-spratlys-template",
-        section: 7,
-        slide: 4,
-        type: "map",
-        hideRule: true,
-        phone: {
-          file: "#nytg-phonemap_3_spratlys-template"
-        }
-      },
-      {
-        file: "#nytg-tabletmap-4-spratlys-template",
-        section: 7,
-        slide: 5,
-        type: "map",
-        hideRule: true,
-        phone: {
-          type: "hide"
-        }
-      },*/
+          end 
+        end 
+    %>  
     ];</script>
 
   <script>
@@ -308,11 +246,9 @@
 
       if (height > (720*.59) && window.innerWidth < 768) height = (720*.59);
 
-      //document.querySelectorAll(".video-sequence:first-child .video:first-of-type .video-container")[0]
-        //  .style.height = height + "px";
+      document.querySelectorAll(".video-sequence:first-child .video:first-of-type .video-container")[0].style.height = height + "px";
 
-     // document.querySelectorAll(".video-sequence:first-child .video:first-of-type .video-caption--head")[0]
-         // .style.height = height + "px";
+      document.querySelectorAll(".video-sequence:first-child .video:first-of-type .video-caption--head")[0].style.height = height + "px";
     }
 
     (function() {
@@ -327,7 +263,7 @@
     /* Only do if we're on iPad, iPhone or Android -- TG */
     if (!isMobile()) return false;
 
-    var _mobile_assets =  "/system/places/image/<%= @story.id %>/",
+    var _mobile_assets =  "/system/places/images/<%= @story.id %>/";
 
     d3.select(window)
       .on("resize", mobileReorient)
@@ -482,7 +418,7 @@
       /* Just skip if we're on iPad, iPhone or Android -- TG */
       if (isMobile()) return false;
       var _video_assets = "/system/places/video/<%= @story.id %>/original/",
-          _image_assets = "/system/places/image/<%= @story.id %>/original/",
+          _image_assets = "/system/places/images/<%= @story.id %>/original/",
           _audio_assets = "/system/places/audio/<%= @story.id %>/original/";
 
       var mute = false,

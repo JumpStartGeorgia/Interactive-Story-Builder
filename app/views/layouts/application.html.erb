@@ -37,12 +37,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <%= link_to(t('app.common.app_name'), root_path(:locale => I18n.locale),:class=>"brand font")%>
+          <%= link_to(t('app.common.app_name'), stories_path(:locale => I18n.locale),:class=>"brand font")%>
           <div class="container nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Stories", "/stories"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+                        
             </ul>
 
 	          <ul class="nav pull-right">

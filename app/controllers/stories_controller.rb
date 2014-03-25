@@ -2,11 +2,11 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index
-    @usemap = true
+    #@usemap = true
     @stories = Story.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html  #index.html.erb
       format.json { render json: @stories }
     end
   end
@@ -14,10 +14,11 @@ class StoriesController < ApplicationController
   # GET /stories/1
   # GET /stories/1.json
   def show
+
     @story = Story.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html  #show.html.erb
       format.json { render json: @story }
     end
   end
@@ -28,7 +29,7 @@ class StoriesController < ApplicationController
     @story = Story.new
 
     respond_to do |format|
-        format.html # new.html.erb
+        format.html #new.html.erb
       format.json { render json: @story }
     end
   end
@@ -45,7 +46,7 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
-        format.html { redirect_to @story, notice: 'Story was successfully created.' }
+        format.html { redirect_to sections_story_path(@story), notice: 'Story was successfully created.' }
         format.json { render json: @story, status: :created, location: @story }
       else
         format.html { render action: "new" }
@@ -61,7 +62,7 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.update_attributes(params[:story])
-        format.html { redirect_to @story, notice: 'Story was successfully updated.' }
+        format.html { redirect_to  sections_story_path(@story),  notice: 'Story was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -242,18 +243,6 @@ class StoriesController < ApplicationController
       
       #logger.debug("id = #{params}" );
   end
-    def content
-      @story = Story.fullsection(params[:id])
-      #Story.find(params[:id])
-
-      
-      #logger.debug("id = #{params}" );
-  end
-  def upload_file
-    @media = Medium.find_by_id(1);
-    @media.image = params[:image]
-    @media.save
-    render json: nil
-  end
+   
 end
        #logger.debug("loggerrrrrrrrrrrr #{params}" );

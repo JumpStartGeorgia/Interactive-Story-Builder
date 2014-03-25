@@ -12,10 +12,9 @@ BootstrapStarter::Application.routes.draw do
 		namespace :admin do
 			resources :users
 		end
-		
-		resources :stories, :except => :show do
-				#get 'show', to: 'storyteller#index'
-				
+
+		resources :stories do # :except => :show 
+				#get 'show', to: 'storyteller#index'				
 			member do
 
 				get 'get_data'
@@ -32,16 +31,12 @@ BootstrapStarter::Application.routes.draw do
 				post 'section', to: 'stories#new_section'
 				delete 'section', to: 'stories#destroy_data'
 
-    			get 'sections'    			
-    			    			    		
-    			post 'upload_file'
-    	
-
-  			end
-			
+    			get 'sections'    			    			    			    	    			
+  			end			
 		end
 
-		match "stories/:id" => "storyteller#index", as: 'storyteller_show'
+		match "storyteller/:id" => "storyteller#index", as: 'storyteller_show'
+
 
 		root :to => 'root#index'
 	  match "*path", :to => redirect("/#{I18n.default_locale}") # handles /en/fake/path/whatever

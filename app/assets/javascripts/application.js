@@ -27,7 +27,6 @@ $(document).ready(function(){
 	$('body')
 		.off('click.dropdown touchstart.dropdown.data-api', '.dropdown')
 		.on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() });
-
 });
 $(document).ajaxComplete(function(event, request) {
   var msg = request.getResponseHeader('X-Message');
@@ -41,3 +40,4 @@ $(document).ajaxComplete(function(event, request) {
 									'</div>'); 
   }
 });
+

@@ -1,2 +1,5 @@
 $("#storyViewer").html(" <div id='contentForm'><%= escape_javascript( render :partial => 'content') %></div>");
 $("#contentPreview").html($("#contentArticle").val());
+$("#contentArticle").change(function(){
+		$('#contentPreview').html($(this).val());});	
+		

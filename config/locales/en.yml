@@ -54,6 +54,10 @@ en:
       remove: Remove
       confirm: Are you sure?
       new: New
+      add_section: Add Section
+      add_item: Add Item
+      up: Sort Up
+      down: Sort Down
     common:
       app_name: Interactive Story Builder
       added_on: "Added on: %{date}" 
