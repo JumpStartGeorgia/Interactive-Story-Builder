@@ -216,10 +216,10 @@ a:hover {
 }
 
 .video-source {
-  font: 11px/1.4em "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #999;
+  font: 12px/1.4em "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #bdbdbd;
   position: absolute;
-  bottom: 10px;
+  bottom: 7%;
   right: 7%;
   z-index: 3;
 }

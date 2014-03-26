@@ -1,6 +1,7 @@
 
 	var story_id = -1;
 	var section_id = -1;
+
 	var item_id = -1;
 	var el_type = 's';
 	var method = 'n';
@@ -14,6 +15,8 @@ $(document).ready(function() {
 		$('.story-tree ul li').removeClass('active');
 		$('.story-tree ul li.item[id='+section_id+']').addClass('active');
 	    $(this).children('ul').toggle();
+	    $('.flash-message').empty();
+	    
 	    getStory(section_id,-1);
 	    return false;
 	});
@@ -23,10 +26,18 @@ $(document).ready(function() {
 		item_id = $(this).attr('id');
 		$('.story-tree ul li').removeClass('active');
 		parent = $(this).parent().parent().addClass('active');
-		$(this).parent().find('li#'+item_id).addClass('active');   		
+		$(this).parent().find('li#'+item_id).addClass('active');   
+		$('.flash-message').empty();	
+		
+		
 		getStory(section_id,item_id);
 	    return false;
 	});
+	$('.story-viewer').on('change','#mediaType',function(){
+		if($(this).val()==1) $('#mediaVideoBox').hide();
+		else  $('#mediaVideoBox').show();
+	});
+
 
     $('#storiesTable').dataTable({
  		"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
@@ -46,10 +57,18 @@ $(document).ready(function() {
 			{ "bSortable": false }
 	    ]
     });  
-	$('#storiesTable > tbody').on('click','tr',function(){ $(this).find('td a.preview')[0].click(); });
+	$('#storiesTable > tbody > tr > td > a.preview').on('click',function(e){	
+		e.preventDefault();					
+		$('#previewStory .modal-data').html('<iframe height="768px" width="1366px" src="'+ $(this).prop('href')+'"></iframe>');	 			
+		$('#previewStory').reveal();		
+	});
 
 	$('#btnDelete').click(function(){
 
+		var c=confirm("Item will be deleted permanently");
+		if (!c) return true;
+		  
+		if(section_id == -1 ) { popuper("Nothing selected","notice"); return true;}
 		var dataTemp = {'_method':'delete','section_id' : section_id, 'type':el_type };
 		
 		if(el_type!='s') 
@@ -61,12 +80,31 @@ $(document).ready(function() {
 			url: 'tree',			  
 			data: dataTemp,
 			type: "POST",			
-	        dataType: 'script'
+	        dataType: 'json'
+
 		}).done(function(d) 
 		{
-			console.log(d);
-			
-		}).error(function(e){console.log(e);});
+		 	var secT = $('.story-tree ul li.item[id='+ section_id + ']');
+			if(item_id != -1)
+			{
+				secT.find('ul li.sub[id='+item_id+']').parent().remove();		
+			}
+			else 
+			{	
+				secT.remove();		
+			}
+			section_id = -1;
+			item_id = -1;
+			$('.story-viewer').html('');
+			$("html, body").animate({ scrollTop: 0 }, "slow");
+					
+		}).error(function(e){ popuper("Deleting failed.","error");});
+
+		return true;	
+	});
+	$('#btnPreview').click(function(){					
+		$('#previewStory .modal-data').html('<iframe height="768px" width="1366px" src="'+ $(this).data('storyteller')+'"></iframe>');	 			
+		$('#previewStory').reveal();
 		return true;	
 	});
 

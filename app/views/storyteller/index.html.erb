@@ -108,6 +108,8 @@
             <% if section.has_marker == 1 %>
                <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
             <% end %>
+            <h3 class='column-title'><%= section.content.title %></h3>
+            <h4 class='column-subtitle'><%= section.content.subtitle %></h4>
             <%= section.content.content.html_safe %>     
           </div>
         <% else %>
@@ -139,17 +141,15 @@
 
                    <% if m.caption.length < 160 %>
                         <% caption_class = alignment.index(m.caption_align) %>
-                      <% else %>
-                       <% caption_class = 'long' %>
-                      <% end %>
+                    <% else %>
+                     <% caption_class = 'long' %>
+                    <% end %>
 
 
                     <% if s_i == 0 && m_i == 0 %>
-                      <% caption_class = 'head' %>
-                    <% else %>
-                     
-                    
+                      <% caption_class = 'head' %>              
                     <% end %>
+
                     <div class="video-caption video-caption--<%= caption_class %>">
                     <% if caption_class == 'head'  %>                      
                           <div class="video-headline headline"> <%= m.caption %> </div>
@@ -160,12 +160,16 @@
                               <path d="M0,0L9,7L18,0"></path>
                             </svg>
                           </div>                      
-                  <% else 
-                     puts m.caption 
-                      end  %>
-
-                    </div>
-                  <% end %>                                    
+                    <% else %>
+                      <% if m.summary.present? %>
+                          <div class="video-headline headline"> <%= m.caption %> </div>
+                          <div class="video-summary"> <%= m.summary %> </div>
+                      <% else %>
+                          <%= m.caption  %>
+                       <% end  %>            
+                  <% end %>  
+                  </div>      
+                    <% end %>                              
               </div>        
             <% end %>        
           </div>
@@ -221,9 +225,9 @@
               file: "mobile_1024/<%= m.image_file_name %>",
               section: <%= s_i+1 %>,
               slide: <%= m_i+1 %>,      
-              align: <%= alignment.index(m.caption_align) %>
+              align: '<%= alignment.index(m.caption_align) %>',
               <% if secLength == m_i+1 %>
-                hideRule: true
+                hideRule: true,
               <% end %>         
             }
             <% if secLength != (m_i+1) %>

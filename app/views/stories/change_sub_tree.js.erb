@@ -1,11 +1,35 @@
 <%= remotipart_response do %>
-  // Display a Javascript alert
-  alert('success!');
   <% if remotipart_submitted? 
-  	 flash[:success] = "Section was successfully created."
-  	 %>
-    alert('submitted via remotipart')
-  <% else %>
-    alert('submitted via native jquery-ujs')
+  		msg = ""
+  		msg_type = ""
+	  	[:success, :notice, :error, :alert].each do |type|	  		 
+	      	msg = flash[type] unless flash[type].blank?
+	      	msg_type = type.to_s unless flash[type].blank?	      		      	
+		end  		
+  	 %>  	 
+  	 <% if !msg.empty? %>
+  	 	popuper("<%= msg %>" , "<%= msg_type %>");
+ 	 <% end %>   
   <% end %>
 <% end %>
+
+$(document).ready(function() 
+{
+	var secT = $('.story-tree ul li.item[id='+ section_id + ']');
+	var li = $("<li id='<%= @item.id %>' class='sub'><span><%= @item.title %></span></li>");	
+	if(secT.has('ul').length>0)
+	{
+			secT.find('ul').append(li);
+	}
+	else 
+	{				   
+			secT.append($('<ul></ul>').append($(li)));	
+	}
+	
+	$('.story-tree ul li').removeClass('active');
+	secT.addClass('active');
+    secT.children('ul').show();
+    li.trigger('click');
+    
+	$("html, body").animate({ scrollTop: 0 }, "slow");
+});

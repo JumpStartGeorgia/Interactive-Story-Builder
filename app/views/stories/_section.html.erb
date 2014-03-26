@@ -1,17 +1,18 @@
 <%= semantic_form_for(@item, url: section_story_path(id:params[:id]), remote: true) do |f| %>
 
     <%= f.inputs do %>
-    <%= f.input :title, :placeholder => 'Type section title', :input_html => { :id => "sectionTitle" } %>     
-    <%= f.input :type_id, :as => :select,  :include_blank => "- Choose Type -", :collection => { 'Content' => 1, 'Media' => 2 } , :default => 0 , :input_html => { :id => "sectionType" }   %>      
+    <%= f.input :title, :placeholder => 'Type section title', :input_html => { :id => "sectionTitle" } %>  
+    <%= f.input :type_id,  :as => :radio,       :collection => {  'Content' => 1, 'Media' => 2 } , :input_html => { :id => "sectionType" } %>  
+    
     <%= f.input :has_marker, :as => :boolean, :checked_value => 1, :unchecked_value => 0 %>   
     <% if @item.id.present? %>
       <%= f.input :id, :as => :hidden , :input_html => { :id => "sectionId" }  %>    
     <% end %>
     <%= f.input :story_id, :as => :hidden , :input_html => { :id => "storyId" }  %>    
   <% end %>
-  <div class="pull-right spacer">
-    <%= f.submit nil, :class => 'btn' %>
+  <div class="pull-right spacer">    
     <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>      
+    <%= f.submit nil, :class => 'btn' %>
   </div>
 <% end %>
 

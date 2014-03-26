@@ -53,6 +53,7 @@ ka:
       add_item: ახალი პუნქტი
       up: Order Up
       down: Order Down
+      preview: ნახვა
     common:
       app_name: Bootstrap Starter Project
       added_on: "დამატებულია: %{date}" 

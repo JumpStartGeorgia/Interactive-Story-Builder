@@ -15,7 +15,7 @@
 		}
 	
 	.reveal-modal {
-		visibility: hidden;
+		display: none;
 		top: 100px; 
 		/*left: 50%;*/
 		/*margin-left: -300px;*/

@@ -1,4 +1,4 @@
-$("#storyViewer").html(" <div id='contentForm'><%= escape_javascript( render :partial => 'content') %></div>");
+$("#storyViewer").hide().html(" <div id='contentForm'><%= escape_javascript( render :partial => 'content') %></div>").fadeIn('slow');
 
 $("#contentArticle").change(function(){
 		$("#modalContent .modal-data").html($(this).val());});	

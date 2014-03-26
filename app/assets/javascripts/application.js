@@ -28,16 +28,22 @@ $(document).ready(function(){
 		.off('click.dropdown touchstart.dropdown.data-api', '.dropdown')
 		.on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() });
 });
+
+
 $(document).ajaxComplete(function(event, request) {
-  var msg = request.getResponseHeader('X-Message');
+ 	popuper(request.getResponseHeader('X-Message'),request.getResponseHeader("X-Message-Type"));  
+});
+
+function popuper(msg,msg_type)
+{
+  
   var types = {'notice':'alert-info','success':'alert-success','error':'alert-error','alert':'alert-error'};
-  var type = types[request.getResponseHeader("X-Message-Type")];
+  var type = types[msg_type];
   if (msg && type)
   {
-  	  $('.flash-message').html('<div class="alert '+ type +' %> fade in">' +
+  	  $('.flash-message').html('<div class="alert '+ type +' fade in">' +
 									'<a href="#" data-dismiss="alert" class="close">×</a>' +
 									 msg +
 									'</div>'); 
   }
-});
-
+}

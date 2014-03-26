@@ -1,5 +1,10 @@
  $(document).ready(function() 
  {
-	$('.story-tree > ul').append("<li id='<%= @item.id %>' data-type='<%= @item.get_str_type %>' class='item'><span><%= @item.title %></span>");	
+ 	var li = $("<li id='<%= @item.id %>' data-type='<%= @item.get_str_type %>' class='item'><span><%= @item.title %></span>");
+ 	$('.story-tree ul li').removeClass('active');
+	$('.story-tree > ul').append(li.addClass('active'));		
+	li.trigger('click');
+	li.children('ul').show();
+	    
 	$("html, body").animate({ scrollTop: 0 }, "slow");
 });

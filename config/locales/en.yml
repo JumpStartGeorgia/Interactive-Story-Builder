@@ -58,6 +58,7 @@ en:
       add_item: Add Item
       up: Order Up
       down: Order Down
+      preview: Preview
     common:
       app_name: Interactive Story Builder
       added_on: "Added on: %{date}" 

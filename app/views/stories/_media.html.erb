@@ -1,20 +1,24 @@
-<%= semantic_form_for(@item, url: media_story_path(id:params[:id],:format => :json), :html => { :multipart=> true } , remote: true) do |f| %>
+<%= semantic_form_for(@item, url: media_story_path(id:params[:id],:format => :js), :html => { :multipart=> true, :id => "mediaForm" } , remote: true) do |f| %>
   <%= error_messages_for f.object %>
   <%= f.inputs do %>
     <%= f.input :title, :input_html => { :id => "mediaTitle" } %>
     <%= f.input :media_type, :as => :select,  :include_blank => false, :collection => { 'Image' => 1, 'Video' => 2 } , :selected => 0 , :input_html => { :id => "mediaType" }   %>	
     <%= f.input :caption, :input_html => { :id => "mediaCaption" ,:placeholder =>"Caption for slide"} %>
     <%= f.input :caption_align, :as => :select,  :include_blank => false, :collection => { 'Left' => -1, 'Center' => 0, 'Right' => 1 } , :default => 0 , :input_html => { :id => "mediaCaptionAlign" } %>
-    <%= f.input :image, :as => :file , :input_html => { :id => "mediaImage" } %>
-    <% if @item.image.exists? %>
-      <a class='btn' data-reveal-id="modalImage">Preview</a>      
-    <% end %>
-
- 	  <%= f.input :video, :as => :file , :input_html => { :id => "mediaVideo" } %>
-    <% if @item.video.exists? %>
-      <a class='btn' data-reveal-id="modalVideo">Preview</a>
-    <% end %>
    
+    <% if @item.image.exists? %>
+      <a class='btn' data-reveal-id="modalImage">Preview Image</a>      
+    <% end %>
+    <%= f.input :image, :as => :file , :input_html => { :id => "mediaImage" } %>
+ 	  
+    <div id='mediaVideoBox' <%=  @item.media_type == 1  ? "style=display:none;" : "" %> >
+      <% if @item.video.exists? %>
+        <a class='btn' data-reveal-id="modalVideo">Preview Video</a>
+      <% end %>
+      <%= f.input :video, :as => :file , :input_html => { :id => "mediaVideo" } %>
+    </div>
+    
+
     <%= f.input :summary, :input_html => { :id => "mediaSummary" } %>
     <%= f.input :source, :input_html => { :id => "mediaSource" } %>
     <%= f.input :section_id, :as => :hidden , :input_html => { :id => "mediaSection" }  %>
@@ -23,9 +27,9 @@
     <% end %>
   <% end %>
 
-  <div class="pull-right spacer">
-    <%= f.submit nil, :class => 'btn' %>
+  <div class="pull-right spacer">    
     <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>      
+    <%= f.submit nil, :class => 'btn' %>
   </div>
 <% end %>
 

@@ -23,11 +23,15 @@
         <td><%= story.author %></td>                
         <td><%= link_to 'Edit', edit_story_path(story) %></td>
         <td><%= link_to 'Destroy', story, confirm: 'Are you sure?', method: :delete %></td>
-        <td><%= link_to 'Config', sections_story_path(story) %></td>
-        <td><%= link_to 'Preview', storyteller_show_path(story),  { :class=>"preview" } %></td>
+        <td><%= link_to 'Config', sections_story_path(story) %></td>          
+        <td><%= link_to image_tag("/assets/preview16.png", :alt => 'Preview'),  storyteller_show_path(story), :class=>"preview" %></td>
       </tr>
     <% end %>
     </tbody>
     </table>
   </div>
+</div>
+<div id="previewStory" class="reveal-modal" >     
+      <div class='modal-data' style="width:100%; height:100%; border:1px solid #bfbfbf;"></div>
+      <a class="close-reveal-modal">&#215;</a>
 </div>

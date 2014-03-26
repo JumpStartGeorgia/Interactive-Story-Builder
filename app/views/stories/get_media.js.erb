@@ -1,4 +1,4 @@
-$("#storyViewer").html("<div id='mediaForm'><%= escape_javascript( render :partial => 'media') %></div>");
+$("#storyViewer").hide().html("<div id='mediaForm'><%= escape_javascript( render :partial => 'media') %></div>").fadeIn('slow');
 <% imageTemp = '' %>
 <% videoTemp = '' %>
 <% if @item.image.exists? %>

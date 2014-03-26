@@ -137,7 +137,7 @@ class StoriesController < ApplicationController
           format.js { render action: "change_tree", status: :created  }
         else          
           flash[:error] = "Section wasn't created, please try again later [ " +  @item.errors.full_messages.to_sentence + " ]"            
-          
+          format.js {render json: nil, status: :ok }
         end
       end    
   end
@@ -159,15 +159,13 @@ class StoriesController < ApplicationController
   # end
 
  def new_media
-    @item = Medium.new(params[:medium])
+    @item = Medium.new(params[:medium])       
     respond_to do |format|
-        if @item.save
-          
-          flash[:success] = "Media was successfully updated------------."        
-          format.html { redirect_to sections_story_path(@story), notice: 'Media was successfully created.' }
-          format.js {render action: "build_tree", status: :created }          
+        if @item.save          
+          flash[:success] = "Media was successfully updated."                  
+          format.js { render action: "change_sub_tree", status: :created }                    
         else          
-          flash[:error] = "Media wasn't updated, please try again later---------------"            
+          flash[:error] = "Media wasn't updated, please try again later"            
           format.js {render json: nil, status: :ok }
         end
       end    
@@ -177,6 +175,7 @@ class StoriesController < ApplicationController
 
     def new_content    
      @item = Content.new(params[:content])   
+     @flash = flash
      respond_to do |format|
         if @item.save
           flash[:success] = "Content was successfully created."
@@ -238,26 +237,21 @@ class StoriesController < ApplicationController
     end
 
     item.destroy
-
     
    respond_to do |format|
       if item.destroyed?   
-         flash[:success] = "Item was removed from the tree."
-           format.js {render action: "remove_tree_item", status: :created }    
+          flash[:success] = "Item was removed from the tree."
+          format.json { render json: nil , status: :created } 
       else  
           flash[:error] = "Removing data failed [" +  @item.errors.full_messages.to_sentence + "]"            
-          format.js {render json: nil, status: :unprocessable_entity }  
+          format.json {render json: nil, status: :unprocessable_entity }  
       end
     end
   end
 
 
   def sections
-      @story = Story.fullsection(params[:id])
-      #Story.find(params[:id])      
-      
-      #logger.debug("id = #{params}" );
+      @story = Story.fullsection(params[:id])   
   end
    
-end
-       #logger.debug("loggerrrrrrrrrrrr #{params}" );
+end       
