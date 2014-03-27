@@ -1,11 +1,11 @@
 <%= semantic_form_for(@item, url: content_story_path(id:params[:id]), remote: true) do |f| %>
   <%= f.inputs do %>
-    <%= f.input :title, :placeholder=>'Title ... ', :input_html => { :id => "contentTitle" } %>
-    <%= f.input :subtitle, :placeholder=>'Subtitle ... ', :input_html => { :id => "contentSubtitle" } %>
-    <%= f.input :content,:placeholder=>'Article text, can be any styling html tag with styles', :input_html => { :id => "contentArticle" }  %>
+    <%= f.input :title, :placeholder=>t('.ph_title'), :input_html => { :id => "contentTitle" } %>
+    <%= f.input :subtitle, :placeholder=>t('.ph_subtitle'), :input_html => { :id => "contentSubtitle" } %>
+    <%= f.input :content,:placeholder=>t('.ph_content'), :input_html => { :id => "contentArticle" }  %>
 
     
-     <a class='btn' data-reveal-id="modalContent">Preview</a>          
+     <a class='btn' data-reveal-id="modalContent"><%= t('app.buttons.preview') %></a>          
      
     
     <%= f.input :section_id, :as => :hidden , :input_html => { :id => "contentSection" }  %>

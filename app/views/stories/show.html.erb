@@ -3,20 +3,20 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Title:</b>
+  <b><%= t('activerecord.attributes.story.title') %>:</b>
   <%= @story.title %>
 </p>
 
 <p>
-  <b>User:</b>
+  <b><%= t('activerecord.attributes.story.user_id') %>:</b>
   <%= @story.user_id %>
 </p>
 
 <p>
-  <b>Author:</b>
+  <b><%= t('activerecord.attributes.story.author') %>:</b>
   <%= @story.author %>
 </p>
 
 
-<%= link_to 'Edit', edit_story_path(@story) %> |
-<%= link_to 'Back', stories_path %>
+<%= link_to t('helpers.links.edit'), edit_story_path(@story) %> |
+<%= link_to t('helpers.links.back'), stories_path %>

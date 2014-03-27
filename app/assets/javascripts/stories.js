@@ -45,7 +45,7 @@ $(document).ready(function() {
 		"bAutoWidth": true,    	
 	    "oLanguage": {
 	      "sUrl": gon.datatable_i18n_url
-	    },
+	    },	    
     	//"aaSorting": [[2, 'desc']]
     	"aoColumns": [
 	      { "bSortable": true },

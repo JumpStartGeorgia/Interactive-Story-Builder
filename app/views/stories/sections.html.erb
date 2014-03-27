@@ -65,7 +65,7 @@
 </style>
 
 <div class='row'>
-  <div class='span12'><h2>Story line (<%= @story.title %>)</h2></div>
+  <div class='span12'><h2><%= t('activerecord.models.story') %>&nbsp;(<%=  @story.title %>)</h2></div>
 </div>
 <div class='row'>
   <div class='span12'>
@@ -91,8 +91,7 @@
     <div class='story-tree' id='<%= @story.id %>'>        
       <ul>
           <% @story.sections.each do |item| %>          
-              <li id='<%= item.id %>' data-type='<%= item.get_str_type %>' class='item'><span><%= item.title %></span>
-                  
+              <li id='<%= item.id %>' data-type='<%= item.get_str_type %>' class='item'><span><%= item.title %></span>                  
                   <% if item.content? && item.content.present? %>
                     <ul><li id='<%= item.content.id %>' class='sub'><span><%= item.content.title %></span></li></ul>
                   <% elsif item.media? && item.media.present? %>
@@ -114,8 +113,7 @@
 <div id="modalVideo" class="reveal-modal" style='width:853px; height:480px'>   
     <div class='modal-data'>  
         <video preload="auto" width="853px" height="480px" controls>
-          Your browser does not support this video.
-
+        <%= t('layouts.unsupported_browser.video') %>            
         </video>
       </div>     
      <a class="close-reveal-modal">&#215;</a>

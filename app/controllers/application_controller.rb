@@ -59,6 +59,12 @@ logger.debug "////////////////////////// BROWSER NOT SUPPORTED"
 	def initialize_gon
 		gon.set = true
 		gon.highlight_first_form_field = true
+
+		if I18n.locale == :ka
+		  gon.datatable_i18n_url = "/datatable_ka.txt"
+		else
+		  gon.datatable_i18n_url = ""
+		end
 	end
 
 	def after_sign_in_path_for(resource)

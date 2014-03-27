@@ -3,6 +3,9 @@ en:
   activerecord:
     models:
       user: User
+      story: Story
+      section: Section
+      medium: Medium
       content: Content
     attributes:
       user:
@@ -11,10 +14,29 @@ en:
         password_confirmation: Password Confirmation
         role: Role
         remember_me: Remeber Me
+      story:
+        title: Title
+        user_id: Publish User
+        author: Author
+      section:
+        title: Title
+        audio_path: Audio Track
+        has_marker: With Marker    
+        type_id: Type
+        sort_order: Sort Order
       content:        
         title: Title
         subtitle: SubTitle
         content: Article
+      medium:
+        media_type: Media Type
+        title: Title
+        caption: Caption
+        caption_align: Caption Align
+        summary: Summary
+        source: Source
+        image: Image
+        video: Video
     errors:
       messages:
         required_field: "is a required field."
@@ -35,6 +57,7 @@ en:
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
+      story_list: List of stories
   app:
     language:
       en: English
@@ -59,6 +82,8 @@ en:
       up: Order Up
       down: Order Down
       preview: Preview
+      preview_image: Preview Image
+      preview_video: Preview Video
     common:
       app_name: Interactive Story Builder
       added_on: "Added on: %{date}" 
@@ -75,6 +100,7 @@ en:
       js_link_text: Built by
     unsupported_browser:
       title: Unsupported Browser
+      video: Your browser does not support this video.
       p1: We are sorry to report that your browser is out of date and will not properly render the content from this website.
       p2: On the bright side, there are several free browsers that you can download that are compatible with this site.
       chrome: Chrome
@@ -99,3 +125,18 @@ en:
         title: New User
       show:
         title: User Details
+  stories:
+    media:
+      left: Left
+      center: Center
+      right: Right
+      image: Image
+      video: Video
+    section:
+      content: Content
+      media: Media
+      ph_title: Type section title
+    content:
+      ph_title: Title...
+      ph_subtitle: Subtitle...
+      ph_content: 'Article text, can be any styling html tag with styles'

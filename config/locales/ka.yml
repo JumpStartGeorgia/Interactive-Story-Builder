@@ -3,13 +3,40 @@ ka:
   activerecord:
     models:
       user: მომხმარებელი
+      story: ისტორია
+      section: სექცია
+      medium: მედია
+      content: სტატია
     attributes:
       user:
         email: ელ.ფოსტა
         password: პაროლი
         password_confirmation: გაიმეორეთ პაროლი
         role: როლი
-        remember_me: დამიმახსოვრე
+        remember_me: დამიმახსოვრე                  
+      story:
+        title: დასახელება
+        user_id: გამოქვეყნების მომხმარებელი
+        author: ავტორი
+      section:
+        title: დასახელება
+        audio_path: აუდიო ფაილი
+        has_marker: მარკერი    
+        sort_order: დალაგება
+        type_id: ტიპი
+      content:        
+        title: დასახელება
+        subtitle: ქვე-დასახელება
+        content: სტატია
+      medium:
+        media_type: მედია ტიპი
+        title: დასახელება
+        caption: სათაური
+        caption_align: სათაურის პოზიცია
+        summary: მოკლე შინაარსი
+        source: წყარო
+        image: სურათი
+        video: ვიდეო
     errors:
       messages:
         required_field: "სავალდებულოა"
@@ -30,6 +57,7 @@ ka:
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
+      story_list: "ისტორიების სია"      
   app:
     language:
       en: English
@@ -54,8 +82,10 @@ ka:
       up: Order Up
       down: Order Down
       preview: ნახვა
+      preview_image: სურათის ნახვა
+      preview_video: ვიდეოს ნახვა
     common:
-      app_name: Bootstrap Starter Project
+      app_name: ინტერაქტიული ისტორიის შემქმნელი
       added_on: "დამატებულია: %{date}" 
     msgs:
       does_not_exist: თქვენ ცდილობთ იხილოთ გვერდი, რომელიც არ არსებობს.
@@ -70,6 +100,7 @@ ka:
       js_link_text: აგებულია
     unsupported_browser:
       title: არასათანადო ბრაუზერი
+      video: თქვენ ბრაუზერს ვიდეოს მხარდაჭერა არაა აქვს
       p1: სამწუხაროდ თქვენი ინტერნეტ ბრაუზერის მოხმარების ვადა გასულია და ვერ მოხდება ვებ-გვერდთან სრულად დაკავშირება.
       p2: არსებობს რამდენიმე უფასო ბრაუზერი რომელის გადმოწერის შემდეგ შეძლებთ ვებ-გვერდით სარგებლობას.
       chrome: Chrome
@@ -94,3 +125,18 @@ ka:
         title: ახალი მომხმარებელი
       show:
         title: მომხმარებლის დეტალები
+  stories:
+    media:
+      left: მარცხნივ
+      center: ცენტრში
+      right: მარჯვნივ
+      image: სურათი
+      video: ვიდეო
+    section:
+      content: სტატია
+      media: მედია
+      ph_title: სექციის სათაური
+    content:
+      ph_title: სათაური...
+      ph_subtitle: ქვე სათაური...
+      ph_content: 'სტატიის ტექსტი, ნებისმიერი html ტეგი'

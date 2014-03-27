@@ -1,6 +1,7 @@
 class Medium < ActiveRecord::Base
 	belongs_to :section	
-	  	
+
+	TYPE = {image: 1, video: 2}
 	has_attached_file :image,  	
     :url => "/system/places/images/:story_id/:style/:basename.:extension",
 		:styles => {
@@ -12,7 +13,7 @@ class Medium < ActiveRecord::Base
 	:url => "/system/places/video/:story_id/:basename.:extension"
 
   validates :section_id, :presence => {:message => 'Media out of section.'}
-  validates :media_type, :presence => true, :inclusion => { :in => [1,2] }  
+  validates :media_type, :presence => true, :inclusion => { :in => TYPE.values }  
   validates :title, :presence => {:message => 'Media should have title.'}, length: { maximum: 255, :message => 'Title max length is 255 symbols' }  
   validates :caption, :presence => {:message => 'Media should have caption.'}, length: { maximum: 255, :message => 'Caption max length is 255 symbols' }  
     
