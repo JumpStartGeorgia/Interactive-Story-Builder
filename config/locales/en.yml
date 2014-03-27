@@ -25,7 +25,7 @@ en:
         type_id: Type
         sort_order: Sort Order
       content:        
-        title: Title
+        title: Title          
         subtitle: SubTitle
         content: Article
       medium:
@@ -40,7 +40,7 @@ en:
     errors:
       messages:
         required_field: "is a required field."
-        already_exists: 'already exists in the database.'
+        already_exists: 'already exists in the database.'              
   helpers:
     actions: Actions
     links:
@@ -92,6 +92,8 @@ en:
       not_authorized: You are not authorized to view that page.
       success_created: "%{obj} was successfully created."
       success_updated: "%{obj} was successfully updated."
+      error_created: "%{obj} wasn't created.[ %{err} ]"
+      error_updated: "%{obj} wasn't updated.[ %{err} ]"
   layouts:
     application:
       admin: Admin

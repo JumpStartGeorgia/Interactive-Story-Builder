@@ -43,7 +43,10 @@ function popuper(msg,msg_type)
   {
   	  $('.flash-message').html('<div class="alert '+ type +' fade in">' +
 									'<a href="#" data-dismiss="alert" class="close">×</a>' +
-									 msg +
+									 urldecode(msg) +
 									'</div>'); 
   }
+}
+function urldecode(url) {
+  return decodeURIComponent(url.replace(/\+/g, ' '));
 }

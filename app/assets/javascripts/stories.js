@@ -61,7 +61,7 @@ $(document).ready(function() {
 		e.preventDefault();					
 		$('#previewStory .modal-data').html('<iframe height="768px" width="1366px" src="'+ $(this).prop('href')+'"></iframe>');	 			
 		$('#previewStory').reveal();		
-	});
+	});	
 
 	$('#btnDelete').click(function(){
 
@@ -107,8 +107,6 @@ $(document).ready(function() {
 		$('#previewStory').reveal();
 		return true;	
 	});
-
-	
 
 	$('#btnAddSection').click(function(){ method = 'n';	el_type = 's';  getStory(-1,-1);});
 

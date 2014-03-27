@@ -25,7 +25,10 @@
         <td><%= link_to t('helpers.links.edit'), edit_story_path(story) %></td>
         <td><%= link_to  t('helpers.links.destroy'), story, confirm: 'Are you sure?', method: :delete %></td>
         <td><%= link_to  t('helpers.links.admin'), sections_story_path(story) %></td>          
-        <td><%= link_to image_tag("/assets/preview16.png", :alt =>  t('helpers.links.view'), size: "16x10", ),  storyteller_show_path(story), :class=>"preview" %></td>
+        <td><%= link_to image_tag("/assets/preview16.png", :alt =>  t('helpers.links.view'), size: "16x10", ),  storyteller_show_path(story), :class=>"preview" %>
+            <%= link_to image_tag("/assets/preview16.png", :alt =>  t('helpers.links.view'), size: "16x10", ),  storyteller_show_path(story), :class=>"previewMobile" %>
+            <%= link_to image_tag("/assets/preview16.png", :alt =>  t('helpers.links.view'), size: "16x10", ),  storyteller_show_path(story), :class=>"previewPad" %>
+        </td>
       </tr>
     <% end %>
     </tbody>

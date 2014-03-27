@@ -92,6 +92,8 @@ ka:
       not_authorized: თქვენ არ გაქვთ უფლება იხილოთ ეს გვერდი.
       success_created: "%{obj} შექმნილია."
       success_updated: "%{obj} განახლებულია."
+      error_created: "%{obj} არ იყო შექმნილი.[ %{err} ]"
+      error_updated: "%{obj} არ იყო განახლებული.[ %{err} ]"
   layouts:
     application:
       admin: ადმინისტრატო
@@ -126,6 +128,11 @@ ka:
       show:
         title: მომხმარებლის დეტალები
   stories:
+
+    created: "%{model} was successfully created."
+    updated: "%{model} was successfully created."
+    destroyed: "%{model} was successfully created."
+    
     media:
       left: მარცხნივ
       center: ცენტრში

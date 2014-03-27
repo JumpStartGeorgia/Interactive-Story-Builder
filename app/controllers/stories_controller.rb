@@ -133,36 +133,20 @@ class StoriesController < ApplicationController
      @item = Section.new(params[:section])        
      respond_to do |format|
         if @item.save                    
-          flash[:success] = "Section was successfully created."
+          flash[:success] =u t('app.msgs.success_created', obj:Section.model_name.human)
           format.js { render action: "change_tree", status: :created  }
         else          
-          flash[:error] = "Section wasn't created, please try again later [ " +  @item.errors.full_messages.to_sentence + " ]"            
+          flash[:error] = u t('app.msgs.error_created', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                  
           format.js {render json: nil, status: :ok }
         end
       end    
   end
 
-  #   def new_media    
-  #    @item = Medium.new(params[:medium])   
-  #    respond_to do |format|
-  #       if @item.save
-  #         logger.debug('---------------------------save')
-  #         flash[:success] = "Media was successfully created."
-  #         format.js { render action: "change_sub_tree" , status: :created }
-  #       else
-          
-  #           logger.debug(@item.errors.inspect)
-  #         flash[:error] = "Media wasn't created, please try again later [ " +  @item.errors.full_messages.to_sentence + " ]"            
-          
-  #       end
-  #     end    
-  # end
-
  def new_media
     @item = Medium.new(params[:medium])       
     respond_to do |format|
         if @item.save          
-          flash[:success] = "Media was successfully updated."                  
+          flash[:success] =u t('app.msgs.success_created', obj:Media.model_name.human)
           format.js { render action: "change_sub_tree", status: :created }                    
         else          
           flash[:error] = "Media wasn't updated, please try again later"            
@@ -178,10 +162,10 @@ class StoriesController < ApplicationController
      @flash = flash
      respond_to do |format|
         if @item.save
-          flash[:success] = "Content was successfully created."
+          flash[:success] =u t('app.msgs.success_created', obj:Content.model_name.human)
           format.js { render action: "change_sub_tree", status: :created  }
         else
-          flash[:error] = "Content wasn't created, please try again later [ " +  @item.errors.full_messages.to_sentence + " ]"            
+          flash[:error] = u t('app.msgs.error_created', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)                  
           format.js {render json: nil, status: :unprocessable_entity }       
         end
       end    
@@ -192,7 +176,7 @@ class StoriesController < ApplicationController
     @item = Section.find_by_id(params[:section][:id])  
      respond_to do |format|
           if @item.update_attributes(params[:section])
-          flash[:success] = "Section was successfully updated."
+          flash[:success] =u t('app.msgs.success_updated', obj:Section.model_name.human)
           format.js {render action: "build_tree", status: :created }                  
         else
           flash[:error] = "Section wasn't updated, please try again later"            
@@ -204,7 +188,7 @@ class StoriesController < ApplicationController
      @item = Content.find_by_id(params[:content][:id])  
      respond_to do |format|
         if @item.update_attributes(params[:content])
-          flash[:success] = "Content was successfully updated."
+          flash[:success] =u t('app.msgs.success_updated', obj:Content.model_name.human)
           format.js {render action: "build_tree", status: :created }                  
         else
           flash[:error] = "Content wasn't updated, please try again later"            
@@ -216,7 +200,7 @@ class StoriesController < ApplicationController
     @item = Medium.find_by_id(params[:medium][:id])
     respond_to do |format|
         if @item.update_attributes(params[:medium])          
-          flash[:success] = "Media was successfully updated."
+          flash[:success] =u t('app.msgs.success_updated', obj:Media.model_name.human)
           format.js {render action: "build_tree", status: :created }          
         else          
           flash[:error] = "Media wasn't updated, please try again later"            

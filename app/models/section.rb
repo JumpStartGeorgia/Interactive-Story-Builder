@@ -4,9 +4,9 @@ class Section < ActiveRecord::Base
 	has_many :media  
 	TYPE = {content: 1, media: 2}
 
-  validates :story_id, :presence => {:message => 'Section is out of story.'}
+  validates :story_id, :presence => true
   validates :type_id, :presence => true, :inclusion => { :in => TYPE.values }  
-  validates :title, :presence => {:message => 'Sectoin should have title.'}, length: { maximum: 255, :message => 'Title max length is 255 symbols' } 	
+  validates :title, :presence => true, length: { maximum: 255, :message => 'Title max length is 255 symbols' } 	
   validates :has_marker, :presence => true, :inclusion => { :in => [1,0] }  
   #validates :audio, :presence
 
