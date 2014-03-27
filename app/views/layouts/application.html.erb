@@ -41,10 +41,12 @@
           <div class="container nav-collapse">
             <ul class="nav">
                         
-            </ul>
+            </ul>			
+<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+
 
 	          <ul class="nav pull-right">
-		          <% if user_signed_in? %>
+<!-- 		          <% if user_signed_in? %>
 				        <li class="dropdown">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				                <%= current_user.nickname %>
@@ -59,7 +61,7 @@
 										</li>
 				          </ul>
 				        </li>
-		          <% end %>
+		          <% end %> -->
 							<% I18n.available_locales.each do |locale| %>
 								<% if locale != I18n.locale %>
 									<li><%= link_to t("app.language.#{locale}"), params.merge(:locale => locale) %></li>

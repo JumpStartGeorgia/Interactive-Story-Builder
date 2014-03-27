@@ -7,8 +7,9 @@ BootstrapStarter::Application.routes.draw do
 	scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
 
 		match '/admin', :to => 'admin#index', :as => :admin, :via => :get
-		devise_for :users, :path_names => {:sign_in => 'login', :sign_out => 'logout'}
-
+		#devise_for :users, :path_names => {:sign_in => 'login', :sign_out => 'logout'}
+	devise_for :users, :path_names => {:sign_in => 'login', :sign_out => 'logout'},
+											 :controllers => {:omniauth_callbacks => "omniauth_callbacks"}
 		namespace :admin do
 			resources :users
 		end
@@ -36,7 +37,7 @@ BootstrapStarter::Application.routes.draw do
 		match "storyteller/:id" => "storyteller#index", as: 'storyteller_show'
 
 
-		root :to => 'root#index'
+		root :to => 'stories#index'
 	  match "*path", :to => redirect("/#{I18n.default_locale}") # handles /en/fake/path/whatever
 	end
 
