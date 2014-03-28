@@ -2,7 +2,7 @@
 
     <%= f.inputs do %>
     <%= f.input :title, :placeholder => t('.ph_title'), :input_html => { :id => "sectionTitle" } %>  
-    <%= f.input :type_id,  :as => :radio, :collection => {  t('.content') => Section::TYPE[:content], t('.media') => Section::TYPE[:video] } , :input_html => { :id => "sectionType" } %>  
+    <%= f.input :type_id,  :as => :radio, :collection => {  t('.content') => Section::TYPE[:content], t('.media') => Section::TYPE[:media] } , :input_html => { :id => "sectionType" } %>  
     
     <%= f.input :has_marker, :as => :boolean, :checked_value => 1, :unchecked_value => 0 %>   
     <% if @item.id.present? %>

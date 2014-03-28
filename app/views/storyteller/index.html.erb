@@ -102,7 +102,7 @@
  <% alignment = { "left" => -1, "center" => 0, "right" => 1 } %>
 <div class="main">
   <div class="article">     
-     <% @story.sections.order('sort_order').each_with_index do |section,s_i| %>
+     <% @story.sections.order('position').each_with_index do |section,s_i| %>
         <% if section.type_id == 1 %>
           <div class="section column">
             <% if section.has_marker == 1 %>
@@ -215,7 +215,7 @@
     var mobileImages = 
     [
       
-    <%  @story.sections.order('sort_order').each_with_index do |s,s_i|       
+    <%  @story.sections.order('position').each_with_index do |s,s_i|       
          
           if s.type_id == 2 
             secLength = s.media.length   
