@@ -10,6 +10,7 @@ BootstrapStarter::Application.routes.draw do
 		#devise_for :users, :path_names => {:sign_in => 'login', :sign_out => 'logout'}
 	devise_for :users, :path_names => {:sign_in => 'login', :sign_out => 'logout'},
 											 :controllers => {:omniauth_callbacks => "omniauth_callbacks"}
+
 		namespace :admin do
 			resources :users
 		end
@@ -37,7 +38,7 @@ BootstrapStarter::Application.routes.draw do
 		match "storyteller/:id" => "storyteller#index", as: 'storyteller_show'
 
 
-		root :to => 'stories#index'
+		root :to => 'root#index'
 	  match "*path", :to => redirect("/#{I18n.default_locale}") # handles /en/fake/path/whatever
 	end
 

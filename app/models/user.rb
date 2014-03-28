@@ -3,13 +3,11 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
 	# :registerable, :recoverable,
   
- devise :database_authenticatable,
+ devise :database_authenticatable,:registerable,
          :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
-  # devise :database_authenticatable,
-  #        :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :provider, :uid, :nickname, :avatar
 
   validates :role, :presence => true
 
@@ -37,12 +35,12 @@ class User < ActiveRecord::Base
   end
   
   def nickname
-    self.email.split('@')[0]
+    read_attribute(:nickname).present? ? read_attribute(:nickname) : self.email.split('@')[0]
   end
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
-      user = User.create(nickname: auth.info.nickname,
+      user = User.create(  nickname: auth.info.nickname,
                            provider: auth.provider,
                            uid: auth.uid,
                            email: auth.info.email.present? ? auth.info.email : 'temp@temp.com',

@@ -1,0 +1,33 @@
+<%- model_class = User -%>
+<% title t('helpers.links.sign_in') %>
+
+<div id="login-form">
+
+  <%- if devise_mapping.omniauthable? %>
+    <div class="providers">
+	    <%= link_to image_tag('connect_fb.png', :alt => t('helpers.links.sign_in_facebook')), 
+	        omniauth_authorize_path(resource_name, :facebook), :title => t('helpers.links.sign_in_facebook') %>
+    </div>
+  <% end -%>
+
+  <% if params[:show_local].present? && params[:show_local] == 'true' %>
+
+    <%= semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+	    <%= f.input :email, :input_html => { :size => 39, :placeholder => model_class.human_attribute_name(:email) }, :label => false %>
+	    <%= f.input :password, :input_html => { :size => 39, :placeholder => model_class.human_attribute_name(:password) }, :label => false %>
+	    <% if devise_mapping.rememberable? -%>
+		    <div class="control-group">
+			    <label class="checkbox">
+				    <%= f.check_box :remember_me %> <%= model_class.human_attribute_name(:remember_me) %>
+			    </label>
+		    </div>
+	    <% end -%>
+
+
+	    <div class="control-group">
+		    <%= f.submit t('helpers.links.sign_in'), :class => 'btn' %>
+	    </div>
+    <% end %>
+  <% end %>
+
+</div>

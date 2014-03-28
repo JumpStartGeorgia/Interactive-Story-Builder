@@ -1,15 +1,17 @@
 class StoriesController < ApplicationController
+  before_filter :authenticate_user!
   # GET /stories
   # GET /stories.json
   def index
     #@usemap = true
-    @stories = Story.all
+    @stories = Story.where(:user_id => current_user.id)
 
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render json: @stories }
     end
   end
+
 
   # GET /stories/1
   # GET /stories/1.json
@@ -26,7 +28,7 @@ class StoriesController < ApplicationController
   # GET /stories/new
   # GET /stories/new.json
   def new
-    @story = Story.new
+    @story = Story.new(:user_id => current_user.id)
 
     respond_to do |format|
         format.html #new.html.erb

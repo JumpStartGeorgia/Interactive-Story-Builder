@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140327115914) do
+ActiveRecord::Schema.define(:version => 20140328063709) do
 
   create_table "contents", :force => true do |t|
     t.integer  "section_id"
@@ -81,6 +81,8 @@ ActiveRecord::Schema.define(:version => 20140327115914) do
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
+    t.string   "nickname"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

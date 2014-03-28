@@ -37,16 +37,19 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <%= link_to(t('app.common.app_name'), stories_path(:locale => I18n.locale),:class=>"brand font")%>
+          <%= link_to(t('app.common.app_name'), root_path(:locale => I18n.locale),:class=>"brand font")%>
           <div class="container nav-collapse">
             <ul class="nav">
-                        
+              <li><%= link_to t('helpers.titles.story_list') , stories_path  %></li>              
             </ul>			
-<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
 
 
 	          <ul class="nav pull-right">
-<!-- 		          <% if user_signed_in? %>
+		          <% if user_signed_in? %>
+	          		    <li>	          		    
+				        	<%= link_to image_tag(current_user.avatar,:size=>"28x28"), "http://facebook.com/" + current_user.nickname, :style => "margin:0px;padding:5px 3px 3px 0px;" %>				
+			        	</li>
+			           			
 				        <li class="dropdown">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				                <%= current_user.nickname %>
@@ -61,7 +64,11 @@
 										</li>
 				          </ul>
 				        </li>
-		          <% end %> -->
+				        <% else %>
+				         <li>
+				        	<%= link_to "Sign In", user_omniauth_authorize_path(:facebook) %>
+			        	</li>
+		         	 <% end %> 
 							<% I18n.available_locales.each do |locale| %>
 								<% if locale != I18n.locale %>
 									<li><%= link_to t("app.language.#{locale}"), params.merge(:locale => locale) %></li>
