@@ -11,6 +11,9 @@ gem "d3-rails" # d3 library
 gem 'omniauth' # to login via facebook
 gem 'omniauth-facebook' # to login via facebook
 gem 'acts_as_list' # for sorting ordering records
+gem 'tinymce-rails', "~> 3.5.8" #tinymce editor https://github.com/spohlenz/tinymce-rails/tree/tinymce-4
+#gem 'tinymce-rails-langs' #tinymce languages https://github.com/spohlenz/tinymce-rails-langs
+gem 'tinymce-rails-imageupload', '~> 3.5.8'  #tinymce imageupload https://github.com/PerfectlyNormal/tinymce-rails-imageupload/tree/master
 gem "devise", "~> 2.0.4" # user authentication
 gem "cancan", "~> 1.6.8" # user authorization
 gem "formtastic", "~> 2.1.1" # create forms easier
