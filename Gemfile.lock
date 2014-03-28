@@ -91,6 +91,8 @@ GEM
       actionmailer (>= 3.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.0)
     formtastic (2.1.1)
       actionpack (~> 3.0)
@@ -102,8 +104,10 @@ GEM
       actionpack (>= 2.3.0)
       json
     has_permalink (0.1.4)
+    hashie (2.0.5)
     highline (1.6.15)
     hike (1.2.1)
+    httpauth (0.2.1)
     i18n (0.6.1)
     i18n-js (2.1.2)
       i18n
@@ -114,6 +118,8 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.7.7)
+    jwt (0.1.6)
+      multi_json (>= 1.0)
     kgio (2.7.4)
     less (2.2.2)
       commonjs (~> 0.2.6)
@@ -128,6 +134,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.21)
     multi_json (1.2.0)
+    multipart-post (2.0.0)
     mysql2 (0.3.11)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -136,6 +143,20 @@ GEM
     net-ssh (2.5.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
+    oauth2 (0.8.1)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      rack (~> 1.2)
+    omniauth (1.2.1)
+      hashie (>= 1.2, < 3)
+      rack (~> 1.0)
+    omniauth-facebook (1.6.0)
+      omniauth-oauth2 (~> 1.1)
+    omniauth-oauth2 (1.1.1)
+      oauth2 (~> 0.8.0)
+      omniauth (~> 1.0)
     orm_adapter (0.0.7)
     paper_trail (2.6.3)
       activerecord (~> 3.0)
@@ -238,6 +259,8 @@ DEPENDENCIES
   json
   less-rails
   mysql2 (~> 0.3.11)
+  omniauth
+  omniauth-facebook
   paperclip (~> 3.4.0)
   psych (~> 1.2.2)
   rails (= 3.1.10)

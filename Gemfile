@@ -8,6 +8,8 @@ gem "json"
 gem "jquery-rails", "~> 1.0.19"
 gem "remotipart", '~> 1.2' # ajax file upload
 gem "d3-rails" # d3 library
+gem 'omniauth' # to login via facebook
+gem 'omniauth-facebook' # to login via facebook
 gem "devise", "~> 2.0.4" # user authentication
 gem "cancan", "~> 1.6.8" # user authorization
 gem "formtastic", "~> 2.1.1" # create forms easier
