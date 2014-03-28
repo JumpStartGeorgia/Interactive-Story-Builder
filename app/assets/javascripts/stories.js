@@ -63,6 +63,7 @@ $(document).ready(function() {
 		$('#previewStory').reveal();		
 	});	
 	$('#btnUp').click(function(){
+		if (el_type == 'c') return true;
 		var dataTemp = {'s' : section_id, 'i': item_id };
 		$.ajax
 		({
@@ -93,6 +94,7 @@ $(document).ready(function() {
 		}).error(function(e){ popuper("Changing order failed.","error");});	 	
 	});
 	$('#btnDown').click(function(){
+		if (el_type == 'c') return true;
 		var dataTemp = {'s' : section_id, 'i': item_id };
 		$.ajax
 		({
