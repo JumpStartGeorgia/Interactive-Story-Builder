@@ -1,9 +1,11 @@
 class Section < ActiveRecord::Base
 	belongs_to :story
 	has_one :content
-	has_many :media  
-	TYPE = {content: 1, media: 2}
+	has_many :media, :order => 'position'
+  acts_as_list scope: :story
 
+	TYPE = {content: 1, media: 2}
+  
   validates :story_id, :presence => true
   validates :type_id, :presence => true, :inclusion => { :in => TYPE.values }  
   validates :title, :presence => true, length: { maximum: 255, :message => 'Title max length is 255 symbols' } 	

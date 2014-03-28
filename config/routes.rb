@@ -8,7 +8,7 @@ BootstrapStarter::Application.routes.draw do
 
 		match '/admin', :to => 'admin#index', :as => :admin, :via => :get
 		#devise_for :users, :path_names => {:sign_in => 'login', :sign_out => 'logout'}
-	devise_for :users, :path_names => {:sign_in => 'login', :sign_out => 'logout'},
+		devise_for :users, :path_names => {:sign_in => 'login', :sign_out => 'logout'},
 											 :controllers => {:omniauth_callbacks => "omniauth_callbacks"}
 
 		namespace :admin do
@@ -29,7 +29,9 @@ BootstrapStarter::Application.routes.draw do
 				post 'media', to: 'stories#new_media'				
 
 				put 'section', to: 'stories#save_section'
-				post 'section', to: 'stories#new_section'				
+				post 'section', to: 'stories#new_section'	
+				post 'up', to: 'stories#up'
+				post 'down', to: 'stories#down'						
 
     			get 'sections'    			    			    			    	    			
   			end			

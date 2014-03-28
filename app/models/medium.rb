@@ -1,6 +1,7 @@
 class Medium < ActiveRecord::Base
 	belongs_to :section	
-
+  acts_as_list scope: :section
+  
 	TYPE = {image: 1, video: 2}
 	has_attached_file :image,  	
     :url => "/system/places/images/:story_id/:style/:basename.:extension",

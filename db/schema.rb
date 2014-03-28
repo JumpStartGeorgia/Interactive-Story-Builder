@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140328063709) do
+ActiveRecord::Schema.define(:version => 20140328102458) do
 
   create_table "contents", :force => true do |t|
     t.integer  "section_id"
@@ -42,13 +42,14 @@ ActiveRecord::Schema.define(:version => 20140328063709) do
     t.string   "video_content_type"
     t.integer  "video_file_size"
     t.datetime "video_updated_at"
+    t.integer  "position"
   end
 
   create_table "sections", :force => true do |t|
     t.integer  "story_id"
     t.integer  "type_id"
     t.string   "title"
-    t.integer  "sort_order"
+    t.integer  "position"
     t.string   "audio_path"
     t.datetime "created_at"
     t.datetime "updated_at"

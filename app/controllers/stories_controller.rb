@@ -234,10 +234,25 @@ class StoriesController < ApplicationController
       end
     end
   end
-
+  def up      
+    if params[:i] == '-1'
+      Section.where(story_id: params[:id]).find_by_id(params[:s]).move_higher            
+    else
+      Medium.where(section_id: params[:s]).find_by_id(params[:i]).move_higher            
+    end
+    render json: nil , status: :created    
+  end
+  def down  
+     if params[:i] == '-1'
+      Section.where(story_id: params[:id]).find_by_id(params[:s]).move_lower            
+    else
+      Medium.where(section_id: params[:s]).find_by_id(params[:i]).move_lower            
+    end            
+    render json: nil , status: :created    
+  end
 
   def sections
       @story = Story.fullsection(params[:id])   
   end
-   
+  #logger.debug("---------------------------------------------------#{params}")
 end       

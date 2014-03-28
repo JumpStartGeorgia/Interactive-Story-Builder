@@ -1,5 +1,5 @@
 class Story < ActiveRecord::Base
-	 has_many :sections
+	 has_many :sections, :order => 'position'
 	 validates :title, length: { maximum: 100 }
 	 validates :author, length: { maximum: 32 }
 

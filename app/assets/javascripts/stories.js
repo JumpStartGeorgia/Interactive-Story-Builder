@@ -62,6 +62,66 @@ $(document).ready(function() {
 		$('#previewStory .modal-data').html('<iframe height="768px" width="1366px" src="'+ $(this).prop('href')+'"></iframe>');	 			
 		$('#previewStory').reveal();		
 	});	
+	$('#btnUp').click(function(){
+		var dataTemp = {'s' : section_id, 'i': item_id };
+		$.ajax
+		({
+			url: 'up',			  
+			data: dataTemp,
+			type: "POST",			
+	        dataType: 'json'
+
+		}).done(function(d) 
+		{
+			var secT = $('.story-tree ul li.item[id='+ section_id + ']');
+			if(item_id == -1)
+			{			 	
+		 		if( secT.prev.length)
+		 		{
+	 			  $(secT).insertBefore($(secT).prev());
+		 		}
+	 		}
+	 		else
+	 		{
+	 			subT = secT.find('ul li.sub[id='+item_id+']');
+	 			if( subT.prev.length)
+		 		{
+	 			  $(subT).insertBefore($(subT).prev());
+		 		}
+	 		}	
+					
+		}).error(function(e){ popuper("Changing order failed.","error");});	 	
+	});
+	$('#btnDown').click(function(){
+		var dataTemp = {'s' : section_id, 'i': item_id };
+		$.ajax
+		({
+			url: 'down',			  
+			data: dataTemp,
+			type: "POST",			
+	        dataType: 'json'
+
+		}).done(function(d) 
+		{
+		 	var secT = $('.story-tree ul li.item[id='+ section_id + ']');
+
+			if(item_id == -1)
+			{			 	
+		 		if( secT.next.length)
+		 		{
+	 			  $(secT).insertAfter($(secT).next());
+		 		}
+	 		}
+	 		else
+	 		{
+	 			subT = secT.find('ul li.sub[id='+item_id+']');
+	 			if( subT.next.length)
+		 		{
+	 			  $(subT).insertAfter($(subT).next());
+		 		}
+	 		}		 				
+		}).error(function(e){ popuper("Changing order failed.","error");});	 	
+	});
 
 	$('#btnDelete').click(function(){
 
