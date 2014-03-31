@@ -37,29 +37,7 @@ before_post_process :transliterate_file_name
 
 require 'iconv'
 
-def transliterate(str)
-  # Based on permalink_fu by Rick Olsen
- 
-  # Escape str by transliterating to UTF-8 with Iconv http://stackoverflow.com/questions/12947910/force-strings-to-utf-8-from-any-encoding
-  s = Iconv.iconv('ascii//ignore//translit', 'utf-8', str).to_s
- 
-  # Downcase string
-  s.downcase!
- 
-  # Remove apostrophes so isn't changes to isnt
-  s.gsub!(/'/, '')
- 
-  # Replace any non-letter or non-number character with a space
-  s.gsub!(/[^A-Za-z0-9]+/, ' ')
- 
-  # Remove spaces from beginning and end of string
-  s.strip!
- 
-  # Replace groups of spaces with single hyphen
-  s.gsub!(/\ +/, '-')
- 
-  return s
-end
+
 
 
    private
@@ -68,12 +46,12 @@ def transliterate_file_name
 
   extension = File.extname(image_file_name).gsub(/^\.+/, '')
   filename = image_file_name.gsub(/\.#{extension}$/, '')
-  self.image.instance_write(:file_name, "#{transliterate(filename)}.#{transliterate(extension)}")
+  self.image.instance_write(:file_name, "#{StoriesHelper.transliterate(filename)}.#{StoriesHelper.transliterate(extension)}")
 
   if video_file_name.present?
     extension = File.extname(video_file_name).gsub(/^\.+/, '')
     filename = video_file_name.gsub(/\.#{extension}$/, '')
-    self.video.instance_write(:file_name, "#{transliterate(filename)}.#{transliterate(extension)}")
+    self.video.instance_write(:file_name, "#{StoriesHelper.transliterate(filename)}.#{StoriesHelper.transliterate(extension)}")
   end
 end
 

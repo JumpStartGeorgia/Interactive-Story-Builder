@@ -1,5 +1,6 @@
 <%= tinymce_assets %>
-<%= tinymce %>
+<%= tinymce uploadimage_form_url: imageuploader_path(id:params[:id]),uploadimage_default_img_class: "image", :width => "580px" %>
+
 <%= semantic_form_for(@item, url: content_story_path(id:params[:id]), remote: true) do |f| %>
   <%= f.inputs do %>
     <%= f.input :title, :placeholder=>t('.ph_title'), :input_html => { :id => "contentTitle" } %>

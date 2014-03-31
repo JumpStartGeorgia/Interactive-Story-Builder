@@ -14,6 +14,8 @@ BootstrapStarter::Application.routes.draw do
 		namespace :admin do
 			resources :users
 		end
+		#get 'tinymce_assets' ,to: 'tinymceassets#index'
+		post '/tinymce_assets', to: 'imageuploader#create', as: 'imageuploader'
 
 		resources :stories do				
 			member do
@@ -33,10 +35,11 @@ BootstrapStarter::Application.routes.draw do
 				post 'up', to: 'stories#up'
 				post 'down', to: 'stories#down'						
 
-    			get 'sections'    			    			    			    	    			
+    			get 'sections'    	
+    
   			end			
 		end
-
+		
 		match "storyteller/:id" => "storyteller#index", as: 'storyteller_show'
 
 
