@@ -1,16 +1,4 @@
- $(document).ready(function() 
- {
-	if(item_id != -1)
-	{
-		$('.story-tree ul li.item[id='+ section_id + ']').find(' ul li.sub[id='+item_id+'] > span').text('<%= @item.title %>');
-	}
-	else 
-	{	
-		$('.story-tree ul li.item[id='+ section_id + '] > span').text('<%= @item.title %>');
-	}
-	$("html, body").animate({ scrollTop: 0 }, "slow");
-
- <%= remotipart_response do %>
+<%= remotipart_response do %>
   <% if remotipart_submitted? 
   		msg = ""
   		msg_type = ""
@@ -24,5 +12,4 @@
  	 <% end %>   
   <% end %>
 <% end %>
-});
-
+alert('here');

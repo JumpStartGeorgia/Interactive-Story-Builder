@@ -8,31 +8,31 @@
 
 $(document).ready(function() {
 
-	$('.story-tree ul').on('click','li.item',function() {
+	$('.story-tree ul').on('click','li.item',function(e) {
+		e.preventDefault();
 		item_id = -1;
 		section_id = $(this).attr('id');
-
 		$('.story-tree ul li').removeClass('active');
 		$('.story-tree ul li.item[id='+section_id+']').addClass('active');
 	    $(this).children('ul').toggle();
-	    $('.flash-message').empty();
-	    
-	    getStory(section_id,-1);
+	    $('.flash-message').empty();	    
+	    getStory(section_id);
 	    return false;
 	});
 
-	$('.story-tree ul li.item').on('click','ul li.sub',function() {
-		section_id = $(this).parent().parent().attr('id');
+	$('.story-tree ul').on('click','li.item > ul > li.sub',function(e) {
+		e.preventDefault();		
 		item_id = $(this).attr('id');
+		section_id = $(this).parent().parent().attr('id');		
 		$('.story-tree ul li').removeClass('active');
 		parent = $(this).parent().parent().addClass('active');
 		$(this).parent().find('li#'+item_id).addClass('active');   
-		$('.flash-message').empty();	
-		
+		$('.flash-message').empty();			
 		
 		getStory(section_id,item_id);
 	    return false;
 	});
+
 	$('.story-viewer').on('change','#mediaType',function(){
 		if($(this).val()==1) $('#mediaVideoBox').hide();
 		else  $('#mediaVideoBox').show();
@@ -127,10 +127,20 @@ $(document).ready(function() {
 
 	$('#btnDelete').click(function(){
 
+	
+		if(section_id != -1 && item_id == -1 && $('.story-tree ul li.item[id='+ section_id + ']').has('ul').length>0)
+		{
+			popuper("First delete child items","error");
+			return true;
+		}
+
+		if(section_id == -1 ) { popuper("Nothing selected","notice"); return true;}
+
+
 		var c=confirm("Item will be deleted permanently");
 		if (!c) return true;
 		  
-		if(section_id == -1 ) { popuper("Nothing selected","notice"); return true;}
+
 		var dataTemp = {'_method':'delete','section_id' : section_id, 'type':el_type };
 		
 		if(el_type!='s') 
@@ -155,9 +165,10 @@ $(document).ready(function() {
 			{	
 				secT.remove();		
 			}
-			section_id = -1;
-			item_id = -1;
+//			section_id = -1;
+//			item_id = -1;
 			$('.story-viewer').html('');
+			getStory(-1,-1)
 			$("html, body").animate({ scrollTop: 0 }, "slow");
 					
 		}).error(function(e){ popuper("Deleting failed.","error");});
@@ -170,7 +181,7 @@ $(document).ready(function() {
 		return true;	
 	});
 
-	$('#btnAddSection').click(function(){ method = 'n';	el_type = 's';  getStory(-1,-1);});
+	$('#btnAddSection').click(function(){ method = 'n';	el_type = 's';  getStory(-1,-1,1);});
 
 	$('#btnAddItem').click(function(){	
 		var temp;
@@ -191,16 +202,11 @@ $(document).ready(function() {
 	});
 });
 
-function treeAdd(id, subid)
+function getStory(id , subid , state)
 {
-
-}
-function treeDelete(id, subid)
-{
-	
-}
-function getStory(id , subid)
-{
+	id = typeof id !== 'undefined' ? id : -1;
+	subid = typeof subid !== 'undefined' ? subid : -1;
+	state = typeof state !== 'undefined' ? state : -1;
 	if(id != -1)
 	{
 		var selectedSection = $('.story-tree ul li.item[id='+ id + ']');
@@ -224,7 +230,7 @@ function getStory(id , subid)
 		item_id = -1;
 		section_id = -1;
 		$('.story-tree ul li').removeClass('active');
-		getData();
+		if(state == 1) getData();
 		//if(el_type)
 		//el_type = 's'; 
 		//method = 'new';

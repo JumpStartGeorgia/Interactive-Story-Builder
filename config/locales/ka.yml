@@ -129,22 +129,38 @@ ka:
       show:
         title: მომხმარებლის დეტალები
   stories:
-
-    created: "%{model} was successfully created."
-    updated: "%{model} was successfully created."
-    destroyed: "%{model} was successfully created."
-    
     media:
-      left: მარცხნივ
-      center: ცენტრში
-      right: მარჯვნივ
-      image: სურათი
-      video: ვიდეო
+      left: Left
+      center: Center
+      right: Right
+      image: Image
+      video: Video
+      title:
+        title: "Title will not appear in  story teller, it's just for making administration easier"
+        media_type: "Slide can be image or video, for video image is necessary if browser doesn't supports video it will show image"
+        caption: "Slide Caption will appear on top of the image or video"
+        caption_align: "Caption align (default is left align) "
+        image: "Image for slide (only jpg format accepted)"
+        video: "Video for slide (only mp4 format accepted)"
+        summary: "Current slide summary, will appear below caption"
+        source: "Image or Video source , appears at the bottom of the page right aligned"
     section:
-      content: სტატია
-      media: მედია
-      ph_title: სექციის სათაური
+      content: Content
+      media: Media      
+      yes: Yes
+      no: No
+      placeholder:
+        title: Type section title
+      title:
+        title: "Title will not appear in  story teller, it's just for making administration easier"
+        type: "Type of section, content or media means static article or vertical slideshow with images or videos"
+        has_marker: "Anchor will be created for section, to navigate easily"
     content:
-      ph_title: სათაური...
-      ph_subtitle: ქვე სათაური...
-      ph_content: 'სტატიის ტექსტი, ნებისმიერი html ტეგი'
+      placeholder:
+        title: Title...
+        subtitle: Subtitle...
+        content: 'Article text, can be any styling html tag with styles'
+      title:
+        title: Title of article will appear in the top wraped with heading3
+        subtitle: Subtitle of article will appear below title wraped with heading4
+        content: Article appear below subtitle ( any custom css styling or html tag can be used for article content )

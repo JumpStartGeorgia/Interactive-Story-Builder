@@ -1,35 +1,35 @@
 <%= semantic_form_for(@item, url: media_story_path(id:params[:id],:format => :js), :html => { :multipart=> true, :id => "mediaForm" } , remote: true) do |f| %>
   <%= error_messages_for f.object %>
   <%= f.inputs do %>
-    <%= f.input :title, :input_html => { :id => "mediaTitle" } %>
-    <%= f.input :media_type, :as => :select,  :include_blank => false, :collection => { t('.image') => Medium::TYPE[:image], t('.video') => Medium::TYPE[:video] } , :selected => 0 , :input_html => { :id => "mediaType" }   %>	
-    <%= f.input :caption, :input_html => { :id => "mediaCaption" ,:placeholder =>"Caption for slide"} %>
-    <%= f.input :caption_align, :as => :select,  :include_blank => false, :collection => { t('.left') => -1, t('.center') => 0, t('.right') => 1 } , :default => 0 , :input_html => { :id => "mediaCaptionAlign" } %>
+    <%= f.input :title, :input_html => { :id => "mediaTitle", title: t('.title.title') } %>
+    <%= f.input :media_type, :as => :select,  :include_blank => false, :collection => { t('.image') => Medium::TYPE[:image], t('.video') => Medium::TYPE[:video] } , :selected => 0 , :input_html => { :id => "mediaType", title: t('.title.media_type')  }   %>	
+    <%= f.input :caption, :input_html => { :id => "mediaCaption" ,:placeholder =>"Caption for slide", title: t('.title.caption') } %>
+    <%= f.input :caption_align, :as => :select,  :include_blank => false, :collection => { t('.left') => -1, t('.center') => 0, t('.right') => 1 } , :default => 0 , :input_html => { :id => "mediaCaptionAlign", title: t('.title.caption_align')  } %>
    
     <% if @item.image.exists? %>
       <a class='btn' data-reveal-id="modalImage"><%= t('app.buttons.preview_image') %></a>
     <% end %>
-    <%= f.input :image, :as => :file , :input_html => { :id => "mediaImage" } %>
+    <%= f.input :image, :as => :file , :input_html => { :id => "mediaImage", accept:"image/jpeg" , title: t('.title.image') }  %> 
  	  
     <div id='mediaVideoBox' <%=  @item.media_type == Medium::TYPE[:image]  ? "style=display:none;" : "" %> >
       <% if @item.video.exists? %>
         <a class='btn' data-reveal-id="modalVideo"><%= t('app.buttons.preview_video') %></a>
       <% end %>
-      <%= f.input :video, :as => :file , :input_html => { :id => "mediaVideo" } %>
+      <%= f.input :video, :as => :file , :input_html => { :id => "mediaVideo", accept:"video/mp4", title: t('.title.video')  } %>
     </div>
     
 
-    <%= f.input :summary, :input_html => { :id => "mediaSummary" } %>
-    <%= f.input :source, :input_html => { :id => "mediaSource" } %>
+    <%= f.input :summary, :input_html => { :id => "mediaSummary" , title: t('.title.summary') } %>
+    <%= f.input :source, :input_html => { :id => "mediaSource", title: t('.title.source')  } %>
     <%= f.input :section_id, :as => :hidden , :input_html => { :id => "mediaSection" }  %>
     <% if @item.id.present? %>
       <%= f.input :id, :as => :hidden , :input_html => { :id => "mediaId" }  %>    
     <% end %>
   <% end %>
 
-  <div class="pull-right spacer">    
-    <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>      
+  <div class="pull-right spacer">            
     <%= f.submit nil, :class => 'btn' %>
+    <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>          
   </div>
 <% end %>
 

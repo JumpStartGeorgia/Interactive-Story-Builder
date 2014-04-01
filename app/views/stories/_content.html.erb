@@ -3,9 +3,9 @@
 
 <%= semantic_form_for(@item, url: content_story_path(id:params[:id]), remote: true) do |f| %>
   <%= f.inputs do %>
-    <%= f.input :title, :placeholder=>t('.ph_title'), :input_html => { :id => "contentTitle" } %>
-    <%= f.input :subtitle, :placeholder=>t('.ph_subtitle'), :input_html => { :id => "contentSubtitle" } %>    
-    <%= f.text_area :content, :placeholder=>t('.ph_content'), :class => "tinymce", :rows => 40, :cols => 120, :id => "contentArticle" %>    
+    <%= f.input :title, :placeholder=>t('.placeholder.title'), :input_html => { :id => "contentTitle", title: t('.title.title') } %>
+    <%= f.input :subtitle, :placeholder=>t('.placeholder.subtitle'), :input_html => { :id => "contentSubtitle", title: t('.title.subtitle') } %>    
+    <%= f.text_area :content, :placeholder=>t('.placeholder.content'), :class => "tinymce", :rows => 40, :cols => 120, :id => "contentArticle", :input_html => { title: t('.title.content')} %>    
      <a class='btn' data-reveal-id="modalContent"><%= t('app.buttons.preview') %></a>          
      
     
@@ -21,4 +21,3 @@
   <% end %>
 
 <% end %>
-

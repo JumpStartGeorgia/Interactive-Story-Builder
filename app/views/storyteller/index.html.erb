@@ -110,7 +110,10 @@
             <% end %>
             <h3 class='column-title'><%= section.content.title %></h3>
             <h4 class='column-subtitle'><%= section.content.subtitle %></h4>
-            <%= section.content.content.html_safe %>     
+            <%= section.content.content.html_safe %>   
+            <% if section.content.content.html_safe.lines.count == 1 %>   
+              <br>
+            <% end %>
           </div>
         <% else %>
           <div class="section video-sequence">

@@ -97,7 +97,7 @@ class StoriesController < ApplicationController
       if params[:command]!='n'
         @item = Section.find_by_id(params[:section_id])    
       else 
-        @item = Section.new(story_id: params[:id])
+        @item = Section.new(story_id: params[:id], type_id: Section::TYPE[:content], has_marker: 1)
       end  
            
       respond_to do |format|
@@ -129,13 +129,18 @@ class StoriesController < ApplicationController
     end
   end
 
-
+  def flash_success_created( obj, title)
+      flash[:success] =u t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
+  end
+  def flash_success_updated( obj, title)
+      flash[:success] =u t('app.msgs.success_updated', obj:"#{obj} \"#{title}\"")
+  end
 
   def new_section
      @item = Section.new(params[:section])        
      respond_to do |format|
-        if @item.save                    
-          flash[:success] =u t('app.msgs.success_created', obj:Section.model_name.human)
+        if @item.save         
+          flash_success_created(Section.model_name.human,@item.title)                     
           format.js { render action: "change_tree", status: :created  }
         else          
           flash[:error] = u t('app.msgs.error_created', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                  
@@ -147,12 +152,12 @@ class StoriesController < ApplicationController
  def new_media
     @item = Medium.new(params[:medium])       
     respond_to do |format|
-        if @item.save          
-          flash[:success] =u t('app.msgs.success_created', obj:Media.model_name.human)
+        if @item.save       
+          flash_success_created(Medium.model_name.human,@item.title)                     
           format.js { render action: "change_sub_tree", status: :created }                    
-        else          
-          flash[:error] = "Media wasn't updated, please try again later"            
-          format.js {render json: nil, status: :ok }
+        else                    
+          flash[:error] = u t('app.msgs.error_created', obj:Medium.model_name.human, err:@item.errors.full_messages.to_sentence)                       
+          format.js {render action: "flash" , status: :ok }
         end
       end    
   end
@@ -164,37 +169,38 @@ class StoriesController < ApplicationController
      @flash = flash
      respond_to do |format|
         if @item.save
-          flash[:success] =u t('app.msgs.success_created', obj:Content.model_name.human)
+          flash_success_created(Content.model_name.human,@item.title)                     
           format.js { render action: "change_sub_tree", status: :created  }
         else
           flash[:error] = u t('app.msgs.error_created', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)                  
-          format.js {render json: nil, status: :unprocessable_entity }       
+          format.js {render json: nil, status: :ok }              
         end
       end    
   end
   
 
   def save_section      
+    logger.debug('asdf')
     @item = Section.find_by_id(params[:section][:id])  
      respond_to do |format|
           if @item.update_attributes(params[:section])
-          flash[:success] =u t('app.msgs.success_updated', obj:Section.model_name.human)
+          flash_success_updated(Section.model_name.human,@item.title)       
           format.js {render action: "build_tree", status: :created }                  
         else
-          flash[:error] = "Section wasn't updated, please try again later"            
-          format.js {render json: nil, status: :unprocessable_entity }      
+          flash[:error] = u t('app.msgs.error_updated', obj:Sectoin.model_name.human, err:@item.errors.full_messages.to_sentence)                            
+          format.js {render json: nil, status: :ok }
         end
       end    
   end
   def save_content      
      @item = Content.find_by_id(params[:content][:id])  
      respond_to do |format|
-        if @item.update_attributes(params[:content])
-          flash[:success] =u t('app.msgs.success_updated', obj:Content.model_name.human)
+        if @item.update_attributes(params[:content])          
+          flash_success_updated(Content.model_name.human,@item.title)           
           format.js {render action: "build_tree", status: :created }                  
         else
-          flash[:error] = "Content wasn't updated, please try again later"            
-          format.js {render json: nil, status: :unprocessable_entity }      
+          flash[:error] = u t('app.msgs.error_updated', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)                                      
+          format.js {render json: nil, status: :ok }
         end
       end    
   end
@@ -202,11 +208,11 @@ class StoriesController < ApplicationController
     @item = Medium.find_by_id(params[:medium][:id])
     respond_to do |format|
         if @item.update_attributes(params[:medium])          
-          flash[:success] =u t('app.msgs.success_updated', obj:Media.model_name.human)
+          flash_success_updated(Medium.model_name.human,@item.title)           
           format.js {render action: "build_tree", status: :created }          
-        else          
-          flash[:error] = "Media wasn't updated, please try again later"            
-          format.js {render json: nil, status: :unprocessable_entity }
+        else        
+          flash[:error] = u t('app.msgs.error_updated', obj:Medium.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
+          format.js {render action: "flash", status: :ok }
         end
       end    
   end
@@ -253,19 +259,6 @@ class StoriesController < ApplicationController
 
   def sections
       @story = Story.fullsection(params[:id])   
-  end
-
-  def imageupload  
-    # Take upload from params[:file] and store it somehow...
-    # Optionally also accept params[:hint] and consume if needed
-    logger.debug("---------------------------------------------------")
-    logger.debug("---------------------------------------------------#{params}")
-    render json: {
-      image: {
-        url: view_context.image_url(image)
-      }
-    }, content_type: "text/html"
-  
   end
   #logger.debug("---------------------------------------------------#{params}")
 end       

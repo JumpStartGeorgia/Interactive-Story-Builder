@@ -22,7 +22,7 @@ class Medium < ActiveRecord::Base
   	:content_type => { :content_type => ["image/jpeg"] }#, "image/gif", "image/png"
   	
   	validates_attachment :video ,
-  	:content_type => { :content_type => ["video/mp4","video/ogg","video/webm"] } 
+  	:content_type => { :content_type => ["video/mp4"] }# ,"video/ogg","video/webm"
 
 
     validates_attachment_presence :video, if:  :video_type? 

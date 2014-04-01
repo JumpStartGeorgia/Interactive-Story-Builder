@@ -1,18 +1,20 @@
 <%= semantic_form_for(@item, url: section_story_path(id:params[:id]), remote: true) do |f| %>
 
-    <%= f.inputs do %>
-    <%= f.input :title, :placeholder => t('.ph_title'), :input_html => { :id => "sectionTitle" } %>  
-    <%= f.input :type_id,  :as => :radio, :collection => {  t('.content') => Section::TYPE[:content], t('.media') => Section::TYPE[:media] } , :input_html => { :id => "sectionType" } %>  
-    
-    <%= f.input :has_marker, :as => :boolean, :checked_value => 1, :unchecked_value => 0 %>   
+  <%= f.inputs do %>
+    <%= f.input :title, :placeholder => t('.placeholder.title'), :input_html => { :id => "sectionTitle", title: t('.title.title') } %>  
+    <%= f.input :type_id,  :as => :radio, :collection => {  t('.content') => Section::TYPE[:content], t('.media') => Section::TYPE[:media] }, :input_html => { :id => "sectionType", title: t('.title.type') } %>  
+    <%= f.input :has_marker,  :as => :radio, :collection => {  t('.yes') => 1, t('.no') => 0 } , :input_html => { :id => "sectionHasMarker" , title: t('.title.has_marker')} %>  
+       
+    <!-- <%= f.input :has_marker, :as => :boolean, :checked_value => 1, :unchecked_value => 0 %> -->
+   
     <% if @item.id.present? %>
       <%= f.input :id, :as => :hidden , :input_html => { :id => "sectionId" }  %>    
     <% end %>
     <%= f.input :story_id, :as => :hidden , :input_html => { :id => "storyId" }  %>    
   <% end %>
   <div class="pull-right spacer">    
-    <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>      
     <%= f.submit nil, :class => 'btn' %>
+    <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>          
   </div>
 <% end %>
 
