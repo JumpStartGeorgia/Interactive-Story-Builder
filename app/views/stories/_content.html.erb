@@ -1,5 +1,5 @@
 <%= tinymce_assets %>
-<%= tinymce uploadimage_form_url: imageuploader_path(id:params[:id]),uploadimage_default_img_class: "image", :width => "580px" %>
+<%= tinymce :alternate, uploadimage_form_url: imageuploader_path(id:params[:id]), uploadimage_default_img_class: "image", :width => "580px" %>
 
 <%= semantic_form_for(@item, url: content_story_path(id:params[:id]), remote: true) do |f| %>
   <%= f.inputs do %>
