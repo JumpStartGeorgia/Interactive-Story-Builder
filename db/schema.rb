@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(:version => 20140328102458) do
     t.integer  "caption_align"
     t.string   "summary"
     t.string   "source"
+    t.string   "audio_path"
+    t.string   "video_path"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"
@@ -62,8 +64,8 @@ ActiveRecord::Schema.define(:version => 20140328102458) do
     t.string   "author"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "latitude",   :limit => 10
-    t.float    "longitude",  :limit => 10
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "users", :force => true do |t|
