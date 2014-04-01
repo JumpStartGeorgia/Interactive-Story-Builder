@@ -2,7 +2,7 @@
   <%= error_messages_for f.object %>
   <%= f.inputs do %>
     <%= f.input :title, :input_html => { :id => "mediaTitle", title: t('.title.title') } %>
-    <%= f.input :media_type, :as => :select,  :include_blank => false, :collection => { t('.image') => Medium::TYPE[:image], t('.video') => Medium::TYPE[:video] } , :selected => 0 , :input_html => { :id => "mediaType", title: t('.title.media_type')  }   %>	
+    <%= f.input :media_type, :as => :select,  :include_blank => false, :collection => { t('.image') => Medium::TYPE[:image], t('.video') => Medium::TYPE[:video] } , :input_html => { :id => "mediaType", title: t('.title.media_type')  }   %>	
     <%= f.input :caption, :input_html => { :id => "mediaCaption" ,:placeholder =>"Caption for slide", title: t('.title.caption') } %>
     <%= f.input :caption_align, :as => :select,  :include_blank => false, :collection => { t('.left') => -1, t('.center') => 0, t('.right') => 1 } , :default => 0 , :input_html => { :id => "mediaCaptionAlign", title: t('.title.caption_align')  } %>
    

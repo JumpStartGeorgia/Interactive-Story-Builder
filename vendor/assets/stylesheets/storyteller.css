@@ -1014,9 +1014,9 @@ a:hover {
 .navigation-logo {
   float: left;
   background: url(/assets/jumpstart-logo.png) no-repeat;
-  height: 30px;
+  height: 28px;
   margin: 4px 0 0 0;
-  width: 199px;
+  width: 110px;
 }
 
 .navigation-headline {
@@ -1100,10 +1100,9 @@ a:hover {
   .ios .navigation-logo {
     margin-top: 20px;
     background-image: url(/assets/jumpstart-logo.png) no-repeat;
-    background-position: 0px 0px;
-    background-size: 220px 24px;
-    width: 220px;
-    height: 24px;
+    background-position: 0px 0px;    
+    width: 110px;
+    height: 28px;
   }
 
   .ios .navigation-sections {
@@ -1172,4 +1171,19 @@ a:hover {
 .footer-section ~ * {
   position: absolute;
   top: -1000px;
+}
+.column-title
+{
+  font-family:nyt-cheltenham, Georgia, serif;
+  letter-spacing: .1em;
+  font-size:19px;
+  margin:5px 0px;  
+}
+
+.column-subtitle
+{
+  font-family:nyt-cheltenham, Georgia, serif;
+  font-size:15px;
+  margin:0px 0px 5px 5px;  
+
 }

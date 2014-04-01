@@ -108,8 +108,8 @@
             <% if section.has_marker == 1 %>
                <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
             <% end %>
-            <h3 class='column-title'><%= section.content.title %></h3>
-            <h4 class='column-subtitle'><%= section.content.subtitle %></h4>
+            <div class='column-title'><%= section.content.title %></div>
+            <div class='column-subtitle'><%= section.content.subtitle %></div>
             <%= section.content.content.html_safe %>   
             <% if section.content.content.html_safe.lines.count == 1 %>   
               <br>
@@ -424,7 +424,7 @@
 
       /* Just skip if we're on iPad, iPhone or Android -- TG */
       if (isMobile()) return false;
-      var _video_assets = "/system/places/video/<%= @story.id %>/original/",
+      var _video_assets = "/system/places/video/<%= @story.id %>/",
           _image_assets = "/system/places/images/<%= @story.id %>/original/",
           _audio_assets = "/system/places/audio/<%= @story.id %>/original/";
 
