@@ -55,6 +55,7 @@ en:
       reset: Reset
       view: View
       sign_in_facebook: Sign in with Facebook
+      sign_in: Sign In
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"

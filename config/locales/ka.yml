@@ -55,6 +55,7 @@ ka:
       reset: საწყის კონფიგურაციაზე დაბრუნება
       view: ნახვა
       sign_in_facebook: სისტემაში Facebook-ით შესვლა
+      sign_in: სისტემაში შესვლა
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
