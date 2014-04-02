@@ -86,9 +86,9 @@ border-bottom:1px solid lightgrey;
   }
 </style>
 
-<div class='row'>
-  <div class='span12'><h2><%= t('activerecord.models.story') %>&nbsp;(<%=  @story.title %>)</h2></div>
-</div>
+<% title  @story.title %>
+
+
 <div class='row'>
   <div class='span12'>
    <div id='toolbar' class='clear'>
