@@ -1,9 +1,9 @@
 ##################################
 ##### SET THESE VARIABLES ########
 ##################################
-root = "/home/bootstrap-staging/Bootstrap-Starter-Staging/current" # path to application current folder
-sock_name = "unicorn_Bootstrap-Starter-Staging" # must be unique name with no '.'
-port_num = 8090 # must be a unique port number for this application
+root = "/home/story-builder-staging/Story-Builder-Staging/current" # path to application current folder
+sock_name = "unicorn_Story-Builder-Staging" # must be unique name with no '.'
+port_num = 8122 # must be a unique port number for this application
 tout = 30 # time in seconds before process dies - need a long time for data uploads
 ##################################
 
