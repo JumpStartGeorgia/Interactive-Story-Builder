@@ -15,6 +15,7 @@
 //= require dataTables/jquery.dataTables.bootstrap
 //= require vendor
 //= require jquery.reveal
+//= require d3
 //= require_tree .
 
 $(document).ready(function(){
