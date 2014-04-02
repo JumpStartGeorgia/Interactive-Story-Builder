@@ -37,6 +37,7 @@ gem "useragent", :git => "https://github.com/jilion/useragent.git" # browser det
 #gem 'acts_as_commentable', '2.0.1' #comments
 #gem "paper_trail", "~> 2.6.3" # keep audit log of all transactions
 gem "subexec", "~> 0.2.3"
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
