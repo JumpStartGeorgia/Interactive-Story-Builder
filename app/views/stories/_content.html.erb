@@ -5,6 +5,7 @@
   <%= f.inputs do %>
     <%= f.input :title, :placeholder=>t('.placeholder.title'), :input_html => { :id => "contentTitle", title: t('.title.title') } %>
     <%= f.input :subtitle, :placeholder=>t('.placeholder.subtitle'), :input_html => { :id => "contentSubtitle", title: t('.title.subtitle') } %>    
+    <label><%= t('.content') %></label>
     <%= f.text_area :content, :placeholder=>t('.placeholder.content'), :class => "tinymce", :rows => 40, :cols => 120, :id => "contentArticle", :input_html => { title: t('.title.content')} %>    
      <a class='btn' data-reveal-id="modalContent"><%= t('app.buttons.preview') %></a>          
      

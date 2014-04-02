@@ -56,6 +56,9 @@ en:
       view: View
       sign_in_facebook: Sign in with Facebook
       sign_in: Sign In
+      edit_story: Edit Name
+      delete_story: Delete Story
+      admin_story: Edit Content
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
@@ -157,6 +160,7 @@ en:
         type: "Content is for a static article (text) and Media is a vertical slideshow of images and/or videos"
         has_marker: "If yes, the story will provided a navigation link to go to this section"
     content:
+      content: Article
       placeholder:
         title: Title...
         subtitle: Subtitle...

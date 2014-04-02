@@ -310,7 +310,7 @@ a:hover {
   padding-bottom: 35px;
 }
 
-.video-caption--head .video-summary {
+.video-caption .video-summary {
   position: absolute;
   top: auto;
   bottom: 12%;
@@ -320,11 +320,11 @@ a:hover {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1440px) and (min-height: 500px) and (max-height: 800px) {
-  .video-caption--head .video-headline {
+  .video-caption .video-headline {
     top: 20%;
   }
 
-  .video-caption--head .video-summary {
+  .video-summary {
     bottom: 20%;
   }
 }

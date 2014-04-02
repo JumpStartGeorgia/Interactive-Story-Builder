@@ -120,7 +120,7 @@ class StoriesController < ApplicationController
         if params[:command]!='n'    
           @item = Medium.find_by_id(params[:item_id])   
         else 
-          @item = Medium.new(:section_id => params[:section_id])
+          @item = Medium.new(:section_id => params[:section_id], media_type: 1)
         end
         respond_to do |format|
           format.js {render :action => "get_media" }

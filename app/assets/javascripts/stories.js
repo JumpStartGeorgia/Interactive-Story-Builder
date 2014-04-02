@@ -49,8 +49,7 @@ $(document).ready(function() {
     	//"aaSorting": [[2, 'desc']]
     	"aoColumns": [
 	      { "bSortable": true },
-	      { "bSortable": true },
-			{ "bSortable": true },	      	      
+	      { "bSortable": true },				      	     
 			{ "bSortable": false },
 			{ "bSortable": false },
 			{ "bSortable": false },
