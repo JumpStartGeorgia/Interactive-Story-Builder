@@ -2,3 +2,10 @@
 {
 	vertical-align:middle;
 }
+
+.radio, .checkbox {
+   padding-left: 0;
+}
+.radio .choices, .checkbox .choices {
+   padding-left: 18px;
+}

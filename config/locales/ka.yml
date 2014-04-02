@@ -137,31 +137,31 @@ ka:
       image: Image
       video: Video
       title:
-        title: "Title will not appear in  story teller, it's just for making administration easier"
-        media_type: "Slide can be image or video, for video image is necessary if browser doesn't supports video it will show image"
-        caption: "Slide Caption will appear on top of the image or video"
-        caption_align: "Caption align (default is left align) "
+        title: "This text only appears in the left sidebar, it will not show up in the story"
+        media_type: "Slide can contain an image or video. For videos, an image is necessary because videos are not loaded on mobile devices."
+        caption: "Caption text will appear on top of the image/video"
+        caption_align: "Where the text will appear on top of the image/video (default is left align) "
         image: "Image for slide (only jpg format accepted)"
         video: "Video for slide (only mp4 format accepted)"
-        summary: "Current slide summary, will appear below caption"
-        source: "Image or Video source , appears at the bottom of the page right aligned"
+        summary: "Summary of image/video, appears below the Caption"
+        source: "Image/video source, appears in the bottom-right corner"
     section:
       content: Content
       media: Media      
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       placeholder:
         title: Type section title
       title:
-        title: "Title will not appear in  story teller, it's just for making administration easier"
-        type: "Type of section, content or media means static article or vertical slideshow with images or videos"
-        has_marker: "Anchor will be created for section, to navigate easily"
+        title: "This text only appears in the left sidebar, it will not show up in the story"
+        type: "Content is for a static article (text) and Media is a vertical slideshow of images and/or videos"
+        has_marker: "If yes, the story will provided a navigation link to go to this section"
     content:
       placeholder:
         title: Title...
         subtitle: Subtitle...
         content: 'Article text, can be any styling html tag with styles'
       title:
-        title: Title of article will appear in the top wraped with heading3
-        subtitle: Subtitle of article will appear below title wraped with heading4
-        content: Article appear below subtitle ( any custom css styling or html tag can be used for article content )
+        title: Title of article will appear at the top of this section (wraped with heading3)
+        subtitle: Subtitle of article will appear below the title (wraped with heading4)
+        content: Text of the article (any custom css styling or html tag can be used for article content)
