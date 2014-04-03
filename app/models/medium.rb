@@ -19,7 +19,7 @@ class Medium < ActiveRecord::Base
   validates :caption, :presence => true, length: { maximum: 255 }  
     
 	validates_attachment :image, :presence => true,
-  	:content_type => { :content_type => ["image/jpeg"] }#, "image/gif", "image/png"
+  	:content_type => { :content_type => ["image/jpeg", "image/png"] }#, "image/gif",
   	
   	validates_attachment :video ,
   	:content_type => { :content_type => ["video/mp4"] }# ,"video/ogg","video/webm"

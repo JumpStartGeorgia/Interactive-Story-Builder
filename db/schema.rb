@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140403075319) do
+ActiveRecord::Schema.define(:version => 20140403102440) do
 
   create_table "contents", :force => true do |t|
     t.integer  "section_id"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20140403075319) do
     t.string   "sub_caption"
     t.text     "content"
     t.datetime "created_at"
-    t.datetime "updated_at"    
+    t.datetime "updated_at"
   end
 
   add_index "contents", ["section_id"], :name => "section_id_UNIQUE", :unique => true
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(:version => 20140403075319) do
     t.datetime "updated_at"
     t.float    "latitude",     :limit => 10
     t.float    "longitude",    :limit => 10
+    t.boolean  "published"
+    t.datetime "published_at"
   end
 
   create_table "users", :force => true do |t|

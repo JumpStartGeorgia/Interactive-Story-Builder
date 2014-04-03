@@ -6,8 +6,8 @@
     <%= f.input :title, :placeholder=>t('.placeholder.title'), :input_html => { :id => "contentTitle", title: t('.title.title') } %>
     <%= f.input :caption, :placeholder=>t('.placeholder.caption'), :input_html => { :id => "contentCaption", title: t('.title.caption') } %>    
     <%= f.input :sub_caption, :placeholder=>t('.placeholder.sub_caption'), :input_html => { :id => "contentSubCaption", title: t('.title.sub_caption') } %>    
-    <label><%= t('.content') %></label>
-    <%= f.text_area :content, :placeholder=>t('.placeholder.content'), :class => "tinymce", :rows => 40, :cols => 120, :id => "contentArticle", :input_html => { title: t('.title.content')} %>    
+    <label title="<%=t('.title.content')%>"><%= t('.content') %></label>
+    <%= f.text_area :content, :placeholder=>t('.placeholder.content'), :class => "tinymce", :rows => 40, :cols => 120, :id => "contentArticle"%>    
      <a class='btn' data-reveal-id="modalContent"><%= t('app.buttons.preview') %></a>          
      
     

@@ -158,14 +158,14 @@ $(document).ready(function() {
 		 	var secT = $('.story-tree ul li.item[id='+ section_id + ']');
 			if(item_id != -1)
 			{
-				secT.find('ul li.sub[id='+item_id+']').parent().remove();		
+				if(secT.find('ul li').length == 1)
+					secT.find('ul li.sub[id='+item_id+']').parent().remove();		
+				else secT.find('ul li.sub[id='+item_id+']').remove();		
 			}
 			else 
 			{	
 				secT.remove();		
 			}
-//			section_id = -1;
-//			item_id = -1;
 			$('.story-viewer').html('');
 			getStory(-1,-1)
 			$("html, body").animate({ scrollTop: 0 }, "slow");

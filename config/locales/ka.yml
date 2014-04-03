@@ -18,15 +18,17 @@ ka:
         title: დასახელება
         user_id: გამოქვეყნების მომხმარებელი
         author: ავტორი
+        media_author: Photo and Video Author(s)     
       section:
         title: დასახელება
         audio_path: აუდიო ფაილი
         has_marker: მარკერი    
-        sort_order: დალაგება
         type_id: ტიპი
+        sort_order: დალაგება
       content:        
         title: დასახელება
-        subtitle: ქვე-დასახელება
+        caption: დასახელება
+        sub_caption: ქვე-დასახელება
         content: სტატია
       medium:
         media_type: მედია ტიპი
@@ -56,6 +58,9 @@ ka:
       view: ნახვა
       sign_in_facebook: სისტემაში Facebook-ით შესვლა
       sign_in: სისტემაში შესვლა
+      edit_story: Edit Name
+      delete_story: Delete Story
+      admin_story: Edit Content
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
@@ -130,6 +135,15 @@ ka:
       show:
         title: მომხმარებლის დეტალები
   stories:
+    form:
+      title:
+        title: Whole Story name (will appear in header on first content and media if it first section)
+        author: Author(s) of the article (author info will be added to the first content section)
+        media_author:  "Author(s) of the photos, videos (author info will be added to the first content section after author)"
+      placeholder:
+          title: Type Story name
+          author: Author(s) of the article
+          media_author: "Author(s) of photos, videos"
     media:
       left: Left
       center: Center
@@ -146,10 +160,10 @@ ka:
         summary: "Summary of image/video, appears below the Caption"
         source: "Image/video source, appears in the bottom-right corner"
     section:
-      content: Content
-      media: Media      
-      'yes': 'Yes'
-      'no': 'No'
+      content: სტატია
+      media: მედია  
+      'yes': 'კი'
+      'no': 'არა'
       placeholder:
         title: Type section title
       title:
@@ -157,11 +171,17 @@ ka:
         type: "Content is for a static article (text) and Media is a vertical slideshow of images and/or videos"
         has_marker: "If yes, the story will provided a navigation link to go to this section"
     content:
+      content: Article
       placeholder:
-        title: Title...
-        subtitle: Subtitle...
+        title: Content name
+        caption: Caption (can be ommited)
+        sub_caption: Sub Caption (can be ommited)
         content: 'Article text, can be any styling html tag with styles'
       title:
-        title: Title of article will appear at the top of this section (wraped with heading3)
-        subtitle: Subtitle of article will appear below the title (wraped with heading4)
+        title: Title is only for section it doesn't affect story layout
+        caption: Caption of article will appear at the top of section (styled like header)
+        sub_caption: Subcaption of article will appear below the caption (styled like sub header of caption)
         content: Text of the article (any custom css styling or html tag can be used for article content)
+  storyteller:
+    byline: By
+    byline_media: Photographs and video by

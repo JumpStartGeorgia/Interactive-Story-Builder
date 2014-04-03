@@ -1,5 +1,5 @@
 <div id='storyTeller'>
-  
+ 
  <!-- -----------------------------------------------------------------------
   *  if device is portable we are adding ios class to html tag
   *  so new classes with .ios .someclass path are used instead of basic ones
@@ -176,8 +176,8 @@
                             </svg>
                           </div>                      
                     <% else %>
-                    <%= m.caption  %>
-                  <% end %>  
+                      <%= m.caption  %>
+                    <% end %>  
                   </div>      
                     <% end %>                              
               </div>        
@@ -189,22 +189,7 @@
     <!--
 
 
-              m.summary.present? 
-                            m.caption
-                          <div class="video-summary">  m.summary  </div>
-                   else 
-                         m.caption 
-                     end    
-      <div class="video-caption video-caption--head">
-          <div class="video-headline headline" >წმ. ღირსი მამა გაბრიელი<br/>აღმსარებელი-სალოსი</div>
-          <div class="video-summary">ღმერთი არ იძლევა დიდი ნიჭს დიდი განსაცდელის გარეშე. ღმერთი ყველა იმ ზომით მოგვივლენს განსაცდელს, რისი ატანაც შეგვიძლია, შესაბამისად გვეძლევა ღვთის მადლიც.</div>
-          <div class="scroll-prompt">
-            Scroll<br>
-            <svg width="18" height="8">
-              <path d="M0,0L9,7L18,0"></path>
-            </svg>
-          </div>
-        </div>
+
 
 
        <div class="section video-sequence" data-audio="below-deck">
@@ -267,9 +252,13 @@
 
       if (height > (720*.59) && window.innerWidth < 768) height = (720*.59);
 
-    //  document.querySelectorAll(".video-sequence:first-child .video:first-of-type .video-container")[0].style.height = height + "px";
-
-      //document.querySelectorAll(".video-sequence:first-child .video:first-of-type .video-caption--head")[0].style.height = height + "px";
+      var firstVideo = document.querySelector(".video-sequence");
+      if(firstVideo.length)
+      {
+        firstVideo.querySelector(".video:first-of-type .video-container")[0].style.height = height + "px";
+        firstVideo.querySelector(".video:first-of-type .video-caption--head")[0].style.height = height + "px";
+      }
+      
     }
 
     (function() {
@@ -302,9 +291,9 @@
 */
   //  d3.select(".headline").html( d3.select(".headline").html().replace("<br>", " <br>") )
 
-   // d3.select(".video-sequence:first-of-type").classed("ios-loaded", true);
+   d3.select(".video-sequence:first-of-type").classed("ios-loaded", true);
 
-   // d3.select(".column .byline").html( d3.select(".column .byline").html().replace("<br>", " <br>") )
+   //d3.select(".column .byline").html( d3.select(".column .byline").html().replace("<br>", " <br>") )
 
     //d3.select(".section:nth-child(7)").classed("map-sequence", true);
 

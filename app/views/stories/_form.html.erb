@@ -1,9 +1,9 @@
 <%= semantic_form_for @story do |f| %>
   <%= f.inputs do %>
-    <%= f.input :title %>
+    <%= f.input :title, :input_html => { id: "storyTitle", title: t('.title.title'), placeholder: t('.placeholder.title')  }   %>
     <%= f.input :user_id , :as => :hidden %>
-    <%= f.input :author %>
-    <%= f.input :media_author %>
+    <%= f.input :author, :input_html => { id: "storyAuthor", title: t('.title.author'), placeholder: t('.placeholder.author')  } %>
+    <%= f.input :media_author, :input_html => { id: "storyMediaAuthor", title: t('.title.media_author'), placeholder: t('.placeholder.media_author')  }  %>
   <% end %>
 
 

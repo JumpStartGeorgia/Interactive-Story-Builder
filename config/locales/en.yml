@@ -15,10 +15,10 @@ en:
         role: Role
         remember_me: Remeber Me
       story:
-        title: Title
+        title: Story Name
         user_id: Publish User
-        author: Author
-        media_author: Photo and Video Author        
+        author: Author(s)
+        media_author: Photo and Video Author(s)        
       section:
         title: Title
         audio_path: Audio Track
@@ -135,6 +135,15 @@ en:
       show:
         title: User Details
   stories:
+    form:
+      title:
+        title: Whole Story name (will appear in header on first content and media if it first section)
+        author: Author(s) of the article (author info will be added to the first content section)
+        media_author:  "Author(s) of the photos, videos (author info will be added to the first content section after author)"
+      placeholder:
+          title: Type Story name
+          author: Author(s) of the article
+          media_author: "Author(s) of photos, videos"
     media:
       left: Left
       center: Center

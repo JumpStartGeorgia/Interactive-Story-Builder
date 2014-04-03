@@ -77,11 +77,20 @@ class StoriesController < ApplicationController
   # DELETE /stories/1.json
   def destroy
     @story = Story.find(params[:id])
-    @story.destroy
+    if(@story.sections.length == 0)
+      @story.destroy
+     if @story.destroyed?             
+          flash[:success] = "Item was removed from the tree."          
+      else  
+          flash[:error] = "Removing data failed [" +  @story.errors.full_messages.to_sentence + "]"                      
+      end
+    else
+      flash[:error] = "Before removing story, delete all sections"
+    end
 
-    respond_to do |format|
+   respond_to do |format|     
       format.html { redirect_to stories_url }
-      format.json { head :ok }
+      format.json { head :ok }  
     end
   end
  
@@ -236,7 +245,7 @@ class StoriesController < ApplicationController
           format.json { render json: nil , status: :created } 
       else  
           flash[:error] = "Removing data failed [" +  @item.errors.full_messages.to_sentence + "]"            
-          format.json {render json: nil, status: :unprocessable_entity }  
+          format.json {render json: nil, status: :ok }  
       end
     end
   end

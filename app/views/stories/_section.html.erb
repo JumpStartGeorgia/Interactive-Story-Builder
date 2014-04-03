@@ -2,8 +2,10 @@
 
   <%= f.inputs do %>
     <%= f.input :title, :placeholder => t('.placeholder.title'), :input_html => { :id => "sectionTitle", title: t('.title.title') } %>
-    <%= f.input :type_id,  :as => :radio, :collection => {  t('.content') => Section::TYPE[:content], t('.media') => Section::TYPE[:media] }, :input_html => { :id => "sectionType", title: t('.title.type') } %>  
-    <%= f.input :has_marker,  :as => :radio, :collection => {  t('.yes') => 1, t('.no') => 0 } , :input_html => { :id => "sectionHasMarker" , title: t('.title.has_marker')} %>  
+     <label class=" control-label" for="sectionType" title="<%=t('.title.type')%>"><%= t('activerecord.attributes.section.type_id') %></label>
+    <%= f.input :type_id,  :as => :radio, :collection => {  t('.content') => Section::TYPE[:content], t('.media') => Section::TYPE[:media] }, :input_html => { :id => "sectionType", title: t('.title.type') }, label: false %>  
+    <label class=" control-label" for="sectionHasMarker" title="<%=t('.title.has_marker')%>"><%= t('activerecord.attributes.section.has_marker') %></label>
+    <%= f.input :has_marker,  :as => :radio, :collection => {  t('.yes') => 1, t('.no') => 0 } , :input_html => { :id => "sectionHasMarker" , title: t('.title.has_marker')}, label: false  %>  
        
     <!-- <%= f.input :has_marker, :as => :boolean, :checked_value => 1, :unchecked_value => 0 %> -->
    
