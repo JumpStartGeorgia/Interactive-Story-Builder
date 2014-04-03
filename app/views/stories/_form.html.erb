@@ -4,12 +4,10 @@
     <%= f.input :user_id , :as => :hidden %>
     <%= f.input :author, :input_html => { id: "storyAuthor", title: t('.title.author'), placeholder: t('.placeholder.author')  } %>
     <%= f.input :media_author, :input_html => { id: "storyMediaAuthor", title: t('.title.media_author'), placeholder: t('.placeholder.media_author')  }  %>
+    <%= f.input :published, :as => :boolean , :input_html => { id: "storyPublished", title: t('.title.published')} %> 
   <% end %>
-
-
   <div class="pull-right spacer">
     <%= f.submit nil, :class => 'btn' %>
     <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>      
-  </div>
- 
+  </div> 
 <% end %>

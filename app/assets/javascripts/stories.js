@@ -39,6 +39,19 @@ $(document).ready(function() {
 	});
 
 
+    $('#publishedStoryTable').dataTable({
+ 		"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+ 		"sPaginationType": "bootstrap",	  	
+		"bAutoWidth": true,    	
+	    "oLanguage": {
+	      "sUrl": gon.datatable_i18n_url
+	    },	        	
+    	"aoColumns": [
+	      { "bSortable": true },
+	      { "bSortable": true },				      	     
+	      { "bSortable": false }		
+	    ]
+    }); 
     $('#storiesTable').dataTable({
  		"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
  		"sPaginationType": "bootstrap",	  	
@@ -50,17 +63,32 @@ $(document).ready(function() {
     	"aoColumns": [
 	      { "bSortable": true },
 	      { "bSortable": true },				      	     
+	      { "bSortable": false },
 			{ "bSortable": false },
 			{ "bSortable": false },
 			{ "bSortable": false },
 			{ "bSortable": false }
 	    ]
     });  
+	$('#publishedStoryTable > tbody > tr > td > a.preview').on('click',function(e){	
+		e.preventDefault();					
+		$('#previewStory .modal-data').html('<iframe height="768px" width="1366px" src="'+ $(this).prop('href')+'"></iframe>');	 			
+		$('#previewStory').reveal();		
+	});	
 	$('#storiesTable > tbody > tr > td > a.preview').on('click',function(e){	
 		e.preventDefault();					
 		$('#previewStory .modal-data').html('<iframe height="768px" width="1366px" src="'+ $(this).prop('href')+'"></iframe>');	 			
 		$('#previewStory').reveal();		
 	});	
+	$('#storiesTable > tbody > tr > td > a.publish').on('click',function(e){	
+		e.preventDefault();		
+		var a = $(this);
+		$.ajax
+		({ url: $(this).prop('href')}).done(function(d) 
+		{ 		
+			a.toggleClass('published unpublished');					 
+		});	 			
+	});
 	$('#btnUp').click(function(){
 		if (el_type == 'c') return true;
 		var dataTemp = {'s' : section_id, 'i': item_id };

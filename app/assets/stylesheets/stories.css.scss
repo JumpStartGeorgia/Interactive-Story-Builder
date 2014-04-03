@@ -9,6 +9,33 @@
    padding-left: 18px;
 }
 
+.formtastic .boolean label {
+  padding-left: 0px;  
+}
+#storiesTable img
+{
+  vertical-align:middle;
+}
+
+.publish
+{
+  display:block;
+  width:16px;
+  height:16px;
+  vertical-align: middle;
+}
+.published
+{
+  background:url(/assets/check16.png);
+  background-position:0px 0px;  
+  background-repeat:no-repeat;  
+}
+.unpublished
+{
+  background:url(/assets/uncheck16.png);  
+  background-position:0px 0px; 
+  background-repeat:no-repeat;
+}
 
 /*section stuff*/
 .story-tree

@@ -1,6 +1,5 @@
 <% title  t('helpers.titles.story_list') %>
 
- 
 <%= link_to t('helpers.titles.new', model:Story.model_name.human) , new_story_path, class:"btn" %>
 <div>&nbsp;</div>
 
@@ -10,7 +9,8 @@
     <thead>
       <tr>
         <th><%= t('activerecord.attributes.story.title') %></th>        
-        <th><%= t('activerecord.attributes.story.author') %></th>        
+        <th><%= t('activerecord.attributes.story.author') %></th>     
+        <th></th>   
         <th></th>
         <th></th>
         <th></th>
@@ -22,11 +22,11 @@
       <tr>
         <td><%= story.title %></td>        
         <td><%= story.author %></td>                
-        <td><%= link_to t('helpers.links.edit_story'), edit_story_path(story) , class:"btn btn-info"%></td>
-        <td><%= link_to  t('helpers.links.delete_story'), story, confirm: 'Are you sure?', method: :delete, class:"btn btn-danger"%></td>
-        <td><%= link_to  t('helpers.links.admin_story'), sections_story_path(story), class:"btn btn-info" %></td>          
-        <td><%= link_to image_tag("/assets/preview16.png", :alt =>  t('helpers.links.view'), size: "16x10", ),  storyteller_show_path(story), :class=>"preview" %>
-        </td>
+        <td><%= link_to  '',   publish_story_path(story), :class=>"publish #{story.published ? 'published' : 'unpublished'}" %></td>
+        <td><%= link_to image_tag("/assets/preview16.png", :alt =>  t('helpers.links.view'), size: "16x10", ),  storyteller_show_path(story), :class=>"preview" %></td>
+        <td><%= link_to t('helpers.links.edit_story'), edit_story_path(story) , class:"btn btn-small btn-info"%></td>        
+        <td><%= link_to  t('helpers.links.admin_story'), sections_story_path(story), class:"btn btn-small btn-info" %></td>          
+        <td><%= link_to  t('helpers.links.delete_story'), story, confirm: 'Are you sure?', method: :delete, class:"btn btn-small btn-danger"%></td>
       </tr>
     <% end %>
     </tbody>

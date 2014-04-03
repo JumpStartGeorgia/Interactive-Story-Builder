@@ -36,6 +36,7 @@ BootstrapStarter::Application.routes.draw do
 				post 'down', to: 'stories#down'						
 
     			get 'sections'    	
+    			get 'publish', to: 'stories#publish'    		
     
   			end			
 		end

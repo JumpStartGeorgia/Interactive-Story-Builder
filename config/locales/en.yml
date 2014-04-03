@@ -18,7 +18,9 @@ en:
         title: Story Name
         user_id: Publish User
         author: Author(s)
-        media_author: Photo and Video Author(s)        
+        media_author: Photo and Video Author(s)  
+        published: Publish?
+        published_at: Was Published
       section:
         title: Title
         audio_path: Audio Track
@@ -61,10 +63,12 @@ en:
       edit_story: Edit Name
       delete_story: Delete Story
       admin_story: Edit Content
+      publish_story: Publish Story
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
-      story_list: List of stories
+      story_list: List of your stories
+      story_list_published: List of published stories
   app:
     language:
       en: English
@@ -91,6 +95,7 @@ en:
       preview: Preview
       preview_image: Preview Image
       preview_video: Preview Video
+      publish: Publish
     common:
       app_name: Interactive Story Builder
       added_on: "Added on: %{date}" 
@@ -99,8 +104,12 @@ en:
       not_authorized: You are not authorized to view that page.
       success_created: "%{obj} was successfully created."
       success_updated: "%{obj} was successfully updated."
+      success_publish: "%{obj} was successfully published."
+      success_unpublish: "%{obj} was successfully unpublished."
       error_created: "%{obj} wasn't created.[ %{err} ]"
       error_updated: "%{obj} wasn't updated.[ %{err} ]"
+      error_publish: "%{obj} wasn't published.[ %{err} ]"
+      error_unpublish: "%{obj} wasn't unpublished.[ %{err} ]"
   layouts:
     application:
       admin: Admin
@@ -140,6 +149,7 @@ en:
         title: Whole Story name (will appear in header on first content and media if it first section)
         author: Author(s) of the article (author info will be added to the first content section)
         media_author:  "Author(s) of the photos, videos (author info will be added to the first content section after author)"
+        published: "If published everyone can see this story( no edit options received to users )"
       placeholder:
           title: Type Story name
           author: Author(s) of the article

@@ -17,7 +17,7 @@ class StoriesController < ApplicationController
   # GET /stories/1.json
   def show
 
-    @story = Story.find(params[:id])
+    @story = Story.find_by_id(params[:id])
 
     respond_to do |format|
       format.html  #show.html.erb
@@ -38,7 +38,7 @@ class StoriesController < ApplicationController
 
   # GET /stories/1/edit
   def edit
-    @story = Story.find(params[:id])
+    @story = Story.find_by_id(params[:id])
   end
 
   # POST /stories
@@ -60,7 +60,7 @@ class StoriesController < ApplicationController
   # PUT /stories/1
   # PUT /stories/1.json
   def update
-    @story = Story.find(params[:id])
+    @story = Story.find_by_id(params[:id])
 
     respond_to do |format|
       if @story.update_attributes(params[:story])
@@ -76,7 +76,7 @@ class StoriesController < ApplicationController
   # DELETE /stories/1
   # DELETE /stories/1.json
   def destroy
-    @story = Story.find(params[:id])
+    @story = Story.find_by_id(params[:id])
     if(@story.sections.length == 0)
       @story.destroy
      if @story.destroyed?             
@@ -268,6 +268,23 @@ class StoriesController < ApplicationController
 
   def sections
       @story = Story.fullsection(params[:id])   
+  end
+
+  def publish
+    @item = Story.find_by_id(params[:id])
+    publishing = true;
+    if @item.published 
+      publishing = false     
+    end
+    respond_to do |format|     
+      if @item.update_attributes(published: publishing)     
+        flash[:success] =u t("app.msgs.success_#{publishing ? '' :'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                   
+      else
+        flash[:error] = u t("app.msgs.error#{publishing ? '' : 'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                                                       
+      end
+      format.js {render json: nil, status: :ok }
+      format.html { redirect_to stories_url }
+    end
   end
   #logger.debug("---------------------------------------------------#{params}")
 end       

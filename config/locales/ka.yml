@@ -19,6 +19,8 @@ ka:
         user_id: გამოქვეყნების მომხმარებელი
         author: ავტორი
         media_author: Photo and Video Author(s)     
+        published: Publish?
+        published_at: Was Published
       section:
         title: დასახელება
         audio_path: აუდიო ფაილი
@@ -61,10 +63,12 @@ ka:
       edit_story: Edit Name
       delete_story: Delete Story
       admin_story: Edit Content
+      publish_story: Publish Story      
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
-      story_list: "ისტორიების სია"      
+      story_list: "თქვენი ისტორიების"          
+      story_list_published: გამოქვეყნებული ისტორიები
   app:
     language:
       en: English
@@ -91,6 +95,7 @@ ka:
       preview: ნახვა
       preview_image: სურათის ნახვა
       preview_video: ვიდეოს ნახვა
+      publish: Publish
     common:
       app_name: ინტერაქტიული ისტორიის შემქმნელი
       added_on: "დამატებულია: %{date}" 
@@ -144,6 +149,7 @@ ka:
           title: Type Story name
           author: Author(s) of the article
           media_author: "Author(s) of photos, videos"
+          published: "If published everyone can see this story( no edit options received to users )"
     media:
       left: Left
       center: Center
