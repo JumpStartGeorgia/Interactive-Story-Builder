@@ -310,7 +310,7 @@ a:hover {
   padding-bottom: 35px;
 }
 
-.video-caption .video-summary {
+.video-caption--head .video-summary {
   position: absolute;
   top: auto;
   bottom: 12%;
@@ -324,7 +324,7 @@ a:hover {
     top: 20%;
   }
 
-  .video-summary {
+  .video-caption--head  .video-summary{
     bottom: 20%;
   }
 }
@@ -1172,7 +1172,7 @@ a:hover {
   position: absolute;
   top: -1000px;
 }
-.column-title
+.column-caption
 {
   font-family:nyt-cheltenham, Georgia, serif;
   letter-spacing: .1em;
@@ -1180,7 +1180,7 @@ a:hover {
   margin:5px 0px;  
 }
 
-.column-subtitle
+.column-sub-caption
 {
   font-family:nyt-cheltenham, Georgia, serif;
   font-size:15px;

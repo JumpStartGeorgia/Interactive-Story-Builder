@@ -18,6 +18,7 @@ en:
         title: Title
         user_id: Publish User
         author: Author
+        media_author: Photo and Video Author        
       section:
         title: Title
         audio_path: Audio Track
@@ -26,7 +27,8 @@ en:
         sort_order: Sort Order
       content:        
         title: Title          
-        subtitle: SubTitle
+        caption: Caption
+        sub_caption: Sub Caption
         content: Article
       medium:
         media_type: Media Type
@@ -162,10 +164,15 @@ en:
     content:
       content: Article
       placeholder:
-        title: Title...
-        subtitle: Subtitle...
+        title: Content name
+        caption: Caption (can be ommited)
+        sub_caption: Sub Caption (can be ommited)
         content: 'Article text, can be any styling html tag with styles'
       title:
-        title: Title of article will appear at the top of this section (wraped with heading3)
-        subtitle: Subtitle of article will appear below the title (wraped with heading4)
+        title: Title is only for section it doesn't affect story layout
+        caption: Caption of article will appear at the top of section (styled like header)
+        sub_caption: Subcaption of article will appear below the caption (styled like sub header of caption)
         content: Text of the article (any custom css styling or html tag can be used for article content)
+  storyteller:
+    byline: By
+    byline_media: Photographs and video by

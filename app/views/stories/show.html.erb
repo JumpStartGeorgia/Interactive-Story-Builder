@@ -17,6 +17,10 @@
   <%= @story.author %>
 </p>
 
+<p>
+  <b><%= t('activerecord.attributes.story.media_author') %>:</b>
+  <%= @story.media_author %>
+</p>
 
 <%= link_to t('helpers.links.edit'), edit_story_path(@story) %> |
 <%= link_to t('helpers.links.back'), stories_path %>

@@ -101,20 +101,32 @@
       });</script>
  <% alignment = { "left" => -1, "center" => 0, "right" => 1 } %>
 <div class="main">
-  <div class="article">     
+  <div class="article"> 
+    <% columnSectionCount = 0 %>
      <% @story.sections.order('position').each_with_index do |section,s_i| %>
         <% if section.type_id == 1 %>
           <div class="section column">
             <% if section.has_marker == 1 %>
                <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
             <% end %>
-            <div class='column-title'><%= section.content.title %></div>
-            <div class='column-subtitle'><%= section.content.subtitle %></div>
+
+            <% if columnSectionCount == 0 %>
+              <div class='headline'><%= @story.title %></div>              
+              <div class="byline-rule"></div>
+              <div class="byline byline--first" style="margin-bottom:50px;">
+              <%= t('storyteller.byline') %><span class="author"> <%= @story.author %></span>
+              <%= "<div>#{t('storyteller.byline_media')}<span class='author'>#{@story.media_author}</span></div>".html_safe if @story.media_author.present? %>
+              </div>               
+            <% end %>         
+            <%= "<div class='column-caption'>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
+            <%= "<div class='column-sub-caption'>#{section.content.sub_caption}</div>".html_safe  if section.content.sub_caption.present? %>            
+           
             <%= section.content.content.html_safe %>   
             <% if section.content.content.html_safe.lines.count == 1 %>   
-              <br>
+              <p>&nbsp;</p>
             <% end %>
           </div>
+          <% columnSectionCount+=1 %>
         <% else %>
           <div class="section video-sequence">
             <% if section.has_marker == 1 %>
@@ -155,8 +167,8 @@
 
                     <div class="video-caption video-caption--<%= caption_class %>">
                     <% if caption_class == 'head'  %>                      
-                          <div class="video-headline headline"> <%= m.caption %> </div>
-                          <div class="video-summary"> <%= m.summary %> </div>
+                          <div class="video-headline headline"> <%= @story.title %> </div>
+                          <div class="video-summary"> <%= m.caption %> </div>
                           <div class="scroll-prompt">
                             Scroll<br>
                             <svg width="18" height="8">

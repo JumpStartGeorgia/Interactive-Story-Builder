@@ -11,8 +11,6 @@
       <a class='btn' data-reveal-id="modalImage"><%= t('app.buttons.preview_image') %></a>
     <% end %>    
     <%= f.input :image, :as => :file , :input_html => { :id => "mediaImage", accept:"image/jpeg" , title: t('.title.image') } , label: false  %> 
- 	  
-
 
     <div id='mediaVideoBox' <%=  @item.media_type == Medium::TYPE[:image]  ? "style=display:none;" : "" %> >
       <label class=" control-label" for="modalVideo"><%= t('activerecord.attributes.medium.video') %></label>
@@ -21,9 +19,7 @@
       <% end %>
       <%= f.input :video, :as => :file , :input_html => { :id => "mediaVideo", accept:"video/mp4", title: t('.title.video')  }, label: false %>
     </div>
-    
-
-    <%= f.input :summary, :input_html => { :id => "mediaSummary" , title: t('.title.summary') } %>
+      
     <%= f.input :source, :input_html => { :id => "mediaSource", title: t('.title.source')  } %>
     <%= f.input :section_id, :as => :hidden , :input_html => { :id => "mediaSection" }  %>
     <% if @item.id.present? %>
