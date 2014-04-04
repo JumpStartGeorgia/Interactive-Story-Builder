@@ -21,9 +21,10 @@
     <% @stories.each do |story| %>
       <tr>
         <td><%= story.title %></td>        
-        <td><%= story.author %></td>                
-        <td><%= link_to  '',   publish_story_path(story), :class=>"publish #{story.published ? 'published' : 'unpublished'}" %></td>
-        <td><%= link_to image_tag("/assets/preview16.png", :alt =>  t('helpers.links.view'), size: "16x10", ),  storyteller_show_path(story), :class=>"preview" %></td>
+        <td><%= story.author %></td>       
+
+        <td><button type="button"  id='btnPublish' class="btn btn-warning btn-small<%= story.published ? '' : ' disabled'%>" title="<%= t('app.buttons.publish') %>" data-link='<%= publish_story_path(story) %>'> <i class="icon-globe icon-white" ></i></button>   </td>
+        <td><button type="button"  id='btnPreview' class="btn btn-success btn-small" title="<%= t('app.buttons.preview') %>" data-link='<%= storyteller_show_path(story) %>'> <i class="icon-eye-open icon-white" ></i></button> </td>      
         <td><%= link_to t('helpers.links.edit_story'), edit_story_path(story) , class:"btn btn-small btn-info"%></td>        
         <td><%= link_to  t('helpers.links.admin_story'), sections_story_path(story), class:"btn btn-small btn-info" %></td>          
         <td><%= link_to  t('helpers.links.delete_story'), story, confirm: 'Are you sure?', method: :delete, class:"btn btn-small btn-danger"%></td>

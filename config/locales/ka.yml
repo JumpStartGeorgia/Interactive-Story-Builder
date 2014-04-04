@@ -96,6 +96,7 @@ ka:
       preview_image: სურათის ნახვა
       preview_video: ვიდეოს ნახვა
       publish: Publish
+      unpublish: Unpublish
     common:
       app_name: ინტერაქტიული ისტორიის შემქმნელი
       added_on: "დამატებულია: %{date}" 

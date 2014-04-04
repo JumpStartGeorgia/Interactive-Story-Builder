@@ -96,6 +96,7 @@ en:
       preview_image: Preview Image
       preview_video: Preview Video
       publish: Publish
+      unpublish: Unpublish
     common:
       app_name: Interactive Story Builder
       added_on: "Added on: %{date}" 

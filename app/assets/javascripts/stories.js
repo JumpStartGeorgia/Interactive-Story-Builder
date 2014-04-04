@@ -63,11 +63,11 @@ $(document).ready(function() {
     	"aoColumns": [
 	      { "bSortable": true },
 	      { "bSortable": true },				      	     
-	      { "bSortable": false },
-			{ "bSortable": false },
-			{ "bSortable": false },
-			{ "bSortable": false },
-			{ "bSortable": false }
+	      { "sWidth": "25px", "bSortable": false },
+			{"sWidth": "25px", "bSortable": false },
+			{"sWidth": "80px", "bSortable": false },
+			{"sWidth": "90px", "bSortable": false },
+			{"sWidth": "90px", "bSortable": false }    
 	    ]
     });  
 	$('#publishedStoryTable > tbody > tr > td > a.preview').on('click',function(e){	
@@ -75,20 +75,37 @@ $(document).ready(function() {
 		$('#previewStory .modal-data').html('<iframe height="768px" width="1366px" src="'+ $(this).prop('href')+'"></iframe>');	 			
 		$('#previewStory').reveal();		
 	});	
-	$('#storiesTable > tbody > tr > td > a.preview').on('click',function(e){	
-		e.preventDefault();					
-		$('#previewStory .modal-data').html('<iframe height="768px" width="1366px" src="'+ $(this).prop('href')+'"></iframe>');	 			
-		$('#previewStory').reveal();		
-	});	
-	$('#storiesTable > tbody > tr > td > a.publish').on('click',function(e){	
+	// $('#storiesTable > tbody > tr > td > a.preview').on('click',function(e){	
+	// 	e.preventDefault();					
+	// 	$('#previewStory .modal-data').html('<iframe height="768px" width="1366px" src="'+ $(this).prop('href')+'"></iframe>');	 			
+	// 	$('#previewStory').reveal();		
+	// });	
+	// $('#storiesTable > tbody > tr > td > a.publish').on('click',function(e){	
+	// 	e.preventDefault();		
+	// 	var a = $(this);
+	// 	$.ajax
+	// 	({ url: $(this).prop('href')}).done(function(d) 
+	// 	{ 		
+	// 		a.toggleClass('published unpublished');					 
+	// 	});	 			
+	// });
+ $(document).on('click', '#btnPreview', function(e){
+		e.preventDefault();		
+		$('#previewStory .modal-data').html('<iframe height="768px" width="1366px" src="'+ $(this).data('link')+'"></iframe>');	 			
+		$('#previewStory').reveal();
+		return true;	
+  });
+  $(document).on('click', '#btnPublish', function(e){
 		e.preventDefault();		
 		var a = $(this);
 		$.ajax
-		({ url: $(this).prop('href')}).done(function(d) 
+		({ url: $(this).data('link')}).done(function(d) 
 		{ 		
-			a.toggleClass('published unpublished');					 
-		});	 			
-	});
+			a.toggleClass('disabled');					 
+		});	 							
+		return true;	
+  });
+
 	$('#btnUp').click(function(){
 		if (el_type == 'c') return true;
 		var dataTemp = {'s' : section_id, 'i': item_id };
@@ -202,11 +219,7 @@ $(document).ready(function() {
 
 		return true;	
 	});
-	$('#btnPreview').click(function(){					
-		$('#previewStory .modal-data').html('<iframe height="768px" width="1366px" src="'+ $(this).data('storyteller')+'"></iframe>');	 			
-		$('#previewStory').reveal();
-		return true;	
-	});
+
 
 	$('#btnAddSection').click(function(){ method = 'n';	el_type = 's';  getStory(-1,-1,1);});
 
