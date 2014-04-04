@@ -212,8 +212,7 @@
     [
        
     <%  
-        secLength = @story.sections.select{ |v| v.type_id == Section::TYPE[:media]}.length
-        logger.debug("------------------------------------#{secLength}")
+        secLength = @story.sections.select{ |v| v.type_id == Section::TYPE[:media]}.length        
         @story.sections.select{ |v| v.type_id == Section::TYPE[:media]}.sort_by{|v| v.position}.each_with_index do |s,s_i|                
             medLength = s.media.length   
             s.media.each_with_index do |m,m_i| 
