@@ -90,7 +90,7 @@
           }
 
           function clicked(d, i) {
-            console.log(d); console.log(i);
+           // console.log(d); console.log(i);
             d3.event.preventDefault();
             d3.transition().duration(750).tween("scroll", function() {
               var offset = d3.interpolateNumber(pageYOffset, markerOffsets[i]);
@@ -216,11 +216,11 @@
 
     var mobileImages = 
     [
-      
-    <%  @story.sections.order('position').each_with_index do |s,s_i|       
-         
-          if s.type_id == 2 
-            secLength = s.media.length   
+       
+    <%  
+      secLength = @story.sections.select{ |v| v.type_id == Section::TYPE['media']}.length
+      @story.sections.select{ |v| v.type_id == Section::TYPE['media']}.sort_by{|v| v.position}.each_with_index do |s,s_i|                
+            medLength = s.media.length   
             s.media.each_with_index do |m,m_i| 
           %>
             {
@@ -228,18 +228,17 @@
               section: <%= s_i+1 %>,
               slide: <%= m_i+1 %>,      
               align: '<%= alignment.index(m.caption_align) %>',
-              <% if secLength == m_i+1 %>
-                hideRule: true,
+              <% if secLength == m_i+1 %>                
+                ,hideRule: true
               <% end %>         
             }
-            <% if secLength != (m_i+1) %>
+            <% if medLength != (m_i+1) %>
               ,
     <%        end            
-            end 
-          
-
-
-          end 
+            end %>
+            <% if secLength != (s_i+1) %>
+            ,
+            <% end 
         end 
     %>  
     ];</script>
