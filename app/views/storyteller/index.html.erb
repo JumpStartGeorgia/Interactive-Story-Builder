@@ -218,8 +218,9 @@
     [
        
     <%  
-      secLength = @story.sections.select{ |v| v.type_id == Section::TYPE['media']}.length
-      @story.sections.select{ |v| v.type_id == Section::TYPE['media']}.sort_by{|v| v.position}.each_with_index do |s,s_i|                
+        secLength = @story.sections.select{ |v| v.type_id == Section::TYPE[:media]}.length
+        logger.debug("------------------------------------#{secLength}")
+        @story.sections.select{ |v| v.type_id == Section::TYPE[:media]}.sort_by{|v| v.position}.each_with_index do |s,s_i|                
             medLength = s.media.length   
             s.media.each_with_index do |m,m_i| 
           %>
@@ -227,7 +228,7 @@
               file: "mobile_1024/<%= m.image_file_name %>",
               section: <%= s_i+1 %>,
               slide: <%= m_i+1 %>,      
-              align: '<%= alignment.index(m.caption_align) %>',
+              align: '<%= alignment.index(m.caption_align) %>'
               <% if secLength == m_i+1 %>                
                 ,hideRule: true
               <% end %>         
