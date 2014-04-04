@@ -52,7 +52,7 @@
   <div class="navigation-right">
     <a href="#" class="navigation-volume"><div class="navigation-icon"></div></a>
     <div class="navigation-sections">     
-     <% @story.sections.where("has_marker = 1").each_with_index do |s,s_i| %>
+     <% @story.sections.select{|t| t.has_marker == 1}.each_with_index do |s,s_i| %>
       <a href="#<%= s_i+1 %>" class="navigation-section" title="<%= s.title %>"><%= s_i+1 %></a>
      <% end %>          
     </div>
@@ -99,17 +99,17 @@
           }
 
       });</script>
- <% alignment = { "left" => -1, "center" => 0, "right" => 1 } %>
+
+ <% alignment = { "left" => -1, "center" => 0, "right" => 1 }%>
 <div class="main">
   <div class="article"> 
     <% columnSectionCount = 0 %>
-     <% @story.sections.order('position').each_with_index do |section,s_i| %>
+     <% @story.sections.sort_by{|p| p.position}.each_with_index do |section,s_i| %>
         <% if section.type_id == 1 %>
           <div class="section column">
             <% if section.has_marker == 1 %>
                <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
             <% end %>
-
             <% if columnSectionCount == 0 %>
               <div class='headline'><%= @story.title %></div>              
               <div class="byline-rule"></div>
@@ -119,8 +119,7 @@
               </div>               
             <% end %>         
             <%= "<div class='column-caption'>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
-            <%= "<div class='column-sub-caption'>#{section.content.sub_caption}</div>".html_safe  if section.content.sub_caption.present? %>            
-           
+            <%= "<div class='column-sub-caption'>#{section.content.sub_caption}</div>".html_safe  if section.content.sub_caption.present? %>                       
             <%= section.content.content.html_safe %>   
             <% if section.content.content.html_safe.lines.count == 1 %>   
               <p>&nbsp;</p>
@@ -137,17 +136,15 @@
                 <% if m.media_type == 2 && m.video.exists? %>                
                   <% dataVideo = "data-video='#{File.basename(m.video_file_name,'.mp4')}'".html_safe %>
                 <% end %> 
-                
-
               <div class="video"  <%=  dataVideo.html_safe %> >                
                   <div class="video-container">
-                    <% if m.media_type == 1 %>                                                                            
+                    <% if m.media_type == 1 %>       
                       <img src="<%= m.image.url %>">
-                    <% elsif m.media_type == 2  %>
+                    <% elsif m.media_type == 2  %>                    
                         <% if  m.image.exists? %>                       
                         <!--[if lte IE 8]><img src="<%= m.image.url %>"><![endif]-->
                         <% end %>                                           
-                    <% end %>                        
+                    <% end %>  
                     <% if m.source.present? %>
                        <div class="video-source"><%= m.source %></div>                       
                     <% end %>                       
@@ -155,16 +152,13 @@
                   <% if m.caption.present? %>
 
                    <% if m.caption.length < 160 %>
-                        <% caption_class = alignment.index(m.caption_align) %>
+                        <% caption_class = alignment.key(m.caption_align) %>
                     <% else %>
                      <% caption_class = 'long' %>
                     <% end %>
-
-
                     <% if s_i == 0 && m_i == 0 %>
                       <% caption_class = 'head' %>              
-                    <% end %>
-
+                    <% end %> 
                     <div class="video-caption video-caption--<%= caption_class %>">
                     <% if caption_class == 'head'  %>                      
                           <div class="video-headline headline"> <%= @story.title %> </div>
@@ -228,7 +222,7 @@
               file: "mobile_1024/<%= m.image_file_name %>",
               section: <%= s_i+1 %>,
               slide: <%= m_i+1 %>,      
-              align: '<%= alignment.index(m.caption_align) %>'
+              align: '<%= alignment.key(m.caption_align) %>'
               <% if secLength == m_i+1 %>                
                 ,hideRule: true
               <% end %>         
