@@ -6,6 +6,11 @@ class Section < ActiveRecord::Base
 
 	TYPE = {content: 1, media: 2}
   
+  amoeba do
+    enable
+    clone [:content, :media]
+  end
+
   validates :story_id, :presence => true
   validates :type_id, :presence => true, :inclusion => { :in => TYPE.values }  
   validates :title, :presence => true, length: { maximum: 255, :message => 'Title max length is 255 symbols' } 	
@@ -26,4 +31,5 @@ class Section < ActiveRecord::Base
  def media?
    	 TYPE[:media] == self.type_id	
    end
+
 end

@@ -8,6 +8,14 @@ class Story < ActiveRecord::Base
  	after_find :publishing_done?
   	before_save :publish_date
 	 
+
+  
+	amoeba do
+		enable
+		clone [:sections]
+	end
+
+
 	def self.fullsection(story_id)
 		includes(sections: [:media,:content])
 		.where(stories: {id: story_id})
@@ -25,4 +33,5 @@ class Story < ActiveRecord::Base
   	  	self.published_at = Time.now
   	  end     
   end
+
 end

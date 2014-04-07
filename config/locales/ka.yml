@@ -97,6 +97,7 @@ ka:
       preview_video: ვიდეოს ნახვა
       publish: Publish
       unpublish: Unpublish
+      clone: Clone
     common:
       app_name: ინტერაქტიული ისტორიის შემქმნელი
       added_on: "დამატებულია: %{date}" 
@@ -105,8 +106,14 @@ ka:
       not_authorized: თქვენ არ გაქვთ უფლება იხილოთ ეს გვერდი.
       success_created: "%{obj} შექმნილია."
       success_updated: "%{obj} განახლებულია."
+      success_publish: "%{obj} was successfully published."
+      success_unpublish: "%{obj} was successfully unpublished."
+      success_clone: "%{obj} was successfully cloned to %{to}."
       error_created: "%{obj} არ იყო შექმნილი.[ %{err} ]"
       error_updated: "%{obj} არ იყო განახლებული.[ %{err} ]"
+      error_publish: "%{obj} wasn't published.[ %{err} ]"
+      error_unpublish: "%{obj} wasn't unpublished.[ %{err} ]"
+      error_clone: "%{obj} wasn't cloned.[ %{err} ]"      
   layouts:
     application:
       admin: ადმინისტრატო

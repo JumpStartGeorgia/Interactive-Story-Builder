@@ -286,5 +286,39 @@ class StoriesController < ApplicationController
       format.html { redirect_to stories_url }
     end
   end
+  def clone
+
+    begin
+
+
+    @item = Story.find_by_id(params[:id])
+    dup = @item.amoeba_dup
+    dup.title = "#{dup.title}(#{SecureRandom.hex(5)})"
+    dup.save
+
+    @item.sections.each_with_index do |s,s_i|
+      if s.type_id == Section::TYPE[:media]
+        s.media.each_with_index do |m,m_i|          
+          dupTemp = dup.sections[s_i].media[m_i]          
+          dupTemp.image =  m.image #dup.sections[s_i].media[m_i].image =         
+          if m.media_type == Medium::TYPE[:video]            
+            dupTemp.video =  m.video
+          end
+         dupTemp.save
+        end          
+      end        
+    end
+        
+    flash[:success] =t("app.msgs.success_clone", obj:"#{Story.model_name.human} \"#{@item.title}\"", to: "#{dup.title}")    
+
+    rescue => e
+      flash[:error] =t("app.msgs.error_clone", obj:"#{Story.model_name.human} \"#{dup.title}\"")                      
+    end
+   
+    respond_to do |format| 
+      format.js {render json: nil, status: :ok }
+      format.html { redirect_to stories_url }
+   end
+  end
   #logger.debug("---------------------------------------------------#{params}")
 end       

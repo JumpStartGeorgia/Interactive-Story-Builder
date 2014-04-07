@@ -65,6 +65,7 @@ $(document).ready(function() {
 	      { "bSortable": true },				      	     
 	      { "sWidth": "25px", "bSortable": false },
 			{"sWidth": "25px", "bSortable": false },
+			{"sWidth": "25px", "bSortable": false },
 			{"sWidth": "80px", "bSortable": false },
 			{"sWidth": "90px", "bSortable": false },
 			{"sWidth": "90px", "bSortable": false }    
@@ -105,7 +106,6 @@ $(document).ready(function() {
 		});	 							
 		return true;	
   });
-
 	$('#btnUp').click(function(){
 		if (el_type == 'c') return true;
 		var dataTemp = {'s' : section_id, 'i': item_id };

@@ -37,6 +37,7 @@ BootstrapStarter::Application.routes.draw do
 
     			get 'sections'    	
     			get 'publish', to: 'stories#publish'    		
+    			get 'clone', to: 'stories#clone'    		
     
   			end			
 		end
