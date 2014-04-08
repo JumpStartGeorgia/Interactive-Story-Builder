@@ -113,7 +113,7 @@ en:
       error_updated: "%{obj} wasn't updated.[ %{err} ]"
       error_publish: "%{obj} wasn't published.[ %{err} ]"
       error_unpublish: "%{obj} wasn't unpublished.[ %{err} ]"
-      error_clone: "%{obj} wasn't cloned.[ %{err} ]"
+      error_clone: "%{obj} wasn't cloned."
   layouts:
     application:
       admin: Admin

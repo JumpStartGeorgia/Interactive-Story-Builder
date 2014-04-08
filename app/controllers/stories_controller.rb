@@ -141,10 +141,10 @@ class StoriesController < ApplicationController
   end
 
   def flash_success_created( obj, title)
-      flash[:success] =u t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
+      flash[:success] =u I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
   end
   def flash_success_updated( obj, title)
-      flash[:success] =u t('app.msgs.success_updated', obj:"#{obj} \"#{title}\"")
+      flash[:success] =u I18n.t('app.msgs.success_updated', obj:"#{obj} \"#{title}\"")
   end
 
   def new_section
@@ -154,7 +154,7 @@ class StoriesController < ApplicationController
           flash_success_created(Section.model_name.human,@item.title)                     
           format.js { render action: "change_tree", status: :created  }
         else          
-          flash[:error] = u t('app.msgs.error_created', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                  
+          flash[:error] = u I18n.t('app.msgs.error_created', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                  
           format.js {render json: nil, status: :ok }
         end
       end    
@@ -167,7 +167,7 @@ class StoriesController < ApplicationController
           flash_success_created(Medium.model_name.human,@item.title)                     
           format.js { render action: "change_sub_tree", status: :created }                    
         else                    
-          flash[:error] = u t('app.msgs.error_created', obj:Medium.model_name.human, err:@item.errors.full_messages.to_sentence)                       
+          flash[:error] = u I18n.t('app.msgs.error_created', obj:Medium.model_name.human, err:@item.errors.full_messages.to_sentence)                       
           format.js {render action: "flash" , status: :ok }
         end
       end    
@@ -183,7 +183,7 @@ class StoriesController < ApplicationController
           flash_success_created(Content.model_name.human,@item.title)                     
           format.js { render action: "change_sub_tree", status: :created  }
         else
-          flash[:error] = u t('app.msgs.error_created', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)                  
+          flash[:error] = u I18n.t('app.msgs.error_created', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)                  
           format.js {render json: nil, status: :ok }              
         end
       end    
@@ -198,7 +198,7 @@ class StoriesController < ApplicationController
           flash_success_updated(Section.model_name.human,@item.title)       
           format.js {render action: "build_tree", status: :created }                  
         else
-          flash[:error] = u t('app.msgs.error_updated', obj:Sectoin.model_name.human, err:@item.errors.full_messages.to_sentence)                            
+          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Sectoin.model_name.human, err:@item.errors.full_messages.to_sentence)                            
           format.js {render json: nil, status: :ok }
         end
       end    
@@ -210,7 +210,7 @@ class StoriesController < ApplicationController
           flash_success_updated(Content.model_name.human,@item.title)           
           format.js {render action: "build_tree", status: :created }                  
         else
-          flash[:error] = u t('app.msgs.error_updated', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)                                      
+          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)                                      
           format.js {render json: nil, status: :ok }
         end
       end    
@@ -222,7 +222,7 @@ class StoriesController < ApplicationController
           flash_success_updated(Medium.model_name.human,@item.title)           
           format.js {render action: "build_tree", status: :created }          
         else        
-          flash[:error] = u t('app.msgs.error_updated', obj:Medium.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
+          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Medium.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
           format.js {render action: "flash", status: :ok }
         end
       end    
@@ -280,9 +280,9 @@ class StoriesController < ApplicationController
     end
     respond_to do |format|     
       if @item.update_attributes(published: publishing)     
-        flash[:success] =u t("app.msgs.success_#{publishing ? '' :'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                   
+        flash[:success] =u I18n.t("app.msgs.success_#{publishing ? '' :'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                   
       else
-        flash[:error] = u t("app.msgs.error#{publishing ? '' : 'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                                                       
+        flash[:error] = u I18n.t("app.msgs.error#{publishing ? '' : 'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                                                       
       end
       format.js {render json: nil, status: :ok }
       format.html { redirect_to stories_url }
@@ -295,7 +295,7 @@ class StoriesController < ApplicationController
 
     @item = Story.find_by_id(params[:id])
     dup = @item.amoeba_dup
-    dup.title = "#{dup.title}(#{SecureRandom.hex(5)})"
+    dup.title = "#{dup.title}(Clone)"
     dup.save
 
     @item.sections.each_with_index do |s,s_i|
@@ -311,10 +311,10 @@ class StoriesController < ApplicationController
       end        
     end
         
-    flash[:success] =t("app.msgs.success_clone", obj:"#{Story.model_name.human} \"#{@item.title}\"", to: "#{dup.title}")    
+    flash[:success] =I18n.t("app.msgs.success_clone", obj:"#{Story.model_name.human} \"#{@item.title}\"", to: "#{dup.title}")    
 
     rescue => e
-      flash[:error] =t("app.msgs.error_clone", obj:"#{Story.model_name.human} \"#{dup.title}\"")                      
+      flash[:error] =I18n.t("app.msgs.error_clone", obj:"#{Story.model_name.human} \"#{dup.title}\"")                      
     end
    
     respond_to do |format| 

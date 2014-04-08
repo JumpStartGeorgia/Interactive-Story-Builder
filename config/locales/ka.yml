@@ -114,7 +114,7 @@ ka:
       error_updated: "%{obj} არ იყო განახლებული.[ %{err} ]"
       error_publish: "%{obj} wasn't published.[ %{err} ]"
       error_unpublish: "%{obj} wasn't unpublished.[ %{err} ]"
-      error_clone: "%{obj} wasn't cloned.[ %{err} ]"      
+      error_clone: "%{obj} wasn't cloned."      
   layouts:
     application:
       admin: ადმინისტრატო
