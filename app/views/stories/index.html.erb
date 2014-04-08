@@ -11,6 +11,7 @@
         <th><%= t('activerecord.attributes.story.title') %></th>        
         <th><%= t('activerecord.attributes.story.author') %></th>     
         <th></th>   
+        <th></th>  
         <th></th>
         <th></th>
         <th></th>
@@ -31,6 +32,11 @@
              <i class="icon-camera icon-white" ></i>
             <% end %>
          </td>   
+         <td>         
+            <%= link_to export_story_path(story) , class:"btn btn-primary btn-small" do %>
+             <i class="icon-download icon-white" ></i>
+            <% end %>
+         </td> 
         <td><%= link_to t('helpers.links.edit_story'), edit_story_path(story) , class:"btn btn-small btn-info"%></td>        
         <td><%= link_to  t('helpers.links.admin_story'), sections_story_path(story), class:"btn btn-small btn-info" %></td>          
         <td><%= link_to  t('helpers.links.delete_story'), story, confirm: 'Are you sure?', method: :delete, class:"btn btn-small btn-danger"%></td>

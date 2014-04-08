@@ -66,6 +66,7 @@ $(document).ready(function() {
 	      { "sWidth": "25px", "bSortable": false },
 			{"sWidth": "25px", "bSortable": false },
 			{"sWidth": "25px", "bSortable": false },
+			{"sWidth": "25px", "bSortable": false },
 			{"sWidth": "80px", "bSortable": false },
 			{"sWidth": "90px", "bSortable": false },
 			{"sWidth": "90px", "bSortable": false }    

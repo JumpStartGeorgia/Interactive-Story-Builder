@@ -285,11 +285,35 @@ class StoriesController < ApplicationController
       format.html { redirect_to stories_url }
     end
   end
+
+
+ def export    
+  @item = Story.find_by_id(params[:id])
+ 
+  require 'tmpdir'
+
+  dir = Dir.mktmpdir(@item.title)
+  logger.debug("--------------------------------------------------_#{dir.inspect}")
+  begin
+    # use the directory...
+    open("#{dir}/foo", "w") 
+    { 
+      #logger.debug("---------------------------------------------------")
+    }
+  ensure
+    # remove the directory.
+    FileUtils.remove_entry_secure dir
+  end
+
+
+    respond_to do |format|          
+      format.js {render json: nil, status: :ok }
+      format.html { redirect_to stories_url }
+    end
+  end
+
   def clone
-
     begin
-
-
     @item = Story.find_by_id(params[:id])
     dup = @item.amoeba_dup
     dup.title = "#{dup.title}(Clone)"
