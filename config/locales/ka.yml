@@ -17,6 +17,7 @@ ka:
       story:
         title: დასახელება
         user_id: გამოქვეყნების მომხმარებელი
+        user_ids: Editors
         author: ავტორი
         media_author: Photo and Video Author(s)     
         published: Publish?

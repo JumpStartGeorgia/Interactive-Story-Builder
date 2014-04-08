@@ -1,5 +1,7 @@
 class Story < ActiveRecord::Base
 	has_many :sections, :order => 'position'
+	has_and_belongs_to_many :users
+	belongs_to :user
 	validates :title, length: { maximum: 100 }
 	validates :author, :presence => true, length: { maximum: 255 }
 	validates :media_author, length: { maximum: 255 }
@@ -32,6 +34,6 @@ class Story < ActiveRecord::Base
   	  if  self.was_publishing != self.published && self.published?
   	  	self.published_at = Time.now
   	  end     
-  end
+  	end
 
 end

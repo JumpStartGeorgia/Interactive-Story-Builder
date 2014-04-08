@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140403102440) do
+ActiveRecord::Schema.define(:version => 20140408090650) do
 
   create_table "contents", :force => true do |t|
     t.integer  "section_id"
@@ -61,12 +61,17 @@ ActiveRecord::Schema.define(:version => 20140403102440) do
     t.integer  "user_id"
     t.string   "author"
     t.string   "media_author"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.float    "latitude",     :limit => 10
-    t.float    "longitude",    :limit => 10
     t.boolean  "published"
     t.datetime "published_at"
+    t.float    "latitude",     :limit => 10
+    t.float    "longitude",    :limit => 10
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stories_users", :force => true do |t|
+    t.integer "story_id"
+    t.integer "user_id"
   end
 
   create_table "users", :force => true do |t|

@@ -1,10 +1,19 @@
 <%= semantic_form_for @story do |f| %>
   <%= f.inputs do %>
     <%= f.input :title, :input_html => { id: "storyTitle", title: t('.title.title'), placeholder: t('.placeholder.title')  }   %>
+  
     <%= f.input :user_id , :as => :hidden %>
     <%= f.input :author, :input_html => { id: "storyAuthor", title: t('.title.author'), placeholder: t('.placeholder.author')  } %>
     <%= f.input :media_author, :input_html => { id: "storyMediaAuthor", title: t('.title.media_author'), placeholder: t('.placeholder.media_author')  }  %>
     <%= f.input :published, :as => :boolean , :input_html => { id: "storyPublished", title: t('.title.published')} %> 
+
+    <div class="string control-group required stringish" id="story_user_input">
+      <label class=" control-label"><%= t('activerecord.attributes.story.user_id') %></label>
+      <div class="controls">
+        <input type="text" value="<%= "#{@story.user.nickname}" %>" readonly="readonly">
+      </div>
+    </div>
+    <%= f.input :user_ids , :as => :select, :collection =>  Hash[@users.map{|b| [b.nickname,b.id]}], :multiple => true %>
   <% end %>
   <div class="pull-right spacer">
     <%= f.submit nil, :class => 'btn' %>

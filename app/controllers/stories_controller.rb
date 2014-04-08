@@ -4,8 +4,8 @@ class StoriesController < ApplicationController
   # GET /stories.json
   def index
     #@usemap = true
-    @stories = Story.where(:user_id => current_user.id)
-
+    #@stories = Story.includes(:users).where("stories.user_id = :id or users.id = :id",:id => current_user.id) 
+    @stories = Story.where("stories.user_id = :id or stories.id in ( select story_id from stories_users t where t.user_id = :id )",:id => current_user.id) 
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render json: @stories }
@@ -29,7 +29,8 @@ class StoriesController < ApplicationController
   # GET /stories/new.json
   def new
     @story = Story.new(:user_id => current_user.id)
-
+    @users = User.where("id not in (?)", [@story.user_id, current_user.id])
+    logger.debug(@users.inspect)
     respond_to do |format|
         format.html #new.html.erb
       format.json { render json: @story }
@@ -39,6 +40,7 @@ class StoriesController < ApplicationController
   # GET /stories/1/edit
   def edit
     @story = Story.find_by_id(params[:id])
+    @users = User.where("id not in (?)", [@story.user_id, current_user.id])
   end
 
   # POST /stories
