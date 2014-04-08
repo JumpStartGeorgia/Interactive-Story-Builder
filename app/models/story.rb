@@ -1,5 +1,5 @@
 class Story < ActiveRecord::Base
-	has_many :sections, :order => 'position'
+	has_many :sections, :order => 'position', dependent: :destroy
 	has_and_belongs_to_many :users
 	belongs_to :user
 	validates :title, length: { maximum: 100 }
