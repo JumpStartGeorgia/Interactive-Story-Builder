@@ -105,7 +105,7 @@
   <div class="article"> 
     <% columnSectionCount = 0 %>
      <% @story.sections.sort_by{|p| p.position}.each_with_index do |section,s_i| %>
-        <% if section.type_id == 1 %>
+        <% if section.type_id == 1 && section.content.present? %>
           <div class="section column">
             <% if section.has_marker == 1 %>
                <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
@@ -126,7 +126,7 @@
             <% end %>
           </div>
           <% columnSectionCount+=1 %>
-        <% else %>
+        <% elsif section.type_id == 2 && section.media.present? %>
           <div class="section video-sequence">
             <% if section.has_marker == 1 %>
                <a class="navigation-marker" id="<%= s_i + 1 %>"></a>

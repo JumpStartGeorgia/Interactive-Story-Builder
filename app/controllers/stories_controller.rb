@@ -288,30 +288,52 @@ class StoriesController < ApplicationController
 
 
  def export    
-  @item = Story.find_by_id(params[:id])
- 
-  require 'tmpdir'
+  @story = Story.fullsection(params[:id])  
+  rootPath = "#{Rails.root}/tmp";
+  filename =  "#{rootPath}/#{@story.title.downcase}"
+  cssPath = "#{filename}/css"
+  mediaPath = "#{filename}/media"
+  assetsPath = "#{filename}/assets"
 
-  dir = Dir.mktmpdir(@item.title)
-  logger.debug("--------------------------------------------------_#{dir.inspect}")
-  begin
-    # use the directory...
-    open("#{dir}/foo", "w") 
-    { 
-      #logger.debug("---------------------------------------------------")
-    }
-  ensure
-    # remove the directory.
-    FileUtils.remove_entry_secure dir
+  require 'fileutils'
+  if File.directory?(filename)    
+    FileUtils.remove_dir(filename,true)   
   end
 
+#  FileUtils.mkdir_p(filename) 
+#  FileUtils.mkdir_p(cssPath) 
+#  FileUtils.cp "#{Rails.root}/public/css/storyteller.css", "#{cssPath}/storyteller.css"
+#  FileUtils.mkdir_p(mediaPath) 
+#  FileUtils.mkdir_p(assetsPath) 
+  FileUtils.cp_r "#{Rails.root}/public/media/story", "#{filename}"  
+  FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{params[:id]}", "#{mediaPath}/images"
+  FileUtils.cp_r "#{Rails.root}/public/system/places/video/#{params[:id]}", "#{mediaPath}/video"  
+  
+  #FileUtils.cp "#{Rails.root}/public/favicon.ico", "#{filename}/favicon.ico"  
+  
+   
+  data = render_to_string('storyteller/clone.html.erb', :layout => false)
+  File.open("#{filename}/index.html", "w"){|f| f << data }
 
-    respond_to do |format|          
-      format.js {render json: nil, status: :ok }
-      format.html { redirect_to stories_url }
-    end
+  #system('/usr/bin/zip tmp/some_archive.zip -i path/to/files/\*.jpg')
+  #send_file "tmp/some_archive.zip", :type => "application/zip"
+
+
+  
+   
+   
+   send_file generate_gzip("#{Rails.root}/tmp/#{@story.title.downcase}",@story.title.downcase), :type=>"application/x-gzip", :x_sendfile=>true
+
+    # respond_to do |format|          
+    #   format.js {render json: nil, status: :ok }
+    #   format.html { redirect_to stories_url }
+    # end
   end
-
+def generate_gzip(tar,name)
+    path = tar.gsub(' ','_')    
+    system("tar -czf #{path}.tar.gz -C '#{Rails.root}/tmp/'  '#{name}/'")
+    return "#{path}.tar.gz"
+end
   def clone
     begin
     @item = Story.find_by_id(params[:id])
