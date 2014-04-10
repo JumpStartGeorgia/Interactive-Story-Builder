@@ -235,7 +235,6 @@ class StoriesController < ApplicationController
     elsif type == 'm'      
       item = Medium.find_by_id(params[:item_id])           
     end
-
     item.destroy
     
    respond_to do |format|
@@ -287,52 +286,37 @@ class StoriesController < ApplicationController
   end
 
 
- def export    
-  @story = Story.fullsection(params[:id])  
-  rootPath = "#{Rails.root}/tmp";
-  filename =  "#{rootPath}/#{@story.title.downcase}"
-  cssPath = "#{filename}/css"
-  mediaPath = "#{filename}/media"
-  assetsPath = "#{filename}/assets"
+ def export
+   begin     
+    @story = Story.fullsection(params[:id])  
+    rootPath = "#{Rails.root}/tmp";
+    filename = StoriesHelper.transliterate(@story.title.downcase);
+    filename_ext = SecureRandom.hex(3)  
+    path =  "#{rootPath}/#{filename}_#{filename_ext}"  
+    mediaPath = "#{path}/media"
 
-  require 'fileutils'
-  if File.directory?(filename)    
-    FileUtils.remove_dir(filename,true)   
-  end
+    require 'fileutils'
 
-#  FileUtils.mkdir_p(filename) 
-#  FileUtils.mkdir_p(cssPath) 
-#  FileUtils.cp "#{Rails.root}/public/css/storyteller.css", "#{cssPath}/storyteller.css"
-#  FileUtils.mkdir_p(mediaPath) 
-#  FileUtils.mkdir_p(assetsPath) 
-  FileUtils.cp_r "#{Rails.root}/public/media/story", "#{filename}"  
-  FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{params[:id]}", "#{mediaPath}/images"
-  FileUtils.cp_r "#{Rails.root}/public/system/places/video/#{params[:id]}", "#{mediaPath}/video"  
-  
-  #FileUtils.cp "#{Rails.root}/public/favicon.ico", "#{filename}/favicon.ico"  
-  
-   
-  data = render_to_string('storyteller/clone.html.erb', :layout => false)
-  File.open("#{filename}/index.html", "w"){|f| f << data }
+    FileUtils.cp_r "#{Rails.root}/public/media/story", "#{path}"  
+    FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{params[:id]}", "#{mediaPath}/images"
+    FileUtils.cp_r "#{Rails.root}/public/system/places/video/#{params[:id]}", "#{mediaPath}/video"  
+    File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/clone.html.erb', :layout => false) }  
+    send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :x_sendfile=>true, :filename=>"#{filename}.tar.gz"
 
-  #system('/usr/bin/zip tmp/some_archive.zip -i path/to/files/\*.jpg')
-  #send_file "tmp/some_archive.zip", :type => "application/zip"
-
-
-  
-   
-   
-   send_file generate_gzip("#{Rails.root}/tmp/#{@story.title.downcase}",@story.title.downcase), :type=>"application/x-gzip", :x_sendfile=>true
-
-    # respond_to do |format|          
-    #   format.js {render json: nil, status: :ok }
-    #   format.html { redirect_to stories_url }
-    # end
-  end
-def generate_gzip(tar,name)
-    path = tar.gsub(' ','_')    
-    system("tar -czf #{path}.tar.gz -C '#{Rails.root}/tmp/'  '#{name}/'")
-    return "#{path}.tar.gz"
+    if File.directory?(path)
+      FileUtils.remove_dir(path,true)   
+    end
+    if File.exists?("#{path}.tar.gz")    
+      FileUtils.remove_file("#{path}.tar.gz",true)   
+    end
+  rescue
+     flash[:error] =  "Story #{@story.title.downcase} can't be exported" 
+     redirect_to stories_url
+  end   
+end
+def generate_gzip(tar,name,ff)      
+    system("tar -czf #{tar}.tar.gz -C '#{Rails.root}/tmp/#{name}' .")
+    return "#{tar}.tar.gz"
 end
   def clone
     begin
