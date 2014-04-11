@@ -18,8 +18,8 @@
     <% @stories.each do |story| %>
       <tr>
         <td><%= story.title %></td>        
-        <td><%= story.author %></td>                       
-        <td><%= link_to image_tag("/assets/preview16.png", :alt =>  t('helpers.links.view'), size: "16x10", ),  storyteller_show_path(story), :class=>"preview" %></td>
+        <td><%= story.author %></td>       
+        <td><button type="button"  id='btnPreview' class="btn btn-success btn-small" title="<%= t('app.buttons.preview') %>" data-link='<%= storyteller_show_path(story) %>'> <i class="icon-eye-open icon-white" ></i></button> </td>                           
       </tr>
     <% end %>
     </tbody>

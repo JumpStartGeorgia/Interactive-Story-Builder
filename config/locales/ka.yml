@@ -99,6 +99,7 @@ ka:
       publish: Publish
       unpublish: Unpublish
       clone: Clone
+      export: Export
     common:
       app_name: ინტერაქტიული ისტორიის შემქმნელი
       added_on: "დამატებულია: %{date}" 
@@ -155,6 +156,7 @@ ka:
         title: Whole Story name (will appear in header on first content and media if it first section)
         author: Author(s) of the article (author info will be added to the first content section)
         media_author:  "Author(s) of the photos, videos (author info will be added to the first content section after author)"
+        published: "If published everyone can see this story( no edit options received to users )"       
       placeholder:
           title: Type Story name
           author: Author(s) of the article

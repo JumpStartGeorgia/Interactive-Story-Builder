@@ -25,15 +25,15 @@
         <td><%= story.title %></td>        
         <td><%= story.author %></td>       
 
-        <td><button type="button"  id='btnPublish' class="btn btn-warning btn-small<%= story.published ? '' : ' disabled'%>" title="<%= t('app.buttons.publish') %>" data-link='<%= publish_story_path(story) %>'> <i class="icon-globe icon-white" ></i></button>   </td>
+        <td><button type="button"  id='btnPublish' class="btn btn-warning btn-small<%= story.published ? '' : ' disabled'%>" title="<%= story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>" data-link='<%= publish_story_path(story) %>'> <i class="icon-globe icon-white" ></i></button></td>
         <td><button type="button"  id='btnPreview' class="btn btn-success btn-small" title="<%= t('app.buttons.preview') %>" data-link='<%= storyteller_show_path(story) %>'> <i class="icon-eye-open icon-white" ></i></button> </td>   
-        <td>         
-            <%= link_to clone_story_path(story) , class:"btn btn-primary btn-small" do %>
+        <td>       
+            <%= link_to clone_story_path(story) , class:"btn btn-primary btn-small" ,  title: t('app.buttons.clone') do %>
              <i class="icon-camera icon-white" ></i>
             <% end %>
          </td>   
          <td>         
-            <%= link_to export_story_path(story) , class:"btn btn-primary btn-small" do %>
+            <%= link_to export_story_path(story) , class:"btn btn-primary btn-small",  title: t('app.buttons.export') do %>
              <i class="icon-download icon-white" ></i>
             <% end %>
          </td> 
@@ -50,3 +50,4 @@
       <div class='modal-data' style="width:100%; height:100%; border:1px solid #bfbfbf;"></div>
       <a class="close-reveal-modal">&#215;</a>
 </div>
+

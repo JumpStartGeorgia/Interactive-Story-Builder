@@ -271,23 +271,31 @@ class StoriesController < ApplicationController
   def publish
     @item = Story.find_by_id(params[:id])
     publishing = true;
+    pub_title = ''
+
     if @item.published 
-      publishing = false     
+      publishing = false          
     end
     respond_to do |format|     
       if @item.update_attributes(published: publishing)     
         flash[:success] =u I18n.t("app.msgs.success_#{publishing ? '' :'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                   
       else
-        flash[:error] = u I18n.t("app.msgs.error#{publishing ? '' : 'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                                                       
+        flash[:error] = u I18n.t("app.msgs.error#{publishing ? '' : 'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                                                                             
       end
-      format.js {render json: nil, status: :ok }
+      
+      if @item.published
+        pub_title = I18n.t("app.buttons.unpublish")       
+      else
+        pub_title = I18n.t("app.buttons.publish")       
+      end
+      format.json {render json: { title: pub_title }, status: :ok }
       format.html { redirect_to stories_url }
     end
   end
 
 
  def export
-   #begin     
+  begin     
     @story = Story.fullsection(params[:id])  
     rootPath = "#{Rails.root}/tmp";
     filename = StoriesHelper.transliterate(@story.title.downcase);
@@ -298,8 +306,8 @@ class StoriesController < ApplicationController
     require 'fileutils'
 
     FileUtils.cp_r "#{Rails.root}/public/media/story", "#{path}"  
-    FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{params[:id]}", "#{mediaPath}/images"
-    FileUtils.cp_r "#{Rails.root}/public/system/places/video/#{params[:id]}", "#{mediaPath}/video"  
+    FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{params[:id]}/.", "#{mediaPath}/images"
+    FileUtils.cp_r "#{Rails.root}/public/system/places/video/#{params[:id]}/.", "#{mediaPath}/video"  
     File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/clone.html.erb', :layout => false) }  
     send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :x_sendfile=>true, :filename=>"#{filename}.tar.gz"
 
@@ -309,10 +317,10 @@ class StoriesController < ApplicationController
     if File.exists?("#{path}.tar.gz")    
       FileUtils.remove_file("#{path}.tar.gz",true)   
     end
- # rescue
-   #  flash[:error] =I18n.t("app.msgs.error_export", obj:"#{Story.model_name.human} \"#{@story.title}\"")                           
-   #  redirect_to stories_url
- # end   
+  rescue
+     flash[:error] =I18n.t("app.msgs.error_export", obj:"#{Story.model_name.human} \"#{@story.title}\"")                           
+     redirect_to stories_url
+  end   
 end
 def generate_gzip(tar,name,ff)      
     system("tar -czf #{tar}.tar.gz -C '#{Rails.root}/tmp/#{name}' .")
