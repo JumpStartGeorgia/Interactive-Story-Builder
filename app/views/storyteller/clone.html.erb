@@ -242,7 +242,7 @@
                 /* Only do if we're on iPad, iPhone or Android -- TG */
                 if (!isMobile()) return false;
 
-                var _mobile_assets =  "/media/images/<%= @story.id %>/";
+                var _mobile_assets =  "media/images/";
 
                 d3.select(window)
                   .on("resize", mobileReorient)
@@ -363,9 +363,9 @@
 
                   /* Just skip if we're on iPad, iPhone or Android -- TG */
                   if (isMobile()) return false;
-                  var _video_assets = "/media/video/",
-                      _image_assets = "/media/images/original/",
-                      _audio_assets = "/media/audio/original/";
+                  var _video_assets = "media/video/",
+                      _image_assets = "media/images/original/",
+                      _audio_assets = "media/audio/original/";
 
                   var mute = false,
                       muteVolume = "volume",
