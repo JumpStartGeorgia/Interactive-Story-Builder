@@ -287,7 +287,7 @@ class StoriesController < ApplicationController
 
 
  def export
-   begin     
+   #begin     
     @story = Story.fullsection(params[:id])  
     rootPath = "#{Rails.root}/tmp";
     filename = StoriesHelper.transliterate(@story.title.downcase);
@@ -309,10 +309,10 @@ class StoriesController < ApplicationController
     if File.exists?("#{path}.tar.gz")    
       FileUtils.remove_file("#{path}.tar.gz",true)   
     end
-  rescue
-     flash[:error] =I18n.t("app.msgs.error_export", obj:"#{Story.model_name.human} \"#{@story.title}\"")                           
-     redirect_to stories_url
-  end   
+ # rescue
+   #  flash[:error] =I18n.t("app.msgs.error_export", obj:"#{Story.model_name.human} \"#{@story.title}\"")                           
+   #  redirect_to stories_url
+ # end   
 end
 def generate_gzip(tar,name,ff)      
     system("tar -czf #{tar}.tar.gz -C '#{Rails.root}/tmp/#{name}' .")
