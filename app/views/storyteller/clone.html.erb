@@ -139,10 +139,10 @@
                           <div class="video"  <%=  dataVideo.html_safe %> >                
                               <div class="video-container">
                                 <% if m.media_type == 1 %>       
-                                  <img src="media/images/<%= m.image_file_name %>">
+                                  <img src="media/images/original/<%= m.image_file_name %>">
                                 <% elsif m.media_type == 2  %>                    
                                     <% if  m.image.exists? %>                       
-                                    <!--[if lte IE 8]><img src="<%= m.image_file_name %>"><![endif]-->
+                                    <!--[if lte IE 8]><img src="media/images/original/<%= m.image_file_name %>"><![endif]-->
                                     <% end %>                                           
                                 <% end %>  
                                 <% if m.source.present? %>
