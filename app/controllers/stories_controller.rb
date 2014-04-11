@@ -310,7 +310,7 @@ class StoriesController < ApplicationController
       FileUtils.remove_file("#{path}.tar.gz",true)   
     end
   rescue
-     flash[:error] =  "Story #{@story.title.downcase} can't be exported" 
+     flash[:error] =I18n.t("app.msgs.error_export", obj:"#{Story.model_name.human} \"#{@story.title}\"")                           
      redirect_to stories_url
   end   
 end

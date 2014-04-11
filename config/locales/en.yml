@@ -108,12 +108,13 @@ en:
       success_updated: "%{obj} was successfully updated."
       success_publish: "%{obj} was successfully published."
       success_unpublish: "%{obj} was successfully unpublished."
-      success_clone: "%{obj} was successfully cloned to %{to}."
+      success_clone: "%{obj} was successfully cloned to %{to}."      
       error_created: "%{obj} wasn't created.[ %{err} ]"
       error_updated: "%{obj} wasn't updated.[ %{err} ]"
       error_publish: "%{obj} wasn't published.[ %{err} ]"
       error_unpublish: "%{obj} wasn't unpublished.[ %{err} ]"
       error_clone: "%{obj} wasn't cloned."
+      error_export: "Story %{obj} can't be exported"
   layouts:
     application:
       admin: Admin
