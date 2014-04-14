@@ -1,22 +1,35 @@
-<%= semantic_form_for(@item, url: section_story_path(id:params[:id]), remote: true) do |f| %>
-
+<%= semantic_form_for(@item, url: section_story_path(id:params[:id],:format => :js), :html => {:multipart => true, :id => "sectionForm"} ,remote: true) do |f| %>
+<%= error_messages_for f.object %>
   <%= f.inputs do %>
     <%= f.input :title, :placeholder => t('.placeholder.title'), :input_html => { :id => "sectionTitle", title: t('.title.title') } %>
-     <label class=" control-label" for="sectionType" title="<%=t('.title.type')%>"><%= t('activerecord.attributes.section.type_id') %></label>
-    <%= f.input :type_id,  :as => :radio, :collection => {  t('.content') => Section::TYPE[:content], t('.media') => Section::TYPE[:media] }, :input_html => { :id => "sectionType", title: t('.title.type') }, label: false %>  
-    <label class=" control-label" for="sectionHasMarker" title="<%=t('.title.has_marker')%>"><%= t('activerecord.attributes.section.has_marker') %></label>
-    <%= f.input :has_marker,  :as => :radio, :collection => {  t('.yes') => 1, t('.no') => 0 } , :input_html => { :id => "sectionHasMarker" , title: t('.title.has_marker')}, label: false  %>  
+     
+
+
+
+  <%= f.input :type_id, :as => :select,  :include_blank => false, :collection => { t('.content') => Section::TYPE[:content], t('.media') => Section::TYPE[:media] } , :input_html => { :id => "sectionType", title: t('.title.type')  }   %> 
+
+  <%= f.input :has_marker, :as => :boolean , :input_html => { id: "sectionHasMarker", title: t('.title.has_marker')} %> 
        
-    <!-- <%= f.input :has_marker, :as => :boolean, :checked_value => 1, :unchecked_value => 0 %> -->
+    <div id='sectionAudioBox' <%= @item.type_id == Section::TYPE[:content] ? "style=display:none;" : "" %> >
+      <label class=" control-label" for="modalAudio"><%= t('activerecord.attributes.section.audio') %></label>
+      <% if @item.audio.exists? %>
+          <audio controls>            
+            <source src="<%= @item.audio.url %>" type="audio/mpeg">
+            Your browser does not support the audio tag.
+          </audio>        
+      <% end %>
+      <%= f.input :audio, :as => :file , :input_html => { :id => "mediaAudio", accept:"audio/mp3", title: t('.title.audio')  }, label: false %>
+    </div>
    
     <% if @item.id.present? %>
       <%= f.input :id, :as => :hidden , :input_html => { :id => "sectionId" }  %>    
     <% end %>
     <%= f.input :story_id, :as => :hidden , :input_html => { :id => "storyId" }  %>    
   <% end %>
+
+
   <div class="pull-right spacer">    
     <%= f.submit nil, :class => 'btn' %>
     <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>          
   </div>
 <% end %>
-

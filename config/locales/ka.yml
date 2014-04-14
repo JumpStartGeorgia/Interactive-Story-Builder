@@ -24,7 +24,7 @@ ka:
         published_at: Was Published
       section:
         title: დასახელება
-        audio_path: აუდიო ფაილი
+        audio: აუდიო ფაილი
         has_marker: მარკერი    
         type_id: ტიპი
         sort_order: დალაგება
@@ -96,6 +96,7 @@ ka:
       preview: ნახვა
       preview_image: სურათის ნახვა
       preview_video: ვიდეოს ნახვა
+      preview_audio: Listen Audio
       publish: Publish
       unpublish: Unpublish
       clone: Clone

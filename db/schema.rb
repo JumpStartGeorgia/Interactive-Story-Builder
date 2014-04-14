@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140408090650) do
+ActiveRecord::Schema.define(:version => 20140414145205) do
 
   create_table "contents", :force => true do |t|
     t.integer  "section_id"
@@ -50,10 +50,13 @@ ActiveRecord::Schema.define(:version => 20140408090650) do
     t.integer  "type_id"
     t.string   "title"
     t.integer  "position"
-    t.string   "audio_path"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "has_marker"
+    t.boolean  "has_marker"
+    t.string   "audio_file_name"
+    t.string   "audio_content_type"
+    t.integer  "audio_file_size"
+    t.datetime "audio_updated_at"
   end
 
   create_table "stories", :force => true do |t|

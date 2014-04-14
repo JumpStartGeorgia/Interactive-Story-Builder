@@ -105,8 +105,14 @@
   <div class="article"> 
     <% columnSectionCount = 0 %>
      <% @story.sections.sort_by{|p| p.position}.each_with_index do |section,s_i| %>
+
+      <%  dataAudio = ''
+          if section.audio.exists?            
+            dataAudio = "data-audio='#{File.basename(section.audio_file_name,'.mp3')}'".html_safe 
+          end
+       %>          
         <% if section.type_id == 1 && section.content.present? %>
-          <div class="section column">
+          <div class="section column" <%= dataAudio.html_safe %>>    
             <% if section.has_marker == 1 %>
                <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
             <% end %>
@@ -127,7 +133,7 @@
           </div>
           <% columnSectionCount+=1 %>
         <% elsif section.type_id == 2 && section.media.present? %>
-          <div class="section video-sequence">
+          <div class="section video-sequence" <%= dataAudio.html_safe %>>
             <% if section.has_marker == 1 %>
                <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
             <% end %>
@@ -422,7 +428,7 @@
       if (isMobile()) return false;
       var _video_assets = "/system/places/video/<%= @story.id %>/",
           _image_assets = "/system/places/images/<%= @story.id %>/original/",
-          _audio_assets = "/system/places/audio/<%= @story.id %>/original/";
+          _audio_assets = "/system/places/audio/<%= @story.id %>/";
 
       var mute = false,
           muteVolume = "volume",

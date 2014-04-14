@@ -37,6 +37,11 @@ $(document).ready(function() {
 		if($(this).val()==1) $('#mediaVideoBox').hide();
 		else  $('#mediaVideoBox').show();
 	});
+	$('.story-viewer').on('change','#sectionType',function(){		
+		if($(this).val()==1) $('#sectionAudioBox').hide();
+		else $('#sectionAudioBox').show();
+	});
+	
 
 
     $('#publishedStoryTable').dataTable({
@@ -174,12 +179,6 @@ $(document).ready(function() {
 	$('#btnDelete').click(function(){
 
 	
-		if(section_id != -1 && item_id == -1 && $('.story-tree ul li.item[id='+ section_id + ']').has('ul').length>0)
-		{
-			popuper("First delete child items","error");
-			return true;
-		}
-
 		if(section_id == -1 ) { popuper("Nothing selected","notice"); return true;}
 
 

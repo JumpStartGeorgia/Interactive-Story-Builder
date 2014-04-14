@@ -121,7 +121,9 @@
 					}		
 				}
 				modal.find('video').each(function(){ this.pause(); })
-				modal.find("iframe").contents().find("video").each(function(){this.pause();})
+				modal.find('audio').each(function(){ this.pause(); })
+				modal.find("iframe").contents().find("video").each(function(){this.pause();})				
+				modal.find("iframe").contents().find("audio").each(function(){this.pause();})				
 				modal.unbind('reveal:resize');
 				modal.unbind('reveal:close');
 			});     

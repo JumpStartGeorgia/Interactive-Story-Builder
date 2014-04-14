@@ -23,7 +23,7 @@ en:
         published_at: Was Published
       section:
         title: Title
-        audio_path: Audio Track
+        audio: Audio Track
         has_marker: With Marker    
         type_id: Type
         sort_order: Sort Order
@@ -95,6 +95,7 @@ en:
       preview: Preview
       preview_image: Preview Image
       preview_video: Preview Video
+      preview_audio: Listen Audio
       publish: Publish
       unpublish: Unpublish
       clone: Clone
@@ -186,6 +187,7 @@ en:
         title: "This text only appears in the left sidebar, it will not show up in the story"
         type: "Content is for a static article (text) and Media is a vertical slideshow of images and/or videos"
         has_marker: "If yes, the story will provided a navigation link to go to this section"
+        audio: "Audio for section (only mp3 format accepted)"
     content:
       content: Article
       placeholder:

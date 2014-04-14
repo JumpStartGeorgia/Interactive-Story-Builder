@@ -188,14 +188,14 @@ class StoriesController < ApplicationController
   
 
   def save_section      
-    logger.debug('asdf')
+    
     @item = Section.find_by_id(params[:section][:id])  
      respond_to do |format|
           if @item.update_attributes(params[:section])
           flash_success_updated(Section.model_name.human,@item.title)       
           format.js {render action: "build_tree", status: :created }                  
         else
-          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Sectoin.model_name.human, err:@item.errors.full_messages.to_sentence)                            
+          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                            
           format.js {render json: nil, status: :ok }
         end
       end    
