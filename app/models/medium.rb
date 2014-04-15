@@ -34,13 +34,9 @@ class Medium < ActiveRecord::Base
 
 before_post_process :transliterate_file_name
 
-
 require 'iconv'
 
-
-
-
-   private
+private
 
 def transliterate_file_name
 

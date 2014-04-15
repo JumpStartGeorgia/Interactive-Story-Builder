@@ -18,6 +18,7 @@
         <a class='btn' data-reveal-id="modalVideo"><%= t('app.buttons.preview_video') %></a>
       <% end %>
       <%= f.input :video, :as => :file , :input_html => { :id => "mediaVideo", accept:"video/mp4", title: t('.title.video')  }, label: false %>
+      <%= f.input :video_loop, :as => :boolean , :default => true, :input_html => { id: "sectionVideoLoop", title: t('.title.video_loop')} %> 
     </div>
       
     <%= f.input :source, :input_html => { :id => "mediaSource", title: t('.title.source')  } %>

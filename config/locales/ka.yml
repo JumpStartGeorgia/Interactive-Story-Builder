@@ -178,6 +178,7 @@ ka:
         video: "Video for slide (only mp4 format accepted)"
         summary: "Summary of image/video, appears below the Caption"
         source: "Image/video source, appears in the bottom-right corner"
+        video_loop: "If checked video will be looping infinitly, else will stop after first loop"
     section:
       content: სტატია
       media: მედია  
