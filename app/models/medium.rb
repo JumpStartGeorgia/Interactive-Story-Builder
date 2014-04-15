@@ -40,10 +40,11 @@ private
 
 def transliterate_file_name
 
-  extension = File.extname(image_file_name).gsub(/^\.+/, '')
-  filename = image_file_name.gsub(/\.#{extension}$/, '')
-  self.image.instance_write(:file_name, "#{StoriesHelper.transliterate(filename)}.#{StoriesHelper.transliterate(extension)}")
-
+  if image_file_name.present?
+    extension = File.extname(image_file_name).gsub(/^\.+/, '')
+    filename = image_file_name.gsub(/\.#{extension}$/, '')
+    self.image.instance_write(:file_name, "#{StoriesHelper.transliterate(filename)}.#{StoriesHelper.transliterate(extension)}")
+  end
   if video_file_name.present?
     extension = File.extname(video_file_name).gsub(/^\.+/, '')
     filename = video_file_name.gsub(/\.#{extension}$/, '')
