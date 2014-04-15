@@ -308,6 +308,7 @@ class StoriesController < ApplicationController
     FileUtils.cp_r "#{Rails.root}/public/media/story", "#{path}"  
     FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{params[:id]}/.", "#{mediaPath}/images"
     FileUtils.cp_r "#{Rails.root}/public/system/places/video/#{params[:id]}/.", "#{mediaPath}/video"  
+    FileUtils.cp_r "#{Rails.root}/public/system/places/audio/#{params[:id]}/.", "#{mediaPath}/audio"  
     File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/clone.html.erb', :layout => false) }  
     send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :x_sendfile=>true, :filename=>"#{filename}.tar.gz"
 
