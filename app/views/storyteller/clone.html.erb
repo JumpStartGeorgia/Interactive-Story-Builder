@@ -56,7 +56,7 @@
               <div class="navigation-right">
                 <a href="#" class="navigation-volume"><div class="navigation-icon"></div></a>
                 <div class="navigation-sections">     
-                 <% @story.sections.select{|t| t.has_marker == 1}.each_with_index do |s,s_i| %>
+                 <% @story.sections.select{|t| t.has_marker? }.each_with_index do |s,s_i| %>
                   <a href="#<%= s_i+1 %>" class="navigation-section" title="<%= s.title %>"><%= s_i+1 %></a>
                  <% end %>          
                 </div>
@@ -107,7 +107,7 @@
                  <% @story.sections.sort_by{|p| p.position}.each_with_index do |section,s_i| %>
                     <% if section.type_id == 1 && section.content.present? %>
                       <div class="section column">
-                        <% if section.has_marker == 1 %>
+                        <% if section.has_marker?%>
                            <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                         <% end %>
                         <% if columnSectionCount == 0 %>
@@ -128,7 +128,7 @@
                       <% columnSectionCount+=1 %>
                     <% elsif section.type_id == 2 && section.media.present? %>
                       <div class="section video-sequence">
-                        <% if section.has_marker == 1 %>
+                        <% if section.has_marker? %>
                            <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                         <% end %>
                         <% section.media.each_with_index do |m,m_i| %>
