@@ -306,9 +306,15 @@ class StoriesController < ApplicationController
     require 'fileutils'
 
     FileUtils.cp_r "#{Rails.root}/public/media/story", "#{path}"  
-    FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{params[:id]}/.", "#{mediaPath}/images"
-    FileUtils.cp_r "#{Rails.root}/public/system/places/video/#{params[:id]}/.", "#{mediaPath}/video"  
-    FileUtils.cp_r "#{Rails.root}/public/system/places/audio/#{params[:id]}/.", "#{mediaPath}/audio"  
+    if File.directory?("#{Rails.root}/public/system/places/images/#{params[:id]}/.")
+        FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{params[:id]}/.", "#{mediaPath}/images"
+    end
+    if File.directory?("#{Rails.root}/public/system/places/video/#{params[:id]}/.")
+      FileUtils.cp_r "#{Rails.root}/public/system/places/video/#{params[:id]}/.", "#{mediaPath}/video"  
+    end
+    if File.directory?("#{Rails.root}/public/system/places/audio/#{params[:id]}/.")
+      FileUtils.cp_r "#{Rails.root}/public/system/places/audio/#{params[:id]}/.", "#{mediaPath}/audio"
+    end
     File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/clone.html.erb', :layout => false) }  
     send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :x_sendfile=>true, :filename=>"#{filename}.tar.gz"
 
@@ -319,7 +325,7 @@ class StoriesController < ApplicationController
       FileUtils.remove_file("#{path}.tar.gz",true)   
     end
   rescue
-     flash[:error] =I18n.t("app.msgs.error_export", obj:"#{Story.model_name.human} \"#{@story.title}\"")                           
+     flash[:error] =I18n.t("app.msgs.error_export", obj:"#{Story.model_name.human} \"#{@story.errors.inspect}\"")                           
      redirect_to stories_url
   end   
 end
