@@ -17,7 +17,7 @@ a:hover {
   border-top: solid 1px #000;
 }
 
-.section {
+.section.column {
   margin-top: 150px;
 }
 
