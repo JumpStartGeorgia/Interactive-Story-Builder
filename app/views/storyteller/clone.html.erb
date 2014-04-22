@@ -605,16 +605,16 @@
                     if(!d3.select(this).classed("column"))
                     {
                       d3.select("body").style("background", fade(opacity));
-                    }                   
-                    d3.select(this).select("audio").property(muteVolume, 1 - opacity);
+                    }
+                    d3.select(this).select("audio").property(muteVolume, 1 - opacity);         
                   }
 
                   function sequencestatechanged() {
                     var sequence = d3.select(this),
-                        audio = sequence.select("audio");
+                        audio = sequence.select("audio");           
                     if (d3.event.state) {
-                      sequence.selectAll("video").each(function() { this.preload = "auto"; });
-                      audio.each(function() { this.play(); });
+                      sequence.selectAll("video").each(function() { this.preload = "auto";});
+                      audio.each(function() { this.play();  });
                     } else {
                       d3.select("body").style("background", null);
                       audio.each(function() { this.pause(); });
