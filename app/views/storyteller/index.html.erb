@@ -51,11 +51,14 @@
   </div>
   <div class="navigation-right">
     <a href="#" class="navigation-volume"><div class="navigation-icon"></div></a>
-    <div class="navigation-sections">     
-     <% @story.sections.select{|t| t.has_marker? == true}.each_with_index do |s,s_i| %>
-      <a href="#<%= s_i+1 %>" class="navigation-section" title="<%= s.title %>"><%= s_i+1 %></a>
-     <% end %>          
-    </div>
+    <% markers = @story.sections.select{|t| t.has_marker? == true} %>
+    <% if markers.length > 1 %>    
+      <div class="navigation-sections">     
+       <% markers.each_with_index do |s,s_i| %>
+        <a href="#<%= s_i+1 %>" class="navigation-section" title="<%= s.title %>"><%= s_i+1 %></a>
+       <% end %>          
+      </div>
+    <% end %>
   </div>
 </div>
 
@@ -521,7 +524,7 @@
           .style("top", function(d) { return d.first || d.last ? null : fixTop + "px"; })
           .style("display", function(d) { return d.first || d.last ? null : "none"; });
 
-      containerFixed.append("div")
+      containerFixed.select(function(d, i) { return d.sequence.length > 1 ? this : null; }).append("div")
           .attr("class", "video-sequence-indicator")
           .style("margin-top", function(d) { return -d.sequence.length * 1.4 / 2 + "em"; })
           .text(function(d, i) { return d3.range(d.sequence.length).map(function(j) { return i === j ? "●" : "○"; }).join("\n"); });
@@ -664,10 +667,10 @@
         var opacity = Math.max(0, Math.min(1, d3.event.rect.bottom < fadeBottom ? (fadeBottom - d3.event.rect.bottom) / fadeTop
             : d3.event.rect.top < fixTop + fadeTop ? (d3.event.rect.top - fixTop) / fadeTop
             : 1));
-        if(!d3.select(this).classed("column"))
-        {
+       // if(!d3.select(this).classed("column"))
+       // {
           d3.select("body").style("background", fade(opacity));
-        }
+        //}
         d3.select(this).select("audio").property(muteVolume, 1 - opacity);         
       }
 

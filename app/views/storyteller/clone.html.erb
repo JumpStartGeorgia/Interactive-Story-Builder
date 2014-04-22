@@ -459,7 +459,7 @@
                       .style("top", function(d) { return d.first || d.last ? null : fixTop + "px"; })
                       .style("display", function(d) { return d.first || d.last ? null : "none"; });
 
-                  containerFixed.append("div")
+                  containerFixed.containerFixed.select(function(d, i) { return d.sequence.length > 1 ? this : null; }).append("div")
                       .attr("class", "video-sequence-indicator")
                       .style("margin-top", function(d) { return -d.sequence.length * 1.4 / 2 + "em"; })
                       .text(function(d, i) { return d3.range(d.sequence.length).map(function(j) { return i === j ? "●" : "○"; }).join("\n"); });
