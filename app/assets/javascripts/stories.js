@@ -37,6 +37,8 @@ $(document).ready(function() {
 		if($(this).val()==1) $('#mediaVideoBox').hide();
 		else  $('#mediaVideoBox').show();
 	});
+
+	
 	// $('.story-viewer').on('change','#sectionType',function(){		
 	// 	if($(this).val()==1) $('#sectionAudioBox').hide();
 	// 	else $('#sectionAudioBox').show();

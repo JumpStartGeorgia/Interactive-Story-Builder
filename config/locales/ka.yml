@@ -101,6 +101,7 @@ ka:
       unpublish: Unpublish
       clone: Clone
       export: Export
+      scroll: დასკროლე
     common:
       app_name: ინტერაქტიული ისტორიის შემქმნელი
       added_on: "დამატებულია: %{date}" 

@@ -100,6 +100,7 @@ en:
       unpublish: Unpublish
       clone: Clone
       export: Export
+      scroll: Scroll
     common:
       app_name: Interactive Story Builder
       added_on: "Added on: %{date}" 
