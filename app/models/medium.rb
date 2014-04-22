@@ -16,7 +16,7 @@ class Medium < ActiveRecord::Base
   validates :section_id, :presence => true
   validates :media_type, :presence => true, :inclusion => { :in => TYPE.values }  
   validates :title, :presence => true , length: { maximum: 255 }  
-  validates :caption, :presence => true, length: { maximum: 255 }  
+  validates :caption, length: { maximum: 255 }  
     
 	validates_attachment :image, :presence => true,
   	:content_type => { :content_type => ["image/jpeg", "image/png"] }#, "image/gif",

@@ -100,7 +100,7 @@ $(document).ready(function() {
 	// });
  $(document).on('click', '#btnPreview', function(e){
 		e.preventDefault();		
-		$('#previewStory .modal-data').html('<iframe height="768px" width="1366px" src="'+ $(this).data('link')+'"></iframe>');	 			
+		$('#previewStory .modal-data').html('<iframe height="100%" width="100%" src="'+ $(this).data('link')+'"></iframe>');	 			
 		$('#previewStory').reveal();
 		return true;	
   });
