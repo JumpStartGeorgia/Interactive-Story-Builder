@@ -10,7 +10,7 @@
 
   <%= f.input :has_marker, :as => :boolean , :input_html => { id: "sectionHasMarker", title: t('.title.has_marker')} %> 
        
-    <div id='sectionAudioBox' <%= @item.type_id == Section::TYPE[:content] ? "style=display:none;" : "" %> >
+    <div id='sectionAudioBox'  >     
       <label class=" control-label" for="modalAudio"><%= t('activerecord.attributes.section.audio') %></label>
       <% if @item.audio.exists? %>
           <audio controls>            
