@@ -191,15 +191,7 @@
         
      <% end %>      
     <!--
-
-
-
-
-
-       <div class="section video-sequence" data-audio="below-deck">
-      <div class="video" data-video="under-flash-light">
-
-       <div class="image image--diptych">
+      <div class="image image--diptych">
         <img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/696/island-pag-asa.jpg">
         <img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/696/kids.jpg">
         <div class="caption">About 120 people live at any one time on Pag-asa, including civilians.</div>
@@ -571,8 +563,9 @@
 
       function fixscrolled(d) {
         if (d.first || d.last) {
-          var fixed = (d.first && d3.event.rect.top < fixTop)
-              || (d.last && d3.event.rect.bottom >= fixTop + fixHeight);
+          //!(d.first && d.last) && () for bug when media section has only one media
+          var fixed = !(d.first && d.last) && ((d.first && d3.event.rect.top < fixTop)
+              || (d.last && d3.event.rect.bottom >= fixTop + fixHeight));
           d3.select(this.querySelector(".video-container"))
               .style("z-index", fixed ? 2 : 1)
               .style("position", fixed ? "fixed" : "absolute")
@@ -667,6 +660,8 @@
         var opacity = Math.max(0, Math.min(1, d3.event.rect.bottom < fadeBottom ? (fadeBottom - d3.event.rect.bottom) / fadeTop
             : d3.event.rect.top < fixTop + fadeTop ? (d3.event.rect.top - fixTop) / fadeTop
             : 1));
+
+        // bug for column background change deny #if(){ data }
         if(!d3.select(this).classed("column"))
         {
           d3.select("body").style("background", fade(opacity));
