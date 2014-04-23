@@ -1,7 +1,9 @@
 class RootController < ApplicationController
 
   def index    
-    @stories = Story.where(:published => 1)
+    @stories = Story.is_published
+
+    @about_text = 'Story builder allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world.'
 
     respond_to do |format|
       format.html  #index.html.erb

@@ -1,5 +1,12 @@
+<% title  t('.title') %>
 
-<% title  t('helpers.titles.story_list_published') %>
+<% if @about_text %>
+  <div id="about">
+    <%= simple_format(@about_text) %>
+  </div>
+  <hr />
+<% end %>
+
 
 <%= link_to t('helpers.titles.story_list') , stories_path , class:"btn" %>
 <div>&nbsp;</div>
