@@ -8,9 +8,9 @@ class Story < ActiveRecord::Base
 	attr_accessor :was_publishing
 
  	after_find :publishing_done?
-  	before_save :publish_date
+	before_save :publish_date
 	 
-
+  scope :is_published, where(:published => true)
   
 	amoeba do
 		enable

@@ -99,6 +99,12 @@ class StoriesController < ApplicationController
  
 
 
+  def preview
+  	@story = Story.fullsection(params[:id])    
+    respond_to do |format|     
+      format.html { render 'storyteller/index', layout: "storyteller" }
+    end
+  end
 
 
   def get_data

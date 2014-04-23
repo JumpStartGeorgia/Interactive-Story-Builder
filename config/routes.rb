@@ -20,6 +20,8 @@ BootstrapStarter::Application.routes.draw do
 		resources :stories do				
 			member do
 
+				get 'preview'
+
 				get 'get_data'
 
 				put 'content', to: 'stories#save_content'
