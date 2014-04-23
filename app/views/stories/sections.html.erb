@@ -12,7 +12,7 @@
         <button type="button" id='btnUp' class="btn btn-info  btn-small" title="<%= t('app.buttons.up') %>"> <i class="icon-arrow-up icon-white" ></i> </button>
         <button type="button" id='btnDown' class="btn btn-info  btn-small" title="<%= t('app.buttons.down') %>"> <i class="icon-arrow-down icon-white" ></i></button>
         <button type="button"  id='btnPublish' class="btn btn-warning btn-small<%= @story.published ? '' : ' disabled'%>" title="<%= @story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>" data-link='<%= publish_story_path(@story) %>'> <i class="icon-globe icon-white" ></i></button>      
-         <button type="button"  id='btnPreview' class="btn btn-success btn-small" title="<%= t('app.buttons.preview') %>" data-link='<%= storyteller_show_path(@story) %>'> <i class="icon-eye-open icon-white" ></i></button>            
+         <button type="button"  id='btnPreview' class="btn btn-success btn-small" title="<%= t('app.buttons.preview') %>" data-link='<%=  preview_story_path(@story) %>'> <i class="icon-eye-open icon-white" ></i></button>            
       </div>
     </div>
   </div>

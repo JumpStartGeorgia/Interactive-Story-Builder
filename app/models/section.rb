@@ -23,7 +23,6 @@ class Section < ActiveRecord::Base
   validates :story_id, :presence => true
   validates :type_id, :presence => true, :inclusion => { :in => TYPE.values }  
   validates :title, :presence => true, length: { maximum: 255, :message => 'Title max length is 255 symbols' } 	
-  validates :has_marker, :presence => true
 
 	def to_json(options={})
      options[:except] ||= [:created_at, :updated_at]

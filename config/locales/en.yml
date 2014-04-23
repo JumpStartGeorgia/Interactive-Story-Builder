@@ -17,6 +17,7 @@ en:
       story:
         title: Story Name
         user_id: Story Editor
+        user_ids: Editors
         author: Author(s)
         media_author: Photo and Video Author(s)  
         published: Publish?
@@ -67,8 +68,7 @@ en:
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
-      story_list: List of your stories
-      story_list_published: List of published stories
+      story_list: View Your Stories
   app:
     language:
       en: English
@@ -138,6 +138,9 @@ en:
       sign_out: Sign Out
       js_link_title: JumpStart Georgia - We communicate data better!
       js_link_text: Built by
+  root:
+    index:
+      title: Story Builder - creating the next generation of stories
   admin:
     index:
       title: Administration Section
@@ -198,7 +201,7 @@ en:
         sub_caption: Sub Caption (can be ommited)
         content: 'Article text, can be any styling html tag with styles'
       title:
-        title: Title is only for section it doesn't affect story layout
+        title: "Title is only for section it doesn't affect story layout"
         caption: Caption of article will appear at the top of section (styled like header)
         sub_caption: Subcaption of article will appear below the caption (styled like sub header of caption)
         content: Text of the article (any custom css styling or html tag can be used for article content)

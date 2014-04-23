@@ -1,4 +1,7 @@
 class Story < ActiveRecord::Base	
+	
+	scope :is_published, where(:published => true)
+
 	has_many :sections, :order => 'position', dependent: :destroy
 	has_and_belongs_to_many :users
 	belongs_to :user
@@ -8,9 +11,9 @@ class Story < ActiveRecord::Base
 	attr_accessor :was_publishing
 
  	after_find :publishing_done?
-  	before_save :publish_date
+	before_save :publish_date
 	 
- 	
+
   	has_attached_file :thumbnail,
 	  :url => "/system/places/thumbnail/:id/:style/:basename.:extension",
 	  :styles => {:"250x250" => {:geometry => "250x250"}},
@@ -21,11 +24,23 @@ class Story < ActiveRecord::Base
   validates_attachment :thumbnail,
     :content_type => { :content_type => ["image/jpeg", "image/png"] }
   	  	
+
+  
+
 	amoeba do
 		enable
 		clone [:sections]
 	end
 
+  def self.can_edit?(story_id, user_id)
+    x = select('id').where(:id => story_id).editable_user(user_id)  
+    return x.present?
+  end
+
+  def self.editable_user(user_id)
+    where("stories.user_id = :id or stories.id in ( select story_id from stories_users t where t.user_id = :id )",
+      :id => user_id)
+  end
 
 	def self.fullsection(story_id)
 		includes(sections: [:media,:content])

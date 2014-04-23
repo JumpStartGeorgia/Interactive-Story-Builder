@@ -68,8 +68,7 @@ ka:
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
-      story_list: "თქვენი ისტორიების"          
-      story_list_published: გამოქვეყნებული ისტორიები
+      story_list: View Your Stories
   app:
     language:
       en: English
@@ -152,6 +151,9 @@ ka:
         title: ახალი მომხმარებელი
       show:
         title: მომხმარებლის დეტალები
+  root:
+    index:
+      title: Story Builder - creating the next generation of stories
   stories:
     form:
       title:
@@ -199,7 +201,7 @@ ka:
         sub_caption: Sub Caption (can be ommited)
         content: 'Article text, can be any styling html tag with styles'
       title:
-        title: Title is only for section it doesn't affect story layout
+        title: "Title is only for section it doesn't affect story layout"
         caption: Caption of article will appear at the top of section (styled like header)
         sub_caption: Subcaption of article will appear below the caption (styled like sub header of caption)
         content: Text of the article (any custom css styling or html tag can be used for article content)

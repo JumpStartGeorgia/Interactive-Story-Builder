@@ -39,12 +39,10 @@
           </a>
           <%= link_to(t('app.common.app_name'), root_path(:locale => I18n.locale),:class=>"brand font")%>
           <div class="container nav-collapse">
-            <ul class="nav">
-              <li><%= link_to t('helpers.titles.story_list') , stories_path  %></li>              
-            </ul>			
-
-
 	          <ul class="nav pull-right">
+              <li>
+                <%= link_to t('helpers.titles.story_list'), stories_path  %>
+              </li>              
 		          <% if user_signed_in? %>
 	          		    <li>	          		    
 				        	<%= link_to image_tag(current_user.avatar,:size=>"28x28"), "http://facebook.com/" + current_user.nickname, :style => "margin:0px;padding:5px 3px 3px 0px;" %>				
@@ -56,9 +54,14 @@
 				                <b class="caret"></b>
 				          </a>
 				          <ul class="dropdown-menu">
-						        <li>
-				 		         <%= link_to t('.admin'), admin_path %>
-										</li>
+                    <li>
+                      <%= link_to t('helpers.titles.story_list'), stories_path  %>
+                    </li>              
+                    <% if current_user.role? User::ROLES[:admin] %>
+                      <li>
+                       <%= link_to t('.admin'), admin_path %>
+                      </li>
+                    <% end %>     
 						        <li>
 				 		         <%= link_to t('.sign_out'), destroy_user_session_path, :method => :delete %>
 										</li>
