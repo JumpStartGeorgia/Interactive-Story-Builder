@@ -1021,9 +1021,9 @@ a:hover {
 
 .navigation-headline {
   float: left;
-  letter-spacing: .1em;
+  /*letter-spacing: .1em;
   margin-top: 10px;
-  text-transform: uppercase;
+  text-transform: uppercase;*/
 }
 
 .navigation-headline:before {
