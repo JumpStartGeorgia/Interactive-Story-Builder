@@ -183,7 +183,7 @@ en:
         video_loop: "If checked video will be looping infinitly, else will stop after first loop"
     section:
       content: Content
-      media: Media      
+      media: Full-Screen Media      
       'yes': 'Yes'
       'no': 'No'
       placeholder:

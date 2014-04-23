@@ -184,7 +184,7 @@ ka:
         video_loop: "If checked video will be looping infinitly, else will stop after first loop"
     section:
       content: სტატია
-      media: მედია  
+      media: Full-Screen Media  
       'yes': 'კი'
       'no': 'არა'
       placeholder:
