@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140415061343) do
+ActiveRecord::Schema.define(:version => 20140423104359) do
 
   create_table "contents", :force => true do |t|
     t.integer  "section_id"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20140415061343) do
     t.integer  "video_file_size"
     t.datetime "video_updated_at"
     t.integer  "position"
-    t.boolean  "video_loop", :default => true
+    t.boolean  "video_loop",         :default => false
   end
 
   create_table "sections", :force => true do |t|
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20140415061343) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "has_marker"
+    t.boolean  "has_marker",         :default => true
     t.string   "audio_file_name"
     t.string   "audio_content_type"
     t.integer  "audio_file_size"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(:version => 20140415061343) do
     t.integer  "user_id"
     t.string   "author"
     t.string   "media_author"
-    t.boolean  "published"
+    t.boolean  "published",    :default => false
     t.datetime "published_at"
     t.float    "latitude",     :limit => 10
     t.float    "longitude",    :limit => 10

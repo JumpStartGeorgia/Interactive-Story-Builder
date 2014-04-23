@@ -17,6 +17,15 @@ class Story < ActiveRecord::Base
 		clone [:sections]
 	end
 
+  def self.can_edit?(story_id, user_id)
+    x = select('id').where(:id => story_id).editable_user(user_id)  
+    return x.present?
+  end
+
+  def self.editable_user(user_id)
+    where("stories.user_id = :id or stories.id in ( select story_id from stories_users t where t.user_id = :id )",
+      :id => user_id)
+  end
 
 	def self.fullsection(story_id)
 		includes(sections: [:media,:content])

@@ -1,11 +1,15 @@
 class StoriesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter(:except => [:index]) do |controller_instance|
+    controller_instance.send(:can_edit_story?, params[:id])
+  end
+  
   # GET /stories
   # GET /stories.json
   def index
     #@usemap = true
     #@stories = Story.includes(:users).where("stories.user_id = :id or users.id = :id",:id => current_user.id) 
-    @stories = Story.where("stories.user_id = :id or stories.id in ( select story_id from stories_users t where t.user_id = :id )",:id => current_user.id) 
+    @stories = Story.editable_user(current_user.id) 
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render json: @stories }
@@ -366,3 +370,11 @@ end
   end
   #logger.debug("---------------------------------------------------#{params}")
 end       
+
+
+
+private
+
+  def can_edit_story?(story_id)
+    redirect_to root_path, :notice => t('app.msgs.not_authorized') if !Story.can_edit?(story_id, current_user.id)
+  end
