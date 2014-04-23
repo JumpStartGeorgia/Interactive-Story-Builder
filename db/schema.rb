@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140415061343) do
+ActiveRecord::Schema.define(:version => 20140423072823) do
+
+  create_table "assets", :force => true do |t|
+    t.integer  "section_id"
+    t.integer  "section_type"
+    t.string   "caption",            :limit => 45
+    t.string   "source",             :limit => 45
+    t.integer  "option"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type", :limit => 45
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.integer  "position"
+  end
 
   create_table "contents", :force => true do |t|
     t.integer  "section_id"
@@ -43,7 +56,7 @@ ActiveRecord::Schema.define(:version => 20140415061343) do
     t.integer  "video_file_size"
     t.datetime "video_updated_at"
     t.integer  "position"
-    t.boolean  "video_loop", :default => true
+    t.boolean  "video_loop",         :default => true
   end
 
   create_table "sections", :force => true do |t|
@@ -67,10 +80,15 @@ ActiveRecord::Schema.define(:version => 20140415061343) do
     t.string   "media_author"
     t.boolean  "published"
     t.datetime "published_at"
-    t.float    "latitude",     :limit => 10
-    t.float    "longitude",    :limit => 10
+    t.float    "latitude",               :limit => 10
+    t.float    "longitude",              :limit => 10
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "thumbnail"
+    t.string   "thumbnail_file_name"
+    t.string   "thumbnail_content_type"
+    t.integer  "thumbnail_file_size"
+    t.datetime "thumbnail_updated_at"
   end
 
   create_table "stories_users", :force => true do |t|

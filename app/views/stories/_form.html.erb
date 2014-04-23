@@ -1,11 +1,16 @@
-<%= semantic_form_for @story do |f| %>
+
+<%= semantic_form_for(@story, url: story_path(id:params[:id],:format => :js), :html => {:multipart => true, :id => "storyForm"} ,remote: true) do |f| %>
+<%= error_messages_for f.object %>
+
+
   <%= f.inputs do %>
     <%= f.input :title, :input_html => { id: "storyTitle", title: t('.title.title'), placeholder: t('.placeholder.title')  }   %>
-  
+
     <%= f.input :user_id , :as => :hidden %>
     <%= f.input :author, :input_html => { id: "storyAuthor", title: t('.title.author'), placeholder: t('.placeholder.author')  } %>
     <%= f.input :media_author, :input_html => { id: "storyMediaAuthor", title: t('.title.media_author'), placeholder: t('.placeholder.media_author')  }  %>
-    <%= f.input :published, :as => :boolean , :input_html => { id: "storyPublished", title: t('.title.published')} %> 
+    <%= f.input :published, :as => :boolean , :input_html => { id: "storyPublished", title: t('.title.published')} %>   
+    <%= f.input :thumbnail, :as => :file , :input_html => { :id => "storyThumbnail", accept:"image/jpeg,image/png" } %>
 
     <div class="string control-group required stringish" id="story_user_input">
       <label class=" control-label"><%= t('activerecord.attributes.story.user_id') %></label>

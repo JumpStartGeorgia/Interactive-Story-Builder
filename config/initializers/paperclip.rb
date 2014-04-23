@@ -5,6 +5,7 @@ Paperclip.interpolates('story_id') do |attachment, style|
 end
 Paperclip.interpolates('story_id2') do |attachment, style|
   attachment.instance.story_id
+
 end
 
 

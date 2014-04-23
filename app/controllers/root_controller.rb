@@ -1,7 +1,7 @@
 class RootController < ApplicationController
 
   def index    
-    @stories = Story.where(:published => 1)
+    @stories = Story.where(:published => 1).order("published_at desc").limit(10)
 
     respond_to do |format|
       format.html  #index.html.erb
