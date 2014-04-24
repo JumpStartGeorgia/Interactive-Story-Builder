@@ -1,5 +1,5 @@
 body {
-  font: 17px/28px Georgia;
+  font: 17px/18px Georgia;
   margin: 0;
   padding: 0;
 }
@@ -53,17 +53,18 @@ a:hover {
 
 .scroll-prompt {
   position: absolute;
-  bottom: 20px;
+  bottom: 80px;
   line-height: 20px;
   text-align: center;
   color: white;
-  font-size: 10px;
-  opacity: 0.8;
-  font-weight: normal;
+  font-size: 14px;
+  opacity: 1;
+  font-weight: bold;
   text-transform: uppercase;
   z-index: 3;
   margin-left: 7%;
   padding-left: 112px;
+  text-shadow: 0 1px 2px #000;
 }
 
 .scroll-prompt svg {
@@ -300,14 +301,13 @@ a:hover {
 
 .video-caption--head .video-headline {
   position: absolute;
-  top: 10%;
-  color: #000;
+  top: 20%;
+  color: #fff;
   left: 7%;
-  border-bottom: solid 2px black;
-  text-shadow: none;
+  /*border-bottom: solid 2px black;  */
   font-size: 50px;
   line-height: 55px;
-  padding-bottom: 35px;
+  /*padding-bottom: 35px;*/
 }
 
 .video-caption--head .video-summary {
@@ -976,10 +976,18 @@ a:hover {
   height: 39px;
   background: #000;
   z-index: 20;
-}
 
+}
+.navigation-app
+{
+  color: #fff;
+  vertical-align: middle;
+  font-size: 17px;
+  line-height: 39px;
+}
 .navigation a {
   color: #fff;
+  text-decoration:none;
 }
 
 .ios .navigation {
@@ -1008,7 +1016,7 @@ a:hover {
   float: left;
   height: 20px;
   border-right: solid 1px #444;
-  margin: 9px 15px;
+  margin: 10px 15px;
 }
 
 .navigation-logo {
@@ -1053,6 +1061,8 @@ a:hover {
 .navigation-section--active,
 .navigation-volume:hover {
   opacity: 1;
+  cursor:hand;
+  text-decoration:none;
 }
 
 .navigation-marker {
@@ -1141,13 +1151,44 @@ a:hover {
 
 
 .footer-section {
-  background: #000;
-  margin-top: 0;
-  padding: 7px 0;
-  text-align: center;
-  width: 100%;
+  width: 100%;  
+  min-height: 40px !important;
+  height:40px;
+  background: #000;  
+  border-color: #252525;    
+  font-size: 10pt;
+  color: #999999;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);  
+  text-align: left;  
 }
-
+.footer-section  > div
+{
+  height:40px;
+  line-height:40px;
+  vertical-align: middle;
+  color: #999999;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.footer-section div#left {
+    margin: 0px !important;
+    float: left;
+    width: 30%;
+    padding-left:20px;
+}
+.footer-section #middle {
+margin: 0;
+font-size: 12px;
+width: 30%;
+text-align: center;
+float: left;
+}
+.footer-section div#right {
+margin: 0 !important;
+float: right;
+width: 30%;
+text-align: right;
+padding-right:20px;
+}
 .footer-section a {
   border-right: 1px solid #ccc;
   color: #aaa;
@@ -1165,12 +1206,18 @@ a:hover {
 }
 
 .footer-section a:hover {
-  text-dceoration: underline;
+  text-decoration: none;
+  cursor:hand;
+  color: #ffffff;
 }
 
 .footer-section ~ * {
   position: absolute;
   top: -1000px;
+}
+
+.footer-section div#right img {
+  vertical-align: middle;
 }
 .column-caption
 {

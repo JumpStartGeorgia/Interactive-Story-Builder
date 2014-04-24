@@ -8,21 +8,15 @@
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-    <![endif]-->
-    <%= stylesheet_link_tag "application", :media => "all" %>
+    <![endif]-->    
+    <%= stylesheet_link_tag "application", :media => "all" %>   
     <%= stylesheet_link_tag "/css/storyteller", :media => "all" %>   
     <%= favicon_link_tag '/favicon.ico', :rel => 'shortcut icon' %>
   </head>
   <body>
    <%= yield :navigation %>
-
-		<div id="_wrapper">
-		  <div class="_container">
-		    <div class="_content">		     
-          <%= yield %>
-        </div>
-      </div>
+		<div id='storyTeller' style='top:50px;'> 
+          <%= yield %>  
     </div>
-     
   </body>
 </html>

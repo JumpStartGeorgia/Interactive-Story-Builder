@@ -152,23 +152,33 @@ div#form-ka {
 
 /* footer */
 footer {
-	margin-top: -54px; /* negative value of footer height */
-	min-height: 41px !important;
-	background: #D4D4D4 !important;
+	margin-top: -40px; /* negative value of footer height */
+	min-height: 40px !important;
+	
+	background-image: linear-gradient(to bottom, #222222, #111111);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
+	border-color: #252525;
 	padding: 0 20px;
-	padding-top: 13px;
+	/*padding-top: 13px;*/
 	font-size: 10pt;
+	color: #999999;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-
+footer > div
+{
+	height:40px;
+	line-height:40px;
+	vertical-align: middle;
+}
 footer div#left {
 	margin: 0 !important;
 	float: left;
 	width: 30%;
-	margin-top: 20px;
-  padding-top: 3px;
+	margin-top: 20px;  	
 }
 footer a:hover {
-	background-color: #D4D4D4;
+	color: #ffffff;
 }
 
 footer #middle {
@@ -211,9 +221,12 @@ footer div#right #js_logo{
 footer div#right #js_logo img {
 	vertical-align: middle;
 }
-
+footer div#right img {
+	vertical-align: middle;
+}
 footer, footer ul li, footer div#right ul li {
-  color: #4f4f4f;
+ 	color: #999999;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
 

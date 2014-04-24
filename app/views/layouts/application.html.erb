@@ -29,16 +29,11 @@
   </head>
   <body>
 
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <%= link_to(t('app.common.app_name'), root_path(:locale => I18n.locale),:class=>"brand font")%>
-          <div class="container nav-collapse">
+        <div class="container-fluid">   
+          <%= link_to(t('app.common.app_name'), root_path(:locale => I18n.locale), :class=>"brand font")%>
+        
 	          <ul class="nav pull-right">
               <li>
                 <%= link_to t('helpers.titles.story_list'), stories_path  %>
@@ -77,8 +72,12 @@
 									<li><%= link_to t("app.language.#{locale}"), params.merge(:locale => locale) %></li>
 								<% end %>
 							<% end %>
+							<li>
+                <%= link_to image_tag("github.png",:size=>"28x28",:style=>"vertical-align:middle;"), "https://github.com/JumpStartGeorgia/Interactive-Story-Builder.git", :style => "height:40px;line-height:40px;margin:0px;padding:0px;" %>
+              </li>
 	          </ul>
-          </div><!--/.nav-collapse -->
+
+        
         </div>
       </div>
     </div>
@@ -117,14 +116,12 @@
     <div class="push"><!--//--></div>
 
     <footer class="clear">
-			<div id="left">&copy; <%= Time.now.year %></div>
-		  <div id="middle">
-				&nbsp;
-			</div>
-			<div id="right">
-				<%= link_to(image_tag("jumpstart-logo.png"), "http://www.jumpstart.ge", :target => "_blank",
-						:title => t(".js_link_title")	) %>
-			</div>
+		<div id="left">&copy; <%= Time.now.year %></div>
+	  	<div id="middle">&nbsp;</div>
+		<div id="right">
+			<%= link_to(image_tag("jumpstart-logo.png"), "http://www.jumpstart.ge", :target => "_blank",
+					:title => t(".js_link_title")	) %>
+		</div>
     </footer>
 
     <!-- Javascripts

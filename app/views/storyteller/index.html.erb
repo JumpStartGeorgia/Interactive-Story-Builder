@@ -1,12 +1,13 @@
+ 
+<% title  @story.title %>
  <% content_for :navigation do %>
   <div class="navbar navbar-fixed-top navbar-inverse">
     <div class="navbar-inner">
-      <div class="container">
-
-        <%= link_to(t('app.common.app_name'), root_path(:locale => I18n.locale),:class=>"brand font")%>
-       
-        <div class="container nav-collapse">
-          <ul class="nav pull-right">
+      <div class="container-fluid">   
+        <%= link_to(t('app.common.app_name'), root_path(:locale => I18n.locale), :class=>"brand font")%>          
+         <%= link_to(@story.title, root_path(:locale => I18n.locale), :class=>"brand font navigation-headline")%>  
+        <div class="container-fluid nav-collapse">
+          <ul class="nav pull-right" >
             <li>
               <%= link_to t('helpers.titles.story_list'), stories_path  %>
             </li>              
@@ -44,9 +45,9 @@
                 <li><%= link_to t("app.language.#{locale}"), params.merge(:locale => locale) %></li>
               <% end %>
             <% end %>
-            <li>
-               <a href="#" class="navigation-volume"><div class="navigation-icon"></div></a>
-             </li>
+            <li class="divider-vertical"></li>
+            
+            <li><a href="#" class="navigation-volume"><div class="navigation-icon"></div></a></li>             
              <li>
               <% markers = @story.sections.select{|t| t.has_marker? == true} %>
               <% if markers.length > 1 %>    
@@ -56,20 +57,14 @@
                  <% end %>          
                 </div>
               <% end %>
-            </li>
+            </li>            
           </ul>
-        </div><!--/.nav-collapse -->
-
-             
-      
-   
+        </div><!--/.nav-collapse -->                     
       </div>
     </div>
   </div>  
 <% end %>
 
-<div id='storyTeller' style='top:50px;'>
- 
  <!-- -----------------------------------------------------------------------
   *  if device is portable we are adding ios class to html tag
   *  so new classes with .ios .someclass path are used instead of basic ones
@@ -82,10 +77,6 @@
     var isPhone = function() {    
       return isMobile() && window.innerWidth < 768;
     }
-
-
-
-
     if (isMobile()) {
 
       document.documentElement.className = document.documentElement.className + " ios";
@@ -161,7 +152,6 @@
   <div class="article"> 
     <% columnSectionCount = 0 %>
      <% @story.sections.sort_by{|p| p.position}.each_with_index do |section,s_i| %>
-
       <%  dataAudio = ''
           if section.audio.exists?            
             dataAudio = "data-audio='#{File.basename(section.audio_file_name,'.mp3')}'".html_safe 
@@ -213,19 +203,23 @@
                     <% end %>                       
                   </div>
                   <% if m.caption.present? %>
-
                    <% if m.caption.length < 160 %>
                         <% caption_class = alignment.key(m.caption_align) %>
                     <% else %>
                      <% caption_class = 'long' %>
                     <% end %>
+                  <% end %>
+
                     <% if s_i == 0 && m_i == 0 %>
                       <% caption_class = 'head' %>              
                     <% end %> 
-                    <div class="video-caption video-caption--<%= caption_class %>">
+
+                  <div class="video-caption video-caption--<%= caption_class %>">
                     <% if caption_class == 'head'  %>                      
                           <div class="video-headline headline"> <%= @story.title %> </div>
+                          <% if m.caption.present? %>
                           <div class="video-summary"> <%= m.caption %> </div>
+                          <% end %> 
                           <div class="scroll-prompt">
                             <%= t("app.buttons.scroll")%> <br>
                             <svg width="18" height="8">
@@ -235,14 +229,24 @@
                     <% else %>
                       <%= m.caption  %>
                     <% end %>  
-                  </div>      
-                    <% end %>                              
+                  </div>                       
               </div>        
             <% end %>        
           </div>
-        <% end %>        
-        
-     <% end %>      
+        <% end %>                
+     <% end %>   
+     
+
+    <div class="section footer-section">
+       <div id="left">&copy; <%= Time.now.year %></div>
+          <div id="middle">&nbsp;</div>
+        <div id="right">
+          <%= link_to(image_tag("jumpstart-logo.png"), "http://www.jumpstart.ge", :target => "_blank",
+              :title => t("layouts.application.js_link_title") ) %>
+        </div>
+    </div>   
+  </div>
+</div>   
     <!--
       <div class="image image--diptych">
         <img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/696/island-pag-asa.jpg">
@@ -254,8 +258,6 @@
         <div class="caption">Chinese Coast Guard cutters patrol within sight of the Sierra Madre.</div>
       </div>     
      -->
-  </div>
-</div>
 
   <!-- -----------------------------------------------------------------------
   *  data hash for mobile devices , they use different images   
@@ -704,8 +706,7 @@
                 if (!this.paused) this.pause();
                 if (this.currentTime) this.currentTime = 0;
               }
-            });
-
+            });                 
         if (d.first && d.sequence.first && !d3.event.state) headline.style("opacity", null);
       }
 
@@ -744,17 +745,12 @@
 
       });</script>
 
-<div class="section footer-section">
-  <a href="http://www.jumpstart.ge">Contact Us</a>
-</div>
 <!--[if gt IE 8]><!-->
 
   <!-- -----------------------------------------------------------------------
   *  D3 library
   *----------------------------------------------------------------------- -->  
-	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>
-  
-  <%#= javascript_include_tag 'd3' %>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>  
 
 <script>
 
@@ -835,4 +831,3 @@
 })();</script>
 
 <!--<![endif]-->
- </div> 
