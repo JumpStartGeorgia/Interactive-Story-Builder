@@ -1,0 +1,8 @@
+$("#storyViewer").hide().html("<div id='storyForm'><%= escape_javascript( render :partial => 'form') %></div>").fadeIn('slow');
+
+<% imageTemp = '' %>
+<% if @story.asset.asset.exists? %>
+  <%  imageTemp = "<img  width='100%' src='#{@story.asset.asset.url}'/>" %>
+<% end %>
+
+$("#modalImage .modal-data").html("<%= imageTemp.html_safe %>");

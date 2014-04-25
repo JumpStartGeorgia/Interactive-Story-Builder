@@ -17,7 +17,8 @@ BootstrapStarter::Application.routes.draw do
 		#get 'tinymce_assets' ,to: 'tinymceassets#index'
 		post '/tinymce_assets', to: 'imageuploader#create', as: 'imageuploader'
 
-		resources :stories do				
+		resources :stories do	
+
 			member do
 
 				get 'reviewer_key'
@@ -43,10 +44,12 @@ BootstrapStarter::Application.routes.draw do
     			get 'publish', to: 'stories#publish'    		
     			get 'clone', to: 'stories#clone'    
     			get 'export', to: 'stories#export' 		
-    
+
+    			get 'test'    			
   			end			
 		end
-		
+		#match '/stories/:id/edit' => 'stories#get_story'
+
 		match "storyteller/:id" => "storyteller#index", as: 'storyteller_show'
 
 		match "review/:id" => "review#index", as: 'review'

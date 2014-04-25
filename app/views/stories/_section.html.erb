@@ -1,9 +1,7 @@
 <h2>
   <%= t('.form_title') %>
 </h2>
-
 <%= semantic_form_for(@item, url: section_story_path(id:params[:id],:format => :js), :html => {:multipart => true, :id => "sectionForm"} ,remote: true) do |f| %>
-<%= error_messages_for f.object %>
   <%= f.inputs do %>
     <%= f.input :title, :placeholder => t('.placeholder.title'), hint: t('.hint.title'), :input_html => { :id => "sectionTitle" } %>
      
@@ -12,17 +10,24 @@
 
   <%= f.input :has_marker, :as => :boolean, :hint => t('.hint.has_marker'), :input_html => { id: "sectionHasMarker"} %> 
        
+
+
+   <%= f.fields_for :asset, @story.asset do |as| %>
+
     <div id='sectionAudioBox'  >     
       <label class=" control-label" for="modalAudio"><%= t('activerecord.attributes.section.audio') %></label>
-      <% if @item.audio.exists? %>
+      <% if @item.asset.asset.exists? %>
           <audio controls>            
             <source src="<%= @item.audio.url %>" type="audio/mpeg">
             Your browser does not support the audio tag.
           </audio>        
       <% end %>
-      <%= f.input :audio, :as => :file, hint: t('.hint.audio') , :input_html => { :id => "mediaAudio", accept:"audio/mp3"  }, label: false %>
     </div>
-   
+
+        <%= as.input :asset, :as => :file , hint: t('.hint.audio') , :input_html => { :id => "mediaAudio", accept:"audio/mp3" } , label: false  %>
+        <%= as.input :asset_type, :as => :hidden %>
+    <% end %> 
+
     <% if @item.id.present? %>
       <%= f.input :id, :as => :hidden , :input_html => { :id => "sectionId" }  %>    
     <% end %>

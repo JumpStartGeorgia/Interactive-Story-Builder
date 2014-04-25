@@ -1,6 +1,11 @@
 class Section < ActiveRecord::Base
 	belongs_to :story
 	has_one :content, dependent: :destroy
+  has_one :asset,     
+  :conditions => "asset_type = #{Asset::TYPE[:section_audio]}",    
+  foreign_key: :item_id,
+  dependent: :destroy
+
 	has_many :media, :order => 'position', dependent: :destroy
   acts_as_list scope: :story
 
@@ -8,12 +13,7 @@ class Section < ActiveRecord::Base
 
 	TYPE = {content: 1, media: 2}
  
-
-  has_attached_file :audio,
-  :url => "/system/places/audio/:story_id2/:basename.:extension"
-    
-  validates_attachment :audio,
-    :content_type => { :content_type => ["audio/mp3"] }
+  accepts_nested_attributes_for :asset
 
   amoeba do
     enable

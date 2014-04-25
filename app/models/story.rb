@@ -7,6 +7,11 @@ class Story < ActiveRecord::Base
 	belongs_to :template
 	has_many :sections, :order => 'position', dependent: :destroy
 	has_and_belongs_to_many :users
+	has_one :asset,     
+	:conditions => "asset_type = #{Asset::TYPE[:story_thumbnail]}", 	 
+	foreign_key: :item_id,
+	dependent: :destroy
+
 	belongs_to :user
 	validates :title, :presence => true, length: { maximum: 100 }
 	validates :author, :presence => true, length: { maximum: 255 }
@@ -18,19 +23,7 @@ class Story < ActiveRecord::Base
 	before_save :publish_date
 	before_save :generate_reviewer_key
 	 
-
-  	has_attached_file :thumbnail,
-	  :url => "/system/places/thumbnail/:id/:style/:basename.:extension",
-	  :styles => {:"250x250" => {:geometry => "250x250"}},
-	  :default_url => "/assets/missing/250x250/missing.png" 
-
- before_post_process :transliterate_file_name
-
-  validates_attachment :thumbnail,
-    :content_type => { :content_type => ["image/jpeg", "image/png"] }
-  	  	
-
-  
+	accepts_nested_attributes_for :asset
 
 	amoeba do
 		enable

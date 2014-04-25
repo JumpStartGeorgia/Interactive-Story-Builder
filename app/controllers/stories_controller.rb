@@ -32,7 +32,8 @@ class StoriesController < ApplicationController
   # GET /stories/new
   # GET /stories/new.json
   def new
-    @story = Story.new(:user_id => current_user.id)
+    @story = Story.new(:user_id => current_user.id)     
+    @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list
     logger.debug(@users.inspect)
@@ -45,6 +46,9 @@ class StoriesController < ApplicationController
   # GET /stories/1/edit
   def edit
     @story = Story.find_by_id(params[:id])
+    if !@story.asset.present? 
+      @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+    end 
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list
   end
@@ -180,7 +184,10 @@ class StoriesController < ApplicationController
   end
 
   def new_section
-     @item = Section.new(params[:section])        
+    @item = Section.new(params[:section])  
+
+    @item.build_asset(:asset_type => Asset::TYPE[:section_audio]) 
+      
      respond_to do |format|
         if @item.save         
           flash_success_created(Section.model_name.human,@item.title)                     
@@ -225,6 +232,9 @@ class StoriesController < ApplicationController
   def save_section      
     
     @item = Section.find_by_id(params[:section][:id])  
+    if !@item.asset.present? 
+      @item.build_asset(:asset_type => Asset::TYPE[:section_audio])
+    end 
      respond_to do |format|
           if @item.update_attributes(params[:section])
           flash_success_updated(Section.model_name.human,@item.title)       
@@ -410,13 +420,15 @@ end
       format.html { redirect_to stories_url }
    end
   end
-  #logger.debug("---------------------------------------------------#{params}")
-end       
+  def test
+   
+    
+  end
 
-
-
-private
+  private
 
   def can_edit_story?(story_id)
     redirect_to root_path, :notice => t('app.msgs.not_authorized') if !Story.can_edit?(story_id, current_user.id)
   end
+  #logger.debug("---------------------------------------------------#{params}")
+end       
