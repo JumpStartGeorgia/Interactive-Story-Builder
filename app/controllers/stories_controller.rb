@@ -230,19 +230,24 @@ class StoriesController < ApplicationController
   
 
   def save_section      
-    
-    @item = Section.find_by_id(params[:section][:id])  
+
+    @item = Section.find_by_id(params[:section][:id]) 
+     
     if !@item.asset.present? 
       @item.build_asset(:asset_type => Asset::TYPE[:section_audio])
-    end 
+    end     
+    logger.debug("-------------------------------------------------------yes_")     
      respond_to do |format|
-          if @item.update_attributes(params[:section])
+          if @item.update_attributes(params[:section].except(:id))
+            logger.debug("-------------------------------------------------------yes_") 
           flash_success_updated(Section.model_name.human,@item.title)       
           format.js {render action: "build_tree", status: :created }                  
         else
+          logger.debug("-------------------------------------------------------no_#{@item.errors.full_messages.to_sentence}") 
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                            
           format.js {render json: nil, status: :ok }
         end
+
       end    
   end
   def save_content      

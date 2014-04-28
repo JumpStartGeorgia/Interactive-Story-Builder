@@ -9,11 +9,12 @@
 <div class="pins-wrapper">
 <div class="pin-columns">
     <% @stories.each do |story| %>
+      <% logger.debug(story.asset.asset.present?.to_s + "-----------------------------------") %>
      <a href="<%=storyteller_show_path(story) %>">
       <div class="pin">  
      
         <div class="img">
-        <img src="<%= story.thumbnail.url(:"250x250") %>" />      
+          <img src="<%= story.asset.asset.url(:"250x250") %>" />      
         </div>
         <p><div class="pin-caption"><%= story.title.truncate(255) %></div>     </p>
         <p> 

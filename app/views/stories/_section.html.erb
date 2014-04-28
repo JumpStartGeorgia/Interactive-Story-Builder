@@ -10,15 +10,13 @@
 
   <%= f.input :has_marker, :as => :boolean, :hint => t('.hint.has_marker'), :input_html => { id: "sectionHasMarker"} %> 
        
-
-
-   <%= f.fields_for :asset, @story.asset do |as| %>
+   <%= f.fields_for :asset, @item.asset do |as| %>
 
     <div id='sectionAudioBox'  >     
       <label class=" control-label" for="modalAudio"><%= t('activerecord.attributes.section.audio') %></label>
       <% if @item.asset.asset.exists? %>
           <audio controls>            
-            <source src="<%= @item.audio.url %>" type="audio/mpeg">
+            <source src="<%= @item.asset.asset.url %>" type="audio/mpeg">
             Your browser does not support the audio tag.
           </audio>        
       <% end %>

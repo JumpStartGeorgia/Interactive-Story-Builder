@@ -14,7 +14,8 @@
       <%= f.input :published, :as => :boolean, hint: t('.hint.published') , :input_html => { id: "storyPublished"} %>   
     <% end %>
    
-    <%= f.fields_for :asset, @story.asset do |as| %>
+    <%= f.fields_for :asset, @story.asset do |asset_object| %>
+
         <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.medium.image') %></label>
         <% if @story.asset.asset.exists? %>
           <a class='btn' data-reveal-id="modalImage"><%= t('app.buttons.preview_image') %></a>
@@ -23,8 +24,9 @@
             <a class="close-reveal-modal">&#215;</a>
           </div>  
         <% end %>  
-        <%= as.input :asset, :as => :file , :hint => t('.hint.thumbnail'), :input_html => { :id => "storyThumbnail", accept:"image/jpeg,image/png" }, label: false  %>
-        <%= as.input :asset_type, :as => :hidden %>
+        <%= asset_object.input :asset, :as => :file, :hint => t('.hint.thumbnail'),  :input_html => { :id => "storyThumbnail", accept:"image/jpeg,image/png" }, label: false  %>
+        <%= asset_object.input :asset_type, :as => :hidden %>
+
     <% end %> 
 
     <div class="string control-group required stringish" id="story_user_input">
