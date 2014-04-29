@@ -22,6 +22,7 @@ ka:
         media_author: Photo and Video Author(s)     
         published: Publish?
         published_at: Was Published
+        template_id: Template
       section:
         title: დასახელება
         audio: აუდიო ფაილი
@@ -161,6 +162,7 @@ ka:
         author: Author(s) of the article (author info will be added to the first content section)
         media_author:  "Author(s) of the photos, videos (author info will be added to the first content section after author)"
         published: "If published everyone can see this story( no edit options received to users )"       
+        template: "Choose template for whole story"    
       placeholder:
           title: Type Story name
           author: Author(s) of the article

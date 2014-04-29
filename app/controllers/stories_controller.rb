@@ -34,6 +34,7 @@ class StoriesController < ApplicationController
   def new
     @story = Story.new(:user_id => current_user.id)
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
+    @templates = Template.select_list
     logger.debug(@users.inspect)
     respond_to do |format|
         format.html #new.html.erb
@@ -45,6 +46,7 @@ class StoriesController < ApplicationController
   def edit
     @story = Story.find_by_id(params[:id])
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
+    @templates = Template.select_list
   end
 
   # POST /stories
@@ -106,7 +108,7 @@ class StoriesController < ApplicationController
   def preview
   	@story = Story.fullsection(params[:id])    
     respond_to do |format|     
-      format.html { render 'storyteller/index', layout: "storyteller" }
+      format.html { render 'storyteller/index', layout: false }
     end
   end
 
@@ -320,6 +322,11 @@ class StoriesController < ApplicationController
     require 'fileutils'
 
     FileUtils.cp_r "#{Rails.root}/public/media/story", "#{path}"  
+
+    if File.exists?("#{Rails.root}/public/template/#{@story.template.name}/css/export-storyteller.css")
+        FileUtils.cp_r "#{Rails.root}/public/template/#{@story.template.name}/css/export-storyteller.css", "#{path}/css/storyteller.css"
+    end
+
     if File.directory?("#{Rails.root}/public/system/places/images/#{params[:id]}/.")
         FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{params[:id]}/.", "#{mediaPath}/images"
     end
@@ -329,7 +336,8 @@ class StoriesController < ApplicationController
     if File.directory?("#{Rails.root}/public/system/places/audio/#{params[:id]}/.")
       FileUtils.cp_r "#{Rails.root}/public/system/places/audio/#{params[:id]}/.", "#{mediaPath}/audio"
     end
-    File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/clone.html.erb', :layout => false) }  
+    @clone = true
+    File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/index.html.erb', :layout => false) }  
     send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :x_sendfile=>true, :filename=>"#{filename}.tar.gz"
 
     if File.directory?(path)

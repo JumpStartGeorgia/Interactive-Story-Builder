@@ -9,8 +9,10 @@
     <%= f.input :user_id , :as => :hidden %>
     <%= f.input :author, :input_html => { id: "storyAuthor", title: t('.title.author'), placeholder: t('.placeholder.author')  } %>
     <%= f.input :media_author, :input_html => { id: "storyMediaAuthor", title: t('.title.media_author'), placeholder: t('.placeholder.media_author')  }  %>
+    <%= f.input :template_id, :as => :select,  :include_blank => false, collection: @templates.map{|d|[d.title,d.id]} , :input_html => { :id => "storyTemplate", title: t('.title.template')  }   %> 
     <%= f.input :published, :as => :boolean , :input_html => { id: "storyPublished", title: t('.title.published')} %>   
     <%= f.input :thumbnail, :as => :file , :input_html => { :id => "storyThumbnail", accept:"image/jpeg,image/png" } %>
+
 
     <div class="string control-group required stringish" id="story_user_input">
       <label class=" control-label"><%= t('activerecord.attributes.story.user_id') %></label>

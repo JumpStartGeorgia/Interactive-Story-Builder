@@ -1,0 +1,82 @@
+  <% if !@clone %>
+    <div class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container-fluid">   
+          <%= link_to(t('app.common.app_name'), root_path(:locale => I18n.locale), :class=>"brand font")%>          
+           <%= link_to(@story.title, root_path(:locale => I18n.locale), :class=>"brand font navigation-headline")%>  
+          <div class="container-fluid nav-collapse">
+            <ul class="nav pull-right" >
+              <li>
+                <%= link_to t('helpers.titles.story_list'), stories_path  %>
+              </li>              
+              <% if user_signed_in? %>
+                    <li>                    
+                  <%= link_to image_tag(current_user.avatar,:size=>"28x28"), "http://facebook.com/" + current_user.nickname, :style => "margin:0px;padding:5px 3px 3px 0px;" %>       
+                </li>
+                      
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <%= current_user.nickname %>
+                        <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <%= link_to t('helpers.titles.story_list'), stories_path  %>
+                    </li>              
+                    <% if current_user.role? User::ROLES[:admin] %>
+                      <li>
+                       <%= link_to t('.admin'), admin_path %>
+                      </li>
+                    <% end %>     
+                    <li>
+                     <%= link_to t('.sign_out'), destroy_user_session_path, :method => :delete %>
+                    </li>
+                  </ul>
+                </li>
+                <% else %>
+                 <li>
+                  <%= link_to "Sign In", user_omniauth_authorize_path(:facebook) %>
+                </li>
+               <% end %> 
+              <% I18n.available_locales.each do |locale| %>
+                <% if locale != I18n.locale %>
+                  <li><%= link_to t("app.language.#{locale}"), params.merge(:locale => locale) %></li>
+                <% end %>
+              <% end %>
+              <li class="divider-vertical"></li>
+              
+              <li><a href="#" class="navigation-volume"><div class="navigation-icon"></div></a></li>             
+               <li>
+                <% markers = @story.sections.select{|t| t.has_marker? == true} %>
+                <% if markers.length > 1 %>    
+                  <div class="navigation-sections">     
+                   <% markers.each_with_index do |s,s_i| %>
+                    <a href="#<%= s_i+1 %>" class="navigation-section" title="<%= s.title %>"><%= s_i+1 %></a>
+                   <% end %>          
+                  </div>
+                <% end %>
+              </li>            
+            </ul>
+          </div><!--/.nav-collapse -->                     
+        </div>
+      </div>
+    </div> 
+<% else %>
+  <div class="navigation">
+    <div class="navigation-left">
+      <div class="navigation-app"> <%= t('app.common.app_name') %> </div>
+      <a class="navigation-headline" href="#"><%= @story.title %></a>    
+    </div>
+    <div class="navigation-right">
+      <a href="#" class="navigation-volume"><div class="navigation-icon"></div></a>
+      <% markers = @story.sections.select{|t| t.has_marker? == true} %>
+      <% if markers.length > 1 %>    
+        <div class="navigation-sections">     
+         <% markers.each_with_index do |s,s_i| %>
+          <a href="#<%= s_i+1 %>" class="navigation-section" title="<%= s.title %>"><%= s_i+1 %></a>
+         <% end %>          
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>      
