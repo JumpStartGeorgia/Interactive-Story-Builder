@@ -2,58 +2,29 @@ class Medium < ActiveRecord::Base
 	belongs_to :section	
   acts_as_list scope: :section
   
-	TYPE = {image: 1, video: 2}
-	has_attached_file :image,  	
-    :url => "/system/places/images/:story_id/:style/:basename.:extension",
-		:styles => {
-					:mobile_640 => {:geometry => "640x427"},
-					:mobile_1024 => {:geometry => "1024x623"},					 				
-				}
+  has_many :asset,     
+  :conditions => "asset_type = #{Asset::TYPE[:media_image]} or asset_type = #{Asset::TYPE[:media_video]}",    
+  foreign_key: :item_id,
+  dependent: :destroy
 
-	has_attached_file :video,
-	:url => "/system/places/video/:story_id/:basename.:extension",
-  :styles => {
-    :poster => { :format => 'jpg', :time => 1 }    
-  }, :processors => [:ffmpeg]
+
+	TYPE = {image: 1, video: 2}
+
   validates :section_id, :presence => true
   validates :media_type, :presence => true, :inclusion => { :in => TYPE.values }  
   validates :title, :presence => true , length: { maximum: 255 }  
   validates :caption, length: { maximum: 2000 }  
     
-	validates_attachment :image, :presence => true,
-  	:content_type => { :content_type => ["image/jpeg", "image/png"] }#, "image/gif",
-  	
-  	validates_attachment :video ,
-  	:content_type => { :content_type => ["video/mp4"] }# ,"video/ogg","video/webm"
+  #  validates_attachment_presence :video, if:  :video_type? 
 
-
-    validates_attachment_presence :video, if:  :video_type? 
 
 	def to_json(options={})
      options[:except] ||= [:created_at, :updated_at]
      super(options)
    end
 
-before_post_process :transliterate_file_name
-
-require 'iconv'
 
 private
-
-def transliterate_file_name
-
-  if image_file_name.present?
-    extension = File.extname(image_file_name).gsub(/^\.+/, '')
-    filename = image_file_name.gsub(/\.#{extension}$/, '')
-    self.image.instance_write(:file_name, "#{StoriesHelper.transliterate(filename)}.#{StoriesHelper.transliterate(extension)}")
-  end
-  if video_file_name.present?
-    extension = File.extname(video_file_name).gsub(/^\.+/, '')
-    filename = video_file_name.gsub(/\.#{extension}$/, '')
-    self.video.instance_write(:file_name, "#{StoriesHelper.transliterate(filename)}.#{StoriesHelper.transliterate(extension)}")
-  end
-end
-
   def video_type?    
     self.media_type == 2
   end

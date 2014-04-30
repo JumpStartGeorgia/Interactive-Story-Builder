@@ -3,7 +3,7 @@
 Paperclip.interpolates('story_id') do |attachment, style|
   attachment.instance.section.story_id
 end
-Paperclip.interpolates('story_id_from_parent') do |attachment, style|
+Paperclip.interpolates('storyid_from_parent') do |attachment, style|
   attachment.instance.section.story_id
 end
 

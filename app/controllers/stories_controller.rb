@@ -1,6 +1,8 @@
 class StoriesController < ApplicationController
   before_filter :authenticate_user!
+
   before_filter(:except => [:index, :new, :create]) do |controller_instance|
+
     controller_instance.send(:can_edit_story?, params[:id])
   end
   
@@ -61,12 +63,18 @@ class StoriesController < ApplicationController
     respond_to do |format|
 
       if @story.save
+
         flash_success_created(Story.model_name.human,@story.title)       
+
         format.html { redirect_to sections_story_path(@story), notice: t('app.msgs.success_created', :obj => t('activerecord.models.story')) }
+
+       # format.html { redirect_to sections_story_path(@story), notice: 'Story was successfully created.' }
+
         format.json { render json: @story, status: :created, location: @story }
         format.js { render action: "flash", status: :created }    
       else
-        @users = User.where("id not in (?)", [@story.user_id, current_user.id])        
+        @users = User.where("id not in (?)", [@story.user_id, current_user.id])   
+        @templates = Template.select_list     
         flash[:error] = u I18n.t('app.msgs.error_create', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
         format.json { render json: @story.errors, status: :unprocessable_entity }
@@ -86,11 +94,12 @@ class StoriesController < ApplicationController
         format.html { redirect_to  sections_story_path(@story),  notice: t('app.msgs.success_updated', :obj => t('activerecord.models.story')) }
         format.js { render action: "flash", status: :created }    
       else
+        @users = User.where("id not in (?)", [@story.user_id, current_user.id])
+        @templates = Template.select_list
         flash[:error] = u I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
         format.html { render action: "edit" }
         format.js {render action: "flash" , status: :ok }
       end
-
     end
   end
 
@@ -236,14 +245,11 @@ class StoriesController < ApplicationController
     if !@item.asset.present? 
       @item.build_asset(:asset_type => Asset::TYPE[:section_audio])
     end     
-    logger.debug("-------------------------------------------------------yes_")     
      respond_to do |format|
           if @item.update_attributes(params[:section].except(:id))
-            logger.debug("-------------------------------------------------------yes_") 
           flash_success_updated(Section.model_name.human,@item.title)       
           format.js {render action: "build_tree", status: :created }                  
         else
-          logger.debug("-------------------------------------------------------no_#{@item.errors.full_messages.to_sentence}") 
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                            
           format.js {render json: nil, status: :ok }
         end
@@ -435,5 +441,4 @@ end
   def can_edit_story?(story_id)
     redirect_to root_path, :notice => t('app.msgs.not_authorized') if !Story.can_edit?(story_id, current_user.id)
   end
-  #logger.debug("---------------------------------------------------#{params}")
 end       
