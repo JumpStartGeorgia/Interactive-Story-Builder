@@ -13,7 +13,7 @@ class Section < ActiveRecord::Base
 
   TYPE = {content: 1, media: 2}
 
-  accepts_nested_attributes_for :asset
+  accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset_file_name].blank? }
 
   amoeba do
     enable

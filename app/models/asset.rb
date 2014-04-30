@@ -2,6 +2,10 @@ class Asset < ActiveRecord::Base
 
   belongs_to :story
   belongs_to :section, foreign_key: :item_id
+  belongs_to :media, foreign_key: :item_id
+  belongs_to :image, foreign_key: :item_id, class_name: "Medium"
+  belongs_to :video, foreign_key: :item_id, class_name: "Medium"
+
   validates :item_id,:asset_type, :presence => true
   TYPE = {story_thumbnail: 1, section_audio: 2, content_image: 3, media_image: 4, media_video: 5, slideshow_image: 6}
 
@@ -21,7 +25,7 @@ class Asset < ActiveRecord::Base
       when  Asset::TYPE[:section_audio]         
         opt = {:url => "/system/places/audio/:story_id/:basename.:extension"}  
       when  Asset::TYPE[:media_image]        
-        opt = { :url => "/system/places/images/:story_id/:style/:basename.:extension",
+        opt = { :url => "/system/places/images/:media_image_story_id/:style/:basename.:extension",
                 :styles => {
                       :mobile_640 => {:geometry => "640x427"},
                       :mobile_1024 => {:geometry => "1024x623"}}}  
@@ -33,11 +37,7 @@ class Asset < ActiveRecord::Base
   
   #  logger.debug(self.asset.options.to_s + "-"*30)
   end
-<<<<<<< HEAD
-  has_attached_file :video,
-  :url => "/system/places/video/:story_id/:basename.:extension",
- 
-=======
+
   require 'iconv'
 
   has_attached_file :asset
@@ -53,8 +53,10 @@ class Asset < ActiveRecord::Base
     t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }}  
   end
   with_options :if => "self.asset_type == Asset::TYPE[:media_video]" do |t|      
-    t.validates_attachment :asset, {  :content_type => { :content_type => ["video/mp4"] }}  
+    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["video/mp4"] }}    
   end
+
+
    
   before_post_process :transliterate_file_name
   

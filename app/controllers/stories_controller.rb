@@ -63,17 +63,16 @@ class StoriesController < ApplicationController
     respond_to do |format|
 
       if @story.save
-
         flash_success_created(Story.model_name.human,@story.title)       
-
         format.html { redirect_to sections_story_path(@story), notice: t('app.msgs.success_created', :obj => t('activerecord.models.story')) }
-
        # format.html { redirect_to sections_story_path(@story), notice: 'Story was successfully created.' }
-
         format.json { render json: @story, status: :created, location: @story }
         format.js { render action: "flash", status: :created }    
       else
-        @users = User.where("id not in (?)", [@story.user_id, current_user.id])   
+        @users = User.where("id not in (?)", [@story.user_id, current_user.id]) 
+        if !@story.asset.present? 
+          @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+        end      
         @templates = Template.select_list     
         flash[:error] = u I18n.t('app.msgs.error_create', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
@@ -95,7 +94,11 @@ class StoriesController < ApplicationController
         format.js { render action: "flash", status: :created }    
       else
         @users = User.where("id not in (?)", [@story.user_id, current_user.id])
+        if !@story.asset.present? 
+          @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+        end 
         @templates = Template.select_list
+        
         flash[:error] = u I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
         format.html { render action: "edit" }
         format.js {render action: "flash" , status: :ok }
@@ -178,6 +181,14 @@ class StoriesController < ApplicationController
         else 
           @item = Medium.new(:section_id => params[:section_id], media_type: 1)
         end
+
+        if !@item.image.present? 
+          @item.build_image(:asset_type => Asset::TYPE[:media_image])
+        end   
+        if !@item.video.present? 
+          @item.build_video(:asset_type => Asset::TYPE[:media_video])
+        end      
+
         respond_to do |format|
           format.js {render :action => "get_media" }
         end
@@ -209,7 +220,8 @@ class StoriesController < ApplicationController
   end
 
  def new_media
-    @item = Medium.new(params[:medium])       
+    @item = Medium.new(params[:medium])    
+  
     respond_to do |format|
         if @item.save       
           flash_success_created(Medium.model_name.human,@item.title)                     
@@ -225,7 +237,6 @@ class StoriesController < ApplicationController
 
     def new_content    
      @item = Content.new(params[:content])   
-     @flash = flash
      respond_to do |format|
         if @item.save
           flash_success_created(Content.model_name.human,@item.title)                     
@@ -241,10 +252,6 @@ class StoriesController < ApplicationController
   def save_section      
 
     @item = Section.find_by_id(params[:section][:id]) 
-     
-    if !@item.asset.present? 
-      @item.build_asset(:asset_type => Asset::TYPE[:section_audio])
-    end     
      respond_to do |format|
           if @item.update_attributes(params[:section].except(:id))
           flash_success_updated(Section.model_name.human,@item.title)       

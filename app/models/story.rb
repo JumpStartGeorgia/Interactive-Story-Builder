@@ -23,7 +23,7 @@ class Story < ActiveRecord::Base
 	before_save :publish_date
 	before_save :generate_reviewer_key
 	 
-	accepts_nested_attributes_for :asset
+	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset_file_name].blank? }
 
 	amoeba do
 		enable
