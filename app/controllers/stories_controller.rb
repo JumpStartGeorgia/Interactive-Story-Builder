@@ -69,15 +69,14 @@ class StoriesController < ApplicationController
   # PUT /stories/1.json
   def update
     @story = Story.find_by_id(params[:id])
-
-  
                  
     respond_to do |format|
       if @story.update_attributes(params[:story])
+        flash_success_updated(Story.model_name.human,@story.title)       
         format.html { redirect_to  sections_story_path(@story),  notice: 'Story was successfully updated.' }
         format.js { render action: "flash", status: :created }    
       else
-        flash[:error] =  @story.errors.full_messages.to_sentence     
+        flash[:error] = u I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
         format.html { render action: "edit" }
         format.js {render action: "flash" , status: :ok }
       end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140429095821) do
+ActiveRecord::Schema.define(:version => 20140430092446) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20140429095821) do
     t.integer  "section_id"
     t.integer  "media_type"
     t.string   "title"
-    t.string   "caption"
+    t.string   "caption",            :limit => 2000
     t.integer  "caption_align"
     t.string   "source"
     t.datetime "created_at"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20140429095821) do
     t.integer  "video_file_size"
     t.datetime "video_updated_at"
     t.integer  "position"
-    t.boolean  "video_loop",         :default => true
+    t.boolean  "video_loop",                         :default => true
   end
 
   create_table "sections", :force => true do |t|
