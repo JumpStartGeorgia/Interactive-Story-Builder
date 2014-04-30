@@ -7,6 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Template.delete_all
 Template.create(id:1,name:"nytimes",title:"NYTimes Template",description:"Was taken from nytimes article",author:"NYTIMES",default:true)
-Template.create(id:2,name:"irakli",title:"Irakli Chumburidze Inspiration",description:"Was build while creating story for CHCA",author:"Irakli Chumburidze",default:false)
+Template.create(id:2,name:"whitebar",title:"White Bar Captions",description:"Was built while creating story for CHCA",author:"Irakli Chumburidze",default:false)
 
 
