@@ -323,8 +323,8 @@ class StoriesController < ApplicationController
 
     FileUtils.cp_r "#{Rails.root}/public/media/story", "#{path}"  
 
-    if File.exists?("#{Rails.root}/public/template/#{@story.template.name}/css/export-storyteller.css")
-        FileUtils.cp_r "#{Rails.root}/public/template/#{@story.template.name}/css/export-storyteller.css", "#{path}/css/storyteller.css"
+    if File.directory?("#{Rails.root}/public/template/#{@story.template.name}/fonts")
+        FileUtils.cp_r "#{Rails.root}/public/template/#{@story.template.name}/fonts", "#{path}/assets"
     end
 
     if File.directory?("#{Rails.root}/public/system/places/images/#{params[:id]}/.")
