@@ -1,5 +1,5 @@
 
-<%= semantic_form_for(@story, url: story_path(id:params[:id],:format => :js), :html => {:multipart => true, :id => "storyForm"} ,remote: true) do |f| %>
+<%= semantic_form_for(@story, :html => {:multipart => true, :id => "storyForm"} ,remote: true) do |f| %>
 <%= error_messages_for f.object %>
 
 

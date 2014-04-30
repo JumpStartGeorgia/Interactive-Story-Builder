@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter(:except => [:index, :new]) do |controller_instance|
+  before_filter(:except => [:index, :new, :create]) do |controller_instance|
     controller_instance.send(:can_edit_story?, params[:id])
   end
   
@@ -55,12 +55,18 @@ class StoriesController < ApplicationController
     @story = Story.new(params[:story])
 
     respond_to do |format|
+
       if @story.save
+        flash_success_updated(Story.model_name.human,@story.title)       
         format.html { redirect_to sections_story_path(@story), notice: 'Story was successfully created.' }
         format.json { render json: @story, status: :created, location: @story }
+        format.js { render action: "flash", status: :created }    
       else
+        @users = User.where("id not in (?)", [@story.user_id, current_user.id])        
+        flash[:error] = u I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
         format.json { render json: @story.errors, status: :unprocessable_entity }
+        format.js {render action: "flash" , status: :ok }
       end
     end
   end
