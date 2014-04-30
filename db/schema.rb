@@ -11,11 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140423104359) do
+ActiveRecord::Schema.define(:version => 20140430095310) do
 
   create_table "assets", :force => true do |t|
-    t.integer  "section_id"
-    t.integer  "section_type"
+    t.integer  "item_id"
+    t.integer  "asset_type"
+    t.integer  "asset_subtype",                    :default => 0
     t.string   "caption",            :limit => 45
     t.string   "source",             :limit => 45
     t.integer  "option"
@@ -42,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20140423104359) do
     t.integer  "section_id"
     t.integer  "media_type"
     t.string   "title"
-    t.string   "caption"
+    t.string   "caption",            :limit => 2000
     t.integer  "caption_align"
     t.string   "source"
     t.datetime "created_at"
@@ -56,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20140423104359) do
     t.integer  "video_file_size"
     t.datetime "video_updated_at"
     t.integer  "position"
-    t.boolean  "video_loop",         :default => true
+    t.boolean  "video_loop",                         :default => true
   end
 
   create_table "sections", :force => true do |t|
@@ -89,11 +90,23 @@ ActiveRecord::Schema.define(:version => 20140423104359) do
     t.string   "thumbnail_content_type"
     t.integer  "thumbnail_file_size"
     t.datetime "thumbnail_updated_at"
+    t.integer  "template_id",                          :default => 1
   end
 
   create_table "stories_users", :force => true do |t|
     t.integer "story_id"
     t.integer "user_id"
+  end
+
+  create_table "templates", :force => true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.text     "description"
+    t.string   "author"
+    t.text     "params"
+    t.boolean  "default"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

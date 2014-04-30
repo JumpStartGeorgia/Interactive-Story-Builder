@@ -1,5 +1,5 @@
 class StorytellerController < ApplicationController
-	layout "storyteller"
+	layout false
   def index
   	@story = Story.is_published.fullsection(params[:id])  
   	if @story.present?

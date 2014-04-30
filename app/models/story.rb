@@ -2,11 +2,13 @@ class Story < ActiveRecord::Base
 	
 	scope :is_published, where(:published => true)
 
+	belongs_to :template
 	has_many :sections, :order => 'position', dependent: :destroy
 	has_and_belongs_to_many :users
 	belongs_to :user
 	validates :title, length: { maximum: 100 }
 	validates :author, :presence => true, length: { maximum: 255 }
+	validates :template, :presence => true
 	validates :media_author, length: { maximum: 255 }
 	attr_accessor :was_publishing
 
