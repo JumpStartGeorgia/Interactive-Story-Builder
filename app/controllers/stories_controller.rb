@@ -79,7 +79,7 @@ class StoriesController < ApplicationController
   # PUT /stories/1.json
   def update
     @story = Story.find_by_id(params[:id])
-                 
+
     respond_to do |format|
       if @story.update_attributes(params[:story])
         flash_success_updated(Story.model_name.human,@story.title)       

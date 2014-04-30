@@ -27,30 +27,24 @@ class Asset < ActiveRecord::Base
     end    
     self.asset.options.merge!(opt)
   
+
+
     logger.debug(self.asset.options.to_s + "-"*30)
   end
 
   require 'iconv'
 
 
-  def asset_validation
-    logger.debug("-"*30)
-    val = {}
-    
-    case self.asset_type
-      when Asset::TYPE[:story_thumbnail]
-        val = { :content_type => { :content_type => ["image/jpeg", "image/png"] }}
-      when  Asset::TYPE[:section_audio]
-        val = { :content_type => { :content_type => ["audio/mp3"] }}  
-    end
-
-   return val
-  end
-
-
   has_attached_file :asset
+
+
+  with_options :if => "self.asset_type == Asset::TYPE[:story_thumbnail]" do |t|    
+    t.validates_attachment :asset, { :content_type => { :content_type => ["image/jpeg", "image/png"] }}  
+  end
+  with_options :if => "self.asset_type == Asset::TYPE[:section_audio]" do |t|      
+    t.validates_attachment :asset, { :content_type => { :content_type => ["audio/mp3"] }}  
+  end
   
-    #validates_attachment :asset, asset_validation
 
    
   before_post_process :transliterate_file_name
