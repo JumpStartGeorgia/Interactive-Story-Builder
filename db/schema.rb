@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(:version => 20140507093603) do
   end
 
 
+  add_index "assets", ["item_id"], :name => "index_assets_on_item_id"
+
   create_table "contents", :force => true do |t|
     t.integer  "section_id"
     t.string   "title"
@@ -74,17 +76,11 @@ ActiveRecord::Schema.define(:version => 20140507093603) do
     t.string   "video_path"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.string   "video_file_name"
-    t.string   "video_content_type"
-    t.integer  "video_file_size"
-    t.datetime "video_updated_at"
     t.integer  "position"
-    t.boolean  "video_loop",                         :default => true
+    t.boolean  "video_loop",                    :default => true
   end
+
+  add_index "media", ["section_id"], :name => "index_media_on_section_id"
 
   create_table "sections", :force => true do |t|
     t.integer  "story_id"
@@ -93,35 +89,36 @@ ActiveRecord::Schema.define(:version => 20140507093603) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "has_marker",         :default => true
-    t.string   "audio_file_name"
-    t.string   "audio_content_type"
-    t.integer  "audio_file_size"
-    t.datetime "audio_updated_at"
+    t.boolean  "has_marker", :default => true
   end
+
+  add_index "sections", ["story_id"], :name => "index_sections_on_story_id"
 
   create_table "stories", :force => true do |t|
     t.string   "title"
     t.integer  "user_id"
     t.string   "author"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.float    "latitude"
-    t.float    "longitude"
     t.string   "media_author"
-    t.boolean  "published",              :default => false
+    t.boolean  "published",                  :default => false
     t.datetime "published_at"
     t.integer  "thumbnail"
     t.string   "thumbnail_file_name"
     t.string   "thumbnail_content_type"
     t.integer  "thumbnail_file_size"
     t.datetime "thumbnail_updated_at"
-    t.integer  "template_id",            :default => 1
     t.integer  "impressions_count",      :default => 0
     t.integer  "reviewer_key"
+    t.float    "latitude",     :limit => 10
+    t.float    "longitude",    :limit => 10
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "template_id",                :default => 1
   end
 
+
   add_index "stories", ["reviewer_key"], :name => "index_stories_on_reviewer_key"
+  add_index "stories", ["template_id"], :name => "index_stories_on_template_id"
+  add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
 
   create_table "stories_users", :force => true do |t|
     t.integer "story_id"
