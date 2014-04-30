@@ -102,7 +102,7 @@ ka:
       export: Export
       scroll: დასკროლე
     common:
-      app_name: ამბის მთხრობელი
+      app_name: Story Builder
       added_on: "დამატებულია: %{date}" 
     msgs:
       does_not_exist: თქვენ ცდილობთ იხილოთ გვერდი, რომელიც არ არსებობს.

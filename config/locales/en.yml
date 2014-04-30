@@ -102,7 +102,7 @@ en:
       export: Export
       scroll: Scroll
     common:
-      app_name: Storyteller
+      app_name: Story Builder
       added_on: "Added on: %{date}" 
     msgs:
       does_not_exist: You tried to access a page that does not exist.
@@ -140,7 +140,7 @@ en:
       js_link_text: Built by
   root:
     index:
-      title: Storyteller - build and share the next generation story
+      title: Story Builder - build and share the next generation story
   admin:
     index:
       title: Administration Section
