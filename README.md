@@ -31,6 +31,7 @@ Aside from entering the story into the sections, you also have the ability to:
 * add horizontal image gallery
 * add ability to include online videos (embed youtube, vimeo, etc)
 * add ability to create one story in multiple languages
+* ability to log in with something other than facebook
 
 ### Long Term Tasks
 * be able to embed published stories
@@ -40,6 +41,7 @@ Aside from entering the story into the sections, you also have the ability to:
 * select from different transitions between sections
 * add ability to include interactive maps
 * add ability to include charts
+* add ability to include data tables
 
 
 ## Version History
