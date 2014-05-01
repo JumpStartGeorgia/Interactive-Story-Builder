@@ -48,7 +48,7 @@ class StoriesController < ApplicationController
   # GET /stories/1/edit
   def edit
     @story = Story.find_by_id(params[:id])
-    if !@story.asset.present? 
+    if !@story.asset_exists?
       @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
     end 
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
@@ -75,6 +75,7 @@ class StoriesController < ApplicationController
         end      
         @templates = Template.select_list     
         flash[:error] = u I18n.t('app.msgs.error_create', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
+
         format.html { render action: "new" }
         format.json { render json: @story.errors, status: :unprocessable_entity }
         format.js {render action: "flash" , status: :ok }
@@ -98,7 +99,7 @@ class StoriesController < ApplicationController
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end 
         @templates = Template.select_list
-        
+
         flash[:error] = u I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
         format.html { render action: "edit" }
         format.js {render action: "flash" , status: :ok }
@@ -154,11 +155,12 @@ class StoriesController < ApplicationController
       else 
         @item = Section.new(story_id: params[:id], type_id: Section::TYPE[:content], has_marker: 1)
       end  
-
       @section_list = []
       Section::TYPE.each{|k,v| @section_list << ["#{I18n.t("section_types.#{k}.name")} - #{I18n.t("section_types.#{k}.description")}", v]} 
       @section_list.sort_by!{|x| x[0]}
-                 
+      if !@item.asset_exists?
+          @item.build_asset(:asset_type => Asset::TYPE[:section_audio])
+      end   
       respond_to do |format|
         format.js { render :action => "get_section" }
       end
@@ -182,10 +184,10 @@ class StoriesController < ApplicationController
           @item = Medium.new(:section_id => params[:section_id], media_type: 1)
         end
 
-        if !@item.image.present? 
+        if !@item.image_exists? 
           @item.build_image(:asset_type => Asset::TYPE[:media_image])
         end   
-        if !@item.video.present? 
+        if !@item.video_exists?
           @item.build_video(:asset_type => Asset::TYPE[:media_video])
         end      
 
@@ -266,7 +268,7 @@ class StoriesController < ApplicationController
   def save_content      
      @item = Content.find_by_id(params[:content][:id])  
      respond_to do |format|
-        if @item.update_attributes(params[:content])          
+        if @item.update_attributes(params[:content].except(:id))          
           flash_success_updated(Content.model_name.human,@item.title)           
           format.js {render action: "build_tree", status: :created }                  
         else
@@ -278,7 +280,7 @@ class StoriesController < ApplicationController
  def save_media
     @item = Medium.find_by_id(params[:medium][:id])
     respond_to do |format|
-        if @item.update_attributes(params[:medium])          
+        if @item.update_attributes(params[:medium].except(:id))          
           flash_success_updated(Medium.model_name.human,@item.title)           
           format.js {render action: "build_tree", status: :created }          
         else        

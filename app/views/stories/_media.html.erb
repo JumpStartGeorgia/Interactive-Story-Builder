@@ -15,7 +15,7 @@
 
   <%= f.fields_for :image, @item.image do |as| %>
     <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.medium.image') %></label>
-    <% if @item.image.present? && @item.image.asset.exists? %>
+    <% if @item.image_exists? %>
       <a class='btn' data-reveal-id="modalImage"><%= t('app.buttons.preview_image') %></a>
     <% end %>    
 

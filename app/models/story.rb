@@ -23,7 +23,7 @@ class Story < ActiveRecord::Base
 	before_save :publish_date
 	before_save :generate_reviewer_key
 	 
-	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset_file_name].blank? }
+	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
 
 	amoeba do
 		enable
@@ -58,7 +58,7 @@ class Story < ActiveRecord::Base
   	  	self.published_at = Time.now
   	  end     
   	end
-  	def self.asset_exists?
+  	def asset_exists?
   		self.asset.present? && self.asset.asset.exists?
 	end  		
 

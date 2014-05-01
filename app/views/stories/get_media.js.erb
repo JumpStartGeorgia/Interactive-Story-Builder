@@ -1,13 +1,13 @@
 $("#storyViewer").hide().html("<div id='mediaForm'><%= escape_javascript( render :partial => 'media') %></div>").fadeIn('slow');
 <% imageTemp = '' %>
 <% videoTemp = '' %>
-<% if @item.image.present? && @item.image.asset.exists? %>
+<% if @item.image_exists? %>
 	<%	imageTemp = "<img  width='100%' src='#{@item.image.asset.url}'/>" %>
 <% end %>
 
 $("#modalImage .modal-data").html("<%= imageTemp.html_safe %>");
 
-<% if @item.video.present? && @item.video.asset.exists? %>
+<% if @item.video_exists? %>
 	<%	videoTemp = "<source src='#{@item.video.asset.url}' type='#{@item.video.asset.content_type}'>" %>  
 <% end %>
 

@@ -23,18 +23,18 @@ class Medium < ActiveRecord::Base
 
   validates :caption, length: { maximum: 255 }  
 
-  accepts_nested_attributes_for :image, :reject_if => lambda { |c| c[:asset_file_name].blank? }
-  accepts_nested_attributes_for :video, :reject_if => lambda { |c| c[:asset_file_name].blank? }
+  accepts_nested_attributes_for :image, :reject_if => lambda { |c| c[:asset].blank? }
+  accepts_nested_attributes_for :video, :reject_if => lambda { |c| c[:asset].blank? }
 
     
 	def to_json(options={})
      options[:except] ||= [:created_at, :updated_at]
      super(options)
    end
-  def self.image_exists?
+  def image_exists?
     self.image.present? && self.image.asset.exists?
   end  
-  def self.video_exists?
+  def video_exists?
     self.video.present? && self.video.asset.exists?
   end  
 private
