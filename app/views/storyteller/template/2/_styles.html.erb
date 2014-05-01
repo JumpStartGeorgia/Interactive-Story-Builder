@@ -1,46 +1,42 @@
 <style>    
   @font-face
   {
-    font-family: 'bpg_dejavu_bold';
-    font-style: normal;
-    font-weight: normal;
-    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavu_sans_bold_2s.ttf'%>);    
-  }
-
-  @font-face
-  {
-    font-family: 'bpg_dejavu_light';
-    font-style: normal;
-    font-weight: normal;
-    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavu_sans_extralight_caps_2012s.ttf'%>);
-  }
-
-  @font-face
-  {
     font-family: 'dejavu';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/")  + 'fonts/dejavu_sans_condensed.ttf'%>);
+    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_2.ttf'%>);    
   }
 
   @font-face
   {
-    font-family: 'dejavu_light';
+    font-family: 'dejavu-bold';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/dejavu_sans_extralight.ttf'%>);    
+    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_bold.ttf'%>);
   }
+
+  @font-face
+  {
+    font-family: 'shavshvebi';
+    font-style: normal;
+    font-weight: normal;
+    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/")  + 'fonts/shavshvebi.ttf'%>);
+  }
+
   body {
-    font: 17px/18px dejavu;
+    font: 17px/18px 'dejavu-bold';
     margin: 0;
     padding: 0;
   }
 
   a {
-    color: #004276;
+    color: #fff;
     text-decoration: none;
   }
-
+  p
+  {
+     font-family:'dejavu' !important; 
+  }
   a:hover {
     text-decoration: underline;
   }
@@ -50,7 +46,7 @@
   }
 
   .section.column {
-    font-family:dejavu;    
+    font-family:'dejavu-bold';    
     margin-top: 150px;
   }
 
@@ -87,7 +83,7 @@
   .scroll-prompt {
     position: absolute;
     bottom: 80px;
-    line-height: 20px;
+    line-height: 48px;
     text-align: center;
     color: white;
     font-size: 14px;
@@ -95,17 +91,44 @@
     font-weight: bold;
     text-transform: uppercase;
     z-index: 3;
-    margin-left: 7%;
-    padding-left: 112px;
+    margin:0px auto;    
     text-shadow: 0 1px 2px #000;
+    background-image: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'images/scroll.png'%>);       
+    background-position: 50% 0%;
+    background-repeat: no-repeat; 
+    width:100%;
   }
 
   .scroll-prompt svg {
-    fill: none;
-    stroke: white;
-    stroke-width: 2px;
-  }
+    fill: none;    
+    stroke-width: 2px;       
+    position:relative;
+    top:28px;
+    animation:arrows infinite;
+    animation-duration:0.9s;
+    animation-direction:alternate-reverse;
 
+    /*  Safari and Chrome   */
+    -webkit-animation:arrows infinite;
+    -webkit-animation-duration:0.9s;
+    -webkit-animation-direction:alternate-reverse;
+}
+  @-webkit-keyframes arrows {
+    from {
+      top:28px;
+    }
+    to {
+      top:38px;
+    }
+  }
+  @keyframes arrows {
+    from {
+      top:28px;
+    }
+    to {    
+      top:38px;
+    }
+  }
   .dropcap {
     float: left;
     font: bold 53px/70px "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -115,7 +138,7 @@
 
   .headline,
   .section h3 {
-    font: 200 30px/40px bpg_dejavu_bold, Georgia, serif;
+    font: 200 30px/40px shavshvebi, Georgia, serif;
   }
 
   .headline {
@@ -130,7 +153,7 @@
   }
 
   .byline {
-    font: 12px/2em dejavu_light,"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: 12px/2em dejavu,"Helvetica Neue", Helvetica, Arial, sans-serif;
     opacity: .5;
   }
 
@@ -244,10 +267,9 @@
   }
 
   .video-caption {
-    margin-top: 5px;    
-    padding-bottom: 20px;
-    background-color: #fff;
-    width: 100%;
+   /* margin-top: 5px;    */
+    padding-bottom: 20px;    
+    left:5%;    
   }
 
   .video-source {
@@ -294,11 +316,14 @@
 
   .video .video-caption {
     position: absolute;    
-    bottom: 10%;    
+    bottom: 10%;
+    left: 7%;    
     z-index: 3;
-    color:#868686;    
-    padding: 20px 20px;
+    color:#fff;        
     font-weight:normal;
+    width: 340px;
+    text-shadow: 0 1px 2px #000;
+    padding: 20px 0;
   }
 
   .video-sequence .video:last-of-type .video-caption {
@@ -334,14 +359,27 @@
 
   .video-caption--head .video-headline {
     position: absolute;
-    top: 20%;
+    top: 50%;
     color: #fff;
-    left: 7%;
+ /*   
+    left: 7%;*/
+
+    left: inherit;
+    text-align: center;
+    width: 50%;
+    margin: 0 25%;
     /*border-bottom: solid 2px black;  */
-    font-size: 50px;
-    line-height: 55px;
     /*padding-bottom: 35px;*/
   }
+    .video-caption--head .video-headline .headline-line1
+    {
+        font-size: 213px;        
+    }
+   .video-caption--head .video-headline .headline-line2
+    {
+        font-size: 83px;
+        line-height: 119px;
+    }
 
   .video-caption--head .video-summary {
     position: absolute;
@@ -1000,8 +1038,7 @@
   }
   .navigation {
       font-size: 17px !important;
-    font-family:bpg_dejavu_light;
-    /*font: 200 12px/20px bpg_dejavu_light, Georgia, serif;*/
+    font-family:dejavu;    
     position: fixed;
     top: 0;
     width: 100%;
@@ -1045,19 +1082,20 @@
   {
     padding-top: 2px;
   }
-  .navigation-headline:before,
-  /*.navigation-sections:before,*/
+   /*.navigation-headline:before,
+ .navigation-sections:before,
   .navigation-shares:before {
     content: "";
     float: left;
     height: 20px;
     border-right: solid 1px #444;
     margin: 0px 15px;
-  }
+  }*/
   .brand
   {
-    font-size: 17px !important;
-    font-family:bpg_dejavu_light;
+    font-size: 21px !important;
+    font-family:shavshvebi , Georgia, serif;
+    color:#fff;
   }
   .navigation-logo {
     float: left;
@@ -1073,8 +1111,9 @@
       letter-spacing: .1em;
       margin-top: 10px;
     <% end %>
+    margin-top: 3px;
     text-transform: uppercase;
-    font-family:bpg_dejavu_light;
+    font-family:shavshvebi , Georgia, serif;;
   }
 
   .navigation-headline:before {
@@ -1096,7 +1135,7 @@
 
   .navigation-section,
   .navigation-volume {
-    opacity: .5;
+    opacity: .7;
   }
 
   .navigation-logo:hover,
@@ -1271,7 +1310,7 @@
   }
   .column-caption
   {
-    font-family: bpg_dejavu_bold, Georgia, serif;
+    font-family: dejavu_bold, Georgia, serif;
     letter-spacing: .1em;
     font-size:19px;
     margin:5px 0px;  
@@ -1279,9 +1318,33 @@
 
   .column-sub-caption
   {
-    font-family: bpg_dejavu_light, Georgia, serif;
+    font-family: dejavu, Georgia, serif;
     font-size:15px;
     margin:0px 0px 5px 5px;  
 
+  }
+.navbar-inverse .brand, .navbar-inverse .nav > li > a {
+color: #FFFFFF;
+}
+.social
+{
+    position: absolute;
+    bottom:60px;
+    line-height: 48px;
+    text-align: right;
+    color: white;
+    font-size: 14px;
+    opacity: 1;
+    font-weight: bold;
+    text-transform: uppercase;
+    z-index: 3;
+    margin:0px auto;    
+    text-shadow: 0 1px 2px #000;    
+    width:100%;
+    right:80px;
+}
+.social a
+{
+  padding-right:15px;
   }
 </style>

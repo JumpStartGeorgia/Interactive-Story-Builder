@@ -159,16 +159,31 @@
 
                       <div class="video-caption video-caption--<%= caption_class %>">
                         <% if caption_class == 'head'  %>                      
-                              <div class="video-headline headline"> <%= @story.title %> </div>
+                              <div class="video-headline headline"> 
+                              <%  words = @story.title.split(' ') %>
+                              <span class="headline-line1"><%=  words[0] %></span><br/><span class="headline-line2"><%=  words[1..words.length-1].join(' ') %></span></div>
                               <% if m.caption.present? %>
                               <div class="video-summary"> <%= m.caption %> </div>
                               <% end %> 
-                              <div class="scroll-prompt">
-                                <%= t("app.buttons.scroll")%> <br>
-                                <svg width="18" height="8">
-                                  <path d="M0,0L9,7L18,0"></path>
-                                </svg>
-                              </div>                      
+                              <div class="scroll-prompt">                                
+                                                     
+                              <svg width="7.976px" height="12.512px">
+                                <g>
+                                  <path fill="#FFFFFF" d="M3.305,4.756c0.188,0.189,0.436,0.28,0.683,0.279c0.247,0.001,0.494-0.09,0.683-0.279l3.026-3.025
+                                    c0.372-0.374,0.372-0.978,0-1.352l-0.1-0.099c-0.374-0.374-0.979-0.374-1.353,0L3.988,2.537L1.731,0.28
+                                    c-0.373-0.374-0.978-0.374-1.352,0l-0.1,0.099c-0.373,0.374-0.373,0.979,0,1.352L3.305,4.756z"/>
+                                  <path fill="#FFFFFF" d="M7.597,7.756c-0.374-0.373-0.979-0.373-1.353,0l-2.256,2.257L1.731,7.756c-0.373-0.373-0.978-0.373-1.352,0
+                                    l-0.1,0.1c-0.373,0.375-0.373,0.978,0,1.351l3.025,3.025c0.188,0.188,0.436,0.282,0.683,0.28c0.247,0.002,0.494-0.092,0.683-0.28
+                                    l3.026-3.025c0.372-0.373,0.372-0.976,0-1.351L7.597,7.756z"/>
+                                </g>
+                              </svg>
+                              </div>   
+                              <div class="social">
+                                <a href="#twitter"><img src='<%= (@clone ? "assets/" : "/template/#{@template}/") + "images/twitter.png"%>'/></a>
+                                <a href="#google_plus"><img src='<%= (@clone ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>'/></a>
+                                <a href="#facebook"><img src='<%= (@clone ? "assets/" : "/template/#{@template}/") + "images/twitter.png"%>'/></a>
+                                
+                              </div>                   
                         <% else %>
                           <%= m.caption  %>
                         <% end %>  
