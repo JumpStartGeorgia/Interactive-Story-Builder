@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
 	# :registerable, :recoverable,
   has_and_belongs_to_many :stories
- devise :database_authenticatable,:registerable,
+
+  devise :database_authenticatable,:registerable, :recoverable,
          :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
   # Setup accessible (or protected) attributes for your model
@@ -37,6 +38,7 @@ class User < ActiveRecord::Base
   def nickname
     read_attribute(:nickname).present? ? read_attribute(:nickname) : self.email.split('@')[0]
   end
+  
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
@@ -61,4 +63,10 @@ class User < ActiveRecord::Base
       end
     end
   end
+  
+	# if user logged in with omniauth, password is not required
+	def password_required?
+		super && provider.blank?
+	end
+  
 end

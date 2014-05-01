@@ -39,16 +39,20 @@
                 <%= link_to t('helpers.titles.story_list'), stories_path  %>
               </li>              
 		          <% if user_signed_in? %>
-	          		    <li>	          		    
-				        	<%= link_to image_tag(current_user.avatar,:size=>"28x28"), "http://facebook.com/" + current_user.nickname, :style => "margin:0px;padding:5px 3px 3px 0px;" %>				
-			        	</li>
-			           			
+  		          <% if current_user.avatar.present? %>
+          		    <li>	          		    
+				          	<%= link_to image_tag(current_user.avatar,:size=>"28x28"), "http://facebook.com/" + current_user.nickname, :style => "margin:0px;padding:5px 3px 3px 0px;" %>				
+			          	</li>
+                <% end %>			           			
 				        <li class="dropdown">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				                <%= current_user.nickname %>
 				                <b class="caret"></b>
 				          </a>
 				          <ul class="dropdown-menu">
+                    <li>
+                      <%= link_to t('helpers.links.add_story'), new_story_path  %>
+                    </li>              
                     <li>
                       <%= link_to t('helpers.titles.story_list'), stories_path  %>
                     </li>              
@@ -64,7 +68,7 @@
 				        </li>
 				        <% else %>
 				         <li>
-				        	<%= link_to "Sign In", user_omniauth_authorize_path(:facebook) %>
+				        	<%= link_to t('helpers.links.sign_in2'), :new_user_session %>
 			        	</li>
 		         	 <% end %> 
 							<% I18n.available_locales.each do |locale| %>

@@ -1,12 +1,41 @@
-<h2>Forgot your password?</h2>
+<%- model_class = User -%>
+<% title t('helpers.links.forgot_password').html_safe %>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+<div id="login-form">
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <div class="providers">
+    <%- if devise_mapping.omniauthable? %>
+	    <%- resource_class.omniauth_providers.each do |provider| %>
+	      <% if provider == :facebook %>
+				  <%= link_to image_tag('connect_fb.png'), omniauth_authorize_path(resource_name, provider), :class => '' %>
+	      <% else %>
+				  <%= link_to t('helpers.links.sign_in_provider', :provider => provider.to_s.titleize), omniauth_authorize_path(resource_name, provider), :class => 'btn btn-primary' %>
+	      <% end %>
+	    <% end -%>
+    <% end -%>
+  </div>
 
-  <div><%= f.submit "Send me reset password instructions" %></div>
-<% end %>
 
-<%= render "links" %>
+  <%= semantic_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+  	<%= f.error_messages %>
+
+	  <%= f.input :email, :input_html => { :size => 35, :placeholder => t('activerecord.attributes.user.email') }, :label => false %>
+
+	  <div class="control-group">
+		  <%= f.submit t('helpers.links.password_reset'), :class => 'btn' %>
+	  </div>
+  <% end %>
+
+  <div class="control-group">
+	  <%- if controller_name != 'sessions' %>
+		  <%= link_to t('helpers.links.sign_in'), new_session_path(resource_name), :class => 'sign-in-link' %>
+	  <% end -%>
+
+	  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+		  <%= link_to t('helpers.links.sign_up'), new_registration_path(resource_name), :class => 'sign-up-link' %>
+	  <% end -%>
+  </div>
+
+
+</div>
+
