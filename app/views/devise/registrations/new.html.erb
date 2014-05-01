@@ -1,18 +1,44 @@
-<h2>Sign up</h2>
+<%- model_class = User -%>
+<% title t('helpers.links.sign_up').html_safe %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<div id="signup-form">
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+  <div class="providers">
+    <%- if devise_mapping.omniauthable? %>
+	    <%- resource_class.omniauth_providers.each do |provider| %>
+	      <% if provider == :facebook %>
+				  <%= link_to image_tag('connect_fb.png'), omniauth_authorize_path(resource_name, provider), :class => '' %>
+	      <% else %>
+				  <%= link_to t('helpers.links.sign_in_provider', :provider => provider.to_s.titleize), omniauth_authorize_path(resource_name, provider), :class => 'btn btn-primary' %>
+	      <% end %>
+	    <% end -%>
+    <% end -%>
+  </div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+  <%= semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  	<%= f.error_messages %>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+	  <%= f.input :email, :input_html => { :size => 35, :placeholder => t('activerecord.attributes.user.email') }, :label => false %>
+	  <%= f.input :nickname, :input_html => { :size => 35, :placeholder => 'Nickname' }, :label => false %>
+	  <% if f.object.password_required? %>
+		  <%= f.input :password, :input_html => { :size => 35, :placeholder => t('activerecord.attributes.user.password') }, :label => false %>
+		  <%= f.input :password_confirmation, :input_html => { :size => 35, :placeholder => t('activerecord.attributes.user.password_confirmation') }, :label => false %>
+	  <% end %>
 
-<%= render "links" %>
+	  <div class="control-group">
+		  <%= f.submit t('helpers.links.sign_up2'), :class => 'btn' %>
+	  </div>
+  <% end %>
+
+  <div class="control-group">
+	  <%- if controller_name != 'sessions' %>
+		  <%= link_to t('helpers.links.sign_in'), new_session_path(resource_name, {:load_media => false}), :class => 'btn btn-mini sign-in-link' %>
+	  <% end -%>
+
+	  <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+		  <%= link_to t('helpers.links.forgot_password'), new_password_path(resource_name, {:load_media => false}), :class => 'forgot-link' %>
+	  <% end -%>
+  </div>
+
+</div>

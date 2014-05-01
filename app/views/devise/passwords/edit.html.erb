@@ -1,16 +1,46 @@
-<h2>Change your password</h2>
+<%- model_class = User -%>
+<% title t('helpers.links.change_password').html_safe %>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+<div id="change-password-form">
 
-  <div><%= f.label :password, "New password" %><br />
-  <%= f.password_field :password %></div>
+  <div class="providers">
+    <%- if devise_mapping.omniauthable? %>
+	    <%- resource_class.omniauth_providers.each do |provider| %>
+	      <% if provider == :facebook %>
+				  <%= link_to image_tag('connect_fb.png'), omniauth_authorize_path(resource_name, provider), :class => '' %>
+	      <% else %>
+				  <%= link_to t('helpers.links.sign_in_provider', :provider => provider.to_s.titleize), omniauth_authorize_path(resource_name, provider), :class => 'btn btn-primary' %>
+	      <% end %>
+	    <% end -%>
+    <% end -%>
+  </div>
 
-  <div><%= f.label :password_confirmation, "Confirm new password" %><br />
-  <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.submit "Change my password" %></div>
-<% end %>
+  <%= semantic_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+  	<%= f.error_messages %>
 
-<%= render "links" %>
+    <%= f.hidden_field :reset_password_token %>
+
+	  <%= f.input :password, :input_html => { :size => 35, :placeholder => t('activerecord.attributes.user.password') }, :label => false %>
+	  <%= f.input :password_confirmation, :input_html => { :size => 35, :placeholder => t('activerecord.attributes.user.password_confirmation') }, :label => false %>
+
+
+	  <div class="control-group">
+		  <%= f.submit t('helpers.links.change_password2'), :class => 'btn' %>
+	  </div>
+  <% end %>
+
+  <div class="control-group">
+	  <%- if controller_name != 'sessions' %>
+		  <%= link_to t('helpers.links.sign_in'), new_session_path(resource_name), :class => 'sign-in-link' %>
+	  <% end -%>
+
+	  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+		  <%= link_to t('helpers.links.sign_up'), new_registration_path(resource_name), :class => 'sign-up-link' %>
+	  <% end -%>
+  </div>
+
+
+</div>
+
+

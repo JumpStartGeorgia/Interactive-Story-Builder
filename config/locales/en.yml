@@ -61,11 +61,21 @@ en:
       reset: Reset
       view: View
       sign_in_facebook: Sign in with Facebook
-      sign_in: Sign In
       edit_story: Edit Name
       delete_story: Delete Story
       admin_story: Edit Content
       publish_story: Publish Story
+      forgot_password: Forgot Password?
+      change_password: Change Your Password
+      change_password2: Change Password
+      password_reset: Send Password Reset Instructions
+      sign_in2: Sign In
+      sign_in: "Already have an account?"
+      sign_up2: Sign Up
+      sign_up: "Don't have an account yet?"
+      sign_out: Sign Out
+      sign_in_provider: "Sign in with %{provider}"
+      add_story: Add Story
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
