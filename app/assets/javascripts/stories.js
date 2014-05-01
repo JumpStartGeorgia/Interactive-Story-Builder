@@ -122,7 +122,8 @@ $(document).ready(function() {
 		});	 							
 		return true;	
   });
-		$('#btnUp').click(function(){
+
+	$('#btnUp').click(function(){
 		if(!(section_id == -1 && item_id == -1))
 		{
 			if (el_type == 'c') return true;
