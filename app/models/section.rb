@@ -40,4 +40,7 @@ class Section < ActiveRecord::Base
   def media?
    	 TYPE[:media] == self.type_id	
   end
+  def self.asset_exists?
+      self.asset.present? && self.asset.asset.exists?
+  end  
 end

@@ -387,7 +387,7 @@ class StoriesController < ApplicationController
     if File.directory?("#{Rails.root}/public/system/places/audio/#{params[:id]}/.")
       FileUtils.cp_r "#{Rails.root}/public/system/places/audio/#{params[:id]}/.", "#{mediaPath}/audio"
     end
-    @clone = true
+    @export = true
     File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/index.html.erb', :layout => false) }  
     send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :x_sendfile=>true, :filename=>"#{filename}.tar.gz"
 

@@ -1,7 +1,7 @@
 <style>
   @font-face {
     font-family: "nyt-cheltenham";    
-    src: url(<%= (@clone ? "assets/" :"/template/#{@template}/") + 'fonts/nyt-cheltenham-200-normal.woff.woff'%>) format("woff");           
+    src: url(<%= (@export ? "assets/" :"/template/#{@template}/") + 'fonts/nyt-cheltenham-200-normal.woff.woff'%>) format("woff");           
     font-style: normal;
     font-weight: 200;
   }
@@ -1024,7 +1024,7 @@
   }
   .navigation-logo {
     float: left;
-    background: url(<%= @clone ? "" : "/" %>assets/jumpstart-logo.png) no-repeat;
+    background: url(<%= @export ? "" : "/" %>assets/jumpstart-logo.png) no-repeat;
     height: 28px;
     margin: 4px 0 0 0;
     width: 110px;
@@ -1032,7 +1032,7 @@
 
   .navigation-headline {
     float: left;    
-    <% if @clone %> 
+    <% if @export %> 
       letter-spacing: .1em;
       margin-top: 10px;
     <% end %>
@@ -1084,7 +1084,7 @@
   .navigation-icon {
     width: 18px;
     height: 18px;
-    background-image: url(<%= @clone ? "" : "/" %>assets/icons.png);
+    background-image: url(<%= @export ? "" : "/" %>assets/icons.png);
   }
 
   .navigation-volume .navigation-icon { background-position: -52px -68px; }
@@ -1114,7 +1114,7 @@
 
     .ios .navigation-logo {
       margin-top: 20px;
-      background-image: url(<%= @clone ? "" : "/" %>assets/jumpstart-logo.png) no-repeat;
+      background-image: url(<%= @export ? "" : "/" %>assets/jumpstart-logo.png) no-repeat;
       background-position: 0px 0px;    
       width: 110px;
       height: 28px;

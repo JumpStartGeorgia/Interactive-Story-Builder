@@ -55,9 +55,12 @@ class Story < ActiveRecord::Base
   # if the story is being published, record the date
 	def publish_date		
 	  if  self.was_publishing != self.published && self.published?
-	  	self.published_at = Time.now
-	  end     
-	end
+  	  	self.published_at = Time.now
+  	  end     
+  	end
+  	def self.asset_exists?
+  		self.asset.present? && self.asset.asset.exists?
+	end  		
 
   # if the reviewer key does not exist, create it
   def generate_reviewer_key

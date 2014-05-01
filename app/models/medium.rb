@@ -31,8 +31,12 @@ class Medium < ActiveRecord::Base
      options[:except] ||= [:created_at, :updated_at]
      super(options)
    end
-
-
+  def self.image_exists?
+    self.image.present? && self.image.asset.exists?
+  end  
+  def self.video_exists?
+    self.video.present? && self.video.asset.exists?
+  end  
 private
   def video_type?    
     self.media_type == 2

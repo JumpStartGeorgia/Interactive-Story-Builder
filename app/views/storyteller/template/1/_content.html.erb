@@ -124,7 +124,7 @@
                   <div class="video"  <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>                
                       <div class="video-container">
                         <% if m.media_type == 1 %>     
-                        <% if !@clone %>                           
+                        <% if !@export %>                           
                           <img src="<%= m.image.url %>">
                         <% else %>
                           <img src="media/images/original/<%= m.image_file_name %>">
@@ -132,7 +132,7 @@
 
                         <% elsif m.media_type == 2  %>                    
                             <% if  m.image.exists? %>    
-                              <% if !@clone %>                           
+                              <% if !@export %>                           
                                 <!--[if lte IE 8]><img src="<%= m.image.url %>"><![endif]-->
                               <% else %>
                                 <!--[if lte IE 8]><img src="media/images/original/<%= m.image_file_name %>"><![endif]-->
@@ -184,7 +184,7 @@
            <div id="left">&copy; <%= Time.now.year %></div>
               <div id="middle">&nbsp;</div>
             <div id="right">
-                <% if !@clone %>                           
+                <% if !@export %>                           
                     <%= link_to(image_tag("jumpstart-logo.png"), "http://www.jumpstart.ge", :target => "_blank",
                     :title => t("layouts.application.js_link_title") ) %>
                   <% else %>
@@ -273,7 +273,7 @@
 
 
 
-        <% if !@clone %>                           
+        <% if !@export %>                           
             var _mobile_assets =  "/system/places/images/<%= @story.id %>/";
           <% else %>
             var _mobile_assets =  "media/images/";
@@ -435,7 +435,7 @@
           /* Just skip if we're on iPad, iPhone or Android -- TG */
           if (isMobile()) return false;
 
-            <% if !@clone %>                           
+            <% if !@export %>                           
                var _video_assets = "/system/places/video/<%= @story.id %>/",
               _image_assets = "/system/places/images/<%= @story.id %>/original/",
               _audio_assets = "/system/places/audio/<%= @story.id %>/";
