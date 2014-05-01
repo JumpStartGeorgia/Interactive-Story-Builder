@@ -115,67 +115,73 @@ $(document).ready(function() {
 		});	 							
 		return true;	
   });
-	$('#btnUp').click(function(){
-		if (el_type == 'c') return true;
-		var dataTemp = {'s' : section_id, 'i': item_id };
-		$.ajax
-		({
-			url: 'up',			  
-			data: dataTemp,
-			type: "POST",			
-	        dataType: 'json'
-
-		}).done(function(d) 
+		$('#btnUp').click(function(){
+		if(!(section_id == -1 && item_id == -1))
 		{
-			var secT = $('.story-tree ul li.item[id='+ section_id + ']');
-			if(item_id == -1)
-			{			 	
-		 		if( secT.prev.length)
-		 		{
-	 			  $(secT).insertBefore($(secT).prev());
+			if (el_type == 'c') return true;
+			var dataTemp = {'s' : section_id, 'i': item_id };
+			$.ajax
+			({
+				url: 'up',			  
+				data: dataTemp,
+				type: "POST",			
+		        dataType: 'json'
+
+			}).done(function(d) 
+			{
+				var secT = $('.story-tree ul li.item[id='+ section_id + ']');
+				if(item_id == -1)
+				{			 	
+			 		if( secT.prev.length)
+			 		{
+		 			  $(secT).insertBefore($(secT).prev());
+			 		}
 		 		}
-	 		}
-	 		else
-	 		{
-	 			subT = secT.find('ul li.sub[id='+item_id+']');
-	 			if( subT.prev.length)
+		 		else
 		 		{
-	 			  $(subT).insertBefore($(subT).prev());
-		 		}
-	 		}	
-					
-		}).error(function(e){ popuper("Changing order failed.","error");});	 	
+		 			subT = secT.find('ul li.sub[id='+item_id+']');
+		 			if( subT.prev.length)
+			 		{
+		 			  $(subT).insertBefore($(subT).prev());
+			 		}
+		 		}	
+						
+			}).error(function(e){ popuper("Changing order failed.","error");});	
+		} 	
 	});
 	$('#btnDown').click(function(){
-		if (el_type == 'c') return true;
-		var dataTemp = {'s' : section_id, 'i': item_id };
-		$.ajax
-		({
-			url: 'down',			  
-			data: dataTemp,
-			type: "POST",			
-	        dataType: 'json'
-
-		}).done(function(d) 
+		if(!(section_id == -1 && item_id == -1))
 		{
-		 	var secT = $('.story-tree ul li.item[id='+ section_id + ']');
+			if (el_type == 'c') return true;
+			var dataTemp = {'s' : section_id, 'i': item_id };
+			$.ajax
+			({
+				url: 'down',			  
+				data: dataTemp,
+				type: "POST",			
+		        dataType: 'json'
 
-			if(item_id == -1)
-			{			 	
-		 		if( secT.next.length)
-		 		{
-	 			  $(secT).insertAfter($(secT).next());
+			}).done(function(d) 
+			{
+			 	var secT = $('.story-tree ul li.item[id='+ section_id + ']');
+
+				if(item_id == -1)
+				{			 	
+			 		if( secT.next.length)
+			 		{
+		 			  $(secT).insertAfter($(secT).next());
+			 		}
 		 		}
-	 		}
-	 		else
-	 		{
-	 			subT = secT.find('ul li.sub[id='+item_id+']');
-	 			if( subT.next.length)
+		 		else
 		 		{
-	 			  $(subT).insertAfter($(subT).next());
-		 		}
-	 		}		 				
-		}).error(function(e){ popuper("Changing order failed.","error");});	 	
+		 			subT = secT.find('ul li.sub[id='+item_id+']');
+		 			if( subT.next.length)
+			 		{
+		 			  $(subT).insertAfter($(subT).next());
+			 		}
+		 		}		 				
+			}).error(function(e){ popuper("Changing order failed.","error");});	
+		} 	
 	});
 
 	$('#btnDelete').click(function(){
