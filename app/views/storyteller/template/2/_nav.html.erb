@@ -1,4 +1,8 @@
   <% if !@clone %>
+    <%= render partial: "layouts/nav_bar", :locals => {:showing_story => true}%>   
+
+<!--
+
     <div class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container-fluid">   
@@ -10,10 +14,11 @@
                 <%= link_to t('helpers.titles.story_list'), stories_path  %>
               </li>              
               <% if user_signed_in? %>
-                    <li>                    
-                  <%= link_to image_tag(current_user.avatar,:size=>"28x28"), "http://facebook.com/" + current_user.nickname, :style => "margin:0px;padding:5px 3px 3px 0px;" %>       
-                </li>
-                      
+  		          <% if current_user.avatar.present? %>
+                  <li>                    
+                    <%= link_to image_tag(current_user.avatar,:size=>"28x28"), "http://facebook.com/" + current_user.nickname, :style => "margin:0px;padding:5px 3px 3px 0px;" %>       
+                  </li>
+                <% end %>                      
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <%= current_user.nickname %>
@@ -57,10 +62,11 @@
                 <% end %>
               </li>            
             </ul>
-          </div><!--/.nav-collapse -->                     
+          </div>
         </div>
       </div>
     </div> 
+-->
 <% else %>
   <div class="navigation">
     <div class="navigation-left">

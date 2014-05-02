@@ -3,8 +3,7 @@ $(document).ready(function(){
   $.extend( $.fn.dataTableExt.oStdClasses, {
       "sWrapper": "dataTables_wrapper form-inline"
   });
-
-
+  
   $('#users-datatable').dataTable({
     "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",    
     "sPaginationType": "bootstrap",
@@ -19,6 +18,5 @@ $(document).ready(function(){
     },
     "aaSorting": [[2, 'desc']]
   });
-
 
 });

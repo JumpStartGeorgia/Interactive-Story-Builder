@@ -1,18 +1,30 @@
-<% @template = @story.template.id %>
-<% if !@clone.present? 
-	@clone = false
-	end %>
+<% 
+  @template = @story.template.id 
+  @clone ||= false
+%>
 
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
   <head>
     <%= render partial: "storyteller/template/#{@template}/head"%>
+
+    <% if !@clone %>
+  	  <%= include_gon %>
+    <% end %>
   </head>
   <body>
     <%= render partial: "storyteller/template/#{@template}/nav"%>
     <div id='storyTeller' style='top:50px;'> 
       <%= render partial: "storyteller/template/#{@template}/content"%>   
     </div>
+    
+      <% if !@clone %>
+      <%= javascript_include_tag "application" %>
+		  <script type="text/javascript">
+			  I18n.defaultLocale = "<%= I18n.default_locale %>";
+			  I18n.locale = "<%= I18n.locale %>";
+		  </script>
+      <% end %>
       <% if Rails.env.production? %>
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -28,7 +28,9 @@
     <%= favicon_link_tag '/favicon.ico', :rel => 'shortcut icon' %>
   </head>
   <body>
+    <%= render partial: "layouts/nav_bar"%>   
 
+<!--
     <div class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container-fluid">   
@@ -58,11 +60,11 @@
                     </li>              
                     <% if current_user.role? User::ROLES[:admin] %>
                       <li>
-                       <%= link_to t('.admin'), admin_path %>
+                       <%= link_to t('helpers.links.admin'), admin_path %>
                       </li>
                     <% end %>     
 						        <li>
-				 		         <%= link_to t('.sign_out'), destroy_user_session_path, :method => :delete %>
+				 		         <%= link_to t('helpers.links.sign_out'), destroy_user_session_path, :method => :delete %>
 										</li>
 				          </ul>
 				        </li>
@@ -85,7 +87,7 @@
         </div>
       </div>
     </div>
-
+-->
 		<div id="wrapper">
 		  <div class="container">
 		    <div class="content">
