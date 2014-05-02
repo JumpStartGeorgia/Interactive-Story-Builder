@@ -256,10 +256,11 @@ class StoriesController < ApplicationController
     elsif type == 'm'      
       item = Medium.find_by_id(params[:item_id])           
     end
-    item.destroy
+
+    item.destroy if item.present?
     
-   respond_to do |format|
-      if item.destroyed?   
+    respond_to do |format|
+      if item.present? && item.destroyed?   
           flash[:success] = "Item was removed from the tree."
           format.json { render json: nil , status: :created } 
       else  
