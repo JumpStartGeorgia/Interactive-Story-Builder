@@ -197,7 +197,11 @@
 
         <div class="section footer-section">
            <div id="left">&copy; <%= Time.now.year %></div>
-              <div id="middle">&nbsp;</div>
+              <div id="middle">              
+                <div id="about_link">
+                  About
+                </div>
+              </div>
             <div id="right">
                 <% if !@clone %>                           
                     <%= link_to(image_tag("jumpstart-logo.png"), "http://www.jumpstart.ge", :target => "_blank",
@@ -207,7 +211,10 @@
                   <% end %>
                 <% end %>  
             </div>
-        </div>   
+        </div> 
+        <div id="about_box" >
+          <p class='about_text'>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
+        </div>
       </div>
     </div>   
         <!--
@@ -471,7 +478,7 @@
               fixTop = Math.round((innerHeight - fixHeight) / 2),
               fadeTop = Math.max(200, fixTop),
               fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight),
-              fade = d3.interpolateRgb("#000", "#fff");
+              fade = d3.interpolateRgb("#fff", "#fff");
 
           var headline = d3.select(".navigation-headline");
 
@@ -666,9 +673,9 @@
               }
             }
 
-            section.select(".video-caption").style("opacity", opacityTop > fixTop ? (d.first ? 1 : Math.max(0, 1 - (opacityTop - fixTop) / (fixHeight / 5))) // fade in from bottom
+            section.select(".video-caption").style("opacity", opacityTop > fixTop ? Math.max(0, 1 - (opacityTop - fixTop) / (fixHeight / 5)) // fade in from bottom
                 : opacityTop > fixTop - fixHeight * 5 / 20 ? 1 // this video is fully opaque and not covered
-                : d.last ? 1 : Math.max(0, (opacityTop - fixTop + fixHeight * 5 / 20) / (fixHeight / 5) + 1)); // fade out to top
+                :  Math.max(0, (opacityTop - fixTop + fixHeight * 5 / 20) / (fixHeight / 5) + 1)); // fade out to top
 
             if (videoNode) {
               videoNode[muteVolume] = volume = volume !== 1 ? volume // special-case volume for first and last fade
@@ -810,6 +817,9 @@
         }
 
         await();
-
+    
+        
+        d3.select("#about_link").on('click',function(){d3.select("#about_box").style('display','block');})
+      
     })();</script>
     <!--<![endif]-->  
