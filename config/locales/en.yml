@@ -61,7 +61,7 @@ en:
       reset: Reset
       view: View
       sign_in_facebook: Sign in with Facebook
-      edit_story: Edit Name
+      edit_story: Edit Story Settings
       delete_story: Delete Story
       admin_story: Edit Content
       publish_story: Publish Story
@@ -177,6 +177,10 @@ en:
           title: Type Story name
           author: Author(s) of the article
           media_author: "Author(s) of photos, videos"
+      hint:
+        thumbnail: Image that is used to show the story on the homepage when the story is published
+        editor: Person that created the story
+        editors: Select people that you want to give access to edit/view the story before it is published
     media:
       left: Left
       center: Center
