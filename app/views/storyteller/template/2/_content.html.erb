@@ -674,8 +674,8 @@
             }
 
             section.select(".video-caption").style("opacity", opacityTop > fixTop ? Math.max(0, 1 - (opacityTop - fixTop) / (fixHeight / 5)) // fade in from bottom
-                : opacityTop > fixTop - fixHeight * 5 / 20 ? 1 // this video is fully opaque and not covered
-                :  Math.max(0, (opacityTop - fixTop + fixHeight * 5 / 20) / (fixHeight / 5) + 1)); // fade out to top
+                : opacityTop > fixTop - fixHeight * 9 / 20 ? 1 // this video is fully opaque and not covered
+                :  Math.max(0, (opacityTop - fixTop + fixHeight * 9 / 20) / (fixHeight / 5) + 1)); // fade out to top
 
             if (videoNode) {
               videoNode[muteVolume] = volume = volume !== 1 ? volume // special-case volume for first and last fade
