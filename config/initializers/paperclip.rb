@@ -12,7 +12,9 @@ end
 Paperclip.interpolates('media_video_story_id') do |attachment, style|
   attachment.instance.video.section.story_id
 end
-
+Paperclip.interpolates('slideshow_image_story_id') do |attachment, style|
+  attachment.instance.asset.section.story_id
+end
 
 # Paperclip.interpolates('asset_url') do |attachment, style|
 #   Rails.logger.debug(attachment.instance.asset_type.to_s)

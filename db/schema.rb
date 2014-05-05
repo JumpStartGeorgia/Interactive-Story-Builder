@@ -11,6 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+
 ActiveRecord::Schema.define(:version => 20140507093603) do
 
   create_table "assets", :force => true do |t|
@@ -27,18 +28,18 @@ ActiveRecord::Schema.define(:version => 20140507093603) do
     t.integer  "position"
   end
 
-
   add_index "assets", ["item_id"], :name => "index_assets_on_item_id"
 
   create_table "contents", :force => true do |t|
     t.integer  "section_id"
     t.string   "title"
+    t.string   "caption"
     t.string   "sub_caption"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "caption"
   end
+  add_index "contents", ["section_id"], :name => "section_id_UNIQUE", :unique => true
 
   create_table "impressions", :force => true do |t|
     t.string   "impressionable_type"
@@ -65,15 +66,14 @@ ActiveRecord::Schema.define(:version => 20140507093603) do
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], :name => "impressionable_type_message_index", :length => {"impressionable_type"=>nil, "message"=>255, "impressionable_id"=>nil}
   add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
 
+
   create_table "media", :force => true do |t|
     t.integer  "section_id"
     t.integer  "media_type"
     t.string   "title"
-    t.string   "caption",            :limit => 2000
+    t.string   "caption",       :limit => 2000
     t.integer  "caption_align"
     t.string   "source"
-    t.string   "audio_path"
-    t.string   "video_path"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "position"
@@ -93,6 +93,14 @@ ActiveRecord::Schema.define(:version => 20140507093603) do
   end
 
   add_index "sections", ["story_id"], :name => "index_sections_on_story_id"
+
+  create_table "slideshows", :force => true do |t|
+    t.integer  "section_id"
+    t.string   "title"
+    t.string   "caption"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "stories", :force => true do |t|
     t.string   "title"

@@ -1,0 +1,27 @@
+
+<%= semantic_form_for(@item, url: slideshow_story_path(id:params[:id],:format => :js), :html => { :multipart=> true, :id => "slideshowForm" } , remote: true) do |f| %>
+  <%= error_messages_for f.object %>
+  <%= f.inputs do %>
+    <%= f.input :title, :input_html => { :id => "mediaTitle", title: t('.title.title') } %>
+      <%= f.input :caption, :input_html => { :id => "mediaCaption" ,:placeholder =>"Caption for slide", title: t('.title.caption') } %>
+ 
+  <%= f.fields_for :assets, @item.assets do |as| %>
+    <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.medium.image') %></label>
+
+    
+  <% end %> 
+
+
+
+ 
+    <%= f.input :section_id, :as => :hidden , :input_html => { :id => "mediaSection" }  %>
+    <% if @item.id.present? %>
+      <%= f.input :id, :as => :hidden , :input_html => { :id => "slideshowId" }  %>    
+    <% end %>
+  <% end %>
+
+  <div class="pull-right spacer">            
+    <%= f.submit nil, :class => 'btn' %>
+    <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>          
+  </div>
+<% end %>

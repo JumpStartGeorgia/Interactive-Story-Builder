@@ -126,7 +126,7 @@ $(document).ready(function() {
 	$('#btnUp').click(function(){
 		if(!(section_id == -1 && item_id == -1))
 		{
-			if (el_type == 'c') return true;
+			if (el_type == 'content') return true;
 			var dataTemp = {'s' : section_id, 'i': item_id };
 			$.ajax
 			({
@@ -160,7 +160,7 @@ $(document).ready(function() {
 	$('#btnDown').click(function(){
 		if(!(section_id == -1 && item_id == -1))
 		{
-			if (el_type == 'c') return true;
+			if (el_type == 'content') return true;
 			var dataTemp = {'s' : section_id, 'i': item_id };
 			$.ajax
 			({
@@ -245,8 +245,8 @@ $(document).ready(function() {
 		if(section_id == -1) {alert("Select section for new item"); return true;}
 		else  { temp = $('.story-tree ul li.item[id='+ section_id + ']'); }
 		
-		var tempType = temp.data('type')[0];
-		if( tempType == 'c' && temp.has('ul').length==1 )
+		var tempType = temp.data('type');
+		if( (tempType == 'content' || tempType == 'slideshow') && temp.has('ul').length==1 )
 		{			
 			alert("Only one content can be added to content type section");
 		}
@@ -272,7 +272,7 @@ function getStory(id , subid , state)
 	if(id != -1)
 	{
 		var selectedSection = $('.story-tree ul li.item[id='+ id + ']');
-		el_type = selectedSection.data('type')[0];	
+		el_type = selectedSection.data('type');	
 	}		
 
 	if(subid != -1)

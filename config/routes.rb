@@ -45,6 +45,9 @@ BootstrapStarter::Application.routes.draw do
     			get 'clone', to: 'stories#clone'    
     			get 'export', to: 'stories#export' 		
 
+				put 'slideshow', to: 'stories#save_slideshow'
+				post 'slideshow', to: 'stories#new_slideshow'
+
     			get 'test'    			
   			end			
 		end

@@ -83,6 +83,17 @@
      <% alignment = { "left" => -1, "center" => 0, "right" => 1 }%>
     <div class="main">
       <div class="article"> 
+
+      <div class="section slideshow">
+        <!--[if lte IE 8]><img src="http://graphics8.nytimes.com/newsgraphics/2013/10/13/russia/assets/medium/novgorod_001.jpg" style="width:100%;"><![endif]-->
+        <div class="slideshow-captions">
+          <div class="slideshow-caption" data-slug="novgorod_001">Residents washed clothes in a river near a stretch of the M10 highway where the condition of the road is so dismal that from time to time it makes national news.</div>
+          <div class="slideshow-caption" data-slug="novgorod_002">Teenagers congregated at a bus station in Belsky.</div>
+          <div class="slideshow-caption" data-slug="novgorod_005">An old Lenin statue and monuments of two Soviet pioneers are seen near the road.</div>
+          <div class="slideshow-caption" data-slug="novgorod_004">A woman sold pastries near the road of a village near Novgorod.</div>
+        </div>
+      </div>
+
         <% columnSectionCount = 0 %>
          <% @story.sections.sort_by{|p| p.position}.each_with_index do |section,s_i| %>
           <%  dataAudio = ''
@@ -713,7 +724,146 @@
           }
 
           });</script>
+          <script>defer(function() {
 
+          var assets = "http://graphics8.nytimes.com/newsgraphics/2013/10/13/russia/assets/" + (innerWidth * (window.devicePixelRatio || 1) * .7 > 900 ? "large" : "medium") + "/";
+
+          d3.selectAll(".slideshow").each(function() {
+            var currentIndex = 0,
+                playInterval;
+
+            var watch = d3.behavior.watch()
+                .on("statechange.first", firststatechanged)
+                .on("statechange", statechanged);
+
+            var slideshow = d3.select(this)
+                .on("mouseover", stopPlay)
+                .on("mouseout", stopPlay)
+                .call(watch);
+
+            var caption = slideshow.select(".slideshow-captions").selectAll(".slideshow-caption")
+                .datum(function() {
+                  return {
+                    slug: this.getAttribute("data-slug")
+                  };
+                })
+                .classed("slideshow-caption--active", function(d, i) { return i === currentIndex; });
+
+            var images = caption.data();
+
+            var container = slideshow.insert("div", ".slideshow-captions")
+                .attr("class", "slideshow-container");
+
+            var image = container.append("div")
+                .attr("class", "slideshow-images")
+              .selectAll(".slideshow-image")
+                .data(images)
+              .enter().append("img")
+                .attr("class", "slideshow-image");
+
+            image.filter(function(d, i) { return i === currentIndex; })
+                .classed("slideshow-image--active", true)
+                .attr("src", function(d) { return assets + d.slug + ".jpg"; })
+                .each(moveToFront);
+
+            container.append("div")
+                .attr("class", "slideshow-button slideshow-button--next")
+                .on("click", function() { stopPlay(); showNext(); })
+              .append("svg")
+                .attr("class", "slideshow-button-arrow")
+                .attr("width", 22)
+                .attr("height", 22)
+              .append("path")
+                .attr("d", "M3,1.008L20.742,9.045L3,17.083L6,8.917Z");
+
+            container.append("div")
+                .attr("class", "slideshow-button slideshow-button--previous")
+                .on("click", function() { stopPlay(); showPrevious(); })
+              .append("svg")
+                .attr("class", "slideshow-button-arrow")
+                .attr("width", 22)
+                .attr("height", 22)
+              .append("path")
+                .attr("d", "M18.742,0.758L1,8.795L18.742,16.833L15.742,8.667Z");
+
+            var thumb = container.insert("div", ".slideshow-captions")
+                .attr("class", "slideshow-thumbs")
+              .selectAll(".slideshow-thumb")
+                .data(images)
+              .enter().append("img")
+                .attr("class", function(d, i) { return "slideshow-thumb" + (i === currentIndex ? " slideshow-thumb--active" : ""); })
+                .attr("src", function(d) { return "http://graphics8.nytimes.com/newsgraphics/2013/10/13/russia/assets/thumb/" + d.slug + ".jpg"; })
+                .on("click", function(d, i) { stopPlay(); show(i); });
+
+            function firststatechanged() {
+              if (d3.event.state) {
+                image.attr("src", function(d, i) { return assets + d.slug + ".jpg"; });
+                watch.on("statechange.first", null);
+              }
+            }
+
+            function statechanged() {
+              if (d3.event.state) startPlay();
+              else stopPlay();
+            }
+
+            function startPlay() {
+              if (!playInterval) playInterval = setInterval(showNext, 7000);
+            }
+
+            function stopPlay() {
+              if (playInterval) playInterval = clearInterval(playInterval);
+            }
+
+            function show(index) {
+              var oldImage = d3.select(image[0][currentIndex]),
+                  oldCaption = d3.select(caption[0][currentIndex]),
+                  oldThumb = d3.select(thumb[0][currentIndex]),
+                  newImage = d3.select(image[0][index]),
+                  newCaption = d3.select(caption[0][index]),
+                  newThumb = d3.select(thumb[0][index]);
+
+              oldImage
+                  .classed("slideshow-image--active", false);
+
+              oldCaption
+                  .classed("slideshow-caption--active", false);
+
+              oldThumb
+                  .classed("slideshow-thumb--active", false);
+
+              newImage
+                  .classed("slideshow-image--active", true)
+                  .style("opacity", 0)
+                  .each(moveToFront);
+
+              newCaption
+                  .classed("slideshow-caption--active", true);
+
+              newThumb
+                  .classed("slideshow-thumb--active", true);
+
+              currentIndex = index;
+
+              d3.timer(function() {
+                newImage.style("opacity", null);
+              }, 20);
+            }
+
+            function showNext() {
+              show((currentIndex + 1) % images.length);
+            }
+
+            function showPrevious() {
+              show((currentIndex ? currentIndex : images.length) - 1);
+            }
+          });
+
+          function moveToFront() {
+            this.parentNode.appendChild(this);
+          }
+
+          });</script>
     <!--[if gt IE 8]><!-->
 
       <!-- -----------------------------------------------------------------------

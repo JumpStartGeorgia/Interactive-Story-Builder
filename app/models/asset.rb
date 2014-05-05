@@ -2,9 +2,10 @@ class Asset < ActiveRecord::Base
 
   belongs_to :story
   belongs_to :section, foreign_key: :item_id
+  belongs_to :slideshow, foreign_key: :item_id
   belongs_to :media, foreign_key: :item_id
   belongs_to :image, foreign_key: :item_id, class_name: "Medium"
-  belongs_to :video, foreign_key: :item_id, class_name: "Medium"
+  belongs_to :video, foreign_key: :item_id, class_name: "Medium"  
 
   validates :item_id,:asset_type, :presence => true
   TYPE = {story_thumbnail: 1, section_audio: 2, content_image: 3, media_image: 4, media_video: 5, slideshow_image: 6}
@@ -32,6 +33,8 @@ class Asset < ActiveRecord::Base
       when  Asset::TYPE[:media_video]        
         opt = {   :url => "/system/places/video/:story_id/:basename.:extension",
                   :styles => { :poster => { :format => 'jpg', :time => 1 }}, :processors => [:ffmpeg] }  
+       when  Asset::TYPE[:slideshow_image]        
+        opt = {   :url => "/system/places/slideshow/:story_id/:id/:basename.:extension" }  
     end    
     self.asset.options.merge!(opt)
   
@@ -44,10 +47,10 @@ class Asset < ActiveRecord::Base
 
 
   with_options :if => "self.asset_type == Asset::TYPE[:story_thumbnail]" do |t|    
-    t.validates_attachment :asset, { :content_type => { :content_type => ["image/jpeg", "image/png"] }}  
+    t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }}  
   end
   with_options :if => "self.asset_type == Asset::TYPE[:section_audio]" do |t|      
-    t.validates_attachment :asset, { :content_type => { :content_type => ["audio/mp3"] }}  
+    t.validates_attachment :asset, {   :presence => true,:content_type => { :content_type => ["audio/mp3"] }}  
   end
   with_options :if => "self.asset_type == Asset::TYPE[:media_image]" do |t|      
     t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }}  
@@ -55,7 +58,9 @@ class Asset < ActiveRecord::Base
   with_options :if => "self.asset_type == Asset::TYPE[:media_video]" do |t|      
     t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["video/mp4"] }}    
   end
-
+ with_options :if => "self.asset_type == Asset::TYPE[:slideshow_image]" do |t|      
+    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }}    
+  end
 
    
   before_post_process :transliterate_file_name

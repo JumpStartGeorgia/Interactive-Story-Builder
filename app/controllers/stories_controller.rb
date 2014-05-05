@@ -40,8 +40,8 @@ class StoriesController < ApplicationController
     @templates = Template.select_list
     logger.debug(@users.inspect)
     respond_to do |format|
-        format.html #new.html.erb
-      format.json { render json: @story }
+        format.html #new.html.er
+b      format.json { render json: @story }
     end
   end
 
@@ -165,7 +165,7 @@ class StoriesController < ApplicationController
         format.js { render :action => "get_section" }
       end
 
-    elsif type == 'c'
+    elsif type == 'content'
 
       if params[:command]!='n'
         @item = Content.find_by_id(params[:item_id])
@@ -176,7 +176,7 @@ class StoriesController < ApplicationController
         format.js  {render :action => "get_content" }
       end
 
-    elsif type == 'm'
+    elsif type == 'media'
 
         if params[:command]!='n'    
           @item = Medium.find_by_id(params[:item_id])   
@@ -195,6 +195,22 @@ class StoriesController < ApplicationController
           format.js {render :action => "get_media" }
         end
 
+
+    elsif type == 'slideshow'
+
+        if params[:command]!='n'    
+          @item = Slideshow.find_by_id(params[:item_id])   
+        else 
+          @item = Slideshow.new(:section_id => params[:section_id])
+        end
+      
+          @item.assets.build(:asset_type => Asset::TYPE[:slideshow_image])
+        
+     
+        respond_to do |format|
+          format.js {render :action => "get_slideshow" }
+        end
+
     end
   end
 
@@ -207,9 +223,7 @@ class StoriesController < ApplicationController
 
   def new_section
     @item = Section.new(params[:section])  
-
-    @item.build_asset(:asset_type => Asset::TYPE[:section_audio]) 
-      
+     
      respond_to do |format|
         if @item.save         
           flash_success_created(Section.model_name.human,@item.title)                     
@@ -295,10 +309,12 @@ class StoriesController < ApplicationController
     type = params[:type]
     if type == 's'
       item = Section.find_by_id(params[:section_id])               
-    elsif type == 'c'
+    elsif type == Section::TYPE[:content]
       item =  Content.find_by_id(params[:item_id])      
-    elsif type == 'm'      
-      item = Medium.find_by_id(params[:item_id])           
+    elsif type == Section::TYPE[:media]   
+      item = Medium.find_by_id(params[:item_id])
+    elsif type == Section::TYPE[:slideshow]   
+      item = Slideshow.find_by_id(params[:item_id])                 
     end
 
     item.destroy if item.present?

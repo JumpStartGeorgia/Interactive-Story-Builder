@@ -1,6 +1,7 @@
 class Section < ActiveRecord::Base
   belongs_to :story
   has_one :content, dependent: :destroy
+  has_one :slideshow, dependent: :destroy
   has_one :asset,     
   :conditions => "asset_type = #{Asset::TYPE[:section_audio]}",    
   foreign_key: :item_id,
@@ -11,13 +12,13 @@ class Section < ActiveRecord::Base
 
 
 
-  TYPE = {content: 1, media: 2}
+  TYPE = {content: 1, media: 2, slideshow: 3}
 
   accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
 
   amoeba do
     enable
-    clone [:content, :media]
+    clone [:content, :media, :slideshow]
   end
 
   validates :story_id, :presence => true
