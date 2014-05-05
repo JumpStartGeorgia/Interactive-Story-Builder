@@ -8,9 +8,7 @@
     <%= f.input :title, :placeholder => t('.placeholder.title'), hint: t('.hint.title'), :input_html => { :id => "sectionTitle" } %>
      
 
-
-
-  <%= f.input :type_id, :as => :select, hint: t('.hint.type'),  :include_blank => false, :collection => { t('.content') => Section::TYPE[:content], t('.media') => Section::TYPE[:media] } , :input_html => { :id => "sectionType"  }   %> 
+  <%= f.input :type_id, :as => :select, hint: t('.hint.type'),  :include_blank => false, :collection => @section_list, :input_html => { :id => "sectionType"  }   %> 
 
   <%= f.input :has_marker, :as => :boolean, :hint => t('.hint.has_marker'), :input_html => { id: "sectionHasMarker"} %> 
        

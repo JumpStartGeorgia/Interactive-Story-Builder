@@ -128,7 +128,11 @@ class StoriesController < ApplicationController
       else 
         @item = Section.new(story_id: params[:id], type_id: Section::TYPE[:content], has_marker: 1)
       end  
-           
+
+      @section_list = []
+      Section::TYPE.each{|k,v| @section_list << ["#{I18n.t("section_types.#{k}.name")} - #{I18n.t("section_types.#{k}.description")}", v]} 
+      @section_list.sort_by!{|x| x[0]}
+                 
       respond_to do |format|
         format.js { render :action => "get_section" }
       end

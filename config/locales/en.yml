@@ -33,7 +33,7 @@ en:
         title: Title          
         caption: Caption
         sub_caption: Sub Caption
-        content: Text
+        content: Content
       medium:
         media_type: Media Type
         title: Title
@@ -130,6 +130,13 @@ en:
       error_unpublish: "%{obj} wasn't unpublished.[ %{err} ]"
       error_clone: "%{obj} wasn't cloned."
       error_export: "Story %{obj} can't be exported"
+  section_types:
+    content:
+      name: Content
+      description: Can include html, css styling and images
+    media:
+      name: Full-Screen Media Slideshow
+      description: Images and/or videos as a full-screen vertical slideshow
   layouts:
     application:
       admin: Admin
@@ -196,7 +203,6 @@ en:
       video: Video
       placeholder:
         title: Media title
-        media_type: "Slide can contain an image or video. For videos, an image is necessary because videos are not loaded on mobile devices."
         caption: "Caption text"
         source: "Source of the image/video"
       hint:
@@ -210,15 +216,13 @@ en:
         video_loop: "If checked, the video will loop infinitly, otherwise the video will not loop"
     section:
       form_title: Section Form
-      content: Content
-      media: Full-Screen Media      
       'yes': 'Yes'
       'no': 'No'
       placeholder:
         title: Section title
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
-        type: "Selecting this type determines what kind of information you can add to this section"
+        type: "Selecting this type determines what kind of information you can add into this section"
         has_marker: "If checked, there will be a navigation shortcut link to go to this section"
         audio: "Background audio to play while this section is in view (mp3 format only)"
     content:
@@ -229,9 +233,9 @@ en:
         sub_caption: Sub Caption (optional)
       hint:
         title: "Title is only for section it doesn't affect story layout"
-        caption: Caption of article will appear at the top of the section (styled like header)
-        sub_caption: Subcaption of article will appear below the caption (styled like sub header of caption)
-        content: Text can include html, css styling and images
+        caption: Caption of content will appear at the top of the section (styled like header)
+        sub_caption: Subcaption of content will appear below the caption (styled like sub header of caption)
+        content: Content can include html, css styling and images
   storyteller:
     byline: By
     byline_media: "Photographs and video by "
