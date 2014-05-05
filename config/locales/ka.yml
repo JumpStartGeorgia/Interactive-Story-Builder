@@ -190,7 +190,7 @@ ka:
         published: Published stories are available for the world to read from the homepage       
         template: Choose template to apply styling to story
         thumbnail: Image that is used to show the story on the homepage when the story is published
-        editor: Person that created the story
+        editor: Person that created the story record in this website
         editors: Select people that you want to give access to edit/view the story before it is published
     media:
       form_title: Full-Screen Media Form
@@ -210,7 +210,7 @@ ka:
         source: "Source of the image/video, appears in the bottom-right corner"
         image: "Only jpg format allowed"
         video: "Only mp4 format accepted"
-        caption_align: "The location the Caption text will appear on top of the image/video (default is left align) "
+        caption_align: "The location the Caption text will appear on top of the image/video (default is left) "
         video_loop: "If checked, the video will loop infinitly, otherwise the video will not loop"
     section:
       form_title: Section Form
@@ -230,7 +230,7 @@ ka:
         caption: Caption (optional)
         sub_caption: Sub Caption (optional)
       hint:
-        title: "Title is only for section it doesn't affect story layout"
+        title: "This text only appears in the left sidebar, it will not show up in the story"
         caption: Caption of content will appear at the top of the section (styled like header)
         sub_caption: Subcaption of content will appear below the caption (styled like sub header of caption)
         content: Content can include html, css styling and images
