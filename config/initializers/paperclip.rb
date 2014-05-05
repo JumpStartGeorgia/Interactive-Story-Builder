@@ -12,8 +12,8 @@ end
 Paperclip.interpolates('media_video_story_id') do |attachment, style|
   attachment.instance.video.section.story_id
 end
-Paperclip.interpolates('slideshow_image_story_id') do |attachment, style|
-  attachment.instance.asset.section.story_id
+Paperclip.interpolates('slideshow_image_story_id_with_slideshow_id') do |attachment, style|
+  "#{attachment.instance.slideshow.section.story_id}/#{attachment.instance.slideshow.id}"
 end
 
 # Paperclip.interpolates('asset_url') do |attachment, style|

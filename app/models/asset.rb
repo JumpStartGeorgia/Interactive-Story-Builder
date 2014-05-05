@@ -7,7 +7,7 @@ class Asset < ActiveRecord::Base
   belongs_to :image, foreign_key: :item_id, class_name: "Medium"
   belongs_to :video, foreign_key: :item_id, class_name: "Medium"  
 
-  validates :item_id,:asset_type, :presence => true
+  validates :asset_type, :presence => true
   TYPE = {story_thumbnail: 1, section_audio: 2, content_image: 3, media_image: 4, media_video: 5, slideshow_image: 6}
 
   after_initialize :init
@@ -34,7 +34,7 @@ class Asset < ActiveRecord::Base
         opt = {   :url => "/system/places/video/:story_id/:basename.:extension",
                   :styles => { :poster => { :format => 'jpg', :time => 1 }}, :processors => [:ffmpeg] }  
        when  Asset::TYPE[:slideshow_image]        
-        opt = {   :url => "/system/places/slideshow/:story_id/:id/:basename.:extension" }  
+        opt = {   :url => "/system/places/slideshow/:slideshow_image_story_id_with_slideshow_id/:basename.:extension" }  
     end    
     self.asset.options.merge!(opt)
   

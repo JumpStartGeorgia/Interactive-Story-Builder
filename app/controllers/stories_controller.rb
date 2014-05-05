@@ -223,7 +223,7 @@ b      format.json { render json: @story }
 
   def new_section
     @item = Section.new(params[:section])  
-     
+     logger.debug(@item.asset.inspect)
      respond_to do |format|
         if @item.save         
           flash_success_created(Section.model_name.human,@item.title)                     
@@ -237,7 +237,7 @@ b      format.json { render json: @story }
 
  def new_media
     @item = Medium.new(params[:medium])    
-  
+  logger.debug(@item.image.inspect)
     respond_to do |format|
         if @item.save       
           flash_success_created(Medium.model_name.human,@item.title)                     
@@ -264,6 +264,20 @@ b      format.json { render json: @story }
       end    
   end
   
+   def new_slideshow
+    @item = Slideshow.new(params[:slideshow])    
+  logger.debug(@item.assets.inspect)
+    respond_to do |format|
+        if @item.save       
+          flash_success_created(Slideshow.model_name.human,@item.title)                     
+          format.js { render action: "change_sub_tree", status: :created }                    
+        else                    
+          flash[:error] = u I18n.t('app.msgs.error_created', obj:Slideshow.model_name.human, err:@item.errors.full_messages.to_sentence)                       
+          format.js {render action: "flash" , status: :ok }
+        end
+      end    
+  end
+
 
   def save_section      
 
@@ -303,17 +317,28 @@ b      format.json { render json: @story }
         end
       end    
   end
-    
+  def save_slideshow
+    @item = Slideshow.find_by_id(params[:slideshow][:id])
+    respond_to do |format|
+        if @item.update_attributes(params[:slideshow].except(:id))          
+          flash_success_updated(Slideshow.model_name.human,@item.title)           
+          format.js {render action: "build_tree", status: :created }          
+        else        
+          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Slideshow.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
+          format.js {render action: "flash", status: :ok }
+        end
+      end    
+  end
   def destroy_tree_item  
     item = nil    
     type = params[:type]
     if type == 's'
       item = Section.find_by_id(params[:section_id])               
-    elsif type == Section::TYPE[:content]
+    elsif type == 'content'
       item =  Content.find_by_id(params[:item_id])      
-    elsif type == Section::TYPE[:media]   
+    elsif type == 'media'
       item = Medium.find_by_id(params[:item_id])
-    elsif type == Section::TYPE[:slideshow]   
+    elsif type == 'slideshow'
       item = Slideshow.find_by_id(params[:item_id])                 
     end
 

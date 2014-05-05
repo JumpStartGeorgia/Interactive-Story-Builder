@@ -5,10 +5,19 @@
     <%= f.input :title, :input_html => { :id => "mediaTitle", title: t('.title.title') } %>
       <%= f.input :caption, :input_html => { :id => "mediaCaption" ,:placeholder =>"Caption for slide", title: t('.title.caption') } %>
  
-  <%= f.fields_for :assets, @item.assets do |as| %>
-    <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.medium.image') %></label>
-    
-    
+
+ 
+
+  <%= f.fields_for :assets, @item.assets do |asset| %>
+ <p><%= link_to_add_fields "Add Image", asset, :assets %></p>
+   <div style="border-bottom:1px solid gray; padding:20px; margin:20px;" class="fields">
+    <label class=" control-label" for="slideshowImage"><%= t('activerecord.attributes.medium.image') %></label>
+      <%= asset.input :caption %>
+      <%= asset.input :source %>
+      <%= asset.input :asset, :as => :file , :input_html => { :id => "slideshowImage", accept:"image/jpeg,image/png" , title: t('.title.image') } %>       
+    <p><%= link_to_remove_fields "remove", asset %></p>
+    <%= asset.input :asset_type, :as => :hidden %>
+    </div>
   <% end %> 
 
 

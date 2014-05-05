@@ -273,7 +273,6 @@ DEPENDENCIES
   i18n-js (~> 2.1.2)
   impressionist (= 1.4.1)
   jquery-datatables-rails!
-  jquery-fileupload-rails
   jquery-rails (~> 1.0.19)
   jquery-ui-rails
   json

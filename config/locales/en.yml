@@ -242,6 +242,11 @@ en:
     reviewer_key:
       title: Read-Only URL
       desc: "You can copy and share the following URL with whomever you want to review '%{title}' before it is published. These people will have the ability to read your story, but not edit it."
+    slideshow:
+      title:
+        image: "Image for slideshow (jpg or png format accepted)"
+        title: "Title is only for section it doesn't affect story layout"
+        caption: Caption of slideshow will appear at the top of slideshow box
   storyteller:
     byline: By
     byline_media: "Photographs and video by "

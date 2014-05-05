@@ -242,6 +242,11 @@ ka:
     reviewer_key:
       title: მხოლოდ URL-ის წაკითხვა
       desc: "თქვენ შეგიძლიატ დააკოპიროთ და გააზიაროთ შემდეგი URL-ი, რათა ხალხმა ნახოს '%{title}' სანამ მას გამოაქვენებთ. ამ ადამიანებს ექნებათ სასუალება ნახონ თქვენ მიერ შექმნილი ამბავი, მაგრამ არ შეეძლებათ მისი რედაქტირება."
+    slideshow:
+      title:
+        image: "Image for slideshow (jpg or png format accepted)"  
+        title: "Title is only for section it doesn't affect story layout"
+        caption: Caption of slideshow will appear at the top of slideshow box      
   storyteller:
     byline: ავტორი
     byline_media: "ფოტოებისა და ვიედეოს ავტორი "
