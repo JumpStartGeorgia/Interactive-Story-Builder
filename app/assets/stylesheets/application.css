@@ -282,3 +282,8 @@ table {
     margin: 1em 0;
     clear: both;
 }
+
+.help-block, .help-inline {
+  font-size: smaller;
+  font-style: italic;
+}

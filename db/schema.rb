@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140430095310) do
+ActiveRecord::Schema.define(:version => 20140505072408) do
 
   create_table "contents", :force => true do |t|
     t.integer  "section_id"
@@ -22,8 +22,6 @@ ActiveRecord::Schema.define(:version => 20140430095310) do
     t.datetime "updated_at"
     t.string   "caption"
   end
-
-  add_index "contents", ["section_id"], :name => "section_id_UNIQUE", :unique => true
 
   create_table "embeds", :force => true do |t|
     t.integer  "section_id"
@@ -56,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20140430095310) do
     t.integer  "video_file_size"
     t.datetime "video_updated_at"
     t.integer  "position"
-    t.boolean  "video_loop",                         :default => false
+    t.boolean  "video_loop",                         :default => true
   end
 
   create_table "sections", :force => true do |t|
