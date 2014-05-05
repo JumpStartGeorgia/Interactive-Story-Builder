@@ -4,8 +4,7 @@
     font-family: 'dejavu';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_2.ttf'%>);  
-    -webkit-font-smoothing: antialiased;  
+    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_2.ttf'%>);      
   }
 
   @font-face
@@ -13,8 +12,7 @@
     font-family: 'dejavu-bold';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_bold.ttf'%>);
-    -webkit-font-smoothing: antialiased;
+    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_bold.ttf'%>);    
   }
 
   @font-face
@@ -22,15 +20,15 @@
     font-family: 'shavshvebi';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/")  + 'fonts/shavshvebi.ttf'%>);
-    -webkit-font-smoothing: antialiased;
+    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/")  + 'fonts/shavshvebi.ttf'%>);    
   }
 
   body {
     font: 17px/18px 'dejavu-bold';
     margin: 0;
     padding: 0;
-    background-color:#fff;    
+    background-color:#fff;
+    -webkit-font-smoothing: antialiased;    
   }
 
   a {
@@ -46,6 +44,7 @@
   p
   {
      font-family:'dejavu' !important; 
+     -webkit-font-smoothing: antialiased;  
      font-size: 14px;
   }
   a:hover {
@@ -57,7 +56,8 @@
   }
 
   .section.column {
-    font-family:'dejavu-bold';    
+    font-family:'dejavu-bold';
+    -webkit-font-smoothing: antialiased;  
     margin-top: 150px;
   }
 
@@ -335,6 +335,7 @@
     width: 360px;
     font-family:dejavu-bold;
     font-size:16px;
+    -webkit-font-smoothing: antialiased;  
     line-height: 24px;
     text-shadow: 0 0px 45px rgba(0, 0, 0, 0.22);
     padding: 20px 0;
@@ -409,6 +410,7 @@ text-shadow: none;
     width: 340px;
     font-family:dejavu-bold;
     font-size:16px;
+    -webkit-font-smoothing: antialiased;  
     line-height: 24px;
     text-shadow: 0 0px 45px rgba(0, 0, 0, 0.22);
     padding: 20px 0;
@@ -589,6 +591,8 @@ text-shadow: none;
     .ios .map-sequence .video-caption {
       font-family: Georgia;
       font-size: 16px;
+      font-weight: normal;
+      -webkit-font-smoothing: antialiased;  
       line-height: 26px;
       position: static;
       color: #000;
@@ -599,9 +603,7 @@ text-shadow: none;
       width: 100%;
       padding-bottom: 0px;
       word-spacing: 0px;
-      letter-spacing: 0px;
-
-      font-weight: normal;
+      letter-spacing: 0px;    
     }
 
     .ios .map-sequence .video-source {
@@ -665,6 +667,7 @@ text-shadow: none;
 
     .ios .nytg-tabletmap p {
       font-family:"Helvetica Neue",Helvetica,arial,sans-serif;
+      -webkit-font-smoothing: antialiased;  
       font-size:13px;
       line-height:18px;
       margin:0;
@@ -685,6 +688,7 @@ text-shadow: none;
       position:relative;
       width:100%;
       font: 12px/15px "Helvetica Neue",Helvetica,arial,sans-serif;
+      -webkit-font-smoothing: antialiased;  
       color: #fff;
       letter-spacing: 0;
       -webkit-touch-callout: none;
@@ -1060,7 +1064,8 @@ text-shadow: none;
   }
   .navigation {
       font-size: 17px !important;
-    font-family:dejavu;    
+    font-family:dejavu;   
+    -webkit-font-smoothing: antialiased;   
     position: fixed;
     top: 0;
     width: 100%;
@@ -1117,6 +1122,7 @@ text-shadow: none;
   {
     font-size: 21px !important;
     font-family:shavshvebi , Georgia, serif;
+    -webkit-font-smoothing: antialiased;  
     color:#fff;
   }
   .navigation-logo {
@@ -1135,7 +1141,8 @@ text-shadow: none;
     <% end %>
     margin-top: 3px;
     text-transform: uppercase;
-    font-family:shavshvebi , Georgia, serif;;
+    font-family:shavshvebi , Georgia, serif;
+    -webkit-font-smoothing: antialiased;  
   }
 
   .navigation-headline:before {
@@ -1334,6 +1341,7 @@ text-shadow: none;
   .column-caption
   {
     font-family: dejavu_bold, Georgia, serif;
+    -webkit-font-smoothing: antialiased;  
     letter-spacing: .1em;
     font-size:19px;
     margin:5px 0px;  
@@ -1342,6 +1350,7 @@ text-shadow: none;
   .column-sub-caption
   {
     font-family: dejavu, Georgia, serif;
+    -webkit-font-smoothing: antialiased;  
     font-size:15px;
     margin:0px 0px 5px 5px;  
 
