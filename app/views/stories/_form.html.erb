@@ -3,14 +3,14 @@
 
 
   <%= f.inputs do %>
-    <%= f.input :title, :input_html => { id: "storyTitle", title: t('.title.title'), placeholder: t('.placeholder.title')  }   %>
+    <%= f.input :title, hint: t('.hint.title'), placeholder: t('.placeholder.title'), :input_html => { id: "storyTitle"  }   %>
 
     <%= f.input :user_id , :as => :hidden %>
-    <%= f.input :author, :input_html => { id: "storyAuthor", title: t('.title.author'), placeholder: t('.placeholder.author')  } %>
-    <%= f.input :media_author, :input_html => { id: "storyMediaAuthor", title: t('.title.media_author'), placeholder: t('.placeholder.media_author')  }  %>
-    <%= f.input :template_id, :as => :select,  :include_blank => false, collection: @templates.map{|t|["#{t.title} - #{t.description}",t.id]} , :input_html => { :id => "storyTemplate", title: t('.title.template')  }   %> 
+    <%= f.input :author, hint: t('.hint.author'), placeholder: t('.placeholder.author'), :input_html => { id: "storyAuthor"  } %>
+    <%= f.input :media_author, hint: t('.hint.media_author'), placeholder: t('.placeholder.media_author'), :input_html => { id: "storyMediaAuthor"  }  %>
+    <%= f.input :template_id, :as => :select, hint: t('.hint.template'),  :include_blank => false, collection: @templates.map{|t|["#{t.title} - #{t.description}",t.id]} , :input_html => { :id => "storyTemplate"  }   %> 
     <% if @story.id.present? %>
-      <%= f.input :published, :as => :boolean , :input_html => { id: "storyPublished", title: t('.title.published')} %>   
+      <%= f.input :published, :as => :boolean, hint: t('.hint.published') , :input_html => { id: "storyPublished"} %>   
     <% end %>
     <%= f.input :thumbnail, :as => :file, :hint => t('.hint.thumbnail'), :input_html => { :id => "storyThumbnail", accept:"image/jpeg,image/png" } %>
 

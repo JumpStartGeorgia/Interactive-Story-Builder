@@ -15,7 +15,7 @@ en:
         role: Role
         remember_me: Remeber Me
       story:
-        title: Story Name
+        title: Story Title
         user_id: Story Editor
         user_ids: Editors
         author: Author(s)
@@ -179,20 +179,18 @@ en:
     edit:
       title: Story Settings Form
     form:
-      title:
-        title: Whole Story name (will appear in header on first content and media if it first section)
-        author: Author(s) of the article (author info will be added to the first content section)
-        media_author:  "Author(s) of the photos, videos (author info will be added to the first content section after author)"
-        published: "If published everyone can see this story( no edit options received to users )"       
-        template: "Choose template for whole story"               
       placeholder:
-          title: Type Story name
+          title: Title of Story
           author: Author(s) of the article
-          media_author: "Author(s) of photos, videos"
-          published: "Published stories are available for the world to read from the homepage"
+          media_author: "Author(s) of photos and/or videos"
       hint:
+        title: Story title will appear as the header on the first content section and very first section if it is media section
+        author: Author(s) will appear on the first content section
+        media_author:  "Author(s) will appear on the first content section below the Story Author(s)"
+        published: Published stories are available for the world to read from the homepage       
+        template: Choose template to apply styling to story
         thumbnail: Image that is used to show the story on the homepage when the story is published
-        editor: Person that created the story
+        editor: Person that created the story record in this app
         editors: Select people that you want to give access to edit/view the story before it is published
     media:
       form_title: Full-Screen Media Form
