@@ -517,7 +517,7 @@
 
           var video = container.filter(function(d) { return d.video; }).append("video")
               .attr("preload", "none")
-              .attr("poster", function(d) { return d.animation && !d.first ? _image_assets + d.video + "-poster.jpg?2" : null; })
+              .attr("poster", function(d) { return  _video_assets + d.video + ".jpg"; })
               .property("loop", function(d) { return !d.animation; })
               .property("loop", function(d) { return d.loop; })
               .text("Your browser does not support this video.");

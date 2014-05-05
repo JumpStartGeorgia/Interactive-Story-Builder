@@ -4,7 +4,7 @@
     font-family: 'dejavu';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_2.ttf'%>);    
+    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_2.ttf'%>);      
   }
 
   @font-face
@@ -12,7 +12,7 @@
     font-family: 'dejavu-bold';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_bold.ttf'%>);
+    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_bold.ttf'%>);    
   }
 
   @font-face
@@ -20,22 +20,32 @@
     font-family: 'shavshvebi';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/")  + 'fonts/shavshvebi.ttf'%>);
+    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/")  + 'fonts/shavshvebi.ttf'%>);    
   }
 
   body {
     font: 17px/18px 'dejavu-bold';
     margin: 0;
     padding: 0;
+    background-color:#fff;
+    -webkit-font-smoothing: antialiased;    
   }
 
   a {
-    color: #fff;
+    color: #fff !important;
+    opacity:0.7;
     text-decoration: none;
+  }
+  a:hover {
+    
+    opacity:1;
+    
   }
   p
   {
      font-family:'dejavu' !important; 
+     -webkit-font-smoothing: antialiased;  
+     font-size: 14px;
   }
   a:hover {
     text-decoration: underline;
@@ -46,7 +56,8 @@
   }
 
   .section.column {
-    font-family:'dejavu-bold';    
+    font-family:'dejavu-bold';
+    -webkit-font-smoothing: antialiased;  
     margin-top: 150px;
   }
 
@@ -266,10 +277,10 @@
     position: absolute;
   }
 
-  .video-caption {
-   /* margin-top: 5px;    */
+  .video-caption {   
     padding-bottom: 20px;    
     left:5%;    
+
   }
 
   .video-source {
@@ -293,7 +304,7 @@
   }
 
   .video-sequence .video {
-    min-height: 56.25vw;
+    min-height: 54vw;
   }
 
   .video-sequence-indicator {
@@ -321,9 +332,14 @@
     z-index: 3;
     color:#fff;        
     font-weight:normal;
-    width: 340px;
-    text-shadow: 0 1px 2px #000;
+    width: 360px;
+    font-family:dejavu-bold;
+    font-size:16px;
+    -webkit-font-smoothing: antialiased;  
+    line-height: 24px;
+    text-shadow: 0 0px 45px rgba(0, 0, 0, 0.22);
     padding: 20px 0;
+    letter-spacing: -0.4;
   }
 
   .video-sequence .video:last-of-type .video-caption {
@@ -355,7 +371,9 @@
     width: 100%;
     height: 100%;
     background-color: transparent;
+
   }
+
 
   .video-caption--head .video-headline {
     position: absolute;
@@ -363,35 +381,41 @@
     color: #fff;
  /*   
     left: 7%;*/
-
+text-shadow: none;
     left: inherit;
     text-align: center;
     width: 50%;
     margin: 0 25%;
+    line-height: 12px;
     /*border-bottom: solid 2px black;  */
     /*padding-bottom: 35px;*/
   }
-    .video-caption--head .video-headline .headline-line1
+    .headline-line1
     {
         font-size: 213px;        
     }
-   .video-caption--head .video-headline .headline-line2
+   .headline-line2
     {
         font-size: 83px;
-        line-height: 119px;
+        line-height: 153px;
     }
 
   .video-caption--head .video-summary {
     position: absolute;
-    top: auto;
-    bottom: 12%;    
-    width: 100%;
-    text-shadow: 0 1px 2px #000;
-    background-color:#fff;
-    color: #868686;
-    padding: 20px 20px;
-    font-weight: normal;
+    bottom: 10%;
+    left: 7%;    
+    z-index: 3;
+    color:#fff;        
+    font-weight:normal;
+    width: 340px;
+    font-family:dejavu-bold;
+    font-size:16px;
+    -webkit-font-smoothing: antialiased;  
+    line-height: 24px;
+    text-shadow: 0 0px 45px rgba(0, 0, 0, 0.22);
+    padding: 20px 0;
   }
+ 
 
   @media only screen and (min-width: 1200px) and (max-width: 1440px) and (min-height: 500px) and (max-height: 800px) {
     .video-caption .video-headline {
@@ -567,6 +591,8 @@
     .ios .map-sequence .video-caption {
       font-family: Georgia;
       font-size: 16px;
+      font-weight: normal;
+      -webkit-font-smoothing: antialiased;  
       line-height: 26px;
       position: static;
       color: #000;
@@ -577,9 +603,7 @@
       width: 100%;
       padding-bottom: 0px;
       word-spacing: 0px;
-      letter-spacing: 0px;
-
-      font-weight: normal;
+      letter-spacing: 0px;    
     }
 
     .ios .map-sequence .video-source {
@@ -643,6 +667,7 @@
 
     .ios .nytg-tabletmap p {
       font-family:"Helvetica Neue",Helvetica,arial,sans-serif;
+      -webkit-font-smoothing: antialiased;  
       font-size:13px;
       line-height:18px;
       margin:0;
@@ -663,6 +688,7 @@
       position:relative;
       width:100%;
       font: 12px/15px "Helvetica Neue",Helvetica,arial,sans-serif;
+      -webkit-font-smoothing: antialiased;  
       color: #fff;
       letter-spacing: 0;
       -webkit-touch-callout: none;
@@ -1038,7 +1064,8 @@
   }
   .navigation {
       font-size: 17px !important;
-    font-family:dejavu;    
+    font-family:dejavu;   
+    -webkit-font-smoothing: antialiased;   
     position: fixed;
     top: 0;
     width: 100%;
@@ -1095,6 +1122,7 @@
   {
     font-size: 21px !important;
     font-family:shavshvebi , Georgia, serif;
+    -webkit-font-smoothing: antialiased;  
     color:#fff;
   }
   .navigation-logo {
@@ -1113,7 +1141,8 @@
     <% end %>
     margin-top: 3px;
     text-transform: uppercase;
-    font-family:shavshvebi , Georgia, serif;;
+    font-family:shavshvebi , Georgia, serif;
+    -webkit-font-smoothing: antialiased;  
   }
 
   .navigation-headline:before {
@@ -1127,6 +1156,7 @@
   .navigation-section {
     padding: 10px 10px 9px 10px;
     float: left;
+
   }
 
   .navigation-section:last-child {
@@ -1311,6 +1341,7 @@
   .column-caption
   {
     font-family: dejavu_bold, Georgia, serif;
+    -webkit-font-smoothing: antialiased;  
     letter-spacing: .1em;
     font-size:19px;
     margin:5px 0px;  
@@ -1319,12 +1350,24 @@
   .column-sub-caption
   {
     font-family: dejavu, Georgia, serif;
+    -webkit-font-smoothing: antialiased;  
     font-size:15px;
     margin:0px 0px 5px 5px;  
 
   }
+
+/*.navbar-inverse .navbar-inner
+  {
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    box-shadow:none;
+    border:0px;
+    background-color:transparent;
+    background-image:none;
+}*/
 .navbar-inverse .brand, .navbar-inverse .nav > li > a {
 color: #FFFFFF;
+
 }
 .social
 {
@@ -1347,4 +1390,77 @@ color: #FFFFFF;
 {
   padding-right:15px;
   }
+/*
+#about_link
+{
+  text-decoration:none;
+  cursor:hand;
+}
+#about_box
+{
+  display:none;
+  position:fixed;  
+  height:100%;
+  background-color:#000;
+  opacity:1;
+  padding:50px;
+  z-index:105;
+  top:0px;
+}
+.about_text
+{
+  opacity:0.8;
+  color:#fff;
+}*/
+
+/* media */
+   @media screen and (max-width: 1224px) {
+    .headline-line1 {
+      font-size: 113px;
+    }
+    .headline-line2 {
+       font-size: 42px;
+       line-height: 96px;
+    }  
+  }
+  @media screen and (max-width: 960px) {
+    .headline-line1 {
+      font-size: 90px;
+    }
+    .headline-line2 {
+       font-size: 42px;
+      line-height: 86px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+   .headline-line1 {
+      font-size: 56px;
+      display:block;
+    }
+    .headline-line2 {
+       font-size: 21px;
+        line-height: 48px;     
+    }
+    .scroll-prompt
+    {
+      display:none;
+    }    
+    .social
+    {
+      display:none;
+    }
+  }
+  @media screen and (max-width: 320px) {
+   .headline-line1 {
+      font-size: 31px;
+    }
+    .headline-line2 {
+       font-size: 13px;
+      line-height: 12px;
+    }
+    .video-caption--head .video-headline 
+    {
+      line-height:5px;
+    }
+  } 
 </style>

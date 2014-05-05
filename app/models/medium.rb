@@ -11,8 +11,10 @@ class Medium < ActiveRecord::Base
 				}
 
 	has_attached_file :video,
-	:url => "/system/places/video/:story_id/:basename.:extension"
-
+	:url => "/system/places/video/:story_id/:basename.:extension",
+  :styles => {
+    :poster => { :format => 'jpg', :time => 1 }    
+  }, :processors => [:ffmpeg]
   validates :section_id, :presence => true
   validates :media_type, :presence => true, :inclusion => { :in => TYPE.values }  
   validates :title, :presence => true , length: { maximum: 255 }  
