@@ -4,7 +4,8 @@
     font-family: 'dejavu';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_2.ttf'%>);    
+    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_2.ttf'%>);  
+    -webkit-font-smoothing: antialiased;  
   }
 
   @font-face
@@ -13,6 +14,7 @@
     font-style: normal;
     font-weight: normal;
     src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_bold.ttf'%>);
+    -webkit-font-smoothing: antialiased;
   }
 
   @font-face
@@ -21,13 +23,14 @@
     font-style: normal;
     font-weight: normal;
     src: url(<%= (@clone ? "assets/" : "/template/#{@template}/")  + 'fonts/shavshvebi.ttf'%>);
+    -webkit-font-smoothing: antialiased;
   }
 
   body {
     font: 17px/18px 'dejavu-bold';
     margin: 0;
     padding: 0;
-    background-color:#fff;
+    background-color:#fff;    
   }
 
   a {
@@ -329,12 +332,13 @@
     z-index: 3;
     color:#fff;        
     font-weight:normal;
-    width: 340px;
+    width: 360px;
     font-family:dejavu-bold;
     font-size:16px;
     line-height: 24px;
     text-shadow: 0 0px 45px rgba(0, 0, 0, 0.22);
     padding: 20px 0;
+    letter-spacing: -0.4;
   }
 
   .video-sequence .video:last-of-type .video-caption {
