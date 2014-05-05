@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Template.delete_all
-Template.create(id:1,name:"nytimes",title:"NYTimes Template",description:"Was taken from nytimes article",author:"NYTIMES",default:true)
-Template.create(id:2,name:"whitebar",title:"White Bar Captions",description:"Was built while creating story for CHCA",author:"Irakli Chumburidze",default:false)
+Template.create(id:1,name:"nytimes",title:"NYTimes Template",description:"Taken from NY Times 'Game of Shark and Minow' story",author:"NY TIMES",default:true)
+Template.create(id:2,name:"chca",title:"CHCA Template",description:"For CHCA specific story - not suggested for use in other stories",author:"Irakli Chumburidze",default:false)
 
 
