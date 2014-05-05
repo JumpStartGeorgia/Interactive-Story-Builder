@@ -6,7 +6,7 @@
  *= require formtastic 
  *= require formtastic-bootstrap
  *= require jquery.ui.core
- *= require jquery.ui.theme
+ *= require jquery.ui.theme 
  *= require dataTables/jquery.dataTables.bootstrap
  *= require_tree .
  *= require vendor

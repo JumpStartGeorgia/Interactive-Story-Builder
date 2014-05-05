@@ -7,7 +7,7 @@
  
   <%= f.fields_for :assets, @item.assets do |as| %>
     <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.medium.image') %></label>
-
+    
     
   <% end %> 
 
@@ -25,3 +25,4 @@
     <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>          
   </div>
 <% end %>
+
