@@ -58,7 +58,7 @@ class StoriesController < ApplicationController
 
       if @story.save
         flash_success_created(Story.model_name.human,@story.title)       
-        format.html { redirect_to sections_story_path(@story), notice: 'Story was successfully created.' }
+        format.html { redirect_to sections_story_path(@story), notice: t('app.msgs.success_created', :obj => t('activerecord.models.story')) }
         format.json { render json: @story, status: :created, location: @story }
         format.js { render action: "flash", status: :created }    
       else
@@ -79,7 +79,7 @@ class StoriesController < ApplicationController
     respond_to do |format|
       if @story.update_attributes(params[:story])
         flash_success_updated(Story.model_name.human,@story.title)       
-        format.html { redirect_to  sections_story_path(@story),  notice: 'Story was successfully updated.' }
+        format.html { redirect_to  sections_story_path(@story),  notice: t('app.msgs.success_updated', :obj => t('activerecord.models.story')) }
         format.js { render action: "flash", status: :created }    
       else
         flash[:error] = u I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
@@ -288,6 +288,9 @@ class StoriesController < ApplicationController
 
   def sections
       @story = Story.fullsection(params[:id])   
+      
+      # if there are no sections, show the content form by default
+      gon.has_no_sections = @story.sections.blank?
   end
 
   def publish

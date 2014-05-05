@@ -33,16 +33,17 @@ en:
         title: Title          
         caption: Caption
         sub_caption: Sub Caption
-        content: Article
+        content: Text
       medium:
         media_type: Media Type
         title: Title
         caption: Caption
-        caption_align: Text Align
+        caption_align: Caption Position
         summary: Summary
         source: Source
         image: Image
         video: Video
+        video_loop: Loop Video
     errors:
       messages:
         required_field: "is a required field."
@@ -149,9 +150,6 @@ en:
       sign_out: Sign Out
       js_link_title: JumpStart Georgia - We communicate data better!
       js_link_text: Built by
-  root:
-    index:
-      title: Story Builder - build and share the next generation story
   admin:
     index:
       title: Administration Section
@@ -165,7 +163,14 @@ en:
         title: New User
       show:
         title: User Details
+  root:
+    index:
+      title: Story Builder - build and share the next generation story
   stories:
+    new:
+      title: Story Settings Form
+    edit:
+      title: Story Settings Form
     form:
       title:
         title: Whole Story name (will appear in header on first content and media if it first section)
@@ -177,50 +182,56 @@ en:
           title: Type Story name
           author: Author(s) of the article
           media_author: "Author(s) of photos, videos"
+          published: "Published stories are available for the world to read from the homepage"
       hint:
         thumbnail: Image that is used to show the story on the homepage when the story is published
         editor: Person that created the story
         editors: Select people that you want to give access to edit/view the story before it is published
     media:
+      form_title: Full-Screen Media Form
       left: Left
       center: Center
       right: Right
       image: Image
       video: Video
-      title:
-        title: "This text only appears in the left sidebar, it will not show up in the story"
+      placeholder:
+        title: Media title
         media_type: "Slide can contain an image or video. For videos, an image is necessary because videos are not loaded on mobile devices."
+        caption: "Caption text"
+        source: "Source of the image/video"
+      hint:
+        title: "This text only appears in the left sidebar, it will not show up in the story"
+        media_type: "For videos, an image is necessary because videos are not loaded on mobile devices."
         caption: "Caption text will appear on top of the image/video"
-        caption_align: "Where the text will appear on top of the image/video (default is left align) "
-        image: "Image for slide (only jpg format accepted)"
-        video: "Video for slide (only mp4 format accepted)"
-        summary: "Summary of image/video, appears below the Caption"
-        source: "Image/video source, appears in the bottom-right corner"
-        video_loop: "If checked video will be looping infinitly, else will stop after first loop"
+        source: "Source of the image/video, appears in the bottom-right corner"
+        image: "Only jpg format allowed"
+        video: "Only mp4 format accepted"
+        caption_align: "The location the Caption text will appear on top of the image/video (default is left align) "
+        video_loop: "If checked, the video will loop infinitly, otherwise the video will not loop"
     section:
+      form_title: Section Form
       content: Content
       media: Full-Screen Media      
       'yes': 'Yes'
       'no': 'No'
       placeholder:
-        title: Type section title
-      title:
+        title: Section title
+      hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
-        type: "Content is for a static article (text) and Media is a vertical slideshow of images and/or videos"
-        has_marker: "If yes, the story will provided a navigation link to go to this section"
-        audio: "Audio for section (only mp3 format accepted)"
+        type: "Selecting this type determines what kind of information you can add to this section"
+        has_marker: "If checked, there will be a navigation shortcut link to go to this section"
+        audio: "Background audio to play while this section is in view (mp3 format only)"
     content:
-      content: Article
+      form_title: Content Form
       placeholder:
-        title: Content name
-        caption: Caption (can be ommited)
-        sub_caption: Sub Caption (can be ommited)
-        content: 'Article text, can be any styling html tag with styles'
-      title:
+        title: Content title
+        caption: Caption (optional)
+        sub_caption: Sub Caption (optional)
+      hint:
         title: "Title is only for section it doesn't affect story layout"
-        caption: Caption of article will appear at the top of section (styled like header)
+        caption: Caption of article will appear at the top of the section (styled like header)
         sub_caption: Subcaption of article will appear below the caption (styled like sub header of caption)
-        content: Text of the article (any custom css styling or html tag can be used for article content)
+        content: Text can include html, css styling and images
   storyteller:
     byline: By
     byline_media: "Photographs and video by "

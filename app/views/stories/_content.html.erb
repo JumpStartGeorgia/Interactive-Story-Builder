@@ -1,13 +1,18 @@
+<h2>
+  <%= t('.form_title') %>
+</h2>
+
 <%= tinymce_assets %>
 <%= tinymce :alternate, uploadimage_form_url: imageuploader_path(id:params[:id]), uploadimage_default_img_class: "image", :width => "580px" %>
 
 <%= semantic_form_for(@item, url: content_story_path(id:params[:id]), remote: true) do |f| %>
   <%= f.inputs do %>
-    <%= f.input :title, :placeholder=>t('.placeholder.title'), :input_html => { :id => "contentTitle", title: t('.title.title') } %>
-    <%= f.input :caption, :placeholder=>t('.placeholder.caption'), :input_html => { :id => "contentCaption", title: t('.title.caption') } %>    
-    <%= f.input :sub_caption, :placeholder=>t('.placeholder.sub_caption'), :input_html => { :id => "contentSubCaption", title: t('.title.sub_caption') } %>    
-    <label title="<%=t('.title.content')%>"><%= t('.content') %></label>
-    <%= f.text_area :content, :placeholder=>t('.placeholder.content'), :class => "tinymce", :rows => 40, :cols => 120, :id => "contentArticle"%>    
+    <%= f.input :title, :placeholder=>t('.placeholder.title'), hint: t('.hint.title') , :input_html => { :id => "contentTitle", } %>
+    <%= f.input :caption, :placeholder=>t('.placeholder.caption'), hint: t('.hint.caption'), :input_html => { :id => "contentCaption" } %>    
+    <%= f.input :sub_caption, :placeholder=>t('.placeholder.sub_caption'), hint: t('.hint.sub_caption'), :input_html => { :id => "contentSubCaption" } %>    
+    <label><%= t('activerecord.attributes.content.content') %></label>
+    <span class="help-inline"><%= t('.hint.content') %></span>
+    <%= f.text_area :content, :class => "tinymce", :rows => 40, :cols => 120, :id => "contentArticle"%>    
      <a class='btn' data-reveal-id="modalContent"><%= t('app.buttons.preview') %></a>          
      
     

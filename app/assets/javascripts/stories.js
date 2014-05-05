@@ -249,6 +249,11 @@ $(document).ready(function() {
 			getData();
 		}	
 	});
+
+  // trigger the add content form if no sections exist
+  if (gon.has_no_sections == true){
+	  $('#btnAddSection').trigger('click');
+  }
 });
 
 function getStory(id , subid , state)
