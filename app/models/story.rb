@@ -58,8 +58,9 @@ class Story < ActiveRecord::Base
   	  	self.published_at = Time.now
   	  end     
   	end
-  	def asset_exists?
-  		self.asset.present? && self.asset.asset.exists?
+
+	def asset_exists?
+		self.asset.present? && self.asset.asset.exists?
 	end  		
 
   # if the reviewer key does not exist, create it
@@ -78,9 +79,17 @@ class Story < ActiveRecord::Base
 	end
 	
 	def reset_fields_for_clone
-    self.published = false
-    self.published_at = nil
-    self.impressions_count = 0
-    self.reviewer_key = nil
+	    self.published = false
+	    self.published_at = nil
+	    self.impressions_count = 0
+	    self.reviewer_key = nil
 	end
+
+  def show_asset
+    if self.asset.nil?
+      Asset.new(:asset_type => Asset::TYPE[:story_thumbnail])
+    else
+      self.asset
+    end
+  end
 end

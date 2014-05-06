@@ -19,7 +19,7 @@ class Asset < ActiveRecord::Base
     case self.asset_type
       when Asset::TYPE[:story_thumbnail]        
         opt = { 
-          :url => "/system/places/thumbnail/:id/:style/:basename.:extension",
+          :url => "/system/places/thumbnail/:item_id/:style/:basename.:extension",
           :styles => {:"250x250" => {:geometry => "250x250"}},
           :default_url => "/assets/missing/250x250/missing.png"
         }
