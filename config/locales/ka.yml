@@ -15,35 +15,35 @@ ka:
         role: როლი
         remember_me: დამიმახსოვრე                  
       story:
-        title: Story Title
+        title: ამბის სათაური
         user_id: გამოქვეყნების მომხმარებელი
-        user_ids: Editors
+        user_ids: რედაქტორები
         author: ავტორი
-        media_author: Photo and Video Author(s)     
-        published: Publish?
-        published_at: Was Published
-        template_id: Template
+        media_author: ფოტოსა და ვიდეოს ავტორ(ებ)ი
+        published: გამოქვეყნება
+        published_at: გამოქვეყნებულია
+        template_id: შაბლონი
       section:
         title: დასახელება
         audio: აუდიო ფაილი
-        has_marker: Navigation Shortcut
+        has_marker: სანავიგაციო შორტქათი
         type_id: ტიპი
         sort_order: დალაგება
       content:        
         title: დასახელება
         caption: დასახელება
         sub_caption: ქვე-დასახელება
-        content: Content
+        content: შინაარსი
       medium:
         media_type: მედია ტიპი
         title: დასახელება
         caption: სათაური
-        caption_align: Caption Position
+        caption_align: წარწერის განლაგება
         summary: მოკლე შინაარსი
         source: წყარო
         image: სურათი
         video: ვიდეო
-        video_loop: Loop Video
+        video_loop: განმეორებადი ვიდეო
     errors:
       messages:
         required_field: "სავალდებულოა"
@@ -62,13 +62,13 @@ ka:
       reset: საწყის კონფიგურაციაზე დაბრუნება
       view: ნახვა
       sign_in_facebook: სისტემაში Facebook-ით შესვლა
-      edit_story: Edit Story Settings
-      delete_story: Delete Story
-      admin_story: Edit Content
-      publish_story: Publish Story      
+      edit_story: ამბის პარამეტრების რედაქტირება
+      delete_story: ამბის წაშლა
+      admin_story: შინაარსის რედაქტირება
+      publish_story: ამბის გამოქვეყნება      
       forgot_password: დაგავიწყდათ პაროლი?
-      change_password: Change Your Password
-      change_password2: Change Password
+      change_password: პაროლის შეცვლა
+      change_password2: პაროლის შეცვლა
       password_reset: პაროლის აღდგენის ინსტრუქციის გაგზავნა
       sign_in2: სისტემაში შესვლა
       sign_in: უკვე გაქვთ ანგარიში?
@@ -76,11 +76,11 @@ ka:
       sign_up: არ გაქვთ ანგარიში ჯერ?
       sign_out: გასვლა
       sign_in_provider: "სისტემაში შესვლა %{provider}"
-      add_story: Add Story
+      add_story: ამბის დამატება
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
-      story_list: View Your Stories
+      story_list: ამბის ნახვა
   app:
     language:
       en: English
@@ -102,16 +102,16 @@ ka:
       new: ახალი            
       add_section: ახალი სექცია
       add_item: ახალი პუნქტი
-      up: Order Up
-      down: Order Down
+      up: ზემოთ ატანა
+      down: ქვემოთ ჩამოტანა
       preview: ნახვა
       preview_image: სურათის ნახვა
       preview_video: ვიდეოს ნახვა
-      preview_audio: Listen Audio
-      publish: Publish
-      unpublish: Unpublish
-      clone: Clone
-      export: Export
+      preview_audio: აუდიოს მოსმენა
+      publish: გამოქვეყნება
+      unpublish: გამოყვეყნების გაუქმება
+      clone: კლონირება
+      export: ექსპორტი
       scroll: დასკროლე
     common:
       app_name: Story Builder
@@ -121,22 +121,22 @@ ka:
       not_authorized: თქვენ არ გაქვთ უფლება იხილოთ ეს გვერდი.
       success_created: "%{obj} შექმნილია."
       success_updated: "%{obj} განახლებულია."
-      success_publish: "%{obj} was successfully published."
-      success_unpublish: "%{obj} was successfully unpublished."
-      success_clone: "%{obj} was successfully cloned to %{to}."
-      error_created: "%{obj} არ იყო შექმნილი.[ %{err} ]"
-      error_updated: "%{obj} არ იყო განახლებული.[ %{err} ]"
-      error_publish: "%{obj} wasn't published.[ %{err} ]"
-      error_unpublish: "%{obj} wasn't unpublished.[ %{err} ]"
-      error_clone: "%{obj} wasn't cloned." 
-      error_export: "Story %{obj} can't be exported"     
+      success_publish: "%{obj} წარმატებით იქნა გამოქვეყნებული."
+      success_unpublish: "%{obj}-ის გამოქვეყნება წარმატებით გაუქმდა."
+      success_clone: "%{obj} წარმატებით იქნა კლონირებული %{to}."
+      error_created: "%{obj} არ იყო შექმნილი. [ %{err} ]"
+      error_updated: "%{obj} არ იყო განახლებული. [ %{err} ]"
+      error_publish: "%{obj} იქნა გამოქვეყნებული. [ %{err} ]"
+      error_unpublish: "%{obj} გამოქვეყნება გაუქმებულია. [ %{err} ]"
+      error_clone: "%{obj} იქნა კლონირებული." 
+      error_export: "Story %{obj} ამბის ექსპორტი შესაძლებელია"     
   section_types:
     content:
-      name: Content
-      description: Can include html, css styling and images
+      name: შინაარსი
+      description: შესაძლებელია შეიცავდეს html, css სტილს და ფოტოს
     media:
-      name: Full-Screen Media Slideshow
-      description: Images and/or videos as a full-screen vertical slideshow
+      name: მთელს ეკრანზე გაშლილი მედია სლაიდშოუ
+      description: ფოტოები და/ან ვიდეოები განთავსებული, როგორც სრულ ეკრანზე გაშლილი ვერტიკალური სლაიდშოუ
   layouts:
     application:
       admin: ადმინისტრატო
