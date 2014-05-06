@@ -35,13 +35,15 @@ class Asset < ActiveRecord::Base
         opt = {   :url => "/system/places/video/:media_video_story_id/:basename.:extension",
                   :styles => { :poster => { :format => 'jpg', :time => 1 }}, :processors => [:ffmpeg] }  
        when  Asset::TYPE[:slideshow_image]        
-        opt = {     :url => "/system/places/slideshow/:slideshow_image_story_id/:item_id/:style/:basename.:extension" ,
-                  :styles => {:thumbnail => {:geometry => "50x50^"},:thumbnail_preview => {:geometry => "160x160^"}},
+        opt = {     :url => "/system/places/slideshow/:slideshow_image_story_id/:style/:basename.:extension" ,
+                  :styles => {
+                    :large => {:geometry => "1400x934"},
+                    :medium => {:geometry => "900x601"},
+                    :thumbnail => {:geometry => "50x50^"},
+                    :thumbnail_preview => {:geometry => "160x160^"}},
                 :convert_options => {
                   :thumbnail => "-gravity center -extent 50x50",
                   :thumbnail_preview => "-gravity center -extent 160x160"
-                  
-  
             }}    
 
             

@@ -9,7 +9,6 @@
   <%= f.input :type_id, :as => :select, hint: t('.hint.type'),  :include_blank => false, :collection => @section_list, :input_html => { :id => "sectionType"  }   %> 
 
   <%= f.input :has_marker, :as => :boolean, :hint => t('.hint.has_marker'), :input_html => { id: "sectionHasMarker"} %> 
-       
    <%= f.fields_for :asset, @item.asset do |as| %>
 
     <div id='sectionAudioBox'  >     
@@ -25,7 +24,6 @@
         <%= as.input :asset, :as => :file , hint: t('.hint.audio') , :input_html => { :id => "mediaAudio", accept:"audio/mp3" } , label: false  %>
         <%= as.input :asset_type, :as => :hidden %>
     <% end %> 
-
     <% if @item.id.present? %>
       <%= f.input :id, :as => :hidden , :input_html => { :id => "sectionId" }  %>    
     <% end %>
