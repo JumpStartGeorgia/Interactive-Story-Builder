@@ -3,18 +3,19 @@ class Asset < ActiveRecord::Base
   belongs_to :story
   belongs_to :section, foreign_key: :item_id
   belongs_to :slideshow, foreign_key: :item_id
-  belongs_to :media, foreign_key: :item_id
+#  belongs_to :media, foreign_key: :item_id
   belongs_to :image, foreign_key: :item_id, class_name: "Medium"
   belongs_to :video, foreign_key: :item_id, class_name: "Medium"  
 
   validates :asset_type, :presence => true
   TYPE = {story_thumbnail: 1, section_audio: 2, content_image: 3, media_image: 4, media_video: 5, slideshow_image: 6}
 
+  attr_accessor :init_called 
+
   after_initialize :init
 
 
   def init
-
    opt = {}    
     case self.asset_type
       when Asset::TYPE[:story_thumbnail]        
@@ -45,8 +46,12 @@ class Asset < ActiveRecord::Base
 
             
     end    
+
     self.asset.options.merge!(opt)
-  
+
+    # remember that init has already been called
+    self.init_called = true
+
   #  logger.debug(self.asset.options.to_s + "-"*30)
   end
 
@@ -75,6 +80,10 @@ class Asset < ActiveRecord::Base
   before_post_process :transliterate_file_name
   
   def transliterate_file_name
+    # if init has not been called yet, call it to make sure the options are set before processing begins
+    if self.init_called != true
+      init
+    end
     if asset_file_name.present?
       extension = File.extname(asset_file_name).gsub(/^\.+/, '')
       filename = asset_file_name.gsub(/\.#{extension}$/, '')
