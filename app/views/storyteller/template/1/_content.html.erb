@@ -136,7 +136,6 @@
                       <div class="video-container">
                         <% if m.media_type == 1 %>     
                         <% if !@export %> 
-                        <% logger.debug(m.image.inspect)                           %>
                           <img src="<%= m.image.asset.url %>">
                         <% else %>
                           <img src="media/images/original/<%= m.image.asset_file_name %>">

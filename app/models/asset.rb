@@ -31,7 +31,7 @@ class Asset < ActiveRecord::Base
                       :mobile_640 => {:geometry => "640x427"},
                       :mobile_1024 => {:geometry => "1024x623"}}}  
       when  Asset::TYPE[:media_video]        
-        opt = {   :url => "/system/places/video/:story_id/:basename.:extension",
+        opt = {   :url => "/system/places/video/:media_video_story_id/:basename.:extension",
                   :styles => { :poster => { :format => 'jpg', :time => 1 }}, :processors => [:ffmpeg] }  
        when  Asset::TYPE[:slideshow_image]        
         opt = {   :url => "/system/places/slideshow/:slideshow_image_story_id_with_slideshow_id/:basename.:extension" }  

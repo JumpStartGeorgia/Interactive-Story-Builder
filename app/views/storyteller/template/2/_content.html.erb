@@ -86,8 +86,8 @@
         <% columnSectionCount = 0 %>
          <% @story.sections.sort_by{|p| p.position}.each_with_index do |section,s_i| %>
           <%  dataAudio = ''
-              if section.audio.exists?            
-                dataAudio = "data-audio='#{File.basename(section.audio_file_name,'.mp3')}'".html_safe 
+              if section.asset_exists?            
+                dataAudio = "data-audio='#{File.basename(section.asset.asset_file_name,'.mp3')}'".html_safe 
               end
            %>          
             <% if section.type_id == 1 && section.content.present? %>
@@ -118,24 +118,24 @@
                 <% end %>
                 <% section.media.each_with_index do |m,m_i| %>
                     <% dataVideo = '' %>
-                    <% if m.media_type == 2 && m.video.exists? %>                
-                      <% dataVideo = "data-video='#{File.basename(m.video_file_name,'.mp4')}'".html_safe %>
+                    <% if m.media_type == 2 && m.video_exists? %>                
+                      <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name,'.mp4')}'".html_safe %>
                     <% end %> 
                   <div class="video"  <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>                
                       <div class="video-container">
                         <% if m.media_type == 1 %>     
-                        <% if !@export %>                           
-                          <img src="<%= m.image.url %>">
+                        <% if !@export %> 
+                          <img src="<%= m.image.asset.url %>">
                         <% else %>
-                          <img src="media/images/original/<%= m.image_file_name %>">
+                          <img src="media/images/original/<%= m.image.asset_file_name %>">
                         <% end %>
 
                         <% elsif m.media_type == 2  %>                    
-                            <% if  m.image.exists? %>    
+                            <% if  m.image_exists? %>    
                               <% if !@export %>                           
-                                <!--[if lte IE 8]><img src="<%= m.image.url %>"><![endif]-->
+                                <!--[if lte IE 8]><img src="<%= m.image.asset.url %>"><![endif]-->
                               <% else %>
-                                <!--[if lte IE 8]><img src="media/images/original/<%= m.image_file_name %>"><![endif]-->
+                                <!--[if lte IE 8]><img src="media/images/original/<%= m.image.asset_file_name %>"><![endif]-->
                               <% end %>                   
                             
                             
@@ -245,7 +245,7 @@
                 s.media.each_with_index do |m,m_i| 
               %>
                 {
-                  file: "mobile_1024/<%= m.image_file_name %>",
+                  file: "mobile_1024/<%= m.image.asset_file_name %>",
                   section: <%= s_i+1 %>,
                   slide: <%= m_i+1 %>,      
                   align: '<%= alignment.key(m.caption_align) %>'
