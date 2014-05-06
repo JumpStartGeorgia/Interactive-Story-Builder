@@ -287,3 +287,7 @@ table {
   font-size: smaller;
   font-style: italic;
 }
+select, input[type="file"] {
+height: 20px;
+line-height: 20px;
+}

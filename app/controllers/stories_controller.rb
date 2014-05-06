@@ -204,8 +204,10 @@ b      format.json { render json: @story }
           @item = Slideshow.new(:section_id => params[:section_id])
         end
       
+       if @item.assets.blank?
           @item.assets.build(:asset_type => Asset::TYPE[:slideshow_image])
-        
+        end      
+
      
         respond_to do |format|
           format.js {render :action => "get_slideshow" }
@@ -266,7 +268,6 @@ b      format.json { render json: @story }
   
    def new_slideshow
     @item = Slideshow.new(params[:slideshow])    
-  logger.debug(@item.assets.inspect)
     respond_to do |format|
         if @item.save       
           flash_success_created(Slideshow.model_name.human,@item.title)                     
@@ -277,6 +278,8 @@ b      format.json { render json: @story }
         end
       end    
   end
+
+  
 
 
   def save_section      

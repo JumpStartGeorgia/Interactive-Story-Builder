@@ -247,6 +247,14 @@ en:
         image: "Image for slideshow (jpg or png format accepted)"
         title: "Title is only for section it doesn't affect story layout"
         caption: Caption of slideshow will appear at the top of slideshow box
+    asset_fields:
+      placeholder:
+        caption: "Caption for asset"
+        source: "Source of the asset"
+      title:
+        caption: "Caption for asset"
+        source: "Source of the asset"
+        asset: "File for uploading"
   storyteller:
     byline: By
     byline_media: "Photographs and video by "
