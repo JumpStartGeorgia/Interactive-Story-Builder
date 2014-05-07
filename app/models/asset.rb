@@ -36,9 +36,10 @@ class Asset < ActiveRecord::Base
                   :styles => { :poster => { :format => 'jpg', :time => 1 }}, :processors => [:ffmpeg] }  
        when  Asset::TYPE[:slideshow_image]        
         opt = {     :url => "/system/places/slideshow/:slideshow_image_story_id/:style/:basename.:extension" ,
-                  :styles => {
-                    :large => {:geometry => "1400x934"},
-                    :medium => {:geometry => "900x601"},
+                  :styles => {                   
+                    :mobile_640 => {:geometry => "640x427"},
+                    :mobile_1024 => {:geometry => "1024x623"}, 
+                    :slideshow => {:geometry => "1400x934"},                   
                     :thumbnail => {:geometry => "50x50^"},
                     :thumbnail_preview => {:geometry => "160x160^"}},
                 :convert_options => {
@@ -75,7 +76,7 @@ class Asset < ActiveRecord::Base
     t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["video/mp4"] }}    
   end
  with_options :if => "self.asset_type == Asset::TYPE[:slideshow_image]" do |t|      
-    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }}    
+    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg"] }}    
   end
 
    

@@ -179,15 +179,25 @@
               </div>
             <% elsif section.type_id == 3 && section.slideshow.present? && section.slideshow.assets.length > 0 %>  
               <div class="section slideshow">
-                   <div class="slideshow-title"><%= section.slideshow.caption %></div>
-                   <% if section.has_marker? %>
-                     <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
-                  <% end %>                  
-                <!--[if lte IE 8]><img src="<%= section.slideshow.assets[0].asset.url(:medium) %>" style="width:100%;"><![endif]-->
-                <div class="slideshow-captions">
-                    <% section.slideshow.assets.each_with_index do |t,t_i| %>    
-                        <div class="slideshow-caption" data-slug="<%= t.asset_file_name %>"> <%= t.source.html_safe %></div>
-                  <% end %>
+                 <% if section.has_marker? %>
+                       <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
+                    <% end %>    
+                <div class="slideshow-wrapper">
+                      <% if section.slideshow.caption.present? %>
+                        <h3><%= section.slideshow.caption %></h3>
+                      <% end %>
+                                
+                  <!--[if lte IE 8]><img src="<%= section.slideshow.assets[0].asset.url(:medium) %>" style="width:100%;"><![endif]-->
+                  <div class="slideshow-captions">
+                      <% section.slideshow.assets.each_with_index do |t,t_i| %>    
+                          <div class="slideshow-caption" data-slug="<%= t.asset_file_name %>">
+                            <%= t.caption.html_safe %>
+                            <% if t.source.present? %> 
+                              <div class="source"><%= "#{t('storyteller.source')}" %><%= auto_link(t.source) %></div>
+                            <% end %>
+                          </div>
+                    <% end %>
+                  </div>
                 </div>
               </div>
             <% end %>                
@@ -226,35 +236,49 @@
       *----------------------------------------------------------------------- -->
       <script>
 
+          <%  
+              output = []
+              secLength = @story.sections.length        
+              @story.sections.sort_by{|v| v.position}.each_with_index do |s,s_i|
+                if s.media?
+                  subLength = s.media.length   
+                  s.media.each_with_index do |t,t_i| 
+                    
+                    item = {}
 
-        var mobileImages = 
-        [
-           
-        <%  
-            secLength = @story.sections.select{ |v| v.type_id == Section::TYPE[:media]}.length        
-            @story.sections.select{ |v| v.type_id == Section::TYPE[:media]}.sort_by{|v| v.position}.each_with_index do |s,s_i|                
-                medLength = s.media.length   
-                s.media.each_with_index do |m,m_i| 
-              %>
-                {
-                  file: "mobile_1024/<%= m.image.asset_file_name %>",
-                  section: <%= s_i+1 %>,
-                  slide: <%= m_i+1 %>,      
-                  align: '<%= alignment.key(m.caption_align) %>'
-                  <% if secLength == m_i+1 %>                
-                    ,hideRule: true
-                  <% end %>         
-                }
-                <% if medLength != (m_i+1) %>
-                  ,
-        <%        end            
-                end %>
-                <% if secLength != (s_i+1) %>
-                ,
-                <% end 
-            end 
-        %>  
-        ];</script>
+                    item[:type] = "media"
+                    item[:file] = "mobile_1024/#{t.image.asset_file_name}"
+                    item[:section] = s_i+1
+                    item[:slide] = t_i+1
+                    item[:align] = "#{alignment.key(t.caption_align)}"
+                    if secLength == t_i+1
+                      item[:hideRule] = true
+                    end
+        
+                    output<< item
+                  end
+                elsif s.slideshow?
+                  subLength = s.slideshow.assets.length   
+                  s.slideshow.assets.each_with_index do |t,t_i| 
+                    item = {}
+
+                    item[:type] = "slideshow"
+                    item[:file] = "mobile_1024/#{t.asset_file_name}"
+                    item[:section] = s_i+1
+                    item[:slide] = t_i+1
+                    
+                    if secLength == t_i+1
+                        item[:hideRule] = true
+                    end
+                    output<< item
+                  end
+                end              
+              end
+          %>
+
+           var mobileImages = <%=output.to_json.html_safe %>;
+
+      </script>
 
       <script>
 
@@ -289,8 +313,10 @@
 
         <% if !@export %>                           
             var _mobile_assets =  "/system/places/images/<%= @story.id %>/";
+            var _slideshow_assets = "/system/places/slideshow/<%= @story.id %>/";
           <% else %>
             var _mobile_assets =  "media/images/";
+            var _slideshow_assets = "media/slideshow/";
         <% end %>        
         
 
@@ -346,8 +372,15 @@
             /* on section missing stop here current loop */
             if (!image.section) return false;
 
-        /* create path to image with fixed path and file name */
+        /* create path to image with fixed path and file name */        
+          if(image.type == "media")
+          {
             image.url = _mobile_assets + image.file;
+          }
+          else if(image.type == "slideshow")
+          { 
+            image.url = _slideshow_assets + image.file; 
+          }
 
 
         
@@ -361,37 +394,50 @@
           slide assign
         */
             if (image.slide) {
+              if(image.type == "media")
+              {
+                container = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-container")
 
-              container = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-container")
-
-              if (image.type != "map" && image.type != "hide") {
+                if (image.type != "map" && image.type != "hide") {
 
 
-                container.html("").append("img")
-                  .attr("src", image.url);
+                  container.html("").append("img")
+                    .attr("src", image.url);
 
+                }
+
+                if (image.type != "hide") {
+
+                  var css;
+
+
+                  if (image.type == "map") css = "caption-" + image.file.replace("#","");
+                  else css = "caption-" + image.file.match(/\/([\w-]+)/)[1];
+
+                    d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
+                      .classed(css, true)
+
+                }
+
+
+                var slide = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ")");
               }
-
-              if (image.type != "hide") {
-
-                var css;
-
-
-                if (image.type == "map") css = "caption-" + image.file.replace("#","");
-                else css = "caption-" + image.file.match(/\/([\w-]+)/)[1];
-
-                  d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
-                    .classed(css, true)
-
+              else if( image.type == "slideshow")
+              {
+                container = d3.select(".section:nth-child(" + image.section + ") .slideshow-wrapper");
+                if(container.select(".slideshow-images").empty())
+                {
+                    var temp = container.append("div").attr("class","slideshow-container");
+                    temp.append("div").attr("class", "slideshow-images");
+                }
+                var tempImages =  d3.select(".section:nth-child(" + image.section + ") .slideshow-wrapper .slideshow-container .slideshow-images");
+                caption = container.select(".slideshow-captions .slideshow-caption:nth-of-type(" + image.slide + ")");             
+                tempImages.append("img").attr("src", image.url).attr("class","slideshow-image");
               }
-
-
-              var slide = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ")");
-
             }
-
+        
         /* aligning by options */
-            if (image.align) d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
+            if (image.align && image.type == "media") d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
               .classed(image.align.split(" ").map(function(dir) {
                     return "align-" + dir
                   }).join(" "), true)
@@ -414,16 +460,16 @@
 
 
         /* map-hide class it type hide */
-            if (image.type == "hide") slide.classed("map-hide", true)
+            if (image.type == "media" && image.type == "hide") slide.classed("map-hide", true)
 
-            if (image.type == "map") {
+            if (image.type == "media" && image.type == "map") {
 
               container.html( container.html() + d3.select(image.file).text() )
             }
 
 
         /* add custom caption if specified */
-            if (image.mobileCaption) {
+            if (image.type == "media" && image.mobileCaption) {
               d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption").html(image.mobileCaption);
             }
 
@@ -728,7 +774,10 @@
           });</script>
           <script>defer(function() {
 
-          var assets = "/system/places/slideshow/<%= @story.id %>/" + (innerWidth * (window.devicePixelRatio || 1) * .7 > 900 ? "large" : "medium") + "/";
+          if (isMobile()) return false;
+
+          var assets = "/system/places/slideshow/<%= @story.id %>/slideshow/";
+          /*" + (innerWidth * (window.devicePixelRatio || 1) * .7 > 900 ? "large" : "medium") + "*/
 
 
 
@@ -740,7 +789,7 @@
                 .on("statechange.first", firststatechanged)
                 .on("statechange", statechanged);
 
-            var slideshow = d3.select(this)
+            var slideshow = d3.select(this).select(".slideshow-wrapper")
                 .on("mouseover", stopPlay)
                 .on("mouseout", stopPlay)
                 .call(watch);

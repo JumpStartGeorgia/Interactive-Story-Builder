@@ -14,10 +14,13 @@
   a {
     color: #004276;
     text-decoration: none;
+   
   }
 
-  a:hover {
-    text-decoration: underline;
+  a:hover {    
+     cursor:pointer;
+     color: #004276;
+     text-decoration: none;
   }
 
   .article {
@@ -54,8 +57,9 @@
   }
 
   .section h3 {
-    margin-right: 10px;
-    margin-bottom: 20px;
+    margin: 5px 0px;   
+    letter-spacing: .1em;
+    font-size: 19px;
   }
 
   .scroll-prompt {
@@ -118,6 +122,11 @@
     opacity: 1;
     font-weight: 700;
     padding-top: 23px;
+  }
+  .source
+  {
+    font-style:italic;
+    font-size:12px;
   }
 
   @media (max-width: 704px) {
@@ -1231,6 +1240,12 @@
     color: #999999;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   }
+  .ios .footer-section #middle
+  {display:none;}
+  .ios .footer-section
+  {
+    margin:0px auto;
+  }
   .column-caption
   {
     font-family:nyt-cheltenham, Georgia, serif;
@@ -1252,15 +1267,21 @@
 
 .slideshow {
   font: 13px/1.4em arial, helvetica, sans-serif;
-
-
   margin-left: auto;
-margin-right: auto;
-max-width: 580px;
-width:140%;
+  margin-right: auto;
+  max-width: 580px;
+  
 
 }
 
+.slideshow-wrapper
+{
+  position: relative;
+  margin-bottom: 10px;
+  margin-left: -20%;
+  margin-right: auto;
+  width:140%;
+}
 .slideshow-container {
   position: relative;
   margin-bottom: 10px;
@@ -1273,16 +1294,61 @@ width:140%;
   top: 0;
   left: 0;
 }
+.slideshow-title
+{
+
+}
 
 .slideshow-caption {
   opacity: 0;
   margin-top: 5px;
   color: #888;
   padding: 3px 0 30px 0;
-  height: 5em;
+  /*height: 5em;*/
   width: 60%;
 }
 
+
+.ios .slideshow {
+  font: 13px/1.4em arial, helvetica, sans-serif;
+  margin:0px auto;
+  width:100%;
+  max-width: 100%;
+}
+
+.ios .slideshow-captions {
+  display:none;
+}
+.ios .slideshow-wrapper
+{
+  position: relative;  
+  width:100%;
+  margin:0px auto;
+}
+.ios .slideshow-container
+{
+  position: relative;  
+  width:100%;
+  margin:0px auto;
+}
+.ios .slideshow-image
+{
+  position:static;
+  width:100%;
+}
+.ios img.slideshow-image
+{
+  display:block;
+}
+.ios .section.slideshow h3
+{
+  margin:0px;
+  padding:0px;
+  background-color:#000;
+  color:#fff;
+  font-size:16px;
+  padding-left:15px;
+}
 .slideshow-caption--active {
   opacity: 1;
 }

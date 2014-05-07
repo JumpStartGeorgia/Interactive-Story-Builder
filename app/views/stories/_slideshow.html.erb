@@ -5,16 +5,14 @@
     <%= f.input :title, :input_html => { :id => "mediaTitle", title: t('.title.title') } %>
       <%= f.input :caption, :input_html => { :id => "mediaCaption" ,:placeholder =>"Caption for slide", title: t('.title.caption') } %>
  
-
- 
-  <div style="border-bottom:1px solid #eee;padding-bottom:10px; width:100%;"><%= link_to_add_fields "Add Image", f, :assets %></div>
-
+ <div id="slideshowAssets">
   <% @item.assets.each do |asset_item| %>  
     <%= f.fields_for :assets, asset_item do |ff| %>
       <%= render :partial => 'asset_fields', :locals => {:f => ff, :asset_item => asset_item} %>
     <% end %> 
   <% end %> 
-
+</div>
+<div style="border-bottom:1px solid #eee;border-top:1px solid #eee;padding:10px 0px;margin-bottom:10px; width:100%;"><%= link_to_add_fields "Add Image", f, :assets %></div>
  
     <%= f.input :section_id, :as => :hidden , :input_html => { :id => "mediaSection" }  %>
     <% if @item.id.present? %>
