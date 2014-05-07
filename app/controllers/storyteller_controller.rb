@@ -6,6 +6,8 @@ class StorytellerController < ApplicationController
       respond_to do |format|     
         format.html 
       end
+      # record the view count
+      impressionist(@story)
     else
       redirect_to root_path, :notice => t('app.msgs.not_authorized')
     end

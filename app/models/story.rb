@@ -1,4 +1,6 @@
 class Story < ActiveRecord::Base	
+  # record public views
+  is_impressionable :counter_cache => true 
 	
 	scope :is_published, where(:published => true)
 
