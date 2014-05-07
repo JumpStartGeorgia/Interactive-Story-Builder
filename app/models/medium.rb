@@ -14,10 +14,7 @@ class Medium < ActiveRecord::Base
   class_name: "Asset",
   dependent: :destroy
 
-  amoeba do
-    enable
-    clone [:image, :video]
-  end
+
 
 	TYPE = {image: 1, video: 2}
 
