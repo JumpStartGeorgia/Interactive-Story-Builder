@@ -1,13 +1,13 @@
 <% 
   @template = @story.template.id 
-  @clone ||= false
+  @export ||= false
 %>
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
   <head>
     <%= render partial: "storyteller/template/#{@template}/head"%>
 
-    <% if !@clone %>
+    <% if !@export %>
   	  <%= include_gon %>
     <% end %>
   </head>
@@ -17,7 +17,7 @@
       <%= render partial: "storyteller/template/#{@template}/content"%>   
     </div>
     
-      <% if !@clone %>
+      <% if !@export %>
       <%= javascript_include_tag "application" %>
 		  <script type="text/javascript">
 			  I18n.defaultLocale = "<%= I18n.default_locale %>";

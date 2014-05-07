@@ -433,6 +433,9 @@ b      format.json { render json: @story }
     if File.directory?("#{Rails.root}/public/system/places/audio/#{params[:id]}/.")
       FileUtils.cp_r "#{Rails.root}/public/system/places/audio/#{params[:id]}/.", "#{mediaPath}/audio"
     end
+    if File.directory?("#{Rails.root}/public/system/places/slideshow/#{params[:id]}/.")
+      FileUtils.cp_r "#{Rails.root}/public/system/places/slideshow/#{params[:id]}/.", "#{mediaPath}/slideshow"
+    end
     @export = true
     File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/index.html.erb', :layout => false) }  
     send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :x_sendfile=>true, :filename=>"#{filename}.tar.gz"
@@ -464,12 +467,18 @@ end
       if s.type_id == Section::TYPE[:media]
         s.media.each_with_index do |m,m_i|          
           dupTemp = dup.sections[s_i].media[m_i]          
-          dupTemp.image =  m.image #dup.sections[s_i].media[m_i].image =         
+          dupTemp.image =  m.image.asset #dup.sections[s_i].media[m_i].image =         
           if m.media_type == Medium::TYPE[:video]            
-            dupTemp.video =  m.video
+            dupTemp.video =  m.video.asset
           end
          dupTemp.save
-        end          
+        end
+      elsif s.type_id == Section::TYPE[:slideshow]
+         s.slideshow.assets.each_with_index do |m,m_i|          
+          dupTemp = dup.sections[s_i].slideshow.assets[m_i]          
+          dupTemp.asset =  m.asset #dup.sections[s_i].media[m_i].image =                
+         dupTemp.save
+        end
       end        
     end
         

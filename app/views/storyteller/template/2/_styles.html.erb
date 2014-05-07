@@ -4,7 +4,7 @@
     font-family: 'dejavu';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_2.ttf'%>);      
+    src: url(<%= (@export ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_2.ttf'%>);      
   }
 
   @font-face
@@ -12,7 +12,7 @@
     font-family: 'dejavu-bold';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_bold.ttf'%>);    
+    src: url(<%= (@export ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_bold.ttf'%>);    
   }
 
   @font-face
@@ -20,7 +20,7 @@
     font-family: 'shavshvebi';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@clone ? "assets/" : "/template/#{@template}/")  + 'fonts/shavshvebi.ttf'%>);    
+    src: url(<%= (@export ? "assets/" : "/template/#{@template}/")  + 'fonts/shavshvebi.ttf'%>);    
   }
   body {
     font: 17px/18px 'dejavu-bold';
@@ -103,7 +103,7 @@
     z-index: 3;
     margin:0px auto;    
     text-shadow: 0 1px 2px #000;
-    background-image: url(<%= (@clone ? "assets/" : "/template/#{@template}/") + 'images/scroll.png'%>);       
+    background-image: url(<%= (@export ? "assets/" : "/template/#{@template}/") + 'images/scroll.png'%>);       
     background-position: 50% 0%;
     background-repeat: no-repeat; 
     width:100%;

@@ -197,6 +197,8 @@ GEM
       activesupport (= 3.1.10)
       bundler (~> 1.0)
       railties (= 3.1.10)
+    rails_autolink (1.0.9)
+      rails (~> 3.1)
     railties (3.1.10)
       actionpack (= 3.1.10)
       activesupport (= 3.1.10)
@@ -285,6 +287,7 @@ DEPENDENCIES
   psych (~> 1.2.2)
   rails (= 3.1.10)
   rails-dev-boost!
+  rails_autolink (~> 1.0.9)
   rb-inotify (~> 0.8.8)
   remotipart (~> 1.2)
   sass-rails (= 3.1.4)
