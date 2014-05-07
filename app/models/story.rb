@@ -27,7 +27,9 @@ class Story < ActiveRecord::Base
 
 	amoeba do
 		enable
+		exclude_field :asset
 		clone [:sections]
+
 	end
 
   def self.can_edit?(story_id, user_id)

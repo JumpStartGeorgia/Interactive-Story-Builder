@@ -11,4 +11,9 @@ class Slideshow < ActiveRecord::Base
 
 	accepts_nested_attributes_for :assets, :reject_if => lambda { |c| c[:asset].blank? }, :allow_destroy => true
 
+  amoeba do
+    	enable
+    	clone [:assets]
+ 	 end
+
 end

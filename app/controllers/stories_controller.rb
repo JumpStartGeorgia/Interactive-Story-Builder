@@ -457,35 +457,36 @@ def generate_gzip(tar,name,ff)
 end
   def clone
     begin
+  Story.transaction do
     @item = Story.find_by_id(params[:id])
     dup = @item.amoeba_dup
     dup.title = "#{dup.title} (Clone)"
     dup.reset_fields_for_clone
     dup.save
 
-    @item.sections.each_with_index do |s,s_i|
-      if s.type_id == Section::TYPE[:media]
-        s.media.each_with_index do |m,m_i|          
-          dupTemp = dup.sections[s_i].media[m_i]          
-          dupTemp.image =  m.image.asset #dup.sections[s_i].media[m_i].image =         
-          if m.media_type == Medium::TYPE[:video]            
-            dupTemp.video =  m.video.asset
+     @item.sections.each_with_index do |s,s_i|
+        if s.asset.present?
+          dup.sections[s_i].asset = Asset.new(asset_type: Asset::TYPE[:section_audio], item_id: dup.sections[s_i].id, asset:s.asset.asset)
+        end
+      
+        if s.type_id == Section::TYPE[:media]
+          s.media.each_with_index do |m,m_i|
+             dup.sections[s_i].media[m_i].image = Asset.new(asset_type: Asset::TYPE[:media_image], item_id: dup.sections[s_i].media[m_i].id, asset: m.image.asset)          
+            if m.media_type == Medium::TYPE[:video]      
+              dup.sections[s_i].media[m_i].video = Asset.new(asset_type: Asset::TYPE[:media_video], item_id: dup.sections[s_i].media[m_i].id, asset: m.video.asset)                        
+            end
           end
-         dupTemp.save
+        elsif s.type_id == Section::TYPE[:slideshow]
+            s.slideshow.assets.each_with_index do |m,m_i|  
+              dup.sections[s_i].slideshow.assets<< Asset.new(asset_type: Asset::TYPE[:slideshow_image], item_id: dup.sections[s_i].slideshow.id, asset: m.asset, caption: m.caption, source: m.source)                  
+            end
+        end               
+       end
+       dup.save
+        flash[:success] =I18n.t("app.msgs.success_clone", obj:"#{Story.model_name.human} \"#{@item.title}\"", to: "#{dup.title}")    
         end
-      elsif s.type_id == Section::TYPE[:slideshow]
-         s.slideshow.assets.each_with_index do |m,m_i|          
-          dupTemp = dup.sections[s_i].slideshow.assets[m_i]          
-          dupTemp.asset =  m.asset #dup.sections[s_i].media[m_i].image =                
-         dupTemp.save
-        end
-      end        
-    end
-        
-    flash[:success] =I18n.t("app.msgs.success_clone", obj:"#{Story.model_name.human} \"#{@item.title}\"", to: "#{dup.title}")    
-
     rescue => e
-      flash[:error] =I18n.t("app.msgs.error_clone", obj:"#{Story.model_name.human} \"#{dup.title}\"")                      
+      flash[:error] =I18n.t("app.msgs.error_clone", obj:"#{Story.model_name.human} \"#{@item.title}\"")                      
     end
    
     respond_to do |format| 
