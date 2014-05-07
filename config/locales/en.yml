@@ -114,7 +114,7 @@ en:
       export: Download the complete story
       scroll: Scroll
       reviewer_key: Get URL to share this story before publishing
-      reviewer_key_published: Your story is published so there is no need to share this non-published url
+      reviewer_key_published: Your story is published so there is no need to share this non-published URL
     common:
       app_name: Story Builder
       added_on: "Added on: %{date}" 

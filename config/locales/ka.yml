@@ -110,11 +110,11 @@ ka:
       preview_audio: აუდიოს მოსმენა
       publish: გამოქვეყნება
       unpublish: გამოყვეყნების გაუქმება
-      clone: Copy this story into a new story
-      export: Download the complete story
+      clone: ამბის დაკოპირება სხვა ამბავში ჩასაკოპირებლად
+      export: სრული ამბის ჩამოტვირთვა
       scroll: დასკროლე
-      reviewer_key: Get URL to share this story before publishing
-      reviewer_key_published: Your story is published so there is no need to share this non-published url
+      reviewer_key: მიიღეთ URL, რათა გააზიაროთ ამბავი მის გამოქვეყნებამდე
+      reviewer_key_published: თქვენი ამბავი გამოქვეყნებულია, აღარაა საჭირო ამ URL-ის გამოქვეყნებ
     common:
       app_name: Story Builder
       added_on: "დამატებულია: %{date}" 
@@ -160,8 +160,8 @@ ka:
       js_link_title: ჯამპსტარტ ჯორჯიას - ჩვენ გაწვდით ინფორმაციას უკეთ!
       js_link_text: აგებულია
     reviewer:
-      copy: Copy To Clipboard...
-      copied: Copied!
+      copy: კლიფბორდში ჩაკოპირება...
+      copied: გადაკოპირებულია!
   admin:
     index:
       title: ადმინისტრატორის განყოფილება
@@ -177,71 +177,71 @@ ka:
         title: მომხმარებლის დეტალები
   root:
     index:
-      title: Story Builder - creating the next generation of stories
+      title: Story Builder - შექმენი მომავალი თაობის ამბები
   stories:
     new:
-      title: Story Settings Form
+      title: პარამეტრების ფორმა
     edit:
-      title: Story Settings Form
+      title: პარამეტრების ფორმა
     form:
       placeholder:
-          title: Title of Story
-          author: Author(s) of the article
-          media_author: "Author(s) of photos and/or videos"
+          title: ამბის სათაური
+          author: სტატიის ავტორ(ებ)ი
+          media_author: ფოტოსა და/ან ვიდეოს ავტორ(ებ)ი
       hint:
-        title: Story title will appear as the header on the first content section and very first section if it is media section
-        author: Author(s) will appear on the first content section
-        media_author:  "Author(s) will appear on the first content section below the Story Author(s)"
-        published: Published stories are available for the world to read from the homepage       
-        template: Choose template to apply styling to story
-        thumbnail: Image that is used to show the story on the homepage when the story is published
-        editor: Person that created the story record in this website
-        editors: Select people that you want to give access to edit the story
+        title: ამბის სათაური გამოჩნდება გამოჩნდება როგორც ჰედერი პირველი შინაარსის სექციაში თუ ეს მედია სექციაა
+        author: სტატიის ავტორ(ებ)ი გამოჩნდებ(ი)ა(ნ) პირველი შინაარსის სექციაში
+        media_author:  ავტორ(ებ)ი გამოჩნდებ(ი)ა(ნ) პირველი შინაარსის სექციაში ამბის სათაურის ქვემოთ
+        published: გამოქვეყნებული ისტორიები ხემისაწვდომია ყველასთვის საწყისი გვერდზე განთავსებული ინფორმაციის სახით
+        template: აირჩიეთ შაბლონი ამბის სტილის შესარჩევად
+        thumbnail: სურათი, რომელიც გამოჩნდება საწყის გვერძე ამბის გამოქვეყნების შემდგომ
+        editor: ამბის შემქმნელი პირი
+        editors: მონიშნეთ ადამიანები, რომლებსაც გსუღ მისცეთ გამოქვეყნებამდე ამბის რედაქტირების უფლება
     media:
-      form_title: Full-Screen Media Slideshow Form
-      left: Left
-      center: Center
-      right: Right
-      image: Image
-      video: Video
+      form_title: მთელს ეკრანზე გაშლილი მედია სლაიდშოუ
+      left: მარცხნივ
+      center: შუაში
+      right: მარჯვნივ
+      image: ფოტო
+      video: ვიდეო
       placeholder:
-        title: Media title
-        caption: "Caption text"
-        source: "Source of the image/video"
+        title: მედიის სათაური
+        caption: წარწერის ტექსტი
+        source: ფოტოს/ვისეოს წყარო
       hint:
-        title: "This text only appears in the left sidebar, it will not show up in the story"
-        media_type: "For videos, an image is necessary because videos are not loaded on mobile devices."
-        caption: "Caption text will appear on top of the image/video"
-        source: "Source of the image/video, appears in the bottom-right corner"
-        image: "Only jpg format allowed"
-        video: "Only mp4 format accepted"
-        caption_align: "The location the Caption text will appear on top of the image/video (default is left) "
-        video_loop: "If checked, the video will loop infinitly, otherwise the video will not loop"
+        title: ეს ტექსტი მხოლოდ გამოჩნდება მარცსენა გვერდითა პანელში, იგი არ გამოჩნდება ამბავიში
+        media_type: ვიდეოსთვის ფოტო აუცილებელია, რადგან ვიდეო არ იტვირთება მობილურ ტელეფონებზე
+        caption: წარწერის ტექსტი გამოჩნდება ზედა გამოსახულებაზე/ვიდეოზე
+        source: ფოტოს/ვიდეოს წყარო გამოჩნდება ქვედა მარჯვენა კუთხეში
+        image: დასაშვებია jpg მხოლოდ ფორმატი
+        video: მისაღებია mp4 მხოლოდ ფორმატი
+        caption_align: სათაურის ტექსტი გამოჩნდება სურათის/ვიდეოს ზემოდან (დეფოლტი მარცხნივაა)
+        video_loop: თუ ვიდეო მონიშნულია იგი იტრიალებს უსასრულოდ, სხვა შემთხვევაში ვიდეო არ განმეორდება
     section:
-      form_title: Section Form
+      form_title: სექციის ფორმა
       'yes': 'კი'
       'no': 'არა'
       placeholder:
-        title: Section title
+        title: სექციის სათაური
       hint:
-        title: "This text only appears in the left sidebar, it will not show up in the story"
-        type: "Selecting this type determines what kind of information you can add into this section"
-        has_marker: "If checked, there will be a navigation shortcut link to go to this section"
-        audio: "Background audio to play while this section is in view (mp3 format only)"
+        title: ეს ტექსტი მხოლოდ ჩნდება მარცხენა ბლოკში, იგი არ გამოჩნდება ძირითად ამბავში
+        type: ამ ტიპის არჩევა განსაზღვრავს იმ ინფორმაციის სახეს რომლის დამატებაც შეგეძლებათ ამ სექციაში
+        has_marker: თუ მონიშნავთ, გამოჩნდება სანავიგაციო ლინკი ამ სექციაზე გადასასვლელად
+        audio: ფონური მუსიკა ჩაირთვება, როდესაც ვინმე იხილავს ამ სექციას (მხოლოდ mp3 ფორმატია დასაშვები)
     content:
-      form_title: Content Form
+      form_title: შინაარსის ფორმა
       placeholder:
-        title: Content title
-        caption: Caption (optional)
-        sub_caption: Sub Caption (optional)
+        title: შინაარსის სათაური
+        caption: წარწერა (ნებაყოფლობითია)
+        sub_caption: ქვესათაური (ნებაყოფლობითია)
       hint:
-        title: "This text only appears in the left sidebar, it will not show up in the story"
-        caption: Caption of content will appear at the top of the section (styled like header)
-        sub_caption: Subcaption of content will appear below the caption (styled like sub header of caption)
-        content: Content can include html, css styling and images
+        title: ეს ტექსტი მხოლოდ ჩნდება მარცხენა ბლოკში, იგი არ გამოჩნდება ძირითად ამბავში
+        caption: შინაარსი წარწერა გამოჩნდება ზედა სექციაში (ჰედერის სტილში)
+        sub_caption: შინაარსის ქვესათური გამოჩნდება სათურის ქვემოთ (ქვეჰედერის სტილში)
+        content: შინაარსი შესაძლებელია შეიცავდეს html, css სტილს და ფოტოს
     reviewer_key:
-      title: Read-Only URL
-      desc: "You can copy and share the following URL with whomever you want to review '%{title}' before it is published. These people will have the ability to read your story, but not edit it."
+      title: მხოლოდ URL-ის წაკითხვა
+      desc: "თქვენ შეგიძლიატ დააკოპიროთ და გააზიაროთ შემდეგი URL-ი, რათა ხალხმა ნახოს '%{title}' სანამ მას გამოაქვენებთ. ამ ადამიანებს ექნებათ სასუალება ნახონ თქვენ მიერ შექმნილი ამბავი, მაგრამ არ შეეძლებათ მისი რედაქტირება."
   storyteller:
-    byline: By
-    byline_media: "Photographs and video by "
+    byline: ავტორი
+    byline_media: "ფოტოებისა და ვიედეოს ავტორი "

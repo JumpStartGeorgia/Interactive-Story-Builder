@@ -382,7 +382,8 @@ end
     begin
     @item = Story.find_by_id(params[:id])
     dup = @item.amoeba_dup
-    dup.title = "#{dup.title}(Clone)"
+    dup.title = "#{dup.title} (Clone)"
+    dup.reset_fields_for_clone
     dup.save
 
     @item.sections.each_with_index do |s,s_i|

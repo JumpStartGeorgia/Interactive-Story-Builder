@@ -80,4 +80,11 @@ class Story < ActiveRecord::Base
 	    self.thumbnail.instance_write(:file_name, "#{StoriesHelper.transliterate(filename)}.#{StoriesHelper.transliterate(extension)}")
 	  end
 	end
+	
+	def reset_fields_for_clone
+    self.published = false
+    self.published_at = nil
+    self.impressions_count = 0
+    self.reviewer_key = nil
+	end
 end
