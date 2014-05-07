@@ -1,0 +1,9 @@
+<% title t('.title') %>
+    <p>
+      <%= t('.desc', :title => @story.title) %>
+    </p>
+
+    <p>
+      <div><%= link_to review_url(@story.reviewer_key), review_url(@story.reviewer_key), :id => 'review_url' %></div>
+    <p>
+

@@ -110,9 +110,11 @@ en:
       preview_audio: Listen To Audio
       publish: Publish
       unpublish: Unpublish
-      clone: Clone
-      export: Export
+      clone: Copy this story into a new story
+      export: Download the complete story
       scroll: Scroll
+      reviewer_key: Get URL to share this story before publishing
+      reviewer_key_published: Your story is published so there is no need to share this non-published url
     common:
       app_name: Story Builder
       added_on: "Added on: %{date}" 
@@ -157,6 +159,9 @@ en:
       sign_out: Sign Out
       js_link_title: JumpStart Georgia - We communicate data better!
       js_link_text: Built by
+    reviewer:
+      copy: Copy To Clipboard...
+      copied: Copied!
   admin:
     index:
       title: Administration Section
@@ -191,7 +196,7 @@ en:
         template: Choose template to apply styling to story
         thumbnail: Image that is used to show the story on the homepage when the story is published
         editor: Person that created the story record in this website
-        editors: Select people that you want to give access to edit/view the story before it is published
+        editors: Select people that you want to give access to edit the story
     media:
       form_title: Full-Screen Media Slideshow Form
       left: Left
@@ -234,6 +239,9 @@ en:
         caption: Caption of content will appear at the top of the section (styled like header)
         sub_caption: Subcaption of content will appear below the caption (styled like sub header of caption)
         content: Content can include html, css styling and images
+    reviewer_key:
+      title: Read-Only URL
+      desc: "You can copy and share the following URL with whomever you want to review '%{title}' before it is published. These people will have the ability to read your story, but not edit it."
   storyteller:
     byline: By
     byline_media: "Photographs and video by "

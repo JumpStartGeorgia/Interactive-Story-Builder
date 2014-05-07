@@ -25,6 +25,10 @@ module ApplicationHelper
 	end
 
 
+	def full_url(path)
+		"#{request.protocol}#{request.host_with_port}#{path}"
+	end
+
 	# Based on https://gist.github.com/1182136
   class BootstrapLinkRenderer < ::WillPaginate::ActionView::LinkRenderer
     protected

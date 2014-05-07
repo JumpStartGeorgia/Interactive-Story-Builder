@@ -71,6 +71,7 @@ $(document).ready(function() {
 	      { "bSortable": true },
 	      { "bSortable": true },				      	     
 	      { "sWidth": "25px", "bSortable": false },
+	      { "sWidth": "25px", "bSortable": false },
 			{"sWidth": "25px", "bSortable": false },
 			{"sWidth": "25px", "bSortable": false },
 			{"sWidth": "25px", "bSortable": false },
@@ -98,7 +99,13 @@ $(document).ready(function() {
 	// 		a.toggleClass('published unpublished');					 
 	// 	});	 			
 	// });
- $(document).on('click', '#btnPreview', function(e){
+  $(document).on('click', '#btnReviewer', function(e){
+		e.preventDefault();		
+		$('#reviewerKey .modal-data').html('<iframe height="100%" width="100%" src="'+ $(this).data('link')+'"></iframe>');	 			
+		$('#reviewerKey').reveal();
+		return true;	
+  });
+  $(document).on('click', '#btnPreview', function(e){
 		e.preventDefault();		
 		$('#previewStory .modal-data').html('<iframe height="100%" width="100%" src="'+ $(this).data('link')+'"></iframe>');	 			
 		$('#previewStory').reveal();

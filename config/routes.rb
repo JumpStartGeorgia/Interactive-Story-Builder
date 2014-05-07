@@ -20,6 +20,8 @@ BootstrapStarter::Application.routes.draw do
 		resources :stories do				
 			member do
 
+				get 'reviewer_key'
+
 				get 'preview'
 
 				get 'get_data'
@@ -47,6 +49,7 @@ BootstrapStarter::Application.routes.draw do
 		
 		match "storyteller/:id" => "storyteller#index", as: 'storyteller_show'
 
+		match "review/:id" => "review#index", as: 'review'
 
 		root :to => 'root#index'
 	  match "*path", :to => redirect("/#{I18n.default_locale}") # handles /en/fake/path/whatever

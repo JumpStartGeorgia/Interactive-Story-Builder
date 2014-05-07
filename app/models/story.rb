@@ -8,7 +8,7 @@ class Story < ActiveRecord::Base
 	has_many :sections, :order => 'position', dependent: :destroy
 	has_and_belongs_to_many :users
 	belongs_to :user
-	validates :title, length: { maximum: 100 }
+	validates :title, :presence => true, length: { maximum: 100 }
 	validates :author, :presence => true, length: { maximum: 255 }
 	validates :template, :presence => true
 	validates :media_author, length: { maximum: 255 }
@@ -16,6 +16,7 @@ class Story < ActiveRecord::Base
 
  	after_find :publishing_done?
 	before_save :publish_date
+	before_save :generate_reviewer_key
 	 
 
   	has_attached_file :thumbnail,
@@ -58,11 +59,19 @@ class Story < ActiveRecord::Base
 	end
 
 
+  # if the story is being published, record the date
 	def publish_date		
-  	  if  self.was_publishing != self.published && self.published?
-  	  	self.published_at = Time.now
-  	  end     
-  	end
+	  if  self.was_publishing != self.published && self.published?
+	  	self.published_at = Time.now
+	  end     
+	end
+
+  # if the reviewer key does not exist, create it
+  def generate_reviewer_key
+    if self.reviewer_key.blank?
+      self.reviewer_key = Random.new.rand(100_000_000..1_000_000_000-1)
+    end
+  end
 
 	def transliterate_file_name
 	  if thumbnail_file_name.present?

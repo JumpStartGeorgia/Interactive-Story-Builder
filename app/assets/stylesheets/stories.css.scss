@@ -103,3 +103,26 @@ border-bottom:1px solid lightgrey;
     clear:both;
     display:block;
   }
+  
+  
+#previewStory{
+  height:85%;
+  width:90%;
+  top:35px;
+  .modal-data{
+    width:100%; 
+    height:100%; 
+    border:1px solid #bfbfbf;
+  }  
+}
+
+#reviewerKey{
+  height:50%;
+  width:50%;
+  top:35px;
+  .modal-data{
+    width:100%; 
+    height:100%;
+  }  
+}
+

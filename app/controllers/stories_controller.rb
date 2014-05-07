@@ -108,7 +108,17 @@ class StoriesController < ApplicationController
     end
   end
  
-
+  def reviewer_key
+  	@story = Story.find_by_id(params[:id])    
+  	
+  	if @story.present?
+      respond_to do |format|     
+        format.html {render layout: 'reviewer'}
+      end
+    else
+      redirect_to root_path, :notice => t('app.msgs.does_not_exist')
+    end
+  end
 
   def preview
   	@story = Story.fullsection(params[:id])    

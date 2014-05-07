@@ -17,6 +17,7 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -25,8 +26,21 @@
         <td><%= story.title %></td>        
         <td><%= story.author %></td>       
 
-        <td><button type="button"  id='btnPublish' class="btn btn-warning btn-small<%= story.published ? '' : ' disabled'%>" title="<%= story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>" data-link='<%= publish_story_path(story) %>'> <i class="icon-globe icon-white" ></i></button></td>
-        <td><button type="button"  id='btnPreview' class="btn btn-success btn-small" title="<%= t('app.buttons.preview') %>" data-link='<%=  preview_story_path(story) %>'> <i class="icon-eye-open icon-white" ></i></button> </td>   
+        <td>
+          <button type="button"  id='btnPublish' class="btn btn-warning btn-small <%= story.published ? '' : 'disabled'%>" title="<%= story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>" data-link='<%= publish_story_path(story) %>'> 
+            <i class="icon-globe icon-white" ></i>
+          </button>
+        </td>
+        <td>
+          <button type="button"  id='btnPreview' class="btn btn-success btn-small" title="<%= t('app.buttons.preview') %>" data-link='<%=  preview_story_path(story) %>'> 
+            <i class="icon-eye-open icon-white" ></i>
+          </button> 
+        </td>   
+        <td>
+          <button type="button"  id='btnReviewer' class="btn btn-primary btn-small <%= story.published ? 'disabled' : ''%>" title="<%= story.published ? t('app.buttons.reviewer_key_published') : t('app.buttons.reviewer_key') %>" data-link='<%=  reviewer_key_story_path(story) %>'> 
+            <i class="icon-share icon-white" ></i>
+          </button> 
+        </td>   
         <td>       
             <%= link_to clone_story_path(story) , class:"btn btn-primary btn-small" ,  title: t('app.buttons.clone') do %>
              <i class="icon-camera icon-white" ></i>
@@ -46,7 +60,11 @@
     </table>
   </div>
 </div>
-<div id="previewStory" class="reveal-modal" style='height:85%;width:90%;top:35px;' >     
-      <div class='modal-data' style="width:100%; height:100%; border:1px solid #bfbfbf;"></div>
-      <a class="close-reveal-modal">&#215;</a>
+<div id="previewStory" class="reveal-modal">     
+    <div class='modal-data'></div>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+<div id="reviewerKey" class="reveal-modal" style='height:50%;width:50%;top:35px;' >     
+    <div class='modal-data' style="width:100%; height:100%"></div>
+    <a class="close-reveal-modal">&#215;</a>
 </div>

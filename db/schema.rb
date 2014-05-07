@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140507082928) do
+ActiveRecord::Schema.define(:version => 20140507093603) do
 
   create_table "contents", :force => true do |t|
     t.integer  "section_id"
@@ -103,7 +103,10 @@ ActiveRecord::Schema.define(:version => 20140507082928) do
     t.datetime "thumbnail_updated_at"
     t.integer  "template_id",            :default => 1
     t.integer  "impressions_count",      :default => 0
+    t.integer  "reviewer_key"
   end
+
+  add_index "stories", ["reviewer_key"], :name => "index_stories_on_reviewer_key"
 
   create_table "stories_users", :force => true do |t|
     t.integer "story_id"
