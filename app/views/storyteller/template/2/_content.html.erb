@@ -83,7 +83,8 @@
      <% alignment = { "left" => -1, "center" => 0, "right" => 1 }%>
     <div class="main">
       <div class="article"> 
-        <% columnSectionCount = 0 %>
+        <% columnSectionCount = 0 %>        
+        <% sectionLength = @story.sections.length %> 
          <% @story.sections.sort_by{|p| p.position}.each_with_index do |section,s_i| %>
           <%  dataAudio = ''
               if section.asset_exists?            
@@ -116,7 +117,9 @@
                 <% if section.has_marker? %>
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
+                <% mediaLength = section.media.length %>
                 <% section.media.each_with_index do |m,m_i| %>
+
                     <% dataVideo = '' %>
                     <% if m.media_type == 2 && m.video_exists? %>                
                       <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name,'.mp4')}'".html_safe %>
@@ -143,6 +146,9 @@
                         <% end %>  
                         <% if m.source.present? %>
                            <div class="video-source"><%= m.source %></div>                       
+                        <% end %>  
+                        <% if sectionLength == s_i+1 %>
+                          <div class="last-section"></div>
                         <% end %>                       
                       </div>
                       <% if m.caption.present? %>
@@ -187,9 +193,12 @@
                         <% else %>
                           <%= m.caption  %>
                         <% end %>  
-                      </div>                       
-                  </div>        
-                <% end %>        
+                      </div>   
+
+                  </div>   
+                
+                <% end %> 
+
               </div>
             <% end %>                
          <% end %>   

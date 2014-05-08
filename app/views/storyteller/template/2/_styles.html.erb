@@ -1462,4 +1462,43 @@ color: #FFFFFF;
       line-height:5px;
     }
   } 
+
+    .last-section::after
+  {
+    background-image: url(<%= (@export ? "assets/" : "/template/#{@template}/") + 'images/donate.png'%>);       
+    background-repeat: no-repeat; 
+    content: " ";
+    background-size: 100% 100%;
+    width: 267px;
+    height: 96px;
+    position: absolute;
+    content: " ";
+    z-index: 999;
+  }
+  .last-section::after:hover
+  { 
+    background-image: url(<%= (@export ? "assets/" : "/template/#{@template}/") + 'images/donate_hover.png'%>);          
+  }
+  .last-section
+  {
+    position: absolute;
+    bottom: 655px;
+    right: 539px;
+ }
+   .last-section::before
+  {
+   
+    background-image: url(<%= (@export ? "assets/" : "/template/#{@template}/") + 'images/pig.png'%>);           
+    background-repeat: no-repeat; 
+    content: " ";
+    background-size: 100% 100%;
+    width: 439px;
+    height: 555px;
+    position: absolute;
+    content: " ";
+    z-index: 999;
+  }
+
+
+
 </style>
