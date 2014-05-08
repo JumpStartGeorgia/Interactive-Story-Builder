@@ -31,8 +31,8 @@ ka:
         sort_order: დალაგება
       content:        
         title: დასახელება
-        caption: დასახელება
-        sub_caption: ქვე-დასახელება
+        caption: Heading
+        sub_caption: Subheading
         content: შინაარსი
       medium:
         media_type: მედია ტიპი
@@ -236,8 +236,10 @@ ka:
         sub_caption: ქვესათაური (ნებაყოფლობითია)
       hint:
         title: ეს ტექსტი მხოლოდ ჩნდება მარცხენა ბლოკში, იგი არ გამოჩნდება ძირითად ამბავში
-        caption: შინაარსი წარწერა გამოჩნდება ზედა სექციაში (ჰედერის სტილში)
-        sub_caption: შინაარსის ქვესათური გამოჩნდება სათურის ქვემოთ (ქვეჰედერის სტილში)
+        caption: Heading of content will appear at the top of the section (styled like header)
+        sub_caption: Subheading of content will appear below the caption (styled like sub header of caption)
+#        caption: შინაარსი წარწერა გამოჩნდება ზედა სექციაში (ჰედერის სტილში)
+#        sub_caption: შინაარსის ქვესათური გამოჩნდება სათურის ქვემოთ (ქვეჰედერის სტილში)
         content: შინაარსი შესაძლებელია შეიცავდეს html, css სტილს და ფოტოს
     reviewer_key:
       title: მხოლოდ URL-ის წაკითხვა

@@ -31,8 +31,8 @@ en:
         sort_order: Sort Order
       content:        
         title: Title          
-        caption: Caption
-        sub_caption: Sub Caption
+        caption: Heading
+        sub_caption: Subheading
         content: Content
       medium:
         media_type: Media Type
@@ -232,12 +232,12 @@ en:
       form_title: Content Form
       placeholder:
         title: Content title
-        caption: Caption (optional)
-        sub_caption: Sub Caption (optional)
+        caption: optional
+        sub_caption: optional
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
-        caption: Caption of content will appear at the top of the section (styled like header)
-        sub_caption: Subcaption of content will appear below the caption (styled like sub header of caption)
+        caption: Heading of content will appear at the top of the section (styled like header)
+        sub_caption: Subheading of content will appear below the caption (styled like sub header of caption)
         content: Content can include html, css styling and images
     reviewer_key:
       title: Read-Only URL
