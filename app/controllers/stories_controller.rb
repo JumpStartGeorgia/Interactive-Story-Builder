@@ -23,12 +23,6 @@ class StoriesController < ApplicationController
   # GET /stories/1.json
   def show
     redirect_to sections_story_path(params[:id])
-    # @story = Story.find_by_id(params[:id])
-
-    # respond_to do |format|
-    #   format.html  #show.html.erb
-    #   format.json { render json: @story }
-    # end
   end
 
   # GET /stories/new
@@ -41,7 +35,7 @@ class StoriesController < ApplicationController
     logger.debug(@users.inspect)
     respond_to do |format|
         format.html #new.html.er
-b      format.json { render json: @story }
+        format.json { render json: @story }
     end
   end
 
