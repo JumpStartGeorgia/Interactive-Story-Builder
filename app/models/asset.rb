@@ -10,12 +10,15 @@ class Asset < ActiveRecord::Base
   validates :asset_type, :presence => true
   TYPE = {story_thumbnail: 1, section_audio: 2, content_image: 3, media_image: 4, media_video: 5, slideshow_image: 6}
 
-  attr_accessor :init_called 
+  attr_accessor :init_called, :asset_exists
 
   after_initialize :init
 
 
   def init
+   # flag to record if asset exists - is used in form so can edit caption without providing new file
+   self.asset_exists = self.asset_file_name.present?
+   
    opt = {}    
     case self.asset_type
       when Asset::TYPE[:story_thumbnail]        

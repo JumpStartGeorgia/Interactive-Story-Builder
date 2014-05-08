@@ -11,6 +11,7 @@
   <%= f.input :caption, placeholder: t('.placeholder.caption'), hint: t('.hint.caption'), :label => t('.label.caption') %>
   <%= f.input :source,  placeholder: t('.placeholder.source'), hint: t('.hint.source'), :label => t('.label.source') %>
   <%= f.input :asset_type, :as => :hidden , :value => Asset::TYPE[:slideshow_image] %>
+  <%= f.input :asset_exists, :as => :hidden %>
 
   <div class="remove_image_button">
     <%= link_to_remove_fields t('.remove_image'), f %>

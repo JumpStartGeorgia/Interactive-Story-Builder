@@ -1291,12 +1291,18 @@
   margin-bottom: 10px;
 }
 
+.slideshow-images{
+  text-align: center;
+  max-height: 100%;
+}
 .slideshow-image,
 .slideshow-caption {
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
   position: absolute;
   top: 0;
   left: 0;
+  opacity: 0;
 }
 .slideshow-title
 {
@@ -1360,6 +1366,7 @@
 .slideshow-caption--active,
 .slideshow-image--active {
   position: relative;
+  opacity: 1;
 }
 
 .slideshow-image--active {
