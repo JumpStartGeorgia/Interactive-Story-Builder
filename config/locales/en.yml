@@ -143,6 +143,9 @@ en:
     media:
       name: Full-Screen Media Slideshow
       description: Images and/or videos as a full-screen vertical slideshow
+    slideshow:
+      name: Image Slideshow
+      description: Images Slideshow
   layouts:
     application:
       admin: Admin

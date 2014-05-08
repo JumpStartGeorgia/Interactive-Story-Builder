@@ -143,6 +143,9 @@ ka:
     media:
       name: მთელს ეკრანზე გაშლილი მედია სლაიდშოუ
       description: ფოტოები და/ან ვიდეოები განთავსებული, როგორც სრულ ეკრანზე გაშლილი ვერტიკალური სლაიდშოუ
+    slideshow:
+      name: Image Slideshow
+      description: Images Slideshow
   layouts:
     application:
       admin: ადმინისტრატო
