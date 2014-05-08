@@ -145,7 +145,7 @@ en:
       description: Images and/or videos as a full-screen vertical slideshow
     slideshow:
       name: Image Slideshow
-      description: Images Slideshow
+      description: Images in a horizontal slideshow
   layouts:
     application:
       admin: Admin

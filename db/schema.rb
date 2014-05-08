@@ -40,7 +40,8 @@ ActiveRecord::Schema.define(:version => 20140508064809) do
     t.datetime "updated_at"
     t.string   "caption"
   end
-  add_index "contents", ["section_id"], :name => "section_id_UNIQUE", :unique => true
+
+  add_index "contents", ["section_id"], :name => "index_contents_on_section_id"
 
   create_table "impressions", :force => true do |t|
     t.string   "impressionable_type"
@@ -66,7 +67,6 @@ ActiveRecord::Schema.define(:version => 20140508064809) do
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], :name => "poly_session_index"
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], :name => "impressionable_type_message_index", :length => {"impressionable_type"=>nil, "message"=>255, "impressionable_id"=>nil}
   add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
-
 
   create_table "media", :force => true do |t|
     t.integer  "section_id"
@@ -135,19 +135,14 @@ ActiveRecord::Schema.define(:version => 20140508064809) do
     t.string   "thumbnail_content_type_old"
     t.integer  "thumbnail_file_size_old"
     t.datetime "thumbnail_updated_at_old"
-    t.integer  "impressions_count",      :default => 0
-    t.integer  "reviewer_key"
-    t.float    "latitude",     :limit => 10
-    t.float    "longitude",    :limit => 10
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "template_id",                :default => 1
+    t.integer  "impressions_count",          :default => 0
+    t.integer  "reviewer_key"
   end
 
-
-  add_index "stories", ["reviewer_key"], :name => "index_stories_on_reviewer_key"
   add_index "stories", ["published"], :name => "index_stories_on_published"
   add_index "stories", ["published_at"], :name => "index_stories_on_published_at"
+  add_index "stories", ["reviewer_key"], :name => "index_stories_on_reviewer_key"
   add_index "stories", ["template_id"], :name => "index_stories_on_template_id"
   add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
 
