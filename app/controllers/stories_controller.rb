@@ -32,7 +32,8 @@ class StoriesController < ApplicationController
     @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list
-    logger.debug(@users.inspect)
+
+
     respond_to do |format|
         format.html #new.html.er
         format.json { render json: @story }
@@ -58,10 +59,8 @@ class StoriesController < ApplicationController
 
       if @story.save
         flash_success_created(Story.model_name.human,@story.title)       
-        format.html { redirect_to sections_story_path(@story), notice: t('app.msgs.success_created', :obj => t('activerecord.models.story')) }
-       # format.html { redirect_to sections_story_path(@story), notice: 'Story was successfully created.' }
-        format.json { render json: @story, status: :created, location: @story }
-        format.js { render action: "flash", status: :created }    
+        format.html { redirect_to sections_story_path(@story) }
+      #  format.json { render json: @story, status: :created, location: @story }
       else
         @users = User.where("id not in (?)", [@story.user_id, current_user.id]) 
         if !@story.asset.present? 
@@ -69,10 +68,9 @@ class StoriesController < ApplicationController
         end      
         @templates = Template.select_list     
         flash[:error] = u I18n.t('app.msgs.error_create', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
-
         format.html { render action: "new" }
-        format.json { render json: @story.errors, status: :unprocessable_entity }
-        format.js {render action: "flash" , status: :ok }
+        #  format.json { render json: @story.errors, status: :unprocessable_entity }
+        #  format.js {render action: "flash" , status: :ok }
       end
     end
   end
@@ -193,7 +191,7 @@ class StoriesController < ApplicationController
     elsif type == 'slideshow'
 
         if params[:command]!='n'    
-          @item = Slideshow.find_by_id(params[:item_id])   
+          @item = Slideshow.find_by_id(params[:item_id])           
         else 
           @item = Slideshow.new(:section_id => params[:section_id])
         end
@@ -358,6 +356,16 @@ class StoriesController < ApplicationController
       Medium.where(section_id: params[:s]).find_by_id(params[:i]).move_higher            
     end
     render json: nil , status: :created    
+  end
+   def up_slideshow    
+ 
+      Asset.find_by_id(params[:asset_id]).move_higher            
+      render json: nil , status: :created    
+  end
+  def down_slideshow    
+ 
+      Asset.find_by_id(params[:asset_id]).move_lower
+      render json: nil , status: :created    
   end
   def down  
      if params[:i] == '-1'

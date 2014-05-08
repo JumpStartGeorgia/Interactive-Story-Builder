@@ -1,20 +1,20 @@
 <% asset_item ||= nil %>
 <div class="fields image_asset_form_container clear">
-    <!-- <label class=" control-label" for="slideshowImage"><%= t('activerecord.attributes.medium.image') %></label> -->
   <div class="preview_img">
     <% if asset_item.present? && asset_item.asset.exists? %>
     	<img src="<%= asset_item.asset.url(:thumbnail_preview) %>" />  
   	<% end %>
   </div>
 
-  <%= f.input :asset, :as => :file , hint: t('.hint.asset') , :input_html => { :id => "slideshowImage", accept:"image/jpeg,image/png" }, label: false %>       
-  <%= f.input :caption, placeholder: t('.placeholder.caption'), hint: t('.hint.caption'), :label => t('.label.caption') %>
-  <%= f.input :source,  placeholder: t('.placeholder.source'), hint: t('.hint.source'), :label => t('.label.source') %>
-  <%= f.input :asset_type, :as => :hidden , :value => Asset::TYPE[:slideshow_image] %>
-  <%= f.input :asset_exists, :as => :hidden %>
+    <%= f.input :asset, :as => :file , hint: t('.hint.asset') , :input_html => { :id => "slideshowImage", accept:"image/jpeg,image/png" }, label: false %>       
+    <%= f.input :caption, placeholder: t('.placeholder.caption'), hint: t('.hint.caption'), :label => t('.label.caption') %>
+    <%= f.input :source,  placeholder: t('.placeholder.source'), hint: t('.hint.source'), :label => t('.label.source') %>
+    <%= f.input :asset_type, :as => :hidden , :value => Asset::TYPE[:slideshow_image] %>
+    <%= f.input :asset_exists, :as => :hidden %>
 
   <div class="remove_image_button">
+    <button type="button" id='btn-up-slideshow' class="btn btn-info  btn-small" title="<%= t('app.buttons.up') %>"> <i class="icon-arrow-up icon-white" ></i> </button>
+    <button type="button" id='btn-down-slideshow' class="btn btn-info  btn-small" title="<%= t('app.buttons.down') %>"> <i class="icon-arrow-down icon-white" ></i></button>
     <%= link_to_remove_fields t('.remove_image'), f %>
   </div>
-    
 </div>

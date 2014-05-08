@@ -38,8 +38,10 @@ BootstrapStarter::Application.routes.draw do
 				put 'section', to: 'stories#save_section'
 				post 'section', to: 'stories#new_section'	
 				post 'up', to: 'stories#up'
-				post 'down', to: 'stories#down'						
-
+				post 'down', to: 'stories#down'	
+				post 'up_slideshow', to: 'stories#up_slideshow'
+				post 'down_slideshow', to: 'stories#down_slideshow'						
+				
     			get 'sections'    	
     			get 'publish', to: 'stories#publish'    		
     			get 'clone', to: 'stories#clone'    

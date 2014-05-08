@@ -291,3 +291,8 @@ select, input[type="file"] {
 height: 20px;
 line-height: 20px;
 }
+#btn-up-slideshow,#btn-down-slideshow
+{
+	padding:3px 9px;
+
+}

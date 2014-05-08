@@ -6,6 +6,10 @@ class Asset < ActiveRecord::Base
 #  belongs_to :media, foreign_key: :item_id
   belongs_to :image, foreign_key: :item_id, class_name: "Medium"
   belongs_to :video, foreign_key: :item_id, class_name: "Medium"  
+  acts_as_list scope: :slideshow
+
+
+  acts_as_list scope: [:item_id]
 
   validates :asset_type, :presence => true
   TYPE = {story_thumbnail: 1, section_audio: 2, content_image: 3, media_image: 4, media_video: 5, slideshow_image: 6}
@@ -48,6 +52,7 @@ class Asset < ActiveRecord::Base
                 :convert_options => {
                   :thumbnail => "-gravity center -extent 44x44",
                   :thumbnail_preview => "-gravity center -extent 160x160"
+                  
             }}    
 
             

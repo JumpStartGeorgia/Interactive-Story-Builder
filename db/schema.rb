@@ -11,20 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140507093603) do
+ActiveRecord::Schema.define(:version => 20140508064809) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
     t.integer  "asset_type"
-    t.string   "caption",            :limit => 45
-    t.string   "source",             :limit => 45
+    t.string   "caption",            :limit => 2000
+    t.string   "source"
     t.integer  "option"
     t.string   "asset_file_name"
     t.string   "asset_content_type", :limit => 45
     t.integer  "asset_file_size"
     t.datetime "asset_updated_at"
     t.integer  "position"
-    t.integer  "asset_subtype",                    :default => 0
+    t.integer  "asset_subtype",                      :default => 0
   end
 
   add_index "assets", ["item_id", "asset_type"], :name => "index_assets_on_item_id_and_asset_type"

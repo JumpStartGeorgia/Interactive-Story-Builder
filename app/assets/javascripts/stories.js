@@ -8,14 +8,15 @@
 
 $(document).ready(function() {
 
+
+
 	$('.story-tree ul').on('click','li.item',function(e) {
 		e.preventDefault();
 		item_id = -1;
 		section_id = $(this).attr('id');
 		$('.story-tree ul li').removeClass('active');
 		$('.story-tree ul li.item[id='+section_id+']').addClass('active');
-	    $(this).children('ul').toggle();
-	    $('.flash-message').empty();	    
+	    $(this).children('ul').toggle();	     
 	    getStory(section_id);
 	    return false;
 	});
@@ -26,10 +27,9 @@ $(document).ready(function() {
 		section_id = $(this).parent().parent().attr('id');		
 		$('.story-tree ul li').removeClass('active');
 		parent = $(this).parent().parent().addClass('active');
-		$(this).parent().find('li#'+item_id).addClass('active');   
-		$('.flash-message').empty();			
-		
+		$(this).parent().find('li#'+item_id).addClass('active');   					
 		getStory(section_id,item_id);
+		 $( "#slideshowAssets" ).sortable({ items: "> div" });
 	    return false;
 	});
 
@@ -157,6 +157,9 @@ $(document).ready(function() {
 			}).error(function(e){ popuper("Changing order failed.","error");});	
 		} 	
 	});
+
+
+	
 	$('#btnDown').click(function(){
 		if(!(section_id == -1 && item_id == -1))
 		{
@@ -191,7 +194,52 @@ $(document).ready(function() {
 			}).error(function(e){ popuper("Changing order failed.","error");});	
 		} 	
 	});
+	$('.story-viewer').on("click",'#btn-up-slideshow', function() {
+  
+  			var secT = $(this).parents('.fields');
+  			if( !secT.prev.length) return false;
+		 		
+			$.ajax
+			({
+				url: 'up_slideshow',			  
+				data: {asset_id: secT.find("> input").val()},
+				type: "POST",			
+		        dataType: 'json'
 
+			}).done(function(d) 
+			{
+				if( secT.prev.length)
+		 		{
+	 			   $(secT).insertBefore($(secT).prev());
+		 		}				
+						
+			}).error(function(e){ popuper("Changing order failed.","error");});	
+
+
+
+	});
+		$('.story-viewer').on("click",'#btn-down-slideshow', function() {
+			var secT = $(this).parents('.fields');
+  			if( !secT.next.length) return false;
+			$.ajax
+			({
+				url: 'down_slideshow',			  
+				data: {asset_id: $(this).parents('.fields').find("> input").val()},
+				type: "POST",			
+		        dataType: 'json'
+
+			}).done(function(d) 
+			{
+				if( secT.next.length)
+		 		{
+	 			  $(secT).insertAfter($(secT).next());
+		 		}
+						
+			}).error(function(e){ popuper("Changing order failed.","error");});	
+
+
+
+	});
 	$('#btnDelete').click(function(){
 
 	

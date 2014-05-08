@@ -44,7 +44,8 @@ function popuper(msg,msg_type)
   	  $('.flash-message').html('<div class="alert '+ type +' fade in">' +
 									'<a href="#" data-dismiss="alert" class="close">×</a>' +
 									 urldecode(msg) +
-									'</div>'); 
+									'</div>');
+  	   $('.flash-message').find("div.alert").fadeOut(5000,function(){ this.remove();});  	    	  
   }
 }
 function urldecode(url) {

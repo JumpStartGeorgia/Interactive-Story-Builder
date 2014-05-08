@@ -186,6 +186,8 @@
                 <div class="slideshow-wrapper">
                       <% if section.slideshow.caption.present? %>
                         <h3><%= section.slideshow.caption %></h3>
+                      <% else %>                      
+                        <h3>&nbsp;</h3>
                       <% end %>
                                 
                   <!--[if lte IE 8]><img src="<%= section.slideshow.assets[0].asset.url(:medium) %>" style="width:100%;"><![endif]-->

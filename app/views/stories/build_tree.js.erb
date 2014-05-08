@@ -2,11 +2,11 @@
  {
 	if(item_id != -1)
 	{
-		$('.story-tree ul li.item[id='+ section_id + ']').find(' ul li.sub[id='+item_id+'] > span').text('<%= @item.title %>');
+		$('.story-tree ul li.item[id='+ section_id + ']').find(' ul li.sub[id='+item_id+'] > span').text('<%= @item.title %>').trigger('click');		    
 	}
 	else 
 	{	
-		$('.story-tree ul li.item[id='+ section_id + '] > span').text('<%= @item.title %>');
+		$('.story-tree ul li.item[id='+ section_id + '] > span').text('<%= @item.title %>').trigger('click');
 	}
 	$("html, body").animate({ scrollTop: 0 }, "slow");
 

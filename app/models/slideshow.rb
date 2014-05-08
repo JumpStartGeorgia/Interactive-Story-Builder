@@ -3,7 +3,8 @@ class Slideshow < ActiveRecord::Base
 	has_many :assets,     
 	  :conditions => "asset_type = #{Asset::TYPE[:slideshow_image]}",    
 	  foreign_key: :item_id,
-	  dependent: :destroy
+	  dependent: :destroy,
+	  :order => 'position'
 
 
 	validates :section_id, :presence => true  
