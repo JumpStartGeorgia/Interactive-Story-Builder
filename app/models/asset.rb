@@ -42,11 +42,11 @@ class Asset < ActiveRecord::Base
                   :styles => {                   
                     :mobile_640 => {:geometry => "640x427"},
                     :mobile_1024 => {:geometry => "1024x623"}, 
-                    :slideshow => {:geometry => "1400x934"},                   
-                    :thumbnail => {:geometry => "50x50^"},
+                    :slideshow => {:geometry => "812x462"},                   
+                    :thumbnail => {:geometry => "44x44^"},
                     :thumbnail_preview => {:geometry => "160x160^"}},
                 :convert_options => {
-                  :thumbnail => "-gravity center -extent 50x50",
+                  :thumbnail => "-gravity center -extent 44x44",
                   :thumbnail_preview => "-gravity center -extent 160x160"
             }}    
 
