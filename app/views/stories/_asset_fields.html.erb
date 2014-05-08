@@ -1,7 +1,7 @@
 <% asset_item ||= nil %>
 <div class="fields image_asset_form_container clear">
     <!-- <label class=" control-label" for="slideshowImage"><%= t('activerecord.attributes.medium.image') %></label> -->
-  <div class="preview">
+  <div class="preview_img">
     <% if asset_item.present? && asset_item.asset.exists? %>
     	<img src="<%= asset_item.asset.url(:thumbnail_preview) %>" />  
   	<% end %>
