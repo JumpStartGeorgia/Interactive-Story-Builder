@@ -104,7 +104,6 @@ border-bottom:1px solid lightgrey;
     display:block;
   }
   
-  
 #previewStory{
   height:85%;
   width:90%;
@@ -126,3 +125,30 @@ border-bottom:1px solid lightgrey;
   }  
 }
 
+.add_imgage_button{
+  border-bottom:1px solid #eee;
+  border-top:1px solid #eee;
+  padding:10px 0px;
+  width:100%;  
+}
+
+.image_asset_form_container{
+  border-top:1px solid #eee;  
+  padding:20px 0px 0px 20px;
+  margin-bottom: 10px;
+  height:180px;
+  
+  .preview{
+    width:170px;
+    height:170px;
+    float:left;
+    background-color:gray;
+    margin:10px 20px 10px 10px;
+  }
+  
+  .remove_image_button{
+    float:right;
+    margin-right:20px;
+    margin-bottom:10px; 
+  }
+}

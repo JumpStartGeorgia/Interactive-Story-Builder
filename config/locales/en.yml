@@ -7,6 +7,7 @@ en:
       section: Section
       medium: Medium
       content: Content
+      slideshow: Slideshow
     attributes:
       user:
         email: Email Address
@@ -44,6 +45,9 @@ en:
         image: Image
         video: Video
         video_loop: Loop Video
+      slideshow:
+        title: Title
+        caption: Heading
     errors:
       messages:
         required_field: "is a required field."
@@ -243,18 +247,24 @@ en:
       title: Read-Only URL
       desc: "You can copy and share the following URL with whomever you want to review '%{title}' before it is published. These people will have the ability to read your story, but not edit it."
     slideshow:
-      title:
-        image: "Image for slideshow (jpg or png format accepted)"
-        title: "Title is only for section it doesn't affect story layout"
-        caption: Caption of slideshow will appear at the top of slideshow box
-    asset_fields:
+      add_image: Add Image
       placeholder:
-        caption: "Caption for asset"
-        source: "Source of the asset"
-      title:
-        caption: "Caption for asset"
-        source: "Source of the asset"
-        asset: "File for uploading"
+        caption: optional
+      hint:
+        title: This text only appears in the left sidebar, it will not show up in the story
+        caption: Heading will appear at the top of the slideshow
+    asset_fields:
+      remove_image: Remove
+      placeholder:
+        caption: optional
+        source: optional
+      hint:
+        caption: Image Description will appear below the image
+        source: Source will appear below the Image Description
+        asset: Only jpg and png format allowed
+      label:
+        caption: Image Description
+        source: Image Source
   storyteller:
     byline: By
     byline_media: "Photographs and video by "
