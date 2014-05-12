@@ -36,7 +36,6 @@ $(document).ajaxComplete(function(event, request) {
 
 function popuper(msg,msg_type)
 {
-  
   var types = {'notice':'alert-info','success':'alert-success','error':'alert-error','alert':'alert-error'};
   var type = types[msg_type];
   if (msg && type)
