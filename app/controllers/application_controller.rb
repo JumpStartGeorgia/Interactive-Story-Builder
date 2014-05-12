@@ -61,6 +61,9 @@ logger.debug "////////////////////////// BROWSER NOT SUPPORTED"
 		gon.set = true
 		gon.highlight_first_form_field = true
 
+    gon.msgs_one_section_content = I18n.t('app.msgs.one_section.content')
+    gon.msgs_one_section_slideshow = I18n.t('app.msgs.one_section.slideshow')
+
 		if I18n.locale == :ka
 		  gon.datatable_i18n_url = "/datatable_ka.txt"
 		else
