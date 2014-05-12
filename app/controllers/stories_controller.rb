@@ -210,7 +210,7 @@ class StoriesController < ApplicationController
 
   def new_section
     @item = Section.new(params[:section])  
-     logger.debug(@item.asset.inspect)
+
      respond_to do |format|
         if @item.save         
           flash_success_created(Section.model_name.human,@item.title)                     
@@ -224,7 +224,7 @@ class StoriesController < ApplicationController
 
  def new_media
     @item = Medium.new(params[:medium])    
-  logger.debug(@item.image.inspect)
+
     respond_to do |format|
         if @item.save       
           flash_success_created(Medium.model_name.human,@item.title)                     
