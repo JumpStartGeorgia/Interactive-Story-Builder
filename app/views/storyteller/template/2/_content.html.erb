@@ -568,23 +568,15 @@
               .property("loop", true);
 
 
-
-          var secTemp = d3.selectAll(".section");
-          var last_section =d3.select( secTemp[0][secTemp[0].length-2]);
-          var temp = last_section.selectAll(".video-container");          
-          var lengthTemp = temp[0].length; 
-          console.log(lengthTemp);
-          if(lengthTemp >= 2) lengthTemp-=2;
-          if(lengthTemp == 1) lengthTemp = 0;
+              // added for donation pig
+          var secTemp = d3.selectAll(".section");          
+          var temp = d3.select( secTemp[0][secTemp[0].length-2]).selectAll(".video-container");          
+          var lengthTemp = temp[0].length -1 ; 
           if(lengthTemp >= 0)
-          {
-
-              var last_video = temp[0][lengthTemp];
-              var last_section = d3.select(last_video).append("div").attr("class","last-section");
+          {              
+              var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
               last_section.append("div").attr("class","donate").append("a").attr("src","http://www.donation.ge");
-              last_section.append("div").attr("class","pigy");
-              console.log(last_video);
-
+              last_section.append("div").attr("class","pigy");              
           }
                   
 
