@@ -19,7 +19,7 @@
       <a class='btn' data-reveal-id="modalImage"><%= t('app.buttons.preview_image') %></a>
     <% end %>    
 
-    <%= as.input :image, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:"image/jpeg,image/png" }, label: false  %> 
+    <%= as.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:"image/jpeg,image/png" }, label: false  %> 
     <%= as.input :asset_type, :as => :hidden %>
   <% end %> 
 
@@ -29,11 +29,11 @@
       <% if  @item.video.present? && @item.video.asset.exists? %>
         <a class='btn' data-reveal-id="modalVideo"><%= t('app.buttons.preview_video') %></a>
       <% end %>
-      <%= as.input :video, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:"video/mp4" }, label: false %>
+      <%= as.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:"video/mp4" }, label: false %>
+      <%= as.input :asset_type, :as => :hidden %>
+
       <%= f.input :video_loop, :as => :boolean , hint: t('.hint.video_loop'), :default => true, :input_html => { id: "sectionVideoLoop"} %> 
     </div>
-   
-    <%= as.input :asset_type, :as => :hidden %>
   <% end %> 
 
    <%= f.input :source, hint: t('.hint.source'), :input_html => { :id => "mediaSource", :placeholder => t('.placeholder.source')  } %>

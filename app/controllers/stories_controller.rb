@@ -208,16 +208,9 @@ class StoriesController < ApplicationController
     end
   end
 
-  def flash_success_created( obj, title)
-      flash[:success] =u I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
-  end
-  def flash_success_updated( obj, title)
-      flash[:success] =u I18n.t('app.msgs.success_updated', obj:"#{obj} \"#{title}\"")
-  end
-
   def new_section
     @item = Section.new(params[:section])  
-     logger.debug(@item.asset.inspect)
+
      respond_to do |format|
         if @item.save         
           flash_success_created(Section.model_name.human,@item.title)                     
@@ -231,7 +224,7 @@ class StoriesController < ApplicationController
 
  def new_media
     @item = Medium.new(params[:medium])    
-  logger.debug(@item.image.inspect)
+
     respond_to do |format|
         if @item.save       
           flash_success_created(Medium.model_name.human,@item.title)                     
@@ -278,14 +271,13 @@ class StoriesController < ApplicationController
 
     @item = Section.find_by_id(params[:section][:id]) 
      respond_to do |format|
-          if @item.update_attributes(params[:section].except(:id))
+        if @item.update_attributes(params[:section].except(:id))
           flash_success_updated(Section.model_name.human,@item.title)       
           format.js {render action: "build_tree", status: :created }                  
         else
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                            
           format.js {render json: nil, status: :ok }
         end
-
       end    
   end
   def save_content      
@@ -409,54 +401,51 @@ class StoriesController < ApplicationController
   end
 
 
- def export
-  begin     
-    @story = Story.fullsection(params[:id])  
-    rootPath = "#{Rails.root}/tmp";
-    filename = StoriesHelper.transliterate(@story.title.downcase);
-    filename_ext = SecureRandom.hex(3)  
-    path =  "#{rootPath}/#{filename}_#{filename_ext}"  
-    mediaPath = "#{path}/media"
+  def export
+    begin     
+      @story = Story.fullsection(params[:id])  
+      rootPath = "#{Rails.root}/tmp";
+      filename = StoriesHelper.transliterate(@story.title.downcase);
+      filename_ext = SecureRandom.hex(3)  
+      path =  "#{rootPath}/#{filename}_#{filename_ext}"  
+      mediaPath = "#{path}/media"
 
-    require 'fileutils'
+      require 'fileutils'
 
-    FileUtils.cp_r "#{Rails.root}/public/media/story", "#{path}"  
+      FileUtils.cp_r "#{Rails.root}/public/media/story", "#{path}"  
 
-    if File.directory?("#{Rails.root}/public/template/#{@story.template.name}/fonts")
-        FileUtils.cp_r "#{Rails.root}/public/template/#{@story.template.name}/fonts", "#{path}/assets"
-    end
+      if File.directory?("#{Rails.root}/public/template/#{@story.template.name}/fonts")
+          FileUtils.cp_r "#{Rails.root}/public/template/#{@story.template.name}/fonts", "#{path}/assets"
+      end
 
-    if File.directory?("#{Rails.root}/public/system/places/images/#{params[:id]}/.")
-        FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{params[:id]}/.", "#{mediaPath}/images"
-    end
-    if File.directory?("#{Rails.root}/public/system/places/video/#{params[:id]}/.")
-      FileUtils.cp_r "#{Rails.root}/public/system/places/video/#{params[:id]}/.", "#{mediaPath}/video"  
-    end
-    if File.directory?("#{Rails.root}/public/system/places/audio/#{params[:id]}/.")
-      FileUtils.cp_r "#{Rails.root}/public/system/places/audio/#{params[:id]}/.", "#{mediaPath}/audio"
-    end
-    if File.directory?("#{Rails.root}/public/system/places/slideshow/#{params[:id]}/.")
-      FileUtils.cp_r "#{Rails.root}/public/system/places/slideshow/#{params[:id]}/.", "#{mediaPath}/slideshow"
-    end
-    @export = true
-    File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/index.html.erb', :layout => false) }  
-    send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :x_sendfile=>true, :filename=>"#{filename}.tar.gz"
+      if File.directory?("#{Rails.root}/public/system/places/images/#{params[:id]}/.")
+          FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{params[:id]}/.", "#{mediaPath}/images"
+      end
+      if File.directory?("#{Rails.root}/public/system/places/video/#{params[:id]}/.")
+        FileUtils.cp_r "#{Rails.root}/public/system/places/video/#{params[:id]}/.", "#{mediaPath}/video"  
+      end
+      if File.directory?("#{Rails.root}/public/system/places/audio/#{params[:id]}/.")
+        FileUtils.cp_r "#{Rails.root}/public/system/places/audio/#{params[:id]}/.", "#{mediaPath}/audio"
+      end
+      if File.directory?("#{Rails.root}/public/system/places/slideshow/#{params[:id]}/.")
+        FileUtils.cp_r "#{Rails.root}/public/system/places/slideshow/#{params[:id]}/.", "#{mediaPath}/slideshow"
+      end
+      @export = true
+      File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/index.html.erb', :layout => false) }  
+      send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :x_sendfile=>true, :filename=>"#{filename}.tar.gz"
 
-    if File.directory?(path)
-      FileUtils.remove_dir(path,true)   
-    end
-    if File.exists?("#{path}.tar.gz")    
-      FileUtils.remove_file("#{path}.tar.gz",true)   
-    end
-  rescue
-     flash[:error] =I18n.t("app.msgs.error_export", obj:"#{Story.model_name.human} \"#{@story.errors.inspect}\"")                           
-     redirect_to stories_url
-  end   
-end
-def generate_gzip(tar,name,ff)      
-    system("tar -czf #{tar}.tar.gz -C '#{Rails.root}/tmp/#{name}' .")
-    return "#{tar}.tar.gz"
-end
+      if File.directory?(path)
+        FileUtils.remove_dir(path,true)   
+      end
+      if File.exists?("#{path}.tar.gz")    
+        FileUtils.remove_file("#{path}.tar.gz",true)   
+      end
+    rescue
+       flash[:error] =I18n.t("app.msgs.error_export", obj:"#{Story.model_name.human} \"#{@story.errors.inspect}\"")                           
+       redirect_to stories_url
+    end   
+  end
+ 
   def clone
     begin
   Story.transaction do
@@ -496,14 +485,25 @@ end
       format.html { redirect_to stories_url }
    end
   end
-  def test
-   
-    
-  end
 
-  private
+private
 
   def can_edit_story?(story_id)
     redirect_to root_path, :notice => t('app.msgs.not_authorized') if !Story.can_edit?(story_id, current_user.id)
   end
+
+  def flash_success_created( obj, title)
+#      flash[:success] = u I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
+      flash[:success] = I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
+  end
+  def flash_success_updated( obj, title)
+#      flash[:success] = u I18n.t('app.msgs.success_updated', obj:"#{obj} \"#{title}\"")
+      flash[:success] = I18n.t('app.msgs.success_updated', obj:"#{obj} \"#{title}\"")
+  end
+
+  def generate_gzip(tar,name,ff)      
+      system("tar -czf #{tar}.tar.gz -C '#{Rails.root}/tmp/#{name}' .")
+      return "#{tar}.tar.gz"
+  end
+
 end       

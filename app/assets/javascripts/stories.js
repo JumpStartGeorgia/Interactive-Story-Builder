@@ -294,9 +294,13 @@ $(document).ready(function() {
 		else  { temp = $('.story-tree ul li.item[id='+ section_id + ']'); }
 		
 		var tempType = temp.data('type');
-		if( (tempType == 'content' || tempType == 'slideshow') && temp.has('ul').length==1 )
+		if( tempType == 'content' && temp.has('ul').length==1 )
 		{			
-			alert("Only one content can be added to content type section");
+			alert(gon.msgs_one_section_content);
+		}
+		else if( tempType == 'slideshow' && temp.has('ul').length==1 )
+		{			
+			alert(gon.msgs_one_section_slideshow);
 		}
 		else 
 		{		

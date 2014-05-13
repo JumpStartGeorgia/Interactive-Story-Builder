@@ -136,6 +136,9 @@ ka:
       error_unpublish: "%{obj} გამოქვეყნება გაუქმებულია. [ %{err} ]"
       error_clone: "%{obj} იქნა კლონირებული." 
       error_export: "Story %{obj} ამბის ექსპორტი შესაძლებელია"     
+      one_section:
+        content: Only one Item can be added to a Content section
+        slideshow: Only one Item can be added to a Image Slideshow section
   section_types:
     content:
       name: შინაარსი
@@ -144,8 +147,8 @@ ka:
       name: მთელს ეკრანზე გაშლილი მედია სლაიდშოუ
       description: ფოტოები და/ან ვიდეოები განთავსებული, როგორც სრულ ეკრანზე გაშლილი ვერტიკალური სლაიდშოუ
     slideshow:
-      name: Image Slideshow
-      description: Images Slideshow
+      name: ფოტო სლაიდშოუ
+      description: ფოტოები ჰორიზონტალურ სლაიდშოუში
   layouts:
     application:
       admin: ადმინისტრატო

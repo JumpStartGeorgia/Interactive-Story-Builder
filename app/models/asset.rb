@@ -20,50 +20,50 @@ class Asset < ActiveRecord::Base
 
 
   def init
-   # flag to record if asset exists - is used in form so can edit caption without providing new file
-   self.asset_exists = self.asset_file_name.present?
-   
-   opt = {}    
-    case self.asset_type
-      when Asset::TYPE[:story_thumbnail]        
-        opt = { 
-          :url => "/system/places/thumbnail/:item_id/:style/:basename.:extension",
-          :styles => {:"250x250" => {:geometry => "250x250"}},
-          :default_url => "/assets/missing/250x250/missing.png"
-        }
-      when  Asset::TYPE[:section_audio]         
-        opt = {:url => "/system/places/audio/:story_id/:basename.:extension"}  
-      when  Asset::TYPE[:media_image]        
-        opt = { :url => "/system/places/images/:media_image_story_id/:style/:basename.:extension",
-                :styles => {
+    if self.init_called != true
+      # flag to record if asset exists - is used in form so can edit caption without providing new file
+      self.asset_exists = self.asset_file_name.present?
+
+      opt = {}    
+      case self.asset_type
+        when Asset::TYPE[:story_thumbnail]        
+          opt = { 
+            :url => "/system/places/thumbnail/:item_id/:style/:basename.:extension",
+            :styles => {:"250x250" => {:geometry => "250x250"}},
+            :default_url => "/assets/missing/250x250/missing.png"
+          }
+        when  Asset::TYPE[:section_audio]         
+          opt = {:url => "/system/places/audio/:story_id/:basename.:extension"}  
+        when  Asset::TYPE[:media_image]        
+          opt = { :url => "/system/places/images/:media_image_story_id/:style/:basename.:extension",
+                  :styles => {
+                        :mobile_640 => {:geometry => "640x427"},
+                        :mobile_1024 => {:geometry => "1024x623"}}}  
+        when  Asset::TYPE[:media_video]        
+          opt = {   :url => "/system/places/video/:media_video_story_id/:basename.:extension",
+                    :styles => { :poster => { :format => 'jpg', :time => 1 }}, :processors => [:ffmpeg] }  
+         when  Asset::TYPE[:slideshow_image]        
+          opt = {     :url => "/system/places/slideshow/:slideshow_image_story_id/:style/:basename.:extension" ,
+                    :styles => {                   
                       :mobile_640 => {:geometry => "640x427"},
-                      :mobile_1024 => {:geometry => "1024x623"}}}  
-      when  Asset::TYPE[:media_video]        
-        opt = {   :url => "/system/places/video/:media_video_story_id/:basename.:extension",
-                  :styles => { :poster => { :format => 'jpg', :time => 1 }}, :processors => [:ffmpeg] }  
-       when  Asset::TYPE[:slideshow_image]        
-        opt = {     :url => "/system/places/slideshow/:slideshow_image_story_id/:style/:basename.:extension" ,
-                  :styles => {                   
-                    :mobile_640 => {:geometry => "640x427"},
-                    :mobile_1024 => {:geometry => "1024x623"}, 
-                    :slideshow => {:geometry => "812x462"},                   
-                    :thumbnail => {:geometry => "44x44^"},
-                    :thumbnail_preview => {:geometry => "160x160^"}},
-                :convert_options => {
-                  :thumbnail => "-gravity center -extent 44x44",
-                  :thumbnail_preview => "-gravity center -extent 160x160"
-                  
-            }}    
+                      :mobile_1024 => {:geometry => "1024x623"}, 
+                      :slideshow => {:geometry => "812x462"},                   
+                      :thumbnail => {:geometry => "44x44^"},
+                      :thumbnail_preview => {:geometry => "160x160^"}},
+                  :convert_options => {
+                    :thumbnail => "-gravity center -extent 44x44",
+                    :thumbnail_preview => "-gravity center -extent 160x160"
+                    
+              }}    
 
-            
-    end    
+              
+      end    
 
-    self.asset.options.merge!(opt)
+      self.asset.options.merge!(opt)
 
-    # remember that init has already been called
-    self.init_called = true
-
-  #  logger.debug(self.asset.options.to_s + "-"*30)
+      # remember that init has already been called
+      self.init_called = true
+    end
   end
 
   require 'iconv'
@@ -84,17 +84,14 @@ class Asset < ActiveRecord::Base
     t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["video/mp4"] }}    
   end
  with_options :if => "self.asset_type == Asset::TYPE[:slideshow_image]" do |t|      
-    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg"] }}    
+    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }}  
   end
 
    
+  before_post_process :init
   before_post_process :transliterate_file_name
   
   def transliterate_file_name
-    # if init has not been called yet, call it to make sure the options are set before processing begins
-    if self.init_called != true
-      init
-    end
     if asset_file_name.present?
       extension = File.extname(asset_file_name).gsub(/^\.+/, '')
       filename = asset_file_name.gsub(/\.#{extension}$/, '')
