@@ -144,7 +144,12 @@ class StoriesController < ApplicationController
       @section_list.sort_by!{|x| x[0]}
                  
       respond_to do |format|
-        format.js { render :action => "get_section" }
+        if @item.present?
+          format.js { render :action => "get_section" }
+        else
+          @get_data_error = I18n.t('app.msgs.error_get_data')
+          format.js
+        end
       end
 
     elsif type == 'c'
@@ -155,20 +160,35 @@ class StoriesController < ApplicationController
         @item = Content.new(:section_id => params[:section_id], :content => '')
       end
       respond_to do |format|
-        format.js  {render :action => "get_content" }
+        if @item.present?
+          format.js  {render :action => "get_content" }
+        else
+          @get_data_error = I18n.t('app.msgs.error_get_data')
+          format.js
+        end
       end
 
     elsif type == 'm'
 
-        if params[:command]!='n'    
-          @item = Medium.find_by_id(params[:item_id])   
-        else 
-          @item = Medium.new(:section_id => params[:section_id], media_type: 1)
-        end
-        respond_to do |format|
+      if params[:command]!='n'    
+        @item = Medium.find_by_id(params[:item_id])   
+      else 
+        @item = Medium.new(:section_id => params[:section_id], media_type: 1)
+      end
+      respond_to do |format|
+        if @item.present?
           format.js {render :action => "get_media" }
+        else
+          @get_data_error = I18n.t('app.msgs.error_get_data')
+          format.js
         end
+      end
 
+    else
+      respond_to do |format|
+        @get_data_error = I18n.t('app.msgs.error_get_data')
+        format.js
+      end
     end
   end
 
@@ -274,7 +294,10 @@ class StoriesController < ApplicationController
     item.destroy if item.present?
     
     respond_to do |format|
-      if item.present? && item.destroyed?   
+      if !item.present?
+          flash[:error] = "Item could not be found to delete."
+          format.json { render json: nil , status: :created } 
+      elsif item.destroyed?   
           flash[:success] = "Item was removed from the tree."
           format.json { render json: nil , status: :created } 
       else  

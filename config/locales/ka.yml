@@ -132,6 +132,7 @@ ka:
       error_unpublish: "%{obj} გამოქვეყნება გაუქმებულია. [ %{err} ]"
       error_clone: "%{obj} იქნა კლონირებული." 
       error_export: "Story %{obj} ამბის ექსპორტი შესაძლებელია"     
+      error_get_data: The selected item could not be found
   section_types:
     content:
       name: შინაარსი
