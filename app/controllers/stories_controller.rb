@@ -405,13 +405,13 @@ class StoriesController < ApplicationController
     begin     
       @story = Story.fullsection(params[:id])  
       rootPath = "#{Rails.root}/tmp";
-      filename = StoriesHelper.transliterate(@story.title.downcase);
+      filename = StoriesHelper.transliterate(@story.title.downcase);      
       filename_ext = SecureRandom.hex(3)  
       path =  "#{rootPath}/#{filename}_#{filename_ext}"  
       mediaPath = "#{path}/media"
 
       require 'fileutils'
-
+      logger.debug("---------------------------------------------------#{filename}")
       FileUtils.cp_r "#{Rails.root}/public/media/story", "#{path}"  
 
       if File.directory?("#{Rails.root}/public/template/#{@story.template.name}/fonts")

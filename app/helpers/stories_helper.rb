@@ -1,10 +1,11 @@
 module StoriesHelper
 	def self.transliterate(str)
 	  # Based on permalink_fu by Rick Olsen
-	 
+	     Rails.logger.debug("--------------------str-------------------------------#{str}")
 	  # Escape str by transliterating to UTF-8 with Iconv http://stackoverflow.com/questions/12947910/force-strings-to-utf-8-from-any-encoding
-	  s = Iconv.iconv('ascii//ignore//translit', 'utf-8', str).to_s
-	 
+	  #s = Iconv.iconv('ascii//ignore//translit', 'utf-8', str).to_s
+	  s = str.force_encoding("UTF-8")
+	   Rails.logger.debug("--------------------s-------------------------------#{s}")
 	  # Downcase string
 	  s.downcase!
 	 
@@ -12,7 +13,7 @@ module StoriesHelper
 	  s.gsub!(/'/, '')
 	 
 	  # Replace any non-letter or non-number character with a space
-	  s.gsub!(/[^A-Za-z0-9]+/, ' ')
+	  s.gsub!(/[^[[:alnum:]]]+/, ' ')
 	 
 	  # Remove spaces from beginning and end of string
 	  s.strip!
@@ -23,7 +24,6 @@ module StoriesHelper
 	  return s
 	end
 	def self.transliterate_path( filename )
-		
 	  extension = File.extname(filename).gsub(/^\.+/, '')  
 	  filename = filename.gsub(/\.#{extension}$/, '')
 

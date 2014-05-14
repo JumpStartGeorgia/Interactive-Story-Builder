@@ -66,7 +66,7 @@ class Asset < ActiveRecord::Base
     end
   end
 
-  require 'iconv'
+  #require 'iconv'
 
   has_attached_file :asset
 
@@ -104,8 +104,8 @@ class Asset < ActiveRecord::Base
    
     # Escape str by transliterating to UTF-8 with Iconv http://stackoverflow.com/questions/12947910/force-strings-to-utf-8-from-any-encoding
     #string.encode("UTF-8", :invalid => :replace, :undef => :replace, :replace => "?")
-    s = Iconv.iconv('ascii//ignore//translit', 'utf-8', str).to_s
-   
+    #s = Iconv.iconv('ascii//ignore//translit', 'utf-8', str).to_s
+     s = str.force_encoding("UTF-8")
     # Downcase string
     s.downcase!
    
