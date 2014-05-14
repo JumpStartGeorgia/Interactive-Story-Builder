@@ -20,7 +20,6 @@ module FormtasticBootstrap
             )
           end
         end
-
       end
     end
   end

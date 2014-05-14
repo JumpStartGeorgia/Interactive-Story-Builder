@@ -27,14 +27,6 @@ $(document).ready(function(){
 	$('body')
 		.off('click.dropdown touchstart.dropdown.data-api', '.dropdown')
 		.on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() });
-
-
-
-	$('.help-inline').each(function(){  
-	  var hint = $(this).text();            
-	  var helper = $(this).wrap($("<div></div>").addClass("help-inline").html("<div>?</div>").attr("title",hint)).remove(); 
-	});
-
 });
 
 

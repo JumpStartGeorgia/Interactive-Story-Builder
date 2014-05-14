@@ -31,7 +31,7 @@
       <label class=" control-label"><%= t('activerecord.attributes.story.user_id') %></label>
       <div class="controls">
         <input type="text" value="<%= "#{@story.user.nickname}" %>" readonly="readonly">
-        <span class="help-inline"><%= t('.hint.editor') %></span>
+        <div class="help-inline" title="<%= t('.hint.editor') %>"><div>?</div></div>
       </div>
     </div>
     <%= f.input :user_ids , :as => :select, :hint => t('.hint.editors'), :collection =>  Hash[@users.map{|b| [b.nickname,b.id]}], :multiple => true %>

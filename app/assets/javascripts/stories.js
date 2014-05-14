@@ -369,7 +369,7 @@ function getData()
 		}).error(function(e){console.log(e)}).done(function(){
 			//$('#contentPreview').html($('#contentForm #contentArticle').val());	
 		});
- 
+
 	return true;	
 }
 
@@ -383,10 +383,3 @@ function add_fields(link, association, content) {
   	var regexp = new RegExp("new_" + association, "g")
 	$('#slideshowAssets').append(content.replace(regexp, new_id));
 }
-
-
-
-// helper.each( function( index, value ) {
-//  var vl = $(value);
-//   var vlp = vl.prepend("div"); 
-// });
