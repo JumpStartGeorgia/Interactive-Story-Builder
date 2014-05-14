@@ -42,7 +42,7 @@ class StoriesController < ApplicationController
 
   # GET /stories/1/edit
   def edit
-    @story = Story.find_by_id(params[:id])
+    @story = Story.find(params[:id])
     if !@story.asset_exists?
       @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
     end 
@@ -78,7 +78,7 @@ class StoriesController < ApplicationController
   # PUT /stories/1
   # PUT /stories/1.json
   def update
-    @story = Story.find_by_id(params[:id])
+    @story = Story.find(params[:id])
 
     respond_to do |format|
       if @story.update_attributes(params[:story])
@@ -102,7 +102,7 @@ class StoriesController < ApplicationController
   # DELETE /stories/1
   # DELETE /stories/1.json
   def destroy
-    @story = Story.find_by_id(params[:id])
+    @story = Story.find(params[:id])
     
      @story.destroy
      if @story.destroyed?             
@@ -150,7 +150,7 @@ class StoriesController < ApplicationController
       @section_list = []
       Section::TYPE.each{|k,v| @section_list << ["#{I18n.t("section_types.#{k}.name")} - #{I18n.t("section_types.#{k}.description")}", v]} 
       @section_list.sort_by!{|x| x[0]}
-      if !@item.asset_exists?
+      if @item.present? && !@item.asset_exists?
           @item.build_asset(:asset_type => Asset::TYPE[:section_audio])
       end   
       respond_to do |format|
@@ -176,10 +176,10 @@ class StoriesController < ApplicationController
           @item = Medium.new(:section_id => params[:section_id], media_type: 1)
         end
 
-        if !@item.image_exists? 
+        if @item.present? &&  !@item.image_exists? 
           @item.build_image(:asset_type => Asset::TYPE[:media_image])
         end   
-        if !@item.video_exists?
+        if @item.present? && !@item.video_exists?
           @item.build_video(:asset_type => Asset::TYPE[:media_video])
         end      
 
@@ -196,7 +196,7 @@ class StoriesController < ApplicationController
           @item = Slideshow.new(:section_id => params[:section_id])
         end
       
-       if @item.assets.blank?
+       if @item.present? && @item.assets.blank?
           @item.assets.build(:asset_type => Asset::TYPE[:slideshow_image])
         end      
 
