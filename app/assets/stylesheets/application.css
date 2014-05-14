@@ -282,17 +282,35 @@ table {
     margin: 1em 0;
     clear: both;
 }
-
-.help-block, .help-inline {
-  font-size: smaller;
-  font-style: italic;
+.help-inline, .help-block
+{
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  background-color: #DBDBDB;
+  color: #9E9E9E;
+  width:21px;
+  height:20px;
+  font-size:16px;
+  font-style:normal;  
+  vertical-align:middle;
+  display:inline-block; 
+  cursor:help;
+  padding:0px;
+}
+.help-inline div,.help-block div {
+  margin-top:2px;
+  margin-left: 6px;
 }
 select, input[type="file"] {
-height: 20px;
-line-height: 20px;
+	height: 20px;
+	line-height: 20px;
 }
 #btn-up-slideshow,#btn-down-slideshow
 {
 	padding:3px 9px;
 
+}
+input[type=text]{
+	margin-bottom:0px;
 }
