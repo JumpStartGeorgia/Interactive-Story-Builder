@@ -31,7 +31,7 @@ class StoriesController < ApplicationController
     @story = Story.new(:user_id => current_user.id)     
     @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
-    @templates = Template.select_list
+    @templates = Template.select_list(-1)
 
 
     respond_to do |format|
@@ -47,7 +47,7 @@ class StoriesController < ApplicationController
       @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
     end 
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
-    @templates = Template.select_list
+    @templates = Template.select_list(@story.template_id)
   end
 
   # POST /stories
@@ -90,7 +90,7 @@ class StoriesController < ApplicationController
         if !@story.asset.present? 
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end 
-        @templates = Template.select_list
+        @templates = Template.select_list(@story.template_id)
 
         flash[:error] = u I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
         format.html { render action: "edit" }
