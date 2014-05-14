@@ -97,7 +97,7 @@
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
                 <% if columnSectionCount == 0 %>
-                  <div class='headline'><%= @story.title %></div>              
+                  <div class='headline'><%= @story.title %></div>
                   <div class="byline-rule"></div>
                   <div class="byline byline--first" style="margin-bottom:50px;">
                   <%= t('storyteller.byline') %><span class="author"> <%= @story.author %></span>
@@ -111,7 +111,7 @@
                   <p>&nbsp;</p>
                 <% end %>
               </div>
-              <% columnSectionCount+=1 %>
+           
             <% elsif section.type_id == 2 && section.media.present? %>
               <div class="section video-sequence" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
@@ -180,9 +180,12 @@
 
             <% elsif section.type_id == 3 && section.slideshow.present? && section.slideshow.assets.length > 0 %>  
               <div class="section slideshow">
-                 <% if section.has_marker? %>
+                <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
-                    <% end %>    
+                <% end %> 
+                <% if s_i == 0 %>
+                  <div class='slideshow-headline'><%= @story.title %></div>
+                <% end %>  
                 <div class="slideshow-wrapper">
                       <% if section.slideshow.caption.present? %>
                         <h3><%= section.slideshow.caption %></h3>
@@ -203,7 +206,8 @@
                   </div>
                 </div>
               </div>
-            <% end %>                
+            <% end %>   
+            <% columnSectionCount+=1 %>             
          <% end %>   
          
 

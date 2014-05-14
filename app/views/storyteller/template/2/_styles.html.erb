@@ -51,13 +51,13 @@
   }
 
   .article {
-    border-top: solid 1px #000;
+    /*border-top: solid 1px #000;*/
   }
 
   .section.column {
     font-family:'dejavu-bold';
     -webkit-font-smoothing: antialiased;  
-    margin-top: 150px;
+    margin-top: 100px;
   }
 
   .section:after {
@@ -147,7 +147,7 @@
   }
 
   .headline,
-  .section h3 {
+  .section h3, .slideshow-headline {
     font: 200 30px/40px shavshvebi, Georgia, serif;
   }
 
@@ -156,7 +156,12 @@
     line-height: 60px;
     margin-bottom: 15px;
   }
-
+  .slideshow-headline
+  {
+    font-size: 45px;
+    line-height: 60px;
+    margin: 80px 0px 15px 0px;
+  }
   .byline-rule {
     /*border-top: 2px solid #000;*/
     width: 120px;
@@ -737,7 +742,11 @@ text-shadow: none;
       font-size: 28px;
       margin-bottom: 20px;
     }
-
+    .ios .slideshow-headline {
+      line-height: 34px;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
     .ios .section h3 {
       text-align: left;
       margin-left: 0px;
@@ -1817,8 +1826,8 @@ bottom: 134px;
     {
       width: 96px;
       height: 35px;  
-right: 47px;
-bottom: 64px;
+      right: 47px;
+      bottom: 64px;
     }
     .last-section .donate a:hover
     {
@@ -1826,13 +1835,9 @@ bottom: 64px;
       height: 35px; 
     }
   } 
-
 #storyTeller
 {
-position:relative;
+  position:relative;
+  top:41px;
 }
-
-
-
-
 </style>

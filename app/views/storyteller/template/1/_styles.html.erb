@@ -23,7 +23,7 @@
   }
 
   .article {
-    border-top: solid 1px #000;
+    /*border-top: solid 1px #000;*/
   }
 
   .section.column {
@@ -91,7 +91,7 @@
   }
 
   .headline,
-  .section h3 {
+  .section h3, .slideshow-headline {
     font: 200 30px/40px "nyt-cheltenham", Georgia, serif;
   }
 
@@ -100,7 +100,12 @@
     line-height: 60px;
     margin-bottom: 15px;
   }
-
+  .slideshow-headline
+  {
+    font-size: 45px;
+    line-height: 60px;
+    margin: 80px 0px 15px 0px;
+  }
   .byline-rule {
     border-top: 2px solid #000;
     width: 120px;
@@ -658,7 +663,11 @@
       font-size: 28px;
       margin-bottom: 20px;
     }
-
+    .ios .slideshow-headline {
+      line-height: 34px;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
     .ios .section h3 {
       text-align: left;
       margin-left: 0px;
@@ -1484,5 +1493,9 @@
     height: 6em;
   }
 }
-
+#storyTeller
+{
+  position:relative;
+  top:41px;
+}
 </style>

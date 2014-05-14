@@ -182,7 +182,7 @@
                                <a href="http://www.chca.org.ge/itst/?&lang=eng"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/twitter.png"%>'/></a>
                                <a href="http://www.chca.org.ge/itst/?&lang=eng"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>'/></a>         
                                
-                                <div class="fb-like" data-href="https://localhost" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>  
+                                <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>  
                                                                                           
                               </div>                   
                         <% else %>
@@ -200,7 +200,10 @@
               <div class="section slideshow">
                  <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
-                    <% end %>    
+                    <% end %>   
+                <% if s_i == 0 %>
+                  <div class='slideshow-headline'><%= @story.title %></div>              
+                <% end %>  
                 <div class="slideshow-wrapper">
                       <% if section.slideshow.caption.present? %>
                         <h3><%= section.slideshow.caption %></h3>
@@ -575,7 +578,7 @@
           if(lengthTemp >= 0)
           {              
               var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
-              last_section.append("div").attr("class","donate").append("a").attr("src","http://www.donation.ge");
+              last_section.append("div").attr("class","donate").append("a").attr("href","http://www.donation.ge");
               last_section.append("div").attr("class","pigy");              
           }
                   

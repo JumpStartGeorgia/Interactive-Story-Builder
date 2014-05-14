@@ -23,6 +23,10 @@ module ApplicationHelper
 #		text.gsub!(/([^\n]\n)(?=[^\n])/, '\1<br />') # 1 newline   -> br
 		text.html_safe
 	end
+
+  def current_url
+    "#{request.protocol}#{request.host_with_port}#{request.fullpath}"
+  end
   
  def link_to_remove_fields(name, f)
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)", :class=>"btn btn-small btn-danger")

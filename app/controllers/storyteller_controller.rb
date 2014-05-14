@@ -7,7 +7,9 @@ class StorytellerController < ApplicationController
         format.html 
       end
       # record the view count
+      logger.debug("-----------------------------------start")
       impressionist(@story)
+      logger.debug("-----------------------------------end")
     else
       redirect_to root_path, :notice => t('app.msgs.does_not_exist')
     end
