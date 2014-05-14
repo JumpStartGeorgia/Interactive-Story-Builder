@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140508064809) do
+ActiveRecord::Schema.define(:version => 20140514105142) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -163,6 +163,7 @@ ActiveRecord::Schema.define(:version => 20140508064809) do
     t.boolean  "default"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "published",   :default => true
   end
 
   add_index "templates", ["title"], :name => "index_templates_on_title"

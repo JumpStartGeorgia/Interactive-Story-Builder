@@ -1,5 +1,9 @@
 <% title  t('.title') %>
 
+<% if !Rails.env.production? %>
+   <h1 style="margin:36px 36px;">You are accessing a test site. Please go to <a href="storybuilder.jumpstart.ge">storybuilder.jumpstart.ge</a> to use the official site. </h1>
+<% end %>
+
 <% if @about_text %>
   <div id="about">
     <%= simple_format(@about_text) %>
