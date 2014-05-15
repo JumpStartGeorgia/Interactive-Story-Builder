@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 	require 'will_paginate/array'
-  protect_from_forgery
+  	protect_from_forgery
 
 	before_filter :set_locale
 	before_filter :is_browser_supported?
@@ -60,6 +60,9 @@ logger.debug "////////////////////////// BROWSER NOT SUPPORTED"
 	def initialize_gon
 		gon.set = true
 		gon.highlight_first_form_field = true
+
+    gon.msgs_one_section_content = I18n.t('app.msgs.one_section.content')
+    gon.msgs_one_section_slideshow = I18n.t('app.msgs.one_section.slideshow')
 
 		if I18n.locale == :ka
 		  gon.datatable_i18n_url = "/datatable_ka.txt"

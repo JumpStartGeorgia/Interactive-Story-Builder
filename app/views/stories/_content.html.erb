@@ -11,7 +11,7 @@
     <%= f.input :caption, :placeholder=>t('.placeholder.caption'), hint: t('.hint.caption'), :input_html => { :id => "contentCaption" } %>    
     <%= f.input :sub_caption, :placeholder=>t('.placeholder.sub_caption'), hint: t('.hint.sub_caption'), :input_html => { :id => "contentSubCaption" } %>    
     <label><%= t('activerecord.attributes.content.content') %></label>
-    <span class="help-inline"><%= t('.hint.content') %></span>
+    <div class="help-inline" title="<%= t('.hint.content') %>"><div>?</div></div>
     <%= f.text_area :content, :class => "tinymce", :rows => 40, :cols => 120, :id => "contentArticle"%>    
      <a class='btn' data-reveal-id="modalContent"><%= t('app.buttons.preview') %></a>          
      

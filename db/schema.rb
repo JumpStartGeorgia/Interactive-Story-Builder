@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140507093603) do
+ActiveRecord::Schema.define(:version => 20140514112900) do
+
+  create_table "assets", :force => true do |t|
+    t.integer  "item_id"
+    t.integer  "asset_type"
+    t.string   "caption",            :limit => 2000
+    t.string   "source"
+    t.integer  "option"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type", :limit => 45
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.integer  "position"
+    t.integer  "asset_subtype",                      :default => 0
+  end
+
+  add_index "assets", ["item_id", "asset_type"], :name => "index_assets_on_item_id_and_asset_type"
+  add_index "assets", ["item_id", "position"], :name => "index_assets_on_item_id_and_position"
+  add_index "assets", ["item_id"], :name => "index_assets_on_item_id"
 
   create_table "contents", :force => true do |t|
     t.integer  "section_id"
@@ -22,6 +40,8 @@ ActiveRecord::Schema.define(:version => 20140507093603) do
     t.datetime "updated_at"
     t.string   "caption"
   end
+
+  add_index "contents", ["section_id"], :name => "index_contents_on_section_id"
 
   create_table "impressions", :force => true do |t|
     t.string   "impressionable_type"
@@ -52,24 +72,27 @@ ActiveRecord::Schema.define(:version => 20140507093603) do
     t.integer  "section_id"
     t.integer  "media_type"
     t.string   "title"
-    t.string   "caption",            :limit => 2000
+    t.string   "caption",                :limit => 2000
     t.integer  "caption_align"
     t.string   "source"
     t.string   "audio_path"
     t.string   "video_path"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.string   "video_file_name"
-    t.string   "video_content_type"
-    t.integer  "video_file_size"
-    t.datetime "video_updated_at"
+    t.string   "image_file_name_old"
+    t.string   "image_content_type_old"
+    t.integer  "image_file_size_old"
+    t.datetime "image_updated_at_old"
+    t.string   "video_file_name_old"
+    t.string   "video_content_type_old"
+    t.integer  "video_file_size_old"
+    t.datetime "video_updated_at_old"
     t.integer  "position"
-    t.boolean  "video_loop",                         :default => true
+    t.boolean  "video_loop",                             :default => true
   end
+
+  add_index "media", ["section_id", "position"], :name => "index_media_on_section_id_and_position"
+  add_index "media", ["section_id"], :name => "index_media_on_section_id"
 
   create_table "sections", :force => true do |t|
     t.integer  "story_id"
@@ -78,11 +101,22 @@ ActiveRecord::Schema.define(:version => 20140507093603) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "has_marker",         :default => true
-    t.string   "audio_file_name"
-    t.string   "audio_content_type"
-    t.integer  "audio_file_size"
-    t.datetime "audio_updated_at"
+    t.boolean  "has_marker",             :default => true
+    t.string   "audio_file_name_old"
+    t.string   "audio_content_type_old"
+    t.integer  "audio_file_size_old"
+    t.datetime "audio_updated_at_old"
+  end
+
+  add_index "sections", ["position"], :name => "index_sections_on_position"
+  add_index "sections", ["story_id"], :name => "index_sections_on_story_id"
+
+  create_table "slideshows", :force => true do |t|
+    t.integer  "section_id"
+    t.string   "title"
+    t.string   "caption"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "stories", :force => true do |t|
@@ -94,24 +128,31 @@ ActiveRecord::Schema.define(:version => 20140507093603) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "media_author"
-    t.boolean  "published",              :default => false
+    t.boolean  "published",                  :default => false
     t.datetime "published_at"
-    t.integer  "thumbnail"
-    t.string   "thumbnail_file_name"
-    t.string   "thumbnail_content_type"
-    t.integer  "thumbnail_file_size"
-    t.datetime "thumbnail_updated_at"
-    t.integer  "template_id",            :default => 1
-    t.integer  "impressions_count",      :default => 0
+    t.integer  "thumbnail_old"
+    t.string   "thumbnail_file_name_old"
+    t.string   "thumbnail_content_type_old"
+    t.integer  "thumbnail_file_size_old"
+    t.datetime "thumbnail_updated_at_old"
+    t.integer  "template_id",                :default => 1
+    t.integer  "impressions_count",          :default => 0
     t.integer  "reviewer_key"
   end
 
+  add_index "stories", ["published"], :name => "index_stories_on_published"
+  add_index "stories", ["published_at"], :name => "index_stories_on_published_at"
   add_index "stories", ["reviewer_key"], :name => "index_stories_on_reviewer_key"
+  add_index "stories", ["template_id"], :name => "index_stories_on_template_id"
+  add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
 
   create_table "stories_users", :force => true do |t|
     t.integer "story_id"
     t.integer "user_id"
   end
+
+  add_index "stories_users", ["story_id"], :name => "index_stories_users_on_story_id"
+  add_index "stories_users", ["user_id"], :name => "index_stories_users_on_user_id"
 
   create_table "templates", :force => true do |t|
     t.string   "name"
@@ -122,7 +163,10 @@ ActiveRecord::Schema.define(:version => 20140507093603) do
     t.boolean  "default"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "public",      :default => true
   end
+
+  add_index "templates", ["title"], :name => "index_templates_on_title"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

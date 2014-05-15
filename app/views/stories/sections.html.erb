@@ -1,4 +1,4 @@
-<% title  @story.title %>
+<% title @story.title.titlecase.html_safe %>
 
 <div class='row'>
   <div class='span12'>
@@ -33,6 +33,8 @@
                         <li id='<%= subitem.id %>' class='sub'><span><%= subitem.title %></span></li>
                       <%end%>
                     </ul>
+                   <% elsif item.slideshow? && item.slideshow.present? %>
+                     <ul><li id='<%= item.slideshow.id %>' class='sub'><span><%= item.slideshow.title %></span></li></ul>
                   <%end%>
               </li>          
           <% end %>            

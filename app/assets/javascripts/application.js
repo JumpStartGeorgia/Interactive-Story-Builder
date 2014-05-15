@@ -36,7 +36,6 @@ $(document).ajaxComplete(function(event, request) {
 
 function popuper(msg,msg_type)
 {
-  
   var types = {'notice':'alert-info','success':'alert-success','error':'alert-error','alert':'alert-error'};
   var type = types[msg_type];
   if (msg && type)
@@ -44,7 +43,8 @@ function popuper(msg,msg_type)
   	  $('.flash-message').html('<div class="alert '+ type +' fade in">' +
 									'<a href="#" data-dismiss="alert" class="close">×</a>' +
 									 urldecode(msg) +
-									'</div>'); 
+									'</div>');
+  	   $('.flash-message').find("div.alert").delay(5000).fadeOut(2000,function(){ this.remove();});  	    	  
   }
 }
 function urldecode(url) {

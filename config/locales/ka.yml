@@ -7,6 +7,7 @@ ka:
       section: სექცია
       medium: მედია
       content: სტატია
+      slideshow: ფოტო სლაიდშოუ
     attributes:
       user:
         email: ელ.ფოსტა
@@ -44,6 +45,9 @@ ka:
         image: სურათი
         video: ვიდეო
         video_loop: განმეორებადი ვიდეო
+      slideshow:
+        title: დასახელება
+        caption: სათაური
     errors:
       messages:
         required_field: "სავალდებულოა"
@@ -133,6 +137,9 @@ ka:
       error_clone: "%{obj} იქნა კლონირებული." 
       error_export: "Story %{obj} ამბის ექსპორტი შესაძლებელია"     
       error_get_data: The selected item could not be found
+      one_section:
+        content: Only one Item can be added to a Content section
+        slideshow: Only one Item can be added to a Image Slideshow section
   section_types:
     content:
       name: შინაარსი
@@ -140,6 +147,9 @@ ka:
     media:
       name: მთელს ეკრანზე გაშლილი მედია სლაიდშოუ
       description: ფოტოები და/ან ვიდეოები განთავსებული, როგორც სრულ ეკრანზე გაშლილი ვერტიკალური სლაიდშოუ
+    slideshow:
+      name: ფოტო სლაიდშოუ
+      description: ფოტოები ჰორიზონტალურ სლაიდშოუში
   layouts:
     application:
       admin: ადმინისტრატო
@@ -243,6 +253,26 @@ ka:
     reviewer_key:
       title: მხოლოდ URL-ის წაკითხვა
       desc: "თქვენ შეგიძლიატ დააკოპიროთ და გააზიაროთ შემდეგი URL-ი, რათა ხალხმა ნახოს '%{title}' სანამ მას გამოაქვენებთ. ამ ადამიანებს ექნებათ სასუალება ნახონ თქვენ მიერ შექმნილი ამბავი, მაგრამ არ შეეძლებათ მისი რედაქტირება."
+    slideshow:
+      add_image: ფოტოს დამატება
+      placeholder:
+        caption: არ არის სავალდებულო
+      hint:
+        title: ეს ტექსტი მხოლოდ ჩნდება მარცხენა ბლოკში, იგი არ გამოჩნდება ძირითად ამბავში
+        caption: წარწერა გამოჩნდება სლაიდშოუს ზედა ნაწილში
+    asset_fields:
+      remove_image: ამოშლა
+      placeholder:
+        caption: არ არის სავალდებულო
+        source: არ არის სავალდებულო
+      hint:
+        caption: სურათის აღწერა გამოჩნდება სურათის ქვემოთ
+        source: წყარო გამოჩნდება სურათის აღწერის ქვემოთ
+        asset: მხოლოდ  jpg და png ფორმატია დასაშვები
+      label:
+        caption: ფოტოს აღწერა
+        source: ფოტოს წყარო
   storyteller:
     byline: ავტორი
     byline_media: "ფოტოებისა და ვიედეოს ავტორი "
+    source: "წყარო:"

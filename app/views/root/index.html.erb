@@ -1,5 +1,9 @@
 <% title  t('.title') %>
 
+<% if Rails.env.staging? %>
+   <h1 style="margin:36px 36px;background-color: #F8E869;padding: 36px;">You are accessing a test site. Please go to <a href="http://storybuilder.jumpstart.ge/en" style="text-decoration:underline;">http://storybuilder.jumpstart.ge/en</a> to use the official site. </h1>
+<% end %>
+
 <% if @about_text %>
   <div id="about">
     <%= simple_format(@about_text) %>
@@ -13,7 +17,7 @@
       <div class="pin">  
      
         <div class="img">
-        <img src="<%= story.thumbnail.url(:"250x250") %>" />      
+          <img src="<%= story.show_asset.asset.url(:"250x250") %>" />      
         </div>
         <p><div class="pin-caption"><%= story.title.truncate(255) %></div>     </p>
         <p> 

@@ -1,5 +1,6 @@
 class StorytellerController < ApplicationController
 	layout false
+  skip_before_filter:verify_authenticity_token
   def index
   	@story = Story.is_published.fullsection(params[:id])  
   	if @story.present?

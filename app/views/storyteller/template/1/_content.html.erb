@@ -83,11 +83,12 @@
      <% alignment = { "left" => -1, "center" => 0, "right" => 1 }%>
     <div class="main">
       <div class="article"> 
+
         <% columnSectionCount = 0 %>
          <% @story.sections.sort_by{|p| p.position}.each_with_index do |section,s_i| %>
           <%  dataAudio = ''
-              if section.audio.exists?            
-                dataAudio = "data-audio='#{File.basename(section.audio_file_name,'.mp3')}'".html_safe 
+              if section.asset_exists?            
+                dataAudio = "data-audio='#{File.basename(section.asset.asset_file_name,'.mp3')}'".html_safe 
               end
            %>          
             <% if section.type_id == 1 && section.content.present? %>
@@ -96,7 +97,7 @@
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
                 <% if columnSectionCount == 0 %>
-                  <div class='headline'><%= @story.title %></div>              
+                  <div class='headline'><%= @story.title %></div>
                   <div class="byline-rule"></div>
                   <div class="byline byline--first" style="margin-bottom:50px;">
                   <%= t('storyteller.byline') %><span class="author"> <%= @story.author %></span>
@@ -110,7 +111,7 @@
                   <p>&nbsp;</p>
                 <% end %>
               </div>
-              <% columnSectionCount+=1 %>
+           
             <% elsif section.type_id == 2 && section.media.present? %>
               <div class="section video-sequence" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
@@ -118,24 +119,26 @@
                 <% end %>
                 <% section.media.each_with_index do |m,m_i| %>
                     <% dataVideo = '' %>
-                    <% if m.media_type == 2 && m.video.exists? %>                
-                      <% dataVideo = "data-video='#{File.basename(m.video_file_name,'.mp4')}'".html_safe %>
+                    <% if m.media_type == 2 && m.video_exists? %>                
+                      <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name,'.mp4')}'".html_safe %>
                     <% end %> 
                   <div class="video"  <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>                
                       <div class="video-container">
                         <% if m.media_type == 1 %>     
-                        <% if !@clone %>                           
-                          <img src="<%= m.image.url %>">
-                        <% else %>
-                          <img src="media/images/original/<%= m.image_file_name %>">
-                        <% end %>
+                          <% if  m.image_exists? %>    
+                            <% if !@export %> 
+                              <img src="<%= m.image.asset.url %>">
+                            <% else %>
+                              <img src="media/images/original/<%= m.image.asset_file_name %>">
+                            <% end %>
+                          <% end %>
 
                         <% elsif m.media_type == 2  %>                    
-                            <% if  m.image.exists? %>    
-                              <% if !@clone %>                           
-                                <!--[if lte IE 8]><img src="<%= m.image.url %>"><![endif]-->
+                            <% if  m.image_exists? %>    
+                              <% if !@export %>                           
+                                <!--[if lte IE 8]><img src="<%= m.image.asset.url %>"><![endif]-->
                               <% else %>
-                                <!--[if lte IE 8]><img src="media/images/original/<%= m.image_file_name %>"><![endif]-->
+                                <!--[if lte IE 8]><img src="media/images/original/<%= m.image.asset_file_name %>"><![endif]-->
                               <% end %>                   
                             
                             
@@ -176,7 +179,37 @@
                   </div>        
                 <% end %>        
               </div>
-            <% end %>                
+
+            <% elsif section.type_id == 3 && section.slideshow.present? && section.slideshow.assets.length > 0 %>  
+              <div class="section slideshow">
+                <% if section.has_marker? %>
+                       <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
+                <% end %> 
+                <% if s_i == 0 %>
+                  <div class='slideshow-headline'><%= @story.title %></div>
+                <% end %>  
+                <div class="slideshow-wrapper">
+                      <% if section.slideshow.caption.present? %>
+                        <h3><%= section.slideshow.caption %></h3>
+                      <% else %>                      
+                        <h3>&nbsp;</h3>
+                      <% end %>
+                                
+                  <!--[if lte IE 8]><img src="<%= section.slideshow.assets[0].asset.url(:medium) %>" style="width:100%;"><![endif]-->
+                  <div class="slideshow-captions">
+                      <% section.slideshow.assets.each_with_index do |t,t_i| %>    
+                          <div class="slideshow-caption" data-slug="<%= t.asset_file_name %>">
+                            <%= t.caption.html_safe %>
+                            <% if t.source.present? %> 
+                              <div class="source"><%= "#{t('storyteller.source')}" %> <%= auto_link(t.source) %></div>
+                            <% end %>
+                          </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>   
+            <% columnSectionCount+=1 %>             
          <% end %>   
          
 
@@ -184,7 +217,7 @@
            <div id="left">&copy; <%= Time.now.year %></div>
               <div id="middle">&nbsp;</div>
             <div id="right">
-                <% if !@clone %>                           
+                <% if !@export %>                           
                     <%= link_to(image_tag("jumpstart-logo.png"), "http://www.jumpstart.ge", :target => "_blank",
                     :title => t("layouts.application.js_link_title") ) %>
                   <% else %>
@@ -212,35 +245,49 @@
       *----------------------------------------------------------------------- -->
       <script>
 
+          <%  
+              output = []
+              secLength = @story.sections.length        
+              @story.sections.sort_by{|v| v.position}.each_with_index do |s,s_i|
+                if s.media?
+                  subLength = s.media.length   
+                  s.media.each_with_index do |t,t_i| 
+                    
+                    item = {}
 
-        var mobileImages = 
-        [
-           
-        <%  
-            secLength = @story.sections.select{ |v| v.type_id == Section::TYPE[:media]}.length        
-            @story.sections.select{ |v| v.type_id == Section::TYPE[:media]}.sort_by{|v| v.position}.each_with_index do |s,s_i|                
-                medLength = s.media.length   
-                s.media.each_with_index do |m,m_i| 
-              %>
-                {
-                  file: "mobile_1024/<%= m.image_file_name %>",
-                  section: <%= s_i+1 %>,
-                  slide: <%= m_i+1 %>,      
-                  align: '<%= alignment.key(m.caption_align) %>'
-                  <% if secLength == m_i+1 %>                
-                    ,hideRule: true
-                  <% end %>         
-                }
-                <% if medLength != (m_i+1) %>
-                  ,
-        <%        end            
-                end %>
-                <% if secLength != (s_i+1) %>
-                ,
-                <% end 
-            end 
-        %>  
-        ];</script>
+                    item[:type] = "media"
+                    item[:file] = "mobile_1024/#{t.image.asset_file_name}"
+                    item[:section] = s_i+1
+                    item[:slide] = t_i+1
+                    item[:align] = "#{alignment.key(t.caption_align)}"
+                    if secLength == t_i+1
+                      item[:hideRule] = true
+                    end
+        
+                    output<< item
+                  end
+                elsif s.slideshow?
+                  subLength = s.slideshow.assets.length   
+                  s.slideshow.assets.each_with_index do |t,t_i| 
+                    item = {}
+
+                    item[:type] = "slideshow"
+                    item[:file] = "mobile_1024/#{t.asset_file_name}"
+                    item[:section] = s_i+1
+                    item[:slide] = t_i+1
+                    
+                    if secLength == t_i+1
+                        item[:hideRule] = true
+                    end
+                    output<< item
+                  end
+                end              
+              end
+          %>
+
+           var mobileImages = <%=output.to_json.html_safe %>;
+
+      </script>
 
       <script>
 
@@ -273,10 +320,12 @@
 
 
 
-        <% if !@clone %>                           
+        <% if !@export %>                           
             var _mobile_assets =  "/system/places/images/<%= @story.id %>/";
+            var _slideshow_assets = "/system/places/slideshow/<%= @story.id %>/";
           <% else %>
             var _mobile_assets =  "media/images/";
+            var _slideshow_assets = "media/slideshow/";
         <% end %>        
         
 
@@ -332,8 +381,15 @@
             /* on section missing stop here current loop */
             if (!image.section) return false;
 
-        /* create path to image with fixed path and file name */
+        /* create path to image with fixed path and file name */        
+          if(image.type == "media")
+          {
             image.url = _mobile_assets + image.file;
+          }
+          else if(image.type == "slideshow")
+          { 
+            image.url = _slideshow_assets + image.file; 
+          }
 
 
         
@@ -347,37 +403,50 @@
           slide assign
         */
             if (image.slide) {
+              if(image.type == "media")
+              {
+                container = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-container")
 
-              container = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-container")
-
-              if (image.type != "map" && image.type != "hide") {
+                if (image.type != "map" && image.type != "hide") {
 
 
-                container.html("").append("img")
-                  .attr("src", image.url);
+                  container.html("").append("img")
+                    .attr("src", image.url);
 
+                }
+
+                if (image.type != "hide") {
+
+                  var css;
+
+
+                  if (image.type == "map") css = "caption-" + image.file.replace("#","");
+                  else css = "caption-" + image.file.match(/\/([\w-]+)/)[1];
+
+                    d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
+                      .classed(css, true)
+
+                }
+
+
+                var slide = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ")");
               }
-
-              if (image.type != "hide") {
-
-                var css;
-
-
-                if (image.type == "map") css = "caption-" + image.file.replace("#","");
-                else css = "caption-" + image.file.match(/\/([\w-]+)/)[1];
-
-                  d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
-                    .classed(css, true)
-
+              else if( image.type == "slideshow")
+              {
+                container = d3.select(".section:nth-child(" + image.section + ") .slideshow-wrapper");
+                if(container.select(".slideshow-images").empty())
+                {
+                    var temp = container.append("div").attr("class","slideshow-container");
+                    temp.append("div").attr("class", "slideshow-images");
+                }
+                var tempImages =  d3.select(".section:nth-child(" + image.section + ") .slideshow-wrapper .slideshow-container .slideshow-images");
+                caption = container.select(".slideshow-captions .slideshow-caption:nth-of-type(" + image.slide + ")");             
+                tempImages.append("img").attr("src", image.url).attr("class","slideshow-image");
               }
-
-
-              var slide = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ")");
-
             }
-
+        
         /* aligning by options */
-            if (image.align) d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
+            if (image.align && image.type == "media") d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
               .classed(image.align.split(" ").map(function(dir) {
                     return "align-" + dir
                   }).join(" "), true)
@@ -400,16 +469,16 @@
 
 
         /* map-hide class it type hide */
-            if (image.type == "hide") slide.classed("map-hide", true)
+            if (image.type == "media" && image.type == "hide") slide.classed("map-hide", true)
 
-            if (image.type == "map") {
+            if (image.type == "media" && image.type == "map") {
 
               container.html( container.html() + d3.select(image.file).text() )
             }
 
 
         /* add custom caption if specified */
-            if (image.mobileCaption) {
+            if (image.type == "media" && image.mobileCaption) {
               d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption").html(image.mobileCaption);
             }
 
@@ -435,7 +504,7 @@
           /* Just skip if we're on iPad, iPhone or Android -- TG */
           if (isMobile()) return false;
 
-            <% if !@clone %>                           
+            <% if !@export %>                           
                var _video_assets = "/system/places/video/<%= @story.id %>/",
               _image_assets = "/system/places/images/<%= @story.id %>/original/",
               _audio_assets = "/system/places/audio/<%= @story.id %>/";
@@ -445,10 +514,6 @@
                   _audio_assets = "media/audio/";
             <% end %> 
          
-
-
-               
-
           var mute = false,
               muteVolume = "volume",
               fixRatio = 16 / 9,
@@ -712,7 +777,163 @@
           }
 
           });</script>
+          <script>defer(function() {
 
+          if (isMobile()) return false;
+
+
+
+          <% if !@export %>                           
+              var assets = "/system/places/slideshow/<%= @story.id %>/slideshow/";
+            <% else %>
+              var assets = "media/slideshow/slideshow/";              
+            <% end %> 
+      
+          /*" + (innerWidth * (window.devicePixelRatio || 1) * .7 > 900 ? "large" : "medium") + "*/
+
+
+
+          d3.selectAll(".slideshow").each(function() {
+            var currentIndex = 0,
+                playInterval;
+
+            var watch = d3.behavior.watch()
+                .on("statechange.first", firststatechanged)
+                .on("statechange", statechanged);
+
+            var slideshow = d3.select(this).select(".slideshow-wrapper")
+                .on("mouseover", stopPlay)
+                .on("mouseout", stopPlay)
+                .call(watch);
+
+            var caption = slideshow.select(".slideshow-captions").selectAll(".slideshow-caption")
+                .datum(function() {
+                  return {
+                    slug: this.getAttribute("data-slug")
+                  };
+                })
+                .classed("slideshow-caption--active", function(d, i) { return i === currentIndex; });
+
+            var images = caption.data();
+
+            var container = slideshow.insert("div", ".slideshow-captions")
+                .attr("class", "slideshow-container");
+
+            var image = container.append("div")
+                .attr("class", "slideshow-images")
+              .selectAll(".slideshow-image")
+                .data(images)
+              .enter().append("img")
+                .attr("class", "slideshow-image");
+
+            image.filter(function(d, i) { return i === currentIndex; })
+                .classed("slideshow-image--active", true)
+                .attr("src", function(d) { return assets + d.slug; })
+                .each(moveToFront);
+
+            container.append("div")
+                .attr("class", "slideshow-button slideshow-button--next")
+                .on("click", function() { stopPlay(); showNext(); })
+              .append("svg")
+                .attr("class", "slideshow-button-arrow")
+                .attr("width", 22)
+                .attr("height", 22)
+              .append("path")
+                .attr("d", "M3,1.008L20.742,9.045L3,17.083L6,8.917Z");
+
+            container.append("div")
+                .attr("class", "slideshow-button slideshow-button--previous")
+                .on("click", function() { stopPlay(); showPrevious(); })
+              .append("svg")
+                .attr("class", "slideshow-button-arrow")
+                .attr("width", 22)
+                .attr("height", 22)
+              .append("path")
+                .attr("d", "M18.742,0.758L1,8.795L18.742,16.833L15.742,8.667Z");
+
+            var thumb = container.insert("div", ".slideshow-captions")
+                .attr("class", "slideshow-thumbs")
+              .selectAll(".slideshow-thumb")
+                .data(images)
+              .enter().append("img")
+                .attr("class", function(d, i) { return "slideshow-thumb" + (i === currentIndex ? " slideshow-thumb--active" : ""); })
+            <% if !@export %>    
+                .attr("src", function(d) { return "/system/places/slideshow/<%= @story.id %>/thumbnail/" + d.slug; })
+            <% else %>
+                .attr("src", function(d) { return "media/slideshow/thumbnail/" + d.slug; })
+            <% end %>
+
+                .on("click", function(d, i) { stopPlay(); show(i); });
+
+            function firststatechanged() {
+              if (d3.event.state) {
+                image.attr("src", function(d, i) { return assets + d.slug; });
+                watch.on("statechange.first", null);
+              }
+            }
+
+            function statechanged() {
+              if (d3.event.state) startPlay();
+              else stopPlay();
+            }
+
+            function startPlay() {
+              if (!playInterval) playInterval = setInterval(showNext, 7000);
+            }
+
+            function stopPlay() {
+              if (playInterval) playInterval = clearInterval(playInterval);
+            }
+
+            function show(index) {
+              var oldImage = d3.select(image[0][currentIndex]),
+                  oldCaption = d3.select(caption[0][currentIndex]),
+                  oldThumb = d3.select(thumb[0][currentIndex]),
+                  newImage = d3.select(image[0][index]),
+                  newCaption = d3.select(caption[0][index]),
+                  newThumb = d3.select(thumb[0][index]);
+
+              oldImage
+                  .classed("slideshow-image--active", false);
+
+              oldCaption
+                  .classed("slideshow-caption--active", false);
+
+              oldThumb
+                  .classed("slideshow-thumb--active", false);
+
+              newImage
+                  .classed("slideshow-image--active", true)
+                  .style("opacity", 0)
+                  .each(moveToFront);
+
+              newCaption
+                  .classed("slideshow-caption--active", true);
+
+              newThumb
+                  .classed("slideshow-thumb--active", true);
+
+              currentIndex = index;
+
+              d3.timer(function() {
+                newImage.style("opacity", null);
+              }, 20);
+            }
+
+            function showNext() {
+              show((currentIndex + 1) % images.length);
+            }
+
+            function showPrevious() {
+              show((currentIndex ? currentIndex : images.length) - 1);
+            }
+          });
+
+          function moveToFront() {
+            this.parentNode.appendChild(this);
+          }
+
+          });</script>
     <!--[if gt IE 8]><!-->
 
       <!-- -----------------------------------------------------------------------

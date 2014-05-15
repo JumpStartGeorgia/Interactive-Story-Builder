@@ -3,4 +3,3 @@ $("#storyViewer").hide().html(" <div id='contentForm'><%= escape_javascript( ren
 $("#contentArticle").change(function(){
 		$("#modalContent .modal-data").html($(this).val());});	
 $("#modalContent .modal-data").html("<%= escape_javascript( @item.content.html_safe ) %>");
-	

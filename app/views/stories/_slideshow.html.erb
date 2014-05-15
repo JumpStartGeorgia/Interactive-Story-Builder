@@ -1,0 +1,31 @@
+
+<%= semantic_form_for(@item, url: slideshow_story_path(id:params[:id],:format => :js), :html => { :multipart=> true, :id => "slideshowForm" } , remote: true) do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :title, hint: t('.hint.title'), :input_html => { :id => "mediaTitle" } %>
+      <%= f.input :caption, :placeholder => t('.placeholder.caption'), hint: t('.hint.caption'), :input_html => { :id => "mediaCaption" } %>
+ 
+     <div id="slideshowAssets" class="clear">
+      <% @item.assets.each do |asset_item| %>  
+         <div class="fields">
+            <%= f.fields_for :assets, asset_item do |ff| %>
+              <%= render :partial => 'asset_fields', :locals => {:f => ff, :asset_item => asset_item} %>
+            <% end %> 
+          </div>
+      <% end %> 
+    </div>
+    <div class="add_imgage_button">
+      <%= link_to_add_fields t('.add_image'), f, :assets %>
+    </div>
+ 
+    <%= f.input :section_id, :as => :hidden , :input_html => { :id => "mediaSection" }  %>
+    <% if @item.id.present? %>
+      <%= f.input :id, :as => :hidden , :input_html => { :id => "slideshowId" }  %>    
+    <% end %>
+  <% end %>
+
+  <div class="pull-right spacer">            
+    <%= f.submit nil, :class => 'btn btn-primary btn-small' %>
+    <%= f.submit nil, :class => 'btn btn-small', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>          
+  </div>
+<% end %>
+

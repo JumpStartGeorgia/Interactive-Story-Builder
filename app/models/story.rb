@@ -7,6 +7,11 @@ class Story < ActiveRecord::Base
 	belongs_to :template
 	has_many :sections, :order => 'position', dependent: :destroy
 	has_and_belongs_to_many :users
+	has_one :asset,     
+	:conditions => "asset_type = #{Asset::TYPE[:story_thumbnail]}", 	 
+	foreign_key: :item_id,
+	dependent: :destroy
+
 	belongs_to :user
 	validates :title, :presence => true, length: { maximum: 100 }
 	validates :author, :presence => true, length: { maximum: 255 }
@@ -18,23 +23,13 @@ class Story < ActiveRecord::Base
 	before_save :publish_date
 	before_save :generate_reviewer_key
 	 
-
-  	has_attached_file :thumbnail,
-	  :url => "/system/places/thumbnail/:id/:style/:basename.:extension",
-	  :styles => {:"250x250" => {:geometry => "250x250"}},
-	  :default_url => "/assets/missing/250x250/missing.png" 
-
- before_post_process :transliterate_file_name
-
-  validates_attachment :thumbnail,
-    :content_type => { :content_type => ["image/jpeg", "image/png"] }
-  	  	
-
-  
+	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
 
 	amoeba do
 		enable
+		exclude_field :asset
 		clone [:sections]
+
 	end
 
   def self.can_edit?(story_id, user_id)
@@ -62,9 +57,13 @@ class Story < ActiveRecord::Base
   # if the story is being published, record the date
 	def publish_date		
 	  if  self.was_publishing != self.published && self.published?
-	  	self.published_at = Time.now
-	  end     
-	end
+  	  	self.published_at = Time.now
+  	  end     
+  	end
+
+	def asset_exists?
+		self.asset.present? && self.asset.asset.exists?
+	end  		
 
   # if the reviewer key does not exist, create it
   def generate_reviewer_key
@@ -82,9 +81,17 @@ class Story < ActiveRecord::Base
 	end
 	
 	def reset_fields_for_clone
-    self.published = false
-    self.published_at = nil
-    self.impressions_count = 0
-    self.reviewer_key = nil
+	    self.published = false
+	    self.published_at = nil
+	    self.impressions_count = 0
+	    self.reviewer_key = nil
 	end
+
+  def show_asset
+    if self.asset.nil?
+      Asset.new(:asset_type => Asset::TYPE[:story_thumbnail])
+    else
+      self.asset
+    end
+  end
 end

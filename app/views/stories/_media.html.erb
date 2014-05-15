@@ -5,27 +5,39 @@
 <%= semantic_form_for(@item, url: media_story_path(id:params[:id],:format => :js), :html => { :multipart=> true, :id => "mediaForm" } , remote: true) do |f| %>
   <%= error_messages_for f.object %>
   <%= f.inputs do %>
+
     <%= f.input :title, hint: t('.hint.title'), :input_html => { :id => "mediaTitle", :placeholder => t('.placeholder.title') } %>
     <%= f.input :media_type, :as => :select, hint: t('.hint.media_type'),  :include_blank => false, :collection => { t('.image') => Medium::TYPE[:image], t('.video') => Medium::TYPE[:video] } , :input_html => { :id => "mediaType"  }   %>	
     <%= f.input :caption, hint: t('.hint.caption'), :input_html => { :id => "mediaCaption" ,:placeholder => t('.placeholder.caption') } %>
     <%= f.input :caption_align, :as => :select, hint: t('.hint.caption_align'),  :include_blank => false, :collection => { t('.left') => -1, t('.center') => 0, t('.right') => 1 } , :default => 0 , :input_html => { :id => "mediaCaptionAlign"  } %>
    
+
+
+  <%= f.fields_for :image, @item.image do |as| %>
     <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.medium.image') %></label>
-    <% if @item.image.exists? %>
+    <% if @item.image_exists? %>
       <a class='btn' data-reveal-id="modalImage"><%= t('app.buttons.preview_image') %></a>
     <% end %>    
-    <%= f.input :image, :as => :file, hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:"image/jpeg,image/png"  } , label: false  %> 
 
+    <%= as.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:"image/jpeg,image/png" }, label: false  %> 
+    <%= as.input :asset_type, :as => :hidden %>
+  <% end %> 
+
+  <%= f.fields_for :video, @item.video do |as| %>
     <div id='mediaVideoBox' <%=  @item.media_type == Medium::TYPE[:image]  ? "style=display:none;" : "" %> >
       <label class=" control-label" for="modalVideo"><%= t('activerecord.attributes.medium.video') %></label>
-      <% if @item.video.exists? %>
+      <% if  @item.video.present? && @item.video.asset.exists? %>
         <a class='btn' data-reveal-id="modalVideo"><%= t('app.buttons.preview_video') %></a>
       <% end %>
-      <%= f.input :video, :as => :file, hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:"video/mp4"  }, label: false %>
+      <%= as.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:"video/mp4" }, label: false %>
+      <%= as.input :asset_type, :as => :hidden %>
+
       <%= f.input :video_loop, :as => :boolean , hint: t('.hint.video_loop'), :default => true, :input_html => { id: "sectionVideoLoop"} %> 
     </div>
-      
-    <%= f.input :source, hint: t('.hint.source'), :input_html => { :id => "mediaSource", :placeholder => t('.placeholder.source')  } %>
+  <% end %> 
+
+   <%= f.input :source, hint: t('.hint.source'), :input_html => { :id => "mediaSource", :placeholder => t('.placeholder.source')  } %>
+
     <%= f.input :section_id, :as => :hidden , :input_html => { :id => "mediaSection" }  %>
     <% if @item.id.present? %>
       <%= f.input :id, :as => :hidden , :input_html => { :id => "mediaId" }  %>    

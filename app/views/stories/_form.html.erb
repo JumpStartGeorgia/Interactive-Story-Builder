@@ -1,25 +1,37 @@
-<%= semantic_form_for(@story, :html => {:multipart => true, :id => "storyForm"} ,remote: true) do |f| %>
-<%= error_messages_for f.object %>
-
+<%= semantic_form_for(@story, :html => {:multipart => true, :id => "storyForm"}) do |f| %>
 
   <%= f.inputs do %>
     <%= f.input :title, hint: t('.hint.title'), placeholder: t('.placeholder.title'), :input_html => { id: "storyTitle"  }   %>
 
     <%= f.input :user_id , :as => :hidden %>
+
     <%= f.input :author, hint: t('.hint.author'), placeholder: t('.placeholder.author'), :input_html => { id: "storyAuthor"  } %>
     <%= f.input :media_author, hint: t('.hint.media_author'), placeholder: t('.placeholder.media_author'), :input_html => { id: "storyMediaAuthor"  }  %>
     <%= f.input :template_id, :as => :select, hint: t('.hint.template'),  :include_blank => false, collection: @templates.map{|t|["#{t.title} - #{t.description}",t.id]} , :input_html => { :id => "storyTemplate"  }   %> 
     <% if @story.id.present? %>
       <%= f.input :published, :as => :boolean, hint: t('.hint.published') , :input_html => { id: "storyPublished"} %>   
     <% end %>
-    <%= f.input :thumbnail, :as => :file, :hint => t('.hint.thumbnail'), :input_html => { :id => "storyThumbnail", accept:"image/jpeg,image/png" } %>
+   
+    <%= f.fields_for :asset, @story.asset do |asset_object| %>
 
+        <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.medium.image') %></label>
+        <% if @story.asset.asset.exists? %>
+          <a class='btn' data-reveal-id="modalImage"><%= t('app.buttons.preview_image') %></a>
+          <div id="modalImage" class="reveal-modal">     
+            <div class='modal-data'><img  width='100%' src='<%="#{@story.asset.asset.url}"%>'/></div>
+            <a class="close-reveal-modal">&#215;</a>
+          </div>  
+        <% end %>  
+        <%= asset_object.input :asset, :as => :file, :hint => t('.hint.thumbnail'),  :input_html => { :id => "storyThumbnail", accept:"image/jpeg,image/png" }, label: false  %>
+        <%= asset_object.input :asset_type, :as => :hidden %>
+
+    <% end %> 
 
     <div class="string control-group required stringish" id="story_user_input">
       <label class=" control-label"><%= t('activerecord.attributes.story.user_id') %></label>
       <div class="controls">
         <input type="text" value="<%= "#{@story.user.nickname}" %>" readonly="readonly">
-        <span class="help-inline"><%= t('.hint.editor') %></span>
+        <div class="help-inline" title="<%= t('.hint.editor') %>"><div>?</div></div>
       </div>
     </div>
     <%= f.input :user_ids , :as => :select, :hint => t('.hint.editors'), :collection =>  Hash[@users.map{|b| [b.nickname,b.id]}], :multiple => true %>
