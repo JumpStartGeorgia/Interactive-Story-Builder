@@ -24,7 +24,9 @@ class Medium < ActiveRecord::Base
 
   validates :caption, length: { maximum: 255 }  
 
-  accepts_nested_attributes_for :image, :reject_if => lambda { |c| c[:asset].blank? }
+  validates :video, presence: true, if: :video_type?
+
+  accepts_nested_attributes_for :image
   accepts_nested_attributes_for :video, :reject_if => lambda { |c| c[:asset].blank? }
 
     

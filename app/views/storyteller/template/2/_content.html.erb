@@ -123,13 +123,15 @@
                     <% end %> 
                   <div class="video"  <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>                
                       <div class="video-container">
-                        <% if m.media_type == 1 %>     
-                        <% if !@export %> 
-                          <img src="<%= m.image.asset.url %>">
-                        <% else %>
-                          <img src="media/images/original/<%= m.image.asset_file_name %>">
-                        <% end %>
 
+                        <% if m.media_type == 1 %>     
+                          <% if  m.image_exists? %>    
+                            <% if !@export %> 
+                              <img src="<%= m.image.asset.url %>">
+                            <% else %>
+                              <img src="media/images/original/<%= m.image.asset_file_name %>">
+                            <% end %>
+                          <% end %>
                         <% elsif m.media_type == 2  %>                    
                             <% if  m.image_exists? %>    
                               <% if !@export %>                           

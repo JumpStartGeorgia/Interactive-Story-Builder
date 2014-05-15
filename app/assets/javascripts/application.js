@@ -44,7 +44,7 @@ function popuper(msg,msg_type)
 									'<a href="#" data-dismiss="alert" class="close">×</a>' +
 									 urldecode(msg) +
 									'</div>');
-  	   $('.flash-message').find("div.alert").fadeOut(5000,function(){ this.remove();});  	    	  
+  	   $('.flash-message').find("div.alert").delay(5000).fadeOut(2000,function(){ this.remove();});  	    	  
   }
 }
 function urldecode(url) {
