@@ -106,9 +106,9 @@ class StoriesController < ApplicationController
     
      @story.destroy
      if @story.destroyed?             
-          flash[:success] = "Item was removed from the tree."          
+          flash[:success] = I18n.t('app.msgs.destroy_story.success')
       else  
-          flash[:error] = "Removing data failed [" +  @story.errors.full_messages.to_sentence + "]"                      
+          flash[:error] = I18n.t('app.msgs.destroy_story.error', :err => @story.errors.full_messages.to_sentence)
       end
     
    respond_to do |format|     
@@ -349,13 +349,13 @@ class StoriesController < ApplicationController
     
     respond_to do |format|
       if !item.present?
-          flash[:error] = "Item could not be found to delete."
+          flash[:error] = I18n.t('app.msgs.destroy_item.error_not_found')
           format.json { render json: nil , status: :created } 
       elsif item.destroyed?   
-          flash[:success] = "Item was removed from the tree."
+          flash[:success] = I18n.t('app.msgs.destroy_item.success')
           format.json { render json: nil , status: :created } 
       else  
-          flash[:error] = "Removing data failed [" +  @item.errors.full_messages.to_sentence + "]"            
+          flash[:error] = I18n.t('app.msgs.destroy_item.error', :err => @item.errors.full_messages.to_sentence)
           format.json {render json: nil, status: :ok }  
       end
     end

@@ -140,6 +140,13 @@ ka:
       one_section:
         content: Only one Item can be added to a Content section
         slideshow: Only one Item can be added to a Image Slideshow section
+      destroy_story:
+        success: Story was successfully deleted.
+        error: "Error occurred while deleting the story [ %{err} ]"
+      destroy_item:
+        success: Item was successfully deleted.
+        error: "Error occurred while deleting the item [ %{err} ]"
+        error_not_found: Item could not be found to delete.
   section_types:
     content:
       name: შინაარსი
