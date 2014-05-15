@@ -4,15 +4,15 @@
   <div class='span12'>
    <div id='toolbar' class='clear'>
       <div class="btn-group">
-        <button type="button btn-small" id='btnAddSection' class="btn btn-primary btn-small" title="<%= t('app.buttons.add_section') %>"><i class="icon-align-justify icon-white"></i></button>
-        <button type="button" id='btnAddItem' class="btn btn-primary btn-small" title="<%= t('app.buttons.add_item') %>"><i class="icon-film icon-white" ></i></button>
-        <button type="button" id='btnDelete' class="btn btn-small btn-danger " title="<%= t('app.buttons.delete') %>" ><i class="icon-remove icon-white" >
+        <button type="button" id='btnAddSection' class="btn btn-primary" title="<%= t('app.buttons.add_section') %>"><i class="icon-align-justify icon-white"></i></button>
+        <button type="button" id='btnAddItem' class="btn btn-primary" title="<%= t('app.buttons.add_item') %>"><i class="icon-film icon-white" ></i></button>
+        <button type="button" id='btnDelete' class="btn  btn-danger" title="<%= t('app.buttons.delete') %>" ><i class="icon-remove icon-white" >
           
         </i></button>
-        <button type="button" id='btnUp' class="btn btn-info  btn-small" title="<%= t('app.buttons.up') %>"> <i class="icon-arrow-up icon-white" ></i> </button>
-        <button type="button" id='btnDown' class="btn btn-info  btn-small" title="<%= t('app.buttons.down') %>"> <i class="icon-arrow-down icon-white" ></i></button>
-        <button type="button"  id='btnPublish' class="btn btn-warning btn-small<%= @story.published ? '' : ' disabled'%>" title="<%= @story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>" data-link='<%= publish_story_path(@story) %>'> <i class="icon-globe icon-white" ></i></button>      
-         <button type="button"  id='btnPreview' class="btn btn-success btn-small" title="<%= t('app.buttons.preview') %>" data-link='<%=  preview_story_path(@story) %>'> <i class="icon-eye-open icon-white" ></i></button>            
+        <button type="button" id='btnUp' class="btn btn-info" title="<%= t('app.buttons.up') %>"> <i class="icon-arrow-up icon-white" ></i> </button>
+        <button type="button" id='btnDown' class="btn btn-info" title="<%= t('app.buttons.down') %>"> <i class="icon-arrow-down icon-white" ></i></button>
+        <button type="button"  id='btnPublish' class="btn btn-warning <%= @story.published ? '' : ' disabled'%>" title="<%= @story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>" data-link='<%= publish_story_path(@story) %>'> <i class="icon-globe icon-white" ></i></button>      
+         <button type="button"  id='btnPreview' class="btn btn-success" title="<%= t('app.buttons.preview') %>" data-link='<%=  preview_story_path(@story) %>'> <i class="icon-eye-open icon-white" ></i></button>            
       </div>
     </div>
   </div>

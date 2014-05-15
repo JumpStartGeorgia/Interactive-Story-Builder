@@ -219,7 +219,8 @@ class StoriesController < ApplicationController
           else
             @get_data_error = I18n.t('app.msgs.error_get_data')
             format.js          
-        end
+          end
+      end
     end
   end
 
