@@ -136,17 +136,17 @@ ka:
       error_unpublish: "%{obj} გამოქვეყნება გაუქმებულია. [ %{err} ]"
       error_clone: "%{obj} იქნა კლონირებული." 
       error_export: "Story %{obj} ამბის ექსპორტი შესაძლებელია"     
-      error_get_data: The selected item could not be found
+      error_get_data: არჩეული ერთეული ვერ მოიძებნა
       one_section:
-        content: Only one Item can be added to a Content section
-        slideshow: Only one Item can be added to a Image Slideshow section
+        content: მხოლოდ ერთი რამის  დამატებაა შესაძლებელი შინაარსის სექციაში
+        slideshow: მხოლოდ ერთი რამის დამატებაა შესაძლებელი ფოტო სლაიდშოუს სექციაში
       destroy_story:
-        success: Story was successfully deleted.
-        error: "Error occurred while deleting the story [ %{err} ]"
+        success: ამბავი წარმატებით წაიშალა.
+        error: "ამბის წაშლისას დაშვებულია შეცდომა. [ %{err} ]"
       destroy_item:
-        success: Item was successfully deleted.
-        error: "Error occurred while deleting the item [ %{err} ]"
-        error_not_found: Item could not be found to delete.
+        success: ერთეული წარმატებით წაიშალა.
+        error: "ერთეულის წაშლისას დაშვებულია შეცდომა [ %{err} ]"
+        error_not_found: წასაშლელი ერთეული ვერ მოიძებნა.
   section_types:
     content:
       name: შინაარსი
