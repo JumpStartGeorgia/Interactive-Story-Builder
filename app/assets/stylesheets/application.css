@@ -101,11 +101,11 @@ ul.standard ol, ol.standard ul {
 
 ul.standard li {
 	list-style-type:disc;
-	line-height: 1.1;
+	line-height: 1.5;
 }
 ol.standard li {
 	list-style-type:decimal;
-	line-height: 1.1;
+	line-height: 1.5;
 }
 
 /* so ie will display the correct color background */

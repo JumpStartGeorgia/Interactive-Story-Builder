@@ -6,6 +6,8 @@ class RootController < ApplicationController
 
     @about_text = 'Story builder allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world.'
 
+    @news = News.published.limit(2)
+
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render json: @stories }

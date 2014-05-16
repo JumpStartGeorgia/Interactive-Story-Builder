@@ -4,14 +4,37 @@
    <h1 style="margin:36px 36px;background-color: #F8E869;padding: 36px;line-height: 28px;">You are accessing a test site. Please go to <a href="http://storybuilder.jumpstart.ge/en" style="text-decoration:underline;">http://storybuilder.jumpstart.ge/en</a> to use the official site. </h1>
 <% end %>
 
-<% if @about_text %>
-  <div id="about">
-    <%= simple_format(@about_text) %>
-  </div>  
-<% end %>
+<div id="an_container" class="clear">
+  <% if @about_text %>
+    <div id="about">
+      <h2><%= t('.about') %></h2>
+      <%= simple_format(@about_text) %>
+    </div>  
+  <% end %>
+
+  <% if @news.present? %>
+    <div id="news">
+      <h2><%= t('.latest_news') %></h2>
+      <ul id="news_container" class="standard">
+        <% @news.each do |news| %>
+          <li class="news_item">
+            <%= link_to news_path(:anchor => news.id) do %>
+              <span class="news_date">
+                <%= l news.published_at %>
+              </span>
+              <span class="new_title">
+                <%= news.title %>
+              </span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>  
+    </div>
+  <% end %>
+</div>
 
 <div class="pins-wrapper">
-<div class="pin-columns">
+  <div class="pin-columns">
     <% @stories.each do |story| %>
      <a href="<%=storyteller_show_path(story) %>">
       <div class="pin">  

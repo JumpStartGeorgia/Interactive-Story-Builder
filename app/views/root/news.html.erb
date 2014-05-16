@@ -4,7 +4,7 @@
   <div id="news_items">
     <% @news.each do |news| %>
       <div class="news_item">
-        <h2><%= news.title %></h2>
+        <h2 id="<%= news.id %>"><%= news.title %></h2>
         <div class="news_date">
           <%= l news.published_at %>
         </div>
