@@ -28,7 +28,6 @@ Aside from entering the story into the sections, you also have the ability to:
 * add search/filter/sort for published stories
 * each user has a page to show their published works
 * users can create organizations and have their own page to show their published works
-* add horizontal image gallery
 * add ability to include online videos (embed youtube, vimeo, etc)
 * add ability to create one story in multiple languages
 * ability to log in with something other than facebook
@@ -45,6 +44,13 @@ Aside from entering the story into the sections, you also have the ability to:
 
 
 ## Version History
+### 0.4
+* added horizontal image gallery section
+* added help text to forms
+* translated site completely into Georgian
+* moved all media files (images, videos, audio) into one table
+* started process for having multiple templates - right now only one template exists
+
 ### 0.3
 * create a more appealing landing page
 * applied user authorization
