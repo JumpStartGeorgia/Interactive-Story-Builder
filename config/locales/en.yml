@@ -8,6 +8,7 @@ en:
       medium: Medium
       content: Content
       slideshow: Slideshow
+      embed_medium: Embed Medium
     attributes:
       user:
         email: Email Address
@@ -48,6 +49,9 @@ en:
       slideshow:
         title: Title
         caption: Heading
+      embed_medium:
+        title: Title
+        url: Url to Online Media
     errors:
       messages:
         required_field: "is a required field."
@@ -157,6 +161,9 @@ en:
     slideshow:
       name: Image Slideshow
       description: Images in a horizontal slideshow
+    embed_media: 
+      name: Embed Online Media
+      description: youtube, vimeo, etc
   layouts:
     application:
       admin: Admin
@@ -279,6 +286,15 @@ en:
       label:
         caption: Image Description
         source: Image Source
+    embed_media:
+      get_media: Get Online Media
+      preview: Preview of Online Media
+      error: The URL could not be processed. Please try again.
+      placeholder:
+        url: Url to online media
+      hint:
+        title: "This text only appears in the left sidebar, it will not show up in the story"
+        url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: Youtube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
   storyteller:
     byline: By
     byline_media: "Photographs and video by "

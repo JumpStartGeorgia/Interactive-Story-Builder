@@ -1,8 +1,6 @@
 class StoriesController < ApplicationController
   before_filter :authenticate_user!
-
   before_filter(:except => [:index, :new, :create]) do |controller_instance|
-
     controller_instance.send(:can_edit_story?, params[:id])
   end
   
@@ -221,6 +219,21 @@ class StoriesController < ApplicationController
             format.js          
           end
       end
+    elsif type == 'embed_media'
+
+        if params[:command]!='n'    
+          @item = EmbedMedium.find_by_id(params[:item_id])   
+        else 
+          @item = EmbedMedium.new(:section_id => params[:section_id])
+        end
+        respond_to do |format|
+          if @item.present?
+              format.js {render :action => "get_embed_media" }
+          else
+            @get_data_error = I18n.t('app.msgs.error_get_data')
+            format.js          
+          end
+        end
     end
   end
 
@@ -280,6 +293,18 @@ class StoriesController < ApplicationController
       end    
   end
 
+  def new_embed_media
+    @item = EmbedMedium.new(params[:embed_medium])       
+    respond_to do |format|
+        if @item.save       
+          flash_success_created(EmbedMedium.model_name.human,@item.title)                     
+          format.js { render action: "change_sub_tree", status: :created }                    
+        else                    
+          flash[:error] = u I18n.t('app.msgs.error_created', obj:EmbedMedium.model_name.human, err:@item.errors.full_messages.to_sentence)                       
+          format.js {render action: "flash" , status: :ok }
+        end
+      end    
+  end
   
 
 
@@ -332,6 +357,20 @@ class StoriesController < ApplicationController
         end
       end    
   end
+  def save_embed_media
+    @item = EmbedMedium.find_by_id(params[:embed_medium][:id])
+    respond_to do |format|
+        if @item.update_attributes(params[:embed_medium])          
+          flash_success_updated(EmbedMedium.model_name.human,@item.title)           
+          format.js {render action: "build_tree", status: :created }          
+        else        
+          flash[:error] = u I18n.t('app.msgs.error_updated', obj:EmbedMedium.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
+          format.js {render action: "flash", status: :ok }
+        end
+      end    
+  end
+  
+  
   def destroy_tree_item  
     item = nil    
     type = params[:type]
@@ -389,6 +428,8 @@ class StoriesController < ApplicationController
 
   def sections
       @story = Story.fullsection(params[:id])   
+      
+      @load_ollyjs = true
       
       # if there are no sections, show the content form by default
       gon.has_no_sections = @story.sections.blank?

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140514112900) do
+ActiveRecord::Schema.define(:version => 20140516094754) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -42,6 +42,17 @@ ActiveRecord::Schema.define(:version => 20140514112900) do
   end
 
   add_index "contents", ["section_id"], :name => "index_contents_on_section_id"
+
+  create_table "embed_media", :force => true do |t|
+    t.integer  "section_id"
+    t.string   "title"
+    t.string   "url"
+    t.text     "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "embed_media", ["section_id"], :name => "index_embed_media_on_section_id"
 
   create_table "impressions", :force => true do |t|
     t.string   "impressionable_type"

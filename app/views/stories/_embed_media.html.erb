@@ -1,0 +1,37 @@
+<%= semantic_form_for(@item, url: embed_media_story_path(id:params[:id],:format => :js), :html => {:id => "embedMediaForm"} ,remote: true) do |f| %>
+<%= error_messages_for f.object %>
+  <%= f.inputs do %>
+    <%= f.input :title, hint: t('.hint.title'), :input_html => { :id => "embedMediaTitle" } %>
+    <%= f.input :url, :as => :url, :placeholder => t('.placeholder.url'), :hint => t('.hint.url'), :input_html => { :id => "embedMediaUrl" } %>
+    <button id="btnOlly" type="button" class="btn btn-info btn-mini" style="padding: 2px 6px"><%= t('.get_media') %></button>
+    <%= f.input :code, :as => :hidden , :input_html => { :id => "embedMediaCode" }  %>
+
+    <div id="embedMediaPreview">
+      <h3><%= t('.preview') %></h3>
+      <div class="alert alert-error" id="embedMediaError">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= t('.error') %>
+      </div>
+      <div id="embedMediaResult">
+        <%= @item.code.html_safe if @item.code.present? %>
+      </div>
+    </div>
+
+
+    <%= f.input :section_id, :as => :hidden , :input_html => { :id => "embedMediaSection" }  %>
+    <% if @item.id.present? %>
+      <%= f.input :id, :as => :hidden , :input_html => { :id => "embedMediaId" }  %>    
+    <% end %>
+  <% end %>
+
+  <% 
+    style = '' 
+    if @item.code.blank? 
+      style = "style=display: none"
+     end 
+  %>
+  <div class="pull-right spacer" id="embedMediaButtons" <%= style %>>    
+    <%= f.submit nil, :class => 'btn' %>
+    <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>          
+  </div>
+<% end %>

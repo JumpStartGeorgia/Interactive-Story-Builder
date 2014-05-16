@@ -8,6 +8,7 @@ ka:
       medium: მედია
       content: სტატია
       slideshow: ფოტო სლაიდშოუ
+      embed_medium: Embed Medium
     attributes:
       user:
         email: ელ.ფოსტა
@@ -48,6 +49,9 @@ ka:
       slideshow:
         title: დასახელება
         caption: სათაური
+      embed_medium:
+        title: Title
+        url: Url to Online Media
     errors:
       messages:
         required_field: "სავალდებულოა"
@@ -157,6 +161,9 @@ ka:
     slideshow:
       name: ფოტო სლაიდშოუ
       description: ფოტოები ჰორიზონტალურ სლაიდშოუში
+    embed_media: 
+      name: Embed Online Media
+      description: youtube, vimeo, etc
   layouts:
     application:
       admin: ადმინისტრატო
@@ -279,6 +286,15 @@ ka:
       label:
         caption: ფოტოს აღწერა
         source: ფოტოს წყარო
+    embed_media:
+      get_media: Get Online Media
+      preview: Preview of Online Media
+      error: The URL could not be processed. Please try again.
+      placeholder:
+        url: Url to online media
+      hint:
+        title: "This text only appears in the left sidebar, it will not show up in the story"
+        url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: Youtube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
   storyteller:
     byline: ავტორი
     byline_media: "ფოტოებისა და ვიედეოს ავტორი "

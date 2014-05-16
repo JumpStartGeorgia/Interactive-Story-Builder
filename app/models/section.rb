@@ -7,12 +7,13 @@ class Section < ActiveRecord::Base
   foreign_key: :item_id,
   dependent: :destroy
 
+  has_many :embed_media, dependent: :destroy
   has_many :media, :order => 'position', dependent: :destroy
   acts_as_list scope: :story
 
 
 
-  TYPE = {content: 1, media: 2, slideshow: 3}
+  TYPE = {content: 1, media: 2, slideshow: 3, embed_media: 4}
 
   accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
 

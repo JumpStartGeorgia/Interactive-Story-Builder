@@ -81,7 +81,10 @@
 			I18n.locale = "<%= I18n.locale %>";
 		</script>
 		<% if @usemap %>
-		<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+  		<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js" type="text/javascript"></script>
+		<% end %>
+		<% if @load_ollyjs %>
+  		<script src="/assets/olly.js" type="text/javascript"></script>
 		<% end %>
 		<% if Rails.env.production? %>
       <script>
