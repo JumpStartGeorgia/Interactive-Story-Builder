@@ -7,7 +7,7 @@ class Admin::NewsController < ApplicationController
   # GET /news
   # GET /news.json
   def index
-    @news = News.all
+    @news = News.order('id desc')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -31,6 +31,8 @@ class Admin::NewsController < ApplicationController
   def new
     @news = News.new
 
+    gon.news_form = true
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @news }
@@ -40,6 +42,8 @@ class Admin::NewsController < ApplicationController
   # GET /news/1/edit
   def edit
     @news = News.find(params[:id])
+    gon.news_form = true
+		gon.published_date = @news.published_at.strftime('%m/%d/%Y') if !@news.published_at.nil?
   end
 
   # POST /news
@@ -52,6 +56,8 @@ class Admin::NewsController < ApplicationController
         format.html { redirect_to admin_news_path(@news), notice: t('app.msgs.success_created', :obj => t('activerecord.models.news')) }
         format.json { render json: @news, status: :created, location: @news }
       else
+        gon.news_form = true
+    		gon.published_date = @news.published_at.strftime('%m/%d/%Y') if !@news.published_at.nil?
         format.html { render action: "new" }
         format.json { render json: @news.errors, status: :unprocessable_entity }
       end
@@ -68,6 +74,8 @@ class Admin::NewsController < ApplicationController
         format.html { redirect_to admin_news_path(@news), notice: t('app.msgs.success_updated', :obj => t('activerecord.models.news')) }
         format.json { head :ok }
       else
+        gon.news_form = true
+    		gon.published_date = @news.published_at.strftime('%m/%d/%Y') if !@news.published_at.nil?
         format.html { render action: "edit" }
         format.json { render json: @news.errors, status: :unprocessable_entity }
       end
