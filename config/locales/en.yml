@@ -101,6 +101,7 @@ en:
       add_story: Add Story
       users: Users
       news: News
+      feedback: Send Feedback
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"

@@ -184,20 +184,22 @@ footer a:hover {
 footer #middle {
    margin: 0;
 	font-size: 12px;
-	width: 38%;
+	width: 40%;
 	text-align: center;
 	float: left;
 }
 footer #middle ul {
-/*	margin-top: 20px;*/
+	height:40px;
+	line-height:40px;
 }
 
 footer #middle ul li {
 	display: inline;
 	font-family: Arial;
+  border-right: 1px solid #ccc;
 }
-footer #middle ul li.spacer {
-  display: inline;
+footer #middle ul li:last-child {
+  border-right: none;
 }
 footer #middle ul li a {
 	padding: 0 10px;

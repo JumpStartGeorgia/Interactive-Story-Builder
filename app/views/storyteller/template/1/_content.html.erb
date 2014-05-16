@@ -211,7 +211,14 @@
         <div class="section footer-section">
            <div id="left">&copy; <%= Time.now.year %></div>
           	<div id="middle">
-              <%= link_to t('.helpers.links.news'), news_path %>
+              <ul>
+                <li>
+                  <%= link_to t('helpers.links.news'), news_path %>
+                </li>
+                <li>
+                  <%= link_to t('helpers.links.feedback'), feedback_path %> 
+                </li>
+              </ul>
           	</div>
             <div id="right">
                 <% if !@export %>                           

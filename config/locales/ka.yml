@@ -101,6 +101,7 @@ ka:
       add_story: ამბის დამატება
       users: მომხმარებლები
       news: News
+      feedback: Send Feedback
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
