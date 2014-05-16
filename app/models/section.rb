@@ -7,7 +7,7 @@ class Section < ActiveRecord::Base
   foreign_key: :item_id,
   dependent: :destroy
 
-  has_many :embed_media, dependent: :destroy
+  has_one :embed_medium, dependent: :destroy
   has_many :media, :order => 'position', dependent: :destroy
   acts_as_list scope: :story
 

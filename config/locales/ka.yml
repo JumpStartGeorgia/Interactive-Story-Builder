@@ -5,10 +5,10 @@ ka:
       user: მომხმარებელი
       story: ისტორია
       section: სექცია
-      medium: მედია
-      content: სტატია
+      medium: მთელს ეკრანზე გაშლილი მედია სლაიდშოუ
+      content: შინაარსი
       slideshow: ფოტო სლაიდშოუ
-      embed_medium: Embed Medium
+      embed_medium: Embedable Online Media
     attributes:
       user:
         email: ელ.ფოსტა

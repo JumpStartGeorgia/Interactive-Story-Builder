@@ -43,7 +43,7 @@ class Story < ActiveRecord::Base
   end
 
 	def self.fullsection(story_id)
-		includes(sections: [:media,:content])
+		includes(sections: [:media,:content,:embed_medium])
 		.where(stories: {id: story_id})
 		.first
 	end

@@ -5,10 +5,10 @@ en:
       user: User
       story: Story
       section: Section
-      medium: Medium
+      medium: Full-Screen Media Slideshow
       content: Content
-      slideshow: Slideshow
-      embed_medium: Embed Medium
+      slideshow: Image Slideshow
+      embed_medium: Embedable Online Media
     attributes:
       user:
         email: Email Address
