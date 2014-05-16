@@ -8,6 +8,7 @@ en:
       medium: Medium
       content: Content
       slideshow: Slideshow
+      news: News
     attributes:
       user:
         email: Email Address
@@ -48,6 +49,11 @@ en:
       slideshow:
         title: Title
         caption: Heading
+      news:
+        title: Title
+        content: Content
+        is_published: Publish?
+        published_at: Date Published
     errors:
       messages:
         required_field: "is a required field."
@@ -81,6 +87,8 @@ en:
       sign_out: Sign Out
       sign_in_provider: "Sign in with %{provider}"
       add_story: Add Story
+      users: Users
+      news: News
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"

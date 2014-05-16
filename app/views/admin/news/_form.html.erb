@@ -1,0 +1,23 @@
+
+<%= tinymce_assets %>
+<%= tinymce %>
+
+<%= semantic_form_for([:admin,@news], :html => { :class => 'form-horizontal' }) do |f| %>
+	<%= f.error_messages %>
+
+	<%= f.inputs do %>
+		<%= f.input :title %>
+		<%= f.input :content, :as => :text, :input_html => {:class => "tinymce", :rows => 20}  %>
+		<%= f.input :is_published, :as => :radio %>
+		<%= f.input :published_at, :as => :string, :input_html => {:size => 20} %>
+
+	<% end %>
+
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+	  <%= f.submit nil, :class => 'btn btn-warning', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>
+	  <%= link_to t('helpers.links.cancel'), admin_news_index_path, :class => 'btn btn-mini btn-warning' %>
+  </div>
+
+<% end %>

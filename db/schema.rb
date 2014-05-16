@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140514112900) do
+ActiveRecord::Schema.define(:version => 20140516094754) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -42,6 +42,17 @@ ActiveRecord::Schema.define(:version => 20140514112900) do
   end
 
   add_index "contents", ["section_id"], :name => "index_contents_on_section_id"
+
+  create_table "embed_media", :force => true do |t|
+    t.integer  "section_id"
+    t.string   "title"
+    t.string   "url"
+    t.text     "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "embed_media", ["section_id"], :name => "index_embed_media_on_section_id"
 
   create_table "impressions", :force => true do |t|
     t.string   "impressionable_type"
@@ -93,6 +104,17 @@ ActiveRecord::Schema.define(:version => 20140514112900) do
 
   add_index "media", ["section_id", "position"], :name => "index_media_on_section_id_and_position"
   add_index "media", ["section_id"], :name => "index_media_on_section_id"
+
+  create_table "news", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.boolean  "is_published", :default => false
+    t.date     "published_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "news", ["is_published", "published_at", "title"], :name => "index_news_on_is_published_and_published_at_and_title"
 
   create_table "sections", :force => true do |t|
     t.integer  "story_id"

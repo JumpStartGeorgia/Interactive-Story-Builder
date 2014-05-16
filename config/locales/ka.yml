@@ -8,6 +8,7 @@ ka:
       medium: მედია
       content: სტატია
       slideshow: ფოტო სლაიდშოუ
+      news: News
     attributes:
       user:
         email: ელ.ფოსტა
@@ -48,6 +49,11 @@ ka:
       slideshow:
         title: დასახელება
         caption: სათაური
+      news:
+        title: Title
+        content: Content
+        is_published: Publish?
+        published_at: Date Published
     errors:
       messages:
         required_field: "სავალდებულოა"
@@ -81,6 +87,8 @@ ka:
       sign_out: გასვლა
       sign_in_provider: "სისტემაში შესვლა %{provider}"
       add_story: ამბის დამატება
+      users: მომხმარებლები
+      news: News
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
