@@ -268,6 +268,7 @@ en:
       title: Read-Only URL
       desc: "You can copy and share the following URL with whomever you want to review '%{title}' before it is published. These people will have the ability to read your story, but not edit it."
     slideshow:
+      form_title: Image Slideshow Form
       add_image: Add Image
       placeholder:
         caption: optional
@@ -287,6 +288,7 @@ en:
         caption: Image Description
         source: Image Source
     embed_media:
+      form_title: Embed Online Media Form
       get_media: Get Online Media
       preview: Preview of Online Media
       error: The URL could not be processed. Please try again.

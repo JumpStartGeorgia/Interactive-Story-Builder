@@ -1,3 +1,7 @@
+<h2>
+  <%= t('.form_title') %>
+</h2>
+
 <%= semantic_form_for(@item, url: embed_media_story_path(id:params[:id],:format => :js), :html => {:id => "embedMediaForm"} ,remote: true) do |f| %>
 <%= error_messages_for f.object %>
   <%= f.inputs do %>
