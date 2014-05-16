@@ -1689,17 +1689,38 @@ color: #FFFFFF;
 .last-section .pigy
 {
   background-image: url(<%= (@export ? "assets/" : "/template/#{@template}/") + 'images/pig.png'%>);          
-  background-size: 74% 74%;
+  background-size: 100% 100%;
   background-repeat:no-repeat;
-width: 439px;
-height: 555px;
+  width: 319px;
+  height: 402px;
   position: absolute;
-right: 219px;
-bottom: 132px;
+  right: 336px;
+  bottom: 296px;
   z-index: 1000;
 }
 
 
+ @media screen and (max-width: 1680px) {
+    .last-section .donate a
+    {
+      width: 207px;
+      height: 74px;  
+      right: 538px;
+      bottom: 360px;
+    }
+    .last-section .donate a:hover
+    {
+      width: 207px;
+      height: 74px;   
+    }
+    .last-section .pigy
+    {
+      width: 186px;
+      height: 234px;
+      right: 182px;
+      bottom: 134px;
+    }
+  }
    @media screen and (max-width: 1224px) {
     .headline-line1 {
       font-size: 113px;
