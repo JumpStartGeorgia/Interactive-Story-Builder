@@ -14,8 +14,8 @@
 
   <% if @news.present? %>
     <div id="news">
-      <h2><%= t('.latest_news') %></h2>
-      <ul id="news_container" class="standard">
+      <h2><%= link_to t('.latest_news'), news_path %></h2>
+      <ul id="news_container">
         <% @news.each do |news| %>
           <li class="news_item">
             <%= link_to news_path(:anchor => news.id) do %>
@@ -28,6 +28,9 @@
             <% end %>
           </li>
         <% end %>
+        <li>
+          <%= link_to t('.all_news'), news_path %>
+        </li>
       </ul>  
     </div>
   <% end %>
