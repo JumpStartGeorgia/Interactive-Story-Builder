@@ -39,6 +39,7 @@ gem "rails_autolink", "~> 1.0.9" # convert string to link if it is url
 #gem "paper_trail", "~> 2.6.3" # keep audit log of all transactions
 gem "subexec", "~> 0.2.3"
 gem "impressionist", "1.4.1" # keep track of views
+gem "active_attr", "~> 0.5.1" # to create tabless models; using for contact form
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -9,6 +9,7 @@ ka:
       content: სტატია
       slideshow: ფოტო სლაიდშოუ
       news: News
+      message: შეტყობინება
     attributes:
       user:
         email: ელ.ფოსტა
@@ -54,10 +55,21 @@ ka:
         content: Content
         is_published: Publish?
         published_at: Date Published
+      message:
+        name: სახელი
+        email: ელ.ფოსტის მისამართი
+        message: შეტყობინება
+        message_type: Feedback Type
     errors:
       messages:
         required_field: "სავალდებულოა"
         already_exists: 'უკვე არსებობს მონაცემთა ბაზაში'
+  mailer:
+    closing: "პატივისცემით,"
+    signature: JumpStart Georgia
+    contact:
+      contact_form:
+        subject: "Story Builder Contact Form"
   helpers:
     actions: აირჩიეთ
     links:
@@ -165,6 +177,10 @@ ka:
     slideshow:
       name: ფოტო სლაიდშოუ
       description: ფოტოები ჰორიზონტალურ სლაიდშოუში
+  message_types:
+    bug: Reprt a Bug
+    feature: Request a Feature
+    feedback: Give us Feedback
   layouts:
     application:
       admin: ადმინისტრატო
@@ -207,6 +223,13 @@ ka:
     news:
       title: Story Builder News
       no_news: No news is good news!
+    feedback:
+      title: Story Builder Feedback
+      message_sent: თქვენი შეტყობინება გაგზავნილია! მადლობა რომ დაგვიკავშირდით.
+      send: გაგზავნა
+      name: სახელი
+      email: ელ.ფოსტის მისამართი
+      message: შეტყობინება
   stories:
     new:
       title: პარამეტრების ფორმა

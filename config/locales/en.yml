@@ -9,6 +9,7 @@ en:
       content: Content
       slideshow: Slideshow
       news: News
+      message: Message
     attributes:
       user:
         email: Email Address
@@ -54,10 +55,21 @@ en:
         content: Content
         is_published: Publish?
         published_at: Date Published
+      message:
+        name: Name
+        email: Email Address
+        message: Message
+        message_type: Feedback Type
     errors:
       messages:
         required_field: "is a required field."
         already_exists: 'already exists in the database.'              
+  mailer:
+    closing: "Sincerely,"
+    signature: JumpStart Georgia
+    contact:
+      contact_form:
+        subject: "Story Builder Contact Form"
   helpers:
     actions: Actions
     links:
@@ -165,6 +177,10 @@ en:
     slideshow:
       name: Image Slideshow
       description: Images in a horizontal slideshow
+  message_types:
+    bug: Reprt a Bug
+    feature: Request a Feature
+    feedback: Give us Feedback
   layouts:
     application:
       admin: Admin
@@ -207,6 +223,13 @@ en:
     news:
       title: Story Builder News
       no_news: No news is good news!
+    feedback:
+      title: Story Builder Feedback
+      message_sent: Your message has been sent! Thank you for contacting us.
+      send: Send
+      name: Name
+      email: Email Address
+      message: Message
   stories:
     new:
       title: Story Settings Form
