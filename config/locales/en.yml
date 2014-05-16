@@ -204,6 +204,9 @@ en:
   root:
     index:
       title: Story Builder - build and share the next generation story
+    news:
+      title: Story Builder News
+      no_news: No news is good news!
   stories:
     new:
       title: Story Settings Form

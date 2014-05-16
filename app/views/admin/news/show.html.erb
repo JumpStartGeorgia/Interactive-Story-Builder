@@ -15,20 +15,19 @@
   :class => 'btn' %>
 </div>
 
-<p>
-  <strong><%= model_class.human_attribute_name(:title) %>:</strong>
-  <%= @news.title %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:is_published) %>:</strong>
-  <%= @news.is_published %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:published_at) %>:</strong>
-  <%= @news.published_at %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:content) %>:</strong>
-</p>
-<%= simple_format_no_tags @news.content %>
+<div id="news_items">
+  <div class="news_item">
+    <h2><%= @news.title %></h2>
+    <div class="news_date">
+      <strong><%= model_class.human_attribute_name(:is_published) %>:</strong>
+      <%= @news.is_published %>
+
+      <strong><%= model_class.human_attribute_name(:published_at) %>:</strong>
+      <%= l @news.published_at if @news.published_at.present? %>
+    </div>
+    <div class="news_content">
+      <%= simple_format_no_tags @news.content %>
+    </div>
+  </div>
+</div>
 

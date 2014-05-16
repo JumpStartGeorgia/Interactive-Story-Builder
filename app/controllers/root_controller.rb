@@ -13,4 +13,13 @@ class RootController < ApplicationController
   end
 
 
+  def news
+    @news = News.published
+  
+    respond_to do |format|
+      format.html  #index.html.erb
+      format.json { render json: @news }
+    end
+  end
+
 end

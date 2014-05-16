@@ -23,7 +23,7 @@
       <tr>
         <td><%= link_to news.title, admin_news_path(news) %></td>
         <td><%= news.is_published %></td>
-        <td><%= news.published_at %></td>
+        <td><%= l news.published_at if news.published_at.present? %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_admin_news_path(news), :class => 'btn btn-mini' %>

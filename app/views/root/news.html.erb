@@ -1,0 +1,22 @@
+<% title  t('.title') %>
+
+<% if @news.present? %>
+  <div id="news_items">
+    <% @news.each do |news| %>
+      <div class="news_item">
+        <h2><%= news.title %></h2>
+        <div class="news_date">
+          <%= l news.published_at %>
+        </div>
+        <div class="news_content">
+          <%= simple_format_no_tags news.content %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>
+    <%= t('.no_news') %>
+  </p>
+
+<% end %>

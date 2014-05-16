@@ -84,7 +84,9 @@
 
     <footer class="clear">
 		<div id="left">&copy; <%= Time.now.year %></div>
-	  	<div id="middle">&nbsp;</div>
+  	<div id="middle">
+      <%= link_to t('.helpers.links.news'), news_path %>
+  	</div>
 		<div id="right">
 			<%= link_to(image_tag("jumpstart-logo.png"), "http://www.jumpstart.ge", :target => "_blank",
 					:title => t(".js_link_title")	) %>

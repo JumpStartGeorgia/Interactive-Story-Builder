@@ -1,0 +1,34 @@
+#news_items{
+  .news_item{
+    margin-bottom: 20px;
+    border-bottom: solid 1px #ccc;
+    padding-bottom: 20px;
+    &:last-of-type{
+      border-bottom: none;
+    }
+    h2{
+    
+    }
+    .news_date{
+      color: #666;
+      font-style: italic;
+      font-size: 11px;
+    }
+    .news_content{
+      ul, ol, ul ul, ol ol,
+      ul ol, ol ul {
+	      padding-left: 2em;
+      }
+
+      ul li {
+	      list-style-type:disc;
+	      line-height: 1.5;
+      }
+      ol li {
+	      list-style-type:decimal;
+	      line-height: 1.5;
+      }
+    }
+      
+  }
+}

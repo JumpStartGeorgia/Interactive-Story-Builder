@@ -204,6 +204,9 @@ ka:
   root:
     index:
       title: Story Builder - შექმენი მომავალი თაობის ამბები
+    news:
+      title: Story Builder News
+      no_news: No news is good news!
   stories:
     new:
       title: პარამეტრების ფორმა
