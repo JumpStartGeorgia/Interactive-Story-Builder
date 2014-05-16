@@ -1,7 +1,7 @@
-  <!-- -----------------------------------------------------------------------
+  <!-- ****************************************************
       *  if device is portable we are adding ios class to html tag
       *  so new classes with .ios .someclass path are used instead of basic ones
-      *----------------------------------------------------------------------- -->
+      ********************************************************* -->
       <script>
         var isMobile = function() {
           return /iPad|iPod|iPhone|Android/.test(navigator.userAgent) || document.location.hash == "#ipad";
@@ -25,10 +25,10 @@
       </style><![endif]-->
 
 
-      <!-- -----------------------------------------------------------------------
+      <!-- ****************************************************
       *  array of functions added throught page which should be called at the end of page parsing with "await"  
       *  function which is called at the bottom of the page
-      ----------------------------------------------------------------------- -->
+      ********************************************************* -->
       <script>
 
         (function() {      
@@ -39,10 +39,10 @@
         })();</script>
 
 
-      <!-- -----------------------------------------------------------------------
+      <!-- ****************************************************
       *  collecting navigation sections and it's markers
       *  binding click events on anchors and navigation section on resize and scroll
-      *----------------------------------------------------------------------- -->
+      ********************************************************* -->
       <script>
 
           defer(function() {    
@@ -180,14 +180,7 @@
                                 </g>
                               </svg>
                               </div>   
-                              <div class="social">
-                              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="7DADPBJCULCL8">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
-
+                              <div class="social">                       
                                <a href="http://www.chca.org.ge/itst/?&lang=eng"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/twitter.png"%>'/></a>
                                <a href="http://www.chca.org.ge/itst/?&lang=eng"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>'/></a>
                                 <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>  
@@ -270,9 +263,9 @@
           </div>     
          -->
 
-      <!-- -----------------------------------------------------------------------
+      <!-- ****************************************************
       *  data hash for mobile devices , they use different images   
-      *----------------------------------------------------------------------- -->
+      ********************************************************* -->
   <script>
 
           <%  
@@ -985,10 +978,9 @@
 
           });</script>
     <!--[if gt IE 8]><!-->
-
-      <!-- -----------------------------------------------------------------------
+      <!-- ****************************************************
       *  D3 library
-      *----------------------------------------------------------------------- -->  
+      ********************************************************* -->  
     	<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>  
 
     <script>

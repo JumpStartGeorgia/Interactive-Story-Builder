@@ -429,8 +429,7 @@ class StoriesController < ApplicationController
       path =  "#{rootPath}/#{filename}_#{filename_ext}"  
       mediaPath = "#{path}/media"
 
-      require 'fileutils'
-      logger.debug("---------------------------------------------------#{filename}")
+      require 'fileutils'      
       FileUtils.cp_r "#{Rails.root}/public/media/story", "#{path}"  
 
       if File.directory?("#{Rails.root}/public/template/#{@story.template.name}/fonts")

@@ -1,11 +1,9 @@
 module StoriesHelper
 	def self.transliterate(str)
-	  # Based on permalink_fu by Rick Olsen
-	     Rails.logger.debug("--------------------str-------------------------------#{str}")
+	  # Based on permalink_fu by Rick Olsen	     
 	  # Escape str by transliterating to UTF-8 with Iconv http://stackoverflow.com/questions/12947910/force-strings-to-utf-8-from-any-encoding
 	  #s = Iconv.iconv('ascii//ignore//translit', 'utf-8', str).to_s
-	  s = str.force_encoding("UTF-8")
-	   Rails.logger.debug("--------------------s-------------------------------#{s}")
+	  s = str.force_encoding("UTF-8")	 
 	  # Downcase string
 	  s.downcase!
 	 
