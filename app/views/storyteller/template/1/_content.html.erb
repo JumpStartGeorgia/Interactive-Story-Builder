@@ -83,7 +83,6 @@
      <% alignment = { "left" => -1, "center" => 0, "right" => 1 }%>
     <div class="main">
       <div class="article"> 
-
         <% columnSectionCount = 0 %>
          <% @story.sections.sort_by{|p| p.position}.each_with_index do |section,s_i| %>
           <%  dataAudio = ''
@@ -110,8 +109,8 @@
                 <% if section.content.content.html_safe.lines.count == 1 %>   
                   <p>&nbsp;</p>
                 <% end %>
-              </div>
-           
+              </div>   
+              <% columnSectionCount+=1 %>          
             <% elsif section.type_id == 2 && section.media.present? %>
               <div class="section video-sequence" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
@@ -122,7 +121,7 @@
                     <% if m.media_type == 2 && m.video_exists? %>                
                       <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name,'.mp4')}'".html_safe %>
                     <% end %> 
-                  <div class="video"  <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>                
+                  <div class="video"  <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>
                       <div class="video-container">
                         <% if m.media_type == 1 %>     
                           <% if  m.image_exists? %>    
@@ -132,16 +131,13 @@
                               <img src="media/images/original/<%= m.image.asset_file_name %>">
                             <% end %>
                           <% end %>
-
                         <% elsif m.media_type == 2  %>                    
                             <% if  m.image_exists? %>    
                               <% if !@export %>                           
                                 <!--[if lte IE 8]><img src="<%= m.image.asset.url %>"><![endif]-->
                               <% else %>
                                 <!--[if lte IE 8]><img src="media/images/original/<%= m.image.asset_file_name %>"><![endif]-->
-                              <% end %>                   
-                            
-                            
+                              <% end %>                                             
                             <% end %>                                           
                         <% end %>  
                         <% if m.source.present? %>
@@ -208,8 +204,7 @@
                   </div>
                 </div>
               </div>
-            <% end %>   
-            <% columnSectionCount+=1 %>             
+            <% end %>              
          <% end %>   
          
 
