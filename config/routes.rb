@@ -60,6 +60,7 @@ BootstrapStarter::Application.routes.draw do
 
 		match "review/:id" => "review#index", as: 'review'
 
+		match "demo" => "root#demo", as: 'demo'
 		match "news" => "root#news", as: 'news'
 		match 'feedback' => 'root#feedback', :as => 'feedback', :via => [:get, :post]
 

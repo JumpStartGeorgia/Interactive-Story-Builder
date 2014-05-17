@@ -5,16 +5,18 @@
 <% end %>
 
 <div id="an_container" class="clear">
-  <% if @about_text %>
-    <div id="about">
-      <h2><%= t('.about') %></h2>
-      <%= simple_format(@about_text) %>
-    </div>  
-  <% end %>
+  <div id="about">
+    <h2><%= t('.about_header') %></h2>
+    <p>
+      <%= t('.about_text', 
+          :demo_link => link_to(t('.demo_link'), demo_path), 
+          :start_link => link_to(t('.start_link'), stories_path)).html_safe %>
+    </p>
+  </div>  
 
   <% if @news.present? %>
     <div id="news">
-      <h2><%= link_to t('.latest_news'), news_path %></h2>
+      <h2><%= t('.news_header') %></h2>
       <ul id="news_container">
         <% @news.each do |news| %>
           <li class="news_item">

@@ -25,6 +25,8 @@ class Story < ActiveRecord::Base
 	 
 	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
 
+  DEMO_ID = 2
+
 	amoeba do
 		enable
 		exclude_field :asset
@@ -46,6 +48,10 @@ class Story < ActiveRecord::Base
 		includes(sections: [:media,:content])
 		.where(stories: {id: story_id})
 		.first
+	end
+	
+	def self.demo
+	  fullsection(DEMO_ID)
 	end
 
 

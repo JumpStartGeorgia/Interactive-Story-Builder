@@ -4,8 +4,6 @@ class RootController < ApplicationController
 
     @stories = Story.is_published.order("published_at desc").limit(10)
 
-    @about_text = 'Story builder allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world.'
-
     @news = News.published.limit(2)
 
     respond_to do |format|
@@ -13,6 +11,19 @@ class RootController < ApplicationController
       format.json { render json: @stories }
     end
   end
+
+  def demo
+    @story = Story.demo
+
+  	if @story.present?
+      respond_to do |format|     
+        format.html { render 'storyteller/index', layout: false }
+      end
+    else
+      redirect_to root_path, :notice => t('app.msgs.does_not_exist')
+    end
+  end
+  
 
 
   def news
