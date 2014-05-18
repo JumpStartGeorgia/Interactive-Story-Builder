@@ -9,7 +9,8 @@
           <%= l news.published_at %>
         </div>
         <div class="news_content">
-          <%= simple_format_no_tags news.content %>
+          <%= truncate(strip_tags(news.content), :length => 200, :separator => ' ') %>
+          <%= link_to t('.more_link'), news_show_path(news), :class => 'more_link' %>
         </div>
       </div>
     <% end %>

@@ -35,6 +35,15 @@ class RootController < ApplicationController
     end
   end
   
+  def news_show
+    @news = News.find(params[:id])
+  
+    respond_to do |format|
+      format.html  #index.html.erb
+      format.json { render json: @news }
+    end
+  end
+  
   def feedback
     @message = Message.new
 

@@ -231,6 +231,10 @@ ka:
     news:
       title: Story Builder News
       no_news: No news is good news!
+      more_link: Continue
+    news_show:
+      title: "Story Builder News: %{title}"
+      view_all: View All News
     feedback:
       title: Story Builder Feedback
       message_sent: თქვენი შეტყობინება გაგზავნილია! მადლობა რომ დაგვიკავშირდით.

@@ -62,6 +62,7 @@ BootstrapStarter::Application.routes.draw do
 
 		match "demo" => "root#demo", as: 'demo'
 		match "news" => "root#news", as: 'news'
+		match "news/:id" => "root#news_show", as: 'news_show'
 		match 'feedback' => 'root#feedback', :as => 'feedback', :via => [:get, :post]
 		match 'todo_list' => 'root#todo_list', :as => 'todo_list'
 
