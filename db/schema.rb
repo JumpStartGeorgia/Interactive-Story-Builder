@@ -106,15 +106,26 @@ ActiveRecord::Schema.define(:version => 20140516094754) do
   add_index "media", ["section_id"], :name => "index_media_on_section_id"
 
   create_table "news", :force => true do |t|
-    t.string   "title"
-    t.text     "content"
     t.boolean  "is_published", :default => false
     t.date     "published_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "news", ["is_published", "published_at", "title"], :name => "index_news_on_is_published_and_published_at_and_title"
+  add_index "news", ["is_published", "published_at"], :name => "index_news_on_is_published_and_published_at"
+
+  create_table "news_translations", :force => true do |t|
+    t.integer  "news_id"
+    t.string   "locale"
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "news_translations", ["locale"], :name => "index_news_translations_on_locale"
+  add_index "news_translations", ["news_id"], :name => "index_news_translations_on_news_id"
+  add_index "news_translations", ["title"], :name => "index_news_translations_on_title"
 
   create_table "sections", :force => true do |t|
     t.integer  "story_id"

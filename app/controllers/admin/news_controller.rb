@@ -30,6 +30,11 @@ class Admin::NewsController < ApplicationController
   # GET /news/new.json
   def new
     @news = News.new
+    # create the translation object for however many locales there are
+    # so the form will properly create all of the nested form fields
+    I18n.available_locales.each do |locale|
+			@news.news_translations.build(:locale => locale.to_s)
+		end
 
     gon.news_form = true
     
@@ -51,6 +56,8 @@ class Admin::NewsController < ApplicationController
   def create
     @news = News.new(params[:news])
 
+    add_missing_translation_content(@news.news_translations)
+
     respond_to do |format|
       if @news.save
         format.html { redirect_to admin_news_path(@news), notice: t('app.msgs.success_created', :obj => t('activerecord.models.news')) }
@@ -69,8 +76,12 @@ class Admin::NewsController < ApplicationController
   def update
     @news = News.find(params[:id])
 
+    @news.assign_attributes(params[:news])
+
+    add_missing_translation_content(@news.news_translations)
+
     respond_to do |format|
-      if @news.update_attributes(params[:news])
+      if @news.save
         format.html { redirect_to admin_news_path(@news), notice: t('app.msgs.success_updated', :obj => t('activerecord.models.news')) }
         format.json { head :ok }
       else
