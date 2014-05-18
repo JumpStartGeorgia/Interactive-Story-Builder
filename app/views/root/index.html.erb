@@ -39,7 +39,7 @@
 </div>
 
 <div class="pins-wrapper">
-  <div class="pin-columns">
+  <div class="pin-columns clear">
     <% @stories.each do |story| %>
      <a href="<%=storyteller_show_path(story.permalink) %>">
       <div class="pin">  
@@ -56,5 +56,6 @@
       </div>
      </a> 
     <% end %>    
-    </div>
+  </div>
+  <%= page_navigation_links @stories %>
 </div>
