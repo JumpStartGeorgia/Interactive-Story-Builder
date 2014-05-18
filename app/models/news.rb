@@ -1,5 +1,5 @@
 class News < ActiveRecord::Base
-	translates :title, :content
+	translates :title, :content, :permalink
 	
 	has_many :news_translations, :dependent => :destroy
   accepts_nested_attributes_for :news_translations

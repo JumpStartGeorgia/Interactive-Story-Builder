@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140516094754) do
+ActiveRecord::Schema.define(:version => 20140518133437) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -121,10 +121,12 @@ ActiveRecord::Schema.define(:version => 20140516094754) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "permalink"
   end
 
   add_index "news_translations", ["locale"], :name => "index_news_translations_on_locale"
   add_index "news_translations", ["news_id"], :name => "index_news_translations_on_news_id"
+  add_index "news_translations", ["permalink"], :name => "index_news_translations_on_permalink"
   add_index "news_translations", ["title"], :name => "index_news_translations_on_title"
 
   create_table "sections", :force => true do |t|

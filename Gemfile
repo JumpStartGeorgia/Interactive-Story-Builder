@@ -40,6 +40,7 @@ gem "rails_autolink", "~> 1.0.9" # convert string to link if it is url
 gem "subexec", "~> 0.2.3"
 gem "impressionist", "1.4.1" # keep track of views
 gem "active_attr", "~> 0.5.1" # to create tabless models; using for contact form
+gem "unidecoder", "~> 1.1.2" #convert utf8 to ascii for permalinks
 
 # Gems used only for assets and not required
 # in production environments by default.

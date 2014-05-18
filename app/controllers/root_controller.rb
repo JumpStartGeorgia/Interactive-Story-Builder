@@ -36,12 +36,18 @@ class RootController < ApplicationController
   end
   
   def news_show
-    @news = News.find(params[:id])
+    @news = News.find_by_permalink(params[:id])
+
+		if @news.present?
+      respond_to do |format|
+        format.html  #index.html.erb
+        format.json { render json: @news }
+      end
+		else
+			flash[:info] =  t('app.msgs.does_not_exist')
+			redirect_to root_path(:locale => I18n.locale)
+		end
   
-    respond_to do |format|
-      format.html  #index.html.erb
-      format.json { render json: @news }
-    end
   end
   
   def feedback
