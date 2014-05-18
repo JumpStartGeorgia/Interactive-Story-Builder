@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140518133437) do
+ActiveRecord::Schema.define(:version => 20140518144246) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -173,8 +173,10 @@ ActiveRecord::Schema.define(:version => 20140518133437) do
     t.integer  "template_id",                :default => 1
     t.integer  "impressions_count",          :default => 0
     t.integer  "reviewer_key"
+    t.string   "permalink"
   end
 
+  add_index "stories", ["permalink"], :name => "index_stories_on_permalink"
   add_index "stories", ["published"], :name => "index_stories_on_published"
   add_index "stories", ["published_at"], :name => "index_stories_on_published_at"
   add_index "stories", ["reviewer_key"], :name => "index_stories_on_reviewer_key"

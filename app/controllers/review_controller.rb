@@ -5,7 +5,7 @@ class ReviewController < ApplicationController
 
   	if @story.present?
   	  if @story.published?
-        redirect_to storyteller_show_path(@story)  	  
+        redirect_to storyteller_show_path(@story.permalink)  	  
   	  else
         respond_to do |format|     
           format.html { render 'storyteller/index', layout: false }
