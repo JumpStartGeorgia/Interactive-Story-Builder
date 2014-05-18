@@ -102,6 +102,7 @@ ka:
       users: მომხმარებლები
       news: News
       feedback: Send Feedback
+      todo_list: To-Do List
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
@@ -237,6 +238,19 @@ ka:
       name: სახელი
       email: ელ.ფოსტის მისამართი
       message: შეტყობინება
+    todo_list:
+      title: "Story Builder's To-Do List"
+      summary: Story Builder is in its infancy and has much growing to do. Gathered here is a list of tasks that we are working on or plan to working on soon.
+      last_update: "Last Updated On"
+      header_current: Tasks Currently Working On
+      header_short_term: Short Term Tasks
+      header_long_term: Long Term Tasks
+      header_completed: Completed Tasks
+      completed_text: To view the completed tasks, please visit the %{link}.
+      news_link: News section
+      header_missing: Is Something Missing?
+      missing_text: Is there a feature missing from these lists that you would like added?  Do you feel that we should re-prioritize our list?  If so, please let us know by using the %{link}.
+      feedback_link: Feedback section
   stories:
     new:
       title: პარამეტრების ფორმა

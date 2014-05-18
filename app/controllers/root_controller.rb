@@ -55,6 +55,11 @@ class RootController < ApplicationController
     end
   end
 
+  def todo_list
+    respond_to do |format|
+      format.html 
+    end
+  end
   
 
 end

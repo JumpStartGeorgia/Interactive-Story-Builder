@@ -1,0 +1,107 @@
+<% title  t('.title').html_safe %>
+
+<div id="todo">
+  <p id="last_update">
+    <span>
+    <%= t('.last_update') %>:
+    </span>
+    2014-05-18
+  </p>
+
+  <p>
+    <%= t('.summary') %>
+  </p>
+  <p>
+    <%= t('.missing_text', :link => link_to(t('.feedback_link'), feedback_path)).html_safe %>
+  </p>
+
+  <h2>
+    <%= t('.header_current') %>
+  </h2>
+  <ul class="standard">
+    <li>
+      add new section type with ability to include online videos and audio (embed youtube, vimeo, soundcloud, etc)
+    </li>
+    <li>
+      indicate language story is in (first step in allowing multiple language stories)  
+    </li>
+    <li>
+      add social share links  
+    </li>
+  </ul>
+
+  <h2>
+    <%= t('.header_short_term') %>
+  </h2>
+  <ul class="standard">
+    <li>
+      create a more wizard like process for entering the content
+    </li>
+    <li>
+      add ability to drag and drop section for re-arranging
+    </li>
+    <li>
+      allow users to follow other users and receive notifications when new stories are published
+    </li>
+    <li>
+      add categories to stories
+    </li>
+    <li>
+      add search/filter/sort for published stories
+    </li>
+    <li>
+      each user has a page to show their published works
+    </li>
+    <li>
+      users can create organizations and have their own page to show their published works
+    </li>
+    <li>
+      add ability to create one story in multiple languages
+    </li>
+  </ul>
+
+  <h2>
+    <%= t('.header_long_term') %>
+  </h2>
+  <ul class="standard">
+    <li>
+      be able to embed published stories
+    </li>
+    <li>
+      store the media (audio, images, videos) on a content delivery network for faster page loading
+    </li>
+    <li>
+      have multiple themes to select from
+    </li>
+    <li>
+      be able to edit colors, fonts, etc
+    </li>
+    <li>
+      select from different transitions between sections
+    </li>
+    <li>
+      add new section type with ability to include interactive maps
+    </li>
+    <li>
+      add new section type with ability to include charts
+    </li>
+    <li>
+      add new section type with ability to include data tables
+    </li>
+  </ul>
+
+  <h2>
+    <%= t('.header_completed') %>
+  </h2>
+  <p>
+    <%= t('.completed_text', :link => link_to(t('.news_link'), news_path)).html_safe %>
+  </p>
+
+  <h2>
+    <%= t('.header_missing') %>
+  </h2>
+  <p>
+    <%= t('.missing_text', :link => link_to(t('.feedback_link'), feedback_path)).html_safe %>
+  </p>
+
+</div>
