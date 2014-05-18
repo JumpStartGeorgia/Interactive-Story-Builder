@@ -119,9 +119,9 @@ ActiveRecord::Schema.define(:version => 20140518144246) do
     t.string   "locale"
     t.string   "title"
     t.text     "content"
+    t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "permalink"
   end
 
   add_index "news_translations", ["locale"], :name => "index_news_translations_on_locale"

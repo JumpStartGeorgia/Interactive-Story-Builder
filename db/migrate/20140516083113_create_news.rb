@@ -7,10 +7,11 @@ class CreateNews < ActiveRecord::Migration
       t.timestamps
     end
     
-    News.create_translation_table! :title => :string, :content => :text
+    News.create_translation_table! :title => :string, :content => :text, :permalink => :string
     
     add_index :news, [:is_published, :published_at]
     add_index :news_translations, :title
+    add_index :news_translations, :permalink
 
   end
   
