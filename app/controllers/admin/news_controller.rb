@@ -57,6 +57,12 @@ class Admin::NewsController < ApplicationController
     @news = News.new(params[:news])
 
     add_missing_translation_content(@news.news_translations)
+    
+    # add published fields to translations so can create permalink
+    @news.news_translations.each do |trans|
+      trans.is_published = @news.is_published
+      trans.published_at = @news.published_at
+    end
 
     respond_to do |format|
       if @news.save
@@ -79,6 +85,13 @@ class Admin::NewsController < ApplicationController
     @news.assign_attributes(params[:news])
 
     add_missing_translation_content(@news.news_translations)
+
+    # add published fields to translations so can create permalink
+    @news.news_translations.each do |trans|
+      trans.is_published = @news.is_published
+      trans.published_at = @news.published_at
+    end
+
 
     respond_to do |format|
       if @news.save
