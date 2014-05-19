@@ -208,7 +208,7 @@
       margin: auto 8%;
     }
 
-    .ios .section {
+    .ios .section.column {
       margin-top: 50px;
     }
 
@@ -395,7 +395,7 @@
     text-shadow: none;
     left: inherit;
     text-align: center;
-    width: 50%;
+    /*width: 50%;*/
     margin: 0 25%;
     line-height: 12px;
     /*border-bottom: solid 2px black;  */
@@ -467,7 +467,7 @@
 
     /* SECTION + SEQUENCES */
 
-    .ios .section {
+    .ios .section.column {
       margin-top: 20px;
     }
 
@@ -767,7 +767,7 @@
     }
 
     .ios .video-sequence {
-      padding-top: 30px;
+ /*     padding-top: 30px;*/
     }
 
     /* VIDEO SLIDE */
@@ -1297,7 +1297,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0;
+  /*opacity: 0;*/
 }
 
 .slideshow-title
@@ -1497,7 +1497,7 @@
     background-color:transparent;
     border-color: #252525;  
     /*padding-top: 13px;*/
-    font-size: 10pt;
+    font-size: 10px;
     /*color: #999999;*/
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 
@@ -1590,6 +1590,29 @@ font-size:13px;}
   .footer-section {
     color: #999999;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    bottom:0px;
+  }
+  .ios .footer-section
+  {
+    position:relative;
+    background-color:#000;
+    height:82px;
+  }
+  .ios .footer-section #right
+  {
+    clear:both;
+    float:left;
+    text-align: left;
+    padding-left: 30px;
+
+  }
+  .ios .footer-section #right .fb-like
+  {
+
+    top: -30px;
+position: relative;
+left: 129px;
+}
   }
   .column-caption
   {
@@ -1833,7 +1856,7 @@ color: #FFFFFF;
     }
     .video-caption--head .video-headline 
     {
-      line-height:5px;
+      /*line-height:5px;*/
     }
     .last-section .pigy
     {
