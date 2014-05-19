@@ -145,6 +145,7 @@
                         <% end %>                    
                       </div>
                       <% if m.caption.present? %>
+                      <% caption_class = alignment.key(m.caption_align) %>
                        <% if m.caption.length < 160 %>
                             <% caption_class = alignment.key(m.caption_align) %>
                         <% else %>
@@ -225,7 +226,20 @@
 
       </div>
     </div>  
-
+          <div class="section footer-section">
+           <div id="left">
+                                     
+            <div><a class="about-link">პროექტის შესახებ</a></div>
+            <div class="separator"></div>
+            <div><a href="http://www.jumpstart.ge" target="_blank" title="<%= t("layouts.application.js_link_title") %>" ><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/logo.png"%>' class="footer-logo"/></a>                            </div>
+         
+           </div>     
+            <div id="right"> 
+                <a href="http://www.chca.org.ge/itst/?&lang=eng"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/twitter.png"%>'/></a>
+                <a href="http://www.chca.org.ge/itst/?&lang=eng"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>'/></a>                                       
+                <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>  
+            </div>
+        </div> 
            <div id="about_box" >
           <p class='about_text'>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
         </div>  
