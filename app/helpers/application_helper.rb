@@ -28,6 +28,11 @@ module ApplicationHelper
     "#{request.protocol}#{request.host_with_port}#{request.fullpath}"
   end
   
+	def full_url(path)
+		"#{request.protocol}#{request.host_with_port}#{path}"
+	end
+  
+  
  def link_to_remove_fields(name, f)
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)", :class=>"btn btn-small btn-danger")
   end

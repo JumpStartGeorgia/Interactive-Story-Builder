@@ -9,6 +9,25 @@
     <%= csrf_meta_tags %>
 	  <%= include_gon %>
 
+
+
+		  <meta property="og:title" content="<%= content_for?(:title) ? ("#{yield(:title)} | #{t('app.common.app_name')}").html_safe :
+				  t('app.common.app_name').html_safe %>" />
+		  <% if false %>
+        <meta name="description" content="">
+    		<meta property="og:description" content="" />
+      <% end %>
+		  <meta property="og:type" content="non_profit" />
+		  <meta property="og:url" content="<%= current_url %>" />
+		  <% if @story && @story.id && @story.asset_exists? %>
+			  <meta property="og:image" content="<%= full_url(@story.asset.asset.url(:"250x250", false)) %>" />
+      <% else %>
+			  <!--meta property="og:image" content="" /-->
+		  <% end %>
+		  <meta property="og:site_name" content="<%= t('app.common.app_name') %>" />
+		  <meta property="fb:app_id" content="<%= ENV['STORY_BUILDER_FACEBOOK_APP_ID'] %>" />
+
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
