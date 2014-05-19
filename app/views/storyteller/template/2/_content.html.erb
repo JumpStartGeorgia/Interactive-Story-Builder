@@ -269,7 +269,7 @@
         
                     output<< item
                   end
-                elsif s.slideshow? && s.slideshow.assets.present?
+                elsif s.slideshow? && s.slideshow.present? && s.slideshow.assets.present?
                   subLength = s.slideshow.assets.length   
                   s.slideshow.assets.each_with_index do |t,t_i| 
                     item = {}
