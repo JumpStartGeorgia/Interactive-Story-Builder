@@ -22,7 +22,7 @@ class Message
 
   def get_type_name
     if self.message_type
-      index = TYPE.values.index(self.message_type)
+      index = TYPE.values.index{|x| x.to_s == self.message_type.to_s}
       if index.present?
         I18n.t("message_types.#{TYPE.keys[index]}")
       end
