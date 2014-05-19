@@ -101,7 +101,7 @@ ka:
       add_story: ამბის დამატება
       users: მომხმარებლები
       news: News
-      feedback: Send Feedback
+      feedback: Feedback
       todo_list: To-Do List
     titles:
       new: "ახალი %{model}"
@@ -180,9 +180,9 @@ ka:
       name: ფოტო სლაიდშოუ
       description: ფოტოები ჰორიზონტალურ სლაიდშოუში
   message_types:
-    bug: Reprt a Bug
+    bug: Report a Bug
     feature: Request a Feature
-    feedback: Give us Feedback
+    feedback: General Feedback
   layouts:
     application:
       admin: ადმინისტრატო

@@ -101,7 +101,7 @@ en:
       add_story: Add Story
       users: Users
       news: News
-      feedback: Send Feedback
+      feedback: Feedback
       todo_list: To-Do List
     titles:
       new: "New %{model}"
@@ -180,9 +180,9 @@ en:
       name: Image Slideshow
       description: Images in a horizontal slideshow
   message_types:
-    bug: Reprt a Bug
+    bug: Report a Bug
     feature: Request a Feature
-    feedback: Give us Feedback
+    feedback: General Feedback
   layouts:
     application:
       admin: Admin
