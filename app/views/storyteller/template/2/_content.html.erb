@@ -410,7 +410,7 @@
             if (image.slide) {
               if(image.type == "media")
               {
-                container = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-container")
+                container = d3.select(".article .section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-container")
 
                 if (image.type != "map" && image.type != "hide") {
 
@@ -428,23 +428,23 @@
                   if (image.type == "map") css = "caption-" + image.file.replace("#","");
                   else css = "caption-" + image.file.match(/\/([\w-]+)/)[1];
 
-                    d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
+                    d3.select(".article .section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
                       .classed(css, true)
 
                 }
 
 
-                var slide = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ")");
+                var slide = d3.select(".article .section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ")");
               }
               else if( image.type == "slideshow")
               {
-                container = d3.select(".section:nth-child(" + image.section + ") .slideshow-wrapper");
+                container = d3.select(".article .section:nth-child(" + image.section + ") .slideshow-wrapper");
                 if(container.select(".slideshow-images").empty())
                 {
                     var temp = container.append("div").attr("class","slideshow-container");
                     temp.append("div").attr("class", "slideshow-images");
                 }
-                var tempImages =  d3.select(".section:nth-child(" + image.section + ") .slideshow-wrapper .slideshow-container .slideshow-images");
+                var tempImages =  d3.select(".article .section:nth-child(" + image.section + ") .slideshow-wrapper .slideshow-container .slideshow-images");
                 caption = container.select(".slideshow-captions .slideshow-caption:nth-of-type(" + image.slide + ")");             
                 tempImages.append("img").attr("src", image.url).attr("class","slideshow-image");
               }
@@ -452,7 +452,7 @@
         
 
         /* aligning by options */
-            if (image.align) d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
+            if (image.align) d3.select(".article .section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
               .classed(image.align.split(" ").map(function(dir) {
                     return "align-" + dir
                   }).join(" "), true)
@@ -465,7 +465,7 @@
             /* if phone and map then replace tag */
             if (image.target == "map") {
 
-              container = d3.select(".section:nth-child(" + image.section + ") .map")
+              container = d3.select(".article .section:nth-child(" + image.section + ") .map")
 
               var source = d3.select(".map-source").html();
 
@@ -485,15 +485,15 @@
 
         /* add custom caption if specified */
             if (image.mobileCaption) {
-              d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption").html(image.mobileCaption);
+              d3.select(".article .section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption").html(image.mobileCaption);
             }
 
 
             /* add src to image tag and if has diptych use it */
-            if (image.type == "image") d3.select(".section:nth-child(" + image.section + ") .image:nth-child(" + image.slide + ") img")
+            if (image.type == "image") d3.select(".article .section:nth-child(" + image.section + ") .image:nth-child(" + image.slide + ") img")
                 .attr("src", function(d) { return image.url; })
 
-            if (image.type == "diptych") d3.select(".section:nth-child(" + image.section + ") .image:nth-child(" + image.slide + ") img:nth-child(" + image.image + ")")
+            if (image.type == "diptych") d3.select(".article .section:nth-child(" + image.section + ") .image:nth-child(" + image.slide + ") img:nth-child(" + image.image + ")")
                 .attr("src", function(d) { return image.url; })
 
           })
@@ -553,7 +553,7 @@
 
 
               // added for donation pig
-          var secTemp = d3.selectAll(".section");          
+          var secTemp = d3.selectAll(".article .section");          
           var temp = d3.select( secTemp[0][secTemp[0].length-2]).selectAll(".video-container");          
           var lengthTemp = temp[0].length -1 ; 
           if(lengthTemp >= 0)
