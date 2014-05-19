@@ -144,8 +144,9 @@
                            <div class="video-source"><%= m.source %></div>                       
                         <% end %>                    
                       </div>
-                      <% if m.caption.present? %>
                       <% caption_class = alignment.key(m.caption_align) %>
+                      <% if m.caption.present? %>
+
                        <% if m.caption.length < 160 %>
                             <% caption_class = alignment.key(m.caption_align) %>
                         <% else %>
