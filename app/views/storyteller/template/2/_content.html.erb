@@ -143,18 +143,21 @@
                         <% if m.source.present? %>
                            <div class="video-source"><%= m.source %></div>                       
                         <% end %>                    
-                      </div>                   
+                      </div>    
+                      <% caption_class = alignment.key(m.caption_align) %>               
                       <% if m.caption.present? %>
-
                         <% if m.caption.length < 160 %>
                             <% caption_class = alignment.key(m.caption_align) %>
                         <% else %>
                          <% caption_class = 'long' %>
                         <% end %>                   
-
+                      <% end %>
                         <% if s_i == 0 && m_i == 0 %>
                           <% caption_class = 'head' %>              
                         <% end %> 
+                    
+
+                        
 
                         <div class="video-caption video-caption--<%= caption_class %>">
                           <% if caption_class == 'head'  %>                      
@@ -185,8 +188,7 @@
                           <% else %>
                             <%= m.caption  %>
                           <% end %>  
-                        </div>   
-                       <% end %>
+                        </div>                      
                   </div>   
                 <% end %> 
               </div>

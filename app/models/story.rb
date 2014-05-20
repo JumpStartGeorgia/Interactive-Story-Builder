@@ -1,6 +1,10 @@
 class Story < ActiveRecord::Base	
+	require 'utf8_converter'
+
   # record public views
   is_impressionable :counter_cache => true 
+  # create permalink to story
+  has_permalink :create_permalink
 	
 	scope :is_published, where(:published => true)
 
@@ -17,13 +21,19 @@ class Story < ActiveRecord::Base
 	validates :author, :presence => true, length: { maximum: 255 }
 	validates :template, :presence => true
 	validates :media_author, length: { maximum: 255 }
-	attr_accessor :was_publishing
+	attr_accessor :was_publishing, :title_was
+
+  # if the title changes, make sure the permalink is updated
+ 	after_find :set_title
+  before_save :check_title
 
  	after_find :publishing_done?
 	before_save :publish_date
 	before_save :generate_reviewer_key
 	 
 	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
+
+  DEMO_ID = 2
 
 	amoeba do
 		enable
@@ -47,6 +57,10 @@ class Story < ActiveRecord::Base
 		.where(stories: {id: story_id})
 		.first
 	end
+	
+	def self.demo
+	  fullsection(DEMO_ID)
+	end
 
 
 	def publishing_done?
@@ -56,10 +70,27 @@ class Story < ActiveRecord::Base
 
   # if the story is being published, record the date
 	def publish_date		
-	  if  self.was_publishing != self.published && self.published?
-  	  	self.published_at = Time.now
-  	  end     
-  	end
+	  if self.was_publishing != self.published && self.published?
+	  	self.published_at = Time.now
+	  end     
+	end
+
+  def set_title
+		self.title_was = self.has_attribute?(:title) ? self.title : nil		
+  end
+  
+  def check_title
+    self.generate_permalink! if self.title != self.title_was
+  end 
+  
+  def create_permalink
+    date = ''
+    if self.published_at.present? && self.published?
+      date << self.published_at.to_date.to_s
+      date << '-'
+      "#{date}#{Utf8Converter.convert_ka_to_en(self.title.clone.to_ascii.gsub(/[^0-9A-Za-z|_\- ]/,''))}"
+    end
+  end
 
 	def asset_exists?
 		self.asset.present? && self.asset.asset.exists?

@@ -8,6 +8,8 @@ en:
       medium: Medium
       content: Content
       slideshow: Slideshow
+      news: News
+      message: Message
     attributes:
       user:
         email: Email Address
@@ -48,10 +50,26 @@ en:
       slideshow:
         title: Title
         caption: Heading
+      news:
+        title: Title
+        content: Content
+        is_published: Publish?
+        published_at: Date Published
+      message:
+        name: Name
+        email: Email Address
+        message: Message
+        message_type: Feedback Type
     errors:
       messages:
         required_field: "is a required field."
         already_exists: 'already exists in the database.'              
+  mailer:
+    closing: "Sincerely,"
+    signature: JumpStart Georgia
+    contact:
+      contact_form:
+        subject: "Story Builder Contact Form"
   helpers:
     actions: Actions
     links:
@@ -81,10 +99,14 @@ en:
       sign_out: Sign Out
       sign_in_provider: "Sign in with %{provider}"
       add_story: Add Story
+      users: Users
+      news: News
+      feedback: Feedback
+      todo_list: To-Do List
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
-      story_list: View Your Stories
+      story_list: Your Stories
   app:
     language:
       en: English
@@ -157,6 +179,10 @@ en:
     slideshow:
       name: Image Slideshow
       description: Images in a horizontal slideshow
+  message_types:
+    bug: Report a Bug
+    feature: Request a Feature
+    feedback: General Feedback
   layouts:
     application:
       admin: Admin
@@ -196,6 +222,39 @@ en:
   root:
     index:
       title: Story Builder - build and share the next generation story
+      about_header: What is it?
+      about_text: Story Builder allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world.  %{demo_link} to see what is possible then %{start_link}!
+      demo_link: View the demo
+      start_link: build and share your stories
+      news_header: Latest News
+      all_news: more...
+    news:
+      title: Story Builder News
+      no_news: No news is good news!
+      more_link: Continue
+    news_show:
+      title: "Story Builder News: %{title}"
+      view_all: View All News
+    feedback:
+      title: Story Builder Feedback
+      message_sent: Your message has been sent! Thank you for contacting us.
+      send: Send
+      name: Name
+      email: Email Address
+      message: Message
+    todo_list:
+      title: "Story Builder's To-Do List"
+      summary: Story Builder is in its infancy and has much growing to do. Gathered here is a list of tasks that we are working on or plan to working on soon.
+      last_update: "Last Updated On"
+      header_current: Tasks Currently Working On
+      header_short_term: Short Term Tasks
+      header_long_term: Long Term Tasks
+      header_completed: Completed Tasks
+      completed_text: To view the completed tasks, please visit the %{link}.
+      news_link: News section
+      header_missing: Is Something Missing?
+      missing_text: Is there a feature missing from these lists that you would like added?  Do you feel that we should re-prioritize our list?  If so, please let us know by using the %{link}.
+      feedback_link: Feedback section
   stories:
     new:
       title: Story Settings Form

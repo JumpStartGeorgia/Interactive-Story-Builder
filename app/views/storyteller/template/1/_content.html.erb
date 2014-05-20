@@ -210,7 +210,19 @@
 
         <div class="section footer-section">
            <div id="left">&copy; <%= Time.now.year %></div>
-              <div id="middle">&nbsp;</div>
+          	<div id="middle">
+              <ul>
+                <li>
+                  <%= link_to t('helpers.links.news'), news_path %>
+                </li>
+                <li>
+                  <%= link_to t('helpers.links.todo_list'), todo_list_path %> 
+                </li>
+                <li>
+                  <%= link_to t('helpers.links.feedback'), feedback_path %> 
+                </li>
+              </ul>
+          	</div>
             <div id="right">
                 <% if !@export %>                           
                     <%= link_to(image_tag("jumpstart-logo.png"), "http://www.jumpstart.ge", :target => "_blank",

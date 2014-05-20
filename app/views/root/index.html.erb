@@ -4,16 +4,44 @@
    <h1 style="margin:36px 36px;background-color: #F8E869;padding: 36px;line-height: 28px;">You are accessing a test site. Please go to <a href="http://storybuilder.jumpstart.ge/en" style="text-decoration:underline;">http://storybuilder.jumpstart.ge/en</a> to use the official site. </h1>
 <% end %>
 
-<% if @about_text %>
+<div id="an_container" class="clear">
   <div id="about">
-    <%= simple_format(@about_text) %>
+    <h2><%= t('.about_header') %></h2>
+    <p>
+      <%= t('.about_text', 
+          :demo_link => link_to(t('.demo_link'), demo_path), 
+          :start_link => link_to(t('.start_link'), stories_path)).html_safe %>
+    </p>
   </div>  
-<% end %>
+
+  <% if @news.present? %>
+    <div id="news">
+      <h2><%= t('.news_header') %></h2>
+      <ul id="news_container">
+        <% @news.each do |news| %>
+          <li class="news_item">
+            <%= link_to news_show_path(news.permalink) do %>
+              <span class="news_date">
+                <%= l news.published_at %>
+              </span>
+              <span class="new_title">
+                <%= news.title %>
+              </span>
+            <% end %>
+          </li>
+        <% end %>
+        <li>
+          <%= link_to t('.all_news'), news_path %>
+        </li>
+      </ul>  
+    </div>
+  <% end %>
+</div>
 
 <div class="pins-wrapper">
-<div class="pin-columns">
+  <div class="pin-columns clear">
     <% @stories.each do |story| %>
-     <a href="<%=storyteller_show_path(story) %>">
+     <a href="<%=storyteller_show_path(story.permalink) %>">
       <div class="pin">  
      
         <div class="img">
@@ -28,5 +56,6 @@
       </div>
      </a> 
     <% end %>    
-    </div>
+  </div>
+  <%= page_navigation_links @stories %>
 </div>

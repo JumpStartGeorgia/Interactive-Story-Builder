@@ -1,0 +1,13 @@
+<%- model_class = Message -%>
+
+<%= model_class.human_attribute_name(:type) %>:
+<%= @message.get_type_name %>
+
+<%= model_class.human_attribute_name(:name) %>:
+<%= @message.name %>
+
+<%= model_class.human_attribute_name(:email) %>:
+<%= @message.email %>
+
+<%= model_class.human_attribute_name(:message) %>:
+<%= @message.message %>

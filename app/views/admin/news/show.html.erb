@@ -1,0 +1,33 @@
+<%- model_class = News -%>
+<% title t '.title', :default => model_class.model_name.human %>
+
+<div class="form-actions">
+  <%= link_to t('helpers.links.list'),
+              admin_news_index_path, :class => 'btn'  %>
+  <%= link_to t('helpers.links.edit'),
+              edit_admin_news_path(@news), :class => 'btn' %>
+  <%= link_to t('helpers.links.delete'),
+              admin_news_path(@news),
+              :method => :delete,
+							:data => { :confirm => t('.confirm', :default => t("helpers.links.confirm")) },
+              :class => 'btn btn-danger' %>
+	<%= link_to t('helpers.links.admin'), admin_path,
+  :class => 'btn' %>
+</div>
+
+<div id="news_items">
+  <div class="news_item">
+    <h2><%= @news.title %></h2>
+    <div class="news_date">
+      <strong><%= model_class.human_attribute_name(:is_published) %>:</strong>
+      <%= @news.is_published %>
+
+      <strong><%= model_class.human_attribute_name(:published_at) %>:</strong>
+      <%= l @news.published_at if @news.published_at.present? %>
+    </div>
+    <div class="news_content">
+      <%= simple_format_no_tags @news.content %>
+    </div>
+  </div>
+</div>
+
