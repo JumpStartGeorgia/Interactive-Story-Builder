@@ -8,6 +8,8 @@ ka:
       medium: მედია
       content: სტატია
       slideshow: ფოტო სლაიდშოუ
+      news: News
+      message: შეტყობინება
     attributes:
       user:
         email: ელ.ფოსტა
@@ -48,10 +50,26 @@ ka:
       slideshow:
         title: დასახელება
         caption: სათაური
+      news:
+        title: სათაური
+        content: შინაარში
+        is_published: გამოვაქვეყნოთ?
+        published_at: გამოქვეყნების თარიღი
+      message:
+        name: სახელი
+        email: ელ.ფოსტის მისამართი
+        message: შეტყობინება
+        message_type: უკუკავშირის ტიპი
     errors:
       messages:
         required_field: "სავალდებულოა"
         already_exists: 'უკვე არსებობს მონაცემთა ბაზაში'
+  mailer:
+    closing: "პატივისცემით,"
+    signature: JumpStart Georgia
+    contact:
+      contact_form:
+        subject: "Story Builder Contact Form"
   helpers:
     actions: აირჩიეთ
     links:
@@ -81,6 +99,10 @@ ka:
       sign_out: გასვლა
       sign_in_provider: "სისტემაში შესვლა %{provider}"
       add_story: ამბის დამატება
+      users: მომხმარებლები
+      news: სიახლეები
+      feedback: უკუკავშირი
+      todo_list: To-Do List
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
@@ -157,6 +179,10 @@ ka:
     slideshow:
       name: ფოტო სლაიდშოუ
       description: ფოტოები ჰორიზონტალურ სლაიდშოუში
+  message_types:
+    bug: დაარეპორტე შეცდომა
+    feature: მოითხოვეთ ახალი ფუნქციის დამატება
+    feedback: გაგვიზიარეთ თქვენი აზრი
   layouts:
     application:
       admin: ადმინისტრატო
@@ -196,6 +222,39 @@ ka:
   root:
     index:
       title: Story Builder - შექმენი მომავალი თაობის ამბები
+      about_header: რა არის ეს?
+      about_text: Story Builder-ი საშუალებას აძლევს ნებისმიერს ადამიანს ვისაც გააჩნია ტექსტი, სურათები და/ან ვიდეო შექმნას საინტერესო ამბავი, რომელის გამოქვეყნება და გაზიარება მას მთესლ მსოფლიოსთან შეეძლება. %{demo_link} გაიგეთ, თუ რა არის შესაძლებელი, შემდგომ კი %{start_link}!
+      demo_link: იხილეთ სატესტო ვერსია
+      start_link: შექმენით და გააზიარეთ თქვენი ამბავი
+      news_header: უახლესი ამბები
+      all_news: მეტი...
+    news:
+      title: სიახლეები Story Builder-ის შესახებ
+      no_news: არანაირი ახალი ამბავიც კარგი ამბავია!
+      more_link: გაგრძელება
+    news_show:
+      title: "სიახლეები Story Builder-ის შესახებ: %{title}"
+      view_all: ყველა სიახლის ნახვა
+    feedback:
+      title: Story Builder-ის უკუკავშირი
+      message_sent: თქვენი შეტყობინება გაგზავნილია! მადლობა რომ დაგვიკავშირდით.
+      send: გაგზავნა
+      name: სახელი
+      email: ელ.ფოსტის მისამართი
+      message: შეტყობინება
+    todo_list:
+      title: "Story Builder-ის To-Do List-ი"
+      summary: Story Builder-ი ჩამოყალიბების სტადიაში და უამრავ ცვლილებას განიცდის. აქ თავმოყრილია იმ ფუნქციების ჩამონათვალი, რომელზეც ჩვენ ამჟამად ვმუშაობთ, ან ვაპირებთ, რომ ვიმუშაოთ.
+      last_update: "ბოლოს განახლებულ იქნა"
+      header_current: დავალებები, რომელზეც ამჟამად მუშაობთ
+      header_short_term: მოკლევადიანი დავალებები
+      header_long_term: გრძელვადიანი დავალებები
+      header_completed: დასრულებული დავალებები
+      completed_text: დასრულებული დავალებების სანახავად ეწვიეთ %{link}.
+      news_link: ახალი სექცია
+      header_missing: რამე ხომ არ აკლია?
+      missing_text: ჩამონათვალს ხომ არ აკლია ფუნქცია, რომლის დამატებასაც ისურვებდით? ხომ არ ფიქრობთ, რომ ჩამონათვალის სია უნდა გადავაწყოთ? თუ კი, გთხოვთ მოგვაწოდეთ ინფორმაცია  %{link}-ის გამოყენებით.
+      feedback_link: უკუკავშირის სექცია
   stories:
     new:
       title: პარამეტრების ფორმა

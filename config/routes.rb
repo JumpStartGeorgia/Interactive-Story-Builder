@@ -1,6 +1,7 @@
 BootstrapStarter::Application.routes.draw do
   
 
+
 	#--------------------------------
 	# all resources should be within the scope block below
 	#--------------------------------
@@ -13,6 +14,7 @@ BootstrapStarter::Application.routes.draw do
 
 		namespace :admin do
 			resources :users
+      resources :news
 		end
 		#get 'tinymce_assets' ,to: 'tinymceassets#index'
 		post '/tinymce_assets', to: 'imageuploader#create', as: 'imageuploader'
@@ -57,6 +59,12 @@ BootstrapStarter::Application.routes.draw do
 		match "storyteller/:id" => "storyteller#index", as: 'storyteller_show'
 
 		match "review/:id" => "review#index", as: 'review'
+
+		match "demo" => "root#demo", as: 'demo'
+		match "news" => "root#news", as: 'news'
+		match "news/:id" => "root#news_show", as: 'news_show'
+		match 'feedback' => 'root#feedback', :as => 'feedback', :via => [:get, :post]
+		match 'todo_list' => 'root#todo_list', :as => 'todo_list'
 
 		root :to => 'root#index'
 	  match "*path", :to => redirect("/#{I18n.default_locale}") # handles /en/fake/path/whatever

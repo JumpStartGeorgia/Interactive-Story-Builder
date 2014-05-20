@@ -97,6 +97,33 @@ logger.debug "////////////////////////// BROWSER = #{user_agent}"
 	end
 
 
+  # add in required content for translations if none provided
+  # - if default locale does not have translations, use first trans that does as default
+  def add_missing_translation_content(ary_trans)
+    if ary_trans.present?
+      default_trans = ary_trans.select{|x| x.locale == I18n.default_locale.to_s}.first
+  
+      if default_trans.blank? || !default_trans.required_data_provided?
+        # default locale does not have data so get first trans that does have data
+        ary_trans.each do |trans|
+          if trans.required_data_provided?
+            default_trans = trans
+            break
+          end
+        end
+      end
+
+      if default_trans.present? && default_trans.required_data_provided?
+        ary_trans.each do |trans|
+          if trans.locale != default_trans.locale && !trans.required_data_provided?
+            # add required content from default locale trans
+            trans.add_required_data(default_trans)
+          end
+        end
+      end
+    end
+  end
+
   #######################
 	def render_not_found(exception)
 		ExceptionNotifier::Notifier

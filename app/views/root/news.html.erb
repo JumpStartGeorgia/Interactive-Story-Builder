@@ -1,0 +1,23 @@
+<% title  t('.title') %>
+
+<% if @news.present? %>
+  <div id="news_items">
+    <% @news.each do |news| %>
+      <div class="news_item">
+        <h2 id="<%= news.id %>"><%= link_to news.title, news_show_path(news.permalink) %></h2>
+        <div class="news_date">
+          <%= l news.published_at %>
+        </div>
+        <div class="news_content">
+          <%= truncate(strip_tags(news.content), :length => 200, :separator => ' ') %>
+          <%= link_to t('.more_link'), news_show_path(news.permalink), :class => 'more_link' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>
+    <%= t('.no_news') %>
+  </p>
+
+<% end %>

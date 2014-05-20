@@ -22,7 +22,7 @@ gem "formtastic-bootstrap", :git => "https://github.com/cgunther/formtastic-boot
 gem "globalize3", "~> 0.2.0" # internationalization
 gem "psych", "~> 1.2.2" # yaml parser - default psych in rails has issues
 gem "will_paginate", "~> 3.0.3" # add paging to long lists
-#gem "kaminari", "~> 0.14.1" # paging
+#gem "kaminari", "~> 0.15.1" # paging
 gem "gon", "~> 2.2.2" # push data into js
 gem "dynamic_form", "~> 1.1.4" # to see form error messages
 gem "i18n-js", "~> 2.1.2" # to show translations in javascript
@@ -39,6 +39,8 @@ gem "rails_autolink", "~> 1.0.9" # convert string to link if it is url
 #gem "paper_trail", "~> 2.6.3" # keep audit log of all transactions
 gem "subexec", "~> 0.2.3"
 gem "impressionist", "1.4.1" # keep track of views
+gem "active_attr", "~> 0.5.1" # to create tabless models; using for contact form
+gem "unidecoder", "~> 1.1.2" #convert utf8 to ascii for permalinks
 
 # Gems used only for assets and not required
 # in production environments by default.

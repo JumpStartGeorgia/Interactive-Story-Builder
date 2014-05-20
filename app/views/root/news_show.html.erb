@@ -1,0 +1,16 @@
+<% title  t('.title', :title => @news.title) %>
+
+<div id="news_items">
+  <div class="news_item">
+    <div class="news_date">
+      <%= l @news.published_at %>
+    </div>
+    <div class="news_content">
+      <%= simple_format_no_tags @news.content %>
+    </div>
+  </div>
+</div>
+
+<div id="news_link">
+  <%= link_to t('.view_all'), news_path, :class => 'btn btn-mini' %>
+</div>

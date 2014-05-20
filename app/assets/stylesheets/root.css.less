@@ -1,8 +1,44 @@
-#about
-{
-	border: 1px solid #eee;
-	text-align: center;
+#an_container{
+  a{
+    text-decoration: underline;
+  }
+  #about
+  {
+    width: 48%;
+    float: left;
+    border-right: 1px solid #eee;
+    padding-right: 10px;
+    
+  }
+
+  #news{
+    width: 48%;
+    float: right;
+    padding-left: 10px;
+    h2{
+    }
+    #news_container{
+      li{
+        margin-left: 15px;
+        a{
+          .news_date{
+            color: #999;
+          }
+          .news_title{
+          
+          }
+          &:hover{
+            color: #348be8;
+            .news_date{
+              color: #348be8;
+            }
+          }
+        }
+      }
+    }
+  }
 }
+
 .pins-wrapper 
 {
 	width: 100%;  
@@ -82,4 +118,8 @@
 	overflow:hidden !important;
 	text-overflow: ellipsis;
 	text-decoration: none;
+}
+
+.pagination{
+  text-align: center;
 }
