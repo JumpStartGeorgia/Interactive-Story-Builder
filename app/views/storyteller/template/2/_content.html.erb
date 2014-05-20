@@ -143,21 +143,21 @@
                         <% if m.source.present? %>
                            <div class="video-source"><%= m.source %></div>                       
                         <% end %>                    
-                      </div>                   
+                      </div>    
+                      <% caption_class = alignment.key(m.caption_align) %>               
                       <% if m.caption.present? %>
-
                         <% if m.caption.length < 160 %>
                             <% caption_class = alignment.key(m.caption_align) %>
                         <% else %>
                          <% caption_class = 'long' %>
                         <% end %>                   
-
+                      <% end %>
                         <% if s_i == 0 && m_i == 0 %>
                           <% caption_class = 'head' %>              
                         <% end %> 
-
-                        <div class="video-caption video-caption--<%= caption_class %>">
+                      
                           <% if caption_class == 'head'  %>                      
+                            <div class="video-caption video-caption--<%= caption_class %>">
                                 <div class="video-headline headline"> 
                                 <%  words = @story.title.split(' ') %>
                                 <span class="headline-line1"><%=  words[0] %></span><br/><span class="headline-line2"><%=  words[1..words.length-1].join(' ') %></span></div>
@@ -181,12 +181,16 @@
                                  <a href="http://www.chca.org.ge/itst/?&lang=eng"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/twitter.png"%>'/></a>
                                  <a href="http://www.chca.org.ge/itst/?&lang=eng"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>'/></a>
                                   <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>  
-                                </div>                   
+                                </div>   
+                              </div>                 
                           <% else %>
-                            <%= m.caption  %>
+                            <% if m.caption.present? %>
+                              <div class="video-caption video-caption--<%= caption_class %>">
+                                <%= m.caption  %>
+                              </div>
+                            <% end %>       
                           <% end %>  
-                        </div>   
-                       <% end %>
+                                             
                   </div>   
                 <% end %> 
               </div>
@@ -554,7 +558,7 @@
 
               // added for donation pig
           var secTemp = d3.selectAll(".article .section");          
-          var temp = d3.select( secTemp[0][secTemp[0].length-2]).selectAll(".video-container");          
+          var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
           var lengthTemp = temp[0].length -1 ; 
           if(lengthTemp >= 0)
           {              

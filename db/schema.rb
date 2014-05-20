@@ -43,17 +43,6 @@ ActiveRecord::Schema.define(:version => 20140518144246) do
 
   add_index "contents", ["section_id"], :name => "index_contents_on_section_id"
 
-  create_table "embed_media", :force => true do |t|
-    t.integer  "section_id"
-    t.string   "title"
-    t.string   "url"
-    t.text     "code"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "embed_media", ["section_id"], :name => "index_embed_media_on_section_id"
-
   create_table "impressions", :force => true do |t|
     t.string   "impressionable_type"
     t.integer  "impressionable_id"
