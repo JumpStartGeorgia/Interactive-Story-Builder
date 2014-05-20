@@ -33,7 +33,7 @@ class Story < ActiveRecord::Base
 	 
 	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
 
-  DEMO_ID = 2
+  DEMO_ID = 1
 
 	amoeba do
 		enable
