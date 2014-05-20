@@ -26,6 +26,7 @@ en:
         published: Publish?
         published_at: Was Published
         template_id: Template
+        thumbnail: Thumbnail
       section:
         title: Title
         audio: Audio Track
