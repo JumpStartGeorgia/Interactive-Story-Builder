@@ -36,7 +36,8 @@
         <div class="help-inline" title="<%= t('.hint.editor') %>"><div>?</div></div>
       </div>
     </div>
-    <%= f.input :user_ids , :as => :select, :hint => t('.hint.editors'), :collection =>  Hash[@users.map{|b| [b.nickname,b.id]}], :multiple => true %>
+    
+    <%#= f.input :user_ids , :as => :select, :hint => t('.hint.editors'), :collection =>  Hash[@users.map{|b| [b.nickname,b.id]}], :multiple => true %>
   <% end %>
   <div class="pull-right spacer">
     <%= f.submit nil, :class => 'btn' %>
