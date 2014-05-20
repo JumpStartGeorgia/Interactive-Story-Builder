@@ -72,6 +72,8 @@ class Story < ActiveRecord::Base
 	def publish_date		
 	  if self.was_publishing != self.published && self.published?
 	  	self.published_at = Time.now
+	  	# date is set so now permalink can be created
+	  	self.permalink = create_permalink
 	  end     
 	end
 
@@ -84,8 +86,8 @@ class Story < ActiveRecord::Base
   end 
   
   def create_permalink
-    date = ''
     if self.published_at.present? && self.published?
+      date = ''
       date << self.published_at.to_date.to_s
       date << '-'
       "#{date}#{Utf8Converter.convert_ka_to_en(self.title.clone.to_ascii.gsub(/[^0-9A-Za-z|_\- ]/,''))}"
@@ -116,6 +118,7 @@ class Story < ActiveRecord::Base
 	    self.published_at = nil
 	    self.impressions_count = 0
 	    self.reviewer_key = nil
+	    self.permalink = nil
 	end
 
   def show_asset
