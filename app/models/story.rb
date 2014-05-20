@@ -125,8 +125,4 @@ class Story < ActiveRecord::Base
       self.asset
     end
   end
-
-  def ok?
-	logger.debug("-------------------------------------------------------#{self.id}")
-  end
 end
