@@ -180,7 +180,7 @@
                                 <div class="social">                                      
                                     <a href='https://twitter.com/share?text=<%= "#{@story.title}" %>' onclick="javascript:window.open(this.href,
                                       '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/twitter.png"%>'/></a>    
-                                    <a href="https://plus.google.com/share" onclick="javascript:window.open(this.href,
+                                    <a href="https://plus.google.com/share?url=<%= current_url %>" onclick="javascript:window.open(this.href,
                                       '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>' alt="Share on Google+"/></a>                                
                                     <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
                                 </div>   
@@ -232,8 +232,24 @@
 
       </div>
     </div>  
-          <div class="section footer-section">
-           <div id="left">
+        <div class="section finita">        
+           <div class="left">
+            <div> <a class="_about-link">პროექტის შესახებ</a></div>
+            <div class="footer-separator"></div>
+            <div><a href="http://www.jumpstart.ge" target="_blank" title="<%= t("layouts.application.js_link_title") %>" >
+              <img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/logo.png"%>' class="footer-logo"/></a></div>
+           </div>
+           <div class="right">
+                 <a href='https://twitter.com/share?text=<%= "#{@story.title}" %>' onclick="javascript:window.open(this.href,
+                                      '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/twitter.png"%>'/></a>    
+                <a href="https://plus.google.com/share?url=<%= current_url %>" onclick="javascript:window.open(this.href,
+                  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>' alt="Share on Google+"/></a>                                
+                <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+           </div>
+           </div>
+        </div> 
+
+<!--                   footer-section <div id="left">
                                      
                     <a class="about-link">პროექტის შესახებ</a>
             <div class="footer-separator"></div>
@@ -246,8 +262,7 @@
                 <a href="https://plus.google.com/share?url=<%= current_url %>" onclick="javascript:window.open(this.href,
                   '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>' alt="Share on Google+"/></a>                                
                 <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
-            </div>
-        </div> 
+            </div> -->
            <div id="about_box" style="width:100%;" >           
             <div class='about_text'>
                   <div class="about_close"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/close.png"%>' style="width: 16px;height: 16px;"/></div>                  

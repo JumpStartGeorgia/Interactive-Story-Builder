@@ -1519,157 +1519,121 @@
   }
 }
   /* slideshow end */
-
-
-
-  .footer-section {
-
-    width: 100%;
-    position:absolute;
-    bottom:20px;
-    z-index:1001;
-    min-height: 40px !important;
-    height:40px;
-    background-color:transparent;
-    border-color: #252525;  
-    /*padding-top: 13px;*/
-    font-size: 10px;
-    /*color: #999999;*/
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-
-
-  }
-  .footer-section  > div
-  {
-    height:40px;
-    line-height:40px;
-    vertical-align: middle;
-  }
-  .footer-section div#left {
-      margin: 0px !important;
-      float: left;
-      padding-left:20px;
-  }
-  .footer-section #middle {
-  margin: 0;
-  font-size: 12px;
-  text-align: center;
-  float: left;
-  }
-  .footer-section div#right {
+  /* footer */
+  .finita{
+  position:absolute;
+  bottom:11px;
+  left:0px;
+  width:100%;
+  z-index:1001;
+  line-height: 40px;
+  height:40px;
+  min-height: 40px !important;
+  background-color:transparent;  
+}
+.finita a
+{
+  font-family: dejavu;
+  font-size: 14px;  
+  font-weight: 600;
+  text-decoration: none;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  cursor:pointer;
+}
+.finita .left
+{
+  float:left;
+  width:49%;
+  padding-left:27px;
+  margin: 0px !important;
+}
+.finita div
+{
+  display:inline-block;  
+  vertical-align: middle;
+ line-height:40px;
+}
+.finita .right
+{
+  float:right;
+  padding-right:27px;
   margin: 0 !important;
-  float: right;
   text-align: right;
-  padding-right:30px;
-  }
-  .footer-section div#left div {
-    float:left;
-    margin:0px 7px;
-  }
-  .footer-section a {    
-/*    color: #aaa;
-    font: 12px sans-serif;
-    margin-right: 7px;
-    padding-right: 7px;
-    text-decoration: none;
-    white-space: nowrap;*/
+}
+.finita img
+{  
+  vertical-align: middle;
+  padding-right:9px;
+}
+.fb-like
+{
+    min-width:90px;
+  max-width:150px;
+  height:20px;
+  display:inline-block !important;
+}
+.finita .fb-like
+{
+  line-height: 20px;
+  vertical-align: middle;
+  min-width:90px;
+  max-width:150px;
+  height:20px;
+  display:inline-block;
+}
+  .footer-separator {
+    height: 14px;  
+    width: 1px;
+    background-color: #fff;    
+    height: 18px;
+    margin: 0px 9px !important;
+    opacity: 0.7;    
+    vertical-align:middle;
+}
 
-    
-    font-family: dejavu;
-    font-size: 14px;
-    padding-right: 9px;
-    font-weight: 600;
-    
-  text-decoration:none;      
 
-
-  }
-
-.footer-section .fb-like {    
-    line-height:19px;
-    padding-right:14px;
-  }
-  .footer-section a:last-child {
-    border-right: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .footer-section a:hover {    
-    color: #ffffff;
-    cursor:pointer;
-  }
-
-  .footer-section ~ * {
-    position: absolute;
-    top: -1000px;
-  }
-
-  .footer-section div img {
-    vertical-align: middle;
-  }
-
-  .footer-section {
-    color: #999999;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    bottom:0px;
-    font-size:13px;
-  }
-  .ios .footer-section
+  .ios .finita
   {
     position:relative;
     background-color:#000;
     height:82px;
+    bottom:0px;
   }
-  .ios .footer-section #left
+  .ios .finita .left
   {
-    clear:both;
+      float:none;
+      text-align:center;
+      width:100%;
+      padding:0px;
+      margin:0px;
+      line-height:40px;
+      height:40px;
+  }
+   .ios .finita .right
+  {
+    float:none;
     text-align:center;
-
+    width:100%;
+    padding:0px;
+    margin:0px;
+    line-height:40px;
+    height:40px;
   }
-  .ios .footer-section #right
+  .ios .finita .fb-like
   {
-    clear:both;
-    float:left;
-    text-align: left;
-    padding-left: 30px;
-
+   float:none;
+   display:inline-block;
+   width:auto;
   }
-  .footer-separator {
-    height: 14px;  
-    width: 2px;
-    background-color: #fff;
-    line-height: 40px;
-    height: 18px;
-    margin: 11px 14px !important;
-    opacity: 0.7;    
+  .ios .finita .footer-logo
+  {
+    width:76px;
+  }
+.ios .finita a
+{ 
+  font-size: 12px;   
 }
-.about-link
-{
-    display:inline-block;
-}
-.footer-separator
-{  display:inline-block;}
-.footer-logo
-{  display:inline-block;}
-
- .ios .footer-section div
- {
-  display:inline-block;
- }
-  .ios .footer-section .footer-logo
-  {
-    width: 76px;
-  }
-
-  .ios .footer-section #right .fb-like
-  {
-
-    top: -30px;
-position: relative;
-left: 129px;
-
-  }
+  /* footer end */
   .column-caption
   {
     font-family: dejavu_bold, Georgia, serif;
