@@ -259,8 +259,8 @@
                   <p>
                   საქველმოქმედო ჰუმანიტარული ცენტრი "აფხაზეთი" (<a href="http://chca.org.ge/itst/" target="_blank">CHCA</a>) არის არასამთავრობო ორგანიზაცია, რომელიც ფოკუსირებულია საქართველოს იძულებით გადაადგილებული და სხვა სოციალურად დაუცველი მოსახლეობის გაძლიერებაზე. ორგანიზაცია დაარსდა 1995 წელს, აფხაზეთის კონფლიქტის შედეგად საქართველოს ათასობით იძულებით გადაადგილებული მოქალაქის მხარდასაჭერად.</p>
                   <div>
-                    <a href="http://www.jumpstart.ge" target="_blank" title="<%= t("layouts.application.js_link_title") %>" ><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/about-logo.png"%>'/></a>
-                    <a href="http://chca.org.ge/itst/" target="_blank" title="CHCA" style="top: 25px;position: relative;left: 30px;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/chca.png"%>'/></a>
+                    <a href="http://www.jumpstart.ge" target="_blank" title="<%= t("layouts.application.js_link_title") %>" ><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/about-logo.png"%>' class='about_js_logo'/></a>
+                    <a href="http://chca.org.ge/itst/" target="_blank" title="CHCA" ><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/chca.png"%>' class='about_chca_logo'/></a>
                   </div>
             </div>
 
@@ -314,7 +314,7 @@
            var mobileImages = <%=output.to_json.html_safe %>;
 
       </script>
-
+       
       <script>
 
         function mobileReorient() {
@@ -520,6 +520,17 @@
 
           })
 
+            // added for donation pig
+            var secTemp = d3.selectAll(".article .section");          
+            var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
+            var lengthTemp = temp[0].length -1 ; 
+            if(lengthTemp >= 0)
+            {              
+                var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
+                last_section.append("div").attr("class","donate").append("a").attr("href","http://www.donation.ge");
+                last_section.append("div").attr("class","pigy");              
+            }
+            // donation end
         }, 200)
 
 
@@ -655,6 +666,18 @@
               .attr("preload", "auto");
 
           resized();
+
+           // added for donation pig
+            var secTemp = d3.selectAll(".article .section");          
+            var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
+            var lengthTemp = temp[0].length -1 ; 
+            if(lengthTemp >= 0)
+            {              
+                var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
+                last_section.append("div").attr("class","donate").append("a").attr("href","http://www.donation.ge");
+                last_section.append("div").attr("class","pigy");              
+            }
+            // donation end
 
           function loaded() {
             video.attr("preload", function(d) { return d.first ? "auto" : "none"; });
@@ -971,6 +994,8 @@
           }
 
           });</script>
+
+
     <!--[if gt IE 8]><!-->
       <!-- ****************************************************
       *  D3 library
@@ -1051,20 +1076,11 @@
           }
         }
 
-        await();
-          // added for donation pig
-          var secTemp = d3.selectAll(".article .section");          
-          var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
-          var lengthTemp = temp[0].length -1 ; 
-          if(lengthTemp >= 0)
-          {              
-              var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
-              last_section.append("div").attr("class","donate").append("a").attr("href","http://www.donation.ge");
-              last_section.append("div").attr("class","pigy");              
-          }
-        
+            
+        await();   
         d3.select(".about-link").on('click',function(){d3.select("#about_box").style('display','block');})
-        d3.select(".about_close").on('click',function(){d3.select("#about_box").transition().style('display','none');})
-      
+        d3.select(".about_close").on('click',function(){d3.select("#about_box").transition().style('display','none');})           
+  
     })();</script>
+
     <!--<![endif]-->  

@@ -1324,7 +1324,7 @@
 
 .slideshow-images{
   text-align: center;
-  max-height: 462px;
+  /*max-height: 462px;*/
 }
 .slideshow-image,
 .slideshow-caption {
@@ -1378,6 +1378,7 @@
 {
   position:static;
   width:100%;
+  opacity:1;
 }
 .ios img.slideshow-image
 {
@@ -1700,7 +1701,7 @@ color: #FFFFFF;
   background-color:#000;
   opacity:0.92;
   padding:50px;
-  z-index:105;
+  z-index:1001;
   top:0px;
 }
 .about_text
@@ -1711,6 +1712,40 @@ color: #FFFFFF;
   margin: 0px auto;
   padding-top: 100px;
   text-align: justify;
+}
+.about_box .about_chca_logo
+{
+top: 25px;position: relative;left: 30px;
+}
+.ios #about_box
+{
+  padding:0px;
+  width:85%;
+}
+.ios .about_text
+{  
+  padding:0px;
+  text-align: left;
+  width:85%;
+}
+.ios .about_text p
+{
+  font-size: 10px;
+  line-height: 14px;
+}
+.ios .about_js_logo
+{
+  width:76px;
+}
+.ios .about_chca_logo
+{
+  width:48px;
+}
+.ios .about_close
+{
+  position:static;
+  padding-top: 10px;  
+  text-align: right;
 }
 .about_close
 {
