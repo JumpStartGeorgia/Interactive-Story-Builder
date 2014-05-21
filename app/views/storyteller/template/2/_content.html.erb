@@ -177,10 +177,12 @@
                                   </g>
                                 </svg>
                                 </div>   
-                                <div class="social">                       
-                                 <a href="https://twitter.com/share"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/twitter.png"%>'/></a>
-                                 <a href="http://www.chca.org.ge/itst/?&lang=eng"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>'/></a>
-                                  <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>  
+                                <div class="social">                                      
+                                    <a href='https://twitter.com/share?text=<%= "#{@story.title}" %>' onclick="javascript:window.open(this.href,
+                                      '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/twitter.png"%>'/></a>    
+                                    <a href="https://plus.google.com/share" onclick="javascript:window.open(this.href,
+                                      '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>' alt="Share on Google+"/></a>                                
+                                    <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
                                 </div>   
                               </div>                 
                           <% else %>
@@ -239,21 +241,23 @@
          
            </div>     
             <div id="right"> 
-                <a href="https://twitter.com/share"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/twitter.png"%>'/></a>
-                <a href="http://www.chca.org.ge/itst/?&lang=eng"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>'/></a>                                       
-                <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>  
+                 <a href='https://twitter.com/share?text=<%= "#{@story.title}" %>' onclick="javascript:window.open(this.href,
+                                      '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/twitter.png"%>'/></a>    
+                  <a href="https://plus.google.com/share" onclick="javascript:window.open(this.href,
+                    '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>' alt="Share on Google+"/></a>                                
+                  <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
             </div>
         </div> 
            <div id="about_box" style="width:100%;" >           
             <div class='about_text'>
                   <div class="about_close"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/close.png"%>' style="width: 16px;height: 16px;"/></div>                  
-                  <p>პროექტი “ბავშვები შავშვებიდან” შექმნილია “ჯამპსტარტ ჯორჯიას” მიერ საქველმოქმედო ცენტრ “აფხაზეთთან” თანამშრომლობით პროექტის <a href="http://jumpstart.ge/ka/what-we-do/projects/monacemta-vizualizacia-advokatirebistvis">“მონაცემების ვიზუალიზაცია ადვოკატირებისთვის”</a> ფარგლებში.</p>
+                  <p>პროექტი “ბავშვები შავშვებიდან” შექმნილია “ჯამპსტარტ ჯორჯიას” მიერ საქველმოქმედო ცენტრ “აფხაზეთთან” თანამშრომლობით პროექტის <a href="http://jumpstart.ge/ka/what-we-do/projects/monacemta-vizualizacia-advokatirebistvis" target="_blank">“მონაცემების ვიზუალიზაცია ადვოკატირებისთვის”</a> ფარგლებში.</p>
 
                   <p>პროექტის მიზანია, საზოგადოების დახმარებით სოციალური კამპანიის ხელშეწყობა, რომლის შედეგადაც შეგროვდება შავშვების დევნილთა დასახლებაში არსებული უფუნქციო აბანოს შენობა-ნაგებობების საბავშვო ბაღად გადაკეთებისთვის საჭირო თანხა.</p>
 
-                  <p><a href="http://jumpstart.ge/ka">“ჯამპსტარტ ჯორჯია”</a> არის საქართველოში რეგისტრირებული არასამთავრობო ორგანიზაცია, რომელიც ღია წყაროს ტექნოლოგიების გამოყენებით, საზოგადოებისათვის საინტერესო და აქტუალური მონაცემების ხელმისაწვდომობასა და საჯაროობას უზრუნველყოფს.</p>
+                  <p><a href="http://jumpstart.ge/ka" target="_blank">“ჯამპსტარტ ჯორჯია”</a> არის საქართველოში რეგისტრირებული არასამთავრობო ორგანიზაცია, რომელიც ღია წყაროს ტექნოლოგიების გამოყენებით, საზოგადოებისათვის საინტერესო და აქტუალური მონაცემების ხელმისაწვდომობასა და საჯაროობას უზრუნველყოფს.</p>
                   <p>
-                  საქველმოქმედო ჰუმანიტარული ცენტრი "აფხაზეთი" (<a href="http://chca.org.ge/itst/">CHCA</a>) არის არასამთავრობო ორგანიზაცია, რომელიც ფოკუსირებულია საქართველოს იძულებით გადაადგილებული და სხვა სოციალურად დაუცველი მოსახლეობის გაძლიერებაზე. ორგანიზაცია დაარსდა 1995 წელს, აფხაზეთის კონფლიქტის შედეგად საქართველოს ათასობით იძულებით გადაადგილებული მოქალაქის მხარდასაჭერად.</p>
+                  საქველმოქმედო ჰუმანიტარული ცენტრი "აფხაზეთი" (<a href="http://chca.org.ge/itst/" target="_blank">CHCA</a>) არის არასამთავრობო ორგანიზაცია, რომელიც ფოკუსირებულია საქართველოს იძულებით გადაადგილებული და სხვა სოციალურად დაუცველი მოსახლეობის გაძლიერებაზე. ორგანიზაცია დაარსდა 1995 წელს, აფხაზეთის კონფლიქტის შედეგად საქართველოს ათასობით იძულებით გადაადგილებული მოქალაქის მხარდასაჭერად.</p>
                   <div>
                     <a href="http://www.jumpstart.ge" target="_blank" title="<%= t("layouts.application.js_link_title") %>" ><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/about-logo.png"%>'/></a>
                     <a href="http://chca.org.ge/itst/" target="_blank" title="CHCA" style="top: 25px;position: relative;left: 30px;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/chca.png"%>'/></a>
