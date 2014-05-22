@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140516094754) do
+ActiveRecord::Schema.define(:version => 20140518144246) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -105,6 +105,30 @@ ActiveRecord::Schema.define(:version => 20140516094754) do
   add_index "media", ["section_id", "position"], :name => "index_media_on_section_id_and_position"
   add_index "media", ["section_id"], :name => "index_media_on_section_id"
 
+  create_table "news", :force => true do |t|
+    t.boolean  "is_published", :default => false
+    t.date     "published_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "news", ["is_published", "published_at"], :name => "index_news_on_is_published_and_published_at"
+
+  create_table "news_translations", :force => true do |t|
+    t.integer  "news_id"
+    t.string   "locale"
+    t.string   "title"
+    t.text     "content"
+    t.string   "permalink"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "news_translations", ["locale"], :name => "index_news_translations_on_locale"
+  add_index "news_translations", ["news_id"], :name => "index_news_translations_on_news_id"
+  add_index "news_translations", ["permalink"], :name => "index_news_translations_on_permalink"
+  add_index "news_translations", ["title"], :name => "index_news_translations_on_title"
+
   create_table "sections", :force => true do |t|
     t.integer  "story_id"
     t.integer  "type_id"
@@ -149,8 +173,10 @@ ActiveRecord::Schema.define(:version => 20140516094754) do
     t.integer  "template_id",                :default => 1
     t.integer  "impressions_count",          :default => 0
     t.integer  "reviewer_key"
+    t.string   "permalink"
   end
 
+  add_index "stories", ["permalink"], :name => "index_stories_on_permalink"
   add_index "stories", ["published"], :name => "index_stories_on_published"
   add_index "stories", ["published_at"], :name => "index_stories_on_published_at"
   add_index "stories", ["reviewer_key"], :name => "index_stories_on_reviewer_key"

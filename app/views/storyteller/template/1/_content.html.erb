@@ -111,7 +111,7 @@
                   <p>&nbsp;</p>
                 <% end %>
               </div>
-           
+              <% columnSectionCount+=1 %>    
             <% elsif section.type_id == 2 && section.media.present? %>
               <div class="section video-sequence" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
@@ -207,9 +207,21 @@
                     <% end %>
                   </div>
                 </div>
-              </div>
-            <% end %>   
-            <% columnSectionCount+=1 %>             
+              </div>                
+           <% elsif section.type_id == 4  %>             
+            <div class="section embed">
+              <% if section.has_marker? %>
+                     <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
+              <% end %> 
+               <div class="embed-caption">
+                <%= section.embed_medium.title.html_safe %>
+              </div>    
+              <div class="embed-container">
+                <%= section.embed_medium.code.html_safe %>             
+              </div>   
+                        
+            </div>
+          <% end %>                 
          <% end %>   
          
 

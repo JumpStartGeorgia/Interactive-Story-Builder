@@ -1,7 +1,7 @@
-<style>
+.sec<style>
   @font-face {
     font-family: "nyt-cheltenham";    
-    src: url(<%= (@export ? "assets/" :"/template/#{@template}/") + 'fonts/nyt-cheltenham-200-normal.woff.woff'%>) format("woff");           
+    src: url(<%= (@export ? "assets/" :"/template/#{@template}/") + 'fonts/nyt-cheltenham-200-normal.woff'%>) format("woff");           
     font-style: normal;
     font-weight: 200;
   }
@@ -28,6 +28,7 @@
 
   .section.column {
     margin-top: 150px;
+    margin-bottom: 23px;
   }
 
   .section:after {
@@ -1495,7 +1496,44 @@
 }
 #storyTeller
 {
-  position:relative;
+  
   top:41px;
+}
+
+
+
+/* embed */
+.section.embed
+{
+  position: relative; 
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 640px;
+
+}
+.embed-container
+{ 
+  text-align:center;
+  margin:23px 0px 10px 0px;
+  width:100%;
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px; 
+  height: 0; 
+  overflow: hidden;
+}
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.embed-caption
+{
+  text-align:left;
+  margin-top:23px;
 }
 </style>
