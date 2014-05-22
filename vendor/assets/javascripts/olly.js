@@ -1,4 +1,5 @@
 /*global window,module,olly,document */
+/* embed-video embed-audio embed-image embed-dev embed-social */
 (function () {
     "use strict";
 
@@ -176,28 +177,28 @@
 
         dailymotion: '<iframe frameborder="0" width="640" height="390" src="{{embedURL}}" allowfullscreen> class="embed-video embed-dailymotion"</iframe>', //420x345
 
-        liveleak: '<embed width="640" height="390" src="{{embedURL}}" type="application/x-shockwave-flash" wmode="transparent" class="embed-video embed-liveleaqk"></embed>', //420x345
+        liveleak: '<embed width="640" height="390" src="{{embedURL}}" type="application/x-shockwave-flash" wmode="transparent" class="embed-video embed-liveleak"></embed>', //420x345
 
         vine: '<iframe class="vine-embed" src="{{embedURL}}" width="640" height="390" frameborder="0" class="embed-video embed-vine"></iframe><script async src="//platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>', //420x345
 
         ted: '<iframe src="{{embedURL}}" width="640" height="390" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen class="embed-video embed-ted"></iframe>', //420x345
 
-        imgur: '<img src="{{embedURL}}" class="embed-video embed-imgur"/>',
+        imgur: '<img src="{{embedURL}}" class="embed-image embed-imgur"/>',
 
-        jsfiddle: '<iframe style="width: 100%; height: 300px" src="{{embedURL}}" class="embed-video embed-jsfiddle"></iframe>', 
+        jsfiddle: '<iframe style="width: 100%; height: 300px" src="{{embedURL}}" class="embed-dev embed-jsfiddle"></iframe>', 
 
         twitter_tweet: {
-            markup: '<blockquote class="twitter-tweet" lang="en" class="embed-video embed-twitter_tweet"><p> <a href="{{embedURL}}"></a></blockquote>',
+            markup: '<blockquote class="twitter-tweet" lang="en" class="embed-social embed-twitter_tweet"><p> <a href="{{embedURL}}"></a></blockquote>',
             scripts: ['//platform.twitter.com/widgets.js']
         },
 
         twitter_timeline: {
-            markup: '<a class="twitter-timeline" href="{{embedURL}}" class="embed-video embed-twitter_timeline"></a>',
+            markup: '<a class="twitter-timeline" href="{{embedURL}}" class="embed-social embed-twitter_timeline"></a>',
             scripts: ['//platform.twitter.com/widgets.js']
         },
 
         github: {
-            markup: '<div class="github-widget" data-repo="{{repo}}" class="embed-video embed-github"></div>',
+            markup: '<div class="github-widget" data-repo="{{repo}}" class="embed-dev embed-github"></div>',
             scripts: [
                 'http://abeisgreat.github.io/Github-Repo-Widget/githubRepoWidget.min.js'
             ]
@@ -213,10 +214,10 @@
 
         spotify: '<iframe src="https://embed.spotify.com/?uri=spotify:track:{{embedID}}" width="640" height="390" frameborder="0" allowtransparency="true" class="embed-audio embed-spotify"></iframe>', //300x380
 
-        twitch: '<object type="application/x-shockwave-flash" height="378" width="620" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel={{channel}}" bgcolor="#000000" class="embed-audio embed-twitch" ><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="allowNetworking" value="all" /><param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" /><param name="flashvars" value="hostname=www.twitch.tv&channel={{channel}}&auto_play=true&start_volume=25" /></object>',
+        twitch: '<object type="application/x-shockwave-flash" height="378" width="620" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel={{channel}}" bgcolor="#000000" class="embed-video embed-twitch" ><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="allowNetworking" value="all" /><param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" /><param name="flashvars" value="hostname=www.twitch.tv&channel={{channel}}&auto_play=true&start_volume=25" /></object>',
 
         gfycat: {
-            markup: '<img class="gfyitem" data-id="{{embedID}}" class="embed-video embed-github"/>',
+            markup: '<img class="gfyitem" data-id="{{embedID}}" class="embed-dev embed-github"/>',
             scripts: [
                 'http://assets.gfycat.com/js/gfyajax-0.517d.js'
             ]
