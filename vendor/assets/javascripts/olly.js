@@ -168,36 +168,36 @@
 
     olly.templates = {
         //640x390
-        youtube: '<iframe width="640" height="390" src="{{embedURL}}" frameborder="0" allowfullscreen></iframe>', //560x315
+        youtube: '<iframe width="640" height="390" src="{{embedURL}}" frameborder="0" allowfullscreen class="embed-video embed-youtube"></iframe>', //560x315
 
-        vimeo: '<iframe src="{{embedURL}}" width="640" height="390" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>', //420x345
+        vimeo: '<iframe src="{{embedURL}}" width="640" height="390" frameborder="0" class="embed-video embed-vimeo" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>', //420x345
 
-        dotsub: '<iframe src="{{embedURL}}" frameborder="0" width="640" height="390"></iframe> ', //420x345
+        dotsub: '<iframe src="{{embedURL}}" frameborder="0" width="640" height="390" class="embed-video embed-dotsub"></iframe> ', //420x345
 
-        dailymotion: '<iframe frameborder="0" width="640" height="390" src="{{embedURL}}" allowfullscreen></iframe>', //420x345
+        dailymotion: '<iframe frameborder="0" width="640" height="390" src="{{embedURL}}" allowfullscreen> class="embed-video embed-dailymotion"</iframe>', //420x345
 
-        liveleak: '<embed width="640" height="390" src="{{embedURL}}" type="application/x-shockwave-flash" wmode="transparent"></embed>', //420x345
+        liveleak: '<embed width="640" height="390" src="{{embedURL}}" type="application/x-shockwave-flash" wmode="transparent" class="embed-video embed-liveleaqk"></embed>', //420x345
 
-        vine: '<iframe class="vine-embed" src="{{embedURL}}" width="640" height="390" frameborder="0"></iframe><script async src="//platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>', //420x345
+        vine: '<iframe class="vine-embed" src="{{embedURL}}" width="640" height="390" frameborder="0" class="embed-video embed-vine"></iframe><script async src="//platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>', //420x345
 
-        ted: '<iframe src="{{embedURL}}" width="640" height="390" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>', //420x345
+        ted: '<iframe src="{{embedURL}}" width="640" height="390" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen class="embed-video embed-ted"></iframe>', //420x345
 
-        imgur: '<img src="{{embedURL}}" />',
+        imgur: '<img src="{{embedURL}}" class="embed-video embed-imgur"/>',
 
-        jsfiddle: '<iframe style="width: 100%; height: 300px" src="{{embedURL}}"></iframe>', 
+        jsfiddle: '<iframe style="width: 100%; height: 300px" src="{{embedURL}}" class="embed-video embed-jsfiddle"></iframe>', 
 
         twitter_tweet: {
-            markup: '<blockquote class="twitter-tweet" lang="en"><p> <a href="{{embedURL}}"></a></blockquote>',
+            markup: '<blockquote class="twitter-tweet" lang="en" class="embed-video embed-twitter_tweet"><p> <a href="{{embedURL}}"></a></blockquote>',
             scripts: ['//platform.twitter.com/widgets.js']
         },
 
         twitter_timeline: {
-            markup: '<a class="twitter-timeline" href="{{embedURL}}"></a>',
+            markup: '<a class="twitter-timeline" href="{{embedURL}}" class="embed-video embed-twitter_timeline"></a>',
             scripts: ['//platform.twitter.com/widgets.js']
         },
 
         github: {
-            markup: '<div class="github-widget" data-repo="{{repo}}"></div>',
+            markup: '<div class="github-widget" data-repo="{{repo}}" class="embed-video embed-github"></div>',
             scripts: [
                 'http://abeisgreat.github.io/Github-Repo-Widget/githubRepoWidget.min.js'
             ]
@@ -209,29 +209,29 @@
             ]
         },
 
-        soundcloud: '<iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url={{embedURL}}"></iframe>',
+        soundcloud: '<iframe width="100%" style="height:166px !important;" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url={{embedURL}}" class="embed-audio embed-soundcloud"></iframe>',
 
-        spotify: '<iframe src="https://embed.spotify.com/?uri=spotify:track:{{embedID}}" width="640" height="390" frameborder="0" allowtransparency="true"></iframe>', //300x380
+        spotify: '<iframe src="https://embed.spotify.com/?uri=spotify:track:{{embedID}}" width="640" height="390" frameborder="0" allowtransparency="true" class="embed-audio embed-spotify"></iframe>', //300x380
 
-        twitch: '<object type="application/x-shockwave-flash" height="378" width="620" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel={{channel}}" bgcolor="#000000"><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="allowNetworking" value="all" /><param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" /><param name="flashvars" value="hostname=www.twitch.tv&channel={{channel}}&auto_play=true&start_volume=25" /></object>',
+        twitch: '<object type="application/x-shockwave-flash" height="378" width="620" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel={{channel}}" bgcolor="#000000" class="embed-audio embed-twitch" ><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="allowNetworking" value="all" /><param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" /><param name="flashvars" value="hostname=www.twitch.tv&channel={{channel}}&auto_play=true&start_volume=25" /></object>',
 
         gfycat: {
-            markup: '<img class="gfyitem" data-id="{{embedID}}" />',
+            markup: '<img class="gfyitem" data-id="{{embedID}}" class="embed-video embed-github"/>',
             scripts: [
                 'http://assets.gfycat.com/js/gfyajax-0.517d.js'
             ]
         },
 
         video: {
-            markup: '<video src="{{embedURL}}" controls="true" autoplay loop></video>'
+            markup: '<video src="{{embedURL}}" controls="true" autoplay loop class="embed-video"></video>'
         },
 
         audio: {
-            markup: '<audio src="{{embedURL}}" controls="true"></audio>'
+            markup: '<audio src="{{embedURL}}" controls="true" class="embed-audio"></audio>'
         },
 
         image: {
-            markup: '<img src="{{embedURL}}" />'
+            markup: '<img src="{{embedURL}}" class="embed-image"/>'
         }
     };
 
