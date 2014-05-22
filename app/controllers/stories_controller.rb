@@ -66,7 +66,7 @@ class StoriesController < ApplicationController
         if !@story.asset.present? 
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end      
-        @templates = Template.select_list     
+        @templates = Template.select_list(@story.template_id) 
         flash[:error] = u I18n.t('app.msgs.error_create', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
         #  format.json { render json: @story.errors, status: :unprocessable_entity }
