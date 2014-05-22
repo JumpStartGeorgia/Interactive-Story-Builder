@@ -289,8 +289,8 @@ table {
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
   border-radius: 50px;
-  background-color: #DBDBDB;
-  color: #9E9E9E;
+  background-color: #fff;
+  color: #9E9E9E !important;
   width:21px;
   height:20px;
   font-size:16px;
@@ -299,10 +299,32 @@ table {
   display:inline-block; 
   cursor:help;
   padding:0px;
+  border: 1px solid #9E9E9E;
 }
 .help-inline div,.help-block div {
   margin-top:2px;
   margin-left: 6px;
+}
+.error-inline, .error-block
+{
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  background-color: #fff;
+  color: #b94a48 !important;
+  width:21px;
+  height:20px;
+  font-size:16px;
+  font-style:normal;  
+  vertical-align:middle;
+  display:inline-block; 
+  cursor:help;
+  padding:0px;
+  border: 1px solid #b94a48;
+}
+.error-inline div,.error-block div {
+  margin-top:2px;
+  margin-left: 8px;
 }
 select, input[type="file"] {
 	height: 20px;
