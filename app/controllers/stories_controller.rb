@@ -31,7 +31,7 @@ class StoriesController < ApplicationController
     @story = Story.new(:user_id => current_user.id)     
     @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
-    @templates = Template.select_list(-1)
+    @templates = Template.select_list
 
 
     respond_to do |format|
@@ -67,7 +67,7 @@ class StoriesController < ApplicationController
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end      
         @templates = Template.select_list(@story.template_id) 
-        flash[:error] = u I18n.t('app.msgs.error_create', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
+        flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
         #  format.json { render json: @story.errors, status: :unprocessable_entity }
         #  format.js {render action: "flash" , status: :ok }
@@ -92,7 +92,7 @@ class StoriesController < ApplicationController
         end 
         @templates = Template.select_list(@story.template_id)
 
-        flash[:error] = u I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
+        flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
         format.html { render action: "edit" }
         format.js {render action: "flash" , status: :ok }
       end
