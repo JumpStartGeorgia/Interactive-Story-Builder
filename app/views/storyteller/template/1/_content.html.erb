@@ -89,8 +89,9 @@
               if section.asset_exists?            
                 dataAudio = "data-audio='#{File.basename(section.asset.asset_file_name,'.mp3')}'".html_safe 
               end
-           %>          
-            <% if section.type_id == 1 && section.content.present? %>
+           %>      
+           <% isFirst = true %>    
+            <% if section.type_id == 1 && section.content.present? && section.content.content.present? %>
               <div class="section column" <%= dataAudio.html_safe %>>    
                 <% if section.has_marker? %>
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
@@ -110,7 +111,8 @@
                   <p>&nbsp;</p>
                 <% end %>
               </div>   
-              <% columnSectionCount+=1 %>          
+              <% columnSectionCount+=1 %>   
+              <% isFirst = false %>       
             <% elsif section.type_id == 2 && section.media.present? %>
               <div class="section video-sequence" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
@@ -153,10 +155,10 @@
                         <% end %>
                       <% end %>
 
-                        <% if s_i == 0 && m_i == 0 %>
+                        <% if isFirst && m_i == 0 %>
                           <% caption_class = 'head' %>              
                         <% end %> 
-
+                        <%= logger.debug("----------------------------------------___#{caption_class}") %>
                       
                         <% if caption_class == 'head'  %>    
                           <div class="video-caption video-caption--<%= caption_class %>">                  
@@ -182,7 +184,7 @@
                   </div>        
                 <% end %>        
               </div>
-
+              <% isFirst = false %>  
             <% elsif section.type_id == 3 && section.slideshow.present? && section.slideshow.assets.length > 0 %>  
               <div class="section slideshow">
                 <% if section.has_marker? %>
@@ -211,6 +213,7 @@
                   </div>
                 </div>
               </div>
+              <% isFirst = false %>  
             <% end %>              
          <% end %>   
          
