@@ -1,6 +1,7 @@
 class Message
 	include ActiveAttr::Model
   include ActiveModel::Validations
+  include ActiveRecord::Callbacks
 
 	attribute :name
 	attribute :email
@@ -11,7 +12,7 @@ class Message
   attribute :message_type
   
 	attr_accessible :name, :email, :message, :subject, :bcc, :locale, :message_type
-
+  before_validation :strip_whitespace
   TYPE = {:bug => 1, :feature => 2, :feedback => 3}
 
 #  validates_presence_of :email, :message => I18n.t('activerecord.errors.models.message.attributes.email.blank')
@@ -29,4 +30,10 @@ class Message
     end
   end
   
+  private
+  def strip_whitespace 
+    name.strip!
+    email.strip!
+  end
+
 end

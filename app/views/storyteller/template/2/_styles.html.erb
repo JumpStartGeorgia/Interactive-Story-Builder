@@ -459,6 +459,25 @@
     text-shadow: 0 0px 45px rgba(0, 0, 0, 0.22);
     padding: 20px 0;
   } 
+  .ios .video-rule {
+    display:none;
+  }
+  .ios .video-caption--right
+  {
+    left: 7%;   
+    text-align: left;
+  
+  }
+   .ios .video-sequence .video:last-of-type .video-caption {
+    bottom: 65px;
+  }
+  .ios .align-right
+  {
+    bottom: 65px;
+    width: 260px;
+    left: 50px;
+    text-align: left;
+  }
   @media only screen and (min-width: 320px) {
 
     .ios .navigation-left {
@@ -512,7 +531,7 @@
       margin-top: 0px;
     }
     .ios .video-caption--head .video-headline {    
-      width: 105px;
+      /*width: 105px;*/
     }
     /* VIDEO SLIDE */
 
@@ -520,6 +539,7 @@
       box-sizing: border-box;
       padding-right: 20px;
       padding-left: 20px;
+      padding-bottom: 20px;
     }
 
     .ios .video-sequence .video,
@@ -528,7 +548,7 @@
     }
 
     .ios .video-container {
-      padding: 60px 0;
+      /*padding: 60px 0;*/
       position: relative;
       line-height: 0;
     }
@@ -543,10 +563,8 @@
     }
 
     .ios .video-caption {
-      bottom: 0%;
-      top: 65px;
+      bottom: 65px;      
       width: 260px;
-
       left: 50px;
     }
 
@@ -586,7 +604,7 @@
 
     .ios .video-headline {
       left: 25px;
-      top: 50px;
+      /*top: 50px;*/
       border-bottom: none;
       color: white;
       font-size: 45px;
@@ -810,11 +828,12 @@
     .ios .video  {
       padding-left: 0px;
       padding-right: 0px;
+      padding-bottom:0px;
     }
 
     .ios .video-container {
       padding-top: 0px;
-      padding-bottom: 0px;
+      padding-bottom: 0px;      
     }
 
     .ios .video-caption {
@@ -969,12 +988,6 @@
     .ios .align-middle {
       top: 50%;
       margin-top: -115px;
-    }
-
-    .ios .align-right {
-      right: 50px;
-      left: auto;
-      text-align: right;
     }
 
     .ios .caption-loresto-binoculars {
@@ -1572,6 +1585,7 @@
   max-width:150px;
   height:20px;
   display:inline-block !important;
+  text-align: left;
 }
 .footer-section .fb-like
 {
@@ -1756,8 +1770,8 @@ top: 25px;position: relative;left: 30px;
 }
 .about-link
 {    
-margin-right:9px;
-padding-right:9px;
+/*margin-right:9px;
+padding-right:9px;*/
 font-size:13px;}
 
 /* media */
