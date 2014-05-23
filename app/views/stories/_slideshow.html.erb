@@ -1,3 +1,6 @@
+<h2>
+  <%= t('.form_title') %>
+</h2>
 
 <%= semantic_form_for(@item, url: slideshow_story_path(id:params[:id],:format => :js), :html => { :multipart=> true, :id => "slideshowForm" } , remote: true) do |f| %>
   <%= f.inputs do %>

@@ -52,6 +52,10 @@ BootstrapStarter::Application.routes.draw do
 				put 'slideshow', to: 'stories#save_slideshow'
 				post 'slideshow', to: 'stories#new_slideshow'
   		
+
+				put 'embed_media', to: 'stories#save_embed_media'
+				post 'embed_media', to: 'stories#new_embed_media'				
+
   			end			
 		end
 		#match '/stories/:id/edit' => 'stories#get_story'

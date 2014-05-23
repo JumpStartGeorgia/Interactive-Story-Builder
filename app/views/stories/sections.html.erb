@@ -35,6 +35,8 @@
                     </ul>
                    <% elsif item.slideshow? && item.slideshow.present? %>
                      <ul><li id='<%= item.slideshow.id %>' class='sub'><span><%= item.slideshow.title %></span></li></ul>
+                   <% elsif item.embed_medium.present? %>
+                      <ul><li id='<%= item.embed_medium.id %>' class='sub'><span><%= item.embed_medium.title %></span></li></ul>
                   <%end%>
               </li>          
           <% end %>            

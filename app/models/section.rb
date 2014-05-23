@@ -7,12 +7,13 @@ class Section < ActiveRecord::Base
   foreign_key: :item_id,
   dependent: :destroy
 
+  has_one :embed_medium, dependent: :destroy
   has_many :media, :order => 'position', dependent: :destroy
   acts_as_list scope: :story
 
 
 
-  TYPE = {content: 1, media: 2, slideshow: 3}
+  TYPE = {content: 1, media: 2, slideshow: 3, embed_media: 4}
 
   accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
 
@@ -42,8 +43,11 @@ class Section < ActiveRecord::Base
   def media?
    	 TYPE[:media] == self.type_id	
   end
-   def slideshow?
+  def slideshow?
      TYPE[:slideshow] == self.type_id 
+  end
+  def embed_media?
+     TYPE[:embed_media] == self.type_id 
   end
   def asset_exists?
       self.asset.present? && self.asset.asset.exists?
@@ -65,6 +69,8 @@ class Section < ActiveRecord::Base
         end
     elsif slideshow?
       return (self.slideshow.present? && self.slideshow.assets.length > 0)
+    elsif embed_media?
+      return self.embed_medium.code.present?
     end
   end
 end
