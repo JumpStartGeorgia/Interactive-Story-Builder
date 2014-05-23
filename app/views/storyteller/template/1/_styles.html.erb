@@ -27,9 +27,8 @@
   }
 
   .section.column {
-    margin-top: 150px;
+    margin:23px auto;
   }
-
   .section:after {
     content: "";
     clear: left;
@@ -327,9 +326,9 @@
     padding: 20px 0;
   }
 
-  .video-sequence .video:last-of-type .video-caption {
+/*  .video-sequence .video:last-of-type .video-caption {
     bottom: 30%;
-  }
+  }*/
 
   .video .video-caption--long {
     width: 400px;
@@ -339,7 +338,7 @@
   .video .video-caption--right {
     right: 7%;
     left: inherit;
-    text-align: right;
+    text-align: left;
   }
 
   .video .video-caption--center {
@@ -347,17 +346,16 @@
     text-align: center;
     width: 50%;
     margin: 0 25%;
-  }
-
-  .video .video-caption--head {
+  }  
+ .video-headline {    
     top: 0;
     left: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
+    height: 100%;  
   }
-
-  .video-caption--head .video-headline {
+  .video-headline .headline
+  {    
     position: absolute;
     top: 20%;
     color: #fff;
@@ -365,16 +363,9 @@
     /*border-bottom: solid 2px black;  */
     font-size: 50px;
     line-height: 55px;
+    z-index: 3;
+     text-shadow: 0 1px 2px #000;
     /*padding-bottom: 35px;*/
-  }
-
-  .video-caption--head .video-summary {
-    position: absolute;
-    top: auto;
-    bottom: 12%;
-    left: 7%;
-    width: 270px;
-    text-shadow: 0 1px 2px #000;
   }
 
 @media only screen and (min-width: 1200px) and (max-width: 1440px) and (min-height: 500px) and (max-height: 800px) {
@@ -947,83 +938,6 @@
     bottom: -.2em;
     right: 0;
   }
-
-  .map--spratly .map-s0 {
-    line-height: 15px;
-    opacity: 0.7;
-  }
-
-  .map--spratly .map-s1 {
-    line-height: 15px;
-    text-align: right;
-    opacity: 0.7;
-  }
-
-  .map--spratly .map-s2 {
-    font-size: 18px;
-    line-height: 24px;
-    font-style: italic;
-    text-align: center;
-    letter-spacing: 0.05em;
-    opacity: 0.2;
-  }
-
-  .map--spratly .map-s3 {
-    font-size: 15px;
-    line-height: 20px;
-    font-style: italic;
-    text-align: center;
-    letter-spacing: 0.05em;
-    opacity: 0.2;
-  }
-
-  .map--ayungin .map-s0 {
-    font-size: 13px;
-    line-height: 15px;
-    text-align: center;
-    opacity: 0.7;
-  }
-
-  .map--ayungin .map-s1 {
-    font-size: 18px;
-    line-height: 19px;
-    font-weight: 500;
-  }
-
-  .map--ayungin .map-s3 {
-    font-size: 10px;
-    opacity: 0.7;
-  }
-
-  .map--ayungin .map-s5 {
-    font-size: 13px;
-    line-height: 15px;
-    font-style: italic;
-    text-align: center;
-    opacity: 0.7;
-  }
-
-  .map--ayungin .map-s6 {
-    line-height: 15px;
-    opacity: 0.6;
-  }
-
-  .map--ayungin .map-s7 {
-    line-height: 15px;
-    text-align: right;
-    opacity: 0.6;
-  }
-
-  .map--ayungin .map-s8 {
-    font-style: italic;
-    text-align: center;
-    letter-spacing: 0.05em;
-    opacity: 0.3;
-  }
-
-  .map--ayungin .map-s9 {
-    line-height: 15px;
-  }
   .navigation {
     font: 200 12px/20px "nyt-cheltenham", Georgia, serif;
     position: fixed;
@@ -1338,13 +1252,10 @@
 
   /* slideshow */
 
-.slideshow {
+.section.slideshow {
   font: 13px/1.4em arial, helvetica, sans-serif;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 812px;
-  
-
+  margin:23px auto;
+  max-width: 812px;    
 }
 
 .slideshow-wrapper

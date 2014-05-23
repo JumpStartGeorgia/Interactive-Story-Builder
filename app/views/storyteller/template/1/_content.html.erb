@@ -84,13 +84,13 @@
     <div class="main">
       <div class="article"> 
         <% columnSectionCount = 0 %>
+        <% isFirst = true %>   
          <% @story.sections.sort_by{|p| p.position}.each_with_index do |section,s_i| %>
           <%  dataAudio = ''
               if section.asset_exists?            
                 dataAudio = "data-audio='#{File.basename(section.asset.asset_file_name,'.mp3')}'".html_safe 
               end
-           %>      
-           <% isFirst = true %>    
+           %>                  
             <% if section.type_id == 1 && section.content.present? && section.content.content.present? %>
               <div class="section column" <%= dataAudio.html_safe %>>    
                 <% if section.has_marker? %>
@@ -124,63 +124,44 @@
                       <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name,'.mp4')}'".html_safe %>
                     <% end %> 
                   <div class="video"  <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>
-                      <div class="video-container">
-                        <% if m.media_type == 1 %>     
-                          <% if  m.image_exists? %>    
-                            <% if !@export %> 
-                              <img src="<%= m.image.asset.url %>">
-                            <% else %>
-                              <img src="media/images/original/<%= m.image.asset_file_name %>">
-                            <% end %>
+                    <div class="video-container">
+                      <% if m.media_type == 1 %>     
+                        <% if  m.image_exists? %>    
+                          <% if !@export %> 
+                            <img src="<%= m.image.asset.url %>">
+                          <% else %>
+                            <img src="media/images/original/<%= m.image.asset_file_name %>">
                           <% end %>
-                        <% elsif m.media_type == 2  %>                    
-                            <% if  m.image_exists? %>    
-                              <% if !@export %>                           
-                                <!--[if lte IE 8]><img src="<%= m.image.asset.url %>"><![endif]-->
-                              <% else %>
-                                <!--[if lte IE 8]><img src="media/images/original/<%= m.image.asset_file_name %>"><![endif]-->
-                              <% end %>                                             
-                            <% end %>                                           
-                        <% end %>  
-                        <% if m.source.present? %>
-                           <div class="video-source"><%= m.source %></div>                       
-                        <% end %>                       
-                      </div>
-                      <% caption_class = alignment.key(m.caption_align) %>               
-                      <% if m.caption.present? %>
-                        <% if m.caption.length < 160 %>
-                          <% caption_class = alignment.key(m.caption_align) %>
-                        <% else %>
-                          <% caption_class = 'long' %>
                         <% end %>
-                      <% end %>
+                      <% elsif m.media_type == 2  %>                    
+                          <% if  m.image_exists? %>    
+                            <% if !@export %>                           
+                              <!--[if lte IE 8]><img src="<%= m.image.asset.url %>"><![endif]-->
+                            <% else %>
+                              <!--[if lte IE 8]><img src="media/images/original/<%= m.image.asset_file_name %>"><![endif]-->
+                            <% end %>                                             
+                          <% end %>                                           
+                      <% end %>  
+                      <% if m.source.present? %>
+                         <div class="video-source"><%= m.source %></div>                       
+                      <% end %>                       
+                    </div>     
 
-                        <% if isFirst && m_i == 0 %>
-                          <% caption_class = 'head' %>              
-                        <% end %> 
-                        <%= logger.debug("----------------------------------------___#{caption_class}") %>
-                      
-                        <% if caption_class == 'head'  %>    
-                          <div class="video-caption video-caption--<%= caption_class %>">                  
-                              <div class="video-headline headline"> <%= @story.title %> </div>
-                              <% if m.caption.present? %>
-                              <div class="video-summary"> <%= m.caption %> </div>
-                              <% end %> 
-                              <div class="scroll-prompt">
-                                <%= t("app.buttons.scroll")%> <br>
-                                <svg width="18" height="8">
-                                  <path d="M0,0L9,7L18,0"></path>
-                                </svg>
-                              </div>  
-                            </div>                     
-                        <% else %>
-                          <% if m.caption.present? %>
-                            <div class="video-caption video-caption--<%= caption_class %>">
-                              <%= m.caption  %>
-                            </div>
-                          <% end %>       
-                        <% end %>  
-                                           
+                    <% if isFirst && m_i == 0  %>   
+                      <div class="video-headline"><div class="headline"><%= @story.title %></div></div> 
+                      <div class="scroll-prompt">
+                        <%= t("app.buttons.scroll")%> <br>
+                        <svg width="18" height="8">
+                          <path d="M0,0L9,7L18,0"></path>
+                        </svg>
+                      </div>  
+                    <% end %>                                                       
+                    <% if m.caption.present? %>                                    
+                      <div class='video-caption video-caption--<%= "#{alignment.key(m.caption_align)}" %> <%= m.caption.length > 160 ? 
+                      "video-caption--long" : "" %>'>
+                        <%= m.caption  %>
+                      </div>
+                    <% end %>       
                   </div>        
                 <% end %>        
               </div>
@@ -195,9 +176,7 @@
                 <% end %>  
                 <div class="slideshow-wrapper">
                       <% if section.slideshow.caption.present? %>
-                        <h3><%= section.slideshow.caption %></h3>
-                      <% else %>                      
-                        <h3>&nbsp;</h3>
+                        <h3><%= section.slideshow.caption %></h3>                      
                       <% end %>
                                 
                   <!--[if lte IE 8]><img src="<%= section.slideshow.assets[0].asset.url(:medium) %>" style="width:100%;"><![endif]-->
