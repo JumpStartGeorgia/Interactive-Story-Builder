@@ -85,13 +85,13 @@
       <div class="article"> 
         <% columnSectionCount = 0 %>
         <% isFirst = true %>   
-         <% @story.sections.sort_by{|p| p.position}.each_with_index do |section,s_i| %>
+         <% @story.sections.select{|t| t.ok? }.sort_by{|p| p.position}.each_with_index do |section,s_i| %>
           <%  dataAudio = ''
               if section.asset_exists?            
                 dataAudio = "data-audio='#{File.basename(section.asset.asset_file_name,'.mp3')}'".html_safe 
               end
-           %>                  
-            <% if section.type_id == 1 && section.content.present? && section.content.content.present? %>
+           %>            
+            <% if section.content? %>
               <div class="section column" <%= dataAudio.html_safe %>>    
                 <% if section.has_marker? %>
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
@@ -112,35 +112,30 @@
                 <% end %>
               </div>   
               <% columnSectionCount+=1 %>   
-              <% isFirst = false %>       
-            <% elsif section.type_id == 2 && section.media.present? %>
+            <% elsif section.media? %>
               <div class="section video-sequence" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
                 <% section.media.each_with_index do |m,m_i| %>
                     <% dataVideo = '' %>
-                    <% if m.media_type == 2 && m.video_exists? %>                
+                    <% if m.media_type == 2 %>                
                       <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name,'.mp4')}'".html_safe %>
                     <% end %> 
                   <div class="video"  <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>
                     <div class="video-container">
                       <% if m.media_type == 1 %>     
-                        <% if  m.image_exists? %>    
                           <% if !@export %> 
                             <img src="<%= m.image.asset.url %>">
                           <% else %>
                             <img src="media/images/original/<%= m.image.asset_file_name %>">
                           <% end %>
-                        <% end %>
                       <% elsif m.media_type == 2  %>                    
-                          <% if  m.image_exists? %>    
                             <% if !@export %>                           
                               <!--[if lte IE 8]><img src="<%= m.image.asset.url %>"><![endif]-->
                             <% else %>
                               <!--[if lte IE 8]><img src="media/images/original/<%= m.image.asset_file_name %>"><![endif]-->
                             <% end %>                                             
-                          <% end %>                                           
                       <% end %>  
                       <% if m.source.present? %>
                          <div class="video-source"><%= m.source %></div>                       
@@ -165,8 +160,7 @@
                   </div>        
                 <% end %>        
               </div>
-              <% isFirst = false %>  
-            <% elsif section.type_id == 3 && section.slideshow.present? && section.slideshow.assets.length > 0 %>  
+            <% elsif section.slideshow? %>  
               <div class="section slideshow">
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
@@ -191,10 +185,10 @@
                     <% end %>
                   </div>
                 </div>
-              </div>
-              <% isFirst = false %>  
-            <% end %>              
-         <% end %>   
+              </div>                 
+            <% end %> 
+            <% isFirst = false %>                    
+        <% end %>   
          
 
         <div class="section footer-section">
@@ -244,7 +238,7 @@
           <%  
               output = []
               secLength = @story.sections.length        
-              @story.sections.sort_by{|v| v.position}.each_with_index do |s,s_i|
+              @story.sections.select{|t| t.ok? }.sort_by{|v| v.position}.each_with_index do |s,s_i|
                 if s.media?
                   subLength = s.media.length   
                   s.media.each_with_index do |t,t_i| 
@@ -262,7 +256,7 @@
         
                     output<< item
                   end
-                elsif s.slideshow? && s.slideshow.present? && s.slideshow.assets.present?
+                elsif s.slideshow?
                   subLength = s.slideshow.assets.length   
                   s.slideshow.assets.each_with_index do |t,t_i| 
                     item = {}
@@ -297,7 +291,7 @@
           if(firstVideo.length)
           {
             firstVideo.querySelector(".video:first-of-type .video-container")[0].style.height = height + "px";
-            firstVideo.querySelector(".video:first-of-type .video-caption--head")[0].style.height = height + "px";
+            firstVideo.querySelector(".video:first-of-type .video-headline")[0].style.height = height + "px";
           }
           
         }

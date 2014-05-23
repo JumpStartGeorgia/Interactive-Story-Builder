@@ -48,4 +48,23 @@ class Section < ActiveRecord::Base
   def asset_exists?
       self.asset.present? && self.asset.asset.exists?
   end  
+  def ok?
+    if content?
+      return (self.content.present? && self.content.content.present?)
+    elsif media?        
+        self.media.each_with_index do |m,m_i|
+          if m.present?
+            if m.media_type == 1
+              return m.image_exists?                                
+            elsif m.media_type == 2              
+              return (m.image_exists? && m.video_exists?)
+            end          
+          else
+            return false
+          end
+        end
+    elsif slideshow?
+      return (self.slideshow.present? && self.slideshow.assets.length > 0)
+    end
+  end
 end

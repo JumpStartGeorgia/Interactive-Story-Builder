@@ -8,7 +8,7 @@
     </div>
     <div class="navigation-right">
       <a href="#" class="navigation-volume"><div class="navigation-icon"></div></a>
-      <% markers = @story.sections.select{|t| t.has_marker? == true} %>
+      <% markers = @story.sections.select{|t| (t.ok? && t.has_marker? == true) } %>
       <% if markers.length > 1 %>    
         <div class="navigation-sections">     
          <% markers.each_with_index do |s,s_i| %>
