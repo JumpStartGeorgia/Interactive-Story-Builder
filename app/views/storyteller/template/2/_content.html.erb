@@ -182,7 +182,7 @@
                                       '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/twitter.png"%>'/></a>    
                                     <a href="https://plus.google.com/share?url=<%= current_url %>" onclick="javascript:window.open(this.href,
                                       '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>' alt="Share on Google+"/></a>                                
-                                    <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+                                      <div class="facebook">  <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true" ></div></div>
                                 </div>   
                               </div>                 
                           <% else %>
@@ -243,8 +243,10 @@
                  <a href='https://twitter.com/share?text=<%= "#{@story.title}" %>' onclick="javascript:window.open(this.href,
                                       '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/twitter.png"%>'/></a>    
                 <a href="https://plus.google.com/share?url=<%= current_url %>" onclick="javascript:window.open(this.href,
-                  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>' alt="Share on Google+"/></a>                                
-                <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+                  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>' alt="Share on Google+"/></a>     
+                <div class="facebook">                           
+                  <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true" data-width="150px"></div>
+                </div>
            </div>
            </div>
         </div> 
