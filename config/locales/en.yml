@@ -26,8 +26,10 @@ en:
         media_author: Photo and Video Author(s)  
         published: Publish?
         published_at: Was Published
+        publish_home_page: When Published, Share Your Story on the Home Page?
         template_id: Template
         thumbnail: Thumbnail
+        about: Story Summary
       section:
         title: Title
         audio: Audio Track
@@ -279,11 +281,13 @@ en:
         title: Story title will appear as the header on the first content section and very first section if it is media section
         author: Author(s) will appear on the first content section
         media_author:  "Author(s) will appear on the first content section below the Story Author(s)"
-        published: Published stories are available for the world to read from the homepage       
+        published: Published stories are available for the world to read
+        publish_home_page: If checked, your story will appear on the home page of the site when it is published
         template: Choose template to apply styling to story
-        thumbnail: Image that is used to show the story on the homepage when the story is published
+        thumbnail: Image that is used to show the story on the home page when the story is published
         editor: Person that created the story record in this website
         editors: Select people that you want to give access to edit the story
+        about: Short summary of story that will be used on the home page and when you story is shared
     media:
       form_title: Full-Screen Media Slideshow Form
       left: Left

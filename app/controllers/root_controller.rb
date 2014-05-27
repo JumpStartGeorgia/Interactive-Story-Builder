@@ -2,7 +2,7 @@ class RootController < ApplicationController
 
   def index    
 
-    @stories = Story.is_published.order("published_at desc").paginate(:page => params[:page], :per_page => 9)
+    @stories = Story.is_published_home_page.order("published_at desc").paginate(:page => params[:page], :per_page => 9)
 
 
     @news = News.published.limit(2)

@@ -26,8 +26,10 @@ ka:
         media_author: ფოტოსა და ვიდეოს ავტორ(ებ)ი
         published: გამოქვეყნება
         published_at: გამოქვეყნებულია
+        publish_home_page: When Published, Share Your Story on the Home Page?
         template_id: შაბლონი
         thumbnail: ესკიზი
+        about: Story Summary
       section:
         title: დასახელება
         audio: აუდიო ფაილი
@@ -279,11 +281,13 @@ ka:
         title: ამბის სათაური გამოჩნდება გამოჩნდება როგორც ჰედერი პირველი შინაარსის სექციაში თუ ეს მედია სექციაა
         author: სტატიის ავტორ(ებ)ი გამოჩნდებ(ი)ა(ნ) პირველი შინაარსის სექციაში
         media_author:  ავტორ(ებ)ი გამოჩნდებ(ი)ა(ნ) პირველი შინაარსის სექციაში ამბის სათაურის ქვემოთ
-        published: გამოქვეყნებული ისტორიები ხემისაწვდომია ყველასთვის საწყისი გვერდზე განთავსებული ინფორმაციის სახით
+        published: Published stories are available for the world to read
+        publish_home_page: If checked, your story will appear on the home page of the site when it is published
         template: აირჩიეთ შაბლონი ამბის სტილის შესარჩევად
         thumbnail: სურათი, რომელიც გამოჩნდება საწყის გვერძე ამბის გამოქვეყნების შემდგომ
         editor: ამბის შემქმნელი პირი
         editors: მონიშნეთ ადამიანები, რომლებსაც გსუღ მისცეთ გამოქვეყნებამდე ამბის რედაქტირების უფლება
+        about: Short summary of story that will be used on the home page and when you story is shared
     media:
       form_title: მთელს ეკრანზე გაშლილი მედია სლაიდშოუ
       left: მარცხნივ

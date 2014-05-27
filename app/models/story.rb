@@ -7,18 +7,23 @@ class Story < ActiveRecord::Base
   has_permalink :create_permalink
 	
 	scope :is_published, where(:published => true)
-
+	scope :is_published_home_page, where(:published => true, :publish_home_page => true)
+  scope :is_staff_pick, where(:staff_pick => true)
+  
+	belongs_to :user
 	belongs_to :template
 	has_many :sections, :order => 'position', dependent: :destroy
 	has_and_belongs_to_many :users
 	has_one :asset,     
-	:conditions => "asset_type = #{Asset::TYPE[:story_thumbnail]}", 	 
-	foreign_key: :item_id,
-	dependent: :destroy
+	  :conditions => "asset_type = #{Asset::TYPE[:story_thumbnail]}", 	 
+	  foreign_key: :item_id,
+	  dependent: :destroy
 
-	belongs_to :user
+	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
+
 	validates :title, :presence => true, length: { maximum: 100 }
 	validates :author, :presence => true, length: { maximum: 255 }
+	validates :about, :presence => true
 	validates :template, :presence => true
 	validates :media_author, length: { maximum: 255 }
 	attr_accessor :was_publishing, :title_was
@@ -27,11 +32,10 @@ class Story < ActiveRecord::Base
  	after_find :set_title
   before_save :check_title
 
- 	after_find :publishing_done?
+ 	after_find :record_initial_values
 	before_save :publish_date
 	before_save :generate_reviewer_key
 	 
-	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
 
   DEMO_ID = 2
 
@@ -39,7 +43,6 @@ class Story < ActiveRecord::Base
 		enable
 		exclude_field :asset
 		clone [:sections]
-
 	end
 
   def self.can_edit?(story_id, user_id)
@@ -63,7 +66,7 @@ class Story < ActiveRecord::Base
 	end
 
 
-	def publishing_done?
+	def record_initial_values
 		self.was_publishing = self.has_attribute?(:published) ? self.published : nil		
 	end
 

@@ -53,6 +53,9 @@ class StoriesController < ApplicationController
   def create
     @story = Story.new(params[:story])
 
+    Rails.logger.debug "------- story: #{@story.inspect}"
+    Rails.logger.debug "------- story asset: #{@story.asset.inspect}"
+
     respond_to do |format|
 
       if @story.save

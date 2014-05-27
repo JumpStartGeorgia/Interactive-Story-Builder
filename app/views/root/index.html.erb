@@ -41,20 +41,27 @@
 <div class="pins-wrapper">
   <div class="pin-columns clear">
     <% @stories.each do |story| %>
-     <a href="<%=storyteller_show_path(story.permalink) %>">
-      <div class="pin">  
-     
-        <div class="img">
-          <img src="<%= story.show_asset.asset.url(:"250x250") %>" />      
+      <% 
+        title = story.title.dup
+        if story.about.present?
+          title << ' - '
+          title << strip_tags(story.about)
+        end
+      %>
+      <%= link_to storyteller_show_path(story.permalink), :title => title do %> 
+        <div class="pin">  
+       
+          <div class="img">
+            <img src="<%= story.show_asset.asset.url(:"250x250") %>" />      
+          </div>
+          <p><div class="pin-caption"><%= story.title.truncate(255) %></div>     </p>
+          <p> 
+             
+          <div class="pin-author"><%= story.author %></div>
+         <div class="pin-publish"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>        
+        </p>
         </div>
-        <p><div class="pin-caption"><%= story.title.truncate(255) %></div>     </p>
-        <p> 
-           
-        <div class="pin-author"><%= story.author %></div>
-       <div class="pin-publish"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>        
-      </p>
-      </div>
-     </a> 
+      <% end %>    
     <% end %>    
   </div>
   <%= page_navigation_links @stories %>

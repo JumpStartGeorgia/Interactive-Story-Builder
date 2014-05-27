@@ -15,9 +15,6 @@ end
 Paperclip.interpolates('media_video_story_id') do |attachment, style|
   attachment.instance.video.section.story_id
 end
-Paperclip.interpolates('item_id') do |attachment, style|
-  attachment.instance.item_id
-end
 Paperclip.interpolates('slideshow_image_story_id') do |attachment, style|
   attachment.instance.slideshow.section.story_id
 end
