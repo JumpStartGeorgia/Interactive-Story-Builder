@@ -1,0 +1,17 @@
+<%= semantic_form_for([:admin,@language], :html => { :class => 'form-horizontal' }) do |f| %>
+	<%= f.error_messages %>
+
+	<%= f.inputs do %>
+		<%= f.input :locale %>
+		<%= f.input :name %>
+	<% end %>
+
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+	  <%= f.submit nil, :class => 'btn btn-warning', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>
+	  <%= link_to t('helpers.links.cancel'), admin_languages_path, :class => 'btn btn-mini btn-warning' %>
+  </div>
+
+<% end %>
+

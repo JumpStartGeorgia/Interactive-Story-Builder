@@ -11,6 +11,7 @@ ka:
       news: სიახლეები
       message: შეტყობინება
       embed_medium: ჩაშენებული ონლაინ მედია
+      language: Language
     attributes:
       user:
         email: ელ.ფოსტა
@@ -30,6 +31,7 @@ ka:
         template_id: შაბლონი
         thumbnail: ესკიზი
         about: Story Summary
+        locale: Story Language
       section:
         title: დასახელება
         audio: აუდიო ფაილი
@@ -67,6 +69,9 @@ ka:
       embed_medium:
         title: სათაური
         url: ონლაინ მედიის ბმული
+      language:
+        locale: Locale
+        name: Language Name
     errors:
       messages:
         required_field: "სავალდებულოა"
@@ -110,6 +115,7 @@ ka:
       news: სიახლეები
       feedback: უკუკავშირი
       todo_list: To-Do List
+      languages: Languages
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
@@ -288,6 +294,7 @@ ka:
         editor: ამბის შემქმნელი პირი
         editors: მონიშნეთ ადამიანები, რომლებსაც გსუღ მისცეთ გამოქვეყნებამდე ამბის რედაქტირების უფლება
         about: Short summary of story that will be used on the home page and when you story is shared
+        locale: Select the language of your story. Allows users to filter stories by a language.
     media:
       form_title: მთელს ეკრანზე გაშლილი მედია სლაიდშოუ
       left: მარცხნივ

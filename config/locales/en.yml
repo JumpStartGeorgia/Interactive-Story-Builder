@@ -11,6 +11,7 @@ en:
       message: Message
       slideshow: Image Slideshow
       embed_medium: Embedable Online Media
+      language: Language
     attributes:
       user:
         email: Email Address
@@ -30,6 +31,7 @@ en:
         template_id: Template
         thumbnail: Thumbnail
         about: Story Summary
+        locale: Story Language
       section:
         title: Title
         audio: Audio Track
@@ -67,6 +69,9 @@ en:
       embed_medium:
         title: Title
         url: Url to Online Media
+      language:
+        locale: Locale
+        name: Language Name
     errors:
       messages:
         required_field: "is a required field."
@@ -110,6 +115,7 @@ en:
       news: News
       feedback: Feedback
       todo_list: To-Do List
+      languages: Languages
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
@@ -274,9 +280,9 @@ en:
       title: Story Settings Form
     form:
       placeholder:
-          title: Title of Story
-          author: Author(s) of the article
-          media_author: "Author(s) of photos and/or videos"
+        title: Title of Story
+        author: Author(s) of the article
+        media_author: "Author(s) of photos and/or videos"
       hint:
         title: Story title will appear as the header on the first content section and very first section if it is media section
         author: Author(s) will appear on the first content section
@@ -288,6 +294,7 @@ en:
         editor: Person that created the story record in this website
         editors: Select people that you want to give access to edit the story
         about: Short summary of story that will be used on the home page and when you story is shared
+        locale: Select the language of your story. Allows users to filter stories by a language.
     media:
       form_title: Full-Screen Media Slideshow Form
       left: Left

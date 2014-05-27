@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140527113431) do
+ActiveRecord::Schema.define(:version => 20140527190650) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -78,6 +78,16 @@ ActiveRecord::Schema.define(:version => 20140527113431) do
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], :name => "poly_session_index"
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], :name => "impressionable_type_message_index", :length => {"impressionable_type"=>nil, "message"=>255, "impressionable_id"=>nil}
   add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
+
+  create_table "languages", :force => true do |t|
+    t.string   "locale"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "languages", ["locale"], :name => "index_languages_on_locale"
+  add_index "languages", ["name"], :name => "index_languages_on_name"
 
   create_table "media", :force => true do |t|
     t.integer  "section_id"
@@ -177,8 +187,13 @@ ActiveRecord::Schema.define(:version => 20140527113431) do
     t.text     "about"
     t.boolean  "publish_home_page",          :default => true
     t.boolean  "staff_pick",                 :default => false
+<<<<<<< HEAD
+=======
+    t.string   "locale",                     :default => "en"
+>>>>>>> temp
   end
 
+  add_index "stories", ["locale"], :name => "index_stories_on_locale"
   add_index "stories", ["permalink"], :name => "index_stories_on_permalink"
   add_index "stories", ["publish_home_page", "staff_pick"], :name => "index_stories_on_publish_home_page_and_staff_pick"
   add_index "stories", ["published"], :name => "index_stories_on_published"
