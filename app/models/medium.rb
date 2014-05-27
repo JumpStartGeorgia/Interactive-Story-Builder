@@ -22,7 +22,7 @@ class Medium < ActiveRecord::Base
   validates :media_type, :presence => true, :inclusion => { :in => TYPE.values }  
   validates :title, :presence => true , length: { maximum: 255 }  
 
-  validates :caption, length: { maximum: 255 }  
+  validates :caption, length: { maximum: 2000 }  
 
   validates :video, presence: true, if: :video_type?
 
