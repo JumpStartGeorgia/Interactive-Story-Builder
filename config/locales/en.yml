@@ -164,9 +164,11 @@ en:
       error_clone: "%{obj} wasn't cloned."
       error_export: "Story %{obj} can't be exported"
       error_get_data: The selected item could not be found
+      select_section: Please select a Section first in order to add an Item
       one_section:
         content: Only one Item can be added to a Content section
-        slideshow: Only one Item can be added to a Image Slideshow section
+        slideshow: Only one Item can be added to an Image Slideshow section
+        embed_media: Only one Item can be added to an Embed Online Media section
       destroy_story:
         success: Story was successfully deleted.
         error: "Error occurred while deleting the story [ %{err} ]"

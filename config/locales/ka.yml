@@ -164,9 +164,11 @@ ka:
       error_clone: "%{obj} იქნა კლონირებული." 
       error_export: "Story %{obj} ამბის ექსპორტი შესაძლებელია"     
       error_get_data: არჩეული ერთეული ვერ მოიძებნა
+      select_section: Please select a Section first in order to add an Item
       one_section:
         content: მხოლოდ ერთი რამის  დამატებაა შესაძლებელი შინაარსის სექციაში
         slideshow: მხოლოდ ერთი რამის დამატებაა შესაძლებელი ფოტო სლაიდშოუს სექციაში
+        embed_media: Only one Item can be added to an Embed Online Media section
       destroy_story:
         success: ამბავი წარმატებით წაიშალა.
         error: "ამბის წაშლისას დაშვებულია შეცდომა. [ %{err} ]"
@@ -355,7 +357,7 @@ ka:
       placeholder:
         url: Url to online media
       hint:
-        title: "This text only appears in the left sidebar, it will not show up in the story"
+        title: ეს ტექსტი მხოლოდ ჩნდება მარცხენა ბლოკში, იგი არ გამოჩნდება ძირითად ამბავში
         url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: Youtube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
   storyteller:
     byline: ავტორი

@@ -302,7 +302,7 @@ $(document).ready(function() {
 
 	$('#btnAddItem').click(function(){	
 		var temp;
-		if(section_id == -1) {alert("Select section for new item"); return true;}
+		if(section_id == -1) {alert(gon.msgs_select_section); return true;}
 		else  { temp = $('.story-tree ul li.item[id='+ section_id + ']'); }
 		
 		var tempType = temp.data('type');
