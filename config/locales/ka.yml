@@ -8,9 +8,9 @@ ka:
       medium: მთელს ეკრანზე გაშლილი მედია სლაიდშოუ
       content: შინაარსი
       slideshow: ფოტო სლაიდშოუ
-      news: News
+      news: სიახლეები
       message: შეტყობინება
-      embed_medium: Embedable Online Media
+      embed_medium: ჩაშენებული ონლაინ მედია
     attributes:
       user:
         email: ელ.ფოსტა
@@ -63,8 +63,8 @@ ka:
         message: შეტყობინება
         message_type: უკუკავშირის ტიპი
       embed_medium:
-        title: Title
-        url: Url to Online Media
+        title: სათაური
+        url: ონლაინ მედიის ბმული
     errors:
       messages:
         required_field: "სავალდებულოა"
@@ -164,11 +164,11 @@ ka:
       error_clone: "%{obj} იქნა კლონირებული." 
       error_export: "Story %{obj} ამბის ექსპორტი შესაძლებელია"     
       error_get_data: არჩეული ერთეული ვერ მოიძებნა
-      select_section: Please select a Section first in order to add an Item
+      select_section: ერთეულის დამატებამდე, გთხოვთ, აირჩიეთ სექცია 
       one_section:
         content: მხოლოდ ერთი რამის  დამატებაა შესაძლებელი შინაარსის სექციაში
         slideshow: მხოლოდ ერთი რამის დამატებაა შესაძლებელი ფოტო სლაიდშოუს სექციაში
-        embed_media: Only one Item can be added to an Embed Online Media section
+        embed_media: ჩაშენებულ ონლაინ მედიაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი
       destroy_story:
         success: ამბავი წარმატებით წაიშალა.
         error: "ამბის წაშლისას დაშვებულია შეცდომა. [ %{err} ]"
@@ -187,8 +187,8 @@ ka:
       name: ფოტო სლაიდშოუ
       description: ფოტოები ჰორიზონტალურ სლაიდშოუში
     embed_media: 
-      name: Embed Online Media
-      description: youtube, vimeo, etc
+      name: ჩაშენებული ონლაინ მედია
+      description: youtube, vimeo, და ა.შ.
   message_types:
     bug: დაარეპორტე შეცდომა
     feature: მოითხოვეთ ახალი ფუნქციის დამატება
@@ -330,7 +330,7 @@ ka:
       title: მხოლოდ URL-ის წაკითხვა
       desc: "თქვენ შეგიძლიატ დააკოპიროთ და გააზიაროთ შემდეგი URL-ი, რათა ხალხმა ნახოს '%{title}' სანამ მას გამოაქვენებთ. ამ ადამიანებს ექნებათ სასუალება ნახონ თქვენ მიერ შექმნილი ამბავი, მაგრამ არ შეეძლებათ მისი რედაქტირება."
     slideshow:
-      form_title: Image Slideshow Form
+      form_title: ფოტო სლაიდშოუს ფორმა
       add_image: ფოტოს დამატება
       placeholder:
         caption: არ არის სავალდებულო
@@ -345,20 +345,20 @@ ka:
       hint:
         caption: სურათის აღწერა გამოჩნდება სურათის ქვემოთ
         source: წყარო გამოჩნდება სურათის აღწერის ქვემოთ
-        asset: მხოლოდ  jpg და png ფორმატია დასაშვები
+        asset: მხოლოდ jpg და png ფორმატია დასაშვები
       label:
         caption: ფოტოს აღწერა
         source: ფოტოს წყარო
     embed_media:
-      form_title: Embed Online Media Form
-      get_media: Get Online Media
-      preview: Preview of Online Media
-      error: The URL could not be processed. Please try again.
+      form_title: ჩაშენებული ონლაინ მედიის ფორმა
+      get_media: ჩასვით ონლაინ მედია
+      preview: ნახეთ ონლაინ მედია
+      error: ბმული ვერ დამუშავდა. გთხოვთ, კიდევ სცადეთ.
       placeholder:
-        url: Url to online media
+        url: ონლაინ მედიის ბმული
       hint:
         title: ეს ტექსტი მხოლოდ ჩნდება მარცხენა ბლოკში, იგი არ გამოჩნდება ძირითად ამბავში
-        url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: Youtube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
+        url: "ჩაშენებულ ონლაინ მედიაში შეგიძლიათ გამოიყენოთ შემდეგი საიტები: აუდიაო: Soundcloud, Spotify; ვიდეო: Youtube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED" 
   storyteller:
     byline: ავტორი
     byline_media: "ფოტოებისა და ვიედეოს ავტორი "
