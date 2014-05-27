@@ -47,6 +47,7 @@ function popuper(msg,msg_type)
   	   $('.flash-message').find("div.alert").delay(5000).fadeOut(2000,function(){ this.remove();});  	    	  
   }
 }
+
 function urldecode(url) {
   return decodeURIComponent(url.replace(/\+/g, ' '));
 }
