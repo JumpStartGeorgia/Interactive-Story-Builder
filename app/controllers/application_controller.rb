@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
 	before_filter :set_locale
 	before_filter :is_browser_supported?
+	before_filter :preload_global_variables
 	before_filter :initialize_gon
 	after_filter :flash_to_headers
 	before_filter :store_location
@@ -56,6 +57,11 @@ logger.debug "////////////////////////// BROWSER = #{user_agent}"
   def default_url_options(options={})
     { :locale => I18n.locale }
   end
+  
+	def preload_global_variables
+    @languages = Language.sorted
+	end
+  
 
 	def initialize_gon
 		gon.set = true

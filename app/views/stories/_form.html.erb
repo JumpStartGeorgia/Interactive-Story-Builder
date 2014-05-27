@@ -7,6 +7,9 @@
 
     <%= f.input :author, hint: t('.hint.author'), placeholder: t('.placeholder.author'), :input_html => { id: "storyAuthor"  } %>
     <%= f.input :media_author, hint: t('.hint.media_author'), placeholder: t('.placeholder.media_author'), :input_html => { id: "storyMediaAuthor"  }  %>
+
+    <%= f.input :locale , :as => :select, :hint => t('.hint.locale'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "storyLocale"  } %>
+    
     <%= f.input :template_id, :as => :select, hint: t('.hint.template'),  :include_blank => false, collection: @templates.map{|t|["#{t.title} - #{t.description}",t.id]} , :input_html => { :id => "storyTemplate"  }   %> 
    
     <%= f.fields_for :asset, @story.asset do |asset_object| %>

@@ -8,6 +8,7 @@ class Story < ActiveRecord::Base
 	
 	scope :is_published, where(:published => true)
 
+  belongs_to :language, :primary_key => :locale, :foreign_key => :locale
 	belongs_to :template
 	has_many :sections, :order => 'position', dependent: :destroy
 	has_and_belongs_to_many :users
@@ -21,6 +22,7 @@ class Story < ActiveRecord::Base
 	validates :author, :presence => true, length: { maximum: 255 }
 	validates :template, :presence => true
 	validates :media_author, length: { maximum: 255 }
+	validates :language, :presence => true
 	attr_accessor :was_publishing, :title_was
 
   # if the title changes, make sure the permalink is updated
