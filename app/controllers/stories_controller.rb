@@ -26,7 +26,7 @@ class StoriesController < ApplicationController
   # GET /stories/new
   # GET /stories/new.json
   def new
-    @story = Story.new(:user_id => current_user.id)     
+    @story = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
     @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list

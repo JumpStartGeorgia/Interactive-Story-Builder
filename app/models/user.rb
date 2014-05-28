@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :provider, :uid, :nickname, :avatar
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, 
+                  :provider, :uid, :nickname, :avatar,
+                  :about, :default_story_locale
 
   validates :role, :presence => true
 

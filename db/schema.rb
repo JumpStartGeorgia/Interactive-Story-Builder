@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140528074309) do
+ActiveRecord::Schema.define(:version => 20140528135350) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -251,9 +251,9 @@ ActiveRecord::Schema.define(:version => 20140528074309) do
   add_index "templates", ["title"], :name => "index_templates_on_title"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
-    t.integer  "role",                   :default => 0,  :null => false
+    t.string   "email",                  :default => "",   :null => false
+    t.string   "encrypted_password",     :default => "",   :null => false
+    t.integer  "role",                   :default => 0,    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -268,6 +268,8 @@ ActiveRecord::Schema.define(:version => 20140528074309) do
     t.string   "uid"
     t.string   "nickname"
     t.string   "avatar"
+    t.text     "about"
+    t.string   "default_story_locale",   :default => "en"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
