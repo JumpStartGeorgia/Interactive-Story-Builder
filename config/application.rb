@@ -53,7 +53,7 @@ module BootstrapStarter
 
     # tell the assest pipeline to add the public/javascripts dir as assets path
     config.assets.paths << "#{Rails.root}/public/javascripts/"
-    config.assets.precompile += %w( olly.js )
+    config.assets.precompile += %w( olly.js, bootstrap-select.min.js, bootstrap-select.min.css )
 
   end
 end
