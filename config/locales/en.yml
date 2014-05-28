@@ -12,6 +12,7 @@ en:
       slideshow: Image Slideshow
       embed_medium: Embedable Online Media
       language: Language
+      category: Category
     attributes:
       user:
         email: Email Address
@@ -72,6 +73,8 @@ en:
       language:
         locale: Locale
         name: Language Name
+      category_translation:
+        name: Name
     errors:
       messages:
         required_field: "is a required field."
@@ -116,6 +119,7 @@ en:
       feedback: Feedback
       todo_list: To-Do List
       languages: Languages
+      categories: Categories
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
@@ -295,6 +299,7 @@ en:
         editors: Select people that you want to give access to edit the story
         about: Short summary of story that will be used on the home page and when you story is shared
         locale: Select the language of your story. Allows users to filter stories by a language.
+        categories: Select the category(s) your story belongs to.  Allows users to filter stories by a category.
     media:
       form_title: Full-Screen Media Slideshow Form
       left: Left

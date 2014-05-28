@@ -15,6 +15,8 @@
 
     <%= f.input :locale , :as => :select, :hint => t('.hint.locale'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "storyLocale"  } %>
 
+		<%= f.input :categories, :as => :select, :hint => t('.hint.categories'), :collection => @categories, :multiple => true %>
+
     <% if false %>
       <%= f.input :template_id, :as => :select, hint: t('.hint.template'),  :include_blank => false, collection: @templates.map{|t|["#{t.title} - #{t.description}",t.id]} , :input_html => { :id => "storyTemplate"  }   %> 
     <% end %>

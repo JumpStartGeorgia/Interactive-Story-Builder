@@ -10,6 +10,8 @@ class Story < ActiveRecord::Base
 	scope :is_published_home_page, where(:published => true, :publish_home_page => true)
   scope :is_staff_pick, where(:staff_pick => true)
   
+	has_many :story_categories, :dependent => :destroy
+	has_many :categories, :through => :story_categories
 	belongs_to :user
   belongs_to :language, :primary_key => :locale, :foreign_key => :locale
 	belongs_to :template

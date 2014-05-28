@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140527190650) do
+ActiveRecord::Schema.define(:version => 20140528074309) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -30,6 +30,25 @@ ActiveRecord::Schema.define(:version => 20140527190650) do
   add_index "assets", ["item_id", "asset_type"], :name => "index_assets_on_item_id_and_asset_type"
   add_index "assets", ["item_id", "position"], :name => "index_assets_on_item_id_and_position"
   add_index "assets", ["item_id"], :name => "index_assets_on_item_id"
+
+  create_table "categories", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "category_translations", :force => true do |t|
+    t.integer  "category_id"
+    t.string   "locale"
+    t.string   "name"
+    t.string   "permalink"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "category_translations", ["category_id"], :name => "index_category_translations_on_category_id"
+  add_index "category_translations", ["locale"], :name => "index_category_translations_on_locale"
+  add_index "category_translations", ["name"], :name => "index_category_translations_on_name"
+  add_index "category_translations", ["permalink"], :name => "index_category_translations_on_permalink"
 
   create_table "contents", :force => true do |t|
     t.integer  "section_id"
@@ -187,10 +206,7 @@ ActiveRecord::Schema.define(:version => 20140527190650) do
     t.text     "about"
     t.boolean  "publish_home_page",          :default => true
     t.boolean  "staff_pick",                 :default => false
-<<<<<<< HEAD
-=======
     t.string   "locale",                     :default => "en"
->>>>>>> temp
   end
 
   add_index "stories", ["locale"], :name => "index_stories_on_locale"
@@ -209,6 +225,16 @@ ActiveRecord::Schema.define(:version => 20140527190650) do
 
   add_index "stories_users", ["story_id"], :name => "index_stories_users_on_story_id"
   add_index "stories_users", ["user_id"], :name => "index_stories_users_on_user_id"
+
+  create_table "story_categories", :force => true do |t|
+    t.integer  "story_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "story_categories", ["category_id"], :name => "index_story_categories_on_category_id"
+  add_index "story_categories", ["story_id"], :name => "index_story_categories_on_story_id"
 
   create_table "templates", :force => true do |t|
     t.string   "name"

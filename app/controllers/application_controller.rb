@@ -60,6 +60,7 @@ logger.debug "////////////////////////// BROWSER = #{user_agent}"
   
 	def preload_global_variables
     @languages = Language.sorted
+		@categories = Category.sorted
 	end
   
 
