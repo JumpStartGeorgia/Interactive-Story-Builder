@@ -49,8 +49,9 @@ group :assets do
   gem "coffee-rails", "~> 3.1.1"
   gem "uglifier", ">= 1.0.3"
   gem "therubyracer"
-  gem "less-rails"
-	gem "twitter-bootstrap-rails", "~> 2.1.0"
+  gem 'less-rails', git: 'git://github.com/metaskills/less-rails.git'
+  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'  , branch: 'bootstrap3'
+	#gem "twitter-bootstrap-rails"#, "~> 2.1.0"
   gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
   gem "jquery-ui-rails"
 end

@@ -55,7 +55,6 @@
     		<span>Story builder allows anyone with text, pictures and/or videos to<br>
     		combine this content into a creative story<br>
     		that can be published and shared with the world</span>
-
     		<div class="header-row">
 	    		<div class="btn-create-story">
 	    		     <%= link_to image_tag("create-story.png",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) + "Start Story", new_story_path %>
@@ -64,21 +63,23 @@
     	</div>
     </header>
 
-      <nav>
-      	<div class="logo">
-
+      <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+      	<div class="pull-left nav-logo">
 	      	<%= link_to(image_tag("logo.png",:size=>"182x29",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) , root_path(:locale => I18n.locale))%>
       	   	<% if @story.present? && showing_story %>
-            	<%= link_to(@story.title, root_path(:locale => I18n.locale), :class=>"navigation-headline brand font")%>  
+
+            	<%= link_to(@story.title, root_path(:locale => I18n.locale), :class=>"navigation-headline brand font" , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse")%>  
           	<% end %>
-		</div>
-	 	<div class="user">	      					        
-	          <ul>                     
+		    </div>
+          <div class="container-fluid nav-collapse nav-user">
+	          <ul class="nav pull-right">         
+                    
 		          <% if user_signed_in? %>
   		          <% if current_user.avatar.present? %>
           		        <li >
 				          	<%= link_to image_tag(current_user.avatar,:size=>"28x28", :class=>"avatar"), "#" , 
-				          	    :style => "margin:0px;padding:5px 3px 3px 0px;"%>				
+				          	     :class => "dropdown-toggle", :"data-toggle"=>"dropdown" %>				
 		          				 
 				          <ul class="dropdown-menu">
                     <li>
@@ -111,7 +112,7 @@
 		         	 <% end %> 
 							<% I18n.available_locales.each do |locale| %>
 								<% if locale != I18n.locale %>
-									<li><%= link_to t("app.language.#{locale}"), params.merge(:locale => locale) %></li>
+									<li><%= link_to t("app.language.#{locale}"), params.merge(:locale => locale) , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse"%></li>
 								<% end %>
 							<% end %>
 			
@@ -133,7 +134,7 @@
               <% end %>
 	          </ul>
 
-          </div>
+           </div>
       </nav>
 
     <style>
@@ -143,8 +144,7 @@
 		height: 40px;
 		border-radius: 150px;
 		-webkit-border-radius: 150px;
-		-moz-border-radius: 150px;
-		background: url(http://link-to-your/image.jpg) no-repeat;
+		-moz-border-radius: 150px;		
 		box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 		-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 		-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
@@ -155,36 +155,19 @@
     opacity: 0;
 	filter: alpha(opacity=0);
 	}
-    nav
-    {    	  
-    	position:absolute;
-    	top:0px;  
-    	left:0px;
-    	height:80px;
-    	line-height:80px;
-    	width:100%;
-    	z-index:102;
-    	vertical-align: middle;
-    }
-    nav .logo
+
+   nav .nav-logo
     {
-    	width:182px;
-    	height:29px;
+
     	padding-left:91px;
     }
-    nav .user
+    nav .nav-user
     {
-    	float:right;
 	    padding-right: 91px;
-		padding-top: -20px;    	
+      padding-top: 13px;  
     }
-    nav .user li
-    {
-    	float:left;
-    	color:#fff;
-	    
-    }
-        nav .user li a
+
+    nav .nav-user li a
     {    	
     	color:#fff;
 	    
