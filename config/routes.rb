@@ -64,6 +64,8 @@ BootstrapStarter::Application.routes.draw do
 		#match '/stories/:id/edit' => 'stories#get_story'
 
 		match "storyteller/:id" => "storyteller#index", as: 'storyteller_show'
+		match "storyteller/:id/staff_pick" => "storyteller#staff_pick", as: 'storyteller_staff_pick'
+		match "storyteller/:id/staff_unpick" => "storyteller#staff_unpick", as: 'storyteller_staff_unpick'
 
 		match "review/:id" => "review#index", as: 'review'
 

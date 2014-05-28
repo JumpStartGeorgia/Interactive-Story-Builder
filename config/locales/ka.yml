@@ -120,6 +120,8 @@ ka:
       todo_list: To-Do List
       languages: Languages
       categories: კატეგორიები
+      staff_pick: Select as Staff Pick
+      staff_unpick: Unselect as Staff Pick
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
@@ -177,6 +179,8 @@ ka:
       error_export: "Story %{obj} ამბის ექსპორტი შესაძლებელია"     
       error_get_data: არჩეული ერთეული ვერ მოიძებნა
       select_section: ერთეულის დამატებამდე, გთხოვთ, აირჩიეთ სექცია 
+      staff_pick: The story has been selected as a Staff Pick
+      staff_unpick: The story has been unselected as a Staff Pick
       one_section:
         content: მხოლოდ ერთი რამის  დამატებაა შესაძლებელი შინაარსის სექციაში
         slideshow: მხოლოდ ერთი რამის დამატებაა შესაძლებელი ფოტო სლაიდშოუს სექციაში

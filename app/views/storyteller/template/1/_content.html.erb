@@ -99,6 +99,15 @@
                 <% if columnSectionCount == 0 %>
                   <div class='headline'><%= @story.title %></div>
                   <div class="byline-rule"></div>
+                  <% if !@export && user_signed_in? && current_user.role?(User::ROLES[:staff_pick]) %>
+                    <div id="staff-pick">
+                    <% if @story.staff_pick %>
+                      <%= link_to t('helpers.links.staff_unpick'), storyteller_staff_unpick_path(@story.permalink), :class => 'btn btn-danger' %>
+                    <% else %>
+                      <%= link_to t('helpers.links.staff_pick'), storyteller_staff_pick_path(@story.permalink), :class => 'btn btn-success' %>
+                    <% end %>
+                    </div>
+                  <% end %>
                   <div class="byline byline--first" style="margin-bottom:50px;">
                   <%= t('storyteller.byline') %><span class="author"> <%= @story.author %></span>
                   <%= "<div>#{t('storyteller.byline_media')}<span class='author'>#{@story.media_author}</span></div>".html_safe if @story.media_author.present? %>

@@ -120,6 +120,8 @@ en:
       todo_list: To-Do List
       languages: Languages
       categories: Categories
+      staff_pick: Select as Staff Pick
+      staff_unpick: Unselect as Staff Pick
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
@@ -177,6 +179,8 @@ en:
       error_export: "Story %{obj} can't be exported"
       error_get_data: The selected item could not be found
       select_section: Please select a Section first in order to add an Item
+      staff_pick: The story has been selected as a Staff Pick
+      staff_unpick: The story has been unselected as a Staff Pick
       one_section:
         content: Only one Item can be added to a Content section
         slideshow: Only one Item can be added to an Image Slideshow section
