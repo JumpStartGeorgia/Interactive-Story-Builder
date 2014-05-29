@@ -70,6 +70,7 @@ BootstrapStarter::Application.routes.draw do
 		match "review/:id" => "review#index", as: 'review'
 
 		match "settings" => "settings#index", as: 'settings'
+		match "settings_remove_avatar" => "settings#remove_avatar", as: 'settings_remove_avatar'
 
 		match "demo" => "root#demo", as: 'demo'
 		match "news" => "root#news", as: 'news'

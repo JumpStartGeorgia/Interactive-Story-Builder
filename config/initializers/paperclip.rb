@@ -18,6 +18,9 @@ end
 Paperclip.interpolates('slideshow_image_story_id') do |attachment, style|
   attachment.instance.slideshow.section.story_id
 end
+Paperclip.interpolates('user_permalink') do |attachment, style|
+  attachment.instance.user.permalink
+end
 # Paperclip.interpolates('asset_url') do |attachment, style|
 #   Rails.logger.debug(attachment.instance.asset_type.to_s)
 

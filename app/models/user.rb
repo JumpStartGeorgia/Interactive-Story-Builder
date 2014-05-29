@@ -1,8 +1,17 @@
 class User < ActiveRecord::Base
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
 	# :registerable, :recoverable,
   has_and_belongs_to_many :stories
+
+	has_one :local_avatar,     
+	  :conditions => "asset_type = #{Asset::TYPE[:user_avatar]}", 	 
+	  foreign_key: :item_id,
+    class_name: "Asset",
+	  dependent: :destroy
+
+	accepts_nested_attributes_for :local_avatar, :reject_if => lambda { |c| c[:asset].blank? }
 
   devise :database_authenticatable,:registerable, :recoverable,
          :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
@@ -10,11 +19,35 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role, 
                   :provider, :uid, :nickname, :avatar,
-                  :about, :default_story_locale
+                  :about, :default_story_locale, :permalink, :local_avatar_attributes
+
+  has_permalink :create_permalink
 
   validates :role, :presence => true
 
   ROLES = {:user => 0, :staff_pick => 50, :admin => 99}
+
+  def create_permalink
+    self.nickname.clone
+  end
+
+  def has_provider_avatar?
+    self.provider.present? && self.avatar.present?
+  end
+  
+  def local_avatar_exists?
+    self.local_avatar.present? && self.local_avatar.asset.exists?
+  end
+
+  def avatar_url(style = :'28x28')
+    if has_provider_avatar? && !local_avatar_exists?
+      self.avatar
+    elsif local_avatar_exists?
+      self.local_avatar.asset.url(style)
+    else
+      Asset.new(:asset_type => Asset::TYPE[:user_avatar]).asset.url(style)
+    end
+  end
 
 
   def self.no_admins

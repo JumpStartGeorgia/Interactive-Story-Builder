@@ -22,6 +22,7 @@ ka:
         remember_me: დამიმახსოვრე                  
         default_story_locale: Default Language for Your Stories 
         about: Summary of You
+        local_avatar: Avatar
       story:
         title: ამბის სათაური
         user_id: გამოქვეყნების მომხმარებელი
@@ -124,6 +125,7 @@ ka:
       categories: კატეგორიები
       staff_pick: Select as Staff Pick
       staff_unpick: Unselect as Staff Pick
+      user_settings: Your Settings
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
@@ -184,6 +186,7 @@ ka:
       staff_pick: The story has been selected as a Staff Pick
       staff_unpick: The story has been unselected as a Staff Pick
       success_settings: Your settings were successfully updated.
+      success_remove_avatar: Your Facebook avatar is now being used.
       one_section:
         content: მხოლოდ ერთი რამის  დამატებაა შესაძლებელი შინაარსის სექციაში
         slideshow: მხოლოდ ერთი რამის დამატებაა შესაძლებელი ფოტო სლაიდშოუს სექციაში
@@ -301,7 +304,7 @@ ka:
         published: Published stories are available for the world to read
         publish_home_page: If checked, your story will appear on the home page of the site when it is published
         template: აირჩიეთ შაბლონი ამბის სტილის შესარჩევად
-        thumbnail: სურათი, რომელიც გამოჩნდება საწყის გვერძე ამბის გამოქვეყნების შემდგომ
+        thumbnail: Image that is used to show the story on the home page when the story is published (jpg and png only)
         editor: ამბის შემქმნელი პირი
         editors: მონიშნეთ ადამიანები, რომლებსაც გსუღ მისცეთ გამოქვეყნებამდე ამბის რედაქტირების უფლება
         about: Short summary of story that will be used on the home page and when you story is shared
@@ -389,6 +392,9 @@ ka:
   settings:
     index:
       title: "%{name} Settings"
+      facebook_avatar: This is your avatar from Facebook.
+      use_facebook_avatar: Use Facebook Avatar
       hint:
         about: Short summary about yourself.  This will be shown with the stories that you publish. 
         default_story_locale: Select the language you want to use by default when creating a new story.
+        local_avatar: Image that is shown in the header bar and on your user page (png and jpg only).        

@@ -1,5 +1,4 @@
 class NewsTranslation < ActiveRecord::Base
-	require 'utf8_converter'
   has_permalink :create_permalink, scope: :locale
 
 	belongs_to :news
@@ -40,7 +39,7 @@ class NewsTranslation < ActiveRecord::Base
     if self.news_id.present? && self.published_at.present? && self.is_published == true
       date << self.published_at.to_s
       date << '-'
-      "#{date}#{Utf8Converter.convert_ka_to_en(self.title.clone.to_ascii.gsub(/[^0-9A-Za-z|_\- ]/,''))}"
+      "#{date}#{self.title.clone}"
     end
   end
 

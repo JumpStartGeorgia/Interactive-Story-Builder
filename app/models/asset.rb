@@ -1,8 +1,8 @@
 class Asset < ActiveRecord::Base
-
   has_attached_file :asset
 
 
+  belongs_to :user, foreign_key: :item_id
   belongs_to :story, foreign_key: :item_id
   belongs_to :section, foreign_key: :item_id
   belongs_to :slideshow, foreign_key: :item_id
@@ -11,7 +11,7 @@ class Asset < ActiveRecord::Base
   belongs_to :video, foreign_key: :item_id, class_name: "Medium"  
   acts_as_list scope: :slideshow
 
-  TYPE = {story_thumbnail: 1, section_audio: 2, content_image: 3, media_image: 4, media_video: 5, slideshow_image: 6}
+  TYPE = {story_thumbnail: 1, section_audio: 2, content_image: 3, media_image: 4, media_video: 5, slideshow_image: 6, user_avatar: 7}
 
   acts_as_list scope: [:item_id, :asset_type]
 
@@ -22,7 +22,7 @@ class Asset < ActiveRecord::Base
   attr_accessor :init_called, :asset_exists
   
   after_initialize :init
-#  after_save :check_thumbnail
+  after_save :check_thumbnail
   
   
   ##############################
@@ -31,7 +31,9 @@ class Asset < ActiveRecord::Base
   # - so this checks after the save to see if the thumbnail does not exist and creates it
   ##############################
   def check_thumbnail
-    if self.asset_type == Asset::TYPE[:story_thumbnail] && !self.asset.exists?(:'250x250')
+    if (self.asset_type == Asset::TYPE[:story_thumbnail] && !self.asset.exists?(:'250x250')) ||
+      (self.asset_type == Asset::TYPE[:user_avatar] && !self.asset.exists?(:'28x28'))
+
       self.asset.reprocess!
     end
   end
@@ -46,13 +48,31 @@ class Asset < ActiveRecord::Base
 
       opt = {}    
       case self.asset_type
+        when Asset::TYPE[:user_avatar]        
+          opt = { 
+            :url => "/system/users/:style/:user_permalink.:extension",
+            :styles => {
+                :'140x140' => {:geometry => "140x140^"},
+                :'50x50' => {:geometry => "50x50^"},
+                :'28x28' => {:geometry => "28x28^"}
+            },
+            :convert_options => {
+              :'140x140' => "-gravity center -crop '140x140+0+0'",
+              :'50x50' => "-gravity center -crop '50x50+0+0'",
+              :'28x28' => "-gravity center -crop '28x28+0+0'"
+            },
+            :default_url => "/assets/missing/user_avatar/:style/default_user.png"
+          }
         when Asset::TYPE[:story_thumbnail]        
           opt = { 
             :url => "/system/places/thumbnail/:item_id/:style/:basename.:extension",
             :styles => {
-              :'250x250' => {:geometry => "250x250"}
+              :'250x250' => {:geometry => "250x250^"}
             },
-            :default_url => "/assets/missing/250x250/missing.png"
+            :convert_options => {
+              :'250x250' => "-gravity center -crop '250x250+0+0'",
+            },
+            :default_url => "/assets/missing/story_thumbnail/250x250/missing.png"
           }
         when  Asset::TYPE[:section_audio]         
           opt = {:url => "/system/places/audio/:story_id/:basename.:extension"}  
@@ -96,6 +116,9 @@ class Asset < ActiveRecord::Base
   end
 
 
+  with_options :if => "self.asset_type == Asset::TYPE[:user_avatar]" do |t|    
+    t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }}  
+  end
   with_options :if => "self.asset_type == Asset::TYPE[:story_thumbnail]" do |t|    
     t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }}  
   end

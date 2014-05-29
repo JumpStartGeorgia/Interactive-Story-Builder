@@ -99,7 +99,7 @@
                 <% if columnSectionCount == 0 %>
                   <div class='headline'><%= @story.title %></div>
                   <div class="byline-rule"></div>
-                  <% if !@export && user_signed_in? && current_user.role?(User::ROLES[:staff_pick]) %>
+                  <% if !@export && @story.permalink.present? && user_signed_in? && current_user.role?(User::ROLES[:staff_pick]) %>
                     <div id="staff-pick">
                     <% if @story.staff_pick %>
                       <%= link_to t('helpers.links.staff_unpick'), storyteller_staff_unpick_path(@story.permalink), :class => 'btn btn-danger' %>

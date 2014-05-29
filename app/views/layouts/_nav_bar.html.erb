@@ -21,12 +21,9 @@
                 <%= link_to t('helpers.titles.story_list'), stories_path  %>
               </li>              
 		          <% if user_signed_in? %>
-  		          <% if current_user.avatar.present? %>
-          		    <li>	          		    
-				          	<%= link_to image_tag(current_user.avatar,:size=>"28x28"), "http://facebook.com/" + current_user.nickname, 
-				          	    :style => "margin:0px;padding:5px 3px 3px 0px;" %>				
-			          	</li>
-                <% end %>			           			
+        		    <li>	          		    
+			          	<%= image_tag current_user.avatar_url, :size=>"28x28", :style => "margin:0px;padding:5px 3px 3px 0px;" %>				
+		          	</li>
 				        <li class="dropdown">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				                <%= current_user.nickname %>
@@ -38,6 +35,9 @@
                     </li>              
                     <li>
                       <%= link_to t('helpers.titles.story_list'), stories_path  %>
+                    </li>              
+                    <li>
+                      <%= link_to t('helpers.links.user_settings'), settings_path  %>
                     </li>              
                     <% if current_user.role? User::ROLES[:admin] %>
                       <li>
