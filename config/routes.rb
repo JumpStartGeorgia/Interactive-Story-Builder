@@ -69,6 +69,8 @@ BootstrapStarter::Application.routes.draw do
 
 		match "review/:id" => "review#index", as: 'review'
 
+		match "settings" => "settings#index", as: 'settings'
+
 		match "demo" => "root#demo", as: 'demo'
 		match "news" => "root#news", as: 'news'
 		match "news/:id" => "root#news_show", as: 'news_show'

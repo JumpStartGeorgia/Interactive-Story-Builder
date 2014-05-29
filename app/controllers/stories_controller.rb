@@ -30,7 +30,7 @@ class StoriesController < ApplicationController
     @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list
-    @is_story_form = true
+    @load_bootstrap_select = true
 
     respond_to do |format|
         format.html #new.html.er
@@ -46,7 +46,7 @@ class StoriesController < ApplicationController
     end 
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list(@story.template_id)
-    @is_story_form = true
+    @load_bootstrap_select = true
   end
 
   # POST /stories
@@ -69,7 +69,7 @@ class StoriesController < ApplicationController
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end      
         @templates = Template.select_list(@story.template_id) 
-        @is_story_form = true
+        @load_bootstrap_select = true
 
         flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
@@ -95,7 +95,7 @@ class StoriesController < ApplicationController
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end 
         @templates = Template.select_list(@story.template_id)
-        @is_story_form = true
+        @load_bootstrap_select = true
 
         flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
         format.html { render action: "edit" }

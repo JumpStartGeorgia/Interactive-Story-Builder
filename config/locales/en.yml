@@ -20,6 +20,8 @@ en:
         password_confirmation: Password Confirmation
         role: Role
         remember_me: Remeber Me
+        default_story_locale: Default Language for Your Stories 
+        about: Summary of You
       story:
         title: Story Title
         user_id: Story Editor
@@ -181,6 +183,7 @@ en:
       select_section: Please select a Section first in order to add an Item
       staff_pick: The story has been selected as a Staff Pick
       staff_unpick: The story has been unselected as a Staff Pick
+      success_settings: Your settings were successfully updated.
       one_section:
         content: Only one Item can be added to a Content section
         slideshow: Only one Item can be added to an Image Slideshow section
@@ -383,3 +386,9 @@ en:
     byline: By
     byline_media: "Photographs and video by "
     source: "Source:"
+  settings:
+    index:
+      title: "%{name} Settings"
+      hint:
+        about: Short summary about yourself.  This will be shown with the stories that you publish. 
+        default_story_locale: Select the language you want to use by default when creating a new story.    
