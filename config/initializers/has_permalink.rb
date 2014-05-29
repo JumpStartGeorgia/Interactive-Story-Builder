@@ -2,6 +2,11 @@
 module HasPermalink
 
   module InstanceMethods
+    # Generate permalink for the instance if the permalink is empty or nil.
+    def generate_old_permalink(old_nickname)
+      self.permalink = fix_duplication(normalize(old_nickname)) if old_nickname.present?
+    end
+    
     # the gem returns permalink here and we do not want this for all links
     # so overriding and reseting back to self.id
     def to_param
@@ -17,7 +22,7 @@ module FriendlyUrl
   # add to_ascii method to catch all utf8 characters   
   def normalize(str)
     unless str.blank?
-      n = str.mb_chars.downcase.to_s.strip.to_ascii
+      n = str.mb_chars.to_s.strip.to_ascii
 =begin
       n.gsub!(/[àáâãäåāă]/,     'a')
       n.gsub!(/æ/,              'ae')

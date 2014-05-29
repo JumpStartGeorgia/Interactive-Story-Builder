@@ -1,7 +1,7 @@
 class RescaleThumbnails < ActiveRecord::Migration
   def up
-    Story.all.each do |s|
-      s.asset.asset.reprocess! if s.asset_exists?
+    Asset.where(:asset_type => Asset::TYPE[:story_thumbnail]).each do |as|
+      as.asset.reprocess! if as.asset.exists?
     end
 
   end

@@ -16,7 +16,6 @@ class SettingsController < ApplicationController
     if !current_user.local_avatar.present? 
       current_user.build_local_avatar(:asset_type => Asset::TYPE[:user_avatar])
     end      
-
     
     respond_to do |format|     
       format.html 

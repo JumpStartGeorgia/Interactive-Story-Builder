@@ -27,18 +27,51 @@ class User < ActiveRecord::Base
 
   ROLES = {:user => 0, :staff_pick => 50, :admin => 99}
 
+  before_save :check_nickname_changed
+
+  # if the nickname changes, then the permalink and avatar names must also change
+  def check_nickname_changed
+    if self.nickname_changed?
+      old_permalink = self.permalink.clone
+      # generate the new permalink
+      self.generate_permalink! 
+
+      # if the user has a local avatar, update the file name
+      # to use the new permalink
+      if local_avatar_exists?
+        # get all files with the old nickname
+        path = "#{Rails.root}/public/system/users/"
+        imgs = Dir.glob(path  + "**/#{old_permalink}.*")
+        if imgs.present?
+          # rename to the new name
+          imgs.each do |img|
+            File.rename(img, img.gsub(old_permalink, self.permalink))
+          end
+        end
+        
+      end
+    end
+  end
+
   def create_permalink
     self.nickname.clone
   end
 
+  # see if the user logs in via a provider (e.g., facebook)
+  # and has an avatar url from that provider
   def has_provider_avatar?
     self.provider.present? && self.avatar.present?
   end
   
+  # see if the user has a local avatar saved
   def local_avatar_exists?
-    self.local_avatar.present? && self.local_avatar.asset.exists?
+    self.local_avatar.present?# && self.local_avatar.asset.exists?
   end
 
+  # get the url to the avatar
+  # - check if using a provider and if so return that avatar url
+  # - else use the local avatar
+  # if neither exists, return the missing url
   def avatar_url(style = :'28x28')
     if has_provider_avatar? && !local_avatar_exists?
       self.avatar

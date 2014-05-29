@@ -9,6 +9,8 @@
 
 
 	<%= f.inputs do %>
+	  <%= f.input :nickname, hint: t('.hint.nickname'), :input_html => { :size => 35 } %>
+
     <%= f.fields_for :local_avatar, current_user.local_avatar do |as| %>
 
         <label class=" control-label" for="user_local_avatar_attributes_asset"><%= t('activerecord.attributes.user.local_avatar') %></label>

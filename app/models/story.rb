@@ -24,17 +24,15 @@ class Story < ActiveRecord::Base
 
 	validates :title, :presence => true, length: { maximum: 100 }
 	validates :author, :presence => true, length: { maximum: 255 }
-	validates :about, :presence => true
-	validates :template, :presence => true
+#	validates :about, :presence => true
+	validates :template_id, :presence => true
 	validates :media_author, length: { maximum: 255 }
-	validates :language, :presence => true
-	attr_accessor :was_publishing, :title_was
+	validates :locale, :presence => true
 
   # if the title changes, make sure the permalink is updated
- 	after_find :set_title
   before_save :check_title
 
- 	after_find :record_initial_values
+  # if publishing, set the published date
 	before_save :publish_date
 	before_save :generate_reviewer_key
 	 
@@ -68,26 +66,17 @@ class Story < ActiveRecord::Base
 	end
 
 
-	def record_initial_values
-		self.was_publishing = self.has_attribute?(:published) ? self.published : nil		
-	end
-
-
   # if the story is being published, record the date
 	def publish_date		
-	  if self.was_publishing != self.published && self.published?
+	  if self.published_changed? && self.published?
 	  	self.published_at = Time.now
 	  	# date is set so now permalink can be created
 	  	self.permalink = create_permalink
 	  end     
 	end
 
-  def set_title
-		self.title_was = self.has_attribute?(:title) ? self.title : nil		
-  end
-  
   def check_title
-    self.generate_permalink! if self.title != self.title_was
+    self.generate_permalink! if self.title_changed?
   end 
   
   def create_permalink
