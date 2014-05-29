@@ -28,9 +28,11 @@
 // Example:
 // @linkColor: #ff0000;
 
+@container-desktop:((1443px + @grid-gutter-width));
+@container-large-desktop:((1443px + @grid-gutter-width));
 @navbar-default-bg:transparent;
 @navbar-margin-bottom:0px;
-@nav-link-padding:5px 5px;
+@nav-link-padding:15px 15px;
 @dropdown-bg:#c7254e;
 @component-active-color:#c7254e;
 @component-active-bg:#c7254e;
@@ -44,9 +46,11 @@
 
 .navbar 
 {
+	position:absolute;
+	top:30px;	
 	border: 0px solid transparent;
-	height:80px;
-	line-height:80px;
+	/*height:80px;
+	line-height:80px;*/
 	width:100%;
 	z-index:102;
 	vertical-align: middle;
@@ -67,20 +71,18 @@ html, body {
   height: 100%;
 	font-size: 13px;
 }
-body
-{
-	margin-top:70px;
-}
+
 #wrapper {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0 auto -155px;
+	margin-top:570px;
+	/*margin: 0 auto -155px;*/
 }
 
 #wrapper > .container {
-	padding-top: 60px;
-	padding-bottom: 60px;
+	padding-top: 80px;
+/*	padding-bottom: 80px;*/
 	overflow: auto;
 }
 
@@ -97,7 +99,10 @@ body
 		margin: 0;
 	}
 }
-
+.container
+{
+	max-width: 1443px;	
+}
 .container > ul.nav  {
 	line-height: 20px;
 }

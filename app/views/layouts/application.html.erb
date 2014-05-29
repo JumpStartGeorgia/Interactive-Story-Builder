@@ -48,22 +48,8 @@
   </head>
   <body>
  <!--    < render partial: "layouts/nav_bar"%>    -->
-   <header class="header">
-    	<div class="header-data">
-    		<h1>Build and Share</h1>
-    		<h3>the Next Generation Story</h3>
-    		<span>Story builder allows anyone with text, pictures and/or videos to<br>
-    		combine this content into a creative story<br>
-    		that can be published and shared with the world</span>
-    		<div class="header-row">
-	    		<div class="btn-create-story">
-	    		     <%= link_to image_tag("create-story.png",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) + "Start Story", new_story_path %>
-	    		</div>
-    		</div>
-    	</div>
-    </header>
 
-      <nav class="navbar navbar-default navbar-fixed-top">
+      <nav class="navbar navbar-default navbar-static-top">
       <div class="container-fluid">
       	<div class="pull-left nav-logo">
 	      	<%= link_to(image_tag("logo.png",:size=>"182x29",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) , root_path(:locale => I18n.locale))%>
@@ -72,14 +58,14 @@
             	<%= link_to(@story.title, root_path(:locale => I18n.locale), :class=>"navigation-headline brand font" , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse")%>  
           	<% end %>
 		    </div>
-          <div class="container-fluid nav-collapse nav-user">
-	          <ul class="nav pull-right">         
+          <div class="nav-collapse nav-user pull-right">
+	          <ul class="nav">         
                     
 		          <% if user_signed_in? %>
   		          <% if current_user.avatar.present? %>
           		        <li >
 				          	<%= link_to image_tag(current_user.avatar,:size=>"28x28", :class=>"avatar"), "#" , 
-				          	     :class => "dropdown-toggle", :"data-toggle"=>"dropdown" %>				
+				          	     :class => "dropdown-toggle avatar-link", :"data-toggle"=>"dropdown" %>				
 		          				 
 				          <ul class="dropdown-menu">
                     <li>
@@ -136,6 +122,20 @@
 
            </div>
       </nav>
+     <header class="header">
+      <div class="header-data">
+        <h1>Build and Share</h1>
+        <h3>the Next Generation Story</h3>
+        <span>Story builder allows anyone with text, pictures and/or videos to<br>
+        combine this content into a creative story<br>
+        that can be published and shared with the world</span>
+        <div class="header-row">
+          <div class="btn-create-story">
+               <%= link_to image_tag("create-story.png",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) + "Start Story", new_story_path %>
+          </div>
+        </div>
+      </div>
+    </header>
 
     <style>
     .avatar
@@ -148,23 +148,28 @@
 		box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 		-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 		-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-
+    margin-top:5px;
     }
-    .avatar img
+/*    img.avatar 
     {
-    opacity: 0;
-	filter: alpha(opacity=0);
-	}
+      opacity: 0;
+	   filter: alpha(opacity=0);
+	   }*/
+     .avatar-link
+     {
+      margin:0px !important;
+      padding:0px !important;
+     }
 
    nav .nav-logo
     {
 
-    	padding-left:91px;
+    	padding: 11px 20px 10px 91px;
     }
     nav .nav-user
     {
-	    padding-right: 91px;
-      padding-top: 13px;  
+	    padding-right:91px;
+      /*padding-top: 25px;  */
     }
 
     nav .nav-user li a
@@ -173,13 +178,15 @@
 	    
     }
     .header{    	
+      position:absolute;
+      top:0px;
+      left:0px;
     	width: 100%;
 		height: 550px;
 		min-width: 1024px;
 		text-align: center;		
 		background: transparent url('assets/headers/header-bg-01.jpg') center no-repeat;
-		background-size: cover;
-		margin-top: -86px;
+		background-size: cover;		
 		-moz-background-clip: border;
 		-webkit-background-clip: border;
 		background-clip: border-box;
@@ -258,7 +265,7 @@
 		  <div class="container">
 		    <div class="content">
 		      <div class="row">
-		         <div class="span12">
+		         <div class="col-md-12">
 		         		<div class="flash-message">
 							<% flash.each do |key, msg| %>
 								<div class="alert <%= flash_translation(key) %> fade in">
@@ -288,27 +295,27 @@
     <div class="push"><!--//--></div>
 
     <footer class="clear">
-		<div id="left">&copy; <%= Time.now.year %></div>
-  	<div id="middle">
-      <ul>
-        <li>
-          <%= link_to t('helpers.links.news'), news_path %>
-        </li>
-        <li>
-          <%= link_to t('helpers.links.todo_list'), todo_list_path %> 
-        </li>
-        <li>
-          <%= link_to t('helpers.links.feedback'), feedback_path %> 
-        </li>
-		<li>
-                <%= link_to image_tag("github.png",:size=>"28x28",:style=>"vertical-align:middle;"), "https://github.com/JumpStartGeorgia/Interactive-Story-Builder.git", :style => "height:40px;line-height:40px;margin:0px;padding:0px;" %>
-      	</li>
-      </ul>
-  	</div>
-		<div id="right">
-			<%= link_to(image_tag("jumpstart-logo.png"), "http://www.jumpstart.ge", :target => "_blank",
-					:title => t(".js_link_title")	) %>
-		</div>
+  		<div id="left">&copy; <%= Time.now.year %></div>
+    	<div id="middle">
+        <ul>
+          <li>
+            <%= link_to t('helpers.links.news'), news_path %>
+          </li>
+          <li>
+            <%= link_to t('helpers.links.todo_list'), todo_list_path %> 
+          </li>
+          <li>
+            <%= link_to t('helpers.links.feedback'), feedback_path %> 
+          </li>
+  		<li>
+                  <%= link_to image_tag("github.png",:size=>"28x28",:style=>"vertical-align:middle;"), "https://github.com/JumpStartGeorgia/Interactive-Story-Builder.git", :style => "height:40px;line-height:40px;margin:0px;padding:0px;" %>
+        	</li>
+        </ul>
+    	</div>
+  		<div id="right">
+  			<%= link_to(image_tag("jumpstart-logo.png"), "http://www.jumpstart.ge", :target => "_blank",
+  					:title => t(".js_link_title")	) %>
+  		</div>
     </footer>
 
     <!-- Javascripts
@@ -337,6 +344,82 @@
 
       </script>
 		<% end %>
+    <script>
+       var scrollOffset = 0;
+
+       function navbarMagic(reset)
+       {      
+            reset = typeof reset !== 'undefined' ?  reset : false;
+            var currentOffset = $(this).scrollTop();
+            var objectOffset = $("#wrapper").offset().top;
+            //console.log("Offset from top: "+$(this).scrollTop());            
+            //down
+          if(reset)
+          {
+            if(scrollOffset <= objectOffset-60)
+            {
+              $(".navbar").queue(function(){
+                    $(this).fadeOut(400,function(){
+                      $(this).css("background-color","rgba(255,255,255,0.0)")
+                      $(this).css("position","absolute");
+                      $(this).css("top","30px");                                            
+                    }).fadeIn(10).dequeue();   
+                    //animate({}, 1000,function(){ }).dequeue();                   
+                    
+                 });
+            }
+            else
+            {                
+                $(".navbar").css("position","fixed").css("top","0px").queue(function(){
+                  $(this).animate({"background-color":"#000"}, 1000).dequeue();
+                }); 
+            
+            }
+          }
+          else
+          {
+            if(scrollOffset < currentOffset)
+            {              
+              //console.log("down");
+              if(scrollOffset <= objectOffset-60 && currentOffset >= objectOffset-60)
+              {
+                //console.log("navbar visible");
+               // $(".navbar").toggleClass("navbar-static-top navbar-fixed-top").css("background-color","#000");                
+                 $(".navbar").css("position","fixed").css("top","0px").queue(function(){
+                    $(this).animate({"background-color":"#000"}, 1000).dequeue();
+                  }); 
+              }
+
+            }
+            else 
+            {
+              //console.log("up");
+              if(scrollOffset >= objectOffset - 60 && currentOffset <= objectOffset - 60)
+              {                
+                //console.log("navbar invisible");
+               // $(".navbar").toggleClass("navbar-static-top navbar-fixed-top").css("background-color","transparent");
+                //$(".navbar").css("background-color","transparent").css("position","absolute");
+                 $(".navbar").queue(function(){
+                    $(this).fadeOut(400,function(){
+                      $(this).css("background-color","rgba(255,255,255,0.0)")
+                      $(this).css("position","absolute");
+                      $(this).css("top","30px");                                            
+                    }).fadeIn(10).dequeue();   
+                    //animate({}, 1000,function(){ }).dequeue();                   
+                    
+                 });
+              }
+            }
+          }
+            scrollOffset = currentOffset;
+       }
+      $(document).ready(function() {      
+          scrollOffset = $(window).scrollTop();      
+          $(window).scroll(function(){navbarMagic();});
+          navbarMagic(true);
+      });
+
+      </script>
 
   </body>
 </html>

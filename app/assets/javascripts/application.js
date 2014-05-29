@@ -9,7 +9,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
-//= require jquery-ui
+//= require jquery.ui.all
 //= require twitter/bootstrap
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
