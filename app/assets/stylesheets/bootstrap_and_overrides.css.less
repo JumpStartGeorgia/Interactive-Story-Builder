@@ -28,8 +28,8 @@
 // Example:
 // @linkColor: #ff0000;
 
-@container-desktop:((1443px + @grid-gutter-width));
-@container-large-desktop:((1443px + @grid-gutter-width));
+//@container-desktop:((1473px + @grid-gutter-width));
+@container-large-desktop:((1473px + @grid-gutter-width));
 @navbar-default-bg:transparent;
 @navbar-margin-bottom:0px;
 @nav-link-padding:15px 15px;
@@ -81,9 +81,13 @@ html, body {
 }
 
 #wrapper > .container {
-	padding-top: 80px;
+	padding: 80px 0px 0px 0px !important;
 /*	padding-bottom: 80px;*/
 	overflow: auto;
+}
+.container .row
+{
+	margin:0px;
 }
 
 .push { height: 155px; } /* Just some arbitrary space to add between footer and rest of the content, when they are close */
@@ -101,7 +105,7 @@ html, body {
 }
 .container
 {
-	max-width: 1443px;	
+	max-width: 1473px;	
 }
 .container > ul.nav  {
 	line-height: 20px;

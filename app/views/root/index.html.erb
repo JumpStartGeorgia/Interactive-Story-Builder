@@ -38,29 +38,26 @@
   <% end %>
 </div>
 
-<div class="pins-wrapper">
-  <div class="pin-columns clear">
-    <% @stories.each do |story| %>
-     
-      <div class="pin">    
-           
-          <div class="img">
-            <a href="<%=storyteller_show_path(story.permalink) %>"><img src="<%= story.show_asset.asset.url(:"250x250") %>" /></a>
-          </div>   
-           <div class="pin-likes">
-            <a href="<%=storyteller_show_path(story.permalink) %>" class="n3">123</a>
-          </div>                 
-          <div class="pin-caption">
-            <a href="<%=storyteller_show_path(story.permalink) %>"><%= story.title.truncate(255) %> </a>
-          </div>                   
-
-        <div class="pin-author">Added by <a class="author"><%= story.author %></a></div>
-        <div class="separator"></div>
-        <div class="pin-publish"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>              
-      </div>
-     </a> 
-    <% end %>    
+  
+  <div class="grid col-3">      
+    <% @stories.each_with_index do |story,s_i| %>       
+        <div class="col n-4">                   
+            <div class="story-thumbnail">
+              <a href="<%=storyteller_show_path(story.permalink) %>"><img height="328px" width="459px" src="<%= story.show_asset.asset.url(:thumbnail) %>" /></a>
+            </div>   
+             <div class="story-likes">
+              <a href="<%=storyteller_show_path(story.permalink) %>" class="n3">123</a>
+            </div>                 
+            <div class="story-caption">
+              <a href="<%=storyteller_show_path(story.permalink) %>"><%= story.title.truncate(255) %> </a>
+            </div>                   
+            <div class="story-author">Added by <a class="author"><%= story.author %></a></div>
+            <div class="separator"></div>
+            <div class="story-publish"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>              
+       
+        </div>  
+    <% end %>  
+    </div>  
   </div>
 
-</div>
   <%= page_navigation_links @stories %>

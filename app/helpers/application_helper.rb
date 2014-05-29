@@ -85,7 +85,7 @@ module ApplicationHelper
     protected
 
     def html_container(html)
-      tag :div, tag(:ul, html), container_attributes
+      tag :div, tag(:ul, html,:class=>"pagination"), container_attributes
     end
 
     def page_number(page)
@@ -102,7 +102,7 @@ module ApplicationHelper
   end
 
   def page_navigation_links(pages)
-    will_paginate(pages, :class => 'pagination', :inner_window => 2, :outer_window => 0, :renderer => BootstrapLinkRenderer, :previous_label => '&larr;'.html_safe, :next_label => '&rarr;'.html_safe)
+    will_paginate(pages, :class => 'pagination-wrapper', :inner_window => 2, :outer_window => 0, :renderer => BootstrapLinkRenderer, :previous_label => '&larr;'.html_safe, :next_label => '&rarr;'.html_safe)
   end
 end
 

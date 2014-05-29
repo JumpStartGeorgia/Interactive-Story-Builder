@@ -29,8 +29,8 @@ class Asset < ActiveRecord::Base
         when Asset::TYPE[:story_thumbnail]        
           opt = { 
             :url => "/system/places/thumbnail/:item_id/:style/:basename.:extension",
-            :styles => {:"250x250" => {:geometry => "250x250"}},
-            :default_url => "/assets/missing/250x250/missing.png"
+            :styles => {:thumbnail => {:geometry => "459x328#"}},            
+            :default_url => "/assets/missing/thumbnail/missing.png"
           }
         when  Asset::TYPE[:section_audio]         
           opt = {:url => "/system/places/audio/:story_id/:basename.:extension"}  
