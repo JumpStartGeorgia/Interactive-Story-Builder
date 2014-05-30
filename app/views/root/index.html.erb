@@ -1,5 +1,32 @@
-<% title  t('.title') %>
 
+  
+  <div class="grid col-3">      
+    <% @stories.each_with_index do |story,s_i| %>       
+        <div class="col n-4">                   
+            <div class="story-thumbnail">
+              <a href="<%=storyteller_show_path(story.permalink) %>"><img height="328px" width="459px" src="<%= story.show_asset.asset.url(:thumbnail) %>" /></a>
+            </div>   
+             <div class="story-likes">
+              <a href="<%=storyteller_show_path(story.permalink) %>" class="n3">123</a>
+            </div>                 
+            <div class="story-caption">
+              <a href="<%=storyteller_show_path(story.permalink) %>"><%= story.title.truncate(255) %> </a>
+            </div>                   
+            <div class="story-author">Added by <a class="author"><%= story.author %></a></div>
+            <div class="separator"></div>
+            <div class="story-publish"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>              
+       
+        </div>  
+    <% end %>  
+    </div>  
+  </div>
+
+
+
+
+  <%= page_navigation_links @stories %>
+
+  <% title  t('.title') %>
 <% if Rails.env.staging? %>
    <h1 style="margin:36px 36px;background-color: #F8E869;padding: 36px;line-height: 28px;">You are accessing a test site. Please go to <a href="http://storybuilder.jumpstart.ge/en" style="text-decoration:underline;">http://storybuilder.jumpstart.ge/en</a> to use the official site. </h1>
 <% end %>
@@ -37,27 +64,3 @@
     </div>
   <% end %>
 </div>
-
-  
-  <div class="grid col-3">      
-    <% @stories.each_with_index do |story,s_i| %>       
-        <div class="col n-4">                   
-            <div class="story-thumbnail">
-              <a href="<%=storyteller_show_path(story.permalink) %>"><img height="328px" width="459px" src="<%= story.show_asset.asset.url(:thumbnail) %>" /></a>
-            </div>   
-             <div class="story-likes">
-              <a href="<%=storyteller_show_path(story.permalink) %>" class="n3">123</a>
-            </div>                 
-            <div class="story-caption">
-              <a href="<%=storyteller_show_path(story.permalink) %>"><%= story.title.truncate(255) %> </a>
-            </div>                   
-            <div class="story-author">Added by <a class="author"><%= story.author %></a></div>
-            <div class="separator"></div>
-            <div class="story-publish"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>              
-       
-        </div>  
-    <% end %>  
-    </div>  
-  </div>
-
-  <%= page_navigation_links @stories %>

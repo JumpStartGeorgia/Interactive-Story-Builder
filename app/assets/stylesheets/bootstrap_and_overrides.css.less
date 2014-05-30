@@ -29,6 +29,7 @@
 // @linkColor: #ff0000;
 
 //@container-desktop:((1473px + @grid-gutter-width));
+@body-bg:#f8f8f8;
 @container-large-desktop:((1473px + @grid-gutter-width));
 @navbar-default-bg:transparent;
 @navbar-margin-bottom:0px;
@@ -36,7 +37,6 @@
 @dropdown-bg:#c7254e;
 @component-active-color:#c7254e;
 @component-active-bg:#c7254e;
-
 
 @nav-link-hover-bg:transparent;
 @nav-disabled-link-color:#c7254e;
@@ -70,14 +70,15 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 html, body {
   height: 100%;
 	font-size: 13px;
+
 }
 
 #wrapper {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin-top:570px;
-	/*margin: 0 auto -155px;*/
+	/*margin-top:570px;
+	margin: 0 auto -155px;*/
 }
 
 #wrapper > .container {
@@ -113,8 +114,7 @@ html, body {
 .navbar-fixed-top .navbar-inner .container .brand {
   font-size: 19px;
 }
-
-.navbar-default
-{
-	
+.nav > li > a {
+font-family: dejavusans-el;
+font-size: 18px;
 }
