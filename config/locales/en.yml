@@ -191,6 +191,8 @@ en:
       staff_unpick: The story has been unselected as a Staff Pick
       success_settings: Your settings were successfully updated.
       success_remove_avatar: Your Facebook avatar is now being used.
+      nickname_duplicate: This nickname already exists. 
+      nickname_url: 'Your url will look like:'
       one_section:
         content: Only one Item can be added to a Content section
         slideshow: Only one Item can be added to an Image Slideshow section

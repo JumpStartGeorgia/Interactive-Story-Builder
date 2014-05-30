@@ -1,5 +1,5 @@
 class SettingsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:check_nickname]
 
 
   def index
@@ -34,5 +34,20 @@ class SettingsController < ApplicationController
     flash[:notice] = I18n.t('app.msgs.success_remove_avatar')
 
     redirect_to settings_path  
-  end    
+  end   
+  
+  def check_nickname
+    output = {:permalink => nil, :is_duplicate => false}
+    if user_signed_in? && current_user.nickname == params[:nickname].strip.downcase
+      output[:permalink] = current_user.permalink
+    else
+      u = User.new(:nickname => params[:nickname])
+      u.generate_permalink
+      output = {:permalink => u.permalink, :is_duplicate => u.is_duplicate_permalink?}
+    end
+      
+    respond_to do |format|     
+      format.json { render json: output } 
+    end
+  end 
 end

@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
                   :provider, :uid, :nickname, :avatar,
                   :about, :default_story_locale, :permalink, :local_avatar_attributes, :avatar_file_name
   
-  has_permalink :create_permalink
+  has_permalink :create_permalink, true
 
   validates :role, :presence => true
 
@@ -32,14 +32,13 @@ class User < ActiveRecord::Base
 
   # if the nickname changes, then the permalink must also change
   def check_nickname_changed
-logger.debug "+++++++++ check nickname changed"    
     if self.nickname_changed?
       self.generate_permalink! 
     end
   end
 
   def create_permalink
-    self.nickname.clone
+    self.nickname.dup
   end
 
   # see if the user logs in via a provider (e.g., facebook)
@@ -50,7 +49,6 @@ logger.debug "+++++++++ check nickname changed"
   
   # see if the user has a local avatar saved
   def local_avatar_exists?
-logger.debug "********* local avatar = #{self.local_avatar} | #{self.local_avatar.asset.url if self.local_avatar.present?}"  
     self.local_avatar.present? && self.local_avatar.asset.exists?
   end
 
@@ -59,7 +57,6 @@ logger.debug "********* local avatar = #{self.local_avatar} | #{self.local_avata
   # - else use the local avatar
   # if neither exists, return the missing url
   def avatar_url(style = :'28x28')
-logger.debug "------- avatar url"    
     if has_provider_avatar? && !local_avatar_exists?
       self.avatar
     elsif local_avatar_exists?

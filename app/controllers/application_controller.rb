@@ -68,6 +68,11 @@ logger.debug "////////////////////////// BROWSER = #{user_agent}"
 		gon.set = true
 		gon.highlight_first_form_field = true
 
+    gon.check_nickname = settings_check_nickname_path
+    gon.nickname_duplicate = I18n.t('app.msgs.nickname_duplicate')
+    gon.nickname_url = I18n.t('app.msgs.nickname_url')
+    
+
     gon.msgs_select_section = I18n.t('app.msgs.select_section')
     gon.msgs_one_section_content = I18n.t('app.msgs.one_section.content')
     gon.msgs_one_section_slideshow = I18n.t('app.msgs.one_section.slideshow')

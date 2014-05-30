@@ -1,5 +1,5 @@
 class NewsTranslation < ActiveRecord::Base
-  has_permalink :create_permalink
+  has_permalink :create_permalink, true
 
 	belongs_to :news
   attr_accessible :news_id, :title, :content, :locale, :permalink

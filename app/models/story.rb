@@ -2,7 +2,7 @@ class Story < ActiveRecord::Base
   # record public views
   is_impressionable :counter_cache => true 
   # create permalink to story
-  has_permalink :create_permalink
+  has_permalink :create_permalink, true
 	
 	scope :is_published, where(:published => true)
 	scope :is_published_home_page, where(:published => true, :publish_home_page => true)
