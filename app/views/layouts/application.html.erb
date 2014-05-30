@@ -130,19 +130,19 @@
         combine this content into a creative story
         that can be published<br> and shared with the world</div>
         <div class="btn-create-story">
-               <%= link_to  "Start Story", new_story_path %>
+               <%= link_to  "Start Story", new_story_path, :tabindex=>1 %>
           </div>       
       </div>
     </header>
-    <div class="filter">
-      <div class="">
+    <div id="filter">
+      <div class="container">
         <ul class="nav">
-          <li><a href="#">Staff Picks</a></li>
+          <li><a href="#" tabindex="12">Staff Picks</a></li>
           <li class="divider-vertical"></li>
    
 
         <li class="dropdown">
-         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+         <a href="#" class="dropdown-toggle" data-toggle="dropdown" tabindex="13">
                         Trending
                         <b class="caret"></b>
                         </a>
@@ -153,9 +153,9 @@
             <li class="dropdown">Commented</li>
           </ul>
         </li>
-         <li class="dropdown">
+         <li class="dropdown" tabindex="14">
           
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
                         Category
                         <b class="caret"></b>
                         </a>
@@ -164,7 +164,7 @@
           </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" tabindex="15">
                         Language
                         <b class="caret"></b>
                         </a>
@@ -172,17 +172,24 @@
             <li class="dropdown">French</li>
           </ul>
         </li>
-        </ul>
-      </div>
-      <div class="search-wrapper pull-right">
-        <div class="search-label">Find the story</div>        
-        <div class="search-box">          
-            <div class="search-text">
-              <input type="text" placeholder="Find the story"/>
+        <div class="pull-right">
+         <div class="search-label">Find the story</div>         
+            <div class="search-wrapper">  
+
+            <div class="search-box">          
+                <div class="search-text"><input type="text" placeholder="Find the story" tabindex="16"/></div>           
+            </div>         
+          </div> 
           </div>
-        </div>  
-        <div class="search-btn"></div>    
+        </ul>
+
+        
+          
       </div>
+   
+       <!-- <div class="search-label">Find the story</div>     -->
+    
+
     </div>
 
 		<div id="wrapper">
@@ -275,12 +282,13 @@
        {      
             reset = typeof reset !== 'undefined' ?  reset : false;
             var currentOffset = $(this).scrollTop();
-            var objectOffset = $("#wrapper").offset().top;
+            var objectOffset = $("#filter").offset().top;
+            var topOffsetBack = 200;
             //console.log("Offset from top: "+$(this).scrollTop());            
             //down
           if(reset)
           {
-            if(scrollOffset <= objectOffset-60)
+            if(scrollOffset <= objectOffset-topOffsetBack)
             {
               $(".navbar").queue(function(){
                     $(this).fadeOut(400,function(){
@@ -305,7 +313,7 @@
             if(scrollOffset < currentOffset)
             {              
               //console.log("down");
-              if(scrollOffset <= objectOffset-60 && currentOffset >= objectOffset-60)
+              if(scrollOffset <= objectOffset-topOffsetBack && currentOffset >= objectOffset-topOffsetBack)
               {
                 //console.log("navbar visible");
                // $(".navbar").toggleClass("navbar-static-top navbar-fixed-top").css("background-color","#000");                
@@ -337,7 +345,68 @@
           }
             scrollOffset = currentOffset;
        }
-      $(document).ready(function() {      
+      $(document).ready(function() {  
+          var sa = false;
+          var sl = true;
+
+
+          $('.search-box').click(function(){
+            if(sa)
+            {
+               $(".search-box").removeClass("active");  
+             //  $(".search-label").show();
+               sa = false; 
+               //sl = true;    
+            }
+            else 
+            {
+            //  $(".search-label").hide();
+              $(".search-box").addClass("active");                 
+              sa = true; 
+             // sl = false;                 
+            }
+          });
+
+          $('.search-box input').focus(function(){
+            $(".search-box").addClass("active");  
+            sa = true; 
+            sl = false;                        
+          });
+           $('.search-box').focus(function(){
+            $(".search-box").addClass("active");  
+            sa = true; 
+            sl = false;                        
+          });
+          $('.search-box').focusout(function(){
+            $(".search-box").removeClass("active");
+            $(".search-label").show();            
+            sa = false;
+            sl = true;         
+          });
+           $('.search-box').hover(function(){       
+
+              if(!sa)
+            {
+               //$(".search-box").removeClass("active");
+               if(!sl)
+               {
+               $(".search-label").show();
+               //sa = false; 
+               sl = true;  
+               }  
+               else
+               {
+                 $(".search-label").hide();
+                 sl = false;     
+               }
+              //$(".search-box").addClass("active");                 
+              //sa = true; 
+              
+            }
+           
+          });
+
+
           scrollOffset = $(window).scrollTop();      
           $(window).scroll(function(){navbarMagic();});
           navbarMagic(true);
