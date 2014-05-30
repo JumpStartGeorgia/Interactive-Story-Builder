@@ -11,7 +11,7 @@ ka:
       news: სიახლეები
       message: შეტყობინება
       embed_medium: ჩაშენებული ონლაინ მედია
-      language: Language
+      language: ენა
       category: კატეგორია
     attributes:
       user:
@@ -20,9 +20,9 @@ ka:
         password_confirmation: გაიმეორეთ პაროლი
         role: როლი
         remember_me: დამიმახსოვრე                  
-        default_story_locale: Default Language for Your Stories 
-        about: Summary of You
-        local_avatar: Avatar
+        default_story_locale: თქვენი ამბის თავდაპირვლეი ენა 
+        about: თქვენს შესახებ
+        local_avatar: პროფილის სურათი
         nickname: Nickname
       story:
         title: ამბის სათაური
@@ -32,11 +32,11 @@ ka:
         media_author: ფოტოსა და ვიდეოს ავტორ(ებ)ი
         published: გამოქვეყნება
         published_at: გამოქვეყნებულია
-        publish_home_page: When Published, Share Your Story on the Home Page?
+        publish_home_page: გსურთ გამოქვეყნების შემდგომ, თქვენი ამბავი გააზიაროთ საწყის გვერძე?
         template_id: შაბლონი
         thumbnail: ესკიზი
-        about: Story Summary
-        locale: Story Language
+        about: ამბის მოკლე შინაარსი
+        locale: ამბის ენა
       section:
         title: დასახელება
         audio: აუდიო ფაილი
@@ -75,8 +75,8 @@ ka:
         title: სათაური
         url: ონლაინ მედიის ბმული
       language:
-        locale: Locale
-        name: Language Name
+        locale: ენის აღმნიშვნელი
+        name: ენის დასახელება
       category_translation:
         name: სახელი
     errors:
@@ -122,11 +122,11 @@ ka:
       news: სიახლეები
       feedback: უკუკავშირი
       todo_list: To-Do List
-      languages: Languages
+      languages: ენები
       categories: კატეგორიები
-      staff_pick: Select as Staff Pick
-      staff_unpick: Unselect as Staff Pick
-      user_settings: Your Settings
+      staff_pick: რჩეულებში დამატება 
+      staff_unpick: რჩეულებიდან ამოშლა
+      user_settings: თქვენი პარამეტრები
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
@@ -186,10 +186,10 @@ ka:
       error_export: "Story %{obj} ამბის ექსპორტი შესაძლებელია"     
       error_get_data: არჩეული ერთეული ვერ მოიძებნა
       select_section: ერთეულის დამატებამდე, გთხოვთ, აირჩიეთ სექცია 
-      staff_pick: The story has been selected as a Staff Pick
-      staff_unpick: The story has been unselected as a Staff Pick
-      success_settings: Your settings were successfully updated.
-      success_remove_avatar: Your Facebook avatar is now being used.
+      staff_pick: ამბავი რჩეულში იქნა დამატებული
+      staff_unpick: ამბავი ამოშლილი რჩეულებიდან
+      success_settings: თქვენი პარამეტრები წარმატებით განახლდა.
+      success_remove_avatar: პროფილის სურათათ თქვენი გვერდის Facebook სურათია გამოყენებული.
       one_section:
         content: მხოლოდ ერთი რამის  დამატებაა შესაძლებელი შინაარსის სექციაში
         slideshow: მხოლოდ ერთი რამის დამატებაა შესაძლებელი ფოტო სლაიდშოუს სექციაში
@@ -304,15 +304,15 @@ ka:
         title: ამბის სათაური გამოჩნდება გამოჩნდება როგორც ჰედერი პირველი შინაარსის სექციაში თუ ეს მედია სექციაა
         author: სტატიის ავტორ(ებ)ი გამოჩნდებ(ი)ა(ნ) პირველი შინაარსის სექციაში
         media_author:  ავტორ(ებ)ი გამოჩნდებ(ი)ა(ნ) პირველი შინაარსის სექციაში ამბის სათაურის ქვემოთ
-        published: Published stories are available for the world to read
-        publish_home_page: If checked, your story will appear on the home page of the site when it is published
+        published: გამოქვეყნებული ამბების წაკითხვა ყველას შეუძლია
+        publish_home_page: თუ მონიშნავთ, თქვენი ამბავი გამოჩნდება საწყის გვერძე გამოქვეყნების შემდგომ
         template: აირჩიეთ შაბლონი ამბის სტილის შესარჩევად
-        thumbnail: Image that is used to show the story on the home page when the story is published (jpg and png only)
+        thumbnail: თქვენი ამბის გამოსახულება, რომელიც გამოჩნდება საწყის გვერძე, როდესაც ამბავი გამოქვეყნდება (მხოლოდ jpg და png ფორმატი)
         editor: ამბის შემქმნელი პირი
         editors: მონიშნეთ ადამიანები, რომლებსაც გსუღ მისცეთ გამოქვეყნებამდე ამბის რედაქტირების უფლება
-        about: Short summary of story that will be used on the home page and when you story is shared
-        locale: Select the language of your story. Allows users to filter stories by a language.
-        categories: Select the category(s) your story belongs to.  Allows users to filter stories by a category.
+        about: ამბის მოკლე შინაარსი, რომელიც გამოჩნდება საწყის გვერხ, როდესაც თქვენი ამბავი გამოქვეყნდება
+        locale: აირჩიეთ თქვენი ამბის ენა. მიეცით მომხმარებელს საშუალება აირჩიოს ამბავი ენის მიხედვით.
+        categories: აირჩიეთ კატეგორია(ები), რომელსაც თქვენი ამბავი განეკუთვნება. მიეცით მომხმარებელს საშუალება აირჩიოს ამბავი კატეგორიის მიხედვით.
     media:
       form_title: მთელს ეკრანზე გაშლილი მედია სლაიდშოუ
       left: მარცხნივ
@@ -394,10 +394,10 @@ ka:
     source: "წყარო:"
   settings:
     index:
-      title: "%{name} Settings"
-      facebook_avatar: This is your avatar from Facebook.
-      use_facebook_avatar: Use Facebook Avatar
+      title: "%{name} პარამეტრები"
+      facebook_avatar: ეს არის თქვენი პროფილის სურათი Facebook-იდან.
+      use_facebook_avatar: გამოიყენეთ Facebook-ის პროფილის სურათი
       hint:
-        about: Short summary about yourself.  This will be shown with the stories that you publish. 
-        default_story_locale: Select the language you want to use by default when creating a new story.
-        local_avatar: Image that is shown in the header bar and on your user page (png and jpg only).        
+        about: მოკლედ თქვენს შესახებ. ეს გამოჩნდება გამოქვეყნებულ ამბებთან ერთად. 
+        default_story_locale: აირჩიეთ ენა, რომელსაც გამოიყენებთ ამბის შექმნისას.
+        local_avatar: ფოტო, რომელიც გამოჩნდება თქვენი გვერდის ზედა სექციაში (მხოლოდ png და jpg).
