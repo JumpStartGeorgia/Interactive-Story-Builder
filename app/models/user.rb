@@ -19,8 +19,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role, 
                   :provider, :uid, :nickname, :avatar,
-                  :about, :default_story_locale, :permalink, :local_avatar_attributes
-
+                  :about, :default_story_locale, :permalink, :local_avatar_attributes, :avatar_file_name
+  
   has_permalink :create_permalink
 
   validates :role, :presence => true
@@ -28,28 +28,13 @@ class User < ActiveRecord::Base
   ROLES = {:user => 0, :staff_pick => 50, :admin => 99}
 
   before_save :check_nickname_changed
+	before_save :generate_avatar_file_name
 
-  # if the nickname changes, then the permalink and avatar names must also change
+  # if the nickname changes, then the permalink must also change
   def check_nickname_changed
+logger.debug "+++++++++ check nickname changed"    
     if self.nickname_changed?
-      old_permalink = self.permalink.clone
-      # generate the new permalink
       self.generate_permalink! 
-
-      # if the user has a local avatar, update the file name
-      # to use the new permalink
-      if local_avatar_exists?
-        # get all files with the old nickname
-        path = "#{Rails.root}/public/system/users/"
-        imgs = Dir.glob(path  + "**/#{old_permalink}.*")
-        if imgs.present?
-          # rename to the new name
-          imgs.each do |img|
-            File.rename(img, img.gsub(old_permalink, self.permalink))
-          end
-        end
-        
-      end
     end
   end
 
@@ -65,7 +50,8 @@ class User < ActiveRecord::Base
   
   # see if the user has a local avatar saved
   def local_avatar_exists?
-    self.local_avatar.present?# && self.local_avatar.asset.exists?
+logger.debug "********* local avatar = #{self.local_avatar} | #{self.local_avatar.asset.url if self.local_avatar.present?}"  
+    self.local_avatar.present? && self.local_avatar.asset.exists?
   end
 
   # get the url to the avatar
@@ -73,12 +59,22 @@ class User < ActiveRecord::Base
   # - else use the local avatar
   # if neither exists, return the missing url
   def avatar_url(style = :'28x28')
+logger.debug "------- avatar url"    
     if has_provider_avatar? && !local_avatar_exists?
       self.avatar
     elsif local_avatar_exists?
       self.local_avatar.asset.url(style)
     else
       Asset.new(:asset_type => Asset::TYPE[:user_avatar]).asset.url(style)
+    end
+  end
+
+
+  # create a random string for this user that will 
+  # be used for the filename for the avatar
+  def generate_avatar_file_name
+    if self.avatar_file_name.blank?
+      self.avatar_file_name = SecureRandom.urlsafe_base64
     end
   end
 

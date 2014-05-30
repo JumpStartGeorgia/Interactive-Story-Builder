@@ -131,6 +131,8 @@ en:
       new: "New %{model}"
       edit: "Edit %{model}"
       story_list: Your Stories
+    hints:
+      nickname: Your nickname is used in the url to your published stories (e.g., nickname/story-title)        
   app:
     language:
       en: English
@@ -399,4 +401,3 @@ en:
         about: Short summary about yourself.  This will be shown with the stories that you publish. 
         default_story_locale: Select the language you want to use by default when creating a new story.
         local_avatar: Image that is shown in the header bar and on your user page (png and jpg only).
-        nickname: Your nickname is used in the url to your published stories (e.g., nickname/story-title)        

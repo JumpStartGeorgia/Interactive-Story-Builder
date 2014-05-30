@@ -1,3 +1,8 @@
+# encoding: utf-8
+require 'uri'
+require 'paperclip/url_generator'
+require 'active_support/deprecation'
+
 # if using nested_form to upload files and want all files for a record under one folder
 # replace 'xxx_id' with the name of the object parameter name that you want to use as the folder name
 Paperclip.interpolates('item_id') do |attachment, style|
@@ -18,29 +23,7 @@ end
 Paperclip.interpolates('slideshow_image_story_id') do |attachment, style|
   attachment.instance.slideshow.section.story_id
 end
-Paperclip.interpolates('user_permalink') do |attachment, style|
-  attachment.instance.user.permalink
+Paperclip.interpolates('user_avatar_file_name') do |attachment, style|
+  attachment.instance.user.avatar_file_name
 end
-# Paperclip.interpolates('asset_url') do |attachment, style|
-#   Rails.logger.debug(attachment.instance.asset_type.to_s)
-
-#   case attachment.instance.asset_type
-#       when Asset::TYPE['story_thumbnail']
-#    		"/system/places/thumbnail/:id/:style/:basename.:extension"                 
-#       when  Asset::TYPE['section_audio']
-#         "/system/places/audio/:story_id2/:basename.:extension"
-#     end
-# end
-# Paperclip.interpolates('asset_default_url') do |attachment, style|
-#   Rails.logger.debug(attachment.instance.asset_type.to_s)
-#   case attachment.instance.asset_type
-#       when Asset::TYPE['story_thumbnail']   	
-#  		"/assets/missing/250x250/missing.png"            
-#       when  Asset::TYPE['section_audio']
-#        ""
-#     end
-# end
-
-
-
 

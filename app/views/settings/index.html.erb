@@ -9,9 +9,10 @@
 
 
 	<%= f.inputs do %>
-	  <%= f.input :nickname, hint: t('.hint.nickname'), :input_html => { :size => 35 } %>
+	  <%= f.input :nickname, hint: t('helpers.hints.nickname'), :input_html => { :size => 35 } %>
 
     <%= f.fields_for :local_avatar, current_user.local_avatar do |as| %>
+        <%= as.input :asset_type, :as => :hidden %>
 
         <label class=" control-label" for="user_local_avatar_attributes_asset"><%= t('activerecord.attributes.user.local_avatar') %></label>
         <div class="avatar_container clear">
@@ -23,7 +24,6 @@
               <%= link_to t('.use_facebook_avatar'), settings_remove_avatar_path, :class => 'btn btn-mini btn-warning' %>
             <% end %>
             <%= as.input :asset, :as => :file , hint: t('.hint.local_avatar') , :input_html => { accept:"image/jpeg,image/png" }, label: false  %> 
-            <%= as.input :asset_type, :as => :hidden %>
           </div>
         </div>
 

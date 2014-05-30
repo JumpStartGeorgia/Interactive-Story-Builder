@@ -20,7 +20,7 @@
   	<%= f.error_messages %>
 
 	  <%= f.input :email, :input_html => { :size => 35, :placeholder => t('activerecord.attributes.user.email') }, :label => false %>
-	  <%= f.input :nickname, :input_html => { :size => 35, :placeholder => 'Nickname' }, :label => false %>
+	  <%= f.input :nickname, hint: t('helpers.hints.nickname'), :input_html => { :size => 35, :placeholder => t('activerecord.attributes.user.nickname') }, :label => false %>
 	  <% if f.object.password_required? %>
 		  <%= f.input :password, :input_html => { :size => 35, :placeholder => t('activerecord.attributes.user.password') }, :label => false %>
 		  <%= f.input :password_confirmation, :input_html => { :size => 35, :placeholder => t('activerecord.attributes.user.password_confirmation') }, :label => false %>

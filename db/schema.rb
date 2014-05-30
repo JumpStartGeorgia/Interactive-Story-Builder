@@ -271,6 +271,7 @@ ActiveRecord::Schema.define(:version => 20140529134642) do
     t.text     "about"
     t.string   "default_story_locale",   :default => "en"
     t.string   "permalink"
+    t.string   "avatar_file_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

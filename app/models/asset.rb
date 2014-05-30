@@ -19,27 +19,14 @@ class Asset < ActiveRecord::Base
   validates :asset_type, inclusion: { in: TYPE.values }
   
 
-  attr_accessor :init_called, :asset_exists
+  attr_accessor :init_called, :asset_exists, :stop_check_thumbnail
   
   after_initialize :init
-  after_save :check_thumbnail
+
+  before_post_process :init
+  before_post_process :transliterate_file_name
+
   
-  
-  ##############################
-  ## THIS IS A HACK
-  # - for some reason the story thumbnail styles are not generated when the thumbnail is first loaded (post processing is never called)
-  # - so this checks after the save to see if the thumbnail does not exist and creates it
-  ##############################
-  def check_thumbnail
-    if (self.asset_type == Asset::TYPE[:story_thumbnail] && !self.asset.exists?(:'250x250')) ||
-      (self.asset_type == Asset::TYPE[:user_avatar] && !self.asset.exists?(:'28x28'))
-
-      self.asset.reprocess!
-    end
-  end
-
-
-
   def init
 
     if self.init_called != true
@@ -50,16 +37,11 @@ class Asset < ActiveRecord::Base
       case self.asset_type
         when Asset::TYPE[:user_avatar]        
           opt = { 
-            :url => "/system/users/:style/:user_permalink.:extension",
+            :url => "/system/users/:style/:user_avatar_file_name.:extension",
             :styles => {
-                :'140x140' => {:geometry => "140x140^"},
-                :'50x50' => {:geometry => "50x50^"},
-                :'28x28' => {:geometry => "28x28^"}
-            },
-            :convert_options => {
-              :'140x140' => "-gravity center -crop '140x140+0+0'",
-              :'50x50' => "-gravity center -crop '50x50+0+0'",
-              :'28x28' => "-gravity center -crop '28x28+0+0'"
+                :'140x140' => {:geometry => "140x140#"},
+                :'50x50' => {:geometry => "50x50#"},
+                :'28x28' => {:geometry => "28x28#"}
             },
             :default_url => "/assets/missing/user_avatar/:style/default_user.png"
           }
@@ -67,10 +49,7 @@ class Asset < ActiveRecord::Base
           opt = { 
             :url => "/system/places/thumbnail/:item_id/:style/:basename.:extension",
             :styles => {
-              :'250x250' => {:geometry => "250x250^"}
-            },
-            :convert_options => {
-              :'250x250' => "-gravity center -crop '250x250+0+0'",
+              :'250x250' => {:geometry => "250x250#"}
             },
             :default_url => "/assets/missing/story_thumbnail/250x250/missing.png"
           }
@@ -136,9 +115,6 @@ class Asset < ActiveRecord::Base
   end
 
    
-  before_post_process :init
-  before_post_process :transliterate_file_name
-
   def transliterate_file_name
     if asset_file_name.present?
       extension = File.extname(asset_file_name).gsub(/^\.+/, '')

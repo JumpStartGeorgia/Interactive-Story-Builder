@@ -22,6 +22,7 @@
     <% end %>
    
     <%= f.fields_for :asset, @story.asset do |as| %>
+        <%= as.input :asset_type, :as => :hidden %>
 
         <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.story.thumbnail') %></label>
         <% if @story.asset_exists? %>
@@ -33,7 +34,6 @@
         <% end %>  
 
         <%= as.input :asset, :as => :file , hint: t('.hint.thumbnail') , :input_html => { :id => "storyThumbnail", accept:"image/jpeg,image/png" }, label: false  %> 
-        <%= as.input :asset_type, :as => :hidden %>
 
     <% end %> 
 
