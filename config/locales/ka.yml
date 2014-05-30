@@ -133,6 +133,7 @@ ka:
       story_list: ამბის ნახვა
     hints:
       nickname: Your nickname is used in the url to your published stories (e.g., nickname/story-title)        
+      local_avatar: ფოტო, რომელიც გამოჩნდება თქვენი გვერდის ზედა სექციაში (მხოლოდ png და jpg).
   app:
     language:
       en: English
@@ -400,4 +401,3 @@ ka:
       hint:
         about: მოკლედ თქვენს შესახებ. ეს გამოჩნდება გამოქვეყნებულ ამბებთან ერთად. 
         default_story_locale: აირჩიეთ ენა, რომელსაც გამოიყენებთ ამბის შექმნისას.
-        local_avatar: ფოტო, რომელიც გამოჩნდება თქვენი გვერდის ზედა სექციაში (მხოლოდ png და jpg).

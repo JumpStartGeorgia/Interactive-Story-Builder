@@ -17,8 +17,8 @@
 
   <%= semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   	<%= f.error_messages %>
-    <%= f.input :email, :input_html => { :size => 35, :placeholder => model_class.human_attribute_name(:email) }, :label => false %>
-    <%= f.input :password, :input_html => { :size => 35, :placeholder => model_class.human_attribute_name(:password) }, :label => false %>
+    <%= f.input :email, :input_html => { :size => 35 } %>
+    <%= f.input :password, :input_html => { :size => 35 } %>
     <% if devise_mapping.rememberable? -%>
 	    <div class="control-group">
 		    <label class="checkbox">
