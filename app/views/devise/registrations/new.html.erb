@@ -19,19 +19,21 @@
   <%= semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:multipart => true}) do |f| %>
   	<%= f.error_messages %>
 
-	  <%= f.input :email, :input_html => { :size => 35 } %>
-	  <%= f.input :nickname, hint: t('helpers.hints.nickname'), :input_html => { :size => 35 } %>
-    <% resource.build_local_avatar(:asset_type => Asset::TYPE[:user_avatar]) %>
-    <%= f.fields_for :local_avatar, resource.local_avatar do |as| %>
-        <%= as.input :asset_type, :as => :hidden %>
-        <%= as.input :asset, :as => :file , hint: t('helpers.hints.local_avatar') , :input_html => { accept:"image/jpeg,image/png" }, label: t('activerecord.attributes.user.local_avatar')  %> 
-    <% end %> 
+	  <%= f.inputs do %>
+	    <%= f.input :email, :input_html => { :size => 35 } %>
+	    <%= f.input :nickname, hint: t('helpers.hints.nickname'), :input_html => { :size => 35 } %>
+      <% resource.build_local_avatar(:asset_type => Asset::TYPE[:user_avatar]) %>
+      <%= f.fields_for :local_avatar, resource.local_avatar do |as| %>
+          <%= as.input :asset_type, :as => :hidden %>
+          <%= as.input :asset, :as => :file , hint: t('helpers.hints.local_avatar') , :input_html => { accept:"image/jpeg,image/png" }, label: t('activerecord.attributes.user.local_avatar')  %> 
+      <% end %> 
 
-	  <% if f.object.password_required? %>
-		  <%= f.input :password, :input_html => { :size => 35 } %>
-		  <%= f.input :password_confirmation, :input_html => { :size => 35 } %>
-	  <% end %>
-
+	    <% if f.object.password_required? %>
+		    <%= f.input :password, :input_html => { :size => 35 } %>
+		    <%= f.input :password_confirmation, :input_html => { :size => 35 } %>
+	    <% end %>
+    <% end %>
+    
 	  <div class="control-group">
 		  <%= f.submit t('helpers.links.sign_up2'), :class => 'btn' %>
 	  </div>
