@@ -153,23 +153,36 @@ div#form-ka {
 
 /* footer */
 footer {
-	margin-top: -40px; /* negative value of footer height */
-	min-height: 40px !important;
-	
-	background-image: linear-gradient(to bottom, #222222, #111111);
+	margin-top: -57px; /* negative value of footer height */
+	min-height: 57px !important;
+	background-color:#121212;
+	/*background-image: linear-gradient(to bottom, #222222, #111111);
 	background-repeat: repeat-x;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
-	border-color: #252525;
+	border-color: #252525;*/
 	padding: 0 20px;
-	/*padding-top: 13px;*/
-	font-size: 10pt;
-	color: #999999;
+	/*padding-top: 13px;*/	
+	color: #727272;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  font-family: opensans-l;
+  font-size:16px;
+}
+footer a:hover
+{
+  color:#fff !important;
+}
+footer a:hover img
+{
+opacity: 1;
+}
+footer a img
+{
+opacity: 0.4;
 }
 footer > div
 {
-	height:40px;
-	line-height:40px;
+	height:57px;
+	line-height:57px;
 	vertical-align: middle;
 }
 footer div#left {
@@ -190,20 +203,25 @@ footer #middle {
 	float: left;
 }
 footer #middle ul {
-	height:40px;
-	line-height:40px;
+	height:57px;
+	line-height:57px;
 }
 
 footer #middle ul li {
 	display: inline;
-	font-family: Arial;
-  border-right: 1px solid #ccc;
+	font-family: opensans-l;
+  font-size:16px;
+  color:#898989;
+  border-right: 1px solid #898989;
 }
 footer #middle ul li:last-child {
   border-right: none;
 }
 footer #middle ul li a {
 	padding: 0 10px;
+    font-family: opensans-l;
+  font-size:16px;
+  color:#898989;
 }
 
 footer div#right {

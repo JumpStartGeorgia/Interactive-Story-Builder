@@ -22,7 +22,12 @@
     font-style: normal;
     font-weight: 200;
 }
-
+@font-face {
+    font-family: "opensans-b";    
+    src: url( '/assets/fonts/opensans-bold.ttf') format("truetype");           
+    font-style: normal;
+    font-weight: 200;
+}
 
 
 #an_container{
@@ -85,18 +90,48 @@
 	/*background: -webkit-linear-gradient(45deg, #FFF, #F9F9F9);*/
 
 }
+.story-thumbnail
+{width: 459px;
+height: 328px;}
 .story-thumbnail img {
     line-height: 328px; 
     /*border-bottom: 1px solid #ccc;*/
     padding-bottom: 22px;    
+
 }
-.col a
+.story-thumbnail a:hover .story-link
+{
+
+    background-image: url("/assets/link.png");
+background-position: center center;
+width: 459px;
+height: 329px;
+position:absolute;
+top:0px;
+background-repeat: no-repeat;
+background-color:rgba(34,34,34,0.5);
+   -webkit-transition: color 0.25s ease-out 0s;
+      -moz-transition: color 0.25s ease-out 0s;
+      -o-transition: color 0.25s ease-out 0s;
+      transition: color 0.25s ease-out 0s;   
+      transition-property:background-color;
+    -moz-transition-property: background-color; /* Firefox 4 */
+    -webkit-transition-property:background-color; /* Safari and Chrome */
+    -o-transition-property:background-color; /* Opera */
+}
+.col  .story-info a
 {
 	  text-decoration:none;
     opacity: 0.8;
     cursor:pointer;
 }
-.col a:hover
+/*.col a:hover
+{
+    text-decoration:none;
+    opacity: 1;
+    color:initial;
+}*/
+.col .story-info a:hover
 {
 	  text-decoration:none;
     opacity: 1;
@@ -195,6 +230,14 @@ ul.pagination {
 ul.pagination li{
   padding:5px;
   display:inline-block;
+}
+ul.pagination li a{
+font-size:20px;
+font-family:opensans-b;
+}
+ul.pagination li.active a{
+font-size:20px;
+font-family:opensans-b;
 }
 
 .separator
@@ -366,16 +409,11 @@ ul.pagination li{
     }
      .search-box
     {
-      direction:rtl;
+      
       height:56px;
       width:56px;
       line-height:56px;
-      background: transparent url('/assets/search.png'); 
-      background-repeat: no-repeat;
-      background-position: center right;
-      background-size: 20px 21px;
-      background-attachment: local;
-      background-origin:content-box;
+      display: table;
 
       padding-left:20px;
       padding-right: 17px;
@@ -395,7 +433,7 @@ ul.pagination li{
       
     }
      .search-box:hover
-     {cursor:pointer;  width:500px;}
+     {  width:500px;}
  
     .search-box.active
      {  width:500px;}
@@ -407,12 +445,14 @@ ul.pagination li{
      .search-text 
       {
          overflow:hidden;
-               margin-right:40px; 
-      margin-left:6px;   
+         margin-right:40px; 
+         margin-left:6px;    
+         display:table-cell;   
+         min-width:0px; 
      }
      .search-text input
     {
-          direction:ltr;
+          
       font-family:opensans-r;
       font-size:16px;      
       width:100%;
@@ -420,33 +460,28 @@ ul.pagination li{
       line-height:25px;
       border:none;
       background-color:transparent;
-      padding:5px 10px;
+      color:#878787;
+      /*padding:5px 10px;*/
     
     }
      .search-box:hover .search-text input
      {
  
      }
-    /*.search-btn
-    {
-      z-index:101;
-      background: transparent url('/assets/search.png') no-repeat; 
-      background-position:center center;
-      width: 20px;
-      height: 21px;
-      border: none;
-      float:right;
-
-    }
-    .search-text 
-    {
-    float:left;
-    }
-    .search-box:hover
-    {
-      width:500px;
-    }
-   */
+   .search-button
+   {
+    display:table-cell;
+      background: transparent url('/assets/search.png'); 
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 20px 21px;
+/*      background-attachment: local;
+      background-origin:content-box;*/
+      width:20px;
+      height:56px;
+      min-width:20px;
+      cursor:pointer;
+   }
 .search-label
   {
       display:inline-block;
@@ -454,7 +489,7 @@ ul.pagination li{
       font-family:opensans-r;
       font-size:16px;      
       width:130px;
-  
+  color:#878787;
       line-height:42px;
       border:none;
       background-color:transparent;
@@ -464,116 +499,9 @@ ul.pagination li{
 
   }
 
-/*
-  
-   .search-box
-    {
-      display:inline-block;
-      height:56px;
-      line-height:56px;
-      width:56px;
-      border:1px solid #cdcdcd;
-      -webkit-border-radius: 30px;
-      -moz-border-radius: 30px;
-      border-radius: 30px;
-      -webkit-transition: all 0.7s ease 0s;
-      -moz-transition: all 0.7s ease 0s;
-      -o-transition: all 0.7s ease 0s;
-      transition: all 0.7s ease 0s;   
-      z-index:103;
-    }
-      .search-box:hover
-    {
-      width:500px;
-    }
-    .search-box:hover .search-text
-    {
-      
-      
-      display:initial;
-    }
-    .search-text 
-    {
-      
-       display:none;
-    }
-     .search-text input
-    {
-      font-family:opensans-r;
-      font-size:16px;      
-      width:420px;
-      height:40px;
-      line-height:25px;
-      border:none;
-      background-color:transparent;
-      padding:5px 10px;
-      margin-right:20px; 
-      margin-left:20px; 
-    }
-    .search-btn
-    {
-      z-index:101;
-      background: transparent url('/assets/search.png') no-repeat; 
-      background-position:center center;
-width: 20px;
-height: 21px;
-border: none;
-display: inline-block;
-position: relative;
-left: -41px;
-top: 6px;
-
-    }
-*/
-  /*
-  .search-btn
-    {
-
-      background: transparent url('/assets/search.png') no-repeat; 
-      background-position:center center;
-      width:56px;
-      height:56px;
-      border:none;
-      
-
-    }
-    .search-text input
-    {
-      font-family:opensans-r;
-      font-size:16px;      
-      width:130px;
-      height:40px;
-      line-height:25px;
-      border:none;
-      background-color:transparent;
-      padding:5px 10px;
-      margin-right:20px; 
-    }
- 
-    .search-box
-    {
-      
-      height:56px;
-      line-height:56px;
-      width:56px;
-      border:1px solid #cdcdcd;
-      -webkit-border-radius: 30px;
-      -moz-border-radius: 30px;
-      border-radius: 30px;
-      -webkit-transition: all 0.7s ease 0s;
-      -moz-transition: all 0.7s ease 0s;
-      -o-transition: all 0.7s ease 0s;
-      transition: all 0.7s ease 0s;
-      position: relative;
-      top: -56px;
-      right: 6px;
-    }
-     .search-box:hover
-
-    {
-      width:500px;
-    }
-*/
+.social
+{display:inline-block;
+ margin-left:30px;}
 
       
 

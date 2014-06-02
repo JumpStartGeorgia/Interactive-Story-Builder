@@ -108,6 +108,8 @@ en:
       news: News
       feedback: Feedback
       todo_list: To-Do List
+      about: About
+      demo: Demo
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"

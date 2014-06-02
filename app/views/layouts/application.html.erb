@@ -173,17 +173,23 @@
           </ul>
         </li>
         <div class="pull-right">
-         <div class="search-label">Find the story</div>         
+            <div class="search-label">Find the story</div>         
             <div class="search-wrapper">  
 
             <div class="search-box">          
-                <div class="search-text"><input type="text" placeholder="Find the story" tabindex="16"/></div>           
+                <div class="search-text">
+
+                  <input type="text" placeholder="Find the story" tabindex="16"/>
+
+                </div>  
+                <div class="search-button"></div>
             </div>         
           </div> 
+       
           </div>
         </ul>
 
-        
+
           
       </div>
    
@@ -226,7 +232,18 @@
     <div class="push"><!--//--></div>
 
     <footer class="clear">
-  		<div id="left">&copy; <%= Time.now.year %></div>
+      <div class="container">
+  		<div id="left"><span class="copyright">&copy; <%= Time.now.year %> </span>
+        <div class="social">                                      
+        <a href='https://twitter.com/share?text=<%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name')}" :
+        t('app.common.app_name') %>' onclick="javascript:window.open(this.href,
+          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="assets/twitter.png"/></a>    
+        <a href="https://plus.google.com/share?url=<%= current_url %>" onclick="javascript:window.open(this.href,
+          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="assets/google_plus.png" alt="Share on Google+"/></a>                                
+          <div class="facebook">  <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true" ></div></div>
+      </div>  
+      </div>
+   
     	<div id="middle">
         <ul>
           <li>
@@ -238,15 +255,25 @@
           <li>
             <%= link_to t('helpers.links.feedback'), feedback_path %> 
           </li>
-  		<li>
-                  <%= link_to image_tag("github.png",:size=>"28x28",:style=>"vertical-align:middle;"), "https://github.com/JumpStartGeorgia/Interactive-Story-Builder.git", :style => "height:40px;line-height:40px;margin:0px;padding:0px;" %>
-        	</li>
+           <li>
+            <%= link_to t('helpers.links.about'), feedback_path %> 
+          </li>
+           <li>
+            <%= link_to t('helpers.links.demo'), feedback_path %> 
+          </li>
+          <li>
+            <!--  image_tag("github.png",:size=>"28x28",:style=>"vertical-align:middle;") -->
+                  <%= link_to "GitHub", "https://github.com/JumpStartGeorgia/Interactive-Story-Builder.git", :style => "height:40px;line-height:40px;" %>
+          </li>
+          
+  		
         </ul>
     	</div>
   		<div id="right">
-  			<%= link_to(image_tag("jumpstart-logo.png"), "http://www.jumpstart.ge", :target => "_blank",
+  			<%= link_to(image_tag("logojs.png"), "http://www.jumpstart.ge", :target => "_blank",
   					:title => t(".js_link_title")	) %>
   		</div>
+      </div>
     </footer>
 
     <!-- Javascripts
@@ -277,19 +304,20 @@
 		<% end %>
     <script>
        var scrollOffset = 0;
-
+       var isNavVisible = true;
        function navbarMagic(reset)
        {      
             reset = typeof reset !== 'undefined' ?  reset : false;
             var currentOffset = $(this).scrollTop();
             var objectOffset = $("#filter").offset().top;
-            var topOffsetBack = 200;
+            var topOffsetBack = 150;
             //console.log("Offset from top: "+$(this).scrollTop());            
             //down
           if(reset)
           {
             if(scrollOffset <= objectOffset-topOffsetBack)
             {
+                 isNavVisible = true; 
               $(".navbar").queue(function(){
                     $(this).fadeOut(400,function(){
                       $(this).css("background-color","rgba(255,255,255,0.0)")
@@ -305,7 +333,7 @@
                 $(".navbar").css("position","fixed").css("top","0px").queue(function(){
                   $(this).animate({"background-color":"#000"}, 1000).dequeue();
                 }); 
-            
+                isNavVisible = false;
             }
           }
           else
@@ -321,13 +349,14 @@
                     $(this).animate({"background-color":"#000"}, 1000).dequeue();
                   }); 
               }
-
+              isNavVisible = false;
             }
             else 
             {
               //console.log("up");
-              if(scrollOffset >= objectOffset - 60 && currentOffset <= objectOffset - 60)
-              {                
+              if(!isNavVisible && currentOffset <= objectOffset - 60)
+              {      
+              isNavVisible = true;          
                 //console.log("navbar invisible");
                // $(".navbar").toggleClass("navbar-static-top navbar-fixed-top").css("background-color","transparent");
                 //$(".navbar").css("background-color","transparent").css("position","absolute");
@@ -350,63 +379,72 @@
           var sl = true;
 
 
-          $('.search-box').click(function(){
-            if(sa)
-            {
-               $(".search-box").removeClass("active");  
-             //  $(".search-label").show();
-               sa = false; 
-               //sl = true;    
-            }
-            else 
-            {
-            //  $(".search-label").hide();
-              $(".search-box").addClass("active");                 
-              sa = true; 
-             // sl = false;                 
-            }
-          });
-
-          $('.search-box input').focus(function(){
-            $(".search-box").addClass("active");  
-            sa = true; 
-            sl = false;                        
-          });
-           $('.search-box').focus(function(){
-            $(".search-box").addClass("active");  
-            sa = true; 
-            sl = false;                        
-          });
-          $('.search-box').focusout(function(){
-            $(".search-box").removeClass("active");
-            $(".search-label").show();            
-            sa = false;
-            sl = true;         
-          });
-           $('.search-box').hover(function(){       
-
-              if(!sa)
-            {
-               //$(".search-box").removeClass("active");
-               if(!sl)
-               {
-               $(".search-label").show();
-               //sa = false; 
-               sl = true;  
-               }  
-               else
-               {
-                 $(".search-label").hide();
-                 sl = false;     
-               }
-              //$(".search-box").addClass("active");                 
-              //sa = true; 
+          // $('.search-box').click(function(){
+          //   console.log("click");
+          //   if(!sa)
+          //   {
+          //     if(sl)
+          //       {
+          //         $(".search-label").hide();
+          //         console.log("label 0");    
+          //         sl = false;    
+          //       }
+          //     $(".search-box").addClass("active");                 
+          //     sa = true; 
               
+          //     $('.search-box input').focus();   
+          //      console.log("click input focus"); 
+          //   }      
+          // });
+
+          // $('.search-box input').focus(function(){
+          //   console.log("focus input");
+          //   if(!sa)
+          //   {
+          //     $(".search-box").addClass("active");  
+          //     sa = true; 
+          //     sl = false;                        
+          //   }
+          // });
+          //  $('.search-box').focus(function(){
+          //   $(".search-box").addClass("active");  
+          //   sa = true; 
+          //   sl = false;                        
+          // });
+          $('.search-box input').focusout(function(){
+            if($(this).val().length==0)
+            {
+              $(".search-box").removeClass("active");
+              $(".search-label").show();                     
+              sa = false;
+              sl = true;     
             }
-           
+      
           });
+           $('.search-box').hover(function()
+           {        
+              if(!sa)
+              {
+                 $(".search-box").addClass("active");  
+                 sa = true; 
+                 sl = false;     
+                 $(".search-label").hide();
+              }
+           },
+           function(){
+            if($(this).find("input").val().length==0 && sa)
+          {
+                $(this).find("input").trigger("blur");
+                 $(".search-box").removeClass("active");  
+                 sa = false; 
+                 $(".search-label").show();                
+                 sl = true;     
+              }
+           });
 
 
+   $(".search-button").click(function(){ console.log("ajax search");});
+        
           scrollOffset = $(window).scrollTop();      
           $(window).scroll(function(){navbarMagic();});
           navbarMagic(true);

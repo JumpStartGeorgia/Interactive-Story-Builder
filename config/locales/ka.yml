@@ -108,6 +108,8 @@ ka:
       news: სიახლეები
       feedback: უკუკავშირი
       todo_list: To-Do List
+      about: About
+      demo: Demo
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
