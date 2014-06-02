@@ -40,11 +40,11 @@ function popuper(msg,msg_type)
   var type = types[msg_type];
   if (msg && type)
   {
-  	  $('.flash-message').html('<div class="alert '+ type +' fade in">' +
-									'<a href="#" data-dismiss="alert" class="close">×</a>' +
-									 urldecode(msg) +
-									'</div>');
-  	   $('.flash-message').find("div.alert").delay(5000).fadeOut(2000,function(){ this.remove();});  	    	  
+    $('.flash-message').html('<div class="alert '+ type +' fade in">' +
+					    '<a href="#" data-dismiss="alert" class="close">×</a>' +
+					     urldecode(msg) +
+					    '</div>');
+    $('.flash-message').find("div.alert").delay(5000).fadeOut(2000,function(){ this.remove();});  	    	  
   }
 }
 
