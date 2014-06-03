@@ -1,38 +1,26 @@
 <%     
-  showing_story ||= false
+  showing_story ||= false  
+  @root_page ||= false  
 %>
-    <div class="navbar navbar-fixed-top navbar-inverse">
-      <div class="navbar-inner">
-        <div class="container-fluid">   
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <%= link_to(t('app.common.app_name'), root_path(:locale => I18n.locale), :class=>"brand font")%>
+   <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <div class="pull-left nav-logo">
+          <%= link_to(image_tag("logo.png",:size=>"182x29",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) , root_path(:locale => I18n.locale))%>
+            <% if @story.present? && showing_story %>
 
-          <% if @story.present? && showing_story %>
-            <%= link_to(@story.title, root_path(:locale => I18n.locale), :class=>"navigation-headline brand font")%>  
-          <% end %>
-        
-          <div class="container-fluid nav-collapse">
-	          <ul class="nav pull-right">
-              <li>
-                <%= link_to t('helpers.titles.story_list'), stories_path  %>
-              </li>              
-		          <% if user_signed_in? %>
-  		          <% if current_user.avatar.present? %>
-          		    <li>	          		    
-				          	<%= link_to image_tag(current_user.avatar,:size=>"28x28"), "http://facebook.com/" + current_user.nickname, 
-				          	    :style => "margin:0px;padding:5px 3px 3px 0px;" %>				
-			          	</li>
-                <% end %>			           			
-				        <li class="dropdown">
-				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				                <%= current_user.nickname %>
-				                <b class="caret"></b>
-				          </a>
-				          <ul class="dropdown-menu">
+              <%= link_to(@story.title, root_path(:locale => I18n.locale), :class=>"navigation-headline brand font" , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse")%>  
+            <% end %>
+        </div>
+          <div class="nav-collapse nav-user pull-right">
+            <ul class="nav">         
+                    
+              <% if user_signed_in? %>
+                <% if current_user.avatar.present? %>
+                      <li >
+                    <%= link_to image_tag(current_user.avatar,:size=>"28x28", :class=>"avatar"), "#" , 
+                         :class => "dropdown-toggle avatar-link", :"data-toggle"=>"dropdown" %>       
+                       
+                  <ul class="dropdown-menu">
                     <li>
                       <%= link_to t('helpers.links.add_story'), new_story_path  %>
                     </li>              
@@ -47,24 +35,26 @@
                        <%= link_to t('helpers.links.users'), admin_users_path %>
                       </li>
                     <% end %>     
-						        <li>
-				 		         <%= link_to t('helpers.links.sign_out'), destroy_user_session_path, :method => :delete %>
-										</li>
-				          </ul>
-				        </li>
-				        <% else %>
-				         <li>
-				        	<%= link_to t('helpers.links.sign_in2'), :new_user_session %>
-			        	</li>
-		         	 <% end %> 
-							<% I18n.available_locales.each do |locale| %>
-								<% if locale != I18n.locale %>
-									<li><%= link_to t("app.language.#{locale}"), params.merge(:locale => locale) %></li>
-								<% end %>
-							<% end %>
-							<li>
-                <%= link_to image_tag("github.png",:size=>"28x28",:style=>"vertical-align:middle;"), "https://github.com/JumpStartGeorgia/Interactive-Story-Builder.git", :style => "height:40px;line-height:40px;margin:0px;padding:0px;" %>
-              </li>
+                    <li>
+                     <%= link_to t('helpers.links.sign_out'), destroy_user_session_path, :method => :delete %>
+                    </li>
+                  </ul>
+                </li>
+
+
+                <% end %>                     
+
+                <% else %>
+                 <li>
+                  <%= link_to t('helpers.links.sign_in2'), :new_user_session %>
+                </li>
+               <% end %> 
+              <% I18n.available_locales.each do |locale| %>
+                <% if locale != I18n.locale %>
+                  <li><%= link_to t("app.language.#{locale}"), params.merge(:locale => locale) , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse"%></li>
+                <% end %>
+              <% end %>
+      
 
               <% if @story.present? && @story.sections.present? && showing_story %>
                 <li class="divider-vertical"></li>
@@ -81,11 +71,23 @@
                   <% end %>
                 </li>            
               <% end %>
-	          </ul>
+            </ul>
 
-          </div>
-        </div>
+           </div>
+      </nav>
+
+<% if @root_page %>
+    <header class="header">
+      <div class="header-data">
+        <div class="h1">Build and Share</div>
+        <div class="h3">the Next Generation Story</div>
+        <div class="intro">Story builder allows anyone with text, pictures and/or videos to<br>
+        combine this content into a creative story
+        that can be published<br> and shared with the world</div>
+        <div class="btn-create-story">
+               <%= link_to  "Start Story", new_story_path, :tabindex=>1 %>
+          </div>       
       </div>
-    </div>
-
+    </header>
+<% end %>
 
