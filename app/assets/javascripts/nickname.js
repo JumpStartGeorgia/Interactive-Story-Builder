@@ -1,5 +1,7 @@
 $(document).ready(function() {
   var nickname_path = 'input#user_nickname';
+  var was_search_box_length = 0;
+
   if ($(nickname_path).length > 0){
 
     function check_nickname(){
@@ -37,11 +39,38 @@ $(document).ready(function() {
       }
     }
 
+
+    // search box
+    var debounce = function (fn) {
+      var timeout
+      return function () {
+        var args = Array.prototype.slice.call(arguments),
+            ctx = this
+
+        clearTimeout(timeout)
+        timeout = setTimeout(function () {
+          fn.apply(ctx, args)
+        }, 500)
+      }
+    }
+        
+    // perform search
+    $(nickname_path).bind('keyup', debounce(function () {
+      // if text length is 1 or the length has not changed (e.g., press arrow keys), do nothing
+      if ($(this).val().length == 1 || $(this).val().length == was_search_box_length) {
+        return;
+      } else {
+        check_nickname();
+      }
+      was_search_box_length = $(this).val().length;
+    }));
+;
+
     
-    $(nickname_path).focusout(function() {
+/*    $(nickname_path).focusout(function() {
       check_nickname();
     });
-
+*/
     check_nickname();
   }
 });
