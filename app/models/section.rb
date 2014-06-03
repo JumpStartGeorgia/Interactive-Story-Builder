@@ -68,9 +68,9 @@ class Section < ActiveRecord::Base
           end
         end
     elsif slideshow?
-      return (self.slideshow.present? && self.slideshow.assets.length > 0)
+      return (self.slideshow.present? && self.slideshow.assets.present?)
     elsif embed_media?
-      return self.embed_medium.code.present?
+      return (self.embed_medium.present? && self.embed_medium.code.present?)
     end
   end
 end
