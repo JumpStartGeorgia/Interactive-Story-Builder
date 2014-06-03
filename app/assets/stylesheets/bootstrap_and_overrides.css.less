@@ -86,29 +86,32 @@
 /* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
 
-html, body {
-  height: 100%;
+html, body 
+{
+  	height: 100%;
 	font-size: 13px;
-
 }
 
 #wrapper {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	padding-top:57px;
-	margin-bottom:-109px;/*
-	margin: 0 auto -155px;*/
+	margin: -57px auto -155px;
 }
 
 #wrapper > .container {
-	padding: 18px 0px 0px 0px !important;
-/*	padding-bottom: 80px;*/
+/*	padding: 18px 0px 0px 0px !important;*/
+	padding: 60px 0px;	
 	overflow: auto;
 }
 .container .row
 {
 	margin:0px;
+}
+.container .row .col-md-12
+{
+	margin:0px;
+	padding:0px
 }
 
 .push { height: 155px; } /* Just some arbitrary space to add between footer and rest of the content, when they are close */
@@ -137,8 +140,4 @@ html, body {
 .nav > li > a {
 font-family: dejavusans-el;
 font-size: 18px;
-}
-.push
-{
-	height:109px;
 }

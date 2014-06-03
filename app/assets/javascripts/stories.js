@@ -1,4 +1,6 @@
-
+//= require jquery.reveal
+//= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.bootstrap
 	var story_id = -1;
 	var section_id = -1;
 

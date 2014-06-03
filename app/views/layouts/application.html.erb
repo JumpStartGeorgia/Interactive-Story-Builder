@@ -9,23 +9,21 @@
     <%= csrf_meta_tags %>
 	  <%= include_gon %>
 
-
-
-		  <meta property="og:title" content="<%= content_for?(:title) ? ("#{yield(:title)} | #{t('app.common.app_name')}").html_safe :
-				  t('app.common.app_name').html_safe %>" />
-		  <% if false %>
-        <meta name="description" content="">
-    		<meta property="og:description" content="" />
-      <% end %>
-		  <meta property="og:type" content="non_profit" />
-		  <meta property="og:url" content="<%= current_url %>" />
-		  <% if @story && @story.id && @story.asset_exists? %>
-			  <meta property="og:image" content="<%= full_url(@story.asset.asset.url(:"250x250", false)) %>" />
-      <% else %>
-			  <!--meta property="og:image" content="" /-->
-		  <% end %>
-		  <meta property="og:site_name" content="<%= t('app.common.app_name') %>" />
-		  <meta property="fb:app_id" content="<%= ENV['STORY_BUILDER_FACEBOOK_APP_ID'] %>" />
+	  <meta property="og:title" content="<%= content_for?(:title) ? ("#{yield(:title)} | #{t('app.common.app_name')}").html_safe :
+			  t('app.common.app_name').html_safe %>" />
+	  <% if false %>
+      <meta name="description" content="">
+  		<meta property="og:description" content="" />
+    <% end %>
+	  <meta property="og:type" content="non_profit" />
+	  <meta property="og:url" content="<%= current_url %>" />
+	  <% if @story && @story.id && @story.asset_exists? %>
+	   <meta property="og:image" content="<%= full_url(@story.asset.asset.url(:"250x250", false)) %>" />
+    <% else %>
+		  <!--meta property="og:image" content="" /-->
+	  <% end %>
+	  <meta property="og:site_name" content="<%= t('app.common.app_name') %>" />
+	  <meta property="fb:app_id" content="<%= ENV['STORY_BUILDER_FACEBOOK_APP_ID'] %>" />
 
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -33,10 +31,11 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
     <![endif]-->
 
-    <%= stylesheet_link_tag "application", :media => "all" %>
-	<% if @usemap %>
-		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
-	<% end %>
+    <%= stylesheet_link_tag  *(@css.present? ? ["application",@css].flatten : ["application"]), :media => "all" %>      
+    
+  	<% if @usemap %>
+  		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+  	<% end %>
     
 
 		<!--[if IE 6]><%= stylesheet_link_tag 'ie6' %><![endif]-->
@@ -62,8 +61,7 @@
 								</div>
 							<% end %>
 						</div>
-
-		<!-- 					<% if content_for?(:title) %>
+							<% if content_for?(:title) %>
 								<div class="page-header">
 								  <div class="block">
 			              <h1>
@@ -71,7 +69,7 @@
 									  </h1>
 									</div>
 								</div>
-							<% end %> -->
+							<% end %> 
 
 	            <%= yield %>
 	          </div><!--/span-->
@@ -130,7 +128,8 @@
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag  *(@js.present? ? ["application", @js].flatten : ["application"]), :media => "all" %>      
+       
 		<script type="text/javascript">
 			I18n.defaultLocale = "<%= I18n.default_locale %>";
 			I18n.locale = "<%= I18n.locale %>";

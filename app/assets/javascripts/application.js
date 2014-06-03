@@ -9,13 +9,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
-//= require jquery.ui.all
+//= require jquery.ui.core
 //= require twitter/bootstrap
-//= require dataTables/jquery.dataTables
-//= require dataTables/jquery.dataTables.bootstrap
-//= require vendor
-//= require jquery.reveal
-//= require_tree .
 
 $(document).ready(function(){
 	// set focus to first text box on page

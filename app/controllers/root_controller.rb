@@ -1,7 +1,8 @@
-class RootController < ApplicationController
-
+class RootController < ApplicationController  
   def index    
     @root_page = true
+    @css = ["root"]
+    @js = ["root"]    
     @stories = Story.is_published.order("published_at desc").paginate(:page => params[:page], :per_page => 9)
 
 
@@ -72,6 +73,7 @@ class RootController < ApplicationController
   end
 
   def todo_list
+    @css = ["todo"]
     respond_to do |format|
       format.html 
     end

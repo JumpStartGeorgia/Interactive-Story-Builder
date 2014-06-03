@@ -2,18 +2,48 @@
  * This is a manifest file that'll automatically include all the stylesheets available in this directory
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
- 
+
+ *= require_self
  *= require formtastic 
  *= require formtastic-bootstrap
  *= require jquery.ui.core
- *= require jquery.ui.theme 
+ *= require jquery.ui.theme  
  *= require bootstrap_and_overrides
- *= require dataTables/jquery.dataTables.bootstrap
- *= require_tree .
- *= require vendor
- *= require reveal
- *= require_self
+ *= require dataTables/jquery.dataTables.bootstrap 
+
+
 */
+
+@font-face {
+    font-family: "bandera-pro";    
+    src: url( '/assets/fonts/bandera-pro-heavy.otf') format("opentype");           
+    font-style: normal;
+    font-weight: 200;
+}
+@font-face {
+    font-family: "dejavusans-el";    
+    src: url( '/assets/fonts/dejavusans-extralight.ttf') format("truetype");           
+    font-style: normal;
+    font-weight: 200;
+}
+@font-face {
+    font-family: "opensans-l";    
+    src: url( '/assets/fonts/opensans-light.ttf') format("truetype");           
+    font-style: normal;
+    font-weight: 200;
+}
+@font-face {
+    font-family: "opensans-r";    
+    src: url( '/assets/fonts/opensans-regular.ttf') format("truetype");           
+    font-style: normal;
+    font-weight: 200;
+}
+@font-face {
+    font-family: "opensans-b";    
+    src: url( '/assets/fonts/opensans-bold.ttf') format("truetype");           
+    font-style: normal;
+    font-weight: 200;
+}
 
 /* clear floats */
 .clearfix:after, .clear:after {
@@ -26,7 +56,7 @@
 * html .clearfix, * html .clear             		{ zoom: 1; } /* IE6 */
 *:first-child+html .clearfix, *:first-child+html .clear { zoom: 1; } /* IE7 */
 
-/* make bootstrap button link color stay white */
+/* make bootstrap button link color stay white 
 a.btn, a.btn:visited {
 	color: #000 !important;
 }
@@ -34,7 +64,7 @@ a.btn-primary, a.btn-primary:visited, a.btn-info, a.btn-info:visited, a.btn-succ
 a.btn-warning, a.btn-warning:visited, a.btn-danger, a.btn-danger:visited, a.btn-inverse, a.btn-inverse:visited {
 	color: #fff !important;
 }
-
+*/
 /* general */
 a, a:link, a:hover, a:visited, a:active
 {
@@ -151,7 +181,7 @@ div#form-ka {
     color: #B94A48;
 }
 
-/* footer */
+/* Footer */
 footer {
 	margin-top: -57px; /* negative value of footer height */
 	min-height: 57px !important;
@@ -179,12 +209,15 @@ footer a img
 {
 opacity: 0.4;
 }
-footer > div
+footer .container > div
 {
 	height:57px;
 	line-height:57px;
 	vertical-align: middle;
+ 
 }
+footer .container div
+{ display:inline-block;}
 footer div#left {
 	margin: 0 !important;
 	float: left;
@@ -356,4 +389,284 @@ select, input[type="file"] {
 }
 input[type=text]{
 	margin-bottom:0px;
+}
+
+
+/* Navbar */
+.avatar
+{     
+  width: 40px;
+  height: 40px;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;    
+  box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  margin-top:5px;
+}
+.avatar-link
+{
+  margin:0px !important;
+  padding:0px !important;
+}
+
+nav .nav-logo
+{
+  padding: 15px 20px 10px 91px;
+}
+nav .nav-user
+{
+  padding-right:91px;
+  padding-top: 5px;
+}
+
+nav .nav-user li a
+{     
+  color:#fff;
+}
+
+/* grid */
+.story-thumbnail img{-webkit-transition:all .25s linear;-moz-transition:all .25s linear;-o-transition:all .25s linear;transition:all .25s linear;-webkit-transform:translateZ(0);-moz-transform:translateZ(0);-ms-transform:translateZ(0);transform:translateZ(0)}
+.story-thumbnail img{
+float: left;
+width: 100%;
+max-width: 100%;
+height: auto;
+}
+.grid-wrapper{max-width:;}
+.grid{margin:0}
+.grid{clear:both;margin:0 23px 0 0}
+.grid:after{content:'';display:block;clear:both}
+.grid.no-clear:after{display:none}
+.inner .grid{margin:0 0 0 -23px}
+.grid .col{position:relative;float:left;padding:0 0 23px 23px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;-webkit-transition:width .3s ease-out;-moz-transition:width .3s ease-out;-ms-transition:width .3s ease-out;transition:width .3s ease-out}
+.grid .col.first{padding-left:0}
+.grid.test .col .content{padding:20px 0;background:#df6c4f;color:#FFF;text-align:center}
+.grid .col.n-1{width:8.33%}
+.grid .col.n-2{width:16.66%}
+.grid .col.n-2-5{width:20%}
+.grid .col.n-3{width:25%}
+.grid .col.n-4{width:33.33%}
+.grid .col.n-5{width:41.66%}
+.grid .col.n-6{width:50%}
+.grid .col.n-7{width:58.33%}
+.grid .col.n-8{width:66.66%}
+.grid .col.n-9{width:75%}
+.grid .col.n-9-5{width:80%}
+.grid .col.n-10{width:83.33%}
+.grid .col.n-11{width:91.66%}
+.grid .col.n-12{width:100%}
+.pad-left{padding-left:23px}
+.mar-left{margin-left:23px}
+.grid.one-row .col,.grid .col.one-row,.grid.one-row .col .list-item>li,.grid.one-row p:last-child{margin-bottom:0;padding-bottom:0}
+.col-2 .col:nth-of-type(2n+1),.col-3 .col:nth-of-type(3n+1),.col-6 .col:nth-of-type(6n+1){clear:both}
+.grid.align-center{text-align:center}
+.grid.align-center .col{float:none;display:inline-block}
+@media screen and (max-width:1570px)
+{
+  #content.full{padding:0}
+  .grid .col.n-3{width:33.33%}
+  .col-4 .col:nth-of-type(4n+1){clear:none}
+  .col-4 .col:nth-of-type(3n+1){clear:both}
+  .grid .col.n-2-5{width:25%}
+  .col-5 .col:nth-of-type(5n+1){clear:none}
+  .col-5 .col:nth-of-type(4n+1){clear:both}
+  .user-directory .grid .col.n-9-5{width:75%}
+  .user-directory .grid .col.n-3{width:33.33%}
+}
+
+  @media screen and (max-width:1530px)
+  {
+    .list-item li .countdown .stats{display:none}
+}
+  @media screen and (max-width:1280px)
+  {
+    .list-item li .countdown .hasCountdown{display:none}
+    .list-item li .countdown .stats{display:block}
+    .grid .col.n-2{width:19.99%}
+    .col-6 .col:nth-of-type(6n+1){clear:none}
+    .col-6 .col:nth-of-type(5n+1){clear:both}
+    .grid .col.n-2-5{width:33.33%}
+    .col-5 .col:nth-of-type(4n+1){clear:none}
+    .col-5 .col:nth-of-type(3n+1){clear:both}
+    .grid .col.n-3{width:50%}
+    .col-4 .col:nth-of-type(3n+1){clear:none}
+    .col-4 .col:nth-of-type(2n+1){clear:both}
+    .user-directory .grid .col.n-9-5{width:66.67%}
+    .user-directory .grid .col.n-3{width:50%}}
+    @media screen and (max-width:1156px){
+      .grid .col.n-2{width:24.99%}
+      .col-6 .col:nth-of-type(5n+1){clear:none}
+      .col-6 .col:nth-of-type(4n+1){clear:both}}
+      @media screen and (max-width:1096px){
+        .grid .col.n-4{width:50%}
+        .col-3 .col:nth-of-type(3n+1){clear:none}
+        .col-3 .col:nth-of-type(2n+1){clear:both}
+        .grid .col.n-2-5{width:50%}
+        .col-5 .col:nth-of-type(3n+1){clear:none}
+        .col-5 .col:nth-of-type(2n+1){clear:both}
+        .user-directory .grid .col.n-9-5{width:100%;padding-bottom:0}
+      }
+        @media screen and (max-width:954px)
+        {
+          .list-table>li .col.n-2{display:none}
+        .list-table>li .col.n-1,.list-table>li .col.n-3{width:50%}
+        .list-table>li .col.n-4{clear:both;width:100%}
+        .block.head-user.votes .list-table>li .col.n-4 p{display:none}
+        .block.head-user.votes .list-table>li .col.n-4 .box-notesite{float:none;padding:10px 0 0 0;top:0}
+        .grid .col.n-2{width:33.329%}
+        .col-6 .col:nth-of-type(4n+1){clear:none}
+        .col-6 .col:nth-of-type(3n+1){clear:both}}
+        @media screen and (max-width:768px){
+          .grid .col.n-2{width:50%}
+        .col-6 .col:nth-of-type(3n+1){clear:none}
+        .col-6 .col:nth-of-type(2n+1){clear:both}
+        .grid .col.n-2-5{width:100%}
+        .grid .col.n-2-5 .box-user .desc{height:auto}
+        .col-5 .col:nth-of-type(2n+1){clear:none}
+        .grid .col.n-3{width:100%}
+        .user-directory .grid .col.n-3{width:100%}}
+        @media screen and (max-width:614px){
+          .grid .col.n-4{width:100%}}
+          @media screen and (max-width:480px){.list-table>li .col.n-3{display:none}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          .story-thumbnail
+{width: 459px;
+height: 328px;}
+.story-thumbnail img {
+    line-height: 328px; 
+    /*border-bottom: 1px solid #ccc;*/
+    padding-bottom: 22px;    
+
+}
+.story-thumbnail a:hover .story-link
+{
+
+    background-image: url("/assets/link.png");
+background-position: center center;
+width: 459px;
+height: 329px;
+position:absolute;
+top:0px;
+background-repeat: no-repeat;
+background-color:rgba(34,34,34,0.5);
+   -webkit-transition: color 0.25s ease-out 0s;
+      -moz-transition: color 0.25s ease-out 0s;
+      -o-transition: color 0.25s ease-out 0s;
+      transition: color 0.25s ease-out 0s;   
+      transition-property:background-color;
+    -moz-transition-property: background-color; /* Firefox 4 */
+    -webkit-transition-property:background-color; /* Safari and Chrome */
+    -o-transition-property:background-color; /* Opera */
+}
+.col  .story-info a
+{
+    text-decoration:none;
+    opacity: 0.8;
+    cursor:pointer;
+}
+/*.col a:hover
+{
+    text-decoration:none;
+    opacity: 1;
+    color:initial;
+}*/
+.col .story-info a:hover
+{
+    text-decoration:none;
+    opacity: 1;
+    color:initial;
+}
+.col *:hover
+{
+    
+    opacity: 1;
+    
+}
+.pin .img img 
+{
+    vertical-align: middle;
+    width:459px;
+    height:328px;
+}
+.story-caption
+{
+    width:400px;
+    line-height: 20px;
+    font-size:20px;    
+    overflow:hidden !important;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    color:#2b2c27;   
+    padding-bottom:10px; 
+}
+.story-caption a
+{
+    width:400px;
+    line-height: 20px;
+    font-size:20px;    
+    overflow:hidden !important;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    color:#2b2c27;   
+    padding-bottom:10px; 
+}
+
+.story-caption
+{
+  color:#444444;
+}
+
+.story-publish
+{   
+  color:#bbb; 
+  font-size:14px;
+}
+.story-author
+{ 
+  color:#bbb;   
+  font-size:14px;
+  line-height: 16px;
+  height: 16px;
+  /*overflow:hidden !important;*/
+  text-overflow: ellipsis;
+  text-decoration: none;
+}
+.story-likes
+{
+   width:39px;
+   height:38px;
+   background: url('/assets/likes.png') center no-repeat;
+  background-size: cover;  
+  float:right; 
+}
+.story-likes a.n3
+{
+   font-size:14px;
+   line-height: 34px;
+   padding-left: 7px;
+}
+.author
+{
+  color:#4e4e4e;
+  font-size:14px;
+}
+.story-author,.story-publish,.author
+{
+  display:inline-block;
 }
