@@ -71,7 +71,7 @@ class Story < ActiveRecord::Base
 	  if self.published_changed? && self.published?
 	  	self.published_at = Time.now
 	  	# date is set so now permalink can be created
-	  	self.permalink = create_permalink
+	  	self.generate_permalink!
 	  end     
 	end
 

@@ -32,7 +32,7 @@ module FriendlyUrl
   # add to_ascii method to catch all utf8 characters   
   def normalize(str)
     unless str.blank?
-      n = str.mb_chars.downcase.to_s.strip.to_ascii
+      n = str.mb_chars.downcase.to_s.strip.latinize.to_ascii
 =begin
       n.gsub!(/[àáâãäåāă]/,     'a')
       n.gsub!(/æ/,              'ae')
