@@ -78,7 +78,7 @@
             </div>
             <div class='story-info'>   
              <div class="story-likes">
-              <a href="<%=storyteller_show_path(story.permalink) %>" class="n3">123</a>
+              <a href="<%=storyteller_show_path(story.permalink) %>" class="n3"><%= story.impressions_count %></a>
             </div>                 
             <div class="story-caption">
               <a href="<%=storyteller_show_path(story.permalink) %>"><%= story.title.truncate(255) %> </a>
