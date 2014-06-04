@@ -8,8 +8,6 @@ class RootController < ApplicationController
     @stories = process_filter_querystring(Story.is_published.paginate(:page => params[:page], :per_page => 9))
 
 
-    @news = News.published.limit(2)
-
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render json: @stories }

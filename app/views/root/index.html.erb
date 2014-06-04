@@ -102,26 +102,4 @@
   <%= page_navigation_links @stories %>
 
 
-  <% if @news.present? %>
-    <div id="news">
-      <h2><%= t('.news_header') %></h2>
-      <ul id="news_container">
-        <% @news.each do |news| %>
-          <li class="news_item">
-            <%= link_to news_show_path(news.permalink) do %>
-              <span class="news_date">
-                <%= l news.published_at %>
-              </span>
-              <span class="new_title">
-                <%= news.title %>
-              </span>
-            <% end %>
-          </li>
-        <% end %>
-        <li>
-          <%= link_to t('.all_news'), news_path %>
-        </li>
-      </ul>  
-    </div>
-  <% end %>
 </div>
