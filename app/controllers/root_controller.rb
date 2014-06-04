@@ -1,4 +1,6 @@
 class RootController < ApplicationController  
+   layout :resolve_layout
+
   def index    
     @root_page = true
     @css = ["root"]
@@ -29,6 +31,9 @@ class RootController < ApplicationController
 
 
   def news
+        @root_page = true
+    @css = ["root"]
+    @js = ["root"] 
     @news = News.published
   
     respond_to do |format|
@@ -78,6 +83,16 @@ class RootController < ApplicationController
       format.html 
     end
   end
-  
+  private
+
+  def resolve_layout
+    case action_name
+
+    when "index"
+      "home"    
+    else
+      "application"
+    end
+  end
 
 end
