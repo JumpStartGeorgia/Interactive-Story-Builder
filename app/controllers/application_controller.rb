@@ -101,6 +101,12 @@ logger.debug "////////////////////////// BROWSER = #{user_agent}"
     # language
 		@story_filter_language = I18n.t("filters.all")
     
+    # search
+		if params[:q].present?
+			story_objects = story_objects.search_for(params[:q])
+			gon.q = params[:q]
+		end
+    
     return story_objects
   end
 

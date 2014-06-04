@@ -1,5 +1,8 @@
 class Story < ActiveRecord::Base	
 	require 'utf8_converter'
+  # fields to search for in a story
+  scoped_search :on => [:title, :author, :media_author]
+  scoped_search :in => :content, :on => [:caption, :sub_caption, :content]
 
   # record public views
   is_impressionable :counter_cache => true 
@@ -12,15 +15,17 @@ class Story < ActiveRecord::Base
 	has_many :sections, :order => 'position', dependent: :destroy
 	has_and_belongs_to_many :users
 	has_one :asset,     
-	:conditions => "asset_type = #{Asset::TYPE[:story_thumbnail]}", 	 
-	foreign_key: :item_id,
-	dependent: :destroy
-
+	  :conditions => "asset_type = #{Asset::TYPE[:story_thumbnail]}", 	 
+	  foreign_key: :item_id,
+	  dependent: :destroy
 	belongs_to :user
+	has_many :content, :through => :sections
+
 	validates :title, :presence => true, length: { maximum: 100 }
 	validates :author, :presence => true, length: { maximum: 255 }
 	validates :template, :presence => true
 	validates :media_author, length: { maximum: 255 }
+
 	attr_accessor :was_publishing, :title_was
 
   # if the title changes, make sure the permalink is updated
