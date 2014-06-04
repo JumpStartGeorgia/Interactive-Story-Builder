@@ -150,7 +150,11 @@ en:
       reviewer_key_published: Your story is published so there is no need to share this non-published URL
     common:
       app_name: Story Builder
-      added_on: "Added on: %{date}" 
+      added_on: "Added on: %{date}"
+      admin: Admin
+      sign_out: Sign Out
+      js_link_title: JumpStart Georgia - We communicate data better!
+      js_link_text: Built by 
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
@@ -204,11 +208,6 @@ en:
     language_header: Language
     search: Find a Story
   layouts:
-    application:
-      admin: Admin
-      sign_out: Sign Out
-      js_link_title: JumpStart Georgia - We communicate data better!
-      js_link_text: Built by
     unsupported_browser:
       title: Unsupported Browser
       video: Your browser does not support this video.

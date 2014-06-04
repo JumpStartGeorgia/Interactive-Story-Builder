@@ -150,7 +150,11 @@ ka:
       reviewer_key_published: თქვენი ამბავი გამოქვეყნებულია, აღარაა საჭირო ამ URL-ის გამოქვეყნებ
     common:
       app_name: Story Builder
-      added_on: "დამატებულია: %{date}" 
+      added_on: "დამატებულია: %{date}"
+      admin: ადმინისტრატო
+      sign_out: გასვლა
+      js_link_title: ჯამპსტარტ ჯორჯიას - ჩვენ გაწვდით ინფორმაციას უკეთ!
+      js_link_text: აგებულია 
     msgs:
       does_not_exist: თქვენ ცდილობთ იხილოთ გვერდი, რომელიც არ არსებობს.
       not_authorized: თქვენ არ გაქვთ უფლება იხილოთ ეს გვერდი.
@@ -204,11 +208,6 @@ ka:
     language_header: Language
     search: Find a Story
   layouts:
-    application:
-      admin: ადმინისტრატო
-      sign_out: გასვლა
-      js_link_title: ჯამპსტარტ ჯორჯიას - ჩვენ გაწვდით ინფორმაციას უკეთ!
-      js_link_text: აგებულია
     unsupported_browser:
       title: არასათანადო ბრაუზერი
       video: თქვენ ბრაუზერს ვიდეოს მხარდაჭერა არაა აქვს

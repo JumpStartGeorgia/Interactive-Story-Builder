@@ -69,59 +69,31 @@
 
 
   
-  <div class="grid col-3">      
-    <% @stories.each_with_index do |story,s_i| %>       
-        <% 
-          desc = story.title
-        %>
-        <div class="col n-4">                   
-            <div class="story-thumbnail">
-              <%= link_to storyteller_show_path(story.permalink), :title => desc do %>
-                <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459', :alt => desc %>
-                <div class="story-link"></div>
-              <% end %>
-            </div>
-            <div class='story-info'>   
-             <div class="story-likes">
-              <%= link_to story.impressions_count, storyteller_show_path(story.permalink), :class => 'n3' %>
-            </div>                 
-            <div class="story-caption">
-              <%= link_to truncate(story.title, length: 45, separator: ' '), storyteller_show_path(story.permalink), :title => desc %>
-            </div>                   
-            <div class="story-author"><a class="author"><%= story.author %></a></div>
-            <div class="separator"></div>
-            <div class="story-publish"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>              
-          </div>
-        </div>  
-    <% end %>  
-    </div>  
-  </div>
-
-
-
-  <%= page_navigation_links @stories %>
-
-
-  <% if @news.present? %>
-    <div id="news">
-      <h2><%= t('.news_header') %></h2>
-      <ul id="news_container">
-        <% @news.each do |news| %>
-          <li class="news_item">
-            <%= link_to news_show_path(news.permalink) do %>
-              <span class="news_date">
-                <%= l news.published_at %>
-              </span>
-              <span class="new_title">
-                <%= news.title %>
-              </span>
+<div class="grid col-3">      
+  <% @stories.each_with_index do |story,s_i| %>       
+      <% 
+        desc = story.title
+      %>
+      <div class="col n-4">                   
+          <div class="story-thumbnail">
+            <%= link_to storyteller_show_path(story.permalink), :title => desc do %>
+              <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459', :alt => desc %>
+              <div class="story-link"></div>
             <% end %>
-          </li>
-        <% end %>
-        <li>
-          <%= link_to t('.all_news'), news_path %>
-        </li>
-      </ul>  
-    </div>
-  <% end %>
-</div>
+          </div>
+          <div class='story-info'>   
+           <div class="story-likes">
+            <%= link_to story.impressions_count, storyteller_show_path(story.permalink), :class => "n#{story.impressions_count.to_s.size}" %>
+          </div>                 
+          <div class="story-caption">
+            <%= link_to truncate(story.title, length: 45, separator: ' '), storyteller_show_path(story.permalink), :title => desc %>
+          </div>                   
+          <div class="story-author"><a class="author"><%= story.author %></a></div>
+          <div class="separator"></div>
+          <div class="story-publish"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>              
+        </div>
+      </div>  
+  <% end %>  
+</div>  
+  
+  <%= page_navigation_links @stories %>

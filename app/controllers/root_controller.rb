@@ -1,17 +1,13 @@
 class RootController < ApplicationController  
    layout :resolve_layout
-
-  def index    
-    @root_page = true
-    @css = ["root"]
-    @js = ["root"]    
-    
-    
-    @stories = process_filter_querystring(Story.is_published.paginate(:page => params[:page], :per_page => 9))
-
-
-    @news = News.published.limit(2)
-
+    before_filter :asset_filter
+ def asset_filter
+     @css.push("root")
+    @js.push("root")
+  end 
+ 
+  def index   
+    @stories = process_filter_querystring(Story.is_published.paginate(:page => params[:page], :per_page => 9))    
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render json: @stories }
@@ -32,12 +28,8 @@ class RootController < ApplicationController
   
 
 
-  def news
-        @root_page = true
-    @css = ["root"]
-    @js = ["root"] 
-    @news = News.published
-  
+  def news    
+    @news = News.published  
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render json: @news }
@@ -80,7 +72,7 @@ class RootController < ApplicationController
   end
 
   def todo_list
-    @css = ["todo"]
+    @css.push("todo")
     respond_to do |format|
       format.html 
     end

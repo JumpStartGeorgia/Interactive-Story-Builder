@@ -4,9 +4,10 @@ class ApplicationController < ActionController::Base
 
 	before_filter :set_locale
 	before_filter :is_browser_supported?
-	before_filter :initialize_gon
-	after_filter :flash_to_headers
+	before_filter :initialize_gon	
 	before_filter :store_location
+	before_filter :asset_extra
+	after_filter :flash_to_headers
 
 	unless Rails.application.config.consider_all_requests_local
 		rescue_from Exception,
@@ -133,6 +134,10 @@ logger.debug "////////////////////////// BROWSER = #{user_agent}"
 
 
 #    Rails.logger.debug "****************** prev urls session = #{session[:previous_urls]}"
+	end
+	def asset_extra		
+		@css = []
+		@js = []
 	end
 
 
