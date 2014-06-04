@@ -193,6 +193,16 @@ en:
     bug: Report a Bug
     feature: Request a Feature
     feedback: General Feedback
+  filters:
+    staff_pick: Staff Pick
+    sort_header: Sort
+    all: All
+    sort:
+      reads: Reads
+      recent: Recent
+    category_header: Category
+    language_header: Language
+    search: Find a Story
   layouts:
     application:
       admin: Admin

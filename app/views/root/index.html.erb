@@ -1,89 +1,94 @@
 
+
+<% if Rails.env.staging? %>
+   <h1 style="margin:36px 36px;background-color: #F8E869;padding: 36px;line-height: 28px;">You are accessing a test site. Please go to <a href="http://storybuilder.jumpstart.ge/en" style="text-decoration:underline;">http://storybuilder.jumpstart.ge/en</a> to use the official site. </h1>
+<% end %>
+
+
    <div id="filter">
       <div class="container">
         <ul class="nav">
-          <li><a href="#" tabindex="12">Staff Picks</a></li>
-          <li class="divider-vertical"></li>
-   
+          <li>
+            <%= link_to t('filters.staff_pick'), url_for(params.merge(:staff_pick => !@story_filter_staff_pick)),
+              :class => "staff_pick #{@story_filter_staff_pick == true ? 'active' : ''}" %>
+          </li>
 
-        <li class="dropdown">
-         <a href="#" class="dropdown-toggle" data-toggle="dropdown" tabindex="13">
-                        Trending
-                        <b class="caret"></b>
-                        </a>
-          <ul class="dropdown-menu">
-            <li class="dropdown">Recent</li>
-            <li class="dropdown">Viewed</li>
-            <li class="dropdown">Faved</li>
-            <li class="dropdown">Commented</li>
-          </ul>
-        </li>
-         <li class="dropdown" tabindex="14">
-          
+          <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown" tabindex="13">
+             <%= t('filters.sort_header') %>:
+             <%= @story_filter_sort %>
+             <b class="caret"></b>
+           </a>
+            <ul class="dropdown-menu">
+              <% I18n.t('filters.sort').each do |key, value| %>
+                <li class="dropdown">
+                  <%= link_to value, url_for(params.merge(:sort => key)), :class => @story_filter_sort == value ? 'active' : '' %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+           <li class="dropdown" tabindex="14">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
-                        Category
-                        <b class="caret"></b>
-                        </a>
-          <ul class="dropdown-menu">          
-            <li class="dropdown">Animal</li>
-          </ul>
-        </li>
-        <li class="dropdown">
+              <%= t('filters.category_header') %>:
+              <%= @story_filter_category %>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">          
+              <li class="dropdown">Animal</li>
+            </ul>
+          </li>
+          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" tabindex="15">
-                        Language
-                        <b class="caret"></b>
-                        </a>
-          <ul class="dropdown-menu">          
-            <li class="dropdown">French</li>
-          </ul>
-        </li>
-        <div class="pull-right">
-            <div class="search-label">Find the story</div>         
-            <div class="search-wrapper">  
+              <%= t('filters.language_header') %>:
+              <%= @story_filter_language %>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">          
+              <li class="dropdown">French</li>
+            </ul>
+          </li>
+          <li class="pull-right">
+            <div class="search-label">
+              <%= t('filters.search') %>
+            </div>
 
-            <div class="search-box">          
+            <div class="search-wrapper">
+              <div class="search-box">
                 <div class="search-text">
-
-                  <input type="text" placeholder="Find the story" tabindex="16"/>
-
-                </div>  
+                  <%= form_tag url_for(params), :method => :get, :id => 'search-filter' do %>
+                    <%= text_field_tag :q, params[:q], :placeholder => t('filters.search'), :tabindex => 16%>
+                  <% end %>
+                </div>
                 <div class="search-button"></div>
-            </div>         
-          </div> 
-       
-          </div>
+              </div>
+            </div>
+          </li>
         </ul>
-
-
-          
       </div>
-   
-       <!-- <div class="search-label">Find the story</div>     -->
-    
-
     </div>
 
 
   
   <div class="grid col-3">      
     <% @stories.each_with_index do |story,s_i| %>       
+        <% 
+          desc = story.title
+        %>
         <div class="col n-4">                   
             <div class="story-thumbnail">
-              <a href="<%=storyteller_show_path(story.permalink) %>">
-              
-               <img height="328px" width="459px" src="<%= story.show_asset.asset.url(:thumbnail) %>" />
+              <%= link_to storyteller_show_path(story.permalink), :title => desc do %>
+                <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459', :alt => desc %>
                 <div class="story-link"></div>
-             </a>
-
+              <% end %>
             </div>
             <div class='story-info'>   
              <div class="story-likes">
-              <a href="<%=storyteller_show_path(story.permalink) %>" class="n3">123</a>
+              <%= link_to story.impressions_count, storyteller_show_path(story.permalink), :class => 'n3' %>
             </div>                 
             <div class="story-caption">
-              <a href="<%=storyteller_show_path(story.permalink) %>"><%= story.title.truncate(255) %> </a>
+              <%= link_to truncate(story.title, length: 45, separator: ' '), storyteller_show_path(story.permalink), :title => desc %>
             </div>                   
-            <div class="story-author">Added by <a class="author"><%= story.author %></a></div>
+            <div class="story-author"><a class="author"><%= story.author %></a></div>
             <div class="separator"></div>
             <div class="story-publish"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>              
           </div>
@@ -94,24 +99,9 @@
 
 
 
-
   <%= page_navigation_links @stories %>
 
-<!--  
-<% if Rails.env.staging? %>
-   <h1 style="margin:36px 36px;background-color: #F8E869;padding: 36px;line-height: 28px;">You are accessing a test site. Please go to <a href="http://storybuilder.jumpstart.ge/en" style="text-decoration:underline;">http://storybuilder.jumpstart.ge/en</a> to use the official site. </h1>
-<% end %>
 
-<div id="an_container" class="clear">
-  <div id="about">
-    <h2><%= t('.about_header') %></h2>
-    <p>
-      <%= t('.about_text', 
-          :demo_link => link_to(t('.demo_link'), demo_path), 
-          :start_link => link_to(t('.start_link'), stories_path)).html_safe %>
-    </p>
-  </div>  
- -->
   <% if @news.present? %>
     <div id="news">
       <h2><%= t('.news_header') %></h2>

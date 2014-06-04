@@ -1,3 +1,33 @@
+  // taken from: http://stackoverflow.com/questions/5999118/add-or-update-query-string-parameter
+  function UpdateQueryString(key, value, url) {
+      if (!url) url = window.location.href;
+      var re = new RegExp("([?&])" + key + "=.*?(&|#|$)(.*)", "gi");
+
+      if (re.test(url)) {
+          if (typeof value !== 'undefined' && value !== null && value !== '')
+              return url.replace(re, '$1' + key + "=" + value + '$2$3');
+          else {
+              var hash = url.split('#');
+              url = hash[0].replace(re, '$1$3').replace(/(&|\?)$/, '');
+              if (typeof hash[1] !== 'undefined' && hash[1] !== null) 
+                  url += '#' + hash[1];
+              return url;
+          }
+      }
+      else {
+          if (typeof value !== 'undefined' && value !== null && value !== '') {
+              var separator = url.indexOf('?') !== -1 ? '&' : '?',
+                  hash = url.split('#');
+              url = hash[0] + separator + key + '=' + value;
+              if (typeof hash[1] !== 'undefined' && hash[1] !== null) 
+                  url += '#' + hash[1];
+              return url;
+          }
+          else
+              return url;
+      }
+  }
+
 
        var scrollOffset = 0;
        var isNavVisible = true;
@@ -85,13 +115,20 @@
       $(document).ready(function() {  
           var sa = false;
           var sl = true;
-          $('.search-box input').show();
+          $('.search-box input#q').show();
 
-          $('.search-box input').focusout(function(){
+          if (gon.q !== undefined){
+             $(".search-box").addClass("active");  
+             sa = true; 
+             sl = false;     
+             $(".search-label").hide();
+          }
+
+          $('.search-box input#q').focusout(function(){
             if($(this).val().length==0)
             {
               $(".search-box").removeClass("active");
-             //   $(".search-box input").hide();
+             //   $(".search-box input#q").hide();
               $(".search-label").show();                     
               sa = false;
               sl = true;     
@@ -103,16 +140,17 @@
               if(!sa)
               {
                  $(".search-box").addClass("active");  
-               //  $(".search-box input").show();
+               //  $(".search-box input#q").show();
+                 $(".search-box input#q").focus();
                  sa = true; 
                  sl = false;     
                  $(".search-label").hide();
               }
            },
            function(){
-            if($(this).find("input").val().length==0 && sa)
+            if($(this).find("input#q").val().length==0 && sa)
           {
-                $(this).find("input").trigger("blur");
+                $(this).find("input#q").trigger("blur");
                  $(".search-box").removeClass("active");  
                 // $(".search-box input").hide();
                  sa = false; 
@@ -122,7 +160,15 @@
            });
 
 
-          $(".search-button").click(function(){ console.log("ajax search");});
+          $('form#search-filter').submit(function(e){
+            e.preventDefault();
+            window.location.href = UpdateQueryString('q', $('form#search-filter input#q').val());
+          });
+
+          $(".search-button").click(function(e){ 
+            e.preventDefault();
+            window.location.href = UpdateQueryString('q', $('form#search-filter input#q').val());
+          });
         
           scrollOffset = $(window).scrollTop();      
           navbarMagic(true);
