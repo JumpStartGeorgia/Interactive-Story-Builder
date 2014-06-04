@@ -33,6 +33,10 @@ class Story < ActiveRecord::Base
 	 
 	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
 
+  scope :recent, order("published_at desc")
+  scope :reads, order("impressions_count desc")
+
+
   DEMO_ID = 2
 
 	amoeba do

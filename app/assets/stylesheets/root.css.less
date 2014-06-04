@@ -187,8 +187,18 @@ font-family:opensans-b;
       width:100%;
       margin:75px auto 0px auto;
       height:60px; /*56px*/
+      .dropdown-menu{
+        background-color: #fff;
+        margin-top: -7px;
+        & > li > a:hover, & > li > a:focus {
+          background-color: #c5c5c5;
+        }
+      }
+      .staff_pick.active, .dropdown-menu > li > a.active{
+        background-color: #a8d2b8;
+      }
     }
- 
+    
     .search-wrapper
     {
       float:right;

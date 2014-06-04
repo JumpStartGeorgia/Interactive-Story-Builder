@@ -71,7 +71,40 @@ logger.debug "////////////////////////// BROWSER = #{user_agent}"
 		end
 	end
 
-# after user logs in go back to the last page or go to root page
+
+  ## process the filter requests
+  def process_filter_querystring(story_objects)
+    # staff pick
+    if params[:staff_pick].present?
+      @story_filter_staff_pick = params[:staff_pick].to_bool
+    else
+  		@story_filter_staff_pick = true
+    end
+
+    # sort
+    if params[:sort].present? && I18n.t('filters.sort').keys.map{|x| x.to_s}.include?(params[:sort])
+      case params[:sort]
+        when 'recent'
+    			story_objects = story_objects.recent
+        when 'reads'
+    			story_objects = story_objects.reads
+      end
+			@story_filter_sort = I18n.t("filters.sort.#{params[:sort]}")
+    else
+      story_objects = story_objects.recent
+			@story_filter_sort = I18n.t("filters.sort.recent")
+    end
+    
+    # category
+		@story_filter_category = I18n.t("filters.all")
+    
+    # language
+		@story_filter_language = I18n.t("filters.all")
+    
+    return story_objects
+  end
+
+  # after user logs in go back to the last page or go to root page
 	def after_sign_in_path_for(resource)
 		session[:previous_urls].last || request.env['omniauth.origin'] || root_path(:locale => I18n.locale)
 	end

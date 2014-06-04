@@ -3,7 +3,9 @@ class RootController < ApplicationController
     @root_page = true
     @css = ["root"]
     @js = ["root"]    
-    @stories = Story.is_published.order("published_at desc").paginate(:page => params[:page], :per_page => 9)
+    
+    
+    @stories = process_filter_querystring(Story.is_published.paginate(:page => params[:page], :per_page => 9))
 
 
     @news = News.published.limit(2)
