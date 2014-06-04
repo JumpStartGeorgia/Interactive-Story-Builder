@@ -42,7 +42,8 @@
                       <li>
                        <%= link_to t('helpers.links.users'), admin_users_path %>
                       </li>
-                    <% end %>     
+                    <% end %>   
+                    <li class="divider"></li>  
                     <li>
                      <%= link_to t('helpers.links.sign_out'), destroy_user_session_path, :method => :delete %>
                     </li>
@@ -59,7 +60,7 @@
                <% end %> 
               <% I18n.available_locales.each do |locale| %>
                 <% if locale != I18n.locale %>
-                  <li><%= link_to t("app.language.#{locale}"), params.merge(:locale => locale) , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse"%></li>
+                  <li><%= link_to t("app.language.#{locale}"), params.merge(:locale => locale) , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse", :class => "lang_switch" %></li>
                 <% end %>
               <% end %>
       

@@ -1,14 +1,21 @@
 class StoriesController < ApplicationController
+  layout :resolve_layout   
   before_filter :authenticate_user!
-  before_filter(:except => [:index, :new, :create]) do |controller_instance|
+  before_filter(:except => [:index, :new, :create]) do |controller_instance|  
     controller_instance.send(:can_edit_story?, params[:id])
   end
-  
+  before_filter :asset_filter
+   def asset_filter
+    @css.push("stories")
+    logger.debug("-"*38)
+    @css.push("reveal")
+    @js.push("reveal")
+
+ end 
   # GET /stories
   # GET /stories.json
   def index
-    #@usemap = true
-
+    #@usemap = true 
     @stories = Story.editable_user(current_user.id) 
     respond_to do |format|
       format.html  #index.html.erb
@@ -564,5 +571,12 @@ private
       system("tar -czf #{tar}.tar.gz -C '#{Rails.root}/tmp/#{name}' .")
       return "#{tar}.tar.gz"
   end
-
+  def resolve_layout
+    case action_name
+      when "index"
+        "profile"    
+      else
+        "application"
+      end
+  end
 end       

@@ -69,7 +69,7 @@ BootstrapStarter::Application.routes.draw do
 		match "news/:id" => "root#news_show", as: 'news_show'
 		match 'feedback' => 'root#feedback', :as => 'feedback', :via => [:get, :post]
 		match 'todo_list' => 'root#todo_list', :as => 'todo_list'
-
+		match "about" => "root#about", as: 'about'
 		root :to => 'root#index'
 	  match "*path", :to => redirect("/#{I18n.default_locale}") # handles /en/fake/path/whatever
 	end

@@ -413,15 +413,15 @@ input[type=text]{
 
 nav .nav-logo
 {
-  padding: 15px 20px 10px 91px;
+  padding: 15px 20px 10px 91px !important;
 }
 nav .nav-user
 {
-  padding-right:91px;
+  padding-right:91px  !important;;
   padding-top: 5px;
 }
 
-nav .nav-user li a
+nav .nav-user .lang_switch
 {     
   color:#fff;
 }
@@ -432,7 +432,7 @@ nav .nav-user li a
 float: left;
 width: 100%;
 max-width: 100%;
-height: auto;
+height: 328px;
 }
 .grid-wrapper{max-width:;}
 .grid{margin:0}
@@ -551,7 +551,7 @@ height: 328px;}
 .story-thumbnail img {
     line-height: 328px; 
     /*border-bottom: 1px solid #ccc;*/
-    padding-bottom: 22px;    
+    margin-bottom: 22px;    
 
 }
 .story-thumbnail a:hover .story-link
