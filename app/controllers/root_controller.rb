@@ -1,4 +1,5 @@
 class RootController < ApplicationController  
+
    layout :resolve_layout
     before_filter :asset_filter
  def asset_filter
@@ -9,6 +10,7 @@ class RootController < ApplicationController
   def index   
     @js.push("root")
     @stories = process_filter_querystring(Story.is_published.paginate(:page => params[:page], :per_page => 3))    
+
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render json: @stories }

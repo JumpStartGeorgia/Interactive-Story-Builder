@@ -117,13 +117,15 @@
           var sl = true;
           $('.search-box input#q').show();
 
-          if (gon.q !== undefined){
+          // if a search term already exists, show the search box
+          if ($('form#search-filter input#q').val() !== ''){
              $(".search-box").addClass("active");  
              sa = true; 
              sl = false;     
              $(".search-label").hide();
           }
 
+          // hide the search box when leave
           $('.search-box input#q').focusout(function(){
             if($(this).val().length==0)
             {
@@ -135,7 +137,9 @@
             }
       
           });
-           $('.search-box').hover(function()
+
+          // show the search box
+           $('.search-label, .search-box').hover(function()
            {        
               if(!sa)
               {
@@ -159,15 +163,23 @@
               }
            });
 
-
+          // add search phrase to filters
           $('form#search-filter').submit(function(e){
             e.preventDefault();
             window.location.href = UpdateQueryString('q', $('form#search-filter input#q').val());
           });
 
+          // add search phrase to filters
           $(".search-button").click(function(e){ 
             e.preventDefault();
             window.location.href = UpdateQueryString('q', $('form#search-filter input#q').val());
+          });
+          
+          // clear the search box
+          $("#clear-search").click(function(e){
+            e.preventDefault();
+            $('form#search-filter input#q').val('')
+            $(".search-box input#q").focus();
           });
         
           scrollOffset = $(window).scrollTop();      
