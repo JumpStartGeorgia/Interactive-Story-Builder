@@ -36,6 +36,7 @@ class Story < ActiveRecord::Base
 	before_save :publish_date
 	before_save :generate_reviewer_key
 	 
+	after_save :update_lang_count
 
   DEMO_ID = 2
 
@@ -85,6 +86,27 @@ class Story < ActiveRecord::Base
       date << self.published_at.to_date.to_s
       date << '-'
       "#{date}#{self.title.clone}"
+    end
+  end
+
+  # if the story was published/unpublished or if the languages changed,
+  # update the lang count
+  def update_lang_count
+    if self.published_changed?
+      if self.locale_changed?
+        if self.published?
+          Language.increment_count(locale)
+        else
+          Language.decrement_count(locale_was)
+        end
+      elsif self.published?
+        Language.increment_count(locale)
+      else
+        Language.decrement_count(locale)
+      end
+    elsif self.locale_changed? && self.published?
+      Language.decrement_count(locale_was)
+      Language.increment_count(locale)
     end
   end
 

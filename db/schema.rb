@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140529134642) do
+ActiveRecord::Schema.define(:version => 20140604132049) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -103,10 +103,12 @@ ActiveRecord::Schema.define(:version => 20140529134642) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "published_story_count", :default => 0
   end
 
   add_index "languages", ["locale"], :name => "index_languages_on_locale"
   add_index "languages", ["name"], :name => "index_languages_on_name"
+  add_index "languages", ["published_story_count"], :name => "index_languages_on_published_story_count"
 
   create_table "media", :force => true do |t|
     t.integer  "section_id"
