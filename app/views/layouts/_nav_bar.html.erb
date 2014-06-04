@@ -28,7 +28,7 @@
                     <%= link_to image_tag(current_user.avatar,:size=>"28x28", :class=>"avatar"), "#" , 
                          :class => "dropdown-toggle avatar-link", :"data-toggle"=>"dropdown" %>       
                        
-                  <ul class="dropdown-menu">
+                  <ul class="dropdown-menu pull-right">
                     <li>
                       <%= link_to t('helpers.links.add_story'), new_story_path  %>
                     </li>              

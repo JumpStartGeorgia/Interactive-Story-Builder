@@ -2,7 +2,7 @@ class RootController < ApplicationController
    layout :resolve_layout
     before_filter :asset_filter
  def asset_filter
-     @css.push("root")
+    @css.push("root")
     @js.push("root")
   end 
  
@@ -28,7 +28,9 @@ class RootController < ApplicationController
   
 
 
-  def news    
+  def news   
+    @css.push("news") 
+    @js.push("news")
     @news = News.published  
     respond_to do |format|
       format.html  #index.html.erb
