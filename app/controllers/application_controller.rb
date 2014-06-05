@@ -123,6 +123,9 @@ class ApplicationController < ActionController::Base
     
     # language
     index = params[:language].present? ? @languages_published.index{|x| x.locale.downcase == params[:language].downcase} : nil
+    if index.nil? && user_signed_in? && current_user.default_story_locale.present?
+      index = @languages_published.index{|x| x.locale.downcase == current_user.default_story_locale}
+    end
     if index.present?
       story_objects = story_objects.by_language(@languages_published[index].locale)    
   		@story_filter_language = @languages_published[index].name
