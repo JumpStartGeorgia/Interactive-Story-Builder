@@ -34,7 +34,7 @@ class NewsTranslation < ActiveRecord::Base
     if self.news_id.present? && self.news.published_at.present? && self.news.is_published == true
       date << self.news.published_at.to_s
       date << '-'
-      "#{date}#{self.title.clone}"
+      "#{date}#{self.title.dup}"
     end
   end
 

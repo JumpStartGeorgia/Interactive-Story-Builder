@@ -20,7 +20,7 @@ class CategoryTranslation < ActiveRecord::Base
 
 
   def create_permalink
-    self.name.downcase.clone.latinize.to_ascii.gsub(/[^0-9A-Za-z|_\- ]/,'')
+    self.name.downcase.dup.latinize.to_ascii.gsub(/[^0-9A-Za-z|_\- ]/,'')
   end
 
 

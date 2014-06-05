@@ -39,8 +39,7 @@ class Asset < ActiveRecord::Base
           opt = { 
             :url => "/system/users/:style/:user_avatar_file_name.:extension",
             :styles => {
-                :'140x140' => {:geometry => "140x140#"},
-                :'50x50' => {:geometry => "50x50#"},
+                :'168x168' => {:geometry => "168x168#"},
                 :'28x28' => {:geometry => "28x28#"}
             },
             :default_url => "/assets/missing/user_avatar/:style/default_user.png"

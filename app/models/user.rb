@@ -58,7 +58,18 @@ class User < ActiveRecord::Base
   # if neither exists, return the missing url
   def avatar_url(style = :'28x28')
     if has_provider_avatar? && !local_avatar_exists?
-      self.avatar
+      # append the size to the end of the avatar url so the provider returns the size we want
+      sizes = style.to_s.split('x')
+      if sizes.length == 2
+        a = self.avatar.dup
+        a << '?width='
+        a << sizes[0]
+        a << '&height='
+        a << sizes[1]
+        a
+      else
+        self.avatar
+      end
     elsif local_avatar_exists?
       self.local_avatar.asset.url(style)
     else

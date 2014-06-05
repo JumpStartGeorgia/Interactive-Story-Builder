@@ -102,7 +102,7 @@ class Story < ActiveRecord::Base
       date = ''
       date << self.published_at.to_date.to_s
       date << '-'
-      "#{date}#{self.title.clone}"
+      "#{date}#{self.title.dup}"
     end
   end
 
