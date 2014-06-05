@@ -6,6 +6,7 @@ class RootController < ApplicationController
  
   def index   
     @js.push("root")
+    @css.push("pagination")
     @stories = process_filter_querystring(Story.is_published.paginate(:page => params[:page], :per_page => 3))    
 
     respond_to do |format|

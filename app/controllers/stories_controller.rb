@@ -14,7 +14,8 @@ class StoriesController < ApplicationController
   # GET /stories.json
   def index
     #@usemap = true 
-    @stories = Story.editable_user(current_user.id) 
+    @css.push("pagination")
+    @stories = Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => 3)
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render json: @stories }

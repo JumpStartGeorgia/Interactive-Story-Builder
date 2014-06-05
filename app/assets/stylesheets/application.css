@@ -599,12 +599,7 @@ background-color:rgba(34,34,34,0.5);
     opacity: 1;
     
 }
-.pin .img img 
-{
-    vertical-align: middle;
-    width:459px;
-    height:328px;
-}
+
 .story-caption
 {
     width:400px;
@@ -681,4 +676,15 @@ background-color:rgba(34,34,34,0.5);
 .story-author,.story-publish,.author
 {
   display:inline-block;
+}
+.story-info .separator
+{
+  height:16px;
+  line-height:16px;  
+  width:1px;
+  background-color:#bbb;
+  display:inline-block;
+  margin:0px 9px;
+  position:relative;
+  top:3px;
 }

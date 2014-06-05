@@ -14,79 +14,16 @@
   </header>
 
 <% } %>
-
-<% title  t('helpers.titles.story_list') %>
-
-<%= link_to t('helpers.links.add_story') , new_story_path, class:"btn" %>
-<div>&nbsp;</div>
-
-<div class='row'>
-  <div class='span12'>
-    <table id='storiesTable' class="table table-striped table-bordered table-hover table-condensed">
-    <thead>
-      <tr>
-        <th><%= t('activerecord.attributes.story.title') %></th>        
-        <th><%= t('activerecord.attributes.story.author') %></th>     
-        <th></th>   
-        <th></th>  
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @stories.each do |story| %>
-      <tr>
-        <td><%= story.title %></td>        
-        <td><%= story.author %></td>       
-
-        <td>
-          <button type="button"  id='btnPublish' class="btn btn-warning btn-sm <%= story.published ? '' : 'disabled'%>" title="<%= story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>" data-link='<%= publish_story_path(story) %>'> 
-            <i class="glyphicon glyphicon-globe" ></i>
-          </button>
-        </td>
-        <td>
-          <button type="button"  id='btnPreview' class="btn btn-success btn-sm" title="<%= t('app.buttons.preview') %>" data-link='<%=  preview_story_path(story) %>'> 
-            <i class="glyphicon glyphicon-eye-open " ></i>
-          </button> 
-        </td>   
-        <td>
-          <button type="button"  id='btnReviewer' class="btn btn-primary btn-sm <%= story.published ? 'disabled' : ''%>" title="<%= story.published ? t('app.buttons.reviewer_key_published') : t('app.buttons.reviewer_key') %>" data-link='<%=  reviewer_key_story_path(story) %>'> 
-            <i class="glyphicon glyphicon-share" ></i>
-          </button> 
-        </td>   
-        <td>       
-            <%= link_to clone_story_path(story) , class:"btn btn-info btn-sm" ,  title: t('app.buttons.clone') do %>
-             <i class="glyphicon glyphicon-camera" ></i>
-            <% end %>
-         </td>   
-         <td>         
-            <%= link_to export_story_path(story) , class:"btn btn-primary btn-sm",  title: t('app.buttons.export') do %>
-             <i class="glyphicon glyphicon-download" ></i>
-            <% end %>
-         </td> 
-        <td><%= link_to t('helpers.links.edit_story'), edit_story_path(story) , class:"btn btn-sm btn-info"%></td>        
-        <td><%= link_to  t('helpers.links.admin_story'), sections_story_path(story), class:"btn btn-sm btn-info" %></td>          
-        <td><%= link_to  t('helpers.links.delete_story'), story, confirm: 'Are you sure?', method: :delete, class:"btn btn-sm btn-danger"%></td>
-      </tr>
-    <% end %>
-    </tbody>
-    </table>
-  </div>
-</div>
-
-
-
-
-
   <div class="grid col-3">      
-    <% @stories.each_with_index do |story,s_i| %>       
+    <% @stories.each_with_index do |story,s_i| %>  
+        <% 
+          desc = story.title
+        %>     
         <div class="col n-4">                   
-            <div class="story-thumbnail">         
-               <img height="328px" width="459px" src="<%= story.show_asset.asset.url(:thumbnail) %>" />                
+            <div class="story-thumbnail">                       
+               <%= link_to storyteller_show_path(story.permalink), :title => desc do %>
+              <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459', :alt => desc %>              
+            <% end %>            
                 <div class="story-edit">
                    
 
@@ -145,29 +82,30 @@
             </div>
             <div class='story-info'>   
              <div class="story-likes">
+              <%= link_to story.impressions_count, storyteller_show_path(story.permalink), :class => "n#{story.impressions_count.to_s.size}" %>
             </div>                 
             <div class="story-caption">
+              <%= link_to truncate(story.title, length: 45, separator: ' '), storyteller_show_path(story.permalink), :title => desc %>
             </div>                   
-            <div class="story-author">Added by <a class="author"><%= story.author %></a></div>
+            <div class="story-author"><a class="author"><%= story.author %></a></div>
             <div class="separator"></div>
             <div class="story-publish"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>              
           </div>
         </div>  
     <% end %>  
     </div>  
-
-
+       <%= page_navigation_links @stories %>   
 
 
   <% content_for(:footer) { %>
 
- <div id="previewStory" class="reveal-modal" style='height:50%;width:50%;top:35px;'>     
-    <div class='modal-data' style='height:50%;width:50%;top:35px;'></div>
-    <a class="close-reveal-modal">&#215;</a>
-</div>
-<div id="reviewerKey" class="reveal-modal" style='height:50%;width:50%;top:35px;' >     
-    <div class='modal-data' style='height:50%;width:50%;top:35px;'></div>
-    <a class="close-reveal-modal">&#215;</a>
-</div>
+     <div id="previewStory" class="reveal-modal">     
+        <div class='modal-data'></div>
+        <a class="close-reveal-modal">&#215;</a>
+    </div>
+    <div id="reviewerKey" class="reveal-modal" style='height:50%;width:50%;top:35px;' >     
+        <div class='modal-data'></div>
+        <a class="close-reveal-modal">&#215;</a>
+    </div>
 
 <% } %>
