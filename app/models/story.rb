@@ -74,6 +74,10 @@ class Story < ActiveRecord::Base
 	def self.demo
 	  fullsection(DEMO_ID)
 	end
+	
+	def self.by_language(locale)
+	  where(:locale => locale)
+	end
 
 
   # if the story is being published, record the date

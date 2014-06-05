@@ -61,6 +61,7 @@ class ApplicationController < ActionController::Base
   
 	def preload_global_variables
     @languages = Language.sorted
+    @languages_published = @languages.select{|x| x.published_story_count > 0}
 		@categories = Category.sorted
 	end
   
@@ -114,7 +115,13 @@ class ApplicationController < ActionController::Base
 		@story_filter_category = I18n.t("filters.all")
     
     # language
-		@story_filter_language = I18n.t("filters.all")
+    index = params[:language].present? ? @languages_published.index{|x| x.locale.downcase == params[:language].downcase} : nil
+    if params[:language].present? && index.present?
+      story_objects = story_objects.by_language(@languages_published[index].locale)    
+  		@story_filter_language = @languages_published[index].name
+    else
+  		@story_filter_language = I18n.t("filters.all")
+    end
     
     # search
 		if params[:q].present?

@@ -44,7 +44,14 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">          
-              <li class="dropdown">French</li>
+              <li class="dropdown">
+                <%= link_to I18n.t('filters.all'), url_for(params.merge(:language => nil)), :class => @story_filter_language == I18n.t('filters.all') ? 'active' : '' %>
+              </li>
+              <% @languages_published.each do |lang| %>
+                <li class="dropdown">
+                  <%= link_to lang.name_count, url_for(params.merge(:language => lang.locale)), :class => @story_filter_language == lang.name ? 'active' : '' %>
+                </li>
+              <% end %>
             </ul>
           </li>
           <li class="pull-right">
