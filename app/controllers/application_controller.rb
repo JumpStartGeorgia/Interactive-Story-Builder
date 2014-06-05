@@ -63,6 +63,7 @@ class ApplicationController < ActionController::Base
     @languages = Language.sorted
     @languages_published = @languages.select{|x| x.published_story_count > 0}
 		@categories = Category.sorted
+    @categories_published = @categories.select{|x| x.published_story_count > 0}
 	end
   
 
@@ -112,11 +113,17 @@ class ApplicationController < ActionController::Base
     end
     
     # category
-		@story_filter_category = I18n.t("filters.all")
+    index = params[:category].present? ? @categories_published.index{|x| x.permalink.downcase == params[:category].downcase} : nil
+    if index.present?
+      story_objects = story_objects.by_category(@categories_published[index].id)    
+  		@story_filter_category = @categories_published[index].name
+    else
+  		@story_filter_category = I18n.t("filters.all")
+    end
     
     # language
     index = params[:language].present? ? @languages_published.index{|x| x.locale.downcase == params[:language].downcase} : nil
-    if params[:language].present? && index.present?
+    if index.present?
       story_objects = story_objects.by_language(@languages_published[index].locale)    
   		@story_filter_language = @languages_published[index].name
     else

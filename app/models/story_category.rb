@@ -5,4 +5,5 @@ class StoryCategory < ActiveRecord::Base
 	attr_accessible :story_id, :category_id
 
   validates :story_id, :category_id, :presence => true
+  
 end

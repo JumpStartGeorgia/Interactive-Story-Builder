@@ -55,9 +55,6 @@ class StoriesController < ApplicationController
   def create
     @story = Story.new(params[:story])
 
-    Rails.logger.debug "------- story: #{@story.inspect}"
-    Rails.logger.debug "------- story asset: #{@story.asset.inspect}"
-
     respond_to do |format|
 
       if @story.save
@@ -87,6 +84,7 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.update_attributes(params[:story])
+
         flash_success_updated(Story.model_name.human,@story.title)       
         format.html { redirect_to  sections_story_path(@story),  notice: t('app.msgs.success_updated', :obj => t('activerecord.models.story')) }
         format.js { render action: "flash", status: :created }    
@@ -583,7 +581,7 @@ private
 
   def asset_filter
     @css.push("stories", "embed", "reveal", "bootstrap-select.min")
-    @js.push("stories", "reveal", "olly", "bootstrap-select.min")
+    @js.push("stories", "jquery.reveal", "olly", "bootstrap-select.min")
   end 
   
 end       

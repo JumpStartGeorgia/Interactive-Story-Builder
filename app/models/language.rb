@@ -12,7 +12,7 @@ class Language < ActiveRecord::Base
   def self.with_stories
     where('published_story_count > 0')
   end
-
+=begin
   def self.increment_count(locale)
     where(:locale => locale).update_all('published_story_count = published_story_count + 1')
   end
@@ -20,10 +20,29 @@ class Language < ActiveRecord::Base
   def self.decrement_count(locale)
     where(:locale => locale).update_all('published_story_count = if(published_story_count=0, 0, published_story_count - 1)')
   end
-
+=end
   # special format of name (#) for filter list
   def name_count
     "#{self.name} (#{self.published_story_count})"
+  end
+  
+  
+  # update the counts of languages with published stories
+  def self.update_counts
+    sql = "select locale, count(*) as count from stories where published = 1 group by locale order by locale"
+
+    counts = find_by_sql(sql)
+
+    if counts.present?
+      Language.transaction do 
+        # reset all counts to 0
+        Language.update_all(:published_story_count => 0)
+        # add the counts
+        counts.each do |count|
+          Language.where(:locale => count['locale']).update_all(:published_story_count => count['count'])
+        end
+      end
+    end
   end
   
 end

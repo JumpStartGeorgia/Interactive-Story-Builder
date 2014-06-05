@@ -12,8 +12,8 @@ class Story < ActiveRecord::Base
 	scope :is_published_home_page, where(:published => true, :publish_home_page => true)
   scope :is_staff_pick, where(:staff_pick => true)
   
-	has_many :story_categories, :dependent => :destroy
-	has_many :categories, :through => :story_categories
+	has_many :story_categories
+	has_many :categories, :through => :story_categories, :dependent => :destroy
 	belongs_to :user
   belongs_to :language, :primary_key => :locale, :foreign_key => :locale
 	belongs_to :template
@@ -41,7 +41,7 @@ class Story < ActiveRecord::Base
 	before_save :publish_date
 	before_save :generate_reviewer_key
 	 
-	after_save :update_lang_count
+	after_save :update_counts
 
   scope :recent, order("published_at desc")
   scope :reads, order("impressions_count desc")
@@ -79,6 +79,10 @@ class Story < ActiveRecord::Base
 	  where(:locale => locale)
 	end
 
+	def self.by_category(id)
+	  joins(:categories).where('categories.id = ?', id)
+	end
+
 
   # if the story is being published, record the date
 	def publish_date		
@@ -102,9 +106,16 @@ class Story < ActiveRecord::Base
     end
   end
 
-  # if the story was published/unpublished or if the languages changed,
-  # update the lang count
-  def update_lang_count
+  # if the story was published/unpublished 
+  # - or if the languages changed, update the lang count
+  # - or if categories changed, update category count
+  def update_counts
+    if self.published?
+      Category.update_counts
+      Language.update_counts
+    end
+=begin
+    # languages
     if self.published_changed?
       if self.locale_changed?
         if self.published?
@@ -121,6 +132,7 @@ class Story < ActiveRecord::Base
       Language.decrement_count(locale_was)
       Language.increment_count(locale)
     end
+=end    
   end
 
 	def asset_exists?

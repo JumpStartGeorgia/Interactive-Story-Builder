@@ -94,7 +94,8 @@ langs = [
 sql = "insert into languages (locale, name) values "
 sql << langs.map{|x| "(\"#{x[0]}\", \"#{x[1]}\")"}.join(', ')
 ActiveRecord::Base.connection.execute(sql)
-
+# update count of languages with published stories
+Language.update_counts
 
 #####################
 ## Categories
@@ -138,4 +139,5 @@ cat.category_translations.create(:locale => 'en', :name => 'Justice')
 cat = Category.create(:id => 12)
 cat.category_translations.create(:locale => 'ka', :name => 'საზოგადოება')
 cat.category_translations.create(:locale => 'en', :name => 'Society')
-
+# update count of categories with published stories
+Category.update_counts

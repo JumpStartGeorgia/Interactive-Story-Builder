@@ -1,7 +1,6 @@
 class CategoryTranslation < ActiveRecord::Base
-	require 'utf8_converter'
 	belongs_to :category
-  has_permalink :create_permalink, scope: :locale
+  has_permalink :create_permalink, true
 
   attr_accessible :category_id, :name, :locale
 
@@ -20,9 +19,8 @@ class CategoryTranslation < ActiveRecord::Base
   end
 
 
-  def permalink
-#    Utf8Converter.convert_ka_to_en(self.name.downcase.gsub(" ","_").gsub("/","_").gsub("__","_").gsub("__","_"))
-    Utf8Converter.convert_ka_to_en(self.name.downcase.clone.to_ascii.gsub(/[^0-9A-Za-z|_\- ]/,''))
+  def create_permalink
+    self.name.downcase.clone.latinize.to_ascii.gsub(/[^0-9A-Za-z|_\- ]/,'')
   end
 
 
