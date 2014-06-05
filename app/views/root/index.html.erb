@@ -53,7 +53,14 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">          
-              <li class="dropdown">Animal</li>
+              <li class="dropdown">
+                <%= link_to I18n.t('filters.all'), url_for(params.merge(:category => nil)), :class => @story_filter_category == I18n.t('filters.all') ? 'active' : '' %>
+              </li>
+              <% @categories_published.each do |cat| %>
+                <li class="dropdown">
+                  <%= link_to cat.name_count, url_for(params.merge(:category => cat.permalink)), :class => @story_filter_category == cat.name ? 'active' : '' %>
+                </li>
+              <% end %>
             </ul>
           </li>
           <li class="dropdown">
@@ -63,8 +70,18 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">          
-              <li class="dropdown">French</li>
+              <li class="dropdown">
+                <%= link_to I18n.t('filters.all'), url_for(params.merge(:language => nil)), :class => @story_filter_language == I18n.t('filters.all') ? 'active' : '' %>
+              </li>
+              <% @languages_published.each do |lang| %>
+                <li class="dropdown">
+                  <%= link_to lang.name_count, url_for(params.merge(:language => lang.locale)), :class => @story_filter_language == lang.name ? 'active' : '' %>
+                </li>
+              <% end %>
             </ul>
+          </li>
+          <li id="filter_match">
+            <span><%= t('filters.matches') %>: <%= @stories.total_entries %></span>
           </li>
           <li class="pull-right">
             <div class="search-label">
@@ -87,16 +104,19 @@
     </div>
 
 
-
 <div class="grid col-3">      
   <% @stories.each_with_index do |story,s_i| %>       
       <% 
-        desc = story.title
+        title = story.title.dup
+        if story.about.present?
+          title << ' - '
+          title << strip_tags(story.about)
+        end
       %>
       <div class="col n-4">                   
           <div class="story-thumbnail">
-            <%= link_to storyteller_show_path(story.permalink), :title => desc do %>
-              <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459', :alt => desc %>
+            <%= link_to storyteller_show_path(story.permalink), :title => title do %>
+              <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459', :alt => title %>
               <div class="story-link"></div>
             <% end %>
           </div>
@@ -105,7 +125,7 @@
             <%= link_to story.impressions_count, storyteller_show_path(story.permalink), :class => "n#{story.impressions_count.to_s.size}" %>
           </div>                 
           <div class="story-caption">
-            <%= link_to truncate(story.title, length: 45, separator: ' '), storyteller_show_path(story.permalink), :title => desc %>
+            <%= link_to truncate(story.title, length: 45, separator: ' '), storyteller_show_path(story.permalink), :title => title %>
           </div>                   
           <div class="story-author"><a class="author"><%= story.author %></a></div>
           <div class="separator"></div>
@@ -115,4 +135,5 @@
   <% end %>  
 </div>  
   
+
   <%= page_navigation_links @stories %>

@@ -162,113 +162,118 @@ border-bottom:1px solid lightgrey;
 }
 
 
-
-
 /* should be merged with root TODO */
 
 
 .header{            
-      width: 100%;
-    height: 550px;
-    min-width: 1024px;
-    text-align: center;   
-    /*background: transparent url('/assets/headers/header-bg-01.jpg') center no-repeat;*/
-    background-color:#156995;
-    background-size: cover;   
-    -moz-background-clip: border;
-    -webkit-background-clip: border;
-    background-clip: border-box;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding;
-    background-clip: padding-box;
-    -moz-background-clip: content;
-    -webkit-background-clip: content;
-    background-clip: content-box;
-    z-index:101;
-    }
-    .header-data
-    {
-      position:relative;
-      width:100%;
-      margin:0px auto;
-      top:168px;           
-      vertical-align: middle;
-      color:#fff;
+  width: 100%;
+height: 550px;
+min-width: 1024px;
+text-align: center;   
+/*background: transparent url('/assets/headers/header-bg-01.jpg') center no-repeat;*/
+background-color:#156995;
+background-size: cover;   
+-moz-background-clip: border;
+-webkit-background-clip: border;
+background-clip: border-box;
+-moz-background-clip: padding;
+-webkit-background-clip: padding;
+background-clip: padding-box;
+-moz-background-clip: content;
+-webkit-background-clip: content;
+background-clip: content-box;
+z-index:101;
+}
+.header-data
+{
+  position:relative;
+  width:100%;
+  margin:0px auto;
+  top:168px;           
+  vertical-align: middle;
+  color:#fff;
 
-    }
+}
 
-    .header-row
-    {
-      margin:30px 0px;
-    }
-    .header-data .h1
-    {
-      font-family:bandera-pro;
-      font-size: 92px;
-      color: #fff;      
-      margin:0px;
-      padding:0px;
-    }
-    .header-data .h1:lang(ka)
-    {
-      font-family:dejavusans-el;
-      font-size: 92px;
-    }
+.header-row
+{
+  margin:30px 0px;
+}
+.header-data .h1
+{
+  font-family:bandera-pro;
+  font-size: 92px;
+  color: #fff;      
+  margin:0px;
+  padding:0px;
+}
+.header-data .h1:lang(ka)
+{
+  font-family:dejavusans-el;
+  font-size: 92px;
+}
 
 
-    .header-data .h3
-    {
-      font-family:bandera-pro,dejavusans-el;
-      font-size: 38px;
-      color:#fff;      
-      margin:0px;
-      padding:0px;
-    }
-    .header-data .h3:lang(ka)
-    {
-      font-family:dejavusans-el;
-      font-size: 78px;
-    }
-    .header-data .intro
-    {
-      font-family:opensans-l,dejavusans-el;
-      font-size:16px;
-      margin:16px 0px 35px 0px;      
-      padding:0px;
-    }
-    .btn-create-story
-    {        
+.header-data .h3
+{
+  font-family:bandera-pro,dejavusans-el;
+  font-size: 38px;
+  color:#fff;      
+  margin:0px;
+  padding:0px;
+}
+.header-data .h3:lang(ka)
+{
+  font-family:dejavusans-el;
+  font-size: 78px;
+}
+.header-data .intro
+{
+  font-family:opensans-l,dejavusans-el;
+  font-size:16px;
+  margin:16px 0px 35px 0px;      
+  padding:0px;
+}
+.btn-create-story
+{        
 
-        text-align: center;
-        margin: 0px auto;
-        width:178px;
-        height:57px;
-     }
-    .btn-create-story a
-    {
-      display:block;
-      font-family:opensans-r;
-      font-size:18px;
-      color:#fff !important;      
-      background: transparent url('/assets/create-story.png') center no-repeat;
-      background-position: 25px 19px; 
-      border:1px solid #fff;
-      -webkit-border-radius: 133px;
-      -moz-border-radius: 133px;
-      border-radius: 133px;
-      width:178px;
-      height:57px;
-      padding: 18px 0px 0px 24px;
-      text-decoration:none;
-    }
+    text-align: center;
+    margin: 0px auto;
+    width:178px;
+    height:57px;
+ }
+.btn-create-story a
+{
+  display:block;
+  font-family:opensans-r;
+  font-size:18px;
+  color:#fff !important;      
+  background: transparent url('/assets/create-story.png') center no-repeat;
+  background-position: 25px 19px; 
+  border:1px solid #fff;
+  -webkit-border-radius: 133px;
+  -moz-border-radius: 133px;
+  border-radius: 133px;
+  width:178px;
+  height:57px;
+  padding: 18px 0px 0px 24px;
+  text-decoration:none;
+}
 
-    .btn-create-story a:hover,.btn-create-story a:focus
-    {      
-      color:#000 !important;
-      background: transparent url('/assets/create-story-hover.png') center no-repeat; 
-      background-position: 25px 19px; 
-      background-color:#fff;
-      text-decoration:none;
+.btn-create-story a:hover,.btn-create-story a:focus
+{      
+  color:#000 !important;
+  background: transparent url('/assets/create-story-hover.png') center no-repeat; 
+  background-position: 25px 19px; 
+  background-color:#fff;
+  text-decoration:none;
+
+}
+
+#staff-pick{
+  margin: 10px 0;
+}
+
 
     }
 

@@ -15,7 +15,10 @@ BootstrapStarter::Application.routes.draw do
 		namespace :admin do
 			resources :users
       resources :news
+      resources :languages
+      resources :categories
 		end
+
 		#get 'tinymce_assets' ,to: 'tinymceassets#index'
 		post '/tinymce_assets', to: 'imageuploader#create', as: 'imageuploader'
 
@@ -61,8 +64,14 @@ BootstrapStarter::Application.routes.draw do
 		#match '/stories/:id/edit' => 'stories#get_story'
 
 		match "storyteller/:id" => "storyteller#index", as: 'storyteller_show'
+		match "storyteller/:id/staff_pick" => "storyteller#staff_pick", as: 'storyteller_staff_pick'
+		match "storyteller/:id/staff_unpick" => "storyteller#staff_unpick", as: 'storyteller_staff_unpick'
 
 		match "review/:id" => "review#index", as: 'review'
+
+		match "settings" => "settings#index", as: 'settings'
+		match "settings/remove_avatar" => "settings#remove_avatar", as: 'settings_remove_avatar'
+		match "settings/check_nickname" => "settings#check_nickname", as: 'settings_check_nickname', :via => :post
 
 		match "demo" => "root#demo", as: 'demo'
 		match "news" => "root#news", as: 'news'

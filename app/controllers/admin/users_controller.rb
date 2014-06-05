@@ -7,6 +7,9 @@ class Admin::UsersController < ApplicationController
   # GET /admin/users
   # GET /admin/users.json
   def index
+    @css.push("dataTables/jquery.dataTables.bootstrap")
+    @js.push("dataTables/jquery.dataTables", "dataTables/jquery.dataTables.bootstrap", "search")
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: UsersDatatable.new(view_context, current_user) }

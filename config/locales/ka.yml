@@ -8,9 +8,11 @@ ka:
       medium: მთელს ეკრანზე გაშლილი მედია სლაიდშოუ
       content: შინაარსი
       slideshow: ფოტო სლაიდშოუ
-      news: News
+      news: სიახლეები
       message: შეტყობინება
-      embed_medium: Embedable Online Media
+      embed_medium: ჩაშენებული ონლაინ მედია
+      language: ენა
+      category: კატეგორია
     attributes:
       user:
         email: ელ.ფოსტა
@@ -18,6 +20,10 @@ ka:
         password_confirmation: გაიმეორეთ პაროლი
         role: როლი
         remember_me: დამიმახსოვრე                  
+        default_story_locale: თქვენი ამბის თავდაპირვლეი ენა 
+        about: თქვენს შესახებ
+        local_avatar: პროფილის სურათი
+        nickname: Nickname
       story:
         title: ამბის სათაური
         user_id: გამოქვეყნების მომხმარებელი
@@ -26,8 +32,11 @@ ka:
         media_author: ფოტოსა და ვიდეოს ავტორ(ებ)ი
         published: გამოქვეყნება
         published_at: გამოქვეყნებულია
+        publish_home_page: გსურთ გამოქვეყნების შემდგომ, თქვენი ამბავი გააზიაროთ საწყის გვერძე?
         template_id: შაბლონი
         thumbnail: ესკიზი
+        about: ამბის მოკლე შინაარსი
+        locale: ამბის ენა
       section:
         title: დასახელება
         audio: აუდიო ფაილი
@@ -63,8 +72,13 @@ ka:
         message: შეტყობინება
         message_type: უკუკავშირის ტიპი
       embed_medium:
-        title: Title
-        url: Url to Online Media
+        title: სათაური
+        url: ონლაინ მედიის ბმული
+      language:
+        locale: ენის აღმნიშვნელი
+        name: ენის დასახელება
+      category_translation:
+        name: სახელი
     errors:
       messages:
         required_field: "სავალდებულოა"
@@ -110,10 +124,18 @@ ka:
       todo_list: To-Do List
       about: About
       demo: Demo
+      languages: ენები
+      categories: კატეგორიები
+      staff_pick: რჩეულებში დამატება 
+      staff_unpick: რჩეულებიდან ამოშლა
+      user_settings: თქვენი პარამეტრები
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
       story_list: ამბის ნახვა
+    hints:
+      nickname: Your nickname is used in the url to your published stories (e.g., nickname/story-title)        
+      local_avatar: ფოტო, რომელიც გამოჩნდება თქვენი გვერდის ზედა სექციაში (მხოლოდ png და jpg).
   app:
     language:
       en: English
@@ -170,9 +192,17 @@ ka:
       error_clone: "%{obj} იქნა კლონირებული." 
       error_export: "Story %{obj} ამბის ექსპორტი შესაძლებელია"     
       error_get_data: არჩეული ერთეული ვერ მოიძებნა
+      select_section: ერთეულის დამატებამდე, გთხოვთ, აირჩიეთ სექცია 
+      staff_pick: ამბავი რჩეულში იქნა დამატებული
+      staff_unpick: ამბავი ამოშლილი რჩეულებიდან
+      success_settings: თქვენი პარამეტრები წარმატებით განახლდა.
+      success_remove_avatar: პროფილის სურათათ თქვენი გვერდის Facebook სურათია გამოყენებული.
+      nickname_duplicate: This nickname already exists. 
+      nickname_url: 'Your url will look like:'
       one_section:
         content: მხოლოდ ერთი რამის  დამატებაა შესაძლებელი შინაარსის სექციაში
         slideshow: მხოლოდ ერთი რამის დამატებაა შესაძლებელი ფოტო სლაიდშოუს სექციაში
+        embed_media: ჩაშენებულ ონლაინ მედიაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი
       destroy_story:
         success: ამბავი წარმატებით წაიშალა.
         error: "ამბის წაშლისას დაშვებულია შეცდომა. [ %{err} ]"
@@ -191,8 +221,8 @@ ka:
       name: ფოტო სლაიდშოუ
       description: ფოტოები ჰორიზონტალურ სლაიდშოუში
     embed_media: 
-      name: Embed Online Media
-      description: youtube, vimeo, etc
+      name: ჩაშენებული ონლაინ მედია
+      description: youtube, vimeo, და ა.შ.
   message_types:
     bug: დაარეპორტე შეცდომა
     feature: მოითხოვეთ ახალი ფუნქციის დამატება
@@ -201,6 +231,7 @@ ka:
     staff_pick: Staff Pick
     sort_header: Sort
     all: All
+    matches: Matching Stories
     sort:
       reads: Reads
       recent: Recent
@@ -288,11 +319,15 @@ ka:
         title: ამბის სათაური გამოჩნდება გამოჩნდება როგორც ჰედერი პირველი შინაარსის სექციაში თუ ეს მედია სექციაა
         author: სტატიის ავტორ(ებ)ი გამოჩნდებ(ი)ა(ნ) პირველი შინაარსის სექციაში
         media_author:  ავტორ(ებ)ი გამოჩნდებ(ი)ა(ნ) პირველი შინაარსის სექციაში ამბის სათაურის ქვემოთ
-        published: გამოქვეყნებული ისტორიები ხემისაწვდომია ყველასთვის საწყისი გვერდზე განთავსებული ინფორმაციის სახით
+        published: გამოქვეყნებული ამბების წაკითხვა ყველას შეუძლია
+        publish_home_page: თუ მონიშნავთ, თქვენი ამბავი გამოჩნდება საწყის გვერძე გამოქვეყნების შემდგომ
         template: აირჩიეთ შაბლონი ამბის სტილის შესარჩევად
-        thumbnail: სურათი, რომელიც გამოჩნდება საწყის გვერძე ამბის გამოქვეყნების შემდგომ
+        thumbnail: თქვენი ამბის გამოსახულება, რომელიც გამოჩნდება საწყის გვერძე, როდესაც ამბავი გამოქვეყნდება (მხოლოდ jpg და png ფორმატი)
         editor: ამბის შემქმნელი პირი
         editors: მონიშნეთ ადამიანები, რომლებსაც გსუღ მისცეთ გამოქვეყნებამდე ამბის რედაქტირების უფლება
+        about: ამბის მოკლე შინაარსი, რომელიც გამოჩნდება საწყის გვერხ, როდესაც თქვენი ამბავი გამოქვეყნდება
+        locale: აირჩიეთ თქვენი ამბის ენა. მიეცით მომხმარებელს საშუალება აირჩიოს ამბავი ენის მიხედვით.
+        categories: აირჩიეთ კატეგორია(ები), რომელსაც თქვენი ამბავი განეკუთვნება. მიეცით მომხმარებელს საშუალება აირჩიოს ამბავი კატეგორიის მიხედვით.
     media:
       form_title: მთელს ეკრანზე გაშლილი მედია სლაიდშოუ
       left: მარცხნივ
@@ -339,7 +374,7 @@ ka:
       title: მხოლოდ URL-ის წაკითხვა
       desc: "თქვენ შეგიძლიატ დააკოპიროთ და გააზიაროთ შემდეგი URL-ი, რათა ხალხმა ნახოს '%{title}' სანამ მას გამოაქვენებთ. ამ ადამიანებს ექნებათ სასუალება ნახონ თქვენ მიერ შექმნილი ამბავი, მაგრამ არ შეეძლებათ მისი რედაქტირება."
     slideshow:
-      form_title: Image Slideshow Form
+      form_title: ფოტო სლაიდშოუს ფორმა
       add_image: ფოტოს დამატება
       placeholder:
         caption: არ არის სავალდებულო
@@ -354,21 +389,29 @@ ka:
       hint:
         caption: სურათის აღწერა გამოჩნდება სურათის ქვემოთ
         source: წყარო გამოჩნდება სურათის აღწერის ქვემოთ
-        asset: მხოლოდ  jpg და png ფორმატია დასაშვები
+        asset: მხოლოდ jpg და png ფორმატია დასაშვები
       label:
         caption: ფოტოს აღწერა
         source: ფოტოს წყარო
     embed_media:
-      form_title: Embed Online Media Form
-      get_media: Get Online Media
-      preview: Preview of Online Media
-      error: The URL could not be processed. Please try again.
+      form_title: ჩაშენებული ონლაინ მედიის ფორმა
+      get_media: ჩასვით ონლაინ მედია
+      preview: ნახეთ ონლაინ მედია
+      error: ბმული ვერ დამუშავდა. გთხოვთ, კიდევ სცადეთ.
       placeholder:
-        url: Url to online media
+        url: ონლაინ მედიის ბმული
       hint:
-        title: "This text only appears in the left sidebar, it will not show up in the story"
-        url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: Youtube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
+        title: ეს ტექსტი მხოლოდ ჩნდება მარცხენა ბლოკში, იგი არ გამოჩნდება ძირითად ამბავში
+        url: "ჩაშენებულ ონლაინ მედიაში შეგიძლიათ გამოიყენოთ შემდეგი საიტები: აუდიაო: Soundcloud, Spotify; ვიდეო: Youtube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED" 
   storyteller:
     byline: ავტორი
     byline_media: "ფოტოებისა და ვიედეოს ავტორი "
     source: "წყარო:"
+  settings:
+    index:
+      title: "%{name} პარამეტრები"
+      facebook_avatar: ეს არის თქვენი პროფილის სურათი Facebook-იდან.
+      use_facebook_avatar: გამოიყენეთ Facebook-ის პროფილის სურათი
+      hint:
+        about: მოკლედ თქვენს შესახებ. ეს გამოჩნდება გამოქვეყნებულ ამბებთან ერთად. 
+        default_story_locale: აირჩიეთ ენა, რომელსაც გამოიყენებთ ამბის შექმნისას.

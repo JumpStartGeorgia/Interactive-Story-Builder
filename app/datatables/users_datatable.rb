@@ -36,7 +36,7 @@ private
   def action_links(user)
     x = ''
     x << link_to(I18n.t("helpers.links.edit"),
-                      edit_admin_user_path(user, :locale => I18n.locale), :class => 'btn btn-mini')
+                      edit_admin_user_path(user, :locale => I18n.locale), :class => 'btn btn-default btn-mini')
     x << " "
     x << link_to(I18n.t("helpers.links.destroy"),
                       admin_user_path(user, :locale => I18n.locale),

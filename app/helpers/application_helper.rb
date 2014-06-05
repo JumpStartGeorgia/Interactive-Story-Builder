@@ -47,7 +47,7 @@ module ApplicationHelper
 
 	# put the default locale first and then sort the remaining locales
 	def create_sorted_locales
-    x = I18n.available_locales.clone
+    x = I18n.available_locales.dup
     
     # sort
     x.sort!{|x,y| x <=> y}

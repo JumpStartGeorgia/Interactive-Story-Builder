@@ -3,16 +3,16 @@
 
 <div class="form-actions">
   <%= link_to t('helpers.links.list'),
-              admin_news_index_path, :class => 'btn'  %>
+              admin_news_index_path, :class => 'btn btn-default'  %>
   <%= link_to t('helpers.links.edit'),
-              edit_admin_news_path(@news), :class => 'btn' %>
+              edit_admin_news_path(@news), :class => 'btn btn-default' %>
   <%= link_to t('helpers.links.delete'),
               admin_news_path(@news),
               :method => :delete,
 							:data => { :confirm => t('.confirm', :default => t("helpers.links.confirm")) },
               :class => 'btn btn-danger' %>
 	<%= link_to t('helpers.links.admin'), admin_path,
-  :class => 'btn' %>
+  :class => 'btn btn-default' %>
 </div>
 
 <div id="news_items">

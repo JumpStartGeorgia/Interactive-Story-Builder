@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
 
 	before_filter :set_locale
 	before_filter :is_browser_supported?
-	before_filter :initialize_gon	
+	before_filter :preload_global_variables
+	before_filter :initialize_gon
 	before_filter :store_location
-	before_filter :asset_extra
 	after_filter :flash_to_headers
 
 	unless Rails.application.config.consider_all_requests_local
@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
 
 	def is_browser_supported?
 		user_agent = UserAgent.parse(request.user_agent)
-logger.debug "////////////////////////// BROWSER = #{user_agent}"
+    logger.debug "////////////////////////// BROWSER = #{user_agent}"
 # 		if SUPPORTED_BROWSERS.any? { |browser| user_agent < browser }
 # 			# browser not supported
 # logger.debug "////////////////////////// BROWSER NOT SUPPORTED"
@@ -57,13 +57,38 @@ logger.debug "////////////////////////// BROWSER = #{user_agent}"
   def default_url_options(options={})
     { :locale => I18n.locale }
   end
+  
+	def preload_global_variables
+    @languages = Language.sorted
+    @languages_published = @languages.select{|x| x.published_story_count > 0}
+		@categories = Category.sorted
+    @categories_published = @categories.select{|x| x.published_story_count > 0}
+
+    # for loading extra css/js files    
+		@css = []
+		@js = []
+    
+    # have to insert devise styles/js here since no controllers exist
+    if params[:controller].start_with?('devise/')
+      @css = ['devise']
+      @js = ['nickname']
+    end
+	end
+  
 
 	def initialize_gon
 		gon.set = true
 		gon.highlight_first_form_field = true
 
+    gon.check_nickname = settings_check_nickname_path
+    gon.nickname_duplicate = I18n.t('app.msgs.nickname_duplicate')
+    gon.nickname_url = I18n.t('app.msgs.nickname_url')
+    
+
+    gon.msgs_select_section = I18n.t('app.msgs.select_section')
     gon.msgs_one_section_content = I18n.t('app.msgs.one_section.content')
     gon.msgs_one_section_slideshow = I18n.t('app.msgs.one_section.slideshow')
+    gon.msgs_one_section_embed_media = I18n.t('app.msgs.one_section.embed_media')
 
 		if I18n.locale == :ka
 		  gon.datatable_i18n_url = "/datatable_ka.txt"
@@ -97,10 +122,25 @@ logger.debug "////////////////////////// BROWSER = #{user_agent}"
     end
     
     # category
-		@story_filter_category = I18n.t("filters.all")
+    index = params[:category].present? ? @categories_published.index{|x| x.permalink.downcase == params[:category].downcase} : nil
+    if index.present?
+      story_objects = story_objects.by_category(@categories_published[index].id)    
+  		@story_filter_category = @categories_published[index].name
+    else
+  		@story_filter_category = I18n.t("filters.all")
+    end
     
     # language
-		@story_filter_language = I18n.t("filters.all")
+    index = params[:language].present? ? @languages_published.index{|x| x.locale.downcase == params[:language].downcase} : nil
+    if index.nil? && user_signed_in? && current_user.default_story_locale.present?
+      index = @languages_published.index{|x| x.locale.downcase == current_user.default_story_locale}
+    end
+    if index.present?
+      story_objects = story_objects.by_language(@languages_published[index].locale)    
+  		@story_filter_language = @languages_published[index].name
+    else
+  		@story_filter_language = I18n.t("filters.all")
+    end
     
     # search
 		if params[:q].present?
@@ -134,10 +174,6 @@ logger.debug "////////////////////////// BROWSER = #{user_agent}"
 
 
 #    Rails.logger.debug "****************** prev urls session = #{session[:previous_urls]}"
-	end
-	def asset_extra		
-		@css = []
-		@js = []
 	end
 
 

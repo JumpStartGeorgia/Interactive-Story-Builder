@@ -3,16 +3,16 @@ class Medium < ActiveRecord::Base
   acts_as_list scope: :section
     
   has_one :image,     
-  :conditions => "asset_type = #{Asset::TYPE[:media_image]}",    
-  foreign_key: :item_id,
-  class_name: "Asset",
-  dependent: :destroy
+    :conditions => "asset_type = #{Asset::TYPE[:media_image]}",    
+    foreign_key: :item_id,
+    class_name: "Asset",
+    dependent: :destroy
 
   has_one :video,     
-  :conditions => "asset_type = #{Asset::TYPE[:media_video]}",    
-  foreign_key: :item_id,
-  class_name: "Asset",
-  dependent: :destroy
+    :conditions => "asset_type = #{Asset::TYPE[:media_video]}",    
+    foreign_key: :item_id,
+    class_name: "Asset",
+    dependent: :destroy
 
 
 
@@ -22,7 +22,7 @@ class Medium < ActiveRecord::Base
   validates :media_type, :presence => true, :inclusion => { :in => TYPE.values }  
   validates :title, :presence => true , length: { maximum: 255 }  
 
-  validates :caption, length: { maximum: 255 }  
+  validates :caption, length: { maximum: 2000 }  
 
   validates :video, presence: true, if: :video_type?
 

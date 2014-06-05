@@ -10,7 +10,6 @@
  *= require jquery.ui.theme  
   *= require jquery.ui.dialog    
  *= require bootstrap_and_overrides
- *= require dataTables/jquery.dataTables.bootstrap 
  *= require_self
 
 */
@@ -422,7 +421,7 @@ nav .nav-user
   padding-top: 5px;
 }
 
-nav .nav-user .lang_switch
+nav .nav-user .nav > li > a
 {     
   color:#fff;
 }

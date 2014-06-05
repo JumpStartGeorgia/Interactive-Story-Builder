@@ -3,9 +3,9 @@ class Section < ActiveRecord::Base
   has_one :content, dependent: :destroy
   has_one :slideshow, dependent: :destroy
   has_one :asset,     
-  :conditions => "asset_type = #{Asset::TYPE[:section_audio]}",    
-  foreign_key: :item_id,
-  dependent: :destroy
+    :conditions => "asset_type = #{Asset::TYPE[:section_audio]}",    
+    foreign_key: :item_id,
+    dependent: :destroy
 
   has_one :embed_medium, dependent: :destroy
   has_many :media, :order => 'position', dependent: :destroy
@@ -20,7 +20,7 @@ class Section < ActiveRecord::Base
   amoeba do
     enable
     exclude_field :asset
-    clone [:content, :media, :slideshow]
+    clone [:content, :media, :slideshow, :embed_medium]
   end
 
   validates :story_id, :presence => true

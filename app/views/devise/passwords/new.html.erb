@@ -19,10 +19,10 @@
   <%= semantic_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
   	<%= f.error_messages %>
 
-	  <%= f.input :email, :input_html => { :size => 35, :placeholder => t('activerecord.attributes.user.email') }, :label => false %>
+	  <%= f.input :email, :input_html => { :size => 35 } %>
 
 	  <div class="control-group">
-		  <%= f.submit t('helpers.links.password_reset'), :class => 'btn' %>
+		  <%= f.submit t('helpers.links.password_reset'), :class => 'btn btn-default' %>
 	  </div>
   <% end %>
 

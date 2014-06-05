@@ -1,5 +1,4 @@
 class Story < ActiveRecord::Base	
-	require 'utf8_converter'
   # fields to search for in a story
   scoped_search :on => [:title, :author, :media_author]
   scoped_search :in => :content, :on => [:caption, :sub_caption, :content]
@@ -7,10 +6,16 @@ class Story < ActiveRecord::Base
   # record public views
   is_impressionable :counter_cache => true 
   # create permalink to story
-  has_permalink :create_permalink
+  has_permalink :create_permalink, true
 	
 	scope :is_published, where(:published => true)
-
+	scope :is_published_home_page, where(:published => true, :publish_home_page => true)
+  scope :is_staff_pick, where(:staff_pick => true)
+  
+	has_many :story_categories
+	has_many :categories, :through => :story_categories, :dependent => :destroy
+	belongs_to :user
+  belongs_to :language, :primary_key => :locale, :foreign_key => :locale
 	belongs_to :template
 	has_many :sections, :order => 'position', dependent: :destroy
 	has_and_belongs_to_many :users
@@ -18,25 +23,25 @@ class Story < ActiveRecord::Base
 	  :conditions => "asset_type = #{Asset::TYPE[:story_thumbnail]}", 	 
 	  foreign_key: :item_id,
 	  dependent: :destroy
-	belongs_to :user
 	has_many :content, :through => :sections
+
+	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
 
 	validates :title, :presence => true, length: { maximum: 100 }
 	validates :author, :presence => true, length: { maximum: 255 }
-	validates :template, :presence => true
+#	validates :about, :presence => true
+	validates :template_id, :presence => true
 	validates :media_author, length: { maximum: 255 }
-
-	attr_accessor :was_publishing, :title_was
+	validates :locale, :presence => true
 
   # if the title changes, make sure the permalink is updated
- 	after_find :set_title
   before_save :check_title
 
- 	after_find :publishing_done?
+  # if publishing, set the published date
 	before_save :publish_date
 	before_save :generate_reviewer_key
 	 
-	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
+	after_save :update_counts
 
   scope :recent, order("published_at desc")
   scope :reads, order("impressions_count desc")
@@ -48,7 +53,6 @@ class Story < ActiveRecord::Base
 		enable
 		exclude_field :asset
 		clone [:sections]
-
 	end
 
   def self.can_edit?(story_id, user_id)
@@ -70,28 +74,27 @@ class Story < ActiveRecord::Base
 	def self.demo
 	  fullsection(DEMO_ID)
 	end
+	
+	def self.by_language(locale)
+	  where(:locale => locale)
+	end
 
-
-	def publishing_done?
-		self.was_publishing = self.has_attribute?(:published) ? self.published : nil		
+	def self.by_category(id)
+	  joins(:categories).where('categories.id = ?', id)
 	end
 
 
   # if the story is being published, record the date
 	def publish_date		
-	  if self.was_publishing != self.published && self.published?
+	  if self.published_changed? && self.published?
 	  	self.published_at = Time.now
 	  	# date is set so now permalink can be created
-	  	self.permalink = create_permalink
+	  	self.generate_permalink!
 	  end     
 	end
 
-  def set_title
-		self.title_was = self.has_attribute?(:title) ? self.title : nil		
-  end
-  
   def check_title
-    self.generate_permalink! if self.title != self.title_was
+    self.generate_permalink! if self.title_changed?
   end 
   
   def create_permalink
@@ -99,8 +102,37 @@ class Story < ActiveRecord::Base
       date = ''
       date << self.published_at.to_date.to_s
       date << '-'
-      "#{date}#{Utf8Converter.convert_ka_to_en(self.title.clone.to_ascii.gsub(/[^0-9A-Za-z|_\- ]/,''))}"
+      "#{date}#{self.title.dup}"
     end
+  end
+
+  # if the story was published/unpublished 
+  # - or if the languages changed, update the lang count
+  # - or if categories changed, update category count
+  def update_counts
+    if self.published?
+      Category.update_counts
+      Language.update_counts
+    end
+=begin
+    # languages
+    if self.published_changed?
+      if self.locale_changed?
+        if self.published?
+          Language.increment_count(locale)
+        else
+          Language.decrement_count(locale_was)
+        end
+      elsif self.published?
+        Language.increment_count(locale)
+      else
+        Language.decrement_count(locale)
+      end
+    elsif self.locale_changed? && self.published?
+      Language.decrement_count(locale_was)
+      Language.increment_count(locale)
+    end
+=end    
   end
 
 	def asset_exists?
