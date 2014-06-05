@@ -420,7 +420,7 @@ nav .nav-user
   padding-top: 5px;
 }
 
-nav .nav-user a
+nav .nav-user .nav > li > a
 {     
   color:#fff;
 }

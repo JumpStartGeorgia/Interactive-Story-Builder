@@ -1,25 +1,26 @@
 <% title @story.title.titlecase.html_safe %>
 
+
 <div class='row'>
-  <div class='span12'>
+  <div class='col-md-3'>
    <div id='toolbar' class='clear'>
       <div class="btn-group">
-        <button type="button" id='btnAddSection' class="btn btn-primary" title="<%= t('app.buttons.add_section') %>"><i class="icon-align-justify icon-white"></i></button>
-        <button type="button" id='btnAddItem' class="btn btn-primary" title="<%= t('app.buttons.add_item') %>"><i class="icon-film icon-white" ></i></button>
-        <button type="button" id='btnDelete' class="btn  btn-danger" title="<%= t('app.buttons.delete') %>" ><i class="icon-remove icon-white" >
+        <button type="button" id='btnAddSection' class="btn btn-primary" title="<%= t('app.buttons.add_section') %>"><i class="glyphicon glyphicon-align-justify"></i></button>
+        <button type="button" id='btnAddItem' class="btn btn-primary" title="<%= t('app.buttons.add_item') %>"><i class="glyphicon glyphicon-film" ></i></button>
+        <button type="button" id='btnDelete' class="btn  btn-danger" title="<%= t('app.buttons.delete') %>" ><i class="glyphicon glyphicon-remove" >
           
         </i></button>
-        <button type="button" id='btnUp' class="btn btn-info" title="<%= t('app.buttons.up') %>"> <i class="icon-arrow-up icon-white" ></i> </button>
-        <button type="button" id='btnDown' class="btn btn-info" title="<%= t('app.buttons.down') %>"> <i class="icon-arrow-down icon-white" ></i></button>
-        <button type="button"  id='btnPublish' class="btn btn-warning <%= @story.published ? '' : ' disabled'%>" title="<%= @story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>" data-link='<%= publish_story_path(@story) %>'> <i class="icon-globe icon-white" ></i></button>      
-         <button type="button"  id='btnPreview' class="btn btn-success" title="<%= t('app.buttons.preview') %>" data-link='<%=  preview_story_path(@story) %>'> <i class="icon-eye-open icon-white" ></i></button>            
+        <button type="button" id='btnUp' class="btn btn-info" title="<%= t('app.buttons.up') %>"> <i class="glyphicon glyphicon-arrow-up" ></i> </button>
+        <button type="button" id='btnDown' class="btn btn-info" title="<%= t('app.buttons.down') %>"> <i class="glyphicon glyphicon-arrow-down" ></i></button>
+        <button type="button"  id='btnPublish' class="btn btn-warning <%= @story.published ? '' : ' disabled'%>" title="<%= @story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>" data-link='<%= publish_story_path(@story) %>'> <i class="glyphicon glyphicon-globe" ></i></button>      
+         <button type="button"  id='btnPreview' class="btn btn-success" title="<%= t('app.buttons.preview') %>" data-link='<%=  preview_story_path(@story) %>'> <i class="glyphicon glyphicon-eye-open" ></i></button>            
       </div>
     </div>
   </div>
 </div>
 
 <div class='row'>
-  <div class='span3'>   
+  <div class='col-md-3'>   
  
     <div class='story-tree' id='<%= @story.id %>'>        
       <ul>
@@ -44,7 +45,7 @@
     </div>
     &nbsp;    
   </div>  
-  <div class='span9 story-viewer' id='storyViewer'></div>
+  <div class='col-md-9 story-viewer' id='storyViewer'></div>
 
 </div>
 
