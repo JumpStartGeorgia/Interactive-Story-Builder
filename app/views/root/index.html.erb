@@ -68,16 +68,19 @@
     </div>
 
 
-
 <div class="grid col-3">      
   <% @stories.each_with_index do |story,s_i| %>       
       <% 
-        desc = story.title
+        title = story.title.dup
+        if story.about.present?
+          title << ' - '
+          title << strip_tags(story.about)
+        end
       %>
       <div class="col n-4">                   
           <div class="story-thumbnail">
-            <%= link_to storyteller_show_path(story.permalink), :title => desc do %>
-              <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459', :alt => desc %>
+            <%= link_to storyteller_show_path(story.permalink), :title => title do %>
+              <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459', :alt => title %>
               <div class="story-link"></div>
             <% end %>
           </div>
@@ -86,7 +89,7 @@
             <%= link_to story.impressions_count, storyteller_show_path(story.permalink), :class => "n#{story.impressions_count.to_s.size}" %>
           </div>                 
           <div class="story-caption">
-            <%= link_to truncate(story.title, length: 45, separator: ' '), storyteller_show_path(story.permalink), :title => desc %>
+            <%= link_to truncate(story.title, length: 45, separator: ' '), storyteller_show_path(story.permalink), :title => title %>
           </div>                   
           <div class="story-author"><a class="author"><%= story.author %></a></div>
           <div class="separator"></div>
@@ -96,4 +99,5 @@
   <% end %>  
 </div>  
   
+
   <%= page_navigation_links @stories %>

@@ -1,16 +1,80 @@
 class User < ActiveRecord::Base
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
 	# :registerable, :recoverable,
   has_and_belongs_to_many :stories
 
+	has_one :local_avatar,     
+	  :conditions => "asset_type = #{Asset::TYPE[:user_avatar]}", 	 
+	  foreign_key: :item_id,
+    class_name: "Asset",
+	  dependent: :destroy
+
+	accepts_nested_attributes_for :local_avatar, :reject_if => lambda { |c| c[:asset].blank? }
+
   devise :database_authenticatable,:registerable, :recoverable,
          :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :provider, :uid, :nickname, :avatar
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, 
+                  :provider, :uid, :nickname, :avatar,
+                  :about, :default_story_locale, :permalink, :local_avatar_attributes, :avatar_file_name
+  
+  has_permalink :create_permalink, true
 
   validates :role, :presence => true
+
+  ROLES = {:user => 0, :staff_pick => 50, :admin => 99}
+
+  before_save :check_nickname_changed
+	before_save :generate_avatar_file_name
+
+  # if the nickname changes, then the permalink must also change
+  def check_nickname_changed
+    if self.nickname_changed?
+      self.generate_permalink! 
+    end
+  end
+
+  def create_permalink
+    self.nickname.dup
+  end
+
+  # see if the user logs in via a provider (e.g., facebook)
+  # and has an avatar url from that provider
+  def has_provider_avatar?
+    self.provider.present? && self.avatar.present?
+  end
+  
+  # see if the user has a local avatar saved
+  def local_avatar_exists?
+    self.local_avatar.present? && self.local_avatar.asset.exists?
+  end
+
+  # get the url to the avatar
+  # - check if using a provider and if so return that avatar url
+  # - else use the local avatar
+  # if neither exists, return the missing url
+  def avatar_url(style = :'28x28')
+    if has_provider_avatar? && !local_avatar_exists?
+      self.avatar
+    elsif local_avatar_exists?
+      self.local_avatar.asset.url(style)
+    else
+      Asset.new(:asset_type => Asset::TYPE[:user_avatar]).asset.url(style)
+    end
+  end
+
+
+  # create a random string for this user that will 
+  # be used for the filename for the avatar
+  def generate_avatar_file_name
+    if self.avatar_file_name.blank?
+      self.avatar_file_name = SecureRandom.urlsafe_base64
+    end
+  end
+
 
   def self.no_admins
     where("role != ?", ROLES[:admin])
@@ -23,7 +87,6 @@ class User < ActiveRecord::Base
 
   # use role inheritence
   # - a role with a larger number can do everything that smaller numbers can do
-  ROLES = {:user => 0, :admin => 99}
   def role?(base_role)
     if base_role && ROLES.values.index(base_role)
       return base_role <= self.role

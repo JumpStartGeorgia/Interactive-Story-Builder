@@ -10,9 +10,9 @@
     <![endif]-->    
     
 		  <meta property="og:title" content="<%= title %>" />
-		  <% if false %>
-        <meta name="description" content="">
-    		<meta property="og:description" content="" />
+		  <% if @story.about.present? %>
+        <meta name="description" content="<%= @story.about %>">
+    		<meta property="og:description" content="<%= @story.about %>" />
       <% end %>
 		  <meta property="og:type" content="non_profit" />
 		  <meta property="og:url" content="<%= current_url %>" />

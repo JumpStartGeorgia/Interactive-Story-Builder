@@ -49,7 +49,9 @@
     <%= render partial: "layouts/nav_bar"%> 
    <header class="header">
     <div class="header-data">
-      <div class="h1"><img width="128px" height="128px"/></div>
+      <div class="h1">
+        <%= image_tag current_user.avatar_url(:'50x50'),:size=>"50x50" %>
+      </div>
 
       <div class="h3"><%= "#{current_user.nickname}" %></div>
      
@@ -115,10 +117,10 @@
             <%= link_to t('helpers.links.feedback'), feedback_path %> 
           </li>
            <li>
-            <%= link_to t('helpers.links.about'), feedback_path %> 
+            <%= link_to t('helpers.links.about'), about_path %> 
           </li>
            <li>
-            <%= link_to t('helpers.links.demo'), feedback_path %> 
+            <%= link_to t('helpers.links.demo'), demo_path %> 
           </li>
           <li>
             <!--  image_tag("github.png",:size=>"28x28",:style=>"vertical-align:middle;") -->

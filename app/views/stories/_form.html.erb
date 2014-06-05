@@ -1,3 +1,6 @@
+<%= tinymce_assets %>
+<%= tinymce %>
+
 <%= semantic_form_for(@story, :html => {:multipart => true, :id => "storyForm"}) do |f| %>
 
   <%= f.inputs do %>
@@ -7,20 +10,30 @@
 
     <%= f.input :author, hint: t('.hint.author'), placeholder: t('.placeholder.author'), :input_html => { id: "storyAuthor"  } %>
     <%= f.input :media_author, hint: t('.hint.media_author'), placeholder: t('.placeholder.media_author'), :input_html => { id: "storyMediaAuthor"  }  %>
-    <%= f.input :template_id, :as => :select, hint: t('.hint.template'),  :include_blank => false, collection: @templates.map{|t|["#{t.title} - #{t.description}",t.id]} , :input_html => { :id => "storyTemplate"  }   %> 
+
+    <%= f.input :about, :as => :text, hint: t('.hint.about'), :input_html => {:class => "tinymce", :rows => 10}  %>
+
+    <%= f.input :locale , :as => :select, :hint => t('.hint.locale'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "storyLocale", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "7"  } %>
+
+		<%= f.input :categories, :as => :select, :hint => t('.hint.categories'), :collection => @categories, :multiple => true, :input_html => { :id => 'storyCategories', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7" } %>
+
+    <% if false %>
+      <%= f.input :template_id, :as => :select, hint: t('.hint.template'),  :include_blank => false, collection: @templates.map{|t|["#{t.title} - #{t.description}",t.id]} , :input_html => { :id => "storyTemplate"  }   %> 
+    <% end %>
    
-    <%= f.fields_for :asset, @story.asset do |asset_object| %>
+    <%= f.fields_for :asset, @story.asset do |as| %>
+        <%= as.input :asset_type, :as => :hidden %>
 
         <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.story.thumbnail') %></label>
-        <% if @story.asset.asset.exists? %>
+        <% if @story.asset_exists? %>
           <a class='btn' data-reveal-id="modalImage"><%= t('app.buttons.preview_image') %></a>
           <div id="modalImage" class="reveal-modal">     
             <div class='modal-data'><img  width='100%' src='<%="#{@story.asset.asset.url}"%>'/></div>
             <a class="close-reveal-modal">&#215;</a>
           </div>  
         <% end %>  
-        <%= asset_object.input :asset, :as => :file, :hint => t('.hint.thumbnail'),  :input_html => { :id => "storyThumbnail", accept:"image/jpeg,image/png" }, label: false  %>
-        <%= asset_object.input :asset_type, :as => :hidden %>
+
+        <%= as.input :asset, :as => :file , hint: t('.hint.thumbnail') , :input_html => { :id => "storyThumbnail", accept:"image/jpeg,image/png" }, label: false  %> 
 
     <% end %> 
 
@@ -28,19 +41,23 @@
       <%= f.input :published, :as => :boolean, hint: t('.hint.published') , :input_html => { id: "storyPublished"} %>   
     <% end %>
 
+    <%= f.input :publish_home_page, :as => :boolean, hint: t('.hint.publish_home_page') , :input_html => { id: "storyPublishHomePage"} %>   
 
-    <div class="string control-group required stringish" id="story_user_input">
-      <label class=" control-label"><%= t('activerecord.attributes.story.user_id') %></label>
-      <div class="controls">
-        <input type="text" value="<%= "#{@story.user.nickname}" %>" readonly="readonly">
-        <div class="help-inline" title="<%= t('.hint.editor') %>"><div>?</div></div>
+
+    <% if false %>
+      <div class="string control-group required stringish" id="story_user_input">
+        <label class=" control-label"><%= t('activerecord.attributes.story.user_id') %></label>
+        <div class="controls">
+          <input type="text" value="<%= "#{@story.user.nickname}" %>" readonly="readonly">
+          <div class="help-inline" title="<%= t('.hint.editor') %>"><div>?</div></div>
+        </div>
       </div>
-    </div>
-    
-    <%#= f.input :user_ids , :as => :select, :hint => t('.hint.editors'), :collection =>  Hash[@users.map{|b| [b.nickname,b.id]}], :multiple => true %>
+      
+      <%= f.input :user_ids , :as => :select, :hint => t('.hint.editors'), :collection =>  Hash[@users.map{|b| [b.nickname,b.id]}], :multiple => true %>
+    <% end %>
   <% end %>
   <div class="pull-right spacer">
-    <%= f.submit nil, :class => 'btn' %>
-    <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>      
+    <%= f.submit nil, :class => 'btn btn-default' %>
+    <%= f.submit nil, :class => 'btn btn-default', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>      
   </div> 
 <% end %>

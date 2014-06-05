@@ -9,7 +9,6 @@
  *= require jquery.ui.core
  *= require jquery.ui.theme  
  *= require bootstrap_and_overrides
- *= require dataTables/jquery.dataTables.bootstrap 
  *= require_self
 
 */

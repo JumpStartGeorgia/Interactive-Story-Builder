@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
 
 	before_filter :set_locale
 	before_filter :is_browser_supported?
-	before_filter :initialize_gon	
+	before_filter :preload_global_variables
+	before_filter :initialize_gon
 	before_filter :store_location
 	before_filter :asset_extra
 	after_filter :flash_to_headers
@@ -37,7 +38,7 @@ class ApplicationController < ActionController::Base
 
 	def is_browser_supported?
 		user_agent = UserAgent.parse(request.user_agent)
-logger.debug "////////////////////////// BROWSER = #{user_agent}"
+    logger.debug "////////////////////////// BROWSER = #{user_agent}"
 # 		if SUPPORTED_BROWSERS.any? { |browser| user_agent < browser }
 # 			# browser not supported
 # logger.debug "////////////////////////// BROWSER NOT SUPPORTED"
@@ -57,13 +58,26 @@ logger.debug "////////////////////////// BROWSER = #{user_agent}"
   def default_url_options(options={})
     { :locale => I18n.locale }
   end
+  
+	def preload_global_variables
+    @languages = Language.sorted
+		@categories = Category.sorted
+	end
+  
 
 	def initialize_gon
 		gon.set = true
 		gon.highlight_first_form_field = true
 
+    gon.check_nickname = settings_check_nickname_path
+    gon.nickname_duplicate = I18n.t('app.msgs.nickname_duplicate')
+    gon.nickname_url = I18n.t('app.msgs.nickname_url')
+    
+
+    gon.msgs_select_section = I18n.t('app.msgs.select_section')
     gon.msgs_one_section_content = I18n.t('app.msgs.one_section.content')
     gon.msgs_one_section_slideshow = I18n.t('app.msgs.one_section.slideshow')
+    gon.msgs_one_section_embed_media = I18n.t('app.msgs.one_section.embed_media')
 
 		if I18n.locale == :ka
 		  gon.datatable_i18n_url = "/datatable_ka.txt"

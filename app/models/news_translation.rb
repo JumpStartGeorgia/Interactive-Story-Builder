@@ -1,14 +1,12 @@
 class NewsTranslation < ActiveRecord::Base
-	require 'utf8_converter'
-  has_permalink :create_permalink, scope: :locale
+  has_permalink :create_permalink, true
 
 	belongs_to :news
   attr_accessible :news_id, :title, :content, :locale, :permalink
   # have to create locale variables for this for the news object is not saved before create_permalink is called
-	attr_accessor :is_published, :published_at, :title_was
+	attr_accessor :is_published, :published_at
 
   # if the title changes, make sure the permalink is updated
- 	after_find :set_title
   before_save :check_title
 
   validates :title, :content, :presence => true
@@ -27,20 +25,16 @@ class NewsTranslation < ActiveRecord::Base
     self.content = obj.content if self.content.blank?
   end
   
-  def set_title
-		self.title_was = self.has_attribute?(:title) ? self.title : nil		
-  end
-  
   def check_title
-    self.generate_permalink! if self.title != self.title_was
+    self.generate_permalink! if self.title_changed?
   end 
   
   def create_permalink
     date = ''
-    if self.news_id.present? && self.published_at.present? && self.is_published == true
-      date << self.published_at.to_s
+    if self.news_id.present? && self.news.published_at.present? && self.news.is_published == true
+      date << self.news.published_at.to_s
       date << '-'
-      "#{date}#{Utf8Converter.convert_ka_to_en(self.title.clone.to_ascii.gsub(/[^0-9A-Za-z|_\- ]/,''))}"
+      "#{date}#{self.title.clone}"
     end
   end
 

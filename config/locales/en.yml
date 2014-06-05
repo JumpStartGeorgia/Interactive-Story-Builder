@@ -11,6 +11,8 @@ en:
       message: Message
       slideshow: Image Slideshow
       embed_medium: Embedable Online Media
+      language: Language
+      category: Category
     attributes:
       user:
         email: Email Address
@@ -18,6 +20,10 @@ en:
         password_confirmation: Password Confirmation
         role: Role
         remember_me: Remeber Me
+        default_story_locale: Default Language for Your Stories 
+        about: Summary of You
+        local_avatar: Avatar
+        nickname: Nickname
       story:
         title: Story Title
         user_id: Story Editor
@@ -26,8 +32,11 @@ en:
         media_author: Photo and Video Author(s)  
         published: Publish?
         published_at: Was Published
+        publish_home_page: When Published, Share Your Story on the Home Page?
         template_id: Template
         thumbnail: Thumbnail
+        about: Story Summary
+        locale: Story Language
       section:
         title: Title
         audio: Audio Track
@@ -65,6 +74,11 @@ en:
       embed_medium:
         title: Title
         url: Url to Online Media
+      language:
+        locale: Locale
+        name: Language Name
+      category_translation:
+        name: Name
     errors:
       messages:
         required_field: "is a required field."
@@ -110,10 +124,18 @@ en:
       todo_list: To-Do List
       about: About
       demo: Demo
+      languages: Languages
+      categories: Categories
+      staff_pick: Select as Staff Pick
+      staff_unpick: Unselect as Staff Pick
+      user_settings: Your Settings
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
       story_list: Your Stories
+    hints:
+      nickname: Your nickname is used in the url to your published stories (e.g., nickname/story-title)        
+      local_avatar: Image that is shown in the header bar and on your user page (png and jpg only).
   app:
     language:
       en: English
@@ -170,9 +192,17 @@ en:
       error_clone: "%{obj} wasn't cloned."
       error_export: "Story %{obj} can't be exported"
       error_get_data: The selected item could not be found
+      select_section: Please select a Section first in order to add an Item
+      staff_pick: The story has been selected as a Staff Pick
+      staff_unpick: The story has been unselected as a Staff Pick
+      success_settings: Your settings were successfully updated.
+      success_remove_avatar: Your Facebook avatar is now being used.
+      nickname_duplicate: This nickname already exists. 
+      nickname_url: 'Your url will look like:'
       one_section:
         content: Only one Item can be added to a Content section
-        slideshow: Only one Item can be added to a Image Slideshow section
+        slideshow: Only one Item can be added to an Image Slideshow section
+        embed_media: Only one Item can be added to an Embed Online Media section
       destroy_story:
         success: Story was successfully deleted.
         error: "Error occurred while deleting the story [ %{err} ]"
@@ -281,18 +311,22 @@ en:
       title: Story Settings Form
     form:
       placeholder:
-          title: Title of Story
-          author: Author(s) of the article
-          media_author: "Author(s) of photos and/or videos"
+        title: Title of Story
+        author: Author(s) of the article
+        media_author: "Author(s) of photos and/or videos"
       hint:
         title: Story title will appear as the header on the first content section and very first section if it is media section
         author: Author(s) will appear on the first content section
         media_author:  "Author(s) will appear on the first content section below the Story Author(s)"
-        published: Published stories are available for the world to read from the homepage       
+        published: Published stories are available for the world to read
+        publish_home_page: If checked, your story will appear on the home page of the site when it is published
         template: Choose template to apply styling to story
-        thumbnail: Image that is used to show the story on the homepage when the story is published
+        thumbnail: Image that is used to show the story on the home page when the story is published (jpg and png only)
         editor: Person that created the story record in this website
         editors: Select people that you want to give access to edit the story
+        about: Short summary of story that will be used on the home page and when you story is shared
+        locale: Select the language of your story. Allows users to filter stories by a language.
+        categories: Select the category(s) your story belongs to.  Allows users to filter stories by a category.
     media:
       form_title: Full-Screen Media Slideshow Form
       left: Left
@@ -372,3 +406,12 @@ en:
     byline: By
     byline_media: "Photographs and video by "
     source: "Source:"
+  settings:
+    index:
+      title: "%{name} Settings"
+      facebook_avatar: This is your avatar from Facebook.
+      use_facebook_avatar: Use Facebook Avatar
+      hint:
+        about: Short summary about yourself.  This will be shown with the stories that you publish. 
+        default_story_locale: Select the language you want to use by default when creating a new story.
+

@@ -5,13 +5,7 @@ class StoriesController < ApplicationController
     controller_instance.send(:can_edit_story?, params[:id])
   end
   before_filter :asset_filter
-   def asset_filter
-    @css.push("stories")
-    logger.debug("-"*38)
-    @css.push("reveal")
-    @js.push("reveal")
 
- end 
   # GET /stories
   # GET /stories.json
   def index
@@ -33,11 +27,11 @@ class StoriesController < ApplicationController
   # GET /stories/new
   # GET /stories/new.json
   def new
-    @story = Story.new(:user_id => current_user.id)     
+    @story = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
     @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list
-
+    @load_bootstrap_select = true
 
     respond_to do |format|
         format.html #new.html.er
@@ -53,12 +47,16 @@ class StoriesController < ApplicationController
     end 
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list(@story.template_id)
+    @load_bootstrap_select = true
   end
 
   # POST /stories
   # POST /stories.json
   def create
     @story = Story.new(params[:story])
+
+    Rails.logger.debug "------- story: #{@story.inspect}"
+    Rails.logger.debug "------- story asset: #{@story.asset.inspect}"
 
     respond_to do |format|
 
@@ -72,6 +70,8 @@ class StoriesController < ApplicationController
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end      
         @templates = Template.select_list(@story.template_id) 
+        @load_bootstrap_select = true
+
         flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
         #  format.json { render json: @story.errors, status: :unprocessable_entity }
@@ -96,6 +96,7 @@ class StoriesController < ApplicationController
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end 
         @templates = Template.select_list(@story.template_id)
+        @load_bootstrap_select = true
 
         flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
         format.html { render action: "edit" }
@@ -579,4 +580,10 @@ private
         "application"
       end
   end
+
+  def asset_filter
+    @css.push("stories", "embed", "reveal", "bootstrap-select.min")
+    @js.push("stories", "reveal", "olly", "bootstrap-select.min")
+  end 
+  
 end       

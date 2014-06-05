@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140518144246) do
+ActiveRecord::Schema.define(:version => 20140604132049) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -30,6 +30,25 @@ ActiveRecord::Schema.define(:version => 20140518144246) do
   add_index "assets", ["item_id", "asset_type"], :name => "index_assets_on_item_id_and_asset_type"
   add_index "assets", ["item_id", "position"], :name => "index_assets_on_item_id_and_position"
   add_index "assets", ["item_id"], :name => "index_assets_on_item_id"
+
+  create_table "categories", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "category_translations", :force => true do |t|
+    t.integer  "category_id"
+    t.string   "locale"
+    t.string   "name"
+    t.string   "permalink"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "category_translations", ["category_id"], :name => "index_category_translations_on_category_id"
+  add_index "category_translations", ["locale"], :name => "index_category_translations_on_locale"
+  add_index "category_translations", ["name"], :name => "index_category_translations_on_name"
+  add_index "category_translations", ["permalink"], :name => "index_category_translations_on_permalink"
 
   create_table "contents", :force => true do |t|
     t.integer  "section_id"
@@ -78,6 +97,18 @@ ActiveRecord::Schema.define(:version => 20140518144246) do
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], :name => "poly_session_index"
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], :name => "impressionable_type_message_index", :length => {"impressionable_type"=>nil, "message"=>255, "impressionable_id"=>nil}
   add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
+
+  create_table "languages", :force => true do |t|
+    t.string   "locale"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "published_story_count", :default => 0
+  end
+
+  add_index "languages", ["locale"], :name => "index_languages_on_locale"
+  add_index "languages", ["name"], :name => "index_languages_on_name"
+  add_index "languages", ["published_story_count"], :name => "index_languages_on_published_story_count"
 
   create_table "media", :force => true do |t|
     t.integer  "section_id"
@@ -174,9 +205,15 @@ ActiveRecord::Schema.define(:version => 20140518144246) do
     t.integer  "impressions_count",          :default => 0
     t.integer  "reviewer_key"
     t.string   "permalink"
+    t.text     "about"
+    t.boolean  "publish_home_page",          :default => true
+    t.boolean  "staff_pick",                 :default => false
+    t.string   "locale",                     :default => "en"
   end
 
+  add_index "stories", ["locale"], :name => "index_stories_on_locale"
   add_index "stories", ["permalink"], :name => "index_stories_on_permalink"
+  add_index "stories", ["publish_home_page", "staff_pick"], :name => "index_stories_on_publish_home_page_and_staff_pick"
   add_index "stories", ["published"], :name => "index_stories_on_published"
   add_index "stories", ["published_at"], :name => "index_stories_on_published_at"
   add_index "stories", ["reviewer_key"], :name => "index_stories_on_reviewer_key"
@@ -190,6 +227,16 @@ ActiveRecord::Schema.define(:version => 20140518144246) do
 
   add_index "stories_users", ["story_id"], :name => "index_stories_users_on_story_id"
   add_index "stories_users", ["user_id"], :name => "index_stories_users_on_user_id"
+
+  create_table "story_categories", :force => true do |t|
+    t.integer  "story_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "story_categories", ["category_id"], :name => "index_story_categories_on_category_id"
+  add_index "story_categories", ["story_id"], :name => "index_story_categories_on_story_id"
 
   create_table "templates", :force => true do |t|
     t.string   "name"
@@ -206,9 +253,9 @@ ActiveRecord::Schema.define(:version => 20140518144246) do
   add_index "templates", ["title"], :name => "index_templates_on_title"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
-    t.integer  "role",                   :default => 0,  :null => false
+    t.string   "email",                  :default => "",   :null => false
+    t.string   "encrypted_password",     :default => "",   :null => false
+    t.integer  "role",                   :default => 0,    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -223,9 +270,14 @@ ActiveRecord::Schema.define(:version => 20140518144246) do
     t.string   "uid"
     t.string   "nickname"
     t.string   "avatar"
+    t.text     "about"
+    t.string   "default_story_locale",   :default => "en"
+    t.string   "permalink"
+    t.string   "avatar_file_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["permalink"], :name => "index_users_on_permalink"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

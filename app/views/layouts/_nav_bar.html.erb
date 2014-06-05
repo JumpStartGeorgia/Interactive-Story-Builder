@@ -15,7 +15,6 @@
         <div class="pull-left nav-logo">
           <%= link_to(image_tag("logo.png",:size=>"182x29",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) , root_path(:locale => I18n.locale))%>
             <% if @story.present? && showing_story %>
-
               <%= link_to(@story.title, root_path(:locale => I18n.locale), :class=>"navigation-headline brand font" , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse")%>  
             <% end %>
         </div>
@@ -25,7 +24,7 @@
               <% if user_signed_in? %>
                 <% if current_user.avatar.present? %>
                       <li >
-                    <%= link_to image_tag(current_user.avatar,:size=>"28x28", :class=>"avatar"), "#" , 
+                    <%= link_to image_tag(current_user.avatar_url,:size=>"28x28", :class=>"avatar"), "#" , 
                          :class => "dropdown-toggle avatar-link", :"data-toggle"=>"dropdown" %>       
                        
                   <ul class="dropdown-menu pull-right">
@@ -34,6 +33,9 @@
                     </li>              
                     <li>
                       <%= link_to t('helpers.titles.story_list'), stories_path  %>
+                    </li>              
+                    <li>
+                      <%= link_to t('helpers.links.user_settings'), settings_path  %>
                     </li>              
                     <% if current_user.role? User::ROLES[:admin] %>
                       <li>
