@@ -650,20 +650,20 @@ background-color:rgba(34,34,34,0.5);
   background-size: cover;  
   float:right; 
 }
-.story-likes a{
+.story-likes span{
   line-height: 34px;
    display: block;
    text-align: center;
 }
-.story-likes a.n1,.story-likes a.n2,.story-likes a.n3,.story-likes a.n4
+.story-likes span.n1,.story-likes span.n2,.story-likes span.n3,.story-likes span.n4
 {
    font-size:14px;   
 }
-.story-likes a.n5
+.story-likes span.n5
 {
   font-size:12px;
 }
-.story-likes a.n6,.story-likes a.n7
+.story-likes span.n6,.story-likes span.n7
 {
    font-size:10px;
 }

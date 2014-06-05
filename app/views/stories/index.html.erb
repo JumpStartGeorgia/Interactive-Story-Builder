@@ -3,7 +3,7 @@
 
    <header class="header">
     <div class="header-data">
-      <div class="h1"><img width="128" height="128"/></div>
+      <div class="profile-intro-logo"><%= image_tag current_user.avatar_url(:'168x168'),:size=>"168x168" %></div>
 
       <div class="h3"><%= "#{current_user.nickname}" %></div>
      
@@ -14,6 +14,7 @@
   </header>
 
 <% } %>
+  <%= render partial: "layouts/filter_bar"%> 
   <div class="grid col-3">      
     <% @stories.each_with_index do |story,s_i| %>  
         <% 
@@ -21,9 +22,9 @@
         %>     
         <div class="col n-4">                   
             <div class="story-thumbnail">                       
-               <%= link_to storyteller_show_path(story.permalink), :title => desc do %>
+               <%= link_to preview_story_path(story), :title => desc do %>
               <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459', :alt => desc %>              
-            <% end %>            
+              <% end %>            
                 <div class="story-edit">
                    
 
@@ -82,10 +83,10 @@
             </div>
             <div class='story-info'>   
              <div class="story-likes">
-              <%= link_to story.impressions_count, storyteller_show_path(story.permalink), :class => "n#{story.impressions_count.to_s.size}" %>
+              <%= content_tag(:span, story.impressions_count, :class => "n#{story.impressions_count.to_s.size}" ) %>                          
             </div>                 
             <div class="story-caption">
-              <%= link_to truncate(story.title, length: 45, separator: ' '), storyteller_show_path(story.permalink), :title => desc %>
+              <%= link_to truncate(story.title, length: 45, separator: ' '), preview_story_path(story), :title => desc %>
             </div>                   
             <div class="story-author"><a class="author"><%= story.author %></a></div>
             <div class="separator"></div>
