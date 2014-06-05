@@ -420,7 +420,7 @@ nav .nav-user
   padding-top: 5px;
 }
 
-nav .nav-user .lang_switch
+nav .nav-user a
 {     
   color:#fff;
 }

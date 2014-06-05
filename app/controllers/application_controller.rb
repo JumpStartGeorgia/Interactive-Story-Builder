@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
 	before_filter :preload_global_variables
 	before_filter :initialize_gon
 	before_filter :store_location
-	before_filter :asset_extra
 	after_filter :flash_to_headers
 
 	unless Rails.application.config.consider_all_requests_local
@@ -64,6 +63,16 @@ class ApplicationController < ActionController::Base
     @languages_published = @languages.select{|x| x.published_story_count > 0}
 		@categories = Category.sorted
     @categories_published = @categories.select{|x| x.published_story_count > 0}
+
+    # for loading extra css/js files    
+		@css = []
+		@js = []
+    
+    # have to insert devise styles/js here since no controllers exist
+    if params[:controller].start_with?('devise/')
+      @css = ['devise']
+      @js = ['nickname']
+    end
 	end
   
 
@@ -165,10 +174,6 @@ class ApplicationController < ActionController::Base
 
 
 #    Rails.logger.debug "****************** prev urls session = #{session[:previous_urls]}"
-	end
-	def asset_extra		
-		@css = []
-		@js = []
 	end
 
 

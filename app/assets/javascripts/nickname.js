@@ -29,7 +29,7 @@ $(document).ready(function() {
           }else{
             $(nickname_path + ' + div + span.check_nickname').addClass('not_duplicate').removeClass('duplicate');
           }
-          html += ' ' + gon.nickname_url + ' /' + d.permalink;
+          html += ' ' + gon.nickname_url + ' /author/' + d.permalink;
           
           $(nickname_path + ' + div + span.check_nickname').html(html);
           
