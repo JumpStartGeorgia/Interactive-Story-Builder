@@ -1,10 +1,7 @@
-class RootController < ApplicationController  
-
-   layout :resolve_layout
+class RootController < ApplicationController    
     before_filter :asset_filter
  def asset_filter
     @css.push("root")
-
   end 
  
   def index   
@@ -88,17 +85,4 @@ class RootController < ApplicationController
       format.html 
     end
   end
-
-  private
-
-  def resolve_layout
-    case action_name
-
-    when "index"
-      "home"    
-    else
-      "application"
-    end
-  end
-
 end

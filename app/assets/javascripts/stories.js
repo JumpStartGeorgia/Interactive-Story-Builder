@@ -1,12 +1,15 @@
 //= require jquery.reveal
+//= require jquery.ui.dialog
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
-	var story_id = -1;
-	var section_id = -1;
 
-	var item_id = -1;
-	var el_type = 's';
-	var method = 'n';
+
+var story_id = -1;
+var section_id = -1;
+
+var item_id = -1;
+var el_type = 's';
+var method = 'n';
 
 $(document).ready(function() {
 
@@ -121,19 +124,31 @@ $(document).ready(function() {
   });
   $(document).on('click', '#btnPreview', function(e){
 		e.preventDefault();		
-		$('#previewStory .modal-data').html('<iframe height="100%" width="100%" src="'+ $(this).data('link')+'"></iframe>');	 			
-		$('#previewStory').reveal();
+		//$('#previewStory .modal-data').html('<iframe height="100%" width="100%" src="'+ $(this).data('link')+'"></iframe>');
+		var dialog = '<div><iframe style="width:100%;height:100%" src="'+ $(this).data('link')+'"></iframe></div>'	 			;
+		//$('#previewStory').reveal();
+			$(dialog).dialog({ resizable: true ,draggable: false,
+			maxHeight: $(window).height(),
+			height: $(window).height()-200,
+			width: $(window).width()-200,
+			modal: true,
+		    open: function() {
+		        $(this).dialog('option', 'maxHeight', $(window).height());
+		   }});
 		return true;	
   });
   $(document).on('click', '#btnPublish', function(e){  	
 		e.preventDefault();		
-		var a = $(this);
-		$.ajax
-		({ dataType: "json", url: $(this).data('link')}).done(function(d) 
-		{ 			    
-			a.toggleClass('disabled');				
-			a.prop('title',d.title);
-		});	 							
+		var a = $(this);		
+		$.ajax(
+		{	
+			dataType: "json",
+			url: $(this).data('link')}).done(
+			function(d) 
+			{ 			    
+				//a.toggleClass('disabled');	
+				a.find('span').text(d.title)							
+			});	 							
 		return true;	
   });
 

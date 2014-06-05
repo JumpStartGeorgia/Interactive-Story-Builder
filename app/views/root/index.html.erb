@@ -1,4 +1,23 @@
 
+<% content_for(:header) { %>
+
+    <header class="header">
+      <div class="header-data">
+        <div class="h1">Build and Share</div>
+        <div class="h3">the Next Generation Story</div>
+        <div class="intro">Story builder allows anyone with text, pictures and/or videos to<br>
+        combine this content into a creative story
+        that can be published<br> and shared with the world</div>
+        <div class="btn-create-story">
+               <%= link_to  "Start Story", new_story_path, :tabindex=>1 %>
+          </div>       
+      </div>
+    </header>
+
+<% } %>
+
+
+
 
 <% if Rails.env.staging? %>
    <h1 style="margin:36px 36px;background-color: #F8E869;padding: 36px;line-height: 28px;">You are accessing a test site. Please go to <a href="http://storybuilder.jumpstart.ge/en" style="text-decoration:underline;">http://storybuilder.jumpstart.ge/en</a> to use the official site. </h1>

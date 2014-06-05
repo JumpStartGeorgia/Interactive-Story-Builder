@@ -47,7 +47,7 @@
   </head>
   <body>
     <%= render partial: "layouts/nav_bar"%> 
-
+    <%= yield(:header) %>
 		<div id="wrapper">
 		  <div class="container">
 		    <div class="content">
@@ -77,7 +77,7 @@
 		    </div><!--/content-->
 		   </div> <!-- /container -->
 		</div><!--/wrapper-->
-
+    <%= yield(:footer) %>
     <div class="push"><!--//--></div>
 
     <footer class="clear">
