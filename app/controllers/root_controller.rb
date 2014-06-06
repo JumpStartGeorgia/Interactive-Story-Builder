@@ -30,7 +30,6 @@ class RootController < ApplicationController
 
   def news   
     @css.push("news") 
-    @js.push("news")
     @news = News.published  
     respond_to do |format|
       format.html  #index.html.erb
