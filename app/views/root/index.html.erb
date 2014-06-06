@@ -26,36 +26,6 @@
 
 <%= render partial: "layouts/filter_bar"%> 
 
-<div class="grid col-3">      
-  <% @stories.each_with_index do |story,s_i| %>       
-      <% 
-        title = story.title.dup
-        if story.about.present?
-          title << ' - '
-          title << strip_tags(story.about)
-        end
-      %>
-      <div class="col n-4">                   
-          <div class="story-thumbnail">
-            <%= link_to storyteller_show_path(story.permalink), :title => title do %>
-              <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459', :alt => title %>
-              <div class="story-link"></div>
-            <% end %>
-          </div>
-          <div class='story-info'>   
-           <div class="story-likes">
-               <%= content_tag(:span, story.impressions_count, :class => "n#{story.impressions_count.to_s.size}" ) %>
-          </div>                 
-          <div class="story-caption">
-            <%= link_to truncate(story.title, length: 45, separator: ' '), storyteller_show_path(story.permalink), :title => title %>
-          </div>                   
-          <div class="story-author"><a class="author"><%= story.author %></a></div>
-          <div class="separator"></div>
-          <div class="story-publish"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>              
-        </div>
-      </div>  
-  <% end %>  
-</div>  
+<%= render partial: "layouts/grid"%> 
   
-
-  <%= page_navigation_links @stories %>
+<%= page_navigation_links @stories %>

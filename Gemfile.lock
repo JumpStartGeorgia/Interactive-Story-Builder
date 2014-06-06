@@ -33,19 +33,18 @@ GIT
       rails (>= 3.0)
 
 GIT
-  remote: https://github.com/cgunther/formtastic-bootstrap.git
-  revision: 3428fef4f7870b01241d65893b882ad32cfc18d8
-  branch: bootstrap-2
-  specs:
-    formtastic-bootstrap (1.2.0)
-      formtastic
-      rails (>= 3.1.0)
-
-GIT
   remote: https://github.com/jilion/useragent.git
   revision: b65739e911aea99e444c608e65c7be9d483d4eaf
   specs:
     useragent (0.2.3)
+
+GIT
+  remote: https://github.com/mjbellantoni/formtastic-bootstrap.git
+  revision: d185a2d646624fb4f910a80cfca9d42a959166fe
+  branch: bootstrap3_and_rails4
+  specs:
+    formtastic-bootstrap (3.0.0.rc.1)
+      formtastic (>= 2.2)
 
 GEM
   remote: https://rubygems.org/
@@ -118,8 +117,8 @@ GEM
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.0)
-    formtastic (2.1.1)
-      actionpack (~> 3.0)
+    formtastic (2.2.1)
+      actionpack (>= 3.0)
     globalize3 (0.2.0)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
@@ -284,7 +283,7 @@ DEPENDENCIES
   devise (~> 2.0.4)
   dynamic_form (~> 1.1.4)
   exception_notification (~> 2.5.2)
-  formtastic (~> 2.1.1)
+  formtastic (~> 2.2.1)
   formtastic-bootstrap!
   globalize3 (~> 0.2.0)
   gon (~> 2.2.2)

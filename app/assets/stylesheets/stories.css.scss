@@ -162,118 +162,119 @@ border-bottom:1px solid lightgrey;
 }
 
 
-/* should be merged with root TODO */
-
-
+/* profile header */
 .header{            
   width: 100%;
-height: 550px;
-min-width: 1024px;
-text-align: center;   
-/*background: transparent url('/assets/headers/header-bg-01.jpg') center no-repeat;*/
-background-color:#064A6E;
-background-size: cover;   
--moz-background-clip: border;
--webkit-background-clip: border;
-background-clip: border-box;
--moz-background-clip: padding;
--webkit-background-clip: padding;
-background-clip: padding-box;
--moz-background-clip: content;
--webkit-background-clip: content;
-background-clip: content-box;
-z-index:101;
-}
-.header-data
-{
-  position:relative;
-  width:100%;
-  margin:0px auto;
-  top:168px;           
-  vertical-align: middle;
-  color:#fff;
+  height: 550px;
+  min-width: 1024px;
+   
+  background-color:#4687A9;
+  background-size: cover;   
+  -moz-background-clip: border;
+  -webkit-background-clip: border;
+  background-clip: border-box;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  background-clip: padding-box;
+  -moz-background-clip: content;
+  -webkit-background-clip: content;
+  background-clip: content-box;
+  z-index:101;
 
-}
-
-.header-row
-{
-  margin:30px 0px;
-}
-.header-data .h1
-{
-  font-family:bandera-pro;
-  font-size: 92px;
-  color: #fff;      
-  margin:0px;
-  padding:0px;
-}
-.header-data .h1:lang(ka)
-{
-  font-family:dejavusans-el;
-  font-size: 92px;
-}
-
-
-.header-data .h3
-{
-  font-family:bandera-pro,dejavusans-el;
-  font-size: 38px;
-  color:#fff;      
-  margin:0px;
-  padding:0px;
-}
-.header-data .h3:lang(ka)
-{
-  font-family:dejavusans-el;
-  font-size: 78px;
-}
-.header-data .intro
-{
-  font-family:opensans-l,dejavusans-el;
-  font-size:16px;
-  margin:16px 0px 35px 0px;      
-  padding:0px;
-}
-.btn-create-story
-{        
-
-    text-align: center;
-    margin: 0px auto;
+  .btn-create-story
+  {     
+      position: absolute;   
+      bottom: 150px;
+      text-align: center;
+      margin: 0px auto;
+      width: 100%;
+      height:57px;
+   }
+  .btn-create-story a
+  {
+    display:block;
+    font-family:opensans-r;
+    font-size:18px;
+    color:#fff !important;      
+    background: transparent url('/assets/create-story.png') center no-repeat;
+    background-position: 25px 19px; 
+    border:1px solid #fff;
+    -webkit-border-radius: 133px;
+    -moz-border-radius: 133px;
+    border-radius: 133px;
     width:178px;
     height:57px;
- }
-.btn-create-story a
-{
-  display:block;
-  font-family:opensans-r;
-  font-size:18px;
-  color:#fff !important;      
-  background: transparent url('/assets/create-story.png') center no-repeat;
-  background-position: 25px 19px; 
-  border:1px solid #fff;
-  -webkit-border-radius: 133px;
-  -moz-border-radius: 133px;
-  border-radius: 133px;
-  width:178px;
-  height:57px;
-  padding: 18px 0px 0px 24px;
-  text-decoration:none;
+    padding: 18px 0px 0px 24px;
+    text-decoration:none;
+    margin:0px auto;
+  }
+  .btn-create-story a:hover,.btn-create-story a:focus
+  {      
+    color:#000 !important;
+    background: transparent url('/assets/create-story-hover.png') center no-repeat; 
+    background-position: 25px 19px; 
+    background-color:#fff;
+    text-decoration:none;
+  }
+  .profile-data
+  {
+    position: absolute;
+    width: auto;
+    margin: 0px auto;
+    top: 168px;
+    left:110px;
+    vertical-align: middle;
+    color: #fff;
+  }
+  .profile-nickname 
+  {
+    font-family: bandera-pro, dejavusans-el;
+    font-size: 38px;
+    color: #fff;
+    margin: 0px;
+    padding: 0px;
+  }
+  .profile-about {
+  font-family: opensans-l, dejavusans-el;
+  font-size: 16px;
+  margin: 16px 0px 0px 16px;
+  padding: 0px;
+  width: 550px;
+  }
+  .profile-nickname:lang(ka)
+  {
+    font-family:dejavusans-el;  
+  }
+  .profile-about:lang(ka)
+  {
+    font-family:dejavusans-el;  
+  }
+  .profile-info
+  {
+    position:relative;
+    top: -174px;
+    left:188px;
+  }
+  .profile-logo img
+  {
+    width: 168px;
+    height: 168px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;    
+    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    margin-top:5px;
+    font-family: bandera-pro;
+    font-size: 92px;
+    color: #fff;
+    margin: 0px;
+    padding: 0px;
+  }
 }
 
-.btn-create-story a:hover,.btn-create-story a:focus
-{      
-  color:#000 !important;
-  background: transparent url('/assets/create-story-hover.png') center no-repeat; 
-  background-position: 25px 19px; 
-  background-color:#fff;
-  text-decoration:none;
-
-}
-
-#staff-pick{
-  margin: 10px 0;
-}
-
+/* story edit menu */
 .story-edit
 {
   position:absolute;  
@@ -307,21 +308,3 @@ z-index:101;
  top:100%;  
 }
 
-
-.profile-intro-logo img
-{
-  width: 168px;
-  height: 168px;
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;    
-  box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-  margin-top:5px;
-  font-family: bandera-pro;
-  font-size: 92px;
-  color: #fff;
-  margin: 0px;
-  padding: 0px;
-}

@@ -16,7 +16,7 @@ gem 'tinymce-rails-imageupload', '~> 3.5.8'  #tinymce imageupload https://github
 gem 'amoeba' # cloning objects with all children
 gem "devise", "~> 2.0.4" # user authentication
 gem "cancan", "~> 1.6.8" # user authorization
-gem "formtastic", "~> 2.1.1" # create forms easier
+gem "formtastic", "~> 2.2.1" # create forms easier
 gem "formtastic-bootstrap", :git => "https://github.com/mjbellantoni/formtastic-bootstrap.git", :branch => "bootstrap3_and_rails4"
 #gem "nested_form", "~> 0.1.1", :git => "https://github.com/davidray/nested_form.git" # easily build nested model forms with ajax links
 gem "globalize3", "~> 0.2.0" # internationalization
