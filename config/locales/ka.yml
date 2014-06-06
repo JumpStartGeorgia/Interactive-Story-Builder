@@ -37,6 +37,8 @@ ka:
         thumbnail: ესკიზი
         about: ამბის მოკლე შინაარსი
         locale: ამბის ენა
+        permalink: Story URL
+        permalink_staging: Story URL
       section:
         title: დასახელება
         audio: აუდიო ფაილი
@@ -197,8 +199,10 @@ ka:
       staff_unpick: ამბავი ამოშლილი რჩეულებიდან
       success_settings: თქვენი პარამეტრები წარმატებით განახლდა.
       success_remove_avatar: პროფილის სურათათ თქვენი გვერდის Facebook სურათია გამოყენებული.
-      nickname_duplicate: This nickname already exists. 
-      nickname_url: 'Your url will look like:'
+      nickname_duplicate: This user url already exists. 
+      nickname_url: 'Your url will be:'
+      story_duplicate: This story url already exists. 
+      story_url: 'Your url will be:'
       one_section:
         content: მხოლოდ ერთი რამის  დამატებაა შესაძლებელი შინაარსის სექციაში
         slideshow: მხოლოდ ერთი რამის დამატებაა შესაძლებელი ფოტო სლაიდშოუს სექციაში
@@ -312,11 +316,13 @@ ka:
       title: პარამეტრების ფორმა
     form:
       placeholder:
-          title: ამბის სათაური
-          author: სტატიის ავტორ(ებ)ი
-          media_author: ფოტოსა და/ან ვიდეოს ავტორ(ებ)ი
+        title: ამბის სათაური
+        permalink: URL to the story
+        author: სტატიის ავტორ(ებ)ი
+        media_author: ფოტოსა და/ან ვიდეოს ავტორ(ებ)ი
       hint:
         title: ამბის სათაური გამოჩნდება გამოჩნდება როგორც ჰედერი პირველი შინაარსის სექციაში თუ ეს მედია სექციაა
+        permalink: The default URL is the title of the story, but you can change it if desired
         author: სტატიის ავტორ(ებ)ი გამოჩნდებ(ი)ა(ნ) პირველი შინაარსის სექციაში
         media_author:  ავტორ(ებ)ი გამოჩნდებ(ი)ა(ნ) პირველი შინაარსის სექციაში ამბის სათაურის ქვემოთ
         published: გამოქვეყნებული ამბების წაკითხვა ყველას შეუძლია

@@ -1,7 +1,7 @@
 class StoriesController < ApplicationController
   layout :resolve_layout   
   before_filter :authenticate_user!
-  before_filter(:except => [:index, :new, :create]) do |controller_instance|  
+  before_filter(:except => [:index, :new, :create, :check_permalink]) do |controller_instance|  
     controller_instance.send(:can_edit_story?, params[:id])
   end
   before_filter :asset_filter
@@ -550,6 +550,36 @@ class StoriesController < ApplicationController
       format.html { redirect_to stories_url }
    end
   end
+
+
+  # check if this permalink is not already in use
+  # - if id is passed in, the story record is loaded and the permalink is created in that record
+  #   so it will not cause a duplicate error
+  # params passed in are text and id
+  def check_permalink
+    output = {:permalink => nil, :is_duplicate => false}
+    if params[:text].present?
+      story = Story.select('permalink, permalink_staging').where(:id => params[:id]).limit(1).first
+      # if the story could not be found, use an empty story
+      if story.blank?
+        story = Story.new(:permalink_staging => params[:text]) 
+        story.generate_permalink
+        output = {:permalink => story.permalink, :is_duplicate => story.is_duplicate_permalink?}
+      # if the permalink is the same, do nothing
+      elsif story.permalink_staging.downcase == params[:text].strip.downcase
+        output[:permalink] = story.permalink
+      # permalink is different, so create a new one
+      else
+        story.permalink_staging = params[:text]
+        story.generate_permalink!
+        output = {:permalink => story.permalink, :is_duplicate => story.is_duplicate_permalink?}
+      end
+    end
+          
+    respond_to do |format|     
+      format.json { render json: output } 
+    end
+  end 
 
 private
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140605134642) do
+ActiveRecord::Schema.define(:version => 20140606134642) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -212,6 +212,7 @@ ActiveRecord::Schema.define(:version => 20140605134642) do
     t.boolean  "publish_home_page",          :default => true
     t.boolean  "staff_pick",                 :default => false
     t.string   "locale",                     :default => "en"
+    t.string   "permalink_staging"
   end
 
   add_index "stories", ["locale"], :name => "index_stories_on_locale"

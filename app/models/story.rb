@@ -29,13 +29,15 @@ class Story < ActiveRecord::Base
 
 	validates :title, :presence => true, length: { maximum: 100 }
 	validates :author, :presence => true, length: { maximum: 255 }
+	validates :permalink, :presence => true
 #	validates :about, :presence => true
 	validates :template_id, :presence => true
 	validates :media_author, length: { maximum: 255 }
 	validates :locale, :presence => true
 
+
   # if the title changes, make sure the permalink is updated
-  before_save :check_title
+#  before_save :check_title
 
   # if publishing, set the published date
 	before_save :publish_date
@@ -93,16 +95,15 @@ class Story < ActiveRecord::Base
 	  end     
 	end
 
-  def check_title
-    self.generate_permalink! if self.title_changed?
-  end 
+#  def check_title
+#    self.generate_permalink! if self.title_changed?
+#  end 
   
   def create_permalink
-    if self.published_at.present? && self.published?
-      date = ''
-      date << self.published_at.to_date.to_s
-      date << '-'
-      "#{date}#{self.title.dup}"
+    if self.permalink_staging.present? && self.permalink_staging != self.permalink
+      self.permalink_staging.dup
+    else
+      self.title.dup
     end
   end
 

@@ -22,6 +22,38 @@ module HasPermalink
       @found_duplicate = true
       "#{permalink}-#{number}"
     end
+
+
+    # Autofix duplication of permalinks
+    # - overriding to include restricted word check
+    def fix_duplication(permalink)
+      if auto_fix_duplication
+        # permalink cannot be one of these...
+        restricted = %w( author authors story stories storyteller setting settings tinymce_assets review demo about news contact feedback todo_list about admin user users )
+        is_restricted = restricted.include?(permalink)
+      
+        n = self.class.where(["permalink = ?", permalink]).count
+
+        if n > 0 || is_restricted
+          links = self.class.where(["permalink LIKE ?", "#{permalink}%"]).order("id")
+
+          number = 0
+          
+          links.each_with_index do |link, index|
+            if link.permalink =~ /#{permalink}-\d*\.?\d+?$/
+              new_number = link.permalink.match(/-(\d*\.?\d+?)$/)[1].to_i
+              number = new_number if new_number > number
+            end
+          end
+
+          resolve_duplication(permalink, number + 1)
+        else
+          permalink
+        end
+      else
+        permalink
+      end
+    end  
   end
 end
 

@@ -22,6 +22,7 @@ BootstrapStarter::Application.routes.draw do
 		#get 'tinymce_assets' ,to: 'tinymceassets#index'
 		post '/tinymce_assets', to: 'imageuploader#create', as: 'imageuploader'
 
+		match "stories/check_permalink" => "stories#check_permalink", as: 'story_check_permalink', :via => :post
 		resources :stories do	
 
 			member do
@@ -60,12 +61,13 @@ BootstrapStarter::Application.routes.draw do
 				post 'embed_media', to: 'stories#new_embed_media'				
 
   			end			
+
 		end
 		#match '/stories/:id/edit' => 'stories#get_story'
 
-		match "storyteller/:id" => "storyteller#index", as: 'storyteller_show'
-		match "storyteller/:id/staff_pick" => "storyteller#staff_pick", as: 'storyteller_staff_pick'
-		match "storyteller/:id/staff_unpick" => "storyteller#staff_unpick", as: 'storyteller_staff_unpick'
+#		match "storyteller/:id" => "storyteller#index", as: 'storyteller_show'
+#		match "storyteller/:id/staff_pick" => "storyteller#staff_pick", as: 'storyteller_staff_pick'
+#		match "storyteller/:id/staff_unpick" => "storyteller#staff_unpick", as: 'storyteller_staff_unpick'
 
 		match "review/:id" => "review#index", as: 'review'
 
@@ -79,6 +81,11 @@ BootstrapStarter::Application.routes.draw do
 		match 'feedback' => 'root#feedback', :as => 'feedback', :via => [:get, :post]
 		match 'todo_list' => 'root#todo_list', :as => 'todo_list'
 		match "about" => "root#about", as: 'about'
+
+    match ":id" => "storyteller#index", as: 'storyteller_show'
+		match ":id/staff_pick" => "storyteller#staff_pick", as: 'storyteller_staff_pick'
+		match ":id/staff_unpick" => "storyteller#staff_unpick", as: 'storyteller_staff_unpick'
+
 		root :to => 'root#index'
 	  match "*path", :to => redirect("/#{I18n.default_locale}") # handles /en/fake/path/whatever
 	end

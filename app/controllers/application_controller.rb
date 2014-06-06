@@ -80,9 +80,12 @@ class ApplicationController < ActionController::Base
 		gon.set = true
 		gon.highlight_first_form_field = true
 
+    gon.check_permalink = story_check_permalink_path
     gon.check_nickname = settings_check_nickname_path
     gon.nickname_duplicate = I18n.t('app.msgs.nickname_duplicate')
     gon.nickname_url = I18n.t('app.msgs.nickname_url')
+    gon.story_duplicate = I18n.t('app.msgs.story_duplicate')
+    gon.story_url = I18n.t('app.msgs.story_url')
     
 
     gon.msgs_select_section = I18n.t('app.msgs.select_section')

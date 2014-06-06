@@ -433,7 +433,7 @@ width: 100%;
 max-width: 100%;
 height: 328px;
 }
-.grid-wrapper{max-width:;}
+/*.grid-wrapper{max-width:;}*/
 .grid{margin:0}
 .grid{clear:both;margin:0 23px 0 0}
 .grid:after{content:'';display:block;clear:both}
@@ -679,4 +679,21 @@ background-color:rgba(34,34,34,0.5);
 .story-author,.story-publish,.author
 {
   display:inline-block;
+}
+
+/* show result of nickname permalink check */
+input#user_nickname + div + span.check_nickname{
+  margin-left: 10px;
+  padding: 5px;
+  &.duplicate{
+    background-color:rgba(225, 145, 159, 0.5);
+  }
+  &.not_duplicate{
+    background-color:rgba(168, 210, 184, 0.5);
+  }
+
+}
+
+.control-group {
+  margin-bottom: 10px;
 }
