@@ -31,9 +31,144 @@
     <div id='storyTeller'> 
       <%= render partial: "storyteller/template/#{@template}/content"%>   
     </div>
+    <div class="story-info-wrapper">
+     <div class="story-info-header">
+        <div class="story-info-close">
+          <img src='/assets/close.png' style="width: 16px;height: 16px;"/>
+        </div>
+      </div>
+    <div id='story-info'>
+
+      <div class="story-block">
+        <%= @story.title %>
+        <%= @story.about.html_safe %>
+      </div>
+      <div class="author-info">Author</div>
+      <div class="social">Social</div>
+      <div class="comments">Comments</div>   
+      <div class="footer-block">
+        
+        <ul>
+          <li>
+            <%= link_to t('helpers.links.news'), news_path %>
+          </li>
+          <li>
+            <%= link_to t('helpers.links.todo_list'), todo_list_path %> 
+          </li>
+          <li>
+            <%= link_to t('helpers.links.feedback'), feedback_path %> 
+          </li>
+           <li>
+            <%= link_to t('helpers.links.about'), about_path %> 
+          </li>
+           <li>
+            <%= link_to t('helpers.links.demo'), demo_path %> 
+          </li>
+          <li>
+            <!--  image_tag("github.png",:size=>"28x28",:style=>"vertical-align:middle;") -->
+                  <%= link_to "GitHub", "https://github.com/JumpStartGeorgia/Interactive-Story-Builder.git", :style => "height:40px;line-height:40px;" %>
+          </li>
+          
+      
+        </ul>
     
+        
+      </div>         
+
+    </div>
+    </div>
+    <style>
+    .story-info-header
+    {
+      height:20px;    
+    }
+    .story-info-wrapper
+    {
+      display:none;
+      position: fixed;
+      background-color: #f8f8f8;
+      z-index: 999999;   
+      margin: auto;  
+
+
+    }
+    #story-info
+    {          
+      background-color: #f8f8f8;
+      z-index: 999999;   
+      margin: auto;  
+      overflow-x:hidden;    
+      overflow-y:scroll;  
+      position:relative;
+    }
+ 
+    .story-block
+    {
+      border: 1px solid #323232;
+      width: 45%;
+      height:100%;
+      margin-left: 2.5%;
+      margin-top:2.5%;
+      float:left;
+      position:relative;
+
+    }
+    .author-info
+    {
+      border: 1px solid #323232;
+      width: 45%;
+      margin-top:2.5%;
+      margin-left: 2.5%;
+      height:40%;
+      float:left;
+      position:relative;
+    }
+    .social
+    {
+      border: 1px solid #323232;
+      width: 45%;
+      margin-top:2.5%;
+      margin-left: 2.5%;
+      height:40%;
+      float:left;
+      position:relative;
+    }
+    .comments
+    {
+      border: 1px solid #323232;
+      width: 45%;
+      height:40%;
+      margin-top:2.5%;
+      margin-left: 2.5%;
+      float:left;
+      position:relative;
+    }
+    .footer-block
+    {
+      position:absolute;
+      bottom:-100px;
+    }
+
+  #story-info::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #f8f8f8;
+}
+
+        #story-info::-webkit-scrollbar
+{
+  width: 12px;
+  background-color: #f8f8f8;
+}
+
+  #story-info::-webkit-scrollbar-thumb
+{
+  background-color: #878787;  
+}
+
+    </style>
       <% if !@export %>
-      <%= javascript_include_tag "application" %>
+      <%= javascript_include_tag  *(@js.present? ? ["application", @js].flatten : ["application"]), :media => "all" %>          
 		  <script type="text/javascript">
 			  I18n.defaultLocale = "<%= I18n.default_locale %>";
 			  I18n.locale = "<%= I18n.locale %>";

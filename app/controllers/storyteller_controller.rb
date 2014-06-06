@@ -7,7 +7,8 @@ class StorytellerController < ApplicationController
 
 
   def index
-
+    @css.push("story")
+    @js.push("story")
   	story = Story.select('id').is_published.find_by_permalink(params[:id])
   	@story = Story.is_published.fullsection(story.id) if story.present?  
   	if @story.present?

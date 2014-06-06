@@ -2,6 +2,7 @@
   <% content_for(:header) { %>
 
    <header class="header">
+   
      <div class="profile-data">
           <div class="profile-logo"><%= image_tag current_user.avatar_url(:'168x168'),:size=>"168x168" %></div>
           <div class="profile-info">
@@ -11,8 +12,10 @@
       </div>   
       <div class="btn-create-story">
          <%= link_to  "Start Story", new_story_path, :tabindex=>1 %>
-      </div>    
+      </div>       
   </header>
+
+    
 <% } %>
   <%= render partial: "layouts/filter_bar" %> 
 
