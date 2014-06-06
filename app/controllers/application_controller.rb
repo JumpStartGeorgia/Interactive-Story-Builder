@@ -107,8 +107,9 @@ class ApplicationController < ActionController::Base
     if params[:staff_pick].present?
       @story_filter_staff_pick = params[:staff_pick].to_bool
     else
-  		@story_filter_staff_pick = true
+  		@story_filter_staff_pick = false
     end
+    story_objects = story_objects.is_staff_pick if @story_filter_staff_pick
 
     # sort
     if params[:sort].present? && I18n.t('filters.sort').keys.map{|x| x.to_s}.include?(params[:sort])
@@ -117,6 +118,8 @@ class ApplicationController < ActionController::Base
     			story_objects = story_objects.recent
         when 'reads'
     			story_objects = story_objects.reads
+        when 'likes'
+    			story_objects = story_objects.likes
       end
 			@story_filter_sort = I18n.t("filters.sort.#{params[:sort]}")
     else

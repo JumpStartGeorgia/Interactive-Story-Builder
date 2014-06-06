@@ -1,4 +1,7 @@
 class Story < ActiveRecord::Base	
+  # for likes
+  acts_as_votable
+  
   # fields to search for in a story
   scoped_search :on => [:title, :author, :media_author]
   scoped_search :in => :content, :on => [:caption, :sub_caption, :content]
@@ -8,10 +11,6 @@ class Story < ActiveRecord::Base
   # create permalink to story
   has_permalink :create_permalink, true
 	
-	scope :is_published, where(:published => true)
-	scope :is_published_home_page, where(:published => true, :publish_home_page => true)
-  scope :is_staff_pick, where(:staff_pick => true)
-  
 	has_many :story_categories
 	has_many :categories, :through => :story_categories, :dependent => :destroy
 	belongs_to :user
@@ -46,7 +45,12 @@ class Story < ActiveRecord::Base
 	after_save :update_counts
 
   scope :recent, order("published_at desc")
-  scope :reads, order("impressions_count desc")
+  scope :reads, order("impressions_count desc, published_at desc")
+  scope :likes, order("cached_votes_total desc, published_at desc")
+	scope :is_published, where(:published => true)
+	scope :is_published_home_page, where(:published => true, :publish_home_page => true)
+  scope :is_staff_pick, where(:staff_pick => true)
+  
 
 
   DEMO_ID = 2
@@ -85,6 +89,10 @@ class Story < ActiveRecord::Base
 	  joins(:categories).where('categories.id = ?', id)
 	end
 
+  # alias name for cached_votes_total
+  def likes
+    self.cached_votes_total
+  end
 
   # if the story is being published, record the date
 	def publish_date		

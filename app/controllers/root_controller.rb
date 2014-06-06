@@ -1,4 +1,3 @@
-
 class RootController < ApplicationController    
     before_filter :asset_filter
 

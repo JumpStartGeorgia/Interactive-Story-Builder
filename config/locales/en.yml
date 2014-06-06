@@ -131,6 +131,8 @@ en:
       staff_pick: Select as Staff Pick
       staff_unpick: Unselect as Staff Pick
       user_settings: Your Settings
+      like: Like this story
+      unlike: Unlike this story
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
@@ -237,8 +239,9 @@ en:
     all: All
     matches: Matching Stories
     sort:
-      reads: Reads
       recent: Recent
+      reads: Reads
+      likes: Likes
     category_header: Category
     language_header: Language
     search: Find a Story

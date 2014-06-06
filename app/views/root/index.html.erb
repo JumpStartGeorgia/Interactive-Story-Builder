@@ -42,7 +42,7 @@
           </div>
           <div class='story-info'>   
            <div class="story-likes">
-               <%= content_tag(:span, story.impressions_count, :class => "n#{story.impressions_count.to_s.size}" ) %>
+               <%= content_tag(:span, story.likes, :class => "n#{story.likes.to_s.size}" ) %>
           </div>                 
           <div class="story-caption">
             <%= link_to truncate(story.title, length: 45, separator: ' '), storyteller_show_path(story.permalink), :title => title %>

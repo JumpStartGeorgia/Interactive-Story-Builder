@@ -42,6 +42,7 @@ gem "impressionist", "1.4.1" # keep track of views
 gem "active_attr", "~> 0.5.1" # to create tabless models; using for contact form
 gem "unidecoder", "~> 1.1.2" #convert utf8 to ascii for permalinks
 gem 'scoped_search', '~> 2.7.1' # search a model
+gem 'acts_as_votable', '~> 0.9.0' # vote/like a story
 
 # Gems used only for assets and not required
 # in production environments by default.

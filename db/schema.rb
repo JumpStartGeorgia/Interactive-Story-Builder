@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140606134642) do
+ActiveRecord::Schema.define(:version => 20140606134643) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -117,23 +117,15 @@ ActiveRecord::Schema.define(:version => 20140606134642) do
     t.integer  "section_id"
     t.integer  "media_type"
     t.string   "title"
-    t.string   "caption",                :limit => 2000
+    t.string   "caption",       :limit => 2000
     t.integer  "caption_align"
     t.string   "source"
     t.string   "audio_path"
     t.string   "video_path"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_file_name_old"
-    t.string   "image_content_type_old"
-    t.integer  "image_file_size_old"
-    t.datetime "image_updated_at_old"
-    t.string   "video_file_name_old"
-    t.string   "video_content_type_old"
-    t.integer  "video_file_size_old"
-    t.datetime "video_updated_at_old"
     t.integer  "position"
-    t.boolean  "video_loop",                             :default => true
+    t.boolean  "video_loop",                    :default => true
   end
 
   add_index "media", ["section_id", "position"], :name => "index_media_on_section_id_and_position"
@@ -170,11 +162,7 @@ ActiveRecord::Schema.define(:version => 20140606134642) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "has_marker",             :default => true
-    t.string   "audio_file_name_old"
-    t.string   "audio_content_type_old"
-    t.integer  "audio_file_size_old"
-    t.datetime "audio_updated_at_old"
+    t.boolean  "has_marker", :default => true
   end
 
   add_index "sections", ["position"], :name => "index_sections_on_position"
@@ -197,24 +185,29 @@ ActiveRecord::Schema.define(:version => 20140606134642) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "media_author"
-    t.boolean  "published",                  :default => false
+    t.boolean  "published",             :default => false
     t.datetime "published_at"
-    t.integer  "thumbnail_old"
-    t.string   "thumbnail_file_name_old"
-    t.string   "thumbnail_content_type_old"
-    t.integer  "thumbnail_file_size_old"
-    t.datetime "thumbnail_updated_at_old"
-    t.integer  "template_id",                :default => 1
-    t.integer  "impressions_count",          :default => 0
+    t.integer  "template_id",           :default => 1
+    t.integer  "impressions_count",     :default => 0
     t.integer  "reviewer_key"
     t.string   "permalink"
     t.text     "about"
-    t.boolean  "publish_home_page",          :default => true
-    t.boolean  "staff_pick",                 :default => false
-    t.string   "locale",                     :default => "en"
+    t.boolean  "publish_home_page",     :default => true
+    t.boolean  "staff_pick",            :default => false
+    t.string   "locale",                :default => "en"
     t.string   "permalink_staging"
+    t.integer  "cached_votes_total",    :default => 0
+    t.integer  "cached_votes_score",    :default => 0
+    t.integer  "cached_votes_up",       :default => 0
+    t.integer  "cached_votes_down",     :default => 0
+    t.integer  "cached_weighted_score", :default => 0
   end
 
+  add_index "stories", ["cached_votes_down"], :name => "index_stories_on_cached_votes_down"
+  add_index "stories", ["cached_votes_score"], :name => "index_stories_on_cached_votes_score"
+  add_index "stories", ["cached_votes_total"], :name => "index_stories_on_cached_votes_total"
+  add_index "stories", ["cached_votes_up"], :name => "index_stories_on_cached_votes_up"
+  add_index "stories", ["cached_weighted_score"], :name => "index_stories_on_cached_weighted_score"
   add_index "stories", ["locale"], :name => "index_stories_on_locale"
   add_index "stories", ["permalink"], :name => "index_stories_on_permalink"
   add_index "stories", ["publish_home_page", "staff_pick"], :name => "index_stories_on_publish_home_page_and_staff_pick"
@@ -283,5 +276,22 @@ ActiveRecord::Schema.define(:version => 20140606134642) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["permalink"], :name => "index_users_on_permalink"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "votes", :force => true do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.boolean  "vote_flag"
+    t.string   "vote_scope"
+    t.integer  "vote_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], :name => "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+  add_index "votes", ["votable_id", "votable_type"], :name => "index_votes_on_votable_id_and_votable_type"
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], :name => "index_votes_on_voter_id_and_voter_type_and_vote_scope"
+  add_index "votes", ["voter_id", "voter_type"], :name => "index_votes_on_voter_id_and_voter_type"
 
 end
