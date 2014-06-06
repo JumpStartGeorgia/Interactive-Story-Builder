@@ -369,7 +369,7 @@ $(document).ready(function() {
   }));
   
   // when the page loads, show the permalink if it exists  
-  if ($('#story_permalink').length > 0 && $('input#storyPermalink').length > 0){
+  if ($('#story_permalink').length > 0 && $('input#storyPermalink').val().length > 0){
     was_title_box_length = $('input#storyTitle').val().length;
     was_permalink_box_length = $('input#storyPermalinkStaging').val().length;;
     show_story_permalink({'is_duplicate': false, 'permalink':$('input#storyPermalink').val()});

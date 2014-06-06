@@ -33,10 +33,11 @@ class Language < ActiveRecord::Base
 
     counts = find_by_sql(sql)
 
-    if counts.present?
-      Language.transaction do 
-        # reset all counts to 0
-        Language.update_all(:published_story_count => 0)
+    Language.transaction do 
+      # reset all counts to 0
+      Language.update_all(:published_story_count => 0)
+  
+      if counts.present?
         # add the counts
         counts.each do |count|
           Language.where(:locale => count['locale']).update_all(:published_story_count => count['count'])

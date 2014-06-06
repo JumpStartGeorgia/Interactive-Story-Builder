@@ -70,7 +70,7 @@ class StorytellerController < ApplicationController
     story.unliked_by current_user
   
     respond_to do |format|     
-      format.json { render render json: nil , status: :created } 
+      format.json { render json: nil , status: :created } 
     end
   end
   

@@ -42,7 +42,7 @@ class Story < ActiveRecord::Base
 	before_save :publish_date
 	before_save :generate_reviewer_key
 	 
-	after_save :update_counts
+	after_save :update_filter_counts
 
   scope :recent, order("published_at desc")
   scope :reads, order("impressions_count desc, published_at desc")
@@ -115,11 +115,10 @@ class Story < ActiveRecord::Base
     end
   end
 
-  # if the story was published/unpublished 
-  # - or if the languages changed, update the lang count
-  # - or if categories changed, update category count
-  def update_counts
-    if self.published?
+  # if the story is published and the counts are not being updated
+  # update the filter counts
+  def update_filter_counts
+    if self.published_changed? && !self.cached_votes_total_changed? && !self.impressions_count_changed?
       Category.update_counts
       Language.update_counts
     end
