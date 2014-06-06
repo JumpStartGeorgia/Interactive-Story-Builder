@@ -11,7 +11,7 @@ class StoriesController < ApplicationController
   def index
     #@usemap = true 
     @css.push("filter", "pagination")
-    @js.push("filter")
+    @js.push("magneto", "filter")
     @stories =  process_filter_querystring(Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => 9))           
     respond_to do |format|
       format.html  #index.html.erb

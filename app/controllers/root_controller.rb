@@ -3,9 +3,9 @@ class RootController < ApplicationController
     before_filter :asset_filter
 
   def index   
-    @js.push("filter")
+    
     @css.push("filter", "pagination")
-
+    @js.push("magneto", "filter")
     @stories = process_filter_querystring(Story.is_published_home_page.paginate(:page => params[:page], :per_page => 6))      
 
 

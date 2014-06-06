@@ -33,8 +33,8 @@
        var isNavVisible = true;
        function navbarMagic(reset)
        {      
-        console.log("isNavVisible = " + isNavVisible);
-            console.log($(window).scrollTop());
+     //   console.log("isNavVisible = " + isNavVisible);
+          //  console.log($(window).scrollTop());
             reset = typeof reset !== 'undefined' ?  reset : false;
             var currentOffset = $(window).scrollTop();
             var objectOffset = $("#filter").offset().top;
@@ -47,7 +47,7 @@
             {
               if( isNavVisible)
               {
-              console.log("invisible_");
+          //    console.log("invisible_");
                  isNavVisible = false; 
               $(".navbar").queue(function(){
                     $(this).fadeOut(400,function(){
@@ -64,7 +64,7 @@
             {        
              if( !isNavVisible)
               { 
-                console.log("visible_");       
+            //    console.log("visible_");       
                 $(".navbar").css("position","fixed").css("top","0px").queue(function(){
                   $(this).animate({"background-color":"#121212"}, 1000).dequeue();
                 }); 
@@ -77,10 +77,10 @@
             if(scrollOffset < currentOffset)
             {         
 
-              console.log("down");
+           //   console.log("down");
               if(!isNavVisible && currentOffset >= objectOffset-topOffsetBack)
               {
-                console.log("navbar visible");
+           //     console.log("navbar visible");
                // $(".navbar").toggleClass("navbar-static-top navbar-fixed-top").css("background-color","#000");                
                  $(".navbar").css("position","fixed").css("top","0px").queue(function(){
                     $(this).animate({"background-color":"#121212"}, 1000).dequeue();
@@ -91,11 +91,11 @@
             }
             else 
             {
-              console.log("up" + currentOffset + " _ " + objectOffset );
+            //  console.log("up" + currentOffset + " _ " + objectOffset );
               if(isNavVisible && currentOffset <= objectOffset - topOffsetBack)
               {      
                   isNavVisible = false;          
-                console.log("navbar invisible");
+             //   console.log("navbar invisible");
                // $(".navbar").toggleClass("navbar-static-top navbar-fixed-top").css("background-color","transparent");
                 //$(".navbar").css("background-color","transparent").css("position","absolute");
                  $(".navbar").queue(function(){

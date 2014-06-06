@@ -8,10 +8,9 @@
  *= require formtastic-bootstrap
  *= require jquery.ui.core
  *= require jquery.ui.theme  
-  *= require jquery.ui.dialog    
+ *= require jquery.ui.dialog    
  *= require bootstrap_and_overrides
  *= require_self
-
 */
 
 @font-face {
