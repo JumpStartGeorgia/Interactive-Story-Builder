@@ -108,24 +108,35 @@
                            style2 = ''
                            style2 = 'hide' if @story.staff_pick 
                         %>
-                        <%= link_to '#', :class => "btn btn-success staff-pick #{style1}", :title => t('helpers.links.staff_unpick'), :'data-href' => storyteller_staff_unpick_path(@story.permalink) do %>
+                        <%= link_to '#', :class => "btn btn-success staff-pick #{style1}", :title => t('helpers.links.staff_unpick'), 
+                            :'data-href' => storyteller_staff_unpick_path(@story.permalink) do %>
                           <span class="glyphicon glyphicon-star"></span>
                         <% end %>
-                        <%= link_to '#', :class => "btn btn-default staff-pick #{style2}", :title => t('helpers.links.staff_pick'), :'data-href' => storyteller_staff_pick_path(@story.permalink) do %>
+                        <%= link_to '#', :class => "btn btn-default staff-pick #{style2}", :title => t('helpers.links.staff_pick'), 
+                            :'data-href' => storyteller_staff_pick_path(@story.permalink) do %>
                           <span class="glyphicon glyphicon-star-empty"></span>
                         <% end %>
                       <% end %>
-                      <% 
-                         style1 = 'hide'
-                         style1 = '' if @user_likes 
-                         style2 = ''
-                         style2 = 'hide' if @user_likes
-                      %>
-                      <%= link_to '#', :class => "btn btn-success like-story #{style1}", :title => t('helpers.links.unlike'), :'data-href' => storyteller_unlike_path(@story.permalink) do %>
-                        <span class="glyphicon glyphicon-heart"></span>
-                      <% end %>
-                      <%= link_to '#', :class => "btn btn-default like-story #{style2}", :title => t('helpers.links.like'), :'data-href' => storyteller_like_path(@story.permalink) do %>
-                        <span class="glyphicon glyphicon-heart-empty"></span>
+                      <% if user_signed_in? %>
+                        <% 
+                           style1 = 'hide'
+                           style1 = '' if @user_likes 
+                           style2 = ''
+                           style2 = 'hide' if @user_likes
+                        %>
+                        <%= link_to '#', :class => "btn btn-success like-story #{style1}", :title => t('helpers.links.unlike'), 
+                            :'data-href' => storyteller_unlike_path(@story.permalink) do %>
+                          <span class="glyphicon glyphicon-heart"></span>
+                        <% end %>
+                        <%= link_to '#', :class => "btn btn-default like-story #{style2}", :title => t('helpers.links.like'), 
+                            :'data-href' => storyteller_like_path(@story.permalink) do %>
+                          <span class="glyphicon glyphicon-heart-empty"></span>
+                        <% end %>
+                      <% else %>
+                        <%= link_to :new_user_session, :class => "btn btn-default", :title => t('helpers.links.like'), 
+                            :'data-href' => storyteller_like_path(@story.permalink) do %>
+                          <span class="glyphicon glyphicon-heart-empty"></span>
+                        <% end %>
                       <% end %>
                     </div>
                   <% end %>
