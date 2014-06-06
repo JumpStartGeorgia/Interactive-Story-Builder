@@ -10,8 +10,8 @@ class StoriesController < ApplicationController
   # GET /stories.json
   def index
     #@usemap = true 
-    @css.push("filter", "pagination")
-    @js.push("filter")
+    @css.push("filter.css", "pagination.css")
+    @js.push("filter.js")
     @stories =  process_filter_querystring(Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => 9))           
     respond_to do |format|
       format.html  #index.html.erb

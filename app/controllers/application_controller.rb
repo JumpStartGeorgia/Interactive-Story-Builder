@@ -70,8 +70,8 @@ class ApplicationController < ActionController::Base
     
     # have to insert devise styles/js here since no controllers exist
     if params[:controller].start_with?('devise/')
-      @css = ['devise']
-      @js = ['nickname']
+      @css.push('devise.css')
+      @js.push('nickname.js')
     end
 	end
   

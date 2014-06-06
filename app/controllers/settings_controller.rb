@@ -3,8 +3,8 @@ class SettingsController < ApplicationController
 
 
   def index
-    @css.push("settings", "devise", "bootstrap-select.min.css")
-    @js.push("nickname", "bootstrap-select.min.js")
+    @css.push("settings.css", "devise.css", "bootstrap-select.min.css")
+    @js.push("nickname.js", "bootstrap-select.min.js")
 
     if request.put?
       if current_user.update_attributes(params[:user])

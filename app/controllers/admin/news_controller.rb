@@ -122,8 +122,8 @@ class Admin::NewsController < ApplicationController
   private
   
   def asset_filter
-    @css.push("jquery-ui-1.7.3.custom")
-    @js.push("news", "jquery.ui.datepicker")
+    @css.push("jquery-ui-1.7.3.custom.css")
+    @js.push("news.js", "jquery.ui.datepicker.js")
   end 
   
   

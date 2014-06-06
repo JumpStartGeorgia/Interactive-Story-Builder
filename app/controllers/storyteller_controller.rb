@@ -8,8 +8,8 @@ class StorytellerController < ApplicationController
 
 
   def index
-    @css.push("storyteller")
-    @js.push("storyteller")
+    @css.push("storyteller.css")
+    @js.push("storyteller.js")
 
   	story = Story.select('id').is_published.find_by_permalink(params[:id])
   	@story = Story.is_published.fullsection(story.id) if story.present?  
