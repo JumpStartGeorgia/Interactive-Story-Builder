@@ -3,10 +3,8 @@ class SettingsController < ApplicationController
 
 
   def index
-    @css.push("settings", "devise", "bootstrap-select.min")
-    @js.push("nickname", "bootstrap-select.min")
-
-    @load_bootstrap_select = true
+    @css.push("settings", "devise", "bootstrap-select.min.css")
+    @js.push("nickname", "bootstrap-select.min.js")
 
     if request.put?
       if current_user.update_attributes(params[:user])
@@ -27,8 +25,6 @@ class SettingsController < ApplicationController
     
     
   def remove_avatar
-    @load_bootstrap_select = true
-
     if current_user.has_provider_avatar? && current_user.local_avatar_exists?
       current_user.local_avatar = nil
       current_user.save

@@ -374,7 +374,12 @@ $(document).ready(function() {
     was_permalink_box_length = $('input#storyPermalinkStaging').val().length;;
     show_story_permalink({'is_duplicate': false, 'permalink':$('input#storyPermalink').val()});
   }
-  
+
+
+  if ($('.selectpicker').length > 0){
+    $('.selectpicker').selectpicker();
+  }
+ 
 });
 
 function show_story_permalink(d){
