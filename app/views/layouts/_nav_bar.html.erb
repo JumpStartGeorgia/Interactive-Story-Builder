@@ -24,7 +24,7 @@
               <% if user_signed_in? %>
                 <% if current_user.avatar.present? %>
                       <li >
-                    <%= link_to image_tag(current_user.avatar_url,:size=>"28x28", :class=>"avatar"), "#" , 
+                    <%= link_to image_tag(current_user.avatar,:size=>"28x28", :class=>"avatar"), "#" , 
                          :class => "dropdown-toggle avatar-link", :"data-toggle"=>"dropdown" %>       
                        
                   <ul class="dropdown-menu pull-right">
@@ -83,6 +83,6 @@
                 </li>            
               <% end %>
             </ul>
-
-           </div>
+          </div>
+        </div>
       </nav>

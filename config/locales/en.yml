@@ -310,6 +310,17 @@ en:
       missing_text: Is there a feature missing from these lists that you would like added?  Do you feel that we should re-prioritize our list?  If so, please let us know by using the %{link}.
       feedback_link: Feedback section
   stories:
+    index:
+      link:
+        clone: Clone as new story
+        export: Download story
+        review: Private URL
+        noreview: Already published
+      title:
+        clone: Copy this story into a new story
+        export: Download the complete story
+        review: Get URL to share this story before publishing
+        noreview: Your story is published so there is no need to share this non-published URL
     new:
       title: Story Settings Form
     edit:

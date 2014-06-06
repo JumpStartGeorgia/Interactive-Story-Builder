@@ -1,10 +1,12 @@
-class RootController < ApplicationController  
-  layout :resolve_layout
-  before_filter :asset_filter
+
+class RootController < ApplicationController    
+    before_filter :asset_filter
 
   def index   
-    @js.push("root")
-    @stories = process_filter_querystring(Story.is_published_home_page.paginate(:page => params[:page], :per_page => 6))    
+    @js.push("filter")
+    @css.push("filter", "pagination")
+
+    @stories = process_filter_querystring(Story.is_published_home_page.paginate(:page => params[:page], :per_page => 6))      
 
 
     respond_to do |format|
@@ -87,20 +89,8 @@ class RootController < ApplicationController
 
   private
 
-  def resolve_layout
-    case action_name
-
-    when "index"
-      "home"    
-    else
-      "application"
-    end
-  end
-
   def asset_filter
     @css.push("root")
   end 
- 
-
-
+  
 end

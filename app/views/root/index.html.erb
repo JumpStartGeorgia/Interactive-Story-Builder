@@ -1,91 +1,28 @@
 
+<% content_for(:header) { %>
+
+    <header class="header intro<%= (1..3).to_a.sample %>">
+      <div class="header-data">
+        <div class="h1">Build and Share</div>
+        <div class="h3">the Next Generation Story</div>
+        <div class="intro">Story builder allows anyone with text, pictures and/or videos to<br>
+        combine this content into a creative story
+        that can be published<br> and shared with the world</div>
+        <div class="btn-create-story">
+               <%= link_to  "Start Story", new_story_path, :tabindex=>1 %>
+          </div>       
+      </div>
+    </header>
+
+<% } %>
+
 
 <% if Rails.env.staging? %>
    <h1 style="margin:36px 36px;background-color: #F8E869;padding: 36px;line-height: 28px;">You are accessing a test site. Please go to <a href="http://storybuilder.jumpstart.ge/en" style="text-decoration:underline;">http://storybuilder.jumpstart.ge/en</a> to use the official site. </h1>
 <% end %>
 
 
-   <div id="filter">
-      <div class="container">
-        <ul class="nav">
-          <li>
-            <%= link_to t('filters.staff_pick'), url_for(params.merge(:staff_pick => !@story_filter_staff_pick)),
-              :class => "staff_pick #{@story_filter_staff_pick == true ? 'active' : ''}" %>
-          </li>
-
-          <li class="dropdown">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown" tabindex="13">
-             <%= t('filters.sort_header') %>:
-             <%= @story_filter_sort %>
-             <b class="caret"></b>
-           </a>
-            <ul class="dropdown-menu">
-              <% I18n.t('filters.sort').each do |key, value| %>
-                <li class="dropdown">
-                  <%= link_to value, url_for(params.merge(:sort => key)), :class => @story_filter_sort == value ? 'active' : '' %>
-                </li>
-              <% end %>
-            </ul>
-          </li>
-          <% if @categories_published.present? %>
-           <li class="dropdown" tabindex="14">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
-              <%= t('filters.category_header') %>:
-              <%= @story_filter_category %>
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">          
-              <li class="dropdown">
-                <%= link_to I18n.t('filters.all'), url_for(params.merge(:category => nil)), :class => @story_filter_category == I18n.t('filters.all') ? 'active' : '' %>
-              </li>
-              <% @categories_published.each do |cat| %>
-                <li class="dropdown">
-                  <%= link_to cat.name_count, url_for(params.merge(:category => cat.permalink)), :class => @story_filter_category == cat.name ? 'active' : '' %>
-                </li>
-              <% end %>
-            </ul>
-          </li>
-          <% end %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" tabindex="15">
-              <%= t('filters.language_header') %>:
-              <%= @story_filter_language %>
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">          
-              <li class="dropdown">
-                <%= link_to I18n.t('filters.all'), url_for(params.merge(:language => nil)), :class => @story_filter_language == I18n.t('filters.all') ? 'active' : '' %>
-              </li>
-              <% @languages_published.each do |lang| %>
-                <li class="dropdown">
-                  <%= link_to lang.name_count, url_for(params.merge(:language => lang.locale)), :class => @story_filter_language == lang.name ? 'active' : '' %>
-                </li>
-              <% end %>
-            </ul>
-          </li>
-          <li id="filter_match">
-            <span><%= t('filters.matches') %>: <%= @stories.total_entries %></span>
-          </li>
-          <li class="pull-right">
-            <div class="search-label">
-              <%= t('filters.search') %>
-            </div>
-
-            <div class="search-wrapper">
-              <div class="search-box">
-                <div class="search-text">
-                  <%= form_tag url_for(params), :method => :get, :id => 'search-filter' do %>
-                    <%= text_field_tag :q, params[:q], :placeholder => t('filters.search'), :tabindex => 16 %>
-                  <% end %>
-                </div>
-                <div class="search-button"></div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-
+<%= render partial: "layouts/filter_bar"%> 
 
 <div class="grid col-3">      
   <% @stories.each_with_index do |story,s_i| %>       
@@ -105,7 +42,7 @@
           </div>
           <div class='story-info'>   
            <div class="story-likes">
-            <%= link_to story.impressions_count, storyteller_show_path(story.permalink), :class => "n#{story.impressions_count.to_s.size}" %>
+               <%= content_tag(:span, story.impressions_count, :class => "n#{story.impressions_count.to_s.size}" ) %>
           </div>                 
           <div class="story-caption">
             <%= link_to truncate(story.title, length: 45, separator: ' '), storyteller_show_path(story.permalink), :title => title %>

@@ -8,6 +8,7 @@
  *= require formtastic-bootstrap
  *= require jquery.ui.core
  *= require jquery.ui.theme  
+  *= require jquery.ui.dialog    
  *= require bootstrap_and_overrides
  *= require_self
 
@@ -597,12 +598,7 @@ background-color:rgba(34,34,34,0.5);
     opacity: 1;
     
 }
-.pin .img img 
-{
-    vertical-align: middle;
-    width:459px;
-    height:328px;
-}
+
 .story-caption
 {
     width:400px;
@@ -654,20 +650,20 @@ background-color:rgba(34,34,34,0.5);
   background-size: cover;  
   float:right; 
 }
-.story-likes a{
+.story-likes span{
   line-height: 34px;
    display: block;
    text-align: center;
 }
-.story-likes a.n1,.story-likes a.n2,.story-likes a.n3,.story-likes a.n4
+.story-likes span.n1,.story-likes span.n2,.story-likes span.n3,.story-likes span.n4
 {
    font-size:14px;   
 }
-.story-likes a.n5
+.story-likes span.n5
 {
   font-size:12px;
 }
-.story-likes a.n6,.story-likes a.n7
+.story-likes span.n6,.story-likes span.n7
 {
    font-size:10px;
 }
@@ -694,6 +690,14 @@ input#user_nickname + div + span.check_nickname{
 
 }
 
-.control-group {
-  margin-bottom: 10px;
+.story-info .separator
+{
+  height:16px;
+  line-height:16px;  
+  width:1px;
+  background-color:#bbb;
+  display:inline-block;
+  margin:0px 9px;
+  position:relative;
+  top:3px;
 }

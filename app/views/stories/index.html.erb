@@ -1,178 +1,112 @@
-<% title  t('helpers.titles.story_list') %>
 
-<%= link_to t('helpers.links.add_story') , new_story_path, class:"btn" %>
-<div>&nbsp;</div>
+  <% content_for(:header) { %>
 
-<div class='row'>
-  <div class='span12'>
-    <table id='storiesTable' class="table table-striped table-bordered table-hover table-condensed">
-    <thead>
-      <tr>
-        <th><%= t('activerecord.attributes.story.title') %></th>        
-        <th><%= t('activerecord.attributes.story.author') %></th>     
-        <th></th>   
-        <th></th>  
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @stories.each do |story| %>
-      <tr>
-        <td><%= story.title %></td>        
-        <td><%= story.author %></td>       
+   <header class="header">
+    <div class="header-data">
+      <div class="profile-intro-logo"><%= image_tag current_user.avatar_url(:'168x168'),:size=>"168x168" %></div>
 
-        <td>
-          <button type="button"  id='btnPublish' class="btn btn-warning btn-sm <%= story.published ? '' : 'disabled'%>" title="<%= story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>" data-link='<%= publish_story_path(story) %>'> 
-            <i class="glyphicon glyphicon-globe" ></i>
-          </button>
-        </td>
-        <td>
-          <button type="button"  id='btnPreview' class="btn btn-success btn-sm" title="<%= t('app.buttons.preview') %>" data-link='<%=  preview_story_path(story) %>'> 
-            <i class="glyphicon glyphicon-eye-open " ></i>
-          </button> 
-        </td>   
-        <td>
-          <button type="button"  id='btnReviewer' class="btn btn-primary btn-sm <%= story.published ? 'disabled' : ''%>" title="<%= story.published ? t('app.buttons.reviewer_key_published') : t('app.buttons.reviewer_key') %>" data-link='<%=  reviewer_key_story_path(story) %>'> 
-            <i class="glyphicon glyphicon-share" ></i>
-          </button> 
-        </td>   
-        <td>       
-            <%= link_to clone_story_path(story) , class:"btn btn-info btn-sm" ,  title: t('app.buttons.clone') do %>
-             <i class="glyphicon glyphicon-camera" ></i>
-            <% end %>
-         </td>   
-         <td>         
-            <%= link_to export_story_path(story) , class:"btn btn-primary btn-sm",  title: t('app.buttons.export') do %>
-             <i class="glyphicon glyphicon-download" ></i>
-            <% end %>
-         </td> 
-        <td><%= link_to t('helpers.links.edit_story'), edit_story_path(story) , class:"btn btn-sm btn-info"%></td>        
-        <td><%= link_to  t('helpers.links.admin_story'), sections_story_path(story), class:"btn btn-sm btn-info" %></td>          
-        <td><%= link_to  t('helpers.links.delete_story'), story, confirm: 'Are you sure?', method: :delete, class:"btn btn-sm btn-danger"%></td>
-      </tr>
-    <% end %>
-    </tbody>
-    </table>
-  </div>
-</div>
+      <div class="h3"><%= "#{current_user.nickname}" %></div>
+     
+      <div class="btn-create-story">
+             <%= link_to  "Start Story", new_story_path, :tabindex=>1 %>
+        </div>       
+    </div>
+  </header>
 
-
-
-
-
+<% } %>
+  <%= render partial: "layouts/filter_bar"%> 
   <div class="grid col-3">      
-    <% @stories.each_with_index do |story,s_i| %>       
+    <% @stories.each_with_index do |story,s_i| %>  
+        <% 
+          desc = story.title
+        %>     
         <div class="col n-4">                   
-            <div class="story-thumbnail">
-              <a href="<%=preview_story_path(story) %>">
-               </a>
-               <img height="328px" width="459px" src="<%= story.show_asset.asset.url(:thumbnail) %>" />                
+            <div class="story-thumbnail">                       
+               <%= link_to preview_story_path(story), :title => desc do %>
+              <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459', :alt => desc %>              
+              <% end %>            
                 <div class="story-edit">
-                    <button type="button"  id='btnPublish' class="btn btn-warning btn-xs <%= story.published ? '' : 'disabled'%>" title="<%= story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>" data-link='<%= publish_story_path(story) %>'> 
-                    <i class="glyphicon glyphicon-pencil" ></i>
-                  </button>
+                   
+
                   <div class="story-edit-menu">
-                          <ul>
-                            <li>  <button type="button"  id='btnPublish' class="btn btn-warning btn-xs <%= story.published ? '' : 'disabled'%>" title="<%= story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>" data-link='<%= publish_story_path(story) %>'> </button> Publish
-                    <a ><i class="glyphicon glyphicon-globe" ></i>Publish</a>
-                  </li>
-                            <li><button type="button"  id='btnPreview' class="btn btn-success btn-xs" title="<%= t('app.buttons.preview') %>" data-link='<%=  preview_story_path(story) %>'> 
-                    <i class="glyphicon glyphicon-eye-open " ></i>
-                  </button>Preview   </li>
-                            <li><button type="button"  id='btnReviewer' class="btn btn-primary btn-xs <%= story.published ? 'disabled' : ''%>" title="<%= story.published ? t('app.buttons.reviewer_key_published') : t('app.buttons.reviewer_key') %>" data-link='<%=  reviewer_key_story_path(story) %>'> 
-                    <i class="glyphicon glyphicon-share" ></i>
-                  </button>Review  </li>
-                            <li>  <%= link_to clone_story_path(story) , class:"btn btn-info btn-xs" ,  title: t('app.buttons.clone') do %>
-                     <i class="glyphicon glyphicon-camera" ></i>
-                    <% end %> Clone</li>
-                            <li>  <%= link_to export_story_path(story) , class:"btn btn-primary btn-xs",  title: t('app.buttons.export') do %>
-                     <i class="glyphicon glyphicon-download" ></i>
-                    <% end %> Export </li>
-                            <li><%= link_to t('helpers.links.edit_story'), edit_story_path(story) , class:"btn btn-xs btn-info"%> Edit Story Info<i class="glyphicon glyphicon-info-sign" ></i></li>
-                            <li><%= link_to  t('helpers.links.admin_story'), sections_story_path(story), class:"btn btn-xs btn-info" %>Edit Story Content<i class="glyphicon glyphicon-picture" ></i></li>
-                            <li><%= link_to  t('helpers.links.delete_story'), story, confirm: 'Are you sure?', method: :delete, class:"btn btn-xs btn-danger"%>Delete<i class="glyphicon glyphicon-remove" ></i></li>
-                          </ul>
-                          </div>
-
-                </div>
-
-            
-
+                  <ul class="nav">
+                  <li>
+                   <button type="button"  class="btn btn-warning dropdown-toggle" data-toggle="dropdown"> 
+                    <i class="glyphicon glyphicon-pencil" ></i>
+                  </button>                   
+                    <ul class="dropdown-menu pull-right">
+                        <li>                            
+                          <a href="#" id='btnPublish' <%= 'class="disabled"' if !story.published %> data-link='<%= publish_story_path(story) %>'>
+                            <i class="glyphicon glyphicon-globe" ></i><span><%= story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %></span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" id='btnPreview' title="<%= t('app.buttons.preview') %>" data-link='<%= preview_story_path(story) %>'>
+                            <i class="glyphicon glyphicon-eye-open" ></i><%= t('app.buttons.preview') %>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" id='btnReviewer' class="<%= story.published ? 'disabled' : ''%>" title="<%= story.published ? t('.title.noreview') : t('.title.review') %>" data-link='<%=  reviewer_key_story_path(story) %>'>
+                            <i class="glyphicon glyphicon-share" ></i><%= story.published ? t('.link.noreview') : t('.link.review') %>
+                          </a>                                                
+                        </li>
+                        <li>
+                          <%= link_to clone_story_path(story) ,  title: t('.title.clone') do %>
+                            <i class="glyphicon glyphicon-camera"></i><%=t('.link.clone')%>
+                          <% end %> 
+                        </li>                        
+                        <li>  
+                          <%= link_to export_story_path(story) ,  title: t('.title.export') do %>
+                            <i class="glyphicon glyphicon-download"></i><%=t('.link.export')%>
+                          <% end %>
+                        </li>                        
+                        <li>
+                            <%= link_to edit_story_path(story) do %>                            
+                              <i class="glyphicon glyphicon-info-sign"></i><%=t('helpers.links.edit_story')%>
+                            <% end %>
+                        </li>
+                        <li>
+                          <%= link_to  sections_story_path(story) do %>
+                          <i class="glyphicon glyphicon-picture"></i><%=t('helpers.links.admin_story')%>
+                          <% end %>
+                        </li>
+                        <li>
+                          <%= link_to story, confirm: 'Are you sure?', method: :delete do %>
+                            <i class="glyphicon glyphicon-remove"></i><%=t('helpers.links.delete_story')%>
+                          <% end %>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                  </div>
+                </div>          
             </div>
             <div class='story-info'>   
              <div class="story-likes">
+              <%= content_tag(:span, story.impressions_count, :class => "n#{story.impressions_count.to_s.size}" ) %>                          
             </div>                 
             <div class="story-caption">
+              <%= link_to truncate(story.title, length: 45, separator: ' '), preview_story_path(story), :title => desc %>
             </div>                   
-            <div class="story-author">Added by <a class="author"><%= story.author %></a></div>
+            <div class="story-author"><a class="author"><%= story.author %></a></div>
             <div class="separator"></div>
             <div class="story-publish"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>              
           </div>
         </div>  
     <% end %>  
     </div>  
- <style>
- .story-edit
- {
-    position:absolute;  
-    top:0px;
-    right:20px;
-    width:auto;
- 
- }
-
- .story-edit ul
- {
-   position:relative;
-   top:0px;
-   right:30px;
-    background-color:#fff;
-    color:#000;
-    border:1px solid #000;
-    min-width:100px;
-    max-width:328px;
-    width:auto;
- }
-  .story-edit li
- {
-    background-color:#fff;
-    color:#000;
-    padding:5px;
-     width:auto;
- }
-   .story-edit ul li a
- {
- width: 100%;
-display: inline-block;
-padding: 5px 10px;
-/* margin: 5px 10px; */
-font-size: 17px;
- }
-  .story-edit ul li a:hover
- {
-background-color:gray;
-color:white;
-cursor:pointer;
-text-decoration:none;
- }
- </style>
+       <%= page_navigation_links @stories %>   
 
 
+  <% content_for(:footer) { %>
 
+     <div id="previewStory" class="reveal-modal">     
+        <div class='modal-data'></div>
+        <a class="close-reveal-modal">&#215;</a>
+    </div>
+    <div id="reviewerKey" class="reveal-modal" style='height:50%;width:50%;top:35px;' >     
+        <div class='modal-data'></div>
+        <a class="close-reveal-modal">&#215;</a>
+    </div>
 
-
-
-
-<div id="previewStory" class="reveal-modal">     
-    <div class='modal-data'></div>
-    <a class="close-reveal-modal">&#215;</a>
-</div>
-<div id="reviewerKey" class="reveal-modal" style='height:50%;width:50%;top:35px;' >     
-    <div class='modal-data' style="width:100%; height:100%"></div>
-    <a class="close-reveal-modal">&#215;</a>
-</div>
+<% } %>

@@ -1,0 +1,125 @@
+#filter
+    {
+      width:100%;
+      margin:20px auto 20px auto;
+      height:60px; /*56px*/
+      .dropdown-menu{
+        background-color: #fff;
+        margin-top: -7px;
+        & > li > a:hover, & > li > a:focus {
+          background-color: #c5c5c5;
+        }
+      }
+      .staff_pick.active, .dropdown-menu > li > a.active{
+        background-color: #a8d2b8;
+      }
+      #filter_match span{
+        position: relative;
+        display: block;
+        padding: 15px 15px;
+        font-family: dejavusans-el;
+        font-size: 18px;
+      }
+    }
+    
+    .search-wrapper
+    {
+      float:right;
+      height:56px;
+      line-height:56px;
+      vertical-align:middle;
+      
+    }
+     .search-box
+    {
+      
+      height:56px;
+      width:56px;
+      line-height:56px;
+      display: table;
+
+      padding-left:20px;
+      padding-right: 17px;
+      border:1px solid #cdcdcd;
+      -webkit-border-radius: 30px;
+      -moz-border-radius: 30px;
+      border-radius: 30px;
+      -webkit-transition: all 0.7s linear 0s;
+      -moz-transition: all 0.7s linear 0s;
+      -o-transition: all 0.7s linear 0s;
+      transition: all 0.7s linear 0s;   
+      transition-property:width;
+-moz-transition-property: width; /* Firefox 4 */
+-webkit-transition-property:width; /* Safari and Chrome */
+-o-transition-property:width; /* Opera */
+      z-index:103;
+      
+    }
+     .search-box:hover
+     {  width:500px;}
+ 
+    .search-box.active
+     {  width:500px;}
+ 
+ 
+*:focus {
+    outline: 0;
+}
+     .search-text 
+      {
+         overflow:hidden;
+         margin-right:40px; 
+         margin-left:6px;    
+         display:table-cell;   
+         min-width:0px; 
+
+     }
+     .search-text input
+    {
+          
+      font-family:opensans-r;
+      font-size:16px;      
+      width:100%;
+      height:40px;
+      line-height:25px;
+      border:none;
+      background-color:transparent;
+      color:#878787;
+      display:none;
+      /*padding:5px 10px;*/      
+    
+    }
+   .search-box:hover .search-text input
+     {
+ 
+     }
+   .search-button
+   {
+    display:table-cell;
+      background: transparent url('/assets/search.png'); 
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 20px 21px;
+/*      background-attachment: local;
+      background-origin:content-box;*/
+      width:20px;
+      height:56px;
+      min-width:20px;
+      cursor:pointer;
+   }
+.search-label
+  {
+      display:inline-block;
+      float:left;
+      font-family:opensans-r;
+      font-size:16px;      
+      width:130px;
+  color:#878787;
+      line-height:42px;
+      border:none;
+      background-color:transparent;
+      padding:5px 10px;
+      margin-right:20px; 
+      z-index:102;
+
+  }

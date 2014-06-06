@@ -1,16 +1,18 @@
 class StoriesController < ApplicationController
-  layout :resolve_layout   
   before_filter :authenticate_user!
   before_filter(:except => [:index, :new, :create, :check_permalink]) do |controller_instance|  
     controller_instance.send(:can_edit_story?, params[:id])
   end
   before_filter :asset_filter
 
+
   # GET /stories
   # GET /stories.json
   def index
     #@usemap = true 
-    @stories = Story.editable_user(current_user.id) 
+    @css.push("filter", "pagination")
+    @js.push("filter")
+    @stories =  process_filter_querystring(Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => 9))           
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render json: @stories }
@@ -457,9 +459,9 @@ class StoriesController < ApplicationController
       end
       
       if @item.published
-        pub_title = I18n.t("app.buttons.unpublish")       
+        pub_title = I18n.t("app.buttons.unpublish")              
       else
-        pub_title = I18n.t("app.buttons.publish")       
+        pub_title = I18n.t("app.buttons.publish")                   
       end
       format.json {render json: { title: pub_title }, status: :ok }
       format.html { redirect_to stories_url }
@@ -599,14 +601,6 @@ private
   def generate_gzip(tar,name,ff)      
       system("tar -czf #{tar}.tar.gz -C '#{Rails.root}/tmp/#{name}' .")
       return "#{tar}.tar.gz"
-  end
-  def resolve_layout
-    case action_name
-      when "index"
-        "profile"    
-      else
-        "application"
-      end
   end
 
   def asset_filter
