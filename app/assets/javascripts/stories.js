@@ -333,8 +333,7 @@ $(document).ready(function() {
 	  $('#btnAddSection').trigger('click');
   }
   
-  var was_title_box_length = $('input#storyTitle').val().length;
-  var was_permalink_box_length = $('input#storyPermalinkStaging').val().length;;
+  var was_title_box_length, was_permalink_box_length = 0;
   
   // if the title changes and there is no permalink or the permalink was equal to the old title, 
   // add the title into the permalink show field
@@ -366,13 +365,14 @@ $(document).ready(function() {
   
   // when the page loads, show the permalink if it exists  
   if ($('#story_permalink').length > 0 && $('input#storyPermalink').length > 0){
+    was_title_box_length = $('input#storyTitle').val().length;
+    was_permalink_box_length = $('input#storyPermalinkStaging').val().length;;
     show_story_permalink({'is_duplicate': false, 'permalink':$('input#storyPermalink').val()});
   }
   
 });
 
 function show_story_permalink(d){
-console.log(d);
   var div = '#story_permalink';
   // show the permalink
   if ($(div + ' > span.check_permalink').length == 0){

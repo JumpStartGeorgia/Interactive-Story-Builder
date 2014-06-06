@@ -30,7 +30,7 @@
 
         <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.story.thumbnail') %></label>
         <% if @story.asset_exists? %>
-          <a class='btn' data-reveal-id="modalImage"><%= t('app.buttons.preview_image') %></a>
+          <a class='btn btn-default' data-reveal-id="modalImage"><%= t('app.buttons.preview_image') %></a>
           <div id="modalImage" class="reveal-modal">     
             <div class='modal-data'><img  width='100%' src='<%="#{@story.asset.asset.url}"%>'/></div>
             <a class="close-reveal-modal">&#215;</a>

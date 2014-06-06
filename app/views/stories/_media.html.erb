@@ -16,7 +16,7 @@
   <%= f.fields_for :image, @item.image do |as| %>
     <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.medium.image') %></label>
     <% if @item.image_exists? %>
-      <a class='btn' data-reveal-id="modalImage"><%= t('app.buttons.preview_image') %></a>
+      <a class='btn btn-default' data-reveal-id="modalImage"><%= t('app.buttons.preview_image') %></a>
     <% end %>    
 
     <%= as.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:"image/jpeg,image/png" }, label: false  %> 
@@ -27,7 +27,7 @@
     <div id='mediaVideoBox' <%=  @item.media_type == Medium::TYPE[:image]  ? "style=display:none;" : "" %> >
       <label class=" control-label" for="modalVideo"><%= t('activerecord.attributes.medium.video') %></label>
       <% if  @item.video.present? && @item.video.asset.exists? %>
-        <a class='btn' data-reveal-id="modalVideo"><%= t('app.buttons.preview_video') %></a>
+        <a class='btn btn-default' data-reveal-id="modalVideo"><%= t('app.buttons.preview_video') %></a>
       <% end %>
       <%= as.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:"video/mp4" }, label: false %>
       <%= as.input :asset_type, :as => :hidden %>
