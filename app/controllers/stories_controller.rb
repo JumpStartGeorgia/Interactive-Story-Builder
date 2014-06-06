@@ -598,8 +598,8 @@ private
   end
 
   def asset_filter
-    @css.push("stories", "embed", "reveal", "bootstrap-select.min.css")
-    @js.push("stories", "jquery.reveal", "olly", "bootstrap-select.min.js")
+    @css.push("stories.css", "embed.css", "reveal.css", "bootstrap-select.min.css")
+    @js.push("stories.js", "jquery.reveal.js", "olly.js", "bootstrap-select.min.js")
   end 
   
 end       
