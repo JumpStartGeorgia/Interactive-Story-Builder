@@ -118,7 +118,7 @@ class Story < ActiveRecord::Base
   # if the story is published and the counts are not being updated
   # update the filter counts
   def update_filter_counts
-    if self.published_changed? && !self.cached_votes_total_changed? && !self.impressions_count_changed?
+    if (self.published_changed? || self.published?) && !self.cached_votes_total_changed? && !self.impressions_count_changed?
       Category.update_counts
       Language.update_counts
     end
