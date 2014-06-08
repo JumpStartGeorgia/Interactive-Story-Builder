@@ -133,6 +133,7 @@ ka:
       user_settings: თქვენი პარამეტრები
       like: Like this story
       unlike: Unlike this story
+      comments: Comment on this story
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"

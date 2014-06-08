@@ -138,6 +138,12 @@
                           <span class="glyphicon glyphicon-heart-empty"></span>
                         <% end %>
                       <% end %>
+
+                      <%= link_to '#', :class => "btn btn-default", :title => t('helpers.links.comments'),
+                              :'data-toggle' => "modal", :'data-target' => ".modal-comments" do %>
+                        <span class="glyphicon glyphicon-comment"></span>
+                      <% end %>
+
                     </div>
                   <% end %>
                   <div class="byline byline--first" style="margin-bottom:50px;">

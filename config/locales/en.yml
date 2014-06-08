@@ -133,6 +133,7 @@ en:
       user_settings: Your Settings
       like: Like this story
       unlike: Unlike this story
+      comments: Comment on this story
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
