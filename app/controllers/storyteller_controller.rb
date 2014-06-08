@@ -31,7 +31,7 @@ class StorytellerController < ApplicationController
 
   def staff_pick
   	story = Story.is_published.find_by_permalink(params[:id])
-  	if story && !story.staff_pick
+  	if story.present? && !story.staff_pick
   	  story.staff_pick = true
   	  story.save(:validate => false)
   	end
@@ -43,7 +43,7 @@ class StorytellerController < ApplicationController
   
   def staff_unpick
   	story = Story.is_published.find_by_permalink(params[:id])
-  	if story && story.staff_pick
+  	if story.present? && story.staff_pick
   	  story.staff_pick = false
   	  story.save(:validate => false)
   	end
@@ -56,7 +56,7 @@ class StorytellerController < ApplicationController
 
   def like
     story = Story.is_published.find_by_permalink(params[:id])
-    story.liked_by current_user
+    story.liked_by current_user if story.present?
   
     respond_to do |format|     
       format.json { render json: nil , status: :created } 
@@ -67,7 +67,7 @@ class StorytellerController < ApplicationController
 
   def unlike
     story = Story.is_published.find_by_permalink(params[:id])
-    story.unliked_by current_user
+    story.unliked_by current_user if story.present?
   
     respond_to do |format|     
       format.json { render json: nil , status: :created } 
@@ -76,10 +76,10 @@ class StorytellerController < ApplicationController
   
   def record_comment
     story = Story.is_published.find_by_permalink(params[:id])
-    story.increment_comment_count
+    story.increment_comment_count if story.present?
   
     respond_to do |format|     
-      format.json { render json: {count: story.comments_count} , status: :created } 
+      format.json { render json: {count: story.present? ? story.comments_count : 0} , status: :created } 
     end
   end
   
