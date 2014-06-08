@@ -48,17 +48,25 @@
                     <% 
                       disqus_name = ENV['STORY_BUILDER_DISQUS']
                       disqus_name = ENV['STORY_BUILDER_STAGING_DISQUS'] if Rails.env.staging?
+                      url = storyteller_show_url(@story.permalink)
                     %>
                     var disqus_shortname = '<%= disqus_name %>';
                     var disqus_identifier = '<%= @story.id %>';
                     var disqus_title = '<%= @story.title %>';
-                    var disqus_url = '<%= storyteller_show_url(@story.permalink) %>';
+                    var disqus_url = '<%= url %>';
 
                     (function() {
                         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
                         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
                         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
                     })();
+                    
+                    var disqus_config = function() {
+	                    this.callbacks.onNewComment = [function(comment) { 
+                        // this function is in storyteller.js    
+                        story_new_comment_callback('<%= url %>');
+	                    }];
+                    };                    
                 </script>
               </div>
             </div>

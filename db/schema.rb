@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140606134643) do
+ActiveRecord::Schema.define(:version => 20140608183421) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -201,6 +201,7 @@ ActiveRecord::Schema.define(:version => 20140606134643) do
     t.integer  "cached_votes_up",       :default => 0
     t.integer  "cached_votes_down",     :default => 0
     t.integer  "cached_weighted_score", :default => 0
+    t.integer  "comments_count",        :default => 0
   end
 
   add_index "stories", ["cached_votes_down"], :name => "index_stories_on_cached_votes_down"
@@ -208,6 +209,7 @@ ActiveRecord::Schema.define(:version => 20140606134643) do
   add_index "stories", ["cached_votes_total"], :name => "index_stories_on_cached_votes_total"
   add_index "stories", ["cached_votes_up"], :name => "index_stories_on_cached_votes_up"
   add_index "stories", ["cached_weighted_score"], :name => "index_stories_on_cached_weighted_score"
+  add_index "stories", ["comments_count"], :name => "index_stories_on_comments_count"
   add_index "stories", ["locale"], :name => "index_stories_on_locale"
   add_index "stories", ["permalink"], :name => "index_stories_on_permalink"
   add_index "stories", ["publish_home_page", "staff_pick"], :name => "index_stories_on_publish_home_page_and_staff_pick"

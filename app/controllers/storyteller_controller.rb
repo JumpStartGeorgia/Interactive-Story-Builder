@@ -1,7 +1,7 @@
 class StorytellerController < ApplicationController
 	layout false
   skip_before_filter :verify_authenticity_token
-  before_filter :authenticate_user!, :except => [:index]
+  before_filter :authenticate_user!, :except => [:index, :record_comment]
   before_filter(:only => [:staff_pick, :staff_unpick]) do |controller_instance|
     controller_instance.send(:valid_role?, User::ROLES[:staff_pick])
   end
@@ -71,6 +71,15 @@ class StorytellerController < ApplicationController
   
     respond_to do |format|     
       format.json { render json: nil , status: :created } 
+    end
+  end
+  
+  def record_comment
+    story = Story.is_published.find_by_permalink(params[:id])
+    story.increment_comment_count
+  
+    respond_to do |format|     
+      format.json { render json: {count: story.comments_count} , status: :created } 
     end
   end
   

@@ -141,13 +141,13 @@
 
                       <%= link_to '#', :class => "btn btn-default", :title => t('helpers.links.comments'),
                               :'data-toggle' => "modal", :'data-target' => ".modal-comments" do %>
-                        <span class="glyphicon glyphicon-comment"></span>
+                        <span class="glyphicon glyphicon-comment"></span><span id="comments-count" style="line-height: 1;vertical-align: top;display: inline-block;margin-left: 3px;"><%= @story.comments_count %></span>
                       <% end %>
 
                     </div>
                   <% end %>
                   <div class="byline byline--first" style="margin-bottom:50px;">
-                  <%= t('storyteller.byline') %><span class="author"> <%= @story.author %></span>
+                  <%= t('storyteller.byline') %> <span class="author"><%= @story.author %></span>
                   <%= "<div>#{t('storyteller.byline_media')}<span class='author'>#{@story.media_author}</span></div>".html_safe if @story.media_author.present? %>
                   </div>               
                 <% end %>         

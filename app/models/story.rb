@@ -47,6 +47,7 @@ class Story < ActiveRecord::Base
   scope :recent, order("published_at desc")
   scope :reads, order("impressions_count desc, published_at desc")
   scope :likes, order("cached_votes_total desc, published_at desc")
+  scope :comments, order("comments_count desc, published_at desc")
 	scope :is_published, where(:published => true)
 	scope :is_published_home_page, where(:published => true, :publish_home_page => true)
   scope :is_staff_pick, where(:staff_pick => true)
@@ -118,7 +119,8 @@ class Story < ActiveRecord::Base
   # if the story is published and the counts are not being updated
   # update the filter counts
   def update_filter_counts
-    if (self.published_changed? || self.published?) && !self.cached_votes_total_changed? && !self.impressions_count_changed?
+    if (self.published_changed? || self.published?) && 
+        !self.cached_votes_total_changed? && !self.impressions_count_changed? && !self.comments_count_changed? 
       Category.update_counts
       Language.update_counts
     end
@@ -176,5 +178,11 @@ class Story < ActiveRecord::Base
     else
       self.asset
     end
+  end
+  
+  # when a comment occurs, update the count by 1
+  def increment_comment_count
+    self.comments_count += 1
+    self.save
   end
 end
