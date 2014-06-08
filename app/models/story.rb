@@ -120,7 +120,8 @@ class Story < ActiveRecord::Base
   # update the filter counts
   def update_filter_counts
     if (self.published_changed? || self.published?) && 
-        !self.cached_votes_total_changed? && !self.impressions_count_changed? && !self.comments_count_changed? 
+        !self.cached_votes_total_changed? && !self.impressions_count_changed? && 
+        !self.comments_count_changed? && !self.staff_pick_changed?
       Category.update_counts
       Language.update_counts
     end
