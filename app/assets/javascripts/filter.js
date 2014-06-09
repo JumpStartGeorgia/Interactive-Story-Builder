@@ -154,7 +154,7 @@
            function(){
             if($(this).find("input#q").val().length==0 && sa)
           {
-                $(this).find("input#q").trigger("blur");
+                $(".search-box input#q").trigger("blur");
                  $(".search-box").removeClass("active");  
                 // $(".search-box input").hide();
                  sa = false; 

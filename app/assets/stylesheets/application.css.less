@@ -352,10 +352,10 @@ table {
   cursor:help;
   padding:0px;
   border: 1px solid #9E9E9E;
+  margin-left:10px;
 }
 .help-inline div,.help-block div {
-  margin-top:2px;
-  margin-left: 6px;
+  margin:1px 0px 0px 5px;
 }
 .error-inline, .error-block
 {
@@ -373,10 +373,10 @@ table {
   cursor:help;
   padding:0px;
   border: 1px solid #b94a48;
+    margin-left:10px;
 }
 .error-inline div,.error-block div {
-  margin-top:2px;
-  margin-left: 8px;
+  margin:1px 0px 0px 7px;
 }
 select, input[type="file"] {
 	height: 20px;
@@ -388,7 +388,7 @@ select, input[type="file"] {
 
 }
 input[type=text]{
-	margin-bottom:0px;
+	margin-bottom:0px;  
 }
 
 
@@ -701,4 +701,41 @@ input#user_nickname + div + span.check_nickname{
   position:relative;
   top:3px;
 }
+.formtastic .input
+{
+  overflow:visible;
 
+}
+.formtastic .form-group label
+{
+
+}
+.formtastic .form-control
+{
+  display:inline-block;
+}
+.formtastic .control-label
+{
+  display:block;
+  clear:both;
+margin-bottom:3px;
+}
+.formtastic .control-label abbr
+{
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  background-color: #fff;
+  color: #9E9E9E !important;
+  width:21px;
+  height:20px;
+  font-size:16px;
+  font-style:normal;  
+  vertical-align:middle;
+  display:inline-block; 
+  cursor:help;
+  padding:0px;
+  border: 1px solid #9E9E9E;
+  margin-left:10px;
+  padding:4px 0px 0px 6px;
+}

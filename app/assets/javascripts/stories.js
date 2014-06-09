@@ -373,7 +373,7 @@ $(document).ready(function() {
 
 
   if ($('.selectpicker').length > 0){
-    $('.selectpicker').selectpicker();
+    $('.selectpicker').selectpicker({dropupAuto:false});
   }
  
 });

@@ -26,7 +26,7 @@ $(document).ready(function(){
      // magnetoIndex = (magnetoIndex-delta) % (magnetoHeights.length);
 
       // animate the scrolling if scrolling from header to bottom
-      if(magnetoIndex == 0 && delta == -1)
+      if(magnetoIndex == 0 && delta < 0)
       {
         $("html,body").stop().animate({
             scrollTop: magnetoHeights[1]
