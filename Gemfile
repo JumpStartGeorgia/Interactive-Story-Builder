@@ -10,9 +10,9 @@ gem "remotipart", '~> 1.2' # ajax file upload
 gem 'omniauth' # to login via facebook
 gem 'omniauth-facebook' # to login via facebook
 gem 'acts_as_list' # for sorting ordering records
-gem 'tinymce-rails', "~> 3.5.8" #tinymce editor https://github.com/spohlenz/tinymce-rails/tree/tinymce-4
+gem 'tinymce-rails', "~> 3.5.8", :branch => "tinymce-3" #tinymce editor https://github.com/spohlenz/tinymce-rails/tree/tinymce-4
 #gem 'tinymce-rails-langs' #tinymce languages https://github.com/spohlenz/tinymce-rails-langs
-gem 'tinymce-rails-imageupload', '~> 3.5.8'  #tinymce imageupload https://github.com/PerfectlyNormal/tinymce-rails-imageupload/tree/master
+gem 'tinymce-rails-imageupload', '3.5.8.3', :branch => "tinymce3"   #tinymce imageupload https://github.com/PerfectlyNormal/tinymce-rails-imageupload/tree/master
 gem 'amoeba' # cloning objects with all children
 gem 'devise', '~> 2.0.4' # user authentication
 gem "cancan", "~> 1.6.8" # user authorization

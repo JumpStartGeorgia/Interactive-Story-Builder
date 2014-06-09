@@ -258,9 +258,9 @@ GEM
     tilt (1.4.1)
     tinymce-rails (3.5.9)
       railties (>= 3.1.1)
-    tinymce-rails-imageupload (3.5.8.4)
+    tinymce-rails-imageupload (3.5.8.3)
       railties (>= 3.1)
-      tinymce-rails (~> 3.5.8)
+      tinymce-rails (>= 3.4.9)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -323,7 +323,7 @@ DEPENDENCIES
   subexec (~> 0.2.3)
   therubyracer
   tinymce-rails (~> 3.5.8)
-  tinymce-rails-imageupload (~> 3.5.8)
+  tinymce-rails-imageupload (= 3.5.8.3)
   twitter-bootstrap-rails!
   uglifier (>= 1.0.3)
   unicorn (~> 4.8.3)
