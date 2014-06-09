@@ -59,6 +59,8 @@ group :development do
 #	gem "wkhtmltopdf-binary", "~> 0.9.5.3" # web kit that takes html and converts to pdf
   gem 'rb-inotify', '~> 0.9.5' # rails dev boost needs this
   gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git' # speed up loading page in dev mode
+  gem 'better_errors', '1.1.0'        # detailed exceptions view
+  gem 'binding_of_caller', '0.7.2'    # needed for better_errors advanced features
 end
 
 group :staging, :production do
