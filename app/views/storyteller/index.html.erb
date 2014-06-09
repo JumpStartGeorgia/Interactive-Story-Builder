@@ -41,7 +41,7 @@
 
       <div class="story-block">
         <%= @story.title %>
-        <%= @story.about.html_safe %>
+        <%= @story.about.html_safe  if @story.about.present? %>
       </div>
       <div class="author-info">Author</div>
       <div class="social">Social</div>
