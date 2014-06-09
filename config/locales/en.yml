@@ -130,10 +130,12 @@ en:
       categories: Categories
       staff_pick: Select as Staff Pick
       staff_unpick: Unselect as Staff Pick
+      is_staff_pick: Staff Pick
       user_settings: Your Settings
       like: Like this story
       unlike: Unlike this story
       comments: Comment on this story
+      views: "%{num} reads"
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
