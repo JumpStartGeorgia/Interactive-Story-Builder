@@ -1,5 +1,6 @@
 class Message
-	include ActiveAttr::Model
+ 	include ActiveAttr::Model
+  include ActiveAttr::MassAssignment
   include ActiveModel::Validations
   include ActiveRecord::Callbacks
 
@@ -11,7 +12,7 @@ class Message
 	attribute :locale, :default => I18n.locale
   attribute :message_type
   
-	attr_accessible :name, :email, :message, :subject, :bcc, :locale, :message_type
+	attr_accessor :name, :email, :message, :subject, :bcc, :locale, :message_type
   before_validation :strip_whitespace
   TYPE = {:bug => 1, :feature => 2, :feedback => 3}
 
