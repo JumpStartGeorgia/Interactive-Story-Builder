@@ -70,8 +70,8 @@ class ApplicationController < ActionController::Base
     
     # have to insert devise styles/js here since no controllers exist
     if params[:controller].start_with?('devise/')
-      @css = ['devise']
-      @js = ['nickname']
+      @css.push('devise.css')
+      @js.push('nickname.js')
     end
 	end
   
@@ -80,9 +80,12 @@ class ApplicationController < ActionController::Base
 		gon.set = true
 		gon.highlight_first_form_field = true
 
+    gon.check_permalink = story_check_permalink_path
     gon.check_nickname = settings_check_nickname_path
     gon.nickname_duplicate = I18n.t('app.msgs.nickname_duplicate')
     gon.nickname_url = I18n.t('app.msgs.nickname_url')
+    gon.story_duplicate = I18n.t('app.msgs.story_duplicate')
+    gon.story_url = I18n.t('app.msgs.story_url')
     
 
     gon.msgs_select_section = I18n.t('app.msgs.select_section')
@@ -104,8 +107,9 @@ class ApplicationController < ActionController::Base
     if params[:staff_pick].present?
       @story_filter_staff_pick = params[:staff_pick].to_bool
     else
-  		@story_filter_staff_pick = true
+  		@story_filter_staff_pick = false
     end
+    story_objects = story_objects.is_staff_pick if @story_filter_staff_pick
 
     # sort
     if params[:sort].present? && I18n.t('filters.sort').keys.map{|x| x.to_s}.include?(params[:sort])
@@ -114,6 +118,8 @@ class ApplicationController < ActionController::Base
     			story_objects = story_objects.recent
         when 'reads'
     			story_objects = story_objects.reads
+        when 'likes'
+    			story_objects = story_objects.likes
       end
 			@story_filter_sort = I18n.t("filters.sort.#{params[:sort]}")
     else
@@ -132,9 +138,9 @@ class ApplicationController < ActionController::Base
     
     # language
     index = params[:language].present? ? @languages_published.index{|x| x.locale.downcase == params[:language].downcase} : nil
-    if index.nil? && user_signed_in? && current_user.default_story_locale.present?
-      index = @languages_published.index{|x| x.locale.downcase == current_user.default_story_locale}
-    end
+#    if index.nil? && user_signed_in? && current_user.default_story_locale.present?
+#      index = @languages_published.index{|x| x.locale.downcase == current_user.default_story_locale}
+#    end
     if index.present?
       story_objects = story_objects.by_language(@languages_published[index].locale)    
   		@story_filter_language = @languages_published[index].name

@@ -36,10 +36,11 @@ class Category < ActiveRecord::Base
 
     counts = find_by_sql(sql)
 
-    if counts.present?
-      Category.transaction do 
-        # reset all counts to 0
-        Category.update_all(:published_story_count => 0)
+    Category.transaction do 
+      # reset all counts to 0
+      Category.update_all(:published_story_count => 0)
+  
+      if counts.present?
         # add the counts
         counts.each do |count|
           Category.where(:id => count['category_id']).update_all(:published_story_count => count['count'])

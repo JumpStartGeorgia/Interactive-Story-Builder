@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter(:except => [:index, :new, :create]) do |controller_instance|  
+  before_filter(:except => [:index, :new, :create, :check_permalink]) do |controller_instance|  
     controller_instance.send(:can_edit_story?, params[:id])
   end
   before_filter :asset_filter
@@ -10,8 +10,8 @@ class StoriesController < ApplicationController
   # GET /stories.json
   def index
     #@usemap = true 
-    @css.push("filter", "pagination")
-    @js.push("magneto", "filter")
+    @css.push("filter.css", "pagination.css")
+    @js.push("magneto.js", "filter.js")
     @stories =  process_filter_querystring(Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => 9))           
     respond_to do |format|
       format.html  #index.html.erb
@@ -33,7 +33,6 @@ class StoriesController < ApplicationController
     @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list
-    @load_bootstrap_select = true
 
     respond_to do |format|
         format.html #new.html.er
@@ -49,7 +48,6 @@ class StoriesController < ApplicationController
     end 
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list(@story.template_id)
-    @load_bootstrap_select = true
   end
 
   # POST /stories
@@ -69,7 +67,6 @@ class StoriesController < ApplicationController
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end      
         @templates = Template.select_list(@story.template_id) 
-        @load_bootstrap_select = true
 
         flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
@@ -96,7 +93,6 @@ class StoriesController < ApplicationController
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end 
         @templates = Template.select_list(@story.template_id)
-        @load_bootstrap_select = true
 
         flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
         format.html { render action: "edit" }
@@ -439,8 +435,6 @@ class StoriesController < ApplicationController
   def sections
       @story = Story.fullsection(params[:id])   
       
-      @load_ollyjs = true
-      
       # if there are no sections, show the content form by default
       gon.has_no_sections = @story.sections.blank?
   end
@@ -555,6 +549,36 @@ class StoriesController < ApplicationController
    end
   end
 
+
+  # check if this permalink is not already in use
+  # - if id is passed in, the story record is loaded and the permalink is created in that record
+  #   so it will not cause a duplicate error
+  # params passed in are text and id
+  def check_permalink
+    output = {:permalink => nil, :is_duplicate => false}
+    if params[:text].present?
+      story = Story.select('permalink, permalink_staging').where(:id => params[:id]).limit(1).first
+      # if the story could not be found, use an empty story
+      if story.blank?
+        story = Story.new(:permalink_staging => params[:text]) 
+        story.generate_permalink
+        output = {:permalink => story.permalink, :is_duplicate => story.is_duplicate_permalink?}
+      # if the permalink is the same, do nothing
+      elsif story.permalink_staging.downcase == params[:text].strip.downcase
+        output[:permalink] = story.permalink
+      # permalink is different, so create a new one
+      else
+        story.permalink_staging = params[:text]
+        story.generate_permalink!
+        output = {:permalink => story.permalink, :is_duplicate => story.is_duplicate_permalink?}
+      end
+    end
+          
+    respond_to do |format|     
+      format.json { render json: output } 
+    end
+  end 
+
 private
 
   def can_edit_story?(story_id)
@@ -576,8 +600,8 @@ private
   end
 
   def asset_filter
-    @css.push("stories", "embed", "reveal", "bootstrap-select.min")
-    @js.push("stories", "jquery.reveal", "olly", "bootstrap-select.min")
+    @css.push("stories.css", "embed.css", "reveal.css", "bootstrap-select.min.css")
+    @js.push("stories.js", "jquery.reveal.js", "olly.js", "bootstrap-select.min.js")
   end 
   
 end       

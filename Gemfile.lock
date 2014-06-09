@@ -82,6 +82,7 @@ GEM
       multi_json (>= 1.0, < 1.3)
     acts_as_list (0.4.0)
       activerecord (>= 3.0)
+    acts_as_votable (0.9.0)
     amoeba (2.0.0)
       activerecord (>= 3.0)
     arel (2.2.3)
@@ -275,6 +276,7 @@ PLATFORMS
 DEPENDENCIES
   active_attr (~> 0.5.1)
   acts_as_list
+  acts_as_votable (~> 0.9.0)
   amoeba
   bundler
   cancan (~> 1.6.8)

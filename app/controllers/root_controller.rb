@@ -1,11 +1,11 @@
-
 class RootController < ApplicationController    
     before_filter :asset_filter
 
   def index   
     
-    @css.push("filter", "pagination")
-    @js.push("magneto", "filter")
+    @js.push("magneto.js","filter.js")
+    @css.push("filter.css", "pagination.css")
+
     @stories = process_filter_querystring(Story.is_published_home_page.paginate(:page => params[:page], :per_page => 6))      
 
 
@@ -30,8 +30,7 @@ class RootController < ApplicationController
 
 
   def news   
-    @css.push("news") 
-    @js.push("news")
+    @css.push("news.css") 
     @news = News.published  
     respond_to do |format|
       format.html  #index.html.erb
@@ -75,7 +74,7 @@ class RootController < ApplicationController
   end
 
   def todo_list
-    @css.push("todo")
+    @css.push("todo.css")
     respond_to do |format|
       format.html 
     end
@@ -90,7 +89,7 @@ class RootController < ApplicationController
   private
 
   def asset_filter
-    @css.push("root")
+    @css.push("root.css")
   end 
   
 end

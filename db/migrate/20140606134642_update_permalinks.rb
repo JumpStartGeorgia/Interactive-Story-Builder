@@ -10,7 +10,7 @@ class UpdatePermalinks < ActiveRecord::Migration
     
       puts 'updating stories'
       Story.update_all(:permalink => nil)
-      Story.is_published.each do |s|
+      Story.all.each do |s|
         s.generate_permalink!
         s.save
       end

@@ -40,20 +40,6 @@ $(document).ready(function() {
     }
 
 
-    // search box
-    var debounce = function (fn) {
-      var timeout
-      return function () {
-        var args = Array.prototype.slice.call(arguments),
-            ctx = this
-
-        clearTimeout(timeout)
-        timeout = setTimeout(function () {
-          fn.apply(ctx, args)
-        }, 500)
-      }
-    }
-        
     // perform search
     $(nickname_path).bind('keyup', debounce(function () {
       // if text length is 1 or the length has not changed (e.g., press arrow keys), do nothing

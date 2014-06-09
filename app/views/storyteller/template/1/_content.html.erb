@@ -99,17 +99,55 @@
                 <% if columnSectionCount == 0 %>
                   <div class='headline'><%= @story.title %></div>
                   <div class="byline-rule"></div>
-                  <% if !@export && @story.permalink.present? && user_signed_in? && current_user.role?(User::ROLES[:staff_pick]) %>
-                    <div id="staff-pick">
-                    <% if @story.staff_pick %>
-                      <%= link_to t('helpers.links.staff_unpick'), storyteller_staff_unpick_path(@story.permalink), :class => 'btn btn-danger' %>
-                    <% else %>
-                      <%= link_to t('helpers.links.staff_pick'), storyteller_staff_pick_path(@story.permalink), :class => 'btn btn-success' %>
-                    <% end %>
+                  <% if !@export && @story.permalink.present? %>
+                    <div id="story-header-buttons">
+                      <% if user_signed_in? && current_user.role?(User::ROLES[:staff_pick]) %>
+                        <% 
+                           style1 = 'hide'
+                           style1 = '' if @story.staff_pick 
+                           style2 = ''
+                           style2 = 'hide' if @story.staff_pick 
+                        %>
+                        <%= link_to '#', :class => "btn btn-success staff-pick #{style1}", :title => t('helpers.links.staff_unpick'), 
+                            :'data-href' => storyteller_staff_unpick_path(@story.permalink) do %>
+                          <span class="glyphicon glyphicon-star"></span>
+                        <% end %>
+                        <%= link_to '#', :class => "btn btn-default staff-pick #{style2}", :title => t('helpers.links.staff_pick'), 
+                            :'data-href' => storyteller_staff_pick_path(@story.permalink) do %>
+                          <span class="glyphicon glyphicon-star-empty"></span>
+                        <% end %>
+                      <% end %>
+                      <% if user_signed_in? %>
+                        <% 
+                           style1 = 'hide'
+                           style1 = '' if @user_likes 
+                           style2 = ''
+                           style2 = 'hide' if @user_likes
+                        %>
+                        <%= link_to '#', :class => "btn btn-success like-story #{style1}", :title => t('helpers.links.unlike'), 
+                            :'data-href' => storyteller_unlike_path(@story.permalink) do %>
+                          <span class="glyphicon glyphicon-heart"></span>
+                        <% end %>
+                        <%= link_to '#', :class => "btn btn-default like-story #{style2}", :title => t('helpers.links.like'), 
+                            :'data-href' => storyteller_like_path(@story.permalink) do %>
+                          <span class="glyphicon glyphicon-heart-empty"></span>
+                        <% end %>
+                      <% else %>
+                        <%= link_to :new_user_session, :class => "btn btn-default", :title => t('helpers.links.like'), 
+                            :'data-href' => storyteller_like_path(@story.permalink) do %>
+                          <span class="glyphicon glyphicon-heart-empty"></span>
+                        <% end %>
+                      <% end %>
+
+                      <%= link_to '#', :class => "btn btn-default", :title => t('helpers.links.comments'),
+                              :'data-toggle' => "modal", :'data-target' => ".modal-comments" do %>
+                        <span class="glyphicon glyphicon-comment"></span><span id="comments-count" style="line-height: 1;vertical-align: top;display: inline-block;margin-left: 3px;"><%= @story.comments_count %></span>
+                      <% end %>
+
                     </div>
                   <% end %>
                   <div class="byline byline--first" style="margin-bottom:50px;">
-                  <%= t('storyteller.byline') %><span class="author"> <%= @story.author %></span>
+                  <%= t('storyteller.byline') %> <span class="author"><%= @story.author %></span>
                   <%= "<div>#{t('storyteller.byline_media')}<span class='author'>#{@story.media_author}</span></div>".html_safe if @story.media_author.present? %>
                   </div>               
                 <% end %>         
@@ -230,10 +268,10 @@
           	</div>
             <div id="right">
                 <% if !@export %>                           
-                    <%= link_to(image_tag("jumpstart-logo.png"), "http://www.jumpstart.ge", :target => "_blank",
+                    <%= link_to(image_tag("logojs.png"), "http://www.jumpstart.ge", :target => "_blank",
                     :title => t("app.common.js_link_title") ) %>
                   <% else %>
-                        <%= link_to "http://www.jumpstart.ge", :target => "_blank", :title => t("app.common.js_link_title")  do %><img alt="Jumpstart-logo" src="assets/jumpstart-logo.png">
+                        <%= link_to "http://www.jumpstart.ge", :target => "_blank", :title => t("app.common.js_link_title")  do %><img alt="Jumpstart-logo" src="assets/logojs.png">
                   <% end %>
                 <% end %>  
             </div>

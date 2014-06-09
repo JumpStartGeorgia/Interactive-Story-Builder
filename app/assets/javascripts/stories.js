@@ -1,7 +1,3 @@
-//= require jquery.reveal
-//= require dataTables/jquery.dataTables
-//= require dataTables/jquery.dataTables.bootstrap
-
 
 var story_id = -1;
 var section_id = -1;
@@ -337,7 +333,100 @@ $(document).ready(function() {
   if (gon.has_no_sections == true){
 	  $('#btnAddSection').trigger('click');
   }
+  
+  var was_title_box_length, was_permalink_box_length = 0;
+  
+  // if the title changes and there is no permalink or the permalink was equal to the old title, 
+  // add the title into the permalink show field
+  $('input#storyTitle').bind('keyup', debounce(function () {
+    if (($('input#storyPermalinkStaging').val() != '' && $('input#storyPermalinkStaging').val() !== $(this).data('title-was')) || 
+        $(this).val().length == was_title_box_length) {
+        
+      return;
+    } else {
+      $(this).data('title-was', $(this).val());
+      $('input#storyPermalinkStaging').val($(this).val());
+      check_story_permalink($(this).val());
+    }
+
+    was_title_box_length = $(this).val().length;
+  }));
+  
+  // if the permalink staging field changes, use the text to generate a new permalink
+  $('input#storyPermalinkStaging').bind('keyup', debounce(function () {
+    // if text length is 1 or the length has not changed (e.g., press arrow keys), do nothing
+    if ($(this).val().length == 1 || $(this).val().length == was_permalink_box_length) {
+      return;
+    } else {
+      check_story_permalink($(this).val());
+    }
+
+    was_permalink_box_length = $(this).val().length;
+  }));
+  
+  // when the page loads, show the permalink if it exists  
+  if ($('#story_permalink').length > 0 && $('input#storyPermalink').val().length > 0){
+    was_title_box_length = $('input#storyTitle').val().length;
+    was_permalink_box_length = $('input#storyPermalinkStaging').val().length;;
+    show_story_permalink({'is_duplicate': false, 'permalink':$('input#storyPermalink').val()});
+  }
+
+
+  if ($('.selectpicker').length > 0){
+    $('.selectpicker').selectpicker();
+  }
+ 
 });
+
+function show_story_permalink(d){
+  var div = '#story_permalink';
+  // show the permalink
+  if ($(div + ' > span.check_permalink').length == 0){
+    // not exists, so create div
+    $(div).html('<span class="check_permalink"></span>');
+  }else{
+    // exists, so clear out
+    $(div + ' > span.check_permalink').empty();
+  }
+  
+  // add the result
+  var html = '';
+  if (d.is_duplicate == true){
+    $(div + ' > span.check_permalink').addClass('duplicate').removeClass('not_duplicate');
+    html = gon.story_duplicate;
+  }else{
+    $(div + ' > span.check_permalink').addClass('not_duplicate').removeClass('duplicate');
+  }
+  html += ' ' + gon.story_url + ' /' + d.permalink;
+  
+  $(div + ' > span.check_permalink').html(html);
+}
+
+function check_story_permalink(text){
+  if (text != ''){
+    var data = {text: text};
+    var url = window.location.href.split('/');
+    if (url[url.length-1] == 'edit'){
+      data.id = url[url.length-2];
+    }
+    $.ajax
+    ({
+	    url: gon.check_permalink,			  
+	    data: data,
+	    type: "POST",			
+      dataType: 'json'
+    }).done(function(d) { 
+      // record the new permalink
+      $('input#storyPermalink').val(d.permalink);
+
+      // show the permalink 
+      show_story_permalink(d);
+    });
+  }else{
+    $('#story_permalink > span.check_permalink').empty().removeClass('not_duplicate').removeClass('duplicate');
+  }
+}
+
 
 function resetEmbedForm(){
   timerCount = 0;

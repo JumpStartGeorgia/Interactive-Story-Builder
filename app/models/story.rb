@@ -1,4 +1,7 @@
 class Story < ActiveRecord::Base	
+  # for likes
+  acts_as_votable
+  
   # fields to search for in a story
   scoped_search :on => [:title, :author, :media_author]
   scoped_search :in => :content, :on => [:caption, :sub_caption, :content]
@@ -8,10 +11,6 @@ class Story < ActiveRecord::Base
   # create permalink to story
   has_permalink :create_permalink, true
 	
-	scope :is_published, where(:published => true)
-	scope :is_published_home_page, where(:published => true, :publish_home_page => true)
-  scope :is_staff_pick, where(:staff_pick => true)
-  
 	has_many :story_categories
 	has_many :categories, :through => :story_categories, :dependent => :destroy
 	belongs_to :user
@@ -29,22 +28,30 @@ class Story < ActiveRecord::Base
 
 	validates :title, :presence => true, length: { maximum: 100 }
 	validates :author, :presence => true, length: { maximum: 255 }
+	validates :permalink, :presence => true
 #	validates :about, :presence => true
 	validates :template_id, :presence => true
 	validates :media_author, length: { maximum: 255 }
 	validates :locale, :presence => true
 
+
   # if the title changes, make sure the permalink is updated
-  before_save :check_title
+#  before_save :check_title
 
   # if publishing, set the published date
 	before_save :publish_date
 	before_save :generate_reviewer_key
 	 
-	after_save :update_counts
+	after_save :update_filter_counts
 
   scope :recent, order("published_at desc")
-  scope :reads, order("impressions_count desc")
+  scope :reads, order("impressions_count desc, published_at desc")
+  scope :likes, order("cached_votes_total desc, published_at desc")
+  scope :comments, order("comments_count desc, published_at desc")
+	scope :is_published, where(:published => true)
+	scope :is_published_home_page, where(:published => true, :publish_home_page => true)
+  scope :is_staff_pick, where(:staff_pick => true)
+  
 
 
   DEMO_ID = 2
@@ -83,6 +90,10 @@ class Story < ActiveRecord::Base
 	  joins(:categories).where('categories.id = ?', id)
 	end
 
+  # alias name for cached_votes_total
+  def likes
+    self.cached_votes_total
+  end
 
   # if the story is being published, record the date
 	def publish_date		
@@ -93,24 +104,23 @@ class Story < ActiveRecord::Base
 	  end     
 	end
 
-  def check_title
-    self.generate_permalink! if self.title_changed?
-  end 
+#  def check_title
+#    self.generate_permalink! if self.title_changed?
+#  end 
   
   def create_permalink
-    if self.published_at.present? && self.published?
-      date = ''
-      date << self.published_at.to_date.to_s
-      date << '-'
-      "#{date}#{self.title.dup}"
+    if self.permalink_staging.present? && self.permalink_staging != self.permalink
+      self.permalink_staging.dup
+    else
+      self.title.dup
     end
   end
 
-  # if the story was published/unpublished 
-  # - or if the languages changed, update the lang count
-  # - or if categories changed, update category count
-  def update_counts
-    if self.published?
+  # if the story is published and the counts are not being updated
+  # update the filter counts
+  def update_filter_counts
+    if (self.published_changed? || self.published?) && 
+        !self.cached_votes_total_changed? && !self.impressions_count_changed? && !self.comments_count_changed? 
       Category.update_counts
       Language.update_counts
     end
@@ -168,5 +178,11 @@ class Story < ActiveRecord::Base
     else
       self.asset
     end
+  end
+  
+  # when a comment occurs, update the count by 1
+  def increment_comment_count
+    self.comments_count += 1
+    self.save
   end
 end

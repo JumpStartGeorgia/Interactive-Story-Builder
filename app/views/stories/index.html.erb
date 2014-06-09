@@ -1,8 +1,6 @@
 
   <% content_for(:header) { %>
-
-   <header class="header">
-   
+   <header class="header">   
      <div class="profile-data">
           <div class="profile-logo"><%= image_tag current_user.avatar_url(:'168x168'),:size=>"168x168" %></div>
           <div class="profile-info">
@@ -13,22 +11,21 @@
       <div class="btn-create-story">
          <%= link_to  "Start Story", new_story_path, :tabindex=>1 %>
       </div>       
-  </header>
-
-    
+  </header>  
 <% } %>
+
   <%= render partial: "layouts/filter_bar" %> 
-
   <%= render partial: "layouts/grid" , locals:{:editable=>true}%>    
-  <% content_for(:footer) { %>
 
-     <div id="previewStory" class="reveal-modal">     
-        <div class='modal-data'></div>
-        <a class="close-reveal-modal">&#215;</a>
-    </div>
-    <div id="reviewerKey" class="reveal-modal" style='height:50%;width:50%;top:35px;' >     
-        <div class='modal-data'></div>
-        <a class="close-reveal-modal">&#215;</a>
-    </div>
+<% content_for(:footer) { %>
 
-  <% } %>
+   <div id="previewStory" class="reveal-modal">     
+      <div class='modal-data'></div>
+      <a class="close-reveal-modal">&#215;</a>
+  </div>
+  <div id="reviewerKey" class="reveal-modal" style='height:50%;width:50%;top:35px;' >     
+      <div class='modal-data'></div>
+      <a class="close-reveal-modal">&#215;</a>
+  </div>
+<% } %>
+

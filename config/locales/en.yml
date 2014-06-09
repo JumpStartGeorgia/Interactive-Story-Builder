@@ -37,6 +37,8 @@ en:
         thumbnail: Thumbnail
         about: Story Summary
         locale: Story Language
+        permalink: Story URL
+        permalink_staging: Story URL
       section:
         title: Title
         audio: Audio Track
@@ -129,6 +131,9 @@ en:
       staff_pick: Select as Staff Pick
       staff_unpick: Unselect as Staff Pick
       user_settings: Your Settings
+      like: Like this story
+      unlike: Unlike this story
+      comments: Comment on this story
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
@@ -197,8 +202,10 @@ en:
       staff_unpick: The story has been unselected as a Staff Pick
       success_settings: Your settings were successfully updated.
       success_remove_avatar: Your Facebook avatar is now being used.
-      nickname_duplicate: This nickname already exists. 
-      nickname_url: 'Your url will look like:'
+      nickname_duplicate: This user url already exists. 
+      nickname_url: 'Your url will be:'
+      story_duplicate: This story url already exists. 
+      story_url: 'Your url will be:'
       one_section:
         content: Only one Item can be added to a Content section
         slideshow: Only one Item can be added to an Image Slideshow section
@@ -233,8 +240,9 @@ en:
     all: All
     matches: Matches
     sort:
-      reads: Reads
       recent: Recent
+      reads: Reads
+      likes: Likes
     category_header: Category
     language_header: Language
     search: Find a Story
@@ -324,10 +332,12 @@ en:
     form:
       placeholder:
         title: Title of Story
+        permalink: URL to the story
         author: Author(s) of the article
         media_author: "Author(s) of photos and/or videos"
       hint:
         title: Story title will appear as the header on the first content section and very first section if it is media section
+        permalink: The default URL is the title of the story, but you can change it if desired
         author: Author(s) will appear on the first content section
         media_author:  "Author(s) will appear on the first content section below the Story Author(s)"
         published: Published stories are available for the world to read

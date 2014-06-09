@@ -4,9 +4,13 @@
 <%= semantic_form_for(@story, :html => {:multipart => true, :id => "storyForm"}) do |f| %>
 
   <%= f.inputs do %>
-    <%= f.input :title, hint: t('.hint.title'), placeholder: t('.placeholder.title'), :input_html => { id: "storyTitle"  }   %>
-
     <%= f.input :user_id , :as => :hidden %>
+
+    <%= f.input :title, hint: t('.hint.title'), placeholder: t('.placeholder.title'), :input_html => { id: "storyTitle", :'data-title-was' => @story.title  }   %>
+
+    <%= f.input :permalink_staging, hint: t('.hint.permalink'), placeholder: t('.placeholder.permalink'), :input_html => { id: "storyPermalinkStaging"  }   %>
+    <%= f.input :permalink, :as => :hidden, :input_html => { id: "storyPermalink"  }   %>
+    <div class="string control-group stringish" id="story_permalink">&nbsp;</div>
 
     <%= f.input :author, hint: t('.hint.author'), placeholder: t('.placeholder.author'), :input_html => { id: "storyAuthor"  } %>
     <%= f.input :media_author, hint: t('.hint.media_author'), placeholder: t('.placeholder.media_author'), :input_html => { id: "storyMediaAuthor"  }  %>
@@ -26,7 +30,7 @@
 
         <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.story.thumbnail') %></label>
         <% if @story.asset_exists? %>
-          <a class='btn' data-reveal-id="modalImage"><%= t('app.buttons.preview_image') %></a>
+          <a class='btn btn-default' data-reveal-id="modalImage"><%= t('app.buttons.preview_image') %></a>
           <div id="modalImage" class="reveal-modal">     
             <div class='modal-data'><img  width='100%' src='<%="#{@story.asset.asset.url}"%>'/></div>
             <a class="close-reveal-modal">&#215;</a>

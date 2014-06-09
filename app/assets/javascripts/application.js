@@ -46,3 +46,19 @@ function popuper(msg,msg_type)
 function urldecode(url) {
   return decodeURIComponent(url.replace(/\+/g, ' '));
 }
+
+
+var debounce = function (fn) {
+  var timeout
+  return function () {
+    var args = Array.prototype.slice.call(arguments),
+        ctx = this
+
+    clearTimeout(timeout)
+    timeout = setTimeout(function () {
+      fn.apply(ctx, args)
+    }, 500)
+  }
+}
+    
+
