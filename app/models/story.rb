@@ -2,6 +2,9 @@ class Story < ActiveRecord::Base
   # for likes
   acts_as_votable
   
+  # tagging system
+  acts_as_taggable
+  
   # fields to search for in a story
   scoped_search :on => [:title, :author, :media_author]
   scoped_search :in => :content, :on => [:caption, :sub_caption, :content]
@@ -26,6 +29,9 @@ class Story < ActiveRecord::Base
 
 	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
 
+  attr_reader :tag_list_tokens
+#  attr_accessible :name, :tag_list_tokens
+  
 	validates :title, :presence => true, length: { maximum: 100 }
 	validates :author, :presence => true, length: { maximum: 255 }
 	validates :permalink, :presence => true
@@ -186,4 +192,9 @@ class Story < ActiveRecord::Base
     self.comments_count += 1
     self.save
   end
+  
+  # remove quotes from tags
+  def tag_list_tokens=(tokens)
+    self.tag_list = tokens.gsub("'", "")
+  end  
 end

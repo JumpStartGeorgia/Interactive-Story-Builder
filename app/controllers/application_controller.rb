@@ -80,6 +80,12 @@ class ApplicationController < ActionController::Base
 		gon.set = true
 		gon.highlight_first_form_field = true
 
+    gon.tag_search = story_tag_search_path
+    gon.tokeninput_hintText = I18n.t('tokeninput.hintText')
+    gon.tokeninput_noResultsText = I18n.t('tokeninput.noResultsText')
+    gon.tokeninput_searchingText = I18n.t('tokeninput.searchingText')
+
+
     gon.check_permalink = story_check_permalink_path
     gon.check_nickname = settings_check_nickname_path
     gon.nickname_duplicate = I18n.t('app.msgs.nickname_duplicate')
@@ -135,6 +141,14 @@ class ApplicationController < ActionController::Base
     else
   		@story_filter_category = I18n.t("filters.all")
     end
+    
+    #tags
+    if params[:tag].present?
+      story_objects = story_objects.tagged_with(params[:tag])
+  		@story_filter_tag = params[:tag].titlecase
+    else
+  		@story_filter_tag = I18n.t("filters.all")
+    end    
     
     # language
     index = params[:language].present? ? @languages_published.index{|x| x.locale.downcase == params[:language].downcase} : nil

@@ -371,11 +371,28 @@ $(document).ready(function() {
     show_story_permalink({'is_duplicate': false, 'permalink':$('input#storyPermalink').val()});
   }
 
-
+  // fancy select boxes with search capability
   if ($('.selectpicker').length > 0){
     $('.selectpicker').selectpicker({dropupAuto:false});
   }
- 
+  
+  // add autocomplete for tags
+  if ($('#storyTagList').length > 0){
+    $('#storyTagList').tokenInput(
+      gon.tag_search,
+      {
+        method: 'POST',
+        minChars: 2,
+        theme: 'facebook',
+        allowCustomEntry: true,
+        preventDuplicates: true,
+        prePopulate: $('#storyTagList').data('load'),
+        hintText: gon.tokeninput_hintText,
+        noResultsText: gon.tokeninput_noResultsText,
+        searchingText: gon.tokeninput_searchingText
+      }
+    ); 
+  }
 });
 
 function show_story_permalink(d){

@@ -131,21 +131,23 @@
                         <% 
                            style1 = 'hide'
                            style1 = '' if @user_likes 
+                           count1 = style1.present? ? @story.likes+1 : @story.likes
                            style2 = ''
                            style2 = 'hide' if @user_likes
+                           count2 = style2.present? ? @story.likes-1 : @story.likes
                         %>
                         <%= link_to '#', :class => "btn btn-success like-story #{style1}", :title => t('helpers.links.unlike'), 
                             :'data-href' => storyteller_unlike_path(@story.permalink) do %>
-                          <span class="glyphicon glyphicon-heart"></span><span id="likes-count" class="stats-count"><%= @story.likes %></span>
+                          <span class="glyphicon glyphicon-heart"></span><span class="likes-count" class="stats-count"><%= count1 %></span>
                         <% end %>
                         <%= link_to '#', :class => "btn btn-default like-story #{style2}", :title => t('helpers.links.like'), 
                             :'data-href' => storyteller_like_path(@story.permalink) do %>
-                          <span class="glyphicon glyphicon-heart-empty"></span><span id="likes-count" class="stats-count"><%= @story.likes %></span>
+                          <span class="glyphicon glyphicon-heart-empty"></span><span class="likes-count" class="stats-count"><%= count2 %></span>
                         <% end %>
                       <% else %>
                         <%= link_to :new_user_session, :class => "btn btn-default", :title => t('helpers.links.like'), 
                             :'data-href' => storyteller_like_path(@story.permalink) do %>
-                          <span class="glyphicon glyphicon-heart-empty"></span><span id="likes-count" class="stats-count"><%= @story.likes %></span>
+                          <span class="glyphicon glyphicon-heart-empty"></span><span class="likes-count" class="stats-count"><%= @story.likes %></span>
                         <% end %>
                       <% end %>
 
@@ -154,6 +156,17 @@
                         <span class="glyphicon glyphicon-comment"></span><span id="comments-count" class="stats-count"><%= @story.comments_count %></span>
                       <% end %>
 
+                      <% if @story.categories.present? %>
+                        <div>
+                          <%= I18n.t('helpers.links.categories') %>: <%= raw @story.categories.map { |x| link_to x.name, root_path(:category => x.permalink) }.join(', ') %>
+                        </div>
+                      <% end %>
+                      <% if @story.tag_list.present? %>
+                        <div>
+                          <%= I18n.t('helpers.links.tags') %>: <%= raw @story.tag_list.map { |t| link_to t.titlecase, root_path(:tag => t.downcase) }.join(', ') %>
+                        </div>
+                      <% end %>
+                      
                     </div>
                   <% end %>
                   <div class="byline byline--first" style="margin-bottom:50px;">

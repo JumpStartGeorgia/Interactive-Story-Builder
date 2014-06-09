@@ -10,9 +10,9 @@ gem "remotipart", '~> 1.2' # ajax file upload
 gem 'omniauth' # to login via facebook
 gem 'omniauth-facebook' # to login via facebook
 gem 'acts_as_list' # for sorting ordering records
-gem 'tinymce-rails', "~> 3.5.8" #tinymce editor https://github.com/spohlenz/tinymce-rails/tree/tinymce-4
+gem 'tinymce-rails', "~> 3.5.8", :branch => "tinymce-3" #tinymce editor https://github.com/spohlenz/tinymce-rails/tree/tinymce-4
 #gem 'tinymce-rails-langs' #tinymce languages https://github.com/spohlenz/tinymce-rails-langs
-gem 'tinymce-rails-imageupload', '~> 3.5.8'  #tinymce imageupload https://github.com/PerfectlyNormal/tinymce-rails-imageupload/tree/master
+gem 'tinymce-rails-imageupload', '3.5.8.3', :branch => "tinymce3"   #tinymce imageupload https://github.com/PerfectlyNormal/tinymce-rails-imageupload/tree/master
 gem 'amoeba' # cloning objects with all children
 gem 'devise', '~> 2.0.4' # user authentication
 gem "cancan", "~> 1.6.8" # user authorization
@@ -39,6 +39,7 @@ gem 'active_attr', '~> 0.8.3' # to create tabless models; using for contact form
 gem "unidecoder", "~> 1.1.2" #convert utf8 to ascii for permalinks
 gem 'scoped_search', '~> 2.7.1' # search a model
 gem 'acts_as_votable', '~> 0.9.0' # vote/like a story
+gem 'acts-as-taggable-on', '~> 3.2.6' # tagging system
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -59,6 +60,8 @@ group :development do
 #	gem "wkhtmltopdf-binary", "~> 0.9.5.3" # web kit that takes html and converts to pdf
   gem 'rb-inotify', '~> 0.9.5' # rails dev boost needs this
   gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git' # speed up loading page in dev mode
+  gem 'better_errors', '1.1.0'        # detailed exceptions view
+  gem 'binding_of_caller', '0.7.2'    # needed for better_errors advanced features
 end
 
 group :staging, :production do

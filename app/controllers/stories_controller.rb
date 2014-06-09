@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter(:except => [:index, :new, :create, :check_permalink]) do |controller_instance|  
+  before_filter(:except => [:index, :new, :create, :check_permalink, :tag_search]) do |controller_instance|  
     controller_instance.send(:can_edit_story?, params[:id])
   end
   before_filter :asset_filter
@@ -33,7 +33,7 @@ class StoriesController < ApplicationController
     @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list
-
+    @story_tags = []
     respond_to do |format|
         format.html #new.html.er
         format.json { render json: @story }
@@ -48,6 +48,7 @@ class StoriesController < ApplicationController
     end 
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list(@story.template_id)
+    @story_tags = @story.tags.token_input_tags
   end
 
   # POST /stories
@@ -67,6 +68,7 @@ class StoriesController < ApplicationController
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end      
         @templates = Template.select_list(@story.template_id) 
+        @story_tags = @story.tags.token_input_tags
 
         flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
@@ -93,6 +95,7 @@ class StoriesController < ApplicationController
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end 
         @templates = Template.select_list(@story.template_id)
+        @story_tags = @story.tags.token_input_tags
 
         flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
         format.html { render action: "edit" }
@@ -579,6 +582,17 @@ class StoriesController < ApplicationController
     end
   end 
 
+
+  # search for existing tags
+  def tag_search
+    tags = Story.all_tag_counts.by_tag_name(params[:q]).token_input_tags
+
+    respond_to do |format|
+      format.json { render json: tags }
+    end
+  end
+  
+  
 private
 
   def can_edit_story?(story_id)
@@ -600,8 +614,8 @@ private
   end
 
   def asset_filter
-    @css.push("stories.css", "embed.css", "reveal.css", "bootstrap-select.min.css")
-    @js.push("stories.js", "jquery.reveal.js", "olly.js", "bootstrap-select.min.js")
+    @css.push("stories.css", "embed.css", "reveal.css", "bootstrap-select.min.css", "token-input-facebook.css")
+    @js.push("stories.js", "jquery.reveal.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js")
   end 
   
 end       
