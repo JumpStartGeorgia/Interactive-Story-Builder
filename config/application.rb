@@ -17,6 +17,7 @@ module BootstrapStarter
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -59,8 +60,8 @@ module BootstrapStarter
     config.assets.paths << "#{Rails.root}/public/javascripts/"
     config.assets.precompile += %w( filter.js news.js nickname.js search.js stories.js storyteller.js )
     config.assets.precompile += %w( devise.css embed.css filter.css news.css pagination.css root.css settings.css stories.css storyteller.css todo.css )
-    config.assets.precompile += %w( olly.js bootstrap-select.min.js jquery.reveal.js )
-    config.assets.precompile += %w( bootstrap-select.min.css jquery-ui-1.7.3.custom.css reveal.css  )
+    config.assets.precompile += %w( olly.js bootstrap-select.min.js jquery.reveal.js jquery.tokeninput.js )
+    config.assets.precompile += %w( bootstrap-select.min.css jquery-ui-1.7.3.custom.css reveal.css token-input-facebook.css )
 
   end
 end

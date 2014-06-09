@@ -23,6 +23,7 @@ BootstrapStarter::Application.routes.draw do
 		post '/tinymce_assets', to: 'imageuploader#create', as: 'imageuploader'
 
 		match "stories/check_permalink" => "stories#check_permalink", as: 'story_check_permalink', :via => :post
+		match "stories/tag_search" => "stories#tag_search", as: 'story_tag_search', :via => :post, :defaults => { :format => 'json' }
 		resources :stories do	
 
 			member do

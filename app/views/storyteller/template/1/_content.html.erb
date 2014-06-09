@@ -154,6 +154,16 @@
                         <span class="glyphicon glyphicon-comment"></span><span id="comments-count" class="stats-count"><%= @story.comments_count %></span>
                       <% end %>
 
+                      <% if @story.categories.present? %>
+                        <div>
+                          <%= I18n.t('helpers.links.categories') %>: <%= raw @story.categories.map { |x| link_to x.name, root_path(:category => x.permalink) }.join(', ') %>
+                        </div>
+                      <% end %>
+                      <% if @story.tag_list.present? %>
+                        <div>
+                          <%= I18n.t('helpers.links.tags') %>: <%= raw @story.tag_list.map { |t| link_to t.titlecase, root_path(:tag => t.downcase) }.join(', ') %>
+                        </div>
+                      <% end %>
                     </div>
                   <% end %>
                   <div class="byline byline--first" style="margin-bottom:50px;">

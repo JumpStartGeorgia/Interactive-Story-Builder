@@ -39,6 +39,7 @@ en:
         locale: Story Language
         permalink: Story URL
         permalink_staging: Story URL
+        tag_list: Tags
       section:
         title: Title
         audio: Audio Track
@@ -136,6 +137,7 @@ en:
       unlike: Unlike this story
       comments: Comment on this story
       views: "%{num} reads"
+      tags: Tags
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
@@ -248,6 +250,10 @@ en:
     category_header: Category
     language_header: Language
     search: Find a Story
+  tokeninput:
+    hintText: Search for an existing tag or enter a new tag
+    noResultsText: "No matches found. Press 'Enter' to save this new tag."
+    searchingText: Searching...
   layouts:
     unsupported_browser:
       title: Unsupported Browser
@@ -351,6 +357,7 @@ en:
         about: Short summary of story that will be used on the home page and when you story is shared
         locale: Select the language of your story. Allows users to filter stories by a language.
         categories: Select the category(s) your story belongs to.  Allows users to filter stories by a category.
+        tag_list: "Enter text to find existing tags.  If your tag does not exist yet, press 'Enter' to add the new tag to the list."
     media:
       form_title: Full-Screen Media Slideshow Form
       left: Left
@@ -438,4 +445,3 @@ en:
       hint:
         about: Short summary about yourself.  This will be shown with the stories that you publish. 
         default_story_locale: Select the language you want to use by default when creating a new story.
-
