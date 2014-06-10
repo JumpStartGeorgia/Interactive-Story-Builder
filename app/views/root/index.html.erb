@@ -8,10 +8,29 @@
         <div class="intro">Story builder allows anyone with text, pictures and/or videos to<br>
         combine this content into a creative story
         that can be published<br> and shared with the world</div>
-        <div class="btn-create-story">
-               <%= link_to  "Start Story", new_story_path, :tabindex=>1 %>
-          </div>       
+
+           
       </div>
+              <div class="btn-create-story">
+               <%= link_to  "Start Story", new_story_path, :tabindex=>1 %>
+        </div>  
+        <div class="btns-story-social">
+
+
+           <div class="social twitter">
+                       <a href='https://twitter.com/share?text=<%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name')}" :
+                                t('app.common.app_name') %>' onclick="javascript:window.open(this.href,
+                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="/assets/twitter.png"/></a>  
+              </div> 
+
+            <div class="social google-plus">
+ <a href="https://plus.google.com/share?url=<%= current_url %>" onclick="javascript:window.open(this.href,
+          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="/assets/google_plus.png" alt="Share on Google+"/></a>     
+                </div>  
+ <div class="social google-plus">
+           <div class="facebook">  <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div></div>
+                       </div>       
+             </div> 
     </header>
 
 <% } %>

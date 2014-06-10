@@ -69,46 +69,47 @@ $(document).ready(function() {
 
 
 $(document).ready(function(){
-  var info = false;
-
-  var currentScroll=0;
-  var infoOffset = 40;
-  $('.story-menu, .story-info-close').click(function()
-  {   
-    
-    if(info)
-    {
-      $('body').css("overflow","visible");
-      $('.story-info-wrapper').fadeOut();
-    }
-        else
-        {
-
-      $('body').css("overflow","hidden");
-      $('.story-info-wrapper').height($(window).height() - 60 - infoOffset);
-    $('.story-info-wrapper').width($(window).width() - infoOffset);
-    $('.story-info-wrapper').css("top",infoOffset/2 + 60);
-    $('.story-info-wrapper').css("left",infoOffset/2);
-      $('.story-info-wrapper').fadeIn();
-    }
-    info=!info;
-
-  });
-
-    $( window ).resize(function() {
-     if(info)
-    {
-        
-        $('.story-info-wrapper').height($(window).height() - 60 - infoOffset);
-        $('.story-info-wrapper').width($(window).width() - infoOffset);
-        $('.story-info-wrapper').css("top",infoOffset/2 + 60);
-        $('.story-info-wrapper').css("left",infoOffset/2);        
-      }
+    // $(".storybuilder-nav").fadeOut();
+    // $(".story-nav").animate({top:'0px'}, 400);
 
 
-    });
+// $(".navbar-hover").hover(
+//   function(){
+//       $(".storybuilder-nav").fadeIn();
+//   },
+//   function(){ }
+//   );
+     var lastScroll = 0;
+     var sn = true;
+     var sbn = true;
+      $(window).scroll(function(event){
+          //Sets the current scroll position
+          var st = $(this).scrollTop();
+          //Determines up-or-down scrolling
+          if (st > lastScroll){ //down
+             if(sbn)
+             {
+            $(".navbar-storybuilder").css('z-index','1029').animate({height:'0px'},300);
+            $(".story-nav").animate({top:'0px'}, 400);
+            sbn = false;
+            }
+          }
+          else {//up             
+                if(!sbn)
+             {
+                $(".navbar-storybuilder").animate({height:'57px','z-index':'1031'},300);
+                $(".story-nav").animate({top:'57px'}, 400);
+                sbn = true;                
+              }
+          }
+          //Updates scroll position
+          lastScroll = st;
+      });
+ //    $(window).scroll(function(){
 
-
-
+ //    });
+ // scrollOffset = $(window).scrollTop();      
+ //          navbarMagic(true);
+ //          $(window).on('scroll',function(){navbarMagic(); });
 
   });

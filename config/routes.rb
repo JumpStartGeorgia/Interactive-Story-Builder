@@ -82,6 +82,7 @@ BootstrapStarter::Application.routes.draw do
 		match 'feedback' => 'root#feedback', :as => 'feedback', :via => [:get, :post]
 		match 'todo_list' => 'root#todo_list', :as => 'todo_list'
 		match "about" => "root#about", as: 'about'
+		match ":user_id/author" => "root#profile", as: 'author'
 
     match ":id" => "storyteller#index", as: 'storyteller_show'
 		match ":id/staff_pick" => "storyteller#staff_pick", as: 'storyteller_staff_pick', :defaults => { :format => 'json' }
