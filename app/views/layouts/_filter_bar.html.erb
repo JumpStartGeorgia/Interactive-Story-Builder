@@ -8,8 +8,7 @@
 
           <li class="dropdown">
            <a href="#" class="dropdown-toggle" data-toggle="dropdown" tabindex="13">
-             <%= t('filters.sort_header') %>:
-             <%= @story_filter_sort %>
+             <%= t('filters.sort_header') %>
              <b class="caret"></b>
            </a>
             <ul class="dropdown-menu">
@@ -23,8 +22,7 @@
           <% if @categories_published.present? %>
            <li class="dropdown" tabindex="14">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
-              <%= t('filters.category_header') %>:
-              <%= @story_filter_category %>
+              <%= t('filters.category_header') %>
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">          
@@ -33,7 +31,7 @@
               </li>
               <% @categories_published.each do |cat| %>
                 <li class="dropdown">
-                  <%= link_to cat.name_count, url_for(params.merge(:category => cat.permalink)), :class => @story_filter_category == cat.name ? 'active' : '' %>
+                  <%= link_to cat.name, url_for(params.merge(:category => cat.permalink)), :class => @story_filter_category == cat.name ? 'active' : '' %>
                 </li>
               <% end %>
             </ul>
@@ -41,8 +39,7 @@
           <% end %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" tabindex="15">
-              <%= t('filters.language_header') %>:
-              <%= @story_filter_language %>
+              <%= t('filters.language_header') %>
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">          
@@ -51,7 +48,7 @@
               </li>
               <% @languages_published.each do |lang| %>
                 <li class="dropdown">
-                  <%= link_to lang.name_count, url_for(params.merge(:language => lang.locale)), :class => @story_filter_language == lang.name ? 'active' : '' %>
+                  <%= link_to lang.name, url_for(params.merge(:language => lang.locale)), :class => @story_filter_language == lang.name ? 'active' : '' %>
                 </li>
               <% end %>
             </ul>

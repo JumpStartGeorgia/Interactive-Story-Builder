@@ -272,6 +272,8 @@ ka:
     reviewer:
       copy: კლიფბორდში ჩაკოპირება...
       copied: გადაკოპირებულია!
+    grid:
+      no_stories: Oh no - no stories could be found!
   admin:
     index:
       title: ადმინისტრატორის განყოფილება

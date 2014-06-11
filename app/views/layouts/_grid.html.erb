@@ -1,6 +1,11 @@
-
 <div class="grid-wrapper">
-  <div class="grid col-3">      
+<div class="grid col-3">      
+  <% if @stories.blank? %>
+    <p>
+      <%= t('.no_stories') %>  
+    </p>
+  <% else %>
+
     <% @stories.each_with_index do |story,s_i| %>       
         <% 
           title = story.title.dup
@@ -12,6 +17,7 @@
         <div class="col n-4">                   
             <div class="story-thumbnail">
               <% if @editable %>
+
                 <%= link_to preview_story_path(story), :title => title do %>
                   <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459', :alt => title %>              
                 <% end %>
@@ -77,7 +83,7 @@
             </div>
             <div class='story-info'>   
              <div class="story-likes">
-                 <%= content_tag(:span, story.impressions_count, :class => "n#{story.impressions_count.to_s.size}" ) %>
+                 <%= content_tag(:span, story.likes, :class => "n#{story.likes.to_s.size}" ) %>
             </div>                 
             <div class="story-caption">
               <%= link_to truncate(story.title, length: 45, separator: ' '), @editable ?  preview_story_path(story) : storyteller_show_path(story.permalink), :title => title %>
@@ -85,12 +91,14 @@
             <div class="story-author">
                 <%= link_to story.user.nickname, author_path(story.user.permalink), :title => story.user.nickname, :class => 'author' %>
             </div>
+
             <div class="separator"></div>
             <div class="story-publish"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>              
           </div>
         </div>  
-    <% end %>  
-  </div> 
-                                
-  <%= page_navigation_links @stories %>   
-</div>
+    <% end %>
+  <% end %>
+</div> 
+</div>                             
+<%= page_navigation_links @stories %>   
+
