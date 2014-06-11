@@ -1,6 +1,6 @@
 module ApplicationHelper
   def title(page_title)
-    content_for(:title) { page_title }
+    content_for(:title) { page_title.html_safe }
   end
 
 	def flash_translation(level)

@@ -33,7 +33,7 @@
               </li>
               <% @categories_published.each do |cat| %>
                 <li class="dropdown">
-                  <%= link_to cat.name_count, url_for(params.merge(:category => cat.permalink)), :class => @story_filter_category == cat.name ? 'active' : '' %>
+                  <%= link_to cat.name, url_for(params.merge(:category => cat.permalink)), :class => @story_filter_category == cat.name ? 'active' : '' %>
                 </li>
               <% end %>
             </ul>
@@ -51,7 +51,7 @@
               </li>
               <% @languages_published.each do |lang| %>
                 <li class="dropdown">
-                  <%= link_to lang.name_count, url_for(params.merge(:language => lang.locale)), :class => @story_filter_language == lang.name ? 'active' : '' %>
+                  <%= link_to lang.name, url_for(params.merge(:language => lang.locale)), :class => @story_filter_language == lang.name ? 'active' : '' %>
                 </li>
               <% end %>
             </ul>
