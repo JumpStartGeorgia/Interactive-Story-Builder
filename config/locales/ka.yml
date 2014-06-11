@@ -92,6 +92,9 @@ ka:
     contact:
       contact_form:
         subject: "Story Builder Contact Form"
+    notification:
+      story_collaborator_invitation:
+        subject: "You have been invited to collaborate on a story on Story Builder!"
   helpers:
     actions: აირჩიეთ
     links:
@@ -222,6 +225,9 @@ ka:
       nickname_url: 'Your url will be:'
       story_duplicate: This story url already exists. 
       story_url: 'Your url will be:'
+      invitation_accepted: "You have accepted the invitation to collaborate on '%{title}'"
+      invitation_accepted_already: "You have already accepted the invitation to collaborate on '%{title}'"
+      bad_invitation: Sorry, your invitation could not be found or the story has been deleted.
       one_section:
         content: მხოლოდ ერთი რამის  დამატებაა შესაძლებელი შინაარსის სექციაში
         slideshow: მხოლოდ ერთი რამის დამატებაა შესაძლებელი ფოტო სლაიდშოუს სექციაში
@@ -459,3 +465,7 @@ ka:
       hint:
         about: მოკლედ თქვენს შესახებ. ეს გამოჩნდება გამოქვეყნებულ ამბებთან ერთად. 
         default_story_locale: აირჩიეთ ენა, რომელსაც გამოიყენებთ ამბის შექმნისას.
+    invitations:
+      title: "Invitations for %{name}"        
+      no_invitations: At this time there are no un-answered invitations on file for you.
+      accept_link: Collaborate on '%{title}'      

@@ -612,6 +612,29 @@ class StoriesController < ApplicationController
   end
   
   
+  # invite an new user to be a collaborator on a story
+  # required params: story_id, email, 
+  # optional params: message
+  def invite_new_user
+    email_sent = send_invitation
+      
+    respond_to do |format|
+      format.json { render json: {email_sent: email_sent} }
+    end
+  end
+  
+  # invite an user already in the system to be a collaborator on a story
+  # required params: story_id, user id, 
+  # optional params: message
+  def invite_existing_user
+    email_sent = send_invitation(true)
+      
+    respond_to do |format|
+      format.json { render json: {email_sent: email_sent} }
+    end
+  end
+  
+  
 private
 
   def can_edit_story?(story_id)
@@ -636,5 +659,39 @@ private
     @css.push("stories.css", "embed.css", "reveal.css", "bootstrap-select.min.css", "token-input-facebook.css","navbar.css")
     @js.push("stories.js", "jquery.reveal.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js")
   end 
+  
+  def send_invitation(to_user_exists = false)
+    story = Story.find_by_id(params[:id])
+    user = User.find_by_id(params[:user_id]) if to_user_exists
+		email_sent = false
+
+    if story.present? && (to_user_exists && user.present?)
+      inv = Invitation.new
+      inv.story_id = story.id
+      inv.from_user_id = current_user.id
+      if to_user_exists
+        inv.to_user_id = user.id
+        inv.to_email = user.email
+      else
+        inv.to_email = params[:email]
+      end
+      inv.save
+      
+	    message = Message.new
+      message.story_title = story.title
+      message.user = current_user.nickname
+      message.email = inv.to_email
+      message.url = accept_invitation_url(:locale => I18n.locale, :key => inv.key)
+      message.message = params[:message] if params[:message].present?
+
+	    if message.valid?
+	      # send message
+			  NotificationMailer.story_collaborator_invitation(message).deliver
+			  email_sent = true
+	    end
+    end
+    
+    return email_sent
+  end
   
 end       

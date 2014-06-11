@@ -25,6 +25,9 @@ BootstrapStarter::Application.routes.draw do
 		match "stories/check_permalink" => "stories#check_permalink", as: 'story_check_permalink', :via => :post
 		match "stories/tag_search" => "stories#tag_search", as: 'story_tag_search', :via => :post, :defaults => { :format => 'json' }
 		match "review/:id" => "stories#review", as: 'review'
+		match "stories/invite_new_user" => "stories#invite_new_user", as: 'story_invite_new_user', :via => :post, :defaults => { :format => 'json' }
+		match "stories/invite_existing_user" => "stories#invite_existing_user", as: 'story_invite_existing_user', :via => :post, :defaults => { :format => 'json' }
+
 		resources :stories do	
 
 			member do
@@ -75,6 +78,8 @@ BootstrapStarter::Application.routes.draw do
 		match "settings" => "settings#index", as: 'settings'
 		match "settings/remove_avatar" => "settings#remove_avatar", as: 'settings_remove_avatar'
 		match "settings/check_nickname" => "settings#check_nickname", as: 'settings_check_nickname', :via => :post
+		match "invitations" => "settings#invitations", as: 'invitations', :via => :get
+		match "invitations/accept/:key" => "settings#accept_invitation", as: 'accept_invitation', :via => :get
 
 		match "demo" => "root#demo", as: 'demo'
 		match "news" => "root#news", as: 'news'

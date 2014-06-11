@@ -92,6 +92,9 @@ en:
     contact:
       contact_form:
         subject: "Story Builder Contact Form"
+    notification:
+      story_collaborator_invitation:
+        subject: "You have been invited to collaborate on a story on Story Builder!"
   helpers:
     actions: Actions
     links:
@@ -221,6 +224,9 @@ en:
       nickname_url: 'Your url will be:'
       story_duplicate: This story url already exists. 
       story_url: 'Your url will be:'
+      invitation_accepted: "You have accepted the invitation to collaborate on '%{title}'"
+      invitation_accepted_already: "You have already accepted the invitation to collaborate on '%{title}'"
+      bad_invitation: Sorry, your invitation could not be found or the story has been deleted.
       one_section:
         content: Only one Item can be added to a Content section
         slideshow: Only one Item can be added to an Image Slideshow section
@@ -461,3 +467,7 @@ en:
       hint:
         about: Short summary about yourself.  This will be shown with the stories that you publish. 
         default_story_locale: Select the language you want to use by default when creating a new story.
+    invitations:
+      title: "Invitations for %{name}"
+      no_invitations: At this time there are no un-answered invitations on file for you.
+      accept_link: Collaborate on '%{title}'

@@ -11,8 +11,10 @@ class Message
 	attribute :bcc
 	attribute :locale, :default => I18n.locale
   attribute :message_type
+  attribute :story_title
+  attribute :url
   
-	attr_accessor :name, :email, :message, :subject, :bcc, :locale, :message_type
+	attr_accessor :name, :email, :message, :subject, :bcc, :locale, :message_type, :story_title, :url
   before_validation :strip_whitespace
   TYPE = {:bug => 1, :feature => 2, :feedback => 3}
 

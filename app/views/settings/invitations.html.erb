@@ -1,0 +1,17 @@
+<% title t('.title', :name => current_user.nickname) %>
+
+<% if @invitations.present? %>
+  <ul>
+    <% @invitations.each do |inv| %>
+      <li>
+        <%= link_to t('.accept_link', :title => inv.story.title), accept_invitation_url(:key => inv.key) %>
+      </li>
+    <% end %>
+  </ul>
+
+<% else %>
+  <p>
+    <%= t('.no_invitations') %>
+  </p>
+
+<% end %>

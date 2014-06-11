@@ -1,0 +1,12 @@
+  You have been invited to collaborate with <%= @message.name %> on a story titled <%= @message.story_title %>.  
+
+  If you would like to accept this invitation, please click here: <%= @message.url %>.
+
+  If you want to decline this invitation, no action is needed on your part.
+
+<% if @message.message.present? %>
+  Here is message written to you by <%= @message.name %>:
+
+  <%= @message.message %>
+<% end %>
+
