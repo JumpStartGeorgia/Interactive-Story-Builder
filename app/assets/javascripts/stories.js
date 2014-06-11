@@ -566,5 +566,5 @@ $(function() {
 
   $('.grid-wrapper').on("click",".pagination .disabled a, .pagination .active a", function(e) {
 	e.preventDefault();	
-});
+	});
 });

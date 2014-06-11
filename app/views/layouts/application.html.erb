@@ -81,8 +81,7 @@
     <%= yield(:footer) %>
     <div class="push"><!--//--></div>
 
-    <footer class="clear">
-      <div class="container">
+    <footer class="clear">      
   		<div id="left"><span class="copyright">&copy; <%= Time.now.year %> </span>
         <div class="social">                                      
         <a href='https://twitter.com/share?text=<%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name')}" :
@@ -122,8 +121,7 @@
   		<div id="right">
   			<%= link_to(image_tag("logojs.png"), "http://www.jumpstart.ge", :target => "_blank",
   					:title => t("app.common.js_link_title")	) %>
-  		</div>
-      </div>
+  		</div>      
     </footer>
 
     <!-- Javascripts

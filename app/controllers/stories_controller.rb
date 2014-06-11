@@ -12,7 +12,7 @@ class StoriesController < ApplicationController
     #@usemap = true 
     @css.push("filter.css", "pagination.css")
     @js.push("magneto.js", "filter.js")
-    @stories =  process_filter_querystring(Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => 9))           
+    @stories =  process_filter_querystring(Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => per_page))           
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render json: @stories }

@@ -1,104 +1,105 @@
 <div class="grid-wrapper">
-<div class="grid col-3">      
-  <% if @stories.blank? %>
-    <p>
-      <%= t('.no_stories') %>  
-    </p>
-  <% else %>
+  <div class="grid col-3">      
+    <% if @stories.blank? %>
+      <p>
+        <%= t('.no_stories') %>  
+      </p>
+    <% else %>
 
-    <% @stories.each_with_index do |story,s_i| %>       
-        <% 
-          title = story.title.dup
-          if story.about.present?
-            title << ' - '
-            title << strip_tags(story.about)
-          end
-        %>
-        <div class="col n-4">                   
-            <div class="story-thumbnail">
-              <% if @editable %>
+      <% @stories.each_with_index do |story,s_i| %>       
+          <% 
+            title = story.title.dup
+            if story.about.present?
+              title << ' - '
+              title << strip_tags(story.about)
+            end
+          %>
+          <div class="col n-4">                   
+              <div class="story-thumbnail">
+                <% if @editable %>
 
-                <%= link_to preview_story_path(story), :title => title do %>
-                  <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459', :alt => title %>              
-                <% end %>
-                <div class="story-edit">                   
-                  <div class="story-edit-menu">
-                  <ul class="nav">
-                  <li>
-                   <button type="button"  class="btn btn-warning dropdown-toggle" data-toggle="dropdown"> 
-                    <i class="glyphicon glyphicon-pencil" ></i>
-                  </button>                   
-                    <ul class="dropdown-menu pull-right">
-                        <li>                            
-                          <a href="#" id='btnPublish' <%= 'class="disabled"' if !story.published %> data-link='<%= publish_story_path(story) %>'>
-                            <i class="glyphicon glyphicon-globe" ></i><span><%= story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %></span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#" id='btnPreview' title="<%= t('app.buttons.preview') %>" data-link='<%= preview_story_path(story) %>'>
-                            <i class="glyphicon glyphicon-eye-open" ></i><%= t('app.buttons.preview') %>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#" id='btnReviewer' class="<%= story.published ? 'disabled' : ''%>" title="<%= story.published ? t('stories.index.title.noreview') : t('stories.index.title.review') %>" data-link='<%=  reviewer_key_story_path(story) %>'>
-                            <i class="glyphicon glyphicon-share" ></i><%= story.published ? t('stories.index.link.noreview') : t('.link.review') %>
-                          </a>                                                
-                        </li>
-                        <li>
-                          <%= link_to clone_story_path(story) ,  title: t('stories.index.title.clone') do %>
-                            <i class="glyphicon glyphicon-camera"></i><%=t('stories.index.link.clone')%>
-                          <% end %> 
-                        </li>                        
-                        <li>  
-                          <%= link_to export_story_path(story) ,  title: t('stories.index.title.export') do %>
-                            <i class="glyphicon glyphicon-download"></i><%=t('.link.export')%>
-                          <% end %>
-                        </li>                        
-                        <li>
-                            <%= link_to edit_story_path(story) do %>                            
-                              <i class="glyphicon glyphicon-info-sign"></i><%=t('helpers.links.edit_story')%>
+                  <%= link_to preview_story_path(story), :title => title do %>
+                    <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459', :alt => title %>              
+                  <% end %>
+                  <div class="story-edit">                   
+                    <div class="story-edit-menu">
+                    <ul class="nav">
+                    <li>
+                     <button type="button"  class="btn btn-warning dropdown-toggle" data-toggle="dropdown"> 
+                      <i class="glyphicon glyphicon-pencil" ></i>
+                    </button>                   
+                      <ul class="dropdown-menu pull-right">
+                          <li>                            
+                            <a href="#" id='btnPublish' <%= 'class="disabled"' if !story.published %> data-link='<%= publish_story_path(story) %>'>
+                              <i class="glyphicon glyphicon-globe" ></i><span><%= story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %></span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" id='btnPreview' title="<%= t('app.buttons.preview') %>" data-link='<%= preview_story_path(story) %>'>
+                              <i class="glyphicon glyphicon-eye-open" ></i><%= t('app.buttons.preview') %>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" id='btnReviewer' class="<%= story.published ? 'disabled' : ''%>" title="<%= story.published ? t('stories.index.title.noreview') : t('stories.index.title.review') %>" data-link='<%=  reviewer_key_story_path(story) %>'>
+                              <i class="glyphicon glyphicon-share" ></i><%= story.published ? t('stories.index.link.noreview') : t('.link.review') %>
+                            </a>                                                
+                          </li>
+                          <li>
+                            <%= link_to clone_story_path(story) ,  title: t('stories.index.title.clone') do %>
+                              <i class="glyphicon glyphicon-camera"></i><%=t('stories.index.link.clone')%>
+                            <% end %> 
+                          </li>                        
+                          <li>  
+                            <%= link_to export_story_path(story) ,  title: t('stories.index.title.export') do %>
+                              <i class="glyphicon glyphicon-download"></i><%=t('.link.export')%>
                             <% end %>
-                        </li>
-                        <li>
-                          <%= link_to  sections_story_path(story) do %>
-                          <i class="glyphicon glyphicon-picture"></i><%=t('helpers.links.admin_story')%>
-                          <% end %>
-                        </li>
-                        <li>
-                          <%= link_to story, confirm: 'Are you sure?', method: :delete do %>
-                            <i class="glyphicon glyphicon-remove"></i><%=t('helpers.links.delete_story')%>
-                          <% end %>
-                        </li>
-                    </ul>
-                    </li>
-                    </ul>
-                  </div>
-                </div>  
-              <% else %>
-                <%= link_to storyteller_show_path(story.permalink), :title => title do %>
-                  <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459', :alt => title %>
-                  <div class="story-link"></div>
+                          </li>                        
+                          <li>
+                              <%= link_to edit_story_path(story) do %>                            
+                                <i class="glyphicon glyphicon-info-sign"></i><%=t('helpers.links.edit_story')%>
+                              <% end %>
+                          </li>
+                          <li>
+                            <%= link_to  sections_story_path(story) do %>
+                            <i class="glyphicon glyphicon-picture"></i><%=t('helpers.links.admin_story')%>
+                            <% end %>
+                          </li>
+                          <li>
+                            <%= link_to story, confirm: 'Are you sure?', method: :delete do %>
+                              <i class="glyphicon glyphicon-remove"></i><%=t('helpers.links.delete_story')%>
+                            <% end %>
+                          </li>
+                      </ul>
+                      </li>
+                      </ul>
+                    </div>
+                  </div>  
+                <% else %>
+                  <%= link_to storyteller_show_path(story.permalink), :title => title do %>
+                    <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459' %>                
+                  <% end %>
                 <% end %>
-              <% end %>
-            </div>
-            <div class='story-info'>   
-             <div class="story-likes">
-                 <%= content_tag(:span, story.likes, :class => "n#{story.likes.to_s.size}" ) %>
-            </div>                 
-            <div class="story-caption">
-              <%= link_to truncate(story.title, length: 45, separator: ' '), @editable ?  preview_story_path(story) : storyteller_show_path(story.permalink), :title => title %>
-            </div>                   
-            <div class="story-author">
-                <%= link_to story.user.nickname, author_path(story.user.permalink), :title => story.user.nickname, :class => 'author' %>
-            </div>
+                <div class="story-link"></div>
+              </div>
+              <div class='story-info'>   
+               <div class="story-likes">
+                   <%= content_tag(:span, story.likes, :class => "n#{story.likes.to_s.size}" ) %>
+              </div>                 
+              <div class="story-caption">
+                <%= link_to truncate(story.title, length: 45, separator: ' '), @editable ?  preview_story_path(story) : storyteller_show_path(story.permalink), :title => title %>
+              </div>                   
+              <div class="story-author">
+                  <%= link_to story.user.nickname, author_path(story.user.permalink), :title => story.user.nickname, :class => 'author' %>
+              </div>
 
-            <div class="separator"></div>
-            <div class="story-publish"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>              
-          </div>
-        </div>  
+              <div class="separator"></div>
+              <div class="story-publish"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>              
+            </div>
+          </div>  
+      <% end %>
     <% end %>
-  <% end %>
-</div> 
+  </div> 
+  <%= page_navigation_links @stories %>   
 </div>                             
-<%= page_navigation_links @stories %>   
+
 
