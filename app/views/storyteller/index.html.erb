@@ -34,6 +34,547 @@
       <%= render partial: "storyteller/template/#{@template}/content"%>   
     </div>
     
+    <div class="modal-wrapper">
+ 
+     <div class="modal-window">
+     <div class="story-info-header">
+        <div class="story-info-close">
+           <img src='/assets/close_dark.png' style="width: 16px;height: 16px;"/> 
+        </div>
+      </div>
+    <div id='story-info'>
+
+   <div class="story-info-top">
+       <div class="story-title">          
+        <div class="data-block">
+     
+          <div class="nav-title"><%= @story.title %></div>
+         <div class="social">                                      
+          <img src="/assets/fb_.png" style="width:33px; height:33px;"/>
+          <img src="/assets/twitter_.png"  style="width:33px; height:33px;"/>
+          <img src="/assets/mail_.png"  style="width:33px; height:33px;"/>
+        </div>     
+         
+          <div class="clear"> 
+            <div class="story-thumbnail"><%= image_tag @story.show_asset.asset.url(:thumbnail), :height => '185', :width => '259', :align => 'left', :alt =>  @story.title %>
+                  <%= @story.about.html_safe  if @story.about.present? %> </div>
+     
+          </div>
+
+  </div> 
+   </div> 
+          <div class="profile-data">
+            <div class="profile-logo"><%= image_tag @story.user.avatar_url(:'168x168'),:size=>"168x168", align:'left' %></div>
+            <div class="profile-info">
+              <div class="profile-nickname"><%= "#{@story.user.nickname}" %></div>
+              <div class="profile-about"><%= @story.user.about.html_safe if @story.user.about.present? %></div>          
+            </div>   
+          </div> 
+
+         
+
+           
+      </div>
+<div class="story-info-bottom">
+       <div class="story-chapters">
+        <div class="left-corner"></div>
+         <div class="data-block">   
+         <div class="story-test">                            
+                  <% markers = @story.sections.select{|t| (t.ok? && t.has_marker? == true) } %>      
+                  <% if markers.length > 1 %>    
+                    <div class="nav-chapters">     
+                     <% markers.each_with_index do |s,s_i| %>
+                      <a href="#<%= s_i+1 %>" class="navigation-section" ><%= "#{s_i+1}. #{s.title}" %></a>
+                     <% end %>          
+                    </div>
+                  <% end %>
+         </div>
+ <div class="story-test2">    
+            <div class="nav-categories">
+          <% 
+              colors = ["turquoise","green-sea","emerland","nephritis",
+              "peter-river","belize-hole","amethyst","wisteria",
+              "wet-asphalt","midnight-blue","sun-flower","orange",
+              "carrot","pumpkin","alizarin","pomegranate",
+              "clouds","silver","concrete","asbestos"]
+            @story.categories.each{|t| %>
+              <div class="color <%= colors.sample %>"><%= "#{t.name}" %></div>
+            <%}%>
+          </div>
+
+
+           <div class="nav-languages">
+              <div class="lang"><%= "#{ @story.language.name}" %></div>   
+          </div>  
+
+          <div class="nav-tags">
+            <% ["Boats","China","Fish"].each{|t| %>
+                <div class="tag"><%= "#{t}" %></div>
+              <%}%>              
+          </div> 
+      
+            </div>
+
+          <div class="comments">
+              <div id="disqus_thread"></div> 
+          </div>
+
+ </div>
+
+         <div class="right-corner"></div>
+      </div>
+</div>
+         
+        
+
+
+
+
+
+
+    </div>
+
+     <div class="story-info-footer">
+
+          <ul class="nav">
+          <li>
+            <%= link_to t('helpers.links.news'), news_path %>
+          </li>
+          <li>
+            <%= link_to t('helpers.links.todo_list'), todo_list_path %> 
+          </li>
+          <li>
+            <%= link_to t('helpers.links.feedback'), feedback_path %> 
+          </li>
+           <li>
+            <%= link_to t('helpers.links.about'), about_path %> 
+          </li>
+           <li>
+            <%= link_to t('helpers.links.demo'), demo_path %> 
+          </li>
+          <li>            
+            <%= link_to "GitHub", "https://github.com/JumpStartGeorgia/Interactive-Story-Builder.git" %>
+          </li>
+          
+      
+        </ul>
+
+      </div>
+      </div>
+      </div>
+      <div class="modal-bg">
+    </div>
+    <style>
+.modal-bg
+{
+  display:none;
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:100%;
+  background-color:rgba(0,0,0,0.6);  
+  opacity: 1;
+  z-index: 1031;
+}
+.navbar
+{
+    z-index: 1033;
+}
+.navbar-hover
+{
+  z-index:1032;
+}
+    .profile-data
+    {
+      float:right;
+    }
+.story-test
+{
+  float:left;
+  width:15%;
+}
+.story-test2
+{
+  float:left;
+  width:30%;
+}
+.story-info-top
+{  
+  min-width:100%;
+}
+.story-info-bottom
+{
+
+  clear:both;  
+  min-width:100%;
+}
+.story-info-right
+{
+  float:right;
+    max-width:40%;
+}
+
+    .story-thumbnail
+    {
+      clear:both;
+      width:100%;
+      height:100%;
+    }
+    .story-thumbnail img
+    {      
+      width:259px !important;
+      height:185px !important;
+    }
+    .social 
+    {
+      float:right;
+    }
+.nav-languages
+{
+  margin: 0px;
+  float:left;
+  padding-top: 20px;
+      clear: both;
+}
+    .nav-languages .lang
+       {
+            padding: 5px 10px;
+width: auto;
+   margin:3px;
+display: inline-block;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+background-color:#CFD9FC;
+
+}
+
+
+.nav-tags
+{
+
+  margin: 0px;
+
+  padding-top: 20px;
+  float:left;
+      clear: both;
+}
+
+    .nav-tags .tag
+       {
+            padding: 5px 10px;
+width: auto;
+   margin:3px;
+display: inline-block;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+background-color:#FCE2CF;
+
+}
+
+
+.nav-categories
+{
+  margin: 0px;
+  padding-top: 20px;
+  float:left;
+    clear: both;
+}
+    .nav-categories .color
+    {
+      margin:3px;
+      padding: 5px 10px;
+width: auto;
+display: inline-block;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+    }
+    .nav-title
+    {
+    font-family:  bandera-pro,dejavusans-el;
+font-size: 19px;
+color: #1a1a1a;
+margin: 0px;
+padding: 0px;
+/*padding-left: 10px;*/
+margin-bottom:20px;
+float:left;
+}
+    .nav-chapters a
+    {
+      display:inline-block;
+clear:both;
+      font-family:  georgia;
+font-size: 17px;
+color: #555;
+opacity: 1;
+}
+    }
+.nav-chapters 
+{
+  margin-left: 10px;
+  float:left;
+
+}
+  
+    .data-block
+    {
+      clear: both;
+      margin: 0px 20px;
+    }
+    .left-corner,.right-corner
+    {
+      height:16px;
+      width:16px;
+      border:none;
+      
+    }
+    .right-corner
+    {
+      clear:both;
+     float:right;
+     border-right:1px solid #bbb;
+     border-bottom:1px solid #bbb;
+    }
+    .left-corner
+    {
+          float:left;
+          clear:both;
+      border-left:1px solid #bbb;
+        border-top:1px solid #bbb;
+    }
+    .story-info-close
+    {
+      position: absolute;
+      right: 9px;
+      top: 9px;
+      cursor:pointer;
+      opacity:0.6;
+      padding:5px;
+/*      width: 40px;
+  height: 40px;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;    
+  box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  margin-top:5px;*/
+    }
+      .story-info-close:hover
+      {
+        opacity:1;
+      }
+    .story-info-header
+    {
+      height:40px;    
+      
+    }
+    .story-info-footer
+    {
+      height: 48px;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      width: 100%;
+      margin:0px auto;
+      border-top: 1px solid #bbb;
+      background-image:url("/assets/logo-wheel.png");
+      background-position: 105% -17%;
+      background-repeat: no-repeat;
+    }
+
+
+    
+/*    .nav-center
+    {
+      margin: 0px auto;
+      font-size: 12px;
+      width: 40%;
+      text-align: center;      
+    }*/
+         .story-info-footer ul
+    {
+      float:right;
+      padding-right: 30px;
+    }    
+    .modal-wrapper
+    {
+      display:none;
+      position: fixed;
+      background-color: #f8f8f8;
+      z-index: 999999;   
+      margin: auto;  
+      border:1px solid #bbb;
+
+
+    }
+    .story-title img
+    {
+      padding-right:10px; 
+      padding-bottom:10px;
+    }
+    .story-title
+    {
+      width:50%;  
+      float:left;
+    }
+    .test
+    {
+      height:100%;
+      position:relative;
+    }
+    .social
+    {    
+      float:right;
+    }
+    #story-info
+    {     
+      height:auto;     
+
+      margin-top:20px;
+      background-color: #f8f8f8;
+      z-index: 999999;   
+      margin: auto;  
+      overflow-x:hidden;    
+      overflow-y:scroll;  
+      position:absolute;       
+      top:40px;
+      bottom:48px;
+      left:0px;
+      right:0px;
+      clear:both;
+    }
+ 
+    .story-block
+    {      
+      min-width: 10%;
+      /*height:40%;*/
+      margin-left: 1.5%;
+      /*margin-top:2.5%;*/
+      float:left;
+      position:relative;    
+
+    }
+    .author-info
+    {   
+     min-width: 15%;
+      max-width: 35%;         
+      float:right;  
+      margin-right: 2.5%;
+    }
+.nav-user
+{
+  
+float: left;
+}
+    .comments
+    {
+   
+      width: 50%;
+      /*height:40%;*/      
+      margin-right: 2.5%;
+      float:right;
+      
+    }
+    .story-chapters
+    {
+    width:95%;
+      margin-left: 2.5%;float:left;  
+      clear:both;
+      margin-bottom:20px;                
+    }
+  .footer-block
+    {
+      position:absolute;
+      bottom:-100px;
+    }
+
+  #story-info::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #f8f8f8;
+}
+
+        #story-info::-webkit-scrollbar
+{
+  width: 12px;
+  background-color: #f8f8f8;
+}
+
+  #story-info::-webkit-scrollbar-thumb
+{
+  background-color: #878787;  
+}
+
+
+.color.turquoise {
+  background: #1ABC9C;
+}
+.color.green-sea {
+  background: #16A085;
+}
+.color.emerland {
+  background: #2ECC71;
+}
+.color.nephritis {
+  background: #27AE60;
+}
+.color.peter-river {
+  background: #3498DB;
+}
+.color.belize-hole {
+  background: #2980B9;
+}
+.color.amethyst {
+  background: #9B59B6;
+}
+.color.wisteria {
+  background: #8E44AD;
+}
+.color.wet-asphalt {
+  background: #34495E;
+}
+.color.midnight-blue {
+  background: #2C3E50;
+}
+.color.sun-flower {
+  background: #F1C40F;
+}
+.color.orange {
+  background: #F39C12;
+}
+.color.carrot {
+  background: #E67E22;
+}
+.color.pumpkin {
+  background: #D35400;
+}
+.color.alizarin {
+  background: #E74C3C;
+}
+.color.pomegranate {
+  background: #C0392B;
+}
+.color.clouds {
+  background: #ECF0F1;
+  color: #bdc3c7;
+}
+.color.silver {
+  background: #BDC3C7;
+}
+.color.concrete {
+  background: #95A5A6;
+}
+.color.asbestos {
+  background: #7F8C8D;
+}
+    </style>
+
+
       <% if !@export %>
 
         <div class="modal fade modal-comments" tabindex="-1" role="dialog" aria-hidden="true">

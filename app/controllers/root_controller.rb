@@ -1,17 +1,39 @@
 class RootController < ApplicationController    
-    before_filter :asset_filter
-
+    before_filter :asset_filter    
   def index   
     
     @js.push("magneto.js","filter.js")
     @css.push("filter.css", "pagination.css")
 
-    @stories = process_filter_querystring(Story.is_published_home_page.paginate(:page => params[:page], :per_page => 6))      
+    @stories = process_filter_querystring(Story.is_published_home_page.paginate(:page => params[:page], :per_page => per_page))      
 
 
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render json: @stories }
+    end
+  end
+
+  def author   
+    
+
+    @author = User.find_by_permalink(params[:user_id])
+
+    if @author.present?
+      @js.push("magneto.js","filter.js", "stories.js")
+      @css.push("filter.css", "pagination.css", "stories.css")
+      @stories = process_filter_querystring(Story.stories_by_author(@author.id).paginate(:page => params[:page], :per_page => per_page))      
+      @editable = (user_signed_in? && current_user.id == @author.id)
+      if(@editable)        
+        @js.push("jquery.reveal.js")
+        @css.push("reveal.css")
+      end
+      respond_to do |format|     
+        format.html
+        format.js
+      end    
+    else
+      redirect_to root_path, :notice => t('app.msgs.does_not_exist')
     end
   end
 

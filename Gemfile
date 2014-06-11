@@ -21,7 +21,7 @@ gem "formtastic-bootstrap", :git => "https://github.com/mjbellantoni/formtastic-
 #gem "nested_form", "~> 0.1.1", :git => "https://github.com/davidray/nested_form.git" # easily build nested model forms with ajax links
 gem 'globalize', '~> 3.1.0' # internationalization
 gem 'psych', '~> 2.0.5' # yaml parser - default psych in rails has issues
-gem "will_paginate", "~> 3.0.3" # add paging to long lists
+gem "will_paginate", "~> 3.0.5" # add paging to long lists
 #gem "kaminari", "~> 0.15.1" # paging
 gem 'gon', '~> 5.0.4' # push data into js
 gem "dynamic_form", "~> 1.1.4" # to see form error messages

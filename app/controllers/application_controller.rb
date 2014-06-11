@@ -2,6 +2,9 @@ class ApplicationController < ActionController::Base
 	require 'will_paginate/array'
   	protect_from_forgery
 
+
+  PER_PAGE_COUNT = 3
+
 	before_filter :set_locale
 	before_filter :is_browser_supported?
 	before_filter :preload_global_variables
@@ -246,7 +249,10 @@ class ApplicationController < ActionController::Base
 
       flash.discard # don't want the flash to appear when you reload page
     end
- 
+  def per_page
+    return PER_PAGE_COUNT
+  end
+
 private
 
 	def flash_message

@@ -1,0 +1,28 @@
+  <% content_for(:header) { %>
+   <header class="header">   
+     <div class="profile-data">
+          <div class="profile-logo"><%= image_tag @author.avatar_url(:'168x168'),:size=>"168x168" %></div>
+          <div class="profile-info">
+            <div class="profile-nickname"><%= "#{@author.nickname}" %></div>
+            <div class="profile-about"><%= @author.about.html_safe if @author.about.present? %></div>          
+          </div>   
+      </div>       
+  </header>  
+<% } %>
+
+  <%= render partial: "layouts/filter_bar" %> 
+  <%= render partial: "layouts/grid" %>    
+
+<% if @editable %>
+	<% content_for(:footer) { %>
+	   <div id="previewStory" class="reveal-modal">     
+	      <div class='modal-data'></div>
+	      <a class="close-reveal-modal">&#215;</a>
+	  </div>
+	  <div id="reviewerKey" class="reveal-modal" style='height:50%;width:50%;top:35px;' >     
+	      <div class='modal-data'></div>
+	      <a class="close-reveal-modal">&#215;</a>
+	  </div>
+	<% } %>
+<% end %>
+

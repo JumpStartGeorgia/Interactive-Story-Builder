@@ -56,9 +56,10 @@ class Story < ActiveRecord::Base
   scope :comments, order("comments_count desc, published_at desc")
 	scope :is_published, where(:published => true)
 	scope :is_published_home_page, where(:published => true, :publish_home_page => true)
-  scope :is_staff_pick, where(:staff_pick => true)
-  
-
+  scope :is_staff_pick, where(:staff_pick => true)  
+  scope :stories_by_author, -> (user_id) {
+    where(:user_id => user_id, :published => true).recent
+  }
 
   DEMO_ID = 2
 

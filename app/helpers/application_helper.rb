@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   def title(page_title)
     content_for(:title) { page_title }
   end
@@ -31,7 +32,6 @@ module ApplicationHelper
 	def full_url(path)
 		"#{request.protocol}#{request.host_with_port}#{path}"
 	end
-  
   
  def link_to_remove_fields(name, f)
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)", :class=>"btn btn-small btn-danger")
@@ -78,7 +78,8 @@ module ApplicationHelper
 	  end
     return trans
 	end
-
+ 
+ 
 
 	# Based on https://gist.github.com/1182136
   class BootstrapLinkRenderer < ::WillPaginate::ActionView::LinkRenderer
@@ -88,8 +89,8 @@ module ApplicationHelper
       tag :div, tag(:ul, html,:class=>"pagination"), container_attributes
     end
 
-    def page_number(page)
-      tag :li, link(page, page, :rel => rel_value(page)), :class => ('active' if page == current_page)
+    def page_number(page)            
+        tag :li, link(page, page, :rel => rel_value(page)), :class => ('active' if page == current_page)
     end
 
     def gap

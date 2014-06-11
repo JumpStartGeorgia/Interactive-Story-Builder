@@ -329,4 +329,4 @@ DEPENDENCIES
   unicorn (~> 4.8.3)
   unidecoder (~> 1.1.2)
   useragent!
-  will_paginate (~> 3.0.3)
+  will_paginate (~> 3.0.5)
