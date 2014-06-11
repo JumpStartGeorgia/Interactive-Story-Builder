@@ -18,6 +18,7 @@ class StoriesController < ApplicationController
       @js.push("jquery.reveal.js","modalos.js")
       @css.push("reveal.css","modalos.css")
     end
+
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render json: @stories }
@@ -613,26 +614,50 @@ class StoriesController < ApplicationController
   
   
   # invite an new user to be a collaborator on a story
-  # required params: story_id, email, 
-  # optional params: message
-  def invite_new_user
-    email_sent = send_invitation
+  def invite_collaborators
+    story = Story.find_by_id(params[:id])
+		has_errors = false
+
+    if story.present?
+      Invitation.transaction do
+        # send invitation for each existing user
+        if params[:user_ids].present?      
+          user_ids = params[:user_ids].split(',')
+          if user_ids.present?
+            user_ids.each do |user_id|
+              Rails.logger.debug "_______________user id = #{user_id}"
+              user = User.find_by_id(user_id)
+              if !user.present? || !send_invitation(story, user.id, user.email, params[:message])
+      		      raise ActiveRecord::Rollback
+      		      has_errors = true
+      		      break
+              end
+            end
+          end
+        end
+        
+        # send invitation for new users
+        if !has_errors && params[:emails].present?      
+          emails = params[:emails].split(',')
+          if emails.present?
+            emails.each do |email|          
+              Rails.logger.debug "_____________email = #{email}"
+              if !send_invitation(story, nil, email, params[:message])
+      		      has_errors = true
+      		      raise ActiveRecord::Rollback
+      		      break
+    		      end
+            end
+          end
+        end
+      end
+    end
       
     respond_to do |format|
-      format.json { render json: {email_sent: email_sent} }
+      format.json { render json: {emails_sent: !has_errors} }
     end
   end
   
-  # invite an user already in the system to be a collaborator on a story
-  # required params: story_id, user id, 
-  # optional params: message
-  def invite_existing_user
-    email_sent = send_invitation(true)
-      
-    respond_to do |format|
-      format.json { render json: {email_sent: email_sent} }
-    end
-  end
   
   
 private
@@ -660,36 +685,49 @@ private
     @js.push("stories.js", "jquery.reveal.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js")
   end 
   
-  def send_invitation(to_user_exists = false)
-    story = Story.find_by_id(params[:id])
-    user = User.find_by_id(params[:user_id]) if to_user_exists
+  def send_invitation(story, user_id=nil, email=nil, msg=nil)
 		email_sent = false
 
-    if story.present? && (to_user_exists && user.present?)
+    if story.present? && (user_id.present? || email.present?)
+      # see if invitation already exists
+      existing_inv = Invitation.where(:story_id => story.id, :to_email => email)
+      if existing_inv.present?
+        Rails.logger.debug "@@@@@ invitation already exists, ignoring"
+        # already sent, so ignore
+        return true
+      end
+      
+      # save the invitation
       inv = Invitation.new
       inv.story_id = story.id
       inv.from_user_id = current_user.id
-      if to_user_exists
-        inv.to_user_id = user.id
-        inv.to_email = user.email
-      else
-        inv.to_email = params[:email]
-      end
-      inv.save
-      
-	    message = Message.new
-	    message.locale = I18n.locale
-      message.story_title = story.title
-      message.user = current_user.nickname
-      message.email = inv.to_email
-      message.url = accept_invitation_url(:locale => message.locale, :key => inv.key)
-      message.message = params[:message] if params[:message].present?
+      inv.to_user_id = user_id
+      inv.to_email = email
 
-	    if message.valid?
-	      # send message
-			  NotificationMailer.story_collaborator_invitation(message).deliver
-			  email_sent = true
-	    end
+      if inv.save
+        Rails.logger.debug "+++ invitation saved, sending message"
+        # create the message        
+	      message = Message.new
+	      message.mailer_type = Message::MAILER_TYPE[:notification]
+	      message.locale = I18n.locale
+        message.story_title = story.title
+        message.from_user = current_user.nickname
+        message.email = email
+        message.url = accept_invitation_url(:locale => message.locale, :key => inv.key)
+        message.message = msg if msg.present?
+
+        Rails.logger.debug "======= message = #{message.inspect}"
+
+	      if message.valid?
+	        # send message
+			    NotificationMailer.story_collaborator_invitation(message).deliver
+			    email_sent = true
+		    else
+          Rails.logger.debug "========= message error = #{message.errors.full_messages}"
+	      end
+      else
+        Rails.logger.debug "========= inv error = #{inv.errors.full_messages}"
+      end
     end
     
     return email_sent

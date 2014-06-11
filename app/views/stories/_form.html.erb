@@ -67,3 +67,44 @@
     <%= f.submit nil, :class => 'btn btn-default', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>      
   </div> 
 <% end %>
+
+
+<hr />
+
+<h2>Story Collaborators</h2>
+<p>
+  A story collaborator is someone that has access to edit this story.
+</p>
+<h3>Current Collaborators</h3>
+<% if @story.users.present? %>
+  <ul>
+    <% @story.users.each do |user| %>
+      <li style="display:inline-block; margin-right: 5px;">
+        <%= image_tag user.avatar_url(:'50x50'),:size=>"50x50", :title => user.nickname %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+<h3>Add Collaborators</h3>
+<%= form_tag story_invite_collaborators_path, method: :post, :remote => true  do %>
+  <%= hidden_field_tag 'id', params[:id] %>
+
+  <div class="form-group">
+    <label for="user_ids">User Ids</label>
+    <%= text_field_tag "user_ids", '', class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <label for="emails">Emails</label>
+    <%= text_field_tag "emails", '', class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <label for="message">Message</label>
+    <%= text_area_tag "message", '', rows: 5, class: 'form-control' %>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag nil, class: 'btn btn-primary' %> 
+    <%= button_tag t('helpers.links.reset'), type: 'reset', class: 'btn btn-warning' %> 
+  </div>
+
+<% end %>

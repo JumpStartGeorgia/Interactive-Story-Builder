@@ -25,8 +25,7 @@ BootstrapStarter::Application.routes.draw do
 		match "stories/check_permalink" => "stories#check_permalink", as: 'story_check_permalink', :via => :post
 		match "stories/tag_search" => "stories#tag_search", as: 'story_tag_search', :via => :post, :defaults => { :format => 'json' }
 		match "review/:id" => "stories#review", as: 'review'
-		match "stories/invite_new_user" => "stories#invite_new_user", as: 'story_invite_new_user', :via => :post, :defaults => { :format => 'json' }
-		match "stories/invite_existing_user" => "stories#invite_existing_user", as: 'story_invite_existing_user', :via => :post, :defaults => { :format => 'json' }
+		match "stories/invite_collaborators" => "stories#invite_collaborators", as: 'story_invite_collaborators', :via => :post, :defaults => { :format => 'json' }
 
 		resources :stories do	
 

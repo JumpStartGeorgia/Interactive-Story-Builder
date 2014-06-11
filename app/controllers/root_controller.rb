@@ -80,7 +80,7 @@ class RootController < ApplicationController
   
   def feedback
     @css.push("news.css","navbar.css")   
-    @message = Message.new
+    @message = Message.new(:mailer_type => Message::MAILER_TYPE[:feedback])
 
     @message_types = []
     Message::TYPE.each{|k,v| @message_types << [I18n.t("message_types.#{k}"), v]} 

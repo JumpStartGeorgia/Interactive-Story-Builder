@@ -13,16 +13,23 @@ class Message
   attribute :message_type
   attribute :story_title
   attribute :url
+  attribute :from_user
+  attribute :mailer_type
   
-	attr_accessor :name, :email, :message, :subject, :bcc, :locale, :message_type, :story_title, :url
+	attr_accessor :name, :email, :message, :subject, :bcc, :locale, :message_type, :story_title, :url, :from_user, :mailer_type
   before_validation :strip_whitespace
   TYPE = {:bug => 1, :feature => 2, :feedback => 3}
+  MAILER_TYPE = {:feedback => 1, :notification => 2}
 
 #  validates_presence_of :email, :message => I18n.t('activerecord.errors.models.message.attributes.email.blank')
   validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
-  validates_presence_of :message
+  validates_presence_of :message, :if => :is_feedback?
   validates_length_of :message, :maximum => 500
-  validates_presence_of :message_type
+  validates_presence_of :message_type, :if => :is_feedback?
+
+  def is_feedback?
+    self.mailer_type == MAILER_TYPE[:feedback]
+  end
 
   def get_type_name
     if self.message_type
@@ -35,8 +42,8 @@ class Message
   
   private
   def strip_whitespace 
-    name.strip!
-    email.strip!
+    name.strip! if name.present?
+    email.strip! if email.present?
   end
 
 end

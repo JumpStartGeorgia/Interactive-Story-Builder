@@ -104,7 +104,6 @@ module FormtasticBootstrap
           if(errors.present?)
            embed << errors
           end
-          Rails.logger.debug(embed)
           render_label? ? builder.label(input_name, label_text << embed.html_safe , label_html_options) : "".html_safe
         end
 
