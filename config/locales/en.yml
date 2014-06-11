@@ -95,6 +95,10 @@ en:
     notification:
       story_collaborator_invitation:
         subject: "You have been invited to collaborate on a story on Story Builder!"
+        line1: You have been invited to collaborate with %{name} on a story titled '%{title}'.  
+        line2: "If you would like to accept this invitation, please click here: %{url}."
+        line3: If you want to decline this invitation, no action is needed on your part.
+        line_msg: "Here is message written to you by %{name}:"
   helpers:
     actions: Actions
     links:

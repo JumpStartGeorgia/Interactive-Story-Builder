@@ -1,12 +1,12 @@
 <p>
-  You have been invited to collaborate with <%= @message.name %> on a story titled <%= @message.story_title %>.  
-  If you would like to accept this invitation, please click here: <%= @message.url %>.
-  If you want to decline this invitation, no action is needed on your part.
+  <%= t('mailer.notification.story_collaborator_invitation.line1', :locale => @message.locale, :name => @message.name, :title => @message.story_title) %>
+  <%= t('mailer.notification.story_collaborator_invitation.line2', :locale => @message.locale, :url => @message.url) %>
+  <%= t('mailer.notification.story_collaborator_invitation.line3' %>
 </p>
 
 <% if @message.message.present? %>
   <p>
-    Here is message written to you by <%= @message.name %>:
+    <%= t('mailer.notification.story_collaborator_invitation.line_msg', :locale => @message.locale, :name => @message.name) %>
   </p>
 
   <%= simple_format @message.message %>

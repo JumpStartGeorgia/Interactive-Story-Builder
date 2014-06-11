@@ -678,10 +678,11 @@ private
       inv.save
       
 	    message = Message.new
+	    message.locale = I18n.locale
       message.story_title = story.title
       message.user = current_user.nickname
       message.email = inv.to_email
-      message.url = accept_invitation_url(:locale => I18n.locale, :key => inv.key)
+      message.url = accept_invitation_url(:locale => message.locale, :key => inv.key)
       message.message = params[:message] if params[:message].present?
 
 	    if message.valid?
