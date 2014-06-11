@@ -1,3 +1,3 @@
 DetectLanguage.configure do |config|
-  config.api_key = "26cc87e81bf35e558fd0bc17bfe190ab"
+  config.api_key = ENV['DETECT_LANGUAGE_API_KEY']
 end
