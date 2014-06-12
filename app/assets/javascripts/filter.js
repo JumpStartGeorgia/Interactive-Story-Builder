@@ -152,7 +152,7 @@
               }
            },
            function(){
-            if($(this).find("input#q").val().length==0 && sa)
+            if(($(this).find("input#q").val() === undefined || $(this).find("input#q").val().length==0) && sa)
           {
                 $(".search-box input#q").trigger("blur");
                  $(".search-box").removeClass("active");  
@@ -187,3 +187,37 @@
           $(window).on('scroll',function(){navbarMagic(); });
       
       });
+
+var p=0;
+ function timeout_trigger() {
+  var matches = $('#showProgress').data('matches');
+
+  $('#showProgress').html('<div class="percent"></div><div id="slice"'+(p > 10?' class="gt50"':'')+'><div class="pie"></div>'+(p > 10 ?'<div class="pie fill"></div>':'')+'</div>');
+
+  var deg = 360/20*p;
+
+  $('#showProgress #slice .pie').css({
+  '-moz-transform':'rotate('+deg+'deg)',
+  '-webkit-transform':'rotate('+deg+'deg)',
+  '-o-transform':'rotate('+deg+'deg)',
+  'transform':'rotate('+deg+'deg)'
+  });  
+  if(p%((20/matches)>>0) == 0)
+    $('#showProgress .percent').text(((p/(20/matches))>>0));
+
+  if(p!=20) {
+  setTimeout('timeout_trigger()', 50);
+  }
+
+  p++;
+}
+
+      $(document).ready(function() {  
+
+     
+$(function(){
+timeout_trigger();
+});
+
+});
+

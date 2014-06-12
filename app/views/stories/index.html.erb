@@ -14,8 +14,8 @@
   </header>  
 <% } %>
 
-  <%= render partial: "layouts/filter_bar" %> 
-  <%= render partial: "layouts/grid" , locals:{:editable=>true}%>    
+  <%= render partial: "shared/filter" %> 
+  <%= render partial: "shared/grid" , locals:{:editable=>true}%>    
 
 <% content_for(:footer) { %>
 

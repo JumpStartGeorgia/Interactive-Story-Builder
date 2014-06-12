@@ -1,5 +1,4 @@
-   <div id="filter">
-      <div class="container">
+   <div id="filter">      
         <ul class="nav">
           <li>
             <%= link_to t('filters.staff_pick'), url_for(params.merge(:staff_pick => !@story_filter_staff_pick)),
@@ -54,7 +53,11 @@
             </ul>
           </li>
           <li id="filter_match">
-            <span><%= t('filters.matches') %>: <%= @stories.total_entries %></span>
+            <!-- <span><%= t('filters.matches') %>: <%= @stories.total_entries %></span> -->
+
+            <div style="width:40px;height:40px;">
+              <div class="cprogress" id="showProgress" data-matches="<%= @stories.total_entries %>"></div>
+            </div>
           </li>
           <li class="pull-right">
             <div class="search-label">
@@ -72,6 +75,5 @@
               </div>
             </div>
           </li>
-        </ul>
-      </div>
+        </ul>      
     </div>

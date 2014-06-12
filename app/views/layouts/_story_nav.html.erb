@@ -65,8 +65,7 @@
                 <% if locale != I18n.locale %>
                   <li><%= link_to t("app.language.#{locale}"), params.merge(:locale => locale) , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse", :class => "lang_switch" %></li>
                 <% end %>
-              <% end %>
-               <li>   <%= image_tag("slogo.png",:size=>"28x28", :class=>"story-menu") %></li>
+              <% end %>                             
             </ul>
           </div>
         </div>
@@ -89,7 +88,7 @@
           <div class="nav-collapse navbar-collapse nav-user pull-right" id="bs-example-navbar-collapse-1">
             <ul class="nav">         
     
-
+              <li><div id="modalAbout" data-modalos-id="modalos-about">About</div></li>
              
               <% if @story.present? && @story.sections.present? && showing_story %>
                 <li class="divider-vertical"></li>
@@ -111,53 +110,84 @@
         </div>
       </nav>
 
-      <style>
-      
-       .navbar-storybuilder
-      {
-        z-index:1031;
-      }
-      .story-nav
-      {
-        top:57px;
-        z-index:1030;
-      }
+
+    <div id="modalos-about" style="display:none;">
+        
+                 <div class="story-info-top">
+                     <div class="story-title">          
+                      <div class="data-block">
+                   
+                        <div class="nav-title"><%= @story.title %></div>
+                       <div class="social">                                      
+                        <img src="/assets/fb_.png" style="width:33px; height:33px;"/>
+                        <img src="/assets/twitter_.png"  style="width:33px; height:33px;"/>
+                        <img src="/assets/mail_.png"  style="width:33px; height:33px;"/>
+                      </div>     
+                       
+                        <div class="clear"> 
+                          <div class="story-thumbnail"><%= image_tag @story.show_asset.asset.url(:thumbnail), :height => '185', :width => '259', :align => 'left', :alt =>  @story.title %>
+                                <%= @story.about.html_safe  if @story.about.present? %> </div>
+                   
+                        </div>
+
+                      </div> 
+                 </div> 
+                  <div class="profile-data">
+                          <div class="profile-logo"><%= image_tag @story.user.avatar_url(:'168x168'),:size=>"168x168", align:'left' %></div>
+                          <div class="profile-info">
+                            <div class="profile-nickname"><%= "#{@story.user.nickname}" %></div>
+                            <div class="profile-about"><%= @story.user.about.html_safe if @story.user.about.present? %></div>          
+                          </div>   
+                        </div>    
+                  </div>
+              <div class="story-info-bottom">
+                     <div class="story-chapters">
+                      <div class="left-corner"></div>
+                       <div class="data-block">   
+                       <div class="story-test">                            
+                                <% markers = @story.sections.select{|t| (t.ok? && t.has_marker? == true) } %>      
+                                <% if markers.length > 1 %>    
+                                  <div class="nav-chapters">     
+                                   <% markers.each_with_index do |s,s_i| %>
+                                    <a href="#<%= s_i+1 %>" class="navigation-section" ><%= "#{s_i+1}. #{s.title}" %></a>
+                                   <% end %>          
+                                  </div>
+                                <% end %>
+                       </div>
+                      <div class="story-test2">    
+                          <div class="nav-categories">
+                        <% 
+                            colors = ["turquoise","green-sea","emerland","nephritis",
+                            "peter-river","belize-hole","amethyst","wisteria",
+                            "wet-asphalt","midnight-blue","sun-flower","orange",
+                            "carrot","pumpkin","alizarin","pomegranate",
+                            "clouds","silver","concrete","asbestos"]
+                          @story.categories.each{|t| %>
+                            <div class="color <%= colors.sample %>"><%= "#{t.name}" %></div>
+                          <%}%>
+                        </div>
 
 
-      @-webkit-keyframes pulse {
- 0% {
- -webkit-transform: rotateX(0deg);
-}
- 50% {
- -webkit-transform: rotateX(90deg);
-}
- 100% {
- -webkit-transform: rotateX(0deg);
-};
-}
+                         <div class="nav-languages">
+                            <div class="lang"><%= "#{ @story.language.name}" %></div>   
+                        </div>  
 
-@keyframes pulse {
- 0% {
- transform: rotateX(0deg);
-}
- 50% {
- transform: rotateX(90deg);
-}
- 100% {
-transform: rotateX(0deg);
-};
-}
+                        <div class="nav-tags">
+                          <% ["Boats","China","Fish"].each{|t| %>
+                              <div class="tag"><%= "#{t}" %></div>
+                            <%}%>              
+                        </div> 
+                    
+                          </div>
 
-.nav-scale {
-/*  background: red;
-  width: 90%;
-  height: 50%;*/
-  -webkit-animation: pulse 2s linear infinite;
-  animation: pulse 2s linear infinite;
-}
+                        <div class="comments">
+                            <div id="disqus_thread"></div> 
+                        </div>
 
-#test:hover {
-  -webkit-animation: none;
-  animation:none;
-}
-      </style>
+                    </div>
+
+                       <div class="right-corner"></div>
+                    </div>
+              </div>
+  
+    </div>

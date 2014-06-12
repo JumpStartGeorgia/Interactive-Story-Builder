@@ -81,11 +81,10 @@
                 <% end %>
                 <div class="story-link"></div>
               </div>
-              <div class='story-info'>   
-                             
+              <div class='story-info'>                               
               <div class="story-caption">
                 <%= link_to truncate(story.title, length: 45, separator: ' '), @editable ?  preview_story_path(story) : storyteller_show_path(story.permalink), :title => title %>
-              </div>  
+              </div> 
                <div class="story-likes">
                    <%= content_tag(:span, story.likes, :class => "n#{story.likes.to_s.size}" ) %>
               </div>                   

@@ -28,10 +28,10 @@
 //
 // Example:
 // @linkColor: #ff0000;
-
-//@container-desktop:((1473px + @grid-gutter-width));
+ //@grid-gutter-width:30px;
+//@container-desktop:((1452px + @grid-gutter-width));
 @body-bg:#f8f8f8;
-@container-large-desktop:((1473px + @grid-gutter-width));
+//@container-large-desktop:((1452px + @grid-gutter-width));
 @navbar-default-bg:transparent;
 @navbar-margin-bottom:0px;
 @nav-link-padding:2px 2px;
@@ -81,8 +81,7 @@
 	/*height:80px;
 	line-height:80px;*/
 	min-height:57px;
-	width:100%;
-	z-index:102;
+	width:100%;	
 	vertical-align: middle;
 }
 .nav > li > a:hover
@@ -108,13 +107,15 @@ html, body
 	height: auto !important;
 	height: 100%;
 	margin: 0px auto -155px;
+	padding: 60px 0px;	
+	max-width:1468px;	
 }
-
+/*
 #wrapper > .container {
-/*	padding: 18px 0px 0px 0px !important;*/
+	padding: 18px 0px 0px 0px !important;
 	padding: 60px 0px;	
 	overflow: auto;
-}
+}*/
 .container .row
 {
 	margin:0px;
@@ -138,10 +139,8 @@ html, body
 		margin: 0;
 	}
 }
-.container
-{
-	max-width: 1473px;	
-}
+
+
 .container > ul.nav  {
 	line-height: 20px;
 }

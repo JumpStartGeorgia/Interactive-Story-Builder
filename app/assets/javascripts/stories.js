@@ -546,25 +546,3 @@ function add_fields(link, association, content) {
 	$('#slideshowAssets').append(content.replace(regexp, new_id));
 }
 
-
-$(function() {
-  $(".grid-wrapper").on("click",".pagination li:not(.active,.disabled) a", function() {  	
-  	
-    $.getScript(this.href);
-    window.history.pushState({path:this.href},'',this.href);
-	$("html,body").stop().animate({
-	      scrollTop: magnetoHeights[1]
-	}, 1000);
-
-    return false;
-  });
-  // $("#products_search input").keyup(function() {
-  //   $.get($("#products_search").attr("action"), $("#products_search").serialize(), null, "script");
-  //   return false;
-  // });
-
-
-  $('.grid-wrapper').on("click",".pagination .disabled a, .pagination .active a", function(e) {
-	e.preventDefault();	
-	});
-});

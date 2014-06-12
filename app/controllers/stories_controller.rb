@@ -8,14 +8,15 @@ class StoriesController < ApplicationController
 
   # GET /stories
   # GET /stories.json
-  def index
-    #@usemap = true 
-    @css.push("filter.css", "pagination.css")
-    @js.push("magneto.js", "filter.js")
+  def index    
+    @css.push("filter.css", "grid.css")
+    @js.push("magneto.js","filter.js","grid.js")
+
     @stories =  process_filter_querystring(Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => per_page))           
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render json: @stories }
+      format.js { render 'shared/grid' }
     end
   end
 

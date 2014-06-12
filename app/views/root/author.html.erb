@@ -10,8 +10,8 @@
   </header>  
 <% } %>
 
-  <%= render partial: "layouts/filter_bar" %> 
-  <%= render partial: "layouts/grid" %>    
+  <%= render partial: "shared/filter" %> 
+  <%= render partial: "shared/grid" %>    
 
 <% if @editable %>
 	<% content_for(:footer) { %>

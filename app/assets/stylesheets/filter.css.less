@@ -3,7 +3,10 @@
   width:100%;
   margin:20px auto 20px auto;
   height:60px; /*56px*/
-
+  ul.nav
+  {
+    line-height:60px;
+  }
   .dropdown-menu
   {
     background-color: #fff;
@@ -24,6 +27,12 @@
     padding: 2px 2px;
     font-family: dejavusans-el;
     font-size: 18px;
+  }
+    #filter_match > div
+  {
+    position: relative;
+    margin: 10px;
+   
   }
   .search-wrapper
   {
@@ -114,6 +123,87 @@
     padding:5px 10px;
     margin-right:20px; 
     z-index:102;
+  }
+
+/* progress for matches */
+  .cprogress { 
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  text-align: -webkit-match-parent;
+  font-size: 40px;
+  cursor: default; 
+  } 
+  .cprogress:before { 
+  content: ''; 
+  display: block; 
+  position: absolute; 
+  width: 1em; 
+  height: 1em; 
+  -moz-border-radius: .5em; 
+  -webkit-border-radius: .5em; 
+  border-radius: .5em; 
+  opacity: .5; 
+  z-index: 0;
+  background: transparent;  
+  } 
+
+  .cprogress:after { 
+  content: ''; 
+  display: block; 
+  position: absolute; 
+  top: .1em; 
+  left: .1em; 
+  width: .8em; 
+  height: .8em; 
+  -moz-border-radius: .5em; 
+  -webkit-border-radius: .5em; 
+  border-radius: .5em; 
+  z-index: 1; 
+  } 
+
+  .cprogress>#slice.gt50 { 
+  clip: rect(auto,auto,auto,auto); 
+  } 
+
+  .cprogress>#slice { 
+  position: absolute; 
+  width: 1em; 
+  height: 1em; 
+  clip: rect(0px,1em,1em,0.5em); 
+  } 
+  .cprogress>#slice>.pie { 
+  position: absolute; 
+  border: .1em solid #878787; 
+  width: 40px; 
+  height: 40px; 
+  clip: rect(0em,0.5em,1em,0em); 
+  border-radius: .5em; 
+  } 
+
+
+  .cprogress>#slice>.pie.fill { 
+  -moz-transform: rotate(180deg)!important; 
+  -webkit-transform: rotate(180deg)!important; 
+  -o-transform: rotate(180deg)!important; 
+  transform: rotate(180deg)!important; 
+  } 
+
+  .percent {
+  
+  position: absolute;
+  text-align: center;
+  /*padding: 9px 9px;*/
+  /*width: 2.35em;*/
+  color:#555;
+  background: transparent;
+  border-radius: 2.35em;
+  font-weight: normal;
+  width: 40px;
+  line-height: 40px;
+  font-family: dejavusans-el;
+  font-size: 15px;
   }
 }
     

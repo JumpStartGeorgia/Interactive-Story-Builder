@@ -50,10 +50,7 @@
     <%= render partial: "layouts/nav_bar"%> 
     <%= yield(:header) %>
 		<div id="wrapper">
-		  <div class="container">
-		    <div class="content">
-		      <div class="row">
-		         <div class="col-md-12">
+	
 		         		<div class="flash-message">
 							<% flash.each do |key, msg| %>
 								<div class="alert <%= flash_translation(key) %> fade in">
@@ -73,10 +70,7 @@
 							<% end %> 
 
 	            <%= yield %>
-	          </div><!--/span-->
-		      </div><!--/row-->
-		    </div><!--/content-->
-		   </div> <!-- /container -->
+	
 		</div><!--/wrapper-->
     <%= yield(:footer) %>
     <div class="push"><!--//--></div>
