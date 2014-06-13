@@ -2,7 +2,7 @@
 <%= tinymce_assets %>
 <%= tinymce %>
 
-<%= semantic_form_for([:admin,@news], :html => { :class => 'form-horizontal' }) do |f| %>
+<%= semantic_form_for([:admin,@news]) do |f| %>
 	<%= f.error_messages %>
 
   <% create_sorted_translation_objects(@news.news_translations).each do |trans| %>

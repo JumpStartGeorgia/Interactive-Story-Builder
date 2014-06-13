@@ -33,10 +33,9 @@
     <div id='storyTeller'> 
       <%= render partial: "storyteller/template/#{@template}/content"%>   
     </div>
-
+  
       <% if !@export %>
-
-        <div class="modal fade modal-comments" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal fade modal-comments" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
@@ -62,17 +61,17 @@
                     })();
                     
                     var disqus_config = function() {
-	                    this.callbacks.onNewComment = [function(comment) { 
+                      this.callbacks.onNewComment = [function(comment) { 
                         // this function is in storyteller.js    
                         story_new_comment_callback('<%= url %>');
-	                    }];
+                      }];
                     };                    
                 </script>
               </div>
             </div>
           </div>
         </div>
-    
+     
       <%= javascript_include_tag  *(@js.present? ? ["application", @js].flatten : ["application"]), :media => "all" %>      
 
 		  <script type="text/javascript">

@@ -12,7 +12,7 @@
         <span class="icon-bar"></span>
       </button>
     </div>
-        <div class="pull-left nav-logo">
+        <div class="pull-left logo">
           <%= link_to(image_tag("logo.png",:size=>"182x29",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) , root_path(:locale => I18n.locale))%>          
         </div>
 
@@ -70,7 +70,7 @@
           </div>
         </div>
       </nav>
-   <nav class="navbar navbar-default navbar-static-top  story-nav">
+   <nav class="navbar navbar-default navbar-static-top navbar-story">
       <div class="container-fluid">
       <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -80,18 +80,22 @@
         <span class="icon-bar"></span>
       </button>
     </div>
-        <div class="pull-left nav-story-title">          
+        <div class="pull-left">          
+        <div class="title">
             <% if @story.present? && showing_story %>
               <%= link_to(@story.title, root_path(:locale => I18n.locale), :class=>"navigation-headline brand font" , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse")%>  
             <% end %>
+         </div>
+            <div class="nav-separator"></div>
+         <div class="about">     
+          <a id="modalAbout" data-modalos-id="modalos-about">About</a>
+          </div>
         </div>
-          <div class="nav-collapse navbar-collapse nav-user pull-right" id="bs-example-navbar-collapse-1">
-            <ul class="nav">         
-    
-              <li><div id="modalAbout" data-modalos-id="modalos-about">About</div></li>
-             
-              <% if @story.present? && @story.sections.present? && showing_story %>
-                <li class="divider-vertical"></li>
+        
+          <div class="nav-collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
+            <ul class="nav">                       
+              <li><a id="modalComment" data-modalos-id="disqus_thread">Comment</a></li>
+              <% if @story.present? && @story.sections.present? && showing_story %>                
                 
                 <li><a href="#" class="navigation-volume"><div class="navigation-icon"></div></a></li>             
                  <li>
@@ -109,10 +113,10 @@
           </div>
         </div>
       </nav>
-
+    
 
     <div id="modalos-about" style="display:none;">
-        
+
                  <div class="story-info-top">
                      <div class="story-title">          
                       <div class="data-block">
@@ -181,7 +185,7 @@
                           </div>
 
                         <div class="comments">
-                            <div id="disqus_thread"></div> 
+                         
                         </div>
 
                     </div>

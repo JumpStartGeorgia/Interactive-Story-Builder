@@ -80,7 +80,7 @@ $(document).ready(function(){
              if(sbn)
              {
             $(".navbar-storybuilder").css('z-index','1029').animate({height:'0px'},300);
-            $(".story-nav").animate({top:'0px'}, 400);
+            $(".navbar-story").animate({top:'0px'}, 400);
             sbn = false;
             }
           }
@@ -88,7 +88,7 @@ $(document).ready(function(){
                 if(!sbn)
              {
                 $(".navbar-storybuilder").animate({height:'57px','z-index':'1031'},300);
-                $(".story-nav").animate({top:'57px'}, 400);
+                $(".navbar-story").animate({top:'57px'}, 400);
                 sbn = true;                
               }
           }

@@ -15,10 +15,10 @@
  Listener for data-modalos-id attributes
 ----------------------------*/
 	
-	$('#modalAbout').on('click', function(e) {
+	$('#modalAbout, #modalComment').on('click', function(e) {
 		
 		var ml = $(this).attr('data-modalos-id');		
-		$('#'+ml).modalos({before_open:function(s){console.log(s);}});
+		$('#'+ml).modalos({fullscreen:true});
 
 		e.preventDefault();
 	});	
@@ -26,7 +26,7 @@
  Extend and Execute
 ----------------------------*/
 
-    $.fn.modalos = function(options) {d
+    $.fn.modalos = function(options) {
         
         var defaults = {  
 	    	animation: 'fade', //fade, fadeAndPop, none
@@ -38,7 +38,11 @@
 		    before_close: null, 
 		    after_close: null,
 		    topOffset: 60,
-		    margins: 40
+		    margins: 40,
+		    paddings: 20,
+		    fullscreen: false,
+		    width:'962',
+		    height: 'auto'//621px'
     	}; 
     	
         //Extend dem' options
@@ -52,7 +56,8 @@
 
         	var modal = $(this),
         		wrapper = $('.modalos-wrapper'), 
-          		bg = $('.m-bg'),  
+          		bg = $('.modalos-bg'), 
+          		keeper = $('.modalos-keeper'), 
           		locked = false
           	 				
 /*---------------------------
@@ -60,7 +65,6 @@
 ----------------------------*/
 			if(wrapper.length == 0) {
 				wrapper = $("<div class='modalos-wrapper'> \
-      								<div class='m-window'> \
 	      								<div class='m-header'> \
 	      									<div class='m-close'> \
 	      										<img src='/assets/close_dark.png' style='width: 16px;height: 16px;'> \
@@ -68,13 +72,15 @@
 	      								</div> \
       									<div class='m-content'>	\
 	      								</div> \
-      								</div> \
 								</div>").appendTo('body');			
 			}	
 			if(bg.length == 0) {
-				bg = $('<div class="m-bg" />').appendTo('body');
-			}	    
-     
+				bg = $('<div class="modalos-bg" />').appendTo('body');
+			}
+			if(keeper.length == 0) {
+				keeper = $('<div class="modalos-keeper"/>').appendTo('body');
+			}	 	    
+     		wrapper.find('.m-content').css("padding",options.paddings);
 /*---------------------------
  Open & Close Animations
 ----------------------------*/
@@ -90,15 +96,10 @@
 				if(!locked) {
 					lock();
 				 	lock_scroll();
-
-			      	 $(wrapper).height($(window).height() - options.topOffset - options.margins);
-			    	 $(wrapper).width($(window).width() - options.margins);
-				     $(wrapper).css("top",options.margins/2 + options.topOffset);
-				     $(wrapper).css("left",options.margins/2);
- 					 $(wrapper).find('.m-content').html($(modal.get(0).outerHTML).css("display","block"));
-
-			  
-
+					render();				
+				     modal.detach();
+ 					 $(wrapper).find('.m-content').html($(modal).css("display","block"));
+			 
 					// if(options.animation == "fadeAndPop") {
 
 					// 	modal.css({'top': $(document).scrollTop()-topOffset, 'opacity' : 0, 'display' : 'block'});
@@ -128,7 +129,7 @@
 			//Closing Animation
 			modal.bind('modalos:close', function () {
 				console.log('modalos:close');
-
+				keeper.append(modal);
 
 			  if(!locked) {
 					lock();
@@ -168,10 +169,12 @@
 			});     
 
    			modal.bind('modalos:resize', function () {	
-		      	 $(wrapper).height($(window).height() - options.topOffset - options.margins);
-		    	 $(wrapper).width($(window).width() - options.margins);
-			     $(wrapper).css("top",options.margins/2 + options.topOffset);
-			     $(wrapper).css("left",options.margins/2);		         
+   				render();
+		      // 	 $(wrapper).height($(window).height() - options.topOffset - options.margins);
+		    	 // $(wrapper).width($(window).width() - options.margins);
+			     // $(wrapper).css("top",options.margins/2 + options.topOffset);
+			     // $(wrapper).css("left",options.margins/2);		         
+
 				 //modal.css({'left': ($(window).width()-modal.outerWidth(true))/2 + 'px'});						
 			});     
 /*---------------------------
@@ -214,9 +217,38 @@
 			function unlock_scroll() {
 				if(options.lockscroll) $('body').css("overflow","visible");			
 			}
+			function render()
+			{
+		 		var h = $(window).height();
+		 		var w = $(window).width();
+			      	 
+		      	 if(options.fullscreen)
+		    	 {
+		    	 	$(wrapper).height(h - options.topOffset - options.margins);
+		    	 	$(wrapper).find('.m-content').css("max-height",h - options.topOffset - options.margins - 40).removeClass("fluid");
+	    	 		$(wrapper).width(w - options.margins);
+	 		        $(wrapper).css("top",options.margins/2 + options.topOffset);
+			     	$(wrapper).css("left",options.margins/2);			    	 
+	    	 	 }
+		    	 else
+		    	 {
+		    	 	$(wrapper).height(options.height);
+		    	 	$(wrapper).find('.m-content').css("max-height",h - options.topOffset - options.margins - 40).addClass("fluid");
+		    	 	$(wrapper).width(options.width);
+		    	 	if(options.height + options.topOffset > h)
+		    	 	{
+	    	 			$(wrapper).height(h - options.topOffset - options.margins);
+		    	 	}
+		    	 	else
+		    	 	{
+	 		        	$(wrapper).css("top",(h- options.height)/2 > options.topOffset ? (h- options.height)/2 : options.topOffset);
+	 		        }
+			     	$(wrapper).css("left",(w - options.width)/2);		 
+		    	 }
+			}
 				
 			
-        });//each call
+        });//each call			
     }
 })(jQuery);
         

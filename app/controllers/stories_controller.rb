@@ -13,6 +13,12 @@ class StoriesController < ApplicationController
     @js.push("magneto.js","filter.js","grid.js")
 
     @stories =  process_filter_querystring(Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => per_page))           
+    @editable = (user_signed_in?)
+
+    if(@editable)        
+      @js.push("jquery.reveal.js")
+      @css.push("reveal.css")
+    end
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render json: @stories }
