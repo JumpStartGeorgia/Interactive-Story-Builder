@@ -98,7 +98,7 @@
   .scroll-prompt {
     position: absolute;
     bottom: 80px;
-    line-height: 20px;
+    line-height: 48px;
     text-align: center;
     color: white;
     font-size: 14px;
@@ -106,17 +106,44 @@
     font-weight: bold;
     text-transform: uppercase;
     z-index: 3;
-    margin-left: 7%;
-    padding-left: 112px;
+    margin:0px auto;    
     text-shadow: 0 1px 2px #000;
+    background-image: url(<%= (@export ? "assets/" : "/template/#{@template}/") + 'images/scroll.png'%>);       
+    background-position: 50% 0%;
+    background-repeat: no-repeat; 
+    width:100%;
   }
 
   .scroll-prompt svg {
-    fill: none;
-    stroke: white;
-    stroke-width: 2px;
-  }
+    fill: none;    
+    stroke-width: 2px;       
+    position:relative;
+    top:28px;
+    animation:arrows infinite;
+    animation-duration:0.9s;
+    animation-direction:alternate-reverse;
 
+    /*  Safari and Chrome   */
+    -webkit-animation:arrows infinite;
+    -webkit-animation-duration:0.9s;
+    -webkit-animation-direction:alternate-reverse;
+}
+  @-webkit-keyframes arrows {
+    from {
+      top:28px;
+    }
+    to {
+      top:38px;
+    }
+  }
+  @keyframes arrows {
+    from {
+      top:28px;
+    }
+    to {    
+      top:38px;
+    }
+  }
   .dropcap {
     float: left;
     font: bold 53px/70px "Helvetica Neue", Helvetica, Arial, sans-serif;

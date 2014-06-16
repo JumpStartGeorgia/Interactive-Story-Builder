@@ -79,18 +79,20 @@ $(document).ready(function(){
           if (st > lastScroll){ //down
              if(sbn)
              {
-            $(".navbar-storybuilder").css('z-index','1029').animate({height:'0px'},300);
-            $(".navbar-story").animate({top:'0px'}, 400);
+                var sbh = $(".navbar-storybuilder").height();
+                $(".navbar-storybuilder").animate({top:-1*sbh},300);
+                $(".navbar-story").animate({top:'0px'}, 300);
             sbn = false;
             }
           }
           else {//up             
-                if(!sbn)
-             {
-                $(".navbar-storybuilder").animate({height:'57px','z-index':'1031'},300);
-                $(".navbar-story").animate({top:'57px'}, 400);
-                sbn = true;                
-              }
+                  if(!sbn)
+                  {
+                    var sh = $(".navbar-story").height();
+                    $(".navbar-storybuilder").animate({top:'0px'},300);
+                    $(".navbar-story").animate({top:sh}, 300);
+                    sbn = true;                
+                  }
           }
           //Updates scroll position
           lastScroll = st;
