@@ -9,9 +9,8 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index    
-    @css.push("filter.css", "grid.css")
-    @js.push("magneto.js","filter.js","grid.js")
-
+    @css.push("navbar.css", "filter.css", "grid.css")
+    @js.push("navbar.js", "magneto.js","filter.js","grid.js") 
     @stories =  process_filter_querystring(Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => per_page))           
     @editable = (user_signed_in?)
 

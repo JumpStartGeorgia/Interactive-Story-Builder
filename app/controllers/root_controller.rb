@@ -2,8 +2,8 @@ class RootController < ApplicationController
     before_filter :asset_filter    
   def index   
     
-    @js.push("magneto.js","filter.js","grid.js", "modalos.js")
-    @css.push("filter.css", "grid.css", "modalos.css")
+    @js.push("navbar.js", "magneto.js","filter.js","grid.js", "modalos.js")
+    @css.push("navbar.css", "filter.css", "grid.css", "modalos.css")
 
     @stories = process_filter_querystring(Story.is_published_home_page.paginate(:page => params[:page], :per_page => per_page))      
 
@@ -20,8 +20,8 @@ class RootController < ApplicationController
     @author = User.find_by_permalink(params[:user_id])
 
     if @author.present?
-      @js.push("magneto.js","filter.js","grid.js", "stories.js")
-      @css.push("filter.css", "grid.css", "stories.css")
+      @js.push("navbar.js","magneto.js","filter.js","grid.js", "stories.js")
+      @css.push("navbar.css", "filter.css", "grid.css", "stories.css")
       @stories = process_filter_querystring(Story.stories_by_author(@author.id).paginate(:page => params[:page], :per_page => per_page))      
       @editable = (user_signed_in? && current_user.id == @author.id)
       if(@editable)        

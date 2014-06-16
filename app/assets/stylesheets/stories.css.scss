@@ -162,7 +162,7 @@ border-bottom:1px solid lightgrey;
 }
 
 
-/* profile header */
+/* author header */
 .header{            
   width: 100%;
   height: 550px;
@@ -217,7 +217,7 @@ border-bottom:1px solid lightgrey;
     background-color:#fff;
     text-decoration:none;
   }
-  .profile-data
+  .author-data
   {
     position: absolute;
     width: auto;
@@ -226,37 +226,40 @@ border-bottom:1px solid lightgrey;
     left:110px;
     vertical-align: middle;
     color: #fff;
+
   }
-  .profile-nickname 
+  .author-nickname 
   {
     font-family: bandera-pro, dejavusans-el;
     font-size: 38px;
     color: #fff;
-    margin: 0px;
     padding: 0px;
   }
-  .profile-about {
-  font-family: opensans-l, dejavusans-el;
-  font-size: 16px;
-  margin: 16px 0px 0px 16px;
-  padding: 0px;
-  width: 550px;
+  .author-about {
+    font-family: opensans-l, dejavusans-el;
+    font-size: 16px;
+    margin: 16px 0px 0px 16px;
+    padding: 0px;  
+    text-align:left;
   }
-  .profile-nickname:lang(ka)
+  .author-nickname:lang(ka)
   {
     font-family:dejavusans-el;  
   }
-  .profile-about:lang(ka)
+  .author-about:lang(ka)
   {
     font-family:dejavusans-el;  
   }
-  .profile-info
+  .author-info
   {
-    position:relative;
-    top: -174px;
-    left:188px;
+    float:left;
+    margin: 10px 0px 5px 20px;
   }
-  .profile-logo img
+  .author-logo
+  {
+    float:left;
+  }
+  .author-logo img
   {
     width: 168px;
     height: 168px;

@@ -56,8 +56,14 @@
             <!-- <span><%= t('filters.matches') %>: <%= @stories.total_entries %></span> -->
 
             <div style="width:40px;height:40px;">
-              <div class="cprogress" id="showProgress" data-matches="<%= @stories.total_entries %>"></div>
+              <div class="cprogress" id="showProgress" data-matches="<%= @stories.total_entries %>">
+                <div class="percent n<%= @stories.total_entries.to_s.size %>">0</div>
+                <div id="slice">
+                  <div class="pie"></div>
+                </div>
+              </div>                                              
             </div>
+
           </li>
           <li class="pull-right">
             <div class="search-label">

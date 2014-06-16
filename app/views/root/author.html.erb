@@ -1,11 +1,12 @@
   <% content_for(:header) { %>
    <header class="header">   
-     <div class="profile-data">
-          <div class="profile-logo"><%= image_tag @author.avatar_url(:'168x168'),:size=>"168x168" %></div>
-          <div class="profile-info">
-            <div class="profile-nickname"><%= "#{@author.nickname}" %></div>
-            <div class="profile-about"><%= @author.about.html_safe if @author.about.present? %></div>          
-          </div>   
+     <div class="author-data">
+          <div class="author-logo"><%= image_tag @author.avatar_url(:'168x168'),:size=>"168x168" %></div>
+          <div class="author-info">
+            <div class="author-nickname"><%= "#{@author.nickname}" %></div>
+            <div class="author-about"><%= @author.about.html_safe if @author.about.present? %></div>          
+          </div>
+          <div class="author-stats"   
       </div>       
   </header>  
 <% } %>

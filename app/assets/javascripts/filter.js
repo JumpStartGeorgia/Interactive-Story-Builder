@@ -1,3 +1,51 @@
+$(document).ready(function() {  
+    
+  $('.search-box input#q').show();
+  // if a search term already exists, show the search box
+  if ($('form#search-filter input#q').val() !== ''){
+     $(".search-box").addClass("active");
+     $(".search-label").hide();  
+     sa = true; 
+  }
+
+  // hide the search box when leave
+  $('.search-box input#q').focusout(function(){
+    if($(this).val().length==0)
+    {
+      $(".search-box").removeClass("active");
+     //   $(".search-box input#q").hide();
+      $(".search-label").show();                     
+      sa = false;
+    }
+  });
+
+  // show search box on hover
+  $('.search-label').hover(searchHoverIn,jQuery.noop());
+  $('.search-box').hover(searchHoverIn,searchHoverOut);
+
+  // add search phrase to filters
+  $('form#search-filter').submit(function(e){
+    e.preventDefault();
+    window.location.href = UpdateQueryString('q', $('form#search-filter input#q').val());
+  });
+
+  // add search phrase to filters
+  $(".search-button").click(function(e){ 
+    e.preventDefault();
+    window.location.href = UpdateQueryString('q', $('form#search-filter input#q').val());
+  });
+  
+  // clear the search box
+  $("#clear-search").click(function(e){
+    e.preventDefault();
+    $('form#search-filter input#q').val('')
+    $(".search-box input#q").focus();
+  });
+  // on page refresh matched stories count are visualized with css styled progress indicator with showing overal matched stories
+  match_ui();
+
+});
+
   // taken from: http://stackoverflow.com/questions/5999118/add-or-update-query-string-parameter
   function UpdateQueryString(key, value, url) {
       if (!url) url = window.location.href;
@@ -28,196 +76,55 @@
       }
   }
 
+var sa = false; // flag for search box if it is active
+function searchHoverIn()
+{
+  if(!sa)
+    {              
+       $(".search-box").addClass("active");               
+       $(".search-box input#q").focus();
+       $(".search-label").hide();
+       sa = true;                
+    }
+}
+function searchHoverOut()
+{
 
-       var scrollOffset = 0;
-       var isNavVisible = true;
-       function navbarMagic(reset)
-       {      
-     //   console.log("isNavVisible = " + isNavVisible);
-          //  console.log($(window).scrollTop());
-            reset = typeof reset !== 'undefined' ?  reset : false;
-            var currentOffset = $(window).scrollTop();
-            var objectOffset = $("#filter").offset().top;
-            var topOffsetBack = 150;
-            //console.log("Offset from top: "+$(this).scrollTop());            
-            //down
-          if(reset)
-          {
-            if(scrollOffset <= objectOffset-topOffsetBack)
-            {
-              if( isNavVisible)
-              {
-          //    console.log("invisible_");
-                 isNavVisible = false; 
-              $(".navbar").queue(function(){
-                    $(this).fadeOut(400,function(){
-                      $(this).css("background-color","rgba(255,255,255,0.0)")
-                      $(this).css("position","absolute");
-                      $(this).css("top","30px");                                            
-                    }).fadeIn(10).dequeue();   
-                    //animate({}, 1000,function(){ }).dequeue();                   
-                    
-                 });
-              }
-            }
-            else
-            {        
-             if( !isNavVisible)
-              { 
-            //    console.log("visible_");       
-                $(".navbar").css("position","fixed").css("top","0px").queue(function(){
-                  $(this).animate({"background-color":"#121212"}, 1000).dequeue();
-                }); 
-                isNavVisible = true;
-              }
-            }
-          }
-          else
-          {
-            if(scrollOffset < currentOffset)
-            {         
+  if(($(this).find("input#q").val() === undefined || $(this).find("input#q").val().length==0) && sa)
+  {            
+        $(".search-box input#q").trigger("blur");
+         $(".search-box").removeClass("active");                  
+         $(".search-label").show();  
+         sa = false; 
+  }
+}
+                      
+// matcher
+var p=1; // steps for match to finish
+var steps = 20;
+var matches = $('#showProgress').data('matches');
+var step = matches/steps;
+function match_ui() 
+{  
+  if(p > steps/2)
+    $('#showProgress #slice:not([class*="gt50"])').addClass('gt50').append('<div class="pie fill"></div>');
+  //$('#showProgress').html('<div class="percent"></div><div id="slice"'+(p > steps/2?' class="gt50"':'')+'><div class="pie"></div>'+(p > steps/2 ?'<div class="pie fill"></div>':'')+'</div>');
 
-           //   console.log("down");
-              if(!isNavVisible && currentOffset >= objectOffset-topOffsetBack)
-              {
-           //     console.log("navbar visible");
-               // $(".navbar").toggleClass("navbar-static-top navbar-fixed-top").css("background-color","#000");                
-                 $(".navbar").css("position","fixed").css("top","0px").queue(function(){
-                    $(this).animate({"background-color":"#121212"}, 1000).dequeue();
-                  }); 
-                  isNavVisible = true;
-              }
-         
-            }
-            else 
-            {
-            //  console.log("up" + currentOffset + " _ " + objectOffset );
-              if(isNavVisible && currentOffset <= objectOffset - topOffsetBack)
-              {      
-                  isNavVisible = false;          
-             //   console.log("navbar invisible");
-               // $(".navbar").toggleClass("navbar-static-top navbar-fixed-top").css("background-color","transparent");
-                //$(".navbar").css("background-color","transparent").css("position","absolute");
-                 $(".navbar").queue(function(){
-                    $(this).fadeOut(400,function(){
-                      $(this).css("background-color","rgba(255,255,255,0.0)")
-                      $(this).css("position","absolute");
-                      $(this).css("top","30px");                                            
-                    }).fadeIn(10).dequeue();   
-                    //animate({}, 1000,function(){ }).dequeue();                   
-                    
-                 });
-              }
-            }
-          }
-            scrollOffset = currentOffset;
-       }
-      $(document).ready(function() {  
-          var sa = false;
-          var sl = true;
-          $('.search-box input#q').show();
-
-          // if a search term already exists, show the search box
-          if ($('form#search-filter input#q').val() !== ''){
-             $(".search-box").addClass("active");  
-             sa = true; 
-             sl = false;     
-             $(".search-label").hide();
-          }
-
-          // hide the search box when leave
-          $('.search-box input#q').focusout(function(){
-            if($(this).val().length==0)
-            {
-              $(".search-box").removeClass("active");
-             //   $(".search-box input#q").hide();
-              $(".search-label").show();                     
-              sa = false;
-              sl = true;     
-            }
-      
-          });
-
-          // show the search box
-           $('.search-label, .search-box').hover(function()
-           {        
-              if(!sa)
-              {
-                 $(".search-box").addClass("active");  
-               //  $(".search-box input#q").show();
-                 $(".search-box input#q").focus();
-                 sa = true; 
-                 sl = false;     
-                 $(".search-label").hide();
-              }
-           },
-           function(){
-            if(($(this).find("input#q").val() === undefined || $(this).find("input#q").val().length==0) && sa)
-          {
-                $(".search-box input#q").trigger("blur");
-                 $(".search-box").removeClass("active");  
-                // $(".search-box input").hide();
-                 sa = false; 
-                 $(".search-label").show();                
-                 sl = true;     
-              }
-           });
-
-          // add search phrase to filters
-          $('form#search-filter').submit(function(e){
-            e.preventDefault();
-            window.location.href = UpdateQueryString('q', $('form#search-filter input#q').val());
-          });
-
-          // add search phrase to filters
-          $(".search-button").click(function(e){ 
-            e.preventDefault();
-            window.location.href = UpdateQueryString('q', $('form#search-filter input#q').val());
-          });
-          
-          // clear the search box
-          $("#clear-search").click(function(e){
-            e.preventDefault();
-            $('form#search-filter input#q').val('')
-            $(".search-box input#q").focus();
-          });
-        
-          scrollOffset = $(window).scrollTop();      
-          navbarMagic(true);
-          $(window).on('scroll',function(){navbarMagic(); });
-      
-      });
-
-var p=0;
- function timeout_trigger() {
-  var matches = $('#showProgress').data('matches');
-
-  $('#showProgress').html('<div class="percent"></div><div id="slice"'+(p > 10?' class="gt50"':'')+'><div class="pie"></div>'+(p > 10 ?'<div class="pie fill"></div>':'')+'</div>');
-
-  var deg = 360/20*p;
-
+  var deg = 360/steps*p;
   $('#showProgress #slice .pie').css({
   '-moz-transform':'rotate('+deg+'deg)',
   '-webkit-transform':'rotate('+deg+'deg)',
   '-o-transform':'rotate('+deg+'deg)',
   'transform':'rotate('+deg+'deg)'
-  });  
-  if(p%((20/matches)>>0) == 0)
-    $('#showProgress .percent').text(((p/(20/matches))>>0));
+  }); 
 
-  if(p!=20) {
-  setTimeout('timeout_trigger()', 50);
+  $('#showProgress .percent').text(Math.ceil(step*p));  
+
+  if(p!=steps) 
+  {
+    setTimeout('match_ui()', 50);
   }
-
   p++;
 }
-
-      $(document).ready(function() {  
-
-     
-$(function(){
-timeout_trigger();
-});
-
-});
+// matcher
 

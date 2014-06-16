@@ -34,6 +34,22 @@
     margin: 10px;
    
   }
+  .cprogress
+  {
+    .n1,.n2,.n3,.n4
+    {
+       font-size:14px;   
+    }
+    .n5
+    {
+      font-size:12px;
+    }
+    .n6,.n7
+    {
+       font-size:10px;
+    }
+  }
+
   .search-wrapper
   {
     float:right;
@@ -53,10 +69,10 @@
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     border-radius: 30px;
-    -webkit-transition: all 0.7s linear 0s;
-    -moz-transition: all 0.7s linear 0s;
-    -o-transition: all 0.7s linear 0s;
-    transition: all 0.7s linear 0s;   
+    -webkit-transition: all 0.4s ease-in 0s;
+    -moz-transition: all 0.4s ease-in 0s;
+    -o-transition: all 0.4s ease-in 0s;
+    transition: all 0.4s ease-in 0s;   
     transition-property:width;
     -moz-transition-property: width; /* Firefox 4 */
     -webkit-transition-property:width; /* Safari and Chrome */
@@ -123,6 +139,7 @@
     padding:5px 10px;
     margin-right:20px; 
     z-index:102;
+    cursor:pointer;
   }
 
 /* progress for matches */
@@ -175,7 +192,7 @@
   } 
   .cprogress>#slice>.pie { 
   position: absolute; 
-  border: .1em solid #878787; 
+  border: 2px solid #878787; 
   width: 40px; 
   height: 40px; 
   clip: rect(0em,0.5em,1em,0em); 
