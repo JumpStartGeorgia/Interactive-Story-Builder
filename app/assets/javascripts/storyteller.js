@@ -67,7 +67,6 @@ $(document).ready(function() {
 
 
 
-
 $(document).ready(function(){
      var lastScroll = 0;
      var sn = true;
@@ -75,11 +74,11 @@ $(document).ready(function(){
       $(window).scroll(function(event){
           //Sets the current scroll position
           var st = $(this).scrollTop();
+          var sbh = $(".navbar-storybuilder").height();
           //Determines up-or-down scrolling
           if (st > lastScroll){ //down
              if(sbn)
              {
-                var sbh = $(".navbar-storybuilder").height();
                 $(".navbar-storybuilder").animate({top:-1*sbh},300);
                 $(".navbar-story").animate({top:'0px'}, 300);
             sbn = false;
@@ -87,14 +86,21 @@ $(document).ready(function(){
           }
           else {//up             
                   if(!sbn)
-                  {
-                    var sh = $(".navbar-story").height();
+                  {                    
                     $(".navbar-storybuilder").animate({top:'0px'},300);
-                    $(".navbar-story").animate({top:sh}, 300);
+                    $(".navbar-story").animate({top:sbh}, 300);
                     sbn = true;                
                   }
           }
           //Updates scroll position
           lastScroll = st;
       });
+//#modalAbout, 
+      $('#modalComment').on('click', function(e) {
+        
+        var ml = $(this).attr('data-modalos-id');   
+        $('#'+ml).modalos();
+
+        e.preventDefault();
+      }); 
   });

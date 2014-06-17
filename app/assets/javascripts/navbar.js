@@ -17,13 +17,13 @@ function navbarMagic(reset)
         isNavVisible = !(currentOffset <= objectOffset-topOffsetBack);      
         if(isNavVisible)
         {
-          //console.log("reset make visible");       
+          console.log("reset make visible");       
           $(".navbar").removeClass("navbar-invisible"); 
           $(".navbar").addClass("navbar-visible");      
         }
         else          
         {                 
-          //console.log("reset make invisible");     
+          console.log("reset make invisible");     
           $(".navbar").removeClass("navbar-visible"); 
           $(".navbar").addClass("navbar-invisible");      
         }   

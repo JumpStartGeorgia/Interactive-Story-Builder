@@ -12,39 +12,36 @@
         <span class="icon-bar"></span>
       </button>
     </div>
-        <div class="logo pull-left">
-          <%= link_to(image_tag("logo.png",:size=>"182x29",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) , root_path(:locale => I18n.locale))%>          
-        </div>
-
-           <div class="search-wrapper pull-left">
+        <div class="pull-left">
+          <div class="logo">
+            <%= link_to(image_tag("logo.png",:size=>"182x29",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) , root_path(:locale => I18n.locale))%>          
+         </div>
+          <div class="nav-separator"></div>
+           <div class="search-wrapper">
               <div class="search-box">
                 <div class="search-text">              
                   <%= form_tag url_for({:controller => 'root', :action => 'index',:params => params}), :method => :get, :id => 'search-filter' do %>
-                    <%= text_field_tag :q, params[:q], :placeholder => t('filters.search'), :tabindex => 16 %>
+                    
+                    <%= text_field_tag :q, params[:q], :placeholder => t('filters.search'), :tabindex => 16, :autocomplete=>'off' %>
                   <% end %>
-                </div>
-                <div class="search-button"></div>
-              </div>
+                </div>            
+              </div>                
             </div>
-
+        </div>
 
 
           <div class="nav-collapse navbar-collapse nav-user pull-right" id="bs-example-navbar-collapse-1">
-            <ul class="nav">         
-                    <li>
-              <a><img src="/assets/facebook-circle-white.png"/></a>
-                </li>
-                 <li>
-          <a> <img src="/assets/twitter-circle-white.png"/></a>
-                </li>
-                 <li>
-                 <a><img src="/assets/google-plus-circle-white.png"/></a>
-                </li> 
-              <% if user_signed_in? %>
+            <ul class="nav navbar-nav">    
+              <li>                  
+                  <%= link_to   new_story_path, :tabindex=>1, :class=>"create-story" do %>                
+                  <i class="i-icon i-create"></i>Create Story
+                  <% end %>
+             </li>     
+                           <% if user_signed_in? %>
                   <li >
                     <%= link_to image_tag(current_user.avatar_url,:size=>"28x28", :class=>"avatar"), "#" , 
                          :class => "dropdown-toggle avatar-link", :"data-toggle"=>"dropdown" %>       
-                       
+                     
                     <ul class="dropdown-menu pull-right">
                       <li>
                         <%= link_to t('helpers.links.add_story'), new_story_path  %>
@@ -74,6 +71,46 @@
                   <%= link_to t('helpers.links.sign_in2'), :new_user_session %>
                 </li>
              <% end %> 
+                    <li><div class="nav-separator"></div></li>
+                    <li>
+                 <a href="#"><i class="i-icon i-facebook"></i></a>
+          
+                </li> 
+                    <li>
+                      <a href="#"><i class="i-icon i-twitter"></i></a>
+                </li>
+                <li>
+                 <a href="#"><i class="i-icon i-google"></i></a>
+          
+                </li> 
+                   
+               <li><div class="nav-separator"></div></li>  
+                <li class="dropdown dropdown-about-storybuilder">                    
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">About<i class="i-icon i-caret"></i></a>
+                       
+                    <ul class="dropdown-menu pull-right">
+                      <li>
+                        <%= link_to t('helpers.links.news'), news_path %>
+                      </li>
+                      <li>
+                        <%= link_to t('helpers.links.todo_list'), todo_list_path %> 
+                      </li>
+                      <li>
+                        <%= link_to t('helpers.links.feedback'), feedback_path %> 
+                      </li>
+                       <li>
+                        <%= link_to t('helpers.links.about'), about_path %> 
+                      </li>
+                       <li>
+                        <%= link_to t('helpers.links.demo'), demo_path %> 
+                      </li>
+                      <li>                        
+                        <%= link_to "GitHub", "https://github.com/JumpStartGeorgia/Interactive-Story-Builder.git" %>
+                      </li>
+                    </ul>
+                </li>
+    <li><div class="nav-separator"></div></li>
+
               <% I18n.available_locales.each do |locale| %>
                 <% if locale != I18n.locale %>
                   <li><%= link_to t("app.language.#{locale}"), params.merge(:locale => locale) , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse", :class => "lang_switch" %></li>
@@ -94,20 +131,21 @@
       </button>
     </div>
         <div class="pull-left">          
-        <div class="title">
+          <div class="title">
             <% if @story.present? && showing_story %>
               <%= link_to(@story.title, root_path(:locale => I18n.locale), :class=>"navigation-headline brand font" , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse")%>  
             <% end %>
-         </div>
-            <div class="nav-separator"></div>
-         <div class="about">     
-          <a id="modalAbout" data-modalos-id="modalos-about">About</a>
           </div>
+          <div class="nav-separator"></div>
+          <div class="about"><a id="modalAbout" data-modalos-id="modalos-about">About</a></div>
+          <div><a id="modalComment" data-modalos-id="disqus_thread"><i class="i-icon i-like"></i>Likes(105)</a></div>
+          <div><a id="modalComment" data-modalos-id="disqus_thread"><i class="i-icon i-staffpick"></i>Add Staff Picks</a></div>
         </div>
         
           <div class="nav-collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
             <ul class="nav">                       
-              <li><a id="modalComment" data-modalos-id="disqus_thread">Comment</a></li>
+              <li><a id="modalComment" data-modalos-id="disqus_thread"><i class="i-icon i-comment"></i>Comments(123)</a></li>
+               <li><a id="modalComment" data-modalos-id="disqus_thread"><i class="i-icon i-share"></i>Share</a></li>
               <% if @story.present? && @story.sections.present? && showing_story %>                
                 
                 <li><a href="#" class="navigation-volume"><div class="navigation-icon"></div></a></li>             
@@ -122,8 +160,12 @@
                   <% end %>
                 </li>            
               <% end %>
+                <li><div class="nav-separator"></div></li>
+                <li>German</li>                              
             </ul>
+            
           </div>
+
         </div>
       </nav>
     

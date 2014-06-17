@@ -1080,13 +1080,15 @@
   }
 
   .navigation-icon {
-    width: 18px;
-    height: 18px;
-    background-image: url(<%= @export ? "" : "/" %>assets/icons.png);
+    width: 27px;
+    height: 27px;
+    background-image: url(<%= @export ? "" : "/" %>assets/sprite.png);
   }
 
-  .navigation-volume .navigation-icon { background-position: -52px -68px; }
-  .navigation-volume.navigation-volume--muted .navigation-icon { background-position: -72px -68px; }
+  .navigation-volume .navigation-icon { background-position: 0px -109px; }
+  .navigation-volume .navigation-icon:hover { background-position: -27px -109px; }
+  .navigation-volume.navigation-volume--muted .navigation-icon { background-position: -55px -109px; }
+  .navigation-volume.navigation-volume--muted .navigation-icon:hover { background-position: -82px -109px; }
   .navigation-volume{display: inline-block !important; top: 4px; padding:0px 10px !important;}
 
 

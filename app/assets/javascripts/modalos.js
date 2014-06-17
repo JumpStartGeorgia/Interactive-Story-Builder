@@ -15,13 +15,7 @@
  Listener for data-modalos-id attributes
 ----------------------------*/
 	
-	$('#modalAbout, #modalComment').on('click', function(e) {
-		
-		var ml = $(this).attr('data-modalos-id');		
-		$('#'+ml).modalos({fullscreen:true});
 
-		e.preventDefault();
-	});	
 /*---------------------------
  Extend and Execute
 ----------------------------*/
