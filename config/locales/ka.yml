@@ -185,7 +185,15 @@ ka:
       admin: ადმინისტრატო
       sign_out: გასვლა
       js_link_title: ჯამპსტარტ ჯორჯიას - ჩვენ გაწვდით ინფორმაციას უკეთ!
-      js_link_text: აგებულია 
+      js_link_text: აგებულია
+      search: Search for Story
+      create: Create Story
+      about_storybuilder: About
+      about_story: About
+      likes: Likes
+      comments: Comments
+      share: Share
+      staff_pick: Staff Pick
     msgs:
       does_not_exist: თქვენ ცდილობთ იხილოთ გვერდი, რომელიც არ არსებობს.
       not_authorized: თქვენ არ გაქვთ უფლება იხილოთ ეს გვერდი.

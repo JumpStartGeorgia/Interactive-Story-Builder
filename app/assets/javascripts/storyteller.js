@@ -96,11 +96,14 @@ $(document).ready(function(){
           lastScroll = st;
       });
 //#modalAbout, 
-      $('#modalComment').on('click', function(e) {
-        
+      $('#modalComment').on('click', function(e) {        
         var ml = $(this).attr('data-modalos-id');   
         $('#'+ml).modalos();
-
+        e.preventDefault();
+      }); 
+       $('#modalAbout').on('click', function(e) {        
+        var ml = $(this).attr('data-modalos-id');   
+        $('#'+ml).modalos();
         e.preventDefault();
       }); 
   });

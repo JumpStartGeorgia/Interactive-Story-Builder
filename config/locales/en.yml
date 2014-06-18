@@ -185,7 +185,15 @@ en:
       admin: Admin
       sign_out: Sign Out
       js_link_title: JumpStart Georgia - We communicate data better!
-      js_link_text: Built by 
+      js_link_text: Built by
+      search: Search for Story
+      create: Create Story
+      about_storybuilder: About
+      about_story: About
+      likes: Likes
+      comments: Comments
+      share: Share
+      staff_pick: Staff Pick
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
