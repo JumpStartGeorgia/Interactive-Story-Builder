@@ -532,7 +532,7 @@
               fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight),
               fade = d3.interpolateRgb("#000", "#fff");
 
-          var headline = d3.select(".navigation-headline");
+         // var headline = d3.select(".navigation-headline");
 
           var sequence = d3.selectAll(".video-sequence")
               .datum(function() {
@@ -735,7 +735,7 @@
                   : opacityTop < fixTop - fixHeight / 2 ? Math.max(0, Math.min(1, (opacityTop - fixTop + fixHeight) / (fixHeight / 2)))
                   : opacity;
 
-              if (d.first && d.sequence.first) headline.style("opacity", 1 - volume);
+              //if (d.first && d.sequence.first) headline.style("opacity", 1 - volume);
             }
           }
 
@@ -749,7 +749,7 @@
                     if (this.currentTime) this.currentTime = 0;
                   }
                 });                 
-            if (d.first && d.sequence.first && !d3.event.state) headline.style("opacity", null);
+            //if (d.first && d.sequence.first && !d3.event.state) headline.style("opacity", null);
           }
 
           function sequencescrolled() {

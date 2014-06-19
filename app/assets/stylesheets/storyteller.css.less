@@ -22,13 +22,19 @@
 {
  
   height:60px;
-  background-color:#121212;
+  background-color:#242424;
   z-index:1034;
+  color:#fff;
   a
   {
-    opacity:0.6;
+    color:#fff;
   }
-  a:hover
+  .link
+  {
+    color:#fff;
+    opacity:0.7;
+  }
+  .link:hover
   {
     opacity:1;
   }
@@ -36,6 +42,7 @@
   {
     opacity:0.9;
     margin-right:20px;
+    color:#ddd;
   }
   a.create-story i
   {
@@ -71,10 +78,10 @@
   .nav-separator
   {
     height:40px;
-    width:1px;
-    background-color:#383838;
     margin: 10px 20px 0px 20px;
     float:left;
+    border-left:1px solid #353535;
+    border-right:1px solid #1e1e1e;
   }
   .pull-left > div
   {
@@ -110,17 +117,27 @@
   {
     font-family:opensans-l;
     font-size:14px;
-    text-align:left;
+    text-align:left;    
+  }
+  .dropdown-about-storybuilder.open > a,.dropdown-about-storybuilder.open > a i
+  {
+    opacity: 1 !important;   
+    color:#fff !important;     
+
   }
   .dropdown-about-storybuilder > .dropdown-menu
   {
     background-color: #3c3d3e;
     opacity: 1;
-      
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -o-border-radius: 0px;
+    border-radius: 0px;
+    border: 0px;  
   }
   .dropdown-about-storybuilder > .dropdown-menu > li > a
   {
-    padding:3px 20px;
+     padding:3px 20px;
      color: #757575; 
      font-size:14px;
 
@@ -170,7 +187,7 @@
 .navbar-story
 {
   min-height:50px;
-  top:60px;
+  top:60px; 
   z-index:1033;
   background-color:#fff;
   color:#000;
@@ -194,6 +211,7 @@
     font-size:14px;
     color:#252525;
     padding:0px;
+    height:50px;
     line-height:50px;
     vertical-align:middle;
     margin:0px !important;
@@ -253,8 +271,8 @@
   .nav-separator
   {
     height:20px;
-    width:1px;
-    background-color:#a8a1a1;
+    width:1px;    
+    border-right:1px solid #a8a1a1;
     margin: 15px 20px 0px 20px;
     float:left;
   }

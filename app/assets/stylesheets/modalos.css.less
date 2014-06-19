@@ -2,51 +2,52 @@
 {
   display:none;
   position: fixed;
-  background-color: #f8f8f8;
+  background-color: #fff; /* f8f8f8 */
   
   margin: auto;  
   border:1px solid #bbb;
   z-index: 1032;  
 
-  -webkit-border-bottom-right-radius: 9px;
+/*  -webkit-border-bottom-right-radius: 9px;
   -webkit-border-bottom-left-radius: 9px;
   -moz-border-radius-bottomright: 9px;
   -moz-border-radius-bottomleft: 9px;
   border-bottom-right-radius: 9px;
-  border-bottom-left-radius: 9px;
+  border-bottom-left-radius: 9px;*/
 
-  .m-header
-  {
-    height:40px;          
-  }
+    .m-header
+    {
+      height:40px;          
+    }
 
-  .m-content
-  {
-    z-index: 1033;
-    position: absolute;
-    top: 40px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    clear: both;
-    height: auto;
-    margin: 10px;
-    overflow-x: hidden;
-    overflow-y: scroll;    
-  }
-  .m-content.fluid
-  {
-    position: relative;
-    top: 0px;
-  }
-  .m-close
-  {
+    .m-content
+    {
+      z-index: 1033;
       position: absolute;
-      right: 5px;
-      top: 5px;
+      top: 40px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      clear: both;
+      height: auto;
+      margin: 10px;
+      overflow-x: hidden;
+      overflow-y: auto;    
+    }
+    .m-content.fluid
+    {
+      position: relative;
+      top: 0px;
+    }
+    .m-close
+    {
+      position: absolute;
+      right: 33px;
+      top: 33px;
       cursor:pointer;
-      opacity:0.6;
+      opacity:0.5;
       padding:5px;
+      z-index:1035;
     }
     .m-close:hover
     {

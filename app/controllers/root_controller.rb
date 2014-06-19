@@ -37,6 +37,16 @@ class RootController < ApplicationController
     end
   end
 
+  def embed   
+       @css.push("embed.css")    
+      @story = Story.is_published.find_by_permalink(params[:story_id])
+      #redirect_to root_path, :notice => t('app.msgs.does_not_exist')    
+      respond_to do |format|     
+        format.html { render 'embed', layout: false }    
+      end    
+
+  end
+
   def demo
     @story = Story.demo
 

@@ -10,7 +10,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <%= link_to(image_tag("logo.png",:size=>"182x29",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) , root_path(:locale => I18n.locale), :class=>"navbar-logo") %>          
+        <%= link_to(image_tag("logo.png",:size=>"182x29",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) , root_path(:locale => I18n.locale), :class=>"navbar-logo link") %>          
     </div>
 
     <div class="collapse navbar-collapse" id="storybuilder-navbar-collapse">
@@ -24,13 +24,13 @@
       
       <ul class="nav navbar-nav navbar-right">    
         <li>                  
-            <%= link_to new_story_path, :tabindex=>1, :class=>"create-story" do %>                
+            <%= link_to new_story_path, :tabindex=>1, :class=>"create-story link" do %>                
             <i class="i-icon i-create"></i><%= "#{t('app.common.create')}" %>
             <% end %>
         </li>     
       <% if user_signed_in? %>
         <li>
-          <%= link_to image_tag(current_user.avatar_url,:size=>"28x28", :class=>"avatar"), "#" , 
+          <%= link_to image_tag(current_user.avatar_url,:size=>"28x28", :class=>"avatar link"), "#" , 
                :class => "dropdown-toggle avatar-link", :"data-toggle"=>"dropdown" %>                          
           <ul class="dropdown-menu pull-right">
             <li>
@@ -52,7 +52,7 @@
             <% end %>   
             <li class="divider"></li>  
             <li>
-             <%= link_to t('helpers.links.sign_out'), destroy_user_session_path, :method => :delete %>
+             <%= link_to t('helpers.links.sign_out'), destroy_user_session_path, :method => :delete, :class => 'link' %>
             </li>
           </ul>
         </li>
@@ -76,12 +76,9 @@
           '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
               <i class="i-icon i-google"></i>
             </a></li> 
-   
-
         <li><div class="nav-separator"></div></li>  
-
         <li class="dropdown dropdown-about-storybuilder">                    
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= "#{t('app.common.about_storybuilder')}" %><i class="i-icon i-caret"></i></a>                   
+            <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= "#{t('app.common.about_storybuilder')}" %><i class="i-icon i-caret"></i></a>                   
             <ul class="dropdown-menu pull-right">
               <li>
                 <%= link_to t('helpers.links.news'), news_path %>
@@ -104,10 +101,9 @@
             </ul>
         </li>
         <li><div class="nav-separator"></div></li>
-
         <% I18n.available_locales.each do |locale| %>
           <% if locale != I18n.locale %>
-            <li><%= link_to t("app.language.#{locale}"), params.merge(:locale =>  locale) , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse", :class => "lang_switch" %></li>
+            <li><%= link_to t("app.language.#{locale}"), params.merge(:locale =>  locale) , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse", :class => "lang_switch link" %></li>
           <% end %>
         <% end %>                             
       </ul>
@@ -143,7 +139,12 @@
           <% end %>
         </li>
 
-        <li><a href="#"><i class="i-icon i-share"></i><%= "#{t('app.common.share')}" %></a></li>
+        <li>
+          <%= link_to '#',  :id=>"modalShare", :'data-modalos-id' => "modalos-share", :title => t('app.common.share') do %>
+            <i class="i-icon i-share"></i><%= "#{t('app.common.share')}" %>
+          <% end %>
+        </li>
+
         <% if @story.present? && @story.sections.present? && showing_story %>                          
           <li><a href="#" class="navigation-volume"><div class="navigation-icon"></div></a></li>             
            <li>
@@ -235,6 +236,222 @@
 <div id="modalos-comments" style="display:none;">
   <div id="disqus_thread"></div>
 </div>
+<div id="modalos-share" style="display:none;" class="share-window">  
+  <div class="title">Share this story</div>
+  <div class="permalink">Permalink:</div>
+  <div class="permalink-link"><a href="<%= storyteller_show_url(@story.permalink) %>"><%= storyteller_show_url(@story.permalink) %></a></div>
+  <div class="share">
+    <div class="facebook">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=storybuilder.jumpstart.ge" onclick="javascript:window.open(this.href,
+                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">  
+          <i class="i-icon i-facebook-l"></i>Share on faceabook</a>      
+       
+    </div>
+    <div class="twitter">
+      <a href='https://twitter.com/share?text=<%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name')}" :
+                                t('app.common.app_name') %>' onclick="javascript:window.open(this.href,
+                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                        <i class="i-icon i-twitter-l"></i>Share on Twitter
+            </a>
+    </div>
+    <div class="more">
+        <a href='#'>
+                        <i class="i-icon i-plus"></i>
+            </a>
+    </div>    
+  </div>
+  <div class="embed">
+    <div class="embed-icon"><img src="/assets/embed.png"/></div>
+    <div class="embed-text">Copy and paste this embed code into your web page:</div>
+    <div class="embed-code">
+    <textarea rows="4" cols="38"  data-iframe-link="<%=embed_url(@story.permalink) %>"
+    readonly="" onfocus="setTimeout(function (t){ t.select(); }, 10, this);" onmouseup="return false;"><iframe src='<%=embed_url(@story.permalink) %>?width=350' width='350' height='100%' frameborder='0'></iframe></textarea>
+      <div class="embed-size-w">
+        <input type="text" value="350" class="iframe-size"/>
+        <span>px wide</span>
+      </div>      
+    </div>
+  </div>
+  <div class="email">
+      <a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">
+        <i class="i-icon i-mail"></i>Email
+      </a>
+  </div>
+</div>
+
+<style>
+
+
+.share
+{
+  width:100%;
+  margin:0px auto;  
+}
+.share-window > div
+{
+  text-align:center;
+}
+    .share-window a
+    {
+      opacity:0.8;
+    }
+    .share-window a:hover
+    {
+      opacity:1;
+    }
+  .share-window .title
+  {
+    font-family:opensans-l;
+    font-size:30px;
+    color:#bdbdbd;
+    margin-bottom:25px;
+  }
+  .share-window .permalink
+  {
+    font-family:opensans-r;
+    font-size:14px;
+    color:#888;
+    margin-bottom:10px;
+  }
+  .share-window .permalink-link
+  {    margin-bottom:40px;}
+  .share-window .permalink-link a
+  {
+    font-family:opensans-r;
+    font-size:14px;
+    color:#0e0e0e;
+    opacity:0.9;
+
+  }
+  .share-window .permalink-link a:hover
+  {    
+    opacity:1;   
+  }
+  .share-window .share
+  {
+    margin-bottom:30px; 
+    display: inline-block;
+  }
+  .share-window > .share > div,.share-window > .embed > div
+  {
+    text-align: center;
+    display: inline-block;
+  }
+  .share-window .embed
+  {
+   margin-bottom:20px; 
+   clear:both;
+  }
+  .share-window > .embed > div.embed-icon
+  {
+    margin-bottom:16px;
+    display:block;
+  }
+ .share-window .embed-text
+  {
+   margin-bottom:10px; 
+   font-family:opensans-r;
+   font-size:14px;
+   color:#888;
+  }
+
+  .embed-code textarea
+  {
+    margin-left: 70px;
+    float:left;
+    border-color:#dcdcdc;
+    width:400px;
+    resize: none;
+    cursor: default;    
+    background: #EEE;
+    color: rgba(0,0,0,0.7);    
+    outline: none;
+    padding:3px;
+    font-size:12px;
+    font-family:opensans-r;
+  }
+  .embed-size-w
+  {
+    float:left;
+  }
+  .embed-size-w input
+  {
+    border: none;
+    background-color: #f3f3f3;
+    padding: 10px;
+    width: 50px;
+    margin-left:12px;
+}
+ .embed-size-w span
+ {   
+   font-family:opensans-r;
+   font-size:14px;
+   color:#939393;
+ }
+  .share-window .facebook a,  .share-window .twitter a
+  {
+      display:inline-block;
+      font-family:opensans-r;
+      font-size:18px;
+      color:#fff;      
+      background: #26acfa;      
+      border:1px solid #fff;
+      -webkit-border-radius: 133px;
+      -moz-border-radius: 133px;
+      border-radius: 133px;      
+      height:57px;
+      padding: 0px 20px 0px 15px;
+      text-decoration: none;
+      line-height: 51px;
+  }
+   .share-window .facebook a i,  .share-window .twitter a i
+   {
+      margin-right:10px;
+   }
+  .share-window .more a
+  {
+    
+      display:inline-block;
+      font-family:opensans-r;
+      font-size:18px;
+      color:#fff;      
+      background-color:#6dda6d;  
+      border:1px solid #fff;
+      -webkit-border-radius: 133px;
+      -moz-border-radius: 133px;
+      border-radius: 133px;      
+      height:57px;
+      padding: 0px 14px 0px 15px;
+      text-decoration: none;
+      line-height: 51px;
+  }
+    .share-window .email a i 
+    {
+      margin-right:6px;
+    }
+  .share-window .email a
+  {
+      display:inline-block;
+      font-family:opensans-r;
+      font-size:18px;
+      color:#000;      
+      background-color: #f3f3f3;     
+      -webkit-border-radius: 133px;
+      -moz-border-radius: 133px;
+      border-radius: 133px;
+      height:57px;
+      padding: 0px 35px 0px 35px;
+      text-decoration: none;
+      line-height: 57px;
+
+  }
+  .share-window .email a:hover
+  {
+    border:1px solid #d7d7d7;
+  }
+
+
+</style>
 <script type="text/javascript">
     <% 
       disqus_name = ENV['STORY_BUILDER_DISQUS']

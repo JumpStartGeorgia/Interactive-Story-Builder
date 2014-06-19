@@ -61,7 +61,7 @@
 				wrapper = $("<div class='modalos-wrapper'> \
 	      								<div class='m-header'> \
 	      									<div class='m-close'> \
-	      										<img src='/assets/close_dark.png' style='width: 16px;height: 16px;'> \
+	      										<img src='/assets/close_h.png' style='width: 33px;height: 33px;'> \
 	      									</div> \
 	      								</div> \
       									<div class='m-content'>	\
@@ -81,7 +81,8 @@
 			//Entrance Animations
 			modal.bind('modalos:open', function () {
 
-				console.log("modalos:open");
+				//console.log("modalos:open");
+				console.log(options.topOffset);
 			    if (options.before_open) options.before_open(this);
 
 			  	bg.unbind('click.modalEvent');

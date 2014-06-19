@@ -16,11 +16,12 @@
           %>
           <div class="col n-4">                   
               <div class="story-thumbnail">
-                <% if @editable %>
-
-                  <%= link_to preview_story_path(story), :title => title do %>
+                 <%= link_to @editable ? preview_story_path(story) : storyteller_show_path(story.permalink), :title => title do %>
                     <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459', :alt => title %>              
+                    <div class="story-link"></div>   
                   <% end %>
+         
+                <% if @editable %>
                   <div class="story-edit">                   
                     <div class="story-edit-menu">
                     <ul class="nav">
@@ -74,12 +75,8 @@
                       </ul>
                     </div>
                   </div>  
-                <% else %>
-                  <%= link_to storyteller_show_path(story.permalink), :title => title do %>
-                    <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459' %>                
-                  <% end %>
                 <% end %>
-                <div class="story-link"></div>
+                
               </div>
               <div class='story-info'>                               
               <div class="story-caption">

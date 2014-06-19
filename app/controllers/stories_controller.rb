@@ -141,8 +141,8 @@ class StoriesController < ApplicationController
   end
 
   def preview
-    @css.push("storyteller.css")
-    @js.push("storyteller.js")
+    @css.push("storyteller.css","modalos.css")
+    @js.push("storyteller.js","modalos.js")
   	@story = Story.fullsection(params[:id])    
     respond_to do |format|     
       format.html { render 'storyteller/index', layout: false }
