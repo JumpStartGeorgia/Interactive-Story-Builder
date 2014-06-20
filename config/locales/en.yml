@@ -129,12 +129,9 @@ en:
       demo: Demo
       languages: Languages
       categories: Categories
-      staff_pick: Select as Staff Pick
-      staff_unpick: Unselect as Staff Pick
-      is_staff_pick: Staff Pick
+      staff_pick: Staff Pick
       user_settings: Your Settings
-      like: Like this story
-      unlike: Unlike this story
+      likes: Likes      
       comments: Comment on this story
       views: "%{num} reads"
       tags: Tags
@@ -145,6 +142,11 @@ en:
     hints:
       nickname: Your nickname is used in the url to your published stories (e.g., nickname/story-title)        
       local_avatar: Image that is shown in the header bar and on your user page (png and jpg only).
+      like: Like this story
+      unlike: Unlike this story
+      staff_pick: Select as Staff Pick
+      staff_unpick: Unselect as Staff Pick
+      is_staff_pick: Staff Pick
   app:
     language:
       en: English

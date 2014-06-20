@@ -18,7 +18,7 @@
       <%= form_tag url_for({:controller => 'root', :action => 'index',:params => params}), :method => :get, :id => 'search-form',
       :class => "navbar-form navbar-left", :role => "search" do %>
         <div class="form-group">
-          <%= text_field_tag :q, params[:q], :placeholder => t('app.common.search'), :class=>"form-control search-input", :autocomplete=>'off', :tabindex => 16 %>
+          <%= text_field_tag :q, params[:q], :placeholder => t('app.common.search'), :class=>"form-control search-input", :autocomplete=>'off', autofocus:false , :tabindex => 16 %>
         </div>
       <% end %>
       
@@ -58,7 +58,7 @@
         </li>
       <% else %>
         <li>
-          <%= link_to t('helpers.links.sign_in2'), :new_user_session %>
+          <%= link_to t('helpers.links.sign_in2'), :new_user_session, :class => 'link' %>
         </li>
      <% end %> 
         <li><div class="nav-separator"></div></li>
@@ -129,8 +129,62 @@
       <ul class="nav navbar-nav navbar-left">         
         <li><div class="nav-separator"></div></li>
         <li><a id="modalAbout" data-modalos-id="modalos-about"><%= "#{t('app.common.about_story')}" %></a></li>
-        <li><a href="#"><i class="i-icon i-like"></i><%= "#{t('app.common.likes')}" %>(105)</a></li>
-        <li><a href="#"><i class="i-icon i-staffpick"></i><%= "#{t('app.common.staff_pick')}" %></a></li>
+        <li>
+       
+          <% if !@export && @story.permalink.present? %>
+            <% if user_signed_in? %>
+              <% 
+                 style1 = @user_likes ? '' : 'hide'                 
+                 count1 = style1.present? ? @story.likes+1 : @story.likes
+                 style2 = @user_likes ?  'hide' : ''
+                 count2 = style2.present? ? @story.likes-1 : @story.likes
+              %>
+              <li>
+              <!-- "#{t('app.common.likes')}" -->
+              <%= link_to '#', :class => "like-story #{style1}", :title => t('helpers.hints.unlike'), 
+                  :'data-href' => storyteller_unlike_path(@story.permalink) do %>
+                  <i class="i-icon i-liked"></i><%= "#{ t('helpers.links.likes')}" %><span class="likes-count" class="stats-count">(<%= count1 %>)</span>               
+              <% end %>
+              <%= link_to '#', :class => "like-story #{style2}", :title => t('helpers.hints.like'), 
+                  :'data-href' => storyteller_like_path(@story.permalink) do %>
+                  <i class="i-icon i-like"></i><%= "#{t('helpers.links.likes')}" %><span class="likes-count" class="stats-count">(<%= count2 %>)</span>
+              <% end %>
+            <% else %>            
+               <%= link_to :new_user_session, :class => "", :title => t('helpers.hints.like'), 
+                    :'data-href' => storyteller_like_path(@story.permalink) do %>
+                    <i class="i-icon i-like"></i><%= "#{t('helpers.links.likes')}" %><span class="likes-count" class="stats-count">(<%= @story.likes %>)</span>
+                <% end %>
+            <% end %>
+              </li>
+
+      <!--       <%= link_to '#', :class => "btn btn-default", :title => t('helpers.links.views', :num => @story.impressions_count) do %>
+              <span class="glyphicon glyphicon-eye-open"></span><span id="views-count" class="stats-count"><%= @story.impressions_count %></span>
+            <% end %>  -->
+
+            <% if user_signed_in? && current_user.role?(User::ROLES[:staff_pick]) %>
+                  <% 
+                     style1 = @story.staff_pick ? '' : 'hide'
+                     style2 = @story.staff_pick ? 'hide' : ''                           
+                  %>
+                 <li>
+                  <%= link_to '#', :class => "staff-pick #{style1}", :title => t('helpers.hints.staff_unpick'), 
+                      :'data-href' => storyteller_staff_unpick_path(@story.permalink) do %>
+                       <i class="i-icon i-staffpicked"></i><%= "#{t('helpers.links.staff_pick')}" %>
+                  <% end %>
+                  <%= link_to '#', :class => "staff-pick #{style2}", :title => t('helpers.hints.staff_pick'), 
+                      :'data-href' => storyteller_staff_pick_path(@story.permalink) do %>
+                   <i class="i-icon i-staffpick"></i><%= "#{t('helpers.links.staff_pick')}" %>
+                  <% end %>
+                  </li>
+            <% elsif @story.staff_pick? %>
+             <li>
+                  <%= link_to '#', :class => "", :title => t('helpers.hints.is_staff_pick') do %>
+                    <i class="i-icon i-staffpicked"></i><%= "#{t('helpers.links.staff_pick')}" %>
+                  <% end %>
+                  </li>
+            <% end %>
+          <% end %> 
+
       </ul>
       <ul class="nav navbar-nav navbar-right">  
         <li>
@@ -165,73 +219,39 @@
   </div>
 </nav>
     
-<div id="modalos-about" style="display:none;">
-  <div class="story-info-top">
-      <div class="story-title">          
-        <div class="data-block">
-          <div class="nav-title"><%= @story.title %></div>
-          <div class="social">                                      
-            <img src="/assets/fb_.png" style="width:33px; height:33px;"/>
-            <img src="/assets/twitter_.png"  style="width:33px; height:33px;"/>
-            <img src="/assets/mail_.png"  style="width:33px; height:33px;"/>
-          </div>              
-          <div class="clear"> 
-            <div class="story-thumbnail">
-              <%= image_tag @story.show_asset.asset.url(:thumbnail), :height => '185', :width => '259', :align => 'left', :alt =>  @story.title %>
-              <%= @story.about.html_safe  if @story.about.present? %> 
-            </div>
-          </div>
-        </div> 
-      </div> 
-      <div class="profile-data">
-          <div class="profile-logo"><%= image_tag @story.user.avatar_url(:'168x168'),:size=>"168x168", align:'left' %></div>
-          <div class="profile-info">
-            <div class="profile-nickname"><%= "#{@story.user.nickname}" %></div>
-            <div class="profile-about"><%= @story.user.about.html_safe if @story.user.about.present? %></div>          
-          </div>   
-      </div>    
-  </div>
-  <div class="story-info-bottom">
-    <div class="story-chapters">
-      <div class="left-corner"></div>
-      <div class="data-block">   
-        <div class="story-test">                            
-          <% markers = @story.sections.select{|t| (t.ok? && t.has_marker? == true) } %>      
-          <% if markers.length > 1 %>    
-            <div class="nav-chapters">     
-             <% markers.each_with_index do |s,s_i| %>
-              <a href="#<%= s_i+1 %>" class="navigation-section" ><%= "#{s_i+1}. #{s.title}" %></a>
-             <% end %>          
-            </div>
-          <% end %>
-        </div>
-        <div class="story-test2">    
-          <% if @story.categories.present? %>
-            <div class="nav-categories">
-              <% colors = ["turquoise","green-sea","emerland","nephritis",
-                  "peter-river","belize-hole","amethyst","wisteria",
-                  "wet-asphalt","midnight-blue","sun-flower","orange",
-                  "carrot","pumpkin","alizarin","pomegranate",
-                  "clouds","silver","concrete","asbestos"]
-              %>
-        
-              <%= I18n.t('helpers.links.categories') %>: <%= raw @story.categories.map { |x| link_to x.name, root_path(:category => x.permalink), :class=>"color #{colors.sample}" }.join('') %>                   
-            </div>                          
-          <% end %>
+<div id="modalos-about" style="display:none;" class="about-window">
+  <div class="title"><%= @story.title %></div>
+  <div class="text"><%= @story.about.html_safe  if @story.about.present? %> </div>
+  <div class="profile-data">
+    <div class="logo">
+       <%= link_to image_tag(@story.user.avatar_url, :class=>"avatar"), "#" , 
+         :class => "avatar", :"data-toggle"=>"dropdown" %>   
+    </div>   
+    <div class="nickname"><%= "#{@story.user.nickname}" %></div>           
+    <div class="separator"></div> 
+    <div class="publish"><%= l(@story.published_at ,:format => :publish) if @story.published_at.present? %></div>         
+    <div class="likes">
+             <%= content_tag(:span, @story.likes, :class => "n#{@story.likes.to_s.size}" ) %>
+    </div>    
+  </div>    
 
-          <% if @story.tag_list.present? %>
-            <div class="nav-tags">             
-               <%= I18n.t('helpers.links.tags') %>: <%= raw @story.tag_list.map { |t| link_to t.titlecase, root_path(:tag => t.downcase), :class=>'tag' }.join('') %>
-            </div>
-          <% end %>
-          <div class="nav-languages">
-            <div class="lang"><%= "#{ @story.language.name}" %></div>   
-          </div>  
-        </div>
-      </div>
-      <div class="right-corner"></div>
+  <% if @story.categories.present? %>
+    <div class="categories">
+      <span><%= I18n.t('helpers.links.categories') %>:</span>              
+      <%= raw @story.categories.map { |t| link_to t.name, root_path(:category => t.permalink), :class=>"category" }.join('') %>
+    </div>                          
+  <% end %>
+
+  <% if @story.tag_list.present? %>
+    <div class="tags">
+      <span><%= I18n.t('helpers.links.tags') %>:</span>              
+      <%= raw @story.tag_list.map { |t| link_to t.titlecase, root_path(:tag => t.downcase), :class=>"tag" }.join('') %>                           
     </div>
-  </div>
+  <% end %>
+  <div class="languages">
+    <span><%= I18n.t('helpers.links.languages') %>:</span>      
+    <div class="lang"><%= "#{ @story.language.name}" %></div>   
+  </div>      
 </div>
 <div id="modalos-comments" style="display:none;">
   <div id="disqus_thread"></div>
@@ -279,7 +299,138 @@
   </div>
 </div>
 
+
 <style>
+
+
+.about-window 
+{
+  margin:10px 25px 0px 25px;
+}
+
+ .about-window .title
+  {  
+    font-family:bandera-pro-m;
+    font-size:30px;
+    color:#121212; 
+    line-height: 33px;
+
+  }
+ .about-window .text, .about-window .text p, .about-window .text span
+  {
+    font-family:opensans-r;
+    font-size:15px;
+    color:#797979;
+    margin:25px 0px 35px 0px;   
+    line-height:21px; 
+    text-align: justify;
+  }
+ .about-window .categories span,
+ .about-window .tags span,
+ .about-window .languages span
+ {
+    font-family:opensans-l;
+    font-size:14px;
+    color:#969696;
+ }
+.about-window .categories a,
+.about-window .tags a,
+.about-window .languages .lang
+ {
+    font-family:opensans-l;
+    font-size:13px;
+    color:#2b2c27;
+    background-color:#f3f3f3;
+    margin:3px;
+    padding: 5px 10px;
+    width: auto;
+    display: inline-block;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+ }
+.about-window .categories a:hover,
+.about-window .tags a:hover,
+.about-window .languages .lang:hover
+{
+  color:#020202;
+  background-color:#dfdddd;
+  cursor:pointer;
+}
+.about-window .categories,.about-window .tags,.about-window .languages
+{
+  border-top:1px dashed #ebebeb;
+  padding:15px 0px;
+}
+
+.about-window .logo .avatar
+{     
+  width: 40px;
+  height: 40px;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;    
+  margin-top:5px;
+}
+.about-window .logo,.about-window .nickname,.about-window .publish,.about-window .likes
+{
+  display:inline-block;
+  vertical-align: middle;
+  margin-left:8px;
+}
+.about-window .nickname
+{   
+  font-family:opensans-r;
+  font-size:15px;
+  color:#444;  
+
+}
+.about-window .separator
+{   
+  font-family:opensans-l;
+  font-size:14px;
+  color:#818181; 
+  border-left:1px solid #818181;
+  height:16px;
+    display:inline-block;
+    top: 4px;
+position: relative;
+margin-left:8px;
+
+}
+.about-window .publish
+{   
+  font-family:opensans-l;
+  font-size:14px;
+  color:#818181;
+  line-height: 1px; 
+}
+.about-window .likes
+{
+   width:39px;
+   height:38px;
+   background: url('/assets/likes.png') center no-repeat;
+  background-size: cover;  
+  float:right; 
+}
+.about-window .likes span{
+  line-height: 34px;
+   display: block;
+   text-align: center;
+}
+.about-window .likes span.n1,.about-window .likes span.n2,.about-window .likes span.n3,.about-window .likes span.n4
+{
+   font-size:14px;   
+}
+.about-window .likes span.n5
+{
+  font-size:12px;
+}
+.about-window .likes span.n6,.about-window .likes span.n7
+{
+   font-size:10px;
+}
+
 
 
 .share
@@ -476,66 +627,3 @@
       }];
     };                    
 </script>
-
-
-
-
-
-<!--             <% if !@export && @story.permalink.present? %>
-               
-
-                     
-                      <% if user_signed_in? %>
-                        <% 
-                           style1 = 'hide'
-                           style1 = '' if @user_likes 
-                           count1 = style1.present? ? @story.likes+1 : @story.likes
-                           style2 = ''
-                           style2 = 'hide' if @user_likes
-                           count2 = style2.present? ? @story.likes-1 : @story.likes
-                        %>
-                        <%= link_to '#', :class => "btn btn-success like-story #{style1}", :title => t('helpers.links.unlike'), 
-                            :'data-href' => storyteller_unlike_path(@story.permalink) do %>
-                          <span class="glyphicon glyphicon-heart"></span><span class="likes-count" class="stats-count"><%= count1 %></span>
-                        <% end %>
-                        <%= link_to '#', :class => "btn btn-default like-story #{style2}", :title => t('helpers.links.like'), 
-                            :'data-href' => storyteller_like_path(@story.permalink) do %>
-                          <span class="glyphicon glyphicon-heart-empty"></span><span class="likes-count" class="stats-count"><%= count2 %></span>
-                        <% end %>
-                      <% else %>
-                        <%= link_to :new_user_session, :class => "btn btn-default", :title => t('helpers.links.like'), 
-                            :'data-href' => storyteller_like_path(@story.permalink) do %>
-                          <span class="glyphicon glyphicon-heart-empty"></span><span class="likes-count" class="stats-count"><%= @story.likes %></span>
-                        <% end %>
-                      <% end %>
-
-               
-
-                      
-                      
-                 <% if user_signed_in? && current_user.role?(User::ROLES[:staff_pick]) %>
-                        <% 
-                           style1 = @story.staff_pick ? '' : 'hide'
-                           style2 = @story.staff_pick ? 'hide' : ''                           
-                        %>
-                        <%= link_to '#', :class => "btn btn-success staff-pick #{style1}", :title => t('helpers.links.staff_unpick'), 
-                            :'data-href' => storyteller_staff_unpick_path(@story.permalink) do %>
-                          <span class="glyphicon glyphicon-star"></span>
-                        <% end %>
-                        <%= link_to '#', :class => "btn btn-default staff-pick #{style2}", :title => t('helpers.links.staff_pick'), 
-                            :'data-href' => storyteller_staff_pick_path(@story.permalink) do %>
-                          <span class="glyphicon glyphicon-star-empty"></span>
-                        <% end %>
-                      <% elsif @story.staff_pick? %>
-                        <%= link_to '#', :class => "btn btn-success", :title => t('helpers.links.is_staff_pick') do %>
-                          <span class="glyphicon glyphicon-star"></span>
-                        <% end %>
-                      <% end %>
-
-                      <%= link_to '#', :class => "btn btn-default", :title => t('helpers.links.views', :num => @story.impressions_count) do %>
-                        <span class="glyphicon glyphicon-eye-open"></span><span id="views-count" class="stats-count"><%= @story.impressions_count %></span>
-                      <% end %> 
-
-
-
-                  <% end %> -->

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   	protect_from_forgery
 
 
-  PER_PAGE_COUNT = 3
+  PER_PAGE_COUNT = 9
 
 	before_filter :set_locale
 	before_filter :is_browser_supported?

@@ -6,8 +6,12 @@
             <div class="author-nickname"><%= "#{@author.nickname}" %></div>
             <div class="author-about"><%= @author.about.html_safe if @author.about.present? %></div>          
           </div>
-          <div class="author-stats"   
-      </div>       
+          <div class="author-stats"></div>   
+           <div class="btn-create-story">
+              <%= link_to  "Start Story", new_story_path, :tabindex=>1 %>
+          </div> 
+      </div> 
+
   </header>  
 <% } %>
 
