@@ -56,6 +56,7 @@ class StoriesController < ApplicationController
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list(@story.template_id)
     @story_tags = @story.tags.token_input_tags
+    gon.remove_collaborator_path = story_remove_collaborator_path(@story)
   end
 
   # POST /stories
@@ -103,6 +104,7 @@ class StoriesController < ApplicationController
         end 
         @templates = Template.select_list(@story.template_id)
         @story_tags = @story.tags.token_input_tags
+        gon.remove_collaborator_path = story_remove_collaborator_path(@story)
 
         flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
         format.html { render action: "edit" }
@@ -658,6 +660,31 @@ class StoriesController < ApplicationController
     end
   end
   
+  # remove a collaborator from a story
+  # - must be story owner to remove
+  def remove_collaborator
+    story = Story.find_by_id(params[:id])
+		msg = ''
+		has_errors = false
+  
+    if story.user_id == current_user.id
+      user = User.find_by_id(params[:user_id])
+      if user.present?
+        story.users.delete(user)
+        msg = "#{user.nickname} was removed as a collaborator"
+      else
+        msg = "User to remove as a collaborator could not be found"
+    		has_errors = true
+      end
+    else
+  		msg = 'You do not have permission to remove this collaborator'
+  		has_errors = true
+    end
+  
+    respond_to do |format|
+      format.json { render json: {msg: msg, success: !has_errors} }
+    end
+  end
   
   
 private

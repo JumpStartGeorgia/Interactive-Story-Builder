@@ -426,6 +426,30 @@ $(document).ready(function() {
       }
     ); 
   }
+  
+  // remove collaborator
+  $('#current-collaborators a.remove-collaborator').click(function(e){
+		e.preventDefault();		
+    var ths = this
+    $.ajax
+    ({
+	    url: gon.remove_collaborator_path,			  
+	    data: {user_id: $(ths).data('id')},
+	    type: "POST",			
+      dataType: 'json'
+    }).done(function(d) {
+      var dng = 'alert-danger';
+      var info = 'alert-info';
+      var cls = dng;
+      if (d.success){
+        // hide user
+        $(ths).closest('li').fadeOut();
+        cls = info;
+      }
+      // show message
+      $('li#remove-collaborator-message').show().removeClass(dng).removeClass(info).addClass(cls).html(d.msg);
+    });
+  });
 });
 
 function show_story_permalink(d){

@@ -26,6 +26,7 @@ BootstrapStarter::Application.routes.draw do
 		match "stories/tag_search" => "stories#tag_search", as: 'story_tag_search', :via => :post, :defaults => { :format => 'json' }
 		match "review/:id" => "stories#review", as: 'review'
 		match "stories/invite_collaborators" => "stories#invite_collaborators", as: 'story_invite_collaborators', :via => :post, :defaults => { :format => 'json' }
+		match "stories/:id/remove_collaborator" => "stories#remove_collaborator", as: 'story_remove_collaborator', :via => :post, :defaults => { :format => 'json' }
 
 		resources :stories do	
 
