@@ -22,6 +22,19 @@ $(document).ready(function(){
 	$('body')
 		.off('click.dropdown touchstart.dropdown.data-api', '.dropdown')
 		.on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() });
+
+
+    $('ul.nav li.dropdown-hover').hover(function(){ 
+        $(this).closest('.dropdown-menu').stop(true, true).show();
+        $(this).addClass('open'); 
+      },
+      function(){
+        $(this).closest('.dropdown-menu').stop(true, true).hide();
+        $(this).removeClass('open'); 
+    });
+
+
+
 });
 
 
@@ -59,6 +72,4 @@ var debounce = function (fn) {
       fn.apply(ctx, args)
     }, 500)
   }
-}
-    
-
+}  
