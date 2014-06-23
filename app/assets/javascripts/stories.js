@@ -430,10 +430,14 @@ $(document).ready(function() {
   // remove collaborator
   $('#current-collaborators a.remove-collaborator').click(function(e){
 		e.preventDefault();		
-    var ths = this
+    var ths = this;
+    var path = gon.remove_collaborator_path; 
+    if ($(ths).data('invitation') !== undefined){
+      path = gon.remove_invitation_path;
+    }
     $.ajax
     ({
-	    url: gon.remove_collaborator_path,			  
+	    url: path,			  
 	    data: {user_id: $(ths).data('id')},
 	    type: "POST",			
       dataType: 'json'

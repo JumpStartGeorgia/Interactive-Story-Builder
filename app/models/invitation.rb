@@ -16,4 +16,13 @@ class Invitation < ActiveRecord::Base
     self.key = Devise.friendly_token.first(20) if self.key.blank?
     self.sent_at = Time.now
   end
+  
+  def self.pending_by_story(story_id)
+    includes(:to_user)
+    .where('invitations.accepted_at is null and invitations.story_id = ?', story_id)
+  end
+  
+  def self.delete_invitation(story_id, to_email)
+    where(:story_id => story_id, :to_email => to_email).destroy_all
+  end
 end

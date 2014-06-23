@@ -79,7 +79,7 @@
   A story collaborator is someone that has access to edit this story.
 </p>
 <h3>Current Collaborators</h3>
-<% if @story.users.present? %>
+<% if @story.users.present? || @invitations.present? %>
   <ul id="current-collaborators" style="margin-bottom: 10px;">
     <% @story.users.each do |user| %>
       <li style="display:inline-block; margin-right: 5px;">
@@ -88,6 +88,32 @@
           <%= link_to '#', :class => 'remove-collaborator btn btn-danger btn-xs active', 
                   :style => 'display: block;width: 50px; padding: 1px;', :title => "Remove #{user.nickname}",
                   :'data-id' => user.id do %>
+            <i style="" class="glyphicon glyphicon glyphicon-remove-circle"></i>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+    <% @invitations.each do |inv| %>
+      <li style="display:inline-block; margin-right: 5px;">
+        <% 
+          path = nil
+          nickname = nil
+          email = nil
+          if inv.to_user_id.present?
+            path = inv.to_user.avatar_url(:'50x50')
+            nickname = inv.to_user.nickname
+            email = inv.to_user.email
+          else
+            path = User.new.avatar_url(:'50x50')
+            nickname = inv.to_email
+            email = inv.to_email
+          end
+        %>
+        <%= image_tag path,:size=>"50x50", :style => 'border: solid 2px #ED9C28;', :title => "#{nickname} has not accepted the invitation yet" %>
+        <% if current_user.id == @story.user_id %>
+          <%= link_to '#', :class => 'remove-collaborator btn btn-danger btn-xs active', 
+                  :style => 'display: block;width: 50px; padding: 1px;', :title => "Remove #{nickname}",
+                  :'data-id' => email, :'data-invitation' => 'true' do %>
             <i style="" class="glyphicon glyphicon glyphicon-remove-circle"></i>
           <% end %>
         <% end %>
@@ -109,7 +135,7 @@
     <%= text_field_tag "emails", '', class: 'form-control' %>
   </div>
   <div class="form-group">
-    <label for="message">Message</label>
+    <label for="message">Add Message to Notification (optional)</label>
     <%= text_area_tag "message", '', rows: 5, class: 'form-control' %>
   </div>
 
