@@ -66,7 +66,7 @@ class ApplicationController < ActionController::Base
     @languages_published = @languages.select{|x| x.published_story_count > 0}
 		@categories = Category.sorted
     @categories_published = @categories.select{|x| x.published_story_count > 0}
-
+    @face_id = Rails.env.production? ? ENV['STORY_BUILDER_FACEBOOK_APP_ID'] : ENV['DEV_FACEBOOK_APP_ID']        
     # for loading extra css/js files    
 		@css = []
 		@js = []

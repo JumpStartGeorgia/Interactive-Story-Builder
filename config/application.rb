@@ -64,6 +64,5 @@ module BootstrapStarter
     config.assets.precompile += %w( olly.js bootstrap-select.min.js jquery.reveal.js )
     config.assets.precompile += %w( bootstrap-select.min.css jquery-ui-1.7.3.custom.css reveal.css  )
 
-
   end
 end

@@ -14,21 +14,7 @@
     <meta name="google" content="notranslate" />
   </head>
   <body>  
-    <div id="fb-root"></div>
-    <%
-        face_id = ENV['DEV_FACEBOOK_APP_ID']
-        if Rails.env.production?
-          face_id = ENV['STORY_BUILDER_FACEBOOK_APP_ID']
-        end
-    %>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=<%= face_id %>&version=v2.0";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-    
+ 
     <%= render partial: "storyteller/template/#{@template}/nav"%>
     <div id='storyTeller'> 
       <%= render partial: "storyteller/template/#{@template}/content"%>   

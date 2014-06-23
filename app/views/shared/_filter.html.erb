@@ -1,14 +1,15 @@
    <div id="filter">      
         <ul class="nav">
           <li>
-            <%= link_to t('filters.staff_pick'), url_for(params.merge(:staff_pick => !@story_filter_staff_pick)),
-              :class => "staff_pick #{@story_filter_staff_pick == true ? 'active' : ''}" %>
+            <%= link_to url_for(params.merge(:staff_pick => !@story_filter_staff_pick)),
+              :class => "staff_pick #{@story_filter_staff_pick == true ? 'active' : ''}" do %>
+                 <i class='i-icon i-staffpick<%= "#{@story_filter_staff_pick == true ? 'ed' : ''}"%>'></i><%=  "#{t('filters.staff_pick')}" %>
+               <% end %>
           </li>
 
-          <li class="dropdown">
+          <li class="dropdown sort">
            <a href="#" class="dropdown-toggle" data-toggle="dropdown" tabindex="13">
-             <%= t('filters.sort_header') %>
-             <b class="caret"></b>
+             <%= t('filters.sort_header') %><i class='i-icon i-caret'></i>
            </a>
             <ul class="dropdown-menu">
               <% I18n.t('filters.sort').each do |key, value| %>
@@ -19,10 +20,10 @@
             </ul>
           </li>
           <% if @categories_published.present? %>
-           <li class="dropdown" tabindex="14">
+           <li class="dropdown category" tabindex="14">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
               <%= t('filters.category_header') %>
-              <b class="caret"></b>
+              <i class='i-icon i-caret'></i>
             </a>
             <ul class="dropdown-menu">          
               <li class="dropdown">
@@ -36,10 +37,10 @@
             </ul>
           </li>
           <% end %>
-          <li class="dropdown">
+          <li class="dropdown language">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" tabindex="15">
               <%= t('filters.language_header') %>
-              <b class="caret"></b>
+              <i class='i-icon i-caret'></i>
             </a>
             <ul class="dropdown-menu">          
               <li class="dropdown">

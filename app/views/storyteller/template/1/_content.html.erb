@@ -97,7 +97,7 @@
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
                 <% if columnSectionCount == 0 %>
-                  <div class='headline'><%= @story.title %></div>
+                  <div class='headline<%= s_i == 0 ? " margin130": ""%>'><%= @story.title %></div>
                   <div class="byline-rule"></div>      
                   <div class="byline byline--first" style="margin-bottom:50px;">
                   <%= t('storyteller.byline') %> <span class="author"><%= @story.author %></span>

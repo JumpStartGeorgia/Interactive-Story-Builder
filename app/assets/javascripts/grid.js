@@ -4,7 +4,7 @@ $(function() {
     $.getScript(this.href);
     window.history.pushState({path:this.href},'',this.href);
 	$("html,body").stop().animate({
-	      scrollTop: magnetoHeights[1]
+	      scrollTop: 550
 	}, 1000);
 
     return false;

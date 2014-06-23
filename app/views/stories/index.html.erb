@@ -8,8 +8,8 @@
             <div class="author-about"><%= current_user.about.html_safe if current_user.about.present? %></div>          
           </div>   
       </div>   
-      <div class="btn-create-story">
-         <%= link_to  "Start Story", new_story_path, :tabindex=>1 %>
+      <div class="create-story">
+          <%= link_to  t("app.common.create"), new_story_path, :tabindex => 1 %>
       </div>       
   </header>  
 <% } %>
