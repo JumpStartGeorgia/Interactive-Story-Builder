@@ -242,6 +242,10 @@ en:
         success: Item was successfully deleted.
         error: "Error occurred while deleting the item [ %{err} ]"
         error_not_found: Item could not be found to delete.
+      collaborators:
+        success_remove: '%{name} was removed as a collaborator'
+        user_not_found: User to remove as a collaborator could not be found
+        no_permission: You do not have permission to remove this collaborator
   section_types:
     content:
       name: Content
@@ -384,6 +388,16 @@ en:
         locale: Select the language of your story. Allows users to filter stories by a language.
         categories: Select the category(s) your story belongs to.  Allows users to filter stories by a category.
         tag_list: "Enter text to find existing tags.  If your tag does not exist yet, press 'Enter' to add the new tag to the list."
+      collaborators:
+        owner_header: Story Owner
+        collaborators_header: Story Collaborators
+        explanation: A story collaborator is someone that has access to edit this story.
+        current_header: Current Collaborators
+        remove_title: 'Remove %{name}'
+        not_accepted_title: '%{name} has not accepted the invitation yet'
+        add_header: Add Collaborators
+        add_explanation: An email will be sent to the people you select below inviting them to be a collaborator on this story.
+        message: Add Message to Notification (optional)
     media:
       form_title: Full-Screen Media Slideshow Form
       left: Left

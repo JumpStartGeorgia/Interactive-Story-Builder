@@ -100,7 +100,6 @@ ka:
         line3: If you want to decline this invitation, no action is needed on your part.
         line_msg: "Here is message written to you by %{name}:"
   helpers:
-  helpers:
     actions: აირჩიეთ
     links:
       admin: ადმინისტრატორის განყოფილება
@@ -244,6 +243,10 @@ ka:
         success: ერთეული წარმატებით წაიშალა.
         error: "ერთეულის წაშლისას დაშვებულია შეცდომა [ %{err} ]"
         error_not_found: წასაშლელი ერთეული ვერ მოიძებნა.
+      collaborators:
+        success_remove: '%{name} was removed as a collaborator'
+        user_not_found: User to remove as a collaborator could not be found
+        no_permission: You do not have permission to remove this collaborator
   section_types:
     content:
       name: შინაარსი
@@ -383,6 +386,16 @@ ka:
         locale: აირჩიეთ თქვენი ამბის ენა. მიეცით მომხმარებელს საშუალება აირჩიოს ამბავი ენის მიხედვით.
         categories: აირჩიეთ კატეგორია(ები), რომელსაც თქვენი ამბავი განეკუთვნება. მიეცით მომხმარებელს საშუალება აირჩიოს ამბავი კატეგორიის მიხედვით.
         tag_list: "Enter text to find existing tags.  If your tag does not exist yet, press 'Enter' to add the new tag to the list."
+      collaborators:
+        owner_header: Story Owner
+        collaborators_header: Story Collaborators
+        explanation: A story collaborator is someone that has access to edit this story.
+        current_header: Current Collaborators
+        remove_title: 'Remove %{name}'
+        not_accepted_title: '%{name} has not accepted the invitation yet'
+        add_header: Add Collaborators
+        add_explanation: An email will be sent to the people you select below inviting them to be a collaborator on this story.
+        message: Add Message to Notification (optional)
     media:
       form_title: მთელს ეკრანზე გაშლილი მედია სლაიდშოუ
       left: მარცხნივ

@@ -671,13 +671,13 @@ class StoriesController < ApplicationController
       user = User.find_by_id(params[:user_id])
       if user.present?
         story.users.delete(user)
-        msg = "#{user.nickname} was removed as a collaborator"
+        msg = I18n.t('app.msgs.collaborators.success_remove', :name => user.nickname)
       else
-        msg = "User to remove as a collaborator could not be found"
+        msg = I18n.t('app.msgs.collaborators.user_not_found')
     		has_errors = true
       end
     else
-  		msg = 'You do not have permission to remove this collaborator'
+      msg = I18n.t('app.msgs.collaborators.no_permission')
   		has_errors = true
     end
   
@@ -696,13 +696,13 @@ class StoriesController < ApplicationController
     if story.user_id == current_user.id
       if params[:user_id].present?
         Invitation.delete_invitation(params[:id], params[:user_id])
-        msg = "#{params[:user_id]} was removed as a collaborator"
+        msg = I18n.t('app.msgs.collaborators.success_remove', :name => params[:user_id])
       else
-        msg = "User to remove as a collaborator could not be found"
+        msg = I18n.t('app.msgs.collaborators.user_not_found')
     		has_errors = true
       end
     else
-  		msg = 'You do not have permission to remove this collaborator'
+      msg = I18n.t('app.msgs.collaborators.no_permission')
   		has_errors = true
     end
   
