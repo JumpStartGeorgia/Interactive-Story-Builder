@@ -334,6 +334,9 @@ en:
       header_missing: Is Something Missing?
       missing_text: Is there a feature missing from these lists that you would like added?  Do you feel that we should re-prioritize our list?  If so, please let us know by using the %{link}.
       feedback_link: Feedback section
+    about:
+      title: About Story Builder
+      text: Story Builder ...
   stories:
     index:
       link:

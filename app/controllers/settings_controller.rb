@@ -3,7 +3,7 @@ class SettingsController < ApplicationController
 
 
   def index
-    @css.push("settings.css", "devise.css", "bootstrap-select.min.css")
+    @css.push("settings.css", "devise.css", "bootstrap-select.min.css","navbar.css")
     @js.push("nickname.js", "bootstrap-select.min.js")
 
     if request.put?

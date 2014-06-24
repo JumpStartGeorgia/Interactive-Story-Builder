@@ -3,10 +3,8 @@ class RootController < ApplicationController
   def index   
     
     @js.push("navbar.js", "filter.js","grid.js", "modalos.js")
-    @css.push("navbar.css", "filter.css", "grid.css", "modalos.css")
-    @css.push("root.css")
+    @css.push("navbar.css", "filter.css", "grid.css", "modalos.css","root.css")    
     @stories = process_filter_querystring(Story.is_published_home_page.paginate(:page => params[:page], :per_page => per_page))      
-
 
     respond_to do |format|
       format.html  
@@ -16,7 +14,6 @@ class RootController < ApplicationController
   end
 
   def author   
-    
     @author = User.find_by_permalink(params[:user_id])
 
     if @author.present?
@@ -38,31 +35,28 @@ class RootController < ApplicationController
   end
 
   def embed   
-       @css.push("embed.css")    
-      @story = Story.is_published.find_by_permalink(params[:story_id])
-      #redirect_to root_path, :notice => t('app.msgs.does_not_exist')    
-      respond_to do |format|     
-        format.html { render 'embed', layout: false }    
-      end    
-
+    @css.push("embed.css")    
+    @story = Story.is_published.find_by_permalink(params[:story_id])
+    #redirect_to root_path, :notice => t('app.msgs.does_not_exist')    
+    respond_to do |format|     
+      format.html { render 'embed', layout: false }    
+    end    
   end
 
   def demo
     @story = Story.demo
-
   	if @story.present?
-      respond_to do |format|     
-        format.html { render 'storyteller/index', layout: false }
-      end
+      redirect_to storyteller_show_path(@story.permalink) 
+      # respond_to do |format|     
+      #   format.html { render 'storyteller/index' }
+      # end
     else
       redirect_to root_path, :notice => t('app.msgs.does_not_exist')
     end
   end
-  
-
 
   def news   
-    @css.push("news.css") 
+    @css.push("news.css","navbar.css")       
     @news = News.published  
     respond_to do |format|
       format.html  #index.html.erb
@@ -71,8 +65,8 @@ class RootController < ApplicationController
   end
   
   def news_show
+    @css.push("news.css","navbar.css")   
     @news = News.find_by_permalink(params[:id])
-
 		if @news.present?
       respond_to do |format|
         format.html  #index.html.erb
@@ -82,10 +76,10 @@ class RootController < ApplicationController
 			flash[:info] =  t('app.msgs.does_not_exist')
 			redirect_to root_path(:locale => I18n.locale)
 		end
-  
   end
   
   def feedback
+    @css.push("news.css","navbar.css")   
     @message = Message.new
 
     @message_types = []
@@ -105,15 +99,15 @@ class RootController < ApplicationController
     end
   end
 
-  def todo_list
-    @css.push("todo.css")
+  def todo_list    
+    @css.push("todo.css","navbar.css")   
     respond_to do |format|
       format.html 
     end
   end
 
   def about   
-
+    @css.push("navbar.css")   
     respond_to do |format|
       format.html 
     end

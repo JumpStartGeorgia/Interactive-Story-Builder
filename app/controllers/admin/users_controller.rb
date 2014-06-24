@@ -7,7 +7,7 @@ class Admin::UsersController < ApplicationController
   # GET /admin/users
   # GET /admin/users.json
   def index
-    @css.push("dataTables/jquery.dataTables.bootstrap.css")
+    @css.push("dataTables/jquery.dataTables.bootstrap.css","navbar.css")
     @js.push("dataTables/jquery.dataTables.js", "dataTables/jquery.dataTables.bootstrap.js", "search.js")
 
     respond_to do |format|

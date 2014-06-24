@@ -161,26 +161,18 @@
                                 <% if m.caption.present? %>
                                 <div class="video-summary"> <%= m.caption %> </div>
                                 <% end %> 
-                                <div class="scroll-prompt">                                
-                                                       
-                                <svg width="7.976px" height="12.512px">
-                                  <g>
-                                    <path fill="#FFFFFF" d="M3.305,4.756c0.188,0.189,0.436,0.28,0.683,0.279c0.247,0.001,0.494-0.09,0.683-0.279l3.026-3.025
-                                      c0.372-0.374,0.372-0.978,0-1.352l-0.1-0.099c-0.374-0.374-0.979-0.374-1.353,0L3.988,2.537L1.731,0.28
-                                      c-0.373-0.374-0.978-0.374-1.352,0l-0.1,0.099c-0.373,0.374-0.373,0.979,0,1.352L3.305,4.756z"/>
-                                    <path fill="#FFFFFF" d="M7.597,7.756c-0.374-0.373-0.979-0.373-1.353,0l-2.256,2.257L1.731,7.756c-0.373-0.373-0.978-0.373-1.352,0
-                                      l-0.1,0.1c-0.373,0.375-0.373,0.978,0,1.351l3.025,3.025c0.188,0.188,0.436,0.282,0.683,0.28c0.247,0.002,0.494-0.092,0.683-0.28
-                                      l3.026-3.025c0.372-0.373,0.372-0.976,0-1.351L7.597,7.756z"/>
-                                  </g>
-                                </svg>
-                                </div>   
-                                <div class="social">                                      
-                                    <a href='https://twitter.com/share?text=<%= "#{@story.title}" %>' onclick="javascript:window.open(this.href,
-                                      '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/twitter.png"%>'/></a>    
-                                    <a href="https://plus.google.com/share?url=<%= current_url %>" onclick="javascript:window.open(this.href,
-                                      '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>' alt="Share on Google+"/></a>                                
-                                      <div class="facebook">  <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true" ></div></div>
-                                </div>   
+                                <div class="scroll-prompt">                                                                                      
+                                  <svg width="7.976px" height="12.512px">
+                                    <g>
+                                      <path fill="#FFFFFF" d="M3.305,4.756c0.188,0.189,0.436,0.28,0.683,0.279c0.247,0.001,0.494-0.09,0.683-0.279l3.026-3.025
+                                        c0.372-0.374,0.372-0.978,0-1.352l-0.1-0.099c-0.374-0.374-0.979-0.374-1.353,0L3.988,2.537L1.731,0.28
+                                        c-0.373-0.374-0.978-0.374-1.352,0l-0.1,0.099c-0.373,0.374-0.373,0.979,0,1.352L3.305,4.756z"/>
+                                      <path fill="#FFFFFF" d="M7.597,7.756c-0.374-0.373-0.979-0.373-1.353,0l-2.256,2.257L1.731,7.756c-0.373-0.373-0.978-0.373-1.352,0
+                                        l-0.1,0.1c-0.373,0.375-0.373,0.978,0,1.351l3.025,3.025c0.188,0.188,0.436,0.282,0.683,0.28c0.247,0.002,0.494-0.092,0.683-0.28
+                                        l3.026-3.025c0.372-0.373,0.372-0.976,0-1.351L7.597,7.756z"/>
+                                    </g>
+                                  </svg>
+                                </div>                   
                               </div>                 
                           <% else %>
                             <% if m.caption.present? %>
@@ -230,9 +222,7 @@
       </div>
     </div>  
         <div class="section footer-section">        
-           <div class="left">
-            <div> <a class="about-link">პროექტის შესახებ</a></div>
-            <div class="footer-separator"></div>
+           <div class="left">                        
             <div><a href="http://www.jumpstart.ge" target="_blank" title="<%= t("app.common.js_link_title") %>" >
               <img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/logo.png"%>' class="footer-logo"/></a></div>
            </div>
@@ -247,24 +237,6 @@
            </div>
            </div>
         </div> 
-           <div id="about_box" style="width:100%;" >           
-            <div class='about_text'>
-                  <div class="about_close"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/close.png"%>' style="width: 16px;height: 16px;"/></div>                  
-                  <p>პროექტი “ბავშვები შავშვებიდან” შექმნილია “ჯამპსტარტ ჯორჯიას” მიერ საქველმოქმედო ცენტრ “აფხაზეთთან” თანამშრომლობით პროექტის <a href="http://jumpstart.ge/ka/what-we-do/projects/monacemta-vizualizacia-advokatirebistvis" target="_blank">“მონაცემების ვიზუალიზაცია ადვოკატირებისთვის”</a> ფარგლებში.</p>
-
-                  <p>პროექტის მიზანია, საზოგადოების დახმარებით სოციალური კამპანიის ხელშეწყობა, რომლის შედეგადაც შეგროვდება შავშვების დევნილთა დასახლებაში არსებული უფუნქციო აბანოს შენობა-ნაგებობების საბავშვო ბაღად გადაკეთებისთვის საჭირო თანხა.</p>
-
-                  <p><a href="http://jumpstart.ge/ka" target="_blank">“ჯამპსტარტ ჯორჯია”</a> არის საქართველოში რეგისტრირებული არასამთავრობო ორგანიზაცია, რომელიც ღია წყაროს ტექნოლოგიების გამოყენებით, საზოგადოებისათვის საინტერესო და აქტუალური მონაცემების ხელმისაწვდომობასა და საჯაროობას უზრუნველყოფს.</p>
-                  <p>
-                  საქველმოქმედო ჰუმანიტარული ცენტრი "აფხაზეთი" (<a href="http://chca.org.ge/itst/" target="_blank">CHCA</a>) არის არასამთავრობო ორგანიზაცია, რომელიც ფოკუსირებულია საქართველოს იძულებით გადაადგილებული და სხვა სოციალურად დაუცველი მოსახლეობის გაძლიერებაზე. ორგანიზაცია დაარსდა 1995 წელს, აფხაზეთის კონფლიქტის შედეგად საქართველოს ათასობით იძულებით გადაადგილებული მოქალაქის მხარდასაჭერად.</p>
-                  <div>
-                    <a href="http://www.jumpstart.ge" target="_blank" title="<%= t("app.common.js_link_title") %>" ><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/about-logo.png"%>' class='about_js_logo'/></a>
-                    <a href="http://chca.org.ge/itst/" target="_blank" title="CHCA" ><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/chca.png"%>' class='about_chca_logo'/></a>
-                  </div>
-            </div>
-
-        </div>  
-
       <!-- ****************************************************
       *  data hash for mobile devices , they use different images   
       ********************************************************* -->
@@ -565,7 +537,7 @@
               fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight),
               fade = d3.interpolateRgb("#fff", "#fff");
 
-          var headline = d3.select(".navigation-headline");
+          //var headline = d3.select(".navigation-headline");
 
           var sequence = d3.selectAll(".video-sequence")
               .datum(function() {
@@ -783,7 +755,7 @@
                   : opacityTop < fixTop - fixHeight / 2 ? Math.max(0, Math.min(1, (opacityTop - fixTop + fixHeight) / (fixHeight / 2)))
                   : opacity;
 
-              if (d.first && d.sequence.first) headline.style("opacity", 1 - volume);
+              //if (d.first && d.sequence.first) headline.style("opacity", 1 - volume);
             }
           }
 
@@ -797,7 +769,7 @@
                     if (this.currentTime) this.currentTime = 0;
                   }
                 });                 
-            if (d.first && d.sequence.first && !d3.event.state) headline.style("opacity", null);
+            //if (d.first && d.sequence.first && !d3.event.state) headline.style("opacity", null);
           }
 
           function sequencescrolled() {
@@ -1076,10 +1048,7 @@
         }
 
             
-        await();   
-        d3.select(".about-link").on('click',function(){d3.select("#about_box").style('display','block');})
-        d3.select(".about_close").on('click',function(){d3.select("#about_box").transition().style('display','none');})           
-  
+        await();             
     })();</script>
 
     <!--<![endif]-->  

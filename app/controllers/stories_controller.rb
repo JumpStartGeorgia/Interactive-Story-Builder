@@ -506,12 +506,12 @@ class StoriesController < ApplicationController
       File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/index.html.erb', :layout => false) }  
       send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :x_sendfile=>true, :filename=>"#{filename}.tar.gz"
 
-      if File.directory?(path)
-        FileUtils.remove_dir(path,true)   
-      end
-      if File.exists?("#{path}.tar.gz")    
-        FileUtils.remove_file("#{path}.tar.gz",true)   
-      end
+      # if File.directory?(path)
+      #   FileUtils.remove_dir(path,true)   
+      # end
+      # if File.exists?("#{path}.tar.gz")    
+      #   FileUtils.remove_file("#{path}.tar.gz",true)   
+      # end
     rescue
        flash[:error] =I18n.t("app.msgs.error_export", obj:"#{Story.model_name.human} \"#{@story.errors.inspect}\"")                           
        redirect_to stories_url
@@ -620,7 +620,7 @@ private
   end
 
   def asset_filter
-    @css.push("stories.css", "embed.css", "reveal.css", "bootstrap-select.min.css", "token-input-facebook.css")
+    @css.push("stories.css", "embed.css", "reveal.css", "bootstrap-select.min.css", "token-input-facebook.css","navbar.css")
     @js.push("stories.js", "jquery.reveal.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js")
   end 
   
