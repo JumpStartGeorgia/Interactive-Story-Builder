@@ -143,6 +143,7 @@ class StoriesController < ApplicationController
   def preview
     @css.push("storyteller.css","modalos.css")
     @js.push("storyteller.js","modalos.js")
+
   	@story = Story.fullsection(params[:id])    
     respond_to do |format|     
       format.html { render 'storyteller/index', layout: false }
@@ -475,9 +476,11 @@ class StoriesController < ApplicationController
 
 
   def export
-    begin     
+    begin   
+      @css.clear()
+      @js.clear()
       @story = Story.fullsection(params[:id])  
-      rootPath = "#{Rails.root}/tmp";
+      rootPath = "#{Rails.root}/tmp/stories";
       filename = StoriesHelper.transliterate(@story.title.downcase);      
       filename_ext = SecureRandom.hex(3)  
       path =  "#{rootPath}/#{filename}_#{filename_ext}"  
@@ -503,12 +506,17 @@ class StoriesController < ApplicationController
         FileUtils.cp_r "#{Rails.root}/public/system/places/slideshow/#{params[:id]}/.", "#{mediaPath}/slideshow"
       end
       @export = true
-      File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/index.html.erb', :layout => false) }  
-      send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :x_sendfile=>true, :filename=>"#{filename}.tar.gz"
 
-      # if File.directory?(path)
-      #   FileUtils.remove_dir(path,true)   
-      # end
+      @css.push("export.css","modalos.css")
+      @js.push("export.js","modalos.js")
+
+      File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/index.html.erb', :layout => false) }  
+      send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :filename=>"#{filename}.tar.gz", :disposition => 'inline'
+      
+      if File.directory?(path)
+        FileUtils.remove_dir(path,true)   
+      end
+
       # if File.exists?("#{path}.tar.gz")    
       #   FileUtils.remove_file("#{path}.tar.gz",true)   
       # end

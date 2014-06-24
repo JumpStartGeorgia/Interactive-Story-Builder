@@ -1,21 +1,5 @@
-<% if !@export %>
-    <%= render partial: "layouts/story_nav"%>   
+<% if @export %>
+  <%= render partial: "layouts/story_nav_exp" %>
 <% else %>
-  <div class="navigation">
-    <div class="navigation-left">
-      <div class="navigation-app"> <%= t('app.common.app_name') %> </div>
-      <a class="navigation-headline" href="#"><%= @story.title %></a>    
-    </div>
-    <div class="navigation-right">
-      <a href="#" class="navigation-volume"><div class="navigation-icon"></div></a>
-      <% markers = @story.sections.select{|t| (t.ok? && t.has_marker? == true) } %>      
-      <% if markers.length > 1 %>    
-        <div class="navigation-sections">     
-         <% markers.each_with_index do |s,s_i| %>
-          <a href="#<%= s_i+1 %>" class="navigation-section" title="<%= s.title %>"><%= s_i+1 %></a>
-         <% end %>          
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <%= render partial: "layouts/story_nav" %>   
 <% end %>      
