@@ -57,8 +57,6 @@ class StoriesController < ApplicationController
     @templates = Template.select_list(@story.template_id)
     @story_tags = @story.tags.token_input_tags
     @invitations = Invitation.pending_by_story(@story.id)
-    gon.remove_collaborator_path = story_remove_collaborator_path(@story)
-    gon.remove_invitation_path = story_remove_invitation_path(@story)
   end
 
   # POST /stories
@@ -107,8 +105,6 @@ class StoriesController < ApplicationController
         @templates = Template.select_list(@story.template_id)
         @story_tags = @story.tags.token_input_tags
         @invitations = Invitation.pending_by_story(@story.id)
-        gon.remove_collaborator_path = story_remove_collaborator_path(@story)
-        gon.remove_invitation_path = story_remove_invitation_path(@story)
 
         flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
         format.html { render action: "edit" }

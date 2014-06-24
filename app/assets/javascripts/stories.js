@@ -431,13 +431,9 @@ $(document).ready(function() {
   $('#current-collaborators a.remove-collaborator').click(function(e){
 		e.preventDefault();		
     var ths = this;
-    var path = gon.remove_collaborator_path; 
-    if ($(ths).data('invitation') !== undefined){
-      path = gon.remove_invitation_path;
-    }
     $.ajax
     ({
-	    url: path,			  
+	    url: $(ths).data('url'),			  
 	    data: {user_id: $(ths).data('id')},
 	    type: "POST",			
       dataType: 'json'

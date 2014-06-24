@@ -69,7 +69,7 @@
 <% end %>
 
 
-<hr />
+<hr class="clear" />
 
 <h2>Story Owner</h2>
 <%= image_tag @story.user.avatar_url(:'50x50'),:size=>"50x50", :title => @story.user.nickname %>
@@ -87,7 +87,8 @@
         <% if current_user.id == @story.user_id %>
           <%= link_to '#', :class => 'remove-collaborator btn btn-danger btn-xs active', 
                   :style => 'display: block;width: 50px; padding: 1px;', :title => "Remove #{user.nickname}",
-                  :'data-id' => user.id do %>
+                  :'data-id' => user.id,
+                  :'data-url' => story_remove_collaborator_path(@story) do %>
             <i style="" class="glyphicon glyphicon glyphicon-remove-circle"></i>
           <% end %>
         <% end %>
@@ -113,7 +114,8 @@
         <% if current_user.id == @story.user_id %>
           <%= link_to '#', :class => 'remove-collaborator btn btn-danger btn-xs active', 
                   :style => 'display: block;width: 50px; padding: 1px;', :title => "Remove #{nickname}",
-                  :'data-id' => email, :'data-invitation' => 'true' do %>
+                  :'data-id' => email, 
+                  :'data-url' => story_remove_invitation_path(@story) do %>
             <i style="" class="glyphicon glyphicon glyphicon-remove-circle"></i>
           <% end %>
         <% end %>
