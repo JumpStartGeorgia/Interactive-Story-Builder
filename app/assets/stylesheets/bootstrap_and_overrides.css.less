@@ -83,13 +83,19 @@
 	width:100%;	
 	vertical-align: middle;
 }
-.navbar.navbar-storybuilder
+.navbar .nav li a
 {
-	min-height:50px;
+  padding:0px;
+  font-family:opensans-l;
+  font-size:14px;
 }
-.navbar.navbar-story
+.navbar.navbar-story,.navbar-header
 {
 	min-height:40px;
+}
+.navbar-header .navbar-toggle
+{
+	border-radius:none;
 }
 .nav > li > a:hover
 {
@@ -187,4 +193,11 @@ html, body
 {
 	right: -25px;
 	top:100%;
+}
+.container > .navbar-header,
+.container-fluid > .navbar-header,
+.container > .navbar-collapse,
+.container-fluid > .navbar-collapse {
+  margin-right: 0px;
+  margin-left: 0px;
 }

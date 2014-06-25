@@ -234,8 +234,7 @@
 		    	 {		    	 	
 		    	 	$(wrapper).height(options.height);
 		    	 	$(wrapper).find('.m-content').css("max-height",h - options.topOffset - options.margins - 40 - header_height).addClass("fluid");
-		    	 	if(options.width > w) $(wrapper).width(w-options.margins);
-			    	else $(wrapper).width(options.width);
+		    	 	$(wrapper).width(options.width);
 		    	 	if(options.height + options.topOffset > h)
 		    	 	{
 	    	 			$(wrapper).height(h - options.topOffset - options.margins);
@@ -250,5 +249,6 @@
     }
 })(jQuery);
         
+
 
 

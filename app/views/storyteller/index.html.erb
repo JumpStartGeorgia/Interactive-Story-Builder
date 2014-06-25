@@ -4,7 +4,7 @@
 %>
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
-  <head>
+  <head>    
     <%= render partial: "storyteller/template/#{@template}/head"%>
 
     <% if !@export %>
@@ -24,7 +24,10 @@
   			  I18n.defaultLocale = "<%= I18n.default_locale %>";
   			  I18n.locale = "<%= I18n.locale %>";
   		  </script>
-      
+      <% else %>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+          <script src="js/bootstrap.min.js"></script>
+          <script src="js/storyteller.js"></script>
       <% end %>
       <% if Rails.env.production? %>
         <script>

@@ -488,9 +488,9 @@ class StoriesController < ApplicationController
 
       require 'fileutils'      
       FileUtils.cp_r "#{Rails.root}/public/media/story", "#{path}"  
-
-      if File.directory?("#{Rails.root}/public/template/#{@story.template.name}/fonts")
-          FileUtils.cp_r "#{Rails.root}/public/template/#{@story.template.name}/fonts", "#{path}/assets"
+      
+      if File.directory?("#{Rails.root}/public/template/#{@story.template_id}/fonts")
+          FileUtils.cp_r "#{Rails.root}/public/template/#{@story.template_id}/fonts", "#{path}/assets"
       end
 
       if File.directory?("#{Rails.root}/public/system/places/images/#{params[:id]}/.")
@@ -506,16 +506,13 @@ class StoriesController < ApplicationController
         FileUtils.cp_r "#{Rails.root}/public/system/places/slideshow/#{params[:id]}/.", "#{mediaPath}/slideshow"
       end
       @export = true
-
-      @css.push("export.css","modalos.css")
-      @js.push("export.js","modalos.js")
-
-      File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/index.html.erb', :layout => false) }  
-      send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :filename=>"#{filename}.tar.gz", :disposition => 'inline'
+ 
+      File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/index', :layout => false) }  
+      send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :filename=>"#{filename}.tar.gz"
       
-      if File.directory?(path)
-        FileUtils.remove_dir(path,true)   
-      end
+      # if File.directory?(path)
+      #   FileUtils.remove_dir(path,true)   
+      # end
 
       # if File.exists?("#{path}.tar.gz")    
       #   FileUtils.remove_file("#{path}.tar.gz",true)   
@@ -623,7 +620,7 @@ private
   end
 
   def generate_gzip(tar,name,ff)      
-      system("tar -czf #{tar}.tar.gz -C '#{Rails.root}/tmp/#{name}' .")
+      system("tar -czf #{tar}.tar.gz -C '#{Rails.root}/tmp/stories/#{name}' .")
       return "#{tar}.tar.gz"
   end
 

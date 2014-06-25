@@ -18,8 +18,8 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
- set :output, "/log/cron.log"
+ set :output, "log/cron.log"
 
-every 1.minutes do
-  rake "story:temp_stories_clear"
+every 3.hours do
+  rake "story:tmp_stories_clear", :environment => 'development' 
 end

@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :asset_filter 
   before_filter do |controller_instance|
     controller_instance.send(:valid_role?, User::ROLES[:admin])
   end
@@ -7,7 +8,7 @@ class Admin::UsersController < ApplicationController
   # GET /admin/users
   # GET /admin/users.json
   def index
-    @css.push("dataTables/jquery.dataTables.bootstrap.css","navbar.css")
+    @css.push("dataTables/jquery.dataTables.bootstrap.css")
     @js.push("dataTables/jquery.dataTables.js", "dataTables/jquery.dataTables.bootstrap.js", "search.js")
 
     respond_to do |format|
@@ -95,4 +96,9 @@ class Admin::UsersController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  private
+  def asset_filter
+    @css.push("navbar.css") 
+  end 
 end

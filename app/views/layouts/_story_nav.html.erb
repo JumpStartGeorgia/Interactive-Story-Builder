@@ -135,22 +135,25 @@
                  count2 = style2.present? ? @story.likes-1 : @story.likes
               %>
               <li>
-              <!-- "#{t('app.common.likes')}" -->
-              <%= link_to '#', :class => "like-story #{style1}", :title => t('helpers.hints.unlike'), 
-                  :'data-href' => storyteller_unlike_path(@story.permalink) do %>
-                  <i class="i-icon i-liked"></i><%= "#{ t('helpers.links.likes')}" %><span class="likes-count" class="stats-count">(<%= count1 %>)</span>               
-              <% end %>
-              <%= link_to '#', :class => "like-story #{style2}", :title => t('helpers.hints.like'), 
-                  :'data-href' => storyteller_like_path(@story.permalink) do %>
-                  <i class="i-icon i-like"></i><%= "#{t('helpers.links.likes')}" %><span class="likes-count" class="stats-count">(<%= count2 %>)</span>
-              <% end %>
-            <% else %>            
+                <!-- "#{t('app.common.likes')}" -->
+                <%= link_to '#', :class => "like-story #{style1}", :title => t('helpers.hints.unlike'), 
+                    :'data-href' => storyteller_unlike_path(@story.permalink) do %>
+                    <i class="i-icon i-liked"></i><%= "#{ t('helpers.links.likes')}" %><span class="likes-count" class="stats-count">(<%= count1 %>)</span>               
+                <% end %>
+                <%= link_to '#', :class => "like-story #{style2}", :title => t('helpers.hints.like'), 
+                    :'data-href' => storyteller_like_path(@story.permalink) do %>
+                    <i class="i-icon i-like"></i><%= "#{t('helpers.links.likes')}" %><span class="likes-count" class="stats-count">(<%= count2 %>)</span>
+                <% end %>
+              </li>
+            <% else %>  
+            <li>          
                <%= link_to :new_user_session, :class => "", :title => t('helpers.hints.like'), 
                     :'data-href' => storyteller_like_path(@story.permalink) do %>
                     <i class="i-icon i-like"></i><%= "#{t('helpers.links.likes')}" %><span class="likes-count" class="stats-count">(<%= @story.likes %>)</span>
                 <% end %>
+            </li>
             <% end %>
-              </li>
+          
 
       <!--       <%= link_to '#', :class => "btn btn-default", :title => t('helpers.links.views', :num => @story.impressions_count) do %>
               <span class="glyphicon glyphicon-eye-open"></span><span id="views-count" class="stats-count"><%= @story.impressions_count %></span>
