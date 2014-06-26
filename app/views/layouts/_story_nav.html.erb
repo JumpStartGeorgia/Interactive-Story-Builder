@@ -49,7 +49,7 @@
             <% end %>   
             <li class="divider"></li>  
             <li>
-             <%= link_to t('helpers.links.sign_out'), destroy_user_session_path, :method => :delete, :class => 'link' %>
+             <%= link_to t('helpers.links.sign_out'), destroy_user_session_path, :method => :delete %>
             </li>
           </ul>
         </li>
@@ -74,7 +74,7 @@
               <i class="i-icon i-google"></i>
             </a></li> 
         <li><div class="nav-separator"></div></li>  
-        <li class="dropdown dropdown-about-storybuilder">                    
+        <li class="dropdown dropdown-hover dropdown-about-storybuilder">                    
             <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= "#{t('app.common.about_storybuilder')}" %><i class="i-icon i-caret"></i></a>                   
             <ul class="dropdown-menu pull-right">
               <li>
@@ -225,7 +225,9 @@
        <%= link_to image_tag(@story.user.avatar_url, :class=>"avatar"), "#" , 
          :class => "avatar", :"data-toggle"=>"dropdown" %>   
     </div>   
-    <div class="nickname"><%= "#{@story.user.nickname}" %></div>           
+    <div class="nickname">
+      <%= link_to @story.user.nickname, author_path(@story.user.permalink), :title => @story.user.nickname %>      
+    </div>           
     <div class="separator"></div> 
     <div class="publish"><%= l(@story.published_at ,:format => :publish) if @story.published_at.present? %></div>         
     <div class="likes">

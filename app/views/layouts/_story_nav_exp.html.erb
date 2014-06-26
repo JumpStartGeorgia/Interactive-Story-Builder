@@ -12,32 +12,35 @@
     </div>
 
     <div class="collapse navbar-collapse" id="story-navbar-collapse">
-      <ul class="nav navbar-nav navbar-left">         
-        <li><div class="nav-separator"></div></li>
-        <li><a id="modalAbout" data-modalos-id="modalos-about"><%= "#{t('app.common.about_story')}" %></a></li>
-       </ul>
-      <ul class="nav navbar-nav navbar-right">  
-        <li>
-          <%= link_to '#',  :id=>"modalShare", :'data-modalos-id' => "modalos-share", :title => t('app.common.share') do %>
-            <i class="i-icon i-share"></i><%= "#{t('app.common.share')}" %>
-          <% end %>
-        </li>
+      <div class="nav-about-share">
+        <div class="nav-separator"></div>
 
-        <% if @story.present? && @story.sections.present? %>                          
-          <li><a href="#" class="navigation-volume"><div class="navigation-icon"></div></a></li>             
-           <li>
-            <% markers = @story.sections.select{|t| (t.ok? && t.has_marker? == true) } %>      
-            <% if markers.length > 1 %>    
-              <div class="navigation-sections">     
-               <% markers.each_with_index do |s,s_i| %>
-                <a href="#<%= s_i+1 %>" class="navigation-section" title="<%= s.title %>"><%= s_i+1 %></a>
-               <% end %>          
-              </div>
-            <% end %>
-          </li>            
-        <% end %>                      
-      </ul>
+        <div class="nav-about">
+          <a id="modalAbout" data-modalos-id="modalos-about"><%= "#{t('app.common.about_story')}" %></a>
+        </div>
+         <div class="nav-share">
+              <a id="modalShare" data-modalos-id="modalos-share" title="<%= t('app.common.share') %>"><%= "#{t('app.common.share')}" %></a>
+          </div>
+             </div>
+
+          <% if @story.present? && @story.sections.present? %>                          
+            <div class="nav-volume-chapters">
+              <div class="nav-volume"><a href="#" class="navigation-volume"><div class="navigation-icon"></div></a></div>
+             
+              <% markers = @story.sections.select{|t| (t.ok? && t.has_marker? == true) } %>      
+              <% if markers.length > 1 %>    
+                <div class="navigation-sections nav-chapters">     
+                 <% markers.each_with_index do |s,s_i| %>
+                  <a href="#<%= s_i+1 %>" class="navigation-section" title="<%= s.title %>"><%= s_i+1 %></a>
+                 <% end %>          
+                </div>
+              <% end %> 
+            </div>  
+          <% end %>          
+     
+   
     </div>
+
   </div>
 </nav>
     

@@ -13,11 +13,13 @@
               title << ' - '
               title << strip_tags(story.about)
             end
+            # , :title => title
+            # :alt => title 
           %>
           <div class="col n-4">                   
               <div class="story-thumbnail">
-                 <%= link_to @editable ? preview_story_path(story) : storyteller_show_path(story.permalink), :title => title do %>
-                    <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459', :alt => title %>              
+                 <%= link_to @editable ? preview_story_path(story) : storyteller_show_path(story.permalink) do %>
+                    <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459' %>              
                     <div class="story-link"></div>   
                   <% end %>
          
@@ -25,8 +27,8 @@
                   <div class="story-edit">                   
                     <div class="story-edit-menu">
                     <ul class="nav">
-                    <li>
-                     <button type="button"  class="btn btn-warning dropdown-toggle" data-toggle="dropdown"> 
+                    <li class="dropdown dropdown-hover">
+                     <button type="button"  class="btn dropdown-toggle" data-toggle="dropdown"> 
                       <i class="glyphicon glyphicon-pencil" ></i>
                     </button>                   
                       <ul class="dropdown-menu pull-right">

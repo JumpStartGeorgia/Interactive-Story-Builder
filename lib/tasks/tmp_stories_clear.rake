@@ -5,7 +5,7 @@ namespace :story do
 		Dir.foreach(rootPath) {|f|
 			if f != "." && f != ".."
 				path = rootPath +"/"+ f
-				if File.atime(path) < DateTime.now - 1.hour
+				if File.atime(path) < DateTime.now - 1.second
 					if File.file?(path)
 						puts "File #{f} was removed at #{DateTime.now}" 
 						FileUtils.remove_file("#{path}",true)  

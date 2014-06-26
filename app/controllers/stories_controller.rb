@@ -483,9 +483,9 @@ class StoriesController < ApplicationController
       rootPath = "#{Rails.root}/tmp/stories";
       filename = StoriesHelper.transliterate(@story.title.downcase);      
       filename_ext = SecureRandom.hex(3)  
-      path =  "#{rootPath}/#{filename}_#{filename_ext}"  
+      path =  "#{rootPath}/#{filename}"#_#{filename_ext}"  
       mediaPath = "#{path}/media"
-
+      %x[rake story:tmp_stories_clear]
       require 'fileutils'      
       FileUtils.cp_r "#{Rails.root}/public/media/story", "#{path}"  
       

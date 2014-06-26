@@ -7,14 +7,22 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+
         <%= link_to(image_tag("logo.png",:size=>"182x29",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) , root_path(:locale => I18n.locale), :class=>"navbar-logo link") %>          
     </div>
 
     <div class="collapse navbar-collapse" id="storybuilder-navbar-collapse">
-      <ul class="nav navbar-nav navbar-right">    
-         
+      <ul class="nav navbar-nav navbar-right">   
+        <% if  !(controller.controller_name.in?(['root', 'stories'])  && controller.action_name.in?(['index', 'author'])) %>
+          <li>                  
+              <%= link_to new_story_path, :tabindex=>1, :class=>"create-story link" do %>                
+              <i class="i-icon i-create"></i><%= "#{t('app.common.create')}" %>
+              <% end %>
+          </li>     
+        <% end %>
       <% if user_signed_in? %>
         <li class="dropdown dropdown-hover">
+
           <%= link_to image_tag(current_user.avatar_url, :class=>"avatar link"), "#" , 
                :class => "dropdown-toggle avatar-link", :"data-toggle"=>"dropdown" %>                          
           <ul class="dropdown-menu pull-right">
@@ -37,7 +45,7 @@
             <% end %>   
             <li class="divider"></li>  
             <li>
-             <%= link_to t('helpers.links.sign_out'), destroy_user_session_path, :method => :delete, :class => 'link' %>
+             <%= link_to t('helpers.links.sign_out'), destroy_user_session_path, :method => :delete%>
             </li>
           </ul>
         </li>
@@ -46,23 +54,8 @@
           <%= link_to t('helpers.links.sign_in2'), :new_user_session, :class => 'link' %>
         </li>
      <% end %> 
-        <li><div class="nav-separator"></div></li>
-        <li><a href="https://www.facebook.com/sharer/sharer.php?u=storybuilder.jumpstart.ge" onclick="javascript:window.open(this.href,
-                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">  
-          <i class="i-icon i-facebook"></i></a>      
-        </li> 
-        <li><a href='https://twitter.com/share?text=<%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name')}" :
-                                t('app.common.app_name') %>' onclick="javascript:window.open(this.href,
-                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-                        <i class="i-icon i-twitter"></i>
-            </a></li>
-
-        <li><a href="https://plus.google.com/share?url=<%= current_url %>" onclick="javascript:window.open(this.href,
-          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-              <i class="i-icon i-google"></i>
-            </a></li> 
-        <li><div class="nav-separator"></div></li>  
-        <li class="dropdown dropdown-about-storybuilder">                    
+     <li><div class="nav-separator"></div></li>  
+        <li class="dropdown dropdown-hover dropdown-about-storybuilder">                    
             <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= "#{t('app.common.about_storybuilder')}" %><i class="i-icon i-caret"></i></a>                   
             <ul class="dropdown-menu pull-right">
               <li>
@@ -85,12 +78,29 @@
               </li>
             </ul>
         </li>
+       
         <li><div class="nav-separator"></div></li>
         <% I18n.available_locales.each do |locale| %>
           <% if locale != I18n.locale %>
             <li><%= link_to t("app.language.#{locale}"), params.merge(:locale =>  locale) , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse", :class => "lang_switch link" %></li>
           <% end %>
-        <% end %>                             
+        <% end %>    
+         <li><div class="nav-separator"></div></li>
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=storybuilder.jumpstart.ge" onclick="javascript:window.open(this.href,
+                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">  
+          <i class="i-icon i-facebook"></i></a>      
+        </li> 
+        <li><a href='https://twitter.com/share?text=<%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name')}" :
+                                t('app.common.app_name') %>' onclick="javascript:window.open(this.href,
+                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                        <i class="i-icon i-twitter"></i>
+            </a></li>
+
+        <li><a href="https://plus.google.com/share?url=<%= current_url %>" onclick="javascript:window.open(this.href,
+          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+              <i class="i-icon i-google"></i>
+            </a></li> 
+                                 
       </ul>
     </div>
   </div>
