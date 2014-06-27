@@ -9,8 +9,8 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index    
-    @css.push("navbar.css", "filter.css", "grid.css","author.css")
-    @js.push("filter.js","grid.js") 
+    @css.push("navbar.css", "filter.css", "grid.css","author.css","modalos.css")
+    @js.push("filter.js","grid.js","modalos.js") 
     @stories =  process_filter_querystring(Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => per_page))           
     @editable = (user_signed_in?)
 
@@ -143,6 +143,9 @@ class StoriesController < ApplicationController
   def preview
     @css.push("storyteller.css","modalos.css")
     @js.push("storyteller.js","modalos.js")
+    if params[:n] == 'n'
+      @no_nav = true
+    end
 
   	@story = Story.fullsection(params[:id])    
     respond_to do |format|     

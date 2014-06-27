@@ -27,6 +27,7 @@
 		    animationspeed: 300, //how fast animtions are
 		    closeonbackgroundclick: true, //if you click background will modal close?		    
 		    lockscroll: true, // body scroll will be locked, with css overflow hidden
+		    contentscroll: true, // m-content box is srollable or not, for iframe use false value
 		    before_open: null,
 		    after_open: null,
 		    before_close: null, 
@@ -35,6 +36,7 @@
 		    margins: 40,
 		    paddings: 20,
 		    fullscreen: false,
+		    aspectratio: false,
 		    width:'962',
 		    height: 'auto'//621px'
     	}; 
@@ -98,7 +100,13 @@
 				 	lock_scroll();
 					render();				
 				     modal.detach();
- 					 $(wrapper).find('.m-content').html($(modal).css("display","block"));
+				     var content =  $(wrapper).find('.m-content');
+
+				     if(options.contentscroll)
+				     	content.css("overflow-x","hidden").css("overflow-y","auto");
+				     else content.css("overflow","hidden");
+
+					content.html($(modal).css("display","block"));
 			 
 					// if(options.animation == "fadeAndPop") {
 
@@ -225,28 +233,42 @@
 		      	 if(options.fullscreen)
 		    	 {
 		    	 	$(wrapper).height(h - options.topOffset - options.margins);
-		    	 	$(wrapper).find('.m-content').css("max-height",h - options.topOffset - options.margins - 40 - header_height).removeClass("fluid");
-	    	 		$(wrapper).width(w - options.margins);
-	 		        $(wrapper).css("top",options.margins/2 + options.topOffset);
-			     	$(wrapper).css("left",options.margins/2);			    	 
+		    	 	$(wrapper).find('.m-content').css("max-height",h - options.topOffset - options.margins - header_height).removeClass("fluid");
+		    	 	if(options.aspectratio)
+		    	 	{		    	 		
+    	 				$(wrapper).width(aspect_ratio_width(h,w,$(wrapper).find('.m-content').css('max-height'))); 
+    	 				$(wrapper).css("left", (w - $(wrapper).width())/2);	
+		    	 	}
+	    	 		else 
+    	 			{
+    	 				$(wrapper).width(w - options.margins); 
+				     	$(wrapper).css("left",options.margins/2);	
+			     	}
+
+	 		        $(wrapper).css("top",options.margins/2 + options.topOffset);				    	
 	    	 	 }
 		    	 else
 		    	 {		    	 	
 		    	 	$(wrapper).height(options.height);
-		    	 	$(wrapper).find('.m-content').css("max-height",h - options.topOffset - options.margins - 40 - header_height).addClass("fluid");
+		    	 	$(wrapper).find('.m-content').css("max-height",h - options.topOffset - options.margins - header_height).addClass("fluid");
 		    	 	if(options.width > w) $(wrapper).width(w-options.margins);
 			    	else $(wrapper).width(options.width);
 		    	 	if(options.height + options.topOffset > h)
 		    	 	{
 	    	 			$(wrapper).height(h - options.topOffset - options.margins);
 		    	 	}
-		    	 $(wrapper).css("top",(h- options.height)/2 > options.topOffset ? (h- options.height)/2 : options.topOffset);
+		    	 	$(wrapper).css("top",(h- options.height)/2 > options.topOffset ? (h- options.height)/2 : options.topOffset);
 			     	$(wrapper).css("left",(w - options.width)/2);		 
 		    	 }
 			}
+			function aspect_ratio_width(oh,ow,h)
+			{
+				return Math.ceil(ow*h/oh);
+			}
 				
 			
-        });//each call			
+        	});//each call			
+
     }
 })(jQuery);
         

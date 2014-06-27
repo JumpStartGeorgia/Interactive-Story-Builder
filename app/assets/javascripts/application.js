@@ -60,6 +60,22 @@ function urldecode(url) {
   return decodeURIComponent(url.replace(/\+/g, ' '));
 }
 
+function scrolldown(an)
+{
+  var scr = 550;
+  an = (typeof an === 'undefined') ? true : an;
+  
+  if(an)
+  {
+      $("html,body").stop().animate({
+          scrollTop: scr
+      }, 1000);
+  }
+  else 
+  {
+    window.scroll(0,550);
+  }
+}
 
 var debounce = function (fn) {
   var timeout

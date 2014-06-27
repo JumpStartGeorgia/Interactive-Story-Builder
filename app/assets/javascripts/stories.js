@@ -119,8 +119,23 @@ $(document).ready(function() {
   });
   $(document).on('click', '#btnPreview', function(e){
 		e.preventDefault();		
-		$('#previewStory .modal-data').html('<iframe height="100%" width="100%" src="'+ $(this).data('link')+'"></iframe>');	 			
-		$('#previewStory').reveal();
+            
+        var ml = $('#' + $(this).attr('data-modalos-id'));   
+        var v = $('.navbar-storybuilder'); 
+
+        ml.find('iframe').attr('src', $(this).data('link') + "?n=n");
+        ml.modalos({
+        	topOffset: $(v).position().top + $(v).height(),
+        	fullscreen:true,
+        	aspectratio:true,
+        	paddings :0,
+        	contentscroll:false
+        });
+        
+
+		//$('#previewStory .modal-data').html('<iframe height="100%" width="100%" src="'+ $(this).data('link')+'"></iframe>');	 			
+		//$('#previewStory').reveal();
+
 		return true;	
   });
   $(document).on('click', '#btnPublish', function(e){  	

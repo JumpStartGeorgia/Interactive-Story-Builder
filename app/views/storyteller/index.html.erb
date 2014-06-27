@@ -1,6 +1,7 @@
 <% 
   @template = @story.template.id 
   @export ||= false
+  @no_nav ||= false
 %>
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
@@ -13,7 +14,9 @@
     <meta name="google" content="notranslate" />
   </head>
   <body>  
-    <%= render partial: "storyteller/template/#{@template}/nav"%>
+    <% if !@no_nav %>
+      <%= render partial: "storyteller/template/#{@template}/nav"%>
+    <% end %>
 
     <div id='storyTeller'> 
       <%= render partial: "storyteller/template/#{@template}/content"%>   

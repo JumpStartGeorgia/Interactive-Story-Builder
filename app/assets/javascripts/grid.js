@@ -3,9 +3,7 @@ $(function() {
   $(".grid-wrapper").on("click",".pagination li:not(.active,.disabled) a", function() {  	  	
     $.getScript(this.href);
     window.history.pushState({path:this.href},'',this.href);
-	$("html,body").stop().animate({
-	      scrollTop: 550
-	}, 1000);
+    scrolldown();
 
     return false;
   });

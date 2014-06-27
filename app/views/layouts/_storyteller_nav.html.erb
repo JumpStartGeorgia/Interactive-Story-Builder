@@ -1,0 +1,524 @@
+
+
+<nav class="navbar navbar-default navbar-static-top navbar-story" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#story-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <% if @story.present? %>
+          <%= link_to(@story.title, root_path(:locale => I18n.locale), :class=>"navigation-headline navbar-brand")%>  
+        <% end %>    
+    </div>
+
+    <div class="collapse navbar-collapse" id="story-navbar-collapse">
+      <ul class="nav navbar-nav navbar-left">         
+        <li><div class="nav-separator"></div></li>
+        <li><a id="modalAbout" data-modalos-id="modalos-about"><%= "#{t('app.common.about_story')}" %></a></li>
+          <% if !@export && @story.permalink.present? %>
+            <% if user_signed_in? %>
+              <% 
+                 style1 = @user_likes ? '' : 'hide'                 
+                 count1 = style1.present? ? @story.likes+1 : @story.likes
+                 style2 = @user_likes ?  'hide' : ''
+                 count2 = style2.present? ? @story.likes-1 : @story.likes
+              %>
+              <li>
+                <!-- "#{t('app.common.likes')}" -->
+                <%= link_to '#', :class => "like-story #{style1}", :title => t('helpers.hints.unlike'), 
+                    :'data-href' => storyteller_unlike_path(@story.permalink) do %>
+                    <i class="i-icon i-liked"></i><%= "#{ t('helpers.links.likes')}" %><span class="likes-count" class="stats-count">(<%= count1 %>)</span>               
+                <% end %>
+                <%= link_to '#', :class => "like-story #{style2}", :title => t('helpers.hints.like'), 
+                    :'data-href' => storyteller_like_path(@story.permalink) do %>
+                    <i class="i-icon i-like"></i><%= "#{t('helpers.links.likes')}" %><span class="likes-count" class="stats-count">(<%= count2 %>)</span>
+                <% end %>
+              </li>
+            <% else %>  
+            <li>          
+               <%= link_to :new_user_session, :class => "", :title => t('helpers.hints.like'), 
+                    :'data-href' => storyteller_like_path(@story.permalink) do %>
+                    <i class="i-icon i-like"></i><%= "#{t('helpers.links.likes')}" %><span class="likes-count" class="stats-count">(<%= @story.likes %>)</span>
+                <% end %>
+            </li>
+            <% end %>
+          
+
+      <!--       <%= link_to '#', :class => "btn btn-default", :title => t('helpers.links.views', :num => @story.impressions_count) do %>
+              <span class="glyphicon glyphicon-eye-open"></span><span id="views-count" class="stats-count"><%= @story.impressions_count %></span>
+            <% end %>  -->
+
+            <% if user_signed_in? && current_user.role?(User::ROLES[:staff_pick]) %>
+                  <% 
+                     style1 = @story.staff_pick ? '' : 'hide'
+                     style2 = @story.staff_pick ? 'hide' : ''                           
+                  %>
+                 <li>
+                  <%= link_to '#', :class => "staff-pick #{style1}", :title => t('helpers.hints.staff_unpick'), 
+                      :'data-href' => storyteller_staff_unpick_path(@story.permalink) do %>
+                       <i class="i-icon i-staffpicked"></i><%= "#{t('helpers.links.staff_pick')}" %>
+                  <% end %>
+                  <%= link_to '#', :class => "staff-pick #{style2}", :title => t('helpers.hints.staff_pick'), 
+                      :'data-href' => storyteller_staff_pick_path(@story.permalink) do %>
+                   <i class="i-icon i-staffpick"></i><%= "#{t('helpers.links.staff_pick')}" %>
+                  <% end %>
+                  </li>
+            <% elsif @story.staff_pick? %>
+              <li>
+                  <%= link_to '#', :class => "", :title => t('helpers.hints.is_staff_pick') do %>
+                    <i class="i-icon i-staffpicked"></i><%= "#{t('helpers.links.staff_pick')}" %>
+                  <% end %>
+                </li>
+            <% end %>
+          <% end %> 
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">  
+        <li>
+          <%= link_to '#',  :id=>"modalComment", :'data-modalos-id' => "modalos-comments", :title => t('helpers.links.comments') do %>
+            <i class="i-icon i-comment"></i>Comments(<span id="comments-count" class="stats-count"><%= @story.comments_count %></span>)
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to '#',  :id=>"modalShare", :'data-modalos-id' => "modalos-share", :title => t('app.common.share') do %>
+            <i class="i-icon i-share"></i><%= "#{t('app.common.share')}" %>
+          <% end %>
+        </li>
+
+        <% if @story.present? && @story.sections.present? %>                          
+          <li><a href="#" class="navigation-volume"><div class="navigation-icon"></div></a></li>             
+           <li>
+            <% markers = @story.sections.select{|t| (t.ok? && t.has_marker? == true) } %>      
+            <% if markers.length > 1 %>    
+              <div class="navigation-sections">     
+               <% markers.each_with_index do |s,s_i| %>
+                <a href="#<%= s_i+1 %>" class="navigation-section" title="<%= s.title %>"><%= s_i+1 %></a>
+               <% end %>          
+              </div>
+            <% end %>
+          </li>            
+        <% end %>
+        <li><div class="nav-separator"></div></li>
+        <li><div class="lang"><%= "#{ @story.language.name}" %></div></li>                              
+      </ul>
+    </div>
+  </div>
+</nav>
+    
+<div id="modalos-about" style="display:none;" class="about-window">
+  <div class="title"><%= @story.title %></div>
+  <div class="text"><%= @story.about.html_safe  if @story.about.present? %> </div>
+  <div class="profile-data">
+    <div class="logo">
+       <%= link_to image_tag(@story.user.avatar_url, :class=>"avatar"), "#" , 
+         :class => "avatar", :"data-toggle"=>"dropdown" %>   
+    </div>   
+    <div class="nickname">
+      <%= link_to @story.user.nickname, author_path(@story.user.permalink), :title => @story.user.nickname %>      
+    </div>           
+    <div class="separator"></div> 
+    <div class="publish"><%= l(@story.published_at ,:format => :publish) if @story.published_at.present? %></div>         
+    <div class="likes">
+             <%= content_tag(:span, @story.likes, :class => "n#{@story.likes.to_s.size}" ) %>
+    </div>    
+  </div>    
+
+  <% if @story.categories.present? %>
+    <div class="categories">
+      <span><%= I18n.t('helpers.links.categories') %>:</span>              
+      <%= raw @story.categories.map { |t| link_to t.name, root_path(:category => t.permalink), :class=>"category" }.join('') %>
+    </div>                          
+  <% end %>
+
+  <% if @story.tag_list.present? %>
+    <div class="tags">
+      <span><%= I18n.t('helpers.links.tags') %>:</span>              
+      <%= raw @story.tag_list.map { |t| link_to t.titlecase, root_path(:tag => t.downcase), :class=>"tag" }.join('') %>                           
+    </div>
+  <% end %>
+  <div class="languages">
+    <span><%= I18n.t('helpers.links.languages') %>:</span>      
+    <div class="lang"><%= "#{ @story.language.name}" %></div>   
+  </div>      
+</div>
+<div id="modalos-comments" style="display:none;">
+  <div id="disqus_thread"></div>
+</div>
+<div id="modalos-share" style="display:none;" class="share-window">  
+  <div class="title">Share this story</div>
+  <div class="permalink">Permalink:</div>
+  <div class="permalink-link"><a href="<%= storyteller_show_url(@story.permalink) %>"><%= storyteller_show_url(@story.permalink) %></a></div>
+  <div class="share">
+    <div class="facebook">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=storybuilder.jumpstart.ge" onclick="javascript:window.open(this.href,
+                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">  
+          <i class="i-icon i-facebook-l"></i>Share on faceabook</a>      
+       
+    </div>
+    <div class="twitter">
+      <a href='https://twitter.com/share?text=<%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name')}" :
+                                t('app.common.app_name') %>' onclick="javascript:window.open(this.href,
+                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                        <i class="i-icon i-twitter-l"></i>Share on Twitter
+            </a>
+    </div>
+    <div class="more">
+        <a href='#'>
+                        <i class="i-icon i-plus"></i>
+            </a>
+    </div>    
+  </div>
+  <div class="embed">
+    <div class="embed-icon"><img src="/assets/embed.png"/></div>
+    <div class="embed-text">Copy and paste this embed code into your web page:</div>
+    <div class="embed-code">
+    <textarea rows="4" cols="38"  data-iframe-link="<%=embed_url(@story.permalink) %>"
+    readonly="" onfocus="setTimeout(function (t){ t.select(); }, 10, this);" onmouseup="return false;"><iframe src='<%=embed_url(@story.permalink) %>?width=350' width='350' height='100%' frameborder='0'></iframe></textarea>
+      <div class="embed-size-w">
+        <input type="text" value="350" class="iframe-size"/>
+        <span>px wide</span>
+      </div>      
+    </div>
+  </div>
+  <div class="email">
+      <a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">
+        <i class="i-icon i-mail"></i>Email
+      </a>
+  </div>
+</div>
+
+
+<style>
+
+
+.about-window 
+{
+  margin:10px 25px 0px 25px;
+}
+
+ .about-window .title
+  {  
+    font-family:bandera-pro-m;
+    font-size:30px;
+    color:#121212; 
+    line-height: 33px;
+
+  }
+ .about-window .text, .about-window .text p, .about-window .text span
+  {
+    font-family:opensans-r;
+    font-size:15px;
+    color:#797979;
+    margin:25px 0px 35px 0px;   
+    line-height:21px; 
+    text-align: justify;
+  }
+ .about-window .categories span,
+ .about-window .tags span,
+ .about-window .languages span
+ {
+    font-family:opensans-l;
+    font-size:14px;
+    color:#969696;
+ }
+.about-window .categories a,
+.about-window .tags a,
+.about-window .languages .lang
+ {
+    font-family:opensans-l;
+    font-size:13px;
+    color:#2b2c27;
+    background-color:#f3f3f3;
+    margin:3px;
+    padding: 5px 10px;
+    width: auto;
+    display: inline-block;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+ }
+.about-window .categories a:hover,
+.about-window .tags a:hover,
+.about-window .languages .lang:hover
+{
+  color:#020202;
+  background-color:#dfdddd;
+  cursor:pointer;
+}
+.about-window .categories,.about-window .tags,.about-window .languages
+{
+  border-top:1px dashed #ebebeb;
+  padding:15px 0px;
+}
+
+.about-window .logo .avatar
+{     
+  width: 40px;
+  height: 40px;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;    
+  margin-top:5px;
+}
+.about-window .logo,.about-window .nickname,.about-window .publish,.about-window .likes
+{
+  display:inline-block;
+  vertical-align: middle;
+  margin-left:8px;
+}
+.about-window .nickname
+{   
+  font-family:opensans-r;
+  font-size:15px;
+  color:#444;  
+
+}
+.about-window .separator
+{   
+  font-family:opensans-l;
+  font-size:14px;
+  color:#818181; 
+  border-left:1px solid #818181;
+  height:16px;
+    display:inline-block;
+    top: 4px;
+position: relative;
+margin-left:8px;
+
+}
+.about-window .publish
+{   
+  font-family:opensans-l;
+  font-size:14px;
+  color:#818181;
+  line-height: 1px; 
+}
+.about-window .likes
+{
+   width:39px;
+   height:38px;
+   background: url('/assets/likes.png') center no-repeat;
+  background-size: cover;  
+  float:right; 
+}
+.about-window .likes span{
+  line-height: 34px;
+   display: block;
+   text-align: center;
+}
+.about-window .likes span.n1,.about-window .likes span.n2,.about-window .likes span.n3,.about-window .likes span.n4
+{
+   font-size:14px;   
+}
+.about-window .likes span.n5
+{
+  font-size:12px;
+}
+.about-window .likes span.n6,.about-window .likes span.n7
+{
+   font-size:10px;
+}
+
+
+
+.share
+{
+  width:100%;
+  margin:0px auto;  
+}
+.share-window > div
+{
+  text-align:center;
+}
+    .share-window a
+    {
+      opacity:0.8;
+    }
+    .share-window a:hover
+    {
+      opacity:1;
+    }
+  .share-window .title
+  {
+    font-family:opensans-l;
+    font-size:30px;
+    color:#bdbdbd;
+    margin-bottom:25px;
+  }
+  .share-window .permalink
+  {
+    font-family:opensans-r;
+    font-size:14px;
+    color:#888;
+    margin-bottom:10px;
+  }
+  .share-window .permalink-link
+  {    margin-bottom:40px;}
+  .share-window .permalink-link a
+  {
+    font-family:opensans-r;
+    font-size:14px;
+    color:#0e0e0e;
+    opacity:0.9;
+
+  }
+  .share-window .permalink-link a:hover
+  {    
+    opacity:1;   
+  }
+  .share-window .share
+  {
+    margin-bottom:30px; 
+    display: inline-block;
+  }
+  .share-window > .share > div,.share-window > .embed > div
+  {
+    text-align: center;
+    display: inline-block;
+  }
+  .share-window .embed
+  {
+   margin-bottom:20px; 
+   clear:both;
+  }
+  .share-window > .embed > div.embed-icon
+  {
+    margin-bottom:16px;
+    display:block;
+  }
+ .share-window .embed-text
+  {
+   margin-bottom:10px; 
+   font-family:opensans-r;
+   font-size:14px;
+   color:#888;
+  }
+
+  .embed-code textarea
+  {
+    margin-left: 70px;
+    float:left;
+    border-color:#dcdcdc;
+    width:400px;
+    resize: none;
+    cursor: default;    
+    background: #EEE;
+    color: rgba(0,0,0,0.7);    
+    outline: none;
+    padding:3px;
+    font-size:12px;
+    font-family:opensans-r;
+  }
+  .embed-size-w
+  {
+    float:left;
+  }
+  .embed-size-w input
+  {
+    border: none;
+    background-color: #f3f3f3;
+    padding: 8px;
+    width: 50px;
+    margin-left: 12px;
+    font-size: 14px;
+    font-family: bandera-pro-m;
+    color: #000;
+}
+ .embed-size-w span
+ {   
+   font-family:opensans-r;
+   font-size:14px;
+   color:#939393;
+ }
+  .share-window .facebook a,  .share-window .twitter a
+  {
+      display:inline-block;
+      font-family:opensans-r;
+      font-size:18px;
+      color:#fff;      
+      background: #26acfa;      
+      border:1px solid #fff;
+      -webkit-border-radius: 133px;
+      -moz-border-radius: 133px;
+      border-radius: 133px;      
+      height:57px;
+      padding: 0px 20px 0px 15px;
+      text-decoration: none;
+      line-height: 51px;
+  }
+   .share-window .facebook a i,  .share-window .twitter a i
+   {
+      margin-right:10px;
+   }
+  .share-window .more a
+  {
+    
+      display:inline-block;
+      font-family:opensans-r;
+      font-size:18px;
+      color:#fff;      
+      background-color:#6dda6d;  
+      border:1px solid #fff;
+      -webkit-border-radius: 133px;
+      -moz-border-radius: 133px;
+      border-radius: 133px;      
+      height:57px;
+      padding: 0px 14px 0px 15px;
+      text-decoration: none;
+      line-height: 51px;
+  }
+    .share-window .email a i 
+    {
+      margin-right:6px;
+    }
+  .share-window .email a
+  {
+      display:inline-block;
+      font-family:opensans-r;
+      font-size:18px;
+      color:#000;      
+      background-color: #f3f3f3;     
+      -webkit-border-radius: 133px;
+      -moz-border-radius: 133px;
+      border-radius: 133px;
+      height:57px;
+      padding: 0px 35px 0px 35px;
+      text-decoration: none;
+      line-height: 57px;
+
+  }
+  .share-window .email a:hover
+  {
+    border:1px solid #d7d7d7;
+  }
+
+
+</style>
+<script type="text/javascript">
+    <% 
+      disqus_name = ENV['STORY_BUILDER_DISQUS']
+      disqus_name = ENV['STORY_BUILDER_STAGING_DISQUS'] if Rails.env.staging?
+      url = storyteller_show_url(@story.permalink)
+    %>
+    var disqus_shortname = '<%= disqus_name %>';
+    var disqus_identifier = '<%= @story.id %>';
+    var disqus_title = '<%= @story.title %>';
+    var disqus_url = '<%= url %>';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    var disqus_config = function() {
+      this.callbacks.onNewComment = [function(comment) { 
+        // this function is in storyteller.js    
+        story_new_comment_callback('<%= url %>');
+      }];
+    };                    
+</script>
