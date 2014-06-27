@@ -108,7 +108,12 @@ class User < ActiveRecord::Base
   end
   
   def role_name
-    ROLES.keys[ROLES.values.index(self.role)].to_s
+    name = ''
+    index = ROLES.values.index(self.role)
+    if index.present?
+      name = ROLES.keys[index].to_s 
+    end
+    return name
   end
   
   def nickname
