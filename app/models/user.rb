@@ -150,4 +150,5 @@ class User < ActiveRecord::Base
 		super && provider.blank?
 	end
   
+  
 end
