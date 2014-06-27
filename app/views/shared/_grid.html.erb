@@ -43,11 +43,13 @@
                               <i class="glyphicon glyphicon-eye-open" ></i><%= t('app.buttons.preview') %>
                             </a>
                           </li>
+                          <% if !story.published %> 
                           <li>
-                            <a href="#" id='btnReviewer' class="<%= story.published ? 'disabled' : ''%>" title="<%= story.published ? t('stories.index.title.noreview') : t('stories.index.title.review') %>" data-link='<%=  reviewer_key_story_path(story) %>'>
-                              <i class="glyphicon glyphicon-share" ></i><%= story.published ? t('stories.index.link.noreview') : t('.link.review') %>
-                            </a>                                                
+                             <a href="#" id='btnReviewer' title="<%= t('stories.index.title.review') %>" data-modalos-id='modalos-reviewer'
+                              data-reviewer-key='<%= review_url(story.reviewer_key) %>'>
+                              <i class="glyphicon glyphicon-share" ></i><%= t('.link.review') %></a>
                           </li>
+                          <% end %>
                           <li>
                             <%= link_to clone_story_path(story) ,  title: t('stories.index.title.clone') do %>
                               <i class="glyphicon glyphicon-camera"></i><%=t('stories.index.link.clone')%>
@@ -103,6 +105,38 @@
 </div>                             
 
 
-<div id="modalos-about" style="display:none;width:100%;height:100%;" class="about-window">
+<div id="modalos-about" style="display:none;width:100%;height:100%;">
   <iframe height="100%" width="100%"></iframe>      
+</div>
+<div id="modalos-reviewer" style="display:none;width:100%;height:100%;" >
+  <%= t('stories.reviewer_key.title') %>
+    <p>
+      <%= t('stories.reviewer_key.desc', :title => '') %>
+    </p>
+
+    
+    <div><a id='review_url' href='#'></a></div>
+    
+    <div>
+                <button id="copy-button" class="btn btn-mini" data-clipboard-target="review_url">
+                  <%= t('.copy') %>
+                </button>
+              </div>
+                            
+              <div id="copied" style="display: none;" class="alert alert-success">
+                <%= t('.copied') %>
+              </div>
+       <script src="/javascripts/ZeroClipboard.min.js"></script>
+    <script>
+      var client = new ZeroClipboard( document.getElementById("copy-button"), {
+        moviePath: "/javascripts/ZeroClipboard.swf"
+      } );
+
+      client.on( "load", function(client) {
+        client.on( "complete", function(client, args) {
+          // `this` is the element that was clicked
+          document.getElementById('copied').style.display = 'block';
+        } );
+      } );
+    </script>
 </div>

@@ -113,8 +113,15 @@ $(document).ready(function() {
 	// });
   $(document).on('click', '#btnReviewer', function(e){
 		e.preventDefault();		
-		$('#reviewerKey .modal-data').html('<iframe height="100%" width="100%" src="'+ $(this).data('link')+'"></iframe>');	 			
-		$('#reviewerKey').reveal();
+		
+		
+		var ml = $('#' + $(this).attr('data-modalos-id'));   
+        var v = $('.navbar-storybuilder'); 
+        ml.find('#review_url').attr('src', $(this).data('reviewer-key')).html($(this).data('reviewer-key'));        
+        ml.modalos({
+        	topOffset: $(v).position().top + $(v).height() + 30       	        	        	      
+        });
+
 		return true;	
   });
   $(document).on('click', '#btnPreview', function(e){
@@ -131,10 +138,6 @@ $(document).ready(function() {
         	paddings :0,
         	contentscroll:false
         });
-        
-
-		//$('#previewStory .modal-data').html('<iframe height="100%" width="100%" src="'+ $(this).data('link')+'"></iframe>');	 			
-		//$('#previewStory').reveal();
 
 		return true;	
   });

@@ -64,9 +64,12 @@ $(document).ready(function() {
 
 
 $(document).ready(function(){
-     var lastScroll = 0;
-     var sn = true;
-     var sbn = true;
+    if($(".navbar-storybuilder").length != 0)
+    {
+      $(".navbar-story").css("top","50px");
+      var lastScroll = 0;
+      var sn = true;
+      var sbn = true;
       $(window).scroll(function(event){
           //Sets the current scroll position
           var st = $(this).scrollTop();
@@ -91,6 +94,7 @@ $(document).ready(function(){
           //Updates scroll position
           lastScroll = st;
       });
+    }
 //#modalAbout, 
        $('#modalAbout').on('click', function(e) {        
         var ml = $(this).attr('data-modalos-id');   

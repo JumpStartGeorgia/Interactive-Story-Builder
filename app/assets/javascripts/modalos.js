@@ -236,7 +236,7 @@
 		    	 	$(wrapper).find('.m-content').css("max-height",h - options.topOffset - options.margins - header_height).removeClass("fluid");
 		    	 	if(options.aspectratio)
 		    	 	{		    	 		
-    	 				$(wrapper).width(aspect_ratio_width(h,w,$(wrapper).find('.m-content').css('max-height'))); 
+    	 				$(wrapper).width(aspect_ratio_width(h,w,$(wrapper).height())); 
     	 				$(wrapper).css("left", (w - $(wrapper).width())/2);	
 		    	 	}
 	    	 		else 

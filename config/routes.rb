@@ -24,11 +24,11 @@ BootstrapStarter::Application.routes.draw do
 
 		match "stories/check_permalink" => "stories#check_permalink", as: 'story_check_permalink', :via => :post
 		match "stories/tag_search" => "stories#tag_search", as: 'story_tag_search', :via => :post, :defaults => { :format => 'json' }
+		match "review/:id" => "stories#review", as: 'review'
 		resources :stories do	
 
 			member do
-
-				get 'reviewer_key'
+				
 
 				get 'preview'
 
@@ -70,7 +70,7 @@ BootstrapStarter::Application.routes.draw do
 #		match "storyteller/:id/staff_pick" => "storyteller#staff_pick", as: 'storyteller_staff_pick'
 #		match "storyteller/:id/staff_unpick" => "storyteller#staff_unpick", as: 'storyteller_staff_unpick'
 
-		match "review/:id" => "review#index", as: 'review'
+		
 
 		match "settings" => "settings#index", as: 'settings'
 		match "settings/remove_avatar" => "settings#remove_avatar", as: 'settings_remove_avatar'

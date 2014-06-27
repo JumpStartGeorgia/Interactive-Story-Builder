@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter(:except => [:index, :new, :create, :check_permalink, :tag_search]) do |controller_instance|  
+  before_filter   :authenticate_user!, :except => [:review]
+  before_filter(:except => [:index, :new, :create, :check_permalink, :tag_search, :review]) do |controller_instance|  
     controller_instance.send(:can_edit_story?, params[:id])
   end
   before_filter :asset_filter
@@ -128,16 +128,19 @@ class StoriesController < ApplicationController
     end
   end
  
-  def reviewer_key
-  	@story = Story.find_by_id(params[:id])    
-  	
-  	if @story.present?
-      respond_to do |format|     
-        format.html {render layout: 'reviewer'}
+  def review    
+    @story = Story.find_by_reviewer_key(params[:id])
+    if @story.present?
+      if @story.published?
+        redirect_to storyteller_show_path(@story.permalink)     
+      else
+        respond_to do |format|     
+          format.html { render 'storyteller/index', layout: false }
+        end
       end
     else
       redirect_to root_path, :notice => t('app.msgs.does_not_exist')
-    end
+    end  
   end
 
   def preview
