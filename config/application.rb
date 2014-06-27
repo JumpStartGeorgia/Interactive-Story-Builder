@@ -59,10 +59,14 @@ module BootstrapStarter
     # tell the assest pipeline to add the public/javascripts dir as assets path
     config.assets.paths << "#{Rails.root}/public/javascripts/"
 
+    # in app/assets folder
     config.assets.precompile += %w( filter.js grid.js magneto.js modalos.js navbar.js news.js nickname.js root.js search.js stories.js storyteller.js )
     config.assets.precompile += %w( author.css devise.css embed.css filter.css grid.css modalos.css navbar.css news.css root.css settings.css stories.css storyteller.css todo.css )
+    # in vendor/assets folder
     config.assets.precompile += %w( bootstrap-select.min.js jquery.reveal.js jquery.tokeninput.js olly.js )
     config.assets.precompile += %w( bootstrap-select.min.css jquery-ui-1.7.3.custom.css reveal.css token-input-facebook.css )
-
+    # build into gems
+    config.assets.precompile += %w( dataTables/jquery.dataTables.bootstrap.css )
+    config.assets.precompile += %w( dataTables/jquery.dataTables.js dataTables/jquery.dataTables.bootstrap.js jquery.ui.datepicker.js )
   end
 end
