@@ -38,7 +38,6 @@ class StoriesController < ApplicationController
   def new
     @story = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
     @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
-    @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list
     @story_tags = []
     
@@ -56,7 +55,6 @@ class StoriesController < ApplicationController
     if !@story.asset_exists?
       @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
     end 
-    @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list(@story.template_id)
     @story_tags = @story.tags.token_input_tags
     @invitations = Invitation.pending_by_story(@story.id)
@@ -76,7 +74,6 @@ class StoriesController < ApplicationController
         format.html { redirect_to sections_story_path(@story) }
       #  format.json { render json: @story, status: :created, location: @story }
       else
-        @users = User.where("id not in (?)", [@story.user_id, current_user.id]) 
         if !@story.asset.present? 
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end      
@@ -105,7 +102,6 @@ class StoriesController < ApplicationController
         format.html { redirect_to  sections_story_path(@story),  notice: t('app.msgs.success_updated', :obj => t('activerecord.models.story')) }
         format.js { render action: "flash", status: :created }    
       else
-        @users = User.where("id not in (?)", [@story.user_id, current_user.id])
         if !@story.asset.present? 
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end 
