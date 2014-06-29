@@ -573,3 +573,21 @@ margin-right:8px;}
 {
     background-position: 0px -404px;         
 }
+
+
+/* show result of nickname permalink check */
+#user_nickname_input + div#check_nickname_results{
+  margin-bottom: 1em;
+  margin-top: -0.5em;
+  & > span.check_nickname{
+    margin-left: 10px;
+    padding: 5px;
+    &.duplicate{
+      background-color:rgba(225, 145, 159, 0.5);
+    }
+    &.not_duplicate{
+      background-color:rgba(168, 210, 184, 0.5);
+    }
+  }
+}
+
