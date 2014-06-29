@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
-  before_filter   :authenticate_user!, :except => [:review]
-  before_filter(:except => [:index, :new, :create, :check_permalink, :tag_search, :review]) do |controller_instance|  
+  before_filter :authenticate_user!, :except => [:review]
+  before_filter(:except => [:index, :new, :create, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
     controller_instance.send(:can_edit_story?, params[:id])
   end
   before_filter :asset_filter
@@ -41,6 +41,9 @@ class StoriesController < ApplicationController
     @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list
     @story_tags = []
+    
+    set_settings_gon
+    
     respond_to do |format|
         format.html #new.html.er
         format.json { render json: @story }
@@ -57,6 +60,8 @@ class StoriesController < ApplicationController
     @templates = Template.select_list(@story.template_id)
     @story_tags = @story.tags.token_input_tags
     @invitations = Invitation.pending_by_story(@story.id)
+
+    set_settings_gon
   end
 
   # POST /stories
@@ -77,6 +82,8 @@ class StoriesController < ApplicationController
         end      
         @templates = Template.select_list(@story.template_id) 
         @story_tags = @story.tags.token_input_tags
+
+        set_settings_gon
 
         flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
@@ -106,6 +113,8 @@ class StoriesController < ApplicationController
         @story_tags = @story.tags.token_input_tags
         @invitations = Invitation.pending_by_story(@story.id)
 
+        set_settings_gon
+        
         flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
         format.html { render action: "edit" }
         format.js {render action: "flash" , status: :ok }
@@ -614,17 +623,41 @@ class StoriesController < ApplicationController
     end
   end
   
+  def collaborator_search
+    output = nil
+    story = Story.find_by_id(params[:id])
+    if story.present?
+      users = story.user_collaboration_search(params[:q])
+      # format for token input js library [{id,name}, ...]    
+      output = users.map{|x| {id: x.id, name: x.nickname, img_url: x.avatar_url(:'50x50') } }
+      logger.debug "^^^^^^^^^^^^^^^^^ output = #{output}"
+    end  
+    
+    respond_to do |format|
+      format.json { render json: output.to_json }
+    end
+  end
   
   # invite an new user to be a collaborator on a story
   def invite_collaborators
-    story = Story.find_by_id(params[:id])
 		has_errors = false
 
-    if story.present?
-      Invitation.transaction do
-        # send invitation for each existing user
-        if params[:user_ids].present?      
-          user_ids = params[:user_ids].split(',')
+    if params[:collaborator_ids].present?
+      story = Story.find_by_id(params[:id])
+      
+      if story.present?
+        Invitation.transaction do
+          # split out the ids
+          c_ids = params[:collaborator_ids].split(',')
+          logger.debug "ids = #{c_ids}"
+          
+          # pull out the user ids for existing users
+          user_ids = c_ids.select{|x| x =~ /^[0-9]+$/ }
+          
+          # pull out the email addresses for new users
+          emails = c_ids.select{|x| x !~ /^[0-9]+$/ }.map{|x| x.gsub("'", '')}
+          
+          # send invitation for each existing user
           if user_ids.present?
             user_ids.each do |user_id|
               Rails.logger.debug "_______________user id = #{user_id}"
@@ -636,12 +669,9 @@ class StoriesController < ApplicationController
               end
             end
           end
-        end
-        
-        # send invitation for new users
-        if !has_errors && params[:emails].present?      
-          emails = params[:emails].split(',')
-          if emails.present?
+                     
+          # send invitation for new users
+          if !has_errors && emails.present?
             emails.each do |email|          
               Rails.logger.debug "_____________email = #{email}"
               if !send_invitation(story, nil, email, params[:message])
@@ -652,7 +682,8 @@ class StoriesController < ApplicationController
             end
           end
         end
-      end
+      end 
+      has_errors = true
     end
       
     respond_to do |format|
@@ -739,6 +770,7 @@ private
   
   def send_invitation(story, user_id=nil, email=nil, msg=nil)
 		email_sent = false
+		error_msg = nil
 
     if story.present? && (user_id.present? || email.present?)
       # see if invitation already exists
@@ -748,41 +780,55 @@ private
         # already sent, so ignore
         return true
       end
+
+      # create the message        
+      message = Message.new
+      message.mailer_type = Message::MAILER_TYPE[:notification]
+      message.locale = I18n.locale
+      message.story_title = story.title
+      message.from_user = current_user.nickname
+      message.email = email
       
-      # save the invitation
-      inv = Invitation.new
-      inv.story_id = story.id
-      inv.from_user_id = current_user.id
-      inv.to_user_id = user_id
-      inv.to_email = email
+      if message.valid?
+        # save the invitation
+        inv = Invitation.new
+        inv.story_id = story.id
+        inv.from_user_id = current_user.id
+        inv.to_user_id = user_id
+        inv.to_email = email
 
-      if inv.save
-        Rails.logger.debug "+++ invitation saved, sending message"
-        # create the message        
-	      message = Message.new
-	      message.mailer_type = Message::MAILER_TYPE[:notification]
-	      message.locale = I18n.locale
-        message.story_title = story.title
-        message.from_user = current_user.nickname
-        message.email = email
-        message.url = accept_invitation_url(:locale => message.locale, :key => inv.key)
-        message.message = msg if msg.present?
+        if inv.save
+          Rails.logger.debug "+++ invitation saved, sending message"
 
-        Rails.logger.debug "======= message = #{message.inspect}"
+          message.url = accept_invitation_url(:locale => message.locale, :key => inv.key)
+          message.message = msg if msg.present?
 
-	      if message.valid?
-	        # send message
-			    NotificationMailer.story_collaborator_invitation(message).deliver
-			    email_sent = true
-		    else
-          Rails.logger.debug "========= message error = #{message.errors.full_messages}"
-	      end
+          Rails.logger.debug "======= message = #{message.inspect}"
+
+          # send message
+		      NotificationMailer.story_collaborator_invitation(message).deliver
+		      email_sent = true
+        else
+          Rails.logger.debug "========= inv error = #{inv.errors.full_messages}"
+          error_msg = inv.errors.full_messages
+        end
       else
-        Rails.logger.debug "========= inv error = #{inv.errors.full_messages}"
+        Rails.logger.debug "========= message error = #{message.errors.full_messages}"
+          error_msg = message.errors.full_messages
       end
     end
     
-    return email_sent
+    return email_sent, error_msg
   end
   
+  
+  def set_settings_gon
+    gon.collaborator_search = story_collaborator_search_path(params[:id])
+    gon.tokeninput_collaborator_hintText = I18n.t('tokeninput.collaborator.hintText')
+    gon.tokeninput_collaborator_noResultsText = I18n.t('tokeninput.collaborator.noResultsText')
+    gon.tag_search = story_tag_search_path
+    gon.tokeninput_tag_hintText = I18n.t('tokeninput.tag.hintText')
+    gon.tokeninput_tag_noResultsText = I18n.t('tokeninput.tag.noResultsText')
+    gon.tokeninput_searchingText = I18n.t('tokeninput.searchingText')
+  end
 end       

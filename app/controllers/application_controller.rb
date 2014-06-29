@@ -83,12 +83,6 @@ class ApplicationController < ActionController::Base
 		gon.set = true
 		gon.highlight_first_form_field = true
 
-    gon.tag_search = story_tag_search_path
-    gon.tokeninput_hintText = I18n.t('tokeninput.hintText')
-    gon.tokeninput_noResultsText = I18n.t('tokeninput.noResultsText')
-    gon.tokeninput_searchingText = I18n.t('tokeninput.searchingText')
-
-
     gon.check_permalink = story_check_permalink_path
     gon.check_nickname = settings_check_nickname_path
     gon.nickname_duplicate = I18n.t('app.msgs.nickname_duplicate')

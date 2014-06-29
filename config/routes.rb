@@ -1,7 +1,5 @@
 BootstrapStarter::Application.routes.draw do
   
-
-
 	#--------------------------------
 	# all resources should be within the scope block below
 	#--------------------------------
@@ -25,7 +23,8 @@ BootstrapStarter::Application.routes.draw do
 		match "stories/check_permalink" => "stories#check_permalink", as: 'story_check_permalink', :via => :post
 		match "stories/tag_search" => "stories#tag_search", as: 'story_tag_search', :via => :post, :defaults => { :format => 'json' }
 		match "review/:id" => "stories#review", as: 'review'
-		match "stories/invite_collaborators" => "stories#invite_collaborators", as: 'story_invite_collaborators', :via => :post, :defaults => { :format => 'json' }
+		match "stories/:id/collaborator_search" => "stories#collaborator_search", as: 'story_collaborator_search', :via => :post, :defaults => { :format => 'json' }
+		match "stories/:id/invite_collaborators" => "stories#invite_collaborators", as: 'story_invite_collaborators', :via => :post, :defaults => { :format => 'json' }
 		match "stories/:id/remove_collaborator" => "stories#remove_collaborator", as: 'story_remove_collaborator', :via => :post, :defaults => { :format => 'json' }
 		match "stories/:id/remove_invitation" => "stories#remove_invitation", as: 'story_remove_invitation', :via => :post, :defaults => { :format => 'json' }
 

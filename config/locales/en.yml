@@ -276,9 +276,13 @@ en:
     language_header: Language
     search: Find a Story
   tokeninput:
-    hintText: Search for an existing tag or enter a new tag
-    noResultsText: "No matches found. Press 'Enter' to save this new tag."
     searchingText: Searching...
+    tag:
+      hintText: Search for an existing tag or enter a new tag
+      noResultsText: "No matches found. Press 'Enter' to save this new tag."
+    collaborator:
+      hintText: Search for an existing user or enter the email address for a new user
+      noResultsText: "No matches found. Press 'Enter' to add this email address to the list of invited collaborators."
   layouts:
     unsupported_browser:
       title: Unsupported Browser
@@ -396,8 +400,10 @@ en:
         remove_title: 'Remove %{name}'
         not_accepted_title: '%{name} has not accepted the invitation yet'
         add_header: Add Collaborators
-        add_explanation: An email will be sent to the people you select below inviting them to be a collaborator on this story.
+        add_explanation: For the users you enter below, an email will be sent inviting them to be a collaborator on this story.
+        search_label: Enter names or email addresses of the people you want to invite
         message: Add Message to Notification (optional)
+        submit: Send Invitation
     media:
       form_title: Full-Screen Media Slideshow Form
       left: Left

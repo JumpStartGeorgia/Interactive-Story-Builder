@@ -420,9 +420,36 @@ $(document).ready(function() {
         allowCustomEntry: true,
         preventDuplicates: true,
         prePopulate: $('#storyTagList').data('load'),
-        hintText: gon.tokeninput_hintText,
-        noResultsText: gon.tokeninput_noResultsText,
+        hintText: gon.tokeninput_tag_hintText,
+        noResultsText: gon.tokeninput_tag_noResultsText,
         searchingText: gon.tokeninput_searchingText
+      }
+    ); 
+  }
+  
+  // add autocomplete for collaborator search
+  if ($('form#collaborators #collaborator_ids').length > 0){
+    $('form#collaborators #collaborator_ids').tokenInput(
+      gon.collaborator_search,
+      {
+        method: 'POST',
+        minChars: 2,
+        theme: 'facebook',
+        allowCustomEntry: true,
+        preventDuplicates: true,
+        hintText: gon.tokeninput_collaborator_hintText,
+        noResultsText: gon.tokeninput_collaborator_noResultsText,
+        searchingText: gon.tokeninput_searchingText,
+        resultsFormatter: function(item){ 
+          return "<li><img src='" + item.img_url + "' title='" + item.name + "' height='28px' width='28px' /><div style='display: inline-block; padding-left: 10px;'><div>" + item.name + "</div></div></li>" 
+        },        
+        tokenFormatter: function(item) { 
+          if (item.img_url == undefined){
+            return "<li><p>" + item.name + "</p></li>" ;
+          }else{
+            return "<li><p><img src='" + item.img_url + "' title='" + item.name + "' height='50px' width='50px' /></p></li>" ;
+          }
+        }
       }
     ); 
   }

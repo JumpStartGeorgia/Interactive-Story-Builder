@@ -128,16 +128,11 @@
 <p>
   <%= t('.collaborators.add_explanation') %>
 </p>
-<%= form_tag story_invite_collaborators_path, method: :post, :remote => true  do %>
-  <%= hidden_field_tag 'id', params[:id] %>
+<%= form_tag story_invite_collaborators_path, method: :post, :remote => true, :id => 'collaborators'  do %>
 
   <div class="form-group">
-    <label for="user_ids">User Ids</label>
-    <%= text_field_tag "user_ids", '', class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <label for="emails">Emails</label>
-    <%= text_field_tag "emails", '', class: 'form-control' %>
+    <label for="collaborator_ids"><%= t('.collaborators.search_label') %></label>
+    <%= text_field_tag "collaborator_ids", '', class: 'form-control' %>
   </div>
   <div class="form-group">
     <label for="message"><%= t('.collaborators.message') %></label>
@@ -145,7 +140,7 @@
   </div>
 
   <div class="form-actions">
-    <%= submit_tag nil, class: 'btn btn-primary' %> 
+    <%= submit_tag t('.collaborators.submit'), class: 'btn btn-primary' %> 
     <%= button_tag t('helpers.links.reset'), type: 'reset', class: 'btn btn-warning' %> 
   </div>
 

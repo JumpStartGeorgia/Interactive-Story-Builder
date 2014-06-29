@@ -35,6 +35,8 @@ class User < ActiveRecord::Base
   # if the nickname changes, then the permalink must also change
   def check_nickname_changed
     if self.nickname_changed?
+      # make sure there are no tags in the nickname
+      self.nickname = ActionController::Base.helpers.strip_links(self.nickname)
       self.generate_permalink! 
     end
   end

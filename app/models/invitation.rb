@@ -7,6 +7,7 @@ class Invitation < ActiveRecord::Base
   attr_accessible :from_user_id, :key, :story_id, :to_email, :to_user_id, :sent_at, :accepted_at
   
   validates :from_user_id, :story_id, :to_email, :presence => true
+  validates_format_of :to_email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
   
   
   before_create :create_default_values

@@ -101,7 +101,7 @@ class Story < ActiveRecord::Base
   # get list of users that match the passed in query
   # - user must not be owner or already have invitation or is already collaborator
   # - search in user nickname and email
-  def user_collaboration_search(q)
+  def user_collaboration_search(q, limit=10)
     if q.present? and q.length > 1
       already_exists_ids = []
       already_exists_emails = []
@@ -133,7 +133,7 @@ class Story < ActiveRecord::Base
           :ids => already_exists_ids.uniq,
           :emails => already_exists_emails.uniq,
           :search => "%#{q}%"])
-          
+          .limit(limit)          
       return users
     end  
   end
