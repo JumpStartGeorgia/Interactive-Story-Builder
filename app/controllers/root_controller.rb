@@ -22,8 +22,8 @@ class RootController < ApplicationController
       @stories = process_filter_querystring(Story.stories_by_author(@author.id).paginate(:page => params[:page], :per_page => per_page))      
       @editable = (user_signed_in? && current_user.id == @author.id)
       if(@editable)        
-        @js.push("jquery.reveal.js")
-        @css.push("reveal.css")
+        @js.push("modalos.js")
+        @css.push("modalos.css")
       end
       respond_to do |format|     
         format.html

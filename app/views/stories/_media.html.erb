@@ -14,9 +14,9 @@
 
 
   <%= f.fields_for :image, @item.image do |as| %>
-    <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.medium.image') %></label>
+    <label class=" control-label" for="media-image-preview"><%= t('activerecord.attributes.medium.image') %></label>
     <% if @item.image_exists? %>
-      <a class='btn btn-default' data-reveal-id="modalImage"><%= t('app.buttons.preview_image') %></a>
+      <a class='btn btn-default preview' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image"><%= t('app.buttons.preview_image') %></a>
     <% end %>    
 
     <%= as.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:"image/jpeg,image/png" }, label: false  %> 
@@ -25,9 +25,9 @@
 
   <%= f.fields_for :video, @item.video do |as| %>
     <div id='mediaVideoBox' <%=  @item.media_type == Medium::TYPE[:image]  ? "style=display:none;" : "" %> >
-      <label class=" control-label" for="modalVideo"><%= t('activerecord.attributes.medium.video') %></label>
+      <label class=" control-label" for="media-video-preview"><%= t('activerecord.attributes.medium.video') %></label>
       <% if  @item.video.present? && @item.video.asset.exists? %>
-        <a class='btn btn-default' data-reveal-id="modalVideo"><%= t('app.buttons.preview_video') %></a>
+        <a class='btn btn-default preview' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" ><%= t('app.buttons.preview_video') %></a>
       <% end %>
       <%= as.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:"video/mp4" }, label: false %>
       <%= as.input :asset_type, :as => :hidden %>
@@ -49,3 +49,4 @@
     <%= f.submit nil, :class => 'btn btn-default', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>          
   </div>
 <% end %>
+<%= log("here") %>

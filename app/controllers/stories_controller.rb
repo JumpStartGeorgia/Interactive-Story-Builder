@@ -15,8 +15,8 @@ class StoriesController < ApplicationController
     @editable = (user_signed_in?)
 
     if(@editable)        
-      @js.push("jquery.reveal.js")
-      @css.push("reveal.css")
+      @js.push("jquery.reveal.js","modalos.js")
+      @css.push("reveal.css","modalos.css")
     end
     respond_to do |format|
       format.html  #index.html.erb
@@ -148,8 +148,7 @@ class StoriesController < ApplicationController
     @js.push("storyteller.js","modalos.js")
     if params[:n] == 'n'
       @no_nav = true
-    end
-
+    end    
   	@story = Story.fullsection(params[:id])    
     respond_to do |format|     
       format.html { render 'storyteller/index', layout: false }
@@ -450,7 +449,10 @@ class StoriesController < ApplicationController
 
   def sections
       @story = Story.fullsection(params[:id])   
-      
+
+      @js.push("modalos.js")
+      @css.push("modalos.css")
+
       # if there are no sections, show the content form by default
       gon.has_no_sections = @story.sections.blank?
   end

@@ -252,7 +252,6 @@ class ApplicationController < ActionController::Base
   def per_page
     return PER_PAGE_COUNT
   end
-
 private
 
 	def flash_message

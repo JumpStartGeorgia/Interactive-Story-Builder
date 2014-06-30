@@ -12,8 +12,10 @@
         </i></button>
         <button type="button" id='btnUp' class="btn btn-info" title="<%= t('app.buttons.up') %>"> <i class="glyphicon glyphicon-arrow-up" ></i> </button>
         <button type="button" id='btnDown' class="btn btn-info" title="<%= t('app.buttons.down') %>"> <i class="glyphicon glyphicon-arrow-down" ></i></button>
-        <button type="button"  id='btnPublish' class="btn btn-warning <%= @story.published ? '' : ' disabled'%>" title="<%= @story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>" data-link='<%= publish_story_path(@story) %>'> <i class="glyphicon glyphicon-globe" ></i></button>      
-         <button type="button"  id='btnPreview' class="btn btn-success" title="<%= t('app.buttons.preview') %>" data-link='<%=  preview_story_path(@story) %>'> <i class="glyphicon glyphicon-eye-open" ></i></button>            
+        <button type="button"  id='btnPublish' class="btn btn-warning <%= @story.published ? '' : ' disabled'%>" title="<%= @story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>" data-link='<%= publish_story_path(@story) %>'> <i class="glyphicon glyphicon-globe" ></i></button>     
+
+         <button type="button"  id='btnPreview' class="btn btn-success preview" title="<%= t('app.buttons.preview') %>" data-link='<%=  preview_story_path(@story) %>'
+          data-modalos-id='modalos-preview' data-type="story"> <i class="glyphicon glyphicon-eye-open" ></i></button>            
       </div>
     </div>
   </div>
@@ -49,7 +51,9 @@
 
 </div>
 
-<div id="modalVideo" class="reveal-modal" style='width:853px; height:480px'>   
+<div id="modalos-preview" style="display:none;width:100%;height:100%;"></div>
+
+<!-- <div id="modalVideo" class="reveal-modal" style='width:853px; height:480px'>   
     <div class='modal-data'>  
         <video preload="auto" width="853px" height="480px" controls>
         <%= t('layouts.unsupported_browser.video') %>            
@@ -57,6 +61,8 @@
       </div>     
      <a class="close-reveal-modal">&#215;</a>
 </div>
+
+
 <div id="modalImage" class="reveal-modal">     
       <div class='modal-data'></div>
       <a class="close-reveal-modal">&#215;</a>
@@ -65,7 +71,4 @@
       <div class='modal-data'></div>
       <a class="close-reveal-modal">&#215;</a>
 </div>
-<div id="previewStory" class="reveal-modal" style='height:85%;width:90%;top:35px;' >     
-      <div class='modal-data' style="width:100%; height:100%; border:1px solid #bfbfbf;"></div>
-      <a class="close-reveal-modal">&#215;</a>
-</div> 
+ -->
