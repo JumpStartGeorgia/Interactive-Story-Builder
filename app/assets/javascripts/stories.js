@@ -135,15 +135,16 @@ $(document).ready(function() {
         {
         	topOffset: $(v).position().top + $(v).height() + 30,        	        
         	paddings :0,
-        	contentscroll:false
+        	contentscroll:false,
+        	width:662
         };
         if(type == 'image')
         {
-    	 	output = "<img src='" +  $(this).data('image-path') + "'/>";
+    	 	output = "<img src='" +  $(this).data('image-path') + "' width='640px'/>";
         }
         else if(type == 'video')
         {
-        	output = "<video preload='auto' width='853px' height='480px' controls>" + 
+        	output = "<video preload='auto' width='640px' height='auto' controls>" + 
         					"Your browser does not support this video." + 
         					"<source src='"+$(this).data('video-path')+ "' type='"+$(this).data('video-type')+"'>" +
     					  	"</video>";

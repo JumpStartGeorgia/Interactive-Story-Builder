@@ -14,17 +14,4 @@
 <% } %>
 
   <%= render partial: "shared/filter" %> 
-  <%= render partial: "shared/grid" , locals:{:editable=>true}%>    
-
-<% content_for(:footer) { %>
-<!-- 
-   <div id="previewStory" class="reveal-modal">     
-      <div class='modal-data'></div>
-      <a class="close-reveal-modal">&#215;</a>
-  </div>
-  <div id="reviewerKey" class="reveal-modal" style='height:50%;width:50%;top:35px;' >     
-      <div class='modal-data'></div>
-      <a class="close-reveal-modal">&#215;</a>
-  </div> -->
-<% } %>
-
+  <%= render partial: "shared/grid" , locals:{:editable=>true}%>

@@ -15,8 +15,8 @@ class StoriesController < ApplicationController
     @editable = (user_signed_in?)
 
     if(@editable)        
-      @js.push("jquery.reveal.js","modalos.js")
-      @css.push("reveal.css","modalos.css")
+      @js.push("modalos.js")
+      @css.push("modalos.css")
     end
     respond_to do |format|
       format.html  #index.html.erb
@@ -633,8 +633,8 @@ private
   end
 
   def asset_filter
-    @css.push("stories.css", "embed.css", "reveal.css", "bootstrap-select.min.css", "token-input-facebook.css","navbar.css")
-    @js.push("stories.js", "jquery.reveal.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js")
+    @css.push("stories.css", "embed.css", "modalos.css", "bootstrap-select.min.css", "token-input-facebook.css","navbar.css")
+    @js.push("stories.js", "modalos.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js")
   end 
   
 end       

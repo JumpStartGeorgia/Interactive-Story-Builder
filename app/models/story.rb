@@ -38,8 +38,7 @@ class Story < ActiveRecord::Base
 #	validates :about, :presence => true
 	validates :template_id, :presence => true
 	validates :media_author, length: { maximum: 255 }
-	validates :locale, :presence => true
-
+	validates :locale, :presence => true 
 
   # if the title changes, make sure the permalink is updated
 #  before_save :check_title

@@ -13,16 +13,15 @@
  *= require scaffolds
  *= require_self
 */
-
 @font-face {
-    font-family: "bandera-pro";    
-    src: url( '/assets/fonts/bandera-pro.otf') format("opentype");           
+    font-family: "bandera-pro-l";    
+    src: url( '/assets/fonts/bandera-pro-l.otf') format("opentype");           
     font-style: normal;
     font-weight: 200;
 }
 @font-face {
-    font-family: "bandera-pro-l";    
-    src: url( '/assets/fonts/bandera-pro-l.otf') format("opentype");           
+    font-family: "bandera-pro";    
+    src: url( '/assets/fonts/bandera-pro.otf') format("opentype");           
     font-style: normal;
     font-weight: 200;
 }
@@ -80,6 +79,7 @@
 * html .clearfix, * html .clear             		{ zoom: 1; } /* IE6 */
 *:first-child+html .clearfix, *:first-child+html .clear { zoom: 1; } /* IE7 */
 * { -webkit-font-smoothing: antialiased; }
+*:focus {outline: 0 !important;}
 /* make bootstrap button link color stay white 
 a.btn, a.btn:visited {
 	color: #000 !important;
@@ -475,11 +475,12 @@ margin-right:8px;}
 }
 .i-like
 {
-    background-position: 0px 0px;         
-}
+    background-position: -27px 0px;  
+    /*background-position: 0px 0px; */
+}  
 *:hover > .i-like
 {
-    background-position: -27px 0px;         
+  
 }
 .i-liked
 {
@@ -487,11 +488,12 @@ margin-right:8px;}
 }
 .i-staffpick
 {
-    background-position: 0px -28px;         
+    background-position: -27px -28px;    
+    /*background-position: 0px -28px;*/
 }
 *:hover > .i-staffpick
 {
-    background-position: -27px -28px;         
+         
 }
 .i-staffpicked
 {
@@ -503,51 +505,60 @@ margin-right:8px;}
 }
 .i-share
 {
-    background-position: 0px -82px;         
+    background-position: -27px -82px;
+    /* background-position: 0px -82px; */         
 }
 *:hover > .i-share
 {
-    background-position: -27px -82px;         
+           
 }
 .i-comment
 {
-    background-position: 0px -136px;         
+
+    background-position: -27px -136px;
+    /* background-position: 0px -136px; */           
 }
 *:hover > .i-comment
 {
-    background-position: -27px -136px;         
+
+         
 }
 .i-link
 {
-    background-position: 0px -163px;         
+    background-position: -27px -163px;   
+     /*background-position: 0px -163px;*/        
 }
 *:hover > .i-link
 {
-    background-position: -27px -163px;         
+         
 }
 .i-facebook
 {
-    background-position: 0px -190px;         
+    background-position: -27px -190px;
+    /*background-position: 0px -190px; */         
+           
 }
 *:hover > .i-facebook
 {
-    background-position: -27px -190px;         
+   
 }
 .i-twitter
 {
-     background-position: 0px -217px;         
-}
+    background-position: -27px -217px;    
+    /*background-position: 0px -217px; */     
+     }
 *:hover > .i-twitter
 {
-     background-position: -27px -217px;         
+     
 }
 .i-google
 {
-    background-position: 0px -244px;         
+  background-position: -27px -244px;         
+  /* background-position: 0px -244px; */
 }
 *:hover > .i-google
 {
-    background-position: -27px -244px;         
+   
 }
 .i-caret
 {

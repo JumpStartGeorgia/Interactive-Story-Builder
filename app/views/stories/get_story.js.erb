@@ -2,7 +2,8 @@ $("#storyViewer").hide().html("<div id='storyForm'><%= escape_javascript( render
 
 <% imageTemp = '' %>
 <% if @story.asset.asset.exists? %>
-  <%  imageTemp = "<img  width='100%' src='#{@story.asset.asset.url}'/>" %>
+  //<%  imageTemp = "<img  width='100%' src='#{@story.asset.asset.url}'/>" %>
+  $('#story-thumbnail-preview').attr('data-image-path','<%= "#{@story.asset.asset.url}" %>');
 <% end %>
 
-$("#modalImage .modal-data").html("<%= imageTemp.html_safe %>");
+//$("#modalImage .modal-data").html("<%= imageTemp.html_safe %>");

@@ -24,6 +24,8 @@ ka:
       long: "%d %b %Y %H:%M"
       file: "%Y %m %d %H:%M:%S"
       publish: ! '%d/%m/%Y'
+      day: ! '%d'
+      month_year: ! '%m, %Y'
     am: "am"
     pm: "pm"
 

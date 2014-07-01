@@ -15,8 +15,8 @@
       <div class="nav-separator"></div>
         <%= form_tag url_for({:controller => 'root', :action => 'index',:params => params}), :method => :get, :id => 'search-form',
         :class => "navbar-form navbar-left", :role => "search" do %>
-          <div class="form-group">
-            <%= text_field_tag :q, params[:q], :placeholder => t('app.common.search'), :class=>"form-control search-input", :autocomplete=>'off', autofocus:false , :tabindex => 16 %>
+          <div class="form-group">            
+            <%= text_field_tag :q, params[:q], :placeholder => t('app.common.search'), :class=>"form-control search-input", :id => "search-input", :autocomplete=>'off', :autofocus =>:false , :tabindex => 1 %>
           </div>
       <% end %>
     <% end %>
@@ -24,11 +24,18 @@
       <ul class="nav navbar-nav navbar-right">    
          <% if  !(controller.controller_name.in?(['root', 'stories'])  && controller.action_name.in?(['index', 'author'])) %>
           <li>                  
-              <%= link_to new_story_path, :tabindex=>1, :class=>"create-story link" do %>                
+              <%= link_to new_story_path, :tabindex=>2, :class=>"create-story link" do %>                
               <i class="i-icon i-create"></i><%= "#{t('app.common.create')}" %>
               <% end %>
-          </li>     
+          </li> 
+          <% elsif user_signed_in? %>
+          <li>                  
+            <%= link_to stories_path, :tabindex=>2, :class=>"my-story link" do %>                
+              <%= "#{t('helpers.titles.story_list')}" %>
+              <% end %>
+          </li>    
         <% end %>
+
       <% if user_signed_in? %>
         <li class="dropdown dropdown-hover">
           <%= link_to image_tag(current_user.avatar_url, :class=>"avatar link"), "#" , 
@@ -88,17 +95,17 @@
         </li>
         <li><div class="nav-separator"></div></li>
         <li><a href="https://www.facebook.com/sharer/sharer.php?u=storybuilder.jumpstart.ge" onclick="javascript:window.open(this.href,
-                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">  
+                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link">  
           <i class="i-icon i-facebook"></i></a>      
         </li> 
         <li><a href='https://twitter.com/share?text=<%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name')}" :
                                 t('app.common.app_name') %>' onclick="javascript:window.open(this.href,
-                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link">
                         <i class="i-icon i-twitter"></i>
             </a></li>
 
         <li><a href="https://plus.google.com/share?url=<%= current_url %>" onclick="javascript:window.open(this.href,
-          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link">
               <i class="i-icon i-google"></i>
             </a></li> 
        

@@ -4,7 +4,7 @@ $(document).ready(function() {
   // if a search term already exists, show the search box
   if ($('form#search-filter input#q').val() !== ''){
      $(".search-box").addClass("active");
-     $(".search-label").hide();  
+     //$(".search-label").hide();  
      sa = true; 
      scrolldown(false);
   }
@@ -15,13 +15,13 @@ $(document).ready(function() {
     {
       $(".search-box").removeClass("active");
      //   $(".search-box input#q").hide();
-      $(".search-label").show();                     
+      //$(".search-label").show();                     
       sa = false;
     }
   });
 
   // show search box on hover
-  $('.search-label').hover(searchHoverIn,jQuery.noop());
+  //$('.search-label').hover(searchHoverIn,jQuery.noop());
   $('.search-box').hover(searchHoverIn,searchHoverOut);
 
   // add search phrase to filters
@@ -84,7 +84,7 @@ function searchHoverIn()
     {              
        $(".search-box").addClass("active");               
        $(".search-box input#q").focus();
-       $(".search-label").hide();
+       //$(".search-label").hide();
        sa = true;                
     }
 }
@@ -95,7 +95,7 @@ function searchHoverOut()
   {            
         $(".search-box input#q").trigger("blur");
          $(".search-box").removeClass("active");                  
-         $(".search-label").show();  
+         //$(".search-label").show();  
          sa = false; 
   }
 }

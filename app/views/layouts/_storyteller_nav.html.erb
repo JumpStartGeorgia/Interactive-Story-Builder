@@ -28,18 +28,18 @@
                 <!-- "#{t('app.common.likes')}" -->
                 <%= link_to '#', :class => "like-story #{style1}", :title => t('helpers.hints.unlike'), 
                     :'data-href' => storyteller_unlike_path(@story.permalink) do %>
-                    <i class="i-icon i-liked"></i><%= "#{ t('helpers.links.likes')}" %><span class="likes-count" class="stats-count">(<%= count1 %>)</span>               
+                    <i class="i-icon i-liked"></i><%= "#{ t('helpers.links.likes')}" %><span class="likes-count" class="stats-count"> (<%= count1 %>)</span>               
                 <% end %>
                 <%= link_to '#', :class => "like-story #{style2}", :title => t('helpers.hints.like'), 
                     :'data-href' => storyteller_like_path(@story.permalink) do %>
-                    <i class="i-icon i-like"></i><%= "#{t('helpers.links.likes')}" %><span class="likes-count" class="stats-count">(<%= count2 %>)</span>
+                    <i class="i-icon i-like"></i><%= "#{t('helpers.links.like')}" %>
                 <% end %>
               </li>
             <% else %>  
             <li>          
                <%= link_to :new_user_session, :class => "", :title => t('helpers.hints.like'), 
                     :'data-href' => storyteller_like_path(@story.permalink) do %>
-                    <i class="i-icon i-like"></i><%= "#{t('helpers.links.likes')}" %><span class="likes-count" class="stats-count">(<%= @story.likes %>)</span>
+                    <i class="i-icon i-like"></i><%= "#{t('helpers.links.like')}" %>
                 <% end %>
             </li>
             <% end %>
@@ -57,17 +57,17 @@
                  <li>
                   <%= link_to '#', :class => "staff-pick #{style1}", :title => t('helpers.hints.staff_unpick'), 
                       :'data-href' => storyteller_staff_unpick_path(@story.permalink) do %>
-                       <i class="i-icon i-staffpicked"></i><%= "#{t('helpers.links.staff_pick')}" %>
+                       <i class="i-icon i-staffpicked"></i><% "#{t('helpers.links.staff_pick')}" %>
                   <% end %>
                   <%= link_to '#', :class => "staff-pick #{style2}", :title => t('helpers.hints.staff_pick'), 
                       :'data-href' => storyteller_staff_pick_path(@story.permalink) do %>
-                   <i class="i-icon i-staffpick"></i><%= "#{t('helpers.links.staff_pick')}" %>
+                   <i class="i-icon i-staffpick"></i><% "#{t('helpers.links.staff_pick')}" %>
                   <% end %>
                   </li>
             <% elsif @story.staff_pick? %>
               <li>
                   <%= link_to '#', :class => "", :title => t('helpers.hints.is_staff_pick') do %>
-                    <i class="i-icon i-staffpicked"></i><%= "#{t('helpers.links.staff_pick')}" %>
+                    <i class="i-icon i-staffpicked"></i><% "#{t('helpers.links.staff_pick')}" %>
                   <% end %>
                 </li>
             <% end %>
@@ -82,13 +82,13 @@
         </li>
 
         <li>
-          <%= link_to '#',  :id=>"modalShare", :'data-modalos-id' => "modalos-share", :title => t('app.common.share') do %>
+          <%= link_to '#',  :id=>"modalShare", :'data-modalos-id' => "modalos-share", :title => t('app.common.share'), :class => "share-link" do %>
             <i class="i-icon i-share"></i><%= "#{t('app.common.share')}" %>
           <% end %>
         </li>
 
         <% if @story.present? && @story.sections.present? %>                          
-          <li><a href="#" class="navigation-volume"><div class="navigation-icon"></div></a></li>             
+                  
            <li>
             <% markers = @story.sections.select{|t| (t.ok? && t.has_marker? == true) } %>      
             <% if markers.length > 1 %>    
@@ -98,7 +98,8 @@
                <% end %>          
               </div>
             <% end %>
-          </li>            
+          </li>  
+          <li><a href="#" class="navigation-volume"><div class="navigation-icon"></div></a></li>              
         <% end %>
         <li><div class="nav-separator"></div></li>
         <li><div class="lang"><%= "#{ @story.language.name}" %></div></li>                              
@@ -108,6 +109,10 @@
 </nav>
     
 <div id="modalos-about" style="display:none;" class="about-window">
+  <div class="publish">
+    <div class="day"><%= l(@story.published_at ,:format => :day) if @story.published_at.present? %></div>
+    <div class="month-year"><%= l(@story.published_at ,:format => :month_year) if @story.published_at.present? %></div>
+  </div>         
   <div class="title"><%= @story.title %></div>
   <div class="text"><%= @story.about.html_safe  if @story.about.present? %> </div>
   <div class="profile-data">
@@ -117,9 +122,12 @@
     </div>   
     <div class="nickname">
       <%= link_to @story.user.nickname, author_path(@story.user.permalink), :title => @story.user.nickname %>      
-    </div>           
-    <div class="separator"></div> 
-    <div class="publish"><%= l(@story.published_at ,:format => :publish) if @story.published_at.present? %></div>         
+    </div>    
+    <div class="follow">
+      <a href="#">Follow</a>
+    </div>       
+    <!-- <div class="separator"></div>  -->
+    
     <div class="likes">
              <%= content_tag(:span, @story.likes, :class => "n#{@story.likes.to_s.size}" ) %>
     </div>    
@@ -200,10 +208,11 @@
 
  .about-window .title
   {  
-    font-family:bandera-pro-m;
+    font-family:bandera-pro;
     font-size:30px;
-    color:#121212; 
+    color:#3D3D3D; 
     line-height: 33px;
+    padding-top:6px;
 
   }
  .about-window .text, .about-window .text p, .about-window .text span
@@ -215,6 +224,10 @@
     line-height:21px; 
     text-align: justify;
   }
+.about-window .profile-data
+{
+  margin-bottom:5px;
+}
  .about-window .categories span,
  .about-window .tags span,
  .about-window .languages span
@@ -250,7 +263,7 @@
 .about-window .categories,.about-window .tags,.about-window .languages
 {
   border-top:1px dashed #ebebeb;
-  padding:15px 0px;
+  padding:8px 0px;
 }
 
 .about-window .logo .avatar
@@ -262,7 +275,7 @@
   -moz-border-radius: 150px;    
   margin-top:5px;
 }
-.about-window .logo,.about-window .nickname,.about-window .publish,.about-window .likes
+.about-window .logo,.about-window .nickname,.about-window .likes
 {
   display:inline-block;
   vertical-align: middle;
@@ -290,10 +303,28 @@ margin-left:8px;
 }
 .about-window .publish
 {   
-  font-family:opensans-l;
+  font-family:bandera-pro-b;
   font-size:14px;
-  color:#818181;
-  line-height: 1px; 
+  color:#3D3D3D;
+  border:1px solid #c4c4c4; 
+  padding: 9px 13px;
+  float:left;
+  margin-right:10px;
+}
+.about-window .publish .day
+{
+  font-size:40px;
+  line-height:29px;
+  clear:both;  
+  margin-top: 9px;
+  text-align:center;
+  color: #3D3D3D
+}
+.about-window .publish .month-year
+{
+  font-size:11px; 
+  text-align:center;
+  color: #3D3D3D
 }
 .about-window .likes
 {
@@ -320,7 +351,49 @@ margin-left:8px;
 {
    font-size:10px;
 }
+.about-window  .follow
+  {        
+    position: absolute;   
+    bottom: 50px;
+    text-align: center;
+    margin: 0px auto;
+    width: 100%;
+    height:57px;
+  }
+.about-window  .follow a
+  {
+    display:inline-block;
+    font-family:opensans-r;
+    font-size:18px;
+    color:#fff !important;      
+    background: transparent url('/assets/create-story.png') center no-repeat;
+    background-position: 25px 19px; 
+    border:1px solid #fff;
+    -webkit-border-radius: 133px;
+    -moz-border-radius: 133px;
+    border-radius: 133px;
+    width:178px;
+    height:57px;
+    padding: 18px 0px 0px 30px;
+    text-decoration:none;
+    -webkit-transition:all .25s ease-out;
+    -moz-transition:all .25s ease-out;
+    -ms-transition:all .25s ease-out;
+    transition:all .25s ease-out;
+  }
 
+.about-window .follow a:focus
+  {      
+    color:#000 !important;
+    background: transparent url('/assets/create-story-hover.png') center no-repeat; 
+    background-position: 25px 19px; 
+    background-color:#fff;
+    text-decoration:none;
+            -webkit-transition:all .10s ease-out;
+    -moz-transition:all .10s ease-out;
+    -ms-transition:all .10s ease-out;
+    transition:all .10s ease-out;
+  }
 
 
 .share

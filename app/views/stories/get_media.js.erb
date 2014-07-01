@@ -5,11 +5,11 @@ $("#storyViewer").hide().html("<div id='mediaForm'><%= escape_javascript( render
 	<%	imageTemp = "<img  width='100%' src='#{@item.image.asset.url}'/>" %>
 <% end %>
 $('#media-image-preview').attr('data-image-path','<%= "#{@item.image.asset.url}" %>');
-$("#modalImage .modal-data").html("<%= imageTemp.html_safe %>");
+//$("#modalImage .modal-data").html("<%= imageTemp.html_safe %>");
 
 <% if @item.video_exists? %>
 	$('#media-video-preview').attr('data-video-path','<%= "#{@item.video.asset.url}" %>').attr('data-video-type','<%= "#{@item.video.asset.content_type}" %>');
-	<%	videoTemp = "<source src='#{@item.video.asset.url}' type='#{@item.video.asset.content_type}'>" %>  
+//	<%	videoTemp = "<source src='#{@item.video.asset.url}' type='#{@item.video.asset.content_type}'>" %>  
 <% end %>
 
-$("#modalVideo .modal-data video").html("<%= videoTemp.html_safe %>");
+//$("#modalVideo .modal-data video").html("<%= videoTemp.html_safe %>");

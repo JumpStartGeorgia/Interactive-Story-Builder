@@ -131,6 +131,7 @@ en:
       categories: Categories
       staff_pick: Staff Pick
       user_settings: Your Settings
+      like: Like   
       likes: Likes      
       comments: Comment on this story
       views: "%{num} reads"
@@ -138,7 +139,7 @@ en:
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
-      story_list: Your Stories
+      story_list: My Stories
     hints:
       nickname: Your nickname is used in the url to your published stories (e.g., nickname/story-title)        
       local_avatar: Image that is shown in the header bar and on your user page (png and jpg only).
