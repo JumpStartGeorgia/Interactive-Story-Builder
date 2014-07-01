@@ -305,8 +305,21 @@ ka:
     reviewer:
       copy: კლიფბორდში ჩაკოპირება...
       copied: გადაკოპირებულია!
+  shared:
     grid:
       no_stories: Oh no - no stories could be found!
+      link:
+        clone: Clone as new story
+        export: Download story
+        review: Private URL
+        noreview: Already published
+        collaborators: Manage Collaborators
+      title:
+        clone: Copy this story into a new story
+        export: Download the complete story
+        review: Get URL to share this story before publishing
+        noreview: Your story is published so there is no need to share this non-published URL
+        collaborators: Manage which users have access to edit your story
   admin:
     index:
       title: ადმინისტრატორის განყოფილება
@@ -358,16 +371,6 @@ ka:
       feedback_link: უკუკავშირის სექცია
   stories:
     index:
-      link:
-        clone: Clone as new story
-        export: Download story
-        review: Private URL
-        noreview: Already published
-      title:
-        clone: Copy this story into a new story
-        export: Download the complete story
-        review: Get URL to share this story before publishing
-        noreview: Your story is published so there is no need to share this non-published URL
     new:
       title: პარამეტრების ფორმა
     edit:
