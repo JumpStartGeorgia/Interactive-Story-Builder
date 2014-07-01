@@ -35,6 +35,9 @@ BootstrapStarter::Application.routes.draw do
 
 				get 'preview'
 
+				get 'collaborators'
+				post 'collaborators'
+
 				get 'get_data'
 
 				put 'content', to: 'stories#save_content'

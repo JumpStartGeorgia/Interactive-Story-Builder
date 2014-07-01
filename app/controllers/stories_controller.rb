@@ -41,8 +41,6 @@ class StoriesController < ApplicationController
     @templates = Template.select_list
     @story_tags = []
     
-    set_settings_gon
-    
     respond_to do |format|
         format.html #new.html.er
         format.json { render json: @story }
@@ -57,9 +55,6 @@ class StoriesController < ApplicationController
     end 
     @templates = Template.select_list(@story.template_id)
     @story_tags = @story.tags.token_input_tags
-    @invitations = Invitation.pending_by_story(@story.id)
-
-    set_settings_gon
   end
 
   # POST /stories
@@ -79,8 +74,6 @@ class StoriesController < ApplicationController
         end      
         @templates = Template.select_list(@story.template_id) 
         @story_tags = @story.tags.token_input_tags
-
-        set_settings_gon
 
         flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
@@ -107,9 +100,6 @@ class StoriesController < ApplicationController
         end 
         @templates = Template.select_list(@story.template_id)
         @story_tags = @story.tags.token_input_tags
-        @invitations = Invitation.pending_by_story(@story.id)
-
-        set_settings_gon
         
         flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
         format.html { render action: "edit" }
@@ -619,6 +609,94 @@ class StoriesController < ApplicationController
     end
   end
   
+  def collaborators
+    @story = Story.find_by_id(params[:id])
+
+    if @story.present?
+      user_with_errors = []
+      email_sent = true
+      sending_invitations = false
+      msgs = []
+      
+      if params[:collaborator_ids].present? && request.post?
+        sending_invitations = true  
+
+        # split out the ids
+        c_ids = params[:collaborator_ids].split(',')
+        
+        # pull out the user ids for existing users (numbers)
+        user_ids = c_ids.select{|x| x =~ /^[0-9]+$/ }
+        
+        # pull out the email addresses for new users (not numbers)
+        emails = c_ids.select{|x| x !~ /^[0-9]+$/ }.map{|x| x.gsub("'", '')}
+        
+        # send invitation for each existing user
+        if user_ids.present?
+          user_ids.each do |user_id|
+            Rails.logger.debug "_______________user id = #{user_id}"
+            user = User.find_by_id(user_id)
+            if user.present?
+              email_sent, msg = send_invitation(@story, user.id, user.email, params[:message])
+              Rails.logger.debug "-------------- email_sent #{email_sent}; msg = #{msg}"
+              if email_sent
+    		        # remove id from list
+    		        c_ids.delete(user_id)
+    		      else
+    		        # record the user with the error so that it can be re-displayed in the list
+      		      user_with_errors << {id: user.id, name: user.nickname, img_url: user.avatar_url(:'50x50') }
+      		      msgs << "'#{user.nickname}' - #{msg.join(', ')}"
+              end
+            end  
+          end
+        end
+                   
+        # send invitation for new users
+        if email_sent && emails.present?
+          emails.each do |email|          
+            Rails.logger.debug "_____________email = #{email}"
+            email_sent, msg = send_invitation(@story, nil, email, params[:message])
+            Rails.logger.debug "-------------- email_sent #{email_sent}; msg = #{msg}"
+            if email_sent
+  		        # remove email from list
+  		        c_ids.delete(email)
+  		      else
+  		        # record the user with the error so that it can be re-displayed in the list
+    		      user_with_errors << {id: email, name: email }
+    		      msgs << "'#{email}' - #{msg.join(', ')}"
+  		      end
+          end
+        end
+      end 
+
+      # if not all ids were processed for invitations
+      # record them so they can be shown in the list again
+      params[:collaborator_error_ids] = user_with_errors
+      
+      if sending_invitations && user_with_errors.present?
+        if user_with_errors.length == c_ids.length
+          flash[:error] = t('app.msgs.collaborators.error_invitations_all', :msg => msgs.join('; '))
+        else
+          flash[:error] = t('app.msgs.collaborators.error_invitations_some', :msg => msgs.join('; '))
+        end
+      elsif sending_invitations
+        flash[:success] = t('app.msgs.collaborators.success_invitations')
+        params[:message] = ''
+      end
+
+      # get the invitations on file
+      # - have this down here so any new invitations that were sent will be pulled
+      @invitations = Invitation.pending_by_story(@story.id)
+
+      set_settings_gon
+
+      respond_to do |format|
+        format.html
+      end
+    else
+      redirect_to stories_path, :notice => t('app.msgs.does_not_exist')
+    end
+  end
+  
   def collaborator_search
     output = nil
     story = Story.find_by_id(params[:id])
@@ -626,64 +704,10 @@ class StoriesController < ApplicationController
       users = story.user_collaboration_search(params[:q])
       # format for token input js library [{id,name}, ...]    
       output = users.map{|x| {id: x.id, name: x.nickname, img_url: x.avatar_url(:'50x50') } }
-      logger.debug "^^^^^^^^^^^^^^^^^ output = #{output}"
     end  
     
     respond_to do |format|
       format.json { render json: output.to_json }
-    end
-  end
-  
-  # invite an new user to be a collaborator on a story
-  def invite_collaborators
-		has_errors = false
-
-    if params[:collaborator_ids].present?
-      story = Story.find_by_id(params[:id])
-      
-      if story.present?
-        Invitation.transaction do
-          # split out the ids
-          c_ids = params[:collaborator_ids].split(',')
-          logger.debug "ids = #{c_ids}"
-          
-          # pull out the user ids for existing users
-          user_ids = c_ids.select{|x| x =~ /^[0-9]+$/ }
-          
-          # pull out the email addresses for new users
-          emails = c_ids.select{|x| x !~ /^[0-9]+$/ }.map{|x| x.gsub("'", '')}
-          
-          # send invitation for each existing user
-          if user_ids.present?
-            user_ids.each do |user_id|
-              Rails.logger.debug "_______________user id = #{user_id}"
-              user = User.find_by_id(user_id)
-              if !user.present? || !send_invitation(story, user.id, user.email, params[:message])
-      		      raise ActiveRecord::Rollback
-      		      has_errors = true
-      		      break
-              end
-            end
-          end
-                     
-          # send invitation for new users
-          if !has_errors && emails.present?
-            emails.each do |email|          
-              Rails.logger.debug "_____________email = #{email}"
-              if !send_invitation(story, nil, email, params[:message])
-      		      has_errors = true
-      		      raise ActiveRecord::Rollback
-      		      break
-    		      end
-            end
-          end
-        end
-      end 
-      has_errors = true
-    end
-      
-    respond_to do |format|
-      format.json { render json: {emails_sent: !has_errors} }
     end
   end
   

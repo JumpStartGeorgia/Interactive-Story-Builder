@@ -437,6 +437,7 @@ $(document).ready(function() {
         theme: 'facebook',
         allowCustomEntry: true,
         preventDuplicates: true,
+        prePopulate: $('form#collaborators #collaborator_ids').data('load'),
         hintText: gon.tokeninput_collaborator_hintText,
         noResultsText: gon.tokeninput_collaborator_noResultsText,
         searchingText: gon.tokeninput_searchingText,
