@@ -48,7 +48,8 @@
                           <% end %>
                         </li>
                         <li>
-                          <a href="#" id='btnPreview' title="<%= t('app.buttons.preview') %>" data-link='<%= preview_story_path(story) %>'>
+                          <a href="#" id='btnPreview' title="<%= t('app.buttons.preview') %>" data-link='<%= preview_story_path(story) %>'
+                              data-modalos-id='modalos-preview'>
                             <i class="glyphicon glyphicon-eye-open" ></i><%= t('app.buttons.preview') %>
                           </a>
                         </li>
@@ -60,7 +61,8 @@
                         <% if !story.published %> 
                           <li>
                              <a href="#" id='btnReviewer' title="<%= t('.title.review') %>" data-modalos-id='modalos-reviewer'
-                                data-reviewer-key='<%= review_url(story.reviewer_key) %>'>
+                                data-reviewer-key='<%= review_url(story.reviewer_key) %>'
+                                data-title='<%= story.title %>'>
                               <i class="glyphicon glyphicon-share" ></i><%= t('.link.review') %>
                             </a>                                                
                           </li>
@@ -113,9 +115,16 @@
 <div id="modalos-preview" style="display:none;width:100%;height:100%;">  
 </div>
 <div id="modalos-reviewer" style="display:none;width:100%;height:100%;" >
-  <%= t('stories.reviewer_key.title') %>
-    <p>
-      <%= t('stories.reviewer_key.desc', :title => '') %>
+	<div class="page-header">
+	  <div class="block">
+      <h1>
+        <%= t('stories.reviewer_key.title') %>
+		  </h1>
+		</div>
+	</div>
+
+    <p id="review_instructions">
+      <%= t('stories.reviewer_key.desc', :title => '[title]') %>
     </p>
 
     

@@ -94,16 +94,18 @@ $(document).ready(function() {
 	 //    ]
   //   });  
 	
+  // when review menu item clicked, open modal 
+  // and push in review key and story title
   $(document).on('click', '#btnReviewer', function(e){
 		e.preventDefault();		
 		
-		
 		var ml = $('#' + $(this).attr('data-modalos-id'));   
-        var v = $('.navbar-storybuilder'); 
-        ml.find('#review_url').attr('src', $(this).data('reviewer-key')).html($(this).data('reviewer-key'));        
-        ml.modalos({
-        	topOffset: $(v).position().top + $(v).height() + 30       	        	        	      
-        });
+    var v = $('.navbar-storybuilder'); 
+    ml.find('#review_instructions').html(ml.find('#review_instructions').html().replace('[title]', $(this).data('title')));        
+    ml.find('#review_url').attr('src', $(this).data('reviewer-key')).html($(this).data('reviewer-key'));        
+    ml.modalos({
+    	topOffset: $(v).position().top + $(v).height() + 30       	        	        	      
+    });
 
 		return true;	
   });
