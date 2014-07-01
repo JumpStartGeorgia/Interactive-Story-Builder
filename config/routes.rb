@@ -83,6 +83,7 @@ BootstrapStarter::Application.routes.draw do
 		match "settings/check_nickname" => "settings#check_nickname", as: 'settings_check_nickname', :via => :post
 		match "invitations" => "settings#invitations", as: 'invitations', :via => :get
 		match "invitations/accept/:key" => "settings#accept_invitation", as: 'accept_invitation', :via => :get
+		match "invitations/decline/:key" => "settings#decline_invitation", as: 'decline_invitation', :via => :get
 
 		match "demo" => "root#demo", as: 'demo'
 		match "news" => "root#news", as: 'news'

@@ -1,13 +1,35 @@
 <% title t('.title', :name => current_user.nickname) %>
 
 <% if @invitations.present? %>
-  <ul>
-    <% @invitations.each do |inv| %>
-      <li>
-        <%= link_to t('.accept_link', :title => inv.story.title), accept_invitation_url(:key => inv.key) %>
-      </li>
-    <% end %>
-  </ul>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= t('.header_date') %></th>
+        <th><%= t('.header_story') %></th>
+        <th><%= t('.header_from') %></th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @invitations.each do |invitation| %>
+        <tr>
+          <td><%= l(invitation.sent_at, :format => :publish) if invitation.sent_at.present? %></td>
+          <td><%= invitation.story.title %></td>
+          <td>
+            <%= image_tag invitation.from_user.avatar_url(:'50x50'), :title => invitation.from_user.nickname, :alt => invitation.from_user.nickname %>
+          </td>
+          <td>
+            <%= link_to t('.accept_link'), accept_invitation_url(:key => invitation.key), :class => 'btn btn-mini btn-default' %>
+            <%= link_to t('.decline_link'), decline_invitation_url(:key => invitation.key),
+                      :data => { :confirm => I18n.t("helpers.links.confirm") },
+                      :class => 'btn btn-mini btn-danger'
+             %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 <% else %>
   <p>

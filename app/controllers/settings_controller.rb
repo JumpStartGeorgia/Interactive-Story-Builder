@@ -55,7 +55,7 @@ class SettingsController < ApplicationController
   
   # view invitations that are currently on record for this user
   def invitations
-    @invitations = Invitation.where(['to_user_id = ? and accepted_at is null', current_user.id] )
+    @invitations = Invitation.pending_by_user(current_user.id)
     
     respond_to do |format|     
       format.html 
@@ -74,17 +74,33 @@ class SettingsController < ApplicationController
           s.users << current_user
           inv.accepted_at = Time.now
           inv.save
-          redirect_to stories_path, :notice => t('app.msgs.invitation_accepted', :title => s.title)
+          redirect_to stories_path, :notice => t('app.msgs.invitation.accepted', :title => s.title)
           accepted = true
         end
       else
-        redirect_to stories_path, :notice => t('app.msgs.invitation_accepted_already', :title => s.title)
+        redirect_to stories_path, :notice => t('app.msgs.invitation.accepted_already', :title => s.title)
         accepted = true
       end
     end
 
     if !accepted
-      redirect_to invitations_path, :notice => t('app.msgs.bad_invitation')  
+      redirect_to invitations_path, :notice => t('app.msgs.invitation.bad')  
+    end
+  end  
+
+  # delete the invitation that has the key in the url
+  def decline_invitation
+    deleted = false
+    inv = Invitation.find_by_key(params[:key])
+    
+    if inv.present?
+      inv.destroy
+      deleted = true
+      redirect_to invitations_path, :notice => t('app.msgs.invitation.declined')
+    end
+
+    if !deleted
+      redirect_to invitations_path, :notice => t('app.msgs.invitation.bad')  
     end
   end  
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140611102534) do
+ActiveRecord::Schema.define(:version => 20140701134818) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -319,9 +319,12 @@ ActiveRecord::Schema.define(:version => 20140611102534) do
     t.string   "default_story_locale",   :default => "en"
     t.string   "permalink"
     t.string   "avatar_file_name"
+    t.string   "email_no_domain"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["email_no_domain"], :name => "index_users_on_email_no_domain"
+  add_index "users", ["nickname"], :name => "index_users_on_nickname"
   add_index "users", ["permalink"], :name => "index_users_on_permalink"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 

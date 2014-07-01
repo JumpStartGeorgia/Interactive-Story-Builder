@@ -128,7 +128,7 @@ class Story < ActiveRecord::Base
       elsif already_exists_emails.present?
         sql = "!(email in (:emails)) and "
       end
-      sql << "(nickname like :search or email like :search)"
+      sql << "(nickname like :search or email_no_domain like :search)"
       users = User.where([sql, 
           :ids => already_exists_ids.uniq,
           :emails => already_exists_emails.uniq,

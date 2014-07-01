@@ -228,9 +228,11 @@ en:
       nickname_url: 'Your url will be:'
       story_duplicate: This story url already exists. 
       story_url: 'Your url will be:'
-      invitation_accepted: "You have accepted the invitation to collaborate on '%{title}'"
-      invitation_accepted_already: "You have already accepted the invitation to collaborate on '%{title}'"
-      bad_invitation: Sorry, your invitation could not be found or the story has been deleted.
+      invitation:
+        accepted: "You have accepted the invitation to collaborate on '%{title}'"
+        accepted_already: "You have already accepted the invitation to collaborate on '%{title}'"
+        bad: Sorry, your invitation could not be found or the story has been deleted.
+        declined: Your invitation was declined
       one_section:
         content: Only one Item can be added to a Content section
         slideshow: Only one Item can be added to an Image Slideshow section
@@ -501,4 +503,8 @@ en:
     invitations:
       title: "Invitations for %{name}"
       no_invitations: At this time there are no un-answered invitations on file for you.
-      accept_link: Collaborate on '%{title}'
+      accept_link: Accept
+      decline_link: Decline
+      header_date: Date Sent
+      header_story: Story Title
+      header_from: Sent By

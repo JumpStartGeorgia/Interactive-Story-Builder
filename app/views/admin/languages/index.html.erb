@@ -24,7 +24,7 @@
         <td><%= language.name %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_admin_language_path(language), :class => 'btn btn-mini' %>
+                      edit_admin_language_path(language), :class => 'btn btn-mini btn-default' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       admin_language_path(language),
                       :method => :delete,
