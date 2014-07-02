@@ -1,0 +1,12 @@
+<%= t('mailer.notification.story_collaborator_invitation.line1', :locale => @message.locale, :name => @message.from_user, :title => @message.story_title) %>
+
+<%= t('mailer.notification.story_collaborator_invitation.line2', :locale => @message.locale, :url => @message.url) %>
+
+<%= t('mailer.notification.story_collaborator_invitation.line3') %>
+
+<% if @message.message.present? %>
+<%= t('mailer.notification.story_collaborator_invitation.line_msg', :locale => @message.locale, :name => @message.from_user) %>
+
+<%= @message.message %>
+<% end %>
+

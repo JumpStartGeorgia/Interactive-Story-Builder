@@ -88,10 +88,17 @@ ka:
         already_exists: 'უკვე არსებობს მონაცემთა ბაზაში'
   mailer:
     closing: "პატივისცემით,"
-    signature: JumpStart Georgia
+    signature: The Story Builder Team
     contact:
       contact_form:
         subject: "Story Builder Contact Form"
+    notification:
+      story_collaborator_invitation:
+        subject: "You have been invited to collaborate on a story on Story Builder!"
+        line1: You have been invited to collaborate with %{name} on a story titled '%{title}'.  
+        line2: "If you would like to accept this invitation, please click here: %{url}."
+        line3: If you want to decline this invitation, no action is needed on your part.
+        line_msg: "Here is message written to you by %{name}:"
   helpers:
     actions: აირჩიეთ
     links:
@@ -136,6 +143,7 @@ ka:
       comments: Comment on this story
       views: "%{num} reads"
       tags: Tags
+      menu: მენიუ
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
@@ -143,7 +151,6 @@ ka:
     hints:
       nickname: Your nickname is used in the url to your published stories (e.g., nickname/story-title)        
       local_avatar: ფოტო, რომელიც გამოჩნდება თქვენი გვერდის ზედა სექციაში (მხოლოდ png და jpg).
-      unlike: Unlike this story
       like: Like this story
       unlike: Unlike this story
       staff_pick: რჩეულებში დამატება
@@ -193,7 +200,6 @@ ka:
       js_link_text: აგებულია
       search: Search for Story
       create: Create Story
-      about_storybuilder: About
       about_story: About
       likes: Likes
       comments: Comments
@@ -232,6 +238,11 @@ ka:
       nickname_url: 'Your url will be:'
       story_duplicate: This story url already exists. 
       story_url: 'Your url will be:'
+      invitation:
+        accepted: "You have accepted the invitation to collaborate on '%{title}'"
+        accepted_already: "You have already accepted the invitation to collaborate on '%{title}'"
+        bad: Sorry, your invitation could not be found or the story has been deleted.
+        declined: Your invitation was declined
       one_section:
         content: მხოლოდ ერთი რამის  დამატებაა შესაძლებელი შინაარსის სექციაში
         slideshow: მხოლოდ ერთი რამის დამატებაა შესაძლებელი ფოტო სლაიდშოუს სექციაში
@@ -244,6 +255,13 @@ ka:
         error: "ერთეულის წაშლისას დაშვებულია შეცდომა [ %{err} ]"
         error_not_found: წასაშლელი ერთეული ვერ მოიძებნა.
       embed_code: Copy and paste this embed code into your web page
+      collaborators:
+        success_remove: '%{name} was removed as a collaborator'
+        user_not_found: User to remove as a collaborator could not be found
+        no_permission: You do not have permission to remove this collaborator
+        success_invitations: Invitations were sent!
+        error_invitations_all: "No invitations were sent due to the following erros: %{msg}"
+        error_invitations_some: "Some invitations were sent, but some where not due to the following erros: %{msg}"
   section_types:
     content:
       name: შინაარსი
@@ -274,9 +292,13 @@ ka:
     language_header: Language
     search: Find a Story
   tokeninput:
-    hintText: Search for an existing tag or enter a new tag
-    noResultsText: "No matches found. Press 'Enter' to save this new tag."
     searchingText: Searching...
+    tag:
+      hintText: Search for an existing tag or enter a new tag
+      noResultsText: "No matches found. Press 'Enter' to save this new tag."
+    collaborator:
+      hintText: Search for an existing user or enter the email address for a new user
+      noResultsText: "No matches found. Press 'Enter' to add this email address to the list of invited collaborators."
   layouts:
     unsupported_browser:
       title: არასათანადო ბრაუზერი
@@ -295,8 +317,21 @@ ka:
     reviewer:
       copy: კლიფბორდში ჩაკოპირება...
       copied: გადაკოპირებულია!
+  shared:
     grid:
       no_stories: Oh no - no stories could be found!
+      link:
+        clone: Clone as new story
+        export: Download story
+        review: Private URL
+        noreview: Already published
+        collaborators: Manage Collaborators
+      title:
+        clone: Copy this story into a new story
+        export: Download the complete story
+        review: Get URL to share this story before publishing
+        noreview: Your story is published so there is no need to share this non-published URL
+        collaborators: Manage which users have access to edit your story
   admin:
     index:
       title: ადმინისტრატორის განყოფილება
@@ -346,18 +381,11 @@ ka:
       header_missing: რამე ხომ არ აკლია?
       missing_text: ჩამონათვალს ხომ არ აკლია ფუნქცია, რომლის დამატებასაც ისურვებდით? ხომ არ ფიქრობთ, რომ ჩამონათვალის სია უნდა გადავაწყოთ? თუ კი, გთხოვთ მოგვაწოდეთ ინფორმაცია  %{link}-ის გამოყენებით.
       feedback_link: უკუკავშირის სექცია
+    about:
+      title: About Story Builder
+      text: Story Builder ...
   stories:
     index:
-      link:
-        clone: Clone as new story
-        export: Download story
-        review: Private URL
-        noreview: Already published
-      title:
-        clone: Copy this story into a new story
-        export: Download the complete story
-        review: Get URL to share this story before publishing
-        noreview: Your story is published so there is no need to share this non-published URL
     new:
       title: პარამეტრების ფორმა
     edit:
@@ -383,6 +411,19 @@ ka:
         locale: აირჩიეთ თქვენი ამბის ენა. მიეცით მომხმარებელს საშუალება აირჩიოს ამბავი ენის მიხედვით.
         categories: აირჩიეთ კატეგორია(ები), რომელსაც თქვენი ამბავი განეკუთვნება. მიეცით მომხმარებელს საშუალება აირჩიოს ამბავი კატეგორიის მიხედვით.
         tag_list: "Enter text to find existing tags.  If your tag does not exist yet, press 'Enter' to add the new tag to the list."
+    collaborators:
+      title: Collaborators for '%{title}'
+      owner_header: Story Owner
+      collaborators_header: Story Collaborators
+      explanation: A story collaborator is someone that has access to edit this story.
+      current_header: Current Collaborators
+      remove_title: 'Remove %{name}'
+      not_accepted_title: '%{name} has not accepted the invitation yet'
+      add_header: Add Collaborators
+      add_explanation: For the users you enter below, an email will be sent inviting them to be a collaborator on this story.
+      search_label: Enter names or email addresses of the people you want to invite
+      message: Add Message to Notification (optional)
+      submit: Send Collaboration Invitation
     media:
       form_title: მთელს ეკრანზე გაშლილი მედია სლაიდშოუ
       left: მარცხნივ
@@ -470,3 +511,11 @@ ka:
       hint:
         about: მოკლედ თქვენს შესახებ. ეს გამოჩნდება გამოქვეყნებულ ამბებთან ერთად. 
         default_story_locale: აირჩიეთ ენა, რომელსაც გამოიყენებთ ამბის შექმნისას.
+    invitations:
+      title: "Invitations for %{name}"        
+      no_invitations: At this time there are no un-answered invitations on file for you.
+      accept_link: Accept
+      decline_link: Decline
+      header_date: Date Sent
+      header_story: Story Title
+      header_from: Sent By      

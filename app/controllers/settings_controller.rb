@@ -51,4 +51,57 @@ class SettingsController < ApplicationController
       format.json { render json: output } 
     end
   end 
+  
+  
+  # view invitations that are currently on record for this user
+  def invitations
+    @invitations = Invitation.pending_by_user(current_user.id)
+    
+    respond_to do |format|     
+      format.html 
+    end
+  end  
+
+  # accept the invitation that has the key in the url
+  def accept_invitation
+    accepted = false
+    inv = Invitation.find_by_key(params[:key])
+    
+    if inv.present?
+      s = Story.find_by_id(inv.story_id)
+      if inv.accepted_at.blank?
+        if s.present?
+          s.users << current_user
+          inv.accepted_at = Time.now
+          inv.save
+          redirect_to stories_path, :notice => t('app.msgs.invitation.accepted', :title => s.title)
+          accepted = true
+        end
+      else
+        redirect_to stories_path, :notice => t('app.msgs.invitation.accepted_already', :title => s.title)
+        accepted = true
+      end
+    end
+
+    if !accepted
+      redirect_to invitations_path, :notice => t('app.msgs.invitation.bad')  
+    end
+  end  
+
+  # delete the invitation that has the key in the url
+  def decline_invitation
+    deleted = false
+    inv = Invitation.find_by_key(params[:key])
+    
+    if inv.present?
+      inv.destroy
+      deleted = true
+      redirect_to invitations_path, :notice => t('app.msgs.invitation.declined')
+    end
+
+    if !deleted
+      redirect_to invitations_path, :notice => t('app.msgs.invitation.bad')  
+    end
+  end  
+
 end

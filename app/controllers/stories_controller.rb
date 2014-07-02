@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
-  before_filter   :authenticate_user!, :except => [:review]
-  before_filter(:except => [:index, :new, :create, :check_permalink, :tag_search, :review]) do |controller_instance|  
+  before_filter :authenticate_user!, :except => [:review]
+  before_filter(:except => [:index, :new, :create, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
     controller_instance.send(:can_edit_story?, params[:id])
   end
   before_filter :asset_filter
@@ -18,6 +18,7 @@ class StoriesController < ApplicationController
       @js.push("modalos.js")
       @css.push("modalos.css")
     end
+
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render json: @stories }
@@ -37,9 +38,9 @@ class StoriesController < ApplicationController
   def new
     @story = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
     @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
-    @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list
     @story_tags = []
+    
     respond_to do |format|
         format.html #new.html.er
         format.json { render json: @story }
@@ -52,7 +53,6 @@ class StoriesController < ApplicationController
     if !@story.asset_exists?
       @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
     end 
-    @users = User.where("id not in (?)", [@story.user_id, current_user.id])
     @templates = Template.select_list(@story.template_id)
     @story_tags = @story.tags.token_input_tags
   end
@@ -69,7 +69,6 @@ class StoriesController < ApplicationController
         format.html { redirect_to sections_story_path(@story) }
       #  format.json { render json: @story, status: :created, location: @story }
       else
-        @users = User.where("id not in (?)", [@story.user_id, current_user.id]) 
         if !@story.asset.present? 
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end      
@@ -96,13 +95,12 @@ class StoriesController < ApplicationController
         format.html { redirect_to  sections_story_path(@story),  notice: t('app.msgs.success_updated', :obj => t('activerecord.models.story')) }
         format.js { render action: "flash", status: :created }    
       else
-        @users = User.where("id not in (?)", [@story.user_id, current_user.id])
         if !@story.asset.present? 
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end 
         @templates = Template.select_list(@story.template_id)
         @story_tags = @story.tags.token_input_tags
-
+        
         flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
         format.html { render action: "edit" }
         format.js {render action: "flash" , status: :ok }
@@ -617,6 +615,159 @@ class StoriesController < ApplicationController
     end
   end
   
+  def collaborators
+    @story = Story.find_by_id(params[:id])
+
+    if @story.present?
+      user_with_errors = []
+      email_sent = true
+      sending_invitations = false
+      msgs = []
+      
+      if params[:collaborator_ids].present? && request.post?
+        sending_invitations = true  
+
+        # split out the ids
+        c_ids = params[:collaborator_ids].split(',')
+        
+        # pull out the user ids for existing users (numbers)
+        user_ids = c_ids.select{|x| x =~ /^[0-9]+$/ }
+        
+        # pull out the email addresses for new users (not numbers)
+        emails = c_ids.select{|x| x !~ /^[0-9]+$/ }.map{|x| x.gsub("'", '')}
+        
+        # send invitation for each existing user
+        if user_ids.present?
+          user_ids.each do |user_id|
+            Rails.logger.debug "_______________user id = #{user_id}"
+            user = User.find_by_id(user_id)
+            if user.present?
+              email_sent, msg = send_invitation(@story, user.id, user.email, params[:message])
+              Rails.logger.debug "-------------- email_sent #{email_sent}; msg = #{msg}"
+              if email_sent
+    		        # remove id from list
+    		        c_ids.delete(user_id)
+    		      else
+    		        # record the user with the error so that it can be re-displayed in the list
+      		      user_with_errors << {id: user.id, name: user.nickname, img_url: user.avatar_url(:'50x50') }
+      		      msgs << "'#{user.nickname}' - #{msg.join(', ')}"
+              end
+            end  
+          end
+        end
+                   
+        # send invitation for new users
+        if email_sent && emails.present?
+          emails.each do |email|          
+            Rails.logger.debug "_____________email = #{email}"
+            email_sent, msg = send_invitation(@story, nil, email, params[:message])
+            Rails.logger.debug "-------------- email_sent #{email_sent}; msg = #{msg}"
+            if email_sent
+  		        # remove email from list
+  		        c_ids.delete(email)
+  		      else
+  		        # record the user with the error so that it can be re-displayed in the list
+    		      user_with_errors << {id: email, name: email }
+    		      msgs << "'#{email}' - #{msg.join(', ')}"
+  		      end
+          end
+        end
+      end 
+
+      # if not all ids were processed for invitations
+      # record them so they can be shown in the list again
+      params[:collaborator_error_ids] = user_with_errors
+      
+      if sending_invitations && user_with_errors.present?
+        if user_with_errors.length == c_ids.length
+          flash[:error] = t('app.msgs.collaborators.error_invitations_all', :msg => msgs.join('; '))
+        else
+          flash[:error] = t('app.msgs.collaborators.error_invitations_some', :msg => msgs.join('; '))
+        end
+      elsif sending_invitations
+        flash[:success] = t('app.msgs.collaborators.success_invitations')
+        params[:message] = ''
+      end
+
+      # get the invitations on file
+      # - have this down here so any new invitations that were sent will be pulled
+      @invitations = Invitation.pending_by_story(@story.id)
+
+      set_settings_gon
+
+      respond_to do |format|
+        format.html
+      end
+    else
+      redirect_to stories_path, :notice => t('app.msgs.does_not_exist')
+    end
+  end
+  
+  def collaborator_search
+    output = nil
+    story = Story.find_by_id(params[:id])
+    if story.present?
+      users = story.user_collaboration_search(params[:q])
+      # format for token input js library [{id,name}, ...]    
+      output = users.map{|x| {id: x.id, name: x.nickname, img_url: x.avatar_url(:'50x50') } }
+    end  
+    
+    respond_to do |format|
+      format.json { render json: output.to_json }
+    end
+  end
+  
+  # remove a collaborator from a story
+  # - must be story owner to remove
+  def remove_collaborator
+    story = Story.find_by_id(params[:id])
+		msg = ''
+		has_errors = false
+  
+    if story.user_id == current_user.id
+      user = User.find_by_id(params[:user_id])
+      if user.present?
+        story.users.delete(user)
+        msg = I18n.t('app.msgs.collaborators.success_remove', :name => user.nickname)
+      else
+        msg = I18n.t('app.msgs.collaborators.user_not_found')
+    		has_errors = true
+      end
+    else
+      msg = I18n.t('app.msgs.collaborators.no_permission')
+  		has_errors = true
+    end
+  
+    respond_to do |format|
+      format.json { render json: {msg: msg, success: !has_errors} }
+    end
+  end
+  
+  # remove an invitation from a story
+  # - must be story owner to remove
+  def remove_invitation
+    story = Story.find_by_id(params[:id])
+		msg = ''
+		has_errors = false
+  
+    if story.user_id == current_user.id
+      if params[:user_id].present?
+        Invitation.delete_invitation(params[:id], params[:user_id])
+        msg = I18n.t('app.msgs.collaborators.success_remove', :name => params[:user_id])
+      else
+        msg = I18n.t('app.msgs.collaborators.user_not_found')
+    		has_errors = true
+      end
+    else
+      msg = I18n.t('app.msgs.collaborators.no_permission')
+  		has_errors = true
+    end
+  
+    respond_to do |format|
+      format.json { render json: {msg: msg, success: !has_errors} }
+    end
+  end
+  
   
 private
 
@@ -643,4 +794,67 @@ private
     @js.push("stories.js", "modalos.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js")
   end 
   
+  def send_invitation(story, user_id=nil, email=nil, msg=nil)
+		email_sent = false
+		error_msg = nil
+
+    if story.present? && (user_id.present? || email.present?)
+      # see if invitation already exists
+      existing_inv = Invitation.where(:story_id => story.id, :to_email => email)
+      if existing_inv.present?
+        Rails.logger.debug "@@@@@ invitation already exists, ignoring"
+        # already sent, so ignore
+        return true
+      end
+
+      # create the message        
+      message = Message.new
+      message.mailer_type = Message::MAILER_TYPE[:notification]
+      message.locale = I18n.locale
+      message.story_title = story.title
+      message.from_user = current_user.nickname
+      message.email = email
+      
+      if message.valid?
+        # save the invitation
+        inv = Invitation.new
+        inv.story_id = story.id
+        inv.from_user_id = current_user.id
+        inv.to_user_id = user_id
+        inv.to_email = email
+
+        if inv.save
+          Rails.logger.debug "+++ invitation saved, sending message"
+
+          message.url = accept_invitation_url(:locale => message.locale, :key => inv.key)
+          message.message = msg if msg.present?
+
+          Rails.logger.debug "======= message = #{message.inspect}"
+
+          # send message
+		      NotificationMailer.story_collaborator_invitation(message).deliver
+		      email_sent = true
+        else
+          Rails.logger.debug "========= inv error = #{inv.errors.full_messages}"
+          error_msg = inv.errors.full_messages
+        end
+      else
+        Rails.logger.debug "========= message error = #{message.errors.full_messages}"
+          error_msg = message.errors.full_messages
+      end
+    end
+    
+    return email_sent, error_msg
+  end
+  
+  
+  def set_settings_gon
+    gon.collaborator_search = story_collaborator_search_path(params[:id])
+    gon.tokeninput_collaborator_hintText = I18n.t('tokeninput.collaborator.hintText')
+    gon.tokeninput_collaborator_noResultsText = I18n.t('tokeninput.collaborator.noResultsText')
+    gon.tag_search = story_tag_search_path
+    gon.tokeninput_tag_hintText = I18n.t('tokeninput.tag.hintText')
+    gon.tokeninput_tag_noResultsText = I18n.t('tokeninput.tag.noResultsText')
+    gon.tokeninput_searchingText = I18n.t('tokeninput.searchingText')
+  end
 end       

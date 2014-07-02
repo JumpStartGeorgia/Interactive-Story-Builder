@@ -10,6 +10,7 @@
 
 	<%= f.inputs do %>
 	  <%= f.input :nickname, hint: t('helpers.hints.nickname'), :input_html => { :size => 35 } %>
+    <div id="check_nickname_results"></div>
 
     <%= f.fields_for :local_avatar, current_user.local_avatar do |as| %>
         <%= as.input :asset_type, :as => :hidden %>

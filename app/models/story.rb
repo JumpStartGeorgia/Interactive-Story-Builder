@@ -14,6 +14,7 @@ class Story < ActiveRecord::Base
   # create permalink to story
   has_permalink :create_permalink, true
 	
+  has_many :invitations, :dependent => :destroy
 	has_many :story_categories
 	has_many :categories, :through => :story_categories, :dependent => :destroy
 	belongs_to :user
@@ -95,6 +96,47 @@ class Story < ActiveRecord::Base
 	def self.by_category(id)
 	  joins(:categories).where('categories.id = ?', id)
 	end
+
+  # get list of users that match the passed in query
+  # - user must not be owner or already have invitation or is already collaborator
+  # - search in user nickname and email
+  def user_collaboration_search(q, limit=10)
+    if q.present? and q.length > 1
+      already_exists_ids = []
+      already_exists_emails = []
+      # add owner
+      already_exists_ids << self.user_id
+      # add colaborators
+      if self.users.present?
+        already_exists_ids << self.users.map{|x| x.id}
+      end
+      # add invitations
+      pending = Invitation.pending_by_story(self.id)
+      if pending.present?
+        already_exists_emails << pending.map{|x| x.to_email}
+      end
+      
+      already_exists_ids.flatten!
+      already_exists_emails.flatten!
+      
+      sql = ""
+      if already_exists_ids.present? && already_exists_emails.present?
+        sql = "!(id in (:ids) or email in (:emails)) and "
+      elsif already_exists_ids.present?
+        sql = "!(id in (:ids)) and "
+      elsif already_exists_emails.present?
+        sql = "!(email in (:emails)) and "
+      end
+      sql << "(nickname like :search or email_no_domain like :search)"
+      users = User.where([sql, 
+          :ids => already_exists_ids.uniq,
+          :emails => already_exists_emails.uniq,
+          :search => "%#{q}%"])
+          .limit(limit)          
+      return users
+    end  
+  end
+
 
   # alias name for cached_votes_total
   def likes

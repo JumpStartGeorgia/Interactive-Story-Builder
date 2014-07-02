@@ -22,6 +22,8 @@
 	  <%= f.inputs do %>
 	    <%= f.input :email, :input_html => { :size => 35 } %>
 	    <%= f.input :nickname, hint: t('helpers.hints.nickname'), :input_html => { :size => 35 } %>
+      <div id="check_nickname_results"></div>
+
       <% resource.build_local_avatar(:asset_type => Asset::TYPE[:user_avatar]) %>
       <%= f.fields_for :local_avatar, resource.local_avatar do |as| %>
           <%= as.input :asset_type, :as => :hidden %>

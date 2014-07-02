@@ -1,7 +1,5 @@
 BootstrapStarter::Application.routes.draw do
   
-
-
 	#--------------------------------
 	# all resources should be within the scope block below
 	#--------------------------------
@@ -25,12 +23,20 @@ BootstrapStarter::Application.routes.draw do
 		match "stories/check_permalink" => "stories#check_permalink", as: 'story_check_permalink', :via => :post
 		match "stories/tag_search" => "stories#tag_search", as: 'story_tag_search', :via => :post, :defaults => { :format => 'json' }
 		match "review/:id" => "stories#review", as: 'review'
+		match "stories/:id/collaborator_search" => "stories#collaborator_search", as: 'story_collaborator_search', :via => :post, :defaults => { :format => 'json' }
+		match "stories/:id/invite_collaborators" => "stories#invite_collaborators", as: 'story_invite_collaborators', :via => :post, :defaults => { :format => 'json' }
+		match "stories/:id/remove_collaborator" => "stories#remove_collaborator", as: 'story_remove_collaborator', :via => :post, :defaults => { :format => 'json' }
+		match "stories/:id/remove_invitation" => "stories#remove_invitation", as: 'story_remove_invitation', :via => :post, :defaults => { :format => 'json' }
+
 		resources :stories do	
 
 			member do
 				
 
 				get 'preview'
+
+				get 'collaborators'
+				post 'collaborators'
 
 				get 'get_data'
 
@@ -75,6 +81,9 @@ BootstrapStarter::Application.routes.draw do
 		match "settings" => "settings#index", as: 'settings'
 		match "settings/remove_avatar" => "settings#remove_avatar", as: 'settings_remove_avatar'
 		match "settings/check_nickname" => "settings#check_nickname", as: 'settings_check_nickname', :via => :post
+		match "invitations" => "settings#invitations", as: 'invitations', :via => :get
+		match "invitations/accept/:key" => "settings#accept_invitation", as: 'accept_invitation', :via => :get
+		match "invitations/decline/:key" => "settings#decline_invitation", as: 'decline_invitation', :via => :get
 
 		match "demo" => "root#demo", as: 'demo'
 		match "news" => "root#news", as: 'news'

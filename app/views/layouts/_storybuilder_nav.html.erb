@@ -42,7 +42,7 @@
                :class => "dropdown-toggle avatar-link", :"data-toggle"=>"dropdown" %>                          
           <ul class="dropdown-menu pull-right">
             <li>
-              <%= link_to t('helpers.links.add_story'), new_story_path  %>
+              <%= link_to t('app.common.create'), new_story_path  %>
             </li>              
             <li>
               <%= link_to t('helpers.titles.story_list'), stories_path  %>
@@ -71,8 +71,11 @@
      <% end %> 
         <li><div class="nav-separator"></div></li>  
         <li class="dropdown dropdown-hover dropdown-about-storybuilder">                    
-            <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= "#{t('app.common.about_storybuilder')}" %><i class="i-icon i-caret"></i></a>                   
+            <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= "#{t('helpers.links.menu')}" %><i class="i-icon i-caret"></i></a>                   
             <ul class="dropdown-menu pull-right">
+              <li>
+                <%= link_to t('helpers.links.about'), about_path %> 
+              </li>
               <li>
                 <%= link_to t('helpers.links.news'), news_path %>
               </li>
@@ -81,9 +84,6 @@
               </li>
               <li>
                 <%= link_to t('helpers.links.feedback'), feedback_path %> 
-              </li>
-               <li>
-                <%= link_to t('helpers.links.about'), about_path %> 
               </li>
                <li>
                 <%= link_to t('helpers.links.demo'), demo_path %> 

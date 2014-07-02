@@ -33,15 +33,19 @@ $(document).ready(function(){
 		.off('click.dropdown touchstart.dropdown.data-api', '.dropdown')
 		.on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() });
 
+  $('ul.nav li.dropdown-hover').hover(function(){ 
+      $(this).closest('.dropdown-menu').stop(true, true).show();
+      $(this).addClass('open'); 
+    },
+    function(){
+      $(this).closest('.dropdown-menu').stop(true, true).hide();
+      $(this).removeClass('open'); 
+  });
 
-    $('ul.nav li.dropdown-hover').hover(function(){ 
-        $(this).closest('.dropdown-menu').stop(true, true).show();
-        $(this).addClass('open'); 
-      },
-      function(){
-        $(this).closest('.dropdown-menu').stop(true, true).hide();
-        $(this).removeClass('open'); 
-    });
+  // fancy select boxes with search capability
+  if ($('.selectpicker').length > 0){
+    $('.selectpicker').selectpicker({dropupAuto:false});
+  }
 
 });
 

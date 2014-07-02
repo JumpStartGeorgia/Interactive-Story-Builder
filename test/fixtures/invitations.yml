@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  from_user_id: 1
+  story_id: 1
+  key: MyString
+  has_accepted: false
+  accepted_at: 2014-06-11 14:25:35
+
+two:
+  from_user_id: 1
+  story_id: 1
+  key: MyString
+  has_accepted: false
+  accepted_at: 2014-06-11 14:25:35

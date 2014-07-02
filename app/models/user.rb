@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role, 
                   :provider, :uid, :nickname, :avatar,
-                  :about, :default_story_locale, :permalink, :local_avatar_attributes, :avatar_file_name
+                  :about, :default_story_locale, :permalink, :local_avatar_attributes, :avatar_file_name, :email_no_domain
   
   has_permalink :create_permalink, true
 
@@ -29,12 +29,22 @@ class User < ActiveRecord::Base
 
   ROLES = {:user => 0, :staff_pick => 50, :admin => 99}
 
+  before_create :create_email_no_domain
   before_save :check_nickname_changed
 	before_save :generate_avatar_file_name
+
+
+  # email_no_domain is used in the search for collaborators 
+  # so people cannot search using domain name to guess their email addresses
+  def create_email_no_domain
+    self.email_no_domain = self.email.split('@').first
+  end
 
   # if the nickname changes, then the permalink must also change
   def check_nickname_changed
     if self.nickname_changed?
+      # make sure there are no tags in the nickname
+      self.nickname = ActionController::Base.helpers.strip_links(self.nickname)
       self.generate_permalink! 
     end
   end
@@ -149,5 +159,6 @@ class User < ActiveRecord::Base
 	def password_required?
 		super && provider.blank?
 	end
+  
   
 end

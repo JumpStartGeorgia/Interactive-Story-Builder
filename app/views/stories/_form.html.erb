@@ -45,22 +45,12 @@
     <% end %>
 
     <%= f.input :publish_home_page, :as => :boolean, hint: t('.hint.publish_home_page') , :input_html => { id: "storyPublishHomePage"} %>   
-
-
-    <% if false %>
-      <div class="string control-group required stringish" id="story_user_input">
-        <label class=" control-label"><%= t('activerecord.attributes.story.user_id') %></label>
-        <div class="controls">
-          <input type="text" value="<%= "#{@story.user.nickname}" %>" readonly="readonly">
-          <div class="help-inline" title="<%= t('.hint.editor') %>"><div>?</div></div>
-        </div>
-      </div>
-      
-      <%= f.input :user_ids , :as => :select, :hint => t('.hint.editors'), :collection =>  Hash[@users.map{|b| [b.nickname,b.id]}], :multiple => true %>
-    <% end %>
   <% end %>
   <div class="pull-right spacer">
     <%= f.submit nil, :class => 'btn btn-default' %>
     <%= f.submit nil, :class => 'btn btn-default', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>      
   </div> 
 <% end %>
+
+
+

@@ -23,7 +23,7 @@
         <td><%= category.name %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_admin_category_path(category), :class => 'btn btn-mini' %>
+                      edit_admin_category_path(category), :class => 'btn btn-mini btn-default' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       admin_category_path(category),
                       :method => :delete,
