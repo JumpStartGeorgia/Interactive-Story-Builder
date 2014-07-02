@@ -2,7 +2,7 @@ class RootController < ApplicationController
 
   def index   
     
-    @js.push("navbar.js", "filter.js","grid.js", "modalos.js")
+    @js.push("navbar.js", "zeroclipboard.min.js","filter.js","grid.js", "modalos.js")
     @css.push("navbar.css", "filter.css", "grid.css", "modalos.css","root.css")    
     @stories = process_filter_querystring(Story.is_published_home_page.paginate(:page => params[:page], :per_page => per_page))      
 

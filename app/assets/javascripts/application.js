@@ -72,20 +72,20 @@ function urldecode(url) {
   return decodeURIComponent(url.replace(/\+/g, ' '));
 }
 
-function scrolldown(an)
-{
-  var scr = 550;
+function scrolldown(an,obj)
+{  
+  var src = $(obj).offset().top + $(obj).height(); 
   an = (typeof an === 'undefined') ? true : an;
   
   if(an)
   {
       $("html,body").stop().animate({
-          scrollTop: scr
+          scrollTop: src
       }, 1000);
   }
   else 
   {
-    window.scroll(0,550);
+    window.scroll(0,src);
   }
 }
 

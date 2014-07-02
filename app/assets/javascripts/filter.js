@@ -6,7 +6,7 @@ $(document).ready(function() {
      $(".search-box").addClass("active");
      //$(".search-label").hide();  
      sa = true; 
-     scrolldown(false);
+     scrolldown(false,'.header');
   }
 
   // hide the search box when leave

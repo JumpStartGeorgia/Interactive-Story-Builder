@@ -160,17 +160,17 @@
   <div class="permalink-link"><a href="<%= storyteller_show_url(@story.permalink) %>"><%= storyteller_show_url(@story.permalink) %></a></div>
   <div class="share">
     <div class="facebook">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=storybuilder.jumpstart.ge" onclick="javascript:window.open(this.href,
+
+    <a href="https://www.facebook.com/dialog/feed?app_id=<%= @face_id %>&redirect_uri=<%= storyteller_show_url(@story.permalink) %>&link=<%= storyteller_show_url(@story.permalink) %>" onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">  
           <i class="i-icon i-facebook-l"></i><%= "#{t('app.common.share_facebook')}" %></a>      
        
     </div>
     <div class="twitter">
-      <a href='https://twitter.com/share?text=<%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name')}" :
-                                t('app.common.app_name') %>' onclick="javascript:window.open(this.href,
+      <a href='https://twitter.com/share?url=<%= storyteller_show_url(@story.permalink) %>&text=<%= @story.title %>' onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
                         <i class="i-icon i-twitter-l"></i><%= "#{t('app.common.share_twitter')}" %>
-            </a>
+      </a>
     </div>
     <div class="more">
         <a href='#'>
