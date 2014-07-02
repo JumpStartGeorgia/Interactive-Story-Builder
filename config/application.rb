@@ -63,7 +63,7 @@ module BootstrapStarter
     config.assets.precompile += %w( filter.js grid.js magneto.js modalos.js navbar.js news.js nickname.js search.js stories.js storyteller.js )
     config.assets.precompile += %w( author.css devise.css embed.css filter.css grid.css modalos.css navbar.css news.css root.css settings.css stories.css storyteller.css todo.css )
     # in vendor/assets folder
-    config.assets.precompile += %w( bootstrap-select.min.js jquery.tokeninput.js olly.js )
+    config.assets.precompile += %w( bootstrap-select.min.js jquery.tokeninput.js olly.js zeroclipboard.min.js )
     config.assets.precompile += %w( bootstrap-select.min.css jquery-ui-1.7.3.custom.css token-input-facebook.css )
     # build into gems
     config.assets.precompile += %w( dataTables/jquery.dataTables.bootstrap.css )
