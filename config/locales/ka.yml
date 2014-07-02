@@ -142,6 +142,7 @@ ka:
       comments: Comment on this story
       views: "%{num} reads"
       tags: Tags
+      menu: მენიუ
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
@@ -149,7 +150,6 @@ ka:
     hints:
       nickname: Your nickname is used in the url to your published stories (e.g., nickname/story-title)        
       local_avatar: ფოტო, რომელიც გამოჩნდება თქვენი გვერდის ზედა სექციაში (მხოლოდ png და jpg).
-      unlike: Unlike this story
       like: Like this story
       unlike: Unlike this story
       staff_pick: რჩეულებში დამატება
@@ -199,7 +199,6 @@ ka:
       js_link_text: აგებულია
       search: Search for Story
       create: Create Story
-      about_storybuilder: About
       about_story: About
       likes: Likes
       comments: Comments
@@ -371,6 +370,9 @@ ka:
       header_missing: რამე ხომ არ აკლია?
       missing_text: ჩამონათვალს ხომ არ აკლია ფუნქცია, რომლის დამატებასაც ისურვებდით? ხომ არ ფიქრობთ, რომ ჩამონათვალის სია უნდა გადავაწყოთ? თუ კი, გთხოვთ მოგვაწოდეთ ინფორმაცია  %{link}-ის გამოყენებით.
       feedback_link: უკუკავშირის სექცია
+    about:
+      title: About Story Builder
+      text: Story Builder ...
   stories:
     index:
     new:

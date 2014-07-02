@@ -142,6 +142,7 @@ en:
       comments: Comment on this story
       views: "%{num} reads"
       tags: Tags
+      menu: Menu
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
@@ -198,7 +199,6 @@ en:
       js_link_text: Built by
       search: Search for Story ...
       create: Create Story
-      about_storybuilder: About
       about_story: About
       likes: Likes
       comments: Comments
