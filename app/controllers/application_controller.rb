@@ -110,7 +110,7 @@ class ApplicationController < ActionController::Base
     if params[:staff_pick].present?
       @story_filter_staff_pick = params[:staff_pick].to_bool
     else
-  		@story_filter_staff_pick = false
+  		@story_filter_staff_pick = true
     end
     story_objects = story_objects.is_staff_pick if @story_filter_staff_pick
 
