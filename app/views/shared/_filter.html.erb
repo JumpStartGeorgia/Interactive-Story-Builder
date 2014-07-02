@@ -71,7 +71,7 @@
               <div class="search-box">
                 <div class="search-text">
                   <%= form_tag url_for(params), :method => :get, :id => 'search-filter' do %>
-                    <%= text_field_tag :q, params[:q], :placeholder => t('filters.search'), :tabindex => 16, :autocomplete=>'off', autofocus:false  %>
+                    <%= text_field_tag :q, params[:q], :placeholder => t('filters.search'), :tabindex => 16, :autocomplete=>'off', :class=>"search-input"%>
                   <% end %>
                 </div>
                 <div class="search-button"></div>

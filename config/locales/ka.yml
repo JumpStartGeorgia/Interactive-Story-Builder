@@ -197,8 +197,16 @@ ka:
       about_story: About
       likes: Likes
       comments: Comments
+      follow: Follow
+      email: Email
+      views: Views
+      permalink: Permalink
+      share_story: Share this story
+      share_facebook: Share on facebook
+      share_twitter: Share on twitter
       share: Share
       staff_pick: Staff Pick
+      wide: wide
     msgs:
       does_not_exist: თქვენ ცდილობთ იხილოთ გვერდი, რომელიც არ არსებობს.
       not_authorized: თქვენ არ გაქვთ უფლება იხილოთ ეს გვერდი.
@@ -210,6 +218,7 @@ ka:
       error_created: "%{obj} არ იყო შექმნილი. [ %{err} ]"
       error_updated: "%{obj} არ იყო განახლებული. [ %{err} ]"
       error_publish: "%{obj} იქნა გამოქვეყნებული. [ %{err} ]"
+      error_publish_missing_fields: "%{obj} can't be published until you provide a summary and thumbnail image."
       error_unpublish: "%{obj} გამოქვეყნება გაუქმებულია. [ %{err} ]"
       error_clone: "%{obj} იქნა კლონირებული." 
       error_export: "Story %{obj} ამბის ექსპორტი შესაძლებელია"     
@@ -234,6 +243,7 @@ ka:
         success: ერთეული წარმატებით წაიშალა.
         error: "ერთეულის წაშლისას დაშვებულია შეცდომა [ %{err} ]"
         error_not_found: წასაშლელი ერთეული ვერ მოიძებნა.
+      embed_code: Copy and paste this embed code into your web page
   section_types:
     content:
       name: შინაარსი

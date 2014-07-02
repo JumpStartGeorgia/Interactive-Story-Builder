@@ -17,7 +17,7 @@ class RootController < ApplicationController
     @author = User.find_by_permalink(params[:user_id])
 
     if @author.present?
-      @js.push("filter.js","grid.js", "stories.js")
+      @js.push("filter.js","zeroclipboard.min.js","grid.js", "stories.js")
       @css.push("navbar.css", "filter.css", "grid.css", "stories.css", "author.css")
       @stories = process_filter_querystring(Story.stories_by_author(@author.id).paginate(:page => params[:page], :per_page => per_page))      
       @editable = (user_signed_in? && current_user.id == @author.id)

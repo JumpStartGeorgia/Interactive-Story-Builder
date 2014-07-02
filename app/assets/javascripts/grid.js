@@ -15,4 +15,19 @@ $(function() {
   $('.grid-wrapper').on("click",".pagination .disabled a, .pagination .active a", function(e) {
 	   e.preventDefault();	
 	});
+
+
+  
 });
+
+
+var client = new ZeroClipboard( document.getElementById("copy-button"), {
+  moviePath: "/javascripts/ZeroClipboard.swf"
+} );
+
+client.on( "load", function(client) {
+  client.on( "complete", function(client, args) {
+    // `this` is the element that was clicked
+    document.getElementById('copied').style.display = 'block';
+  } );
+} );

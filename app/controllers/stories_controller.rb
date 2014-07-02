@@ -9,8 +9,8 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index    
-    @css.push("navbar.css", "filter.css", "grid.css","author.css","modalos.css")
-    @js.push("filter.js","grid.js","modalos.js") 
+    @css.push("navbar.css", "filter.css", "grid.css","author.css")
+    @js.push("zeroclipboard.min.js","filter.js","grid.js","stories.js") 
     @stories =  process_filter_querystring(Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => per_page))           
     @editable = (user_signed_in?)
 
@@ -459,27 +459,33 @@ class StoriesController < ApplicationController
 
   def publish
     @item = Story.find_by_id(params[:id])
-    publishing = true;
+    publishing = !@item.published
     pub_title = ''
 
-    if @item.published 
-      publishing = false          
-    end
-    respond_to do |format|     
-      if @item.update_attributes(published: publishing)     
-        flash[:success] =u I18n.t("app.msgs.success_#{publishing ? '' :'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                   
-      else
-        flash[:error] = u I18n.t("app.msgs.error#{publishing ? '' : 'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                                                                             
+    if @item.about.present? && @item.asset_exists?
+      respond_to do |format|     
+        if @item.update_attributes(published: publishing)     
+          flash[:success] =u I18n.t("app.msgs.success_#{publishing ? '' :'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                   
+        else
+          flash[:error] = u I18n.t("app.msgs.error#{publishing ? '' : 'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                                                                             
+        end
+        
+        if @item.published
+          pub_title = I18n.t("app.buttons.unpublish")              
+        else
+          pub_title = I18n.t("app.buttons.publish")                   
+        end
+        format.json {render json: { title: pub_title }, status: :ok }
+        format.html { redirect_to stories_url }
       end
-      
-      if @item.published
-        pub_title = I18n.t("app.buttons.unpublish")              
-      else
-        pub_title = I18n.t("app.buttons.publish")                   
+    else
+      respond_to do |format|  
+
+        format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_fields', :obj => @item.title) } }
       end
-      format.json {render json: { title: pub_title }, status: :ok }
-      format.html { redirect_to stories_url }
     end
+
+    
   end
 
 

@@ -16,7 +16,7 @@
         <%= form_tag url_for({:controller => 'root', :action => 'index',:params => params}), :method => :get, :id => 'search-form',
         :class => "navbar-form navbar-left", :role => "search" do %>
           <div class="form-group">            
-            <%= text_field_tag :q, params[:q], :placeholder => t('app.common.search'), :class=>"form-control search-input", :id => "search-input", :autocomplete=>'off', :autofocus =>:false , :tabindex => 1 %>
+            <%= text_field_tag :q, params[:q], :placeholder => t('app.common.search'), :class=>"form-control search-input", :autocomplete=>'off', :tabindex => 1 %>
           </div>
       <% end %>
     <% end %>

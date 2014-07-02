@@ -196,8 +196,16 @@ en:
       about_story: About
       likes: Likes
       comments: Comments
+      follow: Follow
+      email: Email
+      views: Views
+      permalink: Permalink
+      share_story: Share this story
+      share_facebook: Share on facebook
+      share_twitter: Share on twitter
       share: Share
       staff_pick: Staff Pick
+      wide: wide
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
@@ -209,6 +217,7 @@ en:
       error_created: "%{obj} wasn't created.[ %{err} ]"
       error_updated: "%{obj} wasn't updated.[ %{err} ]"
       error_publish: "%{obj} wasn't published.[ %{err} ]"
+      error_publish_missing_fields: "%{obj} can't be published until you provide a summary and thumbnail image."
       error_unpublish: "%{obj} wasn't unpublished.[ %{err} ]"
       error_clone: "%{obj} wasn't cloned."
       error_export: "Story %{obj} can't be exported"
@@ -233,6 +242,7 @@ en:
         success: Item was successfully deleted.
         error: "Error occurred while deleting the item [ %{err} ]"
         error_not_found: Item could not be found to delete.
+      embed_code: Copy and paste this embed code into your web page
   section_types:
     content:
       name: Content

@@ -14,19 +14,19 @@
 
 
 
-window.onload =  function() 
-{
-  document.getElementById('search-input').blur();
-};
- document.getElementById('search-input').onfocus = function(e)
- {
-  console.log(e);
- }
+// window.onload =  function() 
+// {
+//   document.getElementById('search-input').blur();
+// };
+//  document.getElementById('search-input').onfocus = function(e)
+//  {
+//   console.log(e);
+//  }
 $(document).ready(function(){
 	// set focus to first text box on page
-	// if (gon.highlight_first_form_field){
-	//   $(":input:visible:enabled:first").focus();
-	// }
+	if (gon.highlight_first_form_field){
+	  $(":input:visible:enabled:first:not(.search-input)").focus();
+	}
 
 	// workaround to get logout link in navbar to work
 	$('body')

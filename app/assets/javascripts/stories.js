@@ -116,9 +116,13 @@ $(document).ready(function() {
 			dataType: "json",
 			url: $(this).data('link')}).done(
 			function(d) 
-			{ 			    
-				//a.toggleClass('disabled');	
-				a.find('span').text(d.title)							
+			{ 		
+				if(typeof(d.e) !== 'undefined' && d.e)	
+				{
+					popuper(d.msg,'error');				
+				}
+				else
+					a.find('span').text(d.title)							
 			});	 							
 		return true;	
   });

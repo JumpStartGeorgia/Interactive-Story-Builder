@@ -43,12 +43,7 @@
                 <% end %>
             </li>
             <% end %>
-          
-
-      <!--       <%= link_to '#', :class => "btn btn-default", :title => t('helpers.links.views', :num => @story.impressions_count) do %>
-              <span class="glyphicon glyphicon-eye-open"></span><span id="views-count" class="stats-count"><%= @story.impressions_count %></span>
-            <% end %>  -->
-
+ 
             <% if user_signed_in? && current_user.role?(User::ROLES[:staff_pick]) %>
                   <% 
                      style1 = @story.staff_pick ? '' : 'hide'
@@ -77,7 +72,7 @@
       <ul class="nav navbar-nav navbar-right">  
         <li>
           <%= link_to '#',  :id=>"modalComment", :'data-modalos-id' => "modalos-comments", :title => t('helpers.links.comments') do %>
-            <i class="i-icon i-comment"></i>Comments(<span id="comments-count" class="stats-count"><%= @story.comments_count %></span>)
+            <i class="i-icon i-comment"></i><%= "#{t('app.common.comments')}" %>(<span id="comments-count" class="stats-count"><%= @story.comments_count %></span>)
           <% end %>
         </li>
 
@@ -124,13 +119,18 @@
       <%= link_to @story.user.nickname, author_path(@story.user.permalink), :title => @story.user.nickname %>      
     </div>    
     <div class="follow">
-      <a href="#">Follow</a>
-    </div>       
-    <!-- <div class="separator"></div>  -->
-    
-    <div class="likes">
-             <%= content_tag(:span, @story.likes, :class => "n#{@story.likes.to_s.size}" ) %>
-    </div>    
+      <a href="#" class="follow-link"><%= "#{t('app.common.follow')}" %></a>
+    </div>   
+    <div class="stats"> 
+        <i class="i-icon i-like-d"></i><span class="likes"><%= @story.likes %></span>            
+        <i class="i-icon i-views"></i><span class="views"><%= @story.impressions_count %></span>  
+        <i class="i-icon i-comment-d"></i><span class="comments"><%= @story.comments_count%></span>         
+    </div>
+
+      <!--       <%= link_to '#', :class => "btn btn-default", :title => t('helpers.links.views', :num => @story.impressions_count) do %>
+              <span class="glyphicon glyphicon-eye-open"></span><span id="views-count" class="stats-count"><%= @story.impressions_count %></span>
+            <% end %>  -->
+
   </div>    
 
   <% if @story.categories.present? %>
@@ -155,21 +155,21 @@
   <div id="disqus_thread"></div>
 </div>
 <div id="modalos-share" style="display:none;" class="share-window">  
-  <div class="title">Share this story</div>
-  <div class="permalink">Permalink:</div>
+  <div class="title"><%= "#{t('app.common.share_story')}" %></div>
+  <div class="permalink"><%= "#{t('app.common.permalink')}" %>:</div>
   <div class="permalink-link"><a href="<%= storyteller_show_url(@story.permalink) %>"><%= storyteller_show_url(@story.permalink) %></a></div>
   <div class="share">
     <div class="facebook">
     <a href="https://www.facebook.com/sharer/sharer.php?u=storybuilder.jumpstart.ge" onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">  
-          <i class="i-icon i-facebook-l"></i>Share on faceabook</a>      
+          <i class="i-icon i-facebook-l"></i><%= "#{t('app.common.share_facebook')}" %></a>      
        
     </div>
     <div class="twitter">
       <a href='https://twitter.com/share?text=<%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name')}" :
                                 t('app.common.app_name') %>' onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-                        <i class="i-icon i-twitter-l"></i>Share on Twitter
+                        <i class="i-icon i-twitter-l"></i><%= "#{t('app.common.share_twitter')}" %>
             </a>
     </div>
     <div class="more">
@@ -180,19 +180,19 @@
   </div>
   <div class="embed">
     <div class="embed-icon"><img src="/assets/embed.png"/></div>
-    <div class="embed-text">Copy and paste this embed code into your web page:</div>
+    <div class="embed-text"><%= "#{t('app.msgs.embed_code')}" %>:</div>
     <div class="embed-code">
     <textarea rows="4" cols="38"  data-iframe-link="<%=embed_url(@story.permalink) %>"
     readonly="" onfocus="setTimeout(function (t){ t.select(); }, 10, this);" onmouseup="return false;"><iframe src='<%=embed_url(@story.permalink) %>?width=350' width='350' height='100%' frameborder='0'></iframe></textarea>
       <div class="embed-size-w">
         <input type="text" value="350" class="iframe-size"/>
-        <span>px wide</span>
+        <span>px <%= "#{t('app.common.wide')}" %></span>
       </div>      
     </div>
   </div>
   <div class="email">
       <a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">
-        <i class="i-icon i-mail"></i>Email
+        <i class="i-icon i-mail"></i><%= "#{t('app.common.email')}" %>
       </a>
   </div>
 </div>
@@ -215,7 +215,14 @@
     padding-top:6px;
 
   }
- .about-window .text, .about-window .text p, .about-window .text span
+  .about-window .text
+  {
+    clear:both;
+    min-height:13px;
+    margin-top: 13px;
+  }
+ 
+ , .about-window .text p, .about-window .text span
   {
     font-family:opensans-r;
     font-size:15px;
@@ -227,6 +234,7 @@
 .about-window .profile-data
 {
   margin-bottom:5px;
+  margin-top:15px;
 }
  .about-window .categories span,
  .about-window .tags span,
@@ -275,17 +283,17 @@
   -moz-border-radius: 150px;    
   margin-top:5px;
 }
-.about-window .logo,.about-window .nickname,.about-window .likes
+.about-window .logo,.about-window .nickname,.about-window .stats
 {
   display:inline-block;
-  vertical-align: middle;
-  margin-left:8px;
+  vertical-align: middle;  
 }
 .about-window .nickname
 {   
   font-family:opensans-r;
   font-size:15px;
-  color:#444;  
+  color:#444; 
+  margin-left:8px; 
 
 }
 .about-window .separator
@@ -326,55 +334,51 @@ margin-left:8px;
   text-align:center;
   color: #3D3D3D
 }
-.about-window .likes
+.about-window .stats
 {
-   width:39px;
-   height:38px;
-   background: url('/assets/likes.png') center no-repeat;
-  background-size: cover;  
   float:right; 
+  line-height: 49px;
+  margin-left:8px;
 }
-.about-window .likes span{
-  line-height: 34px;
-   display: block;
-   text-align: center;
-}
-.about-window .likes span.n1,.about-window .likes span.n2,.about-window .likes span.n3,.about-window .likes span.n4
+.about-window .stats .likes,.about-window .stats .views,.about-window .stats .comments
 {
-   font-size:14px;   
+  font-family:opensans-l;
+  font-size:16px;
+  margin-right:12px;
 }
-.about-window .likes span.n5
+.about-window .stats i
 {
-  font-size:12px;
+  margin-right:3px;
 }
-.about-window .likes span.n6,.about-window .likes span.n7
+.about-window .stats .likes,
+.about-window .stats .views,
+.about-window .stats .comments
 {
-   font-size:10px;
+  vertical-align:middle;
+  display: inline-block;
+  text-align: center;
+  color:#555;
+
 }
 .about-window  .follow
   {        
-    position: absolute;   
-    bottom: 50px;
-    text-align: center;
-    margin: 0px auto;
-    width: 100%;
+    display:inline-block;
     height:57px;
+    margin-left:5px;
   }
-.about-window  .follow a
+
+.about-window .follow-link
   {
     display:inline-block;
-    font-family:opensans-r;
-    font-size:18px;
-    color:#fff !important;      
-    background: transparent url('/assets/create-story.png') center no-repeat;
-    background-position: 25px 19px; 
-    border:1px solid #fff;
+    font-family:opensans-l;
+    font-size:15px;
+    color:#555;  
+    background-color:transparent !important;   
+    border:1px solid #bdbdbd;
     -webkit-border-radius: 133px;
     -moz-border-radius: 133px;
     border-radius: 133px;
-    width:178px;
-    height:57px;
-    padding: 18px 0px 0px 30px;
+    padding: 9px 15px 12px 15px;
     text-decoration:none;
     -webkit-transition:all .25s ease-out;
     -moz-transition:all .25s ease-out;
@@ -382,14 +386,10 @@ margin-left:8px;
     transition:all .25s ease-out;
   }
 
-.about-window .follow a:focus
-  {      
-    color:#000 !important;
-    background: transparent url('/assets/create-story-hover.png') center no-repeat; 
-    background-position: 25px 19px; 
-    background-color:#fff;
-    text-decoration:none;
-            -webkit-transition:all .10s ease-out;
+.about-window .follow-link:focus,.about-window .follow-link:hover
+{          
+    background-color:#bdbdbd !important;   
+    -webkit-transition:all .10s ease-out;
     -moz-transition:all .10s ease-out;
     -ms-transition:all .10s ease-out;
     transition:all .10s ease-out;
