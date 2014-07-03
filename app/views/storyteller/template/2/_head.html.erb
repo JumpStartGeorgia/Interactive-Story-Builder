@@ -31,9 +31,10 @@
         <link href="css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css">
         <link href="css/bootstrap-theme.min.css" media="all" rel="stylesheet" type="text/css">
         <link href="css/storyteller.css" media="all" rel="stylesheet" type="text/css">
+
     <% else %>
         <%= stylesheet_link_tag  *(@css.present? ? ["application",@css].flatten : ["application"]), :media => "all" %>      
-        <%= favicon_link_tag '/favicon.ico', :rel => 'shortcut icon' %> 
+        <%= favicon_link_tag '/favicons.ico', :rel => 'shortcut icon' %> 
     <% end %>
     <%= render partial: "storyteller/template/#{@template}/styles"%>
     
