@@ -16,11 +16,15 @@
             # , :title => title
             # :alt => title 
           %>
-          <div class="col n-4">                   
+          <div class="col n-4">     
+               <% if story.staff_pick? %>
+                <div class="i-icon i-staffpicked story-picked" title="<%= t('helpers.links.staff_pick') %>"></div>
+              <% end %>               
               <div class="story-thumbnail">
-                 <%= link_to @editable ? preview_story_path(story) : storyteller_show_path(story.permalink) do %>
+                 <%= link_to @editable ? preview_story_path(story) : storyteller_show_path(story.permalink), :title => title do %>
                     <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459' %>              
-                    <div class="story-link"></div>   
+                    <div class="story-link"></div>  
+             
                   <% end %>
          
                 <% if @editable %>
@@ -95,17 +99,21 @@
               <div class="story-caption">
                 <%= link_to truncate(story.title, length: 45, separator: ' '), @editable ?  preview_story_path(story) : storyteller_show_path(story.permalink), :title => title %>
               </div> 
-               <div class="story-likes">
-                   <%= content_tag(:span, story.likes, :class => "n#{story.likes.to_s.size}" ) %>
-              </div>                   
               <div class="story-author">
                   <%= link_to story.user.nickname, author_path(story.user.permalink), :title => story.user.nickname, :class => 'author' %>
               </div>
 
               <div class="separator"></div>
               <div class="story-publish"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>  
-              <div class="separator"></div>
-              <div class="story-views"><%= "#{t('app.common.views')}: #{story.impressions_count}" %></div>                 
+                  <!-- <div class="story-likes">
+                   <%= content_tag(:span, story.likes, :class => "n#{story.likes.to_s.size}" ) %>
+                  </div>   -->
+
+              <div class="story-stats"> 
+                <i class="i-icon i-like-d"></i><span class="likes"><%= story.likes %></span>            
+                <i class="i-icon i-views"></i><span class="views"><%= story.impressions_count %></span>  
+                <i class="i-icon i-comment-d"></i><span class="comments"><%= story.comments_count%></span>
+              </div>                                            
             </div>
           </div>  
       <% end %>

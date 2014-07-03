@@ -7,7 +7,7 @@
             <div class="author-nickname"><%= "#{current_user.nickname}" %></div>
             <div class="author-about"><%= current_user.about.html_safe if current_user.about.present? %></div>          
           </div>   
-          <div class="create-story"><%= link_to  t("app.common.create"), new_story_path, :tabindex => 1 %></div>       
+          <div class="build-story"><%= link_to  t("app.common.build"), new_story_path, :tabindex => 1 %></div>       
       </div>   
       
   </header>  

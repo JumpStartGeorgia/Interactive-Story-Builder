@@ -66,7 +66,7 @@ $(document).ready(function() {
 $(document).ready(function(){
     if($(".navbar-storybuilder").length != 0)
     {
-      $(".navbar-story").css("top","50px");
+      $(".navbar-story").css("top","54px");
       var lastScroll = 0;
       var sn = true;
       var sbn = true;

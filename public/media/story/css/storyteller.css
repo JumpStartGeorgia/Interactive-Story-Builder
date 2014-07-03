@@ -59,10 +59,10 @@
 a, a:link, a:hover, a:visited, a:active
 {  
   background-color: transparent;
-  -webkit-transition:all .25s ease-out;
-  -moz-transition:all .25s ease-out;
-  -ms-transition:all .25s ease-out;
-  transition:all .25s ease-out;
+  -webkit-transition:all .15s ease-out;
+  -moz-transition:all .15s ease-out;
+  -ms-transition:all .15s ease-out;
+  transition:all .15s ease-out;
 }
 .navbar-story {
   min-height: 40px;
@@ -265,7 +265,7 @@ a, a:link, a:hover, a:visited, a:active
 {
     background-position: -55px -28px;         
 }
-.i-create
+.i-build
 {
     background-position: 0px -55px;         
 }
@@ -633,10 +633,10 @@ margin-left:8px;
     border-radius: 133px;
     padding: 9px 15px 12px 15px;
     text-decoration:none;
-    -webkit-transition:all .25s ease-out;
-    -moz-transition:all .25s ease-out;
-    -ms-transition:all .25s ease-out;
-    transition:all .25s ease-out;
+    -webkit-transition:all .15s ease-out;
+    -moz-transition:all .15s ease-out;
+    -ms-transition:all .15s ease-out;
+    transition:all .15s ease-out;
   }
 
 .about-window .follow-link:focus,.about-window .follow-link:hover

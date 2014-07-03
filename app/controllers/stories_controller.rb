@@ -142,7 +142,7 @@ class StoriesController < ApplicationController
   end
 
   def preview
-    @css.push("storyteller.css","modalos.css")
+    @css.push("navbar.css","storyteller.css","modalos.css")
     @js.push("storyteller.js","modalos.js")
     if params[:n] == 'n'
       @no_nav = true

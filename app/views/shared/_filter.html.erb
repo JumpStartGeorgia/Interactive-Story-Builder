@@ -2,25 +2,12 @@
         <ul class="nav">
           <li>
             <%= link_to url_for(params.merge(:staff_pick => !@story_filter_staff_pick)),
-              :class => "staff_pick #{@story_filter_staff_pick == true ? 'active' : ''}" do %>
+              :class => "staff_pick #{@story_filter_staff_pick == true ? 'active' : ''}", :tabindex => 13 do %>
                  <i class='i-icon i-staffpick<%= "#{@story_filter_staff_pick == true ? 'ed' : ''}"%>'></i><%=  "#{t('filters.staff_pick')}" %>
                <% end %>
           </li>
-
-          <li class="dropdown sort">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown" tabindex="13">
-             <%= t('filters.sort_header') %><i class='i-icon i-caret'></i>
-           </a>
-            <ul class="dropdown-menu">
-              <% I18n.t('filters.sort').each do |key, value| %>
-                <li class="dropdown">
-                  <%= link_to value, url_for(params.merge(:sort => key)), :class => @story_filter_sort == value ? 'active' : '' %>
-                </li>
-              <% end %>
-            </ul>
-          </li>
           <% if @categories_published.present? %>
-           <li class="dropdown category" tabindex="14">
+           <li class="dropdown dropdown-hover category" tabindex="14">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
               <%= t('filters.category_header') %>
               <i class='i-icon i-caret'></i>
@@ -37,7 +24,7 @@
             </ul>
           </li>
           <% end %>
-          <li class="dropdown language">
+          <li class="dropdown dropdown-hover language">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" tabindex="15">
               <%= t('filters.language_header') %>
               <i class='i-icon i-caret'></i>
@@ -53,25 +40,24 @@
               <% end %>
             </ul>
           </li>
-          <li id="filter_match">
-            <!-- <span><%= t('filters.matches') %>: <%= @stories.total_entries %></span> -->
-
-            <div style="width:40px;height:40px;">
-              <div class="cprogress" id="showProgress" data-matches="<%= @stories.total_entries %>">
-                <div class="percent n<%= @stories.total_entries.to_s.size %>">0</div>
-                <div id="slice">
-                  <div class="pie"></div>
-                </div>
-              </div>                                              
-            </div>
-
+          <li class="dropdown dropdown-hover sort">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown" tabindex="16">
+             <%= t('filters.sort_header') %><i class='i-icon i-caret'></i>
+           </a>
+            <ul class="dropdown-menu">
+              <% I18n.t('filters.sort').each do |key, value| %>
+                <li class="dropdown">
+                  <%= link_to value, url_for(params.merge(:sort => key)), :class => @story_filter_sort == value ? 'active' : '' %>
+                </li>
+              <% end %>
+            </ul>
           </li>
           <li class="pull-right"> 
             <div class="search-wrapper">
               <div class="search-box">
                 <div class="search-text">
                   <%= form_tag url_for(params), :method => :get, :id => 'search-filter' do %>
-                    <%= text_field_tag :q, params[:q], :placeholder => t('filters.search'), :tabindex => 16, :autocomplete=>'off', :class=>"search-input"%>
+                    <%= text_field_tag :q, params[:q], :placeholder => t('filters.search'), :tabindex => 17, :autocomplete=>'off', :class=>"search-input"%>
                   <% end %>
                 </div>
                 <div class="search-button"></div>

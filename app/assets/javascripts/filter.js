@@ -20,6 +20,13 @@ $(document).ready(function() {
     }
   });
 
+$('.search-box input#q').keyup(function(e) {
+    console.log('keyup called');
+    var code = e.keyCode || e.which;
+    if (code == '9') {
+      searchHoverIn();
+    }
+ });
   // show search box on hover
   //$('.search-label').hover(searchHoverIn,jQuery.noop());
   $('.search-box').hover(searchHoverIn,searchHoverOut);
@@ -43,7 +50,7 @@ $(document).ready(function() {
     $(".search-box input#q").focus();
   });
   // on page refresh matched stories count are visualized with css styled progress indicator with showing overal matched stories
-  match_ui();
+  //match_ui();
 
 });
 
@@ -100,32 +107,32 @@ function searchHoverOut()
   }
 }
                       
-// matcher
-var p=1; // steps for match to finish
-var steps = 20;
-var matches = $('#showProgress').data('matches');
-var step = matches/steps;
-function match_ui() 
-{  
-  if(p > steps/2)
-    $('#showProgress #slice:not([class*="gt50"])').addClass('gt50').append('<div class="pie fill"></div>');
-  //$('#showProgress').html('<div class="percent"></div><div id="slice"'+(p > steps/2?' class="gt50"':'')+'><div class="pie"></div>'+(p > steps/2 ?'<div class="pie fill"></div>':'')+'</div>');
+// // matcher
+// var p=1; // steps for match to finish
+// var steps = 20;
+// var matches = $('#showProgress').data('matches');
+// var step = matches/steps;
+// function match_ui() 
+// {  
+//   if(p > steps/2)
+//     $('#showProgress #slice:not([class*="gt50"])').addClass('gt50').append('<div class="pie fill"></div>');
+//   //$('#showProgress').html('<div class="percent"></div><div id="slice"'+(p > steps/2?' class="gt50"':'')+'><div class="pie"></div>'+(p > steps/2 ?'<div class="pie fill"></div>':'')+'</div>');
 
-  var deg = 360/steps*p;
-  $('#showProgress #slice .pie').css({
-  '-moz-transform':'rotate('+deg+'deg)',
-  '-webkit-transform':'rotate('+deg+'deg)',
-  '-o-transform':'rotate('+deg+'deg)',
-  'transform':'rotate('+deg+'deg)'
-  }); 
+//   var deg = 360/steps*p;
+//   $('#showProgress #slice .pie').css({
+//   '-moz-transform':'rotate('+deg+'deg)',
+//   '-webkit-transform':'rotate('+deg+'deg)',
+//   '-o-transform':'rotate('+deg+'deg)',
+//   'transform':'rotate('+deg+'deg)'
+//   }); 
 
-  $('#showProgress .percent').text(Math.ceil(step*p));  
+//   $('#showProgress .percent').text(Math.ceil(step*p));  
 
-  if(p!=steps) 
-  {
-    setTimeout('match_ui()', 50);
-  }
-  p++;
-}
-// matcher
+//   if(p!=steps) 
+//   {
+//     setTimeout('match_ui()', 50);
+//   }
+//   p++;
+// }
+// // matcher
 
