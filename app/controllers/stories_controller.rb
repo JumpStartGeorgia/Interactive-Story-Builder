@@ -495,27 +495,33 @@ class StoriesController < ApplicationController
       rootPath = "#{Rails.root}/tmp/stories";
       filename = StoriesHelper.transliterate(@story.title.downcase);      
       filename_ext = SecureRandom.hex(3)  
-      path =  "#{rootPath}/#{filename}"#_#{filename_ext}"  
+      path =  "#{rootPath}/#{filename}_#{filename_ext}"  
       mediaPath = "#{path}/media"
-      %x[rake story:tmp_stories_clear]
+      #%x[rake story:tmp_stories_clear]
       require 'fileutils'      
       FileUtils.cp_r "#{Rails.root}/public/media/story", "#{path}"  
       
-      if File.directory?("#{Rails.root}/public/template/#{@story.template_id}/fonts")
-          FileUtils.cp_r "#{Rails.root}/public/template/#{@story.template_id}/fonts", "#{path}/assets"
+      story_id = params[:id]
+      template_id = @story.template_id
+
+      if File.directory?("#{Rails.root}/public/template/#{template_id}/fonts")
+          FileUtils.cp_r "#{Rails.root}/public/template/#{template_id}/fonts", "#{path}/assets"
+      end
+      if File.directory?("#{Rails.root}/public/template/#{template_id}/images")
+        FileUtils.cp_r "#{Rails.root}/public/template/#{template_id}/images", "#{path}/assets"
       end
 
-      if File.directory?("#{Rails.root}/public/system/places/images/#{params[:id]}/.")
-          FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{params[:id]}/.", "#{mediaPath}/images"
+      if File.directory?("#{Rails.root}/public/system/places/images/#{story_id}/.")
+          FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{story_id}/.", "#{mediaPath}/images"
       end
-      if File.directory?("#{Rails.root}/public/system/places/video/#{params[:id]}/.")
-        FileUtils.cp_r "#{Rails.root}/public/system/places/video/#{params[:id]}/.", "#{mediaPath}/video"  
+      if File.directory?("#{Rails.root}/public/system/places/video/#{story_id}/.")
+        FileUtils.cp_r "#{Rails.root}/public/system/places/video/#{story_id}/.", "#{mediaPath}/video"  
       end
-      if File.directory?("#{Rails.root}/public/system/places/audio/#{params[:id]}/.")
-        FileUtils.cp_r "#{Rails.root}/public/system/places/audio/#{params[:id]}/.", "#{mediaPath}/audio"
+      if File.directory?("#{Rails.root}/public/system/places/audio/#{story_id}/.")
+        FileUtils.cp_r "#{Rails.root}/public/system/places/audio/#{story_id}/.", "#{mediaPath}/audio"
       end
-      if File.directory?("#{Rails.root}/public/system/places/slideshow/#{params[:id]}/.")
-        FileUtils.cp_r "#{Rails.root}/public/system/places/slideshow/#{params[:id]}/.", "#{mediaPath}/slideshow"
+      if File.directory?("#{Rails.root}/public/system/places/slideshow/#{story_id}/.")
+        FileUtils.cp_r "#{Rails.root}/public/system/places/slideshow/#{story_id}/.", "#{mediaPath}/slideshow"
       end
       @export = true
  
@@ -530,7 +536,7 @@ class StoriesController < ApplicationController
       #   FileUtils.remove_file("#{path}.tar.gz",true)   
       # end
     rescue
-       flash[:error] =I18n.t("app.msgs.error_export", obj:"#{Story.model_name.human} \"#{@story.errors.inspect}\"")                           
+       flash[:error] =I18n.t("app.msgs.error_export")                           
        redirect_to stories_url
     end   
   end

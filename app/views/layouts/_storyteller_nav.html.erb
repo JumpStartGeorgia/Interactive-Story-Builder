@@ -58,13 +58,7 @@
                       :'data-href' => storyteller_staff_pick_path(@story.permalink) do %>
                    <i class="i-icon i-staffpick"></i><% "#{t('helpers.links.staff_pick')}" %>
                   <% end %>
-                  </li>
-            <% elsif @story.staff_pick? %>
-              <li>
-                  <%= link_to '#', :class => "", :title => t('helpers.hints.is_staff_pick') do %>
-                    <i class="i-icon i-staffpicked"></i><% "#{t('helpers.links.staff_pick')}" %>
-                  <% end %>
-                </li>
+                  </li>          
             <% end %>
           <% end %> 
 
@@ -72,7 +66,7 @@
       <ul class="nav navbar-nav navbar-right">  
         <li>
           <%= link_to '#',  :id=>"modalComment", :'data-modalos-id' => "modalos-comments", :title => t('helpers.links.comments') do %>
-            <i class="i-icon i-comment"></i><%= "#{t('app.common.comments')}" %>(<span id="comments-count" class="stats-count"><%= @story.comments_count %></span>)
+            <i class="i-icon i-comment"></i><%= "#{t('app.common.comments')}" %> (<span id="comments-count" class="stats-count"><%= @story.comments_count %></span>)
           <% end %>
         </li>
 
@@ -95,9 +89,7 @@
             <% end %>
           </li>  
           <li><a href="#" class="navigation-volume"><div class="navigation-icon"></div></a></li>              
-        <% end %>
-        <li><div class="nav-separator"></div></li>
-        <li><div class="lang"><%= "#{ @story.language.name}" %></div></li>                              
+        <% end %>                                  
       </ul>
     </div>
   </div>
@@ -124,13 +116,11 @@
     <div class="stats"> 
         <i class="i-icon i-like-d"></i><span class="likes"><%= @story.likes %></span>            
         <i class="i-icon i-views"></i><span class="views"><%= @story.impressions_count %></span>  
-        <i class="i-icon i-comment-d"></i><span class="comments"><%= @story.comments_count%></span>         
+        <i class="i-icon i-comment-d"></i><span class="comments"><%= @story.comments_count%></span>  
+        <% if @story.staff_pick? %>
+        <i class="i-icon i-staffpicked" title="<%= t('helpers.links.staff_pick') %>"></i>
+        <% end %>    
     </div>
-
-      <!--       <%= link_to '#', :class => "btn btn-default", :title => t('helpers.links.views', :num => @story.impressions_count) do %>
-              <span class="glyphicon glyphicon-eye-open"></span><span id="views-count" class="stats-count"><%= @story.impressions_count %></span>
-            <% end %>  -->
-
   </div>    
 
   <% if @story.categories.present? %>
@@ -148,7 +138,7 @@
   <% end %>
   <div class="languages">
     <span><%= I18n.t('helpers.links.languages') %>:</span>      
-    <div class="lang"><%= "#{ @story.language.name}" %></div>   
+    <%= link_to @story.language.name, root_path(:language => @story.language.locale), :class=>"lang" %> 
   </div>      
 </div>
 <div id="modalos-comments" style="display:none;">

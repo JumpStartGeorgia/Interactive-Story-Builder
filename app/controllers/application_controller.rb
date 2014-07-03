@@ -109,6 +109,8 @@ class ApplicationController < ActionController::Base
     # staff pick
     if params[:staff_pick].present?
       @story_filter_staff_pick = params[:staff_pick].to_bool
+    elsif params[:sort].present? || params[:category].present? || params[:tag].present? || params[:language].present? || params[:q].present?
+      @story_filter_staff_pick = false
     else
   		@story_filter_staff_pick = params[:controller] == 'root'
     end

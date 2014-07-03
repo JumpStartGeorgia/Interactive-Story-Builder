@@ -263,13 +263,10 @@
   }
 
   .image {
-    width: 120%;
-    margin: 40px -10%;
+    max-width: 120%;
+    margin: 40px -5%;
   }
 
-  .image img {
-    width: 100%;
-  }
 
   .image .caption {
     font: 12px/1.4em "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1123,7 +1120,7 @@
     margin-top: 0;
   }
 
-  .navigation-sections:before {
+/*  .navigation-sections:before {
     margin-right: 5px;
   }
 
@@ -1135,7 +1132,7 @@
 
   .navigation-section:last-child {
     padding-right: 0;
-  }
+  }*/
 
   .navigation-section,
   .navigation-volume {
@@ -1162,8 +1159,8 @@
     padding: 9px 5px;
   }
   .navigation-icon {
-    width: 27px;
-    height: 27px;
+    width: 27px !important;
+    height: 27px !important;
     background-image: url(<%= @export ? "" : "/" %>assets/sprite.png);
   }
   .navigation-volume .navigation-icon { background-position: 0px -109px; }

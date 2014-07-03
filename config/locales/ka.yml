@@ -227,7 +227,7 @@ ka:
       error_publish_missing_fields: "%{obj} can't be published until you provide a summary and thumbnail image."
       error_unpublish: "%{obj} გამოქვეყნება გაუქმებულია. [ %{err} ]"
       error_clone: "%{obj} იქნა კლონირებული." 
-      error_export: "Story %{obj} ამბის ექსპორტი შესაძლებელია"     
+      error_export: "ამბის ექსპორტი შეუძლებელია"     
       error_get_data: არჩეული ერთეული ვერ მოიძებნა
       select_section: ერთეულის დამატებამდე, გთხოვთ, აირჩიეთ სექცია 
       staff_pick: ამბავი რჩეულში იქნა დამატებული

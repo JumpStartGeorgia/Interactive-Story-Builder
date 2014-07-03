@@ -228,7 +228,7 @@ en:
       error_publish_missing_fields: "%{obj} can't be published until you provide a summary and thumbnail image."
       error_unpublish: "%{obj} wasn't unpublished.[ %{err} ]"
       error_clone: "%{obj} wasn't cloned."
-      error_export: "Story %{obj} can't be exported"
+      error_export: "Story can't be exported"
       error_get_data: The selected item could not be found
       select_section: Please select a Section first in order to add an Item
       staff_pick: The story has been selected as a Staff Pick
