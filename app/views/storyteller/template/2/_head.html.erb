@@ -27,10 +27,10 @@
 		  <% end %>
         
     <% if @export %>
-        <link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+        <link href="favicons.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
     <% else %>
         <%= stylesheet_link_tag  *(@css.present? ? ["application",@css].flatten : ["application"]), :media => "all" %>      
-        <%= favicon_link_tag '/favicon.ico', :rel => 'shortcut icon' %> 
+        <%= favicon_link_tag '/favicons.ico', :rel => 'shortcut icon' %> 
     <% end %>
     <%= render partial: "storyteller/template/#{@template}/styles"%>
     
