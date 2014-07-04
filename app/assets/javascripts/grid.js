@@ -15,11 +15,7 @@ $(function() {
   $('.grid-wrapper').on("click",".pagination .disabled a, .pagination .active a", function(e) {
 	   e.preventDefault();	
 	});
-
-
-  
 });
-
 
 var client = new ZeroClipboard( document.getElementById("copy-button"), {
   moviePath: "/javascripts/ZeroClipboard.swf"

@@ -86,7 +86,7 @@ module ApplicationHelper
   # 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
 
   def log(msg)    
-    Rails.logger.debug("\033[44;37m#{'*'*80}\n    #{DateTime.now.strftime('%d/%m/%Y %M:%H')}#{msg.to_s.rjust(56)}\n#{'*'*80}\033[0;37m")
+    Rails.logger.debug("\033[44;37m#{'*'*80}\n    #{DateTime.now.strftime('%d/%m/%Y %H:%M')}#{msg.to_s.rjust(56)}\n#{'*'*80}\033[0;37m")
   end
 
 	# Based on https://gist.github.com/1182136

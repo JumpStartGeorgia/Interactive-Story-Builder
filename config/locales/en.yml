@@ -193,10 +193,11 @@ en:
     common:
       app_name: Story Builder
       app_intro: Build and Share;the Next Generation Story;Story builder allows anyone with text, pictures and/or videos to<br>combine this content into a creative story that can be published<br> and shared with the world
-      powered_by: "Powered by "
+      powered_by: Powered by
       added_on: "Added on: %{date}"
       admin: Admin
-      sign_out: Sign Out
+      sign_out: Sign Out    
+      jumpstart: Jumpstart Georgia
       js_link_title: JumpStart Georgia - We communicate data better!
       js_link_text: Built by
       search: Search for Story ...

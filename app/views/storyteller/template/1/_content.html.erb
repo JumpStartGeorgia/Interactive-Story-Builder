@@ -506,7 +506,7 @@
               fade = d3.interpolateRgb("#000", "#fff");
 
          // var headline = d3.select(".navigation-headline");
-
+          var scrollprompt = d3.select('.scroll-prompt');
           var sequence = d3.selectAll(".video-sequence")
               .datum(function() {
                 return {
@@ -707,7 +707,7 @@
                   : opacityTop < fixTop - fixHeight ? 0 // video is fully covered by next video
                   : opacityTop < fixTop - fixHeight / 2 ? Math.max(0, Math.min(1, (opacityTop - fixTop + fixHeight) / (fixHeight / 2)))
                   : opacity;
-
+              if (d.first && d.sequence.first) scrollprompt.style("opacity",  volume == 1 ? 1 : (volume-0.7) > 0 ? (volume-0.7) : 0 );              
               //if (d.first && d.sequence.first) headline.style("opacity", 1 - volume);
             }
           }
@@ -722,6 +722,7 @@
                     if (this.currentTime) this.currentTime = 0;
                   }
                 });                 
+                if (d.first && d.sequence.first && !d3.event.state) scrollprompt.style("opacity", 1);
             //if (d.first && d.sequence.first && !d3.event.state) headline.style("opacity", null);
           }
 

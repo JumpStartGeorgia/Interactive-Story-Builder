@@ -83,6 +83,8 @@ class ApplicationController < ActionController::Base
 		gon.set = true
 		gon.highlight_first_form_field = true
 
+    gon.page_filtered = false
+
     gon.check_permalink = story_check_permalink_path
     gon.check_nickname = settings_check_nickname_path
     gon.nickname_duplicate = I18n.t('app.msgs.nickname_duplicate')
@@ -106,6 +108,9 @@ class ApplicationController < ActionController::Base
 
   ## process the filter requests
   def process_filter_querystring(story_objects)
+
+    gon.page_filtered = params[:staff_pick].present? || params[:sort].present? || params[:category].present? || params[:tag].present? || params[:language].present? || params[:q].present?
+    view_context.log(    gon.page_filtered)
     # staff pick
     if params[:staff_pick].present?
       @story_filter_staff_pick = params[:staff_pick].to_bool

@@ -193,9 +193,11 @@ ka:
     common:
       app_name: Story Builder
       app_intro: Build and Share;the Next Generation Story;Story builder allows anyone with text, pictures and/or videos to<br>combine this content into a creative story that can be published<br> and shared with the world
+      powered_by: Powered by
       added_on: "დამატებულია: %{date}"
       admin: ადმინისტრატო
-      sign_out: გასვლა
+      sign_out: გასვლა      
+      jumpstart: Jumpstart Georgia
       js_link_title: ჯამპსტარტ ჯორჯიას - ჩვენ გაწვდით ინფორმაციას უკეთ!
       js_link_text: აგებულია
       search: Search for Story

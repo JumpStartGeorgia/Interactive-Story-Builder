@@ -5,10 +5,9 @@ $(document).ready(function() {
   if ($('form#search-filter input#q').val() !== ''){
      $(".search-box").addClass("active");
      //$(".search-label").hide();  
-     sa = true; 
-     scrolldown(false,'.header');
+     sa = true;      
   }
-
+  if(gon.page_filtered) { scrolldown(false,'.header'); }
   // hide the search box when leave
   $('.search-box input#q').focusout(function(){
     if($(this).val().length==0)
