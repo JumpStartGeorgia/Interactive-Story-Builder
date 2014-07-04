@@ -113,13 +113,28 @@ $(document).ready(function(){
         var v = $('.navbar-story');      
         $('#'+ml).modalos({topOffset: $(v).position().top + $(v).height() + 30, width:672, height:575});
         e.preventDefault();
-      }); 
+      });     
 
+      $('.embed-type-switcher > div').click(function(){        
+        $('.embed-type-switcher > div').each(function(){$(this).toggleClass('selected');}); 
+        var frame_code = $('.embed-code textarea');
+        if($(this).hasClass('partial')) 
+        { 
+          $('.embed-size-w').show();
+          var iframe_width= $('.iframe-size').val();
+          frame_code .text("<iframe src='" +  frame_code.attr('data-iframe-link') + "?type=partial' width='"+iframe_width+"' height='100%' frameborder='0'></iframe>");
+        } 
+        else
+        { 
+          $('.embed-size-w').hide();
+          frame_code .text("<iframe src='" +  frame_code.attr('data-iframe-link') + "?type=full' frameborder='0'></iframe>");
+        }
+      });
 
       $('.iframe-size').change(function(){
         var iframe_width=$(this).val();
         var frame_code = $('.embed-code textarea');
        
-        frame_code .text("<iframe src='" +  frame_code.attr('data-iframe-link') + "?width="+iframe_width+"' width='"+iframe_width+"' height='100%' frameborder='0'></iframe>");
+        frame_code .text("<iframe src='" +  frame_code.attr('data-iframe-link') + "' width='"+iframe_width+"' height='100%' frameborder='0'></iframe>");
       });
   });

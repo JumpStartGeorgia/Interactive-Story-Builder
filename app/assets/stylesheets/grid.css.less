@@ -112,14 +112,32 @@
     position:relative;
     top:3px;
   }
-
+  .story-misc
+  {
+    display: table;
+    width: 100%;
+    margin-bottom:5px;
+  }
+  .story-misc-left 
+  {
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+  }
+  .story-misc-right 
+  {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .story-publish,/*.story-views*/
   {   
     color:#4e4e4e; 
     font-size:14px;
     font-family:opensans-l;  
   }
-  .story-author
+  .story-author,  .story-author a,
+    .story-author a:hover
   { 
     color:#4e4e4e;   
     font-family:opensans-l;
@@ -186,6 +204,28 @@
   .story-author,.story-publish,.author/*,.story-views*/
   {
     display:inline-block;
+  }
+  .i-icon
+  {
+      background-color: transparent;
+      background-image: url('/assets/sprite.png');
+      display: inline-block;
+      vertical-align: middle;
+      width:27px; 
+      height:27px;
+      opacity:1;
+  }
+  .i-likes
+  {      
+    background-position: 0px 0px;
+  } 
+  .i-views
+  {      
+    background-position: 0px -431px; 
+  }
+  .i-comments
+  {      
+    background-position: 0px -136px;
   }
 }
 /* show result of nickname permalink check */

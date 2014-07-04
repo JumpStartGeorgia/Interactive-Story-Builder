@@ -214,6 +214,8 @@ en:
       share: Share
       staff_pick: Staff Pick
       wide: wide
+      partial: Partial
+      full: Full
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
@@ -321,6 +323,7 @@ en:
   shared:
     grid:
       no_stories: Oh no - no stories could be found!
+    grid_item:
       link:
         clone: Clone as new story
         export: Download story
@@ -333,6 +336,10 @@ en:
         review: Get URL to share this story before publishing
         noreview: Your story is published so there is no need to share this non-published URL
         collaborators: Manage which users have access to edit your story
+        likes: Likes
+        views: Views
+        comments: Comments
+        publish_date: Publish Date
   admin:
     index:
       title: Administration Section
@@ -385,6 +392,8 @@ en:
     about:
       title: About Story Builder
       text: Story Builder ...
+    embed:
+      home_link: Built on Story Builder
   stories:
     index:
     new:

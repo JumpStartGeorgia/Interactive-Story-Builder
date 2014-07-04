@@ -10,13 +10,13 @@ class StorytellerController < ApplicationController
   def index
 
     @css.push("navbar.css", "storyteller.css", "modalos.css")
-    @js.push("storyteller.js","modalos.js")
+    @js.push("storyteller.js","modalos.js")    
   	story = Story.select('id').is_published.find_by_permalink(params[:id])
   	@story = Story.is_published.fullsection(story.id) if story.present?  
     # record if the user has liked this story
     @user_likes = false
   	@user_likes = current_user.voted_up_on? @story if user_signed_in?
-    
+
   	if @story.present?
       respond_to do |format|     
         format.html 

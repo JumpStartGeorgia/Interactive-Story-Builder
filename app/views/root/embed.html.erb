@@ -1,40 +1,8 @@
-
-<%= stylesheet_link_tag  "embed", :media => "all" %>      
-<% 
-	width=params[:width].present? ? params[:width].to_i : 459
-	width=150 if width < 150 
-	width=900 if width > 900 
-			
-	title = @story.title.dup
-	if @story.about.present?
-	  title << ' - '
-	  title << strip_tags(@story.about)
-	end
-%>
-<div class="storybuilder">
-	<a href="http://storybuilder.jumpstart.ge" target="_parent"><img src="http://storybuilder.jumpstart.ge/favicon.ico" width="16" height="16" class="provider-favicon" >Storybuilder</a>
-</div>
+<%= stylesheet_link_tag  *(["grid","embed"]), :media => "all" %>  
 <div class="story-wrapper" >
-	<div class="story-thumbnail">
-		 <%= link_to @editable ? preview_story_path(@story) : storyteller_show_path(@story.permalink), :title => title, :target => '_parent' do %>
-		    <%= image_tag @story.show_asset.asset.url(:thumbnail), :alt => title %>
-		 <% end %>      
-	</div>
-	<div class='story-info'>     
-		<div class='row'>
-			<div class="story-caption">
-				<%= link_to truncate(@story.title, length: 45, separator: ' '), @editable ?  preview_story_path(@story) : storyteller_show_path(@story.permalink), :title => title, :target => '_parent' %>
-			</div> 
-		</div>
-		<div class="story-author">
-		<%= link_to @story.user.nickname, author_path(@story.user.permalink), :title => @story.user.nickname, :class => 'author',:target => '_parent' %>
-		</div>
-
-		<div class="separator"></div>
-		<div class="story-publish"><%= l(@story.published_at,:format => :publish) if @story.published_at.present? %></div>              
-
-	</div>
-</div>    
-                          
-
+	<%= render partial: "shared/grid_item" , locals:{:story=>@story}%> 		
+</div>  
+<div class="storybuilder">
+	<a href="http://storybuilder.jumpstart.ge" target="_parent"><img src="/favicons.ico" width="16" height="16" class="provider-favicon" ><%= t('.home_link') %></a>
+</div>  
 

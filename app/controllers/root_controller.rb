@@ -35,12 +35,31 @@ class RootController < ApplicationController
   end
 
   def embed   
-    @css.push("embed.css")    
+    #@css.push("embed.css")    
+           
     @story = Story.is_published.find_by_permalink(params[:story_id])
     #redirect_to root_path, :notice => t('app.msgs.does_not_exist')    
-    respond_to do |format|     
-      format.html { render 'embed', layout: false }    
-    end    
+    if @story.present?        
+      respond_to do |format|    
+        if params[:type] == 'full'  
+              @no_nav = true     
+              @css.push("navbar.css", "storyteller.css", "modalos.css")
+              @js.push("storyteller.js","modalos.js")    
+              story = Story.select('id').is_published.find_by_permalink(params[:id])
+              @story = Story.is_published.fullsection(story.id) if story.present?  
+              # record if the user has liked this story
+              @user_likes = false
+              @user_likes = current_user.voted_up_on? @story if user_signed_in?
+            
+              format.html { render 'storyteller/index', :layout => false }            
+              impressionist(@story)                  
+        else 
+          format.html { render 'embed', layout: false }    
+        end
+      end 
+    else
+      format.html { render :text => t('app.msgs.does_not_exist') }
+    end  
   end
 
   def demo
