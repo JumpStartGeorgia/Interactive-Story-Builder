@@ -19,7 +19,18 @@
   }
   .sort
   {
-      margin-left:50px;
+      
+  }
+ .sort-label
+  {
+    font-family: dejavusans-el;
+    font-size: 18px;
+    position: relative;
+    display: block;
+    padding: 2px 2px;
+    color: #555;
+    background-color: transparent;
+    margin-left:20px;
   }
   .category,.language
   {
@@ -30,9 +41,13 @@
     margin-right:5px;
     margin-top:-3px;
   }
-  .staff_pick.active, .dropdown-menu > li > a.active
+  .nav li.dropdown a.dropdown-toggle.selected
   {
-    /* background-color: #a8d2b8; */
+    font-weight:600 !important;
+  }
+  .dropdown-menu > li > a.active
+  {
+     background-color: #a8d2b8; 
   }
   #filter_match span
   {

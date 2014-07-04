@@ -117,14 +117,17 @@ class ApplicationController < ActionController::Base
     story_objects = story_objects.is_staff_pick if @story_filter_staff_pick
 
     # sort
+    @story_filter_sort_recent = true
     if params[:sort].present? && I18n.t('filters.sort').keys.map{|x| x.to_s}.include?(params[:sort])
       case params[:sort]
         when 'recent'
     			story_objects = story_objects.recent
         when 'reads'
     			story_objects = story_objects.reads
+          @story_filter_sort_recent = false
         when 'likes'
     			story_objects = story_objects.likes
+          @story_filter_sort_recent = false
       end
 			@story_filter_sort = I18n.t("filters.sort.#{params[:sort]}")
     else
@@ -133,10 +136,12 @@ class ApplicationController < ActionController::Base
     end
     
     # category
+    @story_filter_category_all = true
     index = params[:category].present? ? @categories_published.index{|x| x.permalink.downcase == params[:category].downcase} : nil
     if index.present?
       story_objects = story_objects.by_category(@categories_published[index].id)    
   		@story_filter_category = @categories_published[index].name
+      @story_filter_category_all = false
     else
   		@story_filter_category = I18n.t("filters.all")
     end
@@ -154,9 +159,11 @@ class ApplicationController < ActionController::Base
 #    if index.nil? && user_signed_in? && current_user.default_story_locale.present?
 #      index = @languages_published.index{|x| x.locale.downcase == current_user.default_story_locale}
 #    end
+    @story_filter_language_all = true
     if index.present?
       story_objects = story_objects.by_language(@languages_published[index].locale)    
   		@story_filter_language = @languages_published[index].name
+      @story_filter_language_all = false
     else
   		@story_filter_language = I18n.t("filters.all")
     end

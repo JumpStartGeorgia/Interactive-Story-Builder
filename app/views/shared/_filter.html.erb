@@ -6,12 +6,9 @@
                  <i class='i-icon i-staffpick<%= "#{@story_filter_staff_pick == true ? 'ed' : ''}"%>'></i><%=  "#{t('filters.staff_pick')}" %>
                <% end %>
           </li>
-          <% if @categories_published.present? %>
+          <% if @categories_published.present? %>          
            <li class="dropdown dropdown-hover category" tabindex="14">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
-              <%= t('filters.category_header') %>
-              <i class='i-icon i-caret'></i>
-            </a>
+            <a href="#" class="dropdown-toggle<%= @story_filter_category_all ? '' : ' selected' %>" data-toggle="dropdown" ><%= @story_filter_category_all ? t('filters.category_header') : @story_filter_category %><i class='i-icon i-caret'></i></a>
             <ul class="dropdown-menu">          
               <li class="dropdown">
                 <%= link_to I18n.t('filters.all'), url_for(params.merge(:category => nil)), :class => @story_filter_category == I18n.t('filters.all') ? 'active' : '' %>
@@ -25,10 +22,7 @@
           </li>
           <% end %>
           <li class="dropdown dropdown-hover language">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" tabindex="15">
-              <%= t('filters.language_header') %>
-              <i class='i-icon i-caret'></i>
-            </a>
+            <a href="#" class="dropdown-toggle<%= @story_filter_language_all ? '' : ' selected' %>" data-toggle="dropdown" tabindex="15"><%= @story_filter_language_all ? t('filters.language_header') : @story_filter_language %><i class='i-icon i-caret'></i></a>             
             <ul class="dropdown-menu">          
               <li class="dropdown">
                 <%= link_to I18n.t('filters.all'), url_for(params.merge(:language => nil)), :class => @story_filter_language == I18n.t('filters.all') ? 'active' : '' %>
@@ -40,10 +34,8 @@
               <% end %>
             </ul>
           </li>
-          <li class="dropdown dropdown-hover sort">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown" tabindex="16">
-             <%= t('filters.sort_header') %><i class='i-icon i-caret'></i>
-           </a>
+          <li><span class="sort-label"><%= t('filters.sort_header') %>:</span></li>
+          <li class="dropdown dropdown-hover sort"><a href="#" class="dropdown-toggle<%= @story_filter_sort_recent ? '' : ' selected' %>"" data-toggle="dropdown" tabindex="16"><%= @story_filter_sort %><i class='i-icon i-caret'></i></a>
             <ul class="dropdown-menu">
               <% I18n.t('filters.sort').each do |key, value| %>
                 <li class="dropdown">
