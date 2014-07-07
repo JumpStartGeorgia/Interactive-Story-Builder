@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   	protect_from_forgery
 
 
-  PER_PAGE_COUNT = 9
+  PER_PAGE_COUNT = 3
 
 	before_filter :set_locale
 	before_filter :is_browser_supported?
@@ -84,7 +84,7 @@ class ApplicationController < ActionController::Base
 		gon.highlight_first_form_field = true
 
     gon.page_filtered = false
-
+    gon.filter_path = filter_path
     gon.check_permalink = story_check_permalink_path
     gon.check_nickname = settings_check_nickname_path
     gon.nickname_duplicate = I18n.t('app.msgs.nickname_duplicate')
@@ -110,12 +110,12 @@ class ApplicationController < ActionController::Base
   def process_filter_querystring(story_objects)
 
     gon.page_filtered = params[:staff_pick].present? || params[:sort].present? || params[:category].present? || params[:tag].present? || params[:language].present? || params[:q].present?
-    view_context.log(    gon.page_filtered)
+    
     # staff pick
     if params[:staff_pick].present?
       @story_filter_staff_pick = params[:staff_pick].to_bool
-    elsif params[:sort].present? || params[:category].present? || params[:tag].present? || params[:language].present? || params[:q].present?
-      @story_filter_staff_pick = false
+    #elsif params[:sort].present? || params[:category].present? || params[:tag].present? || params[:language].present? || params[:q].present?
+     # @story_filter_staff_pick = false
     else
   		@story_filter_staff_pick = params[:controller] == 'root'
     end
@@ -123,6 +123,7 @@ class ApplicationController < ActionController::Base
 
     # sort
     @story_filter_sort_recent = true
+    @story_filter_sort_permalink =  ""
     if params[:sort].present? && I18n.t('filters.sort').keys.map{|x| x.to_s}.include?(params[:sort])
       case params[:sort]
         when 'recent'
@@ -130,9 +131,11 @@ class ApplicationController < ActionController::Base
         when 'reads'
     			story_objects = story_objects.reads
           @story_filter_sort_recent = false
+          @story_filter_sort_permalink = "reads"
         when 'likes'
     			story_objects = story_objects.likes
           @story_filter_sort_recent = false
+          @story_filter_sort_permalink = "likes"
       end
 			@story_filter_sort = I18n.t("filters.sort.#{params[:sort]}")
     else
@@ -142,10 +145,12 @@ class ApplicationController < ActionController::Base
     
     # category
     @story_filter_category_all = true
+    @story_filter_category_permalink =  ""
     index = params[:category].present? ? @categories_published.index{|x| x.permalink.downcase == params[:category].downcase} : nil
     if index.present?
       story_objects = story_objects.by_category(@categories_published[index].id)    
   		@story_filter_category = @categories_published[index].name
+      @story_filter_category_permalink =  @categories_published[index].permalink
       @story_filter_category_all = false
     else
   		@story_filter_category = I18n.t("filters.all")
@@ -160,6 +165,7 @@ class ApplicationController < ActionController::Base
     end    
     
     # language
+    @story_filter_language_permalink =  ""
     index = params[:language].present? ? @languages_published.index{|x| x.locale.downcase == params[:language].downcase} : nil
 #    if index.nil? && user_signed_in? && current_user.default_story_locale.present?
 #      index = @languages_published.index{|x| x.locale.downcase == current_user.default_story_locale}
@@ -168,15 +174,18 @@ class ApplicationController < ActionController::Base
     if index.present?
       story_objects = story_objects.by_language(@languages_published[index].locale)    
   		@story_filter_language = @languages_published[index].name
+      @story_filter_language_permalink = @languages_published[index].locale
       @story_filter_language_all = false
     else
   		@story_filter_language = I18n.t("filters.all")
     end
     
     # search
+    @q = ""
 		if params[:q].present?
 			story_objects = story_objects.search_for(params[:q])
 			gon.q = params[:q]
+      @q = params[:q]
 		end
     
     return story_objects

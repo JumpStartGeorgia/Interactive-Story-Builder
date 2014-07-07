@@ -93,6 +93,7 @@ BootstrapStarter::Application.routes.draw do
 		match "about" => "root#about", as: 'about'
 		match "author/:user_id" => "root#author", as: 'author'
 		match "embed/:story_id" => "root#embed", as: 'embed'
+		match "filter" => "root#filter", as: 'filter', :via => :post, :defaults => { :format => 'json' }
 
     match ":id" => "storyteller#index", as: 'storyteller_show'
 		match ":id/staff_pick" => "storyteller#staff_pick", as: 'storyteller_staff_pick', :defaults => { :format => 'json' }

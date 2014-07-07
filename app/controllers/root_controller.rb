@@ -13,6 +13,12 @@ class RootController < ApplicationController
     end
   end
 
+  def filter   
+    @stories = process_filter_querystring(Story.is_published_home_page.paginate(:page => params[:page], :per_page => per_page))         
+    respond_to do |format|
+      format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}
+    end
+  end
   def author   
     @author = User.find_by_permalink(params[:user_id])
 

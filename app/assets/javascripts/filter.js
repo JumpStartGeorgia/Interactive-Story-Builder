@@ -19,8 +19,7 @@ $(document).ready(function() {
     }
   });
 
-$('.search-box input#q').keyup(function(e) {
-    console.log('keyup called');
+$('.search-box input#q').keyup(function(e) {    
     var code = e.keyCode || e.which;
     if (code == '9') {
       searchHoverIn();
@@ -33,21 +32,27 @@ $('.search-box input#q').keyup(function(e) {
   // add search phrase to filters
   $('form#search-filter').submit(function(e){
     e.preventDefault();
-    window.location.href = UpdateQueryString('q', $('form#search-filter input#q').val());
+    pf = JSON.parse(JSON.stringify(f));
+    f["q"] = $('form#search-filter input#q').val();
+    filter();
+    //window.location.href = UpdateQueryString('q', $('form#search-filter input#q').val());
   });
 
   // add search phrase to filters
   $(".search-button").click(function(e){ 
     e.preventDefault();
-    window.location.href = UpdateQueryString('q', $('form#search-filter input#q').val());
+    pf = JSON.parse(JSON.stringify(f));
+    f["q"] = $('form#search-filter input#q').val();
+    filter();
+    //window.location.href = UpdateQueryString('q', $('form#search-filter input#q').val());
   });
   
   // clear the search box
-  $("#clear-search").click(function(e){
-    e.preventDefault();
-    $('form#search-filter input#q').val('')
-    $(".search-box input#q").focus();
-  });
+  // $("#clear-search").click(function(e){
+  //   e.preventDefault();
+  //   $('form#search-filter input#q').val('')
+  //   $(".search-box input#q").focus();
+  // });
   // on page refresh matched stories count are visualized with css styled progress indicator with showing overal matched stories
   //match_ui();
 
@@ -82,6 +87,41 @@ $('.search-box input#q').keyup(function(e) {
               return url;
       }
   }
+function url_update() {
+  var url = window.location.href;
+
+  for (prop in f) 
+  {
+    if (!f.hasOwnProperty(prop)) {continue;}   
+    var k = prop;
+    var v = f[prop];
+
+    var re = new RegExp("([?&])" + k + "=.*?(&|#|$)(.*)", "gi");
+
+    if (re.test(url)) {
+        if (typeof v !== 'undefined' && v !== null && v !== '')
+            url = url.replace(re, '$1' + k + "=" + v + '$2$3');
+        else {
+            var hash = url.split('#');
+            url = hash[0].replace(re, '$1$3').replace(/(&|\?)$/, '');
+            if (typeof hash[1] !== 'undefined' && hash[1] !== null) 
+                url += '#' + hash[1];            
+        }
+    }
+    else {
+        if (typeof v !== 'undefined' && v !== null && v !== '') {
+            var separator = url.indexOf('?') !== -1 ? '&' : '?',
+                hash = url.split('#');
+            url = hash[0] + separator + k + '=' + v;
+            if (typeof hash[1] !== 'undefined' && hash[1] !== null) 
+                url += '#' + hash[1];            
+        }          
+    }
+  }  
+  if(url!=window.location){
+    window.history.pushState({path:url},'',url);
+  } 
+}
 
 var sa = false; // flag for search box if it is active
 function searchHoverIn()
@@ -133,5 +173,88 @@ function searchHoverOut()
 //   }
 //   p++;
 // }
-// // matcher
+// // matcher   
+var f = {};   
+var pf = {};
+function filter()    
+{    
+  console.log(f);
+  if(JSON.stringify(f) !== JSON.stringify(pf))
+  {  
+    var ftmp = {};
+    for (prop in f) 
+    {
+      var k = prop;
+      var v = f[prop];
+      if (!f.hasOwnProperty(prop)) {continue;}  
+      if (typeof v !== 'undefined' && v !== null && v !== '') 
+      {
+        ftmp[k] = v;
+      }
 
+    }
+    $.ajax({       
+      type: "POST",
+      url: gon.filter_path,
+      dataType: "json",
+      data: ftmp
+    }).done(function(data) {          
+      $(".grid-wrapper").html($(data.d).children());
+      url_update();
+    });
+  }  
+}
+$(document).ready(function() {  
+  
+  $('[data-filter-type]').each(function(v){
+    f[$(this).attr('data-filter-type')] = $(this).attr('data-filtered-by');
+  });
+
+    $('.afilter > a.staff_pick').click(function(e){
+      pf = JSON.parse(JSON.stringify(f));
+
+      $(this).toggleClass('active').find('i').toggleClass('i-staffpicked i-staffpick');
+      var tmp = !($(this).attr('data-filtered-by') == "");  
+      $(this).attr('data-filtered-by', tmp ? "":"false");   
+      f[$(this).attr('data-filter-type')] = tmp?"":"false";
+      e.preventDefault();
+      e.stopPropagation();
+
+      filter();
+  });
+
+  $('.afilter > ul.afilter-list > li > a').click(function(e){    
+
+      pf = JSON.parse(JSON.stringify(f));
+      var par = $(this).closest('.afilter').find('> a');
+      $(this).closest('.afilter').find('> ul > li > a').removeClass('active');
+      $(this).addClass('active');
+
+      var f_type = par.attr('data-filter-type');      
+      var f_value = $(this).attr('data-filter'); 
+
+      
+
+      if(f_value == par.attr('data-filter-default')) 
+      {
+        par.find('span').text(par.is('[data-filter-default-label]') ? par.attr('data-filter-default-label') : $(this).text());
+        par.removeClass('selected');
+        f[f_type] = ''; 
+        par.attr('data-filtered-by',"");
+      }
+      else
+      {
+       // console.log($(this).attr('data-filter'));
+        par.find('span').text($(this).text());
+        par.addClass('selected');
+        f[f_type] = f_value; 
+        par.attr('data-filtered-by',f_value);
+      }
+    
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      filter();         
+  });
+});
