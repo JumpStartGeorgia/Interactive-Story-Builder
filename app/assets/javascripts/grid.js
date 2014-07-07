@@ -1,9 +1,18 @@
 
 $(function() {
   $(".grid-wrapper").on("click",".pagination li:not(.active,.disabled) a", function() {  	  	
-    $.getScript(this.href);
-    window.history.pushState({path:this.href},'',this.href);
-    scrolldown(false,'.header');
+    //$.getScript(this.href);
+    //window.history.pushState({path:this.href},'',this.href);
+    //scrolldown(false,'.header');
+      $.ajax({       
+      type: "POST",
+      url: gon.filter_path,
+      dataType: "json",
+      data: ftmp
+    }).done(function(data) {          
+      $(".grid-wrapper").html($(data.d).children());
+      url_update();
+    });
 
     return false;
   });
