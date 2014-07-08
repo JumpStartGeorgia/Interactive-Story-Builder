@@ -2,7 +2,7 @@
         <ul class="nav">
           <li class="afilter">
             <%= link_to url_for(params.merge(:staff_pick => !@story_filter_staff_pick)),
-              :class => "staff_pick #{@story_filter_staff_pick == true ? 'active' : ''}", :tabindex => 13, :"data-filtered-by" => (@story_filter_staff_pick ? "" : false), :"data-filter-type"=>'staff_pick' do %>
+              :class => "staff_pick #{@story_filter_staff_pick == true ? 'active' : ''}", :tabindex => 13, :"data-filtered-by" => @story_filter_staff_pick , :"data-filter-type"=>'staff_pick' do %>
                  <i class='i-icon i-staffpick<%= "#{@story_filter_staff_pick == true ? 'ed' : ''}"%>'></i><%=  "#{t('filters.staff_pick')}" %>
                <% end %>
           </li>

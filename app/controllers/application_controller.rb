@@ -83,8 +83,8 @@ class ApplicationController < ActionController::Base
 		gon.set = true
 		gon.highlight_first_form_field = true
 
-    gon.page_filtered = false
-    gon.filter_path = filter_path
+    gon.page_filtered = false       
+    gon.filter_path = request.path + (params[:controller] == 'stories' ?  "/index" : "")
     gon.check_permalink = story_check_permalink_path
     gon.check_nickname = settings_check_nickname_path
     gon.nickname_duplicate = I18n.t('app.msgs.nickname_duplicate')
