@@ -60,7 +60,7 @@ module BootstrapStarter
     config.assets.paths << "#{Rails.root}/public/javascripts/"
 
     # in app/assets folder
-    config.assets.precompile += %w( filter.js grid.js magneto.js modalos.js navbar.js news.js nickname.js search.js stories.js storyteller.js )
+    config.assets.precompile += %w( filter.js modalos.js navbar.js news.js nickname.js search.js stories.js storyteller.js )
     config.assets.precompile += %w( author.css devise.css embed.css filter.css grid.css modalos.css navbar.css news.css root.css settings.css stories.css storyteller.css todo.css )
     # in vendor/assets folder
     config.assets.precompile += %w( bootstrap-select.min.js jquery.tokeninput.js olly.js zeroclipboard.min.js )

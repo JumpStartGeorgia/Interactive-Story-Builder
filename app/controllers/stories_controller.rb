@@ -10,19 +10,17 @@ class StoriesController < ApplicationController
   # GET /stories.json
   def index    
     @css.push("navbar.css", "filter.css", "grid.css","author.css")
-    @js.push("zeroclipboard.min.js","filter.js","grid.js","stories.js") 
+    @js.push("zeroclipboard.min.js","filter.js","stories.js") 
     @stories =  process_filter_querystring(Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => per_page))           
     @editable = (user_signed_in?)
 
     if(@editable)        
       @js.push("modalos.js")
       @css.push("modalos.css")
-    end
-
+    end     
     respond_to do |format|
       format.html  #index.html.erb
-      format.json { render json: @stories }
-      format.js { render 'shared/grid' }
+      format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}          
     end
   end
 

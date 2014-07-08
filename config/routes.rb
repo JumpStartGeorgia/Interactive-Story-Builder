@@ -27,6 +27,7 @@ BootstrapStarter::Application.routes.draw do
 		match "stories/:id/invite_collaborators" => "stories#invite_collaborators", as: 'story_invite_collaborators', :via => :post, :defaults => { :format => 'json' }
 		match "stories/:id/remove_collaborator" => "stories#remove_collaborator", as: 'story_remove_collaborator', :via => :post, :defaults => { :format => 'json' }
 		match "stories/:id/remove_invitation" => "stories#remove_invitation", as: 'story_remove_invitation', :via => :post, :defaults => { :format => 'json' }
+		match "stories/index" => "stories#index", as: 'index', :via => :post, :defaults => { :format => 'json' }
 
 		resources :stories do	
 
@@ -47,6 +48,8 @@ BootstrapStarter::Application.routes.draw do
 
 				put 'media', to: 'stories#save_media'
 				post 'media', to: 'stories#new_media'				
+
+
 
 				put 'section', to: 'stories#save_section'
 				post 'section', to: 'stories#new_section'	
@@ -92,7 +95,7 @@ BootstrapStarter::Application.routes.draw do
 		match 'todo_list' => 'root#todo_list', :as => 'todo_list'
 		match "about" => "root#about", as: 'about'
 		match "author/:user_id" => "root#author", as: 'author'
-		match "embed/:story_id" => "root#embed", as: 'embed'
+		match "embed/:story_id" => "root#embed", as: 'embed'		
 
     match ":id" => "storyteller#index", as: 'storyteller_show'
 		match ":id/staff_pick" => "storyteller#staff_pick", as: 'storyteller_staff_pick', :defaults => { :format => 'json' }

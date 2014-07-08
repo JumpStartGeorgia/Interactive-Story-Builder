@@ -2,22 +2,21 @@ class RootController < ApplicationController
 
   def index   
     
-    @js.push("navbar.js", "zeroclipboard.min.js","filter.js","grid.js", "modalos.js")
+    @js.push("navbar.js", "zeroclipboard.min.js","filter.js", "modalos.js")
     @css.push("navbar.css", "filter.css", "grid.css", "modalos.css","root.css")    
     @stories = process_filter_querystring(Story.is_published_home_page.paginate(:page => params[:page], :per_page => per_page))      
 
     respond_to do |format|
       format.html  
-      format.json { render json: @stories }
-      format.js { render 'shared/grid' }
+      #format.json { render json: @stories }      
+      format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}      
     end
   end
-
   def author   
     @author = User.find_by_permalink(params[:user_id])
 
     if @author.present?
-      @js.push("filter.js","zeroclipboard.min.js","grid.js", "stories.js")
+      @js.push("zeroclipboard.min.js", "filter.js","stories.js")
       @css.push("navbar.css", "filter.css", "grid.css", "stories.css", "author.css")
       @stories = process_filter_querystring(Story.stories_by_author(@author.id).paginate(:page => params[:page], :per_page => per_page))      
       @editable = (user_signed_in? && current_user.id == @author.id)
@@ -26,8 +25,8 @@ class RootController < ApplicationController
         @css.push("modalos.css")
       end
       respond_to do |format|     
-        format.html
-        format.js { render 'shared/grid' }
+        format.html    
+        format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}    
       end    
     else
       redirect_to root_path, :notice => t('app.msgs.does_not_exist')

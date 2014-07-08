@@ -98,7 +98,7 @@ module ApplicationHelper
     end
 
     def page_number(page)            
-        tag :li, link(page, page, :rel => rel_value(page)), :class => ('active' if page == current_page)
+        tag :li, link(page, page, :rel => rel_value(page), :"data-filter"=>page ), :class => ('active' if page == current_page)
     end
 
     def gap
@@ -106,7 +106,7 @@ module ApplicationHelper
     end
 
     def previous_or_next_page(page, text, classname)
-      tag :li, link(text, page || '#'), :class => [classname[0..3], classname, ('disabled' unless page)].join(' ')
+      tag :li, link(text, page || '#', :"data-filter"=>page ), :class => [classname[0..3], classname, ('disabled' unless page)].join(' ')
     end
   end
 
