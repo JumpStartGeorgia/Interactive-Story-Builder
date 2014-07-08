@@ -44,12 +44,12 @@
     position:relative;
     width:100%;
     margin:0px auto;
-    top:168px;           
+    top:30%;           
     vertical-align: middle;
     color:#fff;
     .h1
     {
-      font-family:bandera-pro-h;
+      font-family:bandera-pro-hi;
       font-size: 92px;
       color: #fff;      
       margin:0px;
@@ -62,8 +62,8 @@
     }
     .h3
     {
-      font-family:bandera-pro,dejavusans-el;
-      font-size: 38px;
+      font-family:bandera-pro-hi,dejavusans-el;
+      font-size: 46px;
       color:#fff;      
       margin:0px;
       padding:0px;
@@ -75,8 +75,8 @@
     }
     .intro
     {
-      font-family:opensans-l,dejavusans-el;
-      font-size:17px;
+      font-family:opensans-r,verdana;
+      font-size:18px;
       margin:16px 0px 35px 0px;      
       padding:0px;
       line-height: 22px;
@@ -85,8 +85,6 @@
 
   .build-story
   {        
-    position: absolute;   
-    bottom: 50px;
     text-align: center;
     margin: 0px auto;
     width: 100%;
@@ -98,7 +96,7 @@
     font-family:opensans-r;
     font-size:18px;
     color:#fff !important;      
-    background: transparent url('/assets/build-story.png') center no-repeat;
+    background: transparent url('/assets/build_w.png') center no-repeat;
     background-position: 25px 19px; 
     border:1px solid #fff;
     -webkit-border-radius: 133px;
@@ -117,7 +115,7 @@
   .build-story a:hover,.build-story a:focus
   {      
     color:#000 !important;
-    background: transparent url('/assets/build-story-hover.png') center no-repeat; 
+    background: transparent url('/assets/build_b.png') center no-repeat; 
     background-position: 25px 19px; 
     background-color:#fff;
     text-decoration:none;
@@ -126,6 +124,72 @@
     -ms-transition:all .10s ease-out;
     transition:all .10s ease-out;
   }
+  .explore
+  {
+    position: absolute;   
+    bottom: 50px;
+    text-align: center;
+    margin: 0px auto;
+    width: 100%;
+    height:57px;
+  }
+   .explore a
+  {
+    display:inline-block;
+    font-family:opensans-r;
+    font-size:16px;
+    color:#fff !important;      
+    background: transparent url('/assets/search_w.png') center no-repeat;
+    background-position: 0px 0px; 
+    border:none;
+    padding-left: 31px;
+    height:21px;
+    text-decoration:none;
+    -webkit-transition:all .15s ease-out;
+    -moz-transition:all .15s ease-out;
+    -ms-transition:all .15s ease-out;
+    transition:all .15s ease-out;
+  }
+  .scroll-prompt
+  {
+    position:absolute;
+    bottom:50px;
+    text-align: center;
+    margin: 0px auto;
+    width: 100%;
+  }
+  .scroll-prompt svg {
+
+    fill: #fff;    
+    stroke-width: 2px;       
+    position:relative;
+    top:0px;
+    animation:arrows infinite;
+    animation-duration:0.9s;
+    animation-direction:alternate-reverse;
+
+    /*  Safari and Chrome   */
+    -webkit-animation:arrows infinite;
+    -webkit-animation-duration:0.9s;
+    -webkit-animation-direction:alternate-reverse;
+}
+  @-webkit-keyframes arrows {
+    from {
+      top:0px;
+    }
+    to {
+      top:10px;
+    }
+  }
+  @keyframes arrows {
+    from {
+      top:0px;
+    }
+    to {    
+      top:10px;
+    }
+  }
+
 }
 
   

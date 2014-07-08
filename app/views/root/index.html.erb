@@ -6,8 +6,18 @@
         <div class="h1">    <%= t("app.common.app_intro").split(';')[0].html_safe %></div>
         <div class="h3">    <%= t("app.common.app_intro").split(';')[1].html_safe %></div>
         <div class="intro"> <%= t("app.common.app_intro").split(';')[2].html_safe %></div>             
-      </div>
         <div class="build-story"><%= link_to  t("app.common.build"), new_story_path, :tabindex=>1 %></div>  
+      </div>
+        
+
+        <div class="explore"><%= link_to  t("app.common.explore"), '#', :tabindex=>2, :onclick => "scrolldown(false,'.header'); return false;" %></div>  
+        <div class="scroll-prompt">
+          <svg  x="0px" y="0px" width="18.03px" height="18.042px" viewBox="7.516 6.5 18.03 18.042" enable-background="new 7.516 6.5 18.03 18.042"
+             xml:space="preserve">
+          <polygon points="16.531,22.763 8.52,14.963 7.695,15.766 16.531,24.367 25.367,15.766 24.544,14.963 "/>
+          <polygon points="25.367,7.477 24.544,6.674 16.531,14.475 8.52,6.674 7.695,7.477 16.531,16.079 "/>
+          </svg>
+        </div>  
     </header>
 
 <% } %>

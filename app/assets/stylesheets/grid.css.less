@@ -3,9 +3,16 @@
 .story-picked
 {
   position: absolute;
-  top: 3px;
-  right: 3px;
+  top: 0px;
+  right: 13px;
   z-index: 999;
+  background-color: transparent;
+  background-image: url('/assets/staffpicked.png');
+  display: inline-block;
+  vertical-align: middle;
+  width:33px; 
+  height:41px;
+  opacity:1;
 }
 .story-thumbnail
 {
@@ -14,6 +21,8 @@
   margin-bottom: 22px;  
   max-width: 459px;
   max-height:329px;  
+  background-color: #242424;
+  overflow:hidden;
    -webkit-transition:all .25s linear;
   -moz-transition:all .25s linear;
   -o-transition:all .25s linear;
@@ -26,7 +35,7 @@
 }
 .story-thumbnail:hover
 {   
-    background-color:rgba(34,34,34,1);
+    
    -webkit-transition: color 0.25s ease-out 0s;
     -moz-transition: color 0.25s ease-out 0s;
     -o-transition: color 0.25s ease-out 0s;
@@ -36,23 +45,83 @@
     -webkit-transition-property:background-color; /* Safari and Chrome */
     -o-transition-property:background-color; /* Opera */
 }
-.story-thumbnail:hover .story-link
-{
-  background-image: url("/assets/link.png");
-  background-position: center center;
-  background-repeat: no-repeat;
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 50px;
-  height: 50px;
-  margin: -21px 0 0 -21px;
-  border: 1px solid rgba(255,255,255,0.75);
-  border-radius: 50%;
-  text-indent: -23em;
-  overflow: hidden;
+.story-link
+{ 
+  position: absolute; 
+  top:0px;
+  left:0px;
+  overflow: hidden;  
+  margin: 60px 21px 21px 42px;  
+  text-align:center;  
+  max-width: 459px;
+  max-height:329px; 
+  min-width:80%; 
+
 }
+
+
+.story-link .explore
+  {
+
+    border:1px solid #fff;
+    -webkit-border-radius: 133px;
+    -moz-border-radius: 133px;
+    border-radius: 133px;    
+    text-decoration:none;
+    padding: 9px 15px 12px 15px;
+    margin-top:10px;
+    -webkit-transition:all .15s ease-out;
+    -moz-transition:all .15s ease-out;
+    -ms-transition:all .15s ease-out;
+    transition:all .15s ease-out;
+
+  }
+
+ .story-link .explore:hover,.story-link .explore:focus
+  {      
+    color:#000 !important;
+
+    background-color:#fff;
+    text-decoration:none;
+    -webkit-transition:all .10s ease-out;
+    -moz-transition:all .10s ease-out;
+    -ms-transition:all .10s ease-out;
+    transition:all .10s ease-out;
+  }
+
+
+.story-link span,.story-link .explore
+{
+  display:inline-block;
+  color:#fff;
+  font-family:opensans-r;
+  font-size:16px;
+  text-decoration:none;
+  text-align:center;
+  overflow: hidden;
+  text-overflow:ellipsis;
+
+  opacity: 0;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+
+  -webkit-transform: scale(1.12);
+  transform: scale(1.12);
+
+
+}
+
+
+.story-thumbnail:hover .story-link span,.story-thumbnail:hover .story-link .explore
+{
+  
+  opacity:1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+
+
 .story-thumbnail img
 {
   float: left;
@@ -60,18 +129,28 @@
   max-width: 459px;
   max-height:329px;
   height: auto;
-  -webkit-transition:all .25s linear;
+/*  -webkit-transition:all .25s linear;
   -moz-transition:all .25s linear;
   -o-transition:all .25s linear;
   transition:all .25s linear;
   -webkit-transform:translateZ(0);
   -moz-transform:translateZ(0);
   -ms-transform:translateZ(0);
-  transform:translateZ(0);
+  transform:translateZ(0);*/
+
+
+
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: scale(1.12);
+  transform: scale(1.12);
 }
 .story-thumbnail:hover img
 { 
-  opacity:0.7;
+  opacity:0.3;
+
+  -webkit-transform: scale(1);
+  transform: scale(1);
 }
 .story-info
 {

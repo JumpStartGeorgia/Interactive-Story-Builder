@@ -1,19 +1,19 @@
-  <% 
-    title = story.title.dup
-    if story.about.present?
-      title << ' - '
-      title << strip_tags(story.about)
-    end
-    # , :title => title
-    # :alt => title 
+  <%  
+    title = ""   
+    if story.about.present?     
+      title = truncate(strip_tags(story.about), length: 160, separator: ' ')
+    end    
   %>   
    <% if story.staff_pick? %>
-    <div class="i-icon i-staffpicked story-picked" title="<%= t('helpers.links.staff_pick') %>"></div>
+    <div class="story-picked" title="<%= t('helpers.links.staff_pick') %>"></div>
   <% end %>               
   <div class="story-thumbnail">
-     <%= link_to @editable ? preview_story_path(story) : storyteller_show_path(story.permalink), :title => title do %>
+     <%= link_to @editable ? preview_story_path(story) : storyteller_show_path(story.permalink) do %>
         <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459' %>              
-        <div class="story-link"></div>  
+        <div class="story-link">
+          <span><%= title.html_safe %></span>
+          <div class="explore"><%= t('app.buttons.explore') %></div>          
+       </div>  
  
       <% end %>
 
@@ -87,7 +87,7 @@
   </div>
   <div class='story-info'>                               
   <div class="story-caption">
-    <%= link_to truncate(story.title, length: 45, separator: ' '), @editable ?  preview_story_path(story) : storyteller_show_path(story.permalink), :title => title %>
+    <%= link_to truncate(story.title, length: 45, separator: ' '), @editable ?  preview_story_path(story) : storyteller_show_path(story.permalink), :title => story.title %>
   </div>
     <div class="story-misc"> 
       <div class="story-misc-left">     
