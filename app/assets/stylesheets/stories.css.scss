@@ -172,8 +172,8 @@ border-bottom:1px solid lightgrey;
 .story-edit
 {
   position:absolute;  
-  top:13px;
-  right:13px;
+  top:1px;
+  left:1px;
   width:auto;
 }
 
@@ -183,19 +183,21 @@ border-bottom:1px solid lightgrey;
   padding-right:10px;
   font-size:15px;
 }
+.story-edit ul
+{
+  border:none;
+}
 .story-edit ul li button
 {  
   color:#666 !important;
-  background-color:rgb(255,255,255) !important;
-  opacity:0.5;
-  border:none;
+  background-color:#f8f8f8 !important;  
+  border:none !important;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+
 }
 
-.story-edit .dropdown-menu.pull-right
-{
- right: 0px;
- top:100%;  
-}
 
 
 #story_permalink
