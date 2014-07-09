@@ -200,26 +200,7 @@
     }
   }
 
-  .i-facebook
-  {
-    background-position:-27px -190px !important;
-    opacity:0.8;
-  }
-  .i-twitter
-  {
-    background-position:-27px -217px !important;
-    opacity:0.8;
-  }
-  .i-google
-  {
-    background-position:-27px -244px !important;
-    opacity:0.8;
-  }
-  .i-caret
-  {
-    background-position:-27px -269px !important;
-    opacity:0.8;
-  }
+
   .nav-separator
   {   
     border-left: 1px solid rgba(255, 255, 255, 0.32);
@@ -232,10 +213,15 @@
     position:fixed;
     top:0px;
     background-color: #242424;
-    -webkit-transition: background-color 800ms ease-in 200ms; /* property duration timing-function delay */
-    -moz-transition: background-color 800ms ease-in 200ms;
-    -o-transition: background-color 800ms ease-in 200ms;
-    transition: background-color 800ms ease-in 200ms;
+    opacity:1;
+    -webkit-transition: opacity 800ms ease-in 0ms; /* property duration timing-function delay */
+    -moz-transition: opacity 800ms ease-in 0ms;
+    -o-transition: opacity 800ms ease-in 0ms;
+    transition: opacity 800ms ease-in 0ms;
+}
+.navbar-visible-invisible
+{
+    opacity:0;
 }
 
 

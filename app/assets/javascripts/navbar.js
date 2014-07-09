@@ -18,14 +18,14 @@ function navbarMagic(reset)
         if(isNavVisible)
         {
           //console.log("reset make visible");       
-          $(".navbar").removeClass("navbar-invisible"); 
-          $(".navbar").addClass("navbar-visible");      
+          $(".navbar").removeClass("navbar-invisible").addClass("navbar-visible-invisible").delay(13).queue(function(){
+              $(this).toggleClass("navbar-visible navbar-visible-invisible").dequeue();
+          });      
         }
         else          
         {                 
           //console.log("reset make invisible");     
-          $(".navbar").removeClass("navbar-visible"); 
-          $(".navbar").addClass("navbar-invisible");      
+          $(".navbar").removeClass("navbar-visible").addClass("navbar-invisible");          
         }   
         scrollOffset = currentOffset;
         $(window).on('scroll',function(){navbarMagic(); });
@@ -39,8 +39,9 @@ function navbarMagic(reset)
       if(!isNavVisible && currentOffset >= objectOffset-topOffsetBack)
       {
           //console.log("make visible"); 
-          $(".navbar").removeClass("navbar-invisible");                                     
-          $(".navbar").addClass("navbar-visible");                
+          $(".navbar").removeClass("navbar-invisible").addClass("navbar-visible-invisible").delay(13).queue(function(){
+              $(this).toggleClass("navbar-visible navbar-visible-invisible").dequeue();
+          });                                                                   
           isNavVisible = true;
       }         
     }
@@ -50,8 +51,7 @@ function navbarMagic(reset)
       if(isNavVisible && currentOffset <= objectOffset - topOffsetBack)
       {      
           //console.log("make invisible"); 
-          $(".navbar").removeClass("navbar-visible");                                     
-          $(".navbar").addClass("navbar-invisible");   
+          $(".navbar").removeClass("navbar-visible").addClass("navbar-invisible");                                                 
           isNavVisible = false;                   
       }
     }

@@ -117,7 +117,7 @@ class ApplicationController < ActionController::Base
     #elsif params[:sort].present? || params[:category].present? || params[:tag].present? || params[:language].present? || params[:q].present?
      # @story_filter_staff_pick = false
     else
-  		@story_filter_staff_pick = params[:controller] == 'root'
+  		@story_filter_staff_pick = controller_action?('root','index')
     end
     story_objects = story_objects.is_staff_pick if @story_filter_staff_pick
 
@@ -284,5 +284,13 @@ private
 	       return type unless flash[type].blank?
 	   end
 	end
-
+  def controller?(name)
+   return params[:controller] == name
+  end
+  def action?(name)
+   return params[:action] == name
+  end
+  def controller_action?(controller_name, action_name)
+   return params[:controller] == controller_name && params[:action] == action_name
+  end
 end

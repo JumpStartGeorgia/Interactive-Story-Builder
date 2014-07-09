@@ -1,4 +1,7 @@
-<nav class="navbar navbar-default navbar-static-top navbar-storybuilder" role="navigation">  
+<% 
+  @navbar_invisible ||= false  
+%>
+<nav class="navbar navbar-default navbar-static-top navbar-storybuilder <%= @navbar_invisible ? 'navbar-invisible' : '' %>" role="navigation">  
   <div class="container-fluid">  
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#storybuilder-navbar-collapse">
