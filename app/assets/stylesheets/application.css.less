@@ -689,6 +689,11 @@ margin-right:8px;}
       text-decoration: none;
       line-height: 51px;
       width:290px;
+      opacity:0.8;
+  }
+  a.facebook:hover
+  {
+    opacity:1;
   }
    a.facebook i
    {
@@ -784,10 +789,18 @@ margin-right:8px;}
     padding: 11px 23px !important;     
 
     height:50px !important;
+    -webkit-transition:all .15s ease-out;
+    -moz-transition:all .15s ease-out;
+    -ms-transition:all .15s ease-out;
+    transition:all .15s ease-out;
   }
   .sign-in:hover,.password-reset:hover
   {
-    background-color:#333;
+    background-color:#333;        
+    -webkit-transition:all .10s ease-out;
+    -moz-transition:all .10s ease-out;
+    -ms-transition:all .10s ease-out;
+    transition:all .10s ease-out;
   }
 
   .forgot-link

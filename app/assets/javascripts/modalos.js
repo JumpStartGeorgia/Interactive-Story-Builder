@@ -26,7 +26,7 @@
 	    	animation: 'fade', //fade, fadeAndPop, none
 		    animationspeed: 300, //how fast animtions are
 		    closeonbackgroundclick: true, //if you click background will modal close?		    
-		    lockscroll: true, // body scroll will be locked, with css overflow hidden
+		    lockscroll: false, // body scroll will be locked, with css overflow hidden
 		    contentscroll: true, // m-content box is srollable or not, for iframe use false value
 		    before_open: null,
 		    after_open: null,
