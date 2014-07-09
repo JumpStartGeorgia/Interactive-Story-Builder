@@ -11,7 +11,7 @@
             <a href="#" class="dropdown-toggle<%= @story_filter_category_all ? '' : ' selected' %>" data-toggle="dropdown" tabindex="14" 
             data-filtered-by="<%= @story_filter_category_permalink %>" data-filter-type="category" data-filter-default-label="<%= t('filters.category_header') %>"
              data-filter-default="all">
-            <span><%= @story_filter_category_all ? t('filters.category_header') : @story_filter_category %></span><i class='i-icon i-caret'></i></a>
+            <span><%= @story_filter_category_all ? t('filters.category_header') : @story_filter_category %></span><i class='i-icon i-caret-b'></i></a>
             <ul class="dropdown-menu afilter-list">          
               <li class="dropdown">
                 <%= link_to I18n.t('filters.all'), "#", :class => @story_filter_category == I18n.t('filters.all') ? 'active' : '', :"data-filter" => 'all' %>
@@ -27,7 +27,7 @@
           <li class="dropdown dropdown-hover language afilter">
             <a href="#" class="dropdown-toggle<%= @story_filter_language_all ? '' : ' selected' %>" data-toggle="dropdown" tabindex="15"
             data-filtered-by="<%= @story_filter_language_permalink %>" data-filter-type="language" data-filter-default-label="<%= t('filters.language_header') %>" data-filter-default="all">
-              <span><%= @story_filter_language_all ? t('filters.language_header') : @story_filter_language %></span><i class='i-icon i-caret'></i></a>  
+              <span><%= @story_filter_language_all ? t('filters.language_header') : @story_filter_language %></span><i class='i-icon i-caret-b'></i></a>  
             <ul class="dropdown-menu afilter-list">          
               <li class="dropdown">
                 <%= link_to I18n.t('filters.all'), url_for(params.merge(:language => nil)), :class => @story_filter_language == I18n.t('filters.all') ? 'active' : '', :"data-filter" => 'all' %>
@@ -44,7 +44,7 @@
           <li class="dropdown dropdown-hover sort afilter">
             <a href="#" class="dropdown-toggle<%= @story_filter_sort_recent ? '' : ' selected' %>" data-toggle="dropdown" tabindex="16" 
             data-filtered-by="<%= @story_filter_sort_permalink %>" data-filter-type="sort" data-filter-default="recent">
-              <span><%= @story_filter_sort %></span><i class='i-icon i-caret'></i></a>
+              <span><%= @story_filter_sort %></span><i class='i-icon i-caret-b'></i></a>
             <ul class="dropdown-menu afilter-list">
               <% I18n.t('filters.sort').each do |key, value| %>
                 <li class="dropdown">
