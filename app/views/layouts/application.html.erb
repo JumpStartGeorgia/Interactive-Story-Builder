@@ -20,7 +20,7 @@
 	  <% if @story && @story.id && @story.asset_exists? %>
 	     <meta property="og:image" content="<%= full_url(@story.asset.asset.url(:"250x250", false)) %>" />
     <% else %>
-      <meta property="og:image" content="<%= full_url('/assets/fb-img.jpg') %>" />		  
+      <meta property="og:image" content="<%= full_url('/assets/fb-img.jpg') %>" />
 	  <% end %>
 	  <meta property="og:site_name" content="<%= t('app.common.app_name') %>" />
 	  <meta property="fb:app_id" content="<%= ENV['STORY_BUILDER_FACEBOOK_APP_ID'] %>" />

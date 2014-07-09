@@ -61,7 +61,7 @@
         </li>
       <% else %>
         <li>
-          <%= link_to t('helpers.links.sign_in2'), :new_user_session, :class => 'link' %>
+          <%= link_to t('helpers.links.sign_in2'), :new_user_session, :class => 'link', :id =>"modalSignIn", :"data-modalos-id"=>"modalos-sign-in" %>
         </li>
      <% end %> 
         <li><div class="nav-separator"></div></li>  
@@ -114,3 +114,10 @@
     </div>
   </div>
 </nav>
+
+
+<% if !user_signed_in? %>
+   <div id="modalos-sign-in" style="display:none;" class="sign-in-window">
+      <%= render file: "/devise/sessions/new" , :locals => { :devise_mapping => devise_mapping, :popup => true }  %> 
+  </div>   
+<% end %>

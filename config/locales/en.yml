@@ -124,7 +124,8 @@ en:
       sign_in2: Sign In
       sign_in: "Already have an account?"
       sign_up2: Sign Up
-      sign_up: "Don't have an account yet?"
+      sign_up_question: "Not a member yet?"
+      sign_up: "Register now"
       sign_out: Sign Out
       sign_in_provider: "Sign in with %{provider}"
       add_story: Add Story

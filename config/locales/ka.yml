@@ -122,9 +122,10 @@ ka:
       change_password2: პაროლის შეცვლა
       password_reset: პაროლის აღდგენის ინსტრუქციის გაგზავნა
       sign_in2: სისტემაში შესვლა
-      sign_in: უკვე გაქვთ ანგარიში?
+      sign_in: უკვე გაქვთ ანგარიში?      
       sign_up2: რეგისტრაცია
-      sign_up: არ გაქვთ ანგარიში ჯერ?
+      sign_up_question: "არ გაქვთ ანგარიში ჯერ?"
+      sign_up: Register now
       sign_out: გასვლა
       sign_in_provider: "სისტემაში შესვლა %{provider}"
       add_story: ამბის დამატება
