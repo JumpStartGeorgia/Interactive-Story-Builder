@@ -5,8 +5,14 @@
       <div class="header-data">
         <div class="h1">    <%= t("app.common.app_intro").split(';')[0].html_safe %></div>
         <div class="h3">    <%= t("app.common.app_intro").split(';')[1].html_safe %></div>
-        <div class="intro"> <%= t("app.common.app_intro").split(';')[2].html_safe %></div>             
-        <div class="build-story"><%= link_to  t("app.common.build"), new_story_path, :tabindex=>1 %></div>  
+        <div class="intro"> <%= t("app.common.app_intro").split(';')[2].html_safe %></div>  
+        <div class="build-story">
+          <% if user_signed_in? %>
+            <%= link_to  t("app.common.build"), new_story_path, :tabindex=>1%>
+          <% else %>        
+          <%= link_to  t("app.common.build"), :new_user_session, :tabindex=>1, :class=>"modalSignIn", "data-modalos-id"=>"modalos-sign-in" %>
+          <% end %>          
+        </div>  
       </div>
         
 

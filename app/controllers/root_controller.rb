@@ -1,9 +1,8 @@
 class RootController < ApplicationController    
-
   def index   
     
-    @js.push("navbar.js", "zeroclipboard.min.js","filter.js", "modalos.js")
-    @css.push("navbar.css", "filter.css", "grid.css", "modalos.css","root.css")    
+    @js.push("navbar.js", "zeroclipboard.min.js","filter.js")
+    @css.push("navbar.css", "filter.css", "grid.css","root.css")    
     @stories = process_filter_querystring(Story.is_published_home_page.paginate(:page => params[:page], :per_page => per_page))      
     @navbar_invisible = true
     respond_to do |format|
@@ -20,10 +19,10 @@ class RootController < ApplicationController
       @css.push("navbar.css", "filter.css", "grid.css", "stories.css", "author.css")
       @stories = process_filter_querystring(Story.stories_by_author(@author.id).paginate(:page => params[:page], :per_page => per_page))      
       @editable = (user_signed_in? && current_user.id == @author.id)
-      if(@editable)        
-        @js.push("modalos.js")
-        @css.push("modalos.css")
-      end
+      # if(@editable)        
+      #   @js.push("modalos.js")
+      #   @css.push("modalos.css")
+      # end
       respond_to do |format|     
         format.html    
         format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}    

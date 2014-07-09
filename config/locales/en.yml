@@ -120,14 +120,18 @@ en:
       forgot_password: Forgot Password?
       change_password: Change Your Password
       change_password2: Change Password
-      password_reset: Send Password Reset Instructions
+      password_reset: Reset Password
       sign_in2: Sign In
       sign_in: "Already have an account?"
       sign_up2: Sign Up
       sign_up_question: "Not a member yet?"
       sign_up: "Register now"
+      sign_up_title: Join Story Builder
       sign_out: Sign Out
       sign_in_provider: "Sign in with %{provider}"
+      sign_up_provider: "Sign up with %{provider}"
+      sign_in_local_or_provider: or log in with your username and password
+      reset_or_sign_in: sign in with facebook or reset your password
       add_story: Add Story
       users: Users
       news: News

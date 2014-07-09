@@ -8,7 +8,8 @@
  *= require formtastic-bootstrap
  *= require jquery.ui.core
  *= require jquery.ui.theme  
- *= require jquery.ui.dialog    
+ *= require jquery.ui.dialog 
+ //= require modalos   
  *= require bootstrap_and_overrides
  *= require scaffolds
  *= require_self
@@ -657,7 +658,7 @@ margin-right:8px;}
 } 
 
 /* login popup */
-#login-form
+#login-form,#reset-password-form,#signup-form
 {
   .title
   {
@@ -738,7 +739,7 @@ margin-right:8px;}
     padding: 21px 16px !important;  
     width:290px;  
   }
-  .login-password
+  .login-password,.login-password-confirmation
   {
     display:inline-block;
     font-family:opensans-l;
@@ -752,7 +753,7 @@ margin-right:8px;}
     padding: 21px 16px !important; 
     width:290px;   
   }
-  .sign-in-row
+  .submit-row
   {
     margin-bottom:100px !important; 
     width:290px !important;
@@ -765,21 +766,30 @@ margin-right:8px;}
     display:inline-block; 
     float:left;       
   }
-  .sign-in
+   .sign-in
+   {    float:right !important;
+   }
+  .sign-in,.pass-reset,.sign-up
   {
     display:inline-block;
     font-family:opensans-b;
     font-size:16px !important;
-    background-color:#333;
-    color:#c5c5c5;            
+    background-color:#c7c7c7;
+    color:#fff;            
     border:1px solid #d9d9d9;
     -webkit-border-radius: 133px !important;
     -moz-border-radius: 133px !important;
     border-radius: 133px !important;              
     text-decoration: none;    
     padding: 11px 23px !important;     
-    float:right !important;
+
+    height:50px !important;
   }
+  .sign-in:hover,.password-reset:hover
+  {
+    background-color:#333;
+  }
+
   .forgot-link
   {
     display:block;
@@ -787,12 +797,13 @@ margin-right:8px;}
     font-size:14px !important;    
     color:#888;      
     text-decoration:underline; 
-    text-align:center;    
+    text-align:center !important;    
     margin-bottom:5px;     
   }
-  .sign-up-box
+  .sign-up-box,.forgot-box
   {
    text-align:center;
+   margin-top: 10px;
   }
   .sign-up-box .sign-up-link 
   {
@@ -801,7 +812,8 @@ margin-right:8px;}
     font-size:14px !important;    
     color:#26acfa;             
   }
-  .sign-up-box span
+
+  .sign-up-box span, .sign-in-link
   {    
     font-family:opensans-l;
     font-size:14px !important;    

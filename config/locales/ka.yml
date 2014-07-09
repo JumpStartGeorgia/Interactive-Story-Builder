@@ -126,8 +126,12 @@ ka:
       sign_up2: რეგისტრაცია
       sign_up_question: "არ გაქვთ ანგარიში ჯერ?"
       sign_up: Register now
+      sign_up_title: Join Story Builder
       sign_out: გასვლა
       sign_in_provider: "სისტემაში შესვლა %{provider}"
+      sign_up_provider: "Sign up with %{provider}"
+      sign_in_local_or_provider: or log in with your username and password
+      reset_or_sign_in: sign in with facebook or reset your password
       add_story: ამბის დამატება
       users: მომხმარებლები
       news: სიახლეები

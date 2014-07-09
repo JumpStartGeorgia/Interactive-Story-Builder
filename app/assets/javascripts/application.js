@@ -8,6 +8,7 @@
 //= require i18n/translations
 //= require jquery
 //= require jquery_ujs
+//= require modalos
 //= require jquery.remotipart
 //= require jquery.ui.core
 //= require twitter/bootstrap
@@ -47,11 +48,13 @@ $(document).ready(function(){
     $('.selectpicker').selectpicker({dropupAuto:false});
   }
 
-  $('#modalSignIn').on('click', function(e) {        
+  $('.modalSignIn, .modalForgotPassword, .modalRegistration').on('click', function(e) {   
       var ml = $(this).attr('data-modalos-id');   
       var v = $('.navbar-story').length ? $('.navbar-story') : $('.navbar-storybuilder');      
-      $('#'+ml).modalos({topOffset: $(v).position().top + $(v).height() + 30, width:435});
+      $('#'+ml).modalos({topOffset: $(v).position().top + $(v).height() + 30, width:435});      
       e.preventDefault();
+      e.stopPropagation();
+      return false;
   });
 
 });

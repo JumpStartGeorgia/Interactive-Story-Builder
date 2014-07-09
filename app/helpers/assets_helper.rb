@@ -14,5 +14,6 @@ module AssetsHelper
 	# 		  :styles => {:"250x250" => {:geometry => "250x250"}},
 	# 		  :default_url => "/assets/missing/250x250/missing.png" } 
 	# end
+ 	
 
 end
