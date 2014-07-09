@@ -129,5 +129,26 @@ class RootController < ApplicationController
       format.html 
     end
   end
+  def rss
+    @categories = Category.sorted
+    @categories_published = @categories.select{|x| x.published_story_count > 0}
+    index = params[:category].present? ? @categories_published.index{|x| x.permalink.downcase == params[:category].downcase} : nil
+    @stories =  Story.is_published_home_page 
+    @filtered_by_category = ""
+    if index.present?
+      @filtered_by_category = @categories_published[index].permalink
+      @stories = @stories.by_category(@categories_published[index].id)    
+    end
+  @filtered_by_tag = ""
+   if params[:tag].present?
+      @filtered_by_tag = params[:tag]
+      @stories =  @stories.tagged_with(params[:tag])                
+    end    
+   
+    
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
   
 end

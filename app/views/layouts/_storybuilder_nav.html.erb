@@ -89,6 +89,11 @@
                <li>
                 <%= link_to t('helpers.links.demo'), demo_path %> 
               </li>
+              <li>
+                <%= link_to t('helpers.links.rss'), rss_path, :rel=>"alternate", :type=>"application/rss+xml" %>                  
+                <%= auto_discovery_link_tag(:rss, rss_path) %>
+              </li>
+             
               <li>                        
                 <%= link_to "GitHub", "https://github.com/JumpStartGeorgia/Interactive-Story-Builder.git" %>
               </li>
