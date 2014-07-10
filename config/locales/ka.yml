@@ -225,6 +225,7 @@ ka:
       wide: wide
       partial: Pretty Link
       full: Full Story
+      feed: StoryBuilder Feed Channel
     msgs:
       does_not_exist: თქვენ ცდილობთ იხილოთ გვერდი, რომელიც არ არსებობს.
       not_authorized: თქვენ არ გაქვთ უფლება იხილოთ ეს გვერდი.

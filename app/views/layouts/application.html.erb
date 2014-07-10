@@ -33,7 +33,7 @@
     <![endif]-->
 
     <%= stylesheet_link_tag  *(@css.present? ? ["application",@css].flatten : ["application"]), :media => "all" %>      
-    
+    <%= auto_discovery_link_tag(:atom, feed_path(:format => "atom")) %>
   	<% if @usemap %>
   		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
   	<% end %>

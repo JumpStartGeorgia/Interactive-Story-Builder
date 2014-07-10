@@ -129,25 +129,28 @@ class RootController < ApplicationController
       format.html 
     end
   end
-  def rss
+  def feed
     @categories = Category.sorted
-    @categories_published = @categories.select{|x| x.published_story_count > 0}
+    @categories_published = @categories.select{|x| x.published_story_count > 0}         
     index = params[:category].present? ? @categories_published.index{|x| x.permalink.downcase == params[:category].downcase} : nil
-    @stories =  Story.is_published_home_page 
+    @items =  Story.is_published_home_page.recent     
     @filtered_by_category = ""
     if index.present?
       @filtered_by_category = @categories_published[index].permalink
-      @stories = @stories.by_category(@categories_published[index].id)    
+      @items = @items.by_category(@categories_published[index].id)    
     end
   @filtered_by_tag = ""
    if params[:tag].present?
       @filtered_by_tag = params[:tag]
-      @stories =  @stories.tagged_with(params[:tag])                
+      @items =  @items.tagged_with(params[:tag])                
     end    
-   
-    
+    @filter_by = ""
+    @filter_by = ("category = " + @filtered_by_category + (@filtered_by_tag.present? ? ", " : "")) if @filtered_by_category.present?
+    @filter_by += "tag = " + @filtered_by_tag  if @filtered_by_tag.present?   
+    @filter_by = "nothing" if @filter_by.empty?
+
     respond_to do |format|
-      format.rss { render :layout => false }
+      format.atom { render :layout => false }
     end
   end
   

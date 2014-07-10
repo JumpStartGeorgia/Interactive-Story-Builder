@@ -225,6 +225,7 @@ en:
       wide: wide
       partial: Pretty Link
       full: Full Story
+      feed: StoryBuilder Feed Channel
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
