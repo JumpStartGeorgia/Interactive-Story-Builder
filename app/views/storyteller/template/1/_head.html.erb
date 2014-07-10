@@ -18,8 +18,8 @@
 		  <meta property="og:url" content="<%= current_url %>" />
 		  <% if @story && @story.id && @story.asset_exists? %>
 			  <meta property="og:image" content="<%= full_url(@story.asset.asset.url(:"250x250", false)) %>" />
-      <% else %>
-			  <!--meta property="og:image" content="" /-->
+        <% else %>
+			 <meta property="og:image" content="<%= full_url('/assets/fb-img.jpg') %>" />
 		  <% end %>
 		  <meta property="og:site_name" content="<%= t('app.common.app_name') %>" />
 		  <% if Rails.env.production? %>

@@ -56,7 +56,7 @@
           		bg = $('.modalos-bg'), 
           		keeper = $('.modalos-keeper'), 
           		locked = false,
-          		header_height = 80
+          		header_height = 15
           	 				
 /*---------------------------
  Create Modal Wrapper and Bg if not exists
@@ -257,7 +257,11 @@
 		    	 {		    	 	
 		    	 	$(wrapper).height(options.height);
 		    	 	$(wrapper).find('.m-content').css("max-height",h - options.topOffset - options.margins - header_height).addClass("fluid");
-		    	 	if(options.width > w) $(wrapper).width(w-options.margins);
+		    	 	if(options.width > w) 
+	    	 		{
+	    	 			options.width = w-options.margins;
+	    	 			$(wrapper).width(options.width);
+	    	 		}
 			    	else $(wrapper).width(options.width);
 		    	 	if(options.height + options.topOffset > h)
 		    	 	{
