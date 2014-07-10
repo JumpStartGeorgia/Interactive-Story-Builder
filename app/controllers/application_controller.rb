@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
 
   PER_PAGE_COUNT = 3
+  DEVISE_CONTROLLERS = ['devise/sessions', 'devise/registrations', 'devise/passwords']
 
 	before_filter :set_locale
 	before_filter :is_browser_supported?
@@ -11,6 +12,10 @@ class ApplicationController < ActionController::Base
 	before_filter :initialize_gon
 	before_filter :store_location
 	after_filter :flash_to_headers
+
+
+  layout :layout_by_resource
+
 
 	unless Rails.application.config.consider_all_requests_local
 		rescue_from Exception,
@@ -105,6 +110,15 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+
+  
+  def layout_by_resource
+    if !DEVISE_CONTROLLERS.index(params[:controller]).nil? && request.xhr?
+      nil
+    else
+      "application"
+    end
+  end
 
   ## process the filter requests
   def process_filter_querystring(story_objects)
@@ -202,6 +216,7 @@ class ApplicationController < ActionController::Base
 
 	# store the current path so after login, can go back
 	def store_location
+
 		session[:previous_urls] ||= []
 		# only record path if page is not for users (sign in, sign up, etc) and not for reporting problems
 		if session[:previous_urls].first != request.fullpath && 
@@ -209,11 +224,17 @@ class ApplicationController < ActionController::Base
         request.fullpath.index("/users/").nil?
 
 			session[:previous_urls].unshift request.fullpath
+    elsif session[:previous_urls].first != request.fullpath &&
+       request.xhr? && !request.fullpath.index("/users/").nil? &&
+       params[:return_url].present?
+
+      session[:previous_urls].unshift params[:return_url]
 		end
+
 		session[:previous_urls].pop if session[:previous_urls].count > 1
 
 
-#    Rails.logger.debug "****************** prev urls session = #{session[:previous_urls]}"
+    #Rails.logger.debug "****************** prev urls session = #{session[:previous_urls]}"
 	end
 
 
@@ -293,4 +314,5 @@ private
   def controller_action?(controller_name, action_name)
    return params[:controller] == controller_name && params[:action] == action_name
   end
+
 end

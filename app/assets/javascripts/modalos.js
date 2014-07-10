@@ -38,7 +38,8 @@
 		    fullscreen: false,
 		    aspectratio: false,
 		    width:'962',
-		    height: 'auto'//621px'
+		    height: 'auto',
+		    //621px'
     	}; 
     	
         //Extend dem' options
@@ -83,10 +84,12 @@
 ----------------------------*/
 			//Entrance Animations
 			modal.bind('modalos:open', function () {
+				var opened = false;
 				if(curModalos!=null)
 				{
 					keeper.append(curModalos);
-				}
+					opened = true;
+				}				
 				curModalos = modal;
 				//console.log("modalos:open");
 				//console.log(options.topOffset);
@@ -117,14 +120,15 @@
 					// 		"opacity" : 1
 					// 	}, options.animationspeed,unlockModal());			
 					// }
-					if(options.animation == "fade") {				  	         
+					if(options.animation == "fade" && !opened) {
+
 		         	 	wrapper.css({'opacity' : 0, 'display' : 'block'});						
 						bg.fadeIn(options.animationspeed/2);
 						wrapper.delay(options.animationspeed/2).animate({
 							"opacity" : 1
 						}, options.animationspeed,unlock());				
 					} 
-					if(options.animation == "none") {
+					else { //(options.animation == "none") 
 					 	wrapper.css("display","block");
 			         	bg.css("display","block");		    						
 						unlock();				
@@ -136,7 +140,9 @@
 
 			//Closing Animation
 			modal.bind('modalos:close', function () {
+
 				//console.log('modalos:close');
+				if (options.before_close) options.before_close(this);
 				keeper.append(modal);
 				curModalos = null;
 			  if(!locked) {

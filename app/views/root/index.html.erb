@@ -10,7 +10,7 @@
           <% if user_signed_in? %>
             <%= link_to  t("app.common.build"), new_story_path, :tabindex=>1%>
           <% else %>        
-          <%= link_to  t("app.common.build"), :new_user_session, :tabindex=>1, :class=>"modalSignIn", "data-modalos-id"=>"modalos-sign-in" %>
+          <%= link_to  t("app.common.build"), new_user_session_path({:return_url=>new_story_path}), :tabindex=>1, :class=>"modalSignIn", "data-modalos-id"=>"modalos-sign-in" %>
           <% end %>          
         </div>  
       </div>

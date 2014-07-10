@@ -48,21 +48,78 @@ $(document).ready(function(){
     $('.selectpicker').selectpicker({dropupAuto:false});
   }
 
-  $('.modalSignIn, .modalForgotPassword, .modalRegistration').on('click', function(e) {   
-      var ml = $(this).attr('data-modalos-id');   
-      var v = $('.navbar-story').length ? $('.navbar-story') : $('.navbar-storybuilder');      
-      $('#'+ml).modalos({topOffset: $(v).position().top + $(v).height() + 30, width:435});      
+  $('body').on('click','.modalSignIn, .modalForgotPassword, .modalRegistration', function(e) {   
+      var ml = $(this).attr('data-modalos-id'); 
+      var v = $('.navbar-story').length ? $('.navbar-story') : $('.navbar-storybuilder');            
+      if($('#'+ml).length)
+      {        
+           $('#'+ml).modalos({topOffset: $(v).position().top + $(v).height() + 30, width:435, before_close:function(t){$(t).find('.alert').remove();}});     
+      }
+      else
+      {   
+        $.ajax({                 
+          url: $(this).attr('href'),                  
+        }).done(function(data) {                    
+          $('body').append($('<div>').attr('id',ml).css('display','none').addClass($(this).attr('data-modalos-class')).html(data));                    
+          $('#'+ml).modalos({topOffset: $(v).position().top + $(v).height() + 30, width:435});     
+        });
+      }
+     
       e.preventDefault();
       e.stopPropagation();
+
       return false;
+  });
+
+  $('body').on('submit','#new_user', function ()
+  {    
+    var t = $(this).attr('data-form-id');
+    if(t.length)
+    {
+      t="#" + t;
+      $.ajax({
+        type: "POST",
+        url: $(this).attr('action'),//.replace(/.json$/, '') + '.json',
+        data: $(this).serialize(),
+        //dataType: 'json',
+        success: function (data)
+        {                  
+          var rhtml = $(data);
+          var rform = rhtml.find(t);
+          if (rform.length && rform.find('#error_explanation').length)
+          {
+            $(t).replaceWith(rform);
+          }
+          else if (rhtml.find('.alert.alert-info').length)
+          {
+            $(t).replaceWith(rhtml.find('.alert.alert-info').children().remove().end());
+            delayed_reload(3000);
+          }
+          else
+          {
+            window.location.reload();
+          }
+        },
+        error: function (data)
+        {     
+          $(t).parent().find('.alert').remove();  
+          $(t + ' form').before('<div class="alert alert-danger fade in"><a href="#" data-dismiss="alert" class="close">×</a> ' + data.responseText + '</div>');          
+          $(t + ' :input:visible:enabled:first').focus();
+        }
+      });     
+    }
+    return false;
   });
 
 });
 
 
 $(document).ajaxComplete(function(event, request) {
- 	popuper(request.getResponseHeader('X-Message'),request.getResponseHeader("X-Message-Type"));  
+ 	popuper(request.getResponseHeader('X-Message'),request.getResponseHeader("X-Message-Type"));    
 });
+// $(document).ajaxError(function(event, request) {
+//   popuper(request.responseText,'error');     
+// });
 
 function popuper(msg,msg_type)
 {

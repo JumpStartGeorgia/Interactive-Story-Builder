@@ -1,5 +1,6 @@
 <%- model_class = User -%>
-<% popup ||= false %>
+<% 	popup = request.xhr? ? true  :  popup || false %>
+
 <% title = t('helpers.links.sign_up_title').html_safe %> 
 <% if !popup %>
 	<% title title %>
@@ -24,7 +25,7 @@
   <% if popup %>
   	<div class="facebook_or_local"><%= t('helpers.links.sign_in_local_or_provider') %></div>
   <% end %>
-  <%= semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %> 
+  <%= semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html=>{:"data-form-id"=>"signup-form"}) do |f| %> 
   <%#, :html => {:multipart => true} %>
   	<%= f.error_messages %>
 
@@ -52,12 +53,12 @@
 
   <div class="control-group">
   <%- if controller_name != 'sessions' %>
-		  <%= link_to t('helpers.links.sign_in'), new_session_path(resource_name, {:load_media => false}), :class => 'sign-in-link modalSignIn', :"data-modalos-id"=>"modalos-sign-in" %>
+		  <%= link_to t('helpers.links.sign_in'), new_session_path(resource_name), :class => 'sign-in-link modalSignIn', :"data-modalos-id"=>"modalos-sign-in", :"data-modalos-class"=>"sign-in-window" %>
 	  <% end -%>
 
 	  <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
   		  <div class="forgot-box">
-		  	<%= link_to t('helpers.links.forgot_password'), new_password_path(resource_name), :class => 'forgot-link modalForgotPassword', :"data-modalos-id"=>"modalos-forgot-password" %>
+		  	<%= link_to t('helpers.links.forgot_password'), new_password_path(resource_name), :class => 'forgot-link modalForgotPassword', :"data-modalos-id"=>"modalos-forgot-password", :"data-modalos-class"=>"forgot-password-window" %>
 		  </div>
 	  <% end -%>
   </div>
