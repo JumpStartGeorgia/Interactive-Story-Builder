@@ -22,7 +22,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role, 
                   :provider, :uid, :nickname, :avatar,
                   :about, :default_story_locale, :permalink, :local_avatar_attributes, :avatar_file_name, :email_no_domain
-  
+                  
+  attr_accessor :send_notification
+
   has_permalink :create_permalink, true
 
   validates :role, :presence => true
@@ -32,7 +34,7 @@ class User < ActiveRecord::Base
   before_create :create_email_no_domain
   before_save :check_nickname_changed
 	before_save :generate_avatar_file_name
-
+  before_save :set_notification_language
 
   # email_no_domain is used in the search for collaborators 
   # so people cannot search using domain name to guess their email addresses
@@ -159,6 +161,15 @@ class User < ActiveRecord::Base
 	def password_required?
 		super && provider.blank?
 	end
-  
-  
+
+# if not set, default to current locale
+  def set_notification_language
+    self.notification_language = I18n.locale if !self.notification_language.present?
+  end
+
+  def notification_language
+    read_attribute("notification_language").present? ? read_attribute("notification_language") : I18n.locale.to_s
+  end
+
+
 end

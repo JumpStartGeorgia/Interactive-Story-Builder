@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140701134818) do
+ActiveRecord::Schema.define(:version => 20140711140810) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -171,6 +171,27 @@ ActiveRecord::Schema.define(:version => 20140701134818) do
   add_index "news_translations", ["permalink"], :name => "index_news_translations_on_permalink"
   add_index "news_translations", ["title"], :name => "index_news_translations_on_title"
 
+  create_table "notification_triggers", :force => true do |t|
+    t.integer  "notification_type"
+    t.integer  "identifier"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.boolean  "processed",         :default => false
+  end
+
+  add_index "notification_triggers", ["notification_type"], :name => "index_notification_triggers_on_notification_type"
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "notification_type"
+    t.integer  "identifier"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "notifications", ["notification_type", "identifier"], :name => "idx_notif_type"
+  add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
+
   create_table "sections", :force => true do |t|
     t.integer  "story_id"
     t.integer  "type_id"
@@ -309,6 +330,8 @@ ActiveRecord::Schema.define(:version => 20140701134818) do
     t.string   "permalink"
     t.string   "avatar_file_name"
     t.string   "email_no_domain"
+    t.boolean  "wants_notifications",    :default => true
+    t.string   "notification_language"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
