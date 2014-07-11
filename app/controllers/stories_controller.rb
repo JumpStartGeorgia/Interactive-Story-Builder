@@ -451,6 +451,9 @@ class StoriesController < ApplicationController
 
       # if there are no sections, show the content form by default
       gon.has_no_sections = @story.sections.blank?
+      respond_to do |format|
+        format.html { render :layout=>"storybuilder" }
+      end
   end
 
   def publish
