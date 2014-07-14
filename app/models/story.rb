@@ -31,6 +31,7 @@ class Story < ActiveRecord::Base
 	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
 
   attr_reader :tag_list_tokens
+  attr_accessor :send_notification
 #  attr_accessible :name, :tag_list_tokens
   
 	validates :title, :presence => true, length: { maximum: 100 }
@@ -62,6 +63,7 @@ class Story < ActiveRecord::Base
   }
 
   DEMO_ID = 2
+  
 
 	amoeba do
 		enable

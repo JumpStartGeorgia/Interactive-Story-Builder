@@ -23,3 +23,10 @@
 every 3.hours do
   rake "story:tmp_stories_clear", :environment => 'development' 
 end
+
+# case @environment
+# when 'production'
+  every 30.minutes do
+    runner "NotificationTrigger.process_all_types"
+  end
+# end

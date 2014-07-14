@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140711140810) do
+ActiveRecord::Schema.define(:version => 20140714124147) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -331,12 +331,13 @@ ActiveRecord::Schema.define(:version => 20140711140810) do
     t.string   "avatar_file_name"
     t.string   "email_no_domain"
     t.boolean  "wants_notifications",    :default => true
-    t.string   "notification_language"
+    t.string   "notification_language",  :default => "en"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["email_no_domain"], :name => "index_users_on_email_no_domain"
   add_index "users", ["nickname"], :name => "index_users_on_nickname"
+  add_index "users", ["notification_language", "wants_notifications"], :name => "index_users_on_notif_lang_and_wants_notif"
   add_index "users", ["permalink"], :name => "index_users_on_permalink"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 

@@ -14,7 +14,7 @@ BootstrapStarter::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -31,10 +31,12 @@ BootstrapStarter::Application.configure do
 
 	# devise requires
 	config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-
-	# small smtp server for dev, http://mailcatcher.me/
-  config.action_mailer.delivery_method = :smtp
-	config.action_mailer.smtp_settings = { :address => "127.0.0.1", :port => 1025 }
-
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  config.middleware.use ExceptionNotifier,
+    :email_prefix => "[Story Builder Dev App Error (#{Rails.env})] ",
+    :sender_address => 'test@gmail.com',
+    :exception_recipients => 'test@gmail.com'
+    
   Paperclip.options[:command_path] = "/usr/local/bin/"
 end

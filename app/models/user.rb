@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role, 
                   :provider, :uid, :nickname, :avatar,
-                  :about, :default_story_locale, :permalink, :local_avatar_attributes, :avatar_file_name, :email_no_domain
+                  :about, :default_story_locale, :permalink, :local_avatar_attributes, :avatar_file_name, :email_no_domain,
+                  :wants_notification, :notification_language
                   
   attr_accessor :send_notification
 
@@ -32,7 +33,7 @@ class User < ActiveRecord::Base
   ROLES = {:user => 0, :staff_pick => 50, :admin => 99}
 
   before_create :create_email_no_domain
-  before_save :check_nickname_changed
+  before_save :check_nickname_changed  
 	before_save :generate_avatar_file_name
   before_save :set_notification_language
 
@@ -44,14 +45,33 @@ class User < ActiveRecord::Base
 
   # if the nickname changes, then the permalink must also change
   def check_nickname_changed
+    fix_nickname_dublication if self.id.blank?
     if self.nickname_changed?
       # make sure there are no tags in the nickname
       self.nickname = ActionController::Base.helpers.strip_links(self.nickname)
       self.generate_permalink! 
     end
   end
+  def fix_nickname_dublication 
+    nick = read_attribute(:nickname).present? ? read_attribute(:nickname) : self.email.split('@')[0]    
+      n = self.class.where(["nickname = ?", nick]).count
+      
+      if n > 0 
+        links = self.class.where(["nickname LIKE ?", "#{nick}%"]).order("id")
 
-  def create_permalink
+        number = 0
+        
+        links.each_with_index do |link, index|
+          if link.nickname =~ /#{nick}-\d*\.?\d+?$/
+            new_number = link.nickname.match(/-(\d*\.?\d+?)$/)[1].to_i
+            number = new_number if new_number > number
+          end
+        end         
+        self.nickname = "#{nick}-#{number+1}"
+      end  
+  end
+
+  def create_permalink   
     self.nickname.dup
   end
 
@@ -164,12 +184,6 @@ class User < ActiveRecord::Base
 
 # if not set, default to current locale
   def set_notification_language
-    self.notification_language = I18n.locale if !self.notification_language.present?
+    self.notification_language = I18n.locale if !read_attribute("notification_language").present?
   end
-
-  def notification_language
-    read_attribute("notification_language").present? ? read_attribute("notification_language") : I18n.locale.to_s
-  end
-
-
 end

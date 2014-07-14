@@ -99,6 +99,21 @@ en:
         line2: "If you would like to accept this invitation, please click here: %{url}."
         line3: If you want to decline this invitation, no action is needed on your part.
         line_msg: "Here is message written to you by %{name}:"
+      account_created:
+        subject: "Welcome to storybuilder.jumpstart.ge! TODO"
+        message: "Thank you for becoming a member of storybuilder TODO"
+      story_published:
+        subject: "story_published subject TODO"
+        message: "story_published message TODO"
+      story_commented:
+        subject: "story_commented subject TODO"
+        message: "story_commented message TODO"
+      publish_by_leader:
+        subject: "publish_by_leader subject TODO"
+        message: "publish_by_leader message TODO"
+      news_added:
+        subject: "news_added subject TODO"
+        message: "news_added message TODO"
   helpers:
     actions: Actions
     links:

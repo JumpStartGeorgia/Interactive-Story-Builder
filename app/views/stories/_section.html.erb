@@ -1,4 +1,4 @@
-<h2>
+<h2 class="form-title">
   <%= t('.form_title') %>
 </h2>
 <%= semantic_form_for(@item, url: section_story_path(id:params[:id],:format => :js), :html => {:multipart => true, :id => "sectionForm"} ,remote: true) do |f| %>

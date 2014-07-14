@@ -220,20 +220,16 @@ class ApplicationController < ActionController::Base
 		session[:previous_urls] ||= []
 		# only record path if page is not for users (sign in, sign up, etc) and not for reporting problems
 		if session[:previous_urls].first != request.fullpath && 
-        params[:format] != 'js' && params[:format] != 'json' && 
+        params[:format] != 'js' && params[:format] != 'json' && !request.xhr? &&
         request.fullpath.index("/users/").nil?
-
 			session[:previous_urls].unshift request.fullpath
     elsif session[:previous_urls].first != request.fullpath &&
        request.xhr? && !request.fullpath.index("/users/").nil? &&
        params[:return_url].present?
-
       session[:previous_urls].unshift params[:return_url]
 		end
 
 		session[:previous_urls].pop if session[:previous_urls].count > 1
-
-
     #Rails.logger.debug "****************** prev urls session = #{session[:previous_urls]}"
 	end
 
