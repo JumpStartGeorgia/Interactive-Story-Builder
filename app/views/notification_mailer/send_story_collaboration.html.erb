@@ -1,20 +1,49 @@
 <%= simple_format @message.message %>
 
-<ul>
-<% @message.message_list.each do |msg| %>
-  <li>
-    <p>
-      <%= t('mailer.notification.story_collaboration.from', :locale => @message.locale, :from => msg[0]) %>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <%= t('mailer.notification.story_collaboration.story_title', :locale => @message.locale, :title => msg[1]) %>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <%= link_to t('mailer.notification.story_collaboration.accept_link', :locale => @message.locale), 
-            accept_invitation_url(:locale => @message.locale, :key => msg[2]) %>
-    </p>
-    <% if msg[3].present? %>
-      <%= simple_format msg[3] %>
-    <% end %>
-  </li>
-<% end %>
-</ul>
+<table>
+ <thead>
+  <tr>
+    <%
+      style = "border-bottom: 2px solid #666; padding: 10px; vertical-align: bottom;"
+    %>
+    <th style="<%= style %>">  
+      <%= t('mailer.notification.story_collaboration.from', :locale => @message.locale) %>
+    </th>
+    <th style="<%= style %>">  
+      <%= t('mailer.notification.story_collaboration.story_title', :locale => @message.locale) %>
+    </th>
+    <th style="<%= style %>">  
+      <%= t('mailer.notification.story_collaboration.msg', :locale => @message.locale) %>
+    </th>
+    <th style="<%= style %>">  
+      <%= t('mailer.notification.story_collaboration.accept_link', :locale => @message.locale) %>
+    </th>
+  </tr> 
+ </thead>
+ <tbody>
+  <% @message.message_list.each_with_index do |msg, index| %>
+    <%
+      style = "border-top: 1px solid #aaa; padding: 10px; vertical-align: top;"
+      style = "padding: 10px; vertical-align: top;" if index == 0
+    %>
+    <tr>
+      <td style="<%= style %>">  
+        <%= msg[0] %>
+      </td>
+      <td style="<%= style %>">  
+        <%= msg[1] %>
+      </td>
+      <td style="<%= style %>">  
+        <% if msg[3].present? %>
+          <%= simple_format msg[3] %>
+        <% end %>
+      </td>
+      <td style="<%= style %>">  
+        <%= link_to t('mailer.notification.story_collaboration.accept_link', :locale => @message.locale), 
+              accept_invitation_url(:locale => @message.locale, :key => msg[2]) %>
+      </td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
 

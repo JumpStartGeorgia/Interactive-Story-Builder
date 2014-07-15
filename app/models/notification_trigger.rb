@@ -53,8 +53,6 @@ class NotificationTrigger < ActiveRecord::Base
       # get stories for these triggers
       stories = Story.is_published.recent.where(:id => triggers.map{|x| x.identifier}.uniq)
       if stories.present?
-        puts "- found stories"
-  
         # send staff pick review notification
         process_staff_pick_review(triggers, stories)
 
@@ -67,8 +65,6 @@ class NotificationTrigger < ActiveRecord::Base
         
         orig_locale = I18n.locale
         I18n.available_locales.each do |locale|          
-          puts "-------------------"
-          puts "* locale #{locale} "
           I18n.locale = locale
 
           # get users that want one of the following:
@@ -77,14 +73,10 @@ class NotificationTrigger < ActiveRecord::Base
           # - new story by author
           notifications = Notification.for_published_story(locale, uniq_author_ids, uniq_category_ids)
           if notifications.present?
-            puts "* found users who wants notifications"
             # get unique user_ids
             user_ids = notifications.map{|x| x.user_id}.uniq
             user_ids.each do |user_id|
-              puts "*******************"
-              puts "** user id #{user_id}"
               email = notifications.select{|x| x.user_id == user_id}.map{|x| x.user.email}.uniq.first
-              puts "** email = #{email}"
 
               # get the notifications for this user
               user_notifications = notifications.select{|x| x.user_id == user_id}
@@ -92,7 +84,6 @@ class NotificationTrigger < ActiveRecord::Base
               # else, get the stories that this user cares about
               stories_to_send = []
               if user_notifications.index{|x| x.notification_type == Notification::TYPES[:published_story] && x.identifier.nil?}.present?
-                puts "** wants all stories"
                 # all stories
                 stories_to_send = stories
               else
@@ -103,7 +94,6 @@ class NotificationTrigger < ActiveRecord::Base
                 category_notifications = user_notifications.select{|x| x.notification_type == Notification::TYPES[:published_story] && x.identifier.present?}
                 if category_notifications.present?
                   category_notifications_ids = category_notifications.map{|x| x.identifier}
-                  puts "** wants all stories in categories #{category_notifications_ids}"
                   category_notifications_ids.each do |cat_not_id|
                     story_ids << category_ids.select{|x| x[1].include?(cat_not_id)}.map{|x| x[0]}
                   end
@@ -113,7 +103,6 @@ class NotificationTrigger < ActiveRecord::Base
                 author_notifications = user_notifications.select{|x| x.notification_type == Notification::TYPES[:published_story_by_author] && x.identifier.present?}
                 if author_notifications.present?
                   author_notifications_ids = author_notifications.map{|x| x.identifier}
-                  puts "** wants all stories written by #{author_notifications_ids}"
                   author_notifications_ids.each do |aut_not_id|
                     story_ids << author_ids.select{|x| x[1] == aut_not_id}.map{|x| x[0]}
                   end
@@ -289,7 +278,6 @@ protected
   ## staff pick review
   #################
   def self.process_staff_pick_review(triggers, stories)
-    puts "-> sending staff pick review notification"
     if triggers.present? && stories.present?
       # filter stories that already have staff pick
       # - should not happen, but just in case

@@ -103,19 +103,20 @@ ka:
         subject: "story_commented subject TODO"
         message: "story_commented message TODO"
       published_news:
-        subject: "Story Builder has new News!"
-        message: "The following News was just posted on Story Builder. Click on the link to learn what is going on with Story Builder."
+        subject: "Story Builder has new updates!"
+        message: "The following updates were just posted on Story Builder. Click on the link to learn what is going on with Story Builder."
       staff_pick_review:
         subject: "Story Builder has new published stories to review for Staff Pick!"
         message: "The following stories need to be reviewed to see if they are worthy to be a Staff Pick:"
       staff_pick_selection:
-        subject: "Your story has been given the Staff Pick award on Story Builder!"
-        message: "Congratulations! The following stories of yours were given the Staff Pick award:"
+        subject: "Your story has been selected by the Story Builder Team as a Staff Pick!"
+        message: "Congratulations! The following stories of yours were selected by the Story Builder Team as Staff Picks:"
       story_collaboration:
         subject: "You have been invited to collaborate on a story on Story Builder!"
-        message: "You have received the following invitations to collaborate on stories with other people on Story Builder. If you would like to accept the invitation, simply click the link next to the story title. If you want to decline this invitation, no action is needed on your part."
-        from: "From: %{from}"
-        story_title: "Story: %{title}"
+        message: "You have received the following invitations to collaborate on stories with other people on Story Builder. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part."
+        from: From
+        story_title: Story Title
+        msg: Message
         accept_link: Accept the Invitation
   helpers:
     actions: აირჩიეთ

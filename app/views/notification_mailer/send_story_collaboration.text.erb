@@ -1,7 +1,8 @@
 <%= @message.message %>
 
 <% @message.message_list.each do |msg| %>
-<%= t('mailer.notification.story_collaboration.from', :locale => @message.locale, :from => msg[0]) %>   <%= t('mailer.notification.story_collaboration.story_title', :locale => @message.locale, :title => msg[1]) %>
+<%= "#{t('mailer.notification.story_collaboration.from', :locale => @message.locale)}: #{msg[0]}" %>
+<%= "#{t('mailer.notification.story_collaboration.story_title', :locale => @message.locale)}: #{msg[1]}" %>
 <% if msg[3].present? %>
 <%= msg[3] %>
 <% end %>
