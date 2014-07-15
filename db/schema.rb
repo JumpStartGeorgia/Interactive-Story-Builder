@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140714124147) do
+ActiveRecord::Schema.define(:version => 20140715080635) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20140714124147) do
     t.datetime "accepted_at"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.text     "message"
   end
 
   add_index "invitations", ["key"], :name => "index_invitations_on_key"

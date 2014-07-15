@@ -1,12 +1,14 @@
-<%= t('mailer.notification.story_collaborator_invitation.line1', :locale => @message.locale, :name => @message.from_user, :title => @message.story_title) %>
-
-<%= t('mailer.notification.story_collaborator_invitation.line2', :locale => @message.locale, :url => @message.url) %>
-
-<%= t('mailer.notification.story_collaborator_invitation.line3') %>
-
-<% if @message.message.present? %>
-<%= t('mailer.notification.story_collaborator_invitation.line_msg', :locale => @message.locale, :name => @message.from_user) %>
-
 <%= @message.message %>
+
+<% @message.message_list.each do |msg| %>
+<%= t('mailer.notification.story_collaboration.from', :locale => @message.locale, :from => msg[0]) %>   <%= t('mailer.notification.story_collaboration.story_title', :locale => @message.locale, :title => msg[1]) %>
+<% if msg[3].present? %>
+<%= msg[3] %>
+<% end %>
+
+<%= "#{t('mailer.notification.story_collaboration.accept_link', :locale => @message.locale)}: #{accept_invitation_url(:locale => @message.locale, :key => msg[2])}" %>
+
+------------------
+
 <% end %>
 

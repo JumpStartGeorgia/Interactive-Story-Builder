@@ -638,7 +638,6 @@ end
 
     if @story.present?
       user_with_errors = []
-      email_sent = true
       sending_invitations = false
       msgs = []
       
@@ -660,9 +659,9 @@ end
             Rails.logger.debug "_______________user id = #{user_id}"
             user = User.find_by_id(user_id)
             if user.present?
-              email_sent, msg = send_invitation(@story, user.id, user.email, params[:message])
-              Rails.logger.debug "-------------- email_sent #{email_sent}; msg = #{msg}"
-              if email_sent
+              msg = create_invitation(@story, user.id, user.email, params[:message])
+              Rails.logger.debug "-------------- msg = #{msg}"
+              if msg.blank?
     		        # remove id from list
     		        c_ids.delete(user_id)
     		      else
@@ -675,12 +674,12 @@ end
         end
                    
         # send invitation for new users
-        if email_sent && emails.present?
+        if emails.present?
           emails.each do |email|          
             Rails.logger.debug "_____________email = #{email}"
-            email_sent, msg = send_invitation(@story, nil, email, params[:message])
-            Rails.logger.debug "-------------- email_sent #{email_sent}; msg = #{msg}"
-            if email_sent
+            msg = create_invitation(@story, nil, email, params[:message])
+            Rails.logger.debug "-------------- msg = #{msg}"
+            if msg.blank?
   		        # remove email from list
   		        c_ids.delete(email)
   		      else
@@ -708,7 +707,7 @@ end
       end
 
       # get the invitations on file
-      # - have this down here so any new invitations that were sent will be pulled
+      # - have this at the bottom here so any new invitations that were saved will be pulled
       @invitations = Invitation.pending_by_story(@story.id)
 
       set_settings_gon
@@ -812,8 +811,7 @@ private
     @js.push("stories.js", "modalos.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js")
   end 
   
-  def send_invitation(story, user_id=nil, email=nil, msg=nil)
-		email_sent = false
+  def create_invitation(story, user_id=nil, email=nil, msg=nil)
 		error_msg = nil
 
     if story.present? && (user_id.present? || email.present?)
@@ -825,44 +823,21 @@ private
         return true
       end
 
-      # create the message        
-      message = Message.new
-      message.mailer_type = Message::MAILER_TYPE[:notification]
-      message.locale = I18n.locale
-      message.story_title = story.title
-      message.from_user = current_user.nickname
-      message.email = email
-      
-      if message.valid?
-        # save the invitation
-        inv = Invitation.new
-        inv.story_id = story.id
-        inv.from_user_id = current_user.id
-        inv.to_user_id = user_id
-        inv.to_email = email
+      # save the invitation
+      inv = Invitation.new
+      inv.story_id = story.id
+      inv.from_user_id = current_user.id
+      inv.to_user_id = user_id
+      inv.to_email = email
+      inv.message = msg if msg.present?
 
-        if inv.save
-          Rails.logger.debug "+++ invitation saved, sending message"
-
-          message.url = accept_invitation_url(:locale => message.locale, :key => inv.key)
-          message.message = msg if msg.present?
-
-          Rails.logger.debug "======= message = #{message.inspect}"
-
-          # send message
-		      NotificationMailer.story_collaborator_invitation(message).deliver
-		      email_sent = true
-        else
-          Rails.logger.debug "========= inv error = #{inv.errors.full_messages}"
-          error_msg = inv.errors.full_messages
-        end
-      else
+      if !inv.save
         Rails.logger.debug "========= message error = #{message.errors.full_messages}"
           error_msg = message.errors.full_messages
       end
     end
     
-    return email_sent, error_msg
+    return error_msg
   end
   
   

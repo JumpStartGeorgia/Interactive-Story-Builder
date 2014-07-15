@@ -26,9 +26,6 @@ class Notification < ActiveRecord::Base
   def self.for_staff_pick_selection(locale)
     return get_emails(TYPES[:staff_pick_selection], locale)
   end
-  def self.for_story_collaboration(locale)
-    return get_emails(TYPES[:story_collaboration], locale)
-  end
 
 protected
 

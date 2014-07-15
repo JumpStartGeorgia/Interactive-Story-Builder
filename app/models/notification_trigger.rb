@@ -143,4 +143,63 @@ class NotificationTrigger < ActiveRecord::Base
     end
   end
 
+
+  #################
+  ## story collaboration
+  #################
+  def self.add_story_collaboration(id)
+    NotificationTrigger.create(:notification_type => Notification::TYPES[:story_collaboration], :identifier => id)
+  end
+
+  # slightly different format
+  # for invitations that need triggers, get uniq list of emails
+  # and then for each email send an invitation
+  # - this way if user has > 1 invitation they will all be in one email
+  def self.process_story_collaboration
+    triggers = NotificationTrigger.where(:notification_type => Notification::TYPES[:story_collaboration]).not_processed    
+    if triggers.present?
+      invitations = Invitation.where(:id => triggers.map{|x| x.identifier}.uniq)
+      if invitations.present?
+        emails = invitations.map{|x| x.to_email}.uniq
+        if emails.present?
+          orig_locale = I18n.locale
+          emails.each do |email|
+            invs = invitations.select{|x| x.to_email == email}
+            if invs.present?
+              # if invitations have user_id, get language
+              # else, use default language
+              I18n.locale = I18n.default_locale
+              user_ids = invs.map{|x| x.to_user_id}.uniq
+              if !(user_ids.include?(nil) && user_ids.length == 1)
+                # has user id
+                u = User.select('notification_language').find_by_id(user_ids.select{|x| x.present?}.first)
+                if u.present?
+                  I18n.locale = u.notification_language.to_sym
+                end                  
+              end
+            
+              message = Message.new
+              message.email  = email
+              message.locale = I18n.locale
+              message.subject = I18n.t("mailer.notification.story_collaboration.subject", :locale => I18n.locale)
+              message.message = I18n.t("mailer.notification.story_collaboration.message", :locale => I18n.locale)                  
+              message.message_list = []
+
+              invs.each do |inv|
+                story = Story.select('title').where(:id => inv.story_id).first
+                if story.present?
+                  message.message_list << [inv.from_user.nickname, story.title, inv.key, inv.message]
+		            end
+	            end
+              NotificationMailer.send_story_collaboration(message).deliver
+            end
+          end
+
+          # reset the locale      
+          I18n.locale = orig_locale
+        end
+      end
+      NotificationTrigger.where(:id => triggers.map{|x| x.id}).update_all(:processed => true)
+    end
+  end
 end

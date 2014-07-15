@@ -4,7 +4,7 @@ class News < ActiveRecord::Base
 	has_many :news_translations, :dependent => :destroy
   accepts_nested_attributes_for :news_translations
   
-	attr_accessor :was_published, :was_published_at, :send_notification
+	attr_accessor :send_notification
 
   after_save :check_if_published
 	

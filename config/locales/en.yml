@@ -116,10 +116,10 @@ en:
         message: "news_added message TODO"
       story_collaboration:
         subject: "You have been invited to collaborate on a story on Story Builder!"
-        line1: You have been invited to collaborate with %{name} on a story titled '%{title}'.  
-        line2: "If you would like to accept this invitation, please click here: %{url}."
-        line3: If you want to decline this invitation, no action is needed on your part.
-        line_msg: "Here is message written to you by %{name}:"
+        message: "You have received the following invitations to collaborate on stories with other people on Story Builder. If you would like to accept the invitation, simply click the link next to the story title. If you want to decline this invitation, no action is needed on your part."
+        from: "From: %{from}"
+        story_title: "Story: %{title}"
+        accept_link: Accept the Invitation
   helpers:
     actions: Actions
     links:

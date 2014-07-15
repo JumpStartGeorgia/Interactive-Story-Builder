@@ -39,7 +39,7 @@ class NotificationMailer < ActionMailer::Base
   end
   def send_story_collaboration(message)
     @message = message
-    mail(:bcc => "#{message.bcc}",
+    mail(:to => "#{message.email}",
 			:subject => I18n.t("mailer.notification.story_collaboration.subject"))
   end
 
