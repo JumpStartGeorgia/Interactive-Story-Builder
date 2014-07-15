@@ -50,7 +50,6 @@
     font-style: normal;
     font-weight: 200;
 }
-
 @font-face {
     font-family: "dejavusans-el";    
     src: url( '/assets/fonts/dejavusans-extralight.ttf') format("truetype");           
@@ -75,7 +74,6 @@
     font-style: normal;
     font-weight: 200;
 }
-
 /* clear floats */
 .clearfix:after, .clear:after {
     visibility: hidden;
@@ -331,8 +329,14 @@ footer, footer ul li, footer div#right ul li {
 {
 	padding:4px 14px !important;
 	font-size:14px !important;
+  box-sizing:content-box;
 }
+@-moz-document url-prefix() {
 
+    select {
+        padding-top: 8px;
+    }
+}
 
 /* datatables bootstrap */
 div.dataTables_length label {
@@ -406,8 +410,8 @@ table {
   margin:1px 0px 0px 7px;
 }
 select, input[type="file"] {
-	height: 25px;
-	line-height: 25px;
+/*	height: 25px;
+	line-height: 25px;*/
 }
 #btn-up-slideshow,#btn-down-slideshow
 {
@@ -478,6 +482,7 @@ margin-right:8px;}
   margin-bottom:15px;
   color:#333;
   background-color:transparent;
+  float:right;
 }
 .powered-by a
 {
@@ -740,7 +745,7 @@ margin-right:8px;}
     -moz-border-radius: 133px !important;
     border-radius: 133px !important;              
     text-decoration: none;    
-    padding: 21px 16px !important;  
+    height:45px;
     width:290px;  
   }
   .login-password,.login-password-confirmation
@@ -754,7 +759,7 @@ margin-right:8px;}
     -moz-border-radius: 133px !important;
     border-radius: 133px !important;              
     text-decoration: none;    
-    padding: 21px 16px !important; 
+    height:45px;
     width:290px;   
   }
   .submit-row
@@ -784,10 +789,9 @@ margin-right:8px;}
     -webkit-border-radius: 133px !important;
     -moz-border-radius: 133px !important;
     border-radius: 133px !important;              
-    text-decoration: none;    
-    padding: 11px 23px !important;     
+    text-decoration: none;        
 
-    height:50px !important;
+    height:45px !important;
     -webkit-transition:all .15s ease-out;
     -moz-transition:all .15s ease-out;
     -ms-transition:all .15s ease-out;
@@ -832,5 +836,8 @@ margin-right:8px;}
     color:#888;          
   }
 }
-
+#news_items,#todo
+{
+  margin-left:10px;
+}
 

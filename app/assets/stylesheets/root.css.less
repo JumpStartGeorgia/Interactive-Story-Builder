@@ -4,36 +4,42 @@
   width: 100%;
   height: 100%;    
   text-align: center;   
-  background-size: cover;   
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  background-attachment: scroll;  
+
   -moz-background-clip: border;
   -webkit-background-clip: border;
   background-clip: border-box;
+
   -moz-background-clip: padding;
   -webkit-background-clip: padding;
   background-clip: padding-box;
+
   -moz-background-clip: content;
   -webkit-background-clip: content;
   background-clip: content-box;
+
+  
+
   z-index:101;
   position:relative;
 
   &.intro1
   {
      background: url('/assets/headers/header-bg-01.jpg') no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/headers/header-bg-01.jpg', sizingMethod='scale');
     -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/assets/headers/header-bg-01.jpg', sizingMethod='scale')";
   }
   &.intro2
   {    
     background: url('/assets/headers/header-bg-02.jpg') no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/headers/header-bg-02.jpg', sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/assets/headers/header-bg-02.jpg', sizingMethod='scale')";
   }
   &.intro3
   {

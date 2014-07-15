@@ -67,20 +67,18 @@
             </div>
    
         </div>
-        <div class="workplace"><div class='story-viewer' id='storyViewer'></div></div>
+        <div class="workplace"><div class='story-viewer' id='storyViewer'>&nbsp;</div>
+          <div class="powered-by">
+            <%= t("app.common.powered_by") %>&nbsp;&nbsp;<a href="http://www.jumpstart.ge" target="_blank" title="<%= t("app.common.js_link_title") %>"><%= t("app.common.jumpstart") %></a>
+          </div>
+        </div>
+  
       </div>	           
 		</div><!--/builder-wrapper-->
-    <div class="powered-by">
-      <%= t("app.common.powered_by") %>&nbsp;&nbsp;<a href="http://www.jumpstart.ge" target="_blank" title="<%= t("app.common.js_link_title") %>"><%= t("app.common.jumpstart") %></a>
-    </div>
-    
     <div id="modalos-preview" style="display:none;width:100%;height:100%;"></div>
 
 
     <%= yield(:footer) %>
-    <div class="powered-by">
-      <%= t("app.common.powered_by") %>&nbsp;&nbsp;<a href="http://www.jumpstart.ge" target="_blank" title="<%= t("app.common.js_link_title") %>"><%= t("app.common.jumpstart") %></a>
-    </div>
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -91,20 +89,29 @@ function calculate_workspace()
   var t = $('nav:last');
  
   var topOffset = t.height()+t.offset().top;
-  var bwh = $(".builder-wrapper").height($(window).height()-topOffset).height();
-  
-  $(".story-tree").height(bwh - $(".toolbar").height());
-  $(".workplace").height(bwh - $(".header").height());
+  var bw = $(".builder-wrapper");  
 
-  $(".workplace").css('top',topOffset + 'px');
-  $(".content").width($(window).width()-$('.sidebar').width());
+  var bwh =bw.height($(window).height()-topOffset).height();
+
+  var sidebar = bw.find("> .sidebar");
+  var content = bw.find("> .content");
+  
+  var toolbar = sidebar.find("> .toolbar");
+  var tree =  sidebar.find("> .story-tree");
+
+  var header = content.find("> .header");
+  var workplace = content.find("> .workplace");
+
+  tree.height(bwh - toolbar.height());
+  workplace.height(bwh - header.height());
+
+  workplace.css('top',topOffset + 'px');
+  content.width($(window).width()-bw.find('.sidebar').width());
 }
 $(document).ready(function(){
-  calculate_workspace();
-  
+  calculate_workspace();  
 });
-$(window).resize(function() {
-    console.log("resize");
+$(window).resize(function() {   
     calculate_workspace();
   });
 

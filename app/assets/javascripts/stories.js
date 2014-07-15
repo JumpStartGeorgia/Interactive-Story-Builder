@@ -121,14 +121,15 @@ $(document).ready(function() {
 			{ 		
 				if(typeof(d.e) !== 'undefined' && d.e)	
 				{
-					popuper(d.msg,'error');				
+               if(a.closest('.story-edit').length) a.closest('.story-edit').next('.story-message').html(d.msg).fadeIn(1000);
+               else popuper(d.msg,'error');           
 				}
 				else
-					a.find('span').text(d.title)							
+					a.find('span').text(d.title);							
 			});	 							
 		return true;	
   });
-
+   $('.story-edit-menu ul.nav li > ul.dropdown-menu li').click(function(){$(this).closest('.story-edit').next('.story-message').html("").hide();});
     $(document).on('click', '.preview', function(e){  	
 		e.preventDefault();		
 

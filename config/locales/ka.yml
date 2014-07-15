@@ -238,6 +238,8 @@ ka:
       error_updated: "%{obj} არ იყო განახლებული. [ %{err} ]"
       error_publish: "%{obj} იქნა გამოქვეყნებული. [ %{err} ]"
       error_publish_missing_fields: "%{obj} can't be published until you provide a summary and thumbnail image."
+      error_publish_missing_fields_link: Add the missing content.
+      error_publish_missing_content_section: At least one content section required.
       error_unpublish: "%{obj} გამოქვეყნება გაუქმებულია. [ %{err} ]"
       error_clone: "%{obj} იქნა კლონირებული." 
       error_export: "ამბის ექსპორტი შეუძლებელია"     

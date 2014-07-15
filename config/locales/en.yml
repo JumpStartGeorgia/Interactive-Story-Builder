@@ -238,6 +238,8 @@ en:
       error_updated: "%{obj} wasn't updated.[ %{err} ]"
       error_publish: "%{obj} wasn't published.[ %{err} ]"
       error_publish_missing_fields: "%{obj} can't be published until you provide a summary and thumbnail image."
+      error_publish_missing_fields_link: Add the missing content.
+      error_publish_missing_content_section: At least one content section required.
       error_unpublish: "%{obj} wasn't unpublished.[ %{err} ]"
       error_clone: "%{obj} wasn't cloned."
       error_export: "Story can't be exported"

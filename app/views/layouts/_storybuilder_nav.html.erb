@@ -42,12 +42,12 @@
         <li class="dropdown dropdown-hover">
           <%= link_to image_tag(current_user.avatar_url, :class=>"avatar link"), "#" , 
                :class => "dropdown-toggle avatar-link", :"data-toggle"=>"dropdown" %>                          
-          <ul class="dropdown-menu pull-right">
-            <li>
-              <%= link_to t('app.common.build'), new_story_path  %>
-            </li>              
+          <ul class="dropdown-menu pull-right">                  
             <li>
               <%= link_to t('helpers.titles.story_list'), stories_path  %>
+            </li>  
+            <li>
+              <%= link_to t('app.common.build'), new_story_path  %>
             </li>              
             <li>
               <%= link_to t('helpers.links.user_settings'), settings_path  %>

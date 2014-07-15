@@ -8,7 +8,7 @@
           </i></button>
           <button type="button" id='btnUp' class="btn btn-info" title="<%= t('app.buttons.up') %>"> <i class="glyphicon glyphicon-arrow-up" ></i> </button>
           <button type="button" id='btnDown' class="btn btn-info" title="<%= t('app.buttons.down') %>"> <i class="glyphicon glyphicon-arrow-down" ></i></button>
-          <button type="button"  id='btnPublish' class="btn btn-warning <%= @story.published ? '' : ' disabled'%>" title="<%= @story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>" data-link='<%= publish_story_path(@story) %>'> <i class="glyphicon glyphicon-globe" ></i></button>     
+          <button type="button"  id='btnPublish' class="btn btn-warning <%= @story.published ? ' disabled' : ''%>" title="<%= @story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>" data-link='<%= publish_story_path(@story) %>'> <i class="glyphicon glyphicon-globe" ></i></button>     
 
            <button type="button"  id='btnPreview' class="btn btn-success preview" title="<%= t('app.buttons.preview') %>" data-link='<%=  preview_story_path(@story) %>'
             data-modalos-id='modalos-preview' data-type="story"> <i class="glyphicon glyphicon-eye-open" ></i></button>            

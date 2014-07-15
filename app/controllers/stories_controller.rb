@@ -87,21 +87,31 @@ class StoriesController < ApplicationController
     @story = Story.find(params[:id])
 
     respond_to do |format|
-      if @story.update_attributes(params[:story])
-
-        flash_success_updated(Story.model_name.human,@story.title)       
-        format.html { redirect_to  sections_story_path(@story),  notice: t('app.msgs.success_updated', :obj => t('activerecord.models.story')) }
-        format.js { render action: "flash", status: :created }    
-      else
-        if !@story.asset.present? 
-          @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
-        end 
-        @templates = Template.select_list(@story.template_id)
-        @story_tags = @story.tags.token_input_tags
-        
-        flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
+      if !@story.published && params[:story][:published]=="1"
+        if !@story.about.present? || !@story.asset_exists?
+          flash[:error] = I18n.t('app.msgs.error_publish_missing_fields', :obj => @story.title)            
+        elsif @story.sections.map{|t| t.content? && t.content.content.present? }.count(true) == 0
+          flash[:error] = I18n.t('app.msgs.error_publish_missing_content_section')            
+        end                      
         format.html { render action: "edit" }
         format.js {render action: "flash" , status: :ok }
+      else
+        if @story.update_attributes(params[:story])
+
+          flash_success_updated(Story.model_name.human,@story.title)       
+          format.html { redirect_to  sections_story_path(@story),  notice: t('app.msgs.success_updated', :obj => t('activerecord.models.story')) }
+          format.js { render action: "flash", status: :created }    
+        else
+          if !@story.asset.present? 
+            @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+          end 
+          @templates = Template.select_list(@story.template_id)
+          @story_tags = @story.tags.token_input_tags
+          
+          flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
+          format.html { render action: "edit" }
+          format.js {render action: "flash" , status: :ok }
+        end
       end
     end
   end
@@ -460,32 +470,33 @@ class StoriesController < ApplicationController
     @item = Story.find_by_id(params[:id])
     publishing = !@item.published
     pub_title = ''
+    error = false
+    respond_to do |format|    
 
-    if @item.about.present? && @item.asset_exists?
-      respond_to do |format|     
+      if publishing
+        if !(@item.about.present? && @item.asset_exists?)                
+           format.json {render json: { e:true, msg: (t('app.msgs.error_publish_missing_fields', :obj => @item.title) +  
+                " <a href='" +  edit_story_path(@item) + "'>" + t('app.msgs.error_publish_missing_fields_link') + "</a>")} }  
+           error = true       
+        elsif @item.sections.map{|t| t.content? && t.content.content.present? }.count(true) == 0          
+           format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_content_section')} }          
+           error = true
+        end            
+      end
+
+  
+      if !error 
         if @item.update_attributes(published: publishing)     
           flash[:success] =u I18n.t("app.msgs.success_#{publishing ? '' :'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                   
-        else
-          flash[:error] = u I18n.t("app.msgs.error#{publishing ? '' : 'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                                                                             
-        end
-        
-        if @item.published
-          pub_title = I18n.t("app.buttons.unpublish")              
-        else
-          pub_title = I18n.t("app.buttons.publish")                   
-        end
-        format.json {render json: { title: pub_title }, status: :ok }
-        format.html { redirect_to stories_url }
+          pub_title = @item.published ? I18n.t("app.buttons.unpublish")  : I18n.t("app.buttons.publish")                    
+          format.json {render json: { title: pub_title }, status: :ok }
+        else          
+          format.json {render json: { e:true, msg: t("app.msgs.error#{publishing ? '' : 'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")}}     
+        end      
       end
-    else
-      respond_to do |format|  
-
-        format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_fields', :obj => @item.title) } }
-      end
-    end
-
-    
+      format.html { redirect_to stories_url }
   end
+end
 
 
   def export

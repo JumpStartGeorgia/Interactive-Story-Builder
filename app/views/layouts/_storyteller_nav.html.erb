@@ -151,7 +151,7 @@
   <div class="share">
     <div class="facebook">
 
-    <a href="https://www.facebook.com/dialog/feed?app_id=<%= @face_id %>&redirect_uri=<%= storyteller_show_url(@story.permalink) %>&link=<%= storyteller_show_url(@story.permalink) %>" onclick="javascript:window.open(this.href,
+    <a href="https://www.facebook.com/dialog/feed?app_id=<%= @face_id %>&link=<%= storyteller_show_url(@story.permalink) %>" onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">  
           <i class="i-icon i-facebook-l"></i><%= "#{t('app.common.share_facebook')}" %></a>      
        
@@ -183,11 +183,6 @@
       </div>
 
     </div>
-  </div>
-  <div class="email">
-      <a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">
-        <i class="i-icon i-mail"></i><%= "#{t('app.common.email')}" %>
-      </a>
   </div>
 </div>
 
@@ -570,34 +565,6 @@ margin-left:8px;
     vertical-align: middle !important;
    
    }
-
-
-    .share-window .email a i 
-    {
-      margin-right:6px;
-    }
-  .share-window .email a
-  {
-      display:inline-block;
-      font-family:opensans-r;
-      font-size:18px;
-      color:#000;      
-      background-color: #f3f3f3;     
-      -webkit-border-radius: 133px;
-      -moz-border-radius: 133px;
-      border-radius: 133px;
-      height:57px;
-      padding: 0px 35px 0px 35px;
-      text-decoration: none;
-      line-height: 57px;
-
-  }
-  .share-window .email a:hover
-  {
-    border:1px solid #d7d7d7;
-  }
-
-
 </style>
 <script type="text/javascript">
     <% 
