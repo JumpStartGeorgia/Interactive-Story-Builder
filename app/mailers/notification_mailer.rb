@@ -9,13 +9,8 @@ class NotificationMailer < ActionMailer::Base
   end
   def send_published_story(message)
     @message = message
-    mail(:bcc => "#{message.bcc}",
+    mail(:to => "#{message.email}",
          :subject => I18n.t("mailer.notification.published_story.subject"))    
-  end
-  def send_new_story_followed_user(message)
-    @message = message
-    mail(:bcc => "#{message.bcc}",
-         :subject => I18n.t("mailer.notification.new_story_followed_user.subject"))    
   end
   def send_story_comment(message)
     @message = message

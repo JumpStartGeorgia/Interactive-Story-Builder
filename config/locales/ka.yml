@@ -97,11 +97,8 @@ ka:
         subject: "Welcome to Story Builder!"
         message: "Thank you for becoming a member of Story Builder. We look forward to exploring the stories you build!\n\nWhen you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summar about yourself: [settings_link].\n\nYou can manage when you would like to receive email notifications from Story Builder by going to the notifications page: [notifications_link]. "
       published_story:
-        subject: "story_published subject TODO"
-        message: "story_published message TODO"
-      new_story_followed_user:
-        subject: "story_commented subject TODO"
-        message: "story_commented message TODO"
+        subject: "New stories have been published on Story Builder!"
+        message: "The following stories you have expressed interest in were recently published:"
       story_comment:
         subject: "story_commented subject TODO"
         message: "story_commented message TODO"
@@ -109,8 +106,8 @@ ka:
         subject: "Story Builder has new News!"
         message: "The following News was just posted on Story Builder. Click on the link to learn what is going on with Story Builder."
       staff_pick_review:
-        subject: "news_added subject TODO"
-        message: "news_added message TODO"
+        subject: "Story Builder has new published stories to review for Staff Pick!"
+        message: "The following stories were recently published and need review to see if they deserve to be a Staff Pick:"
       staff_pick_selection:
         subject: "news_added subject TODO"
         message: "news_added message TODO"
