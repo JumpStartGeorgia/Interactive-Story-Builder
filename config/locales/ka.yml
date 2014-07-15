@@ -95,7 +95,7 @@ ka:
     notification:
       new_user:
         subject: "Welcome to Story Builder!"
-        message: "Thank you for becoming a member of Story Builder. We look forward to exploring the stories you build!\n\nWhen you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summar about yourself: [settings_link].\n\nYou can manage when you would like to receive email notifications from Story Builder by going to the notifications page: [notifications_link]. "
+        message: "Thank you for becoming a member of Story Builder. We look forward to exploring the stories you build!\n\nWhen you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summary about yourself: [settings_link].\n\nYou can manage when you would like to receive email notifications from Story Builder by going to the notifications page: [notifications_link]. "
       published_story:
         subject: "New stories have been published on Story Builder!"
         message: "The following stories you have expressed interest in were recently published:"
@@ -107,10 +107,10 @@ ka:
         message: "The following News was just posted on Story Builder. Click on the link to learn what is going on with Story Builder."
       staff_pick_review:
         subject: "Story Builder has new published stories to review for Staff Pick!"
-        message: "The following stories were recently published and need review to see if they deserve to be a Staff Pick:"
+        message: "The following stories need to be reviewed to see if they are worthy to be a Staff Pick:"
       staff_pick_selection:
-        subject: "news_added subject TODO"
-        message: "news_added message TODO"
+        subject: "Your story has been given the Staff Pick award on Story Builder!"
+        message: "Congratulations! The following stories of yours were given the Staff Pick award:"
       story_collaboration:
         subject: "You have been invited to collaborate on a story on Story Builder!"
         message: "You have received the following invitations to collaborate on stories with other people on Story Builder. If you would like to accept the invitation, simply click the link next to the story title. If you want to decline this invitation, no action is needed on your part."

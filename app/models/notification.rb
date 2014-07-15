@@ -6,10 +6,13 @@ class Notification < ActiveRecord::Base
 
   validates :user_id, :notification_type, :presence => true
 
-  # only need types for items that users can register for
-  # - cannot register for: new user, staff pick review, staff pick selection, collaboration invitation
-  TYPES = {:published_story => 1, :published_story_by_author => 2, :story_comment => 3, :published_news => 4}
+  TYPES = {:published_story => 1, :published_story_by_author => 2, :story_comment => 3,
+           :published_news => 4, :staff_pick_selection => 5, :new_user => 6, :story_collaboration => 7}
 
+
+  ###################
+  # methods to get emails of users that need to be notified
+  ###################
   def self.for_new_user(locale, ids)
     return get_new_user_emails(ids, locale)
   end
@@ -21,9 +24,6 @@ class Notification < ActiveRecord::Base
   end
   def self.for_published_news(locale)
     return get_emails(TYPES[:published_news], locale)
-  end
-  def self.for_staff_pick_selection(locale)
-#    return get_emails(TYPES[:staff_pick_selection], locale)
   end
   def self.for_staff_pick_review(locale)
     return get_staff_pick_review_emails(locale)
@@ -90,7 +90,7 @@ protected
     emails = []
     if type && locale
        x = select("distinct users.email").joins(:user)
-       .where("users.wants_notifications = 1 and users.notification_language = ? and notification_type = ?", locale, type)
+        .where("users.wants_notifications = 1 and users.notification_language = ? and notification_type = ?", locale, type)
     end
 
     if x.present?

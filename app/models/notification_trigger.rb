@@ -7,6 +7,7 @@ class NotificationTrigger < ActiveRecord::Base
     process_published_news
     process_story_collaboration
     process_published_story
+    process_staff_pick_selection
   end
 
   #################
@@ -146,6 +147,45 @@ class NotificationTrigger < ActiveRecord::Base
     end
   end
 
+  #################
+  ## staff pick selection
+  #################
+  def self.add_staff_pick_selection(id)
+    NotificationTrigger.create(:notification_type => Notification::TYPES[:staff_pick_selection], :identifier => id)
+  end
+
+  def self.process_staff_pick_selection
+    triggers = NotificationTrigger.where(:notification_type => Notification::TYPES[:staff_pick_selection]).not_processed    
+    if triggers.present?
+      # get stories for these triggers
+      stories = Story.is_published.recent.where(:id => triggers.map{|x| x.identifier}.uniq)
+      if stories.present?
+        author_ids = stories.map{|x| x.user_id}.uniq
+        
+        orig_locale = I18n.locale
+        author_ids.each do |author_id|
+          user = User.find_by_id(author_id)
+          if user.present?
+            I18n.locale = user.notification_language.to_sym
+            message = Message.new
+            message.email = user.email
+            message.locale = I18n.locale
+            message.subject = I18n.t("mailer.notification.staff_pick_selection.subject", :locale => I18n.locale)
+            message.message = I18n.t("mailer.notification.staff_pick_selection.message", :locale => I18n.locale)                  
+            message.message_list = []
+
+            stories.select{|x| x.user_id == author_id}.each do |story|
+              message.message_list << [story.title, story.permalink]
+            end
+            NotificationMailer.send_staff_pick_selection(message).deliver
+          end
+        end
+        # reset the locale      
+        I18n.locale = orig_locale
+      end
+      NotificationTrigger.where(:id => triggers.map{|x| x.id}).update_all(:processed => true)
+    end
+  end
 
 
   #################
@@ -214,10 +254,7 @@ class NotificationTrigger < ActiveRecord::Base
               user_ids = invs.map{|x| x.to_user_id}.uniq
               if !(user_ids.include?(nil) && user_ids.length == 1)
                 # has user id
-                u = User.select('notification_language').find_by_id(user_ids.select{|x| x.present?}.first)
-                if u.present?
-                  I18n.locale = u.notification_language.to_sym
-                end                  
+                I18n.locale = User.get_notification_language_locale(user_ids.select{|x| x.present?}.first)
               end
             
               message = Message.new

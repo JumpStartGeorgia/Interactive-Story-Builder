@@ -29,7 +29,7 @@ class NotificationMailer < ActionMailer::Base
   end
   def send_staff_pick_selection(message)
     @message = message
-    mail(:bcc => "#{message.bcc}",
+    mail(:to => "#{message.email}",
 			:subject => I18n.t("mailer.notification.staff_pick_selection.subject"))
   end
   def send_story_collaboration(message)
