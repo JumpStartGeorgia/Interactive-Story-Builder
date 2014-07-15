@@ -45,30 +45,38 @@ class User < ActiveRecord::Base
 
   # if the nickname changes, then the permalink must also change
   def check_nickname_changed
-    fix_nickname_dublication if self.id.blank?
+    puts "checking nickname changed"
+    
+    # if this is a create (id does not exist) make sure the nickname is unique
+    fix_nickname_duplication if self.id.blank?
+    
     if self.nickname_changed?
       # make sure there are no tags in the nickname
       self.nickname = ActionController::Base.helpers.strip_links(self.nickname)
       self.generate_permalink! 
     end
   end
-  def fix_nickname_dublication 
-    nick = read_attribute(:nickname).present? ? read_attribute(:nickname) : self.email.split('@')[0]    
-      n = self.class.where(["nickname = ?", nick]).count
-      
-      if n > 0 
-        links = self.class.where(["nickname LIKE ?", "#{nick}%"]).order("id")
+  # if this nickname already exists, add a # to the end to make it unique
+  def fix_nickname_duplication 
+    # if the nickname does not exist, populate with the first part of the email
+    if read_attribute(:nickname).blank?
+      self.nickname = self.email.split('@')[0]
+    end
 
-        number = 0
-        
-        links.each_with_index do |link, index|
-          if link.nickname =~ /#{nick}-\d*\.?\d+?$/
-            new_number = link.nickname.match(/-(\d*\.?\d+?)$/)[1].to_i
-            number = new_number if new_number > number
-          end
-        end         
-        self.nickname = "#{nick}-#{number+1}"
-      end  
+    n = self.class.where(["nickname = ?", self.nickname]).count
+    
+    if n > 0 
+      links = self.class.where(["nickname LIKE ?", "#{self.nickname}%"]).order("id")
+      number = 0
+      
+      links.each_with_index do |link, index|
+        if link.nickname =~ /#{self.nickname}-\d*\.?\d+?$/
+          new_number = link.nickname.match(/-(\d*\.?\d+?)$/)[1].to_i
+          number = new_number if new_number > number
+        end
+      end         
+      self.nickname = "#{self.nickname}-#{number+1}"
+    end  
   end
 
   def create_permalink   
@@ -182,8 +190,8 @@ class User < ActiveRecord::Base
 		super && provider.blank?
 	end
 
-# if not set, default to current locale
+  # if not set, default to current locale
   def set_notification_language
-    self.notification_language = I18n.locale if !read_attribute("notification_language").present?
+    self.notification_language = I18n.locale if read_attribute("notification_language").blank?
   end
 end

@@ -18,15 +18,15 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
- set :output, "log/cron.log"
+set :output, "log/cron.log"
 
 every 3.hours do
   rake "story:tmp_stories_clear", :environment => 'development' 
 end
 
-# case @environment
-# when 'production'
+case @environment
+when 'production'
   every 30.minutes do
     runner "NotificationTrigger.process_all_types"
   end
-# end
+end

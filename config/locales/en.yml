@@ -93,27 +93,33 @@ en:
       contact_form:
         subject: "Story Builder Contact Form"
     notification:
-      story_collaborator_invitation:
+      new_user:
+        subject: "Welcome to Story Builder!"
+        message: "Thank you for becoming a member of Story Builder. We look forward to exploring the stories you build!\n\nWhen you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summar about yourself: [settings_link].\n\nYou can manage when you would like to receive email notifications from Story Builder by going to the notifications page: [notifications_link]. "
+      published_story:
+        subject: "story_published subject TODO"
+        message: "story_published message TODO"
+      new_story_followed_user:
+        subject: "story_commented subject TODO"
+        message: "story_commented message TODO"
+      story_comment:
+        subject: "story_commented subject TODO"
+        message: "story_commented message TODO"
+      news:
+        subject: "news_added subject TODO"
+        message: "news_added message TODO"
+      staff_pick_review:
+        subject: "news_added subject TODO"
+        message: "news_added message TODO"
+      staff_pick_selection:
+        subject: "news_added subject TODO"
+        message: "news_added message TODO"
+      story_collaboration:
         subject: "You have been invited to collaborate on a story on Story Builder!"
         line1: You have been invited to collaborate with %{name} on a story titled '%{title}'.  
         line2: "If you would like to accept this invitation, please click here: %{url}."
         line3: If you want to decline this invitation, no action is needed on your part.
         line_msg: "Here is message written to you by %{name}:"
-      account_created:
-        subject: "Welcome to storybuilder.jumpstart.ge! TODO"
-        message: "Thank you for becoming a member of storybuilder TODO"
-      story_published:
-        subject: "story_published subject TODO"
-        message: "story_published message TODO"
-      story_commented:
-        subject: "story_commented subject TODO"
-        message: "story_commented message TODO"
-      publish_by_leader:
-        subject: "publish_by_leader subject TODO"
-        message: "publish_by_leader message TODO"
-      news_added:
-        subject: "news_added subject TODO"
-        message: "news_added message TODO"
   helpers:
     actions: Actions
     links:

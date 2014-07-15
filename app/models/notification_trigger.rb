@@ -1,30 +1,30 @@
 class NotificationTrigger < ActiveRecord::Base
-  attr_accessible :identifier, :notification_type
-   scope :not_processed, where(:processed => false)
-  #TYPES = {:account_created => 1, :story_published => 2, :story_commented => 3, :publish_by_leader => 4, :news_added => 5 }
+  attr_accessible :notification_type, :identifier, :processed
+  scope :not_processed, where(:processed => false)
+
   def self.process_all_types
-    process_account_created  
-    process_story_published 
+    process_new_user
+    process_published_story 
   end
 
   #################
-  ## account_created
+  ## new user
   #################
-  def self.add_account_created(id)
-    NotificationTrigger.create(:notification_type => Notification::TYPES[:account_created], :identifier => id)
+  def self.add_new_user(id)
+    NotificationTrigger.create(:notification_type => Notification::TYPES[:new_user], :identifier => id)
   end
 
-  def self.process_account_created
-    triggers = NotificationTrigger.where(:notification_type => Notification::TYPES[:account_created]).not_processed    
+  def self.process_new_user
+    triggers = NotificationTrigger.where(:notification_type => Notification::TYPES[:new_user]).not_processed    
     if triggers.present?
       I18n.available_locales.each do |locale|          
         message = Message.new
-        message.bcc = Notification.for_account_created(locale,triggers.map{|x| x.identifier})
-        if message.bcc.length > 0
+        message.bcc = Notification.for_new_user(locale,triggers.map{|x| x.identifier}.uniq)
+        if message.bcc.present?
           message.locale = locale
-          message.subject = I18n.t("mailer.notification.account_created.subject", :locale => locale)
-          message.message = I18n.t("mailer.notification.account_created.message", :locale => locale)                  
-          NotificationMailer.send_account_created(message).deliver
+          message.subject = I18n.t("mailer.notification.new_user.subject", :locale => locale)
+          message.message = I18n.t("mailer.notification.new_user.message", :locale => locale)                  
+          NotificationMailer.send_new_user(message).deliver
         end
       end
       NotificationTrigger.where(:id => triggers.map{|x| x.id}).update_all(:processed => true)
@@ -32,24 +32,63 @@ class NotificationTrigger < ActiveRecord::Base
   end
 
   #################
-  ## story_published
+  ## published story
   #################
-  def self.add_story_published(id)
-    NotificationTrigger.create(:notification_type => Notification::TYPES[:story_published], :identifier => id)
+  def self.add_published_story(id)
+    NotificationTrigger.create(:notification_type => Notification::TYPES[:published_story], :identifier => id)
   end
 
-  def self.process_story_published
-    # TODO
-    triggers = NotificationTrigger.where(:notification_type => Notification::TYPES[:story_published]).not_processed    
+  def self.process_published_story
+    triggers = NotificationTrigger.where(:notification_type => Notification::TYPES[:published_story]).not_processed    
     if triggers.present?
       I18n.available_locales.each do |locale|          
         message = Message.new
-        message.bcc = Notification.for_story_published(locale,triggers.map{|x| x.identifier})
-        if message.bcc.length > 0
+        message.bcc = Notification.for_published_story(locale)
+        if message.bcc.present?
           message.locale = locale
-          message.subject = I18n.t("mailer.notification.story_published.subject", :locale => locale)
-          message.message = I18n.t("mailer.notification.story_published.message", :locale => locale)                  
-          NotificationMailer.send_story_published(message).deliver
+          message.subject = I18n.t("mailer.notification.published_story.subject", :locale => locale)
+          message.message = I18n.t("mailer.notification.published_story.message", :locale => locale)                  
+          message.message2 = []
+
+          triggers.map{|x| x.identifier}.uniq.each do |id|
+            story = Story.published.find_by_id(id)
+            if story.present?
+              message.message2 << [story.title, story.permalink]
+		        end
+	        end
+          NotificationMailer.send_published_story(message).deliver
+        end
+      end
+      NotificationTrigger.where(:id => triggers.map{|x| x.id}).update_all(:processed => true)
+    end
+  end
+
+  #################
+  ## new story of user being followed
+  #################
+  def self.add_new_story_followed_user(id)
+    NotificationTrigger.create(:notification_type => Notification::TYPES[:new_story_followed_user], :identifier => id)
+  end
+
+  def self.process_new_story_followed_user
+    triggers = NotificationTrigger.where(:notification_type => Notification::TYPES[:new_story_followed_user]).not_processed    
+    if triggers.present?
+      I18n.available_locales.each do |locale|          
+        message = Message.new
+        message.bcc = Notification.for_new_story_followed_user(locale)
+        if message.bcc.present?
+          message.locale = locale
+          message.subject = I18n.t("mailer.notification.new_story_followed_user.subject", :locale => locale)
+          message.message = I18n.t("mailer.notification.new_story_followed_user.message", :locale => locale)                  
+          message.message2 = []
+
+          triggers.map{|x| x.identifier}.uniq.each do |id|
+            story = Story.published.find_by_id(id)
+            if story.present?
+              message.message2 << [story.title, story.permalink]
+		        end
+	        end
+          NotificationMailer.send_new_story_followed_user(message).deliver
         end
       end
       NotificationTrigger.where(:id => triggers.map{|x| x.id}).update_all(:processed => true)
@@ -57,20 +96,36 @@ class NotificationTrigger < ActiveRecord::Base
   end
 
 
-   # def self.send_account_created(locale)
-   #    return get_emails(TYPES[:account_created], locale)
-   # end
-   # def self.send_story_published(locale)
-   #    return get_emails(TYPES[:story_published], locale)
-   # end
-   # def self.send_story_commented(locale)
-   #    return get_emails(TYPES[:story_commented], locale)
-   # end
-   # def self.send_publish_by_leader(locale)
-   #    return get_emails(TYPES[:publish_by_leader], locale)
-   # end
-   # def self.send_news_added(locale)
+  #################
+  ## new news item
+  #################
+  def self.add_news(id)
+    NotificationTrigger.create(:notification_type => Notification::TYPES[:news], :identifier => id)
+  end
 
+  def self.process_news
+    triggers = NotificationTrigger.where(:notification_type => Notification::TYPES[:news]).not_processed    
+    if triggers.present?
+      I18n.available_locales.each do |locale|          
+        message = Message.new
+        message.bcc = Notification.for_news(locale,triggers.map{|x| x.identifier})
+        if message.bcc.present?
+          message.locale = locale
+          message.subject = I18n.t("mailer.notification.news.subject", :locale => locale)
+          message.message = I18n.t("mailer.notification.news.message", :locale => locale)                  
+          message.message2 = []
 
+          triggers.map{|x| x.identifier}.uniq.each do |id|
+            news = News.published.find_by_id(id)
+            if news.present?
+              message.message2 << [news.title, news.permalink]
+		        end
+	        end
+          NotificationMailer.send_news(message).deliver
+        end
+      end
+      NotificationTrigger.where(:id => triggers.map{|x| x.id}).update_all(:processed => true)
+    end
+  end
 
 end

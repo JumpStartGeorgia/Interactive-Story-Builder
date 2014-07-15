@@ -8,7 +8,7 @@ class UserObserver < ActiveRecord::Observer
   # send notification
   def after_commit(user)
     if user.send_notification
-      NotificationTrigger.add_account_created(user.id)
+      NotificationTrigger.add_new_user(user.id)
     end
   end
 end
