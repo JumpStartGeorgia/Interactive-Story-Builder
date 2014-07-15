@@ -6,9 +6,7 @@ class Notification < ActiveRecord::Base
 
   validates :user_id, :notification_type, :presence => true
 
-  TYPES = {:new_user => 1, :published_story => 2, :new_story_followed_user => 3, :story_comment => 4, :news => 5, :staff_pick_selection => 6, :story_collaboration => 7}
-
-#  TYPES = {:account_created => 1, :story_published => 2, :story_commented => 3, :publish_by_leader => 4, :news_added => 5 }
+  TYPES = {:new_user => 1, :published_story => 2, :new_story_followed_user => 3, :story_comment => 4, :published_news => 5, :staff_pick_selection => 6, :story_collaboration => 7}
 
   def self.for_new_user(locale, ids)
     return get_new_user_emails(ids, locale)
@@ -22,8 +20,8 @@ class Notification < ActiveRecord::Base
   def self.for_story_comment(locale)
     return get_emails(TYPES[:story_comment], locale)
   end
-  def self.for_news(locale)
-    return get_emails(TYPES[:news], locale)
+  def self.for_published_news(locale)
+    return get_emails(TYPES[:published_news], locale)
   end
   def self.for_staff_pick_selection(locale)
     return get_emails(TYPES[:staff_pick_selection], locale)

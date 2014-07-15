@@ -22,10 +22,10 @@ class NotificationMailer < ActionMailer::Base
     mail(:bcc => "#{message.bcc}",
          :subject => I18n.t("mailer.notification.story_comment.subject"))    
   end
-  def send_news(message)
+  def send_published_news(message)
     @message = message
     mail(:bcc => "#{message.bcc}",
-         :subject => I18n.t("mailer.notification.news.subject"))    
+         :subject => I18n.t("mailer.notification.published_news.subject"))    
   end
   def send_staff_pick_review(message)
     @message = message

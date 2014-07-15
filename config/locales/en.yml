@@ -105,9 +105,9 @@ en:
       story_comment:
         subject: "story_commented subject TODO"
         message: "story_commented message TODO"
-      news:
-        subject: "news_added subject TODO"
-        message: "news_added message TODO"
+      published_news:
+        subject: "Story Builder has new News!"
+        message: "The following News was just posted on Story Builder. Click on the link to learn what is going on with Story Builder."
       staff_pick_review:
         subject: "news_added subject TODO"
         message: "news_added message TODO"
