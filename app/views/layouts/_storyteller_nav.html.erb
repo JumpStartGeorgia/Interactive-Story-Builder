@@ -111,7 +111,8 @@
       <%= link_to @story.user.nickname, author_path(@story.user.permalink), :title => @story.user.nickname %>      
     </div>    
     <div class="follow">
-      <a href="#" class="follow-link"><%= "#{t('app.common.follow')}" %></a>
+      <%= render partial: 'layouts/follow_link', 
+          locals: {:user_id => @story.user_id, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
     </div>   
     <div class="stats"> 
         <i class="i-icon i-like-d"></i><span class="likes"><%= @story.likes %></span>            

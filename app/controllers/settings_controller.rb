@@ -53,6 +53,45 @@ class SettingsController < ApplicationController
     end
   end 
   
+
+  # register the current user as wanting to follow the user passed in
+  def follow_user
+    output = ''
+    if params[:user_id].present?
+      x = Notification.add_follow_user(current_user.id, params[:user_id])
+      if x
+        output = 'success!'
+      else
+        output = "error: #{x.errors.full_message}"
+      end
+    else
+      output = 'please provide a user to follow'
+    end
+
+    respond_to do |format|     
+      format.json { render json: output.to_json } 
+    end
+  end
+
+  def unfollow_user
+    output = ''
+    if params[:user_id].present?
+      x = Notification.delete_follow_user(current_user.id, params[:user_id])
+      if x
+        output = 'success!'
+      else
+        output = "error: #{x.errors.full_message}"
+      end
+    else
+      output = 'please provide a user to follow'
+    end
+
+    respond_to do |format|     
+      format.json { render json: output.to_json } 
+    end
+  end
+
+  
   
   # view invitations that are currently on record for this user
   def invitations

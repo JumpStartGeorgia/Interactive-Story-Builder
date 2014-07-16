@@ -32,7 +32,7 @@ ka:
         media_author: ფოტოსა და ვიდეოს ავტორ(ებ)ი
         published: გამოქვეყნება
         published_at: გამოქვეყნებულია
-        publish_home_page: გსურთ გამოქვეყნების შემდგომ, თქვენი ამბავი გააზიაროთ საწყის გვერძე?
+        publish_home_page: Once published, make your story visible on the homepage?
         template_id: შაბლონი
         thumbnail: ესკიზი
         about: ამბის მოკლე შინაარსი
@@ -235,6 +235,9 @@ ka:
       likes: Likes
       comments: Comments
       follow: Follow
+      following: Following
+      follow_link_title: Click to receive notifications whenever this user publishes new stories
+      unfollow_link_title: Click to stop receiving notifications whenever this user publishes new stories
       email: Email
       views: Views
       permalink: Permalink
@@ -457,7 +460,7 @@ ka:
         author: სტატიის ავტორ(ებ)ი გამოჩნდებ(ი)ა(ნ) პირველი შინაარსის სექციაში
         media_author:  ავტორ(ებ)ი გამოჩნდებ(ი)ა(ნ) პირველი შინაარსის სექციაში ამბის სათაურის ქვემოთ
         published: გამოქვეყნებული ამბების წაკითხვა ყველას შეუძლია
-        publish_home_page: თუ მონიშნავთ, თქვენი ამბავი გამოჩნდება საწყის გვერძე გამოქვეყნების შემდგომ
+        publish_home_page: "If checked, your published story will appear on the site's homepage"
         template: აირჩიეთ შაბლონი ამბის სტილის შესარჩევად
         thumbnail: თქვენი ამბის გამოსახულება, რომელიც გამოჩნდება საწყის გვერძე, როდესაც ამბავი გამოქვეყნდება (მხოლოდ jpg და png ფორმატი)
         editor: ამბის შემქმნელი პირი

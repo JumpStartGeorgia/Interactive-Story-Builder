@@ -32,7 +32,7 @@ en:
         media_author: Photo and Video Author(s)  
         published: Publish?
         published_at: Was Published
-        publish_home_page: When Published, Share Your Story on the Home Page?
+        publish_home_page: Once published, make your story visible on the homepage?
         template_id: Template
         thumbnail: Thumbnail
         about: Story Summary
@@ -235,6 +235,9 @@ en:
       likes: Likes
       comments: Comments
       follow: Follow
+      following: Following
+      follow_link_title: Click to receive notifications whenever this user publishes new stories
+      unfollow_link_title: Click to stop receiving notifications whenever this user publishes new stories
       email: Email
       views: Views
       permalink: Permalink
@@ -457,7 +460,7 @@ en:
         author: Author(s) will appear on the first content section
         media_author:  "Author(s) will appear on the first content section below the Story Author(s)"
         published: Published stories are available for the world to read
-        publish_home_page: If checked, your story will appear on the home page of the site when it is published
+        publish_home_page: "If checked, your published story will appear on the site's homepage"
         template: Choose template to apply styling to story
         thumbnail: Image that is used to show the story on the home page when the story is published (jpg and png only)
         editor: Person that created the story record in this website

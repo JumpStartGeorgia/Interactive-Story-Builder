@@ -96,7 +96,6 @@ class ApplicationController < ActionController::Base
     gon.nickname_url = I18n.t('app.msgs.nickname_url')
     gon.story_duplicate = I18n.t('app.msgs.story_duplicate')
     gon.story_url = I18n.t('app.msgs.story_url')
-    
 
     gon.msgs_select_section = I18n.t('app.msgs.select_section')
     gon.msgs_one_section_content = I18n.t('app.msgs.one_section.content')

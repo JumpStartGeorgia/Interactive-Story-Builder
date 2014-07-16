@@ -9,6 +9,28 @@ class Notification < ActiveRecord::Base
   TYPES = {:published_story => 1, :published_story_by_author => 2, :story_comment => 3,
            :published_news => 4, :staff_pick_selection => 5, :new_user => 6, :story_collaboration => 7}
 
+  # see if user already following another user
+  def self.already_following_user(user_id, follow_user_id)
+    found = false
+    if user_id.present? && follow_user_id.present?
+      found = where(:notification_type => TYPES[:published_story_by_author], :user_id => user_id, :identifier => follow_user_id).present?
+    end
+    return found
+  end
+
+  # register a user to follow another user
+  def self.add_follow_user(user_id, follow_user_id)
+    if user_id.present? && follow_user_id.present?
+      create(:notification_type => TYPES[:published_story_by_author], :user_id => user_id, :identifier => follow_user_id)
+    end
+  end
+
+  # delete notification of user following another user
+  def self.delete_follow_user(user_id, follow_user_id)
+    if user_id.present? && follow_user_id.present?
+      where(:notification_type => TYPES[:published_story_by_author], :user_id => user_id, :identifier => follow_user_id).delete_all
+    end
+  end
 
   ###################
   # methods to get emails of users that need to be notified
