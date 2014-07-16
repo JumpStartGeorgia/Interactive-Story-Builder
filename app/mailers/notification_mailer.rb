@@ -14,7 +14,7 @@ class NotificationMailer < ActionMailer::Base
   end
   def send_story_comment(message)
     @message = message
-    mail(:bcc => "#{message.bcc}",
+    mail(:to => "#{message.email}",
          :subject => I18n.t("mailer.notification.story_comment.subject"))    
   end
   def send_published_news(message)
