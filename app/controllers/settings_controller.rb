@@ -1,9 +1,10 @@
 class SettingsController < ApplicationController
   before_filter :authenticate_user!, :except => [:check_nickname]
+  before_filter :asset_filter
 
 
   def index
-    @css.push("settings.css", "devise.css", "bootstrap-select.min.css","navbar.css")
+    @css.push("devise.css", "bootstrap-select.min.css","navbar.css")
     @js.push("nickname.js", "bootstrap-select.min.js")
 
     if request.put?
@@ -84,7 +85,7 @@ class SettingsController < ApplicationController
     end
 
     if !accepted
-      redirect_to invitations_path, :notice => t('app.msgs.invitation.bad')  
+      redirect_to settings_invitations_path, :notice => t('app.msgs.invitation.bad')  
     end
   end  
 
@@ -96,12 +97,150 @@ class SettingsController < ApplicationController
     if inv.present?
       inv.destroy
       deleted = true
-      redirect_to invitations_path, :notice => t('app.msgs.invitation.declined')
+      redirect_to settings_invitations_path, :notice => t('app.msgs.invitation.declined')
     end
 
     if !deleted
-      redirect_to invitations_path, :notice => t('app.msgs.invitation.bad')  
+      redirect_to settings_invitations_path, :notice => t('app.msgs.invitation.bad')  
     end
   end  
+  
+  
+  def notifications
+		gon.notifications = true
+    @css.push("bootstrap-select.min.css")
+    @js.push("bootstrap-select.min.js")
+
+		msg = []
+		if request.post?
+			if params[:enable_notifications].to_s.to_bool == true
+				# make sure user is marked as wanting notifications
+				if !current_user.wants_notifications
+					current_user.wants_notifications = true
+					current_user.save
+					msg << I18n.t('app.msgs.notification.yes')
+				end
+
+				# language
+				if params[:language]
+					current_user.notification_language = params[:language]
+					current_user.save
+					msg << I18n.t('app.msgs.notification.language', :language => t("app.language.#{params[:language]}"))
+				end
+
+				# process news notifications
+				if params[:news].present?
+					# delete anything on file first
+					Notification.where(:notification_type => Notification::TYPES[:published_news],
+																					:user_id => current_user.id).delete_all
+
+					if params[:news][:wants].to_s.to_bool == true
+						Notification.create(:notification_type => Notification::TYPES[:published_news],
+																						:user_id => current_user.id)
+
+						msg << I18n.t('app.msgs.notification.news_yes')
+					else
+						msg << I18n.t('app.msgs.notification.news_no')
+					end
+				end
+
+        # process story notifications
+				if params[:stories_all]
+					# all notifications
+					# delete anything on file first
+					Notification.where(:notification_type => Notification::TYPES[:published_story],
+																					:user_id => current_user.id).delete_all
+					# add all option
+					Notification.create(:notification_type => Notification::TYPES[:published_story],
+																					:user_id => current_user.id)
+
+					msg << I18n.t('app.msgs.notification.new_story_all_success')
+				elsif params[:stories_categories].present?
+					# by category
+					# delete anything on file first
+					Notification.where(:notification_type => Notification::TYPES[:published_story],
+																					:user_id => current_user.id).delete_all
+					# add each category
+					params[:stories_categories].each do |cat_id|
+						Notification.create(:notification_type => Notification::TYPES[:published_story],
+																						:user_id => current_user.id,
+																						:identifier => cat_id)
+					end
+					msg << I18n.t('app.msgs.notification.new_story_by_category_success',
+						:categories => @categories.select{|x| params[:stories_categories].index(x.id.to_s)}.map{|x| x.name}.join(", "))
+				else
+					# delete all notifications
+					Notification.where(:notification_type => Notification::TYPES[:published_story],
+																					:user_id => current_user.id).delete_all
+					msg << I18n.t('app.msgs.notification.new_story_none_success')
+        end
+
+				# process story comment notifications
+				if params[:story_comment].present?
+					# delete anything on file first
+					Notification.where(:notification_type => Notification::TYPES[:story_comment],
+																					:user_id => current_user.id).delete_all
+
+					if params[:story_comment][:wants].to_s.to_bool == true
+						Notification.create(:notification_type => Notification::TYPES[:story_comment],
+																						:user_id => current_user.id)
+
+						msg << I18n.t('app.msgs.notification.story_comments_yes')
+					else
+						msg << I18n.t('app.msgs.notification.story_comments_no')
+					end
+				end
+
+			else
+				# indicate user does not want notifications
+				if current_user.wants_notifications
+					current_user.wants_notifications = false
+					current_user.save
+				end
+
+				# delete any on record
+				Notification.where(:notification_type => Notification::TYPES[:published_story],
+																				:user_id => current_user.id).delete_all
+
+				msg << I18n.t('app.msgs.notification.no')
+			end
+		end
+
+		# see if user wants notifications
+		@enable_notifications = current_user.wants_notifications
+		gon.enable_notifications = @enable_notifications
+
+		# get the notfification language
+		@language = current_user.notification_language.nil? ? I18n.default_locale.to_s : current_user.notification_language
+
+		# get new story data to load the form
+		@story_notifications = Notification.where(:notification_type => Notification::TYPES[:published_story],
+																			:user_id => current_user.id)
+
+		@story_all = false
+
+		if @story_notifications.present? && @story_notifications.length == 1 && @story_notifications.first.identifier.nil?
+			@story_all = true
+		end
+
+		# get story comments
+		@story_comments = Notification.where(:notification_type => Notification::TYPES[:story_comment], :user_id => current_user.id).present?
+
+		# get news
+		@news = Notification.where(:notification_type => Notification::TYPES[:published_news],:user_id => current_user.id).present?
+
+
+		flash[:notice] = msg.join("<br />").html_safe if !msg.empty?
+	end
+
+protected
+
+  def asset_filter
+    @css.push("navbar.css", "settings.css")   
+    @js.push("settings.js")   
+  end
 
 end
+
+
+

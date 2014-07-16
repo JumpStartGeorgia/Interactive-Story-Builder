@@ -246,7 +246,7 @@ en:
       wide: wide
       partial: Pretty Link
       full: Full Story
-      feed: StoryBuilder Feed Channel
+      feed: Story Builder Feed Channel
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
@@ -298,6 +298,17 @@ en:
         success_invitations: Invitations were sent!
         error_invitations_all: "No invitations were sent due to the following erros: %{msg}"
         error_invitations_some: "Some invitations were sent, but some where not due to the following erros: %{msg}"
+      notification:
+        yes: You will be sent notifications.
+        no: You will not be sent notifications.
+        new_story_all_success: You will recieve a notification whenever a story is added.
+        new_story_none_success: You will not receive any notifications when stories are added.
+        new_story_by_category_success: "You will receive a notification when a story is added to these categories: %{categories}."
+        story_comments_yes: You will be sent notifications when a comment is made to one of your stories.
+        story_comments_no: You will not be sent notifications when a comment is made to one of your stories.
+        news_yes: You will be sent notifications when updates are made to Story Builder.
+        news_no: You will not be sent notifications when updates are made to Story Builder.
+        language: You will be sent notifications in %{language}.
   section_types:
     content:
       name: Content
@@ -562,3 +573,23 @@ en:
       header_date: Date Sent
       header_story: Story Title
       header_from: Sent By
+    notifications:
+      title: Notifications
+      all_sub_title: All Notifications
+      all_label: Do you want to recieve any notifications from Story Builder?
+      all_no: "No, do not send me any notifications."
+      all_yes: "Yes, I want notifications sent to me."
+      story_comment_sub_title: New Story Comment Notifications
+      story_comment_label: "Do you want to recieve notifications when a comment is made to one of your stories?"
+      story_comment_no: "No, do not send me any notifications."
+      story_comment_yes: "Yes, I want notifications sent to me."
+      new_stories_sub_title: New Story Notifications
+      new_stories_all: Notify me when any story is added.
+      new_stories_none: I do not want to receive notifications when a new story is added.
+      new_stories_by_category: "Notify me when a story is added to:"
+      language_sub_title: Notification Language
+      language_label: In what language do you want to receive the notifications?
+      news_sub_title: Story Builder Update Notifications
+      news_label: "Do you want to recieve notifications when updates are made to Story Builder?"
+      news_no: "No, do not send me any notifications."
+      news_yes: "Yes, I want notifications sent to me."     

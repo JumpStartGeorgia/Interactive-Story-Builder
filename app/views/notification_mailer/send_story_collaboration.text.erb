@@ -7,7 +7,7 @@
 <%= msg[3] %>
 <% end %>
 
-<%= "#{t('mailer.notification.story_collaboration.accept_link', :locale => @message.locale)}: #{accept_invitation_url(:locale => @message.locale, :key => msg[2])}" %>
+<%= "#{t('mailer.notification.story_collaboration.accept_link', :locale => @message.locale)}: #{settings_accept_invitation_url(:locale => @message.locale, :key => msg[2])}" %>
 
 ------------------
 

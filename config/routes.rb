@@ -83,9 +83,9 @@ BootstrapStarter::Application.routes.draw do
 		match "settings/notifications" => "settings#notifications", as: 'settings_notifications'
 		match "settings/remove_avatar" => "settings#remove_avatar", as: 'settings_remove_avatar'
 		match "settings/check_nickname" => "settings#check_nickname", as: 'settings_check_nickname', :via => :post
-		match "invitations" => "settings#invitations", as: 'invitations', :via => :get
-		match "invitations/accept/:key" => "settings#accept_invitation", as: 'accept_invitation', :via => :get
-		match "invitations/decline/:key" => "settings#decline_invitation", as: 'decline_invitation', :via => :get
+		match "invitations" => "settings#invitations", as: 'settings_invitations', :via => :get
+		match "invitations/accept/:key" => "settings#accept_invitation", as: 'settings_accept_invitation', :via => :get
+		match "invitations/decline/:key" => "settings#decline_invitation", as: 'settings_decline_invitation', :via => :get
 
 		match "demo" => "root#demo", as: 'demo'
 		match "news" => "root#news", as: 'news'
