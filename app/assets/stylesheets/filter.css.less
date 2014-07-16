@@ -8,11 +8,7 @@
     font-family:opensans-r,verdana;
     font-size:16px;
   }
-  ul.nav
-  {
-    line-height:60px;
-    margin:0px 23px;
-  }
+
   .dropdown-menu
   {
     background-color: #fff;
@@ -22,35 +18,14 @@
       background-color: #c5c5c5;
     }
   }
-  .sort
-  {
-      
-  }
- .sort-label
-  {    
-    font-family:opensans-r,verdana;
-    font-size: 15px;
-    position: relative;
-    display: block;
-    padding: 2px 2px;
-    color: #989898;
-    background-color: transparent;
-    margin-left:20px;
-    margin-right:10px;
-  }
-  .category,.language
-  {
-    margin-left:20px;
-  }
+
+
   .staff_pick i
   {
     margin-right:5px;
     margin-top:-3px;
   }
-  .nav li.dropdown a
-  {
-    display:block;
-  }
+
   .nav li.dropdown a.dropdown-toggle.selected
   {
     font-weight:600 !important;
@@ -61,21 +36,6 @@
     font-family:opensans-b,verdana;    
     background-color: transparent; 
     color: #555;      
-  }
-
-  #filter_match span
-  {
-    position: relative;
-    display: block;
-    padding: 2px 2px;
-    font-family: dejavusans-el;
-    font-size: 18px;
-  }
-    #filter_match > div
-  {
-    position: relative;
-    margin: 10px;
-   
   }
 
   .search-wrapper
@@ -156,3 +116,141 @@
   }
 }
     
+
+
+  /* Custom, iPhone Retina */ 
+  @media only screen and (min-width : 320px) {
+      #filter
+      {
+        > ul.nav
+        {
+          line-height:50px;
+          margin:0px;
+        }
+        > ul.nav > li 
+        { 
+          float:none;
+          width:100%;
+          border-bottom:1px solid #eaeaea;
+          margin:0px;
+        }  
+        > ul.nav > li:first-child
+        {
+          border-top:1px solid #eaeaea;
+        }
+        > ul.nav > li > a
+        {
+          padding-left:20px;
+          margin:0px;
+          width:100%;
+          
+        } 
+        > ul.nav > li > a > i
+        {         
+          position:absolute;
+          right:10px;
+          top:25%;
+        }
+        > ul.nav > li.li-sort-label 
+        {
+          display:none;
+        }
+  
+        > ul.nav > li > ul.dropdown-menu
+        {
+          position:relative;
+          width:100%;
+          border:0px;
+        }
+        > ul.nav > li > ul.dropdown-menu > li
+        {
+          border:0px;
+        }
+        > ul.nav > li > ul.dropdown-menu > li:first-child
+        {
+          border-top:1px solid #eaeaea;
+        }
+        > ul.nav > li > ul.dropdown-menu > li:last-child
+        {
+          border-bottom:1px solid #eaeaea;
+        }
+         > ul.nav > li > ul.dropdown-menu > li > a
+        {
+          padding:8px 14px 8px 44px;
+        }
+      }
+  }
+
+  /* Extra Small Devices, Phones */ 
+  @media only screen and (min-width : 480px) {
+     
+  }
+
+  /* Small Devices, Tablets */
+  @media only screen and (min-width : 768px) {
+  #filter
+      {
+        > ul.nav
+        {
+          line-height: 60px;
+          margin: 0px 23px;
+        }
+        > ul.nav > li ,> ul.nav > li:first-child
+        { 
+          float:left;
+          width:auto;
+          border:none;  
+          margin-left:20px;        
+        }
+        > ul.nav > li > a
+        {
+          padding-left:20px;
+          margin:0px;
+          width:100%;
+          display:inline-block;
+          
+        } 
+        > ul.nav > li > a > i
+        {         
+          position:static;
+          
+        }
+        > ul.nav > li.li-sort-label
+        {
+          display:block;
+        }
+        > ul.nav > li > ul.dropdown-menu
+        {
+          position:absolute;
+          width:auto;   
+          border: 1px solid rgba(0, 0, 0, 0.15);
+        }
+        > ul.nav > li > ul.dropdown-menu li:not(:last-child) 
+        {
+          border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        }
+        > ul.nav > li > ul.dropdown-menu > li > a
+        {
+          padding:8px 14px;
+        }
+         .sort-label
+          {    
+            font-family:opensans-r,verdana;
+            font-size: 15px;                    
+            padding: 2px 2px;
+            color: #989898;
+            background-color: transparent;    
+            margin-right:10px;
+          }
+      }    
+  }
+
+  /* Medium Devices, Desktops */
+  @media only screen and (min-width : 992px) {
+
+  }
+
+  /* Large Devices, Wide Screens */
+  @media only screen and (min-width : 1200px) {
+   
+  }

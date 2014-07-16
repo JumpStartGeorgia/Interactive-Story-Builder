@@ -4,41 +4,23 @@
   width: 100%;
   height: 100%;    
   text-align: center;   
-  -webkit-background-size: cover;
+ -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
-
-  background-attachment: scroll;  
-
-  -moz-background-clip: border;
-  -webkit-background-clip: border;
-  background-clip: border-box;
-
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding;
-  background-clip: padding-box;
-
-  -moz-background-clip: content;
-  -webkit-background-clip: content;
-  background-clip: content-box;
-
-  
-
-  z-index:101;
+  background-size: cover; 
   position:relative;
+
 
   &.intro1
   {
-     background: url('/assets/headers/header-bg-01.jpg') no-repeat center center fixed; 
-
+     background: url('/assets/headers/header-bg-01.jpg') no-repeat center center fixed;
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/headers/header-bg-01.jpg', sizingMethod='scale');
     -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/assets/headers/header-bg-01.jpg', sizingMethod='scale')";
   }
   &.intro2
   {    
     background: url('/assets/headers/header-bg-02.jpg') no-repeat center center fixed; 
-     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/headers/header-bg-02.jpg', sizingMethod='scale');
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/headers/header-bg-02.jpg', sizingMethod='scale');
     -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/assets/headers/header-bg-02.jpg', sizingMethod='scale')";
   }
   &.intro3
@@ -57,19 +39,20 @@
     {
       font-family:bandera-pro-hi;
       font-size: 92px;
+      font-size:10vmin;
       color: #fff;      
       margin:0px;
       padding:0px;
     }
     .h1:lang(ka)
     {
-      font-family:dejavusans-el;
-      font-size: 92px;
+      font-family:dejavusans-el;      
     }
     .h3
     {
       font-family:bandera-pro-hi,dejavusans-el;
       font-size: 46px;
+      font-size: 5vmin;      
       color:#fff;      
       margin:0px;
       padding:0px;
@@ -78,23 +61,24 @@
     {
       font-family:dejavusans-el;
       font-size: 78px;
+      font-size: 5vmin; 
     }
     .intro
     {
       font-family:opensans-r,verdana;
       font-size:18px;
-      margin:16px 0px 35px 0px;      
+      font-size:1.8vmin;
+      margin:1em 0px 2em 0px;      
       padding:0px;
-      line-height: 22px;
+      line-height: 1.4em;
     }
   }
 
   .build-story
   {        
     text-align: center;
-    margin: 0px auto;
-    width: 100%;
-    height:57px;
+    margin: 25px auto 0px;
+    width: 100%;    
   }
   .build-story a
   {
@@ -103,14 +87,12 @@
     font-size:18px;
     color:#fff !important;      
     background: transparent url('/assets/build_w.png') center no-repeat;
-    background-position: 25px 19px; 
+    background-position: 18px 18px; 
     border:1px solid #fff;
     -webkit-border-radius: 133px;
     -moz-border-radius: 133px;
-    border-radius: 133px;
-    width:178px;
-    height:57px;
-    padding: 18px 0px 0px 30px;
+    border-radius: 133px;        
+    padding: 18px 18px 18px 42px;
     text-decoration:none;
     -webkit-transition:all .15s ease-out;
     -moz-transition:all .15s ease-out;
@@ -122,7 +104,7 @@
   {      
     color:#000 !important;
     background: transparent url('/assets/build_b.png') center no-repeat; 
-    background-position: 25px 19px; 
+    background-position: 18px 18px; 
     background-color:#fff;
     text-decoration:none;
             -webkit-transition:all .10s ease-out;
@@ -159,7 +141,7 @@
   .scroll-prompt
   {
     position:absolute;
-    bottom:50px;
+    bottom:5%;
     text-align: center;
     margin: 0px auto;
     width: 100%;
@@ -198,5 +180,35 @@
 
 }
 
+
+  /* Custom, iPhone Retina */ 
+  @media only screen and (min-width : 320px) {
+      .explore{display:none;}
+      .intro{display:none;}
+
+  }
+
+  /* Extra Small Devices, Phones */ 
+  @media only screen and (min-width : 480px) {
+
+  }
+
+  /* Small Devices, Tablets */
+  @media only screen and (min-width : 768px) {
+    .explore{display:block;}
+
+  }
+
+  /* Medium Devices, Desktops */
+  @media only screen and (min-width : 992px) {
+    .intro{display:block;}
+  
+
+  }
+
+  /* Large Devices, Wide Screens */
+  @media only screen and (min-width : 1200px) {
+
+  }
   
 
