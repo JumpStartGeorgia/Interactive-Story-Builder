@@ -42,6 +42,8 @@ $(document).ready(function(){
 			enable_notifications('language');
 			enable_notifications('new_story');
 			enable_notifications('story_comment');
+			enable_notifications('news');
+			enable_notifications('following');
 		}
 
 		// if want all notifications turn on fields
@@ -51,10 +53,14 @@ $(document).ready(function(){
 			  enable_all_fields('language');
 			  enable_all_fields('new_story');
 			  enable_all_fields('story_comment');
+			  enable_all_fields('news');
+			  enable_all_fields('following');
 			} else {
 			  disable_all_fields('language');
 			  disable_all_fields('new_story');
 			  disable_all_fields('story_comment');
+			  disable_all_fields('news');
+			  disable_all_fields('following');
 			}
 		});
 
@@ -71,6 +77,22 @@ $(document).ready(function(){
 			categories_clicked('stories');
     });
 
+    // if user clicks on followed user, change the selection value
+    $('#following_notifications #following_user_list li').click(function(){
+      var radios = $(this).find('input[type="radio"]');
+      var current_value = $(this).find('input[type="radio"]:checked').val();
+      if (current_value == 'true'){
+        $(radios).filter('[value="false"]').prop('checked', true);
+        $(this).addClass('unfollow');
+        $(this).attr('title', $(this).data('follow'));
+      }else{
+        $(radios).filter('[value="true"]').prop('checked', true);
+        $(this).removeClass('unfollow');
+        $(this).attr('title', $(this).data('unfollow'));
+      }
+    });
+
 	}
 
 });
+

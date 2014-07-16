@@ -28,4 +28,34 @@ form#notifications{
     opacity: 1.0;
     filter: alpha(opacity=100);
   }
+  #following_notifications{
+    #following_user_list { 
+      margin-top: 10px;
+      li{
+        display: inline-block;
+        width: 50px;
+        margin-right: 10px;
+        cursor: pointer;
+        input[type="radio"]{
+          display: none;
+        }
+        &.unfollow{
+          position: relative;
+          opacity: 0.5;
+        }
+        &.unfollow:after{
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          content: "\274c";
+          font-size: 50px; 
+          color: #f00;
+          line-height: 50px;
+          text-align: center;
+        }
+      }
+    }
+  }
 }

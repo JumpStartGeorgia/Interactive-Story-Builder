@@ -191,6 +191,24 @@ class SettingsController < ApplicationController
 					end
 				end
 
+				# process following notifications
+				if params[:following].present?
+					existing = Notification.where(:notification_type => Notification::TYPES[:published_story_by_author],
+																					:user_id => current_user.id)
+          if existing.present?
+  					params[:following].keys.each do |follow_user_id|
+						  if params[:following][follow_user_id][:wants].to_s.to_bool == false 
+                existing.select{|x| x.identifier.to_s == follow_user_id.to_s}.each do |notification|
+                  notification.delete
+                end
+
+							  msg << I18n.t('app.msgs.notification.following_no',
+								  :nickname => params[:following][follow_user_id][:nickname])
+              end
+						end
+					end
+				end
+
 			else
 				# indicate user does not want notifications
 				if current_user.wants_notifications
@@ -224,11 +242,13 @@ class SettingsController < ApplicationController
 		end
 
 		# get story comments
-		@story_comments = Notification.where(:notification_type => Notification::TYPES[:story_comment], :user_id => current_user.id).present?
+		@story_comment = Notification.where(:notification_type => Notification::TYPES[:story_comment], :user_id => current_user.id).present?
 
 		# get news
 		@news = Notification.where(:notification_type => Notification::TYPES[:published_news],:user_id => current_user.id).present?
 
+    # users following
+    @following_users = current_user.following_users
 
 		flash[:notice] = msg.join("<br />").html_safe if !msg.empty?
 	end

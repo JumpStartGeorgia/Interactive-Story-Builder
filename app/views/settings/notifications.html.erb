@@ -76,6 +76,29 @@
 	</div>
 
 
+	<h3><%= t('.following_sub_title') %></h3>
+	<div class="section" id="following_notifications">
+		<%= t('.following_label') %>
+		<% if @following_users.present? %>
+		  <ul id="following_user_list">
+		    <% @following_users.each do |user| %>
+		      <li title="<%= t('.following_title1', :nickname => user.nickname) %>" 
+		          data-follow="<%= t('.following_title2', :nickname => user.nickname) %>" 
+		          data-unfollow="<%= t('.following_title1', :nickname => user.nickname) %>">
+            <%= image_tag user.avatar_url(:'50x50'), :size=>"50x50", :alt => user.nickname %>
+    				<%= hidden_field_tag "following[#{user.id}][nickname]", user.nickname %>
+			      <%= radio_button_tag "following[#{user.id}][wants]", 'true', true %>
+			      <%= radio_button_tag "following[#{user.id}][wants]", 'false', false %>
+		      </li>
+		    <% end %>
+	    </ul>
+		<% else %>
+		  <p>
+  		  <%= t('.following_not') %>
+		  </p>
+		<% end %>
+	</div>
+
 
 	<div>
 		<%= submit_tag nil, :class => 'btn btn-default' %>

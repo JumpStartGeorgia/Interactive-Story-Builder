@@ -308,6 +308,7 @@ ka:
         story_comments_no: You will not be sent notifications when a comment is made to one of your stories.
         news_yes: You will be sent notifications when updates are made to Story Builder.
         news_no: You will not be sent notifications when updates are made to Story Builder.
+        following_no: "You will no longer receive notifications about new stories from '%{nickname}'."
         language: თქვენ მიიღებთ შეტყობინებას %{language}.
   section_types:
     content:
@@ -593,3 +594,8 @@ ka:
       news_label: "Do you want to recieve notifications when updates are made to Story Builder?"
       news_no: "No, do not send me any notifications."
       news_yes: "Yes, I want notifications sent to me."            
+      following_sub_title: Story Builder Users You Are Following
+      following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, 'unfollow' them by clicking on their image."
+      following_not: "At this time, you are not following any users."
+      following_title1: "Click to unfollow '%{nickname}'"
+      following_title2: "Click to follow '%{nickname}'"     
