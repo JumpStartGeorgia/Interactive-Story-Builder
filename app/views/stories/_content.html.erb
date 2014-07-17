@@ -13,7 +13,7 @@
     <label><%= t('activerecord.attributes.content.content') %></label>
     <div class="help-inline" title="<%= t('.hint.content') %>"><div>?</div></div>
     <%= f.text_area :content, :class => "tinymce", :rows => 40, :cols => 120, :id => "contentArticle"%>    
-     <a class='btn btn-default preview' id="content-preview" data-modalos-id="modalos-preview" data-type="text"><%= t('app.buttons.preview') %></a>          
+     <!--a class='btn btn-default preview' id="content-preview" data-modalos-id="modalos-preview" data-type="text"><%= t('app.buttons.preview') %></a-->          
      
     
     <%= f.input :section_id, :as => :hidden , :input_html => { :id => "contentSection" }  %>

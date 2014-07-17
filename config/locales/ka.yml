@@ -89,7 +89,7 @@ ka:
   mailer:
     closing: "პატივისცემით,"
     signature: Story Builder-ის გუნდი
-    unsubscribe: Click here to change your notification settings
+    unsubscribe: დააჭირეთ და შეცვალეთ შეტყობინებების პარამეტრები
     contact:
       contact_form:
         subject: "Story Builder-ის საკონტაქტო ფორმა"
@@ -173,6 +173,19 @@ ka:
       views: "%{num} წაკითხვა"
       tags: თაგი
       menu: მენიუ
+      story_menu:
+        link:
+          clone: ახალ ამბად კლონირება
+          export: ამბის ჩამოტვირთვა
+          review: პირადი URL 
+          noreview: უკვე გამოქვეყნებულია
+          collaborators: დამხმარეთა სიის მართვა
+        title:
+          clone: ამბის ახალ ამბად დაკოპირება
+          export: სრული ამბის გადმოტვირთვა
+          review: ამ ამბის გამოქვეყენბამდე გასაზიარებლად URL-ის მიღება 
+          noreview: თქვენი ამბავი უკვე გამოქვეყნებულია, არაა საჭირო ამ გამოუქვეყნებული URL-ის გამოყენება
+          collaborators: განსაზღვრეთ, რომელ მომხმარებელს შეუძლია თქვენი ამბის რედაქტირება
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
@@ -205,9 +218,10 @@ ka:
       confirm: დარწმუნებული ხართ?
       new: ახალი            
       add_section: ახალი სექცია
-      add_item: ახალი პუნქტი
-      up: ზემოთ ატანა
-      down: ქვემოთ ჩამოტანა
+      add_item: Add Item into Section
+      up: Move Selected Section/Item Up
+      down: Move Selected Section/Item Down
+      delete_item: Delete Selected Section/Item
       preview: ნახვა
       preview_image: სურათის ნახვა
       preview_video: ვიდეოს ნახვა
@@ -345,7 +359,7 @@ ka:
     category_header: კატეგორია
     language_header: ენა
     search: ამბის პოვნა
-    following: Following
+    following: თვალყურის დევნება
   tokeninput:
     searchingText: ძიება...
     tag:
@@ -376,22 +390,10 @@ ka:
     grid:
       no_stories: სამწუხაროდ არ მოიძებნა არცერტი ამბავი!
     grid_item:
-      link:
-        clone: ახალ ამბად კლონირება
-        export: ამბის ჩამოტვირთვა
-        review: პირადი URL 
-        noreview: უკვე გამოქვეყნებულია
-        collaborators: დამხმარეთა სიის მართვა
-      title:
-        clone: ამბის ახალ ამბად დაკოპირება
-        export: სრული ამბის გადმოტვირთვა
-        review: ამ ამბის გამოქვეყენბამდე გასაზიარებლად URL-ის მიღება 
-        noreview: თქვენი ამბავი უკვე გამოქვეყნებულია, არაა საჭირო ამ გამოუქვეყნებული URL-ის გამოყენება
-        collaborators: განსაზღვრეთ, რომელ მომხმარებელს შეუძლია თქვენი ამბის რედაქტირება
-        likes: მოწონება
-        views: ნახვები
-        comments: კომენტარები
-        publish_date: გამოქვეყნების თარიღი
+      likes: მოწონება
+      views: ნახვები
+      comments: კომენტარები
+      publish_date: გამოქვეყნების თარიღი
   admin:
     index:
       title: ადმინისტრატორის განყოფილება
@@ -513,7 +515,7 @@ ka:
       placeholder:
         title: სექციის სათაური
       hint:
-        title: ეს ტექსტი მხოლოდ ჩნდება მარცხენა ბლოკში, იგი არ გამოჩნდება ძირითად ამბავში
+        title: "This text appears in the left sidebar and, if Navigation Shortcut is selected, will appear as the title text for the shortcut"
         type: ამ ტიპის არჩევა განსაზღვრავს იმ ინფორმაციის სახეს რომლის დამატებაც შეგეძლებათ ამ სექციაში
         has_marker: თუ მონიშნავთ, გამოჩნდება სანავიგაციო ლინკი ამ სექციაზე გადასასვლელად
         audio: ფონური მუსიკა ჩაირთვება, როდესაც ვინმე იხილავს ამ სექციას (მხოლოდ mp3 ფორმატია დასაშვები)
@@ -575,7 +577,7 @@ ka:
         default_story_locale: აირჩიეთ ენა, რომელსაც გამოიყენებთ ამბის შექმნისას.
       submit: პარამეტრების შენახვა
     invitations:
-      title: Collaboration Invitations
+      title: თანამშრომლობის მოწვევა
       no_invitations: ამ დროისთვის არ არის უპასუხო მოსაწვევები.
       accept_link: დათანხემბა
       decline_link: უარყოფა
@@ -603,7 +605,7 @@ ka:
       news_no: "არა, არ გამომიგზავნოთ შეტყობინებები."
       news_yes: "დიახ, მსურს შეტყობინებების მიღება."            
       following_sub_title: Story Builder-ის მომხმარებლები, რომელთაც თქვენ თვალყურს ადევნებთ
-      following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, 'unfollow' them by clicking on their image."
+      following_label: "თქვენ მიიღებთ შეტყობინებას, როდესაც მომხმარებელი, რომელსაც თვალყურს ადევნებთ დაამატებს ახალ ისტორიას. ამ შეტყობინებების მიღება თუ არ გსურთ, გააუქმეთ თვალყურის დევნა მათ სურათზე დაჭერით."
       following_not: "ამ დროისთვის თქვენ არცერთ მომხმარებელს არ ადევნებთ თვალყურს."
       following_title1: "'%{nickname}' თვალყურის დევნის გასაუქმებლად დააჭირეთ ღილაკს"
       following_title2: "'%{nickname}' თვალყურის სადევნებლად დააჭირეთ ღილაკს"     

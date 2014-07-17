@@ -173,6 +173,19 @@ en:
       views: "%{num} reads"
       tags: Tags
       menu: Menu
+      story_menu:
+        link:
+          clone: Clone as new story
+          export: Download story
+          review: Private URL
+          noreview: Already published
+          collaborators: Manage Collaborators
+        title:
+          clone: Copy this story into a new story
+          export: Download the complete story
+          review: Get URL to share this story before publishing
+          noreview: Your story is published so there is no need to share this non-published URL
+          collaborators: Manage which users have access to edit your story
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
@@ -205,9 +218,10 @@ en:
       confirm: Are you sure?
       new: New
       add_section: Add Section
-      add_item: Add Item
-      up: Order Up
-      down: Order Down
+      add_item: Add Item into Section
+      up: Move Selected Section/Item Up
+      down: Move Selected Section/Item Down
+      delete_item: Delete Selected Section/Item
       preview: Preview
       preview_image: Preview Image
       preview_video: Preview Video
@@ -376,22 +390,10 @@ en:
     grid:
       no_stories: Oh no - no stories could be found!
     grid_item:
-      link:
-        clone: Clone as new story
-        export: Download story
-        review: Private URL
-        noreview: Already published
-        collaborators: Manage Collaborators
-      title:
-        clone: Copy this story into a new story
-        export: Download the complete story
-        review: Get URL to share this story before publishing
-        noreview: Your story is published so there is no need to share this non-published URL
-        collaborators: Manage which users have access to edit your story
-        likes: Likes
-        views: Views
-        comments: Comments
-        publish_date: Publish Date
+      likes: Likes
+      views: Views
+      comments: Comments
+      publish_date: Publish Date
   admin:
     index:
       title: Administration Section
@@ -513,7 +515,7 @@ en:
       placeholder:
         title: Section title
       hint:
-        title: "This text only appears in the left sidebar, it will not show up in the story"
+        title: "This text appears in the left sidebar and, if Navigation Shortcut is selected, will appear as the title text for the shortcut"
         type: "Selecting this type determines what kind of information you can add into this section"
         has_marker: "If checked, there will be a navigation shortcut link to go to this section"
         audio: "Background audio to play while this section is in view (mp3 format only)"
@@ -603,7 +605,7 @@ en:
       news_no: "No, do not send me any notifications."
       news_yes: "Yes, I want notifications sent to me."     
       following_sub_title: Story Builder Users You Are Following
-      following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, 'unfollow' them by clicking on their image."
+      following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image."
       following_not: "At this time, you are not following any users."
       following_title1: "Click to unfollow '%{nickname}'"
       following_title2: "Click to follow '%{nickname}'"     

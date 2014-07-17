@@ -14,10 +14,6 @@ class StoriesController < ApplicationController
     @stories =  process_filter_querystring(Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => per_page))           
     @editable = (user_signed_in?)
 
-    if(@editable)        
-      @js.push("modalos.js")
-      @css.push("modalos.css")
-    end     
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}          
@@ -64,7 +60,7 @@ class StoriesController < ApplicationController
 
       if @story.save
         flash_success_created(Story.model_name.human,@story.title)       
-        format.html { redirect_to sections_story_path(@story) }
+        format.html { redirect_to edit_story_path(@story) }
       #  format.json { render json: @story, status: :created, location: @story }
       else
         if !@story.asset.present? 
@@ -85,7 +81,7 @@ class StoriesController < ApplicationController
   # PUT /stories/1.json
   def update
     @story = Story.find(params[:id])
-
+  
     respond_to do |format|
       if !@story.published && params[:story][:published]=="1"
         if !@story.about.present? || !@story.asset_exists?
@@ -807,8 +803,8 @@ private
   end
 
   def asset_filter
-    @css.push("stories.css", "embed.css", "modalos.css", "bootstrap-select.min.css", "token-input-facebook.css","navbar.css")
-    @js.push("stories.js", "modalos.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js")
+    @css.push("stories.css", "embed.css", "modalos.css", "bootstrap-select.min.css", "token-input-facebook.css","navbar.css", "filter.css")
+    @js.push("stories.js", "modalos.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js", "zeroclipboard.min.js", "filter.js")
   end 
   
   def create_invitation(story, user_id=nil, email=nil, msg=nil)

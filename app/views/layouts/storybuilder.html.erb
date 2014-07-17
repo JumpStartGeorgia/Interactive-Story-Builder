@@ -46,8 +46,9 @@
     <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag '/favicon.ico', :rel => 'shortcut icon' %>
   </head>
-  <body>
+  <body id="storybuilder_form">
     <%= render partial: "layouts/storybuilder_nav"%>   
+    <%= render partial: "shared/story_nav"%>   
 		<div class="builder-wrapper">	
       <div class="sidebar">
          <%= yield %>

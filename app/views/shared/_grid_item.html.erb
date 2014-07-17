@@ -38,8 +38,8 @@
               <% end %>
             </li>
             <li>
-              <%= link_to  collaborators_story_path(story), title: t('.title.collaborators') do %>
-              <i class="glyphicon glyphicon-user"></i><%=t('.link.collaborators')%>
+              <%= link_to  collaborators_story_path(story), title: t('helpers.links.story_menu.title.collaborators') do %>
+              <i class="glyphicon glyphicon-user"></i><%=t('helpers.links.story_menu.link.collaborators')%>
               <% end %>
             </li>
             <li>
@@ -55,21 +55,21 @@
             </li>
             <% if !story.published %> 
               <li>
-                 <a href="#" id='btnReviewer' title="<%= t('.title.review') %>" data-modalos-id='modalos-reviewer'
+                 <a href="#" id='btnReviewer' title="<%= t('helpers.links.story_menu.title.review') %>" data-modalos-id='modalos-reviewer'
                     data-reviewer-key='<%= review_url(story.reviewer_key) %>'
                     data-title='<%= story.title %>'>
-                  <i class="glyphicon glyphicon-share" ></i><%= t('.link.review') %>
+                  <i class="glyphicon glyphicon-share" ></i><%= t('helpers.links.story_menu.link.review') %>
                 </a>                                                
               </li>
             <% end %>
             <li>
-              <%= link_to clone_story_path(story) ,  title: t('.title.clone') do %>
-                <i class="glyphicon glyphicon-camera"></i><%=t('.link.clone')%>
+              <%= link_to clone_story_path(story) ,  title: t('helpers.links.story_menu.title.clone') do %>
+                <i class="glyphicon glyphicon-camera"></i><%=t('helpers.links.story_menu.link.clone')%>
               <% end %> 
             </li>                        
             <li>  
-              <%= link_to export_story_path(story) ,  title: t('.title.export') do %>
-                <i class="glyphicon glyphicon-download"></i><%=t('.link.export')%>
+              <%= link_to export_story_path(story) ,  title: t('helpers.links.story_menu.title.export') do %>
+                <i class="glyphicon glyphicon-download"></i><%=t('helpers.links.story_menu.link.export')%>
               <% end %>
             </li>                        
             <li>
@@ -97,16 +97,16 @@
         </div>
 
         <div class="separator"></div>
-        <div class="story-publish" title="<%= t('.title.publish_date') %>"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>  
+        <div class="story-publish" title="<%= t('.publish_date') %>"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>  
             <!-- <div class="story-likes">
              <%= content_tag(:span, story.likes, :class => "n#{story.likes.to_s.size}" ) %>
             </div>   -->
     </div> 
     <div class="story-misc-right">
       <div class="story-stats"> 
-        <span class="likes" title="<%= t('.title.likes') %>"><i class="i-icon i-likes"></i><%= story.likes %></span>            
-        <span class="views" title="<%= t('.title.views') %>"><i class="i-icon i-views"></i><%= story.impressions_count %></span>  
-        <span class="comments" title="<%= t('.title.comments') %>"><i class="i-icon i-comments"></i><%= story.comments_count%></span>
+        <span class="likes" title="<%= t('.likes') %>"><i class="i-icon i-likes"></i><%= story.likes %></span>            
+        <span class="views" title="<%= t('.views') %>"><i class="i-icon i-views"></i><%= story.impressions_count %></span>  
+        <span class="comments" title="<%= t('.comments') %>"><i class="i-icon i-comments"></i><%= story.comments_count%></span>
       </div> 
     </div>                                           
   </div> 

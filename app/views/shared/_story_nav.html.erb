@@ -1,0 +1,87 @@
+<ul id="story-navigation" class="nav nav-tabs">
+  <% cls = current_page?(edit_story_path(@story)) ? 'class=active' : '' %>
+  <li <%=cls %>>
+    <%= link_to edit_story_path(@story), title: t('helpers.links.edit_story') do %>                            
+      <span class="glyphicon glyphicon-info-sign"></span>
+      <span class="nav-text">
+        <%=t('helpers.links.edit_story')%>
+      </span>
+    <% end %>
+  </li>
+  <% cls = current_page?(sections_story_path(@story)) ? 'class=active' : '' %>
+  <li <%=cls %>>
+    <%= link_to sections_story_path(@story), title: t('helpers.links.admin_story') do %>
+      <span class="glyphicon glyphicon-picture"></span>
+      <span class="nav-text">
+        <%=t('helpers.links.admin_story')%>
+      </span>
+    <% end %>
+  </li>
+  <% cls = current_page?(collaborators_story_path(@story)) ? 'class=active' : '' %>
+  <li <%=cls %>>
+    <%= link_to collaborators_story_path(@story), title: t('helpers.links.story_menu.title.collaborators') do %>
+      <span class="glyphicon glyphicon-user"></span>
+      <span class="nav-text">
+        <%=t('helpers.links.story_menu.link.collaborators')%>
+      </span>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to '#', title: t('app.buttons.preview'), id: 'btnPreview', class: 'preview', 
+        :'data-link' => preview_story_path(@story), :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story' do %>
+      <span class="glyphicon glyphicon-eye-open" ></span>
+      <span class="nav-text">
+        <%= t('app.buttons.preview') %>
+      </span>
+    <% end %>
+  </li>
+  <li>                            
+    <% title = @story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>
+    <%= link_to '#', title: title, id: 'btnPublish', class: (@story.published ? '' : 'disabled'), 
+        :'data-link' => publish_story_path(@story) do %>
+      <span class="glyphicon glyphicon-globe" ></span>
+      <span class="nav-text">
+        <%= title %>
+      </span>
+    <% end %>
+  </li>
+  <% if !@story.published %> 
+    <li>
+      <%= link_to '#', title: t('helpers.links.story_menu.title.review'), id: 'btnReviewer', 
+          :'data-title' => @story.title, :'data-modalos-id' => 'modalos-reviewer', :'data-reviewer-key' => review_url(@story.reviewer_key) do %>
+          <span class="glyphicon glyphicon-share" ></span>
+          <span class="nav-text">
+            <%= t('helpers.links.story_menu.link.review') %>
+          </span>
+      <% end %>
+    </li>
+  <% end %>
+  <li>
+    <%= link_to clone_story_path(@story), title: t('helpers.links.story_menu.title.clone') do %>
+      <span class="glyphicon glyphicon-camera"></span>
+      <span class="nav-text">
+        <%=t('helpers.links.story_menu.link.clone')%>
+      </span>
+    <% end %> 
+  </li>                        
+  <li>  
+    <%= link_to export_story_path(@story), title: t('helpers.links.story_menu.title.export') do %>
+      <span class="glyphicon glyphicon-download"></span>
+      <span class="nav-text">
+        <%=t('helpers.links.story_menu.link.export')%>
+      </span>
+    <% end %>
+  </li>                        
+  <li>
+    <%= link_to @story, title: t('helpers.links.delete_story'), confirm: t("helpers.links.confirm"), method: :delete do %>
+      <span class="glyphicon glyphicon-remove"></span>
+      <span class="nav-text">
+        <%=t('helpers.links.delete_story')%>
+      </span>
+    <% end %>
+  </li>
+</ul>
+
+
+<%= render partial: "shared/story_nav_modals"%> 
+
