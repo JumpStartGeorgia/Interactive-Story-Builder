@@ -1,4 +1,6 @@
-<% title t('.title', :name => current_user.nickname) %>
+<% title t('.title') %>
+
+<%= render partial: 'shared/settings_nav' %>
 
 <% if @invitations.present? %>
 

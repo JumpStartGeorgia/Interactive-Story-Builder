@@ -11,13 +11,8 @@
 
 	  <meta property="og:title" content="<%= content_for?(:title) ? ("#{yield(:title)} | #{t('app.common.app_name')}").html_safe :
 			  t('app.common.app_name').html_safe %>" />
-	  <% if @story && @story.id && @story.about.present? %>
-      <meta name="description" content="<%= @story.about.html_safe %>">
-  		<meta property="og:description" content="<%= @story.about.html_safe %>" />
-		<% else %>
-      <meta name="description" content="<%= I18n.t('app.common.app_intro_meta') %>">
-  		<meta property="og:description" content="<%= I18n.t('app.common.app_intro_meta') %>" />
-    <% end %>
+    <meta name="description" content="<%= I18n.t('app.common.app_intro_meta') %>">
+		<meta property="og:description" content="<%= I18n.t('app.common.app_intro_meta') %>" />
 	  <meta property="og:type" content="non_profit" />
 	  <meta property="og:url" content="<%= current_url %>" />
 	  <% if @story && @story.id && @story.asset_exists? %>

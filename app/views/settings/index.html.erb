@@ -1,7 +1,9 @@
-<% title t('.title', :name => current_user.nickname) %>
+<% title t('.title') %>
 
 <%= tinymce_assets %>
 <%= tinymce %>
+
+<%= render partial: 'shared/settings_nav' %>
 
 
 <%= semantic_form_for(current_user, :url => settings_path, :html => {:multipart => true, :class => 'settings'}) do |f| %>

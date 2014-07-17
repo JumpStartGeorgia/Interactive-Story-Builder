@@ -566,7 +566,7 @@ en:
     source: "Source:"
   settings:
     index:
-      title: "%{name} Settings"
+      title: Settings
       facebook_avatar: This is your avatar from Facebook.
       use_facebook_avatar: Use Facebook Avatar
       hint:
@@ -574,7 +574,7 @@ en:
         default_story_locale: Select the language you want to use by default when creating a new story.
       submit: Save Settings      
     invitations:
-      title: "Invitations for %{name}"
+      title: Collaboration Invitations
       no_invitations: At this time there are no un-answered invitations on file for you.
       accept_link: Accept
       decline_link: Decline

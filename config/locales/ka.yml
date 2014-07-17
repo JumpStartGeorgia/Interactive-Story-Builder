@@ -120,7 +120,7 @@ ka:
         story_title: ამბის სათაური
         msg: გზავნილი
         accept_link: მოპატიჟების მიღება
-        all_invitations: View all of your Story Builder collaboration invitations.
+        all_invitations: იხილეთ თქვენს ამბავზე დამხმარეთა სრული სია.
   helpers:
     actions: აირჩიეთ
     links:
@@ -566,15 +566,15 @@ ka:
     source: "წყარო:"
   settings:
     index:
-      title: "%{name} პარამეტრები"
+      title: პარამეტრები
       facebook_avatar: ეს არის თქვენი პროფილის სურათი Facebook-იდან.
       use_facebook_avatar: გამოიყენეთ Facebook-ის პროფილის სურათი
       hint:
         about: მოკლედ თქვენს შესახებ. ეს გამოჩნდება გამოქვეყნებულ ამბებთან ერთად. 
         default_story_locale: აირჩიეთ ენა, რომელსაც გამოიყენებთ ამბის შექმნისას.
-      submit: Save Settings      
+      submit: პარამეტრების შენახვა
     invitations:
-      title: "მოსაწვევები %{name}სთვის"
+      title: Collaboration Invitations
       no_invitations: ამ დროისთვის არ არის უპასუხო მოსაწვევები.
       accept_link: დათანხემბა
       decline_link: უარყოფა
@@ -606,4 +606,4 @@ ka:
       following_not: "ამ დროისთვის თქვენ არცერთ მომხმარებელს არ ადევნებთ თვალყურს."
       following_title1: "'%{nickname}' თვალყურის დევნის გასაუქმებლად დააჭირეთ ღილაკს"
       following_title2: "'%{nickname}' თვალყურის სადევნებლად დააჭირეთ ღილაკს"     
-      submit: Save Settings      
+      submit: პარამეტრების შენახვა

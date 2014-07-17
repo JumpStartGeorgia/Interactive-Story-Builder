@@ -1,3 +1,13 @@
+ul#settings-navigation{
+  margin-bottom: 20px;
+  li a{
+    padding: 10px 15px;
+    &:hover, &:focus{
+      background-color: #eee !important;
+    }
+  }
+}
+
 form.settings{
   .avatar_container{
     margin-bottom: 10px;

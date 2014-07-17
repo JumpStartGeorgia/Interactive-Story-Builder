@@ -1,5 +1,8 @@
 <% title t('.title') %>
 
+<%= render partial: 'shared/settings_nav' %>
+
+
 <%= form_tag settings_notifications_path, :id => "notifications", :class => 'formtastic' do %>
 	<h3><%= t('.all_sub_title') %></h3>
 	<div class="section">
