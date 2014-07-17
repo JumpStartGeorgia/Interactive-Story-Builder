@@ -53,12 +53,22 @@
               <% end %>
             </ul>
           </li>
+
+          <% if @story_filter_show_following && user_signed_in? && @following_users.present? %>
+            <li class="afilter">
+              <%= link_to url_for(params.merge(:following => !@story_filter_following)),
+                :class => "following #{@story_filter_following == true ? 'active' : ''}", :tabindex => 17, :"data-filtered-by" => @story_filter_following , :"data-filter-type"=>'following' do %>
+                   <i class='i-icon i-follow<%= "#{@story_filter_following == true ? 'ed' : ''}"%>'></i><%=  "#{t('filters.following')}" %>
+                 <% end %>
+            </li>
+          <% end %>
+
           <li class="pull-right"> 
             <div class="search-wrapper">
               <div class="search-box">
                 <div class="search-text">
                   <%= form_tag url_for(params), :method => :get, :id => 'search-filter', :class=>"afilter" do %>
-                    <%= text_field_tag :q, params[:q], :placeholder => t('filters.search'), :tabindex => 17, :autocomplete=>'off', :class=>"search-input",
+                    <%= text_field_tag :q, params[:q], :placeholder => t('filters.search'), :tabindex => 18, :autocomplete=>'off', :class=>"search-input",
                     :"data-filtered-by"=>@q, :"data-filter-type"=>"q" %>
                   <% end %>
                 </div>

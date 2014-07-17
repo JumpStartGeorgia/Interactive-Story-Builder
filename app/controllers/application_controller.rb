@@ -122,7 +122,7 @@ class ApplicationController < ActionController::Base
   ## process the filter requests
   def process_filter_querystring(story_objects)
 
-    gon.page_filtered = params[:staff_pick].present? || params[:sort].present? || params[:category].present? || params[:tag].present? || params[:language].present? || params[:q].present?
+    gon.page_filtered = params[:staff_pick].present? || params[:sort].present? || params[:category].present? || params[:tag].present? || params[:language].present? || params[:q].present? || params[:following].present?
     
     # staff pick
     if params[:staff_pick].present?
@@ -193,6 +193,18 @@ class ApplicationController < ActionController::Base
   		@story_filter_language = I18n.t("filters.all")
     end
     
+    # following users
+    @story_filter_show_following = controller_action?('root','index')
+    if user_signed_in?
+      @following_users = current_user.following_users
+      logger.debug "/////////////////// following users = #{@following_users.inspect}"
+      if @following_users.present? && params[:following].present? && params[:following].to_bool == true
+        story_objects = story_objects.by_authors(@following_users.map{|x| x.id}.uniq)
+      else 
+        @story_filter_following = false
+      end
+    end
+        
     # search
     @q = ""
 		if params[:q].present?

@@ -153,6 +153,19 @@ $('.search-box input#q').keyup(function(e) {
 
       filter();
   });
+// following via ajax
+    $('.afilter > a.following').click(function(e){
+      pf = JSON.parse(JSON.stringify(f));
+
+      $(this).toggleClass('active').find('i').toggleClass('i-followed i-follow');
+      var tmp = !($(this).attr('data-filtered-by') == "true");  
+      $(this).attr('data-filtered-by', tmp.toString());   
+      f[$(this).attr('data-filter-type')] = tmp.toString();
+      e.preventDefault();
+      e.stopPropagation();
+
+      filter();
+  });
 // category,language,sort via ajax
   $('.afilter > ul.afilter-list > li > a').click(function(e){    
 

@@ -98,6 +98,10 @@ class Story < ActiveRecord::Base
 	def self.by_category(id)
 	  joins(:categories).where('categories.id = ?', id)
 	end
+	
+	def self.by_authors(user_ids)
+    where(:user_id => user_ids)
+	end
 
   # get list of users that match the passed in query
   # - user must not be owner or already have invitation or is already collaborator
