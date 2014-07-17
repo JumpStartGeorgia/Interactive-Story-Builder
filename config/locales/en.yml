@@ -570,6 +570,7 @@ en:
       hint:
         about: Short summary about yourself.  This will be shown with the stories that you publish. 
         default_story_locale: Select the language you want to use by default when creating a new story.
+      submit: Save Settings      
     invitations:
       title: "Invitations for %{name}"
       no_invitations: At this time there are no un-answered invitations on file for you.

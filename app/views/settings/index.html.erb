@@ -40,8 +40,6 @@
 
 
   <div>
-    <%= f.submit nil, :class => 'btn btn-default' %>
-	  <%= f.submit nil, :class => 'btn btn-default', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>
-	  <%= link_to t('helpers.links.cancel'), admin_users_path, :class => 'btn btn-mini btn-default' %>
+    <%= f.submit t('.submit'), :class => 'btn btn-default' %>
   </div>
 <% end %>

@@ -16,13 +16,17 @@
     if is_story_page
       img = image_tag('chack_small.png')
       css << 'follow-story'
-      data_css = 'follow-story'
     else
       img = image_tag('check_black.png')
       css << 'follow-author'
-      data_css = 'follow-author'
     end
   end
+  if is_story_page
+    data_css = 'follow-story'
+  else
+    data_css = 'follow-author'
+  end
+
 %>
 
 <% if user_signed_in? %>
