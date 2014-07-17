@@ -23,7 +23,7 @@ ka:
         default_story_locale: თქვენი ამბის თავდაპირვლეი ენა 
         about: თქვენს შესახებ
         local_avatar: პროფილის სურათი
-        nickname: Nickname
+        nickname: მომხმარებლის სახელი
       story:
         title: ამბის სათაური
         user_id: გამოქვეყნების მომხმარებელი
@@ -37,9 +37,9 @@ ka:
         thumbnail: ესკიზი
         about: ამბის მოკლე შინაარსი
         locale: ამბის ენა
-        permalink: Story URL
-        permalink_staging: Story URL
-        tag_list: Tags
+        permalink: ამბის URL-ი
+        permalink_staging: ამბის URL-ი
+        tag_list: თაგები
       section:
         title: დასახელება
         audio: აუდიო ფაილი
@@ -88,38 +88,38 @@ ka:
         already_exists: 'უკვე არსებობს მონაცემთა ბაზაში'
   mailer:
     closing: "პატივისცემით,"
-    signature: The Story Builder Team
+    signature: Story Builder-ის გუნდი
     contact:
       contact_form:
-        subject: "Story Builder Contact Form"
+        subject: "Story Builder-ის საკონტაქტო ფორმა"
     notification:
       new_user:
-        subject: "Welcome to Story Builder!"
-        message: "Thank you for becoming a member of Story Builder. We look forward to exploring the stories you build!\n\nWhen you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summary about yourself: [settings_link].\n\nYou can manage when you would like to receive email notifications from Story Builder by going to the notifications page: [notifications_link]. "
+        subject: "კეთილი იყოს თქვენი მობრძანება Story Builder-ზე!"
+        message: "გმადლობთ, რომ გახდით Story Builder-ის წევრი. ჩვენ ველით გავიგოთ უფრო მეტი თქვენი ისტორიების შესახებ!\n\nროცა დრო გექნებათ, გთხოვთ, ეწვიოთ პარამეტრების გვერდს, რათა შეიყვანოთ ინფორმაცია თქვენს შესახებ, შეცვალოთ ავატარი, სახელი და პირადი URL-ი: [settings_link].\n\nთქვენ შეიგიძლიათ განსაზღვროთ, როდის გსურთ Story Builder-იდან შეტყობინებების მიღება, ამისათვის ეწვიეთ შეტყობინებების გვერდს: [notifications_link]."
       published_story:
-        subject: "New stories have been published on Story Builder!"
-        message: "The following stories you have expressed interest in were recently published:"
+        subject: "Story Builder-ზე გამოქვეყნდა ახალი ამბავი!"
+        message: "ამბები, რომლითაც თქვენ დაინტერესდით უკვე გამოქვეყნებულია:"
       story_comment:
-        subject: "Someone has posted a comment on your story on Story Builder!"
-        message: "The following stories have recently received a comment:"
-        comment: "1 Comment"
-        comments: "%{num} Comments"
+        subject: "ვიღაცამ დატოვა კომენტარი თქვენს გამოქვეყნებულ ამბავზე Story Builder-ზე!"
+        message: "ამ ამბებზე ცოტახნის წინ გააკეთეს კომენტარები:"
+        comment: "1 კომნეტარი"
+        comments: "%{num} კომენტარი"
       published_news:
-        subject: "Story Builder has new updates!"
-        message: "The following updates were just posted on Story Builder. Click on the link to learn what is going on with Story Builder."
+        subject: "Story Builder-ს დაემატა განახლებული ფუნქციები!"
+        message: "Story Builder-ს დაემატა შემდეგი სიახლეები. დააჭირეთ ბმულს, რათა გაიგოთ რა არის ახალი Story Builder-ზე."
       staff_pick_review:
-        subject: "Story Builder has new published stories to review for Staff Pick!"
-        message: "The following stories need to be reviewed to see if they are worthy to be a Staff Pick:"
+        subject: "Story Builder-ზე გამოქვეყნდა ახალი ამბები!"
+        message: "შემდეგი ამბები უნდა იქნას განხილული, რათა დადგინდეს იმსახურებენ, თუ არა ისინი:"
       staff_pick_selection:
-        subject: "Your story has been selected by the Story Builder Team as a Staff Pick!"
-        message: "Congratulations! The following stories of yours were selected by the Story Builder Team as Staff Picks:"
+        subject: "თქვენი ამბავი შერჩეულ იქნა, როგორც Story Builder-ის გუნდის რჩეული!"
+        message: "გილოცავთ! თქვენს მიერ შექმნილი შემდეგი ამბები დასახელდა Story Builder-ს გუნდის რჩეულად:"
       story_collaboration:
-        subject: "You have been invited to collaborate on a story on Story Builder!"
-        message: "You have received the following invitations to collaborate on stories with other people on Story Builder. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part."
-        from: From
-        story_title: Story Title
-        msg: Message
-        accept_link: Accept the Invitation
+        subject: "თქვენ მოწვეული ხართ, რათა მონაწილეობა მიიღოთ ამბის შექმნაში Story Builder-ზე!"
+        message: "თქვენ მოწვეული ხართ, რათა მონაწილეობა მიიღოთ ამბის შექმნაში სხვა ადამიანებთან ერთად Story Builder-ზე. თუ გსურთ მიიღოთ მოპატიჟება, უბრალოდ დააჭირეთ ბმულს 'მოპატიჟების მიღება'. თუ უარყოფთ მოპატიჟებას, უპასუხოთ დატოვეთ იგი."
+        from: ვისგან
+        story_title: ამბის სათაური
+        msg: გზავნილი
+        accept_link: მოპატიჟების მიღება
   helpers:
     actions: აირჩიეთ
     links:
@@ -146,43 +146,43 @@ ka:
       sign_in: უკვე გაქვთ ანგარიში?      
       sign_up2: რეგისტრაცია
       sign_up_question: "არ გაქვთ ანგარიში ჯერ?"
-      sign_up: Register now
-      sign_up_title: Join Story Builder
+      sign_up: დარეგისტრირება
+      sign_up_title: შეუერთდი Story Builder-ს
       sign_out: გასვლა
       sign_in_provider: "სისტემაში შესვლა %{provider}"
-      sign_up_provider: "Sign up with %{provider}"
-      sign_in_local_or_provider: or log in with your username and password
-      reset_or_sign_in: sign in with facebook or reset your password
+      sign_up_provider: "დარეგისტრირდი  %{provider}-ის საშუალებით"
+      sign_in_local_or_provider: ან შეიყვანე თქვენი სახელი და პაროლი
+      reset_or_sign_in: ჩაერთეთ facebook-ის მეშვეობით ან შეცვალეთ პაროლი
       add_story: ამბის დამატება
       users: მომხმარებლები
       news: სიახლეები
       feedback: უკუკავშირი
-      todo_list: To-Do List
-      about: About
-      demo: Demo
+      todo_list: გასაკეთებელი სია
+      about: ჩვენს შესახებ
+      demo: დემო
       rss: RSS
       languages: ენები
       categories: კატეგორიები
       staff_pick: რჩეულებში დამატება 
       user_settings: თქვენი პარამეტრები
-      like: Like
-      likes: Likes   
-      comments: Comment on this story
-      views: "%{num} reads"
-      tags: Tags
+      like: მოწონება
+      likes: მოწონება
+      comments: კომენტარები ამ ამბის შესახებ
+      views: "%{num} წაკითხვა"
+      tags: თაგი
       menu: მენიუ
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
       story_list: ამბის ნახვა
     hints:
-      nickname: Your nickname is used in the url to your published stories (e.g., nickname/story-title)        
+      nickname: თქვენი სახელი გამოყენებულია თქვენს მიერ გამოქვეყნებული ამბის URL-ში (მაგ., სახელი/ამბის-სათაური) 
       local_avatar: ფოტო, რომელიც გამოჩნდება თქვენი გვერდის ზედა სექციაში (მხოლოდ png და jpg).
-      like: Like this story
-      unlike: Unlike this story
+      like: მოიწონეთ ამბავი
+      unlike: აღარ მომწონს ეს ამბავი
       staff_pick: რჩეულებში დამატება
       staff_unpick: რჩეულებიდან ამოშლა
-      is_staff_pick: Staff Pick
+      is_staff_pick: რჩეული
   app:
     language:
       en: English
@@ -217,39 +217,39 @@ ka:
       scroll: დასკროლე
       reviewer_key: მიიღეთ URL, რათა გააზიაროთ ამბავი მის გამოქვეყნებამდე
       reviewer_key_published: თქვენი ამბავი გამოქვეყნებულია, აღარაა საჭირო ამ URL-ის გამოქვეყნებ
-      explore: Explore
+      explore: დაათვალიერე
     common:
       app_name: Story Builder
-      app_intro: Build and Share;the Next Generation Story;Story Builder allows anyone with text, pictures and/or videos to<br>combine this content into a creative story that can be published<br> and shared with the world
-      powered_by: Powered by
+      app_intro: შექმენი და გააზიარე;ახალი თაობის ამბები;Story Builder-ი ნებისმიერ ადამიანს ტექსტით, სურათით და/ან ვიდეოთი აძლევს შესაძლებლბოას<br>გააერთიანოს ეს მონაცემები ერთ ამბად, გამოაქვეყნოს<br> და გაუზიაროს იგი მსოფლიოს
+      powered_by: შექმნილია
       added_on: "დამატებულია: %{date}"
       admin: ადმინისტრატო
       sign_out: გასვლა      
-      jumpstart: Jumpstart Georgia
+      jumpstart: ჯამპსტარტ ჯორჯია
       js_link_title: ჯამპსტარტ ჯორჯიას - ჩვენ გაწვდით ინფორმაციას უკეთ!
       js_link_text: აგებულია
-      search: Search for Story
-      build: Build Story
-      explore: Explore Stories
-      about_story: About
-      likes: Likes
-      comments: Comments
-      follow: Follow
+      search: ამბის მოძებნა
+      build: ამბის შექმნა
+      explore: ამბების დათვალიერება
+      about_story: შესახებ
+      likes: მოწონება
+      comments: კომენტარები
+      follow: თვალყურის დევნება
       following: Following
       follow_link_title: Click to receive notifications whenever this user publishes new stories
       unfollow_link_title: Click to stop receiving notifications whenever this user publishes new stories
       email: Email
-      views: Views
-      permalink: Permalink
-      share_story: Share this story
-      share_facebook: Share on facebook
-      share_twitter: Share on twitter
-      share: Share
-      staff_pick: Staff Pick
-      wide: wide
+      views: ნახვები
+      permalink: მუდმივი ლინკი
+      share_story: ამბის გაზიარება
+      share_facebook: Facebook-ზე გაზიარება
+      share_twitter: Twitter-ზე გაზიარება
+      share: გაზიარება
+      staff_pick: რჩეული
+      wide: ფართო
       partial: Pretty Link
-      full: Full Story
-      feed: Story Builder Feed Channel
+      full: სრული ამბავი
+      feed: Story Builder-ის Feed Channel-ი
     msgs:
       does_not_exist: თქვენ ცდილობთ იხილოთ გვერდი, რომელიც არ არსებობს.
       not_authorized: თქვენ არ გაქვთ უფლება იხილოთ ეს გვერდი.
@@ -261,7 +261,7 @@ ka:
       error_created: "%{obj} არ იყო შექმნილი. [ %{err} ]"
       error_updated: "%{obj} არ იყო განახლებული. [ %{err} ]"
       error_publish: "%{obj} იქნა გამოქვეყნებული. [ %{err} ]"
-      error_publish_missing_fields: "%{obj} can't be published until you provide a summary and thumbnail image."
+      error_publish_missing_fields: "%{obj} ვერ იქნება გამოქვეყნებული სანამ არ წარმოადგენთ მოკლე შინაარსს და ფოტოს."
       error_publish_missing_fields_link: Add the missing content.
       error_publish_missing_content_section: At least one content section required.
       error_unpublish: "%{obj} გამოქვეყნება გაუქმებულია. [ %{err} ]"
@@ -273,15 +273,15 @@ ka:
       staff_unpick: ამბავი ამოშლილი რჩეულებიდან
       success_settings: თქვენი პარამეტრები წარმატებით განახლდა.
       success_remove_avatar: პროფილის სურათათ თქვენი გვერდის Facebook სურათია გამოყენებული.
-      nickname_duplicate: This user url already exists. 
-      nickname_url: 'Your url will be:'
-      story_duplicate: This story url already exists. 
-      story_url: 'Your url will be:'
+      nickname_duplicate: მომხმარებელი ამ URL-ით უკვე არსებობს.
+      nickname_url: 'თქვენი URL-ი იქნება:'
+      story_duplicate: ამ ამბის URL-ი უკვე არსებობს. 
+      story_url: 'თქვენი URL-ი იქნება:'
       invitation:
-        accepted: "You have accepted the invitation to collaborate on '%{title}'"
-        accepted_already: "You have already accepted the invitation to collaborate on '%{title}'"
-        bad: Sorry, your invitation could not be found or the story has been deleted.
-        declined: Your invitation was declined
+        accepted: "თქვენ დათანხმდით '%{title}'-ზე თანამშრომლობის მოპატიჟებას"
+        accepted_already: "თქვენ უკვე დათანხმდით '%{title}'-ზე თანამშრომლობის მოპატიჟებას"
+        bad: უკაცრავად, თქვენი მოპატიჟება ვერ მოიძებნა ან ამბავი არის წაშლილი.
+        declined: თქვენი მოპატიჟება გაუქმებულია
       one_section:
         content: მხოლოდ ერთი რამის  დამატებაა შესაძლებელი შინაარსის სექციაში
         slideshow: მხოლოდ ერთი რამის დამატებაა შესაძლებელი ფოტო სლაიდშოუს სექციაში
@@ -293,14 +293,14 @@ ka:
         success: ერთეული წარმატებით წაიშალა.
         error: "ერთეულის წაშლისას დაშვებულია შეცდომა [ %{err} ]"
         error_not_found: წასაშლელი ერთეული ვერ მოიძებნა.
-      embed_code: Copy and paste this embed code into your web page
+      embed_code: დააკოპიერთ და ჩასვით ლინკი თქვენს ვებგვერძე
       collaborators:
-        success_remove: '%{name} was removed as a collaborator'
-        user_not_found: User to remove as a collaborator could not be found
-        no_permission: You do not have permission to remove this collaborator
-        success_invitations: Invitations were sent!
-        error_invitations_all: "No invitations were sent due to the following erros: %{msg}"
-        error_invitations_some: "Some invitations were sent, but some where not due to the following erros: %{msg}"
+        success_remove: '%{name}-ი წაშლილი იქნა დამხმარეთა სიიდან'
+        user_not_found: მომხმარებლის ვერ მოიძებნა, რათა წაშლილიყო დამხმარეთა სიიდან
+        no_permission: თქვენ არ გაქვთ უფლება წაშალოთ ეს პიროვნება დამხმარეთა სიიდან
+        success_invitations: მოსაწვევები გაგზავნილია!
+        error_invitations_all: "მოსაწვევები ვერ გაიგზავნა შემდეგი შეცდომის გამო: %{msg}"
+        error_invitations_some: "ზოგიერთი მოსაწვევი გაიგზავნა, მაგრამ ზოგიერთი ვერა, შემდეგი შეცდომის გამო: %{msg}"
       notification:
         yes: თქვენ მიიღებთ შეტყობინებებს.
         no: თქვენ არ მიიღებთ შეტყობინებებს.
@@ -331,25 +331,25 @@ ka:
     feature: მოითხოვეთ ახალი ფუნქციის დამატება
     feedback: გაგვიზიარეთ თქვენი აზრი
   filters:
-    staff_pick: Staff Pick
-    sort_header: Sorted By
-    all: All
-    matches: Matching Stories
+    staff_pick: რჩეული
+    sort_header: დახარეისხებულია
+    all: ყველა
+    matches: მსგავსი ამბები
     sort:
-      recent: Recent
-      reads: Reads
-      likes: Likes
-    category_header: Category
-    language_header: Language
-    search: Find a Story
+      recent: ხელახლა გაგზავნა
+      reads: წაკითხვები
+      likes: მოწონება
+    category_header: კატეგორია
+    language_header: ენა
+    search: ამბის პოვნა
   tokeninput:
-    searchingText: Searching...
+    searchingText: ძიება...
     tag:
-      hintText: Search for an existing tag or enter a new tag
-      noResultsText: "No matches found. Press 'Enter' to save this new tag."
+      hintText: გატის ძიება ან ახალი ტაგის დამატება
+      noResultsText: "მსგავსება არ არის აღმოჩენილი. დააჭირეთ 'შეყვანას', რომ დაამატოთ ტაგი."
     collaborator:
-      hintText: Search for an existing user or enter the email address for a new user
-      noResultsText: "No matches found. Press 'Enter' to add this email address to the list of invited collaborators."
+      hintText: მოძებნეტ უკვე არსებული მომხმარებელი ან შეიყვანეთ email-ის მისამართი, რათა დაამატოთ ახალი მომხმარებელი
+      noResultsText: "მსგავსება არ მოიძებნა. დააჭირეთ 'შეყვანას', რომ დაამატოთ ეს email მისამართი დამხმარეთა სიაში"
   layouts:
     unsupported_browser:
       title: არასათანადო ბრაუზერი
@@ -370,24 +370,24 @@ ka:
       copied: გადაკოპირებულია!
   shared:
     grid:
-      no_stories: Oh no - no stories could be found!
+      no_stories: სამწუხაროდ არ მოიძებნა არცერტი ამბავი!
     grid_item:
       link:
-        clone: Clone as new story
-        export: Download story
-        review: Private URL
-        noreview: Already published
-        collaborators: Manage Collaborators
+        clone: ახალ ამბად კლონირება
+        export: ამბის ჩამოტვირთვა
+        review: პირადი URL 
+        noreview: უკვე გამოქვეყნებულია
+        collaborators: დამხმარეთა სიის მართვა
       title:
-        clone: Copy this story into a new story
-        export: Download the complete story
-        review: Get URL to share this story before publishing
-        noreview: Your story is published so there is no need to share this non-published URL
-        collaborators: Manage which users have access to edit your story
-        likes: Likes
-        views: Views
-        comments: Comments
-        publish_date: Publish Date
+        clone: ამბის ახალ ამბად დაკოპირება
+        export: სრული ამბის გადმოტვირთვა
+        review: ამ ამბის გამოქვეყენბამდე გასაზიარებლად URL-ის მიღება 
+        noreview: თქვენი ამბავი უკვე გამოქვეყნებულია, არაა საჭირო ამ გამოუქვეყნებული URL-ის გამოყენება
+        collaborators: განსაზღვრეთ, რომელ მომხმარებელს შეუძლია თქვენი ამბის რედაქტირება
+        likes: მოწონება
+        views: ნახვები
+        comments: კომენტარები
+        publish_date: გამოქვეყნების თარიღი
   admin:
     index:
       title: ადმინისტრატორის განყოფილება
@@ -425,7 +425,7 @@ ka:
       email: ელ.ფოსტის მისამართი
       message: შეტყობინება
     todo_list:
-      title: "Story Builder-ის To-Do List-ი"
+      title: "Story Builder-ის გასაკეთებელი სია"
       summary: Story Builder-ი ჩამოყალიბების სტადიაში და უამრავ ცვლილებას განიცდის. აქ თავმოყრილია იმ ფუნქციების ჩამონათვალი, რომელზეც ჩვენ ამჟამად ვმუშაობთ, ან ვაპირებთ, რომ ვიმუშაოთ.
       last_update: "ბოლოს განახლებულ იქნა"
       header_current: დავალებები, რომელზეც ამჟამად მუშაობთ
@@ -438,10 +438,10 @@ ka:
       missing_text: ჩამონათვალს ხომ არ აკლია ფუნქცია, რომლის დამატებასაც ისურვებდით? ხომ არ ფიქრობთ, რომ ჩამონათვალის სია უნდა გადავაწყოთ? თუ კი, გთხოვთ მოგვაწოდეთ ინფორმაცია  %{link}-ის გამოყენებით.
       feedback_link: უკუკავშირის სექცია
     about:
-      title: About Story Builder
+      title: Story Builder-ის შესახებ
       text: Story Builder ...
     embed:
-      home_link: Built on Story Builder
+      home_link: შექმნილია Story Builder-ზე
   stories:
     index:
     new:
@@ -451,12 +451,12 @@ ka:
     form:
       placeholder:
         title: ამბის სათაური
-        permalink: URL to the story
+        permalink: ამბის URL-ი
         author: სტატიის ავტორ(ებ)ი
         media_author: ფოტოსა და/ან ვიდეოს ავტორ(ებ)ი
       hint:
         title: ამბის სათაური გამოჩნდება გამოჩნდება როგორც ჰედერი პირველი შინაარსის სექციაში თუ ეს მედია სექციაა
-        permalink: The default URL is the title of the story, but you can change it if desired
+        permalink: დეფოლტ URL-ი არის ამბის სათაური, მაგრამ სურვილისამბებრ, შეგიძლიათ შეცვალოთ იგი
         author: სტატიის ავტორ(ებ)ი გამოჩნდებ(ი)ა(ნ) პირველი შინაარსის სექციაში
         media_author:  ავტორ(ებ)ი გამოჩნდებ(ი)ა(ნ) პირველი შინაარსის სექციაში ამბის სათაურის ქვემოთ
         published: გამოქვეყნებული ამბების წაკითხვა ყველას შეუძლია
@@ -468,20 +468,20 @@ ka:
         about: ამბის მოკლე შინაარსი, რომელიც გამოჩნდება საწყის გვერხ, როდესაც თქვენი ამბავი გამოქვეყნდება
         locale: აირჩიეთ თქვენი ამბის ენა. მიეცით მომხმარებელს საშუალება აირჩიოს ამბავი ენის მიხედვით.
         categories: აირჩიეთ კატეგორია(ები), რომელსაც თქვენი ამბავი განეკუთვნება. მიეცით მომხმარებელს საშუალება აირჩიოს ამბავი კატეგორიის მიხედვით.
-        tag_list: "Enter text to find existing tags.  If your tag does not exist yet, press 'Enter' to add the new tag to the list."
+        tag_list: "შეიყვანეთ ტექსტი, რომ იპოვოთ არსებული ტაგი. თუ თქვენი ტაგი ჯერ არ არსებობს, დააჭირეთ 'შეყვანას' და დაამატეთ იგი."
     collaborators:
-      title: Collaborators for '%{title}'
-      owner_header: Story Owner
-      collaborators_header: Story Collaborators
-      explanation: A story collaborator is someone that has access to edit this story.
-      current_header: Current Collaborators
-      remove_title: 'Remove %{name}'
-      not_accepted_title: '%{name} has not accepted the invitation yet'
-      add_header: Add Collaborators
-      add_explanation: For the users you enter below, an email will be sent inviting them to be a collaborator on this story.
-      search_label: Enter names or email addresses of the people you want to invite
-      message: Add Message to Notification (optional)
-      submit: Send Collaboration Invitation
+      title: "'%{title}'-ს ამბის შექმნის მონაწილეები"
+      owner_header: ამბის მეპატრონე
+      collaborators_header: ამბის შექმნაში მონაწილე პირები
+      explanation: ამბის შექმნაში დამხმარე პირებს შეუძლიატ ამ ამბის რედაქტირება.
+      current_header: ამ დროისთვის დამხმარეები
+      remove_title: '%{name}-ის ამოშლა'
+      not_accepted_title: '%{name}-ს ჯერ არ უპასუხია მოწვევაზე'
+      add_header: მონაწილეების დამატება
+      add_explanation: მომხმარებლებს, რომლებიც ქვემოთ მიუთითეთ, გაეგზავნებათ მოსაწვევები, რათა მონაწილეობა მიიღონ თქვენთან ერთდ ამ ამბის შექმნაში.
+      search_label: შეიყვანეთ იმ ხალხის სახელები და email-ები, ვისი მოგაპიჟებაც გსურთ
+      message: შეტყობინებისთვის გზავნილის დამატება (არასავალდებულო)
+      submit: თანამშრომლობის მოსაწვევის გაგზავნა
     media:
       form_title: მთელს ეკრანზე გაშლილი მედია სლაიდშოუ
       left: მარცხნივ
@@ -570,13 +570,13 @@ ka:
         about: მოკლედ თქვენს შესახებ. ეს გამოჩნდება გამოქვეყნებულ ამბებთან ერთად. 
         default_story_locale: აირჩიეთ ენა, რომელსაც გამოიყენებთ ამბის შექმნისას.
     invitations:
-      title: "Invitations for %{name}"        
-      no_invitations: At this time there are no un-answered invitations on file for you.
-      accept_link: Accept
-      decline_link: Decline
-      header_date: Date Sent
-      header_story: Story Title
-      header_from: Sent By
+      title: "მოსაწვევები %{name}-სთვის"       
+      no_invitations: ამ დროისთვის არ არის უპასუხო მოსაწვევები.
+      accept_link: დათანხემბა
+      decline_link: უარყოფა
+      header_date: გაგზავნის თარიღი
+      header_story: ამბის სათური
+      header_from: გამგზავნი 
     notifications:
       title: Notifications
       all_sub_title: All Notifications
