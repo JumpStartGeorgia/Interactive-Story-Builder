@@ -351,22 +351,22 @@ ka:
     all: ყველა
     matches: მსგავსი ამბები
     staff_pick: რჩეული
-    staff_pick_title: View stories that have been selected as Staff Picks
-    staff_pick_title_active: Remove Staff Pick filter
+    staff_pick_title: იხილეთ რჩეული ამბები
+    staff_pick_title_active: რჩეულის ფილტრის მოშორება
     sort_header: დახარეისხებულია
-    sort_title: Indicate how the stories should be sorted
+    sort_title: რა სახით გსურთ ისტორიების დალაგება
     sort:
       recent: ხელახლა გაგზავნა
       reads: წაკითხვები
       likes: მოწონება
     category_header: კატეგორია
-    category_title: View stories that belong to a category
+    category_title: იხილეთ ისტორიები, რომლებიც განეკუთნება კატეგორიას
     language_header: ენა
-    language_title: View stories that are written in a particular language
+    language_title: იხილეთ ისტორიები, რომლებიც რომელიმე კონკრეტულ ენაზეა დაწერილი
     search: ამბის პოვნა
     following: თვალყურის დევნება
-    following_title: View stories of users that you are following
-    following_title_active: Remove Following filter
+    following_title: იხილეთ ისტორიები, რომლებიც დაწერეს მომხმარებლებმა, რომელთაც თქვენ თვალყურს ადევნებთ
+    following_title_active: თვალყურის დევნების ფილტრის მოშორება
   tokeninput:
     searchingText: ძიება...
     tag:
