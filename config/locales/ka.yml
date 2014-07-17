@@ -218,10 +218,10 @@ ka:
       confirm: დარწმუნებული ხართ?
       new: ახალი            
       add_section: ახალი სექცია
-      add_item: Add Item into Section
-      up: Move Selected Section/Item Up
-      down: Move Selected Section/Item Down
-      delete_item: Delete Selected Section/Item
+      add_item: განყოფილებაში პუნქტის დამატება
+      up: არჩეული განყოფილების/პუნქტის ზემოთ ატანა
+      down: არჩეული განყოფილების/პუნქტის ქვემოთ ჩამოტანა
+      delete_item: არჩეული განყოფილების/პუნქტის წაშლა
       preview: ნახვა
       preview_image: სურათის ნახვა
       preview_video: ვიდეოს ნახვა
@@ -522,7 +522,7 @@ ka:
       placeholder:
         title: სექციის სათაური
       hint:
-        title: "This text appears in the left sidebar and, if Navigation Shortcut is selected, will appear as the title text for the shortcut"
+        title: აღნიშნული ტექსტი გამოჩნდება მარცხენა განყოფილებაში და თუ სანავიგაციო ბმულს აირჩევთ იგი განთავსდება, როგორც ბმულის სათაური
         type: ამ ტიპის არჩევა განსაზღვრავს იმ ინფორმაციის სახეს რომლის დამატებაც შეგეძლებათ ამ სექციაში
         has_marker: თუ მონიშნავთ, გამოჩნდება სანავიგაციო ლინკი ამ სექციაზე გადასასვლელად
         audio: ფონური მუსიკა ჩაირთვება, როდესაც ვინმე იხილავს ამ სექციას (მხოლოდ mp3 ფორმატია დასაშვები)
