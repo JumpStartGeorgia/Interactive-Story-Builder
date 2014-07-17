@@ -43,6 +43,7 @@ class RootController < ApplicationController
     if @story.present?        
       respond_to do |format|    
         if params[:type] == 'full'  
+              @is_embed = true
               @no_nav = true     
               @css.push("navbar.css", "storyteller.css", "modalos.css")
               @js.push("storyteller.js","modalos.js", "follow.js")    

@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
       </button>
        <% if @story.present? %>
-          <%= link_to(@story.title, root_path(:locale => I18n.locale), :class=>"navigation-headline navbar-brand")%>  
+          <%= link_to(@story.title, url_for, :class=>"navigation-headline navbar-brand")%>  
         <% end %>    
     </div>
 
