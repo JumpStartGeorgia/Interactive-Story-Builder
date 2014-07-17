@@ -197,13 +197,14 @@ class ApplicationController < ActionController::Base
     @story_filter_show_following = controller_action?('root','index')
     if user_signed_in?
       @following_users = current_user.following_users
-      logger.debug "/////////////////// following users = #{@following_users.inspect}"
       if @following_users.present? && params[:following].present? && params[:following].to_bool == true
         story_objects = story_objects.by_authors(@following_users.map{|x| x.id}.uniq)
+        @story_filter_following = true
       else 
         @story_filter_following = false
       end
     end
+      logger.debug "/////////////////// @story_filter_following = #{@story_filter_following}"
         
     # search
     @q = ""

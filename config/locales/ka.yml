@@ -348,18 +348,25 @@ ka:
     feature: მოითხოვეთ ახალი ფუნქციის დამატება
     feedback: გაგვიზიარეთ თქვენი აზრი
   filters:
-    staff_pick: რჩეული
-    sort_header: დახარეისხებულია
     all: ყველა
     matches: მსგავსი ამბები
+    staff_pick: რჩეული
+    staff_pick_title: View stories that have been selected as Staff Picks
+    staff_pick_title_active: Remove Staff Pick filter
+    sort_header: დახარეისხებულია
+    sort_title: Indicate how the stories should be sorted
     sort:
       recent: ხელახლა გაგზავნა
       reads: წაკითხვები
       likes: მოწონება
     category_header: კატეგორია
+    category_title: View stories that belong to a category
     language_header: ენა
+    language_title: View stories that are written in a particular language
     search: ამბის პოვნა
     following: თვალყურის დევნება
+    following_title: View stories of users that you are following
+    following_title_active: Remove Following filter
   tokeninput:
     searchingText: ძიება...
     tag:

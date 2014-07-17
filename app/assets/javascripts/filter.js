@@ -3,7 +3,7 @@ var f = {};     // filter values
 var pf = {};    // previous filter values
 function filter()    
 {    
-  console.log(f);
+//  console.log(f);
   if(JSON.stringify(f) !== JSON.stringify(pf))
   {  
     var ftmp = {};
@@ -148,6 +148,11 @@ $('.search-box input#q').keyup(function(e) {
       var tmp = !($(this).attr('data-filtered-by') == "true");  
       $(this).attr('data-filtered-by', tmp.toString());   
       f[$(this).attr('data-filter-type')] = tmp.toString();
+      if (tmp){
+        $(this).attr('title', $(this).data('title-active'));
+      }else{
+        $(this).attr('title', $(this).data('title'));
+      }
       e.preventDefault();
       e.stopPropagation();
 
@@ -161,6 +166,11 @@ $('.search-box input#q').keyup(function(e) {
       var tmp = !($(this).attr('data-filtered-by') == "true");  
       $(this).attr('data-filtered-by', tmp.toString());   
       f[$(this).attr('data-filter-type')] = tmp.toString();
+      if (tmp){
+        $(this).attr('title', $(this).data('title-active'));
+      }else{
+        $(this).attr('title', $(this).data('title'));
+      }
       e.preventDefault();
       e.stopPropagation();
 
