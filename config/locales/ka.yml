@@ -32,7 +32,7 @@ ka:
         media_author: ფოტოსა და ვიდეოს ავტორ(ებ)ი
         published: გამოქვეყნება
         published_at: გამოქვეყნებულია
-        publish_home_page: Once published, make your story visible on the homepage?
+        publish_home_page: გამოქვეყნების შემდგომ, გსურთ, რომ თქვენი ამბავი გამოჩნდეს მთავარ გვერძე?
         template_id: შაბლონი
         thumbnail: ესკიზი
         about: ამბის მოკლე შინაარსი
@@ -120,6 +120,7 @@ ka:
         story_title: ამბის სათაური
         msg: გზავნილი
         accept_link: მოპატიჟების მიღება
+        all_invitations: View all of your Story Builder collaboration invitations.
   helpers:
     actions: აირჩიეთ
     links:
@@ -236,10 +237,10 @@ ka:
       likes: მოწონება
       comments: კომენტარები
       follow: თვალყურის დევნება
-      following: Following
-      follow_link_title: Click to receive notifications whenever this user publishes new stories
-      unfollow_link_title: Click to stop receiving notifications whenever this user publishes new stories
-      email: Email
+      following: თვალყურის დევნება
+      follow_link_title: დააჭირეთ, რომ მიიღოთ შეტყობინება, როდესაც ეს მომხმარებელი გამოაქვეყნებს ახალ ისტორიას
+      unfollow_link_title: დააჭირეთ, რომ შეწყვიტოთ შეტყობინების მიღება, როდესაც ეს მომხმარებელი გამოაქვეყნებს ახალ ისტორიას
+      email: ელ-ფოსტა
       views: ნახვები
       permalink: მუდმივი ლინკი
       share_story: ამბის გაზიარება
@@ -305,14 +306,14 @@ ka:
       notification:
         yes: თქვენ მიიღებთ შეტყობინებებს.
         no: თქვენ არ მიიღებთ შეტყობინებებს.
-        new_story_all_success: You will recieve a notification whenever a story is added.
-        new_story_none_success: You will not receive any notifications when stories are added.
-        new_story_by_category_success: "You will receive a notification when a story is added to these categories: %{categories}."
-        story_comments_yes: You will be sent notifications when a comment is made to one of your stories.
-        story_comments_no: You will not be sent notifications when a comment is made to one of your stories.
-        news_yes: You will be sent notifications when updates are made to Story Builder.
-        news_no: You will not be sent notifications when updates are made to Story Builder.
-        following_no: "You will no longer receive notifications about new stories from '%{nickname}'."
+        new_story_all_success: თქვენ მიიღებთ შეტყობინებას, როდესაც ახალი ისტორია იქნება დამატებული.
+        new_story_none_success: თქვენ არ მიიღებთ შეტყობინებას, როდესაც ახალი ისტორია იქნება დამატებული.
+        new_story_by_category_success: "თქვენ მიიღებთ შეტყობინებას, როდესაც ახალი ისტორია დაემატება კატეგორიას: %{categories}."
+        story_comments_yes: თქვენ მიიღებთ შეტყობინებას, როდესაც თქვენს ამბავზე გააკეთებენ კომენტარს.
+        story_comments_no: თქვენ არ მიიღებთ შეტყობინებას, როდესაც თქვენს ამბავზე გააკეთებენ კომენტარს.
+        news_yes: თქვენ მიიღებთ შეტყობინებას, როდესაც  Story Builder-ს დაემატება სიახლეები.
+        news_no: თქვენ არ მიიღებთ შეტყობინებას, როდესაც  Story Builder-ს დაემატება სიახლეები.
+        following_no: "თქვენ აღარ მიიღებთ შეტყობინებებს  '%{nickname}ის' ახალი ისტორიების შესახებ."
         language: თქვენ მიიღებთ შეტყობინებას %{language}.
   section_types:
     content:
@@ -462,7 +463,7 @@ ka:
         author: სტატიის ავტორ(ებ)ი გამოჩნდებ(ი)ა(ნ) პირველი შინაარსის სექციაში
         media_author:  ავტორ(ებ)ი გამოჩნდებ(ი)ა(ნ) პირველი შინაარსის სექციაში ამბის სათაურის ქვემოთ
         published: გამოქვეყნებული ამბების წაკითხვა ყველას შეუძლია
-        publish_home_page: "If checked, your published story will appear on the site's homepage"
+        publish_home_page: "თუ მონიშნავთ, თქვენს მიერ გამოქვეყნებული ამბავი გამოჩნდება საიტის საწყის გვერძე"
         template: აირჩიეთ შაბლონი ამბის სტილის შესარჩევად
         thumbnail: თქვენი ამბის გამოსახულება, რომელიც გამოჩნდება საწყის გვერძე, როდესაც ამბავი გამოქვეყნდება (მხოლოდ jpg და png ფორმატი)
         editor: ამბის შემქმნელი პირი
@@ -581,28 +582,28 @@ ka:
       header_story: ამბის სათური
       header_from: გამგზავნი 
     notifications:
-      title: Notifications
-      all_sub_title: All Notifications
-      all_label: Do you want to recieve any notifications from Story Builder?
-      all_no: "No, do not send me any notifications."
-      all_yes: "Yes, I want notifications sent to me."
-      story_comment_sub_title: New Story Comment Notifications
-      story_comment_label: "Do you want to recieve notifications when a comment is made to one of your stories?"
-      story_comment_no: "No, do not send me any notifications."
-      story_comment_yes: "Yes, I want notifications sent to me."
-      new_stories_sub_title: New Story Notifications
-      new_stories_all: Notify me when any story is added.
-      new_stories_none: I do not want to receive notifications when a new story is added.
-      new_stories_by_category: "Notify me when a story is added to:"
-      language_sub_title: Notification Language
-      language_label: In what language do you want to receive the notifications?
-      news_sub_title: Story Builder Update Notifications
-      news_label: "Do you want to recieve notifications when updates are made to Story Builder?"
-      news_no: "No, do not send me any notifications."
-      news_yes: "Yes, I want notifications sent to me."            
-      following_sub_title: Story Builder Users You Are Following
+      title: შეტყობინებები
+      all_sub_title: ყველა შეტყობინება
+      all_label: გსურთ მიიღოთ შეტყობინებები Story Builder-ისგან?
+      all_no: "არა, არ გამომიგზავნოთ შეტყობინებები."
+      all_yes: "დიახ, მსურს შეტყობინებების მიღება."
+      story_comment_sub_title: შეტყობინებები ამბის კომენტარებზე
+      story_comment_label: "გსურთ მიიღოთ შეტყობინებები, როდესაც თქვენს მიერ შექმნილ ამბავზე გაკეთდება კომენტარი?"
+      story_comment_no: "არა, არ გამომიგზავნოთ შეტყობინებები."
+      story_comment_yes: "დიახ, მსურს შეტყობინებების მიღება."
+      new_stories_sub_title: ახალი ისტორიების შესახებ შეტყობინებები
+      new_stories_all: შემატყობინეთ, როდესაც ახალი ისტორია იქნება დამატებული.
+      new_stories_none: არ მსურს მივიღო შეტყობინებები, როდესაც ახალი ისტორიები იქნება დამატებული.
+      new_stories_by_category: "შემატყობინეთ, როდესაც ახალი ისტორია იქნება დამატებული:"
+      language_sub_title: შეტყობინების ენა
+      language_label: რა ენაზე გსურთ შეტყობინებების მიღება?
+      news_sub_title: შეტყობინებები Story Builder-ის განახლებებზე
+      news_label: "გსურთ მიიღოთ შეტყობინებები, როდესაც Story Builder-ზე დაემატება სიახლეები?"
+      news_no: "არა, არ გამომიგზავნოთ შეტყობინებები."
+      news_yes: "დიახ, მსურს შეტყობინებების მიღება."            
+      following_sub_title: Story Builder-ის მომხმარებლები, რომელთაც თქვენ თვალყურს ადევნებთ
       following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, 'unfollow' them by clicking on their image."
-      following_not: "At this time, you are not following any users."
-      following_title1: "Click to unfollow '%{nickname}'"
-      following_title2: "Click to follow '%{nickname}'"     
+      following_not: "ამ დროისთვის თქვენ არცერთ მომხმარებელს არ ადევნებთ თვალყურს."
+      following_title1: "'%{nickname}' თვალყურის დევნის გასაუქმებლად დააჭირეთ ღილაკს"
+      following_title2: "'%{nickname}' თვალყურის სადევნებლად დააჭირეთ ღილაკს"     
       submit: Save Settings      
