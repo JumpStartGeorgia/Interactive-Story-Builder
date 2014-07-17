@@ -8,6 +8,17 @@ ul#settings-navigation{
   }
 }
 
+@media (max-width: 600px) {
+  ul#settings-navigation{
+    li a span.nav-text{
+      display: none;
+    }
+  }
+
+}
+
+
+
 form.settings{
   .avatar_container{
     margin-bottom: 10px;
@@ -19,9 +30,7 @@ form.settings{
     & > div{
       float: left;
     }
-    
   }
-
 }
 
 form#notifications{

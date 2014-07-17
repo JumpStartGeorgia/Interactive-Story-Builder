@@ -1,7 +1,7 @@
 <ul id="settings-navigation" class="nav nav-tabs">
   <% cls = current_page?(settings_path) ? 'class=active' : '' %>
   <li <%=cls %>>
-    <%= link_to settings_path do %>
+    <%= link_to settings_path, :title => t('settings.index.title') do %>
       <span class="glyphicon glyphicon-cog"></span>
       <span class="nav-text">
         <%= t('settings.index.title') %>
@@ -10,7 +10,7 @@
   </li>
   <% cls = current_page?(settings_notifications_path) ? 'class=active' : '' %>
   <li <%=cls %>>
-    <%= link_to settings_notifications_path do %>
+    <%= link_to settings_notifications_path, :title => t('settings.notifications.title') do %>
       <span class="glyphicon glyphicon-envelope"></span>
       <span class="nav-text">
         <%= t('settings.notifications.title') %>
@@ -19,7 +19,7 @@
   </li>
   <% cls = current_page?(settings_invitations_path) ? 'class=active' : '' %>
   <li <%=cls %>>
-    <%= link_to settings_invitations_path do %>
+    <%= link_to settings_invitations_path, :title => t('settings.invitations.title') do %>
       <span class="glyphicon glyphicon-user"></span>
       <span class="nav-text">
         <%= t('settings.invitations.title') %>
