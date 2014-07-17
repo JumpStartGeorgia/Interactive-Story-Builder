@@ -45,7 +45,7 @@ class RootController < ApplicationController
         if params[:type] == 'full'  
               @no_nav = true     
               @css.push("navbar.css", "storyteller.css", "modalos.css")
-              @js.push("storyteller.js","modalos.js")    
+              @js.push("storyteller.js","modalos.js", "follow.js")    
               story = Story.select('id').is_published.find_by_permalink(params[:id])
               @story = Story.is_published.fullsection(story.id) if story.present?  
               # record if the user has liked this story

@@ -26,6 +26,7 @@ $(document).ready(function() {
               $(ths).attr('title', $(ths).data('unfollow-title'));
               $(ths).html($(ths).data('following'));
               $(ths).fadeIn();
+              $(ths).addClass($(ths).data('css'));
             });
           }else {
             // was following, change to follow
@@ -33,6 +34,7 @@ $(document).ready(function() {
               $(ths).attr('title', $(ths).data('follow-title'));
               $(ths).html($(ths).data('follow'));
               $(ths).fadeIn();
+              $(ths).removeClass($(ths).data('css'));
             });
           }
 	      });

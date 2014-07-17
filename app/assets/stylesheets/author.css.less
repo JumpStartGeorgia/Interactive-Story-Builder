@@ -63,18 +63,24 @@
     -moz-transition:all .15s ease-out;
     -ms-transition:all .15s ease-out;
     transition:all .15s ease-out;
+    &.follow-author:before{
+      content:url('/assets/check_black.png');
+      margin-right: 2px;
+    }
+    &:focus, &:hover{
+      color:#fff !important;
+      background-color:#242424 !important;   
+      -webkit-transition:all .10s ease-out;
+      -moz-transition:all .10s ease-out;
+      -ms-transition:all .10s ease-out;
+      transition:all .10s ease-out;
+      &.follow-author:before{
+        content:url('/assets/check_white.png');
+      }
+    }
   }
 
-  .author-follow a:focus,  .author-follow a:hover
-{          
-    color:#fff !important;
-    background-color:#242424 !important;   
-    -webkit-transition:all .10s ease-out;
-    -moz-transition:all .10s ease-out;
-    -ms-transition:all .10s ease-out;
-    transition:all .10s ease-out;
-  }
-
+  
 
   .author-logo
   {

@@ -112,7 +112,7 @@
     </div>    
     <div class="follow">
       <%= render partial: 'layouts/follow_link', 
-          locals: {:user_id => @story.user_id, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
+          locals: {:user_id => @story.user_id, :is_story_page => true, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
     </div>   
     <div class="stats"> 
         <i class="i-icon i-like-d"></i><span class="likes"><%= @story.likes %></span>            
@@ -374,6 +374,13 @@ margin-left:8px;
     -ms-transition:all .15s ease-out;
     transition:all .15s ease-out;
   }
+
+.about-window .follow-link.follow-story:before{
+  content:url('/assets/check_small.png');
+  margin-right: 3px;
+  position: relative;
+  top: -1px;
+}
 
 .about-window .follow-link:focus,.about-window .follow-link:hover
 {          

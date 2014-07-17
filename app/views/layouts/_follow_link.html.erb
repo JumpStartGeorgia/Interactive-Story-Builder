@@ -1,22 +1,39 @@
 <%
+  is_story_page ||= false
   page_to_return_to ||= current_url
   @is_following ||= false
   text = t('app.common.follow')
   title = t('app.common.follow_link_title')
+  img = ''
+  css = 'follow-link '
+  data_css = ''
+  if !user_signed_in?
+    css << 'modalSignIn '
+  end
   if @is_following
     text = t('app.common.following')
     title = t('app.common.unfollow_link_title')
+    if is_story_page
+      img = image_tag('chack_small.png')
+      css << 'follow-story'
+      data_css = 'follow-story'
+    else
+      img = image_tag('check_black.png')
+      css << 'follow-author'
+      data_css = 'follow-author'
+    end
   end
 %>
 
 <% if user_signed_in? %>
-  <%= link_to text, '#', :class => 'follow-link', :title => title,
-        :'data-id' => (user_id.present? ? user_id : nil), 
+  <%= link_to text, '#', :class => css, :title => title,
+        :'data-id' => (user_id.present? ? user_id : nil), :'data-css' => data_css,
         :'data-follow-href' => settings_follow_user_path, :'data-unfollow-href' => settings_unfollow_user_path,
         :'data-follow' => t('app.common.follow'), :'data-following' => t('app.common.following'),
-        :'data-follow-title' => t('app.common.follow_link_title'), :'data-unfollow-title' => t('app.common.unfollow_link_title')%>
+        :'data-follow-title' => t('app.common.follow_link_title'), :'data-unfollow-title' => t('app.common.unfollow_link_title') %>
+
 <% else %>
   <%= link_to text, new_user_session_path({:return_url => page_to_return_to}), :title => title,
-        :class=>"modalSignIn follow-link",  :"data-modalos-id"=>"modalos-sign-in" %>
+        :class => css,  :"data-modalos-id" => "modalos-sign-in" %>
 <% end %>
 
