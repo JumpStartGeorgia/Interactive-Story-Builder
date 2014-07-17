@@ -10,23 +10,33 @@ $(document).ready(function() {
 
 
 
-	$('.story-tree ul').on('click','li.item',function(e) {
+	$('.story-tree ul').on('click','li.item > .title > .section',function(e) {
 		e.preventDefault();
 		item_id = -1;
-		section_id = $(this).attr('id');
+		section_id = $(this).parent().parent().attr('id');
 		$('.story-tree ul li').removeClass('active');
-		$('.story-tree ul li.item[id='+section_id+']').addClass('active');
-	    $(this).children('ul').toggle();	     
+		$('.story-tree ul li.item[id='+section_id+']').addClass('active');	    
 	    getStory(section_id);
 	    return false;
 	});
+
+
+   $('.story-tree ul').on('click','li.item > .title > .collapser',function(e) {
+      e.preventDefault();
+
+       section_id = $(this).parent().parent().attr('id');  
+       var t = $('.story-tree ul li.item[id='+section_id+']').toggleClass('open').hasClass('open');
+       $(this).text( t ? "-" : "+");       
+       $(this).parent().parent().children('ul').toggleClass("opened closed"); 
+       return false;
+   });
 
 	$('.story-tree ul').on('click','li.item > ul > li.sub',function(e) {
 		e.preventDefault();		
 		item_id = $(this).attr('id');
 		section_id = $(this).parent().parent().attr('id');		
 		$('.story-tree ul li').removeClass('active');
-		parent = $(this).parent().parent().addClass('active');
+		//$(this).parent().parent().addClass('active');
 		$(this).parent().find('li#'+item_id).addClass('active');   					
 		getStory(section_id,item_id);
 		if($( "#slideshowAssets" ).length > 0 )
@@ -130,6 +140,7 @@ $(document).ready(function() {
 		return true;	
   });
    $('.story-edit-menu ul.nav li > ul.dropdown-menu li').click(function(){$(this).closest('.story-edit').next('.story-message').html("").hide();});
+
     $(document).on('click', '.preview', function(e){  	
 		e.preventDefault();		
 

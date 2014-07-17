@@ -4,10 +4,11 @@
       title = truncate(strip_tags(story.about), length: 160, separator: ' ')
     end    
   %>   
-   <% if story.staff_pick? %>
-    <div class="story-picked" title="<%= t('helpers.links.staff_pick') %>"></div>
-  <% end %>               
+            
   <div class="story-thumbnail">
+     <% if story.staff_pick? %>
+    <div class="story-picked" title="<%= t('helpers.links.staff_pick') %>"></div>
+  <% end %>   
      <%= link_to @editable ? preview_story_path(story) : storyteller_show_path(story.permalink) do %>
         <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459' %>              
         <div class="story-link">
