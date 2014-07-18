@@ -13,7 +13,7 @@
 
 		    <%= translation.input :title %>
 		    <%= translation.input :content, :as => :text, :input_html => {:class => "tinymce", :rows => 20}  %>
-				<%= translation.hidden_field :locale , :value => trans.locale %>
+				<%= translation.hidden_field :locale , :input_html => {:value => trans.locale} %>
 			</div>
 
 		<% end %>
@@ -28,7 +28,7 @@
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
-	  <%= f.submit nil, :class => 'btn btn-warning', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>
+	  <%= f.submit t('helpers.links.reset'), :class => 'btn btn-warning', :type => :reset, :name => :reset %>
 	  <%= link_to t('helpers.links.cancel'), admin_news_index_path, :class => 'btn btn-mini btn-warning' %>
   </div>
 

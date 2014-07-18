@@ -9,7 +9,7 @@
  
      <div id="slideshowAssets" class="clear">
       <% @item.assets.each do |asset_item| %>  
-         <div class="fields">
+         <div class="fields clear">
             <%= f.fields_for :assets, asset_item do |ff| %>
               <%= render :partial => 'asset_fields', :locals => {:f => ff, :asset_item => asset_item} %>
             <% end %> 
@@ -27,8 +27,8 @@
   <% end %>
 
   <div class="pull-right spacer">            
-    <%= f.submit nil, :class => 'btn btn-primary btn-small' %>
-    <%= f.submit nil, :class => 'btn btn-small', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>          
+    <%= f.submit nil, :class => 'btn btn-default' %>
+    <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          
   </div>
 <% end %>
 
