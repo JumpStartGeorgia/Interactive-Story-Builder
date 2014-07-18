@@ -265,8 +265,10 @@ en:
       share: Share
       staff_pick: Staff Pick
       wide: wide
-      partial: Pretty Link
+      partial: Link to Story
+      partial_text: Embed a link to the story that has the same look as the story links on the home page of Story Builder (image, title, author, etc)
       full: Full Story
+      full_text: Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look. 
       feed: Story Builder Feed Channel
     msgs:
       does_not_exist: You tried to access a page that does not exist.

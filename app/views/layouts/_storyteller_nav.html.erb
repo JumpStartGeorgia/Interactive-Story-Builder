@@ -178,8 +178,8 @@
     <textarea rows="4" cols="38"  data-iframe-link="<%=embed_url(@story.permalink) %>"
     readonly="" onfocus="setTimeout(function (t){ t.select(); }, 10, this);" onmouseup="return false;"><iframe src='<%=embed_url(@story.permalink) %>?type=partial' width='350' height='100%' frameborder='0'></iframe></textarea>
       <div class="embed-type-switcher">
-        <div class="partial selected"><%= "#{t('app.common.partial')}" %></div>
-        <div class="full"><%= "#{t('app.common.full')}" %></div>
+        <div class="partial selected" title="<%= "#{t('app.common.partial_text')}" %>"><%= "#{t('app.common.partial')}" %></div>
+        <div class="full" title="<%= "#{t('app.common.full_text')}" %>"><%= "#{t('app.common.full')}" %></div>
       </div>
       <div class="embed-size-w">
         <input type="text" value="350" class="iframe-size"/>
