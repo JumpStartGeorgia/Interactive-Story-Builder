@@ -18,6 +18,23 @@ Aside from entering the story into the sections, you also have the ability to:
 * clone a story as the beginning of a new story
 * export a story so you can host it on any website
 
+## Dependencies
+You will need to install the following programs:
+* ffmpeg - to create image from video (image is shown instead of video on mobile devices)
+* imagemagick - to process the images upload and create all of the different sizes required
+
+You will need the following Environment Variables set:
+* STORY_BUILDER_DISQUS - Disqus is used for the commenting system and your unique website it is stored here
+* STORY_BUILDER_FACEBOOK_APP_ID - Facebook is one of the options for logging in to the system and you must have an app account created under facebook developers. This key stores the application id.
+* STORY_BUILDER_FACEBOOK_APP_SECRET - This key stores the application secret.
+* APPLICATION_FEEDBACK_TO_EMAIL - email address to send feedback form messages to
+* APPLICATION_FEEDBACK_FROM_EMAIL - email address to send feedback form messages from
+* APPLICATION_FEEDBACK_FROM_PWD - password of above email address
+* APPLICATION_ERROR_TO_EMAIL - email address to send application errors to
+* APPLICATION_ERROR_FROM_EMAIL - email address to send application errors from
+
+
+
 ## To Do List
 ### Short Term Tasks
 * add share links to the published stories
