@@ -76,17 +76,6 @@ ActiveRecord::Schema.define(:version => 20140715080635) do
 
   add_index "embed_media", ["section_id"], :name => "index_embed_media_on_section_id"
 
-  create_table "group_users", :force => true do |t|
-    t.integer  "group_id"
-    t.integer  "user_id"
-    t.integer  "role"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "group_users", ["group_id"], :name => "index_group_users_on_group_id"
-  add_index "group_users", ["user_id"], :name => "index_group_users_on_user_id"
-
   create_table "impressions", :force => true do |t|
     t.string   "impressionable_type"
     t.integer  "impressionable_id"
