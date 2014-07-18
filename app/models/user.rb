@@ -192,7 +192,7 @@ class User < ActiveRecord::Base
 
   # if not set, default to current locale
   def set_notification_language
-    self.notification_language = I18n.locale if read_attribute("notification_language").blank?
+    self.notification_language = I18n.locale if self.has_attribute?('notification_language') && read_attribute("notification_language").blank?
   end
   
   # get the notification language locale for a user
