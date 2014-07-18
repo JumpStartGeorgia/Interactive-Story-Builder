@@ -18,7 +18,7 @@
     <ul>
         <% @story.sections.each do |item| %>          
             <li id='<%= item.id %>' data-type='<%= item.get_str_type %>' class='item'>
-              <div class="title"><div class="collapser">+</div><div class="section"><%= item.title %></div></div>  
+              <div class="box"><div class="collapser">+</div><div class="title"><%= item.title %></div></div>  
 
                 <% if item.content? && item.content.present? %>
                   <ul class="closed"><li id='<%= item.content.id %>' class='sub'><span><%= item.content.title %></span></li></ul>

@@ -10,7 +10,7 @@ $(document).ready(function() {
 
 
 
-	$('.story-tree ul').on('click','li.item > .title > .section',function(e) {
+	$('.story-tree ul').on('click','li.item > .box > .title',function(e) {
 		e.preventDefault();
 		item_id = -1;
 		section_id = $(this).parent().parent().attr('id');
@@ -19,16 +19,13 @@ $(document).ready(function() {
 	    getStory(section_id);
 	    return false;
 	});
-
-
-   $('.story-tree ul').on('click','li.item > .title > .collapser',function(e) {
+   $('.story-tree ul').on('click','li.item > .box > .collapser',function(e) {
       e.preventDefault();
-
-       section_id = $(this).parent().parent().attr('id');  
-       var t = $('.story-tree ul li.item[id='+section_id+']').toggleClass('open').hasClass('open');
-       $(this).text( t ? "-" : "+");       
-       $(this).parent().parent().children('ul').toggleClass("opened closed"); 
-       return false;
+      section_id = $(this).parent().parent().attr('id');  
+      var t = $('.story-tree ul li.item[id='+section_id+']').toggleClass('open').hasClass('open');
+      $(this).text( t ? "-" : "+");       
+      $(this).parent().parent().children('ul').toggleClass("opened closed"); 
+      return false;
    });
 
 	$('.story-tree ul').on('click','li.item > ul > li.sub',function(e) {
@@ -61,49 +58,6 @@ $(document).ready(function() {
 	  }
 	});
 
-	
-	// $('.story-viewer').on('change','#sectionType',function(){		
-	// 	if($(this).val()==1) $('#sectionAudioBox').hide();
-	// 	else $('#sectionAudioBox').show();
-	// });
-	
-
-
-  //   $('#publishedStoryTable').dataTable({
- 	// 	"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
- 	// 	"sPaginationType": "bootstrap",	  	
-		// "bAutoWidth": true,    	
-	 //    "oLanguage": {
-	 //      "sUrl": gon.datatable_i18n_url
-	 //    },	        	
-  //   	"aoColumns": [
-	 //      { "bSortable": true },
-	 //      { "bSortable": true },				      	     
-	 //      { "bSortable": false }		
-	 //    ]
-  //   }); 
-  //   $('#storiesTable').dataTable({
- 	// 	"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
- 	// 	"sPaginationType": "bootstrap",	  	
-		// "bAutoWidth": true,    	
-	 //    "oLanguage": {
-	 //      "sUrl": gon.datatable_i18n_url
-	 //    },	    
-  //   	//"aaSorting": [[2, 'desc']]
-  //   	"aoColumns": [
-	 //      { "bSortable": true },
-	 //      { "bSortable": true },				      	     
-	 //      { "sWidth": "25px", "bSortable": false },
-	 //      { "sWidth": "25px", "bSortable": false },
-		// 	{"sWidth": "25px", "bSortable": false },
-		// 	{"sWidth": "25px", "bSortable": false },
-		// 	{"sWidth": "25px", "bSortable": false },
-		// 	{"sWidth": "80px", "bSortable": false },
-		// 	{"sWidth": "90px", "bSortable": false },
-		// 	{"sWidth": "90px", "bSortable": false }    
-	 //    ]
-  //   });  
-	
   // when review menu item clicked, open modal 
   // and push in review key and story title
   $(document).on('click', '#btnReviewer', function(e){
