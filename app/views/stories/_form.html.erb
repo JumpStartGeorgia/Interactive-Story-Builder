@@ -15,7 +15,7 @@
     <%= f.input :author, hint: t('.hint.author'), placeholder: t('.placeholder.author'), :input_html => { id: "storyAuthor"  } %>
     <%= f.input :media_author, hint: t('.hint.media_author'), placeholder: t('.placeholder.media_author'), :input_html => { id: "storyMediaAuthor"  }  %>
 
-    <%= f.input :about, :as => :text, hint: t('.hint.about'), :input_html => {:class => "tinymce", :rows => 10}  %>
+    <%= f.input :about, :as => :text, hint: t('.hint.about'), :input_html => {:class => "tinymce", :rows => 15}  %>
 
     <%= f.input :locale , :as => :select, :hint => t('.hint.locale'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "storyLocale", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "7"  } %>
 

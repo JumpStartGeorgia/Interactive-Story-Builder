@@ -3,7 +3,7 @@
 </h2>
 
 <%= tinymce_assets %>
-<%= tinymce :alternate, uploadimage_form_url: imageuploader_path(id:params[:id]), uploadimage_default_img_class: "image", :width => "580px" %>
+<%= tinymce :alternate, uploadimage_form_url: imageuploader_path(id:params[:id]), uploadimage_default_img_class: "image" %>
 
 <%= semantic_form_for(@item, url: content_story_path(id:params[:id]), remote: true) do |f| %>
   <%= f.inputs do %>
@@ -12,7 +12,7 @@
     <%= f.input :sub_caption, :placeholder=>t('.placeholder.sub_caption'), hint: t('.hint.sub_caption'), :input_html => { :id => "contentSubCaption" } %>    
     <label><%= t('activerecord.attributes.content.content') %></label>
     <div class="help-inline" title="<%= t('.hint.content') %>"><div>?</div></div>
-    <%= f.text_area :content, :class => "tinymce", :rows => 40, :cols => 120, :id => "contentArticle"%>    
+    <%= f.input :content, :as => :text, :label => false, :input_html => {:class => 'tinymce', :rows => 30, :id => "contentArticle"} %>    
      <!--a class='btn btn-default preview' id="content-preview" data-modalos-id="modalos-preview" data-type="text"><%= t('app.buttons.preview') %></a-->          
      
     
