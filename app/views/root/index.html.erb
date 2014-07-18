@@ -1,7 +1,7 @@
 
 <% content_for(:header) { %>
 
-    <header class="header intro<%= (1..2).to_a.sample %>">
+    <header class="header intro<%= (2..2).to_a.sample %>">
       <div class="header-data">
         <div class="h1">    <%= t("app.common.app_intro").split(';')[0].html_safe %></div>
         <div class="h3">    <%= t("app.common.app_intro").split(';')[1].html_safe %></div>

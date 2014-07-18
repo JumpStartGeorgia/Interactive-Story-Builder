@@ -1,4 +1,5 @@
 /* Home Page */
+html, body {min-height:100%;}
 .header
 {     
   width: 100%;
@@ -9,23 +10,32 @@
 
   &.intro1
   {
-     background: url('/assets/headers/header-bg-01s.jpg') no-repeat center center fixed;
-      -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; 
+    background-position-x: 100%;
+    background-position-y: 100%;
+    background: url('/assets/headers/header-bg-01.jpg') no-repeat right bottom fixed;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/headers/header-bg-01s.jpg', sizingMethod='scale');
     -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/assets/headers/header-bg-01s.jpg', sizingMethod='scale')";
   }
   &.intro2
   {    
-    background: url('/assets/headers/header-bg-02s.jpg') no-repeat center center fixed; 
-     -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; 
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/headers/header-bg-02s.jpg', sizingMethod='scale');
-    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/assets/headers/header-bg-02s.jpg', sizingMethod='scale')";
+ 
+    background-image: url('/assets/headers/header-bg-02.jpg');    
+    background-repeat:no-repeat;  
+    -webkit-background-size: 2000px 1246px;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: 2000px 1246px;    
+    background-position: bottom left;
+    background-attachment:fixed;
+
+   /* filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/headers/header-bg-02s.jpg', sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/assets/headers/header-bg-02s.jpg', sizingMethod='scale')";*/
+
   }
   .header-data
   {
@@ -204,36 +214,14 @@
   /* Small Devices, Tablets */
   @media only screen and (min-width : 768px) {
     .explore{display:block;}
-
+    
 
   }
 
   /* Medium Devices, Desktops */
   @media only screen and (min-width : 992px) {
     .intro{display:block;}
-            .header
-{     
-  
-  &.intro1
-  {
-     background: url('/assets/headers/header-bg-01.jpg') no-repeat center center fixed;
-        -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; 
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/headers/header-bg-01.jpg', sizingMethod='scale');
-    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/assets/headers/header-bg-01.jpg', sizingMethod='scale')";
-  }
-  &.intro2
-  {    
-    background: url('/assets/headers/header-bg-02.jpg') no-repeat center center fixed; 
-       -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; 
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/headers/header-bg-02.jpg', sizingMethod='scale');
-    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/assets/headers/header-bg-02.jpg', sizingMethod='scale')";
-  }}
+          
 
   }
 
