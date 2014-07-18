@@ -83,16 +83,18 @@ $(document).ready(function(){
         data: $(this).serialize(),
         //dataType: 'json',
         success: function (data)
-        {                  
+        {       
+          $(t).parent().find('.alert').remove();  
           var rhtml = $(data);
-          var rform = rhtml.find(t);
-          if (rform.length && rform.find('#error_explanation').length)
+        
+          if (rhtml.length && rhtml.find('#errorExplanation').length)
           {
-            $(t).replaceWith(rform);
+            $(t).replaceWith(rhtml);
           }
           else if (rhtml.find('.alert.alert-info').length)
           {
             $(t).replaceWith(rhtml.find('.alert.alert-info').children().remove().end());
+            console.log("delayed");
             delayed_reload(3000);
           }
           else
@@ -102,6 +104,7 @@ $(document).ready(function(){
         },
         error: function (data)
         {     
+             console.log(data)           ;
           $(t).parent().find('.alert').remove();  
           $(t + ' form').before('<div class="alert alert-danger fade in"><a href="#" data-dismiss="alert" class="close">×</a> ' + data.responseText + '</div>');          
           $(t + ' :input:visible:enabled:first').focus();

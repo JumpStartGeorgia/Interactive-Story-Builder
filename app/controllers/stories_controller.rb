@@ -14,10 +14,6 @@ class StoriesController < ApplicationController
     @stories =  process_filter_querystring(Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => per_page))           
     @editable = (user_signed_in?)
 
-    if(@editable)        
-      @js.push("modalos.js")
-      @css.push("modalos.css")
-    end     
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}          
@@ -64,7 +60,7 @@ class StoriesController < ApplicationController
 
       if @story.save
         flash_success_created(Story.model_name.human,@story.title)       
-        format.html { redirect_to sections_story_path(@story) }
+        format.html { redirect_to edit_story_path(@story) }
       #  format.json { render json: @story, status: :created, location: @story }
       else
         if !@story.asset.present? 
@@ -85,7 +81,7 @@ class StoriesController < ApplicationController
   # PUT /stories/1.json
   def update
     @story = Story.find(params[:id])
-
+  
     respond_to do |format|
       if !@story.published && params[:story][:published]=="1"
         if !@story.about.present? || !@story.asset_exists?
@@ -638,7 +634,6 @@ end
 
     if @story.present?
       user_with_errors = []
-      email_sent = true
       sending_invitations = false
       msgs = []
       
@@ -660,9 +655,9 @@ end
             Rails.logger.debug "_______________user id = #{user_id}"
             user = User.find_by_id(user_id)
             if user.present?
-              email_sent, msg = send_invitation(@story, user.id, user.email, params[:message])
-              Rails.logger.debug "-------------- email_sent #{email_sent}; msg = #{msg}"
-              if email_sent
+              msg = create_invitation(@story, user.id, user.email, params[:message])
+              Rails.logger.debug "-------------- msg = #{msg}"
+              if msg.blank?
     		        # remove id from list
     		        c_ids.delete(user_id)
     		      else
@@ -675,12 +670,12 @@ end
         end
                    
         # send invitation for new users
-        if email_sent && emails.present?
+        if emails.present?
           emails.each do |email|          
             Rails.logger.debug "_____________email = #{email}"
-            email_sent, msg = send_invitation(@story, nil, email, params[:message])
-            Rails.logger.debug "-------------- email_sent #{email_sent}; msg = #{msg}"
-            if email_sent
+            msg = create_invitation(@story, nil, email, params[:message])
+            Rails.logger.debug "-------------- msg = #{msg}"
+            if msg.blank?
   		        # remove email from list
   		        c_ids.delete(email)
   		      else
@@ -708,7 +703,7 @@ end
       end
 
       # get the invitations on file
-      # - have this down here so any new invitations that were sent will be pulled
+      # - have this at the bottom here so any new invitations that were saved will be pulled
       @invitations = Invitation.pending_by_story(@story.id)
 
       set_settings_gon
@@ -808,12 +803,11 @@ private
   end
 
   def asset_filter
-    @css.push("stories.css", "embed.css", "modalos.css", "bootstrap-select.min.css", "token-input-facebook.css","navbar.css")
-    @js.push("stories.js", "modalos.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js")
+    @css.push("stories.css", "embed.css", "modalos.css", "bootstrap-select.min.css", "token-input-facebook.css","navbar.css", "filter.css")
+    @js.push("stories.js", "modalos.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js", "zeroclipboard.min.js", "filter.js")
   end 
   
-  def send_invitation(story, user_id=nil, email=nil, msg=nil)
-		email_sent = false
+  def create_invitation(story, user_id=nil, email=nil, msg=nil)
 		error_msg = nil
 
     if story.present? && (user_id.present? || email.present?)
@@ -825,44 +819,21 @@ private
         return true
       end
 
-      # create the message        
-      message = Message.new
-      message.mailer_type = Message::MAILER_TYPE[:notification]
-      message.locale = I18n.locale
-      message.story_title = story.title
-      message.from_user = current_user.nickname
-      message.email = email
-      
-      if message.valid?
-        # save the invitation
-        inv = Invitation.new
-        inv.story_id = story.id
-        inv.from_user_id = current_user.id
-        inv.to_user_id = user_id
-        inv.to_email = email
+      # save the invitation
+      inv = Invitation.new
+      inv.story_id = story.id
+      inv.from_user_id = current_user.id
+      inv.to_user_id = user_id
+      inv.to_email = email
+      inv.message = msg if msg.present?
 
-        if inv.save
-          Rails.logger.debug "+++ invitation saved, sending message"
-
-          message.url = accept_invitation_url(:locale => message.locale, :key => inv.key)
-          message.message = msg if msg.present?
-
-          Rails.logger.debug "======= message = #{message.inspect}"
-
-          # send message
-		      NotificationMailer.story_collaborator_invitation(message).deliver
-		      email_sent = true
-        else
-          Rails.logger.debug "========= inv error = #{inv.errors.full_messages}"
-          error_msg = inv.errors.full_messages
-        end
-      else
+      if !inv.save
         Rails.logger.debug "========= message error = #{message.errors.full_messages}"
           error_msg = message.errors.full_messages
       end
     end
     
-    return email_sent, error_msg
+    return error_msg
   end
   
   

@@ -13,7 +13,8 @@
           </div> 
           <% else %>
               <div class="author-follow">
-                <a href="#"><%= t("app.common.follow") %></a>
+                <%= render partial: 'layouts/follow_link', 
+                    locals: {:user_id => @author.id, :page_to_return_to => author_path(:user_id => @author.permalink, :process_follow => true)} %>
               </div> 
           <% end %>
       </div> 

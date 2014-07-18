@@ -190,12 +190,18 @@ html, body
 
 .push { height: 155px; } /* Just some arbitrary space to add between footer and rest of the content, when they are close */
 
+@media (max-width: 1480px) {
+  #wrapper {
+  	padding: 60px 2em;	
+  }
+}
+
 @media (max-width: 979px) {
   body {
   	margin-top: 0;
   }
-  #wrapper > .container {
-  	padding: 1em;
+  #wrapper {
+  	padding: 30px 1em;	
   }
 	.navbar-fixed-top  {
 		margin: 0;

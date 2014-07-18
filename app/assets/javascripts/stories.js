@@ -583,6 +583,7 @@ function getData()
 	      cache: true 
 		}).error(function(e){console.log(e)}).done(function(){
 			//$('#contentPreview').html($('#contentForm #contentArticle').val());	
+         $('.form-title').text($('.story-tree ul li.item[id='+section_id+'].active > span').text() + ":" + $('.form-title').text());
 		});
 
 	return true;	

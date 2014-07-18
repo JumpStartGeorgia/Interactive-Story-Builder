@@ -31,6 +31,7 @@ class Story < ActiveRecord::Base
 	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
 
   attr_reader :tag_list_tokens
+  attr_accessor :send_notification, :send_staff_pick_notification, :send_comment_notification
 #  attr_accessible :name, :tag_list_tokens
   
 	validates :title, :presence => true, length: { maximum: 100 }
@@ -62,6 +63,7 @@ class Story < ActiveRecord::Base
   }
 
   DEMO_ID = 2
+  
 
 	amoeba do
 		enable
@@ -95,6 +97,10 @@ class Story < ActiveRecord::Base
 
 	def self.by_category(id)
 	  joins(:categories).where('categories.id = ?', id)
+	end
+	
+	def self.by_authors(user_ids)
+    where(:user_id => user_ids)
 	end
 
   # get list of users that match the passed in query

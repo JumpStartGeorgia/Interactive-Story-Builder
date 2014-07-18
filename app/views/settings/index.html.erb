@@ -1,7 +1,9 @@
-<% title t('.title', :name => current_user.nickname) %>
+<% title t('.title') %>
 
 <%= tinymce_assets %>
 <%= tinymce %>
+
+<%= render partial: 'shared/settings_nav' %>
 
 
 <%= semantic_form_for(current_user, :url => settings_path, :html => {:multipart => true, :class => 'settings'}) do |f| %>
@@ -39,9 +41,7 @@
 	<% end %>
 
 
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-	  <%= f.submit nil, :class => 'btn btn-warning', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>
-	  <%= link_to t('helpers.links.cancel'), admin_users_path, :class => 'btn btn-mini btn-warning' %>
+  <div>
+    <%= f.submit t('.submit'), :class => 'btn btn-default' %>
   </div>
 <% end %>

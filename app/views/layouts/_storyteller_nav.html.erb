@@ -7,9 +7,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+       <% if @is_embed %>
+         <%= link_to(image_tag('slogo.png'), root_url(:locale => I18n.locale), :title => t('app.common.embed_slogan'), :class => 'navbar-logo') %>
+       <% end %>
        <% if @story.present? %>
-          <%= link_to(@story.title, root_path(:locale => I18n.locale), :class=>"navigation-headline navbar-brand")%>  
-        <% end %>    
+         <%= link_to(@story.title, url_for, :class=>"navigation-headline navbar-brand")%>  
+       <% end %>    
     </div>
 
     <div class="collapse navbar-collapse" id="story-navbar-collapse">
@@ -111,7 +114,8 @@
       <%= link_to @story.user.nickname, author_path(@story.user.permalink), :title => @story.user.nickname %>      
     </div>    
     <div class="follow">
-      <a href="#" class="follow-link"><%= "#{t('app.common.follow')}" %></a>
+      <%= render partial: 'layouts/follow_link', 
+          locals: {:user_id => @story.user_id, :is_story_page => true, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
     </div>   
     <div class="stats"> 
         <i class="i-icon i-like-d"></i><span class="likes"><%= @story.likes %></span>            
@@ -172,10 +176,10 @@
     <div class="embed-text"><%= "#{t('app.msgs.embed_code')}" %>:</div>
     <div class="embed-code">
     <textarea rows="4" cols="38"  data-iframe-link="<%=embed_url(@story.permalink) %>"
-    readonly="" onfocus="setTimeout(function (t){ t.select(); }, 10, this);" onmouseup="return false;"><iframe src='<%=embed_url(@story.permalink) %>?type=partial' width='450' height='100%' frameborder='0'></iframe></textarea>
+    readonly="" onfocus="setTimeout(function (t){ t.select(); }, 10, this);" onmouseup="return false;"><iframe src='<%=embed_url(@story.permalink) %>?type=partial' width='350' height='100%' frameborder='0'></iframe></textarea>
       <div class="embed-type-switcher">
-        <div class="partial selected"><%= "#{t('app.common.partial')}" %></div>
-        <div class="full"><%= "#{t('app.common.full')}" %></div>
+        <div class="partial selected" title="<%= "#{t('app.common.partial_text')}" %>"><%= "#{t('app.common.partial')}" %></div>
+        <div class="full" title="<%= "#{t('app.common.full_text')}" %>"><%= "#{t('app.common.full')}" %></div>
       </div>
       <div class="embed-size-w">
         <input type="text" value="350" class="iframe-size"/>
@@ -373,6 +377,13 @@ margin-left:8px;
     -ms-transition:all .15s ease-out;
     transition:all .15s ease-out;
   }
+
+.about-window .follow-link.follow-story:before{
+  content:url('/assets/check_small.png');
+  margin-right: 3px;
+  position: relative;
+  top: -1px;
+}
 
 .about-window .follow-link:focus,.about-window .follow-link:hover
 {          

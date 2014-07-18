@@ -15,10 +15,13 @@ class RootController < ApplicationController
     @author = User.find_by_permalink(params[:user_id])
 
     if @author.present?
-      @js.push("zeroclipboard.min.js", "filter.js","stories.js")
+      @js.push("zeroclipboard.min.js", "filter.js","stories.js","follow.js")
       @css.push("navbar.css", "filter.css", "grid.css", "stories.css", "author.css")
       @stories = process_filter_querystring(Story.stories_by_author(@author.id).paginate(:page => params[:page], :per_page => per_page))      
       @editable = (user_signed_in? && current_user.id == @author.id)
+      
+      @is_following = Notification.already_following_user(current_user.id, @author.id) if user_signed_in?
+      
       # if(@editable)        
       #   @js.push("modalos.js")
       #   @css.push("modalos.css")
@@ -40,9 +43,10 @@ class RootController < ApplicationController
     if @story.present?        
       respond_to do |format|    
         if params[:type] == 'full'  
+              @is_embed = true
               @no_nav = true     
               @css.push("navbar.css", "storyteller.css", "modalos.css")
-              @js.push("storyteller.js","modalos.js")    
+              @js.push("storyteller.js","modalos.js", "follow.js")    
               story = Story.select('id').is_published.find_by_permalink(params[:id])
               @story = Story.is_published.fullsection(story.id) if story.present?  
               # record if the user has liked this story

@@ -32,7 +32,7 @@ en:
         media_author: Photo and Video Author(s)  
         published: Publish?
         published_at: Was Published
-        publish_home_page: When Published, Share Your Story on the Home Page?
+        publish_home_page: Once published, make your story visible on the homepage?
         template_id: Template
         thumbnail: Thumbnail
         about: Story Summary
@@ -89,16 +89,39 @@ en:
   mailer:
     closing: "Sincerely,"
     signature: The Story Builder Team
+    unsubscribe: Click here to change your notification settings
     contact:
       contact_form:
         subject: "Story Builder Contact Form"
     notification:
-      story_collaborator_invitation:
+      new_user:
+        subject: "Welcome to Story Builder!"
+        message: "Thank you for becoming a member of Story Builder. We look forward to exploring the stories you build!\n\nWhen you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summary about yourself: [settings_link].\n\nYou can manage when you would like to receive email notifications from Story Builder by going to the notifications page: [notifications_link]. "
+      published_story:
+        subject: "New stories have been published on Story Builder!"
+        message: "The following stories you have expressed interest in were recently published:"
+      story_comment:
+        subject: "Someone has posted a comment on your story on Story Builder!"
+        message: "The following stories have recently received a comment:"
+        comment: "1 Comment"
+        comments: "%{num} Comments"
+      published_news:
+        subject: "Story Builder has new updates!"
+        message: "The following updates were just posted on Story Builder. Click on the link to learn what is going on with Story Builder."
+      staff_pick_review:
+        subject: "Story Builder has new published stories to review for Staff Pick!"
+        message: "The following stories need to be reviewed to see if they are worthy to be a Staff Pick:"
+      staff_pick_selection:
+        subject: "Your story has been selected by the Story Builder Team as a Staff Pick!"
+        message: "Congratulations! The following stories of yours were selected by the Story Builder Team as Staff Picks:"
+      story_collaboration:
         subject: "You have been invited to collaborate on a story on Story Builder!"
-        line1: You have been invited to collaborate with %{name} on a story titled '%{title}'.  
-        line2: "If you would like to accept this invitation, please click here: %{url}."
-        line3: If you want to decline this invitation, no action is needed on your part.
-        line_msg: "Here is message written to you by %{name}:"
+        message: "You have received the following invitations to collaborate on stories with other people on Story Builder. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part."
+        from: From
+        story_title: Story Title
+        msg: Message
+        accept_link: Accept the Invitation
+        all_invitations: View all of your Story Builder collaboration invitations.
   helpers:
     actions: Actions
     links:
@@ -150,12 +173,25 @@ en:
       views: "%{num} reads"
       tags: Tags
       menu: Menu
+      story_menu:
+        link:
+          clone: Clone as new story
+          export: Download story
+          review: Private URL
+          noreview: Already published
+          collaborators: Manage Collaborators
+        title:
+          clone: Copy this story into a new story
+          export: Download the complete story
+          review: Get URL to share this story before publishing
+          noreview: Your story is published so there is no need to share this non-published URL
+          collaborators: Manage which users have access to edit your story
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
       story_list: My Stories
     hints:
-      nickname: Your nickname is used in the url to your published stories (e.g., nickname/story-title)        
+      nickname: Your nickname is used in the URL to your published stories (e.g., nickname/story-title)        
       local_avatar: Image that is shown in the header bar and on your user page (png and jpg only).
       like: Like this story
       unlike: Unlike this story
@@ -182,9 +218,10 @@ en:
       confirm: Are you sure?
       new: New
       add_section: Add Section
-      add_item: Add Item
-      up: Order Up
-      down: Order Down
+      add_item: Add Item into Section
+      up: Move Selected Section/Item Up
+      down: Move Selected Section/Item Down
+      delete_item: Delete Selected Section/Item
       preview: Preview
       preview_image: Preview Image
       preview_video: Preview Video
@@ -199,8 +236,10 @@ en:
       explore: Explore
     common:
       app_name: Story Builder
-      app_intro: Build and Share;the Next Generation Story;Story builder allows anyone with text, pictures and/or videos to<br>combine this content into a creative story that can be published<br> and shared with the world
+      app_intro: Build and Share;the Next Generation Story;Story Builder allows anyone with text, pictures and/or videos to<br>combine this content into a creative story that can be published<br> and shared with the world
+      app_intro_meta: Build and Share the Next Generation Story! Story Builder allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world.
       powered_by: Powered by
+      embed_slogan: Built and Hosted on Story Builder
       added_on: "Added on: %{date}"
       admin: Admin
       sign_out: Sign Out    
@@ -214,18 +253,23 @@ en:
       likes: Likes
       comments: Comments
       follow: Follow
+      following: Following
+      follow_link_title: Click to receive notifications whenever this user publishes new stories
+      unfollow_link_title: Click to stop receiving notifications whenever this user publishes new stories
       email: Email
       views: Views
       permalink: Permalink
       share_story: Share this story
-      share_facebook: Share on facebook
-      share_twitter: Share on twitter
+      share_facebook: Share on Facebook
+      share_twitter: Share on Twitter
       share: Share
       staff_pick: Staff Pick
       wide: wide
-      partial: Pretty Link
+      partial: Link to Story
+      partial_text: Embed a link to the story that has the same look as the story links on the home page of Story Builder (image, title, author, etc)
       full: Full Story
-      feed: StoryBuilder Feed Channel
+      full_text: Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look. 
+      feed: Story Builder Feed Channel
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
@@ -249,10 +293,10 @@ en:
       staff_unpick: The story has been unselected as a Staff Pick
       success_settings: Your settings were successfully updated.
       success_remove_avatar: Your Facebook avatar is now being used.
-      nickname_duplicate: This user url already exists. 
-      nickname_url: 'Your url will be:'
-      story_duplicate: This story url already exists. 
-      story_url: 'Your url will be:'
+      nickname_duplicate: This user URL already exists. 
+      nickname_url: 'Your URL will be:'
+      story_duplicate: This story URL already exists. 
+      story_url: 'Your URL will be:'
       invitation:
         accepted: "You have accepted the invitation to collaborate on '%{title}'"
         accepted_already: "You have already accepted the invitation to collaborate on '%{title}'"
@@ -277,6 +321,18 @@ en:
         success_invitations: Invitations were sent!
         error_invitations_all: "No invitations were sent due to the following erros: %{msg}"
         error_invitations_some: "Some invitations were sent, but some where not due to the following erros: %{msg}"
+      notification:
+        yes: You will be sent notifications.
+        no: You will not be sent notifications.
+        new_story_all_success: You will recieve a notification whenever a story is added.
+        new_story_none_success: You will not receive any notifications when stories are added.
+        new_story_by_category_success: "You will receive a notification when a story is added to these categories: %{categories}."
+        story_comments_yes: You will be sent notifications when a comment is made to one of your stories.
+        story_comments_no: You will not be sent notifications when a comment is made to one of your stories.
+        news_yes: You will be sent notifications when updates are made to Story Builder.
+        news_no: You will not be sent notifications when updates are made to Story Builder.
+        following_no: "You will no longer receive notifications about new stories from '%{nickname}'."
+        language: You will be sent notifications in %{language}.
   section_types:
     content:
       name: Content
@@ -295,17 +351,25 @@ en:
     feature: Request a Feature
     feedback: General Feedback
   filters:
-    staff_pick: Staff Pick
-    sort_header: Sorted By    
     all: All
     matches: Matches
+    staff_pick: Staff Pick
+    staff_pick_title: View stories that have been selected as Staff Picks
+    staff_pick_title_active: Remove Staff Pick filter
+    sort_header: Sorted By    
+    sort_title: Indicate how the stories should be sorted
     sort:
       recent: Recent
       reads: Reads
       likes: Likes
     category_header: Category
+    category_title: View stories that belong to a category
     language_header: Language
+    language_title: View stories that are written in a particular language
     search: Find a Story
+    following: Following
+    following_title: View stories of users that you are following
+    following_title_active: Remove Following filter
   tokeninput:
     searchingText: Searching...
     tag:
@@ -336,22 +400,10 @@ en:
     grid:
       no_stories: Oh no - no stories could be found!
     grid_item:
-      link:
-        clone: Clone as new story
-        export: Download story
-        review: Private URL
-        noreview: Already published
-        collaborators: Manage Collaborators
-      title:
-        clone: Copy this story into a new story
-        export: Download the complete story
-        review: Get URL to share this story before publishing
-        noreview: Your story is published so there is no need to share this non-published URL
-        collaborators: Manage which users have access to edit your story
-        likes: Likes
-        views: Views
-        comments: Comments
-        publish_date: Publish Date
+      likes: Likes
+      views: Views
+      comments: Comments
+      publish_date: Publish Date
   admin:
     index:
       title: Administration Section
@@ -424,7 +476,7 @@ en:
         author: Author(s) will appear on the first content section
         media_author:  "Author(s) will appear on the first content section below the Story Author(s)"
         published: Published stories are available for the world to read
-        publish_home_page: If checked, your story will appear on the home page of the site when it is published
+        publish_home_page: "If checked, your published story will appear on the site's homepage"
         template: Choose template to apply styling to story
         thumbnail: Image that is used to show the story on the home page when the story is published (jpg and png only)
         editor: Person that created the story record in this website
@@ -473,7 +525,7 @@ en:
       placeholder:
         title: Section title
       hint:
-        title: "This text only appears in the left sidebar, it will not show up in the story"
+        title: "This text appears in the left sidebar and, if Navigation Shortcut is selected, will appear as the title text for the shortcut"
         type: "Selecting this type determines what kind of information you can add into this section"
         has_marker: "If checked, there will be a navigation shortcut link to go to this section"
         audio: "Background audio to play while this section is in view (mp3 format only)"
@@ -527,17 +579,44 @@ en:
     source: "Source:"
   settings:
     index:
-      title: "%{name} Settings"
+      title: Settings
       facebook_avatar: This is your avatar from Facebook.
       use_facebook_avatar: Use Facebook Avatar
       hint:
         about: Short summary about yourself.  This will be shown with the stories that you publish. 
         default_story_locale: Select the language you want to use by default when creating a new story.
+      submit: Save Settings      
     invitations:
-      title: "Invitations for %{name}"
+      title: Collaboration Invitations
       no_invitations: At this time there are no un-answered invitations on file for you.
       accept_link: Accept
       decline_link: Decline
       header_date: Date Sent
       header_story: Story Title
       header_from: Sent By
+    notifications:
+      title: Notifications
+      all_sub_title: All Notifications
+      all_label: Do you want to recieve any notifications from Story Builder?
+      all_no: "No, do not send me any notifications."
+      all_yes: "Yes, I want notifications sent to me."
+      story_comment_sub_title: New Story Comment Notifications
+      story_comment_label: "Do you want to recieve notifications when a comment is made to one of your stories?"
+      story_comment_no: "No, do not send me any notifications."
+      story_comment_yes: "Yes, I want notifications sent to me."
+      new_stories_sub_title: New Story Notifications
+      new_stories_all: Notify me when any story is added.
+      new_stories_none: I do not want to receive notifications when a new story is added.
+      new_stories_by_category: "Notify me when a story is added to:"
+      language_sub_title: Notification Language
+      language_label: In what language do you want to receive the notifications?
+      news_sub_title: Story Builder Update Notifications
+      news_label: "Do you want to recieve notifications when updates are made to Story Builder?"
+      news_no: "No, do not send me any notifications."
+      news_yes: "Yes, I want notifications sent to me."     
+      following_sub_title: Story Builder Users You Are Following
+      following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image."
+      following_not: "At this time, you are not following any users."
+      following_title1: "Click to unfollow '%{nickname}'"
+      following_title2: "Click to follow '%{nickname}'"     
+      submit: Save Settings

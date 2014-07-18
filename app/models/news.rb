@@ -4,24 +4,21 @@ class News < ActiveRecord::Base
 	has_many :news_translations, :dependent => :destroy
   accepts_nested_attributes_for :news_translations
   
-	attr_accessor :was_published, :was_published_at
+	attr_accessor :send_notification
 
- 	after_find :set_published
- 	before_validation :check_if_published
-	
-	def set_published
-		self.was_published = self.has_attribute?(:is_published) ? self.is_published : nil		
-		self.was_published_at = self.has_attribute?(:published_at) ? self.published_at : nil		
-	end
-	
+  after_save :check_if_published
 	
 	def check_if_published
-	  if (self.was_published != self.is_published && self.is_published) || (self.was_published_at != self.published_at && self.published_at.present?)
-	    self.news_translations.each{|nt| nt.generate_permalink!}
+    if self.is_published_changed? && self.is_published == true && self.published_at.present?
+	    self.news_translations.each do |nt| 
+	      nt.generate_permalink!
+	      nt.save
+      end
 	  end
 	end
 
-  def self.published
-    with_translations(I18n.locale).where(:is_published => true).order('news.published_at desc, news_translations.title asc')
+  # allow locale to be passed in for sending notifications about news
+  def self.published(locale = I18n.locale)
+    with_translations(locale).where(:is_published => true).order('news.published_at desc, news_translations.title asc')
   end
 end

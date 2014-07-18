@@ -7,16 +7,14 @@ class Message
 	attribute :name
 	attribute :email
 	attribute :message
+	attribute :message_list
 	attribute :subject
 	attribute :bcc
 	attribute :locale, :default => I18n.locale
   attribute :message_type
-  attribute :story_title
-  attribute :url
-  attribute :from_user
   attribute :mailer_type
   
-	attr_accessor :name, :email, :message, :subject, :bcc, :locale, :message_type, :story_title, :url, :from_user, :mailer_type
+	attr_accessor :name, :email, :message, :subject, :bcc, :locale, :message_type, :mailer_type, :message_list
   before_validation :strip_whitespace
   TYPE = {:bug => 1, :feature => 2, :feedback => 3}
   MAILER_TYPE = {:feedback => 1, :notification => 2}

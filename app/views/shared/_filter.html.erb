@@ -2,15 +2,22 @@
         <ul class="nav">
           <li class="afilter">
             <%= link_to url_for(params.merge(:staff_pick => !@story_filter_staff_pick)),
-              :class => "staff_pick #{@story_filter_staff_pick == true ? 'active' : ''}", :tabindex => 13, :"data-filtered-by" => @story_filter_staff_pick , :"data-filter-type"=>'staff_pick' do %>
-                 <i class='i-icon i-staffpick<%= "#{@story_filter_staff_pick == true ? 'ed' : ''}"%>'></i><%=  "#{t('filters.staff_pick')}" %>
-               <% end %>
+              :class => "staff_pick #{@story_filter_staff_pick == true ? 'active' : ''}", 
+                :tabindex => 13, 
+                :title => @story_filter_staff_pick ? t('filters.staff_pick_title_active') : t('filters.staff_pick_title_active'),
+                :"data-filtered-by" => @story_filter_staff_pick , :"data-filter-type"=>'staff_pick',
+                :'data-title' => t('filters.staff_pick_title'), :'data-title-active' => t('filters.staff_pick_title_active') do %>
+
+             <i class='i-icon i-staffpick<%= "#{@story_filter_staff_pick == true ? 'ed' : ''}"%>'></i><%=  "#{t('filters.staff_pick')}" %>
+           <% end %>
           </li>
           <% if @categories_published.present? %>          
            <li class="dropdown dropdown-hover category afilter">
-            <a href="#" class="dropdown-toggle<%= @story_filter_category_all ? '' : ' selected' %>" data-toggle="dropdown" tabindex="14" 
-            data-filtered-by="<%= @story_filter_category_permalink %>" data-filter-type="category" data-filter-default-label="<%= t('filters.category_header') %>"
-             data-filter-default="all">
+            <a href="#" class="dropdown-toggle<%= @story_filter_category_all ? '' : ' selected' %>" 
+              data-toggle="dropdown" tabindex="14" title="<%= t('filters.category_title') %>"
+              data-filtered-by="<%= @story_filter_category_permalink %>" 
+              data-filter-type="category" data-filter-default-label="<%= t('filters.category_header') %>"
+              data-filter-default="all">
             <span><%= @story_filter_category_all ? t('filters.category_header') : @story_filter_category %></span><i class='i-icon i-caret-b'></i></a>
             <ul class="dropdown-menu afilter-list">          
               <li class="dropdown">
@@ -25,8 +32,11 @@
           </li>
           <% end %>
           <li class="dropdown dropdown-hover language afilter">
-            <a href="#" class="dropdown-toggle<%= @story_filter_language_all ? '' : ' selected' %>" data-toggle="dropdown" tabindex="15"
-            data-filtered-by="<%= @story_filter_language_permalink %>" data-filter-type="language" data-filter-default-label="<%= t('filters.language_header') %>" data-filter-default="all">
+            <a href="#" class="dropdown-toggle<%= @story_filter_language_all ? '' : ' selected' %>" 
+              data-toggle="dropdown" tabindex="15" title="<%= t('filters.language_title') %>"
+              data-filtered-by="<%= @story_filter_language_permalink %>" 
+              data-filter-type="language" data-filter-default-label="<%= t('filters.language_header') %>" 
+              data-filter-default="all">
               <span><%= @story_filter_language_all ? t('filters.language_header') : @story_filter_language %></span><i class='i-icon i-caret-b'></i></a>  
             <ul class="dropdown-menu afilter-list">          
               <li class="dropdown">
@@ -42,8 +52,10 @@
           </li>
           <li class="li-sort-label"><span class="sort-label"><%= t('filters.sort_header') %>:</span></li>
           <li class="dropdown dropdown-hover sort afilter">
-            <a href="#" class="dropdown-toggle<%= @story_filter_sort_recent ? '' : ' selected' %>" data-toggle="dropdown" tabindex="16" 
-            data-filtered-by="<%= @story_filter_sort_permalink %>" data-filter-type="sort" data-filter-default="recent">
+            <a href="#" class="dropdown-toggle<%= @story_filter_sort_recent ? '' : ' selected' %>" 
+                data-toggle="dropdown" tabindex="16"  title="<%= t('filters.sort_title') %>"
+                data-filtered-by="<%= @story_filter_sort_permalink %>" data-filter-type="sort" 
+                data-filter-default="recent">
               <span><%= @story_filter_sort %></span><i class='i-icon i-caret-b'></i></a>
             <ul class="dropdown-menu afilter-list">
               <% I18n.t('filters.sort').each do |key, value| %>
@@ -53,12 +65,27 @@
               <% end %>
             </ul>
           </li>
+
+          <% if @story_filter_show_following && user_signed_in? && @following_users.present? %>
+            <li class="afilter">
+              <%= link_to url_for(params.merge(:following => !@story_filter_following)),
+                :title => @story_filter_following ? t('filters.following_title_active') : t('filters.following_title'),
+                :class => "following #{@story_filter_following == true ? 'active' : ''}", 
+                :tabindex => 17, :"data-filtered-by" => @story_filter_following , 
+                :"data-filter-type"=>'following',
+                :'data-title' => t('filters.following_title'), :'data-title-active' => t('filters.following_title_active') do %>
+
+                 <i class='i-icon i-follow<%= "#{@story_filter_following == true ? 'ed' : ''}"%>'></i><%=  "#{t('filters.following')}" %>
+               <% end %>
+            </li>
+          <% end %>
+
           <li class="pull-right"> 
             <div class="search-wrapper">
               <div class="search-box">
                 <div class="search-text">
                   <%= form_tag url_for(params), :method => :get, :id => 'search-filter', :class=>"afilter" do %>
-                    <%= text_field_tag :q, params[:q], :placeholder => t('filters.search'), :tabindex => 17, :autocomplete=>'off', :class=>"search-input",
+                    <%= text_field_tag :q, params[:q], :placeholder => t('filters.search'), :tabindex => 18, :autocomplete=>'off', :class=>"search-input",
                     :"data-filtered-by"=>@q, :"data-filter-type"=>"q" %>
                   <% end %>
                 </div>

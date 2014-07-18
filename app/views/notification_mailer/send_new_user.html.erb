@@ -1,0 +1,8 @@
+<%
+  msg = @message.message.dup
+  msg.gsub!('[settings_link]', link_to(settings_url(:locale => @message.locale),settings_url(:locale => @message.locale)))
+  msg.gsub!('[notifications_link]', link_to(settings_notifications_url(:locale => @message.locale),settings_notifications_url(:locale => @message.locale)))
+%>
+
+<%= simple_format msg %>
+

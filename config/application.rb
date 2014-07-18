@@ -24,7 +24,7 @@ module BootstrapStarter
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
     # Activate observers that should always be running.
-    # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
+    config.active_record.observers = :user_observer, :story_observer, :news_observer, :invitation_observer
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
@@ -60,7 +60,7 @@ module BootstrapStarter
     config.assets.paths << "#{Rails.root}/public/javascripts/"
 
     # in app/assets folder
-    config.assets.precompile += %w( filter.js modalos.js navbar.js news.js nickname.js search.js stories.js storyteller.js )
+    config.assets.precompile += %w( filter.js follow.js modalos.js navbar.js news.js nickname.js search.js settings.js stories.js storyteller.js )
     config.assets.precompile += %w( author.css devise.css embed.css filter.css grid.css modalos.css navbar.css news.css root.css settings.css stories.css storyteller.css todo.css )
     # in vendor/assets folder
     config.assets.precompile += %w( bootstrap-select.min.js jquery.tokeninput.js olly.js zeroclipboard.min.js )

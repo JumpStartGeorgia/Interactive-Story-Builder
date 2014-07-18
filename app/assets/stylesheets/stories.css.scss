@@ -1,8 +1,90 @@
+ul#story-navigation{
+  margin-bottom: 20px;
+  li a{
+    padding: 10px 10px;
+    font-size: 16px;
+    &:hover, &:focus{
+      background-color: #eee !important;
+    }
+  }
+}
+
+@media (max-width: 1430px) {
+  ul#story-navigation{
+    li a {
+      padding: 10px 8px;
+      font-size: 15px;
+    }
+  }
+}
+@media (max-width: 1355px) {
+  ul#story-navigation{
+    li a {
+      padding: 10px 6px;
+      font-size: 14px;
+    }
+  }
+}
+
+
+@media (max-width: 1210px) {
+  ul#story-navigation{
+    li a {
+      padding: 10px 20px;
+      span.nav-text{
+        display: none;
+      }
+    }
+  }
+}
+body#storybuilder_form{
+  ul#story-navigation{
+    position: absolute;
+    top: 54px;
+    margin-bottom: 20px;
+    li a{
+      padding: 10px 10px;
+      font-size: 16px;
+      &:hover, &:focus{
+        background-color: #eee !important;
+      }
+    }
+  }
+  @media (max-width: 1440px) {
+    ul#story-navigation{
+      li a {
+        padding: 10px 8px;
+        font-size: 15px;
+      }
+    }
+  }
+  @media (max-width: 1355px) {
+    ul#story-navigation{
+      li a {
+        padding: 10px 6px;
+        font-size: 14px;
+      }
+    }
+  }
+
+
+  @media (max-width: 1210px) {
+    ul#story-navigation{
+      li a {
+        padding: 10px 20px;
+        span.nav-text{
+          display: none;
+        }
+      }
+    }
+  }
+}
+
 .builder-wrapper
 {
   overflow:hidden;
   position:absolute;
-  top:54px;
+  top:95px;
 
   .story-tree
   {
@@ -162,6 +244,7 @@
   .sidebar
   {
     width:auto;
+
     max-width:274px;
     overflow:hidden;
     float:left;
@@ -170,9 +253,7 @@
     .toolbar
     {
       width:100%;
-    /*  position:fixed;
-      top:54px;
-      height:54px;  */  
+      text-align: center;
       .btn-group > .btn
       {
         border-top-left-radius: 0 !important;

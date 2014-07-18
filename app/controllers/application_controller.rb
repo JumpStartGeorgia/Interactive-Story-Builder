@@ -96,7 +96,6 @@ class ApplicationController < ActionController::Base
     gon.nickname_url = I18n.t('app.msgs.nickname_url')
     gon.story_duplicate = I18n.t('app.msgs.story_duplicate')
     gon.story_url = I18n.t('app.msgs.story_url')
-    
 
     gon.msgs_select_section = I18n.t('app.msgs.select_section')
     gon.msgs_one_section_content = I18n.t('app.msgs.one_section.content')
@@ -123,7 +122,7 @@ class ApplicationController < ActionController::Base
   ## process the filter requests
   def process_filter_querystring(story_objects)
 
-    gon.page_filtered = params[:staff_pick].present? || params[:sort].present? || params[:category].present? || params[:tag].present? || params[:language].present? || params[:q].present?
+    gon.page_filtered = params[:staff_pick].present? || params[:sort].present? || params[:category].present? || params[:tag].present? || params[:language].present? || params[:q].present? || params[:following].present?
     
     # staff pick
     if params[:staff_pick].present?
@@ -194,6 +193,19 @@ class ApplicationController < ActionController::Base
   		@story_filter_language = I18n.t("filters.all")
     end
     
+    # following users
+    @story_filter_show_following = controller_action?('root','index')
+    if user_signed_in?
+      @following_users = current_user.following_users
+      if @following_users.present? && params[:following].present? && params[:following].to_bool == true
+        story_objects = story_objects.by_authors(@following_users.map{|x| x.id}.uniq)
+        @story_filter_following = true
+      else 
+        @story_filter_following = false
+      end
+    end
+      logger.debug "/////////////////// @story_filter_following = #{@story_filter_following}"
+        
     # search
     @q = ""
 		if params[:q].present?
@@ -220,20 +232,16 @@ class ApplicationController < ActionController::Base
 		session[:previous_urls] ||= []
 		# only record path if page is not for users (sign in, sign up, etc) and not for reporting problems
 		if session[:previous_urls].first != request.fullpath && 
-        params[:format] != 'js' && params[:format] != 'json' && 
+        params[:format] != 'js' && params[:format] != 'json' && !request.xhr? &&
         request.fullpath.index("/users/").nil?
-
 			session[:previous_urls].unshift request.fullpath
     elsif session[:previous_urls].first != request.fullpath &&
        request.xhr? && !request.fullpath.index("/users/").nil? &&
        params[:return_url].present?
-
       session[:previous_urls].unshift params[:return_url]
 		end
 
 		session[:previous_urls].pop if session[:previous_urls].count > 1
-
-
     #Rails.logger.debug "****************** prev urls session = #{session[:previous_urls]}"
 	end
 

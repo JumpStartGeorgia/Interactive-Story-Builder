@@ -30,13 +30,12 @@ class NewsTranslation < ActiveRecord::Base
   end 
   
   def create_permalink
-    date = ''
     if self.news_id.present? && self.news.published_at.present? && self.news.is_published == true
+      date = ''
       date << self.news.published_at.to_s
       date << '-'
       "#{date}#{self.title.dup}"
     end
   end
-
   
 end
