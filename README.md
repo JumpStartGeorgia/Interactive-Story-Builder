@@ -18,22 +18,32 @@ Aside from entering the story into the sections, you also have the ability to:
 * clone a story as the beginning of a new story
 * export a story so you can host it on any website
 
+## Dependencies
+You will need to install the following programs:
+* ffmpeg - to create image from video (image is shown instead of video on mobile devices)
+* imagemagick - to process the images upload and create all of the different sizes required
+
+You will need the following Environment Variables set:
+* STORY_BUILDER_DISQUS - Disqus is used for the commenting system and your unique website it is stored here
+* STORY_BUILDER_FACEBOOK_APP_ID - Facebook is one of the options for logging in to the system and you must have an app account created under facebook developers. This key stores the application id.
+* STORY_BUILDER_FACEBOOK_APP_SECRET - This key stores the application secret.
+* APPLICATION_FEEDBACK_TO_EMAIL - email address to send feedback form messages to
+* APPLICATION_FEEDBACK_FROM_EMAIL - email address to send feedback form messages from
+* APPLICATION_FEEDBACK_FROM_PWD - password of above email address
+* APPLICATION_ERROR_TO_EMAIL - email address to send application errors to
+* APPLICATION_ERROR_FROM_EMAIL - email address to send application errors from
+
+
+
 ## To Do List
 ### Short Term Tasks
-* add share links to the published stories
-* create a more wizard like process for entering the content
-* add ability to drop and drop section for re-arranging
-* allow users to follow other users and receive notifications when new stories are published
-* add categories to stories
-* add search/filter/sort for published stories
-* each user has a page to show their published works
-* users can create organizations and have their own page to show their published works
-* add ability to include online videos (embed youtube, vimeo, etc)
+* create a more wizard like process for building the story
+* add ability to drag and drop section for re-arranging
+* users can create groups and have their own page to show their published works
 * add ability to create one story in multiple languages
 * ability to log in with something other than facebook
 
 ### Long Term Tasks
-* be able to embed published stories
 * store the media on Amazon S3 cloud
 * have multiple themes to select from
 * be able to edit colors, fonts, etc
@@ -44,6 +54,31 @@ Aside from entering the story into the sections, you also have the ability to:
 
 
 ## Version History
+### 1.0
+Most of the focus was spent on the experience of finding and reading stories. Some time was spent on the form for building the stories, but a complete overhaul of this system is needed and will be the focus of our next major release.
+* applied much nicer theme to the site
+* added story read counter
+* added share links
+* added comments
+* added like button
+* can embed stories in two formats: a pretty link or the full story
+* can customize url to story
+* can search, filter and sort published stories on home page
+* can write summary of story (this is used on home page and when sharing in facebook)
+* added ability to indicate what language your story is in (allows users to filter on home page)
+* added categories to stories
+* added tags to stories
+* each user has their own page to show their published works
+* can customize url to user page
+* can write summary about self and this appears on your user page
+* added ability to include online videos (embed youtube, vimeo, etc)
+* can invite other users to be a collaborator on your story
+* added notification system to alert you when new stories are published, your story is selected as a staff pick, comments are made, etc
+* can indicate which notifications you wish to receive
+* allow users to follow other users and receive notifications when new stories are published
+* added RSS feed of all published stories
+
+
 ### 0.4
 * added horizontal image gallery section
 * added help text to forms

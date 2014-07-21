@@ -12,7 +12,7 @@
 
     <div id="embedMediaPreview">
       <h3><%= t('.preview') %></h3>
-      <div class="alert alert-error" id="embedMediaError">
+      <div class="alert alert-danger" id="embedMediaError">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <%= t('.error') %>
       </div>
@@ -31,11 +31,11 @@
   <% 
     style = '' 
     if @item.code.blank? 
-      style = "style=display: none"
+      style = "style=display:none;"
      end 
   %>
   <div class="pull-right spacer" id="embedMediaButtons" <%= style %>>    
     <%= f.submit nil, :class => 'btn btn-default' %>
-    <%= f.submit nil, :class => 'btn btn-default', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>          
+    <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          
   </div>
 <% end %>

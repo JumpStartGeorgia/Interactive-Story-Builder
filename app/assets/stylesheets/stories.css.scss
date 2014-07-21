@@ -412,12 +412,17 @@ body#storybuilder_form{
       padding: 5px 5px;
     }
   }
-  
-  .remove_image_button{
-    float:right;
-    margin-right:20px;
-    margin-bottom:10px; 
+  .image_asset_fields{
+    float: left;
+    width: 68%;
+
+    .remove_image_button{
+      float:right;
+      margin-right:20px;
+      margin-bottom:10px; 
+    }
   }
+  
 }
 #slideshowAssets input
 {
@@ -493,4 +498,21 @@ body#storybuilder_form{
 .nav-tabs
 {
   width:100%;
+}
+
+
+#embedMediaForm{
+  #embedMediaPreview{
+    margin-top: 20px;
+    border-top: solid 1px #ccc;
+    padding-top: 20px;    
+    
+    h3{
+      margin-bottom: 10px;
+    }
+    #embedMediaError{
+      display: none;
+    }
+  }
+
 }
