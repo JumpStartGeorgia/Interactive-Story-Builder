@@ -2,7 +2,7 @@
 {
   width:100%;
   margin:0px auto 20px auto;
-  height:60px; /*56px*/
+  /*height:60px; 56px*/
   ul.nav > li > a
   {
     font-family:opensans-r,verdana;
@@ -48,7 +48,7 @@
 
   .search-wrapper
   {
-    float:left;
+    
     height:56px;
     line-height:56px;
     vertical-align:middle;
@@ -81,11 +81,11 @@
   }
   .search-box:hover
   {  
-    width:500px;
+    width:100%;
   }
   .search-box.active
   {  
-    width:500px;
+    width:100%;
   }
   .search-text 
   {
@@ -262,3 +262,55 @@
   @media only screen and (min-width : 1200px) {
    
   }
+
+
+
+
+
+
+
+
+#search-form input[type="text"] {    
+        border: 0 none;            
+        width: 200px;
+        padding: 6px 15px 6px 35px;
+        background: url('/assets/search_b.png') no-repeat 5px;
+        font-family:opensans-r;
+        font-size:16px; 
+        color:#dadada;       
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        -webkit-transition:all .15s ease-out;
+        -moz-transition:all .15s ease-out;
+        -ms-transition:all .15s ease-out;
+        transition:all .15s ease-out;
+        outline:none;
+        opacity:0.8;
+  }
+  #search-form
+  {
+    ::-webkit-input-placeholder {
+      color: #dadada;
+    }
+    :-moz-placeholder { /* Firefox 18- */
+       color: #dadada;
+    }
+    ::-moz-placeholder {  /* Firefox 19+ */
+       color: #dadada;
+    }
+    :-ms-input-placeholder {  
+       color: #dadada;  
+    }
+  }
+  #search-form input[type="text"]:focus,#search-form input[type="text"]:hover {
+     width: 350px;
+     opacity:1;             
+  }
+  @media (max-width: 767px) {
+  #search-form input[type="text"],
+  #search-form input[type="text"]:focus,#search-form input[type="text"]:hover{
+      width: 100%;
+    }
+  }
+

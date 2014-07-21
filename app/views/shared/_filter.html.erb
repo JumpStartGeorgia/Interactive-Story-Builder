@@ -1,5 +1,26 @@
-   <div id="filter">      
+   <div id="filter">  
+    <div class="mob">
+        <div class="search">
+      <%= form_tag root_path, :method => :get, :id => 'search-form',
+      :class => "navbar-form navbar-left", :role => "search" do %>
+        <div class="form-group">            
+          <%= text_field_tag :q, params[:q], :placeholder => t('app.common.search'), :class=>"form-control search-input", :autocomplete=>'off', :tabindex => 1 %>
+        </div>
+      <% end %>  
+      </div>
+      <div class="filters">Filters<i class='i-icon i-caret-b'></i></div>
+
+    </div>
+       <style>
+       .search,.filters
+       {
+        display:inline-block;
+       }
+       </style>
         <ul class="nav">
+        <!--  <li > class="pull-right"
+           
+          </li> -->
           <li class="afilter">
             <%= link_to url_for(params.merge(:staff_pick => !@story_filter_staff_pick)),
               :class => "staff_pick #{@story_filter_staff_pick == true ? 'active' : ''}", 
@@ -79,9 +100,8 @@
                <% end %>
             </li>
           <% end %>
-
-          <li class="pull-right"> 
-            <div class="search-wrapper">
+            <li style="display:none;">
+             <div class="search-wrapper">
               <div class="search-box">
                 <div class="search-text">
                   <%= form_tag url_for(params), :method => :get, :id => 'search-filter', :class=>"afilter" do %>
@@ -91,7 +111,8 @@
                 </div>
                 <div class="search-button"></div>
               </div>
-            </div>
-          </li>
+            </div>  
+            </li>
+         
         </ul>      
     </div>

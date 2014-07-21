@@ -104,7 +104,7 @@ module FormtasticBootstrap
           if(errors.present?)
            embed << errors
           end
-          render_label? ? builder.label(input_name, label_text << embed.html_safe , label_html_options) : "".html_safe
+          render_label? ? builder.label(input_name, label_text << embed.html_safe , label_html_options) : embed.html_safe
         end
 
       end  
@@ -115,11 +115,15 @@ module FormtasticBootstrap
           include Formtastic::Inputs::Base::Wrapping
 
           def bootstrap_wrapping(&block)
+           # embed = ""
+           # if render_label?
+           #   embed = label_html(hint_html, error_html(:block))  #if !render_label?
             form_group_wrapping do
-              label_html(hint_html, error_html(:block)) <<
+              (render_label? ? label_html(hint_html, error_html(:block)) : '').html_safe <<
               template.content_tag(:span, :class => 'form-wrapper') do
                 input_content(&block)                         
-              end
+              end <<
+                (!render_label? ? label_html(hint_html, error_html(:block)) : '').html_safe
             end
           end
 
@@ -214,3 +218,5 @@ module FormtasticBootstrap
     end
   end
 end
+
+
