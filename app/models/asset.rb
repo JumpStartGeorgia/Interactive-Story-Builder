@@ -94,22 +94,22 @@ class Asset < ActiveRecord::Base
 
 
   with_options :if => "self.asset_type == Asset::TYPE[:user_avatar]" do |t|    
-    t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }}  
+    t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
   with_options :if => "self.asset_type == Asset::TYPE[:story_thumbnail]" do |t|    
-    t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }}  
+    t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
   with_options :if => "self.asset_type == Asset::TYPE[:section_audio]" do |t|      
-    t.validates_attachment :asset, {   :presence => true, :content_type => { :content_type => ["audio/mp3"] }}  
+    t.validates_attachment :asset, {   :presence => true, :content_type => { :content_type => ["audio/mp3"] }, :size => { :in => 0..10.megabytes }}  
   end
   with_options :if => "self.asset_type == Asset::TYPE[:media_image]" do |t|      
-    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }}  
+    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
   with_options :if => "self.asset_type == Asset::TYPE[:media_video]" do |t|      
-    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["video/mp4"] }}    
+    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["video/mp4"]}, :size => { :in => 0..25.megabytes }}    
   end
  with_options :if => "self.asset_type == Asset::TYPE[:slideshow_image]" do |t|      
-    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }}  
+    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
 
    
