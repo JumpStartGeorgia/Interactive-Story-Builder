@@ -478,7 +478,7 @@ class StoriesController < ApplicationController
            format.json {render json: { e:true, msg: (t('app.msgs.error_publish_missing_fields', :obj => @item.title) +  
                 " <a href='" +  edit_story_path(@item) + "'>" + t('app.msgs.error_publish_missing_fields_link') + "</a>")} }  
            error = true       
-        elsif @item.sections.map{|t| t.content? && t.content.content.present? }.count(true) == 0          
+        elsif @item.sections.map{|t| t.content.present? && t.content.content.present? }.count(true) == 0          
            format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_content_section')} }          
            error = true
         end            
