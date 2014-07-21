@@ -5,7 +5,7 @@ var section_id = -1;
 var item_id = -1;
 var el_type = 's';
 var method = 'n';
-
+var tester = null;
 $(document).ready(function() {
 
 

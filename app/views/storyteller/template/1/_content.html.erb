@@ -657,9 +657,11 @@
               if (videoNode) {
                 volume = d3.event.rect.top < fixTop + fadeTop ? Math.max(0, Math.min(1, 1 - (d3.event.rect.top - fixTop) / fadeTop)) : 0;
                 var play = d3.event.rect.top <= fixTop + fadeTop;
+                console.log("play" + play)
                 if (videoNode.paused) {
                   if (play && (!d.animation || (videoNode.currentTime < videoNode.duration && volume > .8))) {
                     videoNode.play();
+                    console.log("playing")
                   }
                 } else if (!play) {
                   videoNode.pause();
@@ -817,12 +819,12 @@
             container.append("div")
                 .attr("class", "slideshow-button slideshow-button--next")
                 .on("click", function() { stopPlay(); showNext(); })
-               .append("<svg class='slideshow-button-arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M3,1.008L20.742,9.045L3,17.083L6,8.917Z'></path></svg>");  
+               .html("<svg class='slideshow-button-arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M3,1.008L20.742,9.045L3,17.083L6,8.917Z'></path></svg>");  
 
             container.append("div")
                 .attr("class", "slideshow-button slideshow-button--previous")
                 .on("click", function() { stopPlay(); showPrevious(); })
-              .append("<svg class='slideshow-button-arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M18.742,0.758L1,8.795L18.742,16.833L15.742,8.667Z'></path></svg>");   
+              .html("<svg class='slideshow-button-arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M18.742,0.758L1,8.795L18.742,16.833L15.742,8.667Z'></path></svg>");   
 
             var thumb = container.insert("div", ".slideshow-captions")
                 .attr("class", "slideshow-thumbs")
