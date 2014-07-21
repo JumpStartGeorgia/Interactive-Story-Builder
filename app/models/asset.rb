@@ -57,7 +57,8 @@ class Asset < ActiveRecord::Base
           opt = { :url => "/system/places/images/:media_image_story_id/:style/:basename.:extension",
                   :styles => {
                         :mobile_640 => {:geometry => "640x427"},
-                        :mobile_1024 => {:geometry => "1024x623"}
+                        :mobile_1024 => {:geometry => "1024x623"},
+                        :fullscreen => {:geometry => "1500>"}
                 }
           }  
         when  Asset::TYPE[:media_video]        
