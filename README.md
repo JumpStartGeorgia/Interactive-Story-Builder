@@ -37,20 +37,13 @@ You will need the following Environment Variables set:
 
 ## To Do List
 ### Short Term Tasks
-* add share links to the published stories
-* create a more wizard like process for entering the content
-* add ability to drop and drop section for re-arranging
-* allow users to follow other users and receive notifications when new stories are published
-* add categories to stories
-* add search/filter/sort for published stories
-* each user has a page to show their published works
-* users can create organizations and have their own page to show their published works
-* add ability to include online videos (embed youtube, vimeo, etc)
+* create a more wizard like process for building the story
+* add ability to drag and drop section for re-arranging
+* users can create groups and have their own page to show their published works
 * add ability to create one story in multiple languages
 * ability to log in with something other than facebook
 
 ### Long Term Tasks
-* be able to embed published stories
 * store the media on Amazon S3 cloud
 * have multiple themes to select from
 * be able to edit colors, fonts, etc
@@ -61,6 +54,31 @@ You will need the following Environment Variables set:
 
 
 ## Version History
+### 1.0
+Most of the focus was spent on the experience of finding and reading stories. Some time was spent on the form for building the stories, but a complete overhaul of this system is needed and will be the focus of our next major release.
+* applied much nicer theme to the site
+* added story read counter
+* added share links
+* added comments
+* added like button
+* can embed stories in two formats: a pretty link or the full story
+* can customize url to story
+* can search, filter and sort published stories on home page
+* can write summary of story (this is used on home page and when sharing in facebook)
+* added ability to indicate what language your story is in (allows users to filter on home page)
+* added categories to stories
+* added tags to stories
+* each user has their own page to show their published works
+* can customize url to user page
+* can write summary about self and this appears on your user page
+* added ability to include online videos (embed youtube, vimeo, etc)
+* can invite other users to be a collaborator on your story
+* added notification system to alert you when new stories are published, your story is selected as a staff pick, comments are made, etc
+* can indicate which notifications you wish to receive
+* allow users to follow other users and receive notifications when new stories are published
+* added RSS feed of all published stories
+
+
 ### 0.4
 * added horizontal image gallery section
 * added help text to forms
