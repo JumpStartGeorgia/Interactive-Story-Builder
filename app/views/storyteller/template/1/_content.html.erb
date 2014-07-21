@@ -657,14 +657,15 @@
               if (videoNode) {
                 volume = d3.event.rect.top < fixTop + fadeTop ? Math.max(0, Math.min(1, 1 - (d3.event.rect.top - fixTop) / fadeTop)) : 0;
                 var play = d3.event.rect.top <= fixTop + fadeTop;
-                console.log("play" + play)
+                console.log("play" + play);
                 if (videoNode.paused) {
                   if (play && (!d.animation || (videoNode.currentTime < videoNode.duration && volume > .8))) {
                     videoNode.play();
-                    console.log("playing")
+                    console.log("playing");
                   }
                 } else if (!play) {
                   videoNode.pause();
+                  console.log("pause");
                 }
               }
               container.style("opacity", opacityTop >= fixTop - fixHeight ? 1 : 0);
@@ -675,12 +676,14 @@
                   if (opacity) {
                    if (!d.animation || (videoNode.currentTime < videoNode.duration && opacity > .8)) {
                       videoNode.play();
+                      console.log("play12");
                     }
                   } else if (videoNode.currentTime) {
                     videoNode.currentTime = 0;
                   }
                 } else if (!opacity) {
                   videoNode.pause();
+                  console.log("pause");
                   if (videoNode.currentTime) videoNode.currentTime = 0;
                 }
               }
@@ -693,9 +696,11 @@
                 if (videoNode.paused) {
                   if (play && (!d.animation || (videoNode.currentTime < videoNode.duration && volume > .8))) {
                     videoNode.play();
+                    console.log("play123");
                   }
                 } else if (!play) {
                   videoNode.pause();
+                  console.log("pause");
                 }
               }
             }
@@ -720,7 +725,7 @@
               .select("video")
                 .each(function() {
                   if (!d3.event.state) {
-                    if (!this.paused) this.pause();
+                    if (!this.paused) {this.pause();console.log("pause");}
                     if (this.currentTime) this.currentTime = 0;
                   }
                 });                 
