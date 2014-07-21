@@ -120,6 +120,17 @@ $(document).ready(function() {
         					"Your browser does not support this video." + 
         					"<source src='"+$(this).data('video-path')+ "' type='"+$(this).data('video-type')+"'>" +
     					  	"</video>";
+         opts = {
+            topOffset: $(v).position().top + $(v).height() + 30,                   
+            paddings :0,
+            contentscroll:false,
+            width:662,
+            before_close:function(t)
+            {
+               $(t).find('video').each(function(){ this.pause(); })
+               $(t).find('audio').each(function(){ this.pause(); })               
+            }
+         };
         }
         else if(type == 'text')
     	{
@@ -133,7 +144,12 @@ $(document).ready(function() {
 	        	fullscreen:true,
 	        	aspectratio:true,
 	        	paddings :0,
-	        	contentscroll:false
+	        	contentscroll:false,
+             before_close:function(t)
+            {              
+               $(t).find("iframe").contents().find("video").each(function(){this.pause();})          
+               $(t).find("iframe").contents().find("audio").each(function(){this.pause();})              
+            }
     		};
 
     	}
@@ -582,7 +598,7 @@ function getData()
 		  dataType: 'script',
 	      cache: true 
 		}).error(function(e){console.log(e)}).done(function(){			
-         if(el_type!='s')
+         if(el_type!='s' && method != 'n')
             $('.form-title').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > span').text() + ":" + $('.form-title').text());
 		});
 

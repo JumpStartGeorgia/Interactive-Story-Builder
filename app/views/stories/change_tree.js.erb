@@ -1,11 +1,8 @@
  $(document).ready(function() 
- {
- 	var li = $("<li id='<%= @item.id %>' data-type='<%= @item.get_str_type %>' class='item'><span><%= @item.title %></span>");
+ {  
+ 	var li = $("<li id='<%= @item.id %>' data-type='<%= @item.get_str_type %>' class='item'><div class='box'><div class='collapser'>+</div><div class='title'><%= @item.title %></div></div>");
  	$('.story-tree ul li').removeClass('active');
 	$('.story-tree > ul').append(li.addClass('active'));		
-	li.trigger('click');
-	li.children('ul').show();
-	    
-	$("html, body").animate({ scrollTop: 0 }, "slow");
+	li.find('.box > .title').trigger('click');	
 	$('#btnAddItem').trigger('click');
 });
