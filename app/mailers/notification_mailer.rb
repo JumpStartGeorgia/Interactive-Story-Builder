@@ -1,5 +1,5 @@
 class NotificationMailer < ActionMailer::Base
-  default :from => ENV['APPLICATION_FEEDBACK_FROM_EMAIL']
+  default :from => ENV['STORY_BUILDER_FROM_EMAIL']
 	layout 'mailer'
 
   def send_new_user(message)
