@@ -32,7 +32,7 @@ class StoriesController < ApplicationController
   def new
     @story = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
     @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
-    @templates = Template.select_list
+#    @templates = Template.select_list
     @story_tags = []
     
     respond_to do |format|
@@ -47,7 +47,7 @@ class StoriesController < ApplicationController
     if !@story.asset_exists?
       @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
     end 
-    @templates = Template.select_list(@story.template_id)
+#    @templates = Template.select_list(@story.template_id)
     @story_tags = @story.tags.token_input_tags
   end
 
@@ -95,7 +95,7 @@ class StoriesController < ApplicationController
         if @story.update_attributes(params[:story])
 
           flash_success_updated(Story.model_name.human,@story.title)       
-          format.html { redirect_to  sections_story_path(@story),  notice: t('app.msgs.success_updated', :obj => t('activerecord.models.story')) }
+          format.html { redirect_to  edit_story_path(@story),  notice: t('app.msgs.success_updated', :obj => t('activerecord.models.story')) }
           format.js { render action: "flash", status: :created }    
         else
           if !@story.asset.present? 

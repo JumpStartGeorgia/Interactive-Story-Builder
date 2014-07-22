@@ -151,18 +151,20 @@
 <div id="modalos-share" style="display:none;" class="share-window">  
   <div class="title"><%= "#{t('app.common.share_story')}" %></div>
   <div class="permalink"><%= "#{t('app.common.permalink')}" %>:</div>
-  <% url = @story.shortened_url.present? ? @story.shortened_url : storyteller_show_url(@story.permalink) %>
-  <div class="permalink-link"><a href="<%= storyteller_show_url(@story.permalink) %>"><%= storyteller_show_url(@story.permalink) %></a></div>
+  <div class="permalink-link"><%= link_to storyteller_show_url(@story.permalink), storyteller_show_url(@story.permalink) %></div>
+  <div class="shortened-url"><%= "#{t('app.common.shortened_url')}" %>:</div>
+  <div class="shortened-url-link"><%= link_to @story.shortened_url, @story.shortened_url if @story.shortened_url.present? %></div>
+  <% short_url = @story.shortened_url.present? ? @story.shortened_url : storyteller_show_url(@story.permalink) %>
   <div class="share">
     <div class="facebook">
 
-    <a href="https://www.facebook.com/dialog/feed?app_id=<%= @face_id %>&link=<%= url %>" onclick="javascript:window.open(this.href,
+    <a href="https://www.facebook.com/dialog/feed?app_id=<%= @face_id %>&link=<%= short_url %>" onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">  
           <i class="i-icon i-facebook-l"></i><%= "#{t('app.common.share_facebook')}" %></a>      
        
     </div>
     <div class="twitter">
-      <a href='https://twitter.com/share?url=<%= url %>&text=<%= @story.title %>' onclick="javascript:window.open(this.href,
+      <a href='https://twitter.com/share?url=<%= short_url %>&text=<%= @story.title %>' onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
                         <i class="i-icon i-twitter-l"></i><%= "#{t('app.common.share_twitter')}" %>
       </a>
@@ -179,8 +181,8 @@
     <textarea rows="4" cols="38"  data-iframe-link="<%=embed_url(@story.permalink) %>"
     readonly="" onfocus="setTimeout(function (t){ t.select(); }, 10, this);" onmouseup="return false;"><iframe src='<%=embed_url(@story.permalink) %>?type=partial' width='350' height='100%' frameborder='0'></iframe></textarea>
       <div class="embed-type-switcher">
-        <div class="partial selected" title="<%= "#{t('app.common.partial_text')}" %>"><%= "#{t('app.common.partial')}" %></div>
-        <div class="full" title="<%= "#{t('app.common.full_text')}" %>"><%= "#{t('app.common.full')}" %></div>
+        <div class="partial selected" title="<%= "#{t('app.common.partial_text')}" %>" data-width="350"><%= "#{t('app.common.partial')}" %></div>
+        <div class="full" title="<%= "#{t('app.common.full_text')}" %>" data-width="1000"><%= "#{t('app.common.full')}" %></div>
       </div>
       <div class="embed-size-w">
         <input type="text" value="350" class="iframe-size"/>
@@ -420,7 +422,7 @@ margin-left:8px;
     color:#bdbdbd;
     margin-bottom:25px;
   }
-  .share-window .permalink
+  .share-window .permalink, .share-window .shortened-url
   {
     font-family:opensans-r;
     font-size:14px;
@@ -428,8 +430,10 @@ margin-left:8px;
     margin-bottom:10px;
   }
   .share-window .permalink-link
+  {    margin-bottom:20px;}
+  .share-window .shortened-url-link
   {    margin-bottom:40px;}
-  .share-window .permalink-link a
+  .share-window .permalink-link a, .share-window .shortened-url-link a
   {
     font-family:opensans-r;
     font-size:14px;
@@ -437,7 +441,7 @@ margin-left:8px;
     opacity:0.9;
 
   }
-  .share-window .permalink-link a:hover
+  .share-window .permalink-link a:hover, .share-window .shortened-url-link a:hover
   {    
     opacity:1;   
   }
@@ -602,4 +606,15 @@ margin-left:8px;
       }];
     };                    
 </script>
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51d1537d4a09d85f"></script>
+<%
+  addthis_id = Rails.env.production? ? ENV['STORY_BUILDER_ADDTHIS_PROFILEID'] : ENV['STORY_BUILDER_ADDTHIS_PROFILEID_DEV']
+  if addthis_id.present?
+%>
+<script type="text/javascript">
+var addthis_share =
+{
+  url: '<%= short_url %>'
+}
+</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<%= addthis_id %>"></script>
+<% end %>

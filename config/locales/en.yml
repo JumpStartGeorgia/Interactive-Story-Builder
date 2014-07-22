@@ -259,6 +259,7 @@ en:
       email: Email
       views: Views
       permalink: Permalink
+      shortened_url: Short URL
       share_story: Share this story
       share_facebook: Share on Facebook
       share_twitter: Share on Twitter
@@ -478,7 +479,7 @@ en:
         published: Published stories are available for the world to read
         publish_home_page: "If checked, your published story will appear on the site's homepage"
         template: Choose template to apply styling to story
-        thumbnail: Image that is used to show the story on the home page when the story is published (jpg and png only)
+        thumbnail: Image that is used to show the story on the home page when the story is published (jpg and png only; 3MB file size limit)
         editor: Person that created the story record in this website
         editors: Select people that you want to give access to edit the story
         about: Short summary of story that will be used on the home page and when you story is shared
@@ -514,8 +515,8 @@ en:
         media_type: "For videos, an image is necessary because videos are not loaded on mobile devices."
         caption: "Caption text will appear on top of the image/video"
         source: "Source of the image/video, appears in the bottom-right corner"
-        image: "Only jpg format allowed"
-        video: "Only mp4 format accepted"
+        image: "Only jpg format allowed; 3MB file size limit"
+        video: "Only mp4 format accepted; 25MB file size limit"
         caption_align: "The location the Caption text will appear on top of the image/video (default is left) "
         video_loop: "If checked, the video will loop infinitly, otherwise the video will not loop"
     section:
@@ -528,7 +529,7 @@ en:
         title: "This text appears in the left sidebar and, if Navigation Shortcut is selected, will appear as the title text for the shortcut"
         type: "Selecting this type determines what kind of information you can add into this section"
         has_marker: "If checked, there will be a navigation shortcut link to go to this section"
-        audio: "Background audio to play while this section is in view (mp3 format only)"
+        audio: "Background audio to play while this section is in view (mp3 format only; 10mb file size limit)"
     content:
       form_title: Content Form
       placeholder:
@@ -559,7 +560,7 @@ en:
       hint:
         caption: Image Description will appear below the image
         source: Source will appear below the Image Description
-        asset: Only jpg and png format allowed
+        asset: Only jpg and png format allowed; 3MB file size limit
       label:
         caption: Image Description
         source: Image Source
