@@ -267,19 +267,23 @@ class Story < ActiveRecord::Base
     # only continue if the token is in the environment variables
     if token.present?
       I18n.available_locales.each do |locale|
+        puts "- locale = #{locale}"
         long_url = URI.encode(UrlHelpers.storyteller_show_url(:id => self.permalink, :locale => locale))
         url = "https://api-ssl.bitly.com/v3/shorten?access_token=#{token}&longUrl=#{long_url}"
+        puts "- url = #{url}"
         begin
           results = open(url)
           if results.present?
             json = JSON.parse(results.read)
+            puts "- json = #{json}"
             trans = self.story_translations.select{|x| x.locale == locale.to_s}
             if trans.blank?
               trans = self.story_translations.build(:locale => locale)
             end
             # if all went well, save the url
-            if json.present? && json['status_code'] == 200
-              trans.shortened_url = json['data']['url'] if json['data']['url'].present?
+            if json.present? && json['status_code'] == 200 && json['data']['url'].present?
+              puts "--> saving url"
+              trans.shortened_url = json['data']['url']
             end
           end      
         rescue

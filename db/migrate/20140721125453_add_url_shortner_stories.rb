@@ -4,7 +4,8 @@ class AddUrlShortnerStories < ActiveRecord::Migration
     
     # create url for existing published stories
     Story.transaction do 
-      Story.is_published.each do |story|
+      Story.is_published.each_with_index do |story, index|
+        puts "processing story #{story.id} | #{story.title} | #{index} of #{story.length} "
         story.generate_shortened_url
         story.save
       end
