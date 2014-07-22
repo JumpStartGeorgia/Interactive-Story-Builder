@@ -266,9 +266,9 @@ class Story < ActiveRecord::Base
     token = Rails.env.production? ? ENV['STORY_BUILDER_BITLY_TOKEN'] : ENV['STORY_BUILDER_BITLY_TOKEN_DEV']
     # only continue if the token is in the environment variables
     if token.present?
-      I18n.available_locales.each do |locale|
-        puts "- locale = #{locale}"
-        long_url = URI.encode(UrlHelpers.storyteller_show_url(:id => self.permalink, :locale => locale))
+      I18n.available_locales.each do |lang|
+        puts "- locale = #{lang}"
+        long_url = URI.encode(UrlHelpers.storyteller_show_url(:id => self.permalink, :locale => lang))
         url = "https://api-ssl.bitly.com/v3/shorten?access_token=#{token}&longUrl=#{long_url}"
         puts "- url = #{url}"
         begin
@@ -276,9 +276,9 @@ class Story < ActiveRecord::Base
           if results.present?
             json = JSON.parse(results.read)
             puts "- json = #{json}"
-            trans = self.story_translations.select{|x| x.locale == locale.to_s}
+            trans = self.story_translations.select{|x| x.locale == lang.to_s}
             if trans.blank?
-              trans = self.story_translations.build(:locale => locale)
+              trans = self.story_translations.build(:locale => lang)
             end
             # if all went well, save the url
             if json.present? && json['status_code'] == 200 && json['data']['url'].present?
