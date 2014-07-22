@@ -1,7 +1,5 @@
 class AddUrlShortnerStories < ActiveRecord::Migration
   def up
-		Story.create_translation_table! :shortened_url => :string
-    
     # create url for existing published stories
     Story.transaction do 
       stories = Story.is_published
@@ -12,9 +10,10 @@ class AddUrlShortnerStories < ActiveRecord::Migration
         story.save
       end
     end
+
   end
 
   def down
-		Story.drop_translation_table!
+    # do nothing
   end
 end

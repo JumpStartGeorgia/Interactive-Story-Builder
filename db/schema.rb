@@ -232,7 +232,7 @@ ActiveRecord::Schema.define(:version => 20140721125453) do
     t.text     "about"
     t.boolean  "publish_home_page",     :default => true
     t.boolean  "staff_pick",            :default => false
-    t.string   "locale",                :default => "en"
+    t.string   "story_locale",          :default => "en"
     t.integer  "cached_votes_total",    :default => 0
     t.integer  "cached_votes_score",    :default => 0
     t.integer  "cached_votes_up",       :default => 0
@@ -248,12 +248,12 @@ ActiveRecord::Schema.define(:version => 20140721125453) do
   add_index "stories", ["cached_votes_up"], :name => "index_stories_on_cached_votes_up"
   add_index "stories", ["cached_weighted_score"], :name => "index_stories_on_cached_weighted_score"
   add_index "stories", ["comments_count"], :name => "index_stories_on_comments_count"
-  add_index "stories", ["locale"], :name => "index_stories_on_locale"
   add_index "stories", ["permalink"], :name => "index_stories_on_permalink"
   add_index "stories", ["publish_home_page", "staff_pick"], :name => "index_stories_on_publish_home_page_and_staff_pick"
   add_index "stories", ["published"], :name => "index_stories_on_published"
   add_index "stories", ["published_at"], :name => "index_stories_on_published_at"
   add_index "stories", ["reviewer_key"], :name => "index_stories_on_reviewer_key"
+  add_index "stories", ["story_locale"], :name => "index_stories_on_locale"
   add_index "stories", ["template_id"], :name => "index_stories_on_template_id"
   add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
 

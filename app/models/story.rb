@@ -15,13 +15,13 @@ class Story < ActiveRecord::Base
   is_impressionable :counter_cache => true 
   # create permalink to story
   has_permalink :create_permalink, true
-	
+
   has_many :story_translations, :dependent => :destroy
   has_many :invitations, :dependent => :destroy
 	has_many :story_categories
 	has_many :categories, :through => :story_categories, :dependent => :destroy
 	belongs_to :user
-  belongs_to :language, :primary_key => :locale, :foreign_key => :locale
+  belongs_to :language, :primary_key => :locale, :foreign_key => :story_locale
 	belongs_to :template
 	has_many :sections, :order => 'position', dependent: :destroy
 	has_and_belongs_to_many :users
@@ -43,7 +43,7 @@ class Story < ActiveRecord::Base
 #	validates :about, :presence => true
 	validates :template_id, :presence => true
 	validates :media_author, length: { maximum: 255 }
-	validates :locale, :presence => true 
+	validates :story_locale, :presence => true 
 
   # if the title changes, make sure the permalink is updated
 #  before_save :check_title
@@ -53,7 +53,7 @@ class Story < ActiveRecord::Base
 	before_save :generate_reviewer_key
 	before_save :shortened_url_generation
 	 
-	after_save :update_filter_counts
+#	after_save :update_filter_counts
 
   scope :recent, order("published_at desc")
   scope :reads, order("impressions_count desc, published_at desc")
@@ -96,7 +96,7 @@ class Story < ActiveRecord::Base
 	end
 	
 	def self.by_language(locale)
-	  where(:locale => locale)
+	  where(:story_locale => locale)
 	end
 
 	def self.by_category(id)
@@ -266,9 +266,9 @@ class Story < ActiveRecord::Base
     token = Rails.env.production? ? ENV['STORY_BUILDER_BITLY_TOKEN'] : ENV['STORY_BUILDER_BITLY_TOKEN_DEV']
     # only continue if the token is in the environment variables
     if token.present?
-      I18n.available_locales.each do |lang|
-        puts "- locale = #{lang}"
-        long_url = URI.encode(UrlHelpers.storyteller_show_url(:id => self.permalink, :locale => lang))
+      I18n.available_locales.each do |locale|
+        puts "- locale = #{locale}"
+        long_url = URI.encode(UrlHelpers.storyteller_show_url(:id => self.permalink, :locale => locale))
         url = "https://api-ssl.bitly.com/v3/shorten?access_token=#{token}&longUrl=#{long_url}"
         puts "- url = #{url}"
         begin
@@ -276,9 +276,9 @@ class Story < ActiveRecord::Base
           if results.present?
             json = JSON.parse(results.read)
             puts "- json = #{json}"
-            trans = self.story_translations.select{|x| x.locale == lang.to_s}
+            trans = self.story_translations.select{|x| x.locale == locale.to_s}
             if trans.blank?
-              trans = self.story_translations.build(:locale => lang)
+              trans = self.story_translations.build(:locale => locale)
             end
             # if all went well, save the url
             if json.present? && json['status_code'] == 200 && json['data']['url'].present?
