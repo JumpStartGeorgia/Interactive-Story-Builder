@@ -517,4 +517,6 @@ body#storybuilder_form{
 
 }
 
-.form-wrapper{display:inline-block;}
+.file.input.form-group .form-wrapper{
+  display:inline-block;
+}
