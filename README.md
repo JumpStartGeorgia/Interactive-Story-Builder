@@ -27,11 +27,14 @@ You will need the following Environment Variables set:
 * STORY_BUILDER_DISQUS - Disqus is used for the commenting system and your unique website it is stored here
 * STORY_BUILDER_FACEBOOK_APP_ID - Facebook is one of the options for logging in to the system and you must have an app account created under facebook developers. This key stores the application id.
 * STORY_BUILDER_FACEBOOK_APP_SECRET - This key stores the application secret.
-* APPLICATION_FEEDBACK_TO_EMAIL - email address to send feedback form messages to
-* APPLICATION_FEEDBACK_FROM_EMAIL - email address to send feedback form messages from
-* APPLICATION_FEEDBACK_FROM_PWD - password of above email address
-* APPLICATION_ERROR_TO_EMAIL - email address to send application errors to
-* APPLICATION_ERROR_FROM_EMAIL - email address to send application errors from
+* STORY_BUILDER_BITLY_TOKEN - bit.ly generic access token (get from here: https://bitly.com/a/oauth_apps) used to shorten URLs to published stories
+* STORY_BUILDER_BITLY_TOKEN_DEV - same as above, but for use in testing environments
+* STORY_BUILDER_ADDTHIS_PROFILEID - addthis.com profile ID (get from here: https://www.addthis.com/settings/publisher) to use the addthis share tools
+* STORY_BUILDER_ADDTHIS_PROFILEID_DEV - same as above, but for use in testing environments
+* STORY_BUILDER_FROM_EMAIL - email address to send feedback all emails from
+* STORY_BUILDER_FROM_PWD - password of above email address
+* STORY_BUILDER_TO_EMAIL - email address to send feedback form messages to
+* STORY_BUILDER_ERROR_TO_EMAIL - email address to send application errors to
 
 
 

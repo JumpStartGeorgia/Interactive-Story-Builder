@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140721122126) do
+ActiveRecord::Schema.define(:version => 20140721125453) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -274,6 +274,17 @@ ActiveRecord::Schema.define(:version => 20140721122126) do
 
   add_index "story_categories", ["category_id"], :name => "index_story_categories_on_category_id"
   add_index "story_categories", ["story_id"], :name => "index_story_categories_on_story_id"
+
+  create_table "story_translations", :force => true do |t|
+    t.integer  "story_id"
+    t.string   "locale",        :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "shortened_url"
+  end
+
+  add_index "story_translations", ["locale"], :name => "index_story_translations_on_locale"
+  add_index "story_translations", ["story_id"], :name => "index_story_translations_on_story_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

@@ -1,4 +1,6 @@
 class Story < ActiveRecord::Base	
+	translates :shortened_url
+
   # for likes
   acts_as_votable
   
@@ -14,6 +16,7 @@ class Story < ActiveRecord::Base
   # create permalink to story
   has_permalink :create_permalink, true
 	
+  has_many :story_translations, :dependent => :destroy
   has_many :invitations, :dependent => :destroy
 	has_many :story_categories
 	has_many :categories, :through => :story_categories, :dependent => :destroy
@@ -48,6 +51,7 @@ class Story < ActiveRecord::Base
   # if publishing, set the published date
 	before_save :publish_date
 	before_save :generate_reviewer_key
+	before_save :shortened_url_generation
 	 
 	after_save :update_filter_counts
 
@@ -245,4 +249,44 @@ class Story < ActiveRecord::Base
   def tag_list_tokens=(tokens)
     self.tag_list = tokens.gsub("'", "")
   end  
+  
+  
+  # if the story was published or permalink changed and was published
+  # create a new shortened url 
+  def shortened_url_generation
+	  if (self.published_changed? && self.published?) || (self.permalink_changed? && self.published?)
+      generate_shortened_url
+	  end     
+  end
+  
+  # generate bit.ly shortened url
+  def generate_shortened_url
+    require 'open-uri'
+    require 'uri'
+    token = Rails.env.production? ? ENV['STORY_BUILDER_BITLY_TOKEN'] : ENV['STORY_BUILDER_BITLY_TOKEN_DEV']
+    # only continue if the token is in the environment variables
+    if token.present?
+      I18n.available_locales.each do |locale|
+        long_url = URI.encode(UrlHelpers.storyteller_show_url(:id => self.permalink, :locale => locale))
+        url = "https://api-ssl.bitly.com/v3/shorten?access_token=#{token}&longUrl=#{long_url}"
+        begin
+          results = open(url)
+          if results.present?
+            json = JSON.parse(results.read)
+            trans = self.story_translations.select{|x| x.locale == locale.to_s}
+            if trans.blank?
+              trans = self.story_translations.build(:locale => locale)
+            end
+            # if all went well, save the url
+            if json.present? && json['status_code'] == 200
+              trans.shortened_url = json['data']['url'] if json['data']['url'].present?
+            end
+          end      
+        rescue
+        end    
+      end
+    end
+  end
+  
+  
 end

@@ -118,13 +118,14 @@ $(document).ready(function(){
       $('.embed-type-switcher > div').click(function(){        
         $('.embed-type-switcher > div').each(function(){$(this).toggleClass('selected');}); 
         var frame_code = $('.embed-code textarea');
-        var iframe_width= $('.iframe-size').val();
+        var iframe_width= $(this).data('width');
         var embed_type = 'partial';
         if($(this).hasClass('full')) 
         {                    
           embed_type = 'full';
         }        
         frame_code.text("<iframe src='" +  frame_code.attr('data-iframe-link') + "?type="+embed_type+"' width='"+iframe_width+"' height='100%' frameborder='0'></iframe>");
+        $('.iframe-size').val(iframe_width);
       });
 
       $('.iframe-size').change(function(){

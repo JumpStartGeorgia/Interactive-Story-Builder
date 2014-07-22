@@ -63,6 +63,6 @@ BootstrapStarter::Application.configure do
 	# options for exception notification gem
 	config.middleware.use ExceptionNotifier,
 		:email_prefix => "[Story Builder App Error (#{Rails.env})] ",
-		:sender_address => ENV['APPLICATION_ERROR_FROM_EMAIL'],
-		:exception_recipients => [ENV['APPLICATION_ERROR_TO_EMAIL']]
+		:sender_address => ENV['STORY_BUILDER_FROM_EMAIL'],
+		:exception_recipients => [ENV['STORY_BUILDER_ERROR_TO_EMAIL']]
 end
