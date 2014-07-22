@@ -4,13 +4,8 @@
 <nav class="navbar navbar-default navbar-static-top navbar-storybuilder <%= @navbar_invisible ? 'navbar-invisible' : '' %>" role="navigation">  
   <div class="container-fluid">  
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#storybuilder-navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-        <%= link_to(image_tag("logo.png",:size=>"182x29",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) , root_path(:locale => I18n.locale), :class=>"navbar-logo link") %>          
+        <img src="assets/slogo.svg" class="navbar-toggle" data-toggle="collapse" data-target="#storybuilder-navbar-collapse" />        
+        <%= link_to(image_tag("logo.svg",:size=>"182x29",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) , root_path(:locale => I18n.locale), :class=>"navbar-logo link") %>          
     </div>
 
     <div class="collapse navbar-collapse" id="storybuilder-navbar-collapse">

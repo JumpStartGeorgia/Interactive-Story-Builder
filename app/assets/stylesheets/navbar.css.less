@@ -35,7 +35,7 @@
   }
   .navbar-logo
   {
-    display:inline-block;    
+    display:none;    
     margin-top:13px;
   }
   ul.nav
@@ -100,7 +100,23 @@
     padding:0px !important;
     height:50px;
   }
+  .navbar-toggle
+  {
+    padding:0px;
+    margin:0px;
+    float:none;
+    border:0px;
+    margin-top:10px;
+    height:34px;
+    width:34px;
+
+  }
+  .navbar-nav li
+  {
+  clear:both;
+  }
    .dropdown-about-storybuilder
+  }
   {
     font-family:opensans-l;
     font-size:14px;
@@ -113,7 +129,7 @@
   }
   .dropdown-about-storybuilder > .dropdown-menu
   {
-    
+    display:inline-block;
     opacity: 1;
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
@@ -221,3 +237,38 @@
 {
     opacity:0;
 }
+
+
+
+  /* Custom, iPhone Retina */ 
+  @media only screen and (min-width : 320px) {
+
+  }
+
+  /* Extra Small Devices, Phones */ 
+  @media only screen and (min-width : 480px) {
+
+  }
+
+  /* Small Devices, Tablets */
+  @media only screen and (min-width : 768px) {
+ 
+
+}
+  /* Medium Devices, Desktops */
+  @media only screen and (min-width : 992px) {
+    .navbar-storybuilder 
+    { 
+      .navbar-logo
+      {
+        display:inline-block;
+      }
+
+    }
+
+  }
+
+  /* Large Devices, Wide Screens */
+  @media only screen and (min-width : 1200px) {
+
+  }

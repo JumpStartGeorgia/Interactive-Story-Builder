@@ -16,8 +16,8 @@
       </div>
         
 
-        <div class="explore"><%= link_to  t("app.common.explore"), '#', :tabindex=>2, :onclick => "scrolldown(false,'.header'); return false;" %></div>  
-        <div class="scroll-prompt">
+        <div class="explore"><%= link_to  t("app.common.explore"), '#', :tabindex=>2, :onclick => "scrolldown(true,'.header'); return false;" %></div>  
+        <div class="scroll-prompt" onclick="scrolldown(true,'.header'); return false;">
           <svg  x="0px" y="0px" width="18.03px" height="18.042px" viewBox="7.516 6.5 18.03 18.042" enable-background="new 7.516 6.5 18.03 18.042"
              xml:space="preserve">
           <polygon points="16.531,22.763 8.52,14.963 7.695,15.766 16.531,24.367 25.367,15.766 24.544,14.963 "/>

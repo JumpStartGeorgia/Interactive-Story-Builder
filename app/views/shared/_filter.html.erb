@@ -1,7 +1,7 @@
    <div id="filter">  
     <div class="mob">
         <div class="search">
-      <%= form_tag root_path, :method => :get, :id => 'search-form',
+      <%= form_tag root_path, :method => :get, :id => 'search-filter',
       :class => "navbar-form navbar-left", :role => "search" do %>
         <div class="form-group">            
           <%= text_field_tag :q, params[:q], :placeholder => t('app.common.search'), :class=>"form-control search-input", :autocomplete=>'off', :tabindex => 1 %>
@@ -11,13 +11,8 @@
       <div class="filters">Filters<i class='i-icon i-caret-b'></i></div>
 
     </div>
-       <style>
-       .search,.filters
-       {
-        display:inline-block;
-       }
-       </style>
-        <ul class="nav">
+
+        <ul class="nav h">
         <!--  <li > class="pull-right"
            
           </li> -->
@@ -100,19 +95,5 @@
                <% end %>
             </li>
           <% end %>
-            <li style="display:none;">
-             <div class="search-wrapper">
-              <div class="search-box">
-                <div class="search-text">
-                  <%= form_tag url_for(params), :method => :get, :id => 'search-filter', :class=>"afilter" do %>
-                    <%= text_field_tag :q, params[:q], :placeholder => t('filters.search'), :tabindex => 18, :autocomplete=>'off', :class=>"search-input",
-                    :"data-filtered-by"=>@q, :"data-filter-type"=>"q" %>
-                  <% end %>
-                </div>
-                <div class="search-button"></div>
-              </div>
-            </div>  
-            </li>
-         
         </ul>      
     </div>

@@ -64,59 +64,14 @@ function url_update() {
     window.history.pushState({path:url},'',url);
   } 
 }
-function searchHoverIn()
-{
-  if(!sa)
-    {              
-       $(".search-box").addClass("active");               
-       $(".search-box input#q").focus();
-       //$(".search-label").hide();
-       sa = true;                
-    }
-}
-function searchHoverOut()
-{
 
-  if(($(this).find("input#q").val() === undefined || $(this).find("input#q").val().length==0) && sa)
-  {            
-        $(".search-box input#q").trigger("blur");
-         $(".search-box").removeClass("active");                  
-         //$(".search-label").show();  
-         sa = false; 
-  }
-}
 
 
 $(document).ready(function() {  
     
-  $('.search-box input#q').show();
-  // if a search term already exists, show the search box
-  if ($('form#search-filter input#q').val() !== ''){
-     $(".search-box").addClass("active");
-     //$(".search-label").hide();  
-     sa = true;      
-  }
+  $('.filters').click(function(){$('#filter .nav').toggleClass('s h'); });
+  
   if(gon.page_filtered) { scrolldown(false,'.header'); }
-// hide the search box when leave
-  $('.search-box input#q').focusout(function(){
-    if($(this).val().length==0)
-    {
-      $(".search-box").removeClass("active");
-     //   $(".search-box input#q").hide();
-      //$(".search-label").show();                     
-      sa = false;
-    }
-  });
-
-$('.search-box input#q').keyup(function(e) {    
-    var code = e.keyCode || e.which;
-    if (code == '9') {
-      searchHoverIn();
-    }
- });
-// show search box on hover
-  //$('.search-label').hover(searchHoverIn,jQuery.noop());
-  $('.search-box').hover(searchHoverIn,searchHoverOut);
 
 // add search phrase to filters
   $('form#search-filter').submit(function(e){
@@ -126,13 +81,7 @@ $('.search-box input#q').keyup(function(e) {
     filter();    
   });
 
-// add search phrase to filters
-  $(".search-button").click(function(e){ 
-    e.preventDefault();
-    pf = JSON.parse(JSON.stringify(f));
-    f["q"] = $('form#search-filter input#q').val();
-    filter();    
-  });
+
 
 
 // collect all default values for ajax filtering
