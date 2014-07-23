@@ -427,30 +427,50 @@ class StoriesController < ApplicationController
     end
   end
   def up      
+    item = nil
     if params[:i] == '-1'
-      Section.where(story_id: params[:id]).find_by_id(params[:s]).move_higher            
+      item = Section.where(story_id: params[:id]).find_by_id(params[:s])
     else
-      Medium.where(section_id: params[:s]).find_by_id(params[:i]).move_higher            
+      item = Medium.where(section_id: params[:s]).find_by_id(params[:i])
     end
-    render json: nil , status: :created    
-  end
-   def up_slideshow    
- 
-      Asset.find_by_id(params[:asset_id]).move_higher            
+    if item.present?
+      item.move_higher 
       render json: nil , status: :created    
+    else
+      render json: nil , status: :unprocessable_entity
+    end
+  end
+  def up_slideshow    
+    item = Asset.find_by_id(params[:asset_id])
+    if item.present?
+      item.move_higher 
+      render json: nil , status: :created    
+    else
+      render json: nil , status: :unprocessable_entity
+    end
   end
   def down_slideshow    
- 
-      Asset.find_by_id(params[:asset_id]).move_lower
+    item = Asset.find_by_id(params[:asset_id])
+    if item.present?
+      item.move_lower 
       render json: nil , status: :created    
+    else
+      render json: nil , status: :unprocessable_entity
+    end
   end
   def down  
-     if params[:i] == '-1'
-      Section.where(story_id: params[:id]).find_by_id(params[:s]).move_lower            
+    item = nil
+    if params[:i] == '-1'
+      item = Section.where(story_id: params[:id]).find_by_id(params[:s])
     else
-      Medium.where(section_id: params[:s]).find_by_id(params[:i]).move_lower            
+      item = Medium.where(section_id: params[:s]).find_by_id(params[:i])
     end            
-    render json: nil , status: :created    
+    if item.present?
+      item.move_lower 
+      render json: nil , status: :created    
+    else
+      render json: nil , status: :unprocessable_entity
+    end
   end
 
   def sections
