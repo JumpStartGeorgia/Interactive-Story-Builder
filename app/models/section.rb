@@ -56,17 +56,19 @@ class Section < ActiveRecord::Base
     if content?
       return (self.content.present? && self.content.content.present?)
     elsif media?        
+        exists = []
         self.media.each_with_index do |m,m_i|
           if m.present?
-            if m.media_type == 1
-              return m.image_exists?                                
-            elsif m.media_type == 2              
-              return (m.image_exists? && m.video_exists?)
+            if m.media_type == Medium::TYPE[:image]
+              exists << m.image_exists?                                
+            elsif m.media_type == Medium::TYPE[:video]
+              exists << (m.image_exists? && m.video_exists?)
             end          
           else
-            return false
+            exists << false
           end
         end
+        return !exists.include?(false)
     elsif slideshow?
       return self.slideshow.present? && self.slideshow.assets.present?
     elsif embed_media?
