@@ -4,30 +4,29 @@
 <nav class="navbar navbar-default navbar-static-top navbar-storybuilder <%= @navbar_invisible ? 'navbar-invisible' : '' %>" role="navigation">  
   <div class="container-fluid">  
     <div class="navbar-header">
-        <img src="assets/slogo.svg" class="navbar-toggle" data-toggle="collapse" data-target="#storybuilder-navbar-collapse" />        
-        <%= link_to(image_tag("logo.svg",:size=>"182x29",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) , root_path(:locale => I18n.locale), :class=>"navbar-logo link") %>          
+        <img src="<%= asset_path('svg/slogo.svg') %>" class="navbar-toggle navbar-slogo" data-toggle="collapse" data-target="#storybuilder-navbar-collapse" />        
+        <%= link_to(image_tag("svg/logo.svg",:size=>"182x29",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) , root_path(:locale => I18n.locale), :class=>"navbar-logo link") %>          
     </div>
 
     <div class="collapse navbar-collapse" id="storybuilder-navbar-collapse">
-    
+ 
       <div class="nav-separator"></div>
-        <%= form_tag root_path, :method => :get, :id => 'search-form',
+      <%= form_tag root_path, :method => :get, :id => 'search-form',
         :class => "navbar-form navbar-left", :role => "search" do %>
           <div class="form-group">            
             <%= text_field_tag :q, params[:q], :placeholder => t('app.common.search'), :class=>"form-control search-input", :autocomplete=>'off', :tabindex => 1 %>
           </div>
       <% end %>
-
-      
+      <div class="nav-separator-hor"></div> 
       <ul class="nav navbar-nav navbar-right">    
           <li> 
               <% if user_signed_in? %>
                 <%= link_to new_story_path , :tabindex=>2, :class=>"build-story link" do %>
-                  <i class="i-icon i-build"></i><%= "#{t('app.common.build')}" %>
+                  <i class="i-build-b"></i><%= "#{t('app.common.build')}" %>
                 <% end %>
               <% else %>
                <%= link_to new_user_session_path({:return_url=>new_story_path}), :tabindex=>2, :class=>"build-story link modalSignIn",  :"data-modalos-id"=>"modalos-sign-in" do %>
-                  <i class="i-icon i-build"></i><%= "#{t('app.common.build')}" %>
+                  <i class="i-build-b"></i><%= "#{t('app.common.build')}" %>
                 <% end %>
               <% end %>
           </li> 
@@ -37,7 +36,7 @@
         <li class="dropdown dropdown-hover">
           <%= link_to image_tag(current_user.avatar_url, :class=>"avatar link"), "#" , 
                :class => "dropdown-toggle avatar-link", :"data-toggle"=>"dropdown" %>                          
-          <ul class="dropdown-menu pull-right">                  
+          <ul class="dropdown-menu pull-right">                          
             <li>
               <%= link_to t('helpers.titles.story_list'), stories_path  %>
             </li>  
@@ -61,7 +60,7 @@
           </ul>
         </li>
       <% else %>
-        <li>
+        <li class="signin">
           <%= link_to t('helpers.links.sign_in2'), :new_user_session, :class => 'link modalSignIn', :"data-modalos-id"=>"modalos-sign-in", :"data-modalos-class"=>"sign-in-window" %>
         </li>
      <% end %> 
@@ -69,6 +68,9 @@
         <li class="dropdown dropdown-hover dropdown-about-storybuilder">                    
             <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= "#{t('helpers.links.menu')}" %><i class="i-icon i-caret"></i></a>                   
             <ul class="dropdown-menu pull-right">
+              <li class="home-link">
+                <%= link_to t('app.common.home'), root_path(:locale => I18n.locale)  %>
+              </li> 
               <li>
                 <%= link_to t('helpers.links.about'), about_path %> 
               </li>
@@ -94,25 +96,25 @@
             </ul>
         </li>
         <li><div class="nav-separator"></div></li>
-        <li><a href="https://www.facebook.com/sharer/sharer.php?u=<%= root_url %>" onclick="javascript:window.open(this.href,
+        <li class="social"><a href="https://www.facebook.com/sharer/sharer.php?u=<%= root_url %>" onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link">  
-          <i class="i-icon i-facebook"></i></a>      
+          <i class="i-facebook-b"></i></a>      
         </li> 
-        <li><a href='https://twitter.com/share?text=<%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name')}" :
+        <li class="social"><a href='https://twitter.com/share?text=<%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name')}" :
                                 t('app.common.app_name') %>' onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link">
-                        <i class="i-icon i-twitter"></i>
+                        <i class="i-twitter-b"></i>
             </a></li>
 
-        <li><a href="https://plus.google.com/share?url=<%= root_url %>" onclick="javascript:window.open(this.href,
+        <li class="social"><a href="https://plus.google.com/share?url=<%= root_url %>" onclick="javascript:window.open(this.href,
           '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link">
-              <i class="i-icon i-google"></i>
+              <i class="i-google-b"></i>
             </a></li> 
        
         <li><div class="nav-separator"></div></li>
         <% I18n.available_locales.each do |locale| %>
           <% if locale != I18n.locale %>
-            <li><%= link_to t("app.language.#{locale}"), params.merge(:locale =>  locale) , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse", :class => "lang_switch link" %></li>
+            <li class="lang-switch"><%= link_to t("app.language.#{locale}"), params.merge(:locale =>  locale) , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse", :class => "lang_switch link" %></li>
           <% end %>
         <% end %>                             
       </ul>

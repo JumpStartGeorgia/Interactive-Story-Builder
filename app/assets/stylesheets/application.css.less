@@ -14,6 +14,7 @@
  *= require scaffolds
  *= require_self
 */
+
 @font-face {
     font-family: "bandera-pro-l";    
     src: url( '/assets/fonts/bandera-pro-l.otf') format("opentype");           
@@ -85,7 +86,7 @@
 * html .clearfix, * html .clear             		{ zoom: 1; } /* IE6 */
 *:first-child+html .clearfix, *:first-child+html .clear { zoom: 1; } /* IE7 */
 * { -webkit-font-smoothing: antialiased; }
-html,body{background:#f8f8f8;}
+html,body{background:#f8f8f8;height:100%;min-height:100%;}
 *:focus {outline: 0 !important;}
 /* make bootstrap button link color stay white 
 a.btn, a.btn:visited {
@@ -464,11 +465,6 @@ margin-bottom:3px;
   max-width: 72%;
 }
 
-.social
-{
-  display:inline-block;
-  margin-left:30px;
-}
 
 .fb-like
 {top: -14px;
@@ -555,9 +551,26 @@ margin-right:8px;}
 {
     background-position: -27px -457px;         
 }
-.i-build
+.i-build-w
 {
-    background-position: 0px -55px;         
+    background-color: transparent;    
+    background: url('/assets/svg/build_w.svg') no-repeat;
+
+    display: inline-block;
+     width:16px;
+    height:17px;
+    vertical-align: middle;
+    opacity:1;
+}
+.i-build-b
+{
+    background-color: transparent;     
+    background: url('/assets/svg/build_b.svg') no-repeat;
+    width:16px;
+    height:17px;
+    display: inline-block;
+    vertical-align: middle;
+    opacity:1;
 }
 .i-share
 {
@@ -593,34 +606,67 @@ margin-right:8px;}
 {
          
 }
-.i-facebook
+.i-facebook-w
 {
-    background-position: -27px -190px;
-    /*background-position: 0px -190px; */         
-           
+    background-color: transparent;     
+    background: url('/assets/svg/facebook_w.svg') no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    opacity:1; 
+    width:27px; 
+    height:27px;             
 }
-*:hover > .i-facebook
+.i-facebook-b
 {
-   
+    background-color: transparent;     
+    background: url('/assets/svg/facebook_b.svg') no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    opacity:1; 
+    width:27px; 
+    height:27px;             
 }
-.i-twitter
+.i-twitter-b
 {
-    background-position: -27px -217px;    
-    /*background-position: 0px -217px; */     
-     }
-*:hover > .i-twitter
-{
-     
+    background-color: transparent;     
+    background: url('/assets/svg/twitter_b.svg') no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    opacity:1; 
+    width:27px; 
+    height:27px;   
 }
-.i-google
+.i-twitter-w
 {
-  background-position: -27px -244px;         
-  /* background-position: 0px -244px; */
+    background-color: transparent;     
+    background: url('/assets/svg/twitter_w.svg') no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    opacity:1; 
+    width:27px; 
+    height:27px;   
 }
-*:hover > .i-google
+.i-google-b
 {
-   
+    background-color: transparent;     
+    background: url('/assets/svg/google+_b.svg') no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    opacity:1; 
+    width:27px; 
+    height:27px;  
 }
+.i-google-w
+{
+    background-color: transparent;     
+    background: url('/assets/svg/google+_w.svg') no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    opacity:1; 
+    width:27px; 
+    height:27px;  
+}
+
 .i-caret
 {
     background-position: -27px -269px;  

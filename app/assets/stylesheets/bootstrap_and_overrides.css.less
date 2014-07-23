@@ -27,16 +27,12 @@
 // See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
 //
 // Example:
-// @linkColor: #ff0000;
- //@grid-gutter-width:30px;
-//@container-desktop:((1452px + @grid-gutter-width));
 @body-bg:#f8f8f8;
 @screen-sm:1200px;
 @screen-md:1424px;
 @screen-lg:1600px;
-
-//@container-large-desktop:((1452px + @grid-gutter-width));
-@navbar-default-bg:transparent;
+@navbar-default-toggle-hover-bg:transparent;
+/*@navbar-default-bg:transparent;
 @navbar-margin-bottom:0px;
 @nav-link-padding:2px 2px;
 @dropdown-bg:#f8f8f8;
@@ -49,19 +45,12 @@
 @dropdown-link-active-bg:#e5e5e5;
 @dropdown-link-disabled-color:#eee;
 @dropdown-header-color:transparent;
-
+*/
 @component-active-color:#c7254e;
 @component-active-bg:#c7254e;
 
-@nav-link-hover-bg:transparent;
-@nav-disabled-link-color:#c7254e;
-@nav-disabled-link-hover-color:#c7254e;
-@nav-open-link-hover-color:#c7254e;
 
-@navbar-default-link-color:#fff;
-@navbar-default-link-hover-color:#fff;
-@navbar-height:54px;
-@navbar-padding-vertical:0px;
+
 
 @pagination-color:#818181;
 @pagination-bg:#f8f8f8;
@@ -87,12 +76,19 @@
 	width:100%;	
 	vertical-align: middle;
 }
+
+.dropdown-menu > li > a {
+  line-height:20px;
+  padding:0px;
+}
 .navbar > .nav > li > a
 {
   padding:0px;
   font-family:opensans-l;
   font-size:14px;
+
 }
+
 .navbar.navbar-story,.navbar-header
 {
 	min-height:40px;
@@ -102,6 +98,10 @@
   margin:2px 0px;
   border-radius:none !important;
   -webkit-border-radius: 0 !important;
+}
+.nav > li > a
+{
+   padding:0px 15px;
 }
 .nav > li > a:hover
 {
