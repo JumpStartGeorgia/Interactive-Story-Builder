@@ -21,11 +21,25 @@
         <!--  <li > class="pull-right"
            
           </li> -->
+          <% if @editable == true %>
+            <li class="afilter">
+              <%= link_to url_for(params.merge(:not_published => !@story_filter_not_published)),
+                :class => "not_published #{@story_filter_not_published == true ? 'active' : ''}", 
+                  :tabindex => 13, 
+                  :title => @story_filter_not_published ? t('filters.not_published_title_active') : t('filters.not_published_title'),
+                  :"data-filtered-by" => @story_filter_not_published , :"data-filter-type"=>'not_published',
+                  :'data-title' => t('filters.not_published_title'), :'data-title-active' => t('filters.not_published_title_active') do %>
+
+               <i class='i-icon i-not-publish<%= "#{@story_filter_not_published == true ? 'ed' : ''}"%>'></i><%=  "#{t('filters.not_published')}" %>
+             <% end %>
+            </li>
+          <% end %>
+
           <li class="afilter">
             <%= link_to url_for(params.merge(:staff_pick => !@story_filter_staff_pick)),
               :class => "staff_pick #{@story_filter_staff_pick == true ? 'active' : ''}", 
                 :tabindex => 13, 
-                :title => @story_filter_staff_pick ? t('filters.staff_pick_title_active') : t('filters.staff_pick_title_active'),
+                :title => @story_filter_staff_pick ? t('filters.staff_pick_title_active') : t('filters.staff_pick_title'),
                 :"data-filtered-by" => @story_filter_staff_pick , :"data-filter-type"=>'staff_pick',
                 :'data-title' => t('filters.staff_pick_title'), :'data-title-active' => t('filters.staff_pick_title_active') do %>
 

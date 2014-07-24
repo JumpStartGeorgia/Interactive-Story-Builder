@@ -371,6 +371,9 @@ en:
     following: Following
     following_title: View stories of users that you are following
     following_title_active: Remove Following filter
+    not_published: Not Published
+    not_published_title: View stories that are not published
+    not_published_title_active: Show all stories
   tokeninput:
     searchingText: Searching...
     tag:

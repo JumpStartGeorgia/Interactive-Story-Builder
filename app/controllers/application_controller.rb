@@ -124,6 +124,14 @@ class ApplicationController < ActionController::Base
 
     gon.page_filtered = params[:staff_pick].present? || params[:sort].present? || params[:category].present? || params[:tag].present? || params[:language].present? || params[:q].present? || params[:following].present?
     
+    # not published (only available when users editing their stories)
+    if params[:not_published].present?
+      @story_filter_not_published = params[:not_published].to_bool
+    else
+  		@story_filter_not_published = false
+    end
+    story_objects = story_objects.is_not_published if @story_filter_not_published
+
     # staff pick
     if params[:staff_pick].present?
       @story_filter_staff_pick = params[:staff_pick].to_bool
