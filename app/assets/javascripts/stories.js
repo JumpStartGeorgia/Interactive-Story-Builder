@@ -183,7 +183,7 @@ $(document).ready(function() {
 				var secT = $('.story-tree ul li.item[id='+ section_id + ']');
 				if(item_id == -1)
 				{			 	
-			 		if( secT.prev.length)
+			 		if( secT.prev().length)
 			 		{
 		 			  $(secT).insertBefore($(secT).prev());
 			 		}
@@ -191,7 +191,7 @@ $(document).ready(function() {
 		 		else
 		 		{
 		 			subT = secT.find('ul li.sub[id='+item_id+']');
-		 			if( subT.prev.length)
+		 			if( subT.prev().length)
 			 		{
 		 			  $(subT).insertBefore($(subT).prev());
 			 		}
@@ -221,7 +221,7 @@ $(document).ready(function() {
 
 				if(item_id == -1)
 				{			 	
-			 		if( secT.next.length)
+			 		if( secT.next().length)
 			 		{
 		 			  $(secT).insertAfter($(secT).next());
 			 		}
@@ -229,7 +229,7 @@ $(document).ready(function() {
 		 		else
 		 		{
 		 			subT = secT.find('ul li.sub[id='+item_id+']');
-		 			if( subT.next.length)
+		 			if( subT.next().length)
 			 		{
 		 			  $(subT).insertAfter($(subT).next());
 			 		}
@@ -238,48 +238,62 @@ $(document).ready(function() {
 		} 	
 	});
 	$('.story-viewer').on("click",'#btn-up-slideshow', function() {
-  
   			var secT = $(this).parents('.fields');
-  			if( !secT.prev.length) return false;
-		 		
-			$.ajax
-			({
-				url: 'up_slideshow',			  
-				data: {asset_id: secT.find("> input").val()},
-				type: "POST",			
-		        dataType: 'json'
+  			if( !secT.prev().length) return false;
+  			
+  			// if this is a new record and no id exists yet, 
+  			// don't make ajax call, just move it
+			  if ($(this).data('id') == 0){
+			    if( secT.prev().length)
+	     		{
+     			   $(secT).insertBefore($(secT).prev());
+	     		}				
+			  }else{
+			    $.ajax
+			    ({
+				    url: 'up_slideshow',			  
+				    data: {asset_id: $(this).data('id')},
+				    type: "POST",			
+		            dataType: 'json'
 
-			}).done(function(d) 
-			{
-				if( secT.prev.length)
-		 		{
-	 			   $(secT).insertBefore($(secT).prev());
-		 		}				
+			    }).done(function(d) 
+			    {
+				    if( secT.prev().length)
+		     		{
+	     			   $(secT).insertBefore($(secT).prev());
+		     		}				
 						
-			}).error(function(e){ popuper("Changing order failed.","error");});	
-
-
-
+			    }).error(function(e){ popuper("Changing order failed.","error");});	
+			  }
 	});
 		$('.story-viewer').on("click",'#btn-down-slideshow', function() {
 			var secT = $(this).parents('.fields');
-  			if( !secT.next.length) return false;
-			$.ajax
-			({
-				url: 'down_slideshow',			  
-				data: {asset_id: $(this).parents('.fields').find("> input").val()},
-				type: "POST",			
-		        dataType: 'json'
+			if( !secT.next().length) return false;
 
-			}).done(function(d) 
-			{
-				if( secT.next.length)
-		 		{
-	 			  $(secT).insertAfter($(secT).next());
-		 		}
+			// if this is a new record and no id exists yet, 
+			// don't make ajax call, just move it
+		  if ($(this).data('id') == 0){
+			  if( secT.next().length)
+	   		{
+   			  $(secT).insertAfter($(secT).next());
+	   		}
+      } else {
+			  $.ajax
+			  ({
+				  url: 'down_slideshow',			  
+				  data: {asset_id: $(this).data('id')},
+				  type: "POST",			
+		          dataType: 'json'
+
+			  }).done(function(d) 
+			  {
+				  if( secT.next().length)
+		   		{
+	   			  $(secT).insertAfter($(secT).next());
+		   		}
 						
-			}).error(function(e){ popuper("Changing order failed.","error");});	
-
+			  }).error(function(e){ popuper("Changing order failed.","error");});	
+      }
 
 
 	});

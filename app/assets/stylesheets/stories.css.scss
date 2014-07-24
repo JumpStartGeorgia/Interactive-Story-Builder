@@ -417,9 +417,12 @@ body#storybuilder_form{
     width: 68%;
 
     .remove_image_button{
-      float:right;
+      text-align: right;
       margin-right:20px;
       margin-bottom:10px; 
+      button.hide-move{
+        visibility:hidden;
+      }
     }
   }
   
