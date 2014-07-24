@@ -6,7 +6,7 @@
   
   margin: auto;  
   border:1px solid #bbb;
-  z-index: 1032;  
+  z-index: 9992;  
 
     .m-header
     {
@@ -15,7 +15,7 @@
 
     .m-content
     {
-      z-index: 1033;
+      z-index: 9993;
       position: absolute;
       top: 80px;
       bottom: 0px;
@@ -23,7 +23,7 @@
       right: 0px;
       clear: both;
       height: auto;
-      margin:0px 10px 10px 10px;
+      margin:0px;
       overflow-x: hidden;
       overflow-y: auto;    
     }
@@ -40,7 +40,7 @@
       cursor:pointer;
       opacity:0.5;
       padding:5px;
-      z-index:1035;
+      z-index:9995;
     }
     .m-close:hover
     {
@@ -57,9 +57,21 @@
     height:100%;
     background-color:rgba(0,0,0,0.6);  
     opacity: 1;
-    z-index: 1031;
+    z-index: 9991;
   }
 .modalos-keeper
 {
   display:none;
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+
+}
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+  .m-content
+    {
+      margin:0px 10px 10px 10px;
+      }
 }

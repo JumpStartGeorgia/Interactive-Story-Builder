@@ -233,7 +233,7 @@
 		 		var h = $(window).height();
 		 		var w = $(window).width();
 			      	 
-		      	 if(options.fullscreen)
+	      	 if(options.fullscreen)
 		    	 {
 		    	 	$(wrapper).height(h - options.topOffset - options.margins);
 		    	 	$(wrapper).find('.m-content').css("max-height",h - options.topOffset - options.margins - header_height).removeClass("fluid");
@@ -251,21 +251,28 @@
 	 		        $(wrapper).css("top",options.margins/2 + options.topOffset);				    	
 	    	 	 }
 		    	 else
-		    	 {		    	 	
-		    	 	$(wrapper).height(options.height);
-		    	 	$(wrapper).find('.m-content').css("max-height",h - options.topOffset - options.margins - header_height).addClass("fluid");
-		    	 	if(options.width > w) 
-	    	 		{
-	    	 			options.width = w-options.margins;
-	    	 			$(wrapper).width(options.width);
+		    	 {		  
+    	 		 	var fill = options.width > w ? true : false;  
+		    	 	
+		    	 	$(wrapper).find('.m-content').css("max-height", fill ? h : h - options.topOffset - options.margins - header_height).addClass("fluid");
+		    	 	if(fill) 
+	    	 		{	    		    	 		
+	    	 			$(wrapper).width(w).height(h);
 	    	 		}
-			    	else $(wrapper).width(options.width);
-		    	 	if(options.height + options.topOffset > h)
-		    	 	{
-	    	 			$(wrapper).height(h - options.topOffset - options.margins);
-		    	 	}
-		    	 	$(wrapper).css("top",(h- options.height)/2 > options.topOffset ? (h- options.height)/2 : options.topOffset);
-			     	$(wrapper).css("left",(w - options.width)/2);		 
+			    	else 
+		    		{		    			    	 		
+		    			$(wrapper).width(options.width-options.margins);
+		    			if(options.height + options.topOffset > h)
+			    	 	{
+		    	 			$(wrapper).height(h - options.topOffset - options.margins);
+			    	 	}
+			    	 	else
+			    	 			$(wrapper).height(options.height);
+
+		    		}
+		    	
+		    	 	$(wrapper).css("top",fill ? 0 : ((h- options.height)/2 > options.topOffset ? (h- options.height)/2 : options.topOffset));
+			     	$(wrapper).css("left",fill ? 0 : (w - options.width)/2);		 
 		    	 }
 			}
 			function aspect_ratio_width(oh,ow,h)

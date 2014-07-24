@@ -24,7 +24,7 @@
                 :"data-filtered-by" => @story_filter_staff_pick , :"data-filter-type"=>'staff_pick',
                 :'data-title' => t('filters.staff_pick_title'), :'data-title-active' => t('filters.staff_pick_title_active') do %>
 
-             <i class='i-icon i-staffpick<%= "#{@story_filter_staff_pick == true ? 'ed' : ''}"%>'></i><%=  "#{t('filters.staff_pick')}" %>
+             <i class='i-staffpick<%= "#{@story_filter_staff_pick == true ? 'ed' : ''}"%>'></i><%=  "#{t('filters.staff_pick')}" %>
            <% end %>
           </li>
           <% if @categories_published.present? %>          

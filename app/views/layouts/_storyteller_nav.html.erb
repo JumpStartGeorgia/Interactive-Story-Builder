@@ -55,11 +55,11 @@
                  <li>
                   <%= link_to '#', :class => "staff-pick #{style1}", :title => t('helpers.hints.staff_unpick'), 
                       :'data-href' => storyteller_staff_unpick_path(@story.permalink) do %>
-                       <i class="i-icon i-staffpicked"></i><% "#{t('helpers.links.staff_pick')}" %>
+                       <i class="i-staffpicked"></i><% "#{t('helpers.links.staff_pick')}" %>
                   <% end %>
                   <%= link_to '#', :class => "staff-pick #{style2}", :title => t('helpers.hints.staff_pick'), 
                       :'data-href' => storyteller_staff_pick_path(@story.permalink) do %>
-                   <i class="i-icon i-staffpick"></i><% "#{t('helpers.links.staff_pick')}" %>
+                   <i class="i-staffpick"></i><% "#{t('helpers.links.staff_pick')}" %>
                   <% end %>
                   </li>          
             <% end %>
@@ -122,7 +122,7 @@
         <i class="i-icon i-views"></i><span class="views"><%= @story.impressions_count %></span>  
         <i class="i-icon i-comment-d"></i><span class="comments"><%= @story.comments_count%></span>  
         <% if @story.staff_pick? %>
-        <i class="i-icon i-staffpicked" title="<%= t('helpers.links.staff_pick') %>"></i>
+        <i class="i-staffpicked" title="<%= t('helpers.links.staff_pick') %>"></i>
         <% end %>    
     </div>
   </div>    
@@ -157,13 +157,13 @@
 
     <a href="https://www.facebook.com/dialog/feed?app_id=<%= @face_id %>&link=<%= storyteller_show_url(@story.permalink) %>" onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">  
-          <i class="i-icon i-facebook-l"></i><%= "#{t('app.common.share_facebook')}" %></a>      
+          <i class="i-facebook-w"></i><%= "#{t('app.common.share_facebook')}" %></a>      
        
     </div>
     <div class="twitter">
       <a href='https://twitter.com/share?url=<%= storyteller_show_url(@story.permalink) %>&text=<%= @story.title %>' onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-                        <i class="i-icon i-twitter-l"></i><%= "#{t('app.common.share_twitter')}" %>
+                        <i class="i-twitter-w"></i><%= "#{t('app.common.share_twitter')}" %>
       </a>
     </div>
     <div class="more">
