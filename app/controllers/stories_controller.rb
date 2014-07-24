@@ -4,6 +4,7 @@ class StoriesController < ApplicationController
     controller_instance.send(:can_edit_story?, params[:id])
   end
   before_filter :asset_filter
+  before_filter :set_settings_gon
 
 
   # GET /stories
@@ -730,8 +731,6 @@ end
       # - have this at the bottom here so any new invitations that were saved will be pulled
       @invitations = Invitation.pending_by_story(@story.id)
 
-      set_settings_gon
-
       respond_to do |format|
         format.html
       end
@@ -869,5 +868,10 @@ private
     gon.tokeninput_tag_hintText = I18n.t('tokeninput.tag.hintText')
     gon.tokeninput_tag_noResultsText = I18n.t('tokeninput.tag.noResultsText')
     gon.tokeninput_searchingText = I18n.t('tokeninput.searchingText')
+    gon.fail_change_order = I18n.t('app.msgs.fail_change_order')
+    gon.nothing_selected = I18n.t('app.msgs.nothing_selected')
+    gon.fail_delete = I18n.t('app.msgs.fail_delete')
+    gon.confirm_delete = I18n.t('app.msgs.confirm_delete')
   end
 end       
+

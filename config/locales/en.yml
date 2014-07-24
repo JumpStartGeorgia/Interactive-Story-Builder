@@ -334,6 +334,10 @@ en:
         news_no: You will not be sent notifications when updates are made to Story Builder.
         following_no: "You will no longer receive notifications about new stories from '%{nickname}'."
         language: You will be sent notifications in %{language}.
+      fail_change_order: The item was not able to be moved
+      nothing_selected: Please select a section/item to delete
+      fail_delete: The section/item could not be delted
+      confirm_delete: Are you sure you want to delete this section/item?
   section_types:
     content:
       name: Content

@@ -197,7 +197,7 @@ $(document).ready(function() {
 			 		}
 		 		}	
 						
-			}).error(function(e){ popuper("Changing order failed.","error");});	
+			}).error(function(e){ popuper(gon.fail_change_order,"error");});	
 		} 	
 	});
 
@@ -234,7 +234,7 @@ $(document).ready(function() {
 		 			  $(subT).insertAfter($(subT).next());
 			 		}
 		 		}		 				
-			}).error(function(e){ popuper("Changing order failed.","error");});	
+			}).error(function(e){ popuper(gon.fail_change_order,"error");});	
 		} 	
 	});
 	$('.story-viewer').on("click",'#btn-up-slideshow', function() {
@@ -263,7 +263,7 @@ $(document).ready(function() {
 	     			   $(secT).insertBefore($(secT).prev());
 		     		}				
 						
-			    }).error(function(e){ popuper("Changing order failed.","error");});	
+			    }).error(function(e){ popuper(gon.fail_change_order,"error");});	
 			  }
 	});
 		$('.story-viewer').on("click",'#btn-down-slideshow', function() {
@@ -292,7 +292,7 @@ $(document).ready(function() {
 	   			  $(secT).insertAfter($(secT).next());
 		   		}
 						
-			  }).error(function(e){ popuper("Changing order failed.","error");});	
+			  }).error(function(e){ popuper(gon.fail_change_order,"error");});	
       }
 
 
@@ -300,10 +300,10 @@ $(document).ready(function() {
 	$('#btnDelete').click(function(){
 
 	
-		if(section_id == -1 ) { popuper("Nothing selected","notice"); return true;}
+		if(section_id == -1 ) { popuper(gon.nothing_selected,"notice"); return true;}
 
 
-		var c=confirm("Item will be deleted permanently");
+		var c=confirm(gon.confirm_delete);
 		if (!c) return true;
 		  
 
@@ -337,7 +337,7 @@ $(document).ready(function() {
 			getStory(-1,-1)
 			$("html, body").animate({ scrollTop: 0 }, "slow");
 					
-		}).error(function(e){ popuper("Deleting failed.","error");});
+		}).error(function(e){ popuper(gon.fail_delete,"error");});
 
 		return true;	
 	});

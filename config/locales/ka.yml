@@ -334,6 +334,10 @@ ka:
         news_no: თქვენ არ მიიღებთ შეტყობინებას, როდესაც  Story Builder-ს დაემატება სიახლეები.
         following_no: "თქვენ აღარ მიიღებთ შეტყობინებებს  '%{nickname}ის' ახალი ისტორიების შესახებ."
         language: თქვენ მიიღებთ შეტყობინებას %{language}.
+      fail_change_order: The item was not able to be moved
+      nothing_selected: Please select a section/item to delete
+      fail_delete: The section/item could not be delted
+      confirm_delete: Are you sure you want to delete this section/item?
   section_types:
     content:
       name: შინაარსი
