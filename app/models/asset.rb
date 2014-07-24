@@ -25,7 +25,6 @@ class Asset < ActiveRecord::Base
 
   before_post_process :init
   before_post_process :transliterate_file_name
-
   
   def init
 
@@ -35,7 +34,7 @@ class Asset < ActiveRecord::Base
 
       opt = {}    
       case self.asset_type
-        when Asset::TYPE[:user_avatar]        
+        when TYPE[:user_avatar]        
           opt = { 
             :url => "/system/users/:style/:user_avatar_file_name.:extension",
             :styles => {
@@ -45,15 +44,15 @@ class Asset < ActiveRecord::Base
             },
             :default_url => "/assets/missing/user_avatar/:style/default_user.png"
           }
-        when Asset::TYPE[:story_thumbnail]        
+        when TYPE[:story_thumbnail]        
           opt = { 
             :url => "/system/places/thumbnail/:item_id/:style/:basename.:extension",
             :styles => {:thumbnail => {:geometry => "459x328#"}},            
             :default_url => "/assets/missing/story_thumbnail/missing.jpg"
           }
-        when  Asset::TYPE[:section_audio]         
+        when  TYPE[:section_audio]         
           opt = {:url => "/system/places/audio/:story_id/:basename.:extension"}  
-        when  Asset::TYPE[:media_image]        
+        when  TYPE[:media_image]        
           opt = { :url => "/system/places/images/:media_image_story_id/:style/:basename.:extension",
                   :styles => {
                         :mobile_640 => {:geometry => "640x427"},
@@ -61,14 +60,14 @@ class Asset < ActiveRecord::Base
                         :fullscreen => {:geometry => "1500>"}
                 }
           }  
-        when  Asset::TYPE[:media_video]        
+        when  TYPE[:media_video]        
           opt = {   :url => "/system/places/video/:media_video_story_id/:basename.:extension",
                     :styles => { 
                       :poster => { :format => 'jpg', :time => 1 }
                     }, 
                     :processors => [:ffmpeg] 
                 }  
-         when  Asset::TYPE[:slideshow_image]        
+         when  TYPE[:slideshow_image]        
           opt = {   :url => "/system/places/slideshow/:slideshow_image_story_id/:style/:basename.:extension" ,
                     :styles => {                   
                       :mobile_640 => {:geometry => "640x427"},
@@ -94,22 +93,22 @@ class Asset < ActiveRecord::Base
   end
 
 
-  with_options :if => "self.asset_type == Asset::TYPE[:user_avatar]" do |t|    
+  with_options :if => "self.asset_type == TYPE[:user_avatar]" do |t|    
     t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
-  with_options :if => "self.asset_type == Asset::TYPE[:story_thumbnail]" do |t|    
+  with_options :if => "self.asset_type == TYPE[:story_thumbnail]" do |t|    
     t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
-  with_options :if => "self.asset_type == Asset::TYPE[:section_audio]" do |t|      
+  with_options :if => "self.asset_type == TYPE[:section_audio]" do |t|      
     t.validates_attachment :asset, {   :presence => true, :content_type => { :content_type => ["audio/mp3"] }, :size => { :in => 0..10.megabytes }}  
   end
-  with_options :if => "self.asset_type == Asset::TYPE[:media_image]" do |t|      
+  with_options :if => "self.asset_type == TYPE[:media_image]" do |t|      
     t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
-  with_options :if => "self.asset_type == Asset::TYPE[:media_video]" do |t|      
+  with_options :if => "self.asset_type == TYPE[:media_video]" do |t|      
     t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["video/mp4"]}, :size => { :in => 0..25.megabytes }}    
   end
- with_options :if => "self.asset_type == Asset::TYPE[:slideshow_image]" do |t|      
+ with_options :if => "self.asset_type == TYPE[:slideshow_image]" do |t|      
     t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
 

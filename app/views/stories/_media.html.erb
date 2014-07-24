@@ -14,13 +14,15 @@
 
 
   <%= f.fields_for :image, @item.image do |as| %>
-    <label class=" control-label" for="media-image-preview"><%= t('activerecord.attributes.medium.image') %></label>
-    <% if @item.image_exists? %>
-      <a class='btn btn-default preview' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image"><%= t('app.buttons.preview_image') %></a>
-    <% end %>    
+    <div id='mediaImageBox' <%=  @item.media_type == Medium::TYPE[:video]  ? "style=display:none;" : "" %> >
+      <label class=" control-label" for="media-image-preview"><%= t('activerecord.attributes.medium.image') %></label>
+      <% if @item.image_exists? %>
+        <a class='btn btn-default preview' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image"><%= t('app.buttons.preview_image') %></a>
+      <% end %>    
 
-    <%= as.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:"image/jpeg,image/png" }, label: false  %> 
-    <%= as.input :asset_type, :as => :hidden %>
+      <%= as.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:"image/jpeg,image/png" }, label: false  %> 
+      <%= as.input :asset_type, :as => :hidden %>
+    </div>
   <% end %> 
 
   <%= f.fields_for :video, @item.video do |as| %>

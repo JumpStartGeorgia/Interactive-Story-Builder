@@ -41,9 +41,15 @@ $(document).ready(function() {
 	    return false;
 	});
 
+  // when media type changes, show the correct file fields
 	$('.story-viewer').on('change','#mediaType',function(){
-		if($(this).val()==1) $('#mediaVideoBox').hide();
-		else  $('#mediaVideoBox').show();
+		if($(this).val()==1) {
+		  $('#mediaImageBox').show();
+		  $('#mediaVideoBox').hide();
+	  }else {
+		  $('#mediaImageBox').hide();
+	    $('#mediaVideoBox').show();
+    }
 	});
 
   $('.story-viewer').on('click', '#btnOlly', function(){
