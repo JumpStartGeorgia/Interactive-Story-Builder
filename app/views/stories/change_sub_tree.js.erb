@@ -15,22 +15,22 @@
 
 $(document).ready(function() 
 {
-	var secT = $('.story-tree ul li.item[id='+ section_id + ']');
+	var section = $('.story-tree ul li.item[id='+ section_id + ']');
 	var li = null;
-   var secOpen = secT.hasClass('open');
-	if(secT.has('ul').length>0)
+  var secOpen = section.hasClass('open');
+	if(section.has('ul').length>0)
 	{
-		li = $("<li id='<%= @item.id %>' class='sub'><span><%= @item.title %></span></li>");	
-		secT.find('ul').append(li);
+		li = "<li id='<%= @item.id %>' class='sub'><span><%= @item.title %></span></li>";	
+		section.find('ul').append(li);
 	}
 	else 
 	{		
-		li = $("<ul><li id='<%= @item.id %>' class='sub'><span><%= @item.title %></span></li></ul>");			   
-		secT.append($(li));	
+		li = "<ul><li id='<%= @item.id %>' class='sub'><span><%= @item.title %></span></li></ul>";			   
+		section.append(li);	
 	}
 	
 	$('.story-tree ul li').removeClass('active');
-   secT.addClass('active').find('ul').addClass(secOpen ? "opened": "closed");
-   if(!secOpen) secT.find('.box .collapser').trigger('click'); 	
-   li.find('li').trigger('click');    
+   section.addClass('active').find('ul').addClass(secOpen ? "opened": "closed");
+   if(!secOpen) section.find('.box .collapser').trigger('click'); 	
+   section.find('li#<%=@item.id%>').trigger('click');
 });
