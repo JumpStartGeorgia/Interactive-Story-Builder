@@ -375,9 +375,9 @@ ka:
     following: თვალყურის დევნება
     following_title: იხილეთ ისტორიები, რომლებიც დაწერეს მომხმარებლებმა, რომელთაც თქვენ თვალყურს ადევნებთ
     following_title_active: თვალყურის დევნების ფილტრის მოშორება
-    not_published: Not Published
-    not_published_title: View stories that are not published
-    not_published_title_active: Show all stories
+    not_published: არ არის გამოქვეყნებული
+    not_published_title: იხილეთ ისტორიები, რომლებიც არ არის გამოქვეყენბული
+    not_published_title_active: იხილეთ ყველა ისტორია
   tokeninput:
     searchingText: ძიება...
     tag:
