@@ -42,7 +42,7 @@ $(document).ready(function() {
 	});
 
   // when media type changes, show the correct file fields
-	$('.story-viewer').on('change','#mediaType',function(){
+	$('.story-viewer').on('change','input[name="medium[media_type]"]:radio',function(){
 		if($(this).val()==1) {
 		  $('#mediaImageBox').show();
 		  $('#mediaVideoBox').hide();
@@ -619,7 +619,7 @@ function getData()
 	      cache: true 
 		}).error(function(e){console.log(e)}).done(function(){			
          if(el_type!='s' && method != 'n')
-            $('.form-title').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > span').text() + ":" + $('.form-title').text());
+            $('.form-title .form-title-text').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > span').text() + ":" + $('.form-title .form-title-text').text());
 		});
 
 	return true;	

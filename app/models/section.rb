@@ -14,6 +14,12 @@ class Section < ActiveRecord::Base
 
 
   TYPE = {content: 1, media: 2, slideshow: 3, embed_media: 4}
+  ICONS = {
+    content: 'glyphicon-align-justify', 
+    media: 'glyphicon-fullscreen', 
+    slideshow: 'glyphicon-picture', 
+    embed_media: 'glyphicon-log-in'
+  }
 
   accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
 
@@ -32,7 +38,12 @@ class Section < ActiveRecord::Base
     super(options)
   end
 
-
+  def get_icon
+    key = get_str_type
+    if key.present?
+      ICONS[key]
+    end
+  end
 
   def get_str_type
   	 TYPE.keys[TYPE.values.index(self.type_id)]

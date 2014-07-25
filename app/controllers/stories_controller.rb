@@ -171,11 +171,11 @@ class StoriesController < ApplicationController
       if params[:command]!='n'
         @item = Section.find_by_id(params[:section_id])    
       else 
-        @item = Section.new(story_id: params[:id], type_id: Section::TYPE[:content], has_marker: 1)
+        @item = Section.new(story_id: params[:id], has_marker: 0)
       end  
-      @section_list = []
-      Section::TYPE.each{|k,v| @section_list << ["#{I18n.t("section_types.#{k}.name")} - #{I18n.t("section_types.#{k}.description")}", v]} 
-      @section_list.sort_by!{|x| x[0]}
+#      @section_list = []
+#      Section::TYPE.each{|k,v| @section_list << ["#{I18n.t("section_types.#{k}.name")} - #{I18n.t("section_types.#{k}.description")}", v]} 
+#      @section_list.sort_by!{|x| x[0]}
       if @item.present? && !@item.asset_exists?
           @item.build_asset(:asset_type => Asset::TYPE[:section_audio])
       end   
@@ -208,7 +208,7 @@ class StoriesController < ApplicationController
         if params[:command]!='n'    
           @item = Medium.find_by_id(params[:item_id])   
         else 
-          @item = Medium.new(:section_id => params[:section_id], media_type: 1)
+          @item = Medium.new(:section_id => params[:section_id], media_type: Medium::TYPE[:image])
         end
 
         if @item.present? &&  !@item.image_exists? 

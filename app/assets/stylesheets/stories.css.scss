@@ -120,6 +120,9 @@ body#storybuilder_form{
           margin-left: 32px;
           min-height: 32px;
           padding-top: 8px;
+          & > .glyphicon{
+            margin-right: 5px;
+          }
         }
         > .collapser
         {      
@@ -375,7 +378,28 @@ body#storybuilder_form{
 .radio .choices, .checkbox .choices {
    padding-left: 18px;
 }
+.radio-indent .radio-container{
+  margin-left:  10px;
+  padding-left:  7px;
+  border-left:  solid 1px #aaa;
+}
 
+
+.radio-hide-button{
+  input[type=radio] {
+    display:none; 
+  }      
+  input[type=radio] + label {
+    display:inline-block;
+    margin:-2px;
+    padding: 4px 12px;
+    cursor: pointer;
+  }
+  input[type=radio]:checked + label { 
+    background-color:#bdbdbd;
+    transition: all .10s ease-out;
+  }
+}
 .formtastic .boolean label {
   padding-left: 0px;  
 }

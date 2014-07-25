@@ -1,5 +1,6 @@
 <h2 class="form-title">
-  <%= t('.form_title') %>
+  <span class="glyphicon <%= Section::ICONS[:embed_media] %>"></span>
+  <span class="form-title-text"><%= t('.form_title') %></span>
 </h2>
 
 <%= semantic_form_for(@item, url: embed_media_story_path(id:params[:id],:format => :js), :html => {:id => "embedMediaForm"} ,remote: true) do |f| %>
