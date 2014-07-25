@@ -108,6 +108,15 @@ $(".navbar-collapse").swipe(function( direction, offset ) {
     $('.navbar-toggle').trigger('click');
 });
 
+  $('.navbar-story .navbar-brand').width($('.navbar-story .navbar-toggle').is(':visible') ? $(window).width() - 90 : 'auto');
+
+
+$(window).resize(function() {   
+
+
+    $('.navbar-story .navbar-brand').width($('.navbar-story .navbar-toggle').is(':visible') ? $(window).width() - 90 : 'auto');
+
+});
 
   // fancy select boxes with search capability
   if ($('.selectpicker').length > 0){

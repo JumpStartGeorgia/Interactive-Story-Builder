@@ -25,7 +25,10 @@
     margin-right: 5px;
     margin-left: -10px;
   }
-
+  .about
+  {
+    margin-left:5px;
+  }
   .navbar-brand
   {
     font-family:opensans-l,dejavusans-el;    
@@ -33,10 +36,15 @@
     font-size: 14px;
     color:#000;
     padding:0px;
-    height:40px;
-    line-height:40px;
+    height:auto !important;    
     vertical-align:middle;
-    margin:0px !important;
+    margin:10px 0px 0px 0px !important;
+    // width: -moz-calc(100% - 40em);
+    // width: -webkit-calc(100% - 40em);
+    // width: calc(100% - 40em);
+    white-space:nowrap;
+    overflow:hidden;
+      text-overflow: ellipsis;
   }
   .navbar-brand:hover
   {
@@ -67,7 +75,7 @@
     }
     a i
     {
-      margin-left:10px;
+      margin-left:15px;
       margin-right: 3px;      
     }
     .navigation-volume
@@ -89,14 +97,7 @@
     }
   }
 
-  .nav-separator
-  {
-    height:20px;
-    width:1px;    
-    border-right:1px solid #a8a1a1;
-    margin: 10px 20px 0px 20px;
-    float:left;
-  }
+
   .share-link
   {
     margin-right:10px;
@@ -104,6 +105,62 @@
   .share-link i
   {
     margin-right: 0px !important;   
+  }
+
+
+
+
+/* Custom, iPhone Retina */ 
+  @media only screen and (min-width : 320px) {
+  
+    .separator-ver-b
+    {      
+      display:none !important;
+    }  
+    .navbar-nav > li > a > span
+    {
+      display:none;
+    }
+    .navbar-right
+    {
+      float:right;
+    }
+    .navbar-left
+    {
+      float:left;
+    }
+    .nav > li > a
+    {
+      padding:0px;
+    }
+  }
+
+  /* Extra Small Devices, Phones */ 
+  @media only screen and (min-width : 480px) {
+
+  }
+
+  /* Small Devices, Tablets */
+  @media only screen and (min-width : 768px) {
+
+  }
+
+  /* Medium Devices, Desktops */
+  @media only screen and (min-width : 992px) {
+   .navbar-nav > li > a > span
+    {
+      display:inline;
+    }  
+  }
+
+  /* Large Devices, Wide Screens */
+  @media only screen and (min-width : 1200px) {
+    .separator-ver-b
+    {      
+      display:block !important;
+    }
+
+  
   }
 }
 .margin130

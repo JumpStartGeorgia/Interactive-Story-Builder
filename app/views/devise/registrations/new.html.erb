@@ -14,7 +14,7 @@
 	    <%- model_class.omniauth_providers.each do |provider| %>
 	      <% if provider == :facebook %>
 	<%= link_to  omniauth_authorize_path(resource_name, provider), :class => 'facebook' do %>
-				  	<i class="i-facebook-w"></i><span><%= t('helpers.links.sign_up_provider', :provider => provider.to_s.titleize) %></span>
+				  	<i class="s i-facebook-w"></i><span><%= t('helpers.links.sign_up_provider', :provider => provider.to_s.titleize) %></span>
 				  <% end %>
 	      <% else %>
 				  <%= link_to t('helpers.links.sign_up_provider', :provider => provider.to_s.titleize), omniauth_authorize_path(resource_name, provider), :class => 'btn btn-primary' %>

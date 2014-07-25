@@ -52,7 +52,7 @@
   .navbar-logo img
   {
     width:165px;
-    padding-top:13px;
+    padding-top:14px;
   }
   ul.nav
   {
@@ -317,25 +317,17 @@
 
       background-color:#fff;
     }
-    .separator-ver
-    {
-      display:none;
-      height:30px !important;
-      margin: 10px 20px 0px 20px;
-      float:left;
-      border-left: 1px solid rgba(255, 255, 255, 0.32);
-      border-right:0px solid #fff;    
-    }
-    .separator-hor
-    {
-      width:100%;
-      clear:both;
-      border-bottom:1px solid #eaeaea;
-      margin-bottom:7px;
-    }
     .home-link,.navbar-home
     {
       display:block;
+    }
+    .separator-ver
+    {      
+     display:none !important;
+    }
+    .separator-hor
+    {
+      display:block !important;
     }
     .common
   {
@@ -530,7 +522,7 @@
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    border-top:1px solid #eaeaea;   
+    border:1px solid rgba(0, 0, 0, 0.15);   
       
   background-color:#f8f8f8;  
   width:auto;
@@ -607,8 +599,13 @@
     color:#fff;
      padding:0px;
   }
-  .dropdown-menu li:not(:last-child){  
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-}
+  .dropdown-menu li:not(:last-child)
+  {  
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  }
+  .set-build
+  {
+    display:inline-block !important;
+  }
 }
 }

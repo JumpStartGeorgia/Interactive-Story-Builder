@@ -42,30 +42,34 @@
           <ul class="dropdown-menu">                          
             <li>              
               <%= link_to stories_path do %>         
-               <i class="i-gag"></i><span><%= t('helpers.titles.story_list') %></span>
+               <i class="s i-mystories"></i><span><%= t('helpers.titles.story_list') %></span>
               <% end %>
             </li>  
-            <li class="set-build"><%= link_to t('app.common.build'), new_story_path %></li>              
+            <li class="set-build">
+              <%= link_to new_story_path do %>         
+               <i class="s i-build-b"></i><span><%= t('app.common.build') %></span>
+              <% end %>              
+            </li>              
             <li>
               <%= link_to settings_path do %>         
-               <i class="i-gag"></i><span><%= t('helpers.links.user_settings') %></span>
+               <i class="s i-settings"></i><span><%= t('helpers.links.user_settings') %></span>
               <% end %>              
             </li>              
             <% if current_user.role? User::ROLES[:admin] %>
               <li>
                 <%= link_to admin_news_index_path do %>         
-                  <i class="i-gag"></i><span><%= t('helpers.links.news') %></span>
+                  <i class="s i-news"></i><span><%= t('helpers.links.news') %></span>
                 <% end %> 
               </li>
               <li>
                 <%= link_to admin_users_path do %>         
-                  <i class="i-gag"></i><span><%= t('helpers.links.users') %></span>
+                  <i class="s i-users"></i><span><%= t('helpers.links.users') %></span>
                 <% end %> 
               </li>
             <% end %>               
             <li class="signout">
               <%= link_to destroy_user_session_path , :method => :delete do %>         
-               <i class="i-gag"></i><span><%= t('helpers.links.sign_out') %></span>
+               <i class="s i-signout"></i><span><%= t('helpers.links.sign_out') %></span>
               <% end %>                
             </li>
           </ul>
@@ -77,7 +81,7 @@
      <% end %> 
         <li class="separator-ver"></li>  
         <li class="dropdown dropdown-hover common">                    
-            <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= "#{t('helpers.links.menu')}" %><i class="i-caret-w"></i></a>                   
+            <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= "#{t('helpers.links.menu')}" %><i class="s i-caret-w"></i></a>                   
             <ul class="dropdown-menu">
               <li class="home-link">
                 <%= link_to t('app.common.home'), root_path(:locale => I18n.locale)  %>
@@ -110,17 +114,17 @@
         <li  class="separator-hor"></li>        
         <li class="social"><a href="https://www.facebook.com/sharer/sharer.php?u=<%= root_url %>" onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link">  
-          <i class="i-facebook"></i></a>      
+          <i class="s i-facebook"></i></a>      
         </li> 
         <li class="social"><a href='https://twitter.com/share?text=<%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name')}" :
                                 t('app.common.app_name') %>' onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link">
-                        <i class="i-twitter"></i>
+                        <i class="s i-twitter"></i>
             </a></li>
 
         <li class="social"><a href="https://plus.google.com/share?url=<%= root_url %>" onclick="javascript:window.open(this.href,
           '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link">
-              <i class="i-google"></i>
+              <i class="s i-google"></i>
             </a></li> 
        
         <li class="separator-ver"></li>

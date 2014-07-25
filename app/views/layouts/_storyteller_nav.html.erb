@@ -11,14 +11,16 @@
          <%= link_to(image_tag('svg/slogo_b.svg'), root_url(:locale => I18n.locale), :title => t('app.common.embed_slogan'), :class => 'navbar-logo') %>
        <% end %>
        <% if @story.present? %>
-         <%= link_to(@story.title, url_for, :class=>"navigation-headline navbar-brand")%>  
+         <%= link_to(@story.title + "adsfasdf asfdasasdfdasf asdf sfs dsf asdf asdf dasf asfad asdf asf adsf adsf ", url_for, :class=>"navigation-headline navbar-brand") %>  
        <% end %>    
     </div>
 
     <div class="collapse navbar-collapse" id="story-navbar-collapse">
-      <ul class="nav navbar-nav navbar-left">         
-        <li><div class="nav-separator"></div></li>
-        <li><a id="modalAbout" data-modalos-id="modalos-about"><%= "#{t('app.common.about_story')}" %></a></li>
+
+      <ul class="nav navbar-nav navbar-left">  
+
+        <li class="separator-ver-b"></li>
+        <li class="about"><a id="modalAbout" data-modalos-id="modalos-about"><%= "#{t('app.common.about_story')}" %></a></li>
           <% if !@export && @story.permalink.present? %>
             <% if user_signed_in? %>
               <% 
@@ -31,18 +33,18 @@
                 <!-- "#{t('app.common.likes')}" -->
                 <%= link_to '#', :class => "like-story #{style1}", :title => t('helpers.hints.unlike'), 
                     :'data-href' => storyteller_unlike_path(@story.permalink) do %>
-                    <i class="i-liked"></i><%= "#{ t('helpers.links.likes')}" %><span class="likes-count" class="stats-count"> (<%= count1 %>)</span>               
+                    <i class="s i-liked"></i><span><%= "#{ t('helpers.links.likes')}" %><span class="likes-count" class="stats-count"> (<%= count1 %>)</span></span>            
                 <% end %>
                 <%= link_to '#', :class => "like-story #{style2}", :title => t('helpers.hints.like'), 
                     :'data-href' => storyteller_like_path(@story.permalink) do %>
-                    <i class="i-likes"></i><%= "#{t('helpers.links.like')}" %>
+                    <i class="s i-likes"></i><span><%= "#{t('helpers.links.like')}" %></span>
                 <% end %>
               </li>
             <% else %>  
             <li>          
                <%= link_to :new_user_session, :class => "", :title => t('helpers.hints.like'), 
                     :'data-href' => storyteller_like_path(@story.permalink) do %>
-                    <i class="i-likes"></i><%= "#{t('helpers.links.like')}" %>
+                    <i class="s i-likes"></i><span><%= "#{t('helpers.links.like')}" %></span>
                 <% end %>
             </li>
             <% end %>
@@ -55,11 +57,11 @@
                  <li>
                   <%= link_to '#', :class => "staff-pick #{style1}", :title => t('helpers.hints.staff_unpick'), 
                       :'data-href' => storyteller_staff_unpick_path(@story.permalink) do %>
-                       <i class="i-staffpicked"></i><% "#{t('helpers.links.staff_pick')}" %>
+                       <i class="s i-staffpicked"></i><span><% "#{t('helpers.links.staff_pick')}" %></span>
                   <% end %>
                   <%= link_to '#', :class => "staff-pick #{style2}", :title => t('helpers.hints.staff_pick'), 
                       :'data-href' => storyteller_staff_pick_path(@story.permalink) do %>
-                   <i class="i-staffpick"></i><% "#{t('helpers.links.staff_pick')}" %>
+                   <i class="s i-staffpick"></i><span><% "#{t('helpers.links.staff_pick')}" %></span>
                   <% end %>
                   </li>          
             <% end %>
@@ -69,13 +71,13 @@
       <ul class="nav navbar-nav navbar-right">  
         <li>
           <%= link_to '#',  :id=>"modalComment", :'data-modalos-id' => "modalos-comments", :title => t('helpers.links.comments') do %>
-            <i class="i-comment"></i><%= "#{t('app.common.comments')}" %> (<span id="comments-count" class="stats-count"><%= @story.comments_count %></span>)
+            <i class="s i-comment"></i><span><%= "#{t('app.common.comments')}" %> (<span id="comments-count" class="stats-count"><%= @story.comments_count %></span>)</span>
           <% end %>
         </li>
 
         <li>
           <%= link_to '#',  :id=>"modalShare", :'data-modalos-id' => "modalos-share", :title => t('app.common.share'), :class => "share-link" do %>
-            <i class="i-share"></i><%= "#{t('app.common.share')}" %>
+            <i class="s i-share"></i><span><%= "#{t('app.common.share')}" %></span>
           <% end %>
         </li>
 
@@ -118,11 +120,11 @@
           locals: {:user_id => @story.user_id, :is_story_page => true, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
     </div>   
     <div class="stats"> 
-        <i class="i-likes disabled"></i><span class="likes"><%= @story.likes %></span>            
-        <i class="i-views disabled"></i><span class="views"><%= @story.impressions_count %></span>  
-        <i class="i-comment disabled"></i><span class="comments"><%= @story.comments_count%></span>  
+        <i class="s i-likes disabled"></i><span class="likes"><%= @story.likes %></span>            
+        <i class="s i-views disabled"></i><span class="views"><%= @story.impressions_count %></span>  
+        <i class="s i-comment disabled"></i><span class="comments"><%= @story.comments_count%></span>  
         <% if @story.staff_pick? %>
-          <i class="i-staffpicked" title="<%= t('helpers.links.staff_pick') %>"></i>
+          <i class="s i-staffpicked" title="<%= t('helpers.links.staff_pick') %>"></i>
         <% end %>    
     </div>
   </div>    
@@ -157,13 +159,13 @@
 
     <a href="https://www.facebook.com/dialog/feed?app_id=<%= @face_id %>&link=<%= storyteller_show_url(@story.permalink) %>" onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">  
-          <i class="i-facebook-w"></i><%= "#{t('app.common.share_facebook')}" %></a>      
+          <i class="s i-facebook-w"></i><%= "#{t('app.common.share_facebook')}" %></a>      
        
     </div>
     <div class="twitter">
       <a href='https://twitter.com/share?url=<%= storyteller_show_url(@story.permalink) %>&text=<%= @story.title %>' onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-                        <i class="i-twitter-w"></i><%= "#{t('app.common.share_twitter')}" %>
+                        <i class="s i-twitter-w"></i><%= "#{t('app.common.share_twitter')}" %>
       </a>
     </div>
     <div class="more">
