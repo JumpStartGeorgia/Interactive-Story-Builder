@@ -54,10 +54,7 @@
             </li>              
             <% if current_user.role? User::ROLES[:admin] %>
               <li>
-               <%= link_to t('helpers.links.news'), admin_news_index_path %>
-              </li>
-              <li>
-               <%= link_to t('helpers.links.users'), admin_users_path %>
+               <%= link_to t('helpers.links.admin'), admin_path %>
               </li>
             <% end %>               
             <li>
