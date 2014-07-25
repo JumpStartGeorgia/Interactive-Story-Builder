@@ -13,6 +13,7 @@ ka:
       embed_medium: ჩაშენებული ონლაინ მედია
       language: ენა
       category: კატეგორია
+      page: ტექსტი გვერდებისთვის
     attributes:
       user:
         email: ელ.ფოსტა
@@ -82,6 +83,11 @@ ka:
         name: ენის დასახელება
       category_translation:
         name: სახელი
+      page:
+        name: შინაარსის უნიკალური სახელი (არ შეცვალოთ!)
+      page_translation:
+        title: სათაური, რომელიც გამოჩნდება შინაარსის ზემოთ
+        content: შინაარსი
     errors:
       messages:
         required_field: "სავალდებულოა"
@@ -173,6 +179,7 @@ ka:
       views: "%{num} წაკითხვა"
       tags: თაგი
       menu: მენიუ
+      pages: საიტზე ტექსტის რედაქტირება
       story_menu:
         link:
           clone: ახალ ამბად კლონირება
@@ -463,7 +470,6 @@ ka:
       feedback_link: უკუკავშირის სექცია
     about:
       title: Story Builder-ის შესახებ
-      text: Story Builder ...
     embed:
       home_link: შექმნილია Story Builder-ზე
   stories:

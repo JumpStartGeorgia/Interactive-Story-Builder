@@ -5,7 +5,7 @@ class AdminController < ApplicationController
   end
 
   def index
-
+    @css.push("navbar.css")   
   end
 
 end

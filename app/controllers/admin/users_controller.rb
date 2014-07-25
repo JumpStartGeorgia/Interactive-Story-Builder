@@ -4,6 +4,7 @@ class Admin::UsersController < ApplicationController
   before_filter do |controller_instance|
     controller_instance.send(:valid_role?, User::ROLES[:admin])
   end
+  before_filter :asset_filter
 
   # GET /admin/users
   # GET /admin/users.json
@@ -101,4 +102,12 @@ class Admin::UsersController < ApplicationController
   def asset_filter
     @css.push("navbar.css") 
   end 
+
+
+protected
+
+  def asset_filter
+    @css.push("navbar.css")
+  end 
+
 end

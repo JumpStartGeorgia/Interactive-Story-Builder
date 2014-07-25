@@ -1,5 +1,6 @@
-<% title  t('.title') %>
+<% title @page.title %>
 
-  <div class="about_text">
-	<%= t('.text') %>    
-  </div>
+<div class="about_text tinymce_format">
+  <%= simple_format_no_tags(@page.content, {}, {sanitize: false}) %>
+</div>
+

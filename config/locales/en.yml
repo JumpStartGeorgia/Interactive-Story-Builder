@@ -13,6 +13,7 @@ en:
       embed_medium: Embedable Online Media
       language: Language
       category: Category
+      page: Text for Pages
     attributes:
       user:
         email: Email Address
@@ -82,6 +83,11 @@ en:
         name: Language Name
       category_translation:
         name: Name
+      page:
+        name: Unique name for content (do not change!)
+      page_translation:
+        title: Title to show above content
+        content: Content
     errors:
       messages:
         required_field: "is a required field."
@@ -173,6 +179,7 @@ en:
       views: "%{num} reads"
       tags: Tags
       menu: Menu
+      pages: Edit Text on Site
       story_menu:
         link:
           clone: Clone as new story
@@ -463,7 +470,6 @@ en:
       feedback_link: Feedback section
     about:
       title: About Story Builder
-      text: Story Builder ...
     embed:
       home_link: Built on Story Builder
   stories:
