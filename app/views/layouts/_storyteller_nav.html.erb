@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
       </button>
        <% if @is_embed %>
-         <%= link_to(image_tag('slogo.png'), root_url(:locale => I18n.locale), :title => t('app.common.embed_slogan'), :class => 'navbar-logo') %>
+         <%= link_to(image_tag('svg/slogo_b.svg'), root_url(:locale => I18n.locale), :title => t('app.common.embed_slogan'), :class => 'navbar-logo') %>
        <% end %>
        <% if @story.present? %>
          <%= link_to(@story.title, url_for, :class=>"navigation-headline navbar-brand")%>  
@@ -31,18 +31,18 @@
                 <!-- "#{t('app.common.likes')}" -->
                 <%= link_to '#', :class => "like-story #{style1}", :title => t('helpers.hints.unlike'), 
                     :'data-href' => storyteller_unlike_path(@story.permalink) do %>
-                    <i class="i-icon i-liked"></i><%= "#{ t('helpers.links.likes')}" %><span class="likes-count" class="stats-count"> (<%= count1 %>)</span>               
+                    <i class="i-liked"></i><%= "#{ t('helpers.links.likes')}" %><span class="likes-count" class="stats-count"> (<%= count1 %>)</span>               
                 <% end %>
                 <%= link_to '#', :class => "like-story #{style2}", :title => t('helpers.hints.like'), 
                     :'data-href' => storyteller_like_path(@story.permalink) do %>
-                    <i class="i-icon i-like"></i><%= "#{t('helpers.links.like')}" %>
+                    <i class="i-likes"></i><%= "#{t('helpers.links.like')}" %>
                 <% end %>
               </li>
             <% else %>  
             <li>          
                <%= link_to :new_user_session, :class => "", :title => t('helpers.hints.like'), 
                     :'data-href' => storyteller_like_path(@story.permalink) do %>
-                    <i class="i-icon i-like"></i><%= "#{t('helpers.links.like')}" %>
+                    <i class="i-likes"></i><%= "#{t('helpers.links.like')}" %>
                 <% end %>
             </li>
             <% end %>
@@ -69,13 +69,13 @@
       <ul class="nav navbar-nav navbar-right">  
         <li>
           <%= link_to '#',  :id=>"modalComment", :'data-modalos-id' => "modalos-comments", :title => t('helpers.links.comments') do %>
-            <i class="i-icon i-comment"></i><%= "#{t('app.common.comments')}" %> (<span id="comments-count" class="stats-count"><%= @story.comments_count %></span>)
+            <i class="i-comment"></i><%= "#{t('app.common.comments')}" %> (<span id="comments-count" class="stats-count"><%= @story.comments_count %></span>)
           <% end %>
         </li>
 
         <li>
           <%= link_to '#',  :id=>"modalShare", :'data-modalos-id' => "modalos-share", :title => t('app.common.share'), :class => "share-link" do %>
-            <i class="i-icon i-share"></i><%= "#{t('app.common.share')}" %>
+            <i class="i-share"></i><%= "#{t('app.common.share')}" %>
           <% end %>
         </li>
 
@@ -118,11 +118,11 @@
           locals: {:user_id => @story.user_id, :is_story_page => true, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
     </div>   
     <div class="stats"> 
-        <i class="i-icon i-like-d"></i><span class="likes"><%= @story.likes %></span>            
-        <i class="i-icon i-views"></i><span class="views"><%= @story.impressions_count %></span>  
-        <i class="i-icon i-comment-d"></i><span class="comments"><%= @story.comments_count%></span>  
+        <i class="i-likes disabled"></i><span class="likes"><%= @story.likes %></span>            
+        <i class="i-views disabled"></i><span class="views"><%= @story.impressions_count %></span>  
+        <i class="i-comment disabled"></i><span class="comments"><%= @story.comments_count%></span>  
         <% if @story.staff_pick? %>
-        <i class="i-staffpicked" title="<%= t('helpers.links.staff_pick') %>"></i>
+          <i class="i-staffpicked" title="<%= t('helpers.links.staff_pick') %>"></i>
         <% end %>    
     </div>
   </div>    
@@ -172,7 +172,7 @@
     
   </div>
   <div class="embed">
-    <div class="embed-icon"><img src="/assets/embed.png"/></div>
+    <div class="embed-icon"><img src="/assets/png/embed.png"/></div>
     <div class="embed-text"><%= "#{t('app.msgs.embed_code')}" %>:</div>
     <div class="embed-code">
     <textarea rows="4" cols="38"  data-iframe-link="<%=embed_url(@story.permalink) %>"
@@ -379,7 +379,7 @@ margin-left:8px;
   }
 
 .about-window .follow-link.follow-story:before{
-  content:url('/assets/check_small.png');
+  content:url('/assets/png/check_small.png');
   margin-right: 3px;
   position: relative;
   top: -1px;
@@ -557,7 +557,7 @@ margin-left:8px;
    .share .more .addthis_sharing_toolbox span
    {      
        
-    background-image: url('/assets/more.png') !important;    
+    background-image: url('/assets/png/more.png') !important;    
     background-color:#6dda6d !important;     
     background-position: 16px !important;
     width: 55px !important;

@@ -492,39 +492,44 @@ margin-right:8px;}
 }
 
 
-/* storybuilder image sprite */
-.i-icon
+/* storybuilder image */
+.i-search-w
 {
     background-color: transparent;
-    background-image: url('/assets/sprite.png');
+    background-image: url('/assets/svg/search_w.svg');
     display: inline-block;
     vertical-align: middle;
     width:27px; 
-    height:27px;
-    opacity:1;
+    height:27px;         
 }
-.i-search
+.i-search-b
 {
-    background-position: 0px 108px;         
+    background-color: transparent;
+    background-image: url('/assets/svg/search_b.svg');
+    display: inline-block;
+    vertical-align: middle;
+    width:27px; 
+    height:27px;         
 }
-.i-like
+.i-likes
 {
-    background-position: -27px 0px;  
-    /*background-position: 0px 0px; */
+    background-color: transparent;
+    background-image: url('/assets/svg/likes.svg');
+    display: inline-block;
+    vertical-align: middle;
+    width:27px; 
+    height:27px;  
 }  
-.i-like-d
-{
-    
-    background-position: 0px 0px;
-}  
-*:hover > .i-like
-{
-  
-}
 .i-liked
 {
-    background-position: -55px 0px;         
-}
+    background-color: transparent;
+    background-image: url('/assets/svg/liked.svg');
+    display: inline-block;
+    vertical-align: middle;
+    width:27px; 
+    height:27px;  
+}  
+
 .i-staffpick
 {
     background-color: transparent;
@@ -532,8 +537,7 @@ margin-right:8px;}
     display: inline-block;
     vertical-align: middle;
     width:27px; 
-    height:27px;
-    opacity:1;
+    height:27px;    
 }
 
 .i-staffpicked
@@ -544,31 +548,36 @@ margin-right:8px;}
     vertical-align: middle;
     width:27px; 
     height:27px;
-    opacity:1;        
 }
 .i-follow
 {
     visibility:hidden;
+    background-color: transparent;
+    background-image: url('/assets/png/sprite.png');
+    display: inline-block;
+    vertical-align: middle;
+    width:27px; 
+    height:27px;
     background-position: 0px -457px;    
-}
-*:hover > .i-follow
-{
-         
 }
 .i-followed
 {
+    background-color: transparent;
+    background-image: url('/assets/png/sprite.png');
+    display: inline-block;
+    vertical-align: middle;
+    width:27px; 
+    height:27px;
     background-position: -27px -457px;         
 }
 .i-build-w
 {
     background-color: transparent;    
     background: url('/assets/svg/build_w.svg') no-repeat;
-
     display: inline-block;
      width:16px;
     height:17px;
     vertical-align: middle;
-    opacity:1;
 }
 .i-build-b
 {
@@ -578,41 +587,30 @@ margin-right:8px;}
     height:17px;
     display: inline-block;
     vertical-align: middle;
-    opacity:1;
 }
 .i-share
 {
-    background-position: -27px -82px;
-    /* background-position: 0px -82px; */         
+  background-color: transparent;
+  background-image: url('/assets/svg/share.svg');
+  display: inline-block;
+  vertical-align: middle;
+  width:27px; 
+  height:27px;            
 }
-*:hover > .i-share
-{
-           
-}
+
 .i-comment
 {
 
-    background-position: -27px -136px;
-    /* background-position: 0px -136px; */           
+    background-color: transparent;
+    background-image: url('/assets/svg/comment.svg');
+    display: inline-block;
+    vertical-align: middle;
+    width:27px; 
+    height:27px;        
 }
-.i-comment-d
+.disabled
 {
-    
-    background-position: 0px -136px;
-}
-*:hover > .i-comment
-{
-
-         
-}
-.i-link
-{
-    background-position: -27px -163px;   
-     /*background-position: 0px -163px;*/        
-}
-*:hover > .i-link
-{
-         
+  opacity:0.5 !important;
 }
 .i-facebook-w
 {
@@ -620,7 +618,6 @@ margin-right:8px;}
     background: url('/assets/svg/facebook_w.svg') no-repeat;
     display: inline-block;
     vertical-align: middle;
-    opacity:1; 
     width:27px; 
     height:27px;             
 }
@@ -630,7 +627,6 @@ margin-right:8px;}
     background: url('/assets/svg/facebook_b.svg') no-repeat;
     display: inline-block;
     vertical-align: middle;
-    opacity:1; 
     width:27px; 
     height:27px;             
 }
@@ -640,7 +636,6 @@ margin-right:8px;}
     background: url('/assets/svg/twitter_b.svg') no-repeat;
     display: inline-block;
     vertical-align: middle;
-    opacity:1; 
     width:27px; 
     height:27px;   
 }
@@ -650,7 +645,6 @@ margin-right:8px;}
     background: url('/assets/svg/twitter_w.svg') no-repeat;
     display: inline-block;
     vertical-align: middle;
-    opacity:1; 
     width:27px; 
     height:27px;   
 }
@@ -660,7 +654,6 @@ margin-right:8px;}
     background: url('/assets/svg/google+_b.svg') no-repeat;
     display: inline-block;
     vertical-align: middle;
-    opacity:1; 
     width:27px; 
     height:27px;  
 }
@@ -670,7 +663,6 @@ margin-right:8px;}
     background: url('/assets/svg/google+_w.svg') no-repeat;
     display: inline-block;
     vertical-align: middle;
-    opacity:1; 
     width:27px; 
     height:27px;  
 }
@@ -680,42 +672,63 @@ margin-right:8px;}
     background: url('/assets/svg/gag.svg') no-repeat;
     display: inline-block;
     vertical-align: middle;
-    opacity:1; 
     width:27px; 
     height:27px;  
 }
-.i-caret
+.i-caret-w
 {
-    background-position: -27px -269px;  
-    /*background-position: 0px -269px;         */
+    background-color: transparent;     
+    background: url('/assets/svg/menu_w.svg') no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    width:27px; 
+    height:27px; 
 }
 .i-caret-b
 {    
-    background-position: 0px -269px;        
+    background-color: transparent;     
+    background: url('/assets/svg/menu_b.svg') no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    width:27px; 
+    height:27px;       
 }
-.i-facebook-l
+
+.i-email
 {
-    background-position: 0px -296px;         
-}
-.i-twitter-l
-{
-    background-position: 0px -323px;         
-}
-.i-mail
-{
-    background-position: 0px -350px;         
+    background-color: transparent;
+    background-image: url('/assets/svg/email.svg');
+    display: inline-block;
+    vertical-align: middle;
+    width:27px; 
+    height:27px;        
 }
 .i-print
 {
-    background-position: 0px -377px;         
+    background-color: transparent;
+    background-image: url('/assets/svg/print.svg');
+    display: inline-block;
+    vertical-align: middle;
+    width:27px; 
+    height:27px;           
 }
 .i-plus
 {
-    background-position: 0px -404px;         
+  background-color: transparent;
+  background-image: url('/assets/png/more.png');
+  display: inline-block;
+  vertical-align: middle;
+  width:27px; 
+  height:27px;          
 }
 .i-views
 {
-    background-position: 0px -431px;         
+     background-color: transparent;
+    background-image: url('/assets/svg/views.svg');
+    display: inline-block;
+    vertical-align: middle;
+    width:27px; 
+    height:27px;      
 }
 /* show result of nickname permalink check */
 #user_nickname_input + div#check_nickname_results{

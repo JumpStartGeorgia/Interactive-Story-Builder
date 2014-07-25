@@ -65,7 +65,7 @@
 				wrapper = $("<div class='modalos-wrapper'> \
 	      								<div class='m-header'> \
 	      									<div class='m-close'> \
-	      										<img src='/assets/close_h.png' style='width: 33px;height: 33px;'> \
+	      										<img src='/assets/svg/close.svg'> \
 	      									</div> \
 	      								</div> \
       									<div class='m-content'>	\

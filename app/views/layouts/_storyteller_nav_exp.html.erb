@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <a href="http://storybuilder.jumpstart.ge" class="navbar-logo link"><img alt="Story Builder" height="33" src="assets/slogo.png" style="vertical-align:middle;" width="33"></a>        
+        <a href="http://storybuilder.jumpstart.ge" class="navbar-logo link"><img alt="Story Builder" height="33" src="assets/svg/slogo_b.svg" style="vertical-align:middle;" width="33"></a>        
         <%= link_to(@story.title, '#', :class=>"navigation-headline navbar-brand")%>         
     </div>
 
@@ -85,23 +85,23 @@
     <div class="facebook">
     <a href="https://www.facebook.com/sharer/sharer.php?u=storybuilder.jumpstart.ge" onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">  
-          <i class="i-icon i-facebook-l"></i><%= "#{t('app.common.share_facebook')}" %></a>      
+          <i class="i-facebook-w"></i><%= "#{t('app.common.share_facebook')}" %></a>      
        
     </div>
     <div class="twitter">
       <a href='https://twitter.com/share?url=<%= storyteller_show_url(@story.permalink) %>&text=<%= @story.title %>' onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-                        <i class="i-icon i-twitter-l"></i><%= "#{t('app.common.share_twitter')}" %>
+                        <i class="i-twitter-w"></i><%= "#{t('app.common.share_twitter')}" %>
       </a>
     </div>
     <div class="more">
         <a href='#'>
-                        <i class="i-icon i-plus"></i>
+                        <i class="i-plus"></i>
             </a>
     </div>    
   </div>
   <div class="embed">
-    <div class="embed-icon"><img src="assets/embed.png"/></div>
+    <div class="embed-icon"><img src="assets/png/embed.png"/></div>
     <div class="embed-text"><%= "#{t('app.msgs.embed_code')}" %>:</div>
     <div class="embed-code">
     <textarea rows="4" cols="38"  data-iframe-link="<%=embed_url(@story.permalink) %>"
@@ -114,7 +114,7 @@
   </div>
   <div class="email">
       <a href="mailto:info@jumpstart.ge?Subject=Share" target="_top">
-        <i class="i-icon i-mail"></i><%= "#{t('app.common.email')}" %>
+        <i class="i-email"></i><%= "#{t('app.common.email')}" %>
       </a>
   </div>
 </div>

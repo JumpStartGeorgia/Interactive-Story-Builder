@@ -102,7 +102,7 @@
     z-index: 3;
     margin:0px auto;    
     text-shadow: 0 1px 2px #000;
-    background-image: url(<%= (@export ? "assets/" : "/template/#{@template}/images/") + 'scroll.png'%>);       
+    background-image: url(<%= (@export ? "assets/png/" : "/template/#{@template}/images/png/") + 'scroll.png'%>);       
     background-position: 50% 0%;
     background-repeat: no-repeat; 
     width:100%;
@@ -1010,7 +1010,7 @@
   }
   .navigation-logo {
     float: left;
-    background: url(<%= @export ? "" : "/" %>assets/jumpstart-logo.png) no-repeat;
+    background: url(<%= @export ? "" : "/" %>assets/png/logojs_c.png) no-repeat;
     height: 28px;
     margin: 4px 0 0 0;
     width: 110px;
@@ -1070,13 +1070,17 @@
   .navigation-icon {
     width: 27px !important;
     height: 27px !important;
-    background-image: url(<%= @export ? "" : "/" %>assets/sprite.png);
+    background-image: url(<%= @export ? "" : "/" %>assets/svg/sound.svg);
   }
 
-  .navigation-volume .navigation-icon { background-position: 0px -109px; }
-  .navigation-volume .navigation-icon:hover { background-position: -27px -109px; }
-  .navigation-volume.navigation-volume--muted .navigation-icon { background-position: -55px -109px; }
-  .navigation-volume.navigation-volume--muted .navigation-icon:hover { background-position: -82px -109px; }
+  .navigation-volume .navigation-icon { opacity:0.8; }
+  .navigation-volume .navigation-icon:hover { opacity:1; }
+  .navigation-volume.navigation-volume--muted .navigation-icon {  
+    background-image: url(<%= @export ? "" : "/" %>assets/svg/soundoff.svg);
+    width: 27px !important;
+    height: 27px !important;
+  }
+  /*.navigation-volume.navigation-volume--muted .navigation-icon:hover {  }*/
   .navigation-volume{display: inline-block !important; top: 4px; padding:0px 0px 0px 10px!important;}
 
 
@@ -1104,7 +1108,7 @@
 
     .ios .navigation-logo {
       margin-top: 20px;
-      background-image: url(<%= @export ? "" : "/" %>assets/jumpstart-logo.png) no-repeat;
+      background-image: url(<%= @export ? "" : "/" %>assets/png/logojs_c.png) no-repeat;
       background-position: 0px 0px;    
       width: 110px;
       height: 28px;
