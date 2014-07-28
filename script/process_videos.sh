@@ -67,24 +67,31 @@ if [ "$num_lines" -gt 0 ]; then
 
 
       ####################################
-      # if processed folder does not exist, create it
-      if [ ! -d "$new_folder" ]; then
-        mkdir "$new_folder"
+      # if image exists, continue
+      if [ -e "$original_file" ]; then
+
+        ####################################
+        # if processed folder does not exist, create it
+        if [ ! -d "$new_folder" ]; then
+          mkdir "$new_folder"
+        fi  
+
+
+        ####################################
+        # process the image
+        ffmpeg -y -i $original_file -c:v libx264 -crf 22 $new_file
+
+
+        ####################################
+        # add this row to the processed file
+        # - make sure file exists
+        if [ ! -e "$file_processed" ]; then
+          touch "$file_processed"
+        fi  
+        echo "$row" >> "$file_processed"
+
       fi  
 
-
-      ####################################
-      # process the image
-      ffmpeg -y -i $original_file -c:v libx264 -crf 22 $new_file
-
-
-      ####################################
-      # add this row to the processed file
-      # - make sure file exists
-      if [ ! -e "$file_processed" ]; then
-        touch "$file_processed"
-      fi  
-      echo "$row" >> "$file_processed"
 
       ####################################
       # delete the first row since the image is processed
