@@ -118,10 +118,10 @@
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
                 <% section.media.each_with_index do |m,m_i| %>
-                    <% dataVideo = '' %>
-                    <% if m.media_type == Medium::TYPE[:video] %>                
-                      <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name,'.mp4')}'".html_safe %>
-                    <% end %> 
+                  <% dataVideo = '' %>
+                  <% if m.media_type == Medium::TYPE[:video] && m.is_processed? %>                
+                    <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name,'.mp4')}'".html_safe %>
+                  <% end %> 
                   <div class="video"  <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>
                     <div class="video-container">
                       <% if m.media_type == Medium::TYPE[:image] %>     
@@ -130,7 +130,13 @@
                           <% else %>
                             <img src="media/images/fullscreen/<%= m.image.asset_file_name %>">
                           <% end %>
-                      <% elsif m.media_type == Medium::TYPE[:video]  %>                    
+                      <% elsif m.media_type == Medium::TYPE[:video] && !m.is_processed?  %>                    
+                          <% if !@export %> 
+                            <%= image_tag 'video_not_processed.png' %>
+                          <% else %>
+                            <img src="media/story/assets/video_not_processed.png>">
+                          <% end %>
+                      <% elsif m.media_type == Medium::TYPE[:video] && m.is_processed?  %>                    
                             <% if !@export %>                           
                               <!--[if lte IE 8]><img src="<%= m.image.asset.url(:fullscreen) %>"><![endif]-->
                             <% else %>
@@ -487,12 +493,12 @@
           if (isMobile()) return false;
 
             <% if !@export %>                           
-               var _video_assets = "/system/places/video/<%= @story.id %>/original/",
+               var _video_assets = "/system/places/video/<%= @story.id %>/processed/",
               _poster_assets = "/system/places/video/<%= @story.id %>/poster/",
               _image_assets = "/system/places/images/<%= @story.id %>/original/",
               _audio_assets = "/system/places/audio/<%= @story.id %>/";
             <% else %>
-              var _video_assets = "media/video/original/",
+              var _video_assets = "media/video/processed/",
                   _poster_assets = "/media/video/poster/",
                   _image_assets = "media/images/original/",
                   _audio_assets = "media/audio/";

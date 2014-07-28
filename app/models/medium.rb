@@ -64,6 +64,15 @@ class Medium < ActiveRecord::Base
   def video_exists?
     self.video.present? && self.video.asset.exists?
   end  
+
+  def is_processed?
+    if video_type?
+      video_exists? && self.video.processed
+    elsif image_type?
+      image_exists? && self.image.processed 
+    end
+  end
+
 private
   def image_type?    
     self.media_type == TYPE[:image]

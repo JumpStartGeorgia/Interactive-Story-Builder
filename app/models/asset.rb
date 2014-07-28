@@ -26,6 +26,13 @@ class Asset < ActiveRecord::Base
   before_post_process :init
   before_post_process :transliterate_file_name
   
+  before_create :set_processed_flag
+  
+  # if this is a video, set the flag to false (default is true)
+  def set_processed_flag
+    self.processed = self.asset_type != TYPE[:media_video]
+  end
+  
   def init
 
     if self.init_called != true
@@ -44,43 +51,51 @@ class Asset < ActiveRecord::Base
             },
             :default_url => "/assets/missing/user_avatar/:style/default_user.png"
           }
+
         when TYPE[:story_thumbnail]        
           opt = { 
             :url => "/system/places/thumbnail/:item_id/:style/:basename.:extension",
             :styles => {:thumbnail => {:geometry => "459x328#"}},            
             :default_url => "/assets/missing/story_thumbnail/missing.jpg"
           }
+
         when  TYPE[:section_audio]         
           opt = {:url => "/system/places/audio/:story_id/:basename.:extension"}  
+
         when  TYPE[:media_image]        
-          opt = { :url => "/system/places/images/:media_image_story_id/:style/:basename.:extension",
+          opt = { 
+                  :url => "/system/places/images/:media_image_story_id/:style/:basename.:extension",
                   :styles => {
                         :mobile_640 => {:geometry => "640x427"},
                         :mobile_1024 => {:geometry => "1024x623"},
                         :fullscreen => {:geometry => "1500>"}
                 }
           }  
+
         when  TYPE[:media_video]        
-          opt = {   :url => "/system/places/video/:media_video_story_id/:style/:basename.:extension",
-                    :styles => { 
-                      :poster => { :format => 'jpg', :time => 1 }
-                    }, 
-                    :processors => [:ffmpeg] 
-                }  
+          opt = {   
+                  :url => "/system/places/video/:media_video_story_id/:style/:basename.:extension",
+                  :styles => { 
+                    :poster => { :format => 'jpg', :time => 1 }
+                  }, 
+                  :processors => [:ffmpeg]
+          }  
+
          when  TYPE[:slideshow_image]        
-          opt = {   :url => "/system/places/slideshow/:slideshow_image_story_id/:style/:basename.:extension" ,
-                    :styles => {                   
-                      :mobile_640 => {:geometry => "640x427"},
-                      :mobile_1024 => {:geometry => "1024x623"}, 
-                      :slideshow => {:geometry => "812x462"},                   
-                      :thumbnail => {:geometry => "44x44^"},
-                      :thumbnail_preview => {:geometry => "160x160^"}
-                    },
-                    :convert_options => {
-                      :thumbnail => "-gravity center -extent 44x44",
-                      :thumbnail_preview => "-gravity center -extent 160x160"
-                    }
-                  }    
+          opt = {   
+                  :url => "/system/places/slideshow/:slideshow_image_story_id/:style/:basename.:extension" ,
+                  :styles => {                   
+                    :mobile_640 => {:geometry => "640x427"},
+                    :mobile_1024 => {:geometry => "1024x623"}, 
+                    :slideshow => {:geometry => "812x462"},                   
+                    :thumbnail => {:geometry => "44x44^"},
+                    :thumbnail_preview => {:geometry => "160x160^"}
+                  },
+                  :convert_options => {
+                    :thumbnail => "-gravity center -extent 44x44",
+                    :thumbnail_preview => "-gravity center -extent 160x160"
+                  }
+          }    
 
               
       end    

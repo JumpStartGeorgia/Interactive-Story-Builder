@@ -50,7 +50,18 @@
       <div id='mediaVideoBox' <%=  @item.media_type == Medium::TYPE[:image]  ? "style=display:none;" : "" %> >
         <label class=" control-label" for="media-video-preview"><%= t('activerecord.attributes.medium.video') %></label>
         <% if  @item.video.present? && @item.video.asset.exists? %>
-          <a class='btn btn-default preview' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" ><%= t('app.buttons.preview_video') %></a>
+          <% if @item.video.id.present? %>
+            <% if @item.video.processed %>
+              <a class='btn btn-default preview' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" ><%= t('app.buttons.preview_video') %></a>
+              <span class="processed">
+                <%= t('app.msgs.video_processed') %>
+              </span>
+            <% else %>
+              <span class="not-processed">
+                <%= t('app.msgs.video_not_processed') %>
+              </span>
+            <% end %>
+          <% end %>
         <% end %>
         <%= as.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:"video/mp4" }, label: false %>
         <%= as.input :asset_type, :as => :hidden %>

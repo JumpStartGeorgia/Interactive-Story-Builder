@@ -541,9 +541,25 @@ body#storybuilder_form{
       display: none;
     }
   }
-
 }
 
 .file.input.form-group .form-wrapper{
   display:inline-block;
+}
+
+#mediaVideoBox{
+  span{
+    margin-left: 10px;
+    font-style: italic;
+    padding: 6px 12px;
+    color: #fff;
+    border-radius: 4px;
+    &.processed{
+      background-color: #5cb85c;
+    }
+    &.not-processed{
+      background-color: #d9534f;
+    }
+  }
+
 }

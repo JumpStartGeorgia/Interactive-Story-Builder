@@ -345,6 +345,8 @@ en:
       nothing_selected: Please select a section/item to delete
       fail_delete: The section/item could not be delted
       confirm_delete: Are you sure you want to delete this section/item?
+      video_processed: Your video is processed and available
+      video_not_processed: Your video is being processed
   section_types:
     content:
       name: Content
