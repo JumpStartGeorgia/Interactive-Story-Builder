@@ -7,7 +7,7 @@ class Notification < ActiveRecord::Base
   validates :user_id, :notification_type, :presence => true
 
   TYPES = {:published_story => 1, :published_story_by_author => 2, :story_comment => 3,
-           :published_news => 4, :staff_pick_selection => 5, :new_user => 6, :story_collaboration => 7}
+           :published_news => 4, :staff_pick_selection => 5, :new_user => 6, :story_collaboration => 7, :processed_videos => 8}
 
   # see if user already following another user
   def self.already_following_user(user_id, follow_user_id)

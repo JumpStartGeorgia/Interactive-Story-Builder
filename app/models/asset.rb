@@ -19,17 +19,18 @@ class Asset < ActiveRecord::Base
   validates :asset_type, inclusion: { in: TYPE.values }
   
 
-  attr_accessor :init_called, :asset_exists, :stop_check_thumbnail
+  attr_accessor :init_called, :asset_exists, :stop_check_thumbnail, :process_video
   
   after_initialize :init
 
   before_post_process :init
   before_post_process :transliterate_file_name
   
-  before_create :set_processed_flag
+  before_validation :set_processed_flag
   
   # if this is a video, set the flag to false (default is true)
   def set_processed_flag
+#logger.debug "**************** processed = #{self.asset_type != TYPE[:media_video]}"
     self.processed = self.asset_type != TYPE[:media_video]
   end
   
@@ -162,4 +163,12 @@ class Asset < ActiveRecord::Base
   end
  
 
+  # get all of the video records for a story
+  def self.videos_for_story(story_id)
+    sql = "select a.* from sections as s inner join media as m on m.section_id = s.id join assets as a on a.item_id = m.id "
+    sql << "where a.asset_type = "
+    sql << TYPE[:media_video].to_s
+    sql << " and s.story_id = ?"
+    find_by_sql([sql, story_id])
+  end
 end

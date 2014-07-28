@@ -34,6 +34,7 @@ class Medium < ActiveRecord::Base
 
   # if this is a video, generate the image for the video
   def create_video_image
+#Rails.logger.debug "@@@@@@@@@@@@@@@@   create_video_image"
     if video_type? && video_exists?
       # get the image
       image_file = "#{Rails.root}/public#{self.video.asset.url(:poster, false)}"

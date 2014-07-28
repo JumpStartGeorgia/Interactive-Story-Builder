@@ -319,6 +319,116 @@ class NotificationTrigger < ActiveRecord::Base
     end
   end
   
+  #################
+  ## processed videos
+  #################
+  # if there are any items in /script/video_processing/processed.csv
+  # update the asset processed flag, record trigger and send
+  def self.process_processed_videos
+    require 'csv'
+    
+    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    queue_file = "#{Rails.root}/script/video_processing/processed.csv"
+    new_file = "#{Rails.root}/script/video_processing/process_triggers.csv"
+    orig_locale = I18n.locale
+
+    # if file does not exist, stop
+    if File.exists? queue_file
+      puts "$$$$$$$$$$$$$$$$ files exists!"
+      # move file to new name so any current processing can continue
+      FileUtils.mv queue_file, new_file
+      
+      # read in the contents of the file
+      videos = []
+      CSV.parse(File.new(new_file)) do |row|
+        if row.present?
+          videos << row
+        end
+      end
+
+      puts "$$$$$$$$$$$$$$$$ videos = #{videos}"
+      
+      if videos.present?
+        Asset.transaction do
+          # mark assets as processed
+          puts "$$$$$$$$$$$$$$$$ - marking as processed"
+          asset_ids = videos.map{|x| x[1]}.uniq
+          Asset.where(:id => asset_ids).update_all(:processed => true)
+
+          # create notification for each user
+          # - notification email has all stories in one email
+          # - trigger is created at end
+          story_ids = videos.map{|x| x[0]}.uniq
+          puts "$$$$$$$$$$$$$$$$ - story ids = #{story_ids}"
+          stories = Story.where(:id => story_ids)
+          if stories.present?
+            puts "$$$$$$$$$$$$$$$$ - found stories!"
+            user_ids = stories.map{|x| x.user_id}.uniq
+            if user_ids.present?
+              puts "$$$$$$$$$$$$$$$$ - story ids = #{user_ids}"
+              user_ids.each do |user_id|
+                user = User.find_by_id(user_id)
+                if user.present?
+                  user_stories = stories.select{|x| x.user_id == user_id}
+                  if user_stories.present?
+                    I18n.locale = user.notification_language.to_sym
+                    message = Message.new
+                    message.email = user.email
+                    message.locale = I18n.locale
+                    message.subject = I18n.t("mailer.notification.processed_videos.subject", :locale => I18n.locale)
+                    message.message = I18n.t("mailer.notification.processed_videos.message", :locale => I18n.locale)                  
+                    message.message_list = []
+
+                    user_stories.each do |story|
+                      # get videos for this story
+                      videos = Asset.videos_for_story(story.id)
+                      if videos.present?
+                        exists_videos = videos.select{|x| x.asset.exists?}
+                        if exists_videos.present?
+                          total = exists_videos.length
+                          processed = exists_videos.select{|x| x.processed == true}.length
+                          info = []
+                          info << story.title
+                          info << story.id
+                          info << processed 
+                          info << total
+                          info << exists_videos.select{|x| x.processed == true}.map{|x| x.asset_file_name}
+                          info << exists_videos.select{|x| x.processed == false}.map{|x| x.asset_file_name}
+                          message.message_list << info
+                        end
+                      end
+                    end
+                    puts "$$$$$$$$$$$$$$$$ - message list = #{message.message_list}"
+                    
+                    # send the notification to this user
+                    NotificationMailer.send_processed_videos(message).deliver if message.message_list.present?
+
+                    # record notifications
+                    user_videos = videos.select{|x| user_stories.map{|y| y.id}.include?(x[0])}
+                    if user_videos.present?
+                      user_videos.each do |user_video|
+                        NotificationTrigger.create(:notification_type => Notification[:processed_videos],
+                          :identifier => user_video[1],
+                          :processed => true
+                        )
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+      
+      # delete the file
+      FileUtils.rm new_file
+    end
+
+    # reset the locale      
+    I18n.locale = orig_locale
+  end  
+  
   
 protected
 

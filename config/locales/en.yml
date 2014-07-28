@@ -128,6 +128,15 @@ en:
         msg: Message
         accept_link: Accept the Invitation
         all_invitations: View all of your Story Builder collaboration invitations.
+      processed_videos:
+        subject: "Your videos on Story Builder have been processed!"
+        message: "The following stories of yours have videos that have completed processing:"
+        story_title: 'Story:'
+        status: 'Video Processing Status: %{processed} of %{total} completed'
+        processed: 'Videos Processed:'
+        not_processed: 'Videos Still Processing:'
+        none_processed: No vidoes have been processed.
+        none_processing: All videos for have been processed!
   helpers:
     actions: Actions
     links:

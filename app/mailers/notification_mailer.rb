@@ -37,5 +37,10 @@ class NotificationMailer < ActionMailer::Base
     mail(:to => "#{message.email}",
 			:subject => I18n.t("mailer.notification.story_collaboration.subject"))
   end
+  def send_processed_videos(message)
+    @message = message
+    mail(:to => "#{message.email}",
+			:subject => I18n.t("mailer.notification.processed_videos.subject"))
+  end
 
 end

@@ -1,0 +1,30 @@
+<%= @message.message %>
+
+<% @message.message_list.each do |msg| %>
+  <%= I18n.t('mailer.notification.processed_videos.story_title') %> <%= "#{msg[0]} - #{sections_story_url(:id => msg[1], :locale => @message.locale)}" %>
+
+    <%= I18n.t('mailer.notification.processed_videos.status', :processed => msg[2], :total => msg[3]) %>
+
+    <%= I18n.t('mailer.notification.processed_videos.processed') %>
+    <% if msg[4].present? %>
+      <% msg[4].each do |item| %>
+      <%= "- #{item}" %>
+      <% end %>
+    <% else %>
+      <%= I18n.t('mailer.notification.processed_videos.none_processed') %>
+    <% end %>
+
+    <%= I18n.t('mailer.notification.processed_videos.not_processed') %>
+    <% if msg[5].present? %>
+      <% msg[5].each do |item| %>
+      <%= "- #{item}" %>
+      <% end %>
+    <% else %>
+      <%= I18n.t('mailer.notification.processed_videos.none_processing') %>
+    <% end %>
+
+  ----------------------------
+
+<% end %>
+
+  

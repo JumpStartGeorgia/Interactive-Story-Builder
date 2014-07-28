@@ -3,10 +3,10 @@
 echo '---------------'
 echo '---------------'
 
-file_processing=./script/processing
-file_to_process=./script/to_process.csv
-file_processed=./script/processed.csv
-start_path='./public'
+file_processing=processing
+file_to_process=to_process.csv
+file_processed=processed.csv
+start_path='../../public'
 processed_folder='/processed/'
 
 ####################################
@@ -27,12 +27,13 @@ echo total number of lines: $num_lines
 
 ####################################
 # if there are rows , continue
-if [ "$num_lines" -gt 0 ]; then
-  index=0;
-  while [ $index -lt $num_lines ]; do
+#if [ "$num_lines" -gt 0 ]; then
+#  index=0;
+  while [ "$num_lines" -gt 0 ]; do
     echo '---------------'
-    echo current row: $index
-    ((index++))
+#    echo current row: $index
+#    echo total number of lines: $num_lines
+#    $((index+1))
 
     ####################################
     # read in the first row
@@ -93,13 +94,19 @@ if [ "$num_lines" -gt 0 ]; then
       fi  
 
 
-      ####################################
-      # delete the first row since the image is processed
-      sed -i '1d' $file_to_process
-
     fi
+
+    ####################################
+    # delete the first row since the image is processed
+    sed -i '1d' $file_to_process
+
+
+    ####################################
+    # get number of lines in file
+    num_lines=$(wc -l < $file_to_process)
+    echo ****total number of lines: $num_lines
   done
-fi
+#fi
 
 
 ####################################
