@@ -487,11 +487,13 @@
           if (isMobile()) return false;
 
             <% if !@export %>                           
-               var _video_assets = "/system/places/video/<%= @story.id %>/",
+               var _video_assets = "/system/places/video/<%= @story.id %>/original/",
+              _poster_assets = "/system/places/video/<%= @story.id %>/poster/",
               _image_assets = "/system/places/images/<%= @story.id %>/original/",
               _audio_assets = "/system/places/audio/<%= @story.id %>/";
             <% else %>
-              var _video_assets = "media/video/",
+              var _video_assets = "media/video/original/",
+                  _poster_assets = "/media/video/poster/",
                   _image_assets = "media/images/original/",
                   _audio_assets = "media/audio/";
             <% end %> 
@@ -564,7 +566,7 @@
 
           var video = container.filter(function(d) { return d.video; }).append("video")
               .attr("preload", "none")
-              .attr("poster", function(d) { return  _video_assets + d.video + ".jpg"; })
+              .attr("poster", function(d) { return  _poster_assets + d.video + ".jpg"; })
               .property("loop", function(d) { return !d.animation; })
               .property("loop", function(d) { return d.loop; })
               .text("Your browser does not support this video.");

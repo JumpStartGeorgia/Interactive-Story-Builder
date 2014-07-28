@@ -61,7 +61,7 @@ class Asset < ActiveRecord::Base
                 }
           }  
         when  TYPE[:media_video]        
-          opt = {   :url => "/system/places/video/:media_video_story_id/:basename.:extension",
+          opt = {   :url => "/system/places/video/:media_video_story_id/:style/:basename.:extension",
                     :styles => { 
                       :poster => { :format => 'jpg', :time => 1 }
                     }, 

@@ -36,16 +36,15 @@ class Medium < ActiveRecord::Base
   def create_video_image
     if video_type? && video_exists?
       # get the image
-      image_file_name = File.basename(self.video.asset.url(:original, false), '.mp4')
-      dir_path = File.dirname(self.video.asset.url)
-      image_file = "#{Rails.root}/public#{dir_path}/#{image_file_name}.jpg"
+      image_file = "#{Rails.root}/public#{self.video.asset.url(:poster, false)}"
       # check if exists
       if File.exists?(image_file)
         File.open(image_file) do |f|
           # if image does not exist, create it
           # else, update it
           if self.image_exists?
-            self.image.asset = f            
+            self.image.asset = f
+            self.image.save            
           else
             self.create_image(:asset_type => Asset::TYPE[:media_image], :asset => f)
           end
