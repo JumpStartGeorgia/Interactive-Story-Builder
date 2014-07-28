@@ -6,8 +6,6 @@ echo '---------------'
 file_processing=processing
 file_to_process=to_process.csv
 file_processed=processed.csv
-start_path='../../public'
-processed_folder='/processed/'
 
 ####################################
 # see if another instance of this script is running
@@ -26,7 +24,6 @@ num_lines=$(wc -l < $file_to_process)
 echo ****number of videos left: $num_lines
 
 ####################################
-# while there are rows , continue
 while [ "$num_lines" -gt 0 ]; do
   echo '---------------'
 
@@ -40,42 +37,25 @@ while [ "$num_lines" -gt 0 ]; do
   if [ -n "$row" ]; then
     ####################################
     # pull out the file name
-    file="${row##*,}"
-    echo original file path: $file
-
+    file="${row}"
+    echo file: $file
 
     ####################################
     # set new file variables
     parent=$(dirname "$file")
     new_dir_path=$(dirname "$parent")
-    #echo $new_dir_path
-    #extension="${file##*.}"
-    #echo $extension
+    echo new_dir_path: $new_dir_path
     filename=$(basename "$file")
-    filename="${filename%.*}"
-    echo raw filename: $filename
-    original_file="$start_path$file"
-    echo path to original file: $original_file
-    new_folder="$start_path$new_dir_path$processed_folder"
-    #echo $new_folder
-    new_file="$new_folder$filename.mp4"
-    echo path to new file: $new_file
-
-
+    echo filename: $filename
+    new_file=$new_dir_path/$filename
+    echo new_file: $new_file
+    
     ####################################
     # if image exists, continue
-    if [ -e "$original_file" ]; then
-
-      ####################################
-      # if processed folder does not exist, create it
-      if [ ! -d "$new_folder" ]; then
-        mkdir "$new_folder"
-      fi  
-
-
+    if [ -e "$file" ]; then
       ####################################
       # process the image
-      ffmpeg -y -i $original_file -c:v libx264 -crf 22 $new_file
+      ffmpeg -y -i $file -c:v libx264 -crf 22 $new_file
 
 
       ####################################
@@ -87,8 +67,6 @@ while [ "$num_lines" -gt 0 ]; do
       echo "$row" >> "$file_processed"
 
     fi  
-
-
   fi
 
   ####################################
