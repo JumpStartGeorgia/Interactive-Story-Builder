@@ -7,7 +7,7 @@ class MoveVideos < ActiveRecord::Migration
     path = "#{Rails.root}/public/system/places/video/"
     original = "/original"
     poster = "/poster"
-    processed = "/procesed"
+    processed = "/processed"
     
     Dir.new(path).each do |dir|
       if !(['.', '..'].include?(dir))
@@ -56,7 +56,7 @@ class MoveVideos < ActiveRecord::Migration
     path = "#{Rails.root}/public/system/places/video/"
     original = "/original"
     poster = "/poster"
-    processed = "/procesed"
+    processed = "/processed"
 
     # for each folder in path, move files from original folder to root
     Dir.new(path).each do |dir|

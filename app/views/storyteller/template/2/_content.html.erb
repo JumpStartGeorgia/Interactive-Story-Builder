@@ -131,9 +131,9 @@
                           <% end %>
                       <% elsif m.media_type == Medium::TYPE[:video] && !m.is_processed?  %>                    
                           <% if !@export %> 
-                            <%= image_tag 'video_not_processed.png' %>
+                            <%= image_tag "video_being_processed_#{I18n.locale}.png" %>
                           <% else %>
-                            <img src="media/story/assets/video_not_processed.png>">
+                            <img src="media/story/assets/video_being_processed_#{I18n.locale}.png">
                           <% end %>
                       <% elsif m.media_type == Medium::TYPE[:video] && m.is_processed?  %>                    
                           <% if !@export %>                           
