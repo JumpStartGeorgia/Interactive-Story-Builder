@@ -22,7 +22,8 @@ Dir.new(path).each do |dir|
 
     puts "- video path = #{video_path}"
 
-FileUtils.rm_r(original_path) if Dir.exists?(original_path)
+    # this line is for use during testing only
+    #FileUtils.rm_r(original_path) if Dir.exists?(original_path)
 
 
     # create folder if not exist
@@ -36,6 +37,7 @@ FileUtils.rm_r(original_path) if Dir.exists?(original_path)
         file = File.basename(video)
         puts "- video path: #{video}"
         puts "- video file: #{file}"
+        puts "- original file: #{original_path + file}"
         # if video is not already in the original folder, add it to the list
         if !File.exists?(original_path + file)
           # copy to the original folder

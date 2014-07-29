@@ -75,7 +75,9 @@ while [ "$num_lines" -gt 0 ]; do
 
       ####################################
       # process the image
-      ffmpeg -y -i $original_file -c:v libx264 -crf 22 $new_file
+#      avconv -y -i $original_file -c:v libx264 -r 25 -crf 22 -movflags +faststart $new_file
+#      avconv -y -i $original_file -c:v libx264 -r 25 -crf 22 $new_file
+      avconv -y -i $original_file -c:v libx264 -r 25 $new_file
 
 
       ####################################
