@@ -7,21 +7,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <a href="<%= root_url(:locale => I18n.locale) %>" class="navbar-logo"><img alt="<%= t('app.common.app_name') %>" src="assets/svg/slogo_b.svg" style="vertical-align:middle;"></a>        
+        <a href="<%= root_url(:locale => I18n.locale) %>" class="navbar-logo"><img alt="<%= t('app.common.app_name') %>" src="assets/svg/slogo_b.svg" style="vertical-align:middle;"></a>
         <%= link_to(@story.title, '#', :class=>"navigation-headline navbar-brand")%>         
     </div>
 
     <div class="collapse navbar-collapse" id="story-navbar-collapse">
-      <div class="nav-about-share">
-        <div class="separator-ver"></div>
-        <div class="nav-about">
-          <a id="modalAbout" data-modalos-id="modalos-about"><%= "#{t('app.common.about_story')}" %></a>
-        </div>
-        <div class="nav-share">
-              <a id="modalShare" data-modalos-id="modalos-share" title="<%= t('app.common.share') %>"><%= "#{t('app.common.share')}" %></a>
-        </div>
-      </div>
-
           <% if @story.present? && @story.sections.present? %>                          
             <div class="nav-volume-chapters">
               <div class="nav-volume"><a href="#" class="navigation-volume"><div class="navigation-icon"></div></a></div>
@@ -39,77 +29,3 @@
     </div>
   </div>
 </nav>
-    
-<div id="modalos-about" style="display:none;" class="about-window">
-  <div class="publish">
-    <div class="day"><%= l(@story.published_at ,:format => :day) if @story.published_at.present? %></div>
-    <div class="month-year"><%= l(@story.published_at ,:format => :month_year) if @story.published_at.present? %></div>
-  </div>  
-  <div class="title"><%= @story.title %></div>
-  <div class="text"><%= @story.about.html_safe  if @story.about.present? %> </div>
-  <div class="profile-data">
-    <div class="logo">
-       <%= link_to image_tag(@story.user.avatar_url, :class=>"avatar"), "#" , 
-         :class => "avatar", :"data-toggle"=>"dropdown" %>   
-    </div>   
-    <div class="nickname"><%= "#{@story.user.nickname}" %></div>               
-  </div>    
-
-  <% if @story.categories.present? %>
-    <div class="categories">
-      <span><%= I18n.t('helpers.links.categories') %>:</span>              
-      <%= raw @story.categories.map { |t| link_to t.name, root_path(:category => t.permalink), :class=>"category" }.join('') %>
-    </div>                          
-  <% end %>
-
-  <% if @story.tag_list.present? %>
-    <div class="tags">
-      <span><%= I18n.t('helpers.links.tags') %>:</span>              
-      <%= raw @story.tag_list.map { |t| link_to t.titlecase, root_path(:tag => t.downcase), :class=>"tag" }.join('') %>                           
-    </div>
-  <% end %>
-  <div class="languages">
-    <span><%= I18n.t('helpers.links.languages') %>:</span>      
-    <div class="lang"><%= "#{ @story.language.name}" %></div>   
-  </div>      
-</div>
-<div id="modalos-share" style="display:none;" class="share-window">  
-  <div class="title"><%= "#{t('app.common.share_story')}" %></div>
-  <div class="permalink"><%= "#{t('app.common.permalink')}" %>:</div>
-  <div class="permalink-link"><a href="<%= storyteller_show_url(@story.permalink) %>"><%= storyteller_show_url(@story.permalink) %></a></div>
-  <div class="share">
-    <div class="facebook">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=storybuilder.jumpstart.ge" onclick="javascript:window.open(this.href,
-                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">  
-          <i class="s i-facebook-w"></i><%= "#{t('app.common.share_facebook')}" %></a>      
-       
-    </div>
-    <div class="twitter">
-      <a href='https://twitter.com/share?url=<%= storyteller_show_url(@story.permalink) %>&text=<%= @story.title %>' onclick="javascript:window.open(this.href,
-                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-                        <i class="s i-twitter-w"></i><%= "#{t('app.common.share_twitter')}" %>
-      </a>
-    </div>
-    <div class="more">
-        <a href='#'>
-                        <i class="s i-plus"></i>
-            </a>
-    </div>    
-  </div>
-  <div class="embed">
-    <div class="embed-icon"><img src="assets/png/embed.png"/></div>
-    <div class="embed-text"><%= "#{t('app.msgs.embed_code')}" %>:</div>
-    <div class="embed-code">
-   <textarea rows="4" cols="38"  data-iframe-link="<%=embed_url(@story.permalink) %>"
-    readonly="" onfocus="setTimeout(function (t){ t.select(); }, 10, this);" onmouseup="return false;"><iframe src='<%=embed_url(@story.permalink) %>?type=partial' width='350' height='100%' frameborder='0'></iframe></textarea>
-      <div class="embed-type-switcher">
-        <div class="partial selected" title="<%= "#{t('app.common.partial_text')}" %>"><%= "#{t('app.common.partial')}" %></div>
-        <div class="full" title="<%= "#{t('app.common.full_text')}" %>"><%= "#{t('app.common.full')}" %></div>
-      </div>
-      <div class="embed-size-w">
-        <input type="text" value="350" class="iframe-size"/>
-        <span>px <%= "#{t('app.common.wide')}" %></span>
-      </div>
-      </div>      
-  </div>
-</div>

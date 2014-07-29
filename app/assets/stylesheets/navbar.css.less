@@ -348,8 +348,6 @@
   border:0px;
   background-color:transparent;  
   width:100%;
-
-
   display:inline-block;
   opacity: 1;
   -webkit-border-radius: 0px;
@@ -365,55 +363,52 @@
   top:100%;*/
   min-width: 115px;
 }
+
 .dropdown-menu > li{  
   border: 0px;  
 /*  display:inline-block;*/
   padding-left:0px;
-
+  line-height:20px !important;
   width:100%;
 
 }
 .dropdown-menu > li > a
 {
-  padding:5px 14px 5px 14px; 
+  color: #333333;
+  opacity:0.8;
+  padding:5px 14px 5px 14px !important; 
+  line-height:20px !important;
 }
 .dropdown-menu > li > a:hover
 {
-  padding:5px 14px 5px 14px; 
-}
-
-.open .dropdown-menu > li > a
-{
-  opacity:0.8;
-  color: #333333;
-  padding:5px 14px 5px 14px;  
-}
-.open .dropdown-menu > li > a:hover
-{
   opacity:1;
-  padding:5px 14px 5px 14px;  
+  line-height:20px !important;
+  padding:5px 14px 5px 14px !important; 
 }
 
 
   .settings
   {
     float:right !important;    
-  }
-  .settings > .dropdown-menu > li
-  {
-    width:auto !important;
-  }
-  .settings > .dropdown-menu > li > a > span
-  {
-    display:none;
-  }
-  .settings .dropdown-toggle
-  {
-    float:left;
-  }
+    .dropdown-toggle
+    {
+      display:none !important;
+    }
 
+    > .dropdown-menu 
+    {
+      > li
+      {
+        width:auto !important;
+        display:inline-block;
+        > a > span
+        {
+          display:none;
+        }
+      }
+    }    
   }
-
+}
   /* Extra Small Devices, Phones */ 
   @media only screen and (min-width : 480px) {
 

@@ -102,15 +102,14 @@
     z-index: 3;
     margin:0px auto;    
     text-shadow: 0 1px 2px #000;
-    background-image: url(<%= (@export ? "assets/png/" : "/template/#{@template}/images/png/") + 'scroll.png'%>);       
+/*    background-image: url(<%= (@export ? "" : "/") + 'assets/png/scroll.png'%>);       
     background-position: 50% 0%;
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat; */
     width:100%;
   }
 
   .scroll-prompt svg {
-    fill: none;    
-    stroke-width: 2px;       
+    fill: #fff;             
     position:relative;
     top:28px;
     animation:arrows infinite;

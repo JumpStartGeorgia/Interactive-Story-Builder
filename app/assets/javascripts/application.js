@@ -108,14 +108,11 @@ $(".navbar-collapse").swipe(function( direction, offset ) {
     $('.navbar-toggle').trigger('click');
 });
 
-  $('.navbar-story .navbar-brand').width($('.navbar-story .navbar-toggle').is(':visible') ? $(window).width() - 90 : 'auto');
+  $('.navbar-story .navbar-brand').width($('.navbar-story .navbar-toggle').is(':visible') ? $(window).width() - 103 : 'auto');
 
 
 $(window).resize(function() {   
-
-
-    $('.navbar-story .navbar-brand').width($('.navbar-story .navbar-toggle').is(':visible') ? $(window).width() - 90 : 'auto');
-
+    $('.navbar-story .navbar-brand').width($('.navbar-story .navbar-toggle').is(':visible') ? $(window).width() - 103 : 'auto');
 });
 
   // fancy select boxes with search capability

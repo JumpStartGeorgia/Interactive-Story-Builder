@@ -106,13 +106,13 @@ $(document).ready(function() {
         var opts_def = 
         {
         	topOffset: $(v).position().top + $(v).height() + 30,        	        
-        	paddings :0,
-        	contentscroll:false,
-        	width:662
+        	paddings :20,
+        	contentscroll:false,         
+        	width:722
         };
         if(type == 'image')
         {
-    	 	output = "<img src='" +  $(this).data('image-path') + "' width='640px'/>";
+    	 	output = "<img src='" +  $(this).data('image-path') + "' style='width:640px;'/>";
         }
         else if(type == 'video')
         {
@@ -122,9 +122,9 @@ $(document).ready(function() {
     					  	"</video>";
          opts = {
             topOffset: $(v).position().top + $(v).height() + 30,                   
-            paddings :0,
+            paddings :20,
             contentscroll:false,
-            width:662,
+            width:722,
             before_close:function(t)
             {
                $(t).find('video').each(function(){ this.pause(); })
