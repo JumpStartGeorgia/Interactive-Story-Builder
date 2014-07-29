@@ -11,7 +11,7 @@
          <%= link_to(image_tag('svg/slogo_b.svg'), root_url(:locale => I18n.locale), :title => t('app.common.embed_slogan'), :class => 'navbar-logo') %>
        <% end %>
        <% if @story.present? %>
-         <%= link_to(@story.title + "adsfasdf asfdasasdfdasf asdf sfs dsf asdf asdf dasf asfad asdf asf adsf adsf ", url_for, :class=>"navigation-headline navbar-brand") %>  
+         <%= link_to(@story.title, url_for, :class=>"navigation-headline navbar-brand") %>  
        <% end %>    
     </div>
 

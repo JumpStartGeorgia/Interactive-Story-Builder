@@ -447,6 +447,9 @@ body#storybuilder_form{
   top:1px;
   left:1px;
   width:auto;
+  .dropdown-menu > li > a
+  {padding:6px 11px;}
+
 }
 
 .story-edit-menu > ul.nav > li > ul > li > a i.glyphicon
@@ -482,7 +485,7 @@ body#storybuilder_form{
 {
     overflow:hidden;
     overflow-y: auto;    
-      max-height: 99%;
+    max-height: 99%;
 }
 
 #story_permalink

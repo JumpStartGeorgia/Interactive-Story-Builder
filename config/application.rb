@@ -23,6 +23,7 @@ module BootstrapStarter
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
+
     # Activate observers that should always be running.
     config.active_record.observers = :user_observer, :story_observer, :news_observer, :invitation_observer
 

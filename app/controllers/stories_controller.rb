@@ -467,14 +467,16 @@ class StoriesController < ApplicationController
   end
 
   def publish
+
     @item = Story.find_by_id(params[:id])
     publishing = !@item.published
     pub_title = ''
     error = false
     respond_to do |format|    
-
+      
       if publishing
-        if !(@item.about.present? && @item.asset_exists?)                
+        if !(@item.about.present? && @item.asset_exists?)                 
+                  view_context.log(@item.sections.map{|t| t.content? && t.content.content.present? }.count(true) )
            format.json {render json: { e:true, msg: (t('app.msgs.error_publish_missing_fields', :obj => @item.title) +  
                 " <a href='" +  edit_story_path(@item) + "'>" + t('app.msgs.error_publish_missing_fields_link') + "</a>")} }  
            error = true       
@@ -484,7 +486,7 @@ class StoriesController < ApplicationController
         end            
       end
 
-  
+
       if !error 
         if @item.update_attributes(published: publishing)     
           flash[:success] =u I18n.t("app.msgs.success_#{publishing ? '' :'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                   
@@ -516,12 +518,10 @@ end
       story_id = params[:id]
       template_id = @story.template_id
 
-      if File.directory?("#{Rails.root}/public/template/#{template_id}/fonts")
-          FileUtils.cp_r "#{Rails.root}/public/template/#{template_id}/fonts", "#{path}/assets"
+      if File.directory?("#{Rails.root}/public/template/#{template_id}/assets")
+          FileUtils.cp_r "#{Rails.root}/public/template/#{template_id}/assets/", "#{path}/"
       end
-      if File.directory?("#{Rails.root}/public/template/#{template_id}/images")
-        FileUtils.cp_r "#{Rails.root}/public/template/#{template_id}/images", "#{path}/assets"
-      end
+
 
       if File.directory?("#{Rails.root}/public/system/places/images/#{story_id}/.")
           FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{story_id}/.", "#{mediaPath}/images"
@@ -536,7 +536,7 @@ end
         FileUtils.cp_r "#{Rails.root}/public/system/places/slideshow/#{story_id}/.", "#{mediaPath}/slideshow"
       end
       @export = true
- 
+
       File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/index', :layout => false) }  
       send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :filename=>"#{filename}.tar.gz"
       

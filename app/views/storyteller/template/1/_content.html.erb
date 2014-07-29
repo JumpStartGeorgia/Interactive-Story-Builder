@@ -280,7 +280,7 @@
           if (height > (720*.59) && window.innerWidth < 768) height = (720*.59);
 
           var firstVideo = document.querySelector(".video-sequence");
-          if(firstVideo.length)
+          if(firstVideo !== null && firstVideo.length)
           {
             firstVideo.querySelector(".video:first-of-type .video-container")[0].style.height = height + "px";
             firstVideo.querySelector(".video:first-of-type .video-headline")[0].style.height = height + "px";

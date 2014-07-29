@@ -1,10 +1,6 @@
 <% if @export %>
   <%= render partial: "layouts/storyteller_nav_exp" %>
-<% else %>
-<% log(@no_nav) %>
-  <% if !@no_nav %>
-
-  	<%= render partial: "layouts/storybuilder_nav" %>  
-  <% end %> 
+<% else %>  
+  <%= render partial: "layouts/storybuilder_nav" if !@no_nav %>    
   <%= render partial: "layouts/storyteller_nav" %>   
 <% end %>      
