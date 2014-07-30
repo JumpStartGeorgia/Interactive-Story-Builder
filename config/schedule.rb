@@ -18,6 +18,7 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+#env :PATH, '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin'
 set :output, "log/cron.log"
 job_type :video_processing_script, "cd :path/script/video_processing && sh :task >> :path/log/cron.log 2>&1"
 
@@ -29,6 +30,8 @@ end
 # process videos
 every 3.minutes do
   video_processing_script "process_videos.sh"
+end
+every 6.minutes do
   runner "NotificationTrigger.process_processed_videos"
 end
 

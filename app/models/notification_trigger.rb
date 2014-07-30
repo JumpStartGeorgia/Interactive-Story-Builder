@@ -327,14 +327,14 @@ class NotificationTrigger < ActiveRecord::Base
   def self.process_processed_videos
     require 'csv'
     
-    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-    queue_file = "#{Rails.root}/script/video_processing/processed.csv"
-    new_file = "#{Rails.root}/script/video_processing/process_triggers.csv"
-    orig_locale = I18n.locale
+    puts "----"
+    queue_file = "#{Rails.root}/public/system/video_processing/processed.csv"
+    new_file = "#{Rails.root}/public/system/video_processing/process_triggers.csv"
+    orig_locale = I18n.locale 
 
     # if file does not exist, stop
     if File.exists? queue_file
-      puts "$$$$$$$$$$$$$$$$ files exists!"
+      puts "-- files exists!"
       # move file to new name so any current processing can continue
       FileUtils.mv queue_file, new_file
       
@@ -346,12 +346,12 @@ class NotificationTrigger < ActiveRecord::Base
         end
       end
 
-      puts "$$$$$$$$$$$$$$$$ videos = #{videos}"
+      puts "-- videos = #{videos}"
       
       if videos.present?
         Asset.transaction do
           # mark assets as processed
-          puts "$$$$$$$$$$$$$$$$ - marking as processed"
+          puts "-- - marking as processed"
           asset_ids = videos.map{|x| x[1]}.uniq
           Asset.where(:id => asset_ids).update_all(:processed => true)
 
@@ -361,13 +361,13 @@ class NotificationTrigger < ActiveRecord::Base
             # - notification email has all stories in one email
             # - trigger is created at end
             story_ids = videos.map{|x| x[0]}.uniq
-            puts "$$$$$$$$$$$$$$$$ - story ids = #{story_ids}"
+            puts "-- - story ids = #{story_ids}"
             stories = Story.where(:id => story_ids)
             if stories.present?
-              puts "$$$$$$$$$$$$$$$$ - found stories!"
+              puts "-- - found stories!"
               user_ids = stories.map{|x| x.user_id}.uniq
               if user_ids.present?
-                puts "$$$$$$$$$$$$$$$$ - story ids = #{user_ids}"
+                puts "-- - story ids = #{user_ids}"
                 user_ids.each do |user_id|
                   user = User.find_by_id(user_id)
                   if user.present?
@@ -400,7 +400,7 @@ class NotificationTrigger < ActiveRecord::Base
                           end
                         end
                       end
-                      puts "$$$$$$$$$$$$$$$$ - message list = #{message.message_list}"
+                      puts "-- - message list = #{message.message_list}"
                       
                       # send the notification to this user
                       NotificationMailer.send_processed_videos(message).deliver if message.message_list.present?

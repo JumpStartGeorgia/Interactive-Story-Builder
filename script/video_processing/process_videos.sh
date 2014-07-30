@@ -4,11 +4,18 @@ echo '---------------'
 echo '---------------'
 echo $(date)
 
-file_processing=processing
-file_to_process=to_process.csv
-file_processed=processed.csv
+status_directory='../../public/system/video_processing'
+file_processing=$status_directory/processing
+file_to_process=$status_directory/to_process.csv
+file_processed=$status_directory/processed.csv
 start_path='../../public'
 processed_folder='/processed/'
+
+####################################
+# if the status directory does not exist, create it
+if [ ! -d "$status_directory" ]; then
+  mkdir -p "$status_directory"
+fi  
 
 ####################################
 # see if another instance of this script is running
@@ -79,7 +86,7 @@ while [ "$num_lines" -gt 0 ]; do
 #      avconv -y -i $original_file -c:v libx264 -r 25 -crf 22 -movflags +faststart $new_file
 #      avconv -y -i $original_file -c:v libx264 -r 25 -crf 22 $new_file
 #      avconv -y -i $original_file -c:v libx264 -r 25 $new_file
-      ffmpeg -y -i $original_file -c:v libx264 -r 25 -movflags +faststart $new_file
+      /usr/local/bin/ffmpeg -y -i $original_file -c:v libx264 -r 25 -movflags +faststart $new_file
 
 
       ####################################

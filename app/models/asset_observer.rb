@@ -8,15 +8,16 @@ Rails.logger.debug "+++++++ after_save "
 
   # add new video to queue to be processed
   def after_commit(asset)
-Rails.logger.debug "+++++++ after_commit, process video = #{asset.process_video}"
+    Rails.logger.debug "+++++++ after_commit, process video = #{asset.process_video}"
     if asset.process_video
       require 'csv'
-Rails.logger.debug "+++++++ - processing"
+      Rails.logger.debug "+++++++ - processing"
 
-      queue_file = "#{Rails.root}/script/video_processing/to_process.csv"
-      # if file does not exist, create it
-#      FileUtils.touch queue_file if !File.exists? queue_file
-      
+      queue_file = "#{Rails.root}/public/system/video_processing/to_process.csv"
+
+      # make sure directory exists
+			FileUtils.mkpath(File.dirname(queue_file))
+            
       story_id = asset.video.section.story_id
       asset_id = asset.id
       path = asset.asset.url(:original, false)
