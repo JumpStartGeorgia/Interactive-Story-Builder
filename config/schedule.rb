@@ -29,6 +29,7 @@ end
 # process videos
 every 3.minutes do
   video_processing_script "process_videos.sh"
+  runner "NotificationTrigger.process_processed_videos"
 end
 
 case @environment
@@ -36,9 +37,5 @@ when 'production'
   # send notifications
   every 30.minutes do
     runner "NotificationTrigger.process_all_types"
-  end
-  # send video process notification
-  every 5.minutes do
-    runner "NotificationTrigger.process_processed_videos"
   end
 end
