@@ -521,8 +521,12 @@ end
       if File.directory?("#{Rails.root}/public/template/#{template_id}/assets")
           FileUtils.cp_r "#{Rails.root}/public/template/#{template_id}/assets/", "#{path}/"
       end
-
-
+      if File.directory?("#{Rails.root}/public/template/#{template_id}/js")
+          FileUtils.cp_r "#{Rails.root}/public/template/#{template_id}/js/", "#{path}/"
+      end
+      if File.directory?("#{Rails.root}/public/template/#{template_id}/css")
+          FileUtils.cp_r "#{Rails.root}/public/template/#{template_id}/css/", "#{path}/"
+      end
       if File.directory?("#{Rails.root}/public/system/places/images/#{story_id}/.")
           FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{story_id}/.", "#{mediaPath}/images"
       end

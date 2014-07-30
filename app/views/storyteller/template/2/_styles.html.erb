@@ -29,11 +29,10 @@
     background-color:#fff;
     -webkit-font-smoothing: antialiased;    
   }
-
-  a {    
+  a 
+  {    
     text-decoration: none;
   }
-
   a:hover {    
      cursor:pointer;
      color: #004276;
@@ -1629,7 +1628,7 @@ font-size:13px;}
 }
 .last-section .donate a
 {
-  background-image: url(<%= (@export ? "assets/" : "/template/#{@template}/") + 'images/donate.png'%>);       
+  background-image: url(<%= (@export ? "" : "/template/#{@template}/") + 'assets/png/donate.png'%>);       
   background-size: 100% 100%;
   background-repeat:no-repeat;
   width: 267px;
@@ -1642,7 +1641,7 @@ font-size:13px;}
 }
 .last-section .donate a:hover
 {
-  background-image: url(<%= (@export ? "assets/" : "/template/#{@template}/") + 'images/donate_hover.png'%>);          
+  background-image: url(<%= (@export ? "" : "/template/#{@template}/") + 'assets/png/donate_hover.png'%>);          
   background-size: 100% 100%;
   background-repeat:no-repeat;
   width: 267px;
@@ -1651,7 +1650,7 @@ font-size:13px;}
 }
 .last-section .pigy
 {
-  background-image: url(<%= (@export ? "assets/" : "/template/#{@template}/") + 'images/pig.png'%>);          
+  background-image: url(<%= (@export ? "" : "/template/#{@template}/") + 'assets/png/pig.png'%>);          
   background-size: 100% 100%;
   background-repeat:no-repeat;
   width: 319px;

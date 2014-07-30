@@ -21,6 +21,7 @@
     <div class="powered-by">
       <%= t("app.common.powered_by") %>&nbsp;&nbsp;<a href="http://www.jumpstart.ge" target="_blank" title="<%= t("app.common.js_link_title") %>"><%= t("app.common.jumpstart") %></a>
     </div>
+
       <% if !@export %>
         <%= javascript_include_tag  *(@js.present? ? ["application", @js].flatten : ["application"]), :media => "all" %>      
   		  <script type="text/javascript">
@@ -42,5 +43,6 @@
           ga('send', 'pageview');
         </script>
     <% end %>    
+    <%= render partial: "storyteller/template/#{@template}/js"%>
   </body>
 </html> 

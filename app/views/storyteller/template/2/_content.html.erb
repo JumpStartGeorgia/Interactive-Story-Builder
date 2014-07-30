@@ -221,6 +221,7 @@
 
       </div>
     </div>  
+    <!-- #modalAbout -->
         <div class="section footer-section">        
            <div class="left">                        
             <div><a href="http://www.jumpstart.ge" target="_blank" title="<%= t("app.common.js_link_title") %>" >
@@ -237,6 +238,16 @@
            </div>
            </div>
         </div> 
+        <div id="modalos-about-project" style="display:none;" class="about-window">
+        <div class="donate?">
+         <img  class="footer-logo"/></a></div>
+            <a href="http://chca.org.ge/" style="float:left;"><img src='<%= (@export ? "" : "/template/#{@template}/") + "assets/png/chca.png"%>'></a>
+            <p>თუ გსურთ, დაეხმაროთ შავშვების დასახლების ბავშვებს, გთხოვთ, გადარიცხოთ თანხა შემდეგ ანგარიშზე: </p>
+            <p>"თი ბი სი" ბანკი: GE09TB0328336080101001</p>
+            <p>გადარიცხვის დანიშნულების ველში, გთხოვთ, მიუთითოთ: "ბავშვები შავშვებიდან"</p>
+
+          </div>
+        </div>
       <!-- ****************************************************
       *  data hash for mobile devices , they use different images   
       ********************************************************* -->
@@ -498,7 +509,7 @@
             if(lengthTemp >= 0)
             {              
                 var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
-                last_section.append("div").attr("class","donate").append("a").attr("href","http://www.donation.ge");
+                last_section.append("div").attr("class","donate").append("a").attr('href','#').attr('id','modal-about').attr("data-modalos-id","modalos-about");
                 last_section.append("div").attr("class","pigy");              
             }
             // donation end
@@ -645,7 +656,7 @@
             if(lengthTemp >= 0)
             {              
                 var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
-                last_section.append("div").attr("class","donate").append("a").attr("href","http://www.donation.ge");
+                last_section.append("div").attr("class","donate").append("a").attr("href","#").attr('data-modalos-id','modalos-about-project').attr('id','modalAboutProject');;
                 last_section.append("div").attr("class","pigy");              
             }
             // donation end
