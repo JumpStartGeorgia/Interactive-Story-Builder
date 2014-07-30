@@ -2,6 +2,7 @@
 
 echo '---------------'
 echo '---------------'
+echo $(date)
 
 file_processing=processing
 file_to_process=to_process.csv
