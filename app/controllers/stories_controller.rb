@@ -828,8 +828,8 @@ private
   end
 
   def asset_filter
-    @css.push("stories.css", "embed.css", "modalos.css", "bootstrap-select.min.css", "token-input-facebook.css","navbar.css", "filter.css")
-    @js.push("stories.js", "modalos.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js", "zeroclipboard.min.js", "filter.js")
+    @css.push("stories.css", "embed.css", "modalos.css", "bootstrap-select.min.css", "token-input-facebook.css","navbar.css", "filter.css", "tipsy.css")
+    @js.push("stories.js", "modalos.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js", "zeroclipboard.min.js", "filter.js", "jquery.tipsy.js")
   end 
   
   def create_invitation(story, user_id=nil, email=nil, msg=nil)
@@ -866,17 +866,17 @@ private
     gon.nothing_selected = I18n.t('app.msgs.nothing_selected')
     gon.fail_delete = I18n.t('app.msgs.fail_delete')
     gon.confirm_delete = I18n.t('app.msgs.confirm_delete')
-  end
-
-  
-  def set_settings_gon
-    gon.collaborator_search = story_collaborator_search_path(params[:id])
     gon.tokeninput_collaborator_hintText = I18n.t('tokeninput.collaborator.hintText')
     gon.tokeninput_collaborator_noResultsText = I18n.t('tokeninput.collaborator.noResultsText')
     gon.tag_search = story_tag_search_path
     gon.tokeninput_tag_hintText = I18n.t('tokeninput.tag.hintText')
     gon.tokeninput_tag_noResultsText = I18n.t('tokeninput.tag.noResultsText')
     gon.tokeninput_searchingText = I18n.t('tokeninput.searchingText')
+  end
+
+  
+  def set_settings_gon
+    gon.collaborator_search = story_collaborator_search_path(params[:id])
   end
 end       
 

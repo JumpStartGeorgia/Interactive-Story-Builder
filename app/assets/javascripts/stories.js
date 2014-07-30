@@ -8,8 +8,6 @@ var method = 'n';
 var tester = null;
 $(document).ready(function() {
 
-
-
 	$('.story-tree ul').on('click','li.item > .box > .title',function(e) {
 		e.preventDefault();
 		item_id = -1;
