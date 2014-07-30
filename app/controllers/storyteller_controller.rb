@@ -9,7 +9,7 @@ class StorytellerController < ApplicationController
 
   def index
 
-    @css.push("navbar.css", "storyteller.css", "modalos.css")
+    @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css")
     @js.push("storyteller.js","modalos.js","follow.js")    
   	story = Story.select('id').is_published.find_by_permalink(params[:id])
   	@story = Story.is_published.fullsection(story.id) if story.present?  

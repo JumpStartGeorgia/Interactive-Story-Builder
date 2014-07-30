@@ -111,7 +111,7 @@ $(document).ready(function() {
     $('.afilter > a.following').click(function(e){
       pf = JSON.parse(JSON.stringify(f));
 
-      $(this).toggleClass('active').find('i').toggleClass('i-followed i-follow');
+      $(this).toggleClass('active').find('i').toggleClass('h v');
       var tmp = !($(this).attr('data-filtered-by') == "true");  
       $(this).attr('data-filtered-by', tmp.toString());   
       f[$(this).attr('data-filter-type')] = tmp.toString();

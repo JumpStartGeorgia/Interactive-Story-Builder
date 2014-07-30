@@ -22,11 +22,11 @@
           <li> 
               <% if user_signed_in? %>
                 <%= link_to new_story_path , :tabindex=>2, :class=>"build-story link" do %>
-                  <i class="i-build"></i><%= "#{t('app.common.build')}" %>
+                  <i class="s i-build"></i><%= "#{t('app.common.build')}" %>
                 <% end %>
               <% else %>
                <%= link_to new_user_session_path({:return_url=>new_story_path}), :tabindex=>2, :class=>"build-story link modalSignIn",  :"data-modalos-id"=>"modalos-sign-in" do %>
-                  <i class="i-build"></i><%= "#{t('app.common.build')}" %>
+                  <i class="s i-build"></i><%= "#{t('app.common.build')}" %>
                 <% end %>
               <% end %>
           </li> 

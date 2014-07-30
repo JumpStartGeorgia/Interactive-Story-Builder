@@ -8,10 +8,8 @@
  *= require formtastic-bootstrap
  *= require jquery.ui.core
  *= require jquery.ui.theme  
- *= require jquery.ui.dialog 
- //= require modalos   
+ *= require jquery.ui.dialog  
  *= require bootstrap_and_overrides
-
  *= require_self
 */
 
@@ -216,10 +214,10 @@ div#form-ka {
     color: #B94A48;
 }
 
-/* Footer */
+/* Footer 
 footer {
   clear:both;
-	margin-top: -50px; /* negative value of footer height */
+	margin-top: -50px;  negative value of footer height 
 	min-height: 50px !important;
 	background-color:#121212;
 	padding: 0 20px;
@@ -309,7 +307,7 @@ footer, footer ul li, footer div#right ul li {
  	color: #999999;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-
+*/
 
 /* nested form styles */
 #nested_form_container {
@@ -423,52 +421,51 @@ select, input[type="file"] {
 input[type=text]{
 	margin-bottom:0px;  
 }
-.formtastic .input
+.formtastic 
 {
-  overflow:visible;
-
+  .input
+  {
+    overflow:visible;
+  }
+  .form-control
+  {
+    display:inline-block;
+  }
+  .control-label
+  {
+    display:block;
+    clear:both;
+    margin-bottom:3px;
+    abbr
+    {
+      -webkit-border-radius: 50px;
+      -moz-border-radius: 50px;
+      border-radius: 50px;
+      background-color: #fff;
+      color: #9E9E9E !important;
+      width:21px;
+      height:20px;
+      font-size:16px;
+      font-style:normal;  
+      vertical-align:middle;
+      display:inline-block; 
+      cursor:help;
+      padding:0px;
+      border: 1px solid #9E9E9E;
+      margin-left:10px;
+      padding:4px 0px 0px 6px;
+    }
+  }  
+  .select select 
+  {
+    max-width: 72%;
+  }
 }
-.formtastic .form-group label
-{
-
-}
-.formtastic .form-control
-{
-  display:inline-block;
-}
-.formtastic .control-label
-{
-  display:block;
-  clear:both;
-margin-bottom:3px;
-}
-.formtastic .control-label abbr
-{
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  border-radius: 50px;
-  background-color: #fff;
-  color: #9E9E9E !important;
-  width:21px;
-  height:20px;
-  font-size:16px;
-  font-style:normal;  
-  vertical-align:middle;
-  display:inline-block; 
-  cursor:help;
-  padding:0px;
-  border: 1px solid #9E9E9E;
-  margin-left:10px;
-  padding:4px 0px 0px 6px;
-}
-.formtastic .select select {
-  max-width: 72%;
-}
-
-
 .fb-like
-{top: -14px;
-margin-right:8px;}
+{
+  top: -14px;
+  margin-right:8px;
+}
 .powered-by
 {
   font-family:opensans-l,verdana;
@@ -480,17 +477,16 @@ margin-right:8px;}
   color:#333;
   background-color:transparent;
   float:right;
+  a
+  {
+    color:#333;
+    &:hover, &:focus
+    {
+      text-decoration:underline;  
+      color:#000;
+    }
+  }
 }
-.powered-by a
-{
-  color:#333;
-}
-.powered-by a:hover,.powered-by a:focus
-{
-  text-decoration:underline;  
-  color:#000;
-}
-
 
 /* storybuilder image */
 i.s
@@ -504,7 +500,6 @@ i.s
 }
 i.xs
 {
-  //.i-build-w,b
     background-color: transparent;   
     background-repeat: no-repeat;
     display: inline-block;
@@ -512,6 +507,8 @@ i.xs
     width:16px; 
     height:17px; 
 }
+i.h{visibility:hidden;}
+i.v{visibility:visible;}
 .disabled { opacity:0.5 !important; }
 .i-search-w   { background: url('/assets/svg/search_w.svg'); }
 .i-search-b   { background: url('/assets/svg/search_b.svg'); }
@@ -519,8 +516,8 @@ i.xs
 .i-liked      { background: url('/assets/svg/liked.svg') 0px -2px; }  
 .i-staffpick  { background: url('/assets/svg/staffpick.svg') 0px -3px; }
 .i-staffpicked{ background: url('/assets/svg/staffpick_a.svg') 0px -3px; }
-.i-follow     { background: url('/assets/svg/check.svg'); visibility:hidden; }
-.i-followed   { background: url('/assets/svg/check.svg'); }
+.i-follow-w   { background: url('/assets/svg/check_w.svg'); }
+.i-follow-b   { background: url('/assets/svg/check_b.svg'); }
 .i-build-w    { background: url('/assets/svg/build_w.svg'); }
 .i-build-b    { background: url('/assets/svg/build_b.svg'); }
 .i-share      { background: url('/assets/svg/share.svg') 0px -2px; }
@@ -547,7 +544,6 @@ i.xs
 .i-js-w       { background: url('/assets/svg/js_w.svg'); width:103px !important; height:20px !important; }
 .i-js-c       { background: url('/assets/svg/js_c.svg'); width:188px !important; height:50px !important; }
 
-
 /* show result of nickname permalink check */
 #user_nickname_input + div#check_nickname_results{
   margin-bottom: 1em;
@@ -563,18 +559,15 @@ i.xs
     }
   }
 }
-
 /* for bootstrap select min */
 .bootstrap-select.btn-group .btn .filter-option{
   padding: 4px 14px;
 } 
-
 /* login popup */
 #login-form .submit-row label
 {
   margin-bottom:30px;
 }
-
 #login-form,#reset-password-form,#signup-form
 {
   .title
@@ -607,15 +600,15 @@ i.xs
       line-height: 51px;
       max-width:290px;
       opacity:0.8;
-  }
-  a.facebook:hover
-  {
-    opacity:1;
-  }
-   a.facebook i
-   {
-      margin-right:10px;
-   }
+      &:hover
+      {
+        opacity:1;
+      }
+      i
+      {
+        margin-right:10px;
+      }
+    }
   }
   .facebook_or_local
   {
@@ -628,26 +621,25 @@ i.xs
       width:100%; 
       margin-bottom:15px;          
   }
-
-  .formtastic .input
+  .formtastic 
   {
+    .input
+    {
+      text-align: center;
+    }
+    input
+    {
+      margin:0px;
+      float:none;
+    }
+  }
+  .control-group 
+  {
+    width:100%;
+    margin:0px auto;
     text-align: center;
+    clear:both;
   }
-  .formtastic input
-  {    
-    margin:0px;
-    float:none;
-  }
-/*.formtastic .stringish input[size] {  
-  max-width: 260px;
-  width:72%;
-}*/
-.control-group {
-  width:100%;
-  margin:0px auto;
-  text-align: center;
-  clear:both;
-}
   .login-username
   {
     display:inline-block;
@@ -660,7 +652,6 @@ i.xs
     border-radius: 133px !important;              
     text-decoration: none;    
     height:27px;
-/*    max-width: 260px;  */
   }
   .login-password,.login-password-confirmation
   {
@@ -689,9 +680,10 @@ i.xs
     display:inline-block; 
     float:left;       
   }
-   .sign-in
-   {    float:right !important;
-   }
+  .sign-in   
+  {    
+    float:right !important;
+  }
   .sign-in,.pass-reset,.sign-up
   {
     display:inline-block;
@@ -719,7 +711,6 @@ i.xs
     -ms-transition:all .10s ease-out;
     transition:all .10s ease-out;
   }
-
   .forgot-link
   {
     display:block;
@@ -750,32 +741,29 @@ i.xs
     color:#888;          
   }
 }
-
 #news_items,#todo
 {
   margin-left:10px;
 }
-
-
-    .separator-ver
-    {      
-      height:26px !important;
-      margin: 14px 20px 0px 20px;
-      float:left;
-      border-left: 1px solid rgba(255, 255, 255, 0.32);
-      border-right:0px solid #fff;    
-    }
-    .separator-hor
-    {
-      width:100%;
-      clear:both;
-      border-bottom:1px solid #eaeaea;
-      margin-bottom:7px;
-    }
-    .separator-ver-b
-    {
-      height:20px !important;
-      margin: 10px 20px 0px 20px;
-      float:left;      
-      border-right:1px solid #a8a1a1;      
-    }  
+.separator-ver
+{      
+  height:26px !important;
+  margin: 14px 20px 0px 20px;
+  float:left;
+  border-left: 1px solid rgba(255, 255, 255, 0.32);
+  border-right:0px solid #fff;    
+}
+.separator-hor
+{
+  width:100%;
+  clear:both;
+  border-bottom:1px solid #eaeaea;
+  margin-bottom:7px;
+}
+.separator-ver-b
+{
+  height:20px !important;
+  margin: 10px 20px 0px 20px;
+  float:left;      
+  border-right:1px solid #a8a1a1;      
+}  

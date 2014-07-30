@@ -81,39 +81,38 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag  *(@js.present? ? ["application", @js].flatten : ["application"]), :media => "all" %>      
-       <script>
-function calculate_workspace()
-{
-  var t = $('nav:last');
- 
-  var topOffset = t.height()+t.offset().top;
-  var bw = $(".builder-wrapper");  
+    <script>
+      function calculate_workspace()
+      {
+        var t = $('nav:last');
+       
+        var topOffset = t.height()+t.offset().top;
+        var bw = $(".builder-wrapper");  
 
-  var bwh =bw.height($(window).height()-topOffset).height();
+        var bwh =bw.height($(window).height()-topOffset).height();
 
-  var sidebar = bw.find("> .sidebar");
-  var content = bw.find("> .content");
-  
-  var toolbar = sidebar.find("> .toolbar");
-  var tree =  sidebar.find("> .story-tree");
+        var sidebar = bw.find("> .sidebar");
+        var content = bw.find("> .content");
+        
+        var toolbar = sidebar.find("> .toolbar");
+        var tree =  sidebar.find("> .story-tree");
 
-  var header = content.find("> .header");
-  var workplace = content.find("> .workplace");
+        var header = content.find("> .header");
+        var workplace = content.find("> .workplace");
 
-  tree.height(bwh - toolbar.height());
-  workplace.height(bwh - header.height());
+        tree.height(bwh - toolbar.height());
+        workplace.height(bwh - header.height());
 
-  workplace.css('top',topOffset + 'px');
-  content.width($(window).width()-bw.find('.sidebar').width());
-}
-$(document).ready(function(){
-  calculate_workspace();  
-});
-$(window).resize(function() {   
-    calculate_workspace();
-  });
-
-</script>
+        workplace.css('top',topOffset + 'px');
+        content.width($(window).width()-bw.find('.sidebar').width());
+      }
+      $(document).ready(function(){
+        calculate_workspace();  
+      });
+      $(window).resize(function() {   
+          calculate_workspace();
+      });
+    </script>
 		<script type="text/javascript">
 			I18n.defaultLocale = "<%= I18n.default_locale %>";
 			I18n.locale = "<%= I18n.locale %>";
@@ -140,8 +139,6 @@ $(window).resize(function() {
         ga('send', 'pageview');
 
       </script>
-		<% end %>
-  
-
+		<% end %>  
   </body>
 </html>

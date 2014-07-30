@@ -1,99 +1,91 @@
-   <div id="filter">  
-    <div class="mob">
-        <div class="search">
-      <%= form_tag root_path, :method => :get, :id => 'search-filter',
-      :class => "navbar-form navbar-left", :role => "search" do %>
-        <div class="form-group">            
-          <%= text_field_tag :q, params[:q], :placeholder => t('app.common.search'), :class=>"form-control search-input", :autocomplete=>'off', :tabindex => 1 %>
-        </div>
-      <% end %>  
+<div id="filter">  
+  <div class="mob">
+      <div class="search">
+    <%= form_tag root_path, :method => :get, :id => 'search-filter',
+    :class => "navbar-form navbar-left", :role => "search" do %>
+      <div class="form-group">            
+        <%= text_field_tag :q, params[:q], :placeholder => t('app.common.search'), :class=>"form-control search-input", :autocomplete=>'off', :tabindex => 1 %>
       </div>
-      <div class="filters">Filters<i class='s i-caret-b'></i></div>
-
+    <% end %>  
     </div>
+    <div class="filters">Filters<i class='s i-caret-b'></i></div>
+  </div>
+  <ul class="nav h">
+    <li class="afilter">
+      <%= link_to url_for(params.merge(:staff_pick => !@story_filter_staff_pick)),
+        :class => "staff_pick #{@story_filter_staff_pick == true ? 'active' : ''}", 
+          :tabindex => 13, 
+          :title => @story_filter_staff_pick ? t('filters.staff_pick_title_active') : t('filters.staff_pick_title_active'),
+          :"data-filtered-by" => @story_filter_staff_pick , :"data-filter-type"=>'staff_pick',
+          :'data-title' => t('filters.staff_pick_title'), :'data-title-active' => t('filters.staff_pick_title_active') do %>
 
-        <ul class="nav h">
-        <!--  <li > class="pull-right"
-           
-          </li> -->
-          <li class="afilter">
-            <%= link_to url_for(params.merge(:staff_pick => !@story_filter_staff_pick)),
-              :class => "staff_pick #{@story_filter_staff_pick == true ? 'active' : ''}", 
-                :tabindex => 13, 
-                :title => @story_filter_staff_pick ? t('filters.staff_pick_title_active') : t('filters.staff_pick_title_active'),
-                :"data-filtered-by" => @story_filter_staff_pick , :"data-filter-type"=>'staff_pick',
-                :'data-title' => t('filters.staff_pick_title'), :'data-title-active' => t('filters.staff_pick_title_active') do %>
-
-             <i class='s i-staffpick<%= "#{@story_filter_staff_pick == true ? 'ed' : ''}"%>'></i><%=  "#{t('filters.staff_pick')}" %>
-           <% end %>
+       <i class='s i-staffpick<%= "#{@story_filter_staff_pick == true ? 'ed' : ''}"%>'></i><%=  "#{t('filters.staff_pick')}" %>
+     <% end %>
+    </li>
+    <% if @categories_published.present? %>          
+      <li class="dropdown dropdown-hover category afilter">
+        <a href="#" class="dropdown-toggle<%= @story_filter_category_all ? '' : ' selected' %>" 
+          data-toggle="dropdown" tabindex="14" title="<%= t('filters.category_title') %>"
+          data-filtered-by="<%= @story_filter_category_permalink %>" 
+          data-filter-type="category" data-filter-default-label="<%= t('filters.category_header') %>"
+          data-filter-default="all">
+        <span><%= @story_filter_category_all ? t('filters.category_header') : @story_filter_category %></span><i class='s i-caret-b'></i></a>
+        <ul class="dropdown-menu afilter-list">          
+          <li class="dropdown">
+            <%= link_to I18n.t('filters.all'), "#", :class => @story_filter_category == I18n.t('filters.all') ? 'active' : '', :"data-filter" => 'all' %>
           </li>
-          <% if @categories_published.present? %>          
-           <li class="dropdown dropdown-hover category afilter">
-            <a href="#" class="dropdown-toggle<%= @story_filter_category_all ? '' : ' selected' %>" 
-              data-toggle="dropdown" tabindex="14" title="<%= t('filters.category_title') %>"
-              data-filtered-by="<%= @story_filter_category_permalink %>" 
-              data-filter-type="category" data-filter-default-label="<%= t('filters.category_header') %>"
-              data-filter-default="all">
-            <span><%= @story_filter_category_all ? t('filters.category_header') : @story_filter_category %></span><i class='s i-caret-b'></i></a>
-            <ul class="dropdown-menu afilter-list">          
-              <li class="dropdown">
-                <%= link_to I18n.t('filters.all'), "#", :class => @story_filter_category == I18n.t('filters.all') ? 'active' : '', :"data-filter" => 'all' %>
-              </li>
-              <% @categories_published.each do |cat| %>
-                <li class="dropdown">
-                  <%= link_to cat.name, "#", :class => @story_filter_category == cat.name ? 'active' : '', :"data-filter" => cat.permalink %>
-                </li>
-              <% end %>
-            </ul>
-          </li>
-          <% end %>
-          <li class="dropdown dropdown-hover language afilter">
-            <a href="#" class="dropdown-toggle<%= @story_filter_language_all ? '' : ' selected' %>" 
-              data-toggle="dropdown" tabindex="15" title="<%= t('filters.language_title') %>"
-              data-filtered-by="<%= @story_filter_language_permalink %>" 
-              data-filter-type="language" data-filter-default-label="<%= t('filters.language_header') %>" 
-              data-filter-default="all">
-              <span><%= @story_filter_language_all ? t('filters.language_header') : @story_filter_language %></span><i class='s i-caret-b'></i></a>  
-            <ul class="dropdown-menu afilter-list">          
-              <li class="dropdown">
-                <%= link_to I18n.t('filters.all'), url_for(params.merge(:language => nil)), :class => @story_filter_language == I18n.t('filters.all') ? 'active' : '', :"data-filter" => 'all' %>
-              </li>
-              <% @languages_published.each do |lang| %>
-                <li class="dropdown">
-                  <%= link_to lang.name, url_for(params.merge(:language => lang.locale)), :class => @story_filter_language == lang.name ? 'active' : '',
-                  :"data-filter" => lang.locale %>
-                </li>
-              <% end %>
-            </ul>
-          </li>
-          <li class="li-sort-label"><span class="sort-label"><%= t('filters.sort_header') %>:</span></li>
-          <li class="dropdown dropdown-hover sort afilter">
-            <a href="#" class="dropdown-toggle<%= @story_filter_sort_recent ? '' : ' selected' %>" 
-                data-toggle="dropdown" tabindex="16"  title="<%= t('filters.sort_title') %>"
-                data-filtered-by="<%= @story_filter_sort_permalink %>" data-filter-type="sort" 
-                data-filter-default="recent">
-              <span><%= @story_filter_sort %></span><i class='s i-caret-b'></i></a>
-            <ul class="dropdown-menu afilter-list">
-              <% I18n.t('filters.sort').each do |key, value| %>
-                <li class="dropdown">
-                  <%= link_to value, url_for(params.merge(:sort => key)), :class => @story_filter_sort == value ? 'active' : '', :"data-filter" => key %>
-                </li>
-              <% end %>
-            </ul>
-          </li>
-
- 
-            <li class="afilter">
-              <%= link_to url_for(params.merge(:following => !@story_filter_following)),
-                :title => @story_filter_following ? t('filters.following_title_active') : t('filters.following_title'),
-                :class => "following #{@story_filter_following == true ? 'active' : ''}", 
-                :tabindex => 17, :"data-filtered-by" => @story_filter_following , 
-                :"data-filter-type"=>'following',
-                :'data-title' => t('filters.following_title'), :'data-title-active' => t('filters.following_title_active') do %>
-
-                 <i class='s i-follow<%= "#{@story_filter_following == true ? 'ed' : ''}"%>'></i><%=  "#{t('filters.following')}" %>
-               <% end %>
+          <% @categories_published.each do |cat| %>
+            <li class="dropdown">
+              <%= link_to cat.name, "#", :class => @story_filter_category == cat.name ? 'active' : '', :"data-filter" => cat.permalink %>
             </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+    <li class="dropdown dropdown-hover language afilter">
+      <a href="#" class="dropdown-toggle<%= @story_filter_language_all ? '' : ' selected' %>" 
+        data-toggle="dropdown" tabindex="15" title="<%= t('filters.language_title') %>"
+        data-filtered-by="<%= @story_filter_language_permalink %>" 
+        data-filter-type="language" data-filter-default-label="<%= t('filters.language_header') %>" 
+        data-filter-default="all">
+        <span><%= @story_filter_language_all ? t('filters.language_header') : @story_filter_language %></span><i class='s i-caret-b'></i></a>  
+      <ul class="dropdown-menu afilter-list">          
+        <li class="dropdown">
+          <%= link_to I18n.t('filters.all'), url_for(params.merge(:language => nil)), :class => @story_filter_language == I18n.t('filters.all') ? 'active' : '', :"data-filter" => 'all' %>
+        </li>
+        <% @languages_published.each do |lang| %>
+          <li class="dropdown">
+            <%= link_to lang.name, url_for(params.merge(:language => lang.locale)), :class => @story_filter_language == lang.name ? 'active' : '',
+            :"data-filter" => lang.locale %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+    <li class="li-sort-label"><span class="sort-label"><%= t('filters.sort_header') %>:</span></li>
+    <li class="dropdown dropdown-hover sort afilter">
+      <a href="#" class="dropdown-toggle<%= @story_filter_sort_recent ? '' : ' selected' %>" 
+          data-toggle="dropdown" tabindex="16"  title="<%= t('filters.sort_title') %>"
+          data-filtered-by="<%= @story_filter_sort_permalink %>" data-filter-type="sort" 
+          data-filter-default="recent">
+        <span><%= @story_filter_sort %></span><i class='s i-caret-b'></i></a>
+      <ul class="dropdown-menu afilter-list">
+        <% I18n.t('filters.sort').each do |key, value| %>
+          <li class="dropdown">
+            <%= link_to value, url_for(params.merge(:sort => key)), :class => @story_filter_sort == value ? 'active' : '', :"data-filter" => key %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+    <li class="afilter">
+      <%= link_to url_for(params.merge(:following => !@story_filter_following)),
+        :title => @story_filter_following ? t('filters.following_title_active') : t('filters.following_title'),
+        :class => "following #{@story_filter_following == true ? 'active' : ''}", 
+        :tabindex => 17, :"data-filtered-by" => @story_filter_following , 
+        :"data-filter-type"=>'following',
+        :'data-title' => t('filters.following_title'), :'data-title-active' => t('filters.following_title_active') do %>
 
-        </ul>      
-    </div>
+         <i class='s i-follow-b <%= "#{@story_filter_following == true ? 'v' : 'h'}"%>'></i><%=  "#{t('filters.following')}" %>
+       <% end %>
+    </li>
+  </ul>      
+</div>
