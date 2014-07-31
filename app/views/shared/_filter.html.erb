@@ -21,7 +21,7 @@
             :"data-filtered-by" => @story_filter_not_published , :"data-filter-type"=>'not_published',
             :'data-title' => t('filters.not_published_title'), :'data-title-active' => t('filters.not_published_title_active') do %>
 
-         <i class='i-icon i-not-publish<%= "#{@story_filter_not_published == true ? 'ed' : ''}"%>'></i><%=  "#{t('filters.not_published')}" %>
+         <i class='s i-not-published'></i><%=  "#{t('filters.not_published')}" %>
        <% end %>
       </li>
     <% end %>

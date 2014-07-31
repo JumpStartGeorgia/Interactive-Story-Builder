@@ -172,7 +172,7 @@ class StoriesController < ApplicationController
         @item = Section.find_by_id(params[:section_id])    
       else 
         @item = Section.new(story_id: params[:id], has_marker: 0)
-      end  
+      end        
 #      @section_list = []
 #      Section::TYPE.each{|k,v| @section_list << ["#{I18n.t("section_types.#{k}.name")} - #{I18n.t("section_types.#{k}.description")}", v]} 
 #      @section_list.sort_by!{|x| x[0]}

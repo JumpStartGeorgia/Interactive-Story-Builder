@@ -26,7 +26,7 @@
             <% checked = type[1] == @item.type_id ? 'checked=checked' : '' %>
             <input <%= checked %> id="section_type_id_<%= type[1] %>" name="section[type_id]" type="radio" value="<%= type[1] %>">
             <label class="choice" for="section_type_id_<%= type[1] %>">
-              <span class="glyphicon <%= type[3] %>"></span>
+              <i class="s <%= type[3] %>"></i>
               <%= type[0] %>
               <div class="help-inline" title="<%= type[2] %>">
                 <div>?</div>

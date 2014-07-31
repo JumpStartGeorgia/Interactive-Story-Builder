@@ -15,10 +15,10 @@ class Section < ActiveRecord::Base
 
   TYPE = {content: 1, media: 2, slideshow: 3, embed_media: 4}
   ICONS = {
-    content: 'glyphicon-align-justify', 
-    media: 'glyphicon-fullscreen', 
-    slideshow: 'glyphicon-picture', 
-    embed_media: 'glyphicon-log-in'
+    content: 'i-content-b', 
+    media: 'i-fullscreen-b', 
+    slideshow: 'i-slideshow-b', 
+    embed_media: 'i-embed-b'
   }
 
   accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }

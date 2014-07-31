@@ -57,7 +57,9 @@
             </li>              
             <% if current_user.role? User::ROLES[:admin] %>
               <li>
-               <%= link_to t('helpers.links.admin'), admin_path %>
+                <%= link_to admin_path do %>         
+                  <i class="s i-users"></i><span><%= t('helpers.links.admin') %></span>
+                <% end %>    
               </li>
             <% end %>               
             <li class="signout">

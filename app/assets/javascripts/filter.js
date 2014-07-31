@@ -93,7 +93,7 @@ $(document).ready(function() {
     $('.afilter > a.not_published').click(function(e){
       pf = JSON.parse(JSON.stringify(f));
 
-      $(this).toggleClass('active').find('i').toggleClass('i-not-published i-not-publish');
+      $(this).toggleClass('active');
       var tmp = !($(this).attr('data-filtered-by') == "true");  
       $(this).attr('data-filtered-by', tmp.toString());   
       f[$(this).attr('data-filter-type')] = tmp.toString();
