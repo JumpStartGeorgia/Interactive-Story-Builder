@@ -572,7 +572,8 @@ end
       # if File.exists?("#{path}.tar.gz")    
       #   FileUtils.remove_file("#{path}.tar.gz",true)   
       # end
-    rescue
+    rescue Exception => e  
+      view_context.log(e)
        flash[:error] =I18n.t("app.msgs.error_export")                           
        redirect_to stories_url
     end   
