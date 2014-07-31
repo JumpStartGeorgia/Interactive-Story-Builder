@@ -132,7 +132,7 @@ class StoriesController < ApplicationController
   end
  
   def review    
-    @css.push("navbar.css", "storyteller.css", "modalos.css")
+    @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css")
     @js.push("storyteller.js","modalos.js")    
 
     @story = Story.find_by_reviewer_key(params[:id])
@@ -150,7 +150,7 @@ class StoriesController < ApplicationController
   end
 
   def preview
-    @css.push("navbar.css","storyteller.css","modalos.css")
+    @css.push("navbar.css", "navbar2.css", "storyteller.css","modalos.css")
     @js.push("storyteller.js","modalos.js")
 
     if params[:n] == 'n'

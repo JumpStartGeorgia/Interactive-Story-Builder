@@ -12,6 +12,8 @@
     </div>
 
     <div class="collapse navbar-collapse" id="story-navbar-collapse">
+          <div class="separator-ver-b"></div>
+          <div class="about"><a id="modalAbout" data-modalos-id="modalos-about"><%= "#{t('app.common.about_story')}" %></a></div>
           <% if @story.present? && @story.sections.present? %>                          
             <div class="nav-volume-chapters">
               <div class="nav-volume"><a href="#" class="navigation-volume"><div class="navigation-icon"></div></a></div>
@@ -29,3 +31,12 @@
     </div>
   </div>
 </nav>
+
+<div id="modalos-about" style="display:none;" class="about-window">
+  <div class="publish">
+    <div class="day"><%= l(@story.published_at ,:format => :day) if @story.published_at.present? %></div>
+    <div class="month-year"><%= l(@story.published_at ,:format => :month_year) if @story.published_at.present? %></div>
+  </div>         
+  <div class="title"><%= @story.title %></div>
+  <div class="text"><%= @story.about.html_safe  if @story.about.present? %> </div> 
+</div>

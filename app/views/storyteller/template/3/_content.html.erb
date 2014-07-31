@@ -131,9 +131,9 @@
                           <% end %>
                       <% elsif m.media_type == Medium::TYPE[:video] && !m.is_processed?  %>                    
                           <% if !@export %> 
-                            <%= image_tag "video_being_processed_#{I18n.locale}.png" %>
+                            <%= image_tag "png/video_being_processed_#{I18n.locale}.png" %>
                           <% else %>
-                            <img src="media/story/assets/video_being_processed_#{I18n.locale}.png">
+                            <img src="assets/png/video_being_processed_#{I18n.locale}.png">
                           <% end %>
                       <% elsif m.media_type == Medium::TYPE[:video] && m.is_processed?  %>                    
                           <% if !@export %>                           
@@ -168,16 +168,11 @@
                                 <div class="video-summary"> <%= m.caption %> </div>
                                 <% end %> 
                                 <div class="scroll-prompt">                                                                                      
-                                  <svg width="7.976px" height="12.512px">
-                                    <g>
-                                      <path fill="#FFFFFF" d="M3.305,4.756c0.188,0.189,0.436,0.28,0.683,0.279c0.247,0.001,0.494-0.09,0.683-0.279l3.026-3.025
-                                        c0.372-0.374,0.372-0.978,0-1.352l-0.1-0.099c-0.374-0.374-0.979-0.374-1.353,0L3.988,2.537L1.731,0.28
-                                        c-0.373-0.374-0.978-0.374-1.352,0l-0.1,0.099c-0.373,0.374-0.373,0.979,0,1.352L3.305,4.756z"/>
-                                      <path fill="#FFFFFF" d="M7.597,7.756c-0.374-0.373-0.979-0.373-1.353,0l-2.256,2.257L1.731,7.756c-0.373-0.373-0.978-0.373-1.352,0
-                                        l-0.1,0.1c-0.373,0.375-0.373,0.978,0,1.351l3.025,3.025c0.188,0.188,0.436,0.282,0.683,0.28c0.247,0.002,0.494-0.092,0.683-0.28
-                                        l3.026-3.025c0.372-0.373,0.372-0.976,0-1.351L7.597,7.756z"/>
-                                    </g>
-                                  </svg>
+                                      <svg  x="0px" y="0px" width="18.03px" height="18.042px" viewBox="7.516 6.5 18.03 18.042" enable-background="new 7.516 6.5 18.03 18.042"
+                                         xml:space="preserve">
+                                        <polygon points="16.531,22.763 8.52,14.963 7.695,15.766 16.531,24.367 25.367,15.766 24.544,14.963 "/>
+                                        <polygon points="25.367,7.477 24.544,6.674 16.531,14.475 8.52,6.674 7.695,7.477 16.531,16.079 "/>
+                                      </svg>
                                 </div>                   
                               </div>                 
                           <% else %>
@@ -229,9 +224,7 @@
     </div>  
     <!-- #modalAbout -->
         <div class="section footer-section">        
-           <div class="left">   
-            <div> <a class="about-link">About Project</a></div>
-            <div class="footer-separator"></div>                     
+           <div class="left">                 
             <div><a href="http://www.jumpstart.ge" target="_blank" title="<%= t("app.common.js_link_title") %>" >
               <img src='<%= (@export ? "" : "/") + "assets/svg/js_w.svg"%>' class="footer-logo"/></a></div>
            </div>
@@ -246,7 +239,7 @@
            </div>
            </div>
         </div> 
-        <div id="modalos-about-project" style="display:none;" class="about-project-window">
+        <div id="modalos-donate" style="display:none;" class="donate-window">
           <div class="want_donate">           
             <a href="http://chca.org.ge/" style="float:left;"><img src='<%= (@export ? "" : "/template/#{@template}/") + "assets/png/chca.png"%>'></a>
             <p>If you would like to support these children, please donate to:</p>
@@ -254,23 +247,6 @@
             <p>And in the summary/description field of the transfer form, please enter: Kids from Shavshvebi </p>
           </div>
         </div>
-
-
-        <div id="about_box" style="width:100%;" >           
-          <div class='about_text'>
-                <div class="about_close"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/close.png"%>' style="width: 16px;height: 16px;"/></div>     
-                <p>The project Children of Shavshvebi was created by JumpStart Georgia in collaboration with CHCA within the framework of the project 
-                <a href="http://jumpstart.ge/en/what-we-do/projects/visualizing-data-driven-advocacy" target="_blank">Visualizing for Data-driven Advocacy</a>. </p>
-                <p>The project aims to fundraise for the reconstruction of the unused bath houses in Shavshvebi IDP settlement in order to convert them into a kindergarten. </p>
-                <p><a href="http://jumpstart.ge/ka" target="_blank">JumpStart Georgia</a> is a Georgian non-governmental organization which applies open-source technologies to open up public data and shed light on issues of social importance.</p>
-                <p>Charity Humanitarian Centre "Abkhazeti" (<a href="http://chca.org.ge/itst/" target="_blank">CHCA</a>) is a Georgian non-governmental organization focused on empowering Georgia's internally displaced and other vulnerable populations.     </p>         
-
-            <div>
-              <a href="http://www.jumpstart.ge" target="_blank" title="<%= t("layouts.application.js_link_title") %>" ><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/about-logo.png"%>' class='about_js_logo'/></a>
-              <a href="http://chca.org.ge/itst/" target="_blank" title="CHCA" ><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/chca.png"%>' class='about_chca_logo'/></a>
-            </div>
-          </div>
-        </div>  
       <!-- ****************************************************
       *  data hash for mobile devices , they use different images   
       ********************************************************* -->
@@ -555,7 +531,7 @@
               _audio_assets = "/system/places/audio/<%= @story.id %>/";
             <% else %>
               var _video_assets = "media/video/processed/",
-                  _poster_assets = "/media/video/poster/",
+                  _poster_assets = "media/video/poster/",
                   _image_assets = "media/images/fullscreen/",
                   _audio_assets = "media/audio/";
             <% end %> 
@@ -677,7 +653,7 @@
             if(lengthTemp >= 0)
             {              
                 var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
-                last_section.append("div").attr("class","donate").append("a").attr("href","#").attr('data-modalos-id','modalos-about-project').attr('id','modalAboutProject');;
+                last_section.append("div").attr("class","donate").append("a").attr("href","#").attr('data-modalos-id','modalos-donate').attr('id','modalDonate');;
                 last_section.append("div").attr("class","pigy");              
             }
             // donation end

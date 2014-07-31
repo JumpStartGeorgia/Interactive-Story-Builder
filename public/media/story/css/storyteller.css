@@ -71,10 +71,14 @@ a, a:link, a:hover, a:visited, a:active
 a
 {
    opacity:0.8; 
+   text-decoration:none;
+   color:#fff;
 }
 a:link, a:hover, a:visited, a:active
 {
   opacity:1;
+  text-decoration:none;
+  color:#fff;
 }
 .navbar-story {
   min-height: 40px;
@@ -409,6 +413,14 @@ html, body
     {      
       display:inline-block;
     }
+    .separator-ver-b 
+    {
+      height: 20px !important;
+      margin: 10px 20px 0px 20px;
+      float: left;
+      border-right: 1px solid #a8a1a1;
+      display:none;
+    }
   }
 
   /* Extra Small Devices, Phones */ 
@@ -450,7 +462,89 @@ html, body
 
   /* Large Devices, Wide Screens */
   @media only screen and (min-width : 1200px) {
+        .separator-ver-b 
+    {
+      display:block;
+    }
 
   }
 
- 
+
+.about
+{
+  display: inline-block;
+  float: left;
+  list-style: none;
+  height: 100%;
+  line-height: 40px;
+  vertical-align: middle;
+  margin-left:5px; 
+}
+.about-window 
+{
+  margin:10px 25px 0px 25px; 
+}
+.about-window .title
+{  
+  font-family:bandera-pro;
+  font-size:30px;
+  color:#3D3D3D; 
+  line-height: 33px;
+  padding-top:6px;
+}
+.about-window .title .text
+{
+  clear:both;
+  min-height:13px;
+  margin-top: 13px;
+}
+
+.about-window .title .text p, .about-window .title .text span
+{
+  font-family:opensans-r;
+  font-size:15px;
+  color:#797979;
+  margin:25px 0px 35px 0px;   
+  line-height:21px; 
+  text-align: justify;
+}
+
+
+.about-window .separator
+{   
+  font-family:opensans-l;
+  font-size:14px;
+  color:#818181; 
+  border-left:1px solid #818181;
+  height:16px;
+  display:inline-block;
+  top: 4px;
+  position: relative;
+  margin-left:8px;
+}
+.about-window .publish
+{   
+  font-family:bandera-pro-b;
+  font-size:14px;
+  color:#3D3D3D;
+  border:1px solid #c4c4c4; 
+  padding: 9px 13px;
+  float:left;
+  margin-right:10px;
+}
+.about-window .publish .day
+{
+  font-size:40px;
+  line-height:29px;
+  clear:both;  
+  margin-top: 9px;
+  text-align:center;
+  color: #3D3D3D;
+}
+.about-window .publish .month-year
+{
+  font-size:11px; 
+  text-align:center;
+  color: #3D3D3D;
+}
+

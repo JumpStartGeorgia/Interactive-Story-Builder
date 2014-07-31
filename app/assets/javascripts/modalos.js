@@ -261,7 +261,7 @@
 	    	 		}
 			    	else 
 		    		{		    			    	 		
-		    			console.log(options)
+		    			// console.log(options)
 		    			$(wrapper).width(options.width-options.margins);
 		    			if(options.height + options.topOffset > h)
 			    	 	{

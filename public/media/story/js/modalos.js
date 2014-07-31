@@ -7,18 +7,6 @@
 
 (function($) {
 
-/*---------------------------
- Defaults for Modulos
-----------------------------*/
-	 
-/*---------------------------
- Listener for data-modalos-id attributes
-----------------------------*/
-	
-
-/*---------------------------
- Extend and Execute
-----------------------------*/
 	var curModalos = null;
     $.fn.modalos = function(options) {
         
@@ -91,8 +79,6 @@
 					opened = true;
 				}				
 				curModalos = modal;
-				//console.log("modalos:open");
-				//console.log(options.topOffset);
 			    if (options.before_open) options.before_open(this);
 
 			  	bg.unbind('click.modalEvent');
@@ -110,16 +96,6 @@
 				     else content.css("overflow","hidden");
 
 					content.html($(modal).css("display","block"));
-			 
-					// if(options.animation == "fadeAndPop") {
-
-					// 	modal.css({'top': $(document).scrollTop()-topOffset, 'opacity' : 0, 'display' : 'block'});
-					// 	modalBG.fadeIn(options.animationspeed/2);
-					// 	modal.delay(options.animationspeed/2).animate({
-					// 		"top": $(document).scrollTop()+topMeasure + 'px',
-					// 		"opacity" : 1
-					// 	}, options.animationspeed,unlockModal());			
-					// }
 					if(options.animation == "fade" && !opened) {
 
 		         	 	wrapper.css({'opacity' : 0, 'display' : 'block'});						
@@ -149,16 +125,6 @@
 					lock();
 					unlock_scroll();
 
-					// if(options.animation == "fadeAndPop") {
-					// 	//modalBG.delay(options.animationspeed).fadeOut(options.animationspeed);
-					// 	modal.animate({
-					// 		"top":  $(document).scrollTop()-topOffset + 'px',
-					// 		"opacity" : 0
-					// 	}, options.animationspeed/2, function() {
-					// 		modal.css({'top':topMeasure, 'opacity' : 1, 'display' : 'none'});
-					// 		unlock();
-					// 	});					
-					// }  	
 					if(options.animation == "fade") {    
 						bg.delay(options.animationspeed).fadeOut(options.animationspeed);
 						wrapper.animate({
@@ -180,13 +146,7 @@
 			});     
 
    			modal.bind('modalos:resize', function () {	
-   				render();
-		      // 	 $(wrapper).height($(window).height() - options.topOffset - options.margins);
-		    	 // $(wrapper).width($(window).width() - options.margins);
-			     // $(wrapper).css("top",options.margins/2 + options.topOffset);
-			     // $(wrapper).css("left",options.margins/2);		         
-
-				 //modal.css({'left': ($(window).width()-modal.outerWidth(true))/2 + 'px'});						
+				render();					
 			});     
 /*---------------------------
  Open and add Closing Listeners

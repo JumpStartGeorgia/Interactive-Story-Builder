@@ -132,9 +132,9 @@
                           <% end %>
                       <% elsif m.media_type == Medium::TYPE[:video] && !m.is_processed?  %>                    
                           <% if !@export %> 
-                            <%= image_tag "video_being_processed_#{I18n.locale}.png" %>
+                            <%= image_tag "png/video_being_processed_#{I18n.locale}.png" %>
                           <% else %>
-                            <img src="media/story/assets/video_being_processed_#{I18n.locale}.png">
+                            <img src="assets/png/video_being_processed_#{I18n.locale}.png">
                           <% end %>
                       <% elsif m.media_type == Medium::TYPE[:video] && m.is_processed?  %>                    
                             <% if !@export %>                           
@@ -494,7 +494,7 @@
               _audio_assets = "/system/places/audio/<%= @story.id %>/";
             <% else %>
               var _video_assets = "media/video/processed/",
-                  _poster_assets = "/media/video/poster/",
+                  _poster_assets = "media/video/poster/",
                   _image_assets = "media/images/fullscreen/",
                   _audio_assets = "media/audio/";
             <% end %> 

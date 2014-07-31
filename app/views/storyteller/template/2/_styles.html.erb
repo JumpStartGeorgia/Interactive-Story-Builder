@@ -4,7 +4,7 @@
     font-family: 'dejavu';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@export ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_2.ttf'%>);      
+    src: url(<%= (@export ? "" : "/template/#{@template}/") + 'assets/fonts/bpg_dejavusans_2.ttf'%>);      
   }
 
   @font-face
@@ -12,7 +12,7 @@
     font-family: 'dejavu-bold';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@export ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_bold.ttf'%>);    
+    src: url(<%= (@export ? "" : "/template/#{@template}/") + 'assets/fonts/bpg_dejavusans_bold.ttf'%>);    
   }
 
   @font-face
@@ -20,7 +20,7 @@
     font-family: 'shavshvebi';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@export ? "assets/" : "/template/#{@template}/")  + 'fonts/shavshvebi.ttf'%>);    
+    src: url(<%= (@export ? "" : "/template/#{@template}/")  + 'assets/fonts/shavshvebi.ttf'%>);    
   }
   body {
     font: 17px/18px 'dejavu-bold';
@@ -44,9 +44,6 @@
      -webkit-font-smoothing: antialiased;  
      font-size: 13px;
      line-height: 21px;
-  }
-  a:hover {
-    text-decoration: underline;
   }
 
   .article {
@@ -148,7 +145,7 @@
   }
 
   .scroll-prompt svg {
-    fill: none;    
+    fill: #fff;    
     stroke-width: 2px;       
     position:relative;
     top:28px;
@@ -431,12 +428,14 @@
   }
     .headline-line1
     {
-        font-size: 213px;        
+      font-family:shavshvebi, Georgia, serif;    
+      font-size: 213px;    
     }
    .headline-line2
     {
-        font-size: 83px;
-        line-height: 153px;
+      font-family:shavshvebi, Georgia, serif;    
+      font-size: 83px;
+      line-height: 153px;
     }
 
   .video-caption--head .video-summary {
@@ -876,12 +875,6 @@
       padding-bottom: 0px !important;
     }
 
-    .ios .ios-loaded:first-child .video:first-of-type .video-container {
-  /*    background-size: 200%;
-      background-position: 59% 0px;
-      background-image: url(http://temurkikava.files.wordpress.com/2013/12/1258985453_oac6jm.jpg);
-      background-repeat: no-repeat;*/
-    }
 
     .ios .video-caption--head {
       position: relative;
@@ -963,8 +956,7 @@
   @media only screen and (min-width: 767px) {
     .ios .video-sequence:first-child .video:first-of-type .video-container {
       background-size: cover;
-      background-position: 60%;
-    /*  background-image: url(http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/mobile-1024/sierra-madre-big-thin.jpg);*/
+      background-position: 60%;    
     }
 
     .ios .align-left {
@@ -1073,21 +1065,6 @@
     float: right;
     margin-right: 7%;
   }
-   /*
-  .navigation-sections,
-  .navigation-volume
-  {
-    padding-top: 2px;
-  }
-  .navigation-headline:before,
- .navigation-sections:before,
-  .navigation-shares:before {
-    content: "";
-    float: left;
-    height: 20px;
-    border-right: solid 1px #444;
-    margin: 0px 15px;
-  }*/
   .navbar-brand
   {
     font-size: 21px !important;
