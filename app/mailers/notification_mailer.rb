@@ -1,5 +1,5 @@
 class NotificationMailer < ActionMailer::Base
-  default :from => ENV['APPLICATION_FEEDBACK_FROM_EMAIL']
+  default :from => ENV['STORY_BUILDER_FROM_EMAIL']
 	layout 'mailer'
 
   def send_new_user(message)
@@ -36,6 +36,11 @@ class NotificationMailer < ActionMailer::Base
     @message = message
     mail(:to => "#{message.email}",
 			:subject => I18n.t("mailer.notification.story_collaboration.subject"))
+  end
+  def send_processed_videos(message)
+    @message = message
+    mail(:to => "#{message.email}",
+			:subject => I18n.t("mailer.notification.processed_videos.subject"))
   end
 
 end

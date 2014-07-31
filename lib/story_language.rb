@@ -19,7 +19,7 @@ module StoryLanguage
           # if the title has many words and only one reliable result is returned, use it
           if stories[index].title.split(' ').length > 2 && lang.length == 1 && lang[0]["isReliable"] == true
             puts "- setting story locale to #{lang[0]["language"]}"
-            stories[index].locale = lang[0]["language"]
+            stories[index].story_locale = lang[0]["language"]
             stories[index].save(:validate => false)
           else
             # if story has content, send content to get language
@@ -36,7 +36,7 @@ module StoryLanguage
                   puts "- content lang #{content}; #{content_lang}"
                   if content_lang.present? && content_lang.length == 1 && content_lang[0]["isReliable"] == true
                     puts "- setting story locale to #{content_lang[0]["language"]}"
-                    stories[index].locale = content_lang[0]["language"]
+                    stories[index].story_locale = content_lang[0]["language"]
                     stories[index].save(:validate => false)
                     assigned_lang = true
                     break

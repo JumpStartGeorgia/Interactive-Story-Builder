@@ -295,8 +295,8 @@ class SettingsController < ApplicationController
 protected
 
   def asset_filter
-    @css.push("navbar.css", "settings.css")   
-    @js.push("settings.js")   
+    @css.push("navbar.css", "settings.css", "tipsy.css")   
+    @js.push("settings.js", "jquery.tipsy.js")   
   end
 
 end

@@ -8,6 +8,20 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
+#####################
+## Pages
+#####################
+puts "Loading Pages"
+Page.delete_all
+PageTranslation.delete_all
+p = Page.create(:id => 1, :name => 'about')
+p.page_translations.create(:locale => 'en', :title => 'About Story Builder')
+p.page_translations.create(:locale => 'ka', :title => 'Story Builder-ის შესახებ')
+p = Page.create(:id => 2, :name => 'todo')
+p.page_translations.create(:locale => 'en', :title => "Story Builder's To-Do List")
+p.page_translations.create(:locale => 'ka', :title => 'Story Builder-ის გასაკეთებელი სია')
+
 #####################
 ## Templates
 #####################

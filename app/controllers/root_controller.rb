@@ -124,17 +124,35 @@ class RootController < ApplicationController
 
   def todo_list    
     @css.push("todo.css","navbar.css")   
-    respond_to do |format|
-      format.html 
-    end
+
+    @page = Page.by_name('todo')
+  
+    if @page.present?
+      respond_to do |format|
+        format.html 
+      end
+    else
+		  flash[:info] =  t('app.msgs.does_not_exist')
+		  redirect_to root_path(:locale => I18n.locale)
+		  return
+	  end
   end
 
   def about   
     @css.push("navbar.css")   
-    respond_to do |format|
-      format.html 
-    end
+    @page = Page.by_name('about')
+  
+    if @page.present?
+      respond_to do |format|
+        format.html 
+      end
+    else
+		  flash[:info] =  t('app.msgs.does_not_exist')
+		  redirect_to root_path(:locale => I18n.locale)
+		  return
+	  end
   end
+
   def feed
     @categories = Category.sorted
     @categories_published = @categories.select{|x| x.published_story_count > 0}         

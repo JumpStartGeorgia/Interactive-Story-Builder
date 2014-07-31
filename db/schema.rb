@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140721122126) do
+ActiveRecord::Schema.define(:version => 20140728085504) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -25,11 +25,13 @@ ActiveRecord::Schema.define(:version => 20140721122126) do
     t.datetime "asset_updated_at"
     t.integer  "position"
     t.integer  "asset_subtype",                      :default => 0
+    t.boolean  "processed",                          :default => true
   end
 
   add_index "assets", ["item_id", "asset_type"], :name => "index_assets_on_item_id_and_asset_type"
   add_index "assets", ["item_id", "position"], :name => "index_assets_on_item_id_and_position"
   add_index "assets", ["item_id"], :name => "index_assets_on_item_id"
+  add_index "assets", ["processed"], :name => "index_assets_on_processed"
 
   create_table "categories", :force => true do |t|
     t.datetime "created_at"
@@ -193,6 +195,26 @@ ActiveRecord::Schema.define(:version => 20140721122126) do
   add_index "notifications", ["notification_type", "identifier"], :name => "idx_notif_type"
   add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
 
+  create_table "page_translations", :force => true do |t|
+    t.integer  "page_id"
+    t.string   "locale",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "title"
+    t.text     "content"
+  end
+
+  add_index "page_translations", ["locale"], :name => "index_page_translations_on_locale"
+  add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
+
+  create_table "pages", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "pages", ["name"], :name => "index_pages_on_name"
+
   create_table "sections", :force => true do |t|
     t.integer  "story_id"
     t.integer  "type_id"
@@ -232,7 +254,7 @@ ActiveRecord::Schema.define(:version => 20140721122126) do
     t.text     "about"
     t.boolean  "publish_home_page",     :default => true
     t.boolean  "staff_pick",            :default => false
-    t.string   "locale",                :default => "en"
+    t.string   "story_locale",          :default => "en"
     t.string   "permalink_staging"
     t.integer  "cached_votes_total",    :default => 0
     t.integer  "cached_votes_score",    :default => 0
@@ -248,12 +270,12 @@ ActiveRecord::Schema.define(:version => 20140721122126) do
   add_index "stories", ["cached_votes_up"], :name => "index_stories_on_cached_votes_up"
   add_index "stories", ["cached_weighted_score"], :name => "index_stories_on_cached_weighted_score"
   add_index "stories", ["comments_count"], :name => "index_stories_on_comments_count"
-  add_index "stories", ["locale"], :name => "index_stories_on_locale"
   add_index "stories", ["permalink"], :name => "index_stories_on_permalink"
   add_index "stories", ["publish_home_page", "staff_pick"], :name => "index_stories_on_publish_home_page_and_staff_pick"
   add_index "stories", ["published"], :name => "index_stories_on_published"
   add_index "stories", ["published_at"], :name => "index_stories_on_published_at"
   add_index "stories", ["reviewer_key"], :name => "index_stories_on_reviewer_key"
+  add_index "stories", ["story_locale"], :name => "index_stories_on_locale"
   add_index "stories", ["template_id"], :name => "index_stories_on_template_id"
   add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
 
@@ -274,6 +296,17 @@ ActiveRecord::Schema.define(:version => 20140721122126) do
 
   add_index "story_categories", ["category_id"], :name => "index_story_categories_on_category_id"
   add_index "story_categories", ["story_id"], :name => "index_story_categories_on_story_id"
+
+  create_table "story_translations", :force => true do |t|
+    t.integer  "story_id"
+    t.string   "locale",        :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "shortened_url"
+  end
+
+  add_index "story_translations", ["locale"], :name => "index_story_translations_on_locale"
+  add_index "story_translations", ["story_id"], :name => "index_story_translations_on_story_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

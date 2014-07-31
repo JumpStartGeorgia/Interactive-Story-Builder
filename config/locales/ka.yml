@@ -13,6 +13,7 @@ ka:
       embed_medium: ჩაშენებული ონლაინ მედია
       language: ენა
       category: კატეგორია
+      page: ტექსტი გვერდებისთვის
     attributes:
       user:
         email: ელ.ფოსტა
@@ -36,7 +37,7 @@ ka:
         template_id: შაბლონი
         thumbnail: ესკიზი
         about: ამბის მოკლე შინაარსი
-        locale: ამბის ენა
+        story_locale: ამბის ენა
         permalink: ამბის URL-ი
         permalink_staging: ამბის URL-ი
         tag_list: თაგები
@@ -82,6 +83,11 @@ ka:
         name: ენის დასახელება
       category_translation:
         name: სახელი
+      page:
+        name: შინაარსის უნიკალური სახელი (არ შეცვალოთ!)
+      page_translation:
+        title: სათაური, რომელიც გამოჩნდება შინაარსის ზემოთ
+        content: შინაარსი
     errors:
       messages:
         required_field: "სავალდებულოა"
@@ -122,6 +128,15 @@ ka:
         msg: გზავნილი
         accept_link: მოპატიჟების მიღება
         all_invitations: იხილეთ თქვენს ამბავზე დამხმარეთა სრული სია.
+      processed_videos:
+        subject: "Your videos on Story Builder have been processed!"
+        message: "The following stories of yours have videos that have completed processing:"
+        story_title: 'Story:'
+        status: 'Video Processing Status: %{processed} of %{total} completed'
+        processed: 'Videos Processed:'
+        not_processed: 'Videos Still Processing:'
+        none_processed: No vidoes have been processed.
+        none_processing: All videos for have been processed!
   helpers:
     actions: აირჩიეთ
     links:
@@ -173,6 +188,7 @@ ka:
       views: "%{num} წაკითხვა"
       tags: თაგი
       menu: მენიუ
+      pages: საიტზე ტექსტის რედაქტირება
       story_menu:
         link:
           clone: ახალ ამბად კლონირება
@@ -259,6 +275,7 @@ ka:
       email: ელ-ფოსტა
       views: ნახვები
       permalink: მუდმივი ლინკი
+      shortened_url: მოკლე ბმული
       share_story: ამბის გაზიარება
       share_facebook: Facebook-ზე გაზიარება
       share_twitter: Twitter-ზე გაზიარება
@@ -334,6 +351,12 @@ ka:
         news_no: თქვენ არ მიიღებთ შეტყობინებას, როდესაც  Story Builder-ს დაემატება სიახლეები.
         following_no: "თქვენ აღარ მიიღებთ შეტყობინებებს  '%{nickname}ის' ახალი ისტორიების შესახებ."
         language: თქვენ მიიღებთ შეტყობინებას %{language}.
+      fail_change_order: The item was not able to be moved
+      nothing_selected: Please select a section/item to delete
+      fail_delete: The section/item could not be delted
+      confirm_delete: Are you sure you want to delete this section/item?
+      video_processed: Your video is processed and available
+      video_not_processed: Your video is being processed
   section_types:
     content:
       name: შინაარსი
@@ -371,6 +394,9 @@ ka:
     following: თვალყურის დევნება
     following_title: იხილეთ ისტორიები, რომლებიც დაწერეს მომხმარებლებმა, რომელთაც თქვენ თვალყურს ადევნებთ
     following_title_active: თვალყურის დევნების ფილტრის მოშორება
+    not_published: არ არის გამოქვეყნებული
+    not_published_title: იხილეთ ისტორიები, რომლებიც არ არის გამოქვეყენბული
+    not_published_title_active: იხილეთ ყველა ისტორია
   tokeninput:
     searchingText: ძიება...
     tag:
@@ -456,7 +482,6 @@ ka:
       feedback_link: უკუკავშირის სექცია
     about:
       title: Story Builder-ის შესახებ
-      text: Story Builder ...
     embed:
       home_link: შექმნილია Story Builder-ზე
   stories:
@@ -479,7 +504,7 @@ ka:
         published: გამოქვეყნებული ამბების წაკითხვა ყველას შეუძლია
         publish_home_page: "თუ მონიშნავთ, თქვენს მიერ გამოქვეყნებული ამბავი გამოჩნდება საიტის საწყის გვერძე"
         template: აირჩიეთ შაბლონი ამბის სტილის შესარჩევად
-        thumbnail: თქვენი ამბის გამოსახულება, რომელიც გამოჩნდება საწყის გვერძე, როდესაც ამბავი გამოქვეყნდება (მხოლოდ jpg და png ფორმატი)
+        thumbnail: თქვენი ამბის გამოსახულება, რომელიც გამოჩნდება საწყის გვერძე, როდესაც ამბავი გამოქვეყნდება (მხოლოდ jpg და png ფორმატი; ფაილის მაქსიმალური ზომა 3MB)
         editor: ამბის შემქმნელი პირი
         editors: მონიშნეთ ადამიანები, რომლებსაც გსუღ მისცეთ გამოქვეყნებამდე ამბის რედაქტირების უფლება
         about: ამბის მოკლე შინაარსი, რომელიც გამოჩნდება საწყის გვერხ, როდესაც თქვენი ამბავი გამოქვეყნდება
@@ -515,8 +540,8 @@ ka:
         media_type: ვიდეოსთვის ფოტო აუცილებელია, რადგან ვიდეო არ იტვირთება მობილურ ტელეფონებზე
         caption: წარწერის ტექსტი გამოჩნდება ზედა გამოსახულებაზე/ვიდეოზე
         source: ფოტოს/ვიდეოს წყარო გამოჩნდება ქვედა მარჯვენა კუთხეში
-        image: დასაშვებია jpg მხოლოდ ფორმატი
-        video: მისაღებია mp4 მხოლოდ ფორმატი
+        image: დასაშვებია jpg მხოლოდ ფორმატი; ფაილის მაქსიმალური ზომა 3MB
+        video: მისაღებია mp4 მხოლოდ ფორმატი; ფაილის მაქსიმალური ზომა 25MB. After videos are uploaded they must be processed before they are available for viewing. You will receieve a notification when the processing is complete, typically within a few minutes.
         caption_align: სათაურის ტექსტი გამოჩნდება სურათის/ვიდეოს ზემოდან (დეფოლტი მარცხნივაა)
         video_loop: თუ ვიდეო მონიშნულია იგი იტრიალებს უსასრულოდ, სხვა შემთხვევაში ვიდეო არ განმეორდება
     section:
@@ -529,7 +554,7 @@ ka:
         title: აღნიშნული ტექსტი გამოჩნდება მარცხენა განყოფილებაში და თუ სანავიგაციო ბმულს აირჩევთ იგი განთავსდება, როგორც ბმულის სათაური
         type: ამ ტიპის არჩევა განსაზღვრავს იმ ინფორმაციის სახეს რომლის დამატებაც შეგეძლებათ ამ სექციაში
         has_marker: თუ მონიშნავთ, გამოჩნდება სანავიგაციო ლინკი ამ სექციაზე გადასასვლელად
-        audio: ფონური მუსიკა ჩაირთვება, როდესაც ვინმე იხილავს ამ სექციას (მხოლოდ mp3 ფორმატია დასაშვები)
+        audio: ფონური მუსიკა ჩაირთვება, როდესაც ვინმე იხილავს ამ სექციას (მხოლოდ mp3 ფორმატია დასაშვები; ფაილის მაქსიმალური ზომა 10MB)
     content:
       form_title: შინაარსის ფორმა
       placeholder:
@@ -560,7 +585,7 @@ ka:
       hint:
         caption: სურათის აღწერა გამოჩნდება სურათის ქვემოთ
         source: წყარო გამოჩნდება სურათის აღწერის ქვემოთ
-        asset: მხოლოდ jpg და png ფორმატია დასაშვები
+        asset: მხოლოდ jpg და png ფორმატია დასაშვები; ფაილის მაქსიმალური ზომა 3MB
       label:
         caption: ფოტოს აღწერა
         source: ფოტოს წყარო

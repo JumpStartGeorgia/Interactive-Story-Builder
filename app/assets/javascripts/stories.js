@@ -8,8 +8,6 @@ var method = 'n';
 var tester = null;
 $(document).ready(function() {
 
-
-
 	$('.story-tree ul').on('click','li.item > .box > .title',function(e) {
 		e.preventDefault();
 		item_id = -1;
@@ -41,9 +39,15 @@ $(document).ready(function() {
 	    return false;
 	});
 
-	$('.story-viewer').on('change','#mediaType',function(){
-		if($(this).val()==1) $('#mediaVideoBox').hide();
-		else  $('#mediaVideoBox').show();
+  // when media type changes, show the correct file fields
+	$('.story-viewer').on('change','input[name="medium[media_type]"]:radio',function(){
+		if($(this).val()==1) {
+		  $('#mediaImageBox').show();
+		  $('#mediaVideoBox').hide();
+	  }else {
+		  $('#mediaImageBox').hide();
+	    $('#mediaVideoBox').show();
+    }
 	});
 
   $('.story-viewer').on('click', '#btnOlly', function(){
@@ -177,7 +181,7 @@ $(document).ready(function() {
 				var secT = $('.story-tree ul li.item[id='+ section_id + ']');
 				if(item_id == -1)
 				{			 	
-			 		if( secT.prev.length)
+			 		if( secT.prev().length)
 			 		{
 		 			  $(secT).insertBefore($(secT).prev());
 			 		}
@@ -185,13 +189,13 @@ $(document).ready(function() {
 		 		else
 		 		{
 		 			subT = secT.find('ul li.sub[id='+item_id+']');
-		 			if( subT.prev.length)
+		 			if( subT.prev().length)
 			 		{
 		 			  $(subT).insertBefore($(subT).prev());
 			 		}
 		 		}	
 						
-			}).error(function(e){ popuper("Changing order failed.","error");});	
+			}).error(function(e){ popuper(gon.fail_change_order,"error");});	
 		} 	
 	});
 
@@ -215,7 +219,7 @@ $(document).ready(function() {
 
 				if(item_id == -1)
 				{			 	
-			 		if( secT.next.length)
+			 		if( secT.next().length)
 			 		{
 		 			  $(secT).insertAfter($(secT).next());
 			 		}
@@ -223,67 +227,81 @@ $(document).ready(function() {
 		 		else
 		 		{
 		 			subT = secT.find('ul li.sub[id='+item_id+']');
-		 			if( subT.next.length)
+		 			if( subT.next().length)
 			 		{
 		 			  $(subT).insertAfter($(subT).next());
 			 		}
 		 		}		 				
-			}).error(function(e){ popuper("Changing order failed.","error");});	
+			}).error(function(e){ popuper(gon.fail_change_order,"error");});	
 		} 	
 	});
 	$('.story-viewer').on("click",'#btn-up-slideshow', function() {
-  
   			var secT = $(this).parents('.fields');
-  			if( !secT.prev.length) return false;
-		 		
-			$.ajax
-			({
-				url: 'up_slideshow',			  
-				data: {asset_id: secT.find("> input").val()},
-				type: "POST",			
-		        dataType: 'json'
+  			if( !secT.prev().length) return false;
+  			
+  			// if this is a new record and no id exists yet, 
+  			// don't make ajax call, just move it
+			  if ($(this).data('id') == 0){
+			    if( secT.prev().length)
+	     		{
+     			   $(secT).insertBefore($(secT).prev());
+	     		}				
+			  }else{
+			    $.ajax
+			    ({
+				    url: 'up_slideshow',			  
+				    data: {asset_id: $(this).data('id')},
+				    type: "POST",			
+		            dataType: 'json'
 
-			}).done(function(d) 
-			{
-				if( secT.prev.length)
-		 		{
-	 			   $(secT).insertBefore($(secT).prev());
-		 		}				
+			    }).done(function(d) 
+			    {
+				    if( secT.prev().length)
+		     		{
+	     			   $(secT).insertBefore($(secT).prev());
+		     		}				
 						
-			}).error(function(e){ popuper("Changing order failed.","error");});	
-
-
-
+			    }).error(function(e){ popuper(gon.fail_change_order,"error");});	
+			  }
 	});
 		$('.story-viewer').on("click",'#btn-down-slideshow', function() {
 			var secT = $(this).parents('.fields');
-  			if( !secT.next.length) return false;
-			$.ajax
-			({
-				url: 'down_slideshow',			  
-				data: {asset_id: $(this).parents('.fields').find("> input").val()},
-				type: "POST",			
-		        dataType: 'json'
+			if( !secT.next().length) return false;
 
-			}).done(function(d) 
-			{
-				if( secT.next.length)
-		 		{
-	 			  $(secT).insertAfter($(secT).next());
-		 		}
+			// if this is a new record and no id exists yet, 
+			// don't make ajax call, just move it
+		  if ($(this).data('id') == 0){
+			  if( secT.next().length)
+	   		{
+   			  $(secT).insertAfter($(secT).next());
+	   		}
+      } else {
+			  $.ajax
+			  ({
+				  url: 'down_slideshow',			  
+				  data: {asset_id: $(this).data('id')},
+				  type: "POST",			
+		          dataType: 'json'
+
+			  }).done(function(d) 
+			  {
+				  if( secT.next().length)
+		   		{
+	   			  $(secT).insertAfter($(secT).next());
+		   		}
 						
-			}).error(function(e){ popuper("Changing order failed.","error");});	
-
+			  }).error(function(e){ popuper(gon.fail_change_order,"error");});	
+      }
 
 
 	});
 	$('#btnDelete').click(function(){
 
 	
-		if(section_id == -1 ) { popuper("Nothing selected","notice"); return true;}
+		if(section_id == -1 ) { popuper(gon.nothing_selected,"notice"); return true;}
 
 
-		var c=confirm("Item will be deleted permanently");
+		var c=confirm(gon.confirm_delete);
 		if (!c) return true;
 		  
 
@@ -317,7 +335,7 @@ $(document).ready(function() {
 			getStory(-1,-1)
 			$("html, body").animate({ scrollTop: 0 }, "slow");
 					
-		}).error(function(e){ popuper("Deleting failed.","error");});
+		}).error(function(e){ popuper(gon.fail_delete,"error");});
 
 		return true;	
 	});
@@ -599,7 +617,7 @@ function getData()
 	      cache: true 
 		}).error(function(e){console.log(e)}).done(function(){			
          if(el_type!='s' && method != 'n')
-            $('.form-title').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > span').text() + ":" + $('.form-title').text());
+            $('.form-title .form-title-text').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > span').text() + ":" + $('.form-title .form-title-text').text());
 		});
 
 	return true;	

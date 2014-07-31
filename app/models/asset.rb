@@ -19,13 +19,20 @@ class Asset < ActiveRecord::Base
   validates :asset_type, inclusion: { in: TYPE.values }
   
 
-  attr_accessor :init_called, :asset_exists, :stop_check_thumbnail
+  attr_accessor :init_called, :asset_exists, :stop_check_thumbnail, :process_video
   
   after_initialize :init
 
   before_post_process :init
   before_post_process :transliterate_file_name
-
+  
+  before_validation :set_processed_flag
+  
+  # if this is a video, set the flag to false (default is true)
+  def set_processed_flag
+#logger.debug "**************** processed = #{self.asset_type != TYPE[:media_video]}"
+    self.processed = self.asset_type != TYPE[:media_video]
+  end
   
   def init
 
@@ -35,7 +42,7 @@ class Asset < ActiveRecord::Base
 
       opt = {}    
       case self.asset_type
-        when Asset::TYPE[:user_avatar]        
+        when TYPE[:user_avatar]        
           opt = { 
             :url => "/system/users/:style/:user_avatar_file_name.:extension",
             :styles => {
@@ -45,43 +52,51 @@ class Asset < ActiveRecord::Base
             },
             :default_url => "/assets/missing/user_avatar/:style/default_user.png"
           }
-        when Asset::TYPE[:story_thumbnail]        
+
+        when TYPE[:story_thumbnail]        
           opt = { 
             :url => "/system/places/thumbnail/:item_id/:style/:basename.:extension",
             :styles => {:thumbnail => {:geometry => "459x328#"}},            
             :default_url => "/assets/missing/story_thumbnail/missing.jpg"
           }
-        when  Asset::TYPE[:section_audio]         
+
+        when  TYPE[:section_audio]         
           opt = {:url => "/system/places/audio/:story_id/:basename.:extension"}  
-        when  Asset::TYPE[:media_image]        
-          opt = { :url => "/system/places/images/:media_image_story_id/:style/:basename.:extension",
+
+        when  TYPE[:media_image]        
+          opt = { 
+                  :url => "/system/places/images/:media_image_story_id/:style/:basename.:extension",
                   :styles => {
                         :mobile_640 => {:geometry => "640x427"},
                         :mobile_1024 => {:geometry => "1024x623"},
                         :fullscreen => {:geometry => "1500>"}
                 }
           }  
-        when  Asset::TYPE[:media_video]        
-          opt = {   :url => "/system/places/video/:media_video_story_id/:basename.:extension",
-                    :styles => { 
-                      :poster => { :format => 'jpg', :time => 1 }
-                    }, 
-                    :processors => [:ffmpeg] 
-                }  
-         when  Asset::TYPE[:slideshow_image]        
-          opt = {   :url => "/system/places/slideshow/:slideshow_image_story_id/:style/:basename.:extension" ,
-                    :styles => {                   
-                      :mobile_640 => {:geometry => "640x427"},
-                      :mobile_1024 => {:geometry => "1024x623"}, 
-                      :slideshow => {:geometry => "812x462"},                   
-                      :thumbnail => {:geometry => "44x44^"},
-                      :thumbnail_preview => {:geometry => "160x160^"}
-                    },
-                    :convert_options => {
-                      :thumbnail => "-gravity center -extent 44x44",
-                      :thumbnail_preview => "-gravity center -extent 160x160"
-                    }
-                  }    
+
+        when  TYPE[:media_video]        
+          opt = {   
+                  :url => "/system/places/video/:media_video_story_id/:style/:basename.:extension",
+                  :styles => { 
+                    :poster => { :format => 'jpg', :time => 1 }
+                  }, 
+                  :processors => [:ffmpeg]
+          }  
+
+         when  TYPE[:slideshow_image]        
+          opt = {   
+                  :url => "/system/places/slideshow/:slideshow_image_story_id/:style/:basename.:extension" ,
+                  :styles => {                   
+                    :mobile_640 => {:geometry => "640x427"},
+                    :mobile_1024 => {:geometry => "1024x623"}, 
+                    :slideshow => {:geometry => "812x462"},                   
+                    :thumbnail => {:geometry => "44x44^"},
+                    :thumbnail_preview => {:geometry => "160x160^"}
+                  },
+                  :convert_options => {
+                    :thumbnail => "-gravity center -extent 44x44",
+                    :thumbnail_preview => "-gravity center -extent 160x160"
+                  }
+          }    
 
               
       end    
@@ -94,22 +109,22 @@ class Asset < ActiveRecord::Base
   end
 
 
-  with_options :if => "self.asset_type == Asset::TYPE[:user_avatar]" do |t|    
+  with_options :if => "self.asset_type == TYPE[:user_avatar]" do |t|    
     t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
-  with_options :if => "self.asset_type == Asset::TYPE[:story_thumbnail]" do |t|    
+  with_options :if => "self.asset_type == TYPE[:story_thumbnail]" do |t|    
     t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
-  with_options :if => "self.asset_type == Asset::TYPE[:section_audio]" do |t|      
+  with_options :if => "self.asset_type == TYPE[:section_audio]" do |t|      
     t.validates_attachment :asset, {   :presence => true, :content_type => { :content_type => ["audio/mp3"] }, :size => { :in => 0..10.megabytes }}  
   end
-  with_options :if => "self.asset_type == Asset::TYPE[:media_image]" do |t|      
+  with_options :if => "self.asset_type == TYPE[:media_image]" do |t|      
     t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
-  with_options :if => "self.asset_type == Asset::TYPE[:media_video]" do |t|      
+  with_options :if => "self.asset_type == TYPE[:media_video]" do |t|      
     t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["video/mp4"]}, :size => { :in => 0..25.megabytes }}    
   end
- with_options :if => "self.asset_type == Asset::TYPE[:slideshow_image]" do |t|      
+ with_options :if => "self.asset_type == TYPE[:slideshow_image]" do |t|      
     t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
 
@@ -148,4 +163,12 @@ class Asset < ActiveRecord::Base
   end
  
 
+  # get all of the video records for a story
+  def self.videos_for_story(story_id)
+    sql = "select a.* from sections as s inner join media as m on m.section_id = s.id join assets as a on a.item_id = m.id "
+    sql << "where a.asset_type = "
+    sql << TYPE[:media_video].to_s
+    sql << " and s.story_id = ?"
+    find_by_sql([sql, story_id])
+  end
 end

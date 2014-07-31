@@ -4,6 +4,7 @@ class StoriesController < ApplicationController
     controller_instance.send(:can_edit_story?, params[:id])
   end
   before_filter :asset_filter
+  before_filter :set_form_gon
 
 
   # GET /stories
@@ -32,7 +33,7 @@ class StoriesController < ApplicationController
   def new
     @story = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
     @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
-    @templates = Template.select_list
+#    @templates = Template.select_list
     @story_tags = []
     
     respond_to do |format|
@@ -47,7 +48,7 @@ class StoriesController < ApplicationController
     if !@story.asset_exists?
       @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
     end 
-    @templates = Template.select_list(@story.template_id)
+#    @templates = Template.select_list(@story.template_id)
     @story_tags = @story.tags.token_input_tags
   end
 
@@ -95,7 +96,7 @@ class StoriesController < ApplicationController
         if @story.update_attributes(params[:story])
 
           flash_success_updated(Story.model_name.human,@story.title)       
-          format.html { redirect_to  sections_story_path(@story),  notice: t('app.msgs.success_updated', :obj => t('activerecord.models.story')) }
+          format.html { redirect_to  edit_story_path(@story),  notice: t('app.msgs.success_updated', :obj => t('activerecord.models.story')) }
           format.js { render action: "flash", status: :created }    
         else
           if !@story.asset.present? 
@@ -170,11 +171,11 @@ class StoriesController < ApplicationController
       if params[:command]!='n'
         @item = Section.find_by_id(params[:section_id])    
       else 
-        @item = Section.new(story_id: params[:id], type_id: Section::TYPE[:content], has_marker: 1)
+        @item = Section.new(story_id: params[:id], has_marker: 0)
       end  
-      @section_list = []
-      Section::TYPE.each{|k,v| @section_list << ["#{I18n.t("section_types.#{k}.name")} - #{I18n.t("section_types.#{k}.description")}", v]} 
-      @section_list.sort_by!{|x| x[0]}
+#      @section_list = []
+#      Section::TYPE.each{|k,v| @section_list << ["#{I18n.t("section_types.#{k}.name")} - #{I18n.t("section_types.#{k}.description")}", v]} 
+#      @section_list.sort_by!{|x| x[0]}
       if @item.present? && !@item.asset_exists?
           @item.build_asset(:asset_type => Asset::TYPE[:section_audio])
       end   
@@ -207,7 +208,7 @@ class StoriesController < ApplicationController
         if params[:command]!='n'    
           @item = Medium.find_by_id(params[:item_id])   
         else 
-          @item = Medium.new(:section_id => params[:section_id], media_type: 1)
+          @item = Medium.new(:section_id => params[:section_id], media_type: Medium::TYPE[:image])
         end
 
         if @item.present? &&  !@item.image_exists? 
@@ -427,30 +428,50 @@ class StoriesController < ApplicationController
     end
   end
   def up      
+    item = nil
     if params[:i] == '-1'
-      Section.where(story_id: params[:id]).find_by_id(params[:s]).move_higher            
+      item = Section.where(story_id: params[:id]).find_by_id(params[:s])
     else
-      Medium.where(section_id: params[:s]).find_by_id(params[:i]).move_higher            
+      item = Medium.where(section_id: params[:s]).find_by_id(params[:i])
     end
-    render json: nil , status: :created    
-  end
-   def up_slideshow    
- 
-      Asset.find_by_id(params[:asset_id]).move_higher            
+    if item.present?
+      item.move_higher 
       render json: nil , status: :created    
+    else
+      render json: nil , status: :unprocessable_entity
+    end
+  end
+  def up_slideshow    
+    item = Asset.find_by_id(params[:asset_id])
+    if item.present?
+      item.move_higher 
+      render json: nil , status: :created    
+    else
+      render json: nil , status: :unprocessable_entity
+    end
   end
   def down_slideshow    
- 
-      Asset.find_by_id(params[:asset_id]).move_lower
+    item = Asset.find_by_id(params[:asset_id])
+    if item.present?
+      item.move_lower 
       render json: nil , status: :created    
+    else
+      render json: nil , status: :unprocessable_entity
+    end
   end
   def down  
-     if params[:i] == '-1'
-      Section.where(story_id: params[:id]).find_by_id(params[:s]).move_lower            
+    item = nil
+    if params[:i] == '-1'
+      item = Section.where(story_id: params[:id]).find_by_id(params[:s])
     else
-      Medium.where(section_id: params[:s]).find_by_id(params[:i]).move_lower            
+      item = Medium.where(section_id: params[:s]).find_by_id(params[:i])
     end            
-    render json: nil , status: :created    
+    if item.present?
+      item.move_lower 
+      render json: nil , status: :created    
+    else
+      render json: nil , status: :unprocessable_entity
+    end
   end
 
   def sections
@@ -480,7 +501,7 @@ class StoriesController < ApplicationController
            format.json {render json: { e:true, msg: (t('app.msgs.error_publish_missing_fields', :obj => @item.title) +  
                 " <a href='" +  edit_story_path(@item) + "'>" + t('app.msgs.error_publish_missing_fields_link') + "</a>")} }  
            error = true       
-        elsif @item.sections.map{|t| t.content? && t.content.content.present? }.count(true) == 0          
+        elsif @item.sections.map{|t| t.content.present? && t.content.content.present? }.count(true) == 0          
            format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_content_section')} }          
            error = true
         end            
@@ -811,8 +832,8 @@ private
   end
 
   def asset_filter
-    @css.push("stories.css", "embed.css", "modalos.css", "bootstrap-select.min.css", "token-input-facebook.css","navbar.css", "filter.css")
-    @js.push("stories.js", "modalos.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js", "zeroclipboard.min.js", "filter.js")
+    @css.push("stories.css", "embed.css", "modalos.css", "bootstrap-select.min.css", "token-input-facebook.css","navbar.css", "filter.css", "tipsy.css")
+    @js.push("stories.js", "modalos.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js", "zeroclipboard.min.js", "filter.js", "jquery.tipsy.js")
   end 
   
   def create_invitation(story, user_id=nil, email=nil, msg=nil)
@@ -844,9 +865,11 @@ private
     return error_msg
   end
   
-  
-  def set_settings_gon
-    gon.collaborator_search = story_collaborator_search_path(params[:id])
+  def set_form_gon
+    gon.fail_change_order = I18n.t('app.msgs.fail_change_order')
+    gon.nothing_selected = I18n.t('app.msgs.nothing_selected')
+    gon.fail_delete = I18n.t('app.msgs.fail_delete')
+    gon.confirm_delete = I18n.t('app.msgs.confirm_delete')
     gon.tokeninput_collaborator_hintText = I18n.t('tokeninput.collaborator.hintText')
     gon.tokeninput_collaborator_noResultsText = I18n.t('tokeninput.collaborator.noResultsText')
     gon.tag_search = story_tag_search_path
@@ -854,4 +877,10 @@ private
     gon.tokeninput_tag_noResultsText = I18n.t('tokeninput.tag.noResultsText')
     gon.tokeninput_searchingText = I18n.t('tokeninput.searchingText')
   end
+
+  
+  def set_settings_gon
+    gon.collaborator_search = story_collaborator_search_path(params[:id])
+  end
 end       
+

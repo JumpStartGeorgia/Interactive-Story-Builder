@@ -498,8 +498,9 @@ i.s
     display: inline-block;
     vertical-align: middle;
     width:27px; 
-    height:27px; 
+    height:27px;  
 }
+
 i.xs
 {
     background-color: transparent;   
@@ -747,6 +748,7 @@ i.v{visibility:visible;}
 {
   margin-left:10px;
 }
+
 .separator-ver
 {      
   height:26px !important;
@@ -769,3 +771,32 @@ i.v{visibility:visible;}
   float:left;      
   border-right:1px solid #a8a1a1;      
 }  
+
+
+.form-actions {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* fix styles when using tinymce */
+.tinymce_format{
+  ul, ol, ul ul, ol ol,
+  ul ol, ol ul {
+    padding-left: 2em;
+  }
+
+  ul li {
+    list-style-type:disc;
+    line-height: 1.5;
+  }
+  ol li {
+    list-style-type:decimal;
+    line-height: 1.5;
+  }
+}
+
+
+/* fix padding in bootstrap dropdown-menu that is made big by formtastic */
+.dropdown-menu input{
+  padding: 0 0 0 5px !important;
+}

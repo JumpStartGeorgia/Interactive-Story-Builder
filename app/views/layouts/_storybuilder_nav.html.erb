@@ -57,14 +57,7 @@
             </li>              
             <% if current_user.role? User::ROLES[:admin] %>
               <li>
-                <%= link_to admin_news_index_path do %>         
-                  <i class="s i-news"></i><span><%= t('helpers.links.news') %></span>
-                <% end %> 
-              </li>
-              <li>
-                <%= link_to admin_users_path do %>         
-                  <i class="s i-users"></i><span><%= t('helpers.links.users') %></span>
-                <% end %> 
+               <%= link_to t('helpers.links.admin'), admin_path %>
               </li>
             <% end %>               
             <li class="signout">
@@ -106,7 +99,7 @@
               </li>
              
               <li>                        
-                <%= link_to "GitHub", "https://github.com/JumpStartGeorgia/Interactive-Story-Builder.git" %>
+                <%= link_to "GitHub", "https://github.com/JumpStartGeorgia/Interactive-Story-Builder.git", :target => :blank %>
               </li>
             </ul>
         </li>        

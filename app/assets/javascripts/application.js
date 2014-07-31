@@ -87,6 +87,10 @@ $(document).ready(function(){
 		.off('click.dropdown touchstart.dropdown.data-api', '.dropdown')
 		.on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() });
 
+  // styled tooltips
+  apply_tipsy();
+
+
   //for dropdown menu to open on hover
 
 if(!mob){
@@ -191,6 +195,7 @@ $(window).resize(function() {
 
 $(document).ajaxComplete(function(event, request) {
  	popuper(request.getResponseHeader('X-Message'),request.getResponseHeader("X-Message-Type"));    
+ 	apply_tipsy();
 });
 // $(document).ajaxError(function(event, request) {
 //   popuper(request.responseText,'error');     
@@ -212,6 +217,13 @@ function popuper(msg,msg_type)
 
 function urldecode(url) {
   return decodeURIComponent(url.replace(/\+/g, ' '));
+}
+
+// styled tooltips
+function apply_tipsy(){
+  if ($('form div.help-inline,form div.help-block, form label abbr').length > 0){ 
+    $('form div.help-inline,form div.help-block, form label abbr').tipsy({gravity: 'sw', fade: true});
+  }
 }
 
 function scrolldown(an,obj)

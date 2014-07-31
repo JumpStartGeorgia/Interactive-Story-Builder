@@ -89,6 +89,24 @@ $(document).ready(function() {
     f[$(this).attr('data-filter-type')] = $(this).attr('data-filtered-by');
   });
 
+// not_published via ajax
+    $('.afilter > a.not_published').click(function(e){
+      pf = JSON.parse(JSON.stringify(f));
+
+      $(this).toggleClass('active').find('i').toggleClass('i-not-published i-not-publish');
+      var tmp = !($(this).attr('data-filtered-by') == "true");  
+      $(this).attr('data-filtered-by', tmp.toString());   
+      f[$(this).attr('data-filter-type')] = tmp.toString();
+      if (tmp){
+        $(this).attr('title', $(this).data('title-active'));
+      }else{
+        $(this).attr('title', $(this).data('title'));
+      }
+      e.preventDefault();
+      e.stopPropagation();
+
+      filter();
+  });
 // staff_pick via ajax
     $('.afilter > a.staff_pick').click(function(e){
       pf = JSON.parse(JSON.stringify(f));

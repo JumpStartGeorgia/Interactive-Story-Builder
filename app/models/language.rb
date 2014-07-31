@@ -3,7 +3,7 @@ class Language < ActiveRecord::Base
 	validates :locale, :presence => true
 	validates :name, :presence => true
 
-  has_many :stories, :primary_key => :locale, :foreign_key => :locale
+  has_many :stories, :primary_key => :locale, :foreign_key => :story_locale
 
   def self.sorted
     order('name asc')
@@ -29,7 +29,7 @@ class Language < ActiveRecord::Base
   
   # update the counts of languages with published stories
   def self.update_counts
-    sql = "select locale, count(*) as count from stories where published = 1 group by locale order by locale"
+    sql = "select story_locale, count(*) as count from stories where published = 1 group by story_locale order by story_locale"
 
     counts = find_by_sql(sql)
 
@@ -40,7 +40,7 @@ class Language < ActiveRecord::Base
       if counts.present?
         # add the counts
         counts.each do |count|
-          Language.where(:locale => count['locale']).update_all(:published_story_count => count['count'])
+          Language.where(:locale => count['story_locale']).update_all(:published_story_count => count['count'])
         end
       end
     end

@@ -1,5 +1,6 @@
 <h2 class="form-title">
-  <%= t('.form_title') %>
+  <span class="glyphicon <%= Section::ICONS[:slideshow] %>"></span>
+  <span class="form-title-text"><%= t('.form_title') %></span>
 </h2>
 
 <%= semantic_form_for(@item, url: slideshow_story_path(id:params[:id],:format => :js), :html => { :multipart=> true, :id => "slideshowForm" } , remote: true) do |f| %>

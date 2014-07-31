@@ -223,6 +223,8 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    rack-utf8_sanitizer (1.2.2)
+      rack (~> 1.0)
     rails (3.2.18)
       actionmailer (= 3.2.18)
       actionpack (= 3.2.18)
@@ -338,6 +340,7 @@ DEPENDENCIES
   paperclip (~> 3.4.0)
   paperclip-ffmpeg
   psych (~> 2.0.5)
+  rack-utf8_sanitizer (~> 1.2.2)
   rails (= 3.2.18)
   rails-dev-boost!
   rails_autolink (~> 1.0.9)

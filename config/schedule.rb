@@ -18,14 +18,26 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+#env :PATH, '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin'
 set :output, "log/cron.log"
+job_type :video_processing_script, "cd :path/script/video_processing && sh :task >> :path/log/cron.log 2>&1"
 
+# clear tmp folder stories created during story downloads
 every 3.hours do
-  rake "story:tmp_stories_clear", :environment => 'development' 
+  rake "story:tmp_stories_clear"
+end
+
+# process videos
+every 3.minutes do
+  video_processing_script "process_videos.sh"
+end
+every 6.minutes do
+  runner "NotificationTrigger.process_processed_videos"
 end
 
 case @environment
 when 'production'
+  # send notifications
   every 30.minutes do
     runner "NotificationTrigger.process_all_types"
   end
