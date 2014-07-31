@@ -9,6 +9,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require modalos
+//= require jquery.tipsy
 //= require jquery.remotipart
 //= require jquery.ui.core
 //= require jquery.ui.effect
@@ -184,8 +185,7 @@ $(window).resize(function() {
       });     
     }
     return false;
-  });
-
+  });   
 });
 
 
