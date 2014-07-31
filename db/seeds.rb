@@ -12,15 +12,15 @@
 #####################
 ## Pages
 #####################
-puts "Loading Pages"
-Page.delete_all
-PageTranslation.delete_all
-p = Page.create(:id => 1, :name => 'about')
-p.page_translations.create(:locale => 'en', :title => 'About Story Builder')
-p.page_translations.create(:locale => 'ka', :title => 'Story Builder-ის შესახებ')
-p = Page.create(:id => 2, :name => 'todo')
-p.page_translations.create(:locale => 'en', :title => "Story Builder's To-Do List")
-p.page_translations.create(:locale => 'ka', :title => 'Story Builder-ის გასაკეთებელი სია')
+# puts "Loading Pages"
+# Page.delete_all
+# PageTranslation.delete_all
+# p = Page.create(:id => 1, :name => 'about')
+# p.page_translations.create(:locale => 'en', :title => 'About Story Builder')
+# p.page_translations.create(:locale => 'ka', :title => 'Story Builder-ის შესახებ')
+# p = Page.create(:id => 2, :name => 'todo')
+# p.page_translations.create(:locale => 'en', :title => "Story Builder's To-Do List")
+# p.page_translations.create(:locale => 'ka', :title => 'Story Builder-ის გასაკეთებელი სია')
 
 #####################
 ## Templates
@@ -29,7 +29,7 @@ puts 'loading templates'
 Template.delete_all
 Template.create(id:1,name:"nytimes",title:"NYTimes Template",description:"Taken from NY Times 'Game of Shark and Minow' story",author:"NY TIMES",default:true)
 Template.create(id:2,name:"chca",title:"CHCA Template",description:"For CHCA specific story - not suggested for use in other stories",author:"Irakli Chumburidze",default:false,public:false)
-
+Template.create(id:3,name:"chca_en",title:"CHCA Template En",description:"For CHCA specific story - not suggested for use in other stories",author:"Irakli Chumburidze",default:false,public:false)
 
 #####################
 ## Languages
