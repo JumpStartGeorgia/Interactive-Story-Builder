@@ -37,6 +37,14 @@ class MoveVideos < ActiveRecord::Migration
             FileUtils.mv(video, processed_path)
           else
             puts "-> moving to original folder"
+
+            # if this is dev machine, go ahead and move movies into processed folder
+            # so do not have to process all of them
+            if Rails.env.development?
+              # - move processed video
+              FileUtils.cp(video, processed_path)
+            end
+
             # - file is not processed yet
             # - move original video
             FileUtils.mv(video, original_path)
