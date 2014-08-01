@@ -548,6 +548,10 @@ end
       if File.directory?("#{Rails.root}/public/template/#{template_id}/css")
           FileUtils.cp_r "#{Rails.root}/public/template/#{template_id}/css/", "#{path}/"
       end
+      if File.directory?("#{Rails.root}/public/system/places/thumbnail/#{story_id}/thumbnail/.")
+          FileUtils.mkpath("#{mediaPath}/thumbnail")    
+          FileUtils.cp_r "#{Rails.root}/public/system/places/thumbnail/#{story_id}/thumbnail/.", "#{mediaPath}/thumbnail"
+      end
       if File.directory?("#{Rails.root}/public/system/places/images/#{story_id}/.")
           FileUtils.mkpath("#{mediaPath}/images")    
           FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{story_id}/.", "#{mediaPath}/images"

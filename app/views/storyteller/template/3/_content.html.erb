@@ -96,7 +96,7 @@
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
                 <% if columnSectionCount == 0 %>
-                  <div class='headline'><%= @story.title %></div>              
+                  <div class='headline'><%= @story.title.downcase %></div>              
                   <div class="byline-rule"></div>
                   <div class="byline byline--first" style="margin-bottom:50px;">
                   <%= t('storyteller.byline') %><span class="author"> <%= @story.author %></span>
@@ -163,7 +163,7 @@
                             <div class="video-caption video-caption--<%= caption_class %>">
                                 <div class="video-headline headline"> 
                                 <%  words = @story.title.split(' ') %>
-                                <span class="headline-line1"><%=  words[0] %></span><br/><span class="headline-line2"><%=  words[1..words.length-1].join(' ') %></span></div>
+                                <span class="headline-line1"><%=  words[0].downcase %></span><br/><span class="headline-line2"><%=  words[1..words.length-1].join(' ').downcase %></span></div>
                                 <% if m.caption.present? %>
                                 <div class="video-summary"> <%= m.caption %> </div>
                                 <% end %> 
