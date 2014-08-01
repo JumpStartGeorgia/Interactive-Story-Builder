@@ -532,8 +532,8 @@ end
       filename_ext = SecureRandom.hex(3)  
       path =  "#{rootPath}/#{filename}_#{filename_ext}"  
       mediaPath = "#{path}/media"
-      #%x[rake story:tmp_stories_clear]
-      require 'fileutils'      
+
+      FileUtils.mkpath(path)    
       FileUtils.cp_r "#{Rails.root}/public/media/story", "#{path}"  
       
       story_id = params[:id]
@@ -549,32 +549,30 @@ end
           FileUtils.cp_r "#{Rails.root}/public/template/#{template_id}/css/", "#{path}/"
       end
       if File.directory?("#{Rails.root}/public/system/places/images/#{story_id}/.")
+          FileUtils.mkpath("#{mediaPath}/images")    
           FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{story_id}/.", "#{mediaPath}/images"
       end
       if File.directory?("#{Rails.root}/public/system/places/video/#{story_id}/.")
+        FileUtils.mkpath("#{mediaPath}/video" )
         FileUtils.cp_r "#{Rails.root}/public/system/places/video/#{story_id}/.", "#{mediaPath}/video"  
       end
       if File.directory?("#{Rails.root}/public/system/places/audio/#{story_id}/.")
+        FileUtils.mkpath( "#{mediaPath}/audio")
         FileUtils.cp_r "#{Rails.root}/public/system/places/audio/#{story_id}/.", "#{mediaPath}/audio"
       end
       if File.directory?("#{Rails.root}/public/system/places/slideshow/#{story_id}/.")
-        FileUtils.cp_r "#{Rails.root}/public/system/places/slideshow/#{story_id}/.", "#{mediaPath}/slideshow"
+        FileUtils.mkpath("#{mediaPath}/slideshow")
+        FileUtils.cp_r "#{Rails.root}/public/system/places/slideshow/#{story_id}/.", 
       end
       @export = true
 
       File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/index', :layout => false) }  
       send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :filename=>"#{filename}.tar.gz"
       
-      # if File.directory?(path)
-      #   FileUtils.remove_dir(path,true)   
-      # end
+    rescue Exception => e      
+       flash[:error] =I18n.t("app.msgs.error_export")       
 
-      # if File.exists?("#{path}.tar.gz")    
-      #   FileUtils.remove_file("#{path}.tar.gz",true)   
-      # end
-    rescue Exception => e  
-      view_context.log(e)
-       flash[:error] =I18n.t("app.msgs.error_export")                           
+       ExceptionNotifier::Notifier.exception_notification(request.env, e).deliver
        redirect_to stories_url
     end   
   end
