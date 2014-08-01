@@ -69,12 +69,12 @@
                 anchor.classed("navigation-section--active", function(d, i) { return i === j; });
               }
 
-              function clicked(d, i) {
-               // console.log(d); console.log(i);
+              function clicked(d, i) {       
                 d3.event.preventDefault();
                 d3.transition().duration(750).tween("scroll", function() {
                   var offset = d3.interpolateNumber(pageYOffset, markerOffsets[i]);
-                  return function(t) { scrollTo(0, offset(t)); };
+                  console.log(markerOffsets[i] + "----");
+                  return function(t) { var tt =  offset(t); console.log(tt); scrollTo(0,tt); };
                 });
               }
 
@@ -233,7 +233,7 @@
                     '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link"> <img src='<%= (@export ? "" : "/") + "assets/svg/facebook_w.svg"%>' /></a>          
              <a href='https://twitter.com/share?text=<%= "#{@story.title}" %>' onclick="javascript:window.open(this.href,
                                   '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "" : "/") + "assets/svg/twitter_w.svg"%>' /></a>    
-            <a href="https://plus.google.com/share" onclick="javascript:window.open(this.href,
+            <a href="https://plus.google.com/share?url=<%= current_url %>" onclick="javascript:window.open(this.href,
               '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "" : "/") + "assets/svg/google+_w.svg"%>' alt="Share on Google+" /></a>     
            </div>
         </div> 
