@@ -34,7 +34,8 @@
         (function() {      
           var defers = [];
           defer = function(f) { defers.push(f); };
-          await = function() { defers.forEach(function(f,s) { f();}); };
+          await = function() { defers.forEach(function(f,s) { f();});                         
+        };
 
         })();</script>
 
@@ -56,6 +57,8 @@
                   .on("resize.navigation", resized)
                   .on("load.navigation", resized)
                   .on("scroll.navigation", scrolled);
+
+
 
               resized();
 
@@ -221,7 +224,6 @@
 
       </div>
     </div>  
-    <!-- #modalAbout -->
         <div class="section footer-section">                    
            <div class="left">                        
             <div><a href="http://www.jumpstart.ge" target="_blank" title="<%= t("app.common.js_link_title") %>" >
@@ -323,6 +325,9 @@
 
         defer(function() {
 
+         
+
+ 
         /* Only do if we're on iPad, iPhone or Android -- TG */
         if (!isMobile()) return false;
 
@@ -502,17 +507,18 @@
 
           })
 
-            // added for donation pig
-            var secTemp = d3.selectAll(".article .section");          
-            var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
-            var lengthTemp = temp[0].length -1 ; 
-            if(lengthTemp >= 0)
-            {              
-                var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
-                last_section.append("div").attr("class","donate").append("a").attr('href','#').attr('id','modal-about').attr("data-modalos-id","modalos-about");
-                last_section.append("div").attr("class","pigy");              
-            }
-            // donation end
+               // added for donation pig
+              var secTemp = d3.selectAll(".article .section");          
+              var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
+              var lengthTemp = temp[0].length -1 ; 
+              if(lengthTemp >= 0)
+              {              
+                  var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
+                  last_section.append("div").attr("class","donate").append("a").attr('href','#').attr('id','modalDonate').attr("data-modalos-id","modalos-donate");
+                  last_section.append("div").attr("class","pigy");              
+              }
+              // donation end   
+
         }, 200)
 
 
@@ -647,17 +653,17 @@
 
           resized();
 
-           // added for donation pig
-            var secTemp = d3.selectAll(".article .section");          
-            var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
-            var lengthTemp = temp[0].length -1 ; 
-            if(lengthTemp >= 0)
-            {              
-                var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
-                last_section.append("div").attr("class","donate").append("a").attr("href","#").attr('data-modalos-id','modalos-donate').attr('id','modalDonate');;
-                last_section.append("div").attr("class","pigy");              
-            }
-            // donation end
+          // added for donation pig
+              var secTemp = d3.selectAll(".article .section");          
+              var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
+              var lengthTemp = temp[0].length -1 ; 
+              if(lengthTemp >= 0)
+              {              
+                  var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
+                  last_section.append("div").attr("class","donate").append("a").attr('href','#').attr('id','modalDonate').attr("data-modalos-id","modalos-donate");
+                  last_section.append("div").attr("class","pigy");              
+              }
+          // donation end   
 
           function loaded() {
             video.attr("preload", function(d) { return d.first ? "auto" : "none"; });
@@ -1050,7 +1056,8 @@
         }
 
             
-        await();             
+        await();   
+
     })();</script>
 
     <!--<![endif]-->  

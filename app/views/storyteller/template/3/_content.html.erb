@@ -501,17 +501,18 @@
 
           })
 
-            // added for donation pig
-            var secTemp = d3.selectAll(".article .section");          
-            var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
-            var lengthTemp = temp[0].length -1 ; 
-            if(lengthTemp >= 0)
-            {              
-                var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
-                last_section.append("div").attr("class","donate").append("a").attr('href','#').attr('id','modal-about').attr("data-modalos-id","modalos-about");
-                last_section.append("div").attr("class","pigy");              
-            }
-            // donation end
+
+          // added for donation pig
+              var secTemp = d3.selectAll(".article .section");          
+              var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
+              var lengthTemp = temp[0].length -1 ; 
+              if(lengthTemp >= 0)
+              {              
+                  var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
+                  last_section.append("div").attr("class","donate").append("a").attr('href','#').attr('id','modalDonate').attr("data-modalos-id","modalos-donate");
+                  last_section.append("div").attr("class","pigy");              
+              }
+          // donation end  
         }, 200)
 
 
@@ -646,17 +647,18 @@
 
           resized();
 
-           // added for donation pig
-            var secTemp = d3.selectAll(".article .section");          
-            var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
-            var lengthTemp = temp[0].length -1 ; 
-            if(lengthTemp >= 0)
-            {              
-                var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
-                last_section.append("div").attr("class","donate").append("a").attr("href","#").attr('data-modalos-id','modalos-donate').attr('id','modalDonate');;
-                last_section.append("div").attr("class","pigy");              
-            }
-            // donation end
+          // added for donation pig
+              var secTemp = d3.selectAll(".article .section");          
+              var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
+              var lengthTemp = temp[0].length -1 ; 
+              if(lengthTemp >= 0)
+              {              
+                  var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
+                  last_section.append("div").attr("class","donate").append("a").attr('href','#').attr('id','modalDonate').attr("data-modalos-id","modalos-donate");
+                  last_section.append("div").attr("class","pigy");              
+              }
+          // donation end  
+
 
           function loaded() {
             video.attr("preload", function(d) { return d.first ? "auto" : "none"; });
