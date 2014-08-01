@@ -534,7 +534,7 @@ end
       mediaPath = "#{path}/media"
 
       FileUtils.mkpath(path)    
-      FileUtils.cp_r "#{Rails.root}/public/media/story", "#{path}"  
+      FileUtils.cp_r "#{Rails.root}/public/media/story/", "#{path}"  
       
       story_id = params[:id]
       template_id = @story.template_id
