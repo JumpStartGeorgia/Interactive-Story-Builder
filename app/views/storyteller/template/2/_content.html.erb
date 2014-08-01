@@ -229,11 +229,11 @@
               <img src='<%= (@export ? "" : "/") + "assets/svg/js_w.svg"%>' class="footer-logo"/></a></div>
            </div>
            <div class="right">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=<%= root_url %>" onclick="javascript:window.open(this.href,
+            <a href="https://www.facebook.com/sharer/sharer.php" onclick="javascript:window.open(this.href,
                     '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link"> <img src='<%= (@export ? "" : "/") + "assets/svg/facebook_w.svg"%>' /></a>          
              <a href='https://twitter.com/share?text=<%= "#{@story.title}" %>' onclick="javascript:window.open(this.href,
                                   '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "" : "/") + "assets/svg/twitter_w.svg"%>' /></a>    
-            <a href="https://plus.google.com/share?url=<%= current_url %>" onclick="javascript:window.open(this.href,
+            <a href="https://plus.google.com/share" onclick="javascript:window.open(this.href,
               '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "" : "/") + "assets/svg/google+_w.svg"%>' alt="Share on Google+" /></a>     
            </div>
         </div> 
