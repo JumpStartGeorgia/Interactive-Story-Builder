@@ -557,12 +557,12 @@ end
         FileUtils.cp_r "#{Rails.root}/public/system/places/video/#{story_id}/.", "#{mediaPath}/video"  
       end
       if File.directory?("#{Rails.root}/public/system/places/audio/#{story_id}/.")
-        FileUtils.mkpath( "#{mediaPath}/audio")
+        FileUtils.mkpath("#{mediaPath}/audio")
         FileUtils.cp_r "#{Rails.root}/public/system/places/audio/#{story_id}/.", "#{mediaPath}/audio"
       end
       if File.directory?("#{Rails.root}/public/system/places/slideshow/#{story_id}/.")
         FileUtils.mkpath("#{mediaPath}/slideshow")
-        FileUtils.cp_r "#{Rails.root}/public/system/places/slideshow/#{story_id}/.", 
+        FileUtils.cp_r "#{Rails.root}/public/system/places/slideshow/#{story_id}/.", "#{mediaPath}/slideshow"
       end
       @export = true
 
@@ -571,7 +571,6 @@ end
       
     rescue Exception => e      
        flash[:error] =I18n.t("app.msgs.error_export")       
-
        ExceptionNotifier::Notifier.exception_notification(request.env, e).deliver
        redirect_to stories_url
     end   
