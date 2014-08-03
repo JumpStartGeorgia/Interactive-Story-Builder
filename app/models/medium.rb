@@ -14,8 +14,6 @@ class Medium < ActiveRecord::Base
     class_name: "Asset",
     dependent: :destroy
 
-
-
 	TYPE = {image: 1, video: 2}
 
   validates :section_id, :presence => true
@@ -30,16 +28,27 @@ class Medium < ActiveRecord::Base
   accepts_nested_attributes_for :image, :reject_if => lambda { |c| c[:asset].blank? }
   accepts_nested_attributes_for :video, :reject_if => lambda { |c| c[:asset].blank? }
 
+  attr_accessor :video_date_changed
+
+  before_save :check_video_date
   after_commit :create_video_image
+  
+  # must call before the save because after save all dirty changes are lost
+  def check_video_date
+    self.video_date_changed = video_type? && self.video.asset_updated_at_changed?
+  end
 
   # if this is a video, generate the image for the video
   def create_video_image
-#Rails.logger.debug "@@@@@@@@@@@@@@@@   create_video_image"
-    if video_type? && video_exists? && self.video.asset_updated_at_changed?
+Rails.logger.debug "@@@@@@@@@@@@@@@@   create_video_image"
+Rails.logger.debug "@@@@@@@@@@@@@@@@   video type #{video_type?}; exists #{video_exists?}; updated ad changed #{self.video_date_changed}"
+    if video_type? && video_exists? && self.video_date_changed
       # get the image
       image_file = "#{Rails.root}/public#{self.video.asset.url(:poster, false)}"
+Rails.logger.debug "@@@@@@@@ file = #{image_file}"
       # check if exists
       if File.exists?(image_file)
+Rails.logger.debug "@@@@@@@@ file exists, saving!"
         File.open(image_file) do |f|
           # if image does not exist, create it
           # else, update it

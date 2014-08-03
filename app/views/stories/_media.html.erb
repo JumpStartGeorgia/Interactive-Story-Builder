@@ -54,14 +54,14 @@
         <% if  @item.video.present? && @item.video.asset.exists? %>
           <% if @item.video.id.present? %>
             <% if @item.video.processed %>
-              <span class="processed">
+              <span class="processed-msg processed">
                 <%= t('app.msgs.video_processed') %>
               </span>
               <div class="preview-button">
                 <a class='btn btn-default preview' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" ><%= t('app.buttons.preview_video') %></a>
               </div>
             <% else %>
-              <span class="not-processed">
+              <span class="processed-msg not-processed">
                 <%= t('app.msgs.video_not_processed') %>
               </span>
             <% end %>

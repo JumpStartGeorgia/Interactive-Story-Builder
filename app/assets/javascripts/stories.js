@@ -48,6 +48,9 @@ $(document).ready(function() {
 		  $('#mediaImageBox').hide();
 	    $('#mediaVideoBox').show();
     }
+    // make sure the file fields are reset when the option changes
+    $('form.medium input#mediaImage, form.medium input#mediaVideo').wrap('<form>').parent('form').trigger('reset');
+    $('form.medium input#mediaImage, form.medium input#mediaVideo').unwrap();
 	});
 
   $('.story-viewer').on('click', '#btnOlly', function(){
