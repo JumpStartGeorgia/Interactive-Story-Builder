@@ -532,9 +532,9 @@ end
       filename_ext = SecureRandom.hex(3)  
       path =  "#{rootPath}/#{filename}_#{filename_ext}"  
       mediaPath = "#{path}/media"
-      #%x[rake story:tmp_stories_clear]
-      require 'fileutils'      
-      FileUtils.cp_r "#{Rails.root}/public/media/story", "#{path}"  
+
+      FileUtils.mkpath(path)    
+      FileUtils.cp_r "#{Rails.root}/public/media/story/.", "#{path}"  
       
       story_id = params[:id]
       template_id = @story.template_id
@@ -548,16 +548,24 @@ end
       if File.directory?("#{Rails.root}/public/template/#{template_id}/css")
           FileUtils.cp_r "#{Rails.root}/public/template/#{template_id}/css/", "#{path}/"
       end
+      if File.directory?("#{Rails.root}/public/system/places/thumbnail/#{story_id}/thumbnail/.")
+          FileUtils.mkpath("#{mediaPath}/thumbnail")    
+          FileUtils.cp_r "#{Rails.root}/public/system/places/thumbnail/#{story_id}/thumbnail/.", "#{mediaPath}/thumbnail"
+      end
       if File.directory?("#{Rails.root}/public/system/places/images/#{story_id}/.")
+          FileUtils.mkpath("#{mediaPath}/images")    
           FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{story_id}/.", "#{mediaPath}/images"
       end
       if File.directory?("#{Rails.root}/public/system/places/video/#{story_id}/.")
+        FileUtils.mkpath("#{mediaPath}/video" )
         FileUtils.cp_r "#{Rails.root}/public/system/places/video/#{story_id}/.", "#{mediaPath}/video"  
       end
       if File.directory?("#{Rails.root}/public/system/places/audio/#{story_id}/.")
+        FileUtils.mkpath("#{mediaPath}/audio")
         FileUtils.cp_r "#{Rails.root}/public/system/places/audio/#{story_id}/.", "#{mediaPath}/audio"
       end
       if File.directory?("#{Rails.root}/public/system/places/slideshow/#{story_id}/.")
+        FileUtils.mkpath("#{mediaPath}/slideshow")
         FileUtils.cp_r "#{Rails.root}/public/system/places/slideshow/#{story_id}/.", "#{mediaPath}/slideshow"
       end
       @export = true
@@ -565,16 +573,9 @@ end
       File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/index', :layout => false) }  
       send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :filename=>"#{filename}.tar.gz"
       
-      # if File.directory?(path)
-      #   FileUtils.remove_dir(path,true)   
-      # end
-
-      # if File.exists?("#{path}.tar.gz")    
-      #   FileUtils.remove_file("#{path}.tar.gz",true)   
-      # end
-    rescue Exception => e  
-      view_context.log(e)
-       flash[:error] =I18n.t("app.msgs.error_export")                           
+    rescue Exception => e      
+       flash[:error] =I18n.t("app.msgs.error_export")       
+       ExceptionNotifier::Notifier.exception_notification(request.env, e).deliver
        redirect_to stories_url
     end   
   end

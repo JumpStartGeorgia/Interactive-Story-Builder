@@ -4,7 +4,7 @@
     font-family: 'dejavu';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@export ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_2.ttf'%>);      
+    src: url(<%= (@export ? "" : "/template/#{@template}/") + 'assets/fonts/bpg_dejavusans_2.ttf'%>);      
   }
 
   @font-face
@@ -12,7 +12,7 @@
     font-family: 'dejavu-bold';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@export ? "assets/" : "/template/#{@template}/") + 'fonts/bpg_dejavusans_bold.ttf'%>);    
+    src: url(<%= (@export ? "" : "/template/#{@template}/") + 'assets/fonts/bpg_dejavusans_bold.ttf'%>);    
   }
 
   @font-face
@@ -20,7 +20,7 @@
     font-family: 'shavshvebi';
     font-style: normal;
     font-weight: normal;
-    src: url(<%= (@export ? "assets/" : "/template/#{@template}/")  + 'fonts/shavshvebi.ttf'%>);    
+    src: url(<%= (@export ? "" : "/template/#{@template}/")  + 'assets/fonts/shavshvebi.ttf'%>);    
   }
   body {
     font: 17px/18px 'dejavu-bold';
@@ -427,12 +427,12 @@
   }
     .headline-line1
     {
-        font-size: 213px;        
+        font-size: 290px;        
     }
    .headline-line2
     {
-        font-size: 83px;
-        line-height: 153px;
+        font-size: 45px;
+        line-height: 115px;
     }
 
   .video-caption--head .video-summary {
@@ -1088,7 +1088,8 @@
   {
     font-size: 21px !important;
     font-family:shavshvebi , Georgia, serif !important;;
-    -webkit-font-smoothing: antialiased;      
+    -webkit-font-smoothing: antialiased;  
+    text-transform:lowercase !important;    
   }
   .navigation-logo {
     float: left;
@@ -1105,7 +1106,7 @@
       margin-top: 10px;
     <% end %>
     margin-top: 3px;
-    text-transform: uppercase;
+    text-transform:lowercase !important; 
     font-family:shavshvebi , Georgia, serif;
     -webkit-font-smoothing: antialiased;  
   }
@@ -1144,7 +1145,7 @@
 
   .navigation-marker {
     position: absolute;
-    margin-top: -80px;
+    margin-top: -42px;
   }
 
   .navigation-volume,

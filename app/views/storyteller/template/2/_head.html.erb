@@ -2,40 +2,38 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="initial-scale=1,width=device-width,height=device-height,user-scalable=no">       
-    <% title = ("#{@story.title} | #{t('app.common.app_name')}").html_safe %>
+    <% title = "#{@story.title}" + (@export ? "" : (" | #{t('app.common.app_name')}").html_safe) %>
     <title><%= title %></title>    
+    <%= csrf_meta_tags if !@export %>
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-    <![endif]-->    
-
-		  <meta property="og:title" content="<%= title %>" />
-		  <% if @story.about.present? %>
-        <meta name="description" content="<%= @story.about %>">
-    		<meta property="og:description" content="<%= @story.about %>" />
-      <% end %>
-		  <meta property="og:type" content="non_profit" />
-		  <meta property="og:url" content="<%= current_url %>" />
-		  <% if @story && @story.id && @story.asset_exists? %>
-			  <meta property="og:image" content="<%= full_url(@story.asset.asset.url(:"250x250", false)) %>" />
-            <% else %>
-             <meta property="og:image" content="<%= full_url('/assets/fb-img.jpg') %>" />
-          <% end %>
-		  <meta property="og:site_name" content="<%= t('app.common.app_name') %>" />
-		  <% if Rails.env.production? %>
-  		  <meta property="fb:app_id" content="<%= ENV['STORY_BUILDER_FACEBOOK_APP_ID'] %>" />
-		  <% end %>
+    <![endif]-->        
+    <meta property="og:title" content="<%= title %>" />
+<% if @story.about.present? %>
+    <meta name="description" content="<%= strip_tags(@story.about) %>">
+    <meta property="og:description" content="<%= strip_tags(@story.about) %>" />
+<% end %>
+    <meta property="og:type" content="non_profit" />
+    <meta property="og:url" content="<%= current_url if !@export %>" />
+<% if @story && @story.id && @story.asset_exists? %>
+    <meta property="og:image" content="<%= @export ? "media/thumbnail/#{@story.asset.asset_file_name}" : full_url(@story.asset.asset.url(:thumbnail, false)) %>" />
+<% else %>
+    <meta property="og:image" content="<%= full_url('/assets/fb-img.jpg') %>" />
+<% end %>
+    <meta property="og:site_name" content="<%= @export ? title : t('app.common.app_name') %>" />
+<% if !@export && Rails.env.production? %>
+    <meta property="fb:app_id" content="<%= ENV['STORY_BUILDER_FACEBOOK_APP_ID'] %>" />
+<% end %>
         
-    <% if @export %>
-        <link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">                 
-        <link href="css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css">
-        <link href="css/bootstrap-theme.min.css" media="all" rel="stylesheet" type="text/css">
-        <link href="css/storyteller.css" media="all" rel="stylesheet" type="text/css">
-        <link href="css/modalos.css" media="all" rel="stylesheet" type="text/css">
-
-    <% else %>
-        <%= stylesheet_link_tag  *(@css.present? ? ["application",@css].flatten : ["application"]), :media => "all" %>      
-        <%= favicon_link_tag '/favicon.ico', :rel => 'shortcut icon' %> 
-    <% end %>
-    <%= render partial: "storyteller/template/#{@template}/styles"%>
-    
+<% if @export %>
+    <link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">                 
+    <link href="css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-theme.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/storyteller.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/modalos.css" media="all" rel="stylesheet" type="text/css">
+<% else %>
+    <%= stylesheet_link_tag  *(@css.present? ? ["application",@css].flatten : ["application"]), :media => "all" %>
+    <%= favicon_link_tag '/favicon.ico', :rel => 'shortcut icon' %>           
+<% end %>
+<%= render partial: "storyteller/template/#{@template}/styles"%>

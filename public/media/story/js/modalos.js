@@ -115,9 +115,7 @@
 			}); 	
 
 			//Closing Animation
-			modal.bind('modalos:close', function () {
-
-				//console.log('modalos:close');
+			modal.bind('modalos:close', function () {			
 				if (options.before_close) options.before_close(this);
 				keeper.append(modal);
 				curModalos = null;
@@ -153,7 +151,6 @@
 ----------------------------*/
         	//Open Modal Immediately
     		modal.trigger('modalos:open');
-			//console.log("listeners");
 			//Close Modal Listeners
 			var closeButton = $('.m-close').bind('click.modalEvent', function () {
 			  modal.trigger('modalos:close')
@@ -221,7 +218,6 @@
 	    	 		}
 			    	else 
 		    		{		    			    	 		
-		    			console.log(options)
 		    			$(wrapper).width(options.width-options.margins);
 		    			if(options.height + options.topOffset > h)
 			    	 	{

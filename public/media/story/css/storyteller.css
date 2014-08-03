@@ -72,13 +72,13 @@ a
 {
    opacity:0.8; 
    text-decoration:none;
-   color:#fff;
+   color:#000;
 }
 a:link, a:hover, a:visited, a:active
 {
   opacity:1;
   text-decoration:none;
-  color:#fff;
+  color:#000;
 }
 .navbar-story {
   min-height: 40px;
@@ -499,10 +499,10 @@ html, body
   margin-top: 13px;
 }
 
-.about-window .title .text p, .about-window .title .text span
+.about-window .title .text p, .about-window .title .text span, .about-window .title .text a
 {
   font-family:opensans-r;
-  font-size:15px;
+  font-size:13px;
   color:#797979;
   margin:25px 0px 35px 0px;   
   line-height:21px; 
