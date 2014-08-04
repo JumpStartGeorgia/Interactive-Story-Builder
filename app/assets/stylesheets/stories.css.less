@@ -552,18 +552,26 @@ body#storybuilder_form{
   display:inline-block;
 }
 
+div.preview-button{
+  margin-top: 5px;
+}
 #mediaVideoBox{
-  span{
+  label{
+    display: inline-block;
+  }
+  span.processed-msg{
     margin-left: 10px;
     font-style: italic;
     padding: 6px 12px;
-    color: #fff;
     border-radius: 4px;
+    display: inline-block;
     &.processed{
-      background-color: #5cb85c;
+      border: solid 1px #5cb85c;
+      color: #5cb85c;
     }
     &.not-processed{
-      background-color: #d9534f;
+      border: solid 1px #d9534f;
+      color: #d9534f;
     }
   }
 

@@ -38,7 +38,9 @@
       <div id='mediaImageBox' <%=  @item.media_type == Medium::TYPE[:video]  ? "style=display:none;" : "" %> >
         <label class=" control-label" for="media-image-preview"><%= t('activerecord.attributes.medium.image') %></label>
         <% if @item.image_exists? %>
-          <a class='btn btn-default preview' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image"><%= t('app.buttons.preview_image') %></a>
+          <div class="preview-button">
+            <a class='btn btn-default preview' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image"><%= t('app.buttons.preview_image') %></a>
+          </div>
         <% end %>    
 
         <%= as.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:"image/jpeg,image/png" }, label: false  %> 
@@ -52,18 +54,20 @@
         <% if  @item.video.present? && @item.video.asset.exists? %>
           <% if @item.video.id.present? %>
             <% if @item.video.processed %>
-              <a class='btn btn-default preview' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" ><%= t('app.buttons.preview_video') %></a>
-              <span class="processed">
+              <span class="processed-msg processed">
                 <%= t('app.msgs.video_processed') %>
               </span>
+              <div class="preview-button">
+                <a class='btn btn-default preview' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" ><%= t('app.buttons.preview_video') %></a>
+              </div>
             <% else %>
-              <span class="not-processed">
+              <span class="processed-msg not-processed">
                 <%= t('app.msgs.video_not_processed') %>
               </span>
             <% end %>
           <% end %>
         <% end %>
-        <%= as.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:"video/mp4" }, label: false %>
+        <%= as.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:"video/mp4,video/quicktime" }, label: false %>
         <%= as.input :asset_type, :as => :hidden %>
 
         <%= f.input :video_loop, :as => :boolean , hint: t('.hint.video_loop'), :default => true, :input_html => { id: "sectionVideoLoop"} %> 

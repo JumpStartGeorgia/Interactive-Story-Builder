@@ -281,13 +281,15 @@ class StoriesController < ApplicationController
 
  def new_media
     @item = Medium.new(params[:medium])    
-
+Rails.logger.debug "######### image valid: #{@item.image.valid?}; image validations: #{@item.image.errors.full_messages.to_sentence}" if @item.image.present?
+Rails.logger.debug "######### video valid: #{@item.video.valid?}; video validations: #{@item.video.errors.full_messages.to_sentence}" if @item.video.present?
     respond_to do |format|
         if @item.save       
           flash_success_created(Medium.model_name.human,@item.title)                     
           format.js { render action: "change_sub_tree", status: :created }                    
         else                    
           flash[:error] = u I18n.t('app.msgs.error_created', obj:Medium.model_name.human, err:@item.errors.full_messages.to_sentence)                       
+Rails.logger.debug "######### new_media save error: #{@item.errors.full_messages.to_sentence}"
           format.js {render action: "flash" , status: :ok }
         end
       end    
