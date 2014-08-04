@@ -24,16 +24,15 @@
   margin:0px;
   overflow-x: hidden;
   overflow-y: auto;   
-
-  /* Small Devices, Tablets */
 }
-@media only screen and (min-width : 768px) 
+/* Small Devices, Tablets */
+/*@media only screen and (min-width : 768px) 
 {
  .modalos-wrapper .m-content
   {
-    margin:0px 10px 10px 10px;  
+    margin:0px 10px 10px 10px;
   }
-} 
+} */
 .modalos-wrapper .m-content.fluid
 {
   position: relative;

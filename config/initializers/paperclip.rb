@@ -27,3 +27,19 @@ Paperclip.interpolates('user_avatar_file_name') do |attachment, style|
   attachment.instance.user.avatar_file_name
 end
 
+
+
+include ActionView::Helpers::NumberHelper
+module Paperclip
+   module Validators
+      class AttachmentSizeValidator < ActiveModel::Validations::NumericalityValidator
+         def human_size(size)
+           if defined?(ActiveSupport::NumberHelper) # Rails 4.0+
+             ActiveSupport::NumberHelper.number_to_human_size(size)
+           else
+               number_to_human_size(size)
+           end
+         end
+      end
+   end
+end

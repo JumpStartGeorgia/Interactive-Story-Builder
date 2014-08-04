@@ -8,7 +8,7 @@ class ImageuploaderController < ApplicationController
     if ['.jpg','.png'].index(File.extname(file_name)).present?       
         story_path = "public/system/places/images/#{params['id']}"
         file_path = "#{story_path}/original"
-        url = "/system/places/images/#{params['id']}/original/#{file_name}"
+        url = "/system/places/images/#{params['id']}/mobile_640/#{file_name}"
         temp = "#{file_path}/#{file_name}"
 
         # make sure the path to the file exists
@@ -21,8 +21,8 @@ class ImageuploaderController < ApplicationController
         
         # create the mobile versions
         if File.exists?(file_path)       
-            Subexec.run "convert #{temp} -resize 640x427 #{Rails.root.join(story_path,'mobile_640',file_name)}"                
-            Subexec.run "convert #{temp} -resize 1024x623 #{Rails.root.join(story_path,'mobile_1024',file_name)}"     
+            Subexec.run "convert #{temp} -resize '640x427>' #{Rails.root.join(story_path,'mobile_640',file_name)}"                
+            Subexec.run "convert #{temp} -resize '1024x623>' #{Rails.root.join(story_path,'mobile_1024',file_name)}"     
             render json: { image: { url: "#{url}" } }, content_type: "text/html"          
         else
             render json: {error: {message: "Original File is missing for thumbnails"}}, content_type: "text/html"
