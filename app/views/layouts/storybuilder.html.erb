@@ -84,9 +84,9 @@
     <script>
       function calculate_workspace()
       {
-        var t = $('nav:last');
+        var t = $('.nav-tabs');       
+        var topOffset = t.outerHeight()+t.offset().top;
        
-        var topOffset = t.height()+t.offset().top;
         var bw = $(".builder-wrapper");  
 
         var bwh =bw.height($(window).height()-topOffset).height();
@@ -104,7 +104,7 @@
         workplace.height(bwh - header.height());
 
         workplace.css('top',topOffset + 'px');
-        content.width($(window).width()-bw.find('.sidebar').width()-10);
+        content.width($(window).width()-bw.find('.sidebar').width()-10);        
       }
       $(document).ready(function(){
         calculate_workspace();  

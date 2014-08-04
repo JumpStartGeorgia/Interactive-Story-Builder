@@ -24,8 +24,8 @@
         <% types.each do |type| %>
           <div class="radio">
             <% checked = type[1] == @item.type_id ? 'checked=checked' : '' %>
-            <input <%= checked %> id="section_type_id_<%= type[1] %>" name="section[type_id]" type="radio" value="<%= type[1] %>">
-            <label class="choice" for="section_type_id_<%= type[1] %>">
+            <input <%= checked %> id="section_type_id_<%= type[1] %>" name="section[type_id]" type="radio" value="<%= type[1] %>" <%= (@item.id.present?) ? "disabled" : "" %>>
+            <label class="choice<%= @item.id.present? ? ' disabled' : '' %>" for="section_type_id_<%= type[1] %>">
               <i class="s <%= type[3] %>"></i>
               <%= type[0] %>
               <div class="help-inline" title="<%= type[2] %>">

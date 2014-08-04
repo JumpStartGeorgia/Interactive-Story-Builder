@@ -160,7 +160,8 @@ class Story < ActiveRecord::Base
 	  	self.published_at = Time.now
 	  	# date is set so now permalink can be created
 	  	self.generate_permalink!
-	  end     
+	  end    
+    return true 
 	end
 
 #  def check_title
@@ -214,6 +215,7 @@ class Story < ActiveRecord::Base
     if self.reviewer_key.blank?
       self.reviewer_key = Random.new.rand(100_000_000..1_000_000_000-1)
     end
+    return true
   end
 
 	def transliterate_file_name
@@ -257,7 +259,9 @@ class Story < ActiveRecord::Base
   def shortened_url_generation
 	  if (self.published_changed? && self.published?) || (self.permalink_changed? && self.published?)
       generate_shortened_url
-	  end     
+	  end 
+    shortened_url_generation    
+    return true
   end
   
   # generate bit.ly shortened url

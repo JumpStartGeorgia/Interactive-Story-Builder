@@ -9,6 +9,7 @@ class StoryObserver < ActiveRecord::Observer
       story.send_comment_notification = story.published && story.comments_count_changed?
     rescue
     end
+    return true
   end
 
   # send notification
@@ -24,5 +25,6 @@ class StoryObserver < ActiveRecord::Observer
     if story.send_comment_notification
       NotificationTrigger.add_story_comment(story.id)
     end
+    return true
   end
 end

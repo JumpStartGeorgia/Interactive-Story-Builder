@@ -27,6 +27,7 @@ class NewsTranslation < ActiveRecord::Base
   
   def check_title
     self.generate_permalink! if self.title_changed?
+    return true
   end 
   
   def create_permalink
