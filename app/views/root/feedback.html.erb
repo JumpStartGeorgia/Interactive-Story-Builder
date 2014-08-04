@@ -9,7 +9,7 @@
   <% else %>
 
 	  <%= semantic_form_for @message, :url => feedback_path do |f| %>
-		  <%= f.error_messages %>
+    	<%= f.error_messages %>
 
 		  <%= f.inputs do %>
 			  <%= f.input :message_type, :as => :select, :label => t("activerecord.attributes.message.message_type"), 
