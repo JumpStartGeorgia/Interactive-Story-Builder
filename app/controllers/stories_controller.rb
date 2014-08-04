@@ -274,7 +274,7 @@ class StoriesController < ApplicationController
           format.js { render action: "change_tree", status: :created  }
         else          
           flash[:error] = u I18n.t('app.msgs.error_created', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                  
-          format.js {render json: nil, status: :ok }
+          format.js {render action: "flash" , status: :ok }
         end
       end    
   end
@@ -305,7 +305,7 @@ Rails.logger.debug "######### new_media save error: #{@item.errors.full_messages
           format.js { render action: "change_sub_tree", status: :created  }
         else
           flash[:error] = u I18n.t('app.msgs.error_created', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)                  
-          format.js {render json: nil, status: :ok }              
+          format.js {render action: "flash" , status: :ok }
         end
       end    
   end
@@ -347,7 +347,8 @@ Rails.logger.debug "######### new_media save error: #{@item.errors.full_messages
           format.js {render action: "build_tree", status: :created }                  
         else
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                            
-          format.js {render json: nil, status: :ok }
+Rails.logger.debug "######### save_section save error: #{@item.errors.full_messages.to_sentence}"
+          format.js {render action: "flash" , status: :ok }
         end
       end    
   end
@@ -359,7 +360,7 @@ Rails.logger.debug "######### new_media save error: #{@item.errors.full_messages
           format.js {render action: "build_tree", status: :created }                  
         else
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)                                      
-          format.js {render json: nil, status: :ok }
+          format.js {render action: "flash" , status: :ok }
         end
       end    
   end

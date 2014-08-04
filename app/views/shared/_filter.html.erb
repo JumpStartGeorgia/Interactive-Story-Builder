@@ -29,7 +29,7 @@
     <li class="afilter">
       <%= link_to url_for(params.merge(:staff_pick => !@story_filter_staff_pick)),
         :class => "staff_pick #{@story_filter_staff_pick == true ? 'active' : ''}", 
-          :tabindex => 13, 
+          :tabindex => 14, 
           :title => @story_filter_staff_pick ? t('filters.staff_pick_title_active') : t('filters.staff_pick_title'),
           :"data-filtered-by" => @story_filter_staff_pick , :"data-filter-type"=>'staff_pick',
           :'data-title' => t('filters.staff_pick_title'), :'data-title-active' => t('filters.staff_pick_title_active') do %>
@@ -39,7 +39,7 @@
     <% if @categories_published.present? %>          
       <li class="dropdown dropdown-hover category afilter">
         <a href="#" class="dropdown-toggle<%= @story_filter_category_all ? '' : ' selected' %>" 
-          data-toggle="dropdown" tabindex="14" title="<%= t('filters.category_title') %>"
+          data-toggle="dropdown" tabindex="15" title="<%= t('filters.category_title') %>"
           data-filtered-by="<%= @story_filter_category_permalink %>" 
           data-filter-type="category" data-filter-default-label="<%= t('filters.category_header') %>"
           data-filter-default="all">
@@ -58,7 +58,7 @@
     <% end %>
     <li class="dropdown dropdown-hover language afilter">
       <a href="#" class="dropdown-toggle<%= @story_filter_language_all ? '' : ' selected' %>" 
-        data-toggle="dropdown" tabindex="15" title="<%= t('filters.language_title') %>"
+        data-toggle="dropdown" tabindex="16" title="<%= t('filters.language_title') %>"
         data-filtered-by="<%= @story_filter_language_permalink %>" 
         data-filter-type="language" data-filter-default-label="<%= t('filters.language_header') %>" 
         data-filter-default="all">
@@ -78,7 +78,7 @@
     <li class="li-sort-label"><span class="sort-label"><%= t('filters.sort_header') %>:</span></li>
     <li class="dropdown dropdown-hover sort afilter">
       <a href="#" class="dropdown-toggle<%= @story_filter_sort_recent ? '' : ' selected' %>" 
-          data-toggle="dropdown" tabindex="16"  title="<%= t('filters.sort_title') %>"
+          data-toggle="dropdown" tabindex="17"  title="<%= t('filters.sort_title') %>"
           data-filtered-by="<%= @story_filter_sort_permalink %>" data-filter-type="sort" 
           data-filter-default="recent">
         <span><%= @story_filter_sort %></span><i class='s i-caret-b'></i></a>
@@ -94,7 +94,7 @@
       <%= link_to url_for(params.merge(:following => !@story_filter_following)),
         :title => @story_filter_following ? t('filters.following_title_active') : t('filters.following_title'),
         :class => "following #{@story_filter_following == true ? 'active' : ''}", 
-        :tabindex => 17, :"data-filtered-by" => @story_filter_following , 
+        :tabindex => 18, :"data-filtered-by" => @story_filter_following , 
         :"data-filter-type"=>'following',
         :'data-title' => t('filters.following_title'), :'data-title-active' => t('filters.following_title_active') do %>
 
