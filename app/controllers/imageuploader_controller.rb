@@ -29,14 +29,13 @@ class ImageuploaderController < ApplicationController
             Subexec.run "convert #{temp} -resize '1024x623>' #{Rails.root.join(story_path,'mobile_1024',file_name)}"     
             render json: { image: { url: "#{url}" } }, content_type: "text/html"          
         else
-            render json: {error: {message: "Original File is missing for thumbnails"}}, content_type: "text/html"
+            render json: {error: {message: I18n.t('imageuploader.missing') }}, content_type: "text/html"
         end         
       else
-        render json: {error: {message: "Invalid file type. Only .jpg, .png allowed"}}, content_type: "text/html"
+        render json: {error: {message: I18n.t('imageuploader.invalid_type') }}, content_type: "text/html"
       end
    else 
-      render json: {error: {message: "File size is limited to 5MB"}}, content_type: "text/html"
+      render json: {error: {message: I18n.t('imageuploader.size_limit') }}, content_type: "text/html"
    end
   end 
- 
 end

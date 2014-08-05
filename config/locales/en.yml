@@ -542,7 +542,7 @@ en:
         caption: "Caption text will appear on top of the image/video"
         source: "Source of the image/video, appears in the bottom-right corner"
         image: "Only jpg format allowed; 3MB file size limit"
-        video: "Only mp4 and mov formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receieve a notification when the processing is complete, typically within a few minutes."
+        video: "Only mp4,mov,webm,ogv,flv,avi,wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receieve a notification when the processing is complete, typically within a few minutes."
         caption_align: "The location the Caption text will appear on top of the image/video (default is left) "
         video_loop: "If checked, the video will loop infinitly, otherwise the video will not loop"
     section:
@@ -647,3 +647,7 @@ en:
       following_title1: "Click to unfollow '%{nickname}'"
       following_title2: "Click to follow '%{nickname}'"     
       submit: Save Settings
+  imageuploader:
+    missing: "Original File is missing for thumbnails"
+    invalid_type: "Invalid file type. Only .jpg, .png allowed"
+    size_limit: "File size is limited to 5MB"
