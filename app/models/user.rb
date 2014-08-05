@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
   # so people cannot search using domain name to guess their email addresses
   def create_email_no_domain
     self.email_no_domain = self.email.split('@').first
+    return true
   end
 
   # if the nickname changes, then the permalink must also change
@@ -55,6 +56,7 @@ class User < ActiveRecord::Base
       self.nickname = ActionController::Base.helpers.strip_links(self.nickname)
       self.generate_permalink! 
     end
+    return true
   end
   # if this nickname already exists, add a # to the end to make it unique
   def fix_nickname_duplication 
@@ -126,6 +128,7 @@ class User < ActiveRecord::Base
     if self.avatar_file_name.blank?
       self.avatar_file_name = SecureRandom.urlsafe_base64
     end
+    return true
   end
 
 
@@ -193,6 +196,7 @@ class User < ActiveRecord::Base
   # if not set, default to current locale
   def set_notification_language
     self.notification_language = I18n.locale if self.has_attribute?('notification_language') && read_attribute("notification_language").blank?
+    return true
   end
   
   # get the notification language locale for a user

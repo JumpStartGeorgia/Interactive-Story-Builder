@@ -42,6 +42,7 @@ class Message
   def strip_whitespace 
     name.strip! if name.present?
     email.strip! if email.present?
+    return true
   end
 
 end

@@ -22,6 +22,7 @@ class Invitation < ActiveRecord::Base
   def create_default_values
     self.key = Devise.friendly_token.first(20) if self.key.blank?
     self.sent_at = Time.now
+    return true
   end
   
   def self.pending_by_story(story_id)

@@ -30,8 +30,8 @@ class Asset < ActiveRecord::Base
   
   # if this is a video, set the flag to false (default is true)
   def set_processed_flag
-#logger.debug "**************** processed = #{self.asset_type != TYPE[:media_video]}"
     self.processed = self.asset_type != TYPE[:media_video]
+    return true   
   end
   
   def init

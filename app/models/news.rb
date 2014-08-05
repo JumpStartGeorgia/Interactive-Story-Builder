@@ -15,6 +15,7 @@ class News < ActiveRecord::Base
 	      nt.save
       end
 	  end
+     return true
 	end
 
   # allow locale to be passed in for sending notifications about news

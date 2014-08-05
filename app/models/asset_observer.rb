@@ -2,16 +2,17 @@ class AssetObserver < ActiveRecord::Observer
   
   def after_save(asset)
     # if this is a video and the file is new or has changed, add it to the to process queue
-Rails.logger.debug "+++++++ after_save "
+    #Rails.logger.debug "+++++++ after_save "
     asset.process_video = asset.asset_type == Asset::TYPE[:media_video] && asset.asset_updated_at_changed?
+    return true
   end
 
   # add new video to queue to be processed
   def after_commit(asset)
-    Rails.logger.debug "+++++++ after_commit, process video = #{asset.process_video}"
+    #Rails.logger.debug "+++++++ after_commit, process video = #{asset.process_video}"
     if asset.process_video
       require 'csv'
-      Rails.logger.debug "+++++++ - processing"
+      #Rails.logger.debug "+++++++ - processing"
 
       queue_file = "#{Rails.root}/public/system/video_processing/to_process.csv"
 
@@ -28,5 +29,6 @@ Rails.logger.debug "+++++++ after_save "
       end
       
     end
+    return true
   end
 end
