@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140728085504) do
+ActiveRecord::Schema.define(:version => 20140804134323) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(:version => 20140728085504) do
   add_index "assets", ["processed"], :name => "index_assets_on_processed"
 
   create_table "categories", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.integer  "published_story_count", :default => 0
   end
 
@@ -43,11 +43,11 @@ ActiveRecord::Schema.define(:version => 20140728085504) do
 
   create_table "category_translations", :force => true do |t|
     t.integer  "category_id"
-    t.string   "locale"
+    t.string   "locale",      :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "name"
     t.string   "permalink"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   add_index "category_translations", ["category_id"], :name => "index_category_translations_on_category_id"
@@ -123,8 +123,8 @@ ActiveRecord::Schema.define(:version => 20140728085504) do
   create_table "languages", :force => true do |t|
     t.string   "locale"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.integer  "published_story_count", :default => 0
   end
 
@@ -255,13 +255,13 @@ ActiveRecord::Schema.define(:version => 20140728085504) do
     t.boolean  "publish_home_page",     :default => true
     t.boolean  "staff_pick",            :default => false
     t.string   "story_locale",          :default => "en"
-    t.string   "permalink_staging"
     t.integer  "cached_votes_total",    :default => 0
     t.integer  "cached_votes_score",    :default => 0
     t.integer  "cached_votes_up",       :default => 0
     t.integer  "cached_votes_down",     :default => 0
     t.integer  "cached_weighted_score", :default => 0
     t.integer  "comments_count",        :default => 0
+    t.string   "permalink_staging"
   end
 
   add_index "stories", ["cached_votes_down"], :name => "index_stories_on_cached_votes_down"
@@ -290,8 +290,8 @@ ActiveRecord::Schema.define(:version => 20140728085504) do
   create_table "story_categories", :force => true do |t|
     t.integer  "story_id"
     t.integer  "category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "story_categories", ["category_id"], :name => "index_story_categories_on_category_id"
@@ -383,8 +383,8 @@ ActiveRecord::Schema.define(:version => 20140728085504) do
     t.boolean  "vote_flag"
     t.string   "vote_scope"
     t.integer  "vote_weight"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   add_index "votes", ["votable_id", "votable_type", "vote_scope"], :name => "index_votes_on_votable_id_and_votable_type_and_vote_scope"

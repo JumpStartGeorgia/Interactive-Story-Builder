@@ -8,11 +8,15 @@ class ImageuploaderController < ApplicationController
     if ['.jpg','.png'].index(File.extname(file_name)).present?       
         story_path = "public/system/places/images/#{params['id']}"
         file_path = "#{story_path}/original"
+        mobile1_path = "#{story_path}/mobile_640"
+        mobile2_path = "#{story_path}/mobile_1024"
         url = "/system/places/images/#{params['id']}/mobile_640/#{file_name}"
         temp = "#{file_path}/#{file_name}"
 
         # make sure the path to the file exists
-        FileUtils.mkpath(File.dirname(temp))
+        FileUtils.mkpath(file_path)
+        FileUtils.mkpath(mobile1_path)
+        FileUtils.mkpath(mobile2_path)
 
         # save the file temporarily
         File.open(temp, 'wb') do |file|
