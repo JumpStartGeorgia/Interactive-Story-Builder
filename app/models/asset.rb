@@ -122,7 +122,7 @@ class Asset < ActiveRecord::Base
     t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
   with_options :if => "self.asset_type == TYPE[:media_video]" do |t|      
-    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["video/mp4", "video/quicktime"]}, :size => { :in => 0..25.megabytes }}    
+    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["video/mp4", "video/quicktime", "video/webm", "video/ogg", "video/x-flv", "video/x-msvideo", "video/x-ms-wmv" ]}, :size => { :in => 0..25.megabytes }}    
   end
  with_options :if => "self.asset_type == TYPE[:slideshow_image]" do |t|      
     t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  

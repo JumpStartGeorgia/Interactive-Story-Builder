@@ -35,7 +35,7 @@
            <a class='btn btn-default preview' id="story-thumbnail-preview" data-modalos-id="modalos-preview" data-type="image"  data-image-path='<%= "#{@story.asset.asset.url}" %>'><%=  t('app.buttons.preview_image') %></a>           
         <% end %>  
 
-        <%= as.input :asset, :as => :file , hint: t('.hint.thumbnail') , :input_html => { :id => "storyThumbnail", accept:"image/jpeg,image/png" }, label: false  %> 
+        <%= as.input :asset, :as => :file , hint: t('.hint.thumbnail') , :input_html => { :id => "storyThumbnail", accept:".jpg,.jpeg,.png" }, label: false  %> 
 
     <% end %> 
 

@@ -24,7 +24,7 @@
             <% elsif current_user.has_provider_avatar? %>
               <%= link_to t('.use_facebook_avatar'), settings_remove_avatar_path, :class => 'btn btn-mini btn-warning' %>
             <% end %>
-            <%= as.input :asset, :as => :file , hint: t('helpers.hints.local_avatar') , :input_html => { accept:"image/jpeg,image/png" }, label: false  %> 
+            <%= as.input :asset, :as => :file , hint: t('helpers.hints.local_avatar') , :input_html => { accept:".jpg,.jpeg,.png" }, label: false  %> 
           </div>
         </div>
 

@@ -43,7 +43,7 @@
           </div>
         <% end %>    
 
-        <%= as.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:"image/jpeg,image/png" }, label: false  %> 
+        <%= as.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:".jpeg,.jpg,.png" }, label: false  %> 
         <%= as.input :asset_type, :as => :hidden %>
       </div>
     <% end %> 
@@ -67,7 +67,7 @@
             <% end %>
           <% end %>
         <% end %>
-        <%= as.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:"video/mp4,video/quicktime" }, label: false %>
+        <%= as.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:".mp4,.mov,.webm,.ogg,.flv,.avi,.wmv" }, label: false %>
         <%= as.input :asset_type, :as => :hidden %>
 
         <%= f.input :video_loop, :as => :boolean , hint: t('.hint.video_loop'), :default => true, :input_html => { id: "sectionVideoLoop"} %> 

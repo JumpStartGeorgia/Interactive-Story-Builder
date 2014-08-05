@@ -50,7 +50,7 @@
         <% end %>
       </div>
 
-      <%= as.input :asset, :as => :file , hint: t('.hint.audio') , :input_html => { :id => "mediaAudio", accept:"audio/mp3" } , label: false  %>
+      <%= as.input :asset, :as => :file , hint: t('.hint.audio') , :input_html => { :id => "mediaAudio", accept:".mp3" } , label: false  %>
       <%= as.input :asset_type, :as => :hidden %>
     <% end %> 
     <% if @item.id.present? %>

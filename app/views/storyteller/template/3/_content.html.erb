@@ -119,7 +119,7 @@
                 <% section.media.each_with_index do |m,m_i| %>
                   <% dataVideo = '' %>
                   <% if m.media_type == Medium::TYPE[:video] && m.is_processed? %>                
-                    <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name,'.mp4')}'".html_safe %>
+                    <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name,'.*')}'".html_safe %>
                   <% end %> 
                   <div class="video"  <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>
                     <div class="video-container">

@@ -7,7 +7,7 @@
   </div>
 
   <div class="image_asset_fields">
-    <%= f.input :asset, :as => :file , hint: t('.hint.asset') , :input_html => { :id => "slideshowImage", accept:"image/jpeg,image/png" }, label: false %>       
+    <%= f.input :asset, :as => :file , hint: t('.hint.asset') , :input_html => { :id => "slideshowImage", accept:".jpg,.jpeg,.png" }, label: false %>       
     <%= f.input :caption, placeholder: t('.placeholder.caption'), hint: t('.hint.caption'), :label => t('.label.caption') %>
     <%= f.input :source,  placeholder: t('.placeholder.source'), hint: t('.hint.source'), :label => t('.label.source') %>
     <%= f.input :asset_type, :as => :hidden , :input_html => {:value => Asset::TYPE[:slideshow_image]} %>
