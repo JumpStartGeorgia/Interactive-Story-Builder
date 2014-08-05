@@ -259,8 +259,7 @@ class Story < ActiveRecord::Base
   def shortened_url_generation
 	  if (self.published_changed? && self.published?) || (self.permalink_changed? && self.published?)
       generate_shortened_url
-	  end 
-    shortened_url_generation    
+	  end     
     return true
   end
   
