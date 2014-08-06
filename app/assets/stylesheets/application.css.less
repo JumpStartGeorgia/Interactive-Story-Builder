@@ -53,7 +53,19 @@
 }
 @font-face {
     font-family: "dejavusans-el";    
-    src: url( '/assets/fonts/dejavusans-extralight.ttf') format("truetype");           
+    src: url( '/assets/fonts/dejavusans-el.ttf') format("truetype");           
+    font-style: normal;
+    font-weight: 200;
+}
+@font-face {
+    font-family: "dejavusans-r";    
+    src: url( '/assets/fonts/dejavusans-r.ttf') format("truetype");           
+    font-style: normal;
+    font-weight: 200;
+}
+@font-face {
+    font-family: "dejavusans-b";    
+    src: url( '/assets/fonts/dejavusans-b.ttf') format("truetype");           
     font-style: normal;
     font-weight: 200;
 }
@@ -470,7 +482,7 @@ input[type=text]{
 }
 .powered-by
 {
-  font-family:opensans-l,verdana;
+  font-family:opensans-l,georgia;
   font-size:14px;
   text-align: right;
   margin-right: 27px;
@@ -488,6 +500,10 @@ input[type=text]{
       color:#000;
     }
   }
+}
+.powered-by:lang(ka)
+{
+  font-family:dejavusans-r,sylfaen;
 }
 
 /* storybuilder image */

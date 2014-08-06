@@ -37,7 +37,7 @@
 }
 @font-face {
     font-family: "dejavusans-el";    
-    src: url( '../assets/fonts/dejavusans-extralight.ttf') format("truetype");           
+    src: url( '../assets/fonts/dejavusans-el.ttf') format("truetype");           
     font-style: normal;
     font-weight: 200;
 }

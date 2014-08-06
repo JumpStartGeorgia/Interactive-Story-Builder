@@ -181,7 +181,7 @@ ka:
       news: სიახლეები
       feedback: უკუკავშირი
       todo_list: გასაკეთებელი სია
-      about: ჩვენს შესახებ
+      about: შესახებ
       demo: დემო
       rss: RSS
       languages: ენები
@@ -261,6 +261,7 @@ ka:
       app_intro: შექმენი და გააზიარე;ახალი თაობის ამბები;Story Builder-ი ნებისმიერ ადამიანს ტექსტით, სურათით და/ან ვიდეოთი<br> აძლევს შესაძლებლბოას გააერთიანოს ეს მონაცემები ერთ ამბად,<br> გამოაქვეყნოს და გაუზიაროს იგი მსოფლიოს
       app_intro_meta: შექმენი და გააზიარე ახალი თაობის ამბები! Story Builder-ი ნებისმიერ ადამიანს ტექსტით, სურათით და/ან ვიდეოთი აძლევს შესაძლებლბოას გააერთიანოს ეს მონაცემები ერთ ამბად, გამოაქვეყნოს და გაუზიაროს იგი მსოფლიოს.
       powered_by: შექმნილია
+      powered_by_js: ჯამპსტარტ ჯორჯიას მიერ
       embed_slogan: შექმენი შენი ამბავი Story Builder-თან ერთად
       added_on: "დამატებულია: %{date}"
       admin: ადმინისტრატო
@@ -271,7 +272,7 @@ ka:
       search: ამბის მოძებნა
       build: ამბის შექმნა
       explore: ამბების დათვალიერება
-      about_story: ჩვენ შესახებ
+      about_story: შესახებ
       likes: მოწონება
       comments: კომენტარები
       follow: თვალყურის დევნება
@@ -545,7 +546,7 @@ ka:
       hint:
         title: ეს ტექსტი მხოლოდ გამოჩნდება მარცსენა გვერდითა პანელში, იგი არ გამოჩნდება ამბავიში
         media_type: ვიდეოსთვის ფოტო აუცილებელია, რადგან ვიდეო არ იტვირთება მობილურ ტელეფონებზე
-        caption: წარწერის ტექსტი გამოჩნდება ზედა გამოსახულებაზე/ვიდეოზე
+        caption: "Caption text will appear on top of the image/video. If this is the first item in the story, the caption text is hidden."
         source: ფოტოს/ვიდეოს წყარო გამოჩნდება ქვედა მარჯვენა კუთხეში
         image: დასაშვებია jpg მხოლოდ ფორმატი; ფაილის მაქსიმალური ზომა 3MB
         video: "Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receieve a notification when the processing is complete, typically within a few minutes."
@@ -608,7 +609,7 @@ ka:
         url: "ჩაშენებულ ონლაინ მედიაში შეგიძლიათ გამოიყენოთ შემდეგი საიტები: აუდიაო: Soundcloud, Spotify; ვიდეო: Youtube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED" 
   storyteller:
     byline: ავტორი
-    byline_media: "ფოტოებისა და ვიედეოს ავტორი "
+    byline_media: "ფოტოებისა და ვიდეოს ავტორი "
     source: "წყარო:"
   settings:
     index:

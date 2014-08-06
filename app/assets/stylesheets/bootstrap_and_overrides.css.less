@@ -70,12 +70,18 @@
 	min-height:54px;
 	width:100%;	
 	vertical-align: middle;
-   > .nav > li > a
+   > .nav > li 
    {
-     padding:0px;
-     font-family:opensans-l;
-     font-size:14px;
-
+     > a
+     {
+       padding:0px;
+       font-family:opensans-l;
+       font-size:14px;
+     }
+     > a:lang(ka)
+     {
+        font-family:dejavusans-el, sylfaen;
+     }
    }
 }
 
@@ -149,6 +155,10 @@
   {
     font-family:opensans-l;
     font-size:14px;
+  }
+  span:lang(ka),a:lang(ka)
+  {
+    font-family:dejavusans-el, sylfaen;
   }
 }
 .dropdown.open .dropdown-toggle

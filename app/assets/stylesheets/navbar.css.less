@@ -22,6 +22,10 @@
 
     &:hover { opacity:1; }
   }  
+  .link:lang(ka)
+  {
+    font-family:dejavusans-el, sylfaen !important;
+  }
   a.build-story
   {
     opacity:0.8;
@@ -57,7 +61,7 @@
         vertical-align:middle;    
         color:#000;
         padding:6px 11px;
-        font-size:14px;
+        font-size:16px;
       }
     }
   }
@@ -72,9 +76,10 @@
     float:right !important;
     a
     {
-      font-family:dejavusans-el !important;
+      font-family:dejavusans-el, sylfaen !important;
+      
       font-size:16px !important;
-      font-weight: 600;    
+      font-weight: normal;    
       margin-left: 10px;
       letter-spacing: 1px;
       opacity: 0.8;
@@ -84,6 +89,10 @@
       transition-property: none;
       &:hover { opacity:1; }
     }
+    a:lang(ka)
+    {
+       font-family:opensans-l, georgia !important;
+    }    
   }  
   .signin
   {
@@ -210,6 +219,10 @@
       {
         &, &:focus, &:hover { width: 100%; }
       }
+    }
+    input[type="text"]:lang(ka)
+    {
+      font-family:dejavusans-el, sylfaen;
     }
   }
   &.navbar-invisible
