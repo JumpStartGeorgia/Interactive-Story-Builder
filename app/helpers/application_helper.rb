@@ -64,6 +64,11 @@ module ApplicationHelper
     return x
 	end
 	
+  # apply the strip_tags helper and also convert nbsp to a ' '
+	def strip_tags_nbsp(text)
+	  strip_tags(text.gsub('&nbsp;', ' '))
+	end
+	
 
 	# put the default locale first and then sort the remaining locales
 	def create_sorted_translation_objects(trans)
@@ -80,13 +85,13 @@ module ApplicationHelper
 	  end
     return trans
 	end
+
   # Attribute codes:
   # 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
   # Text color codes:
   # 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
   # Background color codes:
   # 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
-
   def log(msg)    
     Rails.logger.debug("\033[44;37m#{'*'*80}\n    #{DateTime.now.strftime('%d/%m/%Y %H:%M')}#{msg.to_s.rjust(56)}\n#{'*'*80}\033[0;37m")
   end

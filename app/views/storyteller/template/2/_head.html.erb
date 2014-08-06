@@ -11,8 +11,8 @@
     <![endif]-->        
     <meta property="og:title" content="<%= title %>" />
 <% if @story.about.present? %>
-    <meta name="description" content="<%= strip_tags(@story.about) %>">
-    <meta property="og:description" content="<%= strip_tags(@story.about) %>" />
+    <meta name="description" content="<%= strip_tags_nbsp(@story.about) %>">
+    <meta property="og:description" content="<%= strip_tags_nbsp(@story.about) %>" />
 <% end %>
     <meta property="og:type" content="non_profit" />
     <meta property="og:url" content="<%= current_url if !@export %>" />

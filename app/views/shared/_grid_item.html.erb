@@ -1,7 +1,7 @@
   <%  
     title = ""   
     if story.about.present?     
-      title = truncate(strip_tags(story.about), length: 160, separator: ' ')
+      title = truncate(strip_tags_nbsp(story.about), length: 160, separator: ' ')
     end    
   %>   
             

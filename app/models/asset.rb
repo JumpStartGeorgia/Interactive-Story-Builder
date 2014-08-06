@@ -30,8 +30,17 @@ class Asset < ActiveRecord::Base
   
   # if this is a video, set the flag to false (default is true)
   def set_processed_flag
-    self.processed = self.asset_type != TYPE[:media_video]
+    if read_attribute(:processed).present?
+      self.processed = self.asset_type != TYPE[:media_video]
+    end
     return true   
+  end
+  
+  # get the processed url of a video
+  def media_video_processed_url
+    if self.asset_type == TYPE[:media_video] && read_attribute(:processed).present? && self.processed == true
+      self.asset.url(:processed,false).gsub(/\.[0-9a-zA-Z]+$/,".mp4")
+    end
   end
   
   def init

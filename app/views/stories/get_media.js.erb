@@ -8,7 +8,7 @@ $('#media-image-preview').attr('data-image-path','<%= "#{@item.image.asset.url}"
 //$("#modalImage .modal-data").html("<%= imageTemp.html_safe %>");
 
 <% if @item.video_exists? %>
-	$('#media-video-preview').attr('data-video-path','<%= "#{ @item.video.asset.url(:processed,false).gsub(/\.[0-9a-zA-Z]+$/,".mp4")}" %>').attr('data-video-type','video/mp4');
+	$('#media-video-preview').attr('data-video-path','<%= "#{ @item.video.media_video_processed_url}" %>').attr('data-video-type','video/mp4');
 //	<%	videoTemp = "<source src='#{@item.video.asset.url}' type='#{@item.video.asset.content_type}'>" %>  
 <% end %>
 
