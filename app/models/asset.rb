@@ -36,6 +36,13 @@ class Asset < ActiveRecord::Base
     return true   
   end
   
+  # get the processed url of a video
+  def media_video_processed_url
+    if self.asset_type == TYPE[:media_video] && read_attribute(:processed).present? && self.processed == true
+      self.asset.url(:processed,false).gsub(/\.[0-9a-zA-Z]+$/,".mp4")
+    end
+  end
+  
   def init
 
     if self.init_called != true
