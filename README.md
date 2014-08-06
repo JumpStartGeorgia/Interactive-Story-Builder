@@ -25,8 +25,10 @@ Aside from entering the story into the sections, you also have the ability to:
 
 ## Dependencies
 You will need to install the following programs:
-* ffmpeg - to create image from video (image is shown instead of video on mobile devices)
+* ffmpeg - to process video into format suitable for web ([install instructions here](https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu))
 * imagemagick - to process the images upload and create all of the different sizes required
+* exiftool - to check if video has audio (install with: sudo apt-get install libimage-exiftool-perl)
+* cron jobs - to send notifications and to process videos
 
 You will need the following [Environment Variables](https://help.ubuntu.com/community/EnvironmentVariables) set:
 * STORY_BUILDER_FROM_EMAIL - email address to send feedback all emails from
