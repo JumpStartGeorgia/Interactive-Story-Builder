@@ -36,9 +36,9 @@ You will need the following [Environment Variables](https://help.ubuntu.com/comm
 * STORY_BUILDER_FACEBOOK_APP_ID - Facebook is one of the options for logging in to the system and you must have an app account created under facebook developers. This key stores the application id.
 * STORY_BUILDER_FACEBOOK_APP_SECRET - This key stores the application secret.
 * STORY_BUILDER_DISQUS - Disqus is used for the commenting system and your unique website it is stored here
-* STORY_BUILDER_BITLY_TOKEN - bit.ly generic access token (get from here: https://bitly.com/a/oauth_apps) used to shorten URLs to published stories
+* STORY_BUILDER_BITLY_TOKEN - bit.ly generic access token ([get from here](https://bitly.com/a/oauth_apps)) used to shorten URLs to published stories
 * STORY_BUILDER_BITLY_TOKEN_DEV - same as above, but for use in testing environments
-* STORY_BUILDER_ADDTHIS_PROFILEID - addthis.com profile ID (get from here: https://www.addthis.com/settings/publisher) to use the addthis share tools
+* STORY_BUILDER_ADDTHIS_PROFILEID - addthis.com profile ID ([get from here](https://www.addthis.com/settings/publisher)) to use the addthis share tools
 * STORY_BUILDER_ADDTHIS_PROFILEID_DEV - same as above, but for use in testing environments
 
 
