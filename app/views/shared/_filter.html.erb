@@ -90,16 +90,18 @@
         <% end %>
       </ul>
     </li>
-    <li class="afilter">
-      <%= link_to url_for(params.merge(:following => !@story_filter_following)),
-        :title => @story_filter_following ? t('filters.following_title_active') : t('filters.following_title'),
-        :class => "following #{@story_filter_following == true ? 'active' : ''}", 
-        :tabindex => 18, :"data-filtered-by" => @story_filter_following , 
-        :"data-filter-type"=>'following',
-        :'data-title' => t('filters.following_title'), :'data-title-active' => t('filters.following_title_active') do %>
+    <% if @story_filter_show_following %>
+      <li class="afilter">
+        <%= link_to url_for(params.merge(:following => !@story_filter_following)),
+          :title => @story_filter_following ? t('filters.following_title_active') : t('filters.following_title'),
+          :class => "following #{@story_filter_following == true ? 'active' : ''}", 
+          :tabindex => 18, :"data-filtered-by" => @story_filter_following , 
+          :"data-filter-type"=>'following',
+          :'data-title' => t('filters.following_title'), :'data-title-active' => t('filters.following_title_active') do %>
 
-         <i class='s i-follow-b <%= "#{@story_filter_following == true ? 'v' : 'h'}"%>'></i><%=  "#{t('filters.following')}" %>
-       <% end %>
-    </li>
+           <i class='s i-follow-b <%= "#{@story_filter_following == true ? 'v' : 'h'}"%>'></i><%=  "#{t('filters.following')}" %>
+         <% end %>
+      </li>
+    <% end %>
   </ul>      
 </div>
