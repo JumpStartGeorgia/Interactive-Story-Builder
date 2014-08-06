@@ -30,7 +30,9 @@ class Asset < ActiveRecord::Base
   
   # if this is a video, set the flag to false (default is true)
   def set_processed_flag
-    self.processed = self.asset_type != TYPE[:media_video]
+    if read_attribute(:processed).present?
+      self.processed = self.asset_type != TYPE[:media_video]
+    end
     return true   
   end
   

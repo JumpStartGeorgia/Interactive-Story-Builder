@@ -87,7 +87,14 @@ while [ "$num_lines" -gt 0 ]; do
 #      avconv -y -i $original_file -c:v libx264 -r 25 -crf 22 $new_file
 #      avconv -y -i $original_file -c:v libx264 -r 25 $new_file
       /usr/local/bin/ffmpeg -y -i $original_file -c:v libx264 -r 25 -movflags +faststart $new_file
-
+      # explanation of the flags
+      # - c:v libx264 - use x264 to convert the video
+      # - vsync, async, map - need this to get audio to be processed without errors (in wmv, flv, etc)
+      # - c:a libfdk_aac - use fdk-aac to convert the audio
+      # - ac 2 = 2 audio channels (in case something is in surround sound)
+      # - vbr 3 = audio variable bit rate of about 50kb/s/channel
+      # - movflags - puts moot meta tags at beginning of file so video can stream instantly
+#      /usr/local/bin/ffmpeg -y -i $original_file -c:v libx264 -r:v 25 -vsync 2 -async 1 -map 0:v,0:a -map 0:a -c:a libfdk_aac -ac 2 -vbr 3 -movflags +faststart $new_file
 
       ####################################
       # add this row to the processed file

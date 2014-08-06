@@ -542,7 +542,7 @@ ka:
         caption: წარწერის ტექსტი გამოჩნდება ზედა გამოსახულებაზე/ვიდეოზე
         source: ფოტოს/ვიდეოს წყარო გამოჩნდება ქვედა მარჯვენა კუთხეში
         image: დასაშვებია jpg მხოლოდ ფორმატი; ფაილის მაქსიმალური ზომა 3MB
-        video: "Only mp4,mov,webm,ogv,flv,avi,wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receieve a notification when the processing is complete, typically within a few minutes."
+        video: "Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receieve a notification when the processing is complete, typically within a few minutes."
         caption_align: სათაურის ტექსტი გამოჩნდება სურათის/ვიდეოს ზემოდან (დეფოლტი მარცხნივაა)
         video_loop: თუ ვიდეო მონიშნულია იგი იტრიალებს უსასრულოდ, სხვა შემთხვევაში ვიდეო არ განმეორდება
     section:
