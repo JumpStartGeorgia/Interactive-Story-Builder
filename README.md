@@ -63,29 +63,41 @@ You will need the following [Environment Variables](https://help.ubuntu.com/comm
 
 ## Version History
 ### 1.0
-Most of the focus was spent on the experience of finding and reading stories. Some time was spent on the form for building the stories, but a complete overhaul of this system is needed and will be the focus of our next major release.
+We did so much work on this release that bumping the version to 1.0 felt appropriate. Most of the focus was spent on the experience of finding and reading stories. Some time was spent on the form for building the stories, but a complete overhaul of the story building system is needed and will be the focus of our next major release.
+
+Here is a list of the new features.
+
+General Features:
 * applied much nicer theme to the site
+* added notification system to alert you when new stories are published, your story is selected as a staff pick, comments are made, etc
+* allow users to follow other users and receive notifications when new stories are published
+* added RSS feed of all published stories
+
+Story Building Features:
+* can customize url to story
+* can write summary of story (this is used on home page and when sharing in facebook)
+* added ability to indicate what language your story is in (allows users to filter on home page)
+* added categories to stories
+* added tags to stories
+* added ability to include online media (embed youtube, vimeo, soundcloud, etc)
+* can invite other users to be a collaborator on your story
+
+Story Features:
+* can search, filter and sort published stories on home page
 * added story read counter
 * added share links
 * added comments
 * added like button
 * can embed stories in two formats: a pretty link or the full story
-* can customize url to story
 * using bit.ly to create short URLs to published stories
-* can write summary of story (this is used on home page and when sharing in facebook)
-* added ability to indicate what language your story is in (allows users to filter on home page)
-* added categories to stories
-* added tags to stories
-* added ability to include online videos (embed youtube, vimeo, etc)
-* can invite other users to be a collaborator on your story
-* each user has their own page to show their published works
-* can search, filter and sort published stories on home page
+
+User Settings Features:
+* can load an avatar for yourself
 * can customize url to user page
 * can write summary about self and this appears on your user page
-* added notification system to alert you when new stories are published, your story is selected as a staff pick, comments are made, etc
+* can indicate the default language for your stories
 * can indicate which notifications you wish to receive
-* allow users to follow other users and receive notifications when new stories are published
-* added RSS feed of all published stories
+* each user has their own page to show their published works
 
 ### 0.4
 * added horizontal image gallery section
