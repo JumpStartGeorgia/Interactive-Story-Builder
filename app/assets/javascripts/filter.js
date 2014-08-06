@@ -1,12 +1,13 @@
 var sa = false; // flag for search box if it is active
-var f = {};     // filter values
+var f = { page : ''};     // filter values
 var pf = {};    // previous filter values
+var paging = false;
 function filter()    
 {    
-//  console.log(f);
   if(JSON.stringify(f) !== JSON.stringify(pf))
   {  
-    var ftmp = {};
+    var ftmp = {};   
+    if(!paging) { f['page'] = ''; } 
     for (prop in f) 
     {
       var k = prop;
@@ -16,8 +17,8 @@ function filter()
       {
         ftmp[k] = v;
       }
-
-    }    
+    }  
+    
     $.ajax({       
       type: "POST",
       url: gon.filter_path,
@@ -28,6 +29,7 @@ function filter()
       url_update();
     });
   }  
+  paging = false;
 }
 function url_update() {
   var url = window.location.href;
@@ -37,7 +39,6 @@ function url_update() {
     if (!f.hasOwnProperty(prop)) {continue;}   
     var k = prop;
     var v = f[prop];
-
     var re = new RegExp("([?&])" + k + "=.*?(&|#|$)(.*)", "gi");
 
     if (re.test(url)) {
@@ -165,7 +166,6 @@ $(document).ready(function() {
       }
       else
       {
-       // console.log($(this).attr('data-filter'));
         par.find('span').text($(this).text());
         par.addClass('selected');
         f[f_type] = f_value; 
@@ -181,6 +181,7 @@ $(document).ready(function() {
   $(".grid-wrapper").on("click",".pagination li:not(.active,.disabled) a", function(e) {        
       var tmp = $(this).attr('data-filter');    
       f["page"] = tmp == "1" ? "":tmp;
+      paging = true;
       e.preventDefault();
       e.stopPropagation();
       filter();

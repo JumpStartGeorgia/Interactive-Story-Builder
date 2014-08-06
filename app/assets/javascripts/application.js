@@ -97,13 +97,11 @@ if(!mob){
   $(document).on({
     mouseenter: function () {
       $(this).closest('.dropdown-menu').stop(true, true).show();
-      $(this).addClass('open'); 
-      console.log("mouseenter");
+      $(this).addClass('open');       
     },
     mouseleave: function () {
       $(this).closest('.dropdown-menu').stop(true, true).hide();
       $(this).removeClass('open'); 
-      console.log("mouseleave");
     }
   },'ul.nav li.dropdown-hover');
 

@@ -120,8 +120,7 @@ class ApplicationController < ActionController::Base
   end
 
   ## process the filter requests
-  def process_filter_querystring(story_objects)
-
+  def process_filter_querystring(story_objects)    
     gon.page_filtered = params[:staff_pick].present? || params[:sort].present? || params[:category].present? || params[:tag].present? || params[:language].present? || params[:q].present? || params[:following].present?
     
     # not published (only available when users editing their stories)
@@ -202,7 +201,7 @@ class ApplicationController < ActionController::Base
     end
     
     # following users
-    @story_filter_show_following = controller_action?('root','index')
+    @story_filter_show_following = user_signed_in? && controller_action?('root','index')
     if user_signed_in?
       @following_users = current_user.following_users
       if @following_users.present? && params[:following].present? && params[:following].to_bool == true
@@ -212,7 +211,7 @@ class ApplicationController < ActionController::Base
         @story_filter_following = false
       end
     end
-      logger.debug "/////////////////// @story_filter_following = #{@story_filter_following}"
+     # logger.debug "/////////////////// @story_filter_following = #{@story_filter_following}"
         
     # search
     @q = ""
@@ -221,7 +220,6 @@ class ApplicationController < ActionController::Base
 			gon.q = params[:q]
       @q = params[:q]
 		end
-    
     return story_objects
   end
 
