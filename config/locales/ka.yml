@@ -137,6 +137,12 @@ ka:
         not_processed: 'Videos Still Processing:'
         none_processed: No vidoes have been processed.
         none_processing: All videos for have been processed!
+      processed_video_errors:
+        subject: "Videos on Story Builder have processing errors!"
+        message: "The following videos had errors while being processed:"
+        story_id: Story ID
+        asset_id: Asset ID
+        path: URL of Video
   helpers:
     actions: აირჩიეთ
     links:

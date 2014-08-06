@@ -330,6 +330,8 @@ class NotificationTrigger < ActiveRecord::Base
     puts "----"
     queue_file = "#{Rails.root}/public/system/video_processing/processed.csv"
     new_file = "#{Rails.root}/public/system/video_processing/process_triggers.csv"
+    error_file = "#{Rails.root}/public/system/video_processing/processed_error.csv"
+    error_new_file = "#{Rails.root}/public/system/video_processing/processed_error_triggers.csv"
     orig_locale = I18n.locale 
 
     # if file does not exist, stop
@@ -427,7 +429,47 @@ class NotificationTrigger < ActiveRecord::Base
       # delete the file
       FileUtils.rm new_file
     end
+    
+    # if the error file exists and has content, send notification
+    if File.exists? error_file
+      puts "--------------------"
+      puts "-- error files exists!"
+      # move file to new name so any current processing can continue
+      FileUtils.mv error_file, error_new_file
+      
+      # read in the contents of the file
+      videos = []
+      CSV.parse(File.new(error_new_file)) do |row|
+        if row.present?
+          videos << row
+        end
+      end
 
+      puts "-- videos = #{videos}"
+      
+      if videos.present?
+        puts "-- sending notification"
+        I18n.available_locales.each do |locale|          
+          I18n.locale = locale
+          message = Message.new
+          message.bcc = Notification.for_video_prossing_errors(locale)
+          if message.bcc.present?
+            message.locale = locale
+            message.subject = I18n.t("mailer.notification.processed_video_errors.subject", :locale => locale)
+            message.message = I18n.t("mailer.notification.processed_video_errors.message", :locale => locale)                  
+            message.message_list = []
+
+            videos.each do |video|
+              message.message_list << [video[0], video[1], video[2]]
+	          end
+            NotificationMailer.send_processed_video_errors(message).deliver
+          end
+        end
+      end
+      # delete the file
+      FileUtils.rm error_new_file
+    end
+    
     # reset the locale      
     I18n.locale = orig_locale
   end  
