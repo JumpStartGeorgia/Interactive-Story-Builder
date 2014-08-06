@@ -23,7 +23,9 @@
 <%= @page.title %></p>
 
 <p><strong><%= model_class.human_attribute_name(:content) %>:</strong></p>
-<%= simple_format_no_tags(@page.content, {}, {sanitize: false}) %>
+<div class="todo tinymce_format">
+  <%= simple_format_no_tags(@page.content, {}, {sanitize: false}) %>
+</div>
 
 
 
