@@ -80,38 +80,39 @@
   {  
     display:block;  
   }
-  .explore
-  {
+  // .explore
+  // {
 
-    border:1px solid #fff;
-    -webkit-border-radius: 133px;
-    -moz-border-radius: 133px;
-    border-radius: 133px;    
-    text-decoration:none;
-    padding: 9px 15px 12px 15px;
-    margin-top:10px;
-    -webkit-transition:all .15s ease-out;
-    -moz-transition:all .15s ease-out;
-    -ms-transition:all .15s ease-out;
-    transition:all .15s ease-out;
-    &:hover,&:focus
-    {      
-      color:#000 !important;
+  //   border:1px solid #fff;
+  //   -webkit-border-radius: 133px;
+  //   -moz-border-radius: 133px;
+  //   border-radius: 133px;    
+  //   text-decoration:none;
+  //   padding: 9px 15px 12px 15px;
+  //   margin-top:10px;
+  //   -webkit-transition:all .15s ease-out;
+  //   -moz-transition:all .15s ease-out;
+  //   -ms-transition:all .15s ease-out;
+  //   transition:all .15s ease-out;
+  //   &:hover,&:focus
+  //   {      
+  //     color:#000 !important;
 
-      background-color:#fff;
-      text-decoration:none;
-      -webkit-transition:all .10s ease-out;
-      -moz-transition:all .10s ease-out;
-      -ms-transition:all .10s ease-out;
-      transition:all .10s ease-out;
-    }
-  }
-  span, .explore
+  //     background-color:#fff;
+  //     text-decoration:none;
+  //     -webkit-transition:all .10s ease-out;
+  //     -moz-transition:all .10s ease-out;
+  //     -ms-transition:all .10s ease-out;
+  //     transition:all .10s ease-out;
+  //   }
+  // }
+  span //, .explore
   {
     display:inline-block;
     color:#fff;
-    font-family:opensans-r;
+    font-family:opensans-r,georgia;
     font-size:16px;
+    line-height:24px;
     text-decoration:none;
     text-align:center;
     overflow: hidden;
@@ -122,8 +123,13 @@
     -webkit-transform: scale(1.12);
     transform: scale(1.12);
   }
+  span:lang(ka)
+  {
+    font-family:dejavusans-el,sylfaen !important;
+  }
 }
-.story-thumbnail:hover .story-link span,.story-thumbnail:hover .story-link .explore
+
+.story-thumbnail:hover .story-link span//,.story-thumbnail:hover .story-link .explore
 {
   
   opacity:1;
@@ -176,6 +182,10 @@
         color:#2b2c27;   
         padding-bottom:10px; 
         overflow:hidden;
+    }
+    a:lang(ka)
+    {
+      font-family:dejavusans-r,sylfaen;
     }
   }  
   .separator
