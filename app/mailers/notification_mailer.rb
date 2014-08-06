@@ -42,5 +42,10 @@ class NotificationMailer < ActionMailer::Base
     mail(:to => "#{message.email}",
 			:subject => I18n.t("mailer.notification.processed_videos.subject"))
   end
+  def send_processed_video_errors(message)
+    @message = message
+    mail(:bcc => "#{message.bcc}",
+			:subject => I18n.t("mailer.notification.processed_video_errors.subject"))
+  end
 
 end

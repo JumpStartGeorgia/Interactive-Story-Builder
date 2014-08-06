@@ -1,0 +1,41 @@
+<%= simple_format @message.message %>
+
+<table>
+ <thead>
+  <tr>
+    <%
+      style = "border-bottom: 2px solid #666; padding: 10px; vertical-align: bottom;"
+    %>
+    <th style="<%= style %>">  
+      <%= t('mailer.notification.processed_video_errors.story_id', :locale => @message.locale) %>
+    </th>
+    <th style="<%= style %>">  
+      <%= t('mailer.notification.processed_video_errors.asset_id', :locale => @message.locale) %>
+    </th>
+    <th style="<%= style %>">  
+      <%= t('mailer.notification.processed_video_errors.path', :locale => @message.locale) %>
+    </th>
+  </tr> 
+ </thead>
+ <tbody>
+  <% @message.message_list.each_with_index do |msg, index| %>
+    <%
+      style = "border-top: 1px solid #aaa; padding: 10px; vertical-align: top;"
+      style = "padding: 10px; vertical-align: top;" if index == 0
+    %>
+    <tr>
+      <td style="<%= style %>">  
+        <%= msg[0] %>
+      </td>
+      <td style="<%= style %>">  
+        <%= msg[1] %>
+      </td>
+      <td style="<%= style %>">  
+        <% url = root_url(:locale => 'en') %>
+        <%= link_to msg[2], "#{url[0..url.length-4]}#{msg[2]}" %>
+      </td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+

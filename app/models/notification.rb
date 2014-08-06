@@ -50,6 +50,9 @@ class Notification < ActiveRecord::Base
   def self.for_staff_pick_review(locale)
     return get_staff_pick_review_emails(locale)
   end
+  def self.for_video_prossing_errors(locale)
+    return get_video_prossing_errors_emails(locale)
+  end
 
 protected
 
@@ -73,6 +76,20 @@ protected
       if locale
          x = User.select("distinct email")
          .where("users.wants_notifications = 1 and users.notification_language = ? and role >= ?", locale, User::ROLES[:staff_pick])
+      end
+
+      if x.present?
+         emails = x.map{|x| x.email}
+      end
+      return emails
+    end
+
+    # get the email address of admins
+    def self.get_video_prossing_errors_emails(locale)
+      emails = []
+      if locale
+         x = User.select("distinct email")
+         .where("users.wants_notifications = 1 and users.notification_language = ? and role = ?", locale, User::ROLES[:admin])
       end
 
       if x.present?
