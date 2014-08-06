@@ -98,11 +98,10 @@
                 <% end %>
                 <% if columnSectionCount == 0 %>
                   <div class='headline<%= s_i == 0 ? " margin130": ""%>'><%= @story.title %></div>
-                  <div class="byline-rule"></div>      
-                  <div class="byline byline--first" style="margin-bottom:50px;">
-                  <%= t('storyteller.byline') %> <span class="author"><%= @story.author %></span>
-                  <%= "<div>#{t('storyteller.byline_media')}<span class='author'>#{@story.media_author}</span></div>".html_safe if @story.media_author.present? %>
-                  </div>               
+                  <div class="byline byline--first" style="margin-bottom:24px;">
+                  <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.author %></span>
+                  <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                  </div>                                 
                 <% end %>         
                 <%= "<div class='column-caption'>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
                 <%= "<div class='column-sub-caption'>#{section.content.sub_caption}</div>".html_safe  if section.content.sub_caption.present? %>                       
@@ -149,7 +148,14 @@
                     </div>     
 
                     <% if isFirst && m_i == 0  %>   
-                      <div class="video-headline"><div class="headline"><%= @story.title %></div></div> 
+                      <div class="video-headline">
+                        <div class="headline"><%= @story.title %>
+                          <div class="byline byline--first" style="margin-bottom:24px;">
+                            <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.author %></span>
+                              <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                          </div>         
+                        </div>
+                      </div> 
                       <div class="scroll-prompt">
                        <svg  x="0px" y="0px" width="18.03px" height="18.042px" viewBox="7.516 6.5 18.03 18.042" enable-background="new 7.516 6.5 18.03 18.042"
              xml:space="preserve">
@@ -158,7 +164,7 @@
           </svg>
                       </div>  
                     <% end %>                                                       
-                    <% if m.caption.present? %>                                    
+                    <% if m.caption.present? && !(isFirst && m_i == 0) %>                                    
                       <div class='video-caption video-caption--<%= "#{alignment.key(m.caption_align)}" %> <%= m.caption.length > 160 ? 
                       "video-caption--long" : "" %>'>
                         <%= m.caption  %>

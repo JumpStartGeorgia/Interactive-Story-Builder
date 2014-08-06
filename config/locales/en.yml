@@ -539,7 +539,7 @@ en:
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
         media_type: "For videos, an image is necessary because videos are not loaded on mobile devices."
-        caption: "Caption text will appear on top of the image/video"
+        caption: "Caption text will appear on top of the image/video. If this is the first item in the story, the caption text is hidden."
         source: "Source of the image/video, appears in the bottom-right corner"
         image: "Only jpg format allowed; 3MB file size limit"
         video: "Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receieve a notification when the processing is complete, typically within a few minutes."
@@ -602,7 +602,7 @@ en:
         url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: Youtube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
   storyteller:
     byline: By
-    byline_media: "Photographs and video by "
+    byline_media: "Photo and video by "
     source: "Source:"
   settings:
     index:

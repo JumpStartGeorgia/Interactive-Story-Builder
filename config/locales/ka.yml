@@ -539,7 +539,7 @@ ka:
       hint:
         title: ეს ტექსტი მხოლოდ გამოჩნდება მარცსენა გვერდითა პანელში, იგი არ გამოჩნდება ამბავიში
         media_type: ვიდეოსთვის ფოტო აუცილებელია, რადგან ვიდეო არ იტვირთება მობილურ ტელეფონებზე
-        caption: წარწერის ტექსტი გამოჩნდება ზედა გამოსახულებაზე/ვიდეოზე
+        caption: "Caption text will appear on top of the image/video. If this is the first item in the story, the caption text is hidden."
         source: ფოტოს/ვიდეოს წყარო გამოჩნდება ქვედა მარჯვენა კუთხეში
         image: დასაშვებია jpg მხოლოდ ფორმატი; ფაილის მაქსიმალური ზომა 3MB
         video: "Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receieve a notification when the processing is complete, typically within a few minutes."

@@ -1,10 +1,4 @@
 <style>
-  @font-face {
-    font-family: "nyt-cheltenham";    
-    src: url(<%= (@export ? "assets/" :"/template/#{@template}/") + 'fonts/nyt-cheltenham-200-normal.woff'%>) format("woff");           
-    font-style: normal;
-    font-weight: 200;
-  }
   body {
     font: 17px/18px Georgia;
     margin: 0;
@@ -34,7 +28,7 @@
     clear: left;
     display: block;
   }
-
+  
   .section--last {
     margin-bottom: 130px;
   }
@@ -75,7 +69,19 @@
   .column a{
     text-decoration: underline;
   }
-  
+  .column p,.column p span
+  {
+    font-family: opensans-r !important;
+    color: #5A5A5A;
+    line-height: 24px !important;
+    font-size: 16px !important;
+    letter-spacing:normal !important;
+  }
+  .column p:lang(ka),.column p span:lang(ka)
+  {
+    font-family: 'dejavusans-r' !important;     
+    -webkit-font-smoothing: antialiased;  
+  }
   .column blockquote {
     padding: 0 0 0 15px;
     margin: 0 0 20px;
@@ -83,10 +89,13 @@
   }
 
  
-  .section h3 {
+  .section h3,.section h3 span {
     margin: 5px 0px;   
-    letter-spacing: .1em;
+    
     font-size: 19px;
+    font-weight:normal !important;
+    letter-spacing:normal !important;
+    line-height:24px !important;
   }
 
   .scroll-prompt {
@@ -101,8 +110,8 @@
     text-transform: uppercase;
     z-index: 3;
     margin:0px auto;    
-    text-shadow: 0 1px 2px #000;
-/*    background-image: url(<%= (@export ? "" : "/") + 'assets/png/scroll.png'%>);       
+ /*    text-shadow: 0 1px 2px #000;
+   background-image: url(<%= (@export ? "" : "/") + 'assets/png/scroll.png'%>);       
     background-position: 50% 0%;
     background-repeat: no-repeat; */
     width:100%;
@@ -139,14 +148,14 @@
   }
   .dropcap {
     float: left;
-    font: bold 53px/70px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: bold 53px/70px opensans-l, Helvetica, Arial, sans-serif;    
     margin: -7px 10px 0 0;
     height: 1em;
   }
 
   .headline,
-  .section h3, .slideshow-headline {
-    font: 200 30px/40px "nyt-cheltenham", Georgia, serif;
+  .slideshow-headline {
+    font: 200 30px/40px bandera-pro-b, Georgia, serif;
   }
 
   .headline {
@@ -159,26 +168,30 @@
     line-height: 60px;
     margin: 80px 0px 15px 0px;
   }
-  .byline-rule {
-    border-top: 2px solid #000;
-    width: 120px;
-  }
 
   .byline {
-    font: 12px/2em "Helvetica Neue", Helvetica, Arial, sans-serif;
-    opacity: .5;
+    font: 14px opensans-l, Helvetica, Arial, sans-serif;    
+    opacity: 0.6;
   }
 
-  .byline .author {
-    text-transform: uppercase;
-    white-space: nowrap;
+  .byline:lang(ka) {
+    font: 14px dejavu-r, Helvetica, Arial, sans-serif;        
+  }
+  .byline div{
+    display:inline-block;  
+  }
+  .byline .caption
+  {
+    opacity:0.6;
+  }
+  .byline .author {    
+    white-space: nowrap;    
+    opacity:1;
   }
 
   .byline--first {
     margin-bottom: 14px;
-    opacity: 1;
-    font-weight: 700;
-    padding-top: 13px;
+    opacity: 1;        
   }
   .source
   {
@@ -231,7 +244,7 @@
   }
 
   .image .caption {
-    font: 12px/1.4em "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: 12px/1.4em opensans-r, Helvetica, Arial, sans-serif;
     clear: left;
     color: #999;
   }
@@ -287,6 +300,13 @@
     margin-top: 5px;
     color: #888;
     padding-bottom: 20px;
+    font-family:opensans-b; 
+    font-size:17px;
+    line-height: 29px;   
+  }
+  .video-caption
+  {
+    font-family:dejavusans-b; 
   }
 
   .video-source {
@@ -335,10 +355,10 @@
     position: absolute;
     left: 7%;
     bottom: 20%;
-    width: 240px;
+    width: 350px;
     z-index: 3;
     color: #fff;
-    text-shadow: 0 1px 2px #000;
+    /*text-shadow: 0 1px 2px #000;*/
     padding: 20px 0;
   }
 
@@ -373,15 +393,12 @@
   .video-headline .headline
   {    
     position: absolute;
-    top: 20%;
+    bottom: 20%;
     color: #fff;
     left: 7%;
-    /*border-bottom: solid 2px black;  */
-    font-size: 50px;
+    font-size: 4vmin;
     line-height: 55px;
     z-index: 3;
-     text-shadow: 0 1px 2px #000;
-    /*padding-bottom: 35px;*/
   }
 
 @media only screen and (min-width: 1200px) and (max-width: 1440px) and (min-height: 500px) and (max-height: 800px) {
@@ -955,7 +972,7 @@
     right: 0;
   }
   .navigation {
-    font: 200 12px/20px "nyt-cheltenham", Georgia, serif;
+    font: 200 12px/20px opensans-r, Georgia, serif;
     position: fixed;
     top: 0;
     width: 100%;
@@ -963,6 +980,9 @@
     background: #000;
     z-index: 20;
   }
+.navigation {
+     font: 200 12px/20px dejavusans-r, Georgia, serif;
+}
   .navigation-app
   {
     color: #fff;
@@ -1136,12 +1156,8 @@
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
     border-color: #252525;  
-    /*padding-top: 13px;*/
     font-size: 10pt;
     color: #999999;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-
-
   }
   .footer-section  > div
   {
@@ -1155,15 +1171,6 @@
       width: 30%;
       padding-left:20px;
   }
-/*  
-  .footer-section #middle {
-  margin: 0;
-  font-size: 12px;
-  width: 30%;
-  text-align: center;
-  float: left;
-  }
-*/  
   .footer-section #middle {
     margin: 0;
 	  font-size: 12px;
@@ -1228,7 +1235,7 @@
 
   .footer-section {
     color: #999999;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    /*text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);*/
   }
   .ios .footer-section #middle
   {display:none;}
@@ -1238,20 +1245,21 @@
   }
   .column-caption
   {
-    font-family:nyt-cheltenham, Georgia, serif;
-    letter-spacing: .1em;
-    font-size:19px;
+    font-family:opensans-b, Georgia, serif;    
+    line-height:24px;
+    font-size:22px;
     margin:5px 0px;  
   }
-
-  .column-sub-caption
+  .column-caption:lang(ka)
   {
-    font-family:nyt-cheltenham, Georgia, serif;
-    font-size:15px;
-    margin:0px 0px 5px 5px;  
-
+    font-family:dejavusans-b, Georgia, serif; 
+    -webkit-font-smoothing: antialiased;     
   }
-
+  .column-sub-caption:lang(ka)
+  {
+    font-family:dejavusans-r, Georgia, serif;   
+    -webkit-font-smoothing: antialiased;      
+  }
 
   /* slideshow */
 
