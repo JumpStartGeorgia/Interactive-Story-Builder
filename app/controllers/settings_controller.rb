@@ -42,7 +42,7 @@ class SettingsController < ApplicationController
       if user_signed_in? && current_user.nickname == params[:nickname].strip.downcase
         output[:permalink] = current_user.permalink
       else
-        u = User.new(:nickname => params[:nickname])
+        u = User.new(:nickname => ActionController::Base.helpers.strip_links(params[:nickname]))
         u.generate_permalink
         output = {:permalink => u.permalink, :is_duplicate => u.is_duplicate_permalink?}
       end

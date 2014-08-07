@@ -632,15 +632,17 @@ end
       story = Story.select('permalink, permalink_staging').where(:id => params[:id]).limit(1).first
       # if the story could not be found, use an empty story
       if story.blank?
-        story = Story.new(:permalink_staging => params[:text]) 
+        story = Story.new(:permalink_staging => ActionController::Base.helpers.strip_tags(params[:text]))
         story.generate_permalink
         output = {:permalink => story.permalink, :is_duplicate => story.is_duplicate_permalink?}
+        
       # if the permalink is the same, do nothing
       elsif story.permalink_staging.downcase == params[:text].strip.downcase
         output[:permalink] = story.permalink
+        
       # permalink is different, so create a new one
       else
-        story.permalink_staging = params[:text]
+        story.permalink_staging = ActionController::Base.helpers.strip_tags(params[:text])
         story.generate_permalink!
         output = {:permalink => story.permalink, :is_duplicate => story.is_duplicate_permalink?}
       end
