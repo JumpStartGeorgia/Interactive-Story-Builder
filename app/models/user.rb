@@ -58,6 +58,7 @@ class User < ActiveRecord::Base
     end
     return true
   end
+  
   # if this nickname already exists, add a # to the end to make it unique
   def fix_nickname_duplication 
     # if the nickname does not exist, populate with the first part of the email

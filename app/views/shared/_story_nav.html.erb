@@ -28,7 +28,8 @@
   </li>
   <li>
     <%= link_to '#', title: t('app.buttons.preview'), id: 'btnPreview', class: 'preview', 
-        :'data-link' => preview_story_path(@story), :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story' do %>
+        :'data-link' => @story.published ? storyteller_show_path(@story.permalink) : preview_story_path(@story), 
+        :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story' do %>
       <span class="glyphicon glyphicon-eye-open" ></span>
       <span class="nav-text">
         <%= t('app.buttons.preview') %>
