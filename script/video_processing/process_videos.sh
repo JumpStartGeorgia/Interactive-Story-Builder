@@ -12,6 +12,8 @@ file_processed=$status_directory/processed.csv
 file_processed_error=$status_directory/processed_error.csv
 start_path='../../public'
 processed_folder='/processed/'
+good_video_count=0
+bad_video_count=0
 
 ####################################
 # if the status directory does not exist, create it
@@ -116,6 +118,7 @@ while [ "$num_lines" -gt 0 ]; do
           touch "$file_processed"
         fi  
         echo "$row" >> "$file_processed"
+        $((good_video_count+1))
       else
         echo '- error processing file!'
         ####################################
@@ -125,6 +128,7 @@ while [ "$num_lines" -gt 0 ]; do
           touch "$file_processed_error"
         fi  
         echo "$row" >> "$file_processed_error"
+        $((bad_video_count+1))
       fi
     fi  
   fi
@@ -147,6 +151,8 @@ done
 rm "$file_processing"
 
 end_time=$(date +%s)
+echo '--> videos successfull processed: ' $good_video_count
+echo '--> videos NOT successfull processed: ' $bad_video_count
 echo $((end_time-start_time)) | awk '{print "--> total processing time: " int($1/60) " min : " int($1%60) " sec"}'
 echo '---------------'
 echo '---------------'
