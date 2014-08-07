@@ -39,9 +39,9 @@
 
     <% end %> 
 
-    <% if @story.id.present? %>
+<!--     <% if @story.id.present? %>
       <%= f.input :published, :as => :boolean, hint: t('.hint.published') , :input_html => { id: "storyPublished"} %>   
-    <% end %>
+    <% end %> -->
 
     <%= f.input :publish_home_page, :as => :boolean, hint: t('.hint.publish_home_page') , :input_html => { id: "storyPublishHomePage"} %>   
   <% end %>

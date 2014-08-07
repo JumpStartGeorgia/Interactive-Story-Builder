@@ -96,7 +96,7 @@ $(document).ready(function() {
                else popuper(d.msg,'error');           
 				}
 				else
-					a.find('span').text(d.title);							
+					a.find('span:last-child').text(d.title);							
 			});	 							
 		return true;	
   });

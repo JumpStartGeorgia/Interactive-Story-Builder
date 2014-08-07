@@ -55,10 +55,10 @@ class Story < ActiveRecord::Base
 	 
 #	after_save :update_filter_counts
 
-  scope :recent, order("published_at desc, title asc")
-  scope :reads, order("impressions_count desc, published_at desc, title asc")
-  scope :likes, order("cached_votes_total desc, published_at desc, title asc")
-  scope :comments, order("comments_count desc, published_at desc, title asc")
+  scope :recent, order("stories.published_at desc, stories.title asc")
+  scope :reads, order("stories.impressions_count desc, stories.published_at desc, stories.title asc")
+  scope :likes, order("stories.cached_votes_total desc, stories.published_at desc, stories.title asc")
+  scope :comments, order("stories.comments_count desc, stories.published_at desc, stories.title asc")
 	scope :is_not_published, where(:published => false)
 	scope :is_published, where(:published => true)
 	scope :is_published_home_page, where(:published => true, :publish_home_page => true)

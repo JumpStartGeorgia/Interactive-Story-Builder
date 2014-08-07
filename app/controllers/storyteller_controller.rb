@@ -20,6 +20,9 @@ class StorytellerController < ApplicationController
     	@user_likes = current_user.voted_up_on? @story if user_signed_in?
       @is_following = Notification.already_following_user(current_user.id, @story.user_id) if user_signed_in?
 
+      if params[:n] == 'n'
+          @no_nav = true
+      end    
       respond_to do |format|     
         format.html 
       end
