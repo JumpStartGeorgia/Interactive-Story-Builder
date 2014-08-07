@@ -429,10 +429,9 @@ class NotificationTrigger < ActiveRecord::Base
                     NotificationMailer.send_processed_videos(message).deliver if message.message_list.present? && !Rails.env.staging?
 
                     # record notifications
-                    puts "-- - create notification trigger records for this user's stories"
                     user_videos = videos.select{|x| user_stories.map{|y| y.id.to_s}.include?(x[0].to_s)}
                     if user_videos.present?
-                      puts " - creating trigger record"
+                      puts " --> creating trigger record"
                       user_videos.each do |user_video|
                         NotificationTrigger.create(:notification_type => Notification::TYPES[:processed_videos],
                           :identifier => user_video[1],
