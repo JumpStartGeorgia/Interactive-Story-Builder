@@ -13,7 +13,7 @@
      <%= link_to path do %>
         <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459' %>              
         <div class="story-link">
-          <span><%= title.html_safe %></span>
+          <span lang="<%= story.story_locale %>"><%= title.html_safe %></span>
           <!-- <div class="explore"><%= t('app.buttons.explore') %></div>-->
        </div>  
  
@@ -90,7 +90,7 @@
   </div>
   <div class='story-info'>                               
   <div class="story-caption">
-    <%= link_to truncate(story.title, length: 45, separator: ' '), path, :title => story.title %>
+    <%= link_to truncate(story.title, length: 45, separator: ' '), path, :title => story.title, :lang => story.story_locale %>
   </div>
     <div class="story-misc"> 
       <div class="story-misc-left">     

@@ -31,7 +31,7 @@
   }
   .navbar-brand
   {
-    font-family:opensans-l,dejavusans-el;    
+    font-family:opensans-l,georgia;    
     font-weight: 100;
     font-size: 14px;
     color:#000;
@@ -48,6 +48,10 @@
       color:#252525;
     }
   }  
+  .navbar-brand:lang(ka)
+  {
+      font-family:dejavusans-el,sylfaen;
+  }
   .navbar-nav li
   { 
     display:inline-block;
@@ -64,6 +68,10 @@
       display:inline-block;
       opacity:0.8;
     } 
+    a:lang(ka)
+    {
+      font-family:dejavusans-el,sylfaen;
+    }
     a:hover
     {    
       color:#000;  
@@ -87,9 +95,13 @@
     }
     .lang
     {
-      font-family:opensans-l;
+      font-family:opensans-l, georgia;
       color:#a8a1a1;
       font-size:14px;
+    }
+    .lang:lang(ka)
+    {
+      font-family:dejavusans-el,sylfaen;
     }
   }
   .share-link

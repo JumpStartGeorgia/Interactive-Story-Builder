@@ -9,19 +9,27 @@
     line-height: 33px;
     padding-top:6px;
   }
+  .title:lang(ka)
+  {
+    font-family:dejavusans-el,sylfaen;
+  }
   .text
   {
     clear:both;
     min-height:13px;
-    margin-top: 13px;
+    margin-top: 51px;
     p, span
     {
       font-family:opensans-r;
       font-size:15px;
       color:#797979;
-      margin:25px 0px 35px 0px;   
+      margin:25px 0px 0px 0px;   
       line-height:21px; 
       text-align: justify;
+    }
+    p:lang(ka), span:lang(ka)
+    {
+      font-family:dejavusans-r,sylfaen;
     }
   } 
   .profile-data
@@ -37,7 +45,7 @@
     {
       font-family:opensans-l;
       font-size:14px;
-      color:#969696;
+      color:#353535;
     }
     a
       {
@@ -53,6 +61,14 @@
         -moz-border-radius: 3px;
         border-radius: 3px;
       }
+      a:hover
+      {
+        color:#000;
+      }
+    a:lang(ka), span:lang(ka)
+    {
+      font-family:dejavusans-el,sylfaen;
+    }
     a:hover
     {
       color:#020202;
@@ -131,8 +147,7 @@
       color:#555;
       margin-right:12px;
       vertical-align:middle;
-      display: inline-block;
-      
+      display: inline-block;      
     }
     i
     {
@@ -149,45 +164,59 @@
   .follow-link
   {
     display:inline-block;
-    font-family:opensans-l;
+    font-family:opensans-r;
     font-size:15px;
     color:#555;  
-    background-color:transparent !important;   
+
     border:1px solid #bdbdbd;
     -webkit-border-radius: 133px;
     -moz-border-radius: 133px;
     border-radius: 133px;
     padding: 9px 15px 12px 15px;
     text-decoration:none;
-    -webkit-transition:all .15s ease-out;
-    -moz-transition:all .15s ease-out;
-    -ms-transition:all .15s ease-out;
-    transition:all .15s ease-out;
+    // -webkit-transition:all .15s ease-out;
+    // -moz-transition:all .15s ease-out;
+    // -ms-transition:all .15s ease-out;
+    // transition:all .15s ease-out;
+
+
+
 
     &.follow-story
     {
-        padding: 9px 15px 12px 9px;
+      padding: 9px 18px 12px 33px;
+      background: transparent url('/assets/svg/check_b.svg') center no-repeat;    
+      background-position: 5px 7px;      
+      -webkit-transition:background-color .15s ease-out;
+      -moz-transition:background-color .15s ease-out;
+      -ms-transition:background-color .15s ease-out;
+      transition:background-color .15s ease-out;
     }
-    &.follow-story:before
+    &.follow-story:hover
     {
-      background:transparent url('/assets/svg/check_b.svg') 0% / 100% no-repeat;
-      width: 22px;
-      height: 16px;
-      content: "";
-      display: inline-block;
-      opacity: 0.5;
-      position: relative;
-      top: 3px;
+        padding: 9px 18px 12px 33px;
+        background: #242424 url('/assets/svg/check_w.svg') center no-repeat;    
+        background-position: 5px 7px; 
+        opacity: 1;
+        -webkit-transition:background-color .10s ease-out;
+        -moz-transition:background-color .10s ease-out;
+        -ms-transition:background-color .10s ease-out;
+        transition:background-color .10s ease-out;
     }
     &:focus, &:hover
-    {          
-      background-color:#bdbdbd !important;   
+    {         
+      color:#fff; 
+      background-color:#242424 !important;   
       -webkit-transition:all .10s ease-out;
       -moz-transition:all .10s ease-out;
       -ms-transition:all .10s ease-out;
       transition:all .10s ease-out;
     }
   } 
+  .follow-link:lang(ka)
+  {
+    font-family:dejavusans-el,sylfaen;
+  }
 }
 
 .share-window
@@ -206,21 +235,29 @@
   }
   .title
   {
-    font-family:opensans-l;
+    font-family:opensans-l,georgia;
     font-size:30px;
     color:#bdbdbd;
     margin-bottom:25px;
   }
-  .permalink
+  .title:lang(ka)
+  {
+    font-family:dejavusans-el,sylfaen;
+  }
+  .permalink,.shortened-url
   {
     font-family:opensans-r;
     font-size:14px;
     color:#888;
     margin-bottom:10px;
   }
-  .permalink-link
+  .permalink:lang(ka),.shortened-url:lang(ka)
+  {
+    font-family:dejavusans-el,sylfaen;
+  }
+  .permalink-link,.shortened-url-link
   { 
-    margin-bottom:40px;
+    margin-bottom:20px;
     a
     {
       font-family:opensans-r;
@@ -231,6 +268,10 @@
         {    
           opacity:1;   
         }
+    }
+    a:lang(ka)
+    {
+      font-family:dejavusans-el,sylfaen;
     }
   }
   .share
@@ -257,6 +298,10 @@
       display: inline-block !important; 
       vertical-align: middle !important;   
     }
+    .more .addthis_sharing_toolbox span:lang(ka)
+    {
+      font-family:dejavusans-el,sylfaen;
+    }
     > div, > .embed > div
     {
       text-align: center;
@@ -280,9 +325,13 @@
   .embed-text
   {
    margin-bottom:10px; 
-   font-family:opensans-r;
+   font-family:opensans-r,georgia;
    font-size:14px;
    color:#888;
+  }
+  .embed-text:lang(ka)
+  {
+    font-family:dejavusans-el,sylfaen;
   }
   .embed-code textarea
   {
@@ -297,7 +346,7 @@
     outline: none;
     padding:3px;
     font-size:12px;
-    font-family:opensans-r;
+    font-family:opensans-r,georgia;
   }
   .embed-size-w
   {
@@ -311,14 +360,18 @@
       padding: 8px;
       width: 50px;  
       font-size: 14px;
-      font-family: bandera-pro-m;
+      font-family: bandera-pro-m,georgia;
       color: #000;
     }
     span
     {   
-      font-family:opensans-r;
+      font-family:opensans-r,georgia;
       font-size:14px;
       color:#939393;
+    }
+    span:lang(ka)
+    {
+      font-family:dejavusans-el,sylfaen;
     }
   }  
  .embed-type-switcher div
@@ -328,7 +381,7 @@
     color: #000; 
     padding: 5px 10px;    
     font-size: 13px;
-    font-family:opensans-r;
+    font-family:opensans-r,georgia;
     float:left;
     cursor:pointer;
     margin-left:5px;
@@ -339,10 +392,16 @@
       cursor:pointer; 
     }
  }
-  .facebook a, .twitter a
+  .embed-type-switcher div:lang(ka)
   {
+    font-family:dejavusans-el,sylfaen;
+  }
+  .facebook, .twitter
+  {
+    a
+    {
       display:inline-block;
-      font-family:opensans-r;
+      font-family:opensans-r,georgia;
       font-size:18px;
       color:#fff;      
       background: #26acfa;      
@@ -354,9 +413,15 @@
       padding: 0px 20px 0px 15px;
       text-decoration: none;
       line-height: 51px;
+    }
+    a:lang(ka)
+    {
+      font-family:dejavusans-el,sylfaen;
+    }
   }
+
   .facebook a i, .twitter a i
   {
-    margin-right:10px;
+    margin-right:2px;
   }  
  }

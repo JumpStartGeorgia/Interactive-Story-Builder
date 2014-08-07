@@ -11,7 +11,7 @@
          <%= link_to(image_tag('svg/slogo_b.svg'), root_url(:locale => I18n.locale), :title => t('app.common.embed_slogan'), :class => 'navbar-logo') %>
        <% end %>
        <% if @story.present? %>
-         <%= link_to(@story.title, url_for, :class=>"navigation-headline navbar-brand") %>  
+         <%= link_to(@story.title, url_for, :class=>"navigation-headline navbar-brand", :lang => @story.story_locale) %>  
        <% end %>    
     </div>
 
@@ -42,7 +42,7 @@
               </li>
             <% else %>  
             <li>          
-               <%= link_to :new_user_session, :class => "", :title => t('helpers.hints.like'), 
+               <%= link_to new_user_session_path({:return_url=>storyteller_like_path(@story.permalink)}), :class => "modalSignIn", :title => t('helpers.hints.like'), :"data-modalos-id"=>"modalos-sign-in",
                     :'data-href' => storyteller_like_path(@story.permalink) do %>
                     <i class="s i-likes"></i><span><%= "#{t('helpers.links.like')}" %></span>
                 <% end %>
@@ -105,8 +105,8 @@
     <div class="day"><%= l(@story.published_at ,:format => :day) if @story.published_at.present? %></div>
     <div class="month-year"><%= l(@story.published_at ,:format => :month_year) if @story.published_at.present? %></div>
   </div>         
-  <div class="title"><%= @story.title %></div>
-  <div class="text"><%= @story.about.html_safe  if @story.about.present? %> </div>
+  <div class="title" lang="<%= @story.story_locale %>"><%= @story.title %></div>
+  <div class="text" lang="<%= @story.story_locale %>"><%= @story.about.html_safe  if @story.about.present? %> </div>
   <div class="profile-data">
     <div class="logo">
        <%= link_to image_tag(@story.user.avatar_url, :class=>"avatar"), "#" , 
