@@ -32,7 +32,7 @@
 
         <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.story.thumbnail') %></label>
         <% if @story.asset_exists? %>
-           <a class='btn btn-default preview' id="story-thumbnail-preview" data-modalos-id="modalos-preview" data-type="image"  data-image-path='<%= "#{@story.asset.asset.url}" %>'><%=  t('app.buttons.preview_image') %></a>           
+           <a class='btn btn-default preview' id="story-thumbnail-preview" data-modalos-id="modalos-preview" data-type="image"  data-image-path='<%= "#{@story.asset.asset.url(:thumbnail)}" %>'><%=  t('app.buttons.preview_image') %></a>           
         <% end %>  
 
         <%= as.input :asset, :as => :file , hint: t('.hint.thumbnail') , :input_html => { :id => "storyThumbnail", accept:".jpg,.jpeg,.png" }, label: false  %> 

@@ -2,6 +2,7 @@
 
 echo '---------------'
 echo '---------------'
+start_time=$(date +%s)
 echo $(date)
 
 status_directory='../../public/system/video_processing'
@@ -144,3 +145,9 @@ done
 ####################################
 # delete processing file
 rm "$file_processing"
+
+end_time=$(date +%s)
+echo $((end_time-start_time)) | awk '{print "--> total processing time: " int($1/60) " min : " int($1%60) " sec"}'
+echo '---------------'
+echo '---------------'
+
