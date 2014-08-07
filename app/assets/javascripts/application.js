@@ -210,7 +210,7 @@ function popuper(msg,msg_type)
 					     urldecode(msg) +
 					    '</div>');
     $('.flash-message').find("div.alert").delay(5000).fadeOut(2000,function(){ this.remove();});  	    	  
-  }
+  }  
 }
 
 function urldecode(url) {

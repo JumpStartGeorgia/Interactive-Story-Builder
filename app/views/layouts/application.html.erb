@@ -48,27 +48,17 @@
     <%= render partial: "layouts/storybuilder_nav"%> 
     <%= yield(:header) %>
 		<div id="wrapper">
-	
-		         		<div class="flash-message">
-							<% flash.each do |key, msg| %>
-								<div class="alert <%= flash_translation(key) %> fade in">
-									<a href="#" data-dismiss="alert" class="close">×</a>
-									<%= msg %>
-								</div>
-							<% end %>
+   		<div class="flash-message"></div>
+				<% if content_for?(:title) %>
+					<div class="page-header">
+					  <div class="block">
+              <h1>
+							  <%= yield(:title) %>
+						  </h1> 
 						</div>
-							<% if content_for?(:title) %>
-								<div class="page-header">
-								  <div class="block">
-			              <h1>
-										  <%= yield(:title) %>
-									  </h1>
-									</div>
-								</div>
-							<% end %> 
-
-	            <%= yield %>
-	
+					</div>
+				<% end %> 
+        <%= yield %>
 		</div><!--/wrapper-->
     <%= yield(:footer) %>
     <div class="powered-by">
@@ -81,7 +71,10 @@
        
 		<script type="text/javascript">
 			I18n.defaultLocale = "<%= I18n.default_locale %>";
-			I18n.locale = "<%= I18n.locale %>";
+			I18n.locale = "<%= I18n.locale %>";  
+      <% flash.each do |key, msg| %>
+        popuper("<%= msg %>" , "<%= key %>");     
+      <% end %>    
 		</script>
 		<% if @usemap %>
   		<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js" type="text/javascript"></script>

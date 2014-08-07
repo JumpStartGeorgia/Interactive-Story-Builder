@@ -3,17 +3,18 @@
     if story.about.present?     
       title = truncate(strip_tags_nbsp(story.about), length: 160, separator: ' ')
     end    
+    path = @editable && !story.published ? preview_story_path(story) : storyteller_show_path(story.permalink)
   %>   
             
   <div class="story-thumbnail">
      <% if story.staff_pick? %>
     <div class="story-picked" title="<%= t('helpers.links.staff_pick') %>"></div>
   <% end %>   
-     <%= link_to @editable ? preview_story_path(story) : storyteller_show_path(story.permalink) do %>
+     <%= link_to path do %>
         <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459' %>              
         <div class="story-link">
           <span><%= title.html_safe %></span>
-          <!-- <div class="explore"><%= t('app.buttons.explore') %></div>           -->
+          <!-- <div class="explore"><%= t('app.buttons.explore') %></div>-->
        </div>  
  
       <% end %>
@@ -44,7 +45,7 @@
               <% end %>
             </li>
             <li>
-              <a href="#" id='btnPreview' class='preview' title="<%= t('app.buttons.preview') %>" data-link='<%= preview_story_path(story) %>'
+              <a href="#" id='btnPreview' class='preview' title="<%= t('app.buttons.preview') %>" data-link='<%= path %>'
                   data-modalos-id='modalos-preview' data-type='story'>
                 <i class="glyphicon glyphicon-eye-open" ></i><%= t('app.buttons.preview') %>
               </a>
@@ -89,7 +90,7 @@
   </div>
   <div class='story-info'>                               
   <div class="story-caption">
-    <%= link_to truncate(story.title, length: 45, separator: ' '), @editable ?  preview_story_path(story) : storyteller_show_path(story.permalink), :title => story.title %>
+    <%= link_to truncate(story.title, length: 45, separator: ' '), path, :title => story.title %>
   </div>
     <div class="story-misc"> 
       <div class="story-misc-left">     

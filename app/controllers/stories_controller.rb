@@ -94,9 +94,8 @@ class StoriesController < ApplicationController
         format.js {render action: "flash" , status: :ok }
       else
         if @story.update_attributes(params[:story])
-
           flash_success_updated(Story.model_name.human,@story.title)       
-          format.html { redirect_to  edit_story_path(@story),  notice: t('app.msgs.success_updated', :obj => t('activerecord.models.story')) }
+          format.html { redirect_to  edit_story_path(@story) }
           format.js { render action: "flash", status: :created }    
         else
           if !@story.asset.present? 
@@ -822,12 +821,10 @@ private
   end
 
   def flash_success_created( obj, title)
-      flash[:success] = u I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
-#      flash[:success] = I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
+      flash[:success] = request.xhr? ? u(I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")) : I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
   end
   def flash_success_updated( obj, title)
-      flash[:success] = u I18n.t('app.msgs.success_updated', obj:"#{obj} \"#{title}\"")
-#      flash[:success] = I18n.t('app.msgs.success_updated', obj:"#{obj} \"#{title}\"")
+    flash[:success] = request.xhr? ? u(I18n.t('app.msgs.success_updated', obj:"#{obj} \"#{title}\"")) : I18n.t('app.msgs.success_updated', obj:"#{obj} \"#{title}\"")
   end
 
   def generate_gzip(tar,name,ff)      
