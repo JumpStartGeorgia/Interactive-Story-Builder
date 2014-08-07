@@ -65,7 +65,7 @@ protected
       end
 
       if x.present?
-         emails = x.map{|x| x.email}
+         emails = x.map{|x| x.email}.join(';')
       end
       return emails
     end
@@ -79,7 +79,7 @@ protected
       end
 
       if x.present?
-         emails = x.map{|x| x.email}
+         emails = x.map{|x| x.email}.join(';')
       end
       return emails
     end
@@ -93,7 +93,7 @@ protected
       end
 
       if x.present?
-         emails = x.map{|x| x.email}
+         emails = x.map{|x| x.email}.join(';')
       end
       return emails
     end
@@ -133,7 +133,7 @@ protected
     end
 
     if x.present?
-       emails = x.map{|x| x.email}
+       emails = x.map{|x| x.email}.join(';')
     end
     return emails
   end

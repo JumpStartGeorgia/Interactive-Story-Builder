@@ -35,10 +35,8 @@ every 6.minutes do
   runner "NotificationTrigger.process_processed_videos"
 end
 
-case @environment
-when 'production'
-  # send notifications
-  every 30.minutes do
-    runner "NotificationTrigger.process_all_types"
-  end
+# send notifications
+every 30.minutes do
+  runner "NotificationTrigger.process_all_types"
 end
+
