@@ -6,6 +6,6 @@
         <div class="title"><%= @page.title %></div>
         <div class="intro"><%= t("app.common.about_intro").html_safe %></div>
     </header>
-  <div class="about-text"> <%= @page.content.html_safe %></div>
+  <div class="about-text"> <%= @page.content.html_safe if @page.present? %></div>
 <% } %>
 
