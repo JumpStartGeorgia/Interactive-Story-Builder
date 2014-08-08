@@ -94,42 +94,42 @@ en:
         already_exists: 'already exists in the database.'              
   mailer:
     closing: "Sincerely,"
-    signature: The Story Builder Team
+    signature: The StoryBuilder Team
     unsubscribe: Click here to change your notification settings
     contact:
       contact_form:
-        subject: "Story Builder Contact Form"
+        subject: "StoryBuilder Contact Form"
     notification:
       new_user:
-        subject: "Welcome to Story Builder!"
-        message: "Thank you for becoming a member of Story Builder. We look forward to exploring the stories you build!\n\nWhen you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summary about yourself: [settings_link].\n\nYou can manage when you would like to receive email notifications from Story Builder by going to the notifications page: [notifications_link]. "
+        subject: "Welcome to StoryBuilder!"
+        message: "Thank you for becoming a member of StoryBuilder. We look forward to exploring the stories you build!\n\nWhen you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summary about yourself: [settings_link].\n\nYou can manage when you would like to receive email notifications from StoryBuilder by going to the notifications page: [notifications_link]. "
       published_story:
-        subject: "New stories have been published on Story Builder!"
+        subject: "New stories have been published on StoryBuilder!"
         message: "The following stories you have expressed interest in were recently published:"
       story_comment:
-        subject: "Someone has posted a comment on your story on Story Builder!"
+        subject: "Someone has posted a comment on your story on StoryBuilder!"
         message: "The following stories have recently received a comment:"
         comment: "1 Comment"
         comments: "%{num} Comments"
       published_news:
-        subject: "Story Builder has new updates!"
-        message: "The following updates were just posted on Story Builder. Click on the link to learn what is going on with Story Builder."
+        subject: "StoryBuilder has new updates!"
+        message: "The following updates were just posted on StoryBuilder. Click on the link to learn what is going on with StoryBuilder."
       staff_pick_review:
-        subject: "Story Builder has new published stories to review for Staff Pick!"
+        subject: "StoryBuilder has new published stories to review for Staff Pick!"
         message: "The following stories need to be reviewed to see if they are worthy to be a Staff Pick:"
       staff_pick_selection:
-        subject: "Your story has been selected by the Story Builder Team as a Staff Pick!"
-        message: "Congratulations! The following stories of yours were selected by the Story Builder Team as Staff Picks:"
+        subject: "Your story has been selected by the StoryBuilder Team as a Staff Pick!"
+        message: "Congratulations! The following stories of yours were selected by the StoryBuilder Team as Staff Picks:"
       story_collaboration:
-        subject: "You have been invited to collaborate on a story on Story Builder!"
-        message: "You have received the following invitations to collaborate on stories with other people on Story Builder. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part."
+        subject: "You have been invited to collaborate on a story on StoryBuilder!"
+        message: "You have received the following invitations to collaborate on stories with other people on StoryBuilder. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part."
         from: From
         story_title: Story Title
         msg: Message
         accept_link: Accept the Invitation
-        all_invitations: View all of your Story Builder collaboration invitations.
+        all_invitations: View all of your StoryBuilder collaboration invitations.
       processed_videos:
-        subject: "Your videos on Story Builder have been processed!"
+        subject: "Your videos on StoryBuilder have been processed!"
         message: "The following stories of yours have videos that have completed processing:"
         story_title: 'Story:'
         status: 'Video Processing Status: %{processed} of %{total} completed'
@@ -138,7 +138,7 @@ en:
         none_processed: No vidoes have been processed.
         none_processing: All videos have been processed!
       processed_video_errors:
-        subject: "Videos on Story Builder have processing errors!"
+        subject: "Videos on StoryBuilder have processing errors!"
         message: "The following videos had errors while being processed:"
         story_id: Story ID
         asset_id: Asset ID
@@ -170,7 +170,7 @@ en:
       sign_up2: Sign Up
       sign_up_question: "Not a member yet?"
       sign_up: "Register now"
-      sign_up_title: Join Story Builder
+      sign_up_title: Join StoryBuilder
       sign_out: Sign Out
       sign_in_provider: "Sign in with %{provider}"
       sign_up_provider: "Sign up with %{provider}"
@@ -197,8 +197,8 @@ en:
       pages: Edit Text on Site
       story_menu:
         link:
-          clone: Clone as new story
-          export: Download story
+          clone: Clone
+          export: Download
           review: Private URL
           noreview: Already published
           collaborators: Manage Collaborators
@@ -257,13 +257,14 @@ en:
       reviewer_key_published: Your story is published so there is no need to share this non-published URL
       explore: Explore
     common:
-      app_name: Story Builder
-      app_intro: Build and Share;the Next Generation Story;Story Builder allows anyone with text, pictures and/or videos to<br>combine this content into a creative story that can be published<br> and shared with the world
-      app_intro_meta: Build and Share the Next Generation Story! Story Builder allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world.
+      app_name: StoryBuilder
+      app_intro: Build and Share;the Next Generation Story;StoryBuilder allows anyone with text, pictures and/or videos to<br>combine this content into a creative story that can be published<br> and shared with the world
+      app_intro_meta: Build and Share the Next Generation Story! StoryBuilder allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world.      
+      about_intro: "The platform that allows anyone to turn text, audio tracks, pictures and/or videos into a creative web-story that can be published and shared with the world."      
       powered_by: Powered by
       powered_by_js: Jumpstart Georgia
       powered_by_end: ""
-      embed_slogan: Build your story with Story Builder
+      embed_slogan: Build your story with StoryBuilder
       added_on: "Added on: %{date}"
       admin: Admin
       sign_out: Sign Out    
@@ -291,10 +292,10 @@ en:
       staff_pick: Staff Pick
       wide: wide
       partial: Link to Story
-      partial_text: Embed a link to the story that has the same look as the story links on the home page of Story Builder (image, title, author, etc)
+      partial_text: Embed a link to the story that has the same look as the story links on the home page of StoryBuilder (image, title, author, etc)
       full: Full Story
       full_text: Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look. 
-      feed: Story Builder Feed Channel
+      feed: StoryBuilder Feed Channel
       home: Home
     msgs:
       does_not_exist: You tried to access a page that does not exist.
@@ -312,7 +313,7 @@ en:
       error_publish_missing_content_section: At least one content section required.
       error_unpublish: "%{obj} wasn't unpublished.[ %{err} ]"
       error_clone: "%{obj} wasn't cloned."
-      error_export: "Story can't be exported"
+      error_export: "Story can't be downloaded."
       error_get_data: The selected item could not be found
       select_section: Please select a Section first in order to add an Item
       staff_pick: The story has been selected as a Staff Pick
@@ -322,7 +323,7 @@ en:
       nickname_duplicate: This user URL already exists. 
       nickname_url: 'Your URL will be:'
       story_duplicate: This story URL already exists. 
-      story_url: 'Your URL will be:'
+      story_url: 'Story URL will be:'
       invitation:
         accepted: "You have accepted the invitation to collaborate on '%{title}'"
         accepted_already: "You have already accepted the invitation to collaborate on '%{title}'"
@@ -346,7 +347,7 @@ en:
         no_permission: You do not have permission to remove this collaborator
         success_invitations: Invitations were sent!
         error_invitations_all: "No invitations were sent due to the following erros: %{msg}"
-        error_invitations_some: "Some invitations were sent, but some where not due to the following erros: %{msg}"
+        error_invitations_some: "Some invitations were sent, but some were not due to the following erros: %{msg}"
       notification:
         yes: You will be sent notifications.
         no: You will not be sent notifications.
@@ -355,8 +356,8 @@ en:
         new_story_by_category_success: "You will receive a notification when a story is added to these categories: %{categories}."
         story_comments_yes: You will be sent notifications when a comment is made to one of your stories.
         story_comments_no: You will not be sent notifications when a comment is made to one of your stories.
-        news_yes: You will be sent notifications when updates are made to Story Builder.
-        news_no: You will not be sent notifications when updates are made to Story Builder.
+        news_yes: You will be sent notifications when updates are made to StoryBuilder.
+        news_no: You will not be sent notifications when updates are made to StoryBuilder.
         following_no: "You will no longer receive notifications about new stories from '%{nickname}'."
         language: You will be sent notifications in %{language}.
       fail_change_order: The item was not able to be moved
@@ -455,30 +456,30 @@ en:
         title: User Details
   root:
     index:
-      title: Story Builder - build and share the next generation story
+      title: StoryBuilder - build and share the next generation story
       about_header: What is it?
-      about_text: Story Builder allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world.  %{demo_link} to see what is possible then %{start_link}!
+      about_text: StoryBuilder allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world.  %{demo_link} to see what is possible then %{start_link}!
       demo_link: View the demo
       start_link: build and share your stories
       news_header: Latest News
       all_news: more...
     news:
-      title: Story Builder News
+      title: StoryBuilder News
       no_news: No news is good news!
       more_link: Continue
     news_show:
-      title: "Story Builder News: %{title}"
+      title: "StoryBuilder News: %{title}"
       view_all: View All News
     feedback:
-      title: Story Builder Feedback
+      title: StoryBuilder Feedback
       message_sent: Your message has been sent! Thank you for contacting us.
       send: Send
       name: Name
       email: Email Address
       message: Message
     todo_list:
-      title: "Story Builder's To-Do List"
-      summary: Story Builder is in its infancy and has much growing to do. Gathered here is a list of tasks that we are working on or plan to working on soon.
+      title: "StoryBuilder's To-Do List"
+      summary: StoryBuilder is in its infancy and has much growing to do. Gathered here is a list of tasks that we are working on or plan to working on soon.
       last_update: "Last Updated On"
       header_current: Tasks Currently Working On
       header_short_term: Short Term Tasks
@@ -490,9 +491,9 @@ en:
       missing_text: Is there a feature missing from these lists that you would like added?  Do you feel that we should re-prioritize our list?  If so, please let us know by using the %{link}.
       feedback_link: Feedback section
     about:
-      title: About Story Builder
+      title: About StoryBuilder
     embed:
-      home_link: Built on Story Builder
+      home_link: Built on StoryBuilder
   stories:
     index:
     new:
@@ -510,7 +511,7 @@ en:
         permalink: The default URL is the title of the story, but you can change it if desired
         author: Author(s) will appear on the first content section
         media_author:  "Author(s) will appear on the first content section below the Story Author(s)"
-        published: Published stories are available for the world to read
+        published: Published stories are available for the world to view
         publish_home_page: "If checked, your published story will appear on the site's homepage"
         template: Choose template to apply styling to story
         thumbnail: Image that is used to show the story on the home page when the story is published (jpg and png only; 3MB file size limit)
@@ -633,7 +634,7 @@ en:
     notifications:
       title: Notifications
       all_sub_title: All Notifications
-      all_label: Do you want to recieve any notifications from Story Builder?
+      all_label: Do you want to recieve any notifications from StoryBuilder?
       all_no: "No, do not send me any notifications."
       all_yes: "Yes, I want notifications sent to me."
       story_comment_sub_title: New Story Comment Notifications
@@ -646,11 +647,11 @@ en:
       new_stories_by_category: "Notify me when a story is added to:"
       language_sub_title: Notification Language
       language_label: In what language do you want to receive the notifications?
-      news_sub_title: Story Builder Update Notifications
-      news_label: "Do you want to recieve notifications when updates are made to Story Builder?"
+      news_sub_title: StoryBuilder Update Notifications
+      news_label: "Do you want to recieve notifications when updates are made to StoryBuilder?"
       news_no: "No, do not send me any notifications."
       news_yes: "Yes, I want notifications sent to me."     
-      following_sub_title: Story Builder Users You Are Following
+      following_sub_title: StoryBuilder Users You Are Following
       following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image."
       following_not: "At this time, you are not following any users."
       following_title1: "Click to unfollow '%{nickname}'"

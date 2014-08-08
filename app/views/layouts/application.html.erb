@@ -47,19 +47,21 @@
   <body>
     <%= render partial: "layouts/storybuilder_nav"%> 
     <%= yield(:header) %>
-		<div id="wrapper">
-   		<div class="flash-message"></div>
-				<% if content_for?(:title) %>
-					<div class="page-header">
-					  <div class="block">
-              <h1>
-							  <%= yield(:title) %>
-						  </h1> 
-						</div>
-					</div>
-				<% end %> 
-        <%= yield %>
-		</div><!--/wrapper-->
+    <% if params[:action] != 'about' %>
+  		<div id="wrapper">
+     		<div class="flash-message"></div>
+  				<% if content_for?(:title) %>
+  					<div class="page-header">
+  					  <div class="block">
+                <h1>
+  							  <%= yield(:title) %>
+  						  </h1> 
+  						</div>
+  					</div>
+  				<% end %>         
+          <%= yield %>
+  		</div><!--/wrapper-->
+    <% end %>
     <%= yield(:footer) %>
     <div class="powered-by">
       <%= t("app.common.powered_by") %>&nbsp;&nbsp;<a href="http://www.jumpstart.ge" target="_blank" title="<%= t("app.common.js_link_title") %>"><%= t("app.common.powered_by_js") %></a><%= t("app.common.powered_by_end") %>

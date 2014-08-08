@@ -139,7 +139,7 @@ class RootController < ApplicationController
   end
 
   def about   
-    @css.push("navbar.css")   
+    @css.push("navbar.css","about.css")   
     @page = Page.by_name('about')
   
     if @page.present?

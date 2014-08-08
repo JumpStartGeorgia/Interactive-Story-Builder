@@ -1,6 +1,11 @@
 <% title @page.title %>
 
-<div class="about_text tinymce_format">
-  <%= simple_format_no_tags(@page.content, {}, {sanitize: false}) %>
-</div>
+<% content_for(:header) { %>
+    <header class="header-about %>">
+      <div class="header-data">
+        <div class="title"><%= @page.title %></div>
+        <div class="intro"><%= t("app.common.about_intro").html_safe %></div>
+    </header>
+  <div class="about-text"> <%= @page.content.html_safe %></div>
+<% } %>
 
