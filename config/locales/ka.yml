@@ -261,7 +261,6 @@ ka:
       app_name: StoryBuilder
       app_intro: შექმენი და გააზიარე; ახალი თაობის ამბები; StoryBuilder-ი საშუალებას აძლევს ნებისმიერ ადამიანს,<br> ტექსტით, სურათით, ფოტოთი და/ან ვიდეოთი შექმნას მულტიმედია ამბავი<br> და გაუზიაროს მსოფლიოს.
       app_intro_meta: შექმენი და გააზიარე ახალი თაობის ამბები!StoryBuilder-ი საშუალებას აძლევს ნებისმიერ ადამიანს, ტექსტით, სურათით, ფოტოთი და/ან ვიდეოთი შექმნას მულტიმედია ამბავი და გაუზიაროს მსოფლიოს.
-      about_intro: "The platform that allows anyone to turn text, audio tracks, pictures and/or videos into a creative web-story that can be published and shared with the world."
       powered_by: შექმნილია
       powered_by_js: ჯამპსტარტ ჯორჯიას
       powered_by_end: " მიერ"
@@ -493,6 +492,16 @@ ka:
       feedback_link: უკუკავშირის სექცია
     about:
       title: StoryBuilder-ის შესახებ
+      intro: "The platform that allows anyone to turn text, audio tracks, pictures and/or videos into a creative web-story that can be published and shared with the world."
+      p1: "StoryBuilder enables anyone to build mixed-media stories without needing to know how to code. What sets StoryBuilder apart from other similar services is that you have complete control over your content. You can publish it on StoryBuilder, or your can download the story and host it where you want."
+      p2: "Each story is a sequence of media sections in the order of your choosing. You choose which order and which type of media you want each section to be. Choose from text/html, full screen images/videos, image slideshows, and embeddable online media. You can accompany each chapter with a soundtrack of your choosing. What you do with that is up to you!"
+      p3: "To ensure that your content is yours, we have made the entire platform open source. This means if you do not want to use JumpStart Georgia's live version of StoryBuilder, you can install the StoryBuilder application on a server of your choice. In this way, you or your organization are not locked into dependency on yet another 3rd-party service hosting your content."
+      p4: "JumpStart Georgia is building StoryBuilder for the benefit of improving the ease with which civil society organizations, journalists, activists, and storytellers the world over can tell stories that are engaging and increasingly visceral, changing how audiences can experience stories on the web." 
+      help: "If you or your organization would like to help us improve StoryBuilder through funding, development, or design, please don't hesitate to contact us!" 
+      contact:   
+        subject: StoryBuilder Contact
+        address1: 'შევჩენკოს ქ. 5, ბინა 2'
+        address2: '0108, თბილისი, საქართველო'
     embed:
       home_link: შექმნილია StoryBuilder-ზე
   stories:
