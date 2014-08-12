@@ -304,13 +304,13 @@ en:
       success_publish: "%{obj} was successfully published."
       success_unpublish: "%{obj} was successfully unpublished."
       success_clone: "%{obj} was successfully cloned to %{to}."      
-      error_created: "%{obj} wasn't created.[ %{err} ]"
-      error_updated: "%{obj} wasn't updated.[ %{err} ]"
-      error_publish: "%{obj} wasn't published.[ %{err} ]"
+      error_created: "%{obj} wasn't created: %{err}"
+      error_updated: "%{obj} wasn't updated: %{err}"
+      error_publish: "%{obj} wasn't published: %{err}"
       error_publish_missing_fields: "%{obj} can't be published until you provide a summary and thumbnail image."
       error_publish_missing_fields_link: Add the missing content.
       error_publish_missing_content_section: At least one content section required.
-      error_unpublish: "%{obj} wasn't unpublished.[ %{err} ]"
+      error_unpublish: "%{obj} wasn't unpublished: %{err}"
       error_clone: "%{obj} wasn't cloned."
       error_export: "Story can't be downloaded."
       error_get_data: The selected item could not be found
@@ -334,10 +334,10 @@ en:
         embed_media: Only one Item can be added to an Embed Online Media section
       destroy_story:
         success: Story was successfully deleted.
-        error: "Error occurred while deleting the story [ %{err} ]"
+        error: "Error occurred while deleting the story: %{err}"
       destroy_item:
         success: Item was successfully deleted.
-        error: "Error occurred while deleting the item [ %{err} ]"
+        error: "Error occurred while deleting the item: %{err}"
         error_not_found: Item could not be found to delete.
       embed_code: Copy and paste this embed code into your web page
       collaborators:
