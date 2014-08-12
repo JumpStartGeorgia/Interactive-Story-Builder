@@ -1,5 +1,5 @@
 atom_feed do |feed|
-  feed.title t('app.common.feed'), :app_name => (t'app.common.app_name')
+  feed.title t('app.common.feed'), :app_name => (t'app.common.app_name_not_trans')
   feed.updated @items.maximum(:published_at)
 
   @items.each do |item|

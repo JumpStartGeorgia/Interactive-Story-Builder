@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="initial-scale=1,width=device-width,height=device-height,user-scalable=no">       
-    <% title = "#{@story.title}" + (@export ? "" : (" | #{t('app.common.app_name')}").html_safe) %>
+    <% title = "#{@story.title}" + (@export ? "" : (" | #{t('app.common.app_name_not_trans')}").html_safe) %>
     <title><%= title %></title>    
     <%= csrf_meta_tags if !@export %>
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -21,7 +21,7 @@
 <% else %>
     <meta property="og:image" content="<%= full_url('/assets/fb-img.jpg') %>" />
 <% end %>
-    <meta property="og:site_name" content="<%= @export ? title : t('app.common.app_name') %>" />
+    <meta property="og:site_name" content="<%= @export ? title : t('app.common.app_name_not_trans') %>" />
 <% if !@export && Rails.env.production? %>
     <meta property="fb:app_id" content="<%= ENV['STORY_BUILDER_FACEBOOK_APP_ID'] %>" />
 <% end %>
