@@ -10,7 +10,7 @@ en:
       news: News
       message: Message
       slideshow: Image Slideshow
-      embed_medium: Embedable Online Media
+      embed_medium: Embeddable Online Media
       language: Language
       category: Category
       page: Text for Pages
@@ -560,8 +560,8 @@ en:
         caption: "Caption text will appear on top of the image/video. If this is the first item in the story, the caption text is hidden."
         source: "Source of the image/video, appears in the bottom-right corner"
         image: "Only jpg format allowed; 3MB file size limit"
-        video: "Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receieve a notification when the processing is complete, typically within a few minutes."
-        caption_align: "The location the Caption text will appear on top of the image/video (default is left) "
+        video: "Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receive a notification when the processing is complete, typically within a few minutes."
+        caption_align: "The Caption text will appear on top of the image/video (appears on the left by default) "
         video_loop: "If checked, the video will loop infinitly, otherwise the video will not loop"
     section:
       form_title: Section Form
@@ -582,11 +582,11 @@ en:
         sub_caption: optional
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
-        caption: Heading of content will appear at the top of the section (styled like header)
-        sub_caption: Subheading of content will appear below the caption (styled like sub header of caption)
+        caption: Heading of content will appear at the top of the section
+        sub_caption: Subheading of content will appear below the Heading
         content: Content can include html, css styling and images
     reviewer_key:
-      title: Read-Only URL
+      title: Private URL
       desc: "You can copy and share the following URL with whomever you want to review '%{title}' before it is published. These people will have the ability to read your story, but not edit it."
     slideshow:
       form_title: Image Slideshow Form
@@ -634,7 +634,7 @@ en:
       submit: Save Settings      
     invitations:
       title: Collaboration Invitations
-      no_invitations: At this time there are no un-answered invitations on file for you.
+      no_invitations: At this time you have no invitations waiting for you.
       accept_link: Accept
       decline_link: Decline
       header_date: Date Sent
@@ -667,6 +667,6 @@ en:
       following_title2: "Click to follow '%{nickname}'"     
       submit: Save Settings
   imageuploader:
-    missing: "Original File is missing for thumbnails"
-    invalid_type: "Invalid file type. Only .jpg, .png allowed"
-    size_limit: "File size is limited to 5MB"
+    missing: "An error occurred while processing your image. Please try again."
+    invalid_type: "Invalid file type. Only .jpg or .png is allowed."
+    size_limit: "Image file size is limited to 5MB"
