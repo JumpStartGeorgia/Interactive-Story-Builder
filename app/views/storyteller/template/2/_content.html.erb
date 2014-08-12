@@ -34,7 +34,8 @@
         (function() {      
           var defers = [];
           defer = function(f) { defers.push(f); };
-          await = function() { defers.forEach(function(f,s) { f();}); };
+          await = function() { defers.forEach(function(f,s) { f();});                         
+        };
 
         })();</script>
 
@@ -57,6 +58,8 @@
                   .on("load.navigation", resized)
                   .on("scroll.navigation", scrolled);
 
+
+
               resized();
 
               function resized() {
@@ -69,12 +72,11 @@
                 anchor.classed("navigation-section--active", function(d, i) { return i === j; });
               }
 
-              function clicked(d, i) {
-               // console.log(d); console.log(i);
+              function clicked(d, i) {       
                 d3.event.preventDefault();
                 d3.transition().duration(750).tween("scroll", function() {
                   var offset = d3.interpolateNumber(pageYOffset, markerOffsets[i]);
-                  return function(t) { scrollTo(0, offset(t)); };
+                  return function(t) { scrollTo(0,offset(t)); };
                 });
               }
 
@@ -117,24 +119,30 @@
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
                 <% section.media.each_with_index do |m,m_i| %>
-                    <% dataVideo = '' %>
-                    <% if m.media_type == 2 %>                  
-                      <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name,'.mp4')}'".html_safe %>
-                    <% end %> 
+                  <% dataVideo = '' %>
+                  <% if m.media_type == Medium::TYPE[:video] && m.is_processed? %>                
+                    <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name,'.*')}'".html_safe %>
+                  <% end %> 
                   <div class="video"  <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>
-                      <div class="video-container">
-                        <% if m.media_type == 1 %>         
-                            <% if !@export %> 
-                              <img src="<%= m.image.asset.url %>">
-                            <% else %>
-                              <img src="media/images/original/<%= m.image.asset_file_name %>">
-                            <% end %>
-                        <% elsif m.media_type == 2  %>                       
-                              <% if !@export %>                           
-                                <!--[if lte IE 8]><img src="<%= m.image.asset.url %>"><![endif]-->
-                              <% else %>
-                                <!--[if lte IE 8]><img src="media/images/original/<%= m.image.asset_file_name %>"><![endif]-->
-                              <% end %>                                                          
+                    <div class="video-container">
+                      <% if m.media_type == Medium::TYPE[:image] %>     
+                          <% if !@export %> 
+                            <img src="<%= m.image.asset.url(:fullscreen) %>">
+                          <% else %>
+                            <img src="media/images/fullscreen/<%= m.image.asset_file_name %>">
+                          <% end %>
+                      <% elsif m.media_type == Medium::TYPE[:video] && !m.is_processed?  %>                    
+                          <% if !@export %> 
+                            <%= image_tag "png/video_being_processed_#{I18n.locale}.png" %>
+                          <% else %>
+                            <img src="assets/png/video_being_processed_#{I18n.locale}.png">
+                          <% end %>
+                      <% elsif m.media_type == Medium::TYPE[:video] && m.is_processed?  %>                    
+                          <% if !@export %>                           
+                            <!--[if lte IE 8]><img src="<%= m.image.asset.url(:fullscreen) %>"><![endif]-->
+                          <% else %>
+                            <!--[if lte IE 8]><img src="media/images/fullscreen/<%= m.image.asset_file_name %>"><![endif]-->
+                          <% end %>                                                          
                         <% end %>  
                         <% if m.source.present? %>
                            <div class="video-source"><%= m.source %></div>                       
@@ -161,26 +169,13 @@
                                 <% if m.caption.present? %>
                                 <div class="video-summary"> <%= m.caption %> </div>
                                 <% end %> 
-                                <div class="scroll-prompt">                                
-                                                       
-                                <svg width="7.976px" height="12.512px">
-                                  <g>
-                                    <path fill="#FFFFFF" d="M3.305,4.756c0.188,0.189,0.436,0.28,0.683,0.279c0.247,0.001,0.494-0.09,0.683-0.279l3.026-3.025
-                                      c0.372-0.374,0.372-0.978,0-1.352l-0.1-0.099c-0.374-0.374-0.979-0.374-1.353,0L3.988,2.537L1.731,0.28
-                                      c-0.373-0.374-0.978-0.374-1.352,0l-0.1,0.099c-0.373,0.374-0.373,0.979,0,1.352L3.305,4.756z"/>
-                                    <path fill="#FFFFFF" d="M7.597,7.756c-0.374-0.373-0.979-0.373-1.353,0l-2.256,2.257L1.731,7.756c-0.373-0.373-0.978-0.373-1.352,0
-                                      l-0.1,0.1c-0.373,0.375-0.373,0.978,0,1.351l3.025,3.025c0.188,0.188,0.436,0.282,0.683,0.28c0.247,0.002,0.494-0.092,0.683-0.28
-                                      l3.026-3.025c0.372-0.373,0.372-0.976,0-1.351L7.597,7.756z"/>
-                                  </g>
-                                </svg>
-                                </div>   
-                                <div class="social">                                      
-                                    <a href='https://twitter.com/share?text=<%= "#{@story.title}" %>' onclick="javascript:window.open(this.href,
-                                      '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/twitter.png"%>'/></a>    
-                                    <a href="https://plus.google.com/share?url=<%= current_url %>" onclick="javascript:window.open(this.href,
-                                      '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>' alt="Share on Google+"/></a>                                
-                                      <div class="facebook">  <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true" ></div></div>
-                                </div>   
+                                <div class="scroll-prompt">                                                                                      
+                                       <svg  x="0px" y="0px" width="18.03px" height="18.042px" viewBox="7.516 6.5 18.03 18.042" enable-background="new 7.516 6.5 18.03 18.042"
+                                         xml:space="preserve">
+                                        <polygon points="16.531,22.763 8.52,14.963 7.695,15.766 16.531,24.367 25.367,15.766 24.544,14.963 "/>
+                                        <polygon points="25.367,7.477 24.544,6.674 16.531,14.475 8.52,6.674 7.695,7.477 16.531,16.079 "/>
+                                      </svg>
+                                </div>                   
                               </div>                 
                           <% else %>
                             <% if m.caption.present? %>
@@ -229,41 +224,31 @@
 
       </div>
     </div>  
-        <div class="section footer-section">        
-           <div class="left">
-            <div> <a class="about-link">პროექტის შესახებ</a></div>
-            <div class="footer-separator"></div>
-            <div><a href="http://www.jumpstart.ge" target="_blank" title="<%= t("layouts.application.js_link_title") %>" >
-              <img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/logo.png"%>' class="footer-logo"/></a></div>
+        <div class="section footer-section">                    
+           <div class="left">                        
+            <div><a href="http://www.jumpstart.ge" target="_blank" title="<%= t("app.common.js_link_title") %>" >
+              <img src='<%= (@export ? "" : "/") + "assets/svg/js_w.svg"%>' class="footer-logo"/></a></div>
            </div>
            <div class="right">
-                 <a href='https://twitter.com/share?text=<%= "#{@story.title}" %>' onclick="javascript:window.open(this.href,
-                                      '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/twitter.png"%>'/></a>    
-                <a href="https://plus.google.com/share?url=<%= current_url %>" onclick="javascript:window.open(this.href,
-                  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/google_plus.png"%>' alt="Share on Google+"/></a>     
-                <div class="facebook">                           
-                  <div class="fb-like" data-href="<%= current_url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true" data-width="150px"></div>
-                </div>
-           </div>
+            <a href="https://www.facebook.com/sharer/sharer.php" onclick="javascript:window.open(this.href,
+                    '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link"> <img src='<%= (@export ? "" : "/") + "assets/svg/facebook_w.svg"%>' /></a>          
+             <a href='https://twitter.com/share?text=<%= "#{@story.title}" %>' onclick="javascript:window.open(this.href,
+                                  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "" : "/") + "assets/svg/twitter_w.svg"%>' /></a>    
+            <a href="https://plus.google.com/share?url=<%= current_url %>" onclick="javascript:window.open(this.href,
+              '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "" : "/") + "assets/svg/google+_w.svg"%>' alt="Share on Google+" /></a>     
            </div>
         </div> 
-           <div id="about_box" style="width:100%;" >           
-            <div class='about_text'>
-                  <div class="about_close"><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/close.png"%>' style="width: 16px;height: 16px;"/></div>                  
-                  <p>პროექტი “ბავშვები შავშვებიდან” შექმნილია “ჯამპსტარტ ჯორჯიას” მიერ საქველმოქმედო ცენტრ “აფხაზეთთან” თანამშრომლობით პროექტის <a href="http://jumpstart.ge/ka/what-we-do/projects/monacemta-vizualizacia-advokatirebistvis" target="_blank">“მონაცემების ვიზუალიზაცია ადვოკატირებისთვის”</a> ფარგლებში.</p>
+       <div id="modalos-donate" style="display:none;" class="donate-window">        
+        <div class="want_donate">            
+            <a href="http://chca.org.ge/" style="float:left;" target="_blank"><img src='<%= (@export ? "" : "/template/#{@template}/") + "assets/png/chca.png"%>'></a>
+            <p>თუ გსურთ, დაეხმაროთ შავშვების დასახლების ბავშვებს, გთხოვთ, გადარიცხოთ თანხა შემდეგ ანგარიშზე: </p>
+            <p>"თი ბი სი" ბანკი: GE09TB0328336080101001</p>
+            <p>გადარიცხვის დანიშნულების ველში, გთხოვთ, მიუთითოთ: "ბავშვები შავშვებიდან"</p>
+          </div>
+        </div>
 
-                  <p>პროექტის მიზანია, საზოგადოების დახმარებით სოციალური კამპანიის ხელშეწყობა, რომლის შედეგადაც შეგროვდება შავშვების დევნილთა დასახლებაში არსებული უფუნქციო აბანოს შენობა-ნაგებობების საბავშვო ბაღად გადაკეთებისთვის საჭირო თანხა.</p>
+      
 
-                  <p><a href="http://jumpstart.ge/ka" target="_blank">“ჯამპსტარტ ჯორჯია”</a> არის საქართველოში რეგისტრირებული არასამთავრობო ორგანიზაცია, რომელიც ღია წყაროს ტექნოლოგიების გამოყენებით, საზოგადოებისათვის საინტერესო და აქტუალური მონაცემების ხელმისაწვდომობასა და საჯაროობას უზრუნველყოფს.</p>
-                  <p>
-                  საქველმოქმედო ჰუმანიტარული ცენტრი "აფხაზეთი" (<a href="http://chca.org.ge/itst/" target="_blank">CHCA</a>) არის არასამთავრობო ორგანიზაცია, რომელიც ფოკუსირებულია საქართველოს იძულებით გადაადგილებული და სხვა სოციალურად დაუცველი მოსახლეობის გაძლიერებაზე. ორგანიზაცია დაარსდა 1995 წელს, აფხაზეთის კონფლიქტის შედეგად საქართველოს ათასობით იძულებით გადაადგილებული მოქალაქის მხარდასაჭერად.</p>
-                  <div>
-                    <a href="http://www.jumpstart.ge" target="_blank" title="<%= t("layouts.application.js_link_title") %>" ><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/about-logo.png"%>' class='about_js_logo'/></a>
-                    <a href="http://chca.org.ge/itst/" target="_blank" title="CHCA" ><img src='<%= (@export ? "assets/" : "/template/#{@template}/") + "images/chca.png"%>' class='about_chca_logo'/></a>
-                  </div>
-            </div>
-
-        </div>  
 
       <!-- ****************************************************
       *  data hash for mobile devices , they use different images   
@@ -340,6 +325,9 @@
 
         defer(function() {
 
+         
+
+ 
         /* Only do if we're on iPad, iPhone or Android -- TG */
         if (!isMobile()) return false;
 
@@ -519,17 +507,18 @@
 
           })
 
-            // added for donation pig
-            var secTemp = d3.selectAll(".article .section");          
-            var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
-            var lengthTemp = temp[0].length -1 ; 
-            if(lengthTemp >= 0)
-            {              
-                var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
-                last_section.append("div").attr("class","donate").append("a").attr("href","http://www.donation.ge");
-                last_section.append("div").attr("class","pigy");              
-            }
-            // donation end
+               // added for donation pig
+              var secTemp = d3.selectAll(".article .section");          
+              var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
+              var lengthTemp = temp[0].length -1 ; 
+              if(lengthTemp >= 0)
+              {              
+                  var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
+                  last_section.append("div").attr("class","donate").append("a").attr('href','#').attr('id','modalDonate').attr("data-modalos-id","modalos-donate");
+                  last_section.append("div").attr("class","pigy");              
+              }
+              // donation end   
+
         }, 200)
 
 
@@ -543,18 +532,16 @@
           if (isMobile()) return false;
 
             <% if !@export %>                           
-               var _video_assets = "/system/places/video/<%= @story.id %>/",
-              _image_assets = "/system/places/images/<%= @story.id %>/original/",
+               var _video_assets = "/system/places/video/<%= @story.id %>/processed/",
+              _poster_assets = "/system/places/video/<%= @story.id %>/poster/",
+              _image_assets = "/system/places/images/<%= @story.id %>/fullscreen/",
               _audio_assets = "/system/places/audio/<%= @story.id %>/";
             <% else %>
-              var _video_assets = "media/video/",
-                  _image_assets = "media/images/original/",
+              var _video_assets = "media/video/processed/",
+                  _poster_assets = "media/video/poster/",
+                  _image_assets = "media/images/fullscreen/",
                   _audio_assets = "media/audio/";
             <% end %> 
-         
-
-
-               
 
           var mute = false,
               muteVolume = "volume",
@@ -565,8 +552,8 @@
               fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight),
               fade = d3.interpolateRgb("#fff", "#fff");
 
-          var headline = d3.select(".navigation-headline");
-
+          //var headline = d3.select(".navigation-headline");
+          var scrollprompt = d3.select('.scroll-prompt');
           var sequence = d3.selectAll(".video-sequence")
               .datum(function() {
                 return {
@@ -627,7 +614,7 @@
 
           var video = container.filter(function(d) { return d.video; }).append("video")
               .attr("preload", "none")
-              .attr("poster", function(d) { return  _video_assets + d.video + ".jpg"; })
+              .attr("poster", function(d) { return  _poster_assets + d.video + ".jpg"; })
               .property("loop", function(d) { return !d.animation; })
               .property("loop", function(d) { return d.loop; })
               .text("Your browser does not support this video.");
@@ -666,17 +653,17 @@
 
           resized();
 
-           // added for donation pig
-            var secTemp = d3.selectAll(".article .section");          
-            var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
-            var lengthTemp = temp[0].length -1 ; 
-            if(lengthTemp >= 0)
-            {              
-                var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
-                last_section.append("div").attr("class","donate").append("a").attr("href","http://www.donation.ge");
-                last_section.append("div").attr("class","pigy");              
-            }
-            // donation end
+          // added for donation pig
+              var secTemp = d3.selectAll(".article .section");          
+              var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
+              var lengthTemp = temp[0].length -1 ; 
+              if(lengthTemp >= 0)
+              {              
+                  var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
+                  last_section.append("div").attr("class","donate").append("a").attr('href','#').attr('id','modalDonate').attr("data-modalos-id","modalos-donate");
+                  last_section.append("div").attr("class","pigy");              
+              }
+          // donation end   
 
           function loaded() {
             video.attr("preload", function(d) { return d.first ? "auto" : "none"; });
@@ -782,8 +769,8 @@
                   : opacityTop < fixTop - fixHeight ? 0 // video is fully covered by next video
                   : opacityTop < fixTop - fixHeight / 2 ? Math.max(0, Math.min(1, (opacityTop - fixTop + fixHeight) / (fixHeight / 2)))
                   : opacity;
-
-              if (d.first && d.sequence.first) headline.style("opacity", 1 - volume);
+              if (d.first && d.sequence.first) scrollprompt.style("opacity",  volume == 1 ? 1 : (volume-0.7) > 0 ? (volume-0.7) : 0 );              
+              //if (d.first && d.sequence.first) headline.style("opacity", 1 - volume);
             }
           }
 
@@ -796,8 +783,9 @@
                     if (!this.paused) this.pause();
                     if (this.currentTime) this.currentTime = 0;
                   }
-                });                 
-            if (d.first && d.sequence.first && !d3.event.state) headline.style("opacity", null);
+                });   
+                if (d.first && d.sequence.first && !d3.event.state) scrollprompt.style("opacity", 1);              
+            //if (d.first && d.sequence.first && !d3.event.state) headline.style("opacity", null);
           }
 
           function sequencescrolled() {
@@ -890,25 +878,17 @@
                 .attr("src", function(d) { return assets + d.slug; })
                 .each(moveToFront);
 
+        
             container.append("div")
                 .attr("class", "slideshow-button slideshow-button--next")
                 .on("click", function() { stopPlay(); showNext(); })
-              .append("svg")
-                .attr("class", "slideshow-button-arrow")
-                .attr("width", 22)
-                .attr("height", 22)
-              .append("path")
-                .attr("d", "M3,1.008L20.742,9.045L3,17.083L6,8.917Z");
+               .html("<svg class='slideshow-button-arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M3,1.008L20.742,9.045L3,17.083L6,8.917Z'></path></svg>");  
 
             container.append("div")
                 .attr("class", "slideshow-button slideshow-button--previous")
                 .on("click", function() { stopPlay(); showPrevious(); })
-              .append("svg")
-                .attr("class", "slideshow-button-arrow")
-                .attr("width", 22)
-                .attr("height", 22)
-              .append("path")
-                .attr("d", "M18.742,0.758L1,8.795L18.742,16.833L15.742,8.667Z");
+              .html("<svg class='slideshow-button-arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M18.742,0.758L1,8.795L18.742,16.833L15.742,8.667Z'></path></svg>");   
+
 
             var thumb = container.insert("div", ".slideshow-captions")
                 .attr("class", "slideshow-thumbs")
@@ -1077,9 +1057,7 @@
 
             
         await();   
-        d3.select(".about-link").on('click',function(){d3.select("#about_box").style('display','block');})
-        d3.select(".about_close").on('click',function(){d3.select("#about_box").transition().style('display','none');})           
-  
+
     })();</script>
 
     <!--<![endif]-->  

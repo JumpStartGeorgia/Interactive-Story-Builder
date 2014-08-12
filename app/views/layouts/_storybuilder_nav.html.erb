@@ -1,0 +1,134 @@
+<% 
+  @navbar_invisible ||= false    
+%>
+<nav class="navbar navbar-default navbar-static-top navbar-storybuilder <%= @navbar_invisible ? 'navbar-invisible' : '' %>" role="navigation">  
+  <div class="container-fluid">  
+    <div class="navbar-header">
+        <img src="<%= asset_path('svg/slogo.svg') %>" class="navbar-toggle navbar-slogo" data-toggle="collapse" data-target="#storybuilder-navbar-collapse" />        
+        <%= link_to(image_tag("svg/logo.svg",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name')) , root_path(:locale => I18n.locale), title:"asdf", :class=>"navbar-logo link") %>          
+    </div>
+
+    <div class="collapse navbar-collapse" id="storybuilder-navbar-collapse">
+ 
+      <div class="separator-ver"></div>
+      <%= form_tag root_path, :method => :get, :id => 'search-form',
+        :class => "navbar-form navbar-left", :role => "search" do %>
+          <div class="form-group">            
+            <%= text_field_tag :q, params[:q], :placeholder => t('app.common.search'), :class=>"form-control search-input", :autocomplete=>'off', :tabindex => 1 %>
+          </div>
+      <% end %>
+      <div class="separator-hor"></div> 
+      <ul class="nav navbar-nav navbar-right">    
+          <li> 
+              <% if user_signed_in? %>
+                <%= link_to new_story_path , :tabindex=>2, :class=>"build-story link" do %>
+                  <i class="s i-build"></i><%= "#{t('app.common.build')}" %>
+                <% end %>
+              <% else %>
+               <%= link_to new_user_session_path({:return_url=>new_story_path}), :tabindex=>2, :class=>"build-story link modalSignIn",  :"data-modalos-id"=>"modalos-sign-in" do %>
+                  <i class="s i-build"></i><%= "#{t('app.common.build')}" %>
+                <% end %>
+              <% end %>
+          </li> 
+
+
+      <% if user_signed_in? %>
+        <li class="dropdown dropdown-hover settings">
+
+          <%= link_to '#' , :tabindex=>2, :class=>"dropdown-toggle avatar-link", :"data-toggle"=>"dropdown"  do %>         
+            <%= image_tag(current_user.avatar_url, :class=>"avatar link") %>           
+          <% end %>
+                      
+          <ul class="dropdown-menu">                          
+            <li>              
+              <%= link_to stories_path do %>         
+               <i class="s i-mystories"></i><span><%= t('helpers.titles.story_list') %></span>
+              <% end %>
+            </li>  
+            <li class="set-build">
+              <%= link_to new_story_path do %>         
+               <i class="s i-build-b"></i><span><%= t('app.common.build') %></span>
+              <% end %>              
+            </li>              
+            <li>
+              <%= link_to settings_path do %>         
+               <i class="s i-settings"></i><span><%= t('helpers.links.user_settings') %></span>
+              <% end %>              
+            </li>              
+            <% if current_user.role? User::ROLES[:admin] %>
+              <li>
+                <%= link_to admin_path do %>         
+                  <i class="s i-users"></i><span><%= t('helpers.links.admin') %></span>
+                <% end %>    
+              </li>
+            <% end %>               
+            <li class="signout">
+              <%= link_to destroy_user_session_path , :method => :delete do %>         
+               <i class="s i-signout"></i><span><%= t('helpers.links.sign_out') %></span>
+              <% end %>                
+            </li>
+          </ul>
+        </li>
+      <% else %>
+        <li class="signin">
+          <%= link_to t('helpers.links.sign_in2'), :new_user_session, :class => 'link modalSignIn', :"data-modalos-id"=>"modalos-sign-in", :"data-modalos-class"=>"sign-in-window" %>
+        </li>
+     <% end %> 
+        <li class="separator-ver"></li>  
+        <li class="dropdown dropdown-hover common">                    
+            <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= "#{t('helpers.links.menu')}" %><i class="s i-caret-w"></i></a>                   
+            <ul class="dropdown-menu">
+              <li class="home-link">
+                <%= link_to t('app.common.home'), root_path(:locale => I18n.locale)  %>
+              </li> 
+              <li>
+                <%= link_to t('helpers.links.about'), about_path %> 
+              </li>
+              <li>
+                <%= link_to t('helpers.links.news'), news_path %>
+              </li>
+              <li>
+                <%= link_to t('helpers.links.todo_list'), todo_list_path %> 
+              </li>
+              <li>
+                <%= link_to t('helpers.links.feedback'), feedback_path %> 
+              </li>
+               <!--li>
+                <%#= link_to t('helpers.links.demo'), demo_path %> 
+              </li-->
+              <li>
+                <%= link_to t('helpers.links.feed'), feed_path, :rel=>"alternate", :type=>"application/feed+xml" %>                                  
+              </li>
+             
+              <li>                        
+                <%= link_to "GitHub", "https://github.com/JumpStartGeorgia/Interactive-Story-Builder.git", :target => :blank %>
+              </li>
+            </ul>
+        </li>        
+        <li class="separator-ver"></li>
+        <li  class="separator-hor"></li>        
+        <li class="social"><a href="https://www.facebook.com/sharer/sharer.php?u=<%= root_url %>" onclick="javascript:window.open(this.href,
+                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link">  
+          <i class="s i-facebook"></i></a>      
+        </li> 
+        <li class="social"><a href='https://twitter.com/share?text=<%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name_not_trans')}" :
+                                t('app.common.app_name_not_trans') %>' onclick="javascript:window.open(this.href,
+                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link">
+                        <i class="s i-twitter"></i>
+            </a></li>
+
+        <li class="social"><a href="https://plus.google.com/share?url=<%= root_url %>" onclick="javascript:window.open(this.href,
+          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link">
+              <i class="s i-google"></i>
+            </a></li> 
+       
+        <li class="separator-ver"></li>
+        <% I18n.available_locales.each do |locale| %>
+          <% if locale != I18n.locale %>
+            <li class="lang-switch"><%= link_to t("app.language.#{locale}"), params.merge(:locale =>  locale) , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse" %></li>
+          <% end %>
+        <% end %>                             
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,16 +1,137 @@
 class User < ActiveRecord::Base
+  # part of liking system
+  acts_as_voter
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
 	# :registerable, :recoverable,
   has_and_belongs_to_many :stories
 
+	has_one :local_avatar,     
+	  :conditions => "asset_type = #{Asset::TYPE[:user_avatar]}", 	 
+	  foreign_key: :item_id,
+    class_name: "Asset",
+	  dependent: :destroy
+
+	accepts_nested_attributes_for :local_avatar, :reject_if => lambda { |c| c[:asset].blank? }
+
   devise :database_authenticatable,:registerable, :recoverable,
          :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :provider, :uid, :nickname, :avatar
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, 
+                  :provider, :uid, :nickname, :avatar,
+                  :about, :default_story_locale, :permalink, :local_avatar_attributes, :avatar_file_name, :email_no_domain,
+                  :wants_notification, :notification_language
+                  
+  attr_accessor :send_notification
+
+  has_permalink :create_permalink, true
 
   validates :role, :presence => true
+
+  ROLES = {:user => 0, :staff_pick => 50, :admin => 99}
+
+  before_create :create_email_no_domain
+  before_save :check_nickname_changed  
+	before_save :generate_avatar_file_name
+  before_save :set_notification_language
+
+  # email_no_domain is used in the search for collaborators 
+  # so people cannot search using domain name to guess their email addresses
+  def create_email_no_domain
+    self.email_no_domain = self.email.split('@').first
+    return true
+  end
+
+  # if the nickname changes, then the permalink must also change
+  def check_nickname_changed
+    puts "checking nickname changed"
+    
+    # if this is a create (id does not exist) make sure the nickname is unique
+    fix_nickname_duplication if self.id.blank?
+    
+    if self.nickname_changed?
+      # make sure there are no tags in the nickname
+      self.nickname = ActionController::Base.helpers.strip_links(self.nickname)
+      self.generate_permalink! 
+    end
+    return true
+  end
+  
+  # if this nickname already exists, add a # to the end to make it unique
+  def fix_nickname_duplication 
+    # if the nickname does not exist, populate with the first part of the email
+    if read_attribute(:nickname).blank?
+      self.nickname = self.email.split('@')[0]
+    end
+
+    n = self.class.where(["nickname = ?", self.nickname]).count
+    
+    if n > 0 
+      links = self.class.where(["nickname LIKE ?", "#{self.nickname}%"]).order("id")
+      number = 0
+      
+      links.each_with_index do |link, index|
+        if link.nickname =~ /#{self.nickname}-\d*\.?\d+?$/
+          new_number = link.nickname.match(/-(\d*\.?\d+?)$/)[1].to_i
+          number = new_number if new_number > number
+        end
+      end         
+      self.nickname = "#{self.nickname}-#{number+1}"
+    end  
+  end
+
+  def create_permalink   
+    self.nickname.dup
+  end
+
+  # see if the user logs in via a provider (e.g., facebook)
+  # and has an avatar url from that provider
+  def has_provider_avatar?
+    self.provider.present? && self.avatar.present?
+  end
+  
+  # see if the user has a local avatar saved
+  def local_avatar_exists?
+    self.local_avatar.present? && self.local_avatar.asset.exists?
+  end
+
+  # get the url to the avatar
+  # - check if using a provider and if so return that avatar url
+  # - else use the local avatar
+  # if neither exists, return the missing url
+  def avatar_url(style = :'28x28')
+    if has_provider_avatar? && !local_avatar_exists?
+      # append the size to the end of the avatar url so the provider returns the size we want
+      sizes = style.to_s.split('x')
+      if sizes.length == 2
+        a = self.avatar.dup
+        a << '?width='
+        a << sizes[0]
+        a << '&height='
+        a << sizes[1]
+        a
+      else
+        self.avatar
+      end
+    elsif local_avatar_exists?
+      self.local_avatar.asset.url(style)
+    else
+      Asset.new(:asset_type => Asset::TYPE[:user_avatar]).asset.url(style)
+    end
+  end
+
+
+  # create a random string for this user that will 
+  # be used for the filename for the avatar
+  def generate_avatar_file_name
+    if self.avatar_file_name.blank?
+      self.avatar_file_name = SecureRandom.urlsafe_base64
+    end
+    return true
+  end
+
 
   def self.no_admins
     where("role != ?", ROLES[:admin])
@@ -23,7 +144,6 @@ class User < ActiveRecord::Base
 
   # use role inheritence
   # - a role with a larger number can do everything that smaller numbers can do
-  ROLES = {:user => 0, :admin => 99}
   def role?(base_role)
     if base_role && ROLES.values.index(base_role)
       return base_role <= self.role
@@ -32,7 +152,12 @@ class User < ActiveRecord::Base
   end
   
   def role_name
-    ROLES.keys[ROLES.values.index(self.role)].to_s
+    name = ''
+    index = ROLES.values.index(self.role)
+    if index.present?
+      name = ROLES.keys[index].to_s 
+    end
+    return name
   end
   
   def nickname
@@ -68,5 +193,29 @@ class User < ActiveRecord::Base
 	def password_required?
 		super && provider.blank?
 	end
+
+  # if not set, default to current locale
+  def set_notification_language
+    self.notification_language = I18n.locale if self.has_attribute?('notification_language') && read_attribute("notification_language").blank?
+    return true
+  end
   
+  # get the notification language locale for a user
+  def self.get_notification_language_locale(id)
+    x = select('notification_language').find_by_id(id)
+    return x.present? ? x.notification_language.to_sym : I18n.default_locale
+  end
+  
+  # get list of users a user this user is following
+  def following_users
+    following = []
+    # get notifications
+    notifications = Notification.where(:user_id => self.id, :notification_type => Notification::TYPES[:published_story_by_author])
+    if notifications.present?
+      # get user object for each user following
+      following = User.where(:id => notifications.map{|x| x.identifier}.uniq)
+    end
+    
+    return following
+  end
 end

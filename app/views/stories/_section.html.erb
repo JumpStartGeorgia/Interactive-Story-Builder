@@ -1,28 +1,57 @@
-<h2>
+<%- model_class = Story -%>
+
+<h2 class="form-title">
   <%= t('.form_title') %>
 </h2>
 <%= semantic_form_for(@item, url: section_story_path(id:params[:id],:format => :js), :html => {:multipart => true, :id => "sectionForm"} ,remote: true) do |f| %>
   <%= f.inputs do %>
     <%= f.input :title, :placeholder => t('.placeholder.title'), hint: t('.hint.title'), :input_html => { :id => "sectionTitle" } %>
      
-
-  <%= f.input :type_id, :as => :select, hint: t('.hint.type'),  :include_blank => false, :collection => @section_list, :input_html => { :id => "sectionType"  }   %> 
-
-  <%= f.input :has_marker, :as => :boolean, :hint => t('.hint.has_marker'), :input_html => { id: "sectionHasMarker"} %> 
-   <%= f.fields_for :asset, @item.asset do |as| %>
-
-    <div id='sectionAudioBox'  >     
-      <label class=" control-label" for="modalAudio"><%= t('activerecord.attributes.section.audio') %></label>
-      <% if @item.asset.asset.exists? %>
-          <audio controls>            
-            <source src="<%= @item.asset.asset.url %>" type="audio/mpeg">
-            Your browser does not support the audio tag.
-          </audio>        
-      <% end %>
+    <div class="radio_buttons input required form-group radio-indent radio-hide-button" id="section_type_id_input">
+      <label class="control-label" for="section_type_id">
+        <%= model_class.human_attribute_name(:type) %>
+        <abbr title="required">*</abbr>
+        <div class="help-inline" title="<%= t('.hint.type')%>">
+          <div>?</div>
+        </div>
+      </label>
+      <%
+        types = []
+        Section::TYPE.each{|k,v| types << [I18n.t("section_types.#{k}.name"), v, I18n.t("section_types.#{k}.description"), Section::ICONS[k]]} 
+        types.sort_by!{|x| x[0]}
+      %>
+      <div class="radio-container">
+        <% types.each do |type| %>
+          <div class="radio">
+            <% checked = type[1] == @item.type_id ? 'checked=checked' : '' %>
+            <input <%= checked %> id="section_type_id_<%= type[1] %>" name="section[type_id]" type="radio" value="<%= type[1] %>" <%= (@item.id.present?) ? "disabled" : "" %>>
+            <label class="choice<%= @item.id.present? ? ' disabled' : '' %>" for="section_type_id_<%= type[1] %>">
+              <i class="s <%= type[3] %>"></i>
+              <%= type[0] %>
+              <div class="help-inline" title="<%= type[2] %>">
+                <div>?</div>
+              </div>
+            </label>
+          </div>
+        <% end %>
+      </div>
     </div>
 
-        <%= as.input :asset, :as => :file , hint: t('.hint.audio') , :input_html => { :id => "mediaAudio", accept:"audio/mp3" } , label: false  %>
-        <%= as.input :asset_type, :as => :hidden %>
+    <%= f.input :has_marker, :as => :boolean, :hint => t('.hint.has_marker'), :input_html => { id: "sectionHasMarker"} %> 
+  
+    <%= f.fields_for :asset, @item.asset do |as| %>
+      <div id='sectionAudioBox'  >     
+        <label class=" control-label" for="modalAudio"><%= t('activerecord.attributes.section.audio') %></label>
+        <% if @item.asset.asset.exists? %>
+            <audio controls>            
+              <source src="<%= @item.asset.asset.url %>" type="audio/mpeg">
+              Your browser does not support the audio tag.
+            </audio>        
+        <% end %>
+      </div>
+
+      <%= as.input :asset, :as => :file , hint: t('.hint.audio') , :input_html => { :id => "mediaAudio", accept:".mp3" } , label: false  %>
+      <%= as.input :asset_type, :as => :hidden %>
     <% end %> 
     <% if @item.id.present? %>
       <%= f.input :id, :as => :hidden , :input_html => { :id => "sectionId" }  %>    
@@ -32,7 +61,7 @@
 
 
   <div class="pull-right spacer">    
-    <%= f.submit nil, :class => 'btn' %>
-    <%= f.submit nil, :class => 'btn', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>          
+    <%= f.submit nil, :class => 'btn btn-default' %>
+    <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          
   </div>
 <% end %>

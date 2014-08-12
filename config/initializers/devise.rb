@@ -11,7 +11,7 @@ Devise.setup do |config|
 
   # Automatically apply schema changes in tableless databases
   config.apply_schema = false
-
+ 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
@@ -58,7 +58,7 @@ Devise.setup do |config|
   # config.http_authenticatable = false
 
   # If http headers should be returned for AJAX requests. True by default.
-  # config.http_authenticatable_on_xhr = true
+  config.http_authenticatable_on_xhr = true
 
   # The realm used in Http Basic Authentication. "Application" by default.
   # config.http_authentication_realm = "Application"
@@ -202,7 +202,7 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  # config.navigational_formats = ["*/*", :html]
+  config.navigational_formats = ["*/*", :html, :json]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -226,8 +226,9 @@ Devise.setup do |config|
   if Rails.env.production?
     config.omniauth :facebook, ENV['STORY_BUILDER_FACEBOOK_APP_ID'], ENV['STORY_BUILDER_FACEBOOK_APP_SECRET']
   else
-    config.omniauth :facebook, ENV['DEV_FACEBOOK_APP_ID'], ENV['DEV_FACEBOOK_APP_SECRET']
-  end
+    config.omniauth :facebook, ENV['DEV_FACEBOOK_APP_ID'], ENV['DEV_FACEBOOK_APP_SECRET'] 
+  end  
 
+  I18n.enforce_available_locales = false
 
 end

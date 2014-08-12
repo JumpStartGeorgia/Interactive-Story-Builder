@@ -19,3 +19,8 @@
 
 #ignore db config
 /config/database.yml
+
+# video processing csv files
+/script/prod_fix/*.csv
+/script/video_processing/*.csv
+

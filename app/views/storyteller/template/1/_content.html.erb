@@ -97,12 +97,11 @@
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
                 <% if columnSectionCount == 0 %>
-                  <div class='headline'><%= @story.title %></div>
-                  <div class="byline-rule"></div>
-                  <div class="byline byline--first" style="margin-bottom:50px;">
-                  <%= t('storyteller.byline') %><span class="author"> <%= @story.author %></span>
-                  <%= "<div>#{t('storyteller.byline_media')}<span class='author'>#{@story.media_author}</span></div>".html_safe if @story.media_author.present? %>
-                  </div>               
+                  <div class='headline<%= s_i == 0 ? " margin130": ""%>'><%= @story.title %></div>
+                  <div class="byline byline--first" style="margin-bottom:24px;">
+                  <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.author %></span>
+                  <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                  </div>                                 
                 <% end %>         
                 <%= "<div class='column-caption'>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
                 <%= "<div class='column-sub-caption'>#{section.content.sub_caption}</div>".html_safe  if section.content.sub_caption.present? %>                       
@@ -118,23 +117,29 @@
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
                 <% section.media.each_with_index do |m,m_i| %>
-                    <% dataVideo = '' %>
-                    <% if m.media_type == 2 %>                
-                      <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name,'.mp4')}'".html_safe %>
-                    <% end %> 
+                  <% dataVideo = '' %>
+                  <% if m.media_type == Medium::TYPE[:video] && m.is_processed? %>                
+                    <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name,'.*')}'".html_safe %>
+                  <% end %> 
                   <div class="video"  <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>
                     <div class="video-container">
-                      <% if m.media_type == 1 %>     
+                      <% if m.media_type == Medium::TYPE[:image] %>     
                           <% if !@export %> 
-                            <img src="<%= m.image.asset.url %>">
+                            <img src="<%= m.image.asset.url(:fullscreen) %>">
                           <% else %>
-                            <img src="media/images/original/<%= m.image.asset_file_name %>">
+                            <img src="media/images/fullscreen/<%= m.image.asset_file_name %>">
                           <% end %>
-                      <% elsif m.media_type == 2  %>                    
+                      <% elsif m.media_type == Medium::TYPE[:video] && !m.is_processed?  %>                    
+                          <% if !@export %> 
+                            <%= image_tag "png/video_being_processed_#{I18n.locale}.png" %>
+                          <% else %>
+                            <img src="assets/png/video_being_processed_#{I18n.locale}.png">
+                          <% end %>
+                      <% elsif m.media_type == Medium::TYPE[:video] && m.is_processed?  %>                    
                             <% if !@export %>                           
-                              <!--[if lte IE 8]><img src="<%= m.image.asset.url %>"><![endif]-->
+                              <!--[if lte IE 8]><img src="<%= m.image.asset.url(:fullscreen) %>"><![endif]-->
                             <% else %>
-                              <!--[if lte IE 8]><img src="media/images/original/<%= m.image.asset_file_name %>"><![endif]-->
+                              <!--[if lte IE 8]><img src="media/images/fullscreen/<%= m.image.asset_file_name %>"><![endif]-->
                             <% end %>                                             
                       <% end %>  
                       <% if m.source.present? %>
@@ -143,15 +148,23 @@
                     </div>     
 
                     <% if isFirst && m_i == 0  %>   
-                      <div class="video-headline"><div class="headline"><%= @story.title %></div></div> 
+                      <div class="video-headline">
+                        <div class="headline"><%= @story.title %>
+                          <div class="byline byline--first" style="margin-bottom:24px;">
+                            <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.author %></span>
+                              <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                          </div>         
+                        </div>
+                      </div> 
                       <div class="scroll-prompt">
-                        <%= t("app.buttons.scroll")%> <br>
-                        <svg width="18" height="8">
-                          <path d="M0,0L9,7L18,0"></path>
-                        </svg>
+                       <svg  x="0px" y="0px" width="18.03px" height="18.042px" viewBox="7.516 6.5 18.03 18.042" enable-background="new 7.516 6.5 18.03 18.042"
+             xml:space="preserve">
+          <polygon points="16.531,22.763 8.52,14.963 7.695,15.766 16.531,24.367 25.367,15.766 24.544,14.963 "/>
+          <polygon points="25.367,7.477 24.544,6.674 16.531,14.475 8.52,6.674 7.695,7.477 16.531,16.079 "/>
+          </svg>
                       </div>  
                     <% end %>                                                       
-                    <% if m.caption.present? %>                                    
+                    <% if m.caption.present? && !(isFirst && m_i == 0) %>                                    
                       <div class='video-caption video-caption--<%= "#{alignment.key(m.caption_align)}" %> <%= m.caption.length > 160 ? 
                       "video-caption--long" : "" %>'>
                         <%= m.caption  %>
@@ -201,34 +214,7 @@
             <% end %>                               
             <% isFirst = false %>                    
         <% end %>   
-
-         
-
-        <div class="section footer-section">
-           <div id="left">&copy; <%= Time.now.year %></div>
-          	<div id="middle">
-              <ul>
-                <li>
-                  <%= link_to t('helpers.links.news'), news_path %>
-                </li>
-                <li>
-                  <%= link_to t('helpers.links.todo_list'), todo_list_path %> 
-                </li>
-                <li>
-                  <%= link_to t('helpers.links.feedback'), feedback_path %> 
-                </li>
-              </ul>
-          	</div>
-            <div id="right">
-                <% if !@export %>                           
-                    <%= link_to(image_tag("jumpstart-logo.png"), "http://www.jumpstart.ge", :target => "_blank",
-                    :title => t("layouts.application.js_link_title") ) %>
-                  <% else %>
-                        <%= link_to "http://www.jumpstart.ge", :target => "_blank", :title => t("layouts.application.js_link_title")  do %><img alt="Jumpstart-logo" src="assets/jumpstart-logo.png">
-                  <% end %>
-                <% end %>  
-            </div>
-        </div>   
+        
       </div>
     </div>   
         <!--
@@ -301,7 +287,7 @@
           if (height > (720*.59) && window.innerWidth < 768) height = (720*.59);
 
           var firstVideo = document.querySelector(".video-sequence");
-          if(firstVideo.length)
+          if(firstVideo !== null && firstVideo.length)
           {
             firstVideo.querySelector(".video:first-of-type .video-container")[0].style.height = height + "px";
             firstVideo.querySelector(".video:first-of-type .video-headline")[0].style.height = height + "px";
@@ -508,12 +494,14 @@
           if (isMobile()) return false;
 
             <% if !@export %>                           
-               var _video_assets = "/system/places/video/<%= @story.id %>/",
-              _image_assets = "/system/places/images/<%= @story.id %>/original/",
+               var _video_assets = "/system/places/video/<%= @story.id %>/processed/",
+              _poster_assets = "/system/places/video/<%= @story.id %>/poster/",
+              _image_assets = "/system/places/images/<%= @story.id %>/fullscreen/",
               _audio_assets = "/system/places/audio/<%= @story.id %>/";
             <% else %>
-              var _video_assets = "media/video/",
-                  _image_assets = "media/images/original/",
+              var _video_assets = "media/video/processed/",
+                  _poster_assets = "media/video/poster/",
+                  _image_assets = "media/images/fullscreen/",
                   _audio_assets = "media/audio/";
             <% end %> 
          
@@ -526,8 +514,8 @@
               fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight),
               fade = d3.interpolateRgb("#000", "#fff");
 
-          var headline = d3.select(".navigation-headline");
-
+         // var headline = d3.select(".navigation-headline");
+          var scrollprompt = d3.select('.scroll-prompt');
           var sequence = d3.selectAll(".video-sequence")
               .datum(function() {
                 return {
@@ -585,7 +573,7 @@
 
           var video = container.filter(function(d) { return d.video; }).append("video")
               .attr("preload", "none")
-              .attr("poster", function(d) { return  _video_assets + d.video + ".jpg"; })
+              .attr("poster", function(d) { return  _poster_assets + d.video + ".jpg"; })
               .property("loop", function(d) { return !d.animation; })
               .property("loop", function(d) { return d.loop; })
               .text("Your browser does not support this video.");
@@ -728,8 +716,8 @@
                   : opacityTop < fixTop - fixHeight ? 0 // video is fully covered by next video
                   : opacityTop < fixTop - fixHeight / 2 ? Math.max(0, Math.min(1, (opacityTop - fixTop + fixHeight) / (fixHeight / 2)))
                   : opacity;
-
-              if (d.first && d.sequence.first) headline.style("opacity", 1 - volume);
+              if (d.first && d.sequence.first) scrollprompt.style("opacity",  volume == 1 ? 1 : (volume-0.7) > 0 ? (volume-0.7) : 0 );              
+              //if (d.first && d.sequence.first) headline.style("opacity", 1 - volume);
             }
           }
 
@@ -743,7 +731,8 @@
                     if (this.currentTime) this.currentTime = 0;
                   }
                 });                 
-            if (d.first && d.sequence.first && !d3.event.state) headline.style("opacity", null);
+                if (d.first && d.sequence.first && !d3.event.state) scrollprompt.style("opacity", 1);
+            //if (d.first && d.sequence.first && !d3.event.state) headline.style("opacity", null);
           }
 
           function sequencescrolled() {
@@ -837,22 +826,12 @@
             container.append("div")
                 .attr("class", "slideshow-button slideshow-button--next")
                 .on("click", function() { stopPlay(); showNext(); })
-              .append("svg")
-                .attr("class", "slideshow-button-arrow")
-                .attr("width", 22)
-                .attr("height", 22)
-              .append("path")
-                .attr("d", "M3,1.008L20.742,9.045L3,17.083L6,8.917Z");
+               .html("<svg class='slideshow-button-arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M3,1.008L20.742,9.045L3,17.083L6,8.917Z'></path></svg>");  
 
             container.append("div")
                 .attr("class", "slideshow-button slideshow-button--previous")
                 .on("click", function() { stopPlay(); showPrevious(); })
-              .append("svg")
-                .attr("class", "slideshow-button-arrow")
-                .attr("width", 22)
-                .attr("height", 22)
-              .append("path")
-                .attr("d", "M18.742,0.758L1,8.795L18.742,16.833L15.742,8.667Z");
+              .html("<svg class='slideshow-button-arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M18.742,0.758L1,8.795L18.742,16.833L15.742,8.667Z'></path></svg>");   
 
             var thumb = container.insert("div", ".slideshow-captions")
                 .attr("class", "slideshow-thumbs")

@@ -1,55 +1,45 @@
 <% 
   @template = @story.template.id 
   @export ||= false
+  @no_nav ||= false  
 %>
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
-  <head>
+  <head>    
     <%= render partial: "storyteller/template/#{@template}/head"%>
-
-    <% if !@export %>
-  	  <%= include_gon %>
-    <% end %>
+	  <%= include_gon if !@export %>    
+    <meta name="google" content="notranslate" />
   </head>
-  <body>  
-    <div id="fb-root"></div>
-    <%
-        face_id = ENV['DEV_FACEBOOK_APP_ID']
-        if Rails.env.production?
-          face_id = ENV['STORY_BUILDER_FACEBOOK_APP_ID']
-        end
-    %>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=<%= face_id %>&version=v2.0";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-    
+  <body>     
     <%= render partial: "storyteller/template/#{@template}/nav"%>
     <div id='storyTeller'> 
       <%= render partial: "storyteller/template/#{@template}/content"%>   
-    </div>
-    
+    </div>   
+    <%= render partial: "storyteller/template/#{@template}/footer"%>   
+
+
       <% if !@export %>
-      <%= javascript_include_tag "application" %>
-		  <script type="text/javascript">
-			  I18n.defaultLocale = "<%= I18n.default_locale %>";
-			  I18n.locale = "<%= I18n.locale %>";
-		  </script>
+        <%= javascript_include_tag  *(@js.present? ? ["application", @js].flatten : ["application"]), :media => "all" %>      
+  		  <script type="text/javascript">
+  			  I18n.defaultLocale = "<%= I18n.default_locale %>";
+  			  I18n.locale = "<%= I18n.locale %>";
+  		  </script>
+      <% else %>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+          <script src="js/bootstrap.min.js"></script>          
+          <script src="js/modalos.js"></script>   
+          <script src="js/page.js"></script>   
       <% end %>
       <% if Rails.env.production? %>
-      <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-12801815-33', 'jumpstart.ge');
-        ga('send', 'pageview');
-
-      </script>
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-12801815-33', 'jumpstart.ge');
+          ga('send', 'pageview');
+        </script>
     <% end %>    
+    <%= render partial: "storyteller/template/#{@template}/js"%>
   </body>
 </html> 

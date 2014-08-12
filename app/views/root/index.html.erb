@@ -1,61 +1,31 @@
-<% title  t('.title') %>
 
-<% if Rails.env.staging? %>
-   <h1 style="margin:36px 36px;background-color: #F8E869;padding: 36px;line-height: 28px;">You are accessing a test site. Please go to <a href="http://storybuilder.jumpstart.ge/en" style="text-decoration:underline;">http://storybuilder.jumpstart.ge/en</a> to use the official site. </h1>
-<% end %>
+<% content_for(:header) { %>
 
-<div id="an_container" class="clear">
-  <div id="about">
-    <h2><%= t('.about_header') %></h2>
-    <p>
-      <%= t('.about_text', 
-          :demo_link => link_to(t('.demo_link'), demo_path), 
-          :start_link => link_to(t('.start_link'), stories_path)).html_safe %>
-    </p>
-  </div>  
-
-  <% if @news.present? %>
-    <div id="news">
-      <h2><%= t('.news_header') %></h2>
-      <ul id="news_container">
-        <% @news.each do |news| %>
-          <li class="news_item">
-            <%= link_to news_show_path(news.permalink) do %>
-              <span class="news_date">
-                <%= l news.published_at %>
-              </span>
-              <span class="new_title">
-                <%= news.title %>
-              </span>
-            <% end %>
-          </li>
-        <% end %>
-        <li>
-          <%= link_to t('.all_news'), news_path %>
-        </li>
-      </ul>  
-    </div>
-  <% end %>
-</div>
-
-<div class="pins-wrapper">
-  <div class="pin-columns clear">
-    <% @stories.each do |story| %>
-     <a href="<%=storyteller_show_path(story.permalink) %>">
-      <div class="pin">  
-     
-        <div class="img">
-          <img src="<%= story.show_asset.asset.url(:"250x250") %>" />      
-        </div>
-        <p><div class="pin-caption"><%= story.title.truncate(255) %></div>     </p>
-        <p> 
-           
-        <div class="pin-author"><%= story.author %></div>
-       <div class="pin-publish"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>        
-      </p>
+    <header class="header intro<%= (1..2).to_a.sample %>">
+      <div class="header-data">
+        <div class="h1">    <%= t("app.common.app_intro").split(';')[0].html_safe %></div>
+        <div class="h3">    <%= t("app.common.app_intro").split(';')[1].html_safe %></div>
+        <div class="intro"> <%= t("app.common.app_intro").split(';')[2].html_safe %></div>  
+        <div class="build-story">
+          <% if user_signed_in? %>
+            <%= link_to  t("app.common.build"), new_story_path, :tabindex=>1%>
+          <% else %>        
+          <%= link_to  t("app.common.build"), new_user_session_path({:return_url=>new_story_path}), :tabindex=>1, :class=>"modalSignIn", "data-modalos-id"=>"modalos-sign-in" %>
+          <% end %>          
+        </div>  
       </div>
-     </a> 
-    <% end %>    
-  </div>
-  <%= page_navigation_links @stories %>
-</div>
+        
+
+        <div class="explore"><%= link_to  t("app.common.explore"), '#', :tabindex=>2, :onclick => "scrolldown(true,'.header'); return false;" %></div>  
+        <div class="scroll-prompt" onclick="scrolldown(true,'.header'); return false;">
+          <svg  x="0px" y="0px" width="18.03px" height="18.042px" viewBox="7.516 6.5 18.03 18.042" enable-background="new 7.516 6.5 18.03 18.042"
+             xml:space="preserve">
+          <polygon points="16.531,22.763 8.52,14.963 7.695,15.766 16.531,24.367 25.367,15.766 24.544,14.963 "/>
+          <polygon points="25.367,7.477 24.544,6.674 16.531,14.475 8.52,6.674 7.695,7.477 16.531,16.079 "/>
+          </svg>
+        </div>  
+    </header>
+
+<% } %>
+<%= render partial: "shared/filter"%> 
+<%= render partial: "shared/grid"%> 

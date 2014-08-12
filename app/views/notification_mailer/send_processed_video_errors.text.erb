@@ -1,0 +1,12 @@
+<%= @message.message %>
+
+<% @message.message_list.each do |msg| %>
+<%= "#{t('mailer.notification.processed_video_errors.story_id', :locale => @message.locale)}: #{msg[0]}" %>
+<%= "#{t('mailer.notification.processed_video_errors.asset_id', :locale => @message.locale)}: #{msg[1]}" %>
+<% url = root_url(:locale => 'en') %>
+<%= "#{t('mailer.notification.processed_video_errors.path', :locale => @message.locale)}: #{url[0..url.length-4]}#{msg[2]}" %>
+
+------------------
+
+<% end %>
+

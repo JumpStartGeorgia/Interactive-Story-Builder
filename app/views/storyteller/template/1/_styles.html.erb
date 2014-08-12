@@ -1,10 +1,4 @@
 <style>
-  @font-face {
-    font-family: "nyt-cheltenham";    
-    src: url(<%= (@export ? "assets/" :"/template/#{@template}/") + 'fonts/nyt-cheltenham-200-normal.woff'%>) format("woff");           
-    font-style: normal;
-    font-weight: 200;
-  }
   body {
     font: 17px/18px Georgia;
     margin: 0;
@@ -34,7 +28,7 @@
     clear: left;
     display: block;
   }
-
+  
   .section--last {
     margin-bottom: 130px;
   }
@@ -75,28 +69,39 @@
   .column a{
     text-decoration: underline;
   }
-  
+  .column p,.column p span
+  {
+    font-family: opensans-r !important;
+    color: #5A5A5A;
+    line-height: 24px !important;
+    font-size: 16px !important;
+    letter-spacing:normal !important;
+  }
+  .column p:lang(ka),.column p span:lang(ka)
+  {
+    font-family: 'dejavusans-r' !important;     
+    -webkit-font-smoothing: antialiased;  
+  }
   .column blockquote {
     padding: 0 0 0 15px;
     margin: 0 0 20px;
     border-left: 5px solid #eeeeee;
   }
 
-  .column img{
-    width: auto;
-    margin: 0 10px;
-  }
-  
-  .section h3 {
+ 
+  .section h3,.section h3 span {
     margin: 5px 0px;   
-    letter-spacing: .1em;
+    
     font-size: 19px;
+    font-weight:normal !important;
+    letter-spacing:normal !important;
+    line-height:24px !important;
   }
 
   .scroll-prompt {
     position: absolute;
     bottom: 80px;
-    line-height: 20px;
+    line-height: 48px;
     text-align: center;
     color: white;
     font-size: 14px;
@@ -104,32 +109,63 @@
     font-weight: bold;
     text-transform: uppercase;
     z-index: 3;
-    margin-left: 7%;
-    padding-left: 112px;
-    text-shadow: 0 1px 2px #000;
+    margin:0px auto;    
+ /*    text-shadow: 0 1px 2px #000;
+   background-image: url(<%= (@export ? "" : "/") + 'assets/png/scroll.png'%>);       
+    background-position: 50% 0%;
+    background-repeat: no-repeat; */
+    width:100%;
   }
 
   .scroll-prompt svg {
-    fill: none;
-    stroke: white;
-    stroke-width: 2px;
-  }
+    fill: #fff;             
+    position:relative;
+    top:28px;
+    animation:arrows infinite;
+    animation-duration:0.9s;
+    animation-direction:alternate-reverse;
 
+    /*  Safari and Chrome   */
+    -webkit-animation:arrows infinite;
+    -webkit-animation-duration:0.9s;
+    -webkit-animation-direction:alternate-reverse;
+}
+  @-webkit-keyframes arrows {
+    from {
+      top:28px;
+    }
+    to {
+      top:38px;
+    }
+  }
+  @keyframes arrows {
+    from {
+      top:28px;
+    }
+    to {    
+      top:38px;
+    }
+  }
   .dropcap {
     float: left;
-    font: bold 53px/70px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: bold 53px/70px opensans-l, Helvetica, Arial, sans-serif;    
     margin: -7px 10px 0 0;
     height: 1em;
   }
 
   .headline,
-  .section h3, .slideshow-headline {
-    font: 200 30px/40px "nyt-cheltenham", Georgia, serif;
+  .slideshow-headline {
+    font: 200 30px/40px bandera-pro-b, Georgia, serif;
+    line-height:50px;
+  }
+  .headline:lang(ka),
+  .slideshow-headline:lang(ka) {
+    font: 200 30px/40px dejavusans-b, Georgia, serif;
+    line-height:50px;
   }
 
   .headline {
-    font-size: 45px;
-    line-height: 60px;
+    font-size: 45px;    
     margin-bottom: 15px;
   }
   .slideshow-headline
@@ -138,26 +174,30 @@
     line-height: 60px;
     margin: 80px 0px 15px 0px;
   }
-  .byline-rule {
-    border-top: 2px solid #000;
-    width: 120px;
-  }
 
   .byline {
-    font: 12px/2em "Helvetica Neue", Helvetica, Arial, sans-serif;
-    opacity: .5;
+    font: 16px opensans-l, Helvetica, Arial, sans-serif;    
+    opacity: 0.6;
   }
 
-  .byline .author {
-    text-transform: uppercase;
-    white-space: nowrap;
+  .byline:lang(ka) {
+    font: 16px dejavu-r, Helvetica, Arial, sans-serif;        
+  }
+  .byline div{
+    display:inline-block;  
+  }
+  .byline .caption
+  {
+    opacity:0.6;
+  }
+  .byline .author {    
+    white-space: nowrap;    
+    opacity:1;
   }
 
   .byline--first {
     margin-bottom: 14px;
-    opacity: 1;
-    font-weight: 700;
-    padding-top: 23px;
+    opacity: 1;        
   }
   .source
   {
@@ -209,19 +249,14 @@
     }
   }
 
-  .image {
-    width: 120%;
-    margin: 40px -10%;
-  }
-
-  .image img {
-    width: 100%;
-  }
-
   .image .caption {
-    font: 12px/1.4em "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: 12px/1.4em opensans-r, Helvetica, Arial, sans-serif;
     clear: left;
     color: #999;
+  }
+  .section.column img.image  {
+    margin: 0;
+    max-width: 100%;
   }
 
   @media (min-width: 1200px) {
@@ -271,6 +306,13 @@
     margin-top: 5px;
     color: #888;
     padding-bottom: 20px;
+    font-family:opensans-b; 
+    font-size:17px;
+    line-height: 29px;   
+  }
+  .video-caption
+  {
+    font-family:dejavusans-b; 
   }
 
   .video-source {
@@ -319,10 +361,10 @@
     position: absolute;
     left: 7%;
     bottom: 20%;
-    width: 240px;
+    width: 350px;
     z-index: 3;
     color: #fff;
-    text-shadow: 0 1px 2px #000;
+    /*text-shadow: 0 1px 2px #000;*/
     padding: 20px 0;
   }
 
@@ -357,15 +399,12 @@
   .video-headline .headline
   {    
     position: absolute;
-    top: 20%;
+    bottom: 10%;
     color: #fff;
-    left: 7%;
-    /*border-bottom: solid 2px black;  */
-    font-size: 50px;
+    left: 10%;
+    font-size: 4vmin;
     line-height: 55px;
     z-index: 3;
-     text-shadow: 0 1px 2px #000;
-    /*padding-bottom: 35px;*/
   }
 
 @media only screen and (min-width: 1200px) and (max-width: 1440px) and (min-height: 500px) and (max-height: 800px) {
@@ -939,7 +978,7 @@
     right: 0;
   }
   .navigation {
-    font: 200 12px/20px "nyt-cheltenham", Georgia, serif;
+    font: 200 12px/20px opensans-r, Georgia, serif;
     position: fixed;
     top: 0;
     width: 100%;
@@ -947,6 +986,9 @@
     background: #000;
     z-index: 20;
   }
+.navigation {
+     font: 200 12px/20px dejavusans-r, Georgia, serif;
+}
   .navigation-app
   {
     color: #fff;
@@ -977,35 +1019,27 @@
     float: right;
     margin-right: 7%;
   }
-
+/*
   .navigation-headline:before,
-  /*.navigation-sections:before,*/
+  .navigation-sections:before,
   .navigation-shares:before {
     content: "";
     float: left;
     height: 20px;
     border-right: solid 1px #444;
     margin: 0px 15px;
-  }
+  }*/
   .brand
   {
     font-size: 17px !important;
   }
-  .navigation-logo {
-    float: left;
-    background: url(<%= @export ? "" : "/" %>assets/jumpstart-logo.png) no-repeat;
-    height: 28px;
-    margin: 4px 0 0 0;
-    width: 110px;
-  }
-
   .navigation-headline {
     float: left;    
     <% if @export %> 
       letter-spacing: .1em;
       margin-top: 10px;
     <% end %>
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
   }
 
   .navigation-headline:before {
@@ -1017,7 +1051,7 @@
   }
 
   .navigation-section {
-    padding: 10px 10px 9px 10px;
+    /*padding: 0px 10px 0px 10px;*/
     float: left;
   }
 
@@ -1027,10 +1061,9 @@
 
   .navigation-section,
   .navigation-volume {
-    opacity: .5;
+    opacity: .5;    
   }
-
-  .navigation-logo:hover,
+  
   .navigation-section:hover,
   .navigation-section--active,
   .navigation-volume:hover {
@@ -1041,54 +1074,55 @@
 
   .navigation-marker {
     position: absolute;
-    margin-top: -80px;
+    margin-top: -42px;
   }
 
-  .navigation-volume,
+/*  .navigation-volume,*/
   .navigation-share {
     display: inline-block;
     padding: 11px 5px;
   }
 
   .navigation-icon {
-    width: 18px;
-    height: 18px;
-    background-image: url(<%= @export ? "" : "/" %>assets/icons.png);
+    width: 27px !important;
+    height: 27px !important;
+    background-image: url('<%= @export ? "" : "/" %>assets/svg/sound.svg');
   }
 
-  .navigation-volume .navigation-icon { background-position: -52px -68px; }
-  .navigation-volume.navigation-volume--muted .navigation-icon { background-position: -72px -68px; }
+  .navigation-volume .navigation-icon { opacity:0.8; }
+  .navigation-volume .navigation-icon:hover { opacity:1; }
+  .navigation-volume.navigation-volume--muted .navigation-icon {  
+    background-image: url('<%= @export ? "" : "/" %>assets/svg/soundoff.svg');
+    width: 27px !important;
+    height: 27px !important;
+  }
+  /*.navigation-volume.navigation-volume--muted .navigation-icon:hover {  }*/
+  .navigation-volume{display: inline-block; top: 4px; padding:0px 0px 0px 10px!important;}
 
-  @media screen and (max-width: 999px) {
+
+/*  @media screen and (max-width: 999px) {
     .navigation-headline {
       display: none;
-    }
+    }*/
 
-    .ios .navigation-headline {
+/*    .ios .navigation-headline {
       display: none !important;
     }
-  }
+  }*/
 
   @media screen and (min-width: 320px) {
     .ios .navigation-shares,
-    .ios .navigation-volume,
-    .ios .navigation-headline {
+    .ios .navigation-volume
+    /*.ios .navigation-headline {*/
+      {
       display: none;
+      
     }
 
     .ios .navigation {
       background-color: transparent;
       position: absolute;
     }
-
-    .ios .navigation-logo {
-      margin-top: 20px;
-      background-image: url(<%= @export ? "" : "/" %>assets/jumpstart-logo.png) no-repeat;
-      background-position: 0px 0px;    
-      width: 110px;
-      height: 28px;
-    }
-
     .ios .navigation-sections {
       margin-top: 10px;
       display: none;
@@ -1104,11 +1138,6 @@
     .ios .navigation-solid .navigation-headline {
       display: block;
     }
-
-    .ios .navigation-solid .navigation-logo {
-      margin-top: 11px;
-    }
-
     .ios .navigation-solid .navigation-sections {
       margin-top: 0px;
       display: block;
@@ -1133,12 +1162,8 @@
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
     border-color: #252525;  
-    /*padding-top: 13px;*/
     font-size: 10pt;
     color: #999999;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-
-
   }
   .footer-section  > div
   {
@@ -1152,15 +1177,6 @@
       width: 30%;
       padding-left:20px;
   }
-/*  
-  .footer-section #middle {
-  margin: 0;
-  font-size: 12px;
-  width: 30%;
-  text-align: center;
-  float: left;
-  }
-*/  
   .footer-section #middle {
     margin: 0;
 	  font-size: 12px;
@@ -1225,7 +1241,7 @@
 
   .footer-section {
     color: #999999;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    /*text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);*/
   }
   .ios .footer-section #middle
   {display:none;}
@@ -1235,20 +1251,21 @@
   }
   .column-caption
   {
-    font-family:nyt-cheltenham, Georgia, serif;
-    letter-spacing: .1em;
-    font-size:19px;
+    font-family:opensans-b, Georgia, serif;    
+    line-height:24px;
+    font-size:22px;
     margin:5px 0px;  
   }
-
-  .column-sub-caption
+  .column-caption:lang(ka)
   {
-    font-family:nyt-cheltenham, Georgia, serif;
-    font-size:15px;
-    margin:0px 0px 5px 5px;  
-
+    font-family:dejavusans-b, Georgia, serif; 
+    -webkit-font-smoothing: antialiased;     
   }
-
+  .column-sub-caption:lang(ka)
+  {
+    font-family:dejavusans-r, Georgia, serif;   
+    -webkit-font-smoothing: antialiased;      
+  }
 
   /* slideshow */
 
@@ -1383,17 +1400,17 @@
 }
 
 .slideshow-button-arrow {
-  background: #333;
-  border: solid 1px rgba(255,255,255,0.3);
-  color: white;
-  fill: white;
-  padding: 20px 11px 17px 12px;
+  background: #fff;
+  border: none;/*solid 1px rgba(255,255,255,0.3);*/
+  color: #000;
+  fill: #000;
+  /*padding: 20px 11px 17px 12px;*/
   position: absolute;
   top: 48%;
 }
 
 .slideshow-button--next .slideshow-button-arrow {
-  border-radius: 4px 0 0 4px;
+  /*border-radius: 4px 0 0 4px;*/
   border-right: none;
   right: 0;
 }
@@ -1401,7 +1418,7 @@
 .slideshow-button--previous .slideshow-button-arrow {
   border-left: none;
   border-radius: 0 4px 4px 0;
-  left: 1px;
+  left: 0px;
   text-align: right;
 }
 
@@ -1466,11 +1483,7 @@
 }
 #storyTeller
 {
-<<<<<<< HEAD
-  /*position:relative;*/
-=======
-  
->>>>>>> embed2
+
   top:41px;
 }
 
@@ -1510,4 +1523,7 @@
   text-align:left;
   margin-top:23px;
 }
+
+
+
 </style>

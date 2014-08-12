@@ -1,0 +1,236 @@
+<nav class="navbar navbar-default navbar-static-top navbar-story" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#story-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <% if @is_embed %>
+         <%= link_to(image_tag('svg/slogo_b.svg'), root_url(:locale => I18n.locale), :title => t('app.common.embed_slogan'), :class => 'navbar-logo') %>
+       <% end %>
+       <% if @story.present? %>
+         <%= link_to(@story.title, url_for, :class=>"navigation-headline navbar-brand", :lang => @story.story_locale) %>  
+       <% end %>    
+    </div>
+
+    <div class="collapse navbar-collapse" id="story-navbar-collapse">
+
+      <ul class="nav navbar-nav navbar-left">  
+
+        <li class="separator-ver-b"></li>
+        <li class="about"><a id="modalAbout" data-modalos-id="modalos-about"><%= "#{t('app.common.about_story')}" %></a></li>
+          <% if !@export && @story.permalink.present? %>
+            <% if user_signed_in? %>
+              <% 
+                 style1 = @user_likes ? '' : 'hide'                 
+                 count1 = style1.present? ? @story.likes+1 : @story.likes
+                 style2 = @user_likes ?  'hide' : ''
+                 count2 = style2.present? ? @story.likes-1 : @story.likes
+              %>
+              <li>
+                <!-- "#{t('app.common.likes')}" -->
+                <%= link_to '#', :class => "like-story #{style1}", :title => t('helpers.hints.unlike'), 
+                    :'data-href' => storyteller_unlike_path(@story.permalink) do %>
+                    <i class="s i-liked"></i><span><%= "#{ t('helpers.links.likes')}" %><span class="likes-count" class="stats-count"> (<%= count1 %>)</span></span>            
+                <% end %>
+                <%= link_to '#', :class => "like-story #{style2}", :title => t('helpers.hints.like'), 
+                    :'data-href' => storyteller_like_path(@story.permalink) do %>
+                    <i class="s i-likes"></i><span><%= "#{t('helpers.links.like')}" %></span>
+                <% end %>
+              </li>
+            <% else %>  
+            <li>          
+               <%= link_to new_user_session_path({:return_url=>storyteller_like_path(@story.permalink)}), :class => "modalSignIn", :title => t('helpers.hints.like'), :"data-modalos-id"=>"modalos-sign-in",
+                    :'data-href' => storyteller_like_path(@story.permalink) do %>
+                    <i class="s i-likes"></i><span><%= "#{t('helpers.links.like')}" %></span>
+                <% end %>
+            </li>
+            <% end %>
+ 
+            <% if user_signed_in? && current_user.role?(User::ROLES[:staff_pick]) %>
+                  <% 
+                     style1 = @story.staff_pick ? '' : 'hide'
+                     style2 = @story.staff_pick ? 'hide' : ''                           
+                  %>
+                 <li>
+                  <%= link_to '#', :class => "staff-pick #{style1}", :title => t('helpers.hints.staff_unpick'), 
+                      :'data-href' => storyteller_staff_unpick_path(@story.permalink) do %>
+                       <i class="s i-staffpicked"></i><span><% "#{t('helpers.links.staff_pick')}" %></span>
+                  <% end %>
+                  <%= link_to '#', :class => "staff-pick #{style2}", :title => t('helpers.hints.staff_pick'), 
+                      :'data-href' => storyteller_staff_pick_path(@story.permalink) do %>
+                   <i class="s i-staffpick"></i><span><% "#{t('helpers.links.staff_pick')}" %></span>
+                  <% end %>
+                  </li>          
+            <% end %>
+          <% end %> 
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">  
+        <li>
+          <%= link_to '#',  :id=>"modalComment", :'data-modalos-id' => "modalos-comments", :title => t('helpers.links.comments') do %>
+            <i class="s i-comment"></i><span><%= "#{t('app.common.comments')}" %> (<span id="comments-count" class="stats-count"><%= @story.comments_count %></span>)</span>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to '#',  :id=>"modalShare", :'data-modalos-id' => "modalos-share", :title => t('app.common.share'), :class => "share-link" do %>
+            <i class="s i-share"></i><span><%= "#{t('app.common.share')}" %></span>
+          <% end %>
+        </li>
+
+        <% if @story.present? && @story.sections.present? %>                          
+                  
+           <li>
+            <% markers = @story.sections.select{|t| (t.ok? && t.has_marker? == true) } %>      
+            <% if markers.length > 1 %>    
+              <div class="navigation-sections">     
+               <% markers.each_with_index do |s,s_i| %>
+                <a href="#<%= s_i+1 %>" class="navigation-section" title="<%= s.title %>"><%= s_i+1 %></a>
+               <% end %>          
+              </div>
+            <% end %>
+          </li>  
+          <li><a href="#" class="navigation-volume"><div class="navigation-icon"></div></a></li>              
+        <% end %>                                  
+      </ul>
+    </div>
+  </div>
+</nav>
+    
+<div id="modalos-about" style="display:none;" class="about-window">
+  <div class="publish">
+    <div class="day"><%= l(@story.published_at ,:format => :day) if @story.published_at.present? %></div>
+    <div class="month-year"><%= l(@story.published_at ,:format => :month_year) if @story.published_at.present? %></div>
+  </div>         
+  <div class="title" lang="<%= @story.story_locale %>"><%= @story.title %></div>
+  <div class="text" lang="<%= @story.story_locale %>"><%= @story.about.html_safe  if @story.about.present? %> </div>
+  <div class="profile-data">
+    <div class="logo">
+       <%= link_to image_tag(@story.user.avatar_url, :class=>"avatar"), "#" , 
+         :class => "avatar", :"data-toggle"=>"dropdown" %>   
+    </div>   
+    <div class="nickname">
+      <%= link_to @story.user.nickname, author_path(@story.user.permalink), :title => @story.user.nickname %>      
+    </div> 
+     
+    <% if !user_signed_in? || current_user.id != @story.user_id  %>    
+      <div class="follow">
+        <%= render partial: 'layouts/follow_link', 
+            locals: {:user_id => @story.user_id, :is_story_page => true, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
+      </div>  
+    <% end %> 
+    <div class="stats"> 
+        <i class="s i-likes disabled"></i><span class="likes"><%= @story.likes %></span>            
+        <i class="s i-views disabled"></i><span class="views"><%= @story.impressions_count %></span>  
+        <i class="s i-comment disabled"></i><span class="comments"><%= @story.comments_count%></span>  
+        <% if @story.staff_pick? %>
+          <i class="s i-staffpicked" title="<%= t('helpers.links.staff_pick') %>"></i>
+        <% end %>    
+    </div>
+  </div>    
+
+  <% if @story.categories.present? %>
+    <div class="categories">
+      <span><%= I18n.t('helpers.links.categories') %>:</span>              
+      <%= raw @story.categories.map { |t| link_to t.name, root_path(:category => t.permalink), :class=>"category" }.join('') %>
+    </div>                          
+  <% end %>
+
+  <% if @story.tag_list.present? %>
+    <div class="tags">
+      <span><%= I18n.t('helpers.links.tags') %>:</span>              
+      <%= raw @story.tag_list.map { |t| link_to t.titlecase, root_path(:tag => t.downcase), :class=>"tag" }.join('') %>                           
+    </div>
+  <% end %>
+  <div class="languages">
+    <span><%= I18n.t('helpers.links.languages') %>:</span>      
+    <%= link_to @story.language.name, root_path(:language => @story.language.locale), :class=>"lang" %> 
+  </div>      
+</div>
+<div id="modalos-comments" style="display:none;">
+  <div id="disqus_thread"></div>
+</div>
+<div id="modalos-share" style="display:none;" class="share-window">  
+  <div class="title"><%= "#{t('app.common.share_story')}" %></div>
+  <div class="permalink"><%= "#{t('app.common.permalink')}" %>:</div>
+  <div class="permalink-link"><%= link_to storyteller_show_url(@story.permalink), storyteller_show_url(@story.permalink) %></div>
+  <div class="shortened-url"><%= "#{t('app.common.shortened_url')}" %>:</div>
+  <div class="shortened-url-link"><%= link_to @story.shortened_url, @story.shortened_url if @story.shortened_url.present? %></div>
+  <% short_url = @story.shortened_url.present? ? @story.shortened_url : storyteller_show_url(@story.permalink) %>
+  <div class="share">
+    <div class="facebook">
+
+    <a href="https://www.facebook.com/dialog/feed?app_id=<%= @face_id %>&link=<%= short_url %>" onclick="javascript:window.open(this.href,
+                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">  
+          <i class="s i-facebook-w"></i><%= "#{t('app.common.share_facebook')}" %></a>      
+       
+    </div>
+    <div class="twitter">
+      <a href='https://twitter.com/share?url=<%= short_url %>&text=<%= @story.title %>' onclick="javascript:window.open(this.href,
+                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                        <i class="s i-twitter-w"></i><%= "#{t('app.common.share_twitter')}" %>
+      </a>
+    </div>
+    <div class="more">
+      <div class="addthis_sharing_toolbox"></div>  
+    </div>  
+    
+  </div>
+  <div class="embed">
+    <div class="embed-icon"><i class="s i-embed"></i></div>
+    <div class="embed-text"><%= "#{t('app.msgs.embed_code')}" %>:</div>
+    <div class="embed-code">
+    <textarea rows="4" cols="38"  data-iframe-link="<%=embed_url(@story.permalink) %>"
+    readonly="" onfocus="setTimeout(function (t){ t.select(); }, 10, this);" onmouseup="return false;"><iframe src='<%=embed_url(@story.permalink) %>?type=partial' width='350' height='100%' frameborder='0'></iframe></textarea>
+      <div class="embed-type-switcher">
+        <div class="partial selected" title="<%= "#{t('app.common.partial_text')}" %>" data-width="350"><%= "#{t('app.common.partial')}" %></div>
+        <div class="full" title="<%= "#{t('app.common.full_text')}" %>" data-width="1000"><%= "#{t('app.common.full')}" %></div>
+      </div>
+      <div class="embed-size-w">
+        <input type="text" value="350" class="iframe-size"/>
+        <span>px <%= "#{t('app.common.wide')}" %></span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    <% 
+      disqus_name = ENV['STORY_BUILDER_DISQUS']
+      disqus_name = ENV['STORY_BUILDER_STAGING_DISQUS'] if Rails.env.staging?
+      url = storyteller_show_url(@story.permalink)
+    %>
+    var disqus_shortname = '<%= disqus_name %>';
+    var disqus_identifier = '<%= @story.id %>';
+    var disqus_title = '<%= @story.title %>';
+    var disqus_url = '<%= url %>';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    var disqus_config = function() {
+      this.callbacks.onNewComment = [function(comment) { 
+        // this function is in storyteller.js    
+        story_new_comment_callback('<%= url %>');
+      }];
+    };                    
+</script>
+<%
+  addthis_id = Rails.env.production? ? ENV['STORY_BUILDER_ADDTHIS_PROFILEID'] : ENV['STORY_BUILDER_ADDTHIS_PROFILEID_DEV']
+  if addthis_id.present?
+%>
+<script type="text/javascript">
+var addthis_share =
+{
+  url: '<%= short_url %>'
+}
+</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<%= addthis_id %>"></script>
+<% end %>

@@ -1,0 +1,7 @@
+namespace :story do
+	desc "Clear tmp/stories folder, which are full of downloaded stories"
+	task :temp_stories_clear => [:environment] do
+	   	rootPath = "#{Rails.root}/tmp/stories";
+		Dir.foreach(rootPath) {|x| puts "Got #{x}" }
+	end
+end

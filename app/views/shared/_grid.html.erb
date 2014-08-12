@@ -1,0 +1,25 @@
+<div class="grid-wrapper">
+  <div class="grid col-3">      
+    <% if @stories.blank? %>
+      <p>
+        <%= t('.no_stories') %>  
+      </p>
+    <% else %>
+
+      <% @stories.each_with_index do |story,s_i| %>       
+          <div class="col n-4">  
+            <%= render partial: "shared/grid_item" , locals:{:story=>story}%> 
+          </div>  
+      <% end %>
+    <% end %>
+  </div> 
+  <%= page_navigation_links @stories %>   
+</div>                             
+
+
+<% if @editable %>
+  <%= render partial: "shared/story_nav_modals"%> 
+<% end %>
+
+
+

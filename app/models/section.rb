@@ -3,9 +3,9 @@ class Section < ActiveRecord::Base
   has_one :content, dependent: :destroy
   has_one :slideshow, dependent: :destroy
   has_one :asset,     
-  :conditions => "asset_type = #{Asset::TYPE[:section_audio]}",    
-  foreign_key: :item_id,
-  dependent: :destroy
+    :conditions => "asset_type = #{Asset::TYPE[:section_audio]}",    
+    foreign_key: :item_id,
+    dependent: :destroy
 
   has_one :embed_medium, dependent: :destroy
   has_many :media, :order => 'position', dependent: :destroy
@@ -14,6 +14,12 @@ class Section < ActiveRecord::Base
 
 
   TYPE = {content: 1, media: 2, slideshow: 3, embed_media: 4}
+  ICONS = {
+    content: 'i-content-b', 
+    media: 'i-fullscreen-b', 
+    slideshow: 'i-slideshow-b', 
+    embed_media: 'i-embed-b'
+  }
 
   accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
 
@@ -32,7 +38,12 @@ class Section < ActiveRecord::Base
     super(options)
   end
 
-
+  def get_icon
+    key = get_str_type
+    if key.present?
+      ICONS[key]
+    end
+  end
 
   def get_str_type
   	 TYPE.keys[TYPE.values.index(self.type_id)]
@@ -56,21 +67,23 @@ class Section < ActiveRecord::Base
     if content?
       return (self.content.present? && self.content.content.present?)
     elsif media?        
+        exists = []
         self.media.each_with_index do |m,m_i|
           if m.present?
-            if m.media_type == 1
-              return m.image_exists?                                
-            elsif m.media_type == 2              
-              return (m.image_exists? && m.video_exists?)
+            if m.media_type == Medium::TYPE[:image]
+              exists << m.image_exists?                                
+            elsif m.media_type == Medium::TYPE[:video]
+              exists << (m.image_exists? && m.video_exists?)
             end          
           else
-            return false
+            exists << false
           end
         end
+        return !exists.include?(false)
     elsif slideshow?
-      return (self.slideshow.present? && self.slideshow.assets.present?)
+      return self.slideshow.present? && self.slideshow.assets.present?
     elsif embed_media?
-      return (self.embed_medium.present? && self.embed_medium.code.present?)
+      return self.embed_medium.present? && self.embed_medium.code.present?
     end
   end
 end

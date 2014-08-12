@@ -1,0 +1,42 @@
+<nav class="navbar navbar-default navbar-static-top navbar-story" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#story-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a href="<%= root_url(:locale => I18n.locale) %>" class="navbar-logo" title="<%= t('app.common.embed_slogan') %>"><img alt="<%= t('app.common.app_name') %>" src="assets/svg/slogo_b.svg" style="vertical-align:middle;"></a>
+        <%= link_to(@story.title, '#', :class=>"navigation-headline navbar-brand")%>         
+    </div>
+
+    <div class="collapse navbar-collapse" id="story-navbar-collapse">
+          <div class="separator-ver-b"></div>
+          <div class="about"><a id="modalAbout" data-modalos-id="modalos-about"><%= "#{t('app.common.about_story')}" %></a></div>
+          <% if @story.present? && @story.sections.present? %>                          
+            <div class="nav-volume-chapters">
+              <div class="nav-volume"><a href="#" class="navigation-volume"><div class="navigation-icon"></div></a></div>
+             
+              <% markers = @story.sections.select{|t| (t.ok? && t.has_marker? == true) } %>      
+              <% if markers.length > 1 %>    
+                <div class="navigation-sections nav-chapters">     
+                 <% markers.each_with_index do |s,s_i| %>
+                  <a href="#<%= s_i+1 %>" class="navigation-section" title="<%= s.title %>"><%= s_i+1 %></a>
+                 <% end %>          
+                </div>
+              <% end %> 
+            </div>  
+          <% end %>          
+    </div>
+  </div>
+</nav>
+
+<div id="modalos-about" style="display:none;" class="about-window">
+  <div class="publish">
+    <div class="day"><%= l(@story.published_at ,:format => :day) if @story.published_at.present? %></div>
+    <div class="month-year"><%= l(@story.published_at ,:format => :month_year) if @story.published_at.present? %></div>
+  </div>         
+  <div class="title"><%= @story.title %></div>
+  <div class="text"><%= @story.about.html_safe  if @story.about.present? %> </div> 
+</div>

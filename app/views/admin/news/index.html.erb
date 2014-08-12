@@ -6,7 +6,7 @@
               new_admin_news_path,
               :class => 'btn btn-primary' %>
   <%= link_to t('helpers.links.admin'), admin_path,
-  :class => 'btn' %>
+  :class => 'btn btn-default' %>
 </div>
             
 <table class="table table-striped">
@@ -26,7 +26,7 @@
         <td><%= l news.published_at if news.published_at.present? %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_admin_news_path(news), :class => 'btn btn-mini' %>
+                      edit_admin_news_path(news), :class => 'btn btn-mini btn-default' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       admin_news_path(news),
                       :method => :delete,

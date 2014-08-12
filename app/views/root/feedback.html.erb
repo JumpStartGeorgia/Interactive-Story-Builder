@@ -8,19 +8,19 @@
 
   <% else %>
 
-	  <%= semantic_form_for @message, :url => feedback_path, :html => { :class => 'form-horizontal' } do |f| %>
-		  <%= f.error_messages %>
+	  <%= semantic_form_for @message, :url => feedback_path do |f| %>
+    	<%= f.error_messages %>
 
 		  <%= f.inputs do %>
 			  <%= f.input :message_type, :as => :select, :label => t("activerecord.attributes.message.message_type"), 
 			              :collection => @message_types, :required => true, :include_blank => false %>
 			  <%= f.input :name, :label => t("activerecord.attributes.message.name") %>
-			  <%= f.input :email, :required => true, :label => t("activerecord.attributes.message.email") %>
+			  <%= f.input :email, :as => :email, :required => true, :label => t("activerecord.attributes.message.email") %>
 			  <%= f.input :message, :required => true, :as => :text, :input_html => {:rows => 6}, :label => t("activerecord.attributes.message.message") %>
 		  <% end %>
 
     	<div>
-    	  <%= f.submit t(".send"), :class => 'btn' %>
+    	  <%= f.submit t(".send"), :class => 'btn btn-default' %>
     	</div>
 
 	  <% end %>

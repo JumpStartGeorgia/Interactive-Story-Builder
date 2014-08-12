@@ -1,20 +1,27 @@
 <% asset_item ||= nil %>
-<div class="fields image_asset_form_container clear">
+<div class="image_asset_form_container clear">
   <div class="preview_img">
     <% if asset_item.present? && asset_item.asset.exists? %>
     	<img src="<%= asset_item.asset.url(:thumbnail_preview) %>" />  
   	<% end %>
   </div>
 
-    <%= f.input :asset, :as => :file , hint: t('.hint.asset') , :input_html => { :id => "slideshowImage", accept:"image/jpeg,image/png" }, label: false %>       
+  <div class="image_asset_fields">
+    <%= f.input :asset, :as => :file , hint: t('.hint.asset') , :input_html => { :id => "slideshowImage", accept:".jpg,.jpeg,.png" }, label: false %>       
     <%= f.input :caption, placeholder: t('.placeholder.caption'), hint: t('.hint.caption'), :label => t('.label.caption') %>
     <%= f.input :source,  placeholder: t('.placeholder.source'), hint: t('.hint.source'), :label => t('.label.source') %>
-    <%= f.input :asset_type, :as => :hidden , :value => Asset::TYPE[:slideshow_image] %>
+    <%= f.input :asset_type, :as => :hidden , :input_html => {:value => Asset::TYPE[:slideshow_image]} %>
     <%= f.input :asset_exists, :as => :hidden %>
 
-  <div class="remove_image_button">
-    <button type="button" id='btn-up-slideshow' class="btn btn-info  btn-small" title="<%= t('app.buttons.up') %>"> <i class="icon-arrow-up icon-white" ></i> </button>
-    <button type="button" id='btn-down-slideshow' class="btn btn-info  btn-small" title="<%= t('app.buttons.down') %>"> <i class="icon-arrow-down icon-white" ></i></button>
-    <%= link_to_remove_fields t('.remove_image'), f %>
+    <div class="remove_image_button">
+      <%
+        asset_id = asset_item.nil? || asset_item.id.nil? ? 0 : asset_item.id
+        # sorting a new item does not affect existing items so turn off sorting for new items
+        cls = asset_id == 0 ? 'hide-move' : ''
+      %>
+      <button type="button" id='btn-up-slideshow' data-id="<%= asset_id %>" class="btn btn-info  btn-small <%= cls %>" title="<%= t('app.buttons.up') %>"> <i class="glyphicon glyphicon-arrow-up" ></i> </button>
+      <button type="button" id='btn-down-slideshow' data-id="<%= asset_id %>" class="btn btn-info  btn-small <%= cls %>" title="<%= t('app.buttons.down') %>"> <i class="glyphicon glyphicon-arrow-down" ></i></button>
+      <%= link_to_remove_fields t('.remove_image'), f %>
+    </div>
   </div>
 </div>

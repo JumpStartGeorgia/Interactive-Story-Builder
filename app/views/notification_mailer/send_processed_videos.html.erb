@@ -1,0 +1,49 @@
+<%= simple_format @message.message %>
+
+<ul>
+<% @message.message_list.each do |msg| %>
+  <li>
+    <h2>
+      <%= I18n.t('mailer.notification.processed_videos.story_title') %>
+      <%= link_to msg[0], sections_story_url(:id => msg[1], :locale => @message.locale) %>
+    </h2>
+    <h3>
+      <%= I18n.t('mailer.notification.processed_videos.status', :processed => msg[2], :total => msg[3]) %>
+    </h3>
+    <h3>
+      <%= I18n.t('mailer.notification.processed_videos.processed') %>
+    </h3>
+    <% if msg[4].present? %>
+      <ul>
+        <% msg[4].each do |item| %>
+          <li>
+            <%= item %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>
+        <%= I18n.t('mailer.notification.processed_videos.none_processed') %>
+      </p>
+    <% end %>
+    <h3>
+      <%= I18n.t('mailer.notification.processed_videos.not_processed') %>
+    </h3>
+    <% if msg[5].present? %>
+      <ul>
+        <% msg[5].each do |item| %>
+          <li>
+            <%= item %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>
+        <%= I18n.t('mailer.notification.processed_videos.none_processing') %>
+      </p>
+    <% end %>
+  </li>
+<% end %>
+</ul>
+
+  

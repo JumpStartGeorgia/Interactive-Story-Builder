@@ -1,0 +1,78 @@
+ul#settings-navigation{
+  margin-bottom: 20px;
+  li a{
+    padding: 10px 15px;
+    &:hover, &:focus{
+      background-color: #eee !important;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  ul#settings-navigation{
+    li a span.nav-text{
+      display: none;
+    }
+  }
+
+}
+
+form.settings{
+  .avatar_container{
+    margin-bottom: 10px;
+    & > img{
+      float: left;
+      margin:0px;
+      padding:5px 10px 5px 0px;
+    }
+    & > div{
+      float: left;
+    }
+  }
+}
+
+form#notifications{
+  .section{
+    margin-bottom: 15px;
+  }
+
+  .disable_notifications{
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+  }
+
+  .enable_notifications{
+    opacity: 1.0;
+    filter: alpha(opacity=100);
+  }
+  #following_notifications{
+    #following_user_list { 
+      margin-top: 10px;
+      li{
+        display: inline-block;
+        width: 50px;
+        margin-right: 10px;
+        cursor: pointer;
+        input[type="radio"]{
+          display: none;
+        }
+        &.unfollow{
+          position: relative;
+          opacity: 0.5;
+        }
+        &.unfollow:after{
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          content: "\274c";
+          font-size: 50px; 
+          color: #f00;
+          line-height: 50px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

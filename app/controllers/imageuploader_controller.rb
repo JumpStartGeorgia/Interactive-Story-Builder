@@ -8,11 +8,15 @@ class ImageuploaderController < ApplicationController
     if ['.jpg','.png'].index(File.extname(file_name)).present?       
         story_path = "public/system/places/images/#{params['id']}"
         file_path = "#{story_path}/original"
-        url = "/system/places/images/#{params['id']}/original/#{file_name}"
+        mobile1_path = "#{story_path}/mobile_640"
+        mobile2_path = "#{story_path}/mobile_1024"
+        url = "/system/places/images/#{params['id']}/mobile_640/#{file_name}"
         temp = "#{file_path}/#{file_name}"
 
         # make sure the path to the file exists
-        FileUtils.mkpath(File.dirname(temp))
+        FileUtils.mkpath(file_path)
+        FileUtils.mkpath(mobile1_path)
+        FileUtils.mkpath(mobile2_path)
 
         # save the file temporarily
         File.open(temp, 'wb') do |file|
@@ -21,18 +25,17 @@ class ImageuploaderController < ApplicationController
         
         # create the mobile versions
         if File.exists?(file_path)       
-            Subexec.run "convert #{temp} -resize 640x427 #{Rails.root.join(story_path,'mobile_640',file_name)}"                
-            Subexec.run "convert #{temp} -resize 1024x623 #{Rails.root.join(story_path,'mobile_1024',file_name)}"     
+            Subexec.run "convert #{temp} -resize '640x427>' #{Rails.root.join(story_path,'mobile_640',file_name)}"                
+            Subexec.run "convert #{temp} -resize '1024x623>' #{Rails.root.join(story_path,'mobile_1024',file_name)}"     
             render json: { image: { url: "#{url}" } }, content_type: "text/html"          
         else
-            render json: {error: {message: "Original File is missing for thumbnails"}}, content_type: "text/html"
+            render json: {error: {message: I18n.t('imageuploader.missing') }}, content_type: "text/html"
         end         
       else
-        render json: {error: {message: "Invalid file type. Only .jpg, .png allowed"}}, content_type: "text/html"
+        render json: {error: {message: I18n.t('imageuploader.invalid_type') }}, content_type: "text/html"
       end
    else 
-      render json: {error: {message: "File size is limited to 5MB"}}, content_type: "text/html"
+      render json: {error: {message: I18n.t('imageuploader.size_limit') }}, content_type: "text/html"
    end
   end 
- 
 end

@@ -1,70 +1,17 @@
-<% title  t('helpers.titles.story_list') %>
 
-<%= link_to t('helpers.links.add_story') , new_story_path, class:"btn" %>
-<div>&nbsp;</div>
+  <% content_for(:header) { %>
+   <header class="header">   
+     <div class="author-data">
+          <div class="author-logo"><%= image_tag current_user.avatar_url(:'168x168'),:size=>"168x168" %></div>
+          <div class="author-info">
+            <div class="author-nickname"><%= "#{current_user.nickname}" %></div>
+            <div class="author-about"><%= current_user.about.html_safe if current_user.about.present? %></div>          
+          </div>   
+          <div class="build-story"><%= link_to  t("app.common.build"), new_story_path, :tabindex => 1 %></div>       
+      </div>   
+      
+  </header>  
+<% } %>
 
-<div class='row'>
-  <div class='span12'>
-    <table id='storiesTable' class="table table-striped table-bordered table-hover table-condensed">
-    <thead>
-      <tr>
-        <th><%= t('activerecord.attributes.story.title') %></th>        
-        <th><%= t('activerecord.attributes.story.author') %></th>     
-        <th></th>   
-        <th></th>  
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @stories.each do |story| %>
-      <tr>
-        <td><%= story.title %></td>        
-        <td><%= story.author %></td>       
-
-        <td>
-          <button type="button"  id='btnPublish' class="btn btn-warning btn-small <%= story.published ? '' : 'disabled'%>" title="<%= story.published ? t('app.buttons.unpublish') : t('app.buttons.publish') %>" data-link='<%= publish_story_path(story) %>'> 
-            <i class="icon-globe icon-white" ></i>
-          </button>
-        </td>
-        <td>
-          <button type="button"  id='btnPreview' class="btn btn-success btn-small" title="<%= t('app.buttons.preview') %>" data-link='<%=  preview_story_path(story) %>'> 
-            <i class="icon-eye-open icon-white" ></i>
-          </button> 
-        </td>   
-        <td>
-          <button type="button"  id='btnReviewer' class="btn btn-primary btn-small <%= story.published ? 'disabled' : ''%>" title="<%= story.published ? t('app.buttons.reviewer_key_published') : t('app.buttons.reviewer_key') %>" data-link='<%=  reviewer_key_story_path(story) %>'> 
-            <i class="icon-share icon-white" ></i>
-          </button> 
-        </td>   
-        <td>       
-            <%= link_to clone_story_path(story) , class:"btn btn-primary btn-small" ,  title: t('app.buttons.clone') do %>
-             <i class="icon-camera icon-white" ></i>
-            <% end %>
-         </td>   
-         <td>         
-            <%= link_to export_story_path(story) , class:"btn btn-primary btn-small",  title: t('app.buttons.export') do %>
-             <i class="icon-download icon-white" ></i>
-            <% end %>
-         </td> 
-        <td><%= link_to t('helpers.links.edit_story'), edit_story_path(story) , class:"btn btn-small btn-info"%></td>        
-        <td><%= link_to  t('helpers.links.admin_story'), sections_story_path(story), class:"btn btn-small btn-info" %></td>          
-        <td><%= link_to  t('helpers.links.delete_story'), story, confirm: 'Are you sure?', method: :delete, class:"btn btn-small btn-danger"%></td>
-      </tr>
-    <% end %>
-    </tbody>
-    </table>
-  </div>
-</div>
-<div id="previewStory" class="reveal-modal">     
-    <div class='modal-data'></div>
-    <a class="close-reveal-modal">&#215;</a>
-</div>
-<div id="reviewerKey" class="reveal-modal" style='height:50%;width:50%;top:35px;' >     
-    <div class='modal-data' style="width:100%; height:100%"></div>
-    <a class="close-reveal-modal">&#215;</a>
-</div>
+  <%= render partial: "shared/filter" %> 
+  <%= render partial: "shared/grid" , locals:{:editable=>true}%>  

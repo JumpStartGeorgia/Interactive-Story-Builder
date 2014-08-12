@@ -1,43 +1,65 @@
 <%- model_class = User -%>
-<% title t('helpers.links.sign_up').html_safe %>
+<% 	popup = request.xhr? ? true  :  popup || false %>
 
+<% title = t('helpers.links.sign_up_title').html_safe %> 
+<% if !popup %>
+	<% title title %>
+<% end %>	
 <div id="signup-form">
-
-
+  <% if popup %>
+  	<div class="title"><%= title %></div>
+  <% end %>
   <div class="providers">
-    <%- if devise_mapping.omniauthable? %>
-	    <%- resource_class.omniauth_providers.each do |provider| %>
+    <%- if devise_mapping.omniauthable? %>    
+	    <%- model_class.omniauth_providers.each do |provider| %>
 	      <% if provider == :facebook %>
-				  <%= link_to image_tag('connect_fb.png'), omniauth_authorize_path(resource_name, provider), :class => '' %>
+	<%= link_to  omniauth_authorize_path(resource_name, provider), :class => 'facebook' do %>
+				  	<i class="s i-facebook-w"></i><span><%= t('helpers.links.sign_up_provider', :provider => provider.to_s.titleize) %></span>
+				  <% end %>
 	      <% else %>
-				  <%= link_to t('helpers.links.sign_in_provider', :provider => provider.to_s.titleize), omniauth_authorize_path(resource_name, provider), :class => 'btn btn-primary' %>
+				  <%= link_to t('helpers.links.sign_up_provider', :provider => provider.to_s.titleize), omniauth_authorize_path(resource_name, provider), :class => 'btn btn-primary' %>
 	      <% end %>
 	    <% end -%>
     <% end -%>
   </div>
-
-  <%= semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <% if popup %>
+  	<div class="facebook_or_local"><%= t('helpers.links.sign_in_local_or_provider') %></div>
+  <% end %>
+  <%= semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html=>{:"data-form-id"=>"signup-form"}) do |f| %> 
+  <%#, :html => {:multipart => true} %>
   	<%= f.error_messages %>
 
-	  <%= f.input :email, :input_html => { :size => 35, :placeholder => t('activerecord.attributes.user.email') }, :label => false %>
-	  <%= f.input :nickname, :input_html => { :size => 35, :placeholder => 'Nickname' }, :label => false %>
-	  <% if f.object.password_required? %>
-		  <%= f.input :password, :input_html => { :size => 35, :placeholder => t('activerecord.attributes.user.password') }, :label => false %>
-		  <%= f.input :password_confirmation, :input_html => { :size => 35, :placeholder => t('activerecord.attributes.user.password_confirmation') }, :label => false %>
-	  <% end %>
+	  <%= f.inputs do %>
+	    <%= f.input :email, :as => :email, :input_html => { :size => 35 , :class => "login-username" }, :placeholder => t('activerecord.attributes.user.email') , label: false %>
+	    <%#= f.input :nickname, hint: t('helpers.hints.nickname'), :input_html => { :size => 35 } %>
+      <!-- <div id="check_nickname_results"></div> -->
 
-	  <div class="control-group">
-		  <%= f.submit t('helpers.links.sign_up2'), :class => 'btn' %>
+      <%# resource.build_local_avatar(:asset_type => Asset::TYPE[:user_avatar]) %>
+      <%#= f.fields_for :local_avatar, resource.local_avatar do |as| %>
+          <%#= as.input :asset_type, :as => :hidden %>
+          <%#= as.input :asset, :as => :file , hint: t('helpers.hints.local_avatar') , :input_html => { accept:"image/jpeg,image/png" }, label: t('activerecord.attributes.user.local_avatar')  %> 
+      <%# end %> 
+
+	    <% if f.object.password_required? %>
+		    <%= f.input :password, :input_html => { :size => 35 , :class => "login-password" }, :placeholder => t('activerecord.attributes.user.password'), label: false %>
+		    <%= f.input :password_confirmation, :input_html => { :size => 35 , :class => "login-password-confirmation" }, :placeholder => t('activerecord.attributes.user.password_confirmation'), label: false %>
+	    <% end %>
+    <% end %>
+    
+	  <div class="control-group submit-row">
+		  <%= f.submit t('helpers.links.sign_up2'), :class => 'btn btn-default sign-up' %>
 	  </div>
   <% end %>
 
   <div class="control-group">
-	  <%- if controller_name != 'sessions' %>
-		  <%= link_to t('helpers.links.sign_in'), new_session_path(resource_name, {:load_media => false}), :class => 'btn btn-mini sign-in-link' %>
+  <%- if controller_name != 'sessions' %>
+		  <%= link_to t('helpers.links.sign_in'), new_session_path(resource_name), :class => 'sign-in-link modalSignIn', :"data-modalos-id"=>"modalos-sign-in", :"data-modalos-class"=>"sign-in-window" %>
 	  <% end -%>
 
 	  <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
-		  <%= link_to t('helpers.links.forgot_password'), new_password_path(resource_name, {:load_media => false}), :class => 'forgot-link' %>
+  		  <div class="forgot-box">
+		  	<%= link_to t('helpers.links.forgot_password'), new_password_path(resource_name), :class => 'forgot-link modalForgotPassword', :"data-modalos-id"=>"modalos-forgot-password", :"data-modalos-class"=>"forgot-password-window" %>
+		  </div>
 	  <% end -%>
   </div>
 

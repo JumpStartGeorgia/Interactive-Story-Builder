@@ -1,0 +1,14 @@
+<%= yield %>
+
+
+<p>
+	<%= t('mailer.closing', :locale => @message.locale) %>
+	<br />
+	<%= t('mailer.signature', :locale => @message.locale) %>
+</p>
+
+<hr style="margin: 10px 0;" />
+
+<p style="font-size: 10px;">
+	<%= link_to t('mailer.unsubscribe', :locale => @message.locale), settings_notifications_url(:locale => @message.locale) %>
+</p>

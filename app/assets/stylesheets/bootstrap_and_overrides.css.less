@@ -1,24 +1,22 @@
 @import "twitter/bootstrap/bootstrap";
-body {
-	padding-top: 60px;
-}
 
-@import "twitter/bootstrap/responsive";
 
 // Set the correct sprite paths
-@iconSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings.png');
-@iconWhiteSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings-white.png');
+@iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
+@iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-white.png");
 
 // Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
-// Note: If you use asset_path() here, your compiled boostrap_and_overrides.css will not
-//       have the proper paths. So for now we use the absolute path.
-@fontAwesomeEotPath: '/assets/fontawesome-webfont.eot';
-@fontAwesomeWoffPath: '/assets/fontawesome-webfont.woff';
-@fontAwesomeTtfPath: '/assets/fontawesome-webfont.ttf';
-@fontAwesomeSvgPath: '/assets/fontawesome-webfont.svg';
+@fontAwesomeEotPath: asset-url("fontawesome-webfont.eot");
+@fontAwesomeEotPath_iefix: asset-url("fontawesome-webfont.eot?#iefix");
+@fontAwesomeWoffPath: asset-url("fontawesome-webfont.woff");
+@fontAwesomeTtfPath: asset-url("fontawesome-webfont.ttf");
+@fontAwesomeSvgPath: asset-url("fontawesome-webfont.svg#fontawesomeregular");
 
 // Font Awesome
-@import "fontawesome";
+@import "fontawesome/font-awesome";
+
+// Glyphicons
+//@import "twitter/bootstrap/sprites.less";
 
 // Your custom LESS stylesheets goes here
 //
@@ -26,49 +24,203 @@ body {
 // you may use and inherit here
 //
 // If you'd like to override bootstrap's own variables, you can do so here as well
-// See http://twitter.github.com/bootstrap/less.html for their names and documentation
-//
-// Example:
-// @linkColor: #ff0000;
+// See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
 
+
+@body-bg:#f8f8f8;
+@screen-sm:1200px;
+@screen-md:1424px;
+@screen-lg:1600px;
+@navbar-default-toggle-hover-bg:transparent;
+@navbar-margin-bottom:0px;
+@navbar-padding-vertical:0px;
+@nav-link-hover-bg:transparent;
+@nav-link-padding:2px 2px;
+@dropdown-bg:#f8f8f8;
+@dropdown-link-color:#878787;
+@dropdown-link-hover-color:#303030;
+@dropdown-link-hover-bg:#e5e5e5;
+@dropdown-link-active-color:red;
+@dropdown-divider-bg:#eee;
+@dropdown-caret-color:#878787;
+@dropdown-link-active-bg:#e5e5e5;
+@dropdown-link-disabled-color:#eee;
+@navbar-default-bg:transparent;
+@dropdown-header-color:transparent;
+
+@component-active-color:#c7254e;
+@component-active-bg:#c7254e;
+
+@pagination-color:#818181;
+@pagination-bg:#f8f8f8;
+@pagination-border:#f8f8f8;
+@pagination-hover-color:#272727;
+@pagination-active-color:#272727;
+@pagination-active-bg:#f8f8f8;
+@pagination-active-border:#f8f8f8;
+@pagination-disabled-color:#818181;
+@pagination-disabled-bg:#f8f8f8;
+@pagination-disabled-border:#f8f8f8;
+
+.navbar 
+{
+	position:fixed;
+	top:0px;	
+	border: 0px solid transparent;	
+	min-height:54px;
+	width:100%;	
+	vertical-align: middle;
+   > .nav > li 
+   {
+     > a
+     {
+       padding:0px;
+       font-family:opensans-l;
+       font-size:14px;
+     }
+     > a:lang(ka)
+     {
+        font-family:dejavusans-el, sylfaen;
+     }
+   }
+}
+
+.dropdown-menu > li > a {
+  line-height:20px;
+  padding:0px;
+}
+
+.navbar.navbar-story,.navbar-header
+{
+	min-height:40px;
+}
+.navbar-header .navbar-toggle
+{
+  margin:2px 0px;
+  border-radius:none !important;
+  -webkit-border-radius: 0 !important;
+}
+.nav > li 
+{
+   float:left;    
+   vertical-align:middle;
+   > a
+   {
+      padding:0px 15px;
+      font-family: dejavusans-el;
+      font-size: 18px;
+      &:hover
+      {
+         background-color:transparent !important;
+      }
+   }
+}
+.navbar-form
+{
+	border:none;
+	margin:0px;
+	padding:0px;
+   .form-group
+   {  
+      line-height: 54px;
+      vertical-align:middle;
+   }
+}
+.navbar-nav.navbar-right:last-child 
+{
+	margin-right: 0px;
+}
+.dropdown-menu
+{    	
+	-webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -o-border-radius: 0px;       
+  border-radius: 0px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	margin:0px;
+	padding:0px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  &.pull-right
+  {
+    right: -25px;
+    top:100%;
+  }
+  li:not(:last-child)
+  {  
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  }
+  span,a 
+  {
+    font-family:opensans-l;
+    font-size:14px;
+  }
+  span:lang(ka),a:lang(ka)
+  {
+    font-family:dejavusans-el, sylfaen;
+  }
+}
+.dropdown.open .dropdown-toggle
+{
+  opacity:1;
+}
 /* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
 
-html, body {
-  height: 100%;
+html, body 
+{
+  	height: 100%;
 	font-size: 13px;
 }
-
 #wrapper {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0 auto -155px;
+	margin: 0px auto -31px;
+	padding: 60px 0px;	
+	max-width:1468px;	
 }
-
-#wrapper > .container {
-	padding-top: 60px;
-	padding-bottom: 60px;
-	overflow: auto;
+.container 
+{
+   .row
+   {
+   	margin:0px;
+      .col-md-12
+      {
+         margin:0px;
+         padding:0px
+      }
+   }
+   > ul.nav 
+   {
+      line-height: 20px;
+   }
 }
-
+.container > .navbar-header,
+.container-fluid > .navbar-header,
+.container > .navbar-collapse,
+.container-fluid > .navbar-collapse {
+  margin-right: 0px;
+  margin-left: 0px;
+}
 .push { height: 155px; } /* Just some arbitrary space to add between footer and rest of the content, when they are close */
-
-@media (max-width: 979px) {
-  body {
-  	margin-top: 0;
+@media (max-width: 1480px) 
+{
+  #wrapper 
+  {
+      padding: 60px 2em;	
   }
-  #wrapper > .container {
-  	padding: 1em;
+}
+@media (max-width: 979px) 
+{
+  body { margin-top: 0; }
+  #wrapper { padding: 30px 1em; }
+  .navbar-fixed-top  { margin: 0; }
+}
+@media (max-width: 767px) 
+{
+.navbar .nav-separator {
+    display: none;
   }
-	.navbar-fixed-top  {
-		margin: 0;
-	}
-}
-
-.container > ul.nav  {
-	line-height: 20px;
-}
-.navbar-fixed-top .navbar-inner .container .brand {
-  font-size: 19px;
 }

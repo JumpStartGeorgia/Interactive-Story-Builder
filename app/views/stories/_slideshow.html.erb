@@ -1,5 +1,6 @@
-<h2>
-  <%= t('.form_title') %>
+<h2 class="form-title">
+  <span class="glyphicon <%= Section::ICONS[:slideshow] %>"></span>
+  <span class="form-title-text"><%= t('.form_title') %></span>
 </h2>
 
 <%= semantic_form_for(@item, url: slideshow_story_path(id:params[:id],:format => :js), :html => { :multipart=> true, :id => "slideshowForm" } , remote: true) do |f| %>
@@ -9,7 +10,7 @@
  
      <div id="slideshowAssets" class="clear">
       <% @item.assets.each do |asset_item| %>  
-         <div class="fields">
+         <div class="fields clear">
             <%= f.fields_for :assets, asset_item do |ff| %>
               <%= render :partial => 'asset_fields', :locals => {:f => ff, :asset_item => asset_item} %>
             <% end %> 
@@ -27,8 +28,8 @@
   <% end %>
 
   <div class="pull-right spacer">            
-    <%= f.submit nil, :class => 'btn btn-primary btn-small' %>
-    <%= f.submit nil, :class => 'btn btn-small', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>          
+    <%= f.submit nil, :class => 'btn btn-default' %>
+    <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          
   </div>
 <% end %>
 

@@ -1,0 +1,11 @@
+<%= yield %>
+
+
+<%= t('mailer.closing', :locale => @message.locale) %>
+<%= t('mailer.signature', :locale => @message.locale) %>
+
+
+
+-------------------------------
+
+<%= "#{t('mailer.unsubscribe', :locale => @message.locale)}: #{settings_notifications_url(:locale => @message.locale)}" %>

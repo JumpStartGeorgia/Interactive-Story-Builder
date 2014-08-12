@@ -6,8 +6,10 @@
   <div class="providers">
     <%- if devise_mapping.omniauthable? %>
 	    <%- resource_class.omniauth_providers.each do |provider| %>
-	      <% if provider == :facebook %>
-				  <%= link_to image_tag('connect_fb.png'), omniauth_authorize_path(resource_name, provider), :class => '' %>
+	      <% if provider == :facebook %>				 
+              <%= link_to  omniauth_authorize_path(resource_name, provider), :class => 'facebook' do %>
+               <i class="s i-facebook-w"></i><span><%= t('helpers.links.sign_in_provider', :provider => provider.to_s.titleize) %></span>
+              <% end %>
 	      <% else %>
 				  <%= link_to t('helpers.links.sign_in_provider', :provider => provider.to_s.titleize), omniauth_authorize_path(resource_name, provider), :class => 'btn btn-primary' %>
 	      <% end %>
@@ -26,7 +28,7 @@
 
 
 	  <div class="control-group">
-		  <%= f.submit t('helpers.links.change_password2'), :class => 'btn' %>
+		  <%= f.submit t('helpers.links.change_password2'), :class => 'btn btn-default' %>
 	  </div>
   <% end %>
 

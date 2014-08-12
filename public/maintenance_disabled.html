@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Story Builder</title>
+    <title>StoryBuilder</title>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -12,6 +12,7 @@
     <![endif]-->
 
     <link href="/assets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="/assets/navbar.css" media="all" rel="stylesheet" type="text/css" />
 
 		<!--[if IE 6]><link href="/assets/formtastic_ie6.css?body=1" media="screen" rel="stylesheet" type="text/css" />
 <link href="/assets/ie6.css?body=1" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
@@ -24,51 +25,35 @@
   </head>
   <body>
 
-    <div class="navbar navbar-fixed-top navbar-inverse">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a href="/en" class="brand font">Story Builder</a>
-          </div><!--/.nav-collapse -->
+  <nav class="navbar navbar-default navbar-static-top navbar-storybuilder " role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <img src="/assets/svg/slogo.svg" class="navbar-toggle navbar-slogo" data-toggle="collapse" data-target="#storybuilder-navbar-collapse" />
+            <a href="/en" class="navbar-logo link" title="asdf">
+                <img alt="StoryBuilder" src="/assets/svg/logo.svg" style="vertical-align:middle;" />
+            </a>
         </div>
-      </div>
     </div>
+  </nav>
 
 		<div id="wrapper">
-		  <div class="container">
-		    <div class="content">
-		      <div class="row">
-		         <div class="span12">
-
-                <h1>Down for Maintenance</h1>
-								<p>&nbsp;</p>
-								<h2>9:30 - 20 May 2014</h2>
-								<p>
-									The site is currently down for routine maintenance.
-									We expect the site to be operational again at
-									10:00 - 20 May 2014.
-								</p>
-
-	          </div><!--/span-->
-		      </div><!--/row-->
-		    </div><!--/content-->
-		   </div> <!-- /container -->
+      <div class="page-header">
+        <div class="block">
+          <h1>StoryBuilder Down for Maintenance</h1>
+	      </div>
+      </div>      
+      
+			<p>&nbsp;</p>
+			<h2>20:00 Tbilisi Time / 12:00 EST - 12 August 2014</h2>
+			<p>
+				StoryBuilder is currently down for routine maintenance and server migration.
+				We expect the site to be operational again at
+				00:01 13 August 2014 Tbilisi Time / 16:01 12 August 2014 EST.
+			</p>
 		</div><!--/wrapper-->
 
-    <div class="push"><!--//--></div>
-
-    <footer class="clear">
-			<div id="left">&copy; 2014</div>
-		  <div id="middle">
-				&nbsp;
-			</div>
-		  <div id="right">
-				<a href="http://www.jumpstart.ge" target="_blank" title="JumpStart Georgia - We communicate data better!"><img alt="Jumpstart-logo" src="/assets/jumpstart-logo.png" /></a>
-		  </div>
-    </footer>
+    <div class="powered-by">
+      Powered by&nbsp;&nbsp;<a href="http://www.jumpstart.ge" target="_blank" title="JumpStart Georgia - We communicate data better!">Jumpstart Georgia</a>
+    </div>
   </body>
 </html>

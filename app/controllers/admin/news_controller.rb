@@ -3,6 +3,7 @@ class Admin::NewsController < ApplicationController
   before_filter do |controller_instance|
     controller_instance.send(:valid_role?, User::ROLES[:admin])
   end
+  before_filter :asset_filter
 
   # GET /news
   # GET /news.json
@@ -117,4 +118,13 @@ class Admin::NewsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  private
+  
+  def asset_filter
+    @css.push("jquery-ui-1.7.3.custom.css","navbar.css","news.css")
+    @js.push("news.js", "jquery.ui.datepicker.js")
+  end 
+  
+  
 end

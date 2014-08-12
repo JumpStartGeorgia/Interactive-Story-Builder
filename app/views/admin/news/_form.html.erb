@@ -1,8 +1,7 @@
-
 <%= tinymce_assets %>
 <%= tinymce %>
 
-<%= semantic_form_for([:admin,@news], :html => { :class => 'form-horizontal' }) do |f| %>
+<%= semantic_form_for([:admin,@news]) do |f| %>
 	<%= f.error_messages %>
 
   <% create_sorted_translation_objects(@news.news_translations).each do |trans| %>
@@ -13,7 +12,7 @@
 
 		    <%= translation.input :title %>
 		    <%= translation.input :content, :as => :text, :input_html => {:class => "tinymce", :rows => 20}  %>
-				<%= translation.hidden_field :locale , :value => trans.locale %>
+				<%= translation.hidden_field :locale , :input_html => {:value => trans.locale} %>
 			</div>
 
 		<% end %>
@@ -28,7 +27,7 @@
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
-	  <%= f.submit nil, :class => 'btn btn-warning', :type => :reset, :value => t('helpers.links.reset'), :name => :reset %>
+	  <%= f.submit t('helpers.links.reset'), :class => 'btn btn-warning', :type => :reset, :name => :reset %>
 	  <%= link_to t('helpers.links.cancel'), admin_news_index_path, :class => 'btn btn-mini btn-warning' %>
   </div>
 

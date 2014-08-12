@@ -17,17 +17,23 @@ module BootstrapStarter
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
-    # Activate observers that should always be running.
-    # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 
+    # Activate observers that should always be running.
+    config.active_record.observers = :user_observer, :story_observer, :news_observer, :invitation_observer, :asset_observer
+    
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Tbilisi'
+    
+    config.i18n.enforce_available_locales = true
+    
+    config.i18n.available_locales = [:en, :ka]
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
@@ -53,7 +59,24 @@ module BootstrapStarter
 
     # tell the assest pipeline to add the public/javascripts dir as assets path
     config.assets.paths << "#{Rails.root}/public/javascripts/"
-    config.assets.precompile += %w( olly.js )
 
+    # in app/assets folder
+    config.assets.precompile += %w( filter.js follow.js modalos.js navbar.js news.js nickname.js search.js settings.js stories.js storyteller.js )
+    config.assets.precompile += %w( author.css devise.css embed.css filter.css grid.css modalos.css navbar.css navbar2.css news.css root.css settings.css stories.css storyteller.css todo.css about.css )
+    # in vendor/assets folder
+    config.assets.precompile += %w( bootstrap-select.min.js jquery.tokeninput.js olly.js zeroclipboard.min.js jquery.tipsy.js )
+    config.assets.precompile += %w( bootstrap-select.min.css jquery-ui-1.7.3.custom.css token-input-facebook.css tipsy.css)
+    # build into gems
+    config.assets.precompile += %w( dataTables/jquery.dataTables.bootstrap.css )
+    config.assets.precompile += %w( dataTables/jquery.dataTables.js dataTables/jquery.dataTables.bootstrap.js jquery.ui.datepicker.js )
+
+
+    # from: http://stackoverflow.com/a/24727310
+    # to try and catch the following errors:
+    # - invalid byte sequence in UTF-8
+    # - invalid %-encoding
+    require "#{Rails.root}/app/middleware/handle_invalid_percent_encoding.rb"
+    config.middleware.insert 0, HandleInvalidPercentEncoding
+    config.middleware.insert 0, Rack::UTF8Sanitizer    
   end
 end

@@ -1,0 +1,54 @@
+<%= simple_format @message.message %>
+
+<table>
+ <thead>
+  <tr>
+    <%
+      style = "border-bottom: 2px solid #666; padding: 10px; vertical-align: bottom;"
+    %>
+    <th style="<%= style %>">  
+      <%= t('mailer.notification.story_collaboration.from', :locale => @message.locale) %>
+    </th>
+    <th style="<%= style %>">  
+      <%= t('mailer.notification.story_collaboration.story_title', :locale => @message.locale) %>
+    </th>
+    <th style="<%= style %>">  
+      <%= t('mailer.notification.story_collaboration.msg', :locale => @message.locale) %>
+    </th>
+    <th style="<%= style %>">  
+      <%= t('mailer.notification.story_collaboration.accept_link', :locale => @message.locale) %>
+    </th>
+  </tr> 
+ </thead>
+ <tbody>
+  <% @message.message_list.each_with_index do |msg, index| %>
+    <%
+      style = "border-top: 1px solid #aaa; padding: 10px; vertical-align: top;"
+      style = "padding: 10px; vertical-align: top;" if index == 0
+    %>
+    <tr>
+      <td style="<%= style %>">  
+        <%= msg[0] %>
+      </td>
+      <td style="<%= style %>">  
+        <%= msg[1] %>
+      </td>
+      <td style="<%= style %>">  
+        <% if msg[3].present? %>
+          <%= simple_format msg[3] %>
+        <% end %>
+      </td>
+      <td style="<%= style %>">  
+        <%= link_to t('mailer.notification.story_collaboration.accept_link', :locale => @message.locale), 
+              settings_accept_invitation_url(:locale => @message.locale, :key => msg[2]) %>
+      </td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+
+<p>
+  <%= link_to t('mailer.notification.story_collaboration.all_invitations', :locale => @message.locale), 
+        settings_invitations_url(:locale => @message.locale) %>
+</p>
+
