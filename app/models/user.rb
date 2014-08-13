@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
   # - check if using a provider and if so return that avatar url
   # - else use the local avatar
   # if neither exists, return the missing url
-  def avatar_url(style = :'28x28')
+  def avatar_url(style = :'40x40')
     if has_provider_avatar? && !local_avatar_exists?
       # append the size to the end of the avatar url so the provider returns the size we want
       sizes = style.to_s.split('x')
@@ -172,8 +172,10 @@ class User < ActiveRecord::Base
   end
   
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+logger.debug "////////// find_for_facebook_oauth"
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
+logger.debug "////////// user not exists"
       user = User.create(  nickname: auth.info.nickname,
                            provider: auth.provider,
                            uid: auth.uid,
@@ -181,6 +183,8 @@ class User < ActiveRecord::Base
                            avatar: auth.info.image,
                            password: Devise.friendly_token[0,20]
                            )
+logger.debug "////////// new user = #{user.inspect}"
+logger.debug "////////// user error = #{user.errors.full_messages}"
     end
     user
   end

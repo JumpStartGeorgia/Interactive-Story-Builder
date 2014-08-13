@@ -51,8 +51,8 @@ ka:
       failure: 'აუტენთიფიკაცია ვერ მოხერხდა რადგან "%{reason}".'
     mailer:
       confirmation_instructions:
-        subject: 'დადასტურების ინსტრუქციები'
+        subject: '"სთორიბილდერის" დადასტურების ინსტრუქციები'
       reset_password_instructions:
-        subject: 'პაროლის აღსადგენი ინსტრუქციები'
+        subject: '"სთორიბილდერის" პაროლის აღდგენის ინსტრუქცია'
       unlock_instructions:
-        subject: 'ბლოკის მოსახსნელი ინსტრუქციები'
+        subject: '"სთორიბილდერის" ბლოკის მოსახსნელი ინსტრუქციები'

@@ -36,7 +36,7 @@
         <li class="dropdown dropdown-hover settings">
 
           <%= link_to '#' , :tabindex=>2, :class=>"dropdown-toggle avatar-link", :"data-toggle"=>"dropdown"  do %>         
-            <%= image_tag(current_user.avatar_url, :class=>"avatar link") %>           
+            <%= image_tag(current_user.avatar_url, :class=>"avatar link", :alt => current_user.nickname) %>           
           <% end %>
                       
           <ul class="dropdown-menu">                          
