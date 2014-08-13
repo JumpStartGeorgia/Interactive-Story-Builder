@@ -163,7 +163,7 @@
   <div class="share">
     <div class="facebook">
 
-    <a href="https://www.facebook.com/dialog/feed?app_id=<%= @face_id %>&link=<%= short_url %>" onclick="javascript:window.open(this.href,
+    <a href="https://www.facebook.com/dialog/feed?app_id=<%= @face_id %>&link=<%= short_url %>&redirect_uri=<%= storyteller_show_url(@story.permalink) %>" onclick="javascript:window.open(this.href,
                         '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">  
           <i class="s i-facebook-w"></i><%= "#{t('app.common.share_facebook')}" %></a>      
        
