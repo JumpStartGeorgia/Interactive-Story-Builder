@@ -6,7 +6,7 @@ en:
       story: Story
       section: Section
       medium: Full-Screen Media Slideshow
-      content: Content
+      content: Text
       news: News
       message: Message
       slideshow: Image Slideshow
@@ -51,7 +51,7 @@ en:
         title: Title          
         caption: Heading
         sub_caption: Subheading
-        content: Content
+        content: Text
       medium:
         media_type: Media Type
         title: Title
@@ -311,7 +311,7 @@ en:
       error_publish: "%{obj} wasn't published: %{err}"
       error_publish_missing_fields: "%{obj} can't be published until you provide a summary and thumbnail image."
       error_publish_missing_fields_link: Add the missing content.
-      error_publish_missing_content_section: At least one content section required.
+      error_publish_missing_content_section: At least one text section required.
       error_unpublish: "%{obj} wasn't unpublished: %{err}"
       error_clone: "%{obj} wasn't cloned."
       error_export: "Story can't be downloaded."
@@ -331,7 +331,7 @@ en:
         bad: Sorry, your invitation could not be found or the story has been deleted.
         declined: Your invitation was declined
       one_section:
-        content: Only one Item can be added to a Content section
+        content: Only one Item can be added to a Text section
         slideshow: Only one Item can be added to an Image Slideshow section
         embed_media: Only one Item can be added to an Embed Online Media section
       destroy_story:
@@ -369,7 +369,7 @@ en:
       video_not_processed: Your video is being processed
   section_types:
     content:
-      name: Content
+      name: Text
       description: Can include html, css styling and images
     media:
       name: Full-Screen Media Slideshow
@@ -513,10 +513,10 @@ en:
         author: Author(s) of the article
         media_author: "Author(s) of photos and/or videos"
       hint:
-        title: Story title will appear as the header on the first content section and very first section if it is media section
+        title: Story title will appear as the header on the first Text section and the very first section if it is Full-Screen Media section
         permalink: The default URL is the title of the story, but you can change it if desired
-        author: Author(s) will appear on the first content section
-        media_author:  "Author(s) will appear on the first content section below the Story Author(s)"
+        author: Author(s) will appear on the first Text section
+        media_author:  "Author(s) will appear on the first Text section below the Story Author(s)"
         published: Published stories are available for the world to view
         publish_home_page: "If checked, your published story will appear on the site's homepage"
         template: Choose template to apply styling to story
@@ -572,16 +572,16 @@ en:
         has_marker: "If checked, there will be a navigation shortcut link to go to this section"
         audio: "Background audio to play while this section is in view (mp3 format only; 10mb file size limit)"
     content:
-      form_title: Content Form
+      form_title: Text Form
       placeholder:
-        title: Content title
+        title: Text title
         caption: optional
         sub_caption: optional
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
-        caption: Heading of content will appear at the top of the section
-        sub_caption: Subheading of content will appear below the Heading
-        content: Content can include html, css styling and images
+        caption: Heading of text will appear at the top of the section
+        sub_caption: Subheading of text will appear below the Heading
+        content: Text can include html, css styling and images
     reviewer_key:
       title: Private URL
       desc: "You can copy and share the following URL with whomever you want to review '%{title}' before it is published. These people will have the ability to read your story, but not edit it."
