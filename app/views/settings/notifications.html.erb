@@ -60,6 +60,7 @@
 				<%= select_tag "stories_categories",
 						options_from_collection_for_select(@categories, "id", "name", @story_notifications.map{|x| x.identifier}),
 						:multiple => true, :class => 'selectpicker',
+						:title => t('app.common.nothing_selected'),
 						:'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7" %>
 			</label>
 		</div>
