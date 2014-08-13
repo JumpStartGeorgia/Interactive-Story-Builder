@@ -137,7 +137,8 @@ class ApplicationController < ActionController::Base
     #elsif params[:sort].present? || params[:category].present? || params[:tag].present? || params[:language].present? || params[:q].present?
      # @story_filter_staff_pick = false
     else
-  		@story_filter_staff_pick = controller_action?('root','index')
+#  		@story_filter_staff_pick = controller_action?('root','index')
+  		@story_filter_staff_pick = false
     end
     story_objects = story_objects.is_staff_pick if @story_filter_staff_pick
 
