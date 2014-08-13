@@ -277,6 +277,7 @@ en:
       about_story: About
       likes: Likes
       comments: Comments
+      publish_date: Publish Date
       follow: Follow
       following: Following
       follow_link_title: Click to receive notifications whenever this user publishes new stories
@@ -436,11 +437,6 @@ en:
   shared:
     grid:
       no_stories: Oh no - no stories could be found!
-    grid_item:
-      likes: Likes
-      views: Views
-      comments: Comments
-      publish_date: Publish Date
   admin:
     index:
       title: Administration Section

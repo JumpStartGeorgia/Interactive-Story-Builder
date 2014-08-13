@@ -277,6 +277,7 @@ ka:
       about_story: შესახებ
       likes: მოწონება
       comments: კომენტარები
+      publish_date: გამოქვეყნების თარიღი
       follow: თვალყურის დევნება
       following: თვალყურის დევნება
       follow_link_title: დააჭირეთ, რათა მიიღოთ შეტყობინება, როდესაც ეს მომხმარებელი გამოაქვეყნებს ახალ ამბავს
@@ -436,11 +437,6 @@ ka:
   shared:
     grid:
       no_stories: სამწუხაროდ არ მოიძებნა არცერთი ამბავი!
-    grid_item:
-      likes: მოწონება
-      views: ნახვა
-      comments: კომენტარები
-      publish_date: გამოქვეყნების თარიღი
   admin:
     index:
       title: ადმინისტრატორის განყოფილება
