@@ -10,7 +10,7 @@
     <div class="radio_buttons input required form-group radio-indent radio-hide-button" id="section_type_id_input">
       <label class="control-label" for="section_type_id">
         <%= model_class.human_attribute_name(:type) %>
-        <abbr title="required">*</abbr>
+        <abbr title="<%= t('app.common.required') %>">*</abbr>
         <div class="help-inline" title="<%= t('.hint.type')%>">
           <div>?</div>
         </div>

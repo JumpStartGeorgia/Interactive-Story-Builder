@@ -138,9 +138,9 @@ ka:
     select:
       prompt: "გთხოვთ, აირჩიოთ"
     submit:
-      create: 'შექმნა %{model}'
-      update: 'განახლება %{model}'
-      submit: 'შენახვა %{model}'
+      create: '%{model} შექმნა'
+      update: '%{model} განახლება'
+      submit: '%{model} შენახვა'
 
   errors:
     format: "%{attribute} %{message}"

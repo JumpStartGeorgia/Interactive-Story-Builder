@@ -308,6 +308,7 @@ en:
       full_text: Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look. 
       feed: StoryBuilder Feed Channel
       home: Home
+      required: Required
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
