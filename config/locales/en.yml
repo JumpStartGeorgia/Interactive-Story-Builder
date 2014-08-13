@@ -20,7 +20,7 @@ en:
         password: Password
         password_confirmation: Password Confirmation
         role: Role
-        remember_me: Remeber Me
+        remember_me: Remember Me
         default_story_locale: Default Language for Your Stories 
         about: Summary of You
         local_avatar: Avatar
@@ -41,6 +41,8 @@ en:
         permalink: Story URL
         permalink_staging: Story URL
         tag_list: Tags
+        categories: Categories
+        type: Type
       section:
         title: Title
         audio: Audio Track
@@ -309,6 +311,7 @@ en:
       feed: StoryBuilder Feed Channel
       home: Home
       required: Required
+      nothing_selected: Nothing Selected
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.

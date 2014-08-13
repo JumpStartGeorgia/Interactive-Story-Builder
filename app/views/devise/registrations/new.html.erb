@@ -13,7 +13,7 @@
     <%- if devise_mapping.omniauthable? %>    
 	    <%- model_class.omniauth_providers.each do |provider| %>
 	      <% if provider == :facebook %>
-	<%= link_to  omniauth_authorize_path(resource_name, provider), :class => 'facebook' do %>
+        	<%= link_to  omniauth_authorize_path(resource_name, provider), :class => 'facebook signup-form' do %>
 				  	<i class="s i-facebook-w"></i><span><%= t('helpers.links.sign_up_provider', :provider => provider.to_s.titleize) %></span>
 				  <% end %>
 	      <% else %>

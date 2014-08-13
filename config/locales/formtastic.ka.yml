@@ -4,10 +4,10 @@ ka:
   formtastic:
     :yes: 'დიახ'
     :no: 'არა'
-    :create: 'შექმნა %{model}'
-    :update: 'შენახვა %{model}'
-    :submit: 'შენახვა %{model}'
-    :cancel: 'გაუქმება %{model}'
+    :create: '%{model} შექმნა'
+    :update: '%{model} შენახვა'
+    :submit: '%{model} შენახვა'
+    :cancel: '%{model} გაუქმება'
     :reset: 'გადატვირთვა %{model}'
-    :required: 'საჭირო'      
+    :required: 'სავალდებულო'      
 

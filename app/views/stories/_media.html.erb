@@ -14,7 +14,7 @@
     <div class="radio_buttons input required form-group radio-indent radio-hide-button" id="medium_media_type_input">
       <label class="  control-label" for="medium_media_type">
         <%= model_class.human_attribute_name(:media_type) %>
-        <abbr title="required">*</abbr>
+        <abbr title="<%= t('app.common.required') %>">*</abbr>
         <div class="help-inline" title="<%= t('.hint.media_type')%>">
           <div>?</div>
         </div>
