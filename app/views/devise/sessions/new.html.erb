@@ -22,9 +22,9 @@
 	    <% end -%>
     <% end -%>
   </div>
-  <% if popup %>
-  	<div class="facebook_or_local"><%= t('helpers.links.sign_in_local_or_provider') %></div>
-  <% end %>
+
+	<div class="facebook_or_local"><%= t('helpers.links.sign_in_local_or_provider') %></div>
+
   <%= semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html=>{:"data-form-id"=>"login-form"}) do |f| %>
   	<%= f.error_messages %>
     <%= f.input :email, :as => :email, :input_html => { :size => 35, :class => "login-username" }, :placeholder => t('activerecord.attributes.user.email') , label: false %>
