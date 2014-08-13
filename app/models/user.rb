@@ -172,19 +172,15 @@ class User < ActiveRecord::Base
   end
   
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-logger.debug "////////// find_for_facebook_oauth"
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
-logger.debug "////////// user not exists"
       user = User.create(  nickname: auth.info.nickname,
                            provider: auth.provider,
                            uid: auth.uid,
-                           email: auth.info.email.present? ? auth.info.email : 'temp@temp.com',
+                           email: auth.info.email.present? ? auth.info.email : "<%= Devise.friendly_token[0,10] %>@temp.com",
                            avatar: auth.info.image,
                            password: Devise.friendly_token[0,20]
                            )
-logger.debug "////////// new user = #{user.inspect}"
-logger.debug "////////// user error = #{user.errors.full_messages}"
     end
     user
   end
