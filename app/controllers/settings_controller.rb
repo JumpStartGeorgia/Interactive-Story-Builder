@@ -39,11 +39,16 @@ class SettingsController < ApplicationController
   def check_nickname
     output = {:permalink => nil, :is_duplicate => false}
     if params[:nickname].present?
-      if user_signed_in? && current_user.nickname == params[:nickname].strip.downcase
+      nickname = ActionController::Base.helpers.strip_links(params[:nickname])
+      permalink_temp = permalink_normalize(nickname)
+      if user_signed_in? && current_user.permalink == permalink_temp
+logger.debug "************** nickname is the same!"
         output[:permalink] = current_user.permalink
       else
-        u = User.new(:nickname => ActionController::Base.helpers.strip_links(params[:nickname]))
+        u = User.new(:nickname => nickname)
+logger.debug "************** nickname start: #{u.nickname}"
         u.generate_permalink
+logger.debug "************** nickname after generate: #{u.nickname}"
         output = {:permalink => u.permalink, :is_duplicate => u.is_duplicate_permalink?}
       end
     end

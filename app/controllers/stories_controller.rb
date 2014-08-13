@@ -629,20 +629,27 @@ end
   def check_permalink
     output = {:permalink => nil, :is_duplicate => false}
     if params[:text].present?
+      permalink_staging = params[:text]
+      permalink_temp = permalink_normalize(permalink_staging)
       story = Story.select('permalink, permalink_staging').where(:id => params[:id]).limit(1).first
       # if the story could not be found, use an empty story
+      logger.debug "*********** new staging = #{permalink_staging}; story = #{story.inspect}"
       if story.blank?
-        story = Story.new(:permalink_staging => ActionController::Base.helpers.strip_tags(params[:text]))
+        logger.debug "*********** story blank"
+        story = Story.new(:permalink_staging => permalink_staging)
         story.generate_permalink
         output = {:permalink => story.permalink, :is_duplicate => story.is_duplicate_permalink?}
         
       # if the permalink is the same, do nothing
-      elsif story.permalink_staging.downcase == params[:text].strip.downcase
+      elsif story.permalink == permalink_temp
+        logger.debug "*********** permalink same"
         output[:permalink] = story.permalink
         
       # permalink is different, so create a new one
       else
-        story.permalink_staging = ActionController::Base.helpers.strip_tags(params[:text])
+        logger.debug "*********** permalink different"
+        story.permalink_staging = permalink_staging
+        logger.debug "*********** - story = #{story.inspect}"
         story.generate_permalink!
         output = {:permalink => story.permalink, :is_duplicate => story.is_duplicate_permalink?}
       end

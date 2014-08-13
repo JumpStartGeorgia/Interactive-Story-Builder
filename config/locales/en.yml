@@ -174,7 +174,7 @@ en:
       sign_out: Sign Out
       sign_in_provider: "Sign in with %{provider}"
       sign_up_provider: "Sign up with %{provider}"
-      sign_in_local_or_provider: or log in with your username and password
+      sign_in_local_or_provider: or log in with your email and password
       reset_or_sign_in: sign in with facebook or reset your password
       add_story: Add Story
       users: Users
@@ -191,7 +191,7 @@ en:
       like: Like   
       likes: Likes      
       comments: Comment on this story
-      views: "%{num} reads"
+      views: "%{num} views"
       tags: Tags
       menu: Menu
       pages: Edit Text on Site
@@ -394,7 +394,7 @@ en:
     filters: Filters
     sort:
       recent: Recent
-      reads: Reads
+      reads: Views
       likes: Likes
     category_header: Category
     category_title: View stories that belong to a category

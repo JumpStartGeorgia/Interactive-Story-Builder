@@ -158,6 +158,8 @@ class Story < ActiveRecord::Base
 	def publish_date		
 	  if self.published_changed? && self.published?
 	  	self.published_at = Time.now
+  	elsif !self.published?
+	  	self.published_at = nil
 	  end    
     return true 
 	end

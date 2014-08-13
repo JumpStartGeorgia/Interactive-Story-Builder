@@ -46,14 +46,18 @@ class User < ActiveRecord::Base
 
   # if the nickname changes, then the permalink must also change
   def check_nickname_changed
-    puts "checking nickname changed"
+    logger.debug "************** checking nickname changed"
     
     # if this is a create (id does not exist) make sure the nickname is unique
     fix_nickname_duplication if self.id.blank?
-    
-    if self.nickname_changed?
+
+    # if nickname changed text, not just case, create new permalink
+    new_nickname = ActionController::Base.helpers.strip_links(self.nickname)
+    logger.debug "************** nickname was: #{self.nickname_was}; nickname now: #{new_nickname}"
+    if self.nickname_was.downcase.strip != new_nickname.downcase.strip
+      logger.debug "************** nickname changed, creating new permalink"
       # make sure there are no tags in the nickname
-      self.nickname = ActionController::Base.helpers.strip_links(self.nickname)
+      self.nickname = new_nickname
       self.generate_permalink! 
     end
     return true
@@ -61,15 +65,16 @@ class User < ActiveRecord::Base
   
   # if this nickname already exists, add a # to the end to make it unique
   def fix_nickname_duplication 
+    logger.debug "************** fix_nickname_duplication "
     # if the nickname does not exist, populate with the first part of the email
     if read_attribute(:nickname).blank?
       self.nickname = self.email.split('@')[0]
     end
 
-    n = self.class.where(["nickname = ?", self.nickname]).count
+    n = User.where(["nickname = ?", self.nickname]).count
     
     if n > 0 
-      links = self.class.where(["nickname LIKE ?", "#{self.nickname}%"]).order("id")
+      links = User.where(["nickname LIKE ?", "#{self.nickname}%"]).order("id")
       number = 0
       
       links.each_with_index do |link, index|
@@ -80,6 +85,7 @@ class User < ActiveRecord::Base
       end         
       self.nickname = "#{self.nickname}-#{number+1}"
     end  
+    logger.debug "************** fix_nickname_duplication nickname now: #{self.nickname} "
   end
 
   def create_permalink   

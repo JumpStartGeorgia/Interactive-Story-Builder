@@ -77,7 +77,7 @@ class ApplicationController < ActionController::Base
 		@js = []
     
     # have to insert devise styles/js here since no controllers exist
-    if params[:controller].start_with?('devise/')
+    if params[:controller].present? && params[:controller].start_with?('devise/')
       @css.push('devise.css',"navbar.css")
       @js.push('nickname.js')
     end
@@ -276,6 +276,18 @@ class ApplicationController < ActionController::Base
           end
         end
       end
+    end
+  end
+
+  def permalink_normalize(str)
+    unless str.blank?
+      n = str.mb_chars.downcase.to_s.strip.latinize.to_ascii
+      n.gsub!(/\s+/,            '-')
+      n.gsub!(/[^[:alnum:]_\-]/, '')
+      n.gsub!(/-{2,}/,          '-')
+      n.gsub!(/^-/,             '')
+      n.gsub!(/-$/,             '')
+      n
     end
   end
 
