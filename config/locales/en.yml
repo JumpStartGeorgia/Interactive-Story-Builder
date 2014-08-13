@@ -667,3 +667,11 @@ en:
     missing: "An error occurred while processing your image. Please try again."
     invalid_type: "Invalid file type. Only .jpg or .png is allowed."
     size_limit: "Image file size is limited to 5MB"
+  devise:
+    mailer:
+      reset_password_instructions:
+        title: 'Hello %{nickname}!'
+        p1: Someone has requested a link to change your password, and you can do this through the link below.
+        link_title: Change my password
+        p2: "If you didn't request this, please ignore this email."
+        p3: "Your password won't change until you access the link above and create a new one."

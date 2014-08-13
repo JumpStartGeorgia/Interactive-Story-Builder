@@ -53,8 +53,9 @@ class User < ActiveRecord::Base
 
     # if nickname changed text, not just case, create new permalink
     new_nickname = ActionController::Base.helpers.strip_links(self.nickname)
+    nickname_was = self.nickname_was.present? ? self.nickname_was.downcase.strip : nil
     logger.debug "************** nickname was: #{self.nickname_was}; nickname now: #{new_nickname}"
-    if self.nickname_was.downcase.strip != new_nickname.downcase.strip
+    if nickname_was != new_nickname.downcase.strip
       logger.debug "************** nickname changed, creating new permalink"
       # make sure there are no tags in the nickname
       self.nickname = new_nickname

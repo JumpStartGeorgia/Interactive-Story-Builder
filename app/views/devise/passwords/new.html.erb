@@ -8,6 +8,7 @@
   <% if popup %>
   	<div class="title"><%= title %></div>
   <% end %>
+<!--
   <div class="providers">
     <%- if devise_mapping.omniauthable? %>
 	    <%- model_class.omniauth_providers.each do |provider| %>
@@ -25,6 +26,7 @@
   <% if popup %>
   	<div class="facebook_or_local"><%= t('helpers.links.reset_or_sign_in') %></div>
   <% end %>
+-->  
   <%= semantic_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :"data-form-id"=>"reset-password-form" }) do |f| %>
   	<%= f.error_messages %>
   	<%= f.input :email, :as => :email, :input_html => { :size => 35 , :class => "login-username" }, :placeholder => t('activerecord.attributes.user.email') , label: false  %>
