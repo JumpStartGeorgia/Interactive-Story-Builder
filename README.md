@@ -10,7 +10,7 @@ The idea for this application came after viewing mixed-media stories like this [
 StoryBuilder is similar to a blog editor like wordpress or tumblr, but at this point is still a little rustic.  In essence, StoryBuilder allows you to add content, images, and/or videos into sections in a story that can be ordered however you want.
 
 Right now there are four types of sections that can be created: 
-* Content: Simple text with a rich-text editor like Word or Google Docs.
+* Text: Simple text with a rich-text editor like Word or Google Docs.
 * Embed Online Media: Add online video and audio from sites like youtube, vimeo and soundcloud.
 * Full-Screen Media: This can be a combination of images and/or videos that will appear on the screen in a vertical slider format, one after the other.  The media is stretched to fill the users entire window and a small caption text can appear ontop of the media.
 * Image Slideshow: Images in a simple horizontal slideshow.
