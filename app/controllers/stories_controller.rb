@@ -87,7 +87,7 @@ class StoriesController < ApplicationController
       if !@story.published && params[:story][:published]=="1"
         if !@story.about.present? || !@story.asset_exists?
           flash[:error] = I18n.t('app.msgs.error_publish_missing_fields', :obj => @story.title)            
-        elsif @story.sections.map{|t| t.content? && t.content.content.present? }.count(true) == 0
+        elsif @story.sections.map{|t| t.content? && t.content.present? && t.content.content.present? }.count(true) == 0
           flash[:error] = I18n.t('app.msgs.error_publish_missing_content_section')            
         end                      
         format.html { render action: "edit" }
@@ -498,7 +498,7 @@ class StoriesController < ApplicationController
       
       if publishing
         if !(@item.about.present? && @item.asset_exists?)                 
-                  view_context.log(@item.sections.map{|t| t.content? && t.content.content.present? }.count(true) )
+                  view_context.log(@item.sections.map{|t| t.content? && t.content.present? && t.content.content.present? }.count(true) )
            format.json {render json: { e:true, msg: (t('app.msgs.error_publish_missing_fields', :obj => @item.title) +  
                 " <a href='" +  edit_story_path(@item) + "'>" + t('app.msgs.error_publish_missing_fields_link') + "</a>")} }  
            error = true       
