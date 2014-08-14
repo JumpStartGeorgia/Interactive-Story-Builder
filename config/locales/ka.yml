@@ -158,7 +158,7 @@ ka:
       cancel: გაუქმება
       reset: საწყის კონფიგურაციაზე დაბრუნება
       view: ნახვა
-      sign_in_facebook: სისტემაში Facebook-ით შესვლა
+      sign_in_facebook: Facebook-ით შესვლა
       edit_story: ამბის პარამეტრების რედაქტირება
       delete_story: ამბის წაშლა
       admin_story: კონტენტის რედაქტირება
@@ -174,7 +174,7 @@ ka:
       sign_up: დარეგისტრირდით
       sign_up_title: შემოგვიერთდი “სთორიბილდერზე”
       sign_out: გასვლა
-      sign_in_provider: "სისტემაში შესვლა %{provider}-ით"
+      sign_in_provider: "შესვლა %{provider}-ით"
       sign_up_provider: "დარეგისტრირდით  %{provider}-ით"
       sign_in_local_or_provider: ან შეიყვანეთ თქვენი ელ. ფოსტა და პაროლი
       reset_or_sign_in: შედით facebook-ით ან შეცვალეთ პაროლი
