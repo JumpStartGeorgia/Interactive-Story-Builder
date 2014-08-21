@@ -91,7 +91,14 @@
   .column a{
     text-decoration: underline;
   }
-  
+  .column p,.column p span
+  {
+    font-family: opensans-r !important;
+    color: #5A5A5A;
+    line-height: 24px !important;
+    font-size: 16px !important;
+    letter-spacing:normal !important;
+  }
   .column blockquote {
     padding: 0 0 0 15px;
     margin: 0 0 20px;
@@ -157,16 +164,12 @@
       top:38px;
     }
   }
-  .dropcap {
-    float: left;
-    font: bold 53px/70px "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin: -7px 10px 0 0;
-    height: 1em;
-  }
+
 
   .headline,
   .section h3, .slideshow-headline {
-    font: 200 30px/40px shavshvebi, Georgia, serif;
+    font: 200 30px/40px bandera-pro-b, Georgia, serif;
+    line-height:50px;
   }
 
   .headline {
@@ -186,8 +189,8 @@
   }
 
   .byline {
-    font: 12px/2em dejavusans-r,"Helvetica Neue", Helvetica, Arial, sans-serif;
-    opacity: .5;
+    font: 16px opensans-l, Helvetica, Arial, sans-serif;    
+    opacity: 0.6;
   }
 
   .byline .author {
@@ -247,7 +250,7 @@
   }
 
   .image .caption {
-    font: 12px/1.4em "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: 12px/1.4em opensans-r, Helvetica, Arial, sans-serif;
     clear: left;
     color: #999;
   }
@@ -295,10 +298,13 @@
     position: absolute;
   }
 
-  .video-caption {   
-    padding-bottom: 20px;    
-    left:5%;    
-
+  .video-caption {
+    margin-top: 5px;
+    color: #888;
+    padding-bottom: 20px;
+    font-family:opensans-b; 
+    font-size:17px;
+    line-height: 29px;   
   }
 
   .video-source {
@@ -311,7 +317,7 @@
   }
 
   .column .video {
-    border: solid 8px #f0f0f0;
+    border:8px solid #f0f0f0;
     box-sizing: border-box;
     margin: 40px -10%;
     width: 120%;
@@ -344,20 +350,13 @@
   }
 
   .video .video-caption {
-    position: absolute;    
-    bottom: 10%;
-    left: 7%;    
+    position: absolute;
+    left: 7%;
+    bottom: 20%;
+    width: 350px;
     z-index: 3;
-    color:#fff;        
-    font-weight:normal;
-    width: 360px;
-    font-family:dejavusans-b;
-    font-size:16px;
-    -webkit-font-smoothing: antialiased;  
-    line-height: 24px;
-    text-shadow: 0 0px 45px rgba(0, 0, 0, 0.22);
+    color: #fff;
     padding: 20px 0;
-    letter-spacing: -0.2px;
   }
 
  .video-sequence:first-of-type .video:first-of-type
@@ -1013,9 +1012,7 @@
     right: 0;
   }
   .navigation {
-      font-size: 17px !important;
-    font-family:dejavusans-r;   
-    -webkit-font-smoothing: antialiased;   
+    font: 200 12px/20px opensans-r, Georgia, serif;
     position: fixed;
     top: 0;
     width: 100%;
@@ -1506,16 +1503,13 @@
 {
   line-height:20px !important;
 }
-
-
  
   /* footer end */
   .column-caption
   {
-    font-family: dejavu_bold, Georgia, serif;
-    -webkit-font-smoothing: antialiased;  
-    letter-spacing: .1em;
-    font-size:19px;
+    font-family:opensans-b, Georgia, serif;    
+    line-height:24px;
+    font-size:22px;
     margin:5px 0px;  
   }
 
