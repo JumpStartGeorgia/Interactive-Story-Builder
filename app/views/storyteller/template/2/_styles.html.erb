@@ -1,29 +1,13 @@
 <style>    
   @font-face
   {
-    font-family: 'dejavu';
-    font-style: normal;
-    font-weight: normal;
-    src: url(<%= (@export ? "" : "/template/#{@template}/") + 'assets/fonts/dejavusans-r.ttf'%>);      
-  }
-
-  @font-face
-  {
-    font-family: 'dejavu-bold';
-    font-style: normal;
-    font-weight: normal;
-    src: url(<%= (@export ? "" : "/template/#{@template}/") + 'assets/fonts/dejavusans-b.ttf'%>);    
-  }
-
-  @font-face
-  {
     font-family: 'shavshvebi';
     font-style: normal;
     font-weight: normal;
     src: url(<%= (@export ? "" : "/template/#{@template}/")  + 'assets/fonts/shavshvebi.ttf'%>);    
   }
   body {
-    font: 17px/18px 'dejavu-bold';
+    font: 17px/18px 'dejavusans-b';
     margin: 0;
     padding: 0;
     background-color:#fff;
@@ -40,7 +24,7 @@
   }
   p
   {
-     font-family:'dejavu' !important; 
+     font-family:'dejavusans-r' !important; 
      -webkit-font-smoothing: antialiased;  
      font-size: 13px;
      line-height: 21px;
@@ -51,13 +35,13 @@
   }
 
   .section.column {
-    font-family:'dejavu-bold';
+    font-family:'dejavusans-b';
     -webkit-font-smoothing: antialiased;  
     margin-top: 100px;
   }
   .section.column h1, .section.column h2, .section.column h3
   , .section.column h4, .section.column h5, .section.column h6{
-    font-family:'dejavu-bold';
+    font-family:'dejavusans-b';
     -webkit-font-smoothing: antialiased;  
   }
 
@@ -203,7 +187,7 @@
   }
 
   .byline {
-    font: 12px/2em dejavu,"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: 12px/2em dejavusans-r,"Helvetica Neue", Helvetica, Arial, sans-serif;
     opacity: .5;
   }
 
@@ -368,7 +352,7 @@
     color:#fff;        
     font-weight:normal;
     width: 360px;
-    font-family:dejavu-bold;
+    font-family:dejavusans-b;
     font-size:16px;
     -webkit-font-smoothing: antialiased;  
     line-height: 24px;
@@ -446,7 +430,7 @@
     color:#fff;        
     font-weight:normal;
     width: 340px;
-    font-family:dejavu-bold;
+    font-family:dejavusans-b;
     font-size:16px;
     -webkit-font-smoothing: antialiased;  
     line-height: 24px;
@@ -1026,7 +1010,7 @@
   }
   .navigation {
       font-size: 17px !important;
-    font-family:dejavu;   
+    font-family:dejavusans-r;   
     -webkit-font-smoothing: antialiased;   
     position: fixed;
     top: 0;
@@ -1456,7 +1440,7 @@
 }
 .footer-section a
 {
-  font-family: dejavu;
+  font-family: dejavusans-r;
   font-size: 14px;  
   font-weight: 600;
   text-decoration: none;
@@ -1520,7 +1504,7 @@
 
   .column-sub-caption
   {
-    font-family: dejavu, Georgia, serif;
+    font-family: dejavusans-r, Georgia, serif;
     -webkit-font-smoothing: antialiased;  
     font-size:15px;
     margin:0px 0px 5px 5px;  
