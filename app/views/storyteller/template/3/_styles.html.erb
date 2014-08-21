@@ -183,25 +183,25 @@
     line-height: 60px;
     margin: 80px 0px 15px 0px;
   }
-  .byline-rule {
-    /*border-top: 2px solid #000;*/
-    width: 120px;
-  }
-
   .byline {
     font: 16px opensans-l, Helvetica, Arial, sans-serif;    
     opacity: 0.6;
   }
-
+  .byline div{
+    display:inline-block;  
+  }
+  .byline .caption
+  {
+    opacity:0.6;
+  }
   .byline .author {    
     white-space: nowrap;    
+    opacity:1;
   }
 
   .byline--first {
     margin-bottom: 14px;
-    opacity: 1;
-    font-weight: 700;
-    padding-top: 23px;
+    opacity: 1;        
   }
 
   @media (max-width: 704px) {

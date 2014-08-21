@@ -97,11 +97,10 @@
                 <% end %>
                 <% if columnSectionCount == 0 %>
                   <div class='headline'><%= @story.title.downcase %></div>              
-                  <div class="byline-rule"></div>
-                  <div class="byline byline--first" style="margin-bottom:50px;">
-                  <%= t('storyteller.byline') %><span class="author"> <%= @story.author %></span>
-                  <%= "<div>#{t('storyteller.byline_media')}<span class='author'>#{@story.media_author}</span></div>".html_safe if @story.media_author.present? %>
-                  </div>               
+                  <div class="byline byline--first" style="margin-bottom:24px;">
+                    <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.author %></span>
+                    <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                  </div>                 
                 <% end %>         
                 <%= "<div class='column-caption'>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
                 <%= "<div class='column-sub-caption'>#{section.content.sub_caption}</div>".html_safe  if section.content.sub_caption.present? %>                       
