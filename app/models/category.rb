@@ -6,14 +6,14 @@ class Category < ActiveRecord::Base
 	has_many :category_translations, :dependent => :destroy
   accepts_nested_attributes_for :category_translations
 
-  attr_accessible :id, :category_translations_attributes, :published_story_count
+  attr_accessible :id, :category_translations_attributes, :has_published_stories
 
 	def self.sorted
 		with_translations(I18n.locale).order("category_translations.name asc")
 	end
 
   def self.with_stories
-    where('published_story_count > 0')
+    where(:has_published_stories => true)
   end
 =begin
   def self.increment_count(id)

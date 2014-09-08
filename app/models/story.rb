@@ -118,6 +118,9 @@ class Story < ActiveRecord::Base
     select('story_categories.category_id').is_published.joins(:story_categories).map{|x| x['category_id']}.uniq.sort
 	end
 
+  def self.include_categories
+    includes(:categories)
+  end
 
   # get list of users that match the passed in query
   # - user must not be owner or already have invitation or is already collaborator

@@ -10,7 +10,7 @@ class Language < ActiveRecord::Base
   end
   
   def self.with_stories
-    where('published_story_count > 0')
+    where(:has_published_stories => true)
   end
 =begin
   def self.increment_count(locale)

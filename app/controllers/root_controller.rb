@@ -159,16 +159,14 @@ class RootController < ApplicationController
   end
 
   def feed
-    @categories = Category.sorted
-    @categories_published = @categories.select{|x| x.published_story_count > 0}         
     index = params[:category].present? ? @categories_published.index{|x| x.permalink.downcase == params[:category].downcase} : nil
-    @items =  Story.is_published_home_page.recent     
+    @items =  Story.is_published_home_page.include_categories.recent
     @filtered_by_category = ""
     if index.present?
       @filtered_by_category = @categories_published[index].permalink
       @items = @items.by_category(@categories_published[index].id)    
     end
-  @filtered_by_tag = ""
+   @filtered_by_tag = ""
    if params[:tag].present?
       @filtered_by_tag = params[:tag]
       @items =  @items.tagged_with(params[:tag])                
