@@ -53,7 +53,7 @@ class Story < ActiveRecord::Base
 	before_save :generate_reviewer_key
 	before_save :shortened_url_generation
 	 
-#	after_save :update_filter_counts
+	after_save :update_filter_counts
 
   scope :recent, order("stories.published_at desc, stories.title asc")
   scope :reads, order("stories.impressions_count desc, stories.published_at desc, stories.title asc")
@@ -107,6 +107,17 @@ class Story < ActiveRecord::Base
 	def self.by_authors(user_ids)
     where(:user_id => user_ids)
 	end
+	
+	# get all of the unique story locales for published stories
+	def self.published_locales
+	  select('story_locale').is_published.map{|x| x.story_locale}.uniq.sort
+	end
+
+	# get all of the unique story locales for published stories
+	def self.published_categories
+    select('story_categories.category_id').is_published.joins(:story_categories).map{|x| x['category_id']}.uniq.sort
+	end
+
 
   # get list of users that match the passed in query
   # - user must not be owner or already have invitation or is already collaborator
@@ -182,8 +193,11 @@ class Story < ActiveRecord::Base
     if (self.published_changed? || self.published?) && 
         !self.cached_votes_total_changed? && !self.impressions_count_changed? && 
         !self.comments_count_changed? && !self.staff_pick_changed?
-      Category.update_counts
-      Language.update_counts
+
+      Category.update_published_stories_flags
+      Language.update_published_stories_flags
+#      Category.update_counts
+#      Language.update_counts
     end
 =begin
     # languages

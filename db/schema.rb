@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140811055523) do
+ActiveRecord::Schema.define(:version => 20140908063756) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -34,12 +34,12 @@ ActiveRecord::Schema.define(:version => 20140811055523) do
   add_index "assets", ["processed"], :name => "index_assets_on_processed"
 
   create_table "categories", :force => true do |t|
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-    t.integer  "published_story_count", :default => 0
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.boolean  "has_published_stories", :default => false
   end
 
-  add_index "categories", ["published_story_count"], :name => "index_categories_on_published_story_count"
+  add_index "categories", ["has_published_stories"], :name => "index_categories_on_has_published_stories"
 
   create_table "category_translations", :force => true do |t|
     t.integer  "category_id"
@@ -123,14 +123,14 @@ ActiveRecord::Schema.define(:version => 20140811055523) do
   create_table "languages", :force => true do |t|
     t.string   "locale"
     t.string   "name"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-    t.integer  "published_story_count", :default => 0
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.boolean  "has_published_stories", :default => false
   end
 
+  add_index "languages", ["has_published_stories"], :name => "index_languages_on_has_published_stories"
   add_index "languages", ["locale"], :name => "index_languages_on_locale"
   add_index "languages", ["name"], :name => "index_languages_on_name"
-  add_index "languages", ["published_story_count"], :name => "index_languages_on_published_story_count"
 
   create_table "media", :force => true do |t|
     t.integer  "section_id"

@@ -24,11 +24,12 @@ class Category < ActiveRecord::Base
     where(:id => id).update_all('published_story_count = if(published_story_count=0, 0, published_story_count - 1)')
   end
 =end
+
+=begin
   # special format of name (#) for filter list
   def name_count
     "#{self.name} (#{self.published_story_count})"
   end
-
 
   # update the counts of categories with published stories
   def self.update_counts
@@ -48,4 +49,24 @@ class Category < ActiveRecord::Base
       end
     end
   end
+=end
+
+  # update the flags for categories with published stories
+  def self.update_published_stories_flags
+    # get categories with published stories
+    categories = Story.published_categories
+    
+    # update the flag values
+    if categories.present?
+      sql = "update categories set has_published_stories = if(id in ("
+      sql << categories.map{|x| "'#{x}'"}.join(', ')
+      sql << "), 1, 0)"
+      
+      connection.update(sql)
+    else
+      update_all(:has_published_stories => 0)
+    end
+  end  
+  
+  
 end
