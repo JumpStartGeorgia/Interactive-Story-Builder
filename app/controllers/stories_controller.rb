@@ -155,9 +155,15 @@ class StoriesController < ApplicationController
     if params[:n] == 'n'
       @no_nav = true
     end    
-  	@story = Story.fullsection(params[:id])    
-    respond_to do |format|     
-      format.html { render 'storyteller/index', layout: false }
+
+  	@story = Story.fullsection(params[:id])      
+
+    respond_to do |format|  
+      #if(@story.present?)   
+        format.html { render 'storyteller/index', layout: false }
+      #else 
+
+      #end
     end
   end
 

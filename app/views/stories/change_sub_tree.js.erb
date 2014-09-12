@@ -20,12 +20,12 @@ $(document).ready(function()
   var secOpen = section.hasClass('open');
 	if(section.has('ul').length>0)
 	{
-		li = "<li id='<%= @item.id %>' class='sub'><span><%= @item.title %></span></li>";	
+		li = "<li id='<%= @item.id %>' class='sub'><div><div class='sub-l'><%= @item.title %></div><div class='sub-a'>›</div></div></li>";	
 		section.find('ul').append(li);
 	}
 	else 
 	{		
-		li = "<ul><li id='<%= @item.id %>' class='sub'><span><%= @item.title %></span></li></ul>";			   
+		li = "<ul><li id='<%= @item.id %>' class='sub'><div><div class='sub-l'><%= @item.title %></div><div class='sub-a'>›</div></div></li></ul>";			   
 		section.append(li);	
 	}
 	

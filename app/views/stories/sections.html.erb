@@ -18,17 +18,18 @@
               <div class="box"><div class="collapser">+</div><div class="title"><i class="s <%= item.get_icon %>"></i><span><%= item.title %></span></div></div>  
 
                 <% if item.content? && item.content.present? %>
-                  <ul class="closed"><li id='<%= item.content.id %>' class='sub'><span><%= item.content.title %></span></li></ul>
+                  <ul class="closed"><li id='<%= item.content.id %>' class='sub'><div><div class="sub-l"><%= item.content.title %></div><div class="sub-a">›</div></div></li></ul>
                 <% elsif item.media? && item.media.present? %>
                   <ul class="closed">
                       <% item.media.each do |subitem| %>                  
-                      <li id='<%= subitem.id %>' class='sub'><span><%= subitem.title %></span></li>
+                      <li id='<%= subitem.id %>' class='sub'><div><div class="sub-l"><%= subitem.title %></div><div class="sub-a">›</div></div>
+                      </li>
                     <%end%>
                   </ul>
                  <% elsif item.slideshow? && item.slideshow.present? %>
-                   <ul class="closed"><li id='<%= item.slideshow.id %>' class='sub'><span><%= item.slideshow.title %></span></li></ul>
+                   <ul class="closed"><li id='<%= item.slideshow.id %>' class='sub'><div><div class="sub-l"><%= item.slideshow.title %></div><div class="sub-a">›</div></div></li></ul>
                  <% elsif item.embed_medium.present? %>
-                    <ul class="closed"><li id='<%= item.embed_medium.id %>' class='sub'><span><%= item.embed_medium.title %></span></li></ul>
+                    <ul class="closed"><li id='<%= item.embed_medium.id %>' class='sub'><div><div class="sub-l"><%= item.embed_medium.title %></div><div class="sub-a">›</div></div></li></ul>
                 <%end%>
 
             </li>          

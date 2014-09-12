@@ -620,7 +620,7 @@ function getData()
 	      cache: true 
 		}).error(function(e){console.log(e)}).done(function(){			
          if(el_type!='s' && method != 'n')
-            $('.form-title .form-title-text').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > span').text() + ": " + $('.form-title .form-title-text').text());
+            $('.form-title .form-title-text').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > div > .sub-l').text() + ": " + $('.form-title .form-title-text').text());
 		});
 
 	return true;	

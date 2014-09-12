@@ -174,6 +174,7 @@ body#storybuilder_form{
           margin-left: 32px;
           min-height: 32px;
           padding-top: 8px;
+          margin-right: 14px;
           & > i {
             margin-right: 5px;
           }
@@ -267,49 +268,68 @@ body#storybuilder_form{
       }
       > li.sub
       { 
-        span
+        > div
         {    
-          font-size:13px;
-          overflow:hidden;
           color:#000;
-          background-color:#fcfcfc;
-          width:100%;
-          padding:7px 0px 0px 50px;
-          display:block;
-          min-height: 32px;
+          background-color:#fcfcfc;       
         }
-        span:hover
+        > div:hover
         {   
           color: #fff;
           background-color: #76b9f1;
           cursor:pointer;    
         }
-        &.active span
+        &.active > div
         {
           color: #fff;
           background-color: #5da7e2;
         }
-        &.active span:after
+        > div > .sub-l
         {
-          position:relative;;
-          right: 6px;
-          top: 0px;
+          width:260px;
+          display:inline-block;
+          font-size:13px;
+          overflow:hidden;           
+          padding:7px 6px 0px 50px;
+          display:inline-block;
+          min-height: 32px;
+        }
+        &.active > div > .sub-a
+        {
+          display:inline-block;
+        }
+        > div > .sub-a
+        {
+          display:none;
+          float:right;
           font-size:28px;     
           line-height:12px;   
           color: #fff; 
-          content:"›";
-          display:inline-block;
-          float:right;
+          padding-right: 3px;
+          padding-top: 8px;
+          width: 14px;
         }
+        // &.active div:after
+        // {
+        //   position:relative;;
+        //   right: 6px;
+        //   top: 0px;
+        //   font-size:28px;     
+        //   line-height:12px;   
+        //   color: #fff; 
+        //   content:"›";
+        //   display:inline-block;
+        //   float:right;
+        // }
       }
     }
   }
 
   .sidebar
   {
-    width:auto;
-
-    max-width:274px;
+//    width:auto;
+//    max-width:274px;
+    width:274px;
     overflow:hidden;
     float:left;
     height: 100%;
