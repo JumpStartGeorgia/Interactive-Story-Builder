@@ -110,12 +110,12 @@ class Story < ActiveRecord::Base
 	
 	# get all of the unique story locales for published stories
 	def self.published_locales
-	  select('story_locale').is_published.map{|x| x.story_locale}.uniq.sort
+	  select('story_locale').is_published_home_page.map{|x| x.story_locale}.uniq.sort
 	end
 
 	# get all of the unique story locales for published stories
 	def self.published_categories
-    select('story_categories.category_id').is_published.joins(:story_categories).map{|x| x['category_id']}.uniq.sort
+    select('story_categories.category_id').is_published_home_page.joins(:story_categories).map{|x| x['category_id']}.uniq.sort
 	end
 
   def self.include_categories
