@@ -90,7 +90,7 @@ class User < ActiveRecord::Base
   end
 
   def create_permalink   
-    self.nickname.dup
+    self.nickname.present? ? self.nickname.dup : nil
   end
 
   # see if the user logs in via a provider (e.g., facebook)
@@ -168,7 +168,7 @@ class User < ActiveRecord::Base
   end
   
   def nickname
-    read_attribute(:nickname).present? ? read_attribute(:nickname) : self.email.split('@')[0]
+    read_attribute(:nickname).present? ? read_attribute(:nickname) : self.email.present? ? self.email.strip.split('@')[0] : nil
   end
   
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
