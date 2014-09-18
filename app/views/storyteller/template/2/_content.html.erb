@@ -100,8 +100,7 @@
                 <% if columnSectionCount == 0 %>
                   <div class='headline'><%= @story.title %></div>              
                   <div class="byline byline--first" style="margin-bottom:24px;">
-                    <span class="author">&nbsp;<%= @story.author %></span>
-                    <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media',:locale=>'ka')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                    <span class="author">&nbsp;<%= @story.author %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media',:locale=>'ka')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
                   </div>   
                 <% end %>         
                 <%= "<div class='column-caption'>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
