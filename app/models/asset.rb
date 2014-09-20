@@ -1,6 +1,6 @@
 class Asset < ActiveRecord::Base
   has_attached_file :asset
-
+  include DeletableAttachment
 
   belongs_to :user, foreign_key: :item_id
   belongs_to :story, foreign_key: :item_id
