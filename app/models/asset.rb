@@ -70,11 +70,11 @@ class Asset < ActiveRecord::Base
           }
 
         when  TYPE[:section_audio]         
-          opt = {:url => "/system/places/audio/:story_id/:basename.:extension"}  
+          opt = {:url => "/system/places/audio/:story_id/:id__:basename.:extension"}  
 
         when  TYPE[:media_image]        
           opt = { 
-                  :url => "/system/places/images/:media_image_story_id/:style/:basename.:extension",
+                  :url => "/system/places/images/:media_image_story_id/:style/:id__:basename.:extension",
                   :styles => {
                         :mobile_640 => {:geometry => "640x427"},
                         :mobile_1024 => {:geometry => "1024x623"},
@@ -84,7 +84,7 @@ class Asset < ActiveRecord::Base
 
         when  TYPE[:media_video]        
           opt = {   
-                  :url => "/system/places/video/:media_video_story_id/:style/:basename.:extension",
+                  :url => "/system/places/video/:media_video_story_id/:style/:id__:basename.:extension",
                   :styles => { 
                     :poster => { :format => 'jpg', :time => 1 }
                   }, 
@@ -93,7 +93,7 @@ class Asset < ActiveRecord::Base
 
          when  TYPE[:slideshow_image]        
           opt = {   
-                  :url => "/system/places/slideshow/:slideshow_image_story_id/:style/:basename.:extension" ,
+                  :url => "/system/places/slideshow/:slideshow_image_story_id/:style/:id__:basename.:extension" ,
                   :styles => {                   
                     :mobile_640 => {:geometry => "640x427"},
                     :mobile_1024 => {:geometry => "1024x623"}, 
