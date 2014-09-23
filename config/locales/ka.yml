@@ -49,6 +49,7 @@ ka:
         has_marker: სექციის გამოყოფა
         type_id: ტიპი
         sort_order: დალაგება
+        delete_audio: Delete the Audio Track?
       content:        
         title: სათაური
         caption: ტექსტის სათაური
@@ -585,6 +586,7 @@ ka:
         type: ამ ტიპის არჩევა განსაზღვრავს იმას, თუ რა სახის ინფორმაციის დამატება შეგეძლებათ ამ სექციაში 
         has_marker: თუ მონიშნავთ, ეს სექცია გამოიყოფა და შესაძლებელი იქნება მასზე ცალკე ბმულით გადასვლა
         audio: მუსიკალური გაფორმება ამ სექციისთვის (დასაშვებია მხოლოდ mp3 ფორმატი; ფაილის მაქსიმალური ზომა 10MB)
+        delete_audio: "If checked, the Audio Track will be deleted"
     content:
       form_title: ტექსტის ფორმა
       placeholder:

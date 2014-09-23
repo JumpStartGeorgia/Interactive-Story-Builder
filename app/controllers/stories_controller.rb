@@ -344,17 +344,17 @@ class StoriesController < ApplicationController
 
 
   def save_section      
-
     @item = Section.find_by_id(params[:section][:id]) 
-     respond_to do |format|
-        if @item.update_attributes(params[:section].except(:id))
-          flash_success_updated(Section.model_name.human,@item.title)       
-          format.js {render action: "build_tree", status: :created }                  
-        else
-          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                            
-          format.js {render action: "flash", status: :ok }
-        end
-      end    
+logger.debug "+++++++++++++ delete attribute = #{params[:section][:asset_attributes][:delete_asset]}"
+    respond_to do |format|
+      if @item.update_attributes(params[:section].except(:id))
+        flash_success_updated(Section.model_name.human,@item.title)       
+        format.js {render action: "build_tree", status: :created }                  
+      else
+        flash[:error] = u I18n.t('app.msgs.error_updated', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                            
+        format.js {render action: "flash", status: :ok }
+      end
+    end    
   end
   def save_content      
      @item = Content.find_by_id(params[:content][:id])  

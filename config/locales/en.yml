@@ -49,6 +49,7 @@ en:
         has_marker: Navigation Shortcut
         type_id: Type
         sort_order: Sort Order
+        delete_audio: Delete the Audio Track?
       content:        
         title: Title          
         caption: Heading
@@ -542,7 +543,7 @@ en:
         categories: Select the category(s) your story belongs to.  Allows users to filter stories by a category.
         tag_list: "Enter text to find existing tags.  If your tag does not exist yet, press 'Enter' to add the new tag to the list."
     collaborators:
-      title: Collaborators for '%{title}'
+      title: "Collaborators for '%{title}'"
       owner_header: Story Owner
       collaborators_header: Story Collaborators
       explanation: A story collaborator is someone that has access to edit this story.
@@ -585,6 +586,7 @@ en:
         type: "Selecting this type determines what kind of information you can add into this section"
         has_marker: "If checked, there will be a navigation shortcut link to go to this section"
         audio: "Background audio to play while this section is in view (mp3 format only; 10mb file size limit)"
+        delete_audio: "If checked, the Audio Track will be deleted"
     content:
       form_title: Text Form
       placeholder:
