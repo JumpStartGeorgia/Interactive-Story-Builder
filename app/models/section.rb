@@ -11,7 +11,7 @@ class Section < ActiveRecord::Base
   has_many :media, :order => 'position', dependent: :destroy
   acts_as_list scope: :story
 
-
+  attr_accessor :delete_audio
 
   TYPE = {content: 1, media: 2, slideshow: 3, embed_media: 4}
   ICONS = {
@@ -32,6 +32,18 @@ class Section < ActiveRecord::Base
   validates :story_id, :presence => true
   validates :type_id, :presence => true, :inclusion => { :in => TYPE.values }  
   validates :title, :presence => true, length: { maximum: 255, :message => 'Title max length is 255 symbols' } 	
+
+  before_save :check_delete_audio
+
+  # if delete_audio flag set, then delete the audio asset
+  def check_delete_audio
+    logger.debug "///////////// check_delete_audio start"
+    logger.debug "///////////// delete_audio = #{delete_audio.present? && delete_audio.to_bool}; asset present = #{self.asset.present?}"
+    if delete_audio.present? && delete_audio.to_bool == true && self.asset.present?
+      logger.debug "///////////// - deleting audio!"
+      self.asset.destroy
+    end
+  end  
 
   def to_json(options={})
     options[:except] ||= [:created_at, :updated_at]

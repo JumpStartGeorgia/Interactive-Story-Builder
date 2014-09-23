@@ -49,6 +49,7 @@ en:
         has_marker: Navigation Shortcut
         type_id: Type
         sort_order: Sort Order
+        delete_audio: Delete the Audio Track?
       content:        
         title: Title          
         caption: Heading
@@ -90,8 +91,6 @@ en:
       page_translation:
         title: Title to show above content
         content: Content
-      asset:
-        delete_asset: Remove this file?
     errors:
       messages:
         required_field: "is a required field."
@@ -587,7 +586,7 @@ en:
         type: "Selecting this type determines what kind of information you can add into this section"
         has_marker: "If checked, there will be a navigation shortcut link to go to this section"
         audio: "Background audio to play while this section is in view (mp3 format only; 10mb file size limit)"
-        delete_asset: "If checked, your audio file will be removed"
+        delete_audio: "If checked, the Audio Track will be deleted"
     content:
       form_title: Text Form
       placeholder:

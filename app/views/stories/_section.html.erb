@@ -52,7 +52,7 @@
 
       <%= as.input :asset, :as => :file , hint: t('.hint.audio') , :input_html => { :id => "mediaAudio", accept:".mp3" } , label: false  %>
       <% if @item.asset.asset.exists? %>
-        <%= as.input :delete_asset, :as => :boolean, hint: t('.hint.delete_asset') %>
+        <%= f.input :delete_audio, :as => :boolean, hint: t('.hint.delete_audio') %>
       <% end %>
       
       <%= as.input :asset_type, :as => :hidden %>
