@@ -87,7 +87,7 @@
          <% @story.sections.select{|t| t.ok? }.sort_by{|p| p.position}.each_with_index do |section,s_i| %>
           <%  dataAudio = ''
               if section.asset_exists?            
-                dataAudio = "data-audio='#{File.basename(section.asset.asset_file_name,'.mp3')}'".html_safe 
+                dataAudio = "data-audio='#{File.basename(section.asset.asset_file_name_formatted,'.mp3')}'".html_safe 
               end
            %>          
               <% if section.content? %>
@@ -117,7 +117,7 @@
                 <% section.media.each_with_index do |m,m_i| %>
                   <% dataVideo = '' %>
                   <% if m.media_type == Medium::TYPE[:video] && m.is_processed? %>                
-                    <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name,'.*')}'".html_safe %>
+                    <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name_formatted,'.*')}'".html_safe %>
                   <% end %> 
                   <div class="video"  <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>
                     <div class="video-container">
@@ -125,7 +125,7 @@
                           <% if !@export %> 
                             <img src="<%= m.image.asset.url(:fullscreen) %>">
                           <% else %>
-                            <img src="media/images/fullscreen/<%= m.image.asset_file_name %>">
+                            <img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>">
                           <% end %>
                       <% elsif m.media_type == Medium::TYPE[:video] && !m.is_processed?  %>                    
                           <% if !@export %> 
@@ -137,7 +137,7 @@
                           <% if !@export %>                           
                             <!--[if lte IE 8]><img src="<%= m.image.asset.url(:fullscreen) %>"><![endif]-->
                           <% else %>
-                            <!--[if lte IE 8]><img src="media/images/fullscreen/<%= m.image.asset_file_name %>"><![endif]-->
+                            <!--[if lte IE 8]><img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>"><![endif]-->
                           <% end %>                                                          
                         <% end %>  
                         <% if m.source.present? %>
@@ -203,7 +203,7 @@
                   <!--[if lte IE 8]><img src="<%= section.slideshow.assets[0].asset.url(:medium) %>" style="width:100%;"><![endif]-->
                   <div class="slideshow-captions">
                       <% section.slideshow.assets.each_with_index do |t,t_i| %>    
-                          <div class="slideshow-caption" data-slug="<%= t.asset_file_name %>">
+                          <div class="slideshow-caption" data-slug="<%= t.asset_file_name_formatted %>">
                             <%= t.caption.html_safe %>
                             <% if t.source.present? %> 
                               <div class="source"><%= "#{t('storyteller.source')}" %> <%= auto_link(t.source) %></div>
@@ -264,7 +264,7 @@
                     item = {}
 
                     item[:type] = "media"
-                    item[:file] = "mobile_1024/#{t.image.asset_file_name}"
+                    item[:file] = "mobile_1024/#{t.image.asset_file_name_formatted}"
                     item[:section] = s_i+1
                     item[:slide] = t_i+1
                     item[:align] = "#{alignment.key(t.caption_align)}"
@@ -280,7 +280,7 @@
                     item = {}
 
                     item[:type] = "slideshow"
-                    item[:file] = "mobile_1024/#{t.asset_file_name}"
+                    item[:file] = "mobile_1024/#{t.asset_file_name_formatted}"
                     item[:section] = s_i+1
                     item[:slide] = t_i+1
                     

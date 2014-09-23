@@ -1,7 +1,6 @@
 class Asset < ActiveRecord::Base
   has_attached_file :asset
 
-
   belongs_to :user, foreign_key: :item_id
   belongs_to :story, foreign_key: :item_id
   belongs_to :section, foreign_key: :item_id
@@ -19,7 +18,7 @@ class Asset < ActiveRecord::Base
   validates :asset_type, inclusion: { in: TYPE.values }
   
 
-  attr_accessor :init_called, :asset_exists, :stop_check_thumbnail, :process_video
+  attr_accessor :init_called, :asset_exists, :stop_check_thumbnail, :process_video, :is_video_image
   
   after_initialize :init
 
@@ -40,6 +39,21 @@ class Asset < ActiveRecord::Base
   def media_video_processed_url
     if self.asset_type == TYPE[:media_video] && read_attribute(:processed).present? && self.processed == true
       self.asset.url(:processed,false).gsub(/\.[0-9a-zA-Z]+$/,".mp4")
+    end
+  end
+
+  # get the formatted file name for the asset
+  # - files are formatted with 'id__' pre-pended to the front of the file name for the following:
+  #   - section audio
+  #   - media image
+  #   - media video
+  #   - slideshow image
+  def asset_file_name_formatted
+    case self.asset_type
+    when TYPE[:section_audio], TYPE[:media_image], TYPE[:media_video], TYPE[:slideshow_image]
+      "#{self.id}__#{self.asset_file_name}"
+    else
+      self.asset_file_name
     end
   end
   
@@ -70,11 +84,11 @@ class Asset < ActiveRecord::Base
           }
 
         when  TYPE[:section_audio]         
-          opt = {:url => "/system/places/audio/:story_id/:basename.:extension"}  
+          opt = {:url => "/system/places/audio/:story_id/:id__:basename.:extension"}  
 
         when  TYPE[:media_image]        
           opt = { 
-                  :url => "/system/places/images/:media_image_story_id/:style/:basename.:extension",
+                  :url => "/system/places/images/:media_image_story_id/:style/:id__:basename.:extension",
                   :styles => {
                         :mobile_640 => {:geometry => "640x427"},
                         :mobile_1024 => {:geometry => "1024x623"},
@@ -84,7 +98,7 @@ class Asset < ActiveRecord::Base
 
         when  TYPE[:media_video]        
           opt = {   
-                  :url => "/system/places/video/:media_video_story_id/:style/:basename.:extension",
+                  :url => "/system/places/video/:media_video_story_id/:style/:id__:basename.:extension",
                   :styles => { 
                     :poster => { :format => 'jpg', :time => 1 }
                   }, 
@@ -93,7 +107,7 @@ class Asset < ActiveRecord::Base
 
          when  TYPE[:slideshow_image]        
           opt = {   
-                  :url => "/system/places/slideshow/:slideshow_image_story_id/:style/:basename.:extension" ,
+                  :url => "/system/places/slideshow/:slideshow_image_story_id/:style/:id__:basename.:extension" ,
                   :styles => {                   
                     :mobile_640 => {:geometry => "640x427"},
                     :mobile_1024 => {:geometry => "1024x623"}, 
@@ -142,6 +156,11 @@ class Asset < ActiveRecord::Base
     if asset_file_name.present?
       extension = File.extname(asset_file_name).gsub(/^\.+/, '')
       filename = asset_file_name.gsub(/\.#{extension}$/, '')
+      # if this is a video image, the filename includes the asset id of the video
+      # - need to remove this id
+      if self.asset_type == TYPE[:media_image] && self.is_video_image
+        filename.gsub!(/^\d{1,}__/, '')
+      end
       self.asset.instance_write(:file_name, "#{transliterate(filename)}.#{transliterate(extension)}")
     end
   end
