@@ -54,10 +54,11 @@ class Medium < ActiveRecord::Base
           # if image does not exist, create it
           # else, update it
           if self.image_exists?
+            self.image.is_video_image = true
             self.image.asset = f
             self.image.save            
           else
-            self.create_image(:asset_type => Asset::TYPE[:media_image], :asset => f)
+            self.create_image(:asset_type => Asset::TYPE[:media_image], :is_video_image => true, :asset => f)
           end
         end 
       end
