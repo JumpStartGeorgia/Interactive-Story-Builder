@@ -87,7 +87,7 @@ class UpdateAssetFilenames < ActiveRecord::Migration
         file_names.delete([nil,nil])
         video_images.delete([nil,nil])
         file_names.push(*video_images)
-        
+
         # if files exists, continue
         if file_names.present?
           puts " -- files exists, processing!"
@@ -237,7 +237,14 @@ class UpdateAssetFilenames < ActiveRecord::Migration
         file_names = story.sections.select{|x| x.type_id == Section::TYPE[:media]}
                       .map{|x| x.media}.flatten.select{|x| x.media_type == Medium::TYPE[:image]}
                       .map{|x| x.image.present? ? [x.image.id, x.image.asset_file_name] : [nil,nil]}
+        # also check for video images
+        video_images = story.sections.select{|x| x.type_id == Section::TYPE[:media]}
+                      .map{|x| x.media}.flatten.select{|x| x.media_type == Medium::TYPE[:video]}
+                      .map{|x| x.image.present? ? [x.image.id, x.image.asset_file_name] : [nil,nil]}
         file_names.delete([nil,nil])
+        video_images.delete([nil,nil])
+        file_names.push(*video_images)
+
         # if files exists, continue
         if file_names.present?
           puts " -- files exists, processing!"
