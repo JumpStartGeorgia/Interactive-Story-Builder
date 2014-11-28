@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140920191338) do
+ActiveRecord::Schema.define(:version => 20141128084852) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20140920191338) do
     t.datetime "asset_updated_at"
     t.integer  "position"
     t.integer  "asset_subtype",                      :default => 0
-    t.boolean  "processed",                          :default => true
+    t.boolean  "processed",                          :default => false
   end
 
   add_index "assets", ["item_id", "asset_type"], :name => "index_assets_on_item_id_and_asset_type"

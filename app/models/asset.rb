@@ -27,10 +27,11 @@ class Asset < ActiveRecord::Base
   
   before_validation :set_processed_flag
   
-  # if this is a video, set the flag to false (default is true)
+  # if the flag is not already true
+  # and if this is not a video, set the flag to true
   def set_processed_flag
-    if read_attribute(:processed).present?
-      self.processed = self.asset_type != TYPE[:media_video]
+    if read_attribute(:processed).present? && !read_attribute(:processed) && self.asset_type != TYPE[:media_video]
+      self.processed = true
     end
     return true   
   end
