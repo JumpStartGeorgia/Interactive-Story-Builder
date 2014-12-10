@@ -32,6 +32,11 @@ class Medium < ActiveRecord::Base
 
   before_save :check_video_date
   after_commit :create_video_image
+
+  amoeba do
+    enable
+    clone [:image, :video]
+  end
   
   # must call before the save because after save all dirty changes are lost
   def check_video_date

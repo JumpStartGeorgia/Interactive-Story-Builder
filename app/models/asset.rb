@@ -18,7 +18,7 @@ class Asset < ActiveRecord::Base
   validates :asset_type, inclusion: { in: TYPE.values }
   
 
-  attr_accessor :init_called, :asset_exists, :stop_check_thumbnail, :process_video, :is_video_image
+  attr_accessor :init_called, :asset_exists, :stop_check_thumbnail, :process_video, :is_video_image, :is_amoeba
   
   after_initialize :init
 
@@ -26,6 +26,16 @@ class Asset < ActiveRecord::Base
   before_post_process :transliterate_file_name
   
   before_validation :set_processed_flag
+
+
+  amoeba do
+    enable
+
+    # indicate that this is amoeba running so videos are not re-processed
+    customize(lambda { |original_asset,new_asset|
+      new_asset.is_amoeba = true
+    })
+  end
   
   # if the flag is not already true
   # and if this is not a video, set the flag to true
@@ -59,7 +69,6 @@ class Asset < ActiveRecord::Base
   end
   
   def init
-
     if self.init_called != true
       # flag to record if asset exists - is used in form so can edit caption without providing new file
       self.asset_exists = self.asset_file_name.present?

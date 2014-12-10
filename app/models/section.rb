@@ -25,7 +25,6 @@ class Section < ActiveRecord::Base
 
   amoeba do
     enable
-    exclude_field :asset
     clone [:content, :media, :slideshow, :embed_medium]
   end
 

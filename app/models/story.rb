@@ -71,9 +71,50 @@ class Story < ActiveRecord::Base
   
 
 	amoeba do
-		enable
-		exclude_field :asset
-		clone [:sections]
+    enable
+
+    # update the title
+    append :title => " (Clone)"
+
+    # reset some fields
+    nullify :published
+    nullify :published_at
+    nullify :reviewer_key
+    nullify :permalink
+    nullify :permalink_staging
+    nullify :staff_pick
+    # nullify :impressions_count
+    # nullify :cached_votes_total
+    # nullify :cached_votes_score
+    # nullify :cached_votes_up
+    # nullify :cached_votes_down
+    # nullify :cached_weighted_score
+    # nullify :comments_count
+
+    # reset counters to 0
+    # for some reason nullify is not working for these
+    customize(lambda { |original_asset,new_asset|
+      new_asset.impressions_count = 0
+      new_asset.comments_count = 0
+      new_asset.cached_votes_total = 0
+      new_asset.cached_votes_score = 0
+      new_asset.cached_votes_up = 0
+      new_asset.cached_votes_down = 0
+      new_asset.cached_weighted_score = 0
+    })
+
+    # do not copy impression views
+    exclude_field :impressions
+
+    # do not copy votes
+    exclude_field :votes_for
+
+    # tags cannot be cloned - think this is because the story_id is saved under taggable_id
+    exclude_field :tag_taggings
+
+
+    # clone the associations
+		clone [:sections, :categories]
 	end
 
   def self.can_edit?(story_id, user_id)
@@ -243,13 +284,28 @@ class Story < ActiveRecord::Base
 	  end
 	end
 	
-	def reset_fields_for_clone
-	    self.published = false
-	    self.published_at = nil
-	    self.impressions_count = 0
-	    self.reviewer_key = nil
-	    self.permalink = nil
-	end
+  # use amoeba to clone the story and all of its records
+  # after the clone is complete, copy all assets from the original story to the new story
+  def clone_story
+    clone = self.amoeba_dup
+    if clone.save
+      # copy the assets
+      original_id = self.id
+      new_id = clone.id
+      path = "#{Rails.root}/public/system/places"
+      # look in each directory in path and see if it has folder for original_id
+      # if so, copy it for new story
+      Dir.glob("#{path}/*").select {|f| File.directory? f}.each do |directory|
+        if Dir.exists?("#{directory}/#{original_id}")
+          puts "$$$$$$$$$ - copying files from #{directory}"
+          FileUtils.cp_r "#{directory}/#{original_id}", "#{directory}/#{new_id}"
+        end
+      end
+    end
+
+    return clone
+  end
+
 
   def show_asset
     if self.asset.nil?

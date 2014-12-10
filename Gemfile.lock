@@ -84,8 +84,8 @@ GEM
     acts_as_list (0.4.0)
       activerecord (>= 3.0)
     acts_as_votable (0.9.0)
-    amoeba (2.0.0)
-      activerecord (>= 3.0)
+    amoeba (2.1.0)
+      activerecord (>= 3.2.6, < 5)
     arel (3.0.3)
     bcrypt (3.1.7)
     bcrypt-ruby (3.1.5)
@@ -312,7 +312,7 @@ DEPENDENCIES
   acts-as-taggable-on (~> 3.2.6)
   acts_as_list
   acts_as_votable (~> 0.9.0)
-  amoeba
+  amoeba (~> 2.1.0)
   bundler
   cancan (~> 1.6.8)
   capistrano (~> 2.12.0)

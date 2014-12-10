@@ -329,6 +329,7 @@ en:
       error_publish_missing_content_section: At least one section required.
       error_unpublish: "%{obj} wasn't unpublished: %{err}"
       error_clone: "%{obj} wasn't cloned."
+      error_clone_notification: "Error occurred while cloning story: %{msg}"
       error_export: "Story can't be downloaded."
       error_get_data: The selected item could not be found
       select_section: Please select a Section first in order to add an Item

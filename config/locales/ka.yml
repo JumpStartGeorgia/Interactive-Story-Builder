@@ -329,6 +329,7 @@ ka:
       error_publish_missing_content_section: ამბის გამოქვეყნებისთვის აუცილებელია სულ მცირე ერთი სექცია.
       error_unpublish: "%{obj} გამოქვეყნება გაუქმებულია: %{err}"
       error_clone: "%{obj} კლონირება ვერ გაკეთდა." 
+      error_clone_notification: "Error occurred while cloning story: %{msg}"
       error_export: "ამბის ჩამოტვირთვა შეუძლებელია"     
       error_get_data: არჩეული ერთეული ვერ მოიძებნა
       select_section: ერთეულის დამატებამდე, გთხოვთ, აირჩიოთ სექცია 
