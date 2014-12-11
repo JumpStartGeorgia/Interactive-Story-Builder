@@ -112,6 +112,11 @@ class Story < ActiveRecord::Base
     # tags cannot be cloned - think this is because the story_id is saved under taggable_id
     exclude_field :tag_taggings
 
+    # do not copy invitation
+    exclude_field :invitations
+
+    # shortened url created when published
+    exclude_field :story_translations
 
     # clone the associations
 		clone [:sections, :categories]
