@@ -289,18 +289,104 @@ class Story < ActiveRecord::Base
   def clone_story
     clone = self.amoeba_dup
     if clone.save
+      puts "$$$$$$$$$ clone successful - copying asset files"
       # copy the assets
+      # - have to copy each one by hand so can update the file name with the id of the new asset
       original_id = self.id
       new_id = clone.id
-      path = "#{Rails.root}/public/system/places"
-      # look in each directory in path and see if it has folder for original_id
-      # if so, copy it for new story
-      Dir.glob("#{path}/*").select {|f| File.directory? f}.each do |directory|
-        if Dir.exists?("#{directory}/#{original_id}")
-          puts "$$$$$$$$$ - copying files from #{directory}"
-          FileUtils.cp_r "#{directory}/#{original_id}", "#{directory}/#{new_id}"
+
+      # story thumbnail
+      puts "$$$$$$$$$ clone successful - copying thumbnail"
+      if self.asset.present? && self.asset.asset.exists? 
+        Dir.glob(self.asset.asset.path.gsub('/original/', '/*/')).each do |file|       
+          copy_asset file, file.gsub("/thumbnail/#{original_id}/", "/thumbnail/#{new_id}/") 
         end
       end
+
+      # section audio
+      puts "$$$$$$$$$ clone successful - copying audio"
+      new_audio = clone.sections.select{|x| x.asset.present? && x.asset.asset.exists?}.map{|x| x.asset}
+      self.sections.select{|x| x.asset.present? && x.asset.asset.exists?}.map{|x| x.asset}.each do |audio|
+        # find matching record
+        record = new_audio.select{|x| x.asset_file_name == audio.asset_file_name && 
+                                      x.asset_content_type == audio.asset_content_type && 
+                                      x.asset_file_size == audio.asset_file_size && 
+                                      x.asset_updated_at == audio.asset_updated_at}.first
+        # copy the file if match found
+        if record.present?
+          copy_asset audio.asset.path, audio.asset.path.gsub("/audio/#{original_id}/", "/audio/#{new_id}/")
+                                                        .gsub("/#{audio.id}__", "/#{record.id}__") 
+        end
+      end
+
+      # slideshow
+      puts "$$$$$$$$$ clone successful - copying slideshow"
+      new_ss = clone.sections.select{|x| x.slideshow?}.map{|x| x.slideshow.assets}.flatten.select{|x| x.asset.exists?}
+      self.sections.select{|x| x.slideshow?}.map{|x| x.slideshow.assets}.flatten.select{|x| x.asset.exists?}.each do |img|
+        # find matching record
+        record = new_ss.select{|x| x.asset_file_name == img.asset_file_name && 
+                                      x.asset_content_type == img.asset_content_type && 
+                                      x.asset_file_size == img.asset_file_size && 
+                                      x.asset_updated_at == img.asset_updated_at}.first
+        # copy the file if match found
+        if record.present?
+          Dir.glob(img.asset.path.gsub('/original/', '/*/')).each do |file|       
+            copy_asset file, file.gsub("/slideshow/#{original_id}/", "/slideshow/#{new_id}/") 
+                                  .gsub("/#{img.id}__", "/#{record.id}__") 
+          end
+        end
+      end
+
+
+      # images
+      puts "$$$$$$$$$ clone successful - copying images"
+      new_img = clone.sections.select{|x| x.media?}.map{|x| x.media}.flatten.select{|x| x.image_exists?}.map{|x| x.image}
+      self.sections.select{|x| x.media?}.map{|x| x.media}.flatten.select{|x| x.image_exists?}.map{|x| x.image}.each do |img|
+        # find matching record
+        record = new_img.select{|x| x.asset_file_name == img.asset_file_name && 
+                                      x.asset_content_type == img.asset_content_type && 
+                                      x.asset_file_size == img.asset_file_size && 
+                                      x.asset_updated_at == img.asset_updated_at}.first
+        # copy the file if match found
+        if record.present?
+          Dir.glob(img.asset.path.gsub('/original/', '/*/')).each do |file|       
+            copy_asset file, file.gsub("/images/#{original_id}/", "/images/#{new_id}/") 
+                                  .gsub("/#{img.id}__", "/#{record.id}__") 
+          end
+        end
+      end
+
+      # videos
+      puts "$$$$$$$$$ clone successful - copying videos"
+      new_video = clone.sections.select{|x| x.media?}.map{|x| x.media}.flatten.select{|x| x.video_exists?}.map{|x| x.video}
+      self.sections.select{|x| x.media?}.map{|x| x.media}.flatten.select{|x| x.video_exists?}.map{|x| x.video}.each do |video|
+        # find matching record
+        record = new_video.select{|x| x.asset_file_name == video.asset_file_name && 
+                                      x.asset_content_type == video.asset_content_type && 
+                                      x.asset_file_size == video.asset_file_size && 
+                                      x.asset_updated_at == video.asset_updated_at}.first
+        # copy the file if match found
+        if record.present?
+          Dir.glob(video.asset.path.gsub('/original/', '/*/')).each do |file|       
+            copy_asset file, file.gsub("/video/#{original_id}/", "/video/#{new_id}/") 
+                                  .gsub("/#{video.id}__", "/#{record.id}__") 
+          end
+
+          # get the poster folder too
+          copy_asset video.asset.path(:poster), video.asset.path(:poster).gsub("/video/#{original_id}/", "/video/#{new_id}/") 
+                                .gsub("/#{video.id}__", "/#{record.id}__") 
+
+        end
+      end
+
+      # # look in each directory in path and see if it has folder for original_id
+      # # if so, copy it for new story
+      # Dir.glob("#{path}/*").select {|f| File.directory? f}.each do |directory|
+      #   if Dir.exists?("#{directory}/#{original_id}")
+      #     puts "$$$$$$$$$ - copying files from #{directory}"
+      #     FileUtils.cp_r "#{directory}/#{original_id}", "#{directory}/#{new_id}"
+      #   end
+      # end
     end
 
     return clone
@@ -370,4 +456,12 @@ class Story < ActiveRecord::Base
   end
   
   
+
+  private 
+
+  def copy_asset(original_path, new_path)
+    # make sure new path directory structure exists
+    FileUtils.mkdir_p(File.dirname(new_path))
+    FileUtils.cp original_path, new_path
+  end  
 end
