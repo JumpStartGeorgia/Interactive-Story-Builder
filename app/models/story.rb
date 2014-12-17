@@ -373,7 +373,12 @@ class Story < ActiveRecord::Base
                                       x.asset_updated_at == video.asset_updated_at}.first
         # copy the file if match found
         if record.present?
-          Dir.glob(video.asset.path.gsub('/original/', '/*/')).each do |file|       
+          # it is possible that the original video is not mp4 so need to look for anything that has same basename (ignore file ext)
+          ext = File.extname(video.asset.path)
+          basename = File.basename(video.asset.path)
+          name = File.basename(video.asset.path, ext)
+
+          Dir.glob(video.asset.path.gsub('/original/', '/*/').gsub(basename, "#{name}.*")).each do |file|       
             copy_asset file, file.gsub("/video/#{original_id}/", "/video/#{new_id}/") 
                                   .gsub("/#{video.id}__", "/#{record.id}__") 
           end
