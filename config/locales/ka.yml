@@ -383,6 +383,7 @@ ka:
       confirm_delete: დარწმუნებული ხართ, რომ გინდათ ამ სექციის/ერთეულის წაშლა?
       video_processed: თქვენი ვიდეო დამუშავებულია
       video_not_processed: თქვენი ვიდეო დამუშავების პროცესშია
+      not_found_for_update: The record to update could not be found in the database.
   section_types:
     content:
       name: ტექსტი

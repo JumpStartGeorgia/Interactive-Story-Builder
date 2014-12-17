@@ -345,13 +345,18 @@ class StoriesController < ApplicationController
 
   def save_section      
     @item = Section.find_by_id(params[:section][:id]) 
-logger.debug "+++++++++++++ delete attribute = #{params[:section][:asset_attributes][:delete_asset]}"
+#logger.debug "+++++++++++++ delete attribute = #{params[:section][:asset_attributes][:delete_asset]}"
     respond_to do |format|
-      if @item.update_attributes(params[:section].except(:id))
-        flash_success_updated(Section.model_name.human,@item.title)       
-        format.js {render action: "build_tree", status: :created }                  
+      if @item.present?
+        if @item.update_attributes(params[:section].except(:id))
+          flash_success_updated(Section.model_name.human,@item.title)       
+          format.js {render action: "build_tree", status: :created }                  
+        else
+          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                            
+          format.js {render action: "flash", status: :ok }
+        end
       else
-        flash[:error] = u I18n.t('app.msgs.error_updated', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                            
+        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
         format.js {render action: "flash", status: :ok }
       end
     end    
@@ -359,6 +364,7 @@ logger.debug "+++++++++++++ delete attribute = #{params[:section][:asset_attribu
   def save_content      
      @item = Content.find_by_id(params[:content][:id])  
      respond_to do |format|
+      if @item.present?
         if @item.update_attributes(params[:content].except(:id))          
           flash_success_updated(Content.model_name.human,@item.title)           
           format.js {render action: "build_tree", status: :created }                  
@@ -366,11 +372,16 @@ logger.debug "+++++++++++++ delete attribute = #{params[:section][:asset_attribu
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)                                      
           format.js {render action: "flash" , status: :ok }
         end
-      end    
+      else
+        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
+        format.js {render action: "flash", status: :ok }
+      end
+    end    
   end
  def save_media
     @item = Medium.find_by_id(params[:medium][:id])
     respond_to do |format|
+      if @item.present?
         if @item.update_attributes(params[:medium].except(:id))          
           flash_success_updated(Medium.model_name.human,@item.title)           
           format.js {render action: "build_tree", status: :created }          
@@ -378,11 +389,16 @@ logger.debug "+++++++++++++ delete attribute = #{params[:section][:asset_attribu
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:Medium.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
           format.js {render action: "flash", status: :ok }
         end
-      end    
+      else
+        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
+        format.js {render action: "flash", status: :ok }
+      end
+    end    
   end
   def save_slideshow
     @item = Slideshow.find_by_id(params[:slideshow][:id])
     respond_to do |format|
+      if @item.present?
         if @item.update_attributes(params[:slideshow].except(:id))          
           flash_success_updated(Slideshow.model_name.human,@item.title)           
           format.js {render action: "build_tree", status: :created }          
@@ -390,11 +406,16 @@ logger.debug "+++++++++++++ delete attribute = #{params[:section][:asset_attribu
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:Slideshow.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
           format.js {render action: "flash", status: :ok }
         end
-      end    
+      else
+        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
+        format.js {render action: "flash", status: :ok }
+      end
+    end    
   end
   def save_embed_media
     @item = EmbedMedium.find_by_id(params[:embed_medium][:id])
     respond_to do |format|
+      if @item.present?
         if @item.update_attributes(params[:embed_medium])          
           flash_success_updated(EmbedMedium.model_name.human,@item.title)           
           format.js {render action: "build_tree", status: :created }          
@@ -402,7 +423,11 @@ logger.debug "+++++++++++++ delete attribute = #{params[:section][:asset_attribu
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:EmbedMedium.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
           format.js {render action: "flash", status: :ok }
         end
-      end    
+      else
+        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
+        format.js {render action: "flash", status: :ok }
+      end
+    end    
   end
   
   
@@ -689,6 +714,9 @@ end
         # pull out the email addresses for new users (not numbers)
         emails = c_ids.select{|x| x !~ /^[0-9]+$/ }.map{|x| x.gsub("'", '')}
         
+        logger.debug "__________ user_ids = #{user_ids}"
+        logger.debug "__________ emails = #{emails}"
+
         # send invitation for each existing user
         if user_ids.present?
           user_ids.each do |user_id|
