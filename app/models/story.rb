@@ -295,6 +295,7 @@ class Story < ActiveRecord::Base
     clone = self.amoeba_dup
     if clone.save
       puts "$$$$$$$$$ clone successful - copying asset files"
+
       # copy the assets
       # - have to copy each one by hand so can update the file name with the id of the new asset
       original_id = self.id
