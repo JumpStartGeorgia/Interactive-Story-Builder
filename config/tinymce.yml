@@ -1,6 +1,7 @@
 theme_advanced_toolbar_location: top
 theme_advanced_toolbar_align: left
 theme_advanced_statusbar_location: bottom
+theme_advanced_blockformats : "p,h1,h2,h3,h4,h5,h6"
 browser_spellcheck: true
 convert_urls: false
 theme_advanced_buttons1:
@@ -16,7 +17,7 @@ theme_advanced_buttons1:
   - fullscreen  
   - code
 theme_advanced_buttons2:
-  - uploadimage
+  - formatselect
   - separator
   - bold
   - italic
@@ -34,9 +35,13 @@ theme_advanced_buttons2:
   - indent
   - blockquote
   - separator
+  - hr  
+  - separator
   - link
   - unlink
   - anchor
+  - separator
+  - uploadimage
 plugins:
   - fullscreen
   - uploadimage
