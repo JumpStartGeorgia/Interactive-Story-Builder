@@ -169,7 +169,7 @@
 
     olly.templates = {
         //640x390
-        youtube: '<iframe data-frh="1" width="641" height="390" src="{{embedURL}}" frameborder="0" allowfullscreen class="embed-video embed-youtube"></iframe>', //560x315
+        youtube: '<iframe width="640" height="390" src="{{embedURL}}" frameborder="0" allowfullscreen class="embed-video embed-youtube"></iframe>', //560x315
 
         vimeo: '<iframe src="{{embedURL}}" width="640" height="390" frameborder="0" class="embed-video embed-vimeo" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>', //420x345
 
