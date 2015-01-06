@@ -1492,31 +1492,35 @@
 /* embed */
 .section.embed
 {
-  position: relative; 
+  /*position: relative; */
   margin-left: auto;
   margin-right: auto;
   max-width: 640px;
-
 }
+.section.embed.fullscreen
+{
+  max-width:100%;
+  width:100%;
+}
+
 .embed-container
 { 
   text-align:center;
-  margin:10px 0px 23px 0px;
   width:100%;
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 30px; 
-  height: 0; 
   overflow: hidden;
 }
 .embed-container iframe,
 .embed-container object,
 .embed-container embed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    max-width: 640px;
+}
+.section.embed.fullscreen .embed-container iframe,
+.section.embed.fullscreen .embed-container object,
+.section.embed.fullscreen .embed-container embed
+{
+  max-width:100%;
+  width:100%;
+  height:100vh;
 }
 .embed-caption
 {

@@ -202,9 +202,6 @@
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %> 
-                 <div class="embed-caption">
-                  <%= section.embed_medium.title.html_safe %>
-                </div>    
                 <div class="embed-container">
                   <%= section.embed_medium.code.html_safe %>             
                 </div>                         
@@ -996,5 +993,6 @@
 
         await();
 
-    })();</script>
+    })();
+    </script>
     <!--<![endif]-->  
