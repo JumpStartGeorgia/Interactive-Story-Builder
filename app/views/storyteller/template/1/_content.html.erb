@@ -111,7 +111,7 @@
               </div>   
               <% columnSectionCount+=1 %>   
             <% elsif section.media? %>
-              <div class="section video-sequence" <%= dataAudio.html_safe %>>
+              <div class="section video-sequence" data-caption="fixed" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
@@ -141,9 +141,23 @@
                               <!--[if lte IE 8]><img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>"><![endif]-->
                             <% end %>                                             
                       <% end %>  
-                      <% if m.source.present? %>
-                         <div class="video-source"><%= m.source %></div>                       
-                      <% end %>                       
+                      
+                      <div class='video-caption-box'>
+                        <% if m.caption.present? && !(isFirst && m_i == 0) %>                                    
+                          <div class='video-caption video-caption--<%= "#{alignment.key(m.caption_align)}" %> <%= m.caption.length > 160 ? 
+                          "video-caption--long" : "" %>'>
+                            <div class="caption" style="min-height: 60px;width: 100%;">
+                              <%= m.caption  %>
+                            </div>
+                          </div>
+                        <% end %>   
+
+                        <% if m.source.present? %>
+                           <div class="video-source"><%= m.source %></div>                       
+                        <% end %>
+                      </div>   
+
+
                     </div>     
 
                     <% if isFirst && m_i == 0  %>   
@@ -162,12 +176,7 @@
           </svg>
                       </div>  
                     <% end %>                                                       
-                    <% if m.caption.present? && !(isFirst && m_i == 0) %>                                    
-                      <div class='video-caption video-caption--<%= "#{alignment.key(m.caption_align)}" %> <%= m.caption.length > 160 ? 
-                      "video-caption--long" : "" %>'>
-                        <%= m.caption  %>
-                      </div>
-                    <% end %>       
+                 
                   </div>        
                 <% end %>        
               </div>
@@ -587,7 +596,7 @@
           var containerFixed = sectionFixed.select(".video-container")
               .style("z-index", function(d) { return d.first || d.last ? 1 : 2; })
               .style("position", function(d) { return d.first || d.last ? "absolute" : "fixed"; })
-              .style("top", function(d) { return d.first || d.last ? null : fixTop + "px"; })
+              .style("top", function(d) { return d.first || d.last ? null : 0 + "px"; })
               .style("display", function(d) { return d.first || d.last ? null : "none"; });
 
           containerFixed.select(function(d, i) { return d.sequence.length > 1 ? this : null; }).append("div")
@@ -627,12 +636,14 @@
             fadeTop = Math.max(200, fixTop);
             fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight);
             d3.select(".video-sequence:first-child").style("margin-top", fixTop + "px");
-            containerFixed.style("height", fixHeight + "px").filter(function(d) {
+            //d3.selectAll('.video-caption').style('height',window.innerHeight + 'px');//.style("top", -1*fixTop + "px");
+            console.log(containerFixed,'resized',fixHeight);
+            containerFixed.style("height", innerHeight+ "px").filter(function(d) { //fixHeight 
               var rect = this.parentNode.getBoundingClientRect();
               return d.first ? rect.top < fixTop
                   : d.last ? rect.bottom >= fixTop + fixHeight
                   : true;
-            }).style("top", fixTop + "px");
+            });//.style("top", fixTop + "px");
           }
 
           function fixscrolled(d) {
@@ -643,7 +654,7 @@
               d3.select(this.querySelector(".video-container"))
                   .style("z-index", fixed ? 2 : 1)
                   .style("position", fixed ? "fixed" : "absolute")
-                  .style("top", fixed ? fixTop + "px" : null);
+                  .style("top", fixed ? 0 + "px" : null);
             }
 
             var section = d3.select(this),
