@@ -102,6 +102,7 @@ class ApplicationController < ActionController::Base
     gon.msgs_one_section_content = I18n.t('app.msgs.one_section.content')
     gon.msgs_one_section_slideshow = I18n.t('app.msgs.one_section.slideshow')
     gon.msgs_one_section_embed_media = I18n.t('app.msgs.one_section.embed_media')
+    gon.msgs_one_section_youtube = I18n.t('app.msgs.one_section.youtube')
 
 		if I18n.locale == :ka
 		  gon.datatable_i18n_url = "/datatable_ka.txt"

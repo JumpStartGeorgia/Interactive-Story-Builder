@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fullscreen: false
+  loop: false
+  lang: MyString
+  cc: false
+  cc_lang: MyString
+  info: false
+
+two:
+  fullscreen: false
+  loop: false
+  lang: MyString
+  cc: false
+  cc_lang: MyString
+  info: false

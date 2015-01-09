@@ -65,6 +65,18 @@ $(document).ready(function() {
 	  }
 	});
 
+    $('.story-viewer').on('click', '#btnOllyYoutube', function(){
+    ths = $('#youtubeUrl');
+	  url = $(ths).val();
+    resetEmbedForm();
+    
+	  if (url.length > 0 && isUrl(url)){
+      olly.embed(url, document.getElementById("youtubeResult"), 'timerOllyCompelteYoutube', 'ollyFailYoutube');
+	  }else{
+      ollyFail();
+	  }
+	});
+
   // when review menu item clicked, open modal 
   // and push in review key and story title
   $(document).on('click', '#btnReviewer', function(e){
@@ -364,6 +376,10 @@ $(document).ready(function() {
 		{			
 			alert(gon.msgs_one_section_embed_media);
 		}
+		else if( tempType == 'youtube' && temp.has('ul').length==1 )
+		{			
+			alert(gon.msgs_one_section_youtube);
+		}
 		else 
 		{		
 			method = 'n';
@@ -542,11 +558,22 @@ function resetEmbedForm(){
   $('#embedMediaButtons').hide();
   $('#embedMediaError').hide();
 }
-
+function resetYoutubeForm(){
+  timerCount = 0;
+ // $('#youtubeCode').empty();
+  $('#youtubeResult').empty();
+  $('#youtubeButtons').hide();
+  $('#youtubeError').hide();
+}
 function ollyFail(){
   resetEmbedForm();
   $('#embedMediaUrl').focus();
   $('#embedMediaError').show();
+}
+function ollyFailYoutube(){
+  resetYoutubeForm();
+  $('#youtubeUrl').focus();
+  $('#youtubeError').show();
 }
 
 function timerOllyCompelte() {
@@ -557,6 +584,18 @@ timerCount += 1;
   }else{
     setTimeout(function() {
         timerOllyCompelte();
+    }, 500)
+  }
+
+}
+function timerOllyCompelteYoutube() {
+timerCount += 1;
+  if ($('#youtubeResult').html().length > 0){
+    //$('#embedMediaCode').val($('#embedMediaResult').html());
+    $('#youtubeButtons').show();
+  }else{
+    setTimeout(function() {
+        timerOllyCompelteYoutube();
     }, 500)
   }
 

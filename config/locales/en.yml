@@ -11,6 +11,7 @@ en:
       message: Message
       slideshow: Image Slideshow
       embed_medium: Embeddable Online Media
+      youtube: Youtube Online Media
       language: Language
       category: Category
       page: Text for Pages
@@ -80,6 +81,9 @@ en:
         message: Message
         message_type: Feedback Type
       embed_medium:
+        title: Title
+        url: Url to Online Media
+      youtube:
         title: Title
         url: Url to Online Media
       language:
@@ -351,6 +355,7 @@ en:
         content: Only one Item can be added to a Text section
         slideshow: Only one Item can be added to an Image Slideshow section
         embed_media: Only one Item can be added to an Embed Online Media section
+        youtube: Only one Item can be added to a Embed Youtube section
       destroy_story:
         success: Story was successfully deleted.
         error: "Error occurred while deleting the story: %{err}"
@@ -397,7 +402,10 @@ en:
       description: Images in a horizontal slideshow
     embed_media: 
       name: Embed Online Media
-      description: youtube, vimeo, etc      
+      description: youtube, vimeo, etc   
+    youtube: 
+      name: Embed Youtube
+      description: Fullscreen/common youtube video          
   message_types:
     bug: Report a Bug
     feature: Request a Feature
@@ -637,6 +645,16 @@ en:
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
         url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: Youtube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
+    youtube:
+      form_title: Youtube Embed Online Media Form
+      get_media: Get Youtube Online Media
+      preview: Preview of Online Media
+      error: The URL could not be processed. Please try again.
+      placeholder:
+        url: Url to online media
+      hint:
+        title: "This text only appears in the left sidebar, it will not show up in the story"
+        url: "The following sites can be used for embeding online media: VIDEO: Youtube"        
   storyteller:
     byline: By
     byline_media: "Photos and videos by "

@@ -11,6 +11,7 @@ ka:
       news: სიახლეები
       message: შეტყობინება
       embed_medium: ჩასასმელი ონლაინ აუდიო/ვიდეო
+      youtube: Youtube Online Media      
       language: ენა
       category: კატეგორია
       page: ტექსტი გვერდებისთვის
@@ -82,6 +83,9 @@ ka:
       embed_medium:
         title: სათაური
         url: ონლაინ აუდიოს/ვიდეოს ბმული
+      youtube:
+        title: Title
+        url: Url to Online Media        
       language:
         locale: ენის აღმნიშვნელი
         name: ენა
@@ -351,6 +355,7 @@ ka:
         content: ტექსტურ სექციაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი
         slideshow: ფოტო სლაიდშოუს სექციაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი
         embed_media: ონლაინ აუდიო/ვიდეო სექციაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი
+        youtube: Only one Item can be added to a Embed Youtube section
       destroy_story:
         success: ამბავი წაიშალა.
         error: "ამბის წაშლისას დაფიქსირდა ხარვეზი: %{err}"
@@ -398,6 +403,9 @@ ka:
     embed_media: 
       name: ონლაინ აუდიო/ვიდეო 
       description: youtube, vimeo, და ა.შ.
+    youtube: 
+      name: Embed Youtube
+      description: Fullscreen/common youtube video       
   message_types:
     bug: გვაცნობეთ შეცდომის შესახებ
     feature: მოითხოვეთ ახალი ფუნქციის დამატება
@@ -637,6 +645,16 @@ ka:
       hint:
         title: ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში
         url: "ჩასასმელი ონლაინ აუდიო/ვიდეო ფაილისთვის შეგიძლიათ გამოიყენოთ შემდეგი საიტები: აუდიო: Soundcloud, Spotify; ვიდეო: Youtube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED" 
+    youtube:
+      form_title: Youtube Embed Online Media Form
+      get_media: Get Youtube Online Media
+      preview: Preview of Online Media
+      error: The URL could not be processed. Please try again.
+      placeholder:
+        url: Url to online media
+      hint:
+        title: "This text only appears in the left sidebar, it will not show up in the story"
+        url: "The following sites can be used for embeding online media: VIDEO: Youtube"          
   storyteller:
     byline: ავტორი
     byline_media: "ფოტოსა და ვიდეოს ავტორი "

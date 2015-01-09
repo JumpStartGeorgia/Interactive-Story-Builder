@@ -9,23 +9,26 @@ class Section < ActiveRecord::Base
 
   has_one :embed_medium, dependent: :destroy
   has_many :media, :order => 'position', dependent: :destroy
+  has_one :youtube, dependent: :destroy
   acts_as_list scope: :story
 
   attr_accessor :delete_audio
 
-  TYPE = {content: 1, media: 2, slideshow: 3, embed_media: 4}
+  TYPE = {content: 1, media: 2, slideshow: 3, embed_media: 4, youtube: 5}
   ICONS = {
     content: 'i-content-b', 
     media: 'i-fullscreen-b', 
     slideshow: 'i-slideshow-b', 
-    embed_media: 'i-embed-b'
+    embed_media: 'i-embed-b',
+    youtube: 'i-youtube-b'
+
   }
 
   accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
 
   amoeba do
     enable
-    clone [:content, :media, :slideshow, :embed_medium]
+    clone [:content, :media, :slideshow, :embed_medium, :youtube]
   end
 
   validates :story_id, :presence => true
@@ -71,10 +74,14 @@ class Section < ActiveRecord::Base
   def embed_media?
      TYPE[:embed_media] == self.type_id 
   end
+    def youtube?
+     TYPE[:youtube] == self.type_id 
+  end
   def asset_exists?
       self.asset.present? && self.asset.asset.exists?
   end  
   def ok?
+    # todo maybe code should be added for youtube
     if content?
       return (self.content.present? && self.content.content.present?)
     elsif media?        
@@ -95,6 +102,8 @@ class Section < ActiveRecord::Base
       return self.slideshow.present? && self.slideshow.assets.present?
     elsif embed_media?
       return self.embed_medium.present? && self.embed_medium.code.present?
+   elsif youtube?
+      return self.youtube.present? #&& self.youtube.code.present?
     end
   end
 end

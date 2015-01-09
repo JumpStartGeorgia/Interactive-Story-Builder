@@ -186,7 +186,7 @@ class StoriesController < ApplicationController
       end   
       respond_to do |format|
         if @item.present?
-          format.js { render :action => "get_section" }
+          format.js { render :action => "get_section" }          
         else
           @get_data_error = I18n.t('app.msgs.error_get_data')
           format.js
@@ -268,6 +268,21 @@ class StoriesController < ApplicationController
             format.js          
           end
         end
+    elsif type == 'youtube'
+
+        if params[:command]!='n'    
+          @item = Youtube.find_by_id(params[:item_id])   
+        else 
+          @item = Youtube.new(:section_id => params[:section_id])
+        end
+        respond_to do |format|
+          if @item.present?
+              format.js {render :action => "get_youtube" }
+          else
+            @get_data_error = I18n.t('app.msgs.error_get_data')
+            format.js          
+          end
+        end
     end
   end
 
@@ -342,7 +357,18 @@ class StoriesController < ApplicationController
       end    
   end
   
-
+  def new_youtube
+    @item = Youtube.new(params[:youtube])       
+    respond_to do |format|
+        if @item.save       
+          flash_success_created(Youtube.model_name.human,@item.title)                     
+          format.js { render action: "change_sub_tree", status: :created }                    
+        else                    
+          flash[:error] = u I18n.t('app.msgs.error_created', obj:Youtube.model_name.human, err:@item.errors.full_messages.to_sentence)                       
+          format.js {render action: "flash" , status: :ok }
+        end
+      end    
+  end
 
   def save_section      
     @item = Section.find_by_id(params[:section][:id]) 
@@ -422,6 +448,23 @@ class StoriesController < ApplicationController
           format.js {render action: "build_tree", status: :created }          
         else        
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:EmbedMedium.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
+          format.js {render action: "flash", status: :ok }
+        end
+      else
+        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
+        format.js {render action: "flash", status: :ok }
+      end
+    end    
+  end
+  def save_youtube
+    @item = Youtube.find_by_id(params[:youtube][:id])
+    respond_to do |format|
+      if @item.present?
+        if @item.update_attributes(params[:youtube])          
+          flash_success_updated(Youtube.model_name.human,@item.title)           
+          format.js {render action: "build_tree", status: :created }          
+        else        
+          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Youtube.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
           format.js {render action: "flash", status: :ok }
         end
       else

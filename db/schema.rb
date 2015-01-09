@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150109070854) do
+ActiveRecord::Schema.define(:version => 20150109121301) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -376,6 +376,17 @@ ActiveRecord::Schema.define(:version => 20150109070854) do
   add_index "users", ["permalink"], :name => "index_users_on_permalink"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
+  create_table "video_settings", :force => true do |t|
+    t.boolean  "fullscreen", :default => false
+    t.boolean  "loop",       :default => false
+    t.string   "lang",       :default => "en"
+    t.boolean  "cc",         :default => true
+    t.string   "cc_lang",    :default => "en"
+    t.boolean  "info",       :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
   create_table "votes", :force => true do |t|
     t.integer  "votable_id"
     t.string   "votable_type"
@@ -392,5 +403,28 @@ ActiveRecord::Schema.define(:version => 20150109070854) do
   add_index "votes", ["votable_id", "votable_type"], :name => "index_votes_on_votable_id_and_votable_type"
   add_index "votes", ["voter_id", "voter_type", "vote_scope"], :name => "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   add_index "votes", ["voter_id", "voter_type"], :name => "index_votes_on_voter_id_and_voter_type"
+
+  create_table "youtube_langs", :force => true do |t|
+    t.integer  "youtube_id"
+    t.string   "lang",       :default => "en"
+    t.string   "menu_lang",  :default => "en"
+    t.string   "cc_lang",    :default => "en"
+    t.text     "code"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  add_index "youtube_langs", ["youtube_id", "lang"], :name => "index_youtube_langs_on_youtube_id_and_lang"
+
+  create_table "youtubes", :force => true do |t|
+    t.integer  "section_id"
+    t.string   "title"
+    t.string   "url"
+    t.integer  "video_settings_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "youtubes", ["section_id"], :name => "index_youtubes_on_section_id"
 
 end

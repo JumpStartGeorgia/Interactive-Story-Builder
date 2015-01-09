@@ -33,44 +33,45 @@ BootstrapStarter::Application.routes.draw do
 		resources :stories do	
 
 			member do
-        get 'preview'
+	        get 'preview'
 
-        get 'collaborators'
-        post 'collaborators'
+	        get 'collaborators'
+	        post 'collaborators'
 
-        get 'get_data'
+	        get 'get_data'
 
-        put 'content', to: 'stories#save_content'
-        post 'content', to: 'stories#new_content'
+	        put 'content', to: 'stories#save_content'
+	        post 'content', to: 'stories#new_content'
 
-        delete 'tree', to: 'stories#destroy_tree_item'
+	        delete 'tree', to: 'stories#destroy_tree_item'
 
-        put 'media', to: 'stories#save_media'
-        post 'media', to: 'stories#new_media'				
-
-
-
-        put 'section', to: 'stories#save_section'
-        post 'section', to: 'stories#new_section'	
-        post 'up', to: 'stories#up'
-        post 'down', to: 'stories#down'	
-        post 'up_slideshow', to: 'stories#up_slideshow'
-        post 'down_slideshow', to: 'stories#down_slideshow'						
-
-        get 'sections'    	
-        get 'publish', to: 'stories#publish'    		
-        get 'clone', to: 'stories#clone'    
-        get 'export', to: 'stories#export' 		
-
-        put 'slideshow', to: 'stories#save_slideshow'
-        post 'slideshow', to: 'stories#new_slideshow'
+	        put 'media', to: 'stories#save_media'
+	        post 'media', to: 'stories#new_media'				
 
 
-        put 'embed_media', to: 'stories#save_embed_media'
-        post 'embed_media', to: 'stories#new_embed_media'				
 
+	        put 'section', to: 'stories#save_section'
+	        post 'section', to: 'stories#new_section'	
+	        post 'up', to: 'stories#up'
+	        post 'down', to: 'stories#down'	
+	        post 'up_slideshow', to: 'stories#up_slideshow'
+	        post 'down_slideshow', to: 'stories#down_slideshow'						
+
+	        get 'sections'    	
+	        get 'publish', to: 'stories#publish'    		
+	        get 'clone', to: 'stories#clone'    
+	        get 'export', to: 'stories#export' 		
+
+	        put 'slideshow', to: 'stories#save_slideshow'
+	        post 'slideshow', to: 'stories#new_slideshow'
+
+
+	        put 'embed_media', to: 'stories#save_embed_media'
+	        post 'embed_media', to: 'stories#new_embed_media'				
+
+	        put 'youtube', to: 'stories#save_youtube'
+	        post 'youtube', to: 'stories#new_youtube'
 			end			
-
 		end
 		#match '/stories/:id/edit' => 'stories#get_story'
 

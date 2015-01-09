@@ -1,0 +1,35 @@
+<h2 class="form-title">
+  <span class="glyphicon <%= Section::ICONS[:youtube] %>"></span>
+  <span class="form-title-text"><%= t('.form_title') %></span>
+</h2>
+
+<%= semantic_form_for(@item, url: youtube_story_path(id:params[:id],:format => :js), :html => {:id => "youtubeForm"} ,remote: true) do |f| %>
+<%= error_messages_for f.object %>
+  <%= f.inputs do %>
+    <%= f.input :title, hint: t('.hint.title'), :input_html => { :id => "youtubeTitle" } %>
+    <%= f.input :url, :as => :url, :placeholder => t('.placeholder.url'), :hint => t('.hint.url'), :input_html => { :id => "youtubeUrl" } %>
+    <button id="btnOllyYoutube" type="button" class="btn btn-info btn-mini" style="padding: 2px 6px"><%= t('.get_media') %></button>
+
+    <div id="youtubePreview">
+      <h3><%= t('.preview') %></h3>
+      <div class="alert alert-danger" id="youtubeError">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= t('.error') %>
+      </div>
+      <div id="youtubeResult">
+      </div>
+    </div>
+
+
+    <%= f.input :section_id, :as => :hidden , :input_html => { :id => "youtubeSection" }  %>
+    <% if @item.id.present? %>
+      <%= f.input :id, :as => :hidden , :input_html => { :id => "youtubeId" }  %>    
+    <% end %>
+  <% end %>
+
+
+  <div class="pull-right spacer" id="youtubeButtons" >
+    <%= f.submit nil, :class => 'btn btn-default' %>
+    <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          
+  </div>
+<% end %>
