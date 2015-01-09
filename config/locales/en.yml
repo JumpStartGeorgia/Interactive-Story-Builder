@@ -59,7 +59,8 @@ en:
         media_type: Media Type
         title: Title
         caption: Caption
-        caption_align: Caption Position
+        caption_align: Caption Alignment
+        infobox_type: Caption Position
         summary: Summary
         source: Source
         image: Image
@@ -564,6 +565,8 @@ en:
       right: Right
       image: Image
       video: Video
+      floating: Floating
+      fixed: Fixed
       placeholder:
         title: Media title
         caption: "Caption text"
@@ -576,6 +579,7 @@ en:
         image: "Only jpg format allowed; 3MB file size limit"
         video: "Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receive a notification when the processing is complete, typically within a few minutes."
         caption_align: "The Caption text will appear on top of the image/video (appears on the left by default) "
+        infobox_type: "Caption text and source styling methods floating and fixed. Floating will be predefined width and will move on scroll. Fixed will be at the bottom of screen with full width and transparent background"
         video_loop: "If checked, the video will loop infinitly, otherwise the video will not loop"
     section:
       form_title: Section Form

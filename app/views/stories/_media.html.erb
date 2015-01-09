@@ -99,8 +99,29 @@
       </div>
     </div>
 
-
    <%= f.input :source, hint: t('.hint.source'), :input_html => { :id => "mediaSource", :placeholder => t('.placeholder.source')  } %>
+
+    <div class="radio_buttons input optional form-group radio-indent radio-hide-button" id="medium_infobox_type_input">
+      <label class="control-label" for="medium_infobox_type">
+        <%= model_class.human_attribute_name(:infobox_type) %>
+        <div class="help-inline" title="<%= t('.hint.infobox_type')%>">
+          <div>?</div>
+        </div>
+      </label>
+      <% infobox_types = [[t('.floating'),0, 'glyphicon-resize-vertical'], [t('.fixed'),1, 'glyphicon-pushpin']] %>
+      <div class="radio-container">
+        <% infobox_types.each do |type| %>
+          <div class="radio">
+            <% checked = (type[1] == 0 && @item.infobox_type.nil?) || type[1] == @item.infobox_type ? 'checked=checked' : '' %>
+            <input <%= checked %> id="medium_infobox_type_<%= type[1] %>" name="medium[infobox_type]" type="radio" value="<%= type[1] %>">
+            <label class="choice" for="medium_infobox_type_<%= type[1] %>">
+              <span class="glyphicon <%= type[2] %>"></span>
+              <%= type[0] %>
+            </label>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
     <%= f.input :section_id, :as => :hidden , :input_html => { :id => "mediaSection" }  %>
     <% if @item.id.present? %>

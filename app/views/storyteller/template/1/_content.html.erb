@@ -111,7 +111,7 @@
               </div>   
               <% columnSectionCount+=1 %>   
             <% elsif section.media? %>
-              <div class="section video-sequence" data-caption="fixed" <%= dataAudio.html_safe %>>
+              <div class="section video-sequence" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
@@ -120,8 +120,8 @@
                   <% if m.media_type == Medium::TYPE[:video] && m.is_processed? %>                
                     <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name_formatted,'.*')}'".html_safe %>
                   <% end %> 
-                  <div class="video"  <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>
-                    <div class="video-container">
+                  <div class="video infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %>" <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>
+                    <div class="video-container infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %>">
                       <% if m.media_type == Medium::TYPE[:image] %>     
                           <% if !@export %> 
                             <img src="<%= m.image.asset.url(:fullscreen) %>">
@@ -142,20 +142,31 @@
                             <% end %>                                             
                       <% end %>  
                       
-                      <div class='video-caption-box'>
-                        <% if m.caption.present? && !(isFirst && m_i == 0) %>                                    
-                          <div class='video-caption video-caption--<%= "#{alignment.key(m.caption_align)}" %> <%= m.caption.length > 160 ? 
-                          "video-caption--long" : "" %>'>
-                            <div class="caption" style="min-height: 60px;width: 100%;">
-                              <%= m.caption  %>
-                            </div>
-                          </div>
-                        <% end %>   
+                      <% if m.caption.present? || m.source.present? %> 
+                        <% if m.infobox_type == Medium::INFOBOX_TYPE[:floating] %>
+                          
+                          <% if m.source.present? %>
+                            <div class="video-source"><%= m.source %></div>                       
+                          <% end %>   
 
-                        <% if m.source.present? %>
-                           <div class="video-source"><%= m.source %></div>                       
-                        <% end %>
-                      </div>   
+                        <% elsif m.infobox_type == Medium::INFOBOX_TYPE[:fixed] %>
+                          <div class='infobox'>
+
+                            <% if m.caption.present? && !(isFirst && m_i == 0) %>                                    
+                              <div class='video-caption video-caption--<%= "#{alignment.key(m.caption_align)}" %> <%= m.caption.length > 160 ? 
+                              "video-caption--long" : "" %>'>
+                                <div class="caption" style="min-height: 60px;width: 100%;">
+                                  <%= m.caption  %>
+                                </div>
+                              </div>
+                            <% end %>   
+
+                            <% if m.source.present? %>
+                               <div class="video-source"><%= m.source %></div>                       
+                            <% end %>
+                          </div> 
+                        <% end %>    
+                      <% end %>    
 
 
                     </div>     
@@ -175,7 +186,15 @@
           <polygon points="25.367,7.477 24.544,6.674 16.531,14.475 8.52,6.674 7.695,7.477 16.531,16.079 "/>
           </svg>
                       </div>  
-                    <% end %>                                                       
+                    <% end %>  
+
+
+                    <% if m.infobox_type == Medium::INFOBOX_TYPE[:floating] && m.caption.present? && !(isFirst && m_i == 0) %>
+                      <div class='video-caption video-caption--<%= "#{alignment.key(m.caption_align)}" %> <%= m.caption.length > 160 ? 
+                      "video-caption--long" : "" %>'>
+                        <%= m.caption  %>
+                      </div>
+                    <% end %>                                                            
                  
                   </div>        
                 <% end %>        
@@ -596,7 +615,7 @@
           var containerFixed = sectionFixed.select(".video-container")
               .style("z-index", function(d) { return d.first || d.last ? 1 : 2; })
               .style("position", function(d) { return d.first || d.last ? "absolute" : "fixed"; })
-              .style("top", function(d) { return d.first || d.last ? null : 0 + "px"; })
+              .style("top", function(d,i) { return d.first || d.last ? null : "0px"; })
               .style("display", function(d) { return d.first || d.last ? null : "none"; });
 
           containerFixed.select(function(d, i) { return d.sequence.length > 1 ? this : null; }).append("div")
@@ -636,25 +655,25 @@
             fadeTop = Math.max(200, fixTop);
             fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight);
             d3.select(".video-sequence:first-child").style("margin-top", fixTop + "px");
-            //d3.selectAll('.video-caption').style('height',window.innerHeight + 'px');//.style("top", -1*fixTop + "px");
-            console.log(containerFixed,'resized',fixHeight);
+             //containerFixed.style("height", fixHeight + "px")
             containerFixed.style("height", innerHeight+ "px").filter(function(d) { //fixHeight 
               var rect = this.parentNode.getBoundingClientRect();
               return d.first ? rect.top < fixTop
                   : d.last ? rect.bottom >= fixTop + fixHeight
                   : true;
-            });//.style("top", fixTop + "px");
+            }).style("top","0px");
           }
 
           function fixscrolled(d) {
             if (d.first || d.last) {
               //!(d.first && d.last) && () for bug when media section has only one media
-              var fixed = !(d.first && d.last) && ((d.first && d3.event.rect.top < fixTop)
-                  || (d.last && d3.event.rect.bottom >= fixTop + fixHeight));
+              var fixed = !(d.first && d.last) && ((d.first && d3.event.rect.top < 0)
+                  || (d.last && d3.event.rect.bottom >= 0 + fixHeight));
               d3.select(this.querySelector(".video-container"))
                   .style("z-index", fixed ? 2 : 1)
-                  .style("position", fixed ? "fixed" : "absolute")
-                  .style("top", fixed ? 0 + "px" : null);
+                  .style("top", fixed ? "0px" : null)      ;          
+                  //.style("position", fixed ? "fixed" : "absolute");
+                  
             }
 
             var section = d3.select(this),
@@ -930,13 +949,11 @@
 
     <script>
 
+   
       (function() {
-
         var watched = [];
-
         d3.behavior.watch = function() {
           var event = d3.dispatch("statechange", "scroll");
-
           function watch(selection) {
             selection.each(function(i) {
               watched.push({
@@ -947,10 +964,8 @@
               });
             });
           }
-
           return d3.rebind(watch, event, "on");
         };
-
         if (/iPhone|iPad|iPad|Android/.test(navigator.userAgent) || location.hash == "#ipad") {
           d3.select(window)
               .on("resize.watch", watch_scrolledStatic)
@@ -961,7 +976,6 @@
               .on("scroll.watch", watch_scrolled)
               .on("DOMContentLoaded.watch", watch_scrolled);
         }
-
         function watch_scrolled() {
           watched.forEach(function(watch) {
             var rect = watch.element.getBoundingClientRect();
@@ -974,14 +988,12 @@
             }
           });
         }
-
         function watch_scrolledStatic() {
           watched.forEach(function(watch) {
             watch_state(watch, 1);
             watch_dispatch(watch, {type: "scroll", offset: .5, rect: {top: 0}}); // XXX rect
           });
         }
-
         function watch_state(watch, state1) {
           var state0 = watch.state;
           if (state0 !== state1) watch_dispatch(watch, {
@@ -990,7 +1002,6 @@
             previousState: state0
           });
         }
-
         function watch_dispatch(watch, event) {
           var element = watch.element,
               sourceEvent = event.sourceEvent = d3.event;
@@ -1001,9 +1012,6 @@
             d3.event = sourceEvent;
           }
         }
-
         await();
-
-    })();
-    </script>
-    <!--<![endif]-->  
+    })();</script>
+    <!--<![endif]--> 

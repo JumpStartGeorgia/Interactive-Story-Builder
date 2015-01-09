@@ -257,6 +257,7 @@ class StoriesController < ApplicationController
         if params[:command]!='n'    
           @item = EmbedMedium.find_by_id(params[:item_id])   
         else 
+          Rails.logger.debug(params[:section_id])
           @item = EmbedMedium.new(:section_id => params[:section_id])
         end
         respond_to do |format|

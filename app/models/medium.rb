@@ -15,7 +15,7 @@ class Medium < ActiveRecord::Base
     dependent: :destroy
 
 	TYPE = {image: 1, video: 2}
-
+  INFOBOX_TYPE = {floating: 0, fixed: 1}
   validates :section_id, :presence => true
   validates :media_type, :presence => true, :inclusion => { :in => TYPE.values }  
   validates :title, :presence => true , length: { maximum: 255 }  
