@@ -1,0 +1,13 @@
+# encoding: utf-8
+
+ru:
+  formtastic:
+    :yes: Да
+    :no: Нет
+    cancel: "Отмена %{model}"
+    create: "Создание %{model}"
+    required: Необходимо
+    reset: "Перезагрузка %{model}"
+    submit: "Сохранение %{model}"
+    update: "Сохранение %{model}"
+

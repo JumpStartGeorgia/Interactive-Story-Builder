@@ -1,0 +1,25 @@
+# encoding: utf-8
+az:
+  devise:
+    failure:
+      invalid: "Yalnış El-poçt ya da şifrə"
+      invalid_token: "Yalnış avtorizasiya nişanı"
+      locked: "Sizin hessabınız bloklanmışdır"
+      unauthenticated: "Davam etmək üçün ya sistemə daxil olmalısınız ya da qeydiyyatdan keçməlisiniz"
+    passwords:
+      send_instructions: "Bir neçə dəqiqə ərzində siz el-poçt vasitəsi ilə şifrəni yenidən bərpa etmək instruksiyalarını alacaqsınız"
+      updated: "Sizin şifrəniz uğurla dəyişdirildi. Siz artıq sistemə daxil olmusunuz"
+    sessions:
+      signed_in: "Siz sistemə uğurla daxil oldunuz"
+      signed_out: "Siz sistemi uğurla tərk etdiniz"
+    timeout: "GE::Timeout"
+    unlocks:
+      locked: "GE::This account is locked"
+      send_instructions: "Bir neçə dəqiqə ərzində siz el-poçt vasitəsi ilə hessabınızdan bloku açmaq instruksiyalarını alacaqsınız"
+      unlock: "GE::Unlock"
+      unlocked: "Sizin hessabınızın bloku uğurla açılmışdır. Siz artıq sistemə daxil olmusunuz"
+  errors:
+    messages:
+      already_confirmed: "Artıq təsdiqlənibdir"
+      not_found: Tapılmamışdır
+      not_locked: Bloklanmamışdır

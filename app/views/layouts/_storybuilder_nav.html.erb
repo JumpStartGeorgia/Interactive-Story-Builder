@@ -123,11 +123,16 @@
             </a></li> 
        
         <li class="separator-ver"></li>
-        <% I18n.available_locales.each do |locale| %>
-          <% if locale != I18n.locale %>
-            <li class="lang-switch"><%= link_to t("app.language.#{locale}"), params.merge(:locale =>  locale) , :"data-target"=>".nav-collapse", :"data-toggle"=>"collapse" %></li>
-          <% end %>
-        <% end %>                             
+        <li class="dropdown dropdown-hover">                    
+            <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= t("app.language.#{locale}") %><i class="s i-caret-w"></i></a>                  
+            <ul class="dropdown-menu">
+              <% I18n.available_locales.each do |locale| %>
+                <% if locale != I18n.locale %>
+                  <li class="lang-switch"><%= link_to t("app.language.#{locale}"), params.merge(:locale =>  locale) %></li>
+                <% end %>
+              <% end %>                             
+            </ul>
+        </li>        
       </ul>
     </div>
   </div>
