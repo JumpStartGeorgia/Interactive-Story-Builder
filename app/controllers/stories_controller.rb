@@ -473,6 +473,34 @@ class StoriesController < ApplicationController
       end
     end    
   end
+  def get_embed_code
+    id = nil
+    html = nil
+    if params[:u].present?
+      uri = URI.parse(params[:u])
+      if(uri.host.nil? && params[:u].length == 11)
+        id = params[:u]
+      else
+        uri = /^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/.match(params[:u])
+        if(uri[1].length == 11)
+          id = uri[1]
+        end
+      end
+
+      require 'net/http'
+      source = 'https://www.googleapis.com/youtube/v3/videos?key=AIzaSyB7paXhZ3LEYFSEYXG-e-2RqzaxyGDbi_Y&part=id&id=' + id
+      resp = Net::HTTP.get_response(URI.parse(source))
+      data = resp.body
+      result = JSON.parse(data)
+      if result['items'].present?
+        html = '<iframe width="640" height="390" src="http://www.youtube.com/embed/'+id+'" frameborder="0" allowfullscreen class="embed-video embed-youtube"></iframe>'
+      end
+      logger.debug("----------------------------------#{params}")
+    end
+    respond_to do |format|
+      format.json {render json: { html: html}.to_json, status: :ok }  
+    end
+  end
   
   
   def destroy_tree_item  

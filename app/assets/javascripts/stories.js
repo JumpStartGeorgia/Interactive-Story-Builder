@@ -77,6 +77,46 @@ $(document).ready(function() {
 	  }
 	});
 
+   $('.story-viewer').on('click', '#btnGetEmbed', function(e){
+			
+		var a = $(this);		
+		$.ajax(
+		{	
+			data: {
+				u: $('#youtubeUrl').val(), 
+				f: $('#youtubeFullcsreen').is(':checked'),
+				l: $('#youtubeLoop').is(':checked'), 
+				i: $('#youtubeInfo').is(':checked'),
+				c: $('#youtubeCC').is(':checked'),
+				pl: $('#youtubePlayerLang').val(),
+				cl: $('#youtubeCCLang').val()
+			},
+			dataType: "json",
+			url: 'get_embed_code'
+		}).done(
+			function(d) 
+			{ 		
+				$('#youtubeResult').html(d.html);
+				// if(typeof(d.e) !== 'undefined' && d.e)	
+				// {
+    //            if(a.closest('.story-edit').length) a.closest('.story-edit').next('.story-message').html(d.msg).fadeIn(1000);
+    //            else popuper(d.msg,'error');           
+				// }
+				// else
+				// 	a.find('span:last-child').text(d.title);							
+			});	 							
+		e.preventDefault();	
+		return true;	
+
+    //resetEmbedForm();
+    
+	  // if (url.length > 0 && isUrl(url)){
+   //    olly.embed(url, document.getElementById("embedMediaResult"), 'timerOllyCompelte', 'ollyFail');
+	  // }else{
+   //    ollyFail();
+	  // }
+	});
+
   // when review menu item clicked, open modal 
   // and push in review key and story title
   $(document).on('click', '#btnReviewer', function(e){

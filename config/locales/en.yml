@@ -86,6 +86,13 @@ en:
       youtube:
         title: Title
         url: Url to Online Media
+        fullscreen: Fullscreen
+        loop: Loop
+        info: Show Information Bar
+      youtube_translation:
+        menu_lang: "Player language"
+        cc: Show Caption/Subtitle
+        cc_lang: "Subtitle language"       
       language:
         locale: Locale
         name: Language Name
@@ -654,7 +661,13 @@ en:
         url: Url to online media
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
-        url: "The following sites can be used for embeding online media: VIDEO: Youtube"        
+        url: "The following sites can be used for embeding online media: VIDEO: Youtube"
+        fullscreen: "Video can be view in a fullscreen mode"
+        loop: "Loop video or stop after first view"
+        cc: "Show subtitles"
+        info: "Show video information"
+        menu_lang: "Player language"
+        cc_lang: "Subtitle language"           
   storyteller:
     byline: By
     byline_media: "Photos and videos by "
