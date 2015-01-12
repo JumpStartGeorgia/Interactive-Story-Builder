@@ -1,0 +1,13 @@
+# encoding: utf-8
+
+az:
+  formtastic:
+    :yes: Bəli
+    :no: Xeyr
+    cancel: "Ləğv etmək %{model}"
+    create: "Yaratmaq %{model}"
+    required: Lazımlı
+    reset: "Yenidən başlatmaq %{model}"
+    submit: "Saxlamaq %{model}"
+    update: "Saxlamaq %{model}"
+
