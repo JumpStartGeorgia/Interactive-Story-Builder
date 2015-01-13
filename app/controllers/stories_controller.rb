@@ -274,6 +274,7 @@ class StoriesController < ApplicationController
           @item = Youtube.find_by_id(params[:item_id])   
         else 
           @item = Youtube.new(:section_id => params[:section_id])
+          @item.youtube_translations.build(:locale => I18n.locale.to_s)
         end
         respond_to do |format|
           if @item.present?
@@ -473,36 +474,6 @@ class StoriesController < ApplicationController
       end
     end    
   end
-  def get_embed_code
-    id = nil
-    html = nil
-    if params[:u].present?
-      uri = URI.parse(params[:u])
-      if(uri.host.nil? && params[:u].length == 11)
-        id = params[:u]
-      else
-        uri = /^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/.match(params[:u])
-        if(uri[1].length == 11)
-          id = uri[1]
-        end
-      end
-
-      require 'net/http'
-      source = 'https://www.googleapis.com/youtube/v3/videos?key=AIzaSyB7paXhZ3LEYFSEYXG-e-2RqzaxyGDbi_Y&part=id&id=' + id
-      resp = Net::HTTP.get_response(URI.parse(source))
-      data = resp.body
-      result = JSON.parse(data)
-      if result['items'].present?
-        html = '<iframe width="640" height="390" src="http://www.youtube.com/embed/'+id+'" frameborder="0" allowfullscreen class="embed-video embed-youtube"></iframe>'
-      end
-      logger.debug("----------------------------------#{params}")
-    end
-    respond_to do |format|
-      format.json {render json: { html: html}.to_json, status: :ok }  
-    end
-  end
-  
-  
   def destroy_tree_item  
     item = nil    
     type = params[:type]
@@ -993,3 +964,8 @@ private
   end
 end       
 
+class Object
+  def boolean?
+    self.is_a?(TrueClass) || self.is_a?(FalseClass) 
+  end
+end

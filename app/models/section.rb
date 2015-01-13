@@ -81,7 +81,6 @@ class Section < ActiveRecord::Base
       self.asset.present? && self.asset.asset.exists?
   end  
   def ok?
-    # todo maybe code should be added for youtube
     if content?
       return (self.content.present? && self.content.content.present?)
     elsif media?        
@@ -103,7 +102,7 @@ class Section < ActiveRecord::Base
     elsif embed_media?
       return self.embed_medium.present? && self.embed_medium.code.present?
    elsif youtube?
-      return self.youtube.present? #&& self.youtube.code.present?
+      return self.youtube.present? && self.youtube.code.present?
     end
   end
 end

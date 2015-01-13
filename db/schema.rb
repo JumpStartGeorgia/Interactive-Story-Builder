@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150112092813) do
+ActiveRecord::Schema.define(:version => 20150113091903) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -136,7 +136,7 @@ ActiveRecord::Schema.define(:version => 20150112092813) do
     t.integer  "section_id"
     t.integer  "media_type"
     t.string   "title"
-    t.string   "caption",       :limit => 2000
+    t.string   "caption",       :limit => 180
     t.integer  "caption_align"
     t.string   "source"
     t.string   "audio_path"
@@ -144,8 +144,8 @@ ActiveRecord::Schema.define(:version => 20150112092813) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "position"
-    t.boolean  "video_loop",                    :default => true
-    t.integer  "infobox_type",                  :default => 0
+    t.boolean  "video_loop",                   :default => true
+    t.integer  "infobox_type",                 :default => 0
   end
 
   add_index "media", ["section_id", "position"], :name => "index_media_on_section_id_and_position"

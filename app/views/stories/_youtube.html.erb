@@ -13,18 +13,15 @@
       <%= f.input :loop, :as => :boolean, :hint => t('.hint.loop'), :input_html => { id: "youtubeLoop" } %>   
       <%= f.input :info, :as => :boolean, :hint => t('.hint.info'), :input_html => { id: "youtubeInfo" } %> 
     
-      <%= f.fields_for :youtube_translations, @item.youtube_translations do |as| %>   
+    <%= f.fields_for :youtube_translations, @item.youtube_translations do |as| %>   
       <%= as.input :cc, :as => :boolean, :hint => t('.hint.cc'), :input_html => { id: "youtubeCC", class: "end-line one-line"}, :class=>'asdf' %> 
     </div>
     <div class='one-line'>  
       <%= as.input :menu_lang , :as => :select, :hint => t('.hint.menu_lang'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "youtubePlayerLang", :class => "selectpicker one-line", :'data-live-search' => "true", :'data-size' => "7"  } %>
 
-      
-
-        <%= as.input :cc_lang , :as => :select, :hint => t('.hint.cc_lang'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "youtubeCCLang", :class => "selectpicker one-line", :'data-live-search' => "true", :'data-size' => "7"  } %>
-
-    
-      <% end %> 
+      <%= as.input :cc_lang , :as => :select, :hint => t('.hint.cc_lang'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "youtubeCCLang", :class => "selectpicker one-line", :'data-live-search' => "true", :'data-size' => "7"  } %>
+      <%= as.input :locale, :as => :hidden, :value => I18n.locale %>
+    <% end %> 
     </div>
 
     <button id="btnGetEmbed" type="button" class="btn btn-info btn-mini" style="padding: 2px 6px"><%= t('.get_media') %></button>
@@ -36,7 +33,7 @@
         <% t('.error') %>
       </div>
       <div id="youtubeResult">
-        <%= @item.youtube_translations[0].code.html_safe if @item.youtube_translations[0].code.present? %>
+        <%= @item.code.html_safe if @item.code.present? %>
       </div>
     </div>
 
@@ -48,8 +45,15 @@
   <% end %>
 
 
-  <div class="pull-right spacer" id="youtubeButtons" >
+  <% 
+    style = '' 
+    if @item.code.blank? 
+      style = "style=display:none;"
+     end 
+  %>
+  <div class="pull-right spacer" id="youtubeButtons" <%= style %>>    
     <%= f.submit nil, :class => 'btn btn-default' %>
     <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          
   </div>
 <% end %>
+
