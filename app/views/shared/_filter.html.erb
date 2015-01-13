@@ -1,13 +1,7 @@
 <div id="filter">  
+<div class='navbar-left'>All Stories</div>
   <div class="mob">
-      <div class="search">
-    <%= form_tag root_path, :method => :get, :id => 'search-filter',
-    :class => "navbar-form navbar-left", :role => "search" do %>
-      <div class="form-group">            
-        <%= text_field_tag :q, params[:q], :placeholder => t('app.common.search'), :class=>"form-control search-input", :autocomplete=>'off', :tabindex => 1 %>
-      </div>
-    <% end %>  
-    </div>
+  
     <div class="filters"><%= t('filters.filters') %><i class='s i-caret-b'></i></div>
   </div>
 

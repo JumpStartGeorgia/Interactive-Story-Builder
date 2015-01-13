@@ -17,9 +17,9 @@
 {
   position:relative;
   display:block;
-  margin-bottom: 22px;  
-  max-width: 459px;
-  max-height:329px;  
+  margin:0px;  
+  // max-width: 459px;
+  // max-height:329px;  
   background-color: #242424;
   overflow:hidden;
    -webkit-transition:all .25s linear;
@@ -54,8 +54,8 @@
   {
     float: left;
     width: 100%;
-    max-width: 459px;
-    max-height:329px;
+    // max-width: 459px;
+    // max-height:329px;
     height: auto;
     webkit-transition: opacity .45s,-webkit-transform .45s;
     transition: opacity 0.45s, transform 0.45s;
@@ -72,8 +72,8 @@
   overflow: hidden;  
   margin: 60px 21px 21px 42px;  
   text-align:center;  
-  max-width: 459px;
-  max-height:329px; 
+  // max-width: 459px;
+  // max-height:329px; 
   min-width:80%; 
   display:none;
   @media only screen and (min-width : 1200px) 
@@ -169,7 +169,7 @@
       text-overflow: ellipsis;
       text-decoration: none;
       color:#2b2c27;   
-      padding-bottom:10px; 
+      padding:10px 10px 0px 10px;
     a
     {
         width:100%;
@@ -179,8 +179,7 @@
         overflow:hidden !important;
         text-overflow: ellipsis;
         text-decoration: none;
-        color:#2b2c27;   
-        padding-bottom:10px; 
+        color:#fff;   
         overflow:hidden;
     }
     a:lang(ka)
@@ -201,6 +200,9 @@
   }
   .story-misc
   {
+    position:absolute;
+    bottom:0px;
+    left:0px;
     display: table;
     width: 100%;
     margin-bottom:5px;
@@ -233,6 +235,16 @@
     text-overflow: ellipsis;
     text-decoration: none;
   }
+  .likes,.views,.comments
+    {
+      font-family:opensans-l;
+      font-size:14px;
+      color:#4e4e4e;
+      margin-right:12px;
+      vertical-align:middle;
+      display: inline-block;
+      text-align: center;      
+    }
   .story-stats
   {
     display:inline-block;
@@ -273,11 +285,11 @@ input#user_nickname + div + span.check_nickname{
 
 
 .grid{margin:0}
-.grid{clear:both;margin:0 23px 0 0}
+.grid{clear:both;margin:0px; }
 .grid:after{content:'';display:block;clear:both}
 .grid.no-clear:after{display:none}
 .inner .grid{margin:0 0 0 -23px}
-.grid .col{position:relative;float:left;padding:0 0 23px 23px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;-webkit-transition:width .3s ease-out;-moz-transition:width .3s ease-out;-ms-transition:width .3s ease-out;transition:width .3s ease-out}
+.grid .col{position:relative;float:left;padding:0 0 0px 0px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;-webkit-transition:width .3s ease-out;-moz-transition:width .3s ease-out;-ms-transition:width .3s ease-out;transition:width .3s ease-out}
 .grid .col.first{padding-left:0}
 .grid.test .col .content{padding:20px 0;background:#df6c4f;color:#FFF;text-align:center}
 .grid .col.n-1{width:8.33%}
@@ -297,16 +309,23 @@ input#user_nickname + div + span.check_nickname{
 .pad-left{padding-left:23px}
 .mar-left{margin-left:23px}
 .grid.one-row .col,.grid .col.one-row,.grid.one-row .col .list-item>li,.grid.one-row p:last-child{margin-bottom:0;padding-bottom:0}
-.col-2 .col:nth-of-type(2n+1),.col-3 .col:nth-of-type(3n+1),.col-6 .col:nth-of-type(6n+1){clear:both}
+.col-2 .col:nth-of-type(2n+1),.col-3 .col:nth-of-type(3n+1),.col-4 .col:nth-of-type(4n+1),.col-6 .col:nth-of-type(6n+1){clear:both}
 .grid.align-center{text-align:center}
 .grid.align-center .col{float:none;display:inline-block}
+.grid .col 
+{
+  background-color:#252525;
+}
+.grid .col:nth-of-type(2n+1) {
+  background-color:#1d1d1d;
+}
 
 @media screen and (max-width:1570px)
 {
   #content.full{padding:0}
   .grid .col.n-3{width:33.33%}
-  .col-4 .col:nth-of-type(4n+1){clear:none}
-  .col-4 .col:nth-of-type(3n+1){clear:both}
+  .col-4 .col:nth-of-type(4n+1){clear:both;}
+  // .col-4 .col:nth-of-type(3n+1){clear:both}
   .grid .col.n-2-5{width:25%}
   .col-5 .col:nth-of-type(5n+1){clear:none}
   .col-5 .col:nth-of-type(4n+1){clear:both}
@@ -385,8 +404,10 @@ input#user_nickname + div + span.check_nickname{
   *:hover { opacity: 1; }
   .story-info
   {
-    max-width: 459px;
-    max-height:329px;  
+    height:120px;
+    overflow:hidden;
+    // max-width: 459px;
+    // max-height:329px;  
     a
     {
         text-decoration:none;

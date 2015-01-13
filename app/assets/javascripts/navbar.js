@@ -1,5 +1,5 @@
 $(document).ready(function() {  
-    navbarMagic(true); 
+    //navbarMagic(true); 
 });
 
 var scrollOffset = 0;

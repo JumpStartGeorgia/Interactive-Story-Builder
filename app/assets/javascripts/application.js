@@ -188,6 +188,9 @@ $(window).resize(function() {
     }
     return false;
   });   
+
+
+  $('.carousel').carousel({interval:20000});
 });
 
 

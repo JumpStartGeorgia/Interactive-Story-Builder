@@ -1,10 +1,10 @@
 class RootController < ApplicationController    
   def index   
     
-    @js.push("navbar.js", "zeroclipboard.min.js","filter.js")
+    @js.push("zeroclipboard.min.js","filter.js")
     @css.push("navbar.css", "filter.css", "grid.css","root.css")    
     @stories = process_filter_querystring(Story.is_published_home_page.paginate(:page => params[:page], :per_page => per_page))      
-    @navbar_invisible = true
+    @navbar_invisible = false
     respond_to do |format|
       format.html  
       #format.json { render json: @stories }      

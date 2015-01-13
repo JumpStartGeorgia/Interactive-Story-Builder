@@ -27,7 +27,7 @@
 // See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
 
 
-@body-bg:#f8f8f8;
+@body-bg:#252525;
 @screen-sm:1200px;
 @screen-md:1424px;
 @screen-lg:1600px;
@@ -179,7 +179,7 @@ html, body
 	height: 100%;
 	margin: 0px auto -31px;
 	padding: 60px 0px;	
-	max-width:1468px;	
+	// max-width:1468px;	
 }
 .container 
 {
@@ -222,5 +222,71 @@ html, body
 {
 .navbar .nav-separator {
     display: none;
+  }
+}
+
+.carousel
+{
+  .carousel-indicators
+  {
+    li
+    {
+      border-radius:0px;
+      transform:rotate(45deg);
+      margin:1px 6px;
+    }
+    .active
+    {
+      margin:1px 6px;
+      width:10px;
+      height:10px;
+    }
+  }
+
+  .carousel-inner
+  {
+    max-height: 600px;
+    overflow: hidden;
+    .item
+    {
+      max-height: 600px;
+    }
+  }  
+  .carousel-inner .item img {
+    max-height:100%;
+  }
+  .carousel-control
+  {
+    width:5%;
+    text-shadow:none;
+  }
+  .carousel-control .icon
+  {
+
+    width:25px;
+    height:45px;
+    margin-top: -22.5px;
+    margin-left: -12.5px;
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+
+    &.arrow-left
+    {
+      background:transparent url('/assets/svg/chaikhana/arrow_left.svg') no-repeat;  
+      background-size:25px 45px;
+
+    }
+    &.arrow-right
+    {
+      background:transparent url('/assets/svg/chaikhana/arrow_right.svg') no-repeat;  
+      background-size:25px 45px;
+    }
+
+  }
+  .carousel-control
+  {
+    background-image:none !important;
   }
 }

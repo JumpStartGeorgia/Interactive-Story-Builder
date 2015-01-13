@@ -13,7 +13,7 @@
      <%= link_to path do %>
         <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459' %>              
         <div class="story-link">
-          <span lang="<%= story.story_locale %>"><%= title.html_safe %></span>
+          <span lang="<%= story.story_locale %>"><%= story.title %></span>
           <!-- <div class="explore"><%= t('app.buttons.explore') %></div>-->
        </div>  
  
@@ -94,26 +94,15 @@
   </div>
   <div class='story-info'>                               
   <div class="story-caption">
-    <%= link_to truncate(story.title, length: 45, separator: ' '), path, :title => story.title, :lang => story.story_locale %>
+  <%= link_to truncate(story.about, length: 180, separator: ' '), path, :title => story.about, :lang => story.story_locale %>
+    <!--  link_to truncate(story.title, length: 45, separator: ' '), path, :title => story.title, :lang => story.story_locale %> -->
   </div>
     <div class="story-misc"> 
       <div class="story-misc-left">     
-        <div class="story-author">
-            <%= link_to story.user.nickname, author_path(story.user.permalink), :title => story.user.nickname, :class => 'author' %>
-        </div>
-
+        <span class="views" title="<%= t('app.common.views') %>"><i class="s i-views disabled"></i><%= story.impressions_count %></span>  
         <div class="separator"></div>
         <div class="story-publish" title="<%= t('app.common.publish_date') %>"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>  
-            <!-- <div class="story-likes">
-             <%= content_tag(:span, story.likes, :class => "n#{story.likes.to_s.size}" ) %>
-            </div>   -->
     </div> 
-    <div class="story-misc-right">
-      <div class="story-stats"> 
-        <span class="likes" title="<%= t('app.common.likes') %>"><i class="s i-likes disabled"></i><%= story.likes %></span>            
-        <span class="views" title="<%= t('app.common.views') %>"><i class="s i-views disabled"></i><%= story.impressions_count %></span>  
-        <span class="comments" title="<%= t('app.common.comments') %>"><i class="s i-comment disabled"></i><%= story.comments_count%></span>
-      </div> 
-    </div>                                           
+                                      
   </div> 
 </div>
