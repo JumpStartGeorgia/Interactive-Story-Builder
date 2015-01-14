@@ -4,7 +4,7 @@ var pf = {};    // previous filter values
 var paging = false;
 function filter()    
 {    
-  if(JSON.stringify(f) !== JSON.stringify(pf))
+  if(paging && JSON.stringify(f) !== JSON.stringify(pf))
   {  
     var ftmp = {};   
     if(!paging) { f['page'] = ''; } 
@@ -18,18 +18,22 @@ function filter()
         ftmp[k] = v;
       }
     }  
-    
+    $(".grid-wrapper").append('<div class="loading"></div>');
     $.ajax({       
       type: "POST",
       url: gon.filter_path,
       dataType: "json",
       data: ftmp
-    }).done(function(data) {          
-      $(".grid-wrapper").html($(data.d).children());
+    }).done(function(data) {         
+      $(".grid-wrapper .loading").remove();
+      data = $(data.d);    
+      $(".grid-wrapper .grid").append(data.find('.grid .col'));
+      $(".grid-wrapper .pagination-wrapper").html(data.find('.pagination-wrapper').html());
       url_update();
+      paging = false;
     });
   }  
-  paging = false;
+  
 }
 function url_update() {
   var url = window.location.href;
@@ -72,7 +76,7 @@ $(document).ready(function() {
     
   $('.filters').click(function(){$('#filter .nav').toggleClass('s h'); });
   
-  if(gon.page_filtered) { scrolldown(false,'.header'); }
+  //if(gon.page_filtered) { scrolldown(false,'.header'); }
 
 // add search phrase to filters
   $('form#search-filter').submit(function(e){
@@ -185,8 +189,18 @@ $(document).ready(function() {
       e.preventDefault();
       e.stopPropagation();
       filter();
-      scrolldown(false,'.header');
+//      scrolldown(false,'.header');
 
+  });
+  $(window).on('scroll',function(){
+    var url = $('.pagination .next_page a').attr('href');
+    if (url && url !='#' && $(window).scrollTop() >= $(document).height() - $(window).height())
+    {
+       var tmp = $('.pagination .next_page a').attr('data-filter');    
+      f["page"] = tmp == "1" ? "":tmp;
+      if(!paging) paging = true;
+      filter();
+    }
   });
 
   $('.grid-wrapper').on("click",".pagination .disabled a, .pagination .active a", function(e) {

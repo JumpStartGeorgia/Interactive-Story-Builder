@@ -5,18 +5,10 @@
   <div class="container-fluid">  
     <div class="navbar-header">
         <img src="<%= asset_path('svg/slogo.svg') %>" class="navbar-toggle navbar-slogo" data-toggle="collapse" data-target="#storybuilder-navbar-collapse" />        
-        <%= link_to(image_tag("svg/chaikhana/logo.svg",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name_not_trans')) , root_path(:locale => I18n.locale), title: t('app.common.app_name'), :class=>"navbar-logo link") %>          
+        <%= link_to(image_tag("svg/logo.svg",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name_not_trans')) , root_path(:locale => I18n.locale), title: t('app.common.app_name'), :class=>"navbar-logo link") %>          
     </div>
 
     <div class="collapse navbar-collapse" id="storybuilder-navbar-collapse">
- 
-      <div class="separator-ver"></div>
-      <%= form_tag root_path, :method => :get, :id => 'search-form',
-        :class => "navbar-form navbar-left", :role => "search" do %>
-          <div class="form-group">            
-            <%= text_field_tag :q, params[:q], :placeholder => t('app.common.search'), :class=>"form-control search-input", :autocomplete=>'off', :tabindex => 1 %>
-          </div>
-      <% end %>
       <div class="separator-hor"></div> 
       <ul class="nav navbar-nav navbar-right">    
           <li> 
@@ -132,7 +124,15 @@
                 <% end %>
               <% end %>                             
             </ul>
-        </li>        
+        </li>  
+        <li>
+          <%= form_tag root_path, :method => :get, :id => 'search-form',
+          :class => "navbar-form navbar-left", :role => "search" do %>
+            <div class="form-group">            
+              <%= text_field_tag :q, params[:q], :placeholder => t('app.common.search'), :class=>"form-control search-input", :autocomplete=>'off', :tabindex => 1 %>
+            </div>
+        <% end %>
+        </li>      
       </ul>
     </div>
   </div>
