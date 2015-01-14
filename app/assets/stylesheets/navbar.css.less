@@ -199,10 +199,10 @@ header
     .form-group { background-color: #f8f8f8; }
     input[type="text"] 
     {    
-      border: 0 none;                    
-      padding: 6px 15px 6px 35px;
+      border: 1px solid #fff;                    
+      padding: 6px 30px 6px 6px;
       margin:5px 10px;
-      background:#f8f8f8 url('/assets/svg/search_b.svg') no-repeat 5px 6px;
+      background:#f8f8f8 url('/assets/svg/search_b.svg') no-repeat 222px 6px;
       font-family:opensans-r;
       font-size:16px; 
       color:#000;       
@@ -215,6 +215,7 @@ header
       transition:all .15s ease-out;
       outline:none;
       opacity:0.8;
+      min-width:250px;
       &:focus, &:hover
       {
         width:100%;
@@ -426,9 +427,12 @@ header
       }
       input[type="text"]     
       {            
-          background:transparent url('/assets/svg/search_w.svg') no-repeat 5px 6px;
+          background:transparent url('/assets/svg/search_w.svg') no-repeat 222px 6px;
           margin:0px;
           color:#fff;
+          border-radius: 0px;
+          -moz-border-radius: 0px;
+          -webkit-border-radius: 0px;
       }   
     }
 

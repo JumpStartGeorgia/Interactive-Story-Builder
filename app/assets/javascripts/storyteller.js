@@ -66,6 +66,7 @@ $(document).ready(function() {
 $(document).ready(function(){
     if($(".navbar-storybuilder").length != 0)
     {
+      console.log('navbar-storybuilder in storyteller');
       $(".navbar-story").css("top","54px");
       var lastScroll = 0;
       var sn = true;

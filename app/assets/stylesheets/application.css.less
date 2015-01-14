@@ -821,7 +821,7 @@ i.v{visibility:visible;}
 .separator-ver
 {      
   height:26px !important;
-  margin: 14px 20px 0px 20px;
+  margin: 22px 20px 0px 20px;
   float:left;
   border-left: 1px solid rgba(255, 255, 255, 0.32);
   border-right:0px solid #fff;    
@@ -869,12 +869,59 @@ i.v{visibility:visible;}
 .dropdown-menu input{
   padding: 0 0 0 5px !important;
 }
-.loading
+.loading {
+  width: 60px;
+  height: 60px;
+  background-color: #464646;
+
+  margin: 100px auto;
+  -webkit-animation: rotateplane 1.2s infinite ease-in-out;
+  animation: rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes rotateplane {
+  0% { 
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+  } 50% { 
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+  } 100% { 
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+
+.type
 {
-  background:transparent url('/assets/svg/loading.gif') no-repeat;
-  background-size:65px;
-  width:65px;
-  height:65px;
-  margin: 0px auto;
-  padding:20px 0px;
+  display:inline-block;
+  width:34px;
+  height:34px;
+
+}
+.type-story
+{
+  background:transparent url('/assets/svg/chaikhana/type_story.svg') no-repeat;
+  background-size:34px 34px;
+}
+.type-talkshow
+{
+  background:transparent url('/assets/svg/chaikhana/type_talkshow.svg') no-repeat;
+  background-size:34px 34px;
+}
+.type-video
+{
+  background:transparent url('/assets/svg/chaikhana/type_video.svg') no-repeat;
+  background-size:34px 34px;
+}
+.type-photo
+{
+  background:transparent url('/assets/svg/chaikhana/type_photo.svg') no-repeat;
+  background-size:34px 34px;
 }
