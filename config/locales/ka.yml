@@ -15,6 +15,8 @@ ka:
       language: ენა
       category: კატეგორია
       page: ტექსტი გვერდებისთვის
+      theme: Theme
+      story_type: Type
     attributes:
       user:
         email: ელ. ფოსტა
@@ -85,7 +87,14 @@ ka:
         url: ონლაინ აუდიოს/ვიდეოს ბმული
       youtube:
         title: Title
-        url: Url to Online Media        
+        url: Url to Online Media
+        fullscreen: Fullscreen
+        loop: Loop
+        info: Show Information Bar
+      youtube_translation:
+        menu_lang: "Player language"
+        cc: Show Caption/Subtitle
+        cc_lang: "Subtitle language"       
       language:
         locale: ენის აღმნიშვნელი
         name: ენა
@@ -96,6 +105,20 @@ ka:
       page_translation:
         title: სათაური, რომელიც გამოჩნდება კონტენტის ზემოთ
         content: კონტენტი
+      theme:
+        is_published: Publish?
+        published_at: Date Published
+        show_home_page: Show this theme on the home page?
+      theme_translation:
+        name: Name
+        edition: Edition
+        description: Description
+        permalink: URL
+      story_type:
+        sort_order: Sort Order
+      story_type_translation:
+        name: Name
+        permalink: URL
     errors:
       messages:
         required_field: "სავალდებულო ველი"
@@ -186,15 +209,17 @@ ka:
       reset_or_sign_in: შედით facebook-ით ან შეცვალეთ პაროლი
       add_story: ამბის დამატება
       users: მომხმარებლები
-      news: სიახლეები
       feedback: მოგვწერე
-      todo_list: გეგმაშია
       about: შესახებ
-      demo: ნიმუში
       rss: RSS
+      themes: Themes
+      story_types: Types
       languages: ენები
-      categories: კატეგორიები
-      staff_pick: რჩეულებში დამატება 
+      follow: თვალყურის დევნება
+      facebook: Facebook
+      twitter: Twitter
+      youtube: YouTube
+      subscribe: Subscribe
       user_settings: პარამეტრები
       like: მოწონება
       likes: მოწონება

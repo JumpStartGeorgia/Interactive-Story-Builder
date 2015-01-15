@@ -11,6 +11,8 @@ class RootController < ApplicationController
       format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}      
     end
   end
+
+
   def author   
     @author = User.find_by_permalink(params[:user_id])
 
@@ -66,39 +68,32 @@ class RootController < ApplicationController
     end 
   end
 
-  def demo
-    @story = Story.demo
-  	if @story.present?
-      redirect_to storyteller_show_path(@story.permalink) 
-      # respond_to do |format|     
-      #   format.html { render 'storyteller/index' }
-      # end
+  def theme
+    @theme = Theme.published.find_by_permalink(params[:id])
+
+    if @theme.present?
+      respond_to do |format|
+        format.html  
+        #format.json { render json: @stories }      
+        format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}      
+      end
     else
       redirect_to root_path, :notice => t('app.msgs.does_not_exist')
     end
   end
 
-  def news   
-    @css.push("news.css","navbar.css")       
-    @news = News.published  
-    respond_to do |format|
-      format.html  #index.html.erb
-      format.json { render json: @news }
-    end
-  end
-  
-  def news_show
-    @css.push("news.css","navbar.css")   
-    @news = News.find_by_permalink(params[:id])
-		if @news.present?
+  def story_type
+    @story_type = StoryType.find_by_permalink(params[:id])
+
+    if @story_type.present?
       respond_to do |format|
-        format.html  #index.html.erb
-        format.json { render json: @news }
+        format.html  
+        #format.json { render json: @stories }      
+        format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}      
       end
-		else
-			flash[:info] =  t('app.msgs.does_not_exist')
-			redirect_to root_path(:locale => I18n.locale)
-		end
+    else
+      redirect_to root_path, :notice => t('app.msgs.does_not_exist')
+    end
   end
   
   def feedback
@@ -122,21 +117,6 @@ class RootController < ApplicationController
     end
   end
 
-  def todo_list    
-    @css.push("todo.css","navbar.css")   
-
-    @page = Page.by_name('todo')
-  
-    if @page.present?
-      respond_to do |format|
-        format.html 
-      end
-    else
-		  flash[:info] =  t('app.msgs.does_not_exist')
-		  redirect_to root_path(:locale => I18n.locale)
-		  return
-	  end
-  end
 
   def about   
     @css.push("navbar.css","about.css")   

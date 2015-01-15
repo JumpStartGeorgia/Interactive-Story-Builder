@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
 
   validates :role, :presence => true
 
-  ROLES = {:user => 0, :staff_pick => 50, :admin => 99}
+  ROLES = {:user => 0, :author => 10, :coordinator => 50, :user_manager => 70, :site_admin => 80, :admin => 99}
 
   before_create :create_email_no_domain
   before_save :check_nickname_changed  

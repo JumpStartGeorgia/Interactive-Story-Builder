@@ -1,0 +1,36 @@
+<%= tinymce_assets %>
+<%= tinymce %>
+
+<%= semantic_form_for([:admin,@theme]) do |f| %>
+  <%= f.error_messages %>
+
+  <% create_sorted_translation_objects(@theme.theme_translations).each do |trans| %>
+    <%= f.fields_for :theme_translations, trans do |translation| %>
+
+      <div id="form-<%= trans.locale %>" class="multilanguage">
+        <h3><%= t("app.language.#{trans.locale}") %></h3>
+
+        <%= translation.input :name, :input_html => {:size => 75} %>
+        <%= translation.input :edition, :input_html => {:size => 75} %>
+        <%= translation.input :description, :as => :text, :input_html => {:class => "tinymce", :rows => 20}  %>
+        <%= translation.hidden_field :locale , :input_html => {:value => trans.locale} %>
+      </div>
+
+    <% end %>
+  <% end %>
+
+  <%= f.inputs do %>
+    <%= f.input :is_published, :as => :radio %>
+    <%= f.input :published_at, :as => :string, :input_html => { :size => 20 } %>
+    <%= f.input :show_home_page, :as => :radio %>
+  <% end %>
+
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= f.submit t('helpers.links.reset'), :class => 'btn btn-warning', :type => :reset, :name => :reset %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                admin_themes_path, :class => 'btn btn-mini btn-warning' %>
+  </div>
+
+<% end %>

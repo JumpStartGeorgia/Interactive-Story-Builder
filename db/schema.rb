@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150113091903) do
+ActiveRecord::Schema.define(:version => 20150115065437) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -309,6 +309,26 @@ ActiveRecord::Schema.define(:version => 20150113091903) do
   add_index "story_translations", ["locale"], :name => "index_story_translations_on_locale"
   add_index "story_translations", ["story_id"], :name => "index_story_translations_on_story_id"
 
+  create_table "story_type_translations", :force => true do |t|
+    t.integer  "story_type_id"
+    t.string   "locale",        :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "name"
+    t.string   "permalink"
+  end
+
+  add_index "story_type_translations", ["locale"], :name => "index_story_type_translations_on_locale"
+  add_index "story_type_translations", ["name"], :name => "index_story_type_translations_on_name"
+  add_index "story_type_translations", ["permalink"], :name => "index_story_type_translations_on_permalink"
+  add_index "story_type_translations", ["story_type_id"], :name => "index_story_type_translations_on_story_type_id"
+
+  create_table "story_types", :force => true do |t|
+    t.integer  "sort_order", :limit => 1, :default => 0
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
+
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -341,6 +361,33 @@ ActiveRecord::Schema.define(:version => 20150113091903) do
   end
 
   add_index "templates", ["title"], :name => "index_templates_on_title"
+
+  create_table "theme_translations", :force => true do |t|
+    t.integer  "theme_id"
+    t.string   "locale",      :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "name"
+    t.string   "edition"
+    t.text     "description"
+    t.string   "permalink"
+  end
+
+  add_index "theme_translations", ["locale"], :name => "index_theme_translations_on_locale"
+  add_index "theme_translations", ["name"], :name => "index_theme_translations_on_name"
+  add_index "theme_translations", ["permalink"], :name => "index_theme_translations_on_permalink"
+  add_index "theme_translations", ["theme_id"], :name => "index_theme_translations_on_theme_id"
+
+  create_table "themes", :force => true do |t|
+    t.boolean  "is_published",   :default => false
+    t.date     "published_at"
+    t.boolean  "show_home_page", :default => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "themes", ["is_published", "published_at"], :name => "index_themes_on_is_published_and_published_at"
+  add_index "themes", ["show_home_page"], :name => "index_themes_on_show_home_page"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",   :null => false

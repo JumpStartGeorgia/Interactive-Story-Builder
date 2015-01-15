@@ -10,6 +10,46 @@
 
 
 #####################
+## Types
+#####################
+# puts "Loading Types"
+StoryType.delete_all
+StoryTypeTranslation.delete_all
+t = StoryType.create(:id => 1, :sort_order => 1)
+t.story_type_translations.create(:locale => 'en', :name => 'Story')
+t.story_type_translations.create(:locale => 'ka', :name => 'Story')
+t.story_type_translations.create(:locale => 'ru', :name => 'Story')
+t.story_type_translations.create(:locale => 'az', :name => 'Story')
+t.story_type_translations.create(:locale => 'am', :name => 'Story')
+t = StoryType.create(:id => 2, :sort_order => 2)
+t.story_type_translations.create(:locale => 'en', :name => 'Talk Show')
+t.story_type_translations.create(:locale => 'ka', :name => 'Talk Show')
+t.story_type_translations.create(:locale => 'ru', :name => 'Talk Showy')
+t.story_type_translations.create(:locale => 'az', :name => 'Talk Show')
+t.story_type_translations.create(:locale => 'am', :name => 'Talk Show')
+t = StoryType.create(:id => 3, :sort_order => 3)
+t.story_type_translations.create(:locale => 'en', :name => 'Video')
+t.story_type_translations.create(:locale => 'ka', :name => 'Video')
+t.story_type_translations.create(:locale => 'ru', :name => 'Video')
+t.story_type_translations.create(:locale => 'az', :name => 'Video')
+t.story_type_translations.create(:locale => 'am', :name => 'Video')
+t = StoryType.create(:id => 4, :sort_order => 4)
+t.story_type_translations.create(:locale => 'en', :name => 'Photo')
+t.story_type_translations.create(:locale => 'ka', :name => 'Photo')
+t.story_type_translations.create(:locale => 'ru', :name => 'Photo')
+t.story_type_translations.create(:locale => 'az', :name => 'Photo')
+t.story_type_translations.create(:locale => 'am', :name => 'Photo')
+t = StoryType.create(:id => 5, :sort_order => 5)
+t.story_type_translations.create(:locale => 'en', :name => 'Infographic')
+t.story_type_translations.create(:locale => 'ka', :name => 'Infographic')
+t.story_type_translations.create(:locale => 'ru', :name => 'Infographic')
+t.story_type_translations.create(:locale => 'az', :name => 'Infographic')
+t.story_type_translations.create(:locale => 'am', :name => 'Infographic')
+
+
+=begin OLD STUFF FROM STORYBUILDER
+
+#####################
 ## Pages
 #####################
 # puts "Loading Pages"
@@ -169,3 +209,5 @@ cat.category_translations.create(:locale => 'ka', :name => 'მეცნიე�
 cat.category_translations.create(:locale => 'en', :name => 'Science')
 # update count of categories with published stories
 Category.update_counts
+
+=end

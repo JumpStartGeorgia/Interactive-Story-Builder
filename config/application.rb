@@ -61,7 +61,7 @@ module BootstrapStarter
     config.assets.paths << "#{Rails.root}/public/javascripts/"
 
     # in app/assets folder
-    config.assets.precompile += %w( filter.js follow.js modalos.js news.js nickname.js search.js settings.js stories.js storyteller.js )
+    config.assets.precompile += %w( filter.js follow.js modalos.js news.js nickname.js search.js settings.js stories.js storyteller.js themes.js )
     config.assets.precompile += %w( author.css devise.css embed.css filter.css grid.css modalos.css navbar.css navbar2.css news.css root.css settings.css stories.css storyteller.css todo.css about.css )
     # in vendor/assets folder
     config.assets.precompile += %w( bootstrap-select.min.js jquery.tokeninput.js olly.js zeroclipboard.min.js jquery.tipsy.js )
@@ -69,6 +69,9 @@ module BootstrapStarter
     # build into gems
     config.assets.precompile += %w( dataTables/jquery.dataTables.bootstrap.css )
     config.assets.precompile += %w( dataTables/jquery.dataTables.js dataTables/jquery.dataTables.bootstrap.js jquery.ui.datepicker.js )
+
+    config.assets.precompile += %w( jquery.ui.datepicker.js )    
+    config.assets.precompile += %w( jquery.ui.datepicker.css )    
 
 
     # from: http://stackoverflow.com/a/24727310

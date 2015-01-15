@@ -1,0 +1,39 @@
+<%- model_class = StoryType -%>
+<%- model_class_trans = StoryTypeTranslation -%>
+<% title t '.title', :default => model_class.model_name.human.pluralize %>
+
+<div class="form-actions">
+  <%= link_to t('helpers.links.new'),
+              new_admin_story_type_path,
+              :class => 'btn btn-primary' %>
+  <%= link_to t('helpers.links.admin'), admin_path,
+  :class => 'btn btn-default' %>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class_trans.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:sort_order) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @story_types.each do |story_type| %>
+      <tr>
+        <td><%= story_type.name %></td>
+        <td><%= story_type.sort_order %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_admin_story_type_path(story_type), :class => 'btn btn-mini btn-default' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      admin_story_type_path(story_type),
+                      :method => :delete,
+                      :data => { :confirm => I18n.t("helpers.links.confirm") },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
