@@ -36,14 +36,14 @@
 @navbar-padding-vertical:0px;
 @nav-link-hover-bg:transparent;
 @nav-link-padding:2px 2px;
-@dropdown-bg:#f8f8f8;
+@dropdown-bg:#1d1d1d;
 @dropdown-link-color:#878787;
-@dropdown-link-hover-color:#303030;
-@dropdown-link-hover-bg:#e5e5e5;
-@dropdown-link-active-color:red;
+@dropdown-link-hover-color:#adadad;
+@dropdown-link-hover-bg:#1d1d1d;
+@dropdown-link-active-color:#adadad;
 @dropdown-divider-bg:#eee;
 @dropdown-caret-color:#878787;
-@dropdown-link-active-bg:#e5e5e5;
+@dropdown-link-active-bg:#1d1d1d;
 @dropdown-link-disabled-color:#eee;
 @navbar-default-bg:transparent;
 @dropdown-header-color:transparent;
@@ -87,8 +87,15 @@
 }
 
 .dropdown-menu > li > a {
-  line-height:20px;
+  font-family:opensans;
+  font-size:14px;
+  color:#575757;
+  line-height:14px;
   padding:0px;
+  &:hover
+  {
+    color:#adadad;
+  }
 }
 
 .navbar.navbar-story,.navbar-header
@@ -150,7 +157,7 @@
   }
   li:not(:last-child)
   {  
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    // border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   }
   span,a 
   {
@@ -178,8 +185,8 @@ html, body
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0px auto -31px;
-	padding: 60px 0px;	
+	margin: 0px auto 0px;
+	padding: 70px 0px 0px;	
 	// max-width:1468px;	
 }
 .container 
@@ -297,15 +304,17 @@ html, body
     text-align:left;
     .title
     {
-      font-size: 30px;
-      font-family: opensans;
-      max-width:600px;
+      font-family: 'opensans-b';
+      font-size: 36px;
+      color:#fff;
+      max-width:590px;
       padding-bottom:20px;
     }
     .descr
     {
-      font-size: 20px;
       font-family: opensans;
+      font-size: 18px;
+      color:#fff;
       max-width:500px;
       padding-left:4px;
       padding-bottom:20px;
@@ -322,9 +331,14 @@ html, body
       } 
       .storytype-label
       {
-        display:inline-block;
+
+        font-family: opensans;
+        font-size: 14px;
+        color:#fff;        
         line-height:34px;
         vertical-align:top;
+        padding-left:7px;
+        display:inline-block;
       }
     }  
   }
@@ -349,7 +363,7 @@ html, body
       width:100%;
       .sep
       {
-        width:35%;
+        width:45%;
         height:0px;
         background-color:#000;
         border:0px;
@@ -359,16 +373,18 @@ html, body
       }
       .title
       {
-        font-size: 30px;
-        color: rgb(0, 0, 0);
+        font-family:'opensans-b';
+        font-size: 26px;
+        color: #2d2d2d;
         padding-bottom: 15px;
         font-weight:bold;
       }
-      .blah
+      .date
       {
-        padding-top: 15px;
-        font-size: 16px;
-        color: rgb(0, 0, 0);
+        font-family:'opensans';
+        font-size: 14px;
+        padding-top: 12px;
+        color: #484848;
       }
     }
 
@@ -387,4 +403,9 @@ html, body
 .dropdown-toggle
 {
   margin:0px 10px !important;
+  color:#646464;
+}
+.dropdown.open .dropdown-toggle
+{
+  color:#adadad;
 }
