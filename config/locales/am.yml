@@ -102,42 +102,42 @@ am:
         already_exists: 'already exists in the database.'              
   mailer:
     closing: "Sincerely,"
-    signature: The StoryBuilder Team
+    signature: The Chai Khana Team
     unsubscribe: Click here to change your notification settings
     contact:
       contact_form:
-        subject: "StoryBuilder Contact Form"
+        subject: "Chai Khana Contact Form"
     notification:
       new_user:
-        subject: "Welcome to StoryBuilder!"
-        message: "Thank you for becoming a member of StoryBuilder. We look forward to exploring the stories you build!\n\nWhen you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summary about yourself: [settings_link].\n\nYou can manage when you would like to receive email notifications from StoryBuilder by going to the notifications page: [notifications_link]. "
+        subject: "Welcome to Chai Khana!"
+        message: "Thank you for becoming a member of Chai Khana. We look forward to exploring the stories you build!\n\nWhen you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summary about yourself: [settings_link].\n\nYou can manage when you would like to receive email notifications from Chai Khana by going to the notifications page: [notifications_link]. "
       published_story:
-        subject: "New stories have been published on StoryBuilder!"
+        subject: "New stories have been published on Chai Khana!"
         message: "The following stories you have expressed interest in were recently published:"
       story_comment:
-        subject: "Someone has posted a comment on your story on StoryBuilder!"
+        subject: "Someone has posted a comment on your story on Chai Khana!"
         message: "The following stories have recently received a comment:"
         comment: "1 Comment"
         comments: "%{num} Comments"
       published_news:
-        subject: "StoryBuilder has new updates!"
-        message: "The following updates were just posted on StoryBuilder. Click on the link to learn what is going on with StoryBuilder."
+        subject: "Chai Khana has new updates!"
+        message: "The following updates were just posted on Chai Khana. Click on the link to learn what is going on with Chai Khana."
       staff_pick_review:
-        subject: "StoryBuilder has new published stories to review for Staff Pick!"
+        subject: "Chai Khana has new published stories to review for Staff Pick!"
         message: "The following stories need to be reviewed to see if they are worthy to be a Staff Pick:"
       staff_pick_selection:
-        subject: "Your story has been selected by the StoryBuilder Team as a Staff Pick!"
-        message: "Congratulations! The following stories of yours were selected by the StoryBuilder Team as Staff Picks:"
+        subject: "Your story has been selected by the Chai Khana Team as a Staff Pick!"
+        message: "Congratulations! The following stories of yours were selected by the Chai Khana Team as Staff Picks:"
       story_collaboration:
-        subject: "You have been invited to collaborate on a story on StoryBuilder!"
-        message: "You have received the following invitations to collaborate on stories with other people on StoryBuilder. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part."
+        subject: "You have been invited to collaborate on a story on Chai Khana!"
+        message: "You have received the following invitations to collaborate on stories with other people on Chai Khana. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part."
         from: From
         story_title: Story Title
         msg: Message
         accept_link: Accept the Invitation
-        all_invitations: View all of your StoryBuilder collaboration invitations.
+        all_invitations: View all of your Chai Khana collaboration invitations.
       processed_videos:
-        subject: "Your videos on StoryBuilder have been processed!"
+        subject: "Your videos on Chai Khana have been processed!"
         message: "The following stories of yours have videos that have completed processing:"
         story_title: 'Story:'
         status: 'Video Processing Status: %{processed} of %{total} completed'
@@ -146,7 +146,7 @@ am:
         none_processed: No vidoes have been processed.
         none_processing: All videos have been processed!
       processed_video_errors:
-        subject: "Videos on StoryBuilder have processing errors!"
+        subject: "Videos on Chai Khana have processing errors!"
         message: "The following videos had errors while being processed:"
         story_id: Story ID
         asset_id: Asset ID
@@ -178,7 +178,7 @@ am:
       sign_up2: Sign Up
       sign_up_question: "Not a member yet?"
       sign_up: "Register now"
-      sign_up_title: Join StoryBuilder
+      sign_up_title: Join Chai Khana
       sign_out: Sign Out
       sign_in_provider: "Sign in with %{provider}"
       sign_up_provider: "Sign up with %{provider}"
@@ -278,14 +278,14 @@ am:
       reviewer_key_published: Your story is published so there is no need to share this non-published URL
       explore: Explore
     common:
-      app_name_not_trans: StoryBuilder
-      app_name: StoryBuilder
-      app_intro: Build and Share;the Next Generation Story;StoryBuilder allows anyone with text, pictures and/or videos to<br>combine this content into a creative story that can be published<br> and shared with the world
-      app_intro_meta: Build and Share the Next Generation Story! StoryBuilder allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world
+      app_name_not_trans: Chai Khana
+      app_name: Chai Khana
+      app_intro: Build and Share;the Next Generation Story;Chai Khana allows anyone with text, pictures and/or videos to<br>combine this content into a creative story that can be published<br> and shared with the world
+      app_intro_meta: Build and Share the Next Generation Story! Chai Khana allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world
       powered_by: Powered by
       powered_by_js: Jumpstart Georgia
       powered_by_end: ""
-      embed_slogan: Build your story with StoryBuilder
+      embed_slogan: Build your story with Chai Khana
       added_on: "Added on: %{date}"
       admin: Admin
       sign_out: Sign Out    
@@ -314,10 +314,10 @@ am:
       staff_pick: Staff Pick
       wide: wide
       partial: Link to Story
-      partial_text: Embed a link to the story that has the same look as the story links on the home page of StoryBuilder (image, title, author, etc)
+      partial_text: Embed a link to the story that has the same look as the story links on the home page of Chai Khana (image, title, author, etc)
       full: Full Story
       full_text: Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look. 
-      feed: StoryBuilder Feed Channel
+      feed: Chai Khana Feed Channel
       home: Home
       required: Required
       nothing_selected: Nothing Selected
@@ -382,8 +382,8 @@ am:
         new_story_by_category_success: "You will receive a notification when a story is added to these categories: %{categories}."
         story_comments_yes: You will be sent notifications when a comment is made to one of your stories.
         story_comments_no: You will not be sent notifications when a comment is made to one of your stories.
-        news_yes: You will be sent notifications when updates are made to StoryBuilder.
-        news_no: You will not be sent notifications when updates are made to StoryBuilder.
+        news_yes: You will be sent notifications when updates are made to Chai Khana.
+        news_no: You will not be sent notifications when updates are made to Chai Khana.
         following_no: "You will no longer receive notifications about new stories from '%{nickname}'."
         language: You will be sent notifications in %{language}.
       fail_change_order: The item was not able to be moved
@@ -481,30 +481,30 @@ am:
         title: User Details
   root:
     index:
-      title: StoryBuilder - build and share the next generation story
+      title: Chai Khana - build and share the next generation story
       about_header: What is it?
-      about_text: StoryBuilder allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world.  %{demo_link} to see what is possible then %{start_link}!
+      about_text: Chai Khana allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world.  %{demo_link} to see what is possible then %{start_link}!
       demo_link: View the demo
       start_link: build and share your stories
       news_header: Latest News
       all_news: more...
     news:
-      title: StoryBuilder News
+      title: Chai Khana News
       no_news: No news is good news!
       more_link: Continue
     news_show:
-      title: "StoryBuilder News: %{title}"
+      title: "Chai Khana News: %{title}"
       view_all: View All News
     feedback:
-      title: StoryBuilder Feedback
+      title: Chai Khana Feedback
       message_sent: Your message has been sent! Thank you for contacting us.
       send: Send
       name: Name
       email: Email Address
       message: Message
     todo_list:
-      title: "StoryBuilder's To-Do List"
-      summary: StoryBuilder is in its infancy and has much growing to do. Gathered here is a list of tasks that we are working on or plan to working on soon.
+      title: "Chai Khana's To-Do List"
+      summary: Chai Khana is in its infancy and has much growing to do. Gathered here is a list of tasks that we are working on or plan to working on soon.
       last_update: "Last Updated On"
       header_current: Tasks Currently Working On
       header_short_term: Short Term Tasks
@@ -516,19 +516,19 @@ am:
       missing_text: Is there a feature missing from these lists that you would like added?  Do you feel that we should re-prioritize our list?  If so, please let us know by using the %{link}.
       feedback_link: Feedback section
     about:
-      title: About StoryBuilder
+      title: About Chai Khana
       intro: "The platform that allows anyone to turn text, audio tracks, pictures and/or videos into a creative web-story that can be published and shared with the world."   
-      p1: "StoryBuilder enables anyone to build mixed-media stories without needing to know how to code. What sets StoryBuilder apart from other similar services is that you have complete control over your content. You can publish it on StoryBuilder, or your can download the story and host it where you want."
+      p1: "Chai Khana enables anyone to build mixed-media stories without needing to know how to code. What sets Chai Khana apart from other similar services is that you have complete control over your content. You can publish it on Chai Khana, or your can download the story and host it where you want."
       p2: "Each story is a sequence of media sections in the order of your choosing. You choose which order and which type of media you want each section to be. Choose from text/html, full screen images/videos, image slideshows, and embeddable online media. You can accompany each chapter with a soundtrack of your choosing. What you do with that is up to you!"
-      p3: "To ensure that your content is yours, we have made the entire platform open source. This means if you do not want to use JumpStart Georgia's live version of StoryBuilder, you can install the StoryBuilder application on a server of your choice. In this way, you or your organization are not locked into dependency on yet another 3rd-party service hosting your content."
-      p4: "JumpStart Georgia is building StoryBuilder for the benefit of improving the ease with which civil society organizations, journalists, activists, and storytellers the world over can tell stories that are engaging and increasingly visceral, changing how audiences can experience stories on the web." 
-      help: "If you or your organization would like to help us improve StoryBuilder through funding, development, or design, please don't hesitate to contact us!" 
+      p3: "To ensure that your content is yours, we have made the entire platform open source. This means if you do not want to use JumpStart Georgia's live version of Chai Khana, you can install the Chai Khana application on a server of your choice. In this way, you or your organization are not locked into dependency on yet another 3rd-party service hosting your content."
+      p4: "JumpStart Georgia is building Chai Khana for the benefit of improving the ease with which civil society organizations, journalists, activists, and storytellers the world over can tell stories that are engaging and increasingly visceral, changing how audiences can experience stories on the web." 
+      help: "If you or your organization would like to help us improve Chai Khana through funding, development, or design, please don't hesitate to contact us!" 
       contact:   
-        subject: StoryBuilder Contact
+        subject: Chai Khana Contact
         address1: '#5 Shevchenko St, Apt 2'
         address2: 'Tbilisi Georgia 0108'
     embed:
-      home_link: Built on StoryBuilder
+      home_link: Built on Chai Khana
   stories:
     index:
     new:
@@ -683,7 +683,7 @@ am:
     notifications:
       title: Notifications
       all_sub_title: All Notifications
-      all_label: Do you want to recieve any notifications from StoryBuilder?
+      all_label: Do you want to recieve any notifications from Chai Khana?
       all_no: "No, do not send me any notifications."
       all_yes: "Yes, I want notifications sent to me."
       story_comment_sub_title: New Story Comment Notifications
@@ -696,11 +696,11 @@ am:
       new_stories_by_category: "Notify me when a story is added to:"
       language_sub_title: Notification Language
       language_label: In what language do you want to receive the notifications?
-      news_sub_title: StoryBuilder Update Notifications
-      news_label: "Do you want to recieve notifications when updates are made to StoryBuilder?"
+      news_sub_title: Chai Khana Update Notifications
+      news_label: "Do you want to recieve notifications when updates are made to Chai Khana?"
       news_no: "No, do not send me any notifications."
       news_yes: "Yes, I want notifications sent to me."     
-      following_sub_title: StoryBuilder Users You Are Following
+      following_sub_title: Chai Khana Users You Are Following
       following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image."
       following_not: "At this time, you are not following any users."
       following_title1: "Click to unfollow '%{nickname}'"
@@ -714,7 +714,7 @@ am:
     mailer:
       reset_password_instructions:
         title: 'Hello %{nickname}!'
-        p1: Someone has requested a link to change your password on StoryBuilder, and you can do this through the link below.
+        p1: Someone has requested a link to change your password on Chai Khana, and you can do this through the link below.
         link_title: Change my password
         p2: "If you didn't request this, please ignore this email."
         p3: "Your password won't change until you access the link above and create a new one."
