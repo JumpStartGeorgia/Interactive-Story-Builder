@@ -8,14 +8,13 @@
             
   <div class="story-thumbnail">    
      <%= link_to path do %>
-        <%= image_tag story.show_asset.asset.url(:thumbnail), :height => '328', :width => '459' %>              
+        <%= image_tag story.show_asset.asset.url(:thumbnail) %>              
         <div class="story-link">
+          <% # change this to story's type %>
           <% m = ['story','talkshow','video','photo'] %>
           <div class='type type-<%= m[rand(4)] %>'></div>
           <span lang="<%= story.story_locale %>"><%= story.title %></span>
-          <!-- <div class="explore"><%= t('app.buttons.explore') %></div>-->
-       </div>  
- 
+       </div>   
       <% end %>
 
     <% if @editable %>
@@ -92,16 +91,15 @@
     
   </div>
   <div class='story-info'>                               
-  <div class="story-caption">
-  <%= link_to truncate(story.about, length: 110, separator: ' '), path, :title => story.about, :lang => story.story_locale %>
-    <!--  link_to truncate(story.title, length: 45, separator: ' '), path, :title => story.title, :lang => story.story_locale %> -->
-  </div>
+    <div class="story-caption">
+      <% about = truncate(strip_tags_nbsp(story.about), length: 160, separator: ' ') %>
+      <%= link_to about, path, :title => about, :lang => story.story_locale %>
+    </div>
     <div class="story-misc"> 
-      <div class="story-misc-left">     
-        <span class="views" title="<%= t('app.common.views') %>"><i class="s i-views disabled"></i><%= story.impressions_count %></span>  
-        <div class="separator"></div>
-        <div class="story-publish" title="<%= t('app.common.publish_date') %>"><%= l(story.published_at,:format => :publish) if story.published_at.present? %></div>  
+      <div class="views" title="<%= t('app.common.views') %>"><%= t('app.common.views') %>: <%= story.impressions_count %></div>  
+      <div class="sep"></div>
+      <div class="publish-date" title="<%= t('app.common.publish_date') %>">
+        <%= l(story.published_at,:format => :publish) if story.published_at.present? %>
+      </div>  
     </div> 
-                                      
-  </div> 
-</div>
+  </div>

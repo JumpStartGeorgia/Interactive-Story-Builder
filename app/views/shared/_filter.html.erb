@@ -3,14 +3,14 @@
     <div class="filters"><%= t('filters.filters') %><i class='s i-caret-b'></i></div>
   </div>
   <ul class="nav h navbar-left">
-    <li><div>All Stories</div></li>
+    <li><div class='all-stories'><%= t('filters.all_stories') %></div></li>
     <li class="li-sort-label"><span class="sort-label"><%= t('filters.sort_header') %>:</span></li>
     <li class="dropdown dropdown-hover sort afilter">
       <a href="#" class="dropdown-toggle<%= @story_filter_sort_recent ? '' : ' selected' %>" 
           data-toggle="dropdown" tabindex="17"  title="<%= t('filters.sort_title') %>"
           data-filtered-by="<%= @story_filter_sort_permalink %>" data-filter-type="sort" 
           data-filter-default="recent">
-        <span><%= @story_filter_sort %></span><i class='s i-caret-b'></i></a>
+        <span><%= @story_filter_sort %></span><i class='caret'></i></a>
       <ul class="dropdown-menu afilter-list">
         <% I18n.t('filters.sort').each do |key, value| %>
           <li class="dropdown">
