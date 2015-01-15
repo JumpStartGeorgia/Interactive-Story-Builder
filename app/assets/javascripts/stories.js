@@ -65,16 +65,57 @@ $(document).ready(function() {
 	  }
 	});
 
-    $('.story-viewer').on('click', '#btnOllyYoutube', function(){
-    ths = $('#youtubeUrl');
-	  url = $(ths).val();
-    resetEmbedForm();
-    
-	  if (url.length > 0 && isUrl(url)){
-      olly.embed(url, document.getElementById("youtubeResult"), 'timerOllyCompelteYoutube', 'ollyFailYoutube');
-	  }else{
-      ollyFail();
-	  }
+   $('.story-viewer').on('click', '#btnGetEmbed', function(e){
+			
+		var id = '';
+ 		var html = '';
+ 		var ok = false;
+ 		var u = $('#youtubeUrl').val();
+		$('#youtubeResult').empty();
+		$('#youtubeButtons').hide();
+		$('#youtubeError').hide();
+
+ 		if(u != "")
+ 		{
+ 			if(u.length == 11)
+ 			{
+					id = u;
+					ok = true;
+				}
+				else 
+				{
+				var uri = u.match(/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/)
+			  	if(typeof uri[1] !== 'undefined' && uri[1].length == 11)
+			  	{
+			    	id = uri[1]
+			    	ok = true;
+			  	}
+				}
+
+				if(ok)
+				{
+					var  pars = ($('#youtubeLoop').is(':checked') ? 'loop=1' : '') + ($('#youtubeInfo').is(':checked') == false ? '&showinfo=0' : '') +
+		    ($('#youtubeCC').is(':checked') ? '&cc_load_policy=' + (self.cc ? '1' : '0') : '') + 
+		    ( '&hl=' + $('#youtubePlayerLang').val()) + 
+		    ( '&cc_lang_pref=' + $('#youtubeCCLang').val());
+		    	if(pars[0] == '&')
+	    		{
+	    			pars = pars.substr(1,pars.length-1);
+	    		}	
+
+		  		html =  '<iframe width="640" height="360" src="http://www.youtube.com/embed/' + 
+		      	    id + '?' + pars + '" frameborder="0" allowfullscreen class="embed-video embed-youtube"></iframe>';
+   	    	$('#youtubeResult').html(html);
+   	    	$('#youtubeButtons').show();
+				}
+				else
+				{
+			  $('#youtubeUrl').focus();
+			  $('#youtubeError').show();
+				}
+ 		}
+		e.preventDefault();	
+		return true;	
 	});
 
   // when review menu item clicked, open modal 
@@ -558,24 +599,11 @@ function resetEmbedForm(){
   $('#embedMediaButtons').hide();
   $('#embedMediaError').hide();
 }
-function resetYoutubeForm(){
-  timerCount = 0;
- // $('#youtubeCode').empty();
-  $('#youtubeResult').empty();
-  $('#youtubeButtons').hide();
-  $('#youtubeError').hide();
-}
 function ollyFail(){
   resetEmbedForm();
   $('#embedMediaUrl').focus();
   $('#embedMediaError').show();
 }
-function ollyFailYoutube(){
-  resetYoutubeForm();
-  $('#youtubeUrl').focus();
-  $('#youtubeError').show();
-}
-
 function timerOllyCompelte() {
 timerCount += 1;
   if ($('#embedMediaResult').html().length > 0){
@@ -586,19 +614,6 @@ timerCount += 1;
         timerOllyCompelte();
     }, 500)
   }
-
-}
-function timerOllyCompelteYoutube() {
-timerCount += 1;
-  if ($('#youtubeResult').html().length > 0){
-    //$('#embedMediaCode').val($('#embedMediaResult').html());
-    $('#youtubeButtons').show();
-  }else{
-    setTimeout(function() {
-        timerOllyCompelteYoutube();
-    }, 500)
-  }
-
 }
 
 function isUrl(s) {

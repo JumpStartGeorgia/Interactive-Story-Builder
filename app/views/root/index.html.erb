@@ -1,7 +1,72 @@
 
 <% content_for(:header) { %>
+<header>
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1"></li>    
+      <li data-target="#carousel-example-generic" data-slide-to="2"></li>    
+      <li data-target="#carousel-example-generic" data-slide-to="3"></li>    
+    </ol>
 
-    <header class="header intro<%= (1..2).to_a.sample %>">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+          <img src='http://storybuilder.jumpstart.ge/assets/headers/header-bg-01.jpg' alt=''>
+        <div class="carousel-caption">
+          <div class='title'>Irregular Maritime Movements in South-East Asia</div>
+          <div class='descr'>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. </div>
+          <div class='storytype'>
+            <div class='storytype-logo'></div>
+            <div class='storytype-label'>Storybuilder story</div>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <img src='http://storybuilder.jumpstart.ge/assets/headers/header-bg-02.jpg' alt=''>
+        <div class="carousel-caption">
+          somecaption2
+        </div>
+      </div> 
+      <div class="item">
+        <img src='http://storybuilder.jumpstart.ge/assets/headers/header-bg-01.jpg' alt=''>
+        <div class="carousel-caption">
+          somecaption3
+        </div>
+      </div>      
+      <div class="item">
+        <img src='http://storybuilder.jumpstart.ge/assets/headers/header-bg-02.jpg' alt=''>
+        <div class="carousel-caption">
+          somecaption4
+        </div>
+      </div>   
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="icon arrow-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="icon arrow-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+    <!-- Sticker -->
+    <div class='sticker'>
+      <div class='sticker-wrapper'>
+        <div class='title'>Disability</div>
+        <div class='sep'></div>
+        <div class='blah'><%= I18n.l(Time.now, :format => '%B %Y') %></div>
+      </div>
+    </div>
+  </div>
+
+
+
+  
+</header>
+    <!-- <header class="header intro<%= (1..2).to_a.sample %>">
       <div class="header-data">
         <div class="h1">    <%= t("app.common.app_intro").split(';')[0].html_safe %></div>
         <div class="h3">    <%= t("app.common.app_intro").split(';')[1].html_safe %></div>
@@ -24,7 +89,7 @@
           <polygon points="25.367,7.477 24.544,6.674 16.531,14.475 8.52,6.674 7.695,7.477 16.531,16.079 "/>
           </svg>
         </div>  
-    </header>
+    </header> -->
 
 <% } %>
 <%= render partial: "shared/filter"%> 

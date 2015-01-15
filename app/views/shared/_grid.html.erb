@@ -1,5 +1,5 @@
 <div class="grid-wrapper">
-  <div class="grid col-3">      
+  <div class="grid col-4">      
     <% if @stories.blank? %>
       <p>
         <%= t('.no_stories') %>  
@@ -7,7 +7,7 @@
     <% else %>
 
       <% @stories.each_with_index do |story,s_i| %>       
-          <div class="col n-4">  
+          <div class="col n-3">  
             <%= render partial: "shared/grid_item" , locals:{:story=>story}%> 
           </div>  
       <% end %>

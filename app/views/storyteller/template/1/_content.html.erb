@@ -234,6 +234,15 @@
                   <%= section.embed_medium.code.html_safe %>             
                 </div>                         
               </div>
+            <% elsif section.youtube? %>             
+              <div class="section embed<%= section.youtube.fullscreen ? ' fullscreen' : '' %>">
+                <% if section.has_marker? %>
+                       <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
+                <% end %> 
+                <div class="embed-container">
+                  <%= section.youtube.code.html_safe %>             
+                </div>                         
+              </div>
             <% end %>                               
             <% isFirst = false %>                    
         <% end %>   
@@ -671,8 +680,8 @@
                   || (d.last && d3.event.rect.bottom >= 0 + fixHeight));
               d3.select(this.querySelector(".video-container"))
                   .style("z-index", fixed ? 2 : 1)
-                  .style("top", fixed ? "0px" : null)      ;          
-                  //.style("position", fixed ? "fixed" : "absolute");
+                  .style("top", fixed ? "0px" : null)      
+                  .style("position", fixed ? "fixed" : "absolute");
                   
             }
 

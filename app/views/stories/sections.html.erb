@@ -30,6 +30,8 @@
                    <ul class="closed"><li id='<%= item.slideshow.id %>' class='sub'><div><div class="sub-l"><%= item.slideshow.title %></div><div class="sub-a">›</div></div></li></ul>
                  <% elsif item.embed_medium.present? %>
                     <ul class="closed"><li id='<%= item.embed_medium.id %>' class='sub'><div><div class="sub-l"><%= item.embed_medium.title %></div><div class="sub-a">›</div></div></li></ul>
+                 <% elsif item.youtube.present? %>
+                    <ul class="closed"><li id='<%= item.youtube.id %>' class='sub'><div><div class="sub-l"><%= item.youtube.title %></div><div class="sub-a">›</div></div></li></ul>                    
                 <%end%>
 
             </li>          

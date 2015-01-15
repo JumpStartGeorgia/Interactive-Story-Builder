@@ -27,7 +27,7 @@
 // See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
 
 
-@body-bg:#f8f8f8;
+@body-bg:#252525;
 @screen-sm:1200px;
 @screen-md:1424px;
 @screen-lg:1600px;
@@ -64,6 +64,7 @@
 
 .navbar 
 {
+  -webkit-backface-visibility: hidden;
 	position:fixed;
 	top:0px;	
 	border: 0px solid transparent;	
@@ -122,7 +123,7 @@
 	padding:0px;
    .form-group
    {  
-      line-height: 54px;
+      line-height: 70px;
       vertical-align:middle;
    }
 }
@@ -179,7 +180,7 @@ html, body
 	height: 100%;
 	margin: 0px auto -31px;
 	padding: 60px 0px;	
-	max-width:1468px;	
+	// max-width:1468px;	
 }
 .container 
 {
@@ -223,4 +224,167 @@ html, body
 .navbar .nav-separator {
     display: none;
   }
+}
+
+.carousel
+{
+  .carousel-indicators
+  {
+    li
+    {
+      border-radius:0px;
+      transform:rotate(45deg);
+      margin:1px 6px;
+    }
+    .active
+    {
+      margin:1px 6px;
+      width:10px;
+      height:10px;
+    }
+  }
+
+  .carousel-inner
+  {
+    max-height: 600px;
+    overflow: hidden;
+    .item
+    {
+      max-height: 600px;
+    }
+  }  
+  .carousel-inner .item img {
+    max-height:100%;
+  }
+  .carousel-control
+  {
+    width:5%;
+    text-shadow:none;
+  }
+  .carousel-control .icon
+  {
+
+    width:25px;
+    height:45px;
+    margin-top: -22.5px;
+    margin-left: -12.5px;
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+
+    &.arrow-left
+    {
+      background:transparent url('/assets/svg/chaikhana/arrow_left.svg') no-repeat;  
+      background-size:25px 45px;
+
+    }
+    &.arrow-right
+    {
+      background:transparent url('/assets/svg/chaikhana/arrow_right.svg') no-repeat;  
+      background-size:25px 45px;
+    }
+
+  }
+  .carousel-control
+  {
+    background-image:none !important;
+  }
+  .carousel-caption
+  {
+    left:10%;
+    right:10%;
+    text-align:left;
+    .title
+    {
+      font-size: 30px;
+      font-family: opensans;
+      max-width:600px;
+      padding-bottom:20px;
+    }
+    .descr
+    {
+      font-size: 20px;
+      font-family: opensans;
+      max-width:500px;
+      padding-left:4px;
+      padding-bottom:20px;
+    }
+    .storytype
+    {
+      .storytype-logo
+      {
+        background:transparent url('/assets/svg/chaikhana/type_story.svg') no-repeat;
+        background-size: 34px 34px;
+        width:34px;
+        height:34px;
+        display:inline-block;
+      } 
+      .storytype-label
+      {
+        display:inline-block;
+        line-height:34px;
+        vertical-align:top;
+      }
+    }  
+  }
+  .sticker
+  {
+    position:absolute;
+    top:50px;
+    right:40px;
+    border-radius:100%;
+    background-color:#fff;
+    width:200px;
+    height:200px;
+    .sticker-wrapper
+    {
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      margin:0px auto;
+      text-align:center;
+      width:100%;
+      .sep
+      {
+        width:35%;
+        height:0px;
+        background-color:#000;
+        border:0px;
+        border-top:1px solid #000;
+        border-bottom:0px solid #000;
+        margin:0px auto;
+      }
+      .title
+      {
+        font-size: 30px;
+        color: rgb(0, 0, 0);
+        padding-bottom: 15px;
+        font-weight:bold;
+      }
+      .blah
+      {
+        padding-top: 15px;
+        font-size: 16px;
+        color: rgb(0, 0, 0);
+      }
+    }
+
+  }
+}
+.pagination-wrapper
+{display:none;}
+.caret
+{
+  margin-left:10px;
+}
+.navbar-left
+{
+  padding-left:10% !important;
+}
+.dropdown-toggle
+{
+  margin:0px 10px !important;
 }

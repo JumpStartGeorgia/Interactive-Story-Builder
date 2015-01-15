@@ -1,7 +1,12 @@
+header
+{
+  position:relative;
+  top:70px;  
+}
 .navbar-storybuilder 
 { 
-  height:54px;
-  background-color:#242424;
+  height:70px;
+  background-color:#1d1d1d;
   z-index:1034;
   color:#000;
   a
@@ -42,8 +47,8 @@
   }
   .navbar-logo img
   {
-    width:165px;
-    padding-top:14px;
+    width:237px;
+    padding-top:11px;
   }
   ul.nav
   {
@@ -68,7 +73,7 @@
   .pull-left > div
   {
     display:inline-block;
-    line-height:54px;
+    line-height:70px;
     vertical-align:middle;
   }
   .lang-switch
@@ -194,10 +199,10 @@
     .form-group { background-color: #f8f8f8; }
     input[type="text"] 
     {    
-      border: 0 none;                    
-      padding: 6px 15px 6px 35px;
+      border: 1px solid #fff;                    
+      padding: 6px 30px 6px 6px;
       margin:5px 10px;
-      background:#f8f8f8 url('/assets/svg/search_b.svg') no-repeat 5px 6px;
+      background:#f8f8f8 url('/assets/svg/search_b.svg') no-repeat 222px 6px;
       font-family:opensans-r;
       font-size:16px; 
       color:#000;       
@@ -210,6 +215,7 @@
       transition:all .15s ease-out;
       outline:none;
       opacity:0.8;
+      min-width:250px;
       &:focus, &:hover
       {
         width:100%;
@@ -390,8 +396,8 @@
     {
       margin-right: auto;
       margin-left: auto;
-      padding-left: 15px;
-      padding-right: 15px;
+      padding-left: 10%;
+      padding-right: 10%;
     }
     .navbar-collapse    {
       width:auto;
@@ -421,9 +427,12 @@
       }
       input[type="text"]     
       {            
-          background:transparent url('/assets/svg/search_w.svg') no-repeat 5px 6px;
+          background:transparent url('/assets/svg/search_w.svg') no-repeat 222px 6px;
           margin:0px;
           color:#fff;
+          border-radius: 0px;
+          -moz-border-radius: 0px;
+          -webkit-border-radius: 0px;
       }   
     }
 
@@ -459,7 +468,7 @@
     }
     ul.nav > li > a
     {  
-      line-height: 54px;
+      line-height: 70px;
       color:#fff;
        padding:0px;
     }

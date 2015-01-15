@@ -394,7 +394,7 @@
 
   $(window).on('load', function () {
     $('[data-ride="carousel"]').each(function () {
-      var $carousel = $(this)
+      var $carousel = $(this)      
       $carousel.carousel($carousel.data())
     })
   })

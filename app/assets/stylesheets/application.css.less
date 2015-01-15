@@ -98,7 +98,7 @@
 * html .clearfix, * html .clear             		{ zoom: 1; } /* IE6 */
 *:first-child+html .clearfix, *:first-child+html .clear { zoom: 1; } /* IE7 */
 * { -webkit-font-smoothing: antialiased; }
-html,body{background:#f8f8f8;height:100%;min-height:100%;}
+html,body{background:#252525;height:100%;min-height:100%;}
 *:focus {outline: 0 !important;}
 /* make bootstrap button link color stay white 
 a.btn, a.btn:visited {
@@ -821,7 +821,7 @@ i.v{visibility:visible;}
 .separator-ver
 {      
   height:26px !important;
-  margin: 14px 20px 0px 20px;
+  margin: 22px 20px 0px 20px;
   float:left;
   border-left: 1px solid rgba(255, 255, 255, 0.32);
   border-right:0px solid #fff;    
@@ -868,4 +868,60 @@ i.v{visibility:visible;}
 /* fix padding in bootstrap dropdown-menu that is made big by formtastic */
 .dropdown-menu input{
   padding: 0 0 0 5px !important;
+}
+.loading {
+  width: 60px;
+  height: 60px;
+  background-color: #464646;
+
+  margin: 100px auto;
+  -webkit-animation: rotateplane 1.2s infinite ease-in-out;
+  animation: rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes rotateplane {
+  0% { 
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+  } 50% { 
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+  } 100% { 
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+
+.type
+{
+  display:inline-block;
+  width:34px;
+  height:34px;
+
+}
+.type-story
+{
+  background:transparent url('/assets/svg/chaikhana/type_story.svg') no-repeat;
+  background-size:34px 34px;
+}
+.type-talkshow
+{
+  background:transparent url('/assets/svg/chaikhana/type_talkshow.svg') no-repeat;
+  background-size:34px 34px;
+}
+.type-video
+{
+  background:transparent url('/assets/svg/chaikhana/type_video.svg') no-repeat;
+  background-size:34px 34px;
+}
+.type-photo
+{
+  background:transparent url('/assets/svg/chaikhana/type_photo.svg') no-repeat;
+  background-size:34px 34px;
 }

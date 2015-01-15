@@ -274,6 +274,7 @@ class StoriesController < ApplicationController
           @item = Youtube.find_by_id(params[:item_id])   
         else 
           @item = Youtube.new(:section_id => params[:section_id])
+          @item.youtube_translations.build(:locale => I18n.locale.to_s)
         end
         respond_to do |format|
           if @item.present?
@@ -473,8 +474,6 @@ class StoriesController < ApplicationController
       end
     end    
   end
-  
-  
   def destroy_tree_item  
     item = nil    
     type = params[:type]
@@ -965,3 +964,8 @@ private
   end
 end       
 
+class Object
+  def boolean?
+    self.is_a?(TrueClass) || self.is_a?(FalseClass) 
+  end
+end
