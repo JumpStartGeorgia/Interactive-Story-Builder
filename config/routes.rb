@@ -16,6 +16,8 @@ BootstrapStarter::Application.routes.draw do
       resources :news
       resources :languages
       resources :categories
+		  resources :story_types
+		  resources :themes
 		end
 
 		#get 'tinymce_assets' ,to: 'tinymceassets#index'
@@ -94,15 +96,14 @@ BootstrapStarter::Application.routes.draw do
 		match "settings/unfollow_user" => "settings#unfollow_user", as: 'settings_unfollow_user', :via => :post, :defaults => { :format => 'json' }
 
     # root pages
-		match "demo" => "root#demo", as: 'demo'
-		match "news" => "root#news", as: 'news'
-		match "news/:id" => "root#news_show", as: 'news_show'
-		match 'feedback' => 'root#feedback', :as => 'feedback', :via => [:get, :post]
-		match 'todo_list' => 'root#todo_list', :as => 'todo_list'
 		match "about" => "root#about", as: 'about'
 		match "author/:user_id" => "root#author", as: 'author'
 		match "embed/:story_id" => "root#embed", as: 'embed'		
 		match "feed" => "root#feed", as: 'feed', :format => 'atom'
+		match "theme/:id" => "root#theme", as: 'theme'
+		match "type/:id" => "root#story_type", as: 'story_type'
+
+
 
     # published story url/actions
     match ":id" => "storyteller#index", as: 'storyteller_show'

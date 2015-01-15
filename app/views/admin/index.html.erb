@@ -1,23 +1,23 @@
 <% title t('.title') %>
 
-  <% if current_user.role? User::ROLES[:admin] %>
-   <div class="span4">
- 		<ul class="standard">
- 			<li>
-       <%= link_to t('helpers.links.news'), admin_news_index_path %>
+ <div class="span4">
+	<ul>
+    <li>
+     <%= link_to t('helpers.links.users'), admin_users_path %>
+    </li>
+    <% if current_user.role? User::ROLES[:site_admin] %>
+      <li>
+       <%= link_to t('helpers.links.themes'), admin_themes_path %>
+      </li>
+      <li>
+       <%= link_to t('helpers.links.story_types'), admin_story_types_path %>
       </li>
  			<li>
        <%= link_to t('helpers.links.pages'), admin_pages_path %>
       </li>
  			<li>
-       <%= link_to t('helpers.links.categories'), admin_categories_path %>
-      </li>
- 			<li>
        <%= link_to t('helpers.links.langauges'), admin_languages_path %>
       </li>
- 			<li>
-       <%= link_to t('helpers.links.users'), admin_users_path %>
-      </li>
- 		</ul>
-  </div>
-  <% end %>
+    <% end %>
+	</ul>
+</div>
