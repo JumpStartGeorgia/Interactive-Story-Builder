@@ -20,9 +20,12 @@ class Story < ActiveRecord::Base
   has_many :invitations, :dependent => :destroy
 	has_many :story_categories
 	has_many :categories, :through => :story_categories, :dependent => :destroy
+  has_many :story_themes
+  has_many :themes, :through => :story_themes, :dependent => :destroy
 	belongs_to :user
   belongs_to :language, :primary_key => :locale, :foreign_key => :story_locale
 	belongs_to :template
+  belongs_to :story_type
 	has_many :sections, :order => 'position', dependent: :destroy
 	has_and_belongs_to_many :users
 	has_one :asset,     
@@ -40,6 +43,7 @@ class Story < ActiveRecord::Base
 	validates :title, :presence => true, length: { maximum: 100 }
 	validates :author, :presence => true, length: { maximum: 255 }
 	validates :permalink, :presence => true
+  validates :story_type_id, :presence => true
 #	validates :about, :presence => true
 	validates :template_id, :presence => true
 	validates :media_author, length: { maximum: 255 }
@@ -119,7 +123,7 @@ class Story < ActiveRecord::Base
     exclude_field :story_translations
 
     # clone the associations
-		clone [:sections, :categories]
+		clone [:sections, :categories, :themes]
 	end
 
   def self.can_edit?(story_id, user_id)

@@ -2,6 +2,7 @@ class StoryType < ActiveRecord::Base
   translates :name, :permalink
 
   has_many :story_type_translations, :dependent => :destroy
+  has_many :stories
   accepts_nested_attributes_for :story_type_translations
   attr_accessible :id, :sort_order, :story_type_translations_attributes
 
