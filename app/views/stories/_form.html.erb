@@ -17,13 +17,13 @@
 
     <%= f.input :about, :as => :text, hint: t('.hint.about'), :input_html => {:class => "tinymce", :rows => 15}  %>
 
-    <%= f.input :story_locale , :as => :select, :hint => t('.hint.locale'), :title => 'testing', :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "storyLocale", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "7"  } %>
-
-		<%= f.input :categories, :as => :select, :hint => t('.hint.categories'), :collection => @categories, :multiple => true, :input_html => { :id => 'storyCategories', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7", :title => t('app.common.nothing_selected') } %>
-
-    <%= f.input :tag_list, hint: t('.hint.tag_list'), :input_html => { id: "storyTagList", :data => { load: @story_tags}  } %>
-
     <% if false %>
+      <%= f.input :story_locale , :as => :select, :hint => t('.hint.locale'), :title => 'testing', :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "storyLocale", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "7"  } %>
+
+  		<%= f.input :categories, :as => :select, :hint => t('.hint.categories'), :collection => @categories, :multiple => true, :input_html => { :id => 'storyCategories', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7", :title => t('app.common.nothing_selected') } %>
+
+      <%= f.input :tag_list, hint: t('.hint.tag_list'), :input_html => { id: "storyTagList", :data => { load: @story_tags}  } %>
+
       <%= f.input :template_id, :as => :select, hint: t('.hint.template'),  :include_blank => false, collection: @templates.map{|t|["#{t.title} - #{t.description}",t.id]} , :input_html => { :id => "storyTemplate"  }   %> 
     <% end %>
    
@@ -39,11 +39,13 @@
 
     <% end %> 
 
-<!--     <% if @story.id.present? %>
-      <%= f.input :published, :as => :boolean, hint: t('.hint.published') , :input_html => { id: "storyPublished"} %>   
-    <% end %> -->
+    <% if false %>
+      <% if @story.id.present? %>
+        <%= f.input :published, :as => :boolean, hint: t('.hint.published') , :input_html => { id: "storyPublished"} %>   
+      <% end %>
 
-    <%= f.input :publish_home_page, :as => :boolean, hint: t('.hint.publish_home_page') , :input_html => { id: "storyPublishHomePage"} %>   
+      <%= f.input :publish_home_page, :as => :boolean, hint: t('.hint.publish_home_page') , :input_html => { id: "storyPublishHomePage"} %>   
+    <% end %>
   <% end %>
   <div class="pull-right spacer">
     <%= f.submit nil, :class => 'btn btn-default' %>
