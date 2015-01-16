@@ -1,13 +1,4 @@
 <ul id="story-navigation" class="nav nav-tabs">
-  <% cls = current_page?(edit_story_path(@story)) ? 'class=active' : '' %>
-  <li <%=cls %>>
-    <%= link_to edit_story_path(@story), title: t('helpers.links.story_menu.title.edit_story') do %>                            
-      <span class="glyphicon glyphicon-info-sign"></span>
-      <span class="nav-text">
-        <%=t('helpers.links.story_menu.link.edit_story')%>
-      </span>
-    <% end %>
-  </li>
   <% cls = current_page?(sections_story_path(@story)) ? 'class=active' : '' %>
   <li <%=cls %>>
     <%= link_to sections_story_path(@story), title: t('helpers.links.story_menu.title.admin_story') do %>
@@ -17,6 +8,7 @@
       </span>
     <% end %>
   </li>
+
   <% cls = current_page?(collaborators_story_path(@story)) ? 'class=active' : '' %>
   <li <%=cls %>>
     <%= link_to collaborators_story_path(@story), title: t('helpers.links.story_menu.title.collaborators') do %>
@@ -26,37 +18,11 @@
       </span>
     <% end %>
   </li>
-  <li>
-    <%= link_to '#', title: t('helpers.links.story_menu.title.preview'), id: 'btnPreview', class: 'preview', 
-        :'data-link' => @story.published ? storyteller_show_path(@story.permalink) : preview_story_path(@story), 
-        :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story' do %>
-      <span class="glyphicon glyphicon-eye-open" ></span>
+  <li <%=cls %>>
+    <%= link_to collaborators_story_path(@story), title: 'Translation' do %> <!-- t('helpers.links.story_menu.title.translations')  -->
+      <span class="glyphicon glyphicon-user"></span>
       <span class="nav-text">
-        <%= t('helpers.links.story_menu.link.preview') %>
-      </span>
-    <% end %>
-  </li>
-  <% if !@story.published %> 
-    <li>
-      <%= link_to '#', title: t('helpers.links.story_menu.title.review'), id: 'btnReviewer', 
-          :'data-title' => @story.title, :'data-modalos-id' => 'modalos-reviewer', :'data-reviewer-key' => review_url(@story.reviewer_key) do %>
-          <span class="glyphicon glyphicon-share" ></span>
-          <span class="nav-text">
-            <%= t('helpers.links.story_menu.link.review') %>
-          </span>
-      <% end %>
-    </li>
-  <% end %>
-  <li>                            
-    <% 
-      title = @story.published ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish') 
-      link_text = @story.published ? t('helpers.links.story_menu.link.unpublish') : t('helpers.links.story_menu.link.publish') 
-    %>
-    <%= link_to '#', title: title, id: 'btnPublish', class: (@story.published ? '' : 'disabled'), 
-        :'data-link' => publish_story_path(@story) do %>
-      <span class="glyphicon glyphicon-globe" ></span>
-      <span class="nav-text">
-        <%= link_text %>
+        Translations
       </span>
     <% end %>
   </li>
@@ -75,17 +41,7 @@
         <%=t('helpers.links.story_menu.link.export')%>
       </span>
     <% end %>
-  </li>                        
-  <li>
-    <%= link_to @story, title: t('helpers.links.story_menu.title.delete_story'), confirm: t("helpers.links.confirm"), method: :delete do %>
-      <span class="glyphicon glyphicon-remove"></span>
-      <span class="nav-text">
-        <%=t('helpers.links.story_menu.link.delete_story')%>
-      </span>
-    <% end %>
-  </li>
+  </li>                          
 </ul>
-
-
 <%= render partial: "shared/story_nav_modals"%> 
 

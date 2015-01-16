@@ -61,7 +61,7 @@ class StoriesController < ApplicationController
 
       if @story.save
         flash_success_created(Story.model_name.human,@story.title)       
-        format.html { redirect_to edit_story_path(@story) }
+        format.html { redirect_to sections_story_path(@story) }
       #  format.json { render json: @story, status: :created, location: @story }
       else
         if !@story.asset.present? 
@@ -95,7 +95,7 @@ class StoriesController < ApplicationController
       else
         if @story.update_attributes(params[:story])
           flash_success_updated(Story.model_name.human,@story.title)       
-          format.html { redirect_to  edit_story_path(@story) }
+          format.html { redirect_to  sections_story_path(@story) }
           format.js { render action: "flash", status: :created }    
         else
           if !@story.asset.present? 
@@ -171,16 +171,33 @@ class StoriesController < ApplicationController
   def get_data
     type = params[:type]
 
-    if type == 's'
+    if type == 'story'
+      if params[:command]!='n'
+        @item = Story.find_by_id(params[:id]) 
+        if !@item.asset_exists?
+          @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+        end    
+      else 
+          @item = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
+          @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
+      end        
+
+      respond_to do |format|
+        if @item.present?
+          @story = @item
+          format.js { render :action => "get_story" }          
+        else
+          @get_data_error = I18n.t('app.msgs.error_get_data')
+          format.js
+        end
+      end
+    elsif type == 's'
 
       if params[:command]!='n'
         @item = Section.find_by_id(params[:section_id])    
       else 
         @item = Section.new(story_id: params[:id], has_marker: 0)
       end        
-#      @section_list = []
-#      Section::TYPE.each{|k,v| @section_list << ["#{I18n.t("section_types.#{k}.name")} - #{I18n.t("section_types.#{k}.description")}", v]} 
-#      @section_list.sort_by!{|x| x[0]}
       if @item.present? && !@item.asset_exists?
           @item.build_asset(:asset_type => Asset::TYPE[:section_audio])
       end   
@@ -574,7 +591,7 @@ class StoriesController < ApplicationController
         if !(@item.about.present? && @item.asset_exists?)                 
                   view_context.log(@item.sections.map{|t| t.content? && t.content.present? && t.content.content.present? }.count(true) )
            format.json {render json: { e:true, msg: (t('app.msgs.error_publish_missing_fields', :obj => @item.title) +  
-                " <a href='" +  edit_story_path(@item) + "'>" + t('app.msgs.error_publish_missing_fields_link') + "</a>")} }  
+                " <a href='" +  sections_story_path(@item) + "'>" + t('app.msgs.error_publish_missing_fields_link') + "</a>")} }  
            error = true       
         elsif @item.sections.map{|t| t.content.present? && t.content.content.present? }.count(true) == 0          
            format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_content_section')} }          

@@ -8,6 +8,39 @@ var method = 'n';
 var tester = null;
 $(document).ready(function() {
 
+	$('.storytree-toggle').click(function(){
+		var t = $(this).parent();
+		var sidebarWidth = t.width();
+		var newLeft = t.hasClass('o') ? -1*sidebarWidth : 0;
+		var content = $('.builder-wrapper .content');
+		t.animate({'left': newLeft},
+			{
+				duration:2000, 
+				complete:function()
+				{
+					t.toggleClass('o c');	
+				},
+				step:function(a,b)
+				{
+					content.css('paddingLeft',sidebarWidth + a);
+				}
+			}
+		);
+	});
+	$('#btnTranslate').click(function(){
+		$('.content .header .trans-from-to').css('display','inline-block');
+		$('.workplace').addClass('translating');
+	});
+	$('.story-tree ul').on('click','li.story > .box > .title',function(e) {
+		e.preventDefault();
+		var par = $(this).parent().parent();
+		story_id = par.attr('id');
+		$('.story-tree ul li').removeClass('active');
+		par.addClass('active');	    
+	 	getStory(0,-1);
+	    return false;
+	});
+
 	$('.story-tree ul').on('click','li.item > .box > .title',function(e) {
 		e.preventDefault();
 		item_id = -1;
@@ -26,13 +59,13 @@ $(document).ready(function() {
       return false;
    });
 
-	$('.story-tree ul').on('click','li.item > ul > li.sub',function(e) {
+	$('.story-tree ul').on('click','li.item > ul > li.sub > div > .sub-l',function(e) {
 		e.preventDefault();		
-		item_id = $(this).attr('id');
-		section_id = $(this).parent().parent().attr('id');		
+		var cur = $(this).parent().parent();
+		item_id = cur.attr('id');
+		section_id = cur.parent().parent().attr('id');		
 		$('.story-tree ul li').removeClass('active');
-		//$(this).parent().parent().addClass('active');
-		$(this).parent().find('li#'+item_id).addClass('active');   					
+		cur.parent().find('li#'+item_id).addClass('active');   					
 		getStory(section_id,item_id);
 		if($( "#slideshowAssets" ).length > 0 )
 		 $( "#slideshowAssets" ).sortable({ items: "> div" });
@@ -220,60 +253,83 @@ $(document).ready(function() {
   });
 
 
-	$('#btnUp').click(function(){
-		if(!(section_id == -1 && item_id == -1))
+	$('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-up',function()
+	{
+		var cur = $(this).closest('li');
+		var sec_id = -1;
+		var itm_id = -1;
+		if(cur.hasClass('item'))
 		{
-			if (el_type == 'content') return true;
-			var dataTemp = {'s' : section_id, 'i': item_id };
+			sec_id = cur.attr('id');
+		}
+		else
+		{
+			itm_id=cur.attr('id');
+			var par = cur.parent().parent('li');
+			sec_id = par.attr('id');
+			var stype = par.attr('data-type');
+			if(stype == 'content' || stype == 'slideshow' || stype == 'embed_media' || stype == 'youtube' ) return true;
+		}
+
+		if(!(sec_id == -1 && itm_id == -1))
+		{
 			$.ajax
 			({
 				url: 'up',			  
-				data: dataTemp,
+				data: {'s' : sec_id, 'i': itm_id },
 				type: "POST",			
-		        dataType: 'json'
-
+	        	dataType: 'json'
 			}).done(function(d) 
 			{
-				var secT = $('.story-tree ul li.item[id='+ section_id + ']');
-				if(item_id == -1)
+				var secT = $('.story-tree ul li.item[id='+ sec_id + ']');
+				if(itm_id == -1)
 				{			 	
-			 		if( secT.prev().length)
+			 		if(secT.prev().length)
 			 		{
 		 			  $(secT).insertBefore($(secT).prev());
 			 		}
 		 		}
 		 		else
 		 		{
-		 			subT = secT.find('ul li.sub[id='+item_id+']');
+		 			subT = secT.find('ul li.sub[id='+itm_id+']');
 		 			if( subT.prev().length)
 			 		{
 		 			  $(subT).insertBefore($(subT).prev());
 			 		}
 		 		}	
-						
 			}).error(function(e){ popuper(gon.fail_change_order,"error");});	
 		} 	
 	});
-
-
-	
-	$('#btnDown').click(function(){
-		if(!(section_id == -1 && item_id == -1))
+	$('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-down',function()
+	{
+		var cur = $(this).closest('li');
+		var sec_id = -1;
+		var itm_id = -1;
+		if(cur.hasClass('item'))
 		{
-			if (el_type == 'content') return true;
-			var dataTemp = {'s' : section_id, 'i': item_id };
+			sec_id = cur.attr('id');
+		}
+		else
+		{
+			itm_id=cur.attr('id');
+			var par = cur.parent().parent('li');
+			sec_id = par.attr('id');
+			if(par.attr('data-type') == 'content') return true;
+		}
+		if(!(sec_id == -1 && itm_id == -1))
+		{
 			$.ajax
 			({
 				url: 'down',			  
-				data: dataTemp,
+				data: {'s' : sec_id, 'i': itm_id },
 				type: "POST",			
 		        dataType: 'json'
 
 			}).done(function(d) 
 			{
-			 	var secT = $('.story-tree ul li.item[id='+ section_id + ']');
+			 	var secT = $('.story-tree ul li.item[id='+ sec_id + ']');
 
-				if(item_id == -1)
+				if(itm_id == -1)
 				{			 	
 			 		if( secT.next().length)
 			 		{
@@ -282,7 +338,7 @@ $(document).ready(function() {
 		 		}
 		 		else
 		 		{
-		 			subT = secT.find('ul li.sub[id='+item_id+']');
+		 			subT = secT.find('ul li.sub[id='+itm_id+']');
 		 			if( subT.next().length)
 			 		{
 		 			  $(subT).insertAfter($(subT).next());
@@ -351,9 +407,10 @@ $(document).ready(function() {
 
 
 	});
-	$('#btnDelete').click(function(){
 
-	
+$('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-remove',function()		
+{	
+	// change for deleting
 		if(section_id == -1 ) { popuper(gon.nothing_selected,"notice"); return true;}
 
 
@@ -540,6 +597,8 @@ $(document).ready(function() {
       $('li#remove-collaborator-message').show().removeClass(dng).removeClass(info).addClass(cls).html(d.msg);
     });
   });
+
+  $('.story-tree ul li.story > .box > .title').trigger('click');
 });
 
 function show_story_permalink(d){
@@ -629,15 +688,23 @@ function getStory(id , subid , state)
 	state = typeof state !== 'undefined' ? state : -1;
 	if(id != -1)
 	{
-		var selectedSection = $('.story-tree ul li.item[id='+ id + ']');
-		el_type = selectedSection.data('type');	
+		el_type = $('.story-tree ul li.item[id='+ id + ']').data('type');	
 	}		
+	if(id == 0)
+	{
+		el_type = $('.story-tree ul li.story[id='+ story_id + ']').data('type');	
+	}	
 
 	if(subid != -1)
 	{		
 		method = 's';		
 		getData();
 					
+	}
+	else if(id == 0)
+	{
+		method = 's';
+		getData();		
 	}
 	else if(id != -1)
 	{		
@@ -659,13 +726,13 @@ function getStory(id , subid , state)
 }
 function getData()
 {
-	var dataTemp = {'section_id' : section_id, 'command':method, 'type':el_type};
+	var dataTemp = { 'section_id' : section_id, 'command':method, 'type':el_type };
 	
-	if(el_type!='s') 
+	if(el_type!='s' && el_type!='story') 
 	{		
 		dataTemp['item_id'] = item_id;
 	}
-
+	console.log(dataTemp);
 	$.ajax
 		({
 		  url: 'get_data',
@@ -690,4 +757,6 @@ function add_fields(link, association, content) {
   	var regexp = new RegExp("new_" + association, "g")
 	$('#slideshowAssets').append(content.replace(regexp, new_id));
 }
+
+
 

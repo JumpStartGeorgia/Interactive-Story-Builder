@@ -50,14 +50,21 @@
     <%= render partial: "layouts/storybuilder_nav"%>   
     <%= render partial: "shared/story_nav"%>   
 		<div class="builder-wrapper">	
-      <div class="sidebar">
+      <div class="sidebar o">
          <%= yield %>
       </div>
       <div class="content">
         <div class="header">
-           <% if content_for?(:title) %>
+          <!--  <% if content_for?(:title) %>
               <div class="story-title">  <%= yield(:title) %></div>
-            <% end %> 
+            <% end %>  -->
+            <div class='translate'>
+             <button type="button" id='btnTranslate' class="btn btn-translate" title="<%= t('app.buttons.add_section') %>"><%= t('app.buttons.translate') %></button>
+             <div class='trans-from-to'>
+               From <button type="button" id='btnTranslateFrom' class="btn btn-translate" title="<%= t('app.buttons.add_section') %>"><%= t('app.buttons.from') %></button>
+               To<button type="button" id='btnTranslateTo' class="btn btn-translate" title="<%= t('app.buttons.add_section') %>"><%= t('app.buttons.to') %></button>
+             </div>
+            </div>
             <div class="flash-message">
               <% flash.each do |key, msg| %>
                 <div class="alert <%= flash_translation(key) %> fade in">                  
@@ -68,10 +75,9 @@
             </div>
    
         </div>
-        <div class="workplace"><div class='story-viewer' id='storyViewer'>&nbsp;</div>
-          <div class="powered-by">
-      <%= t("app.common.powered_by") %>&nbsp;&nbsp;<a href="http://www.jumpstart.ge" target="_blank" title="<%= t("app.common.js_link_title") %>"><%= t("app.common.powered_by_js") %></a><%= t("app.common.powered_by_end") %>
-    </div>
+        <div class="workplace">
+          <div class='story-viewer form1' id='storyViewer'>&nbsp;</div>
+          <div class='form2'>&nbsp;</div>
         </div>
   
       </div>	           
@@ -104,7 +110,7 @@
         workplace.height(bwh - header.height());
 
         workplace.css('top',topOffset + 'px');
-        content.width($(window).width()-bw.find('.sidebar').width()-10);        
+        //content.width($(window).width()-bw.find('.sidebar').width()-10);        
       }
       $(document).ready(function(){
         calculate_workspace();  
