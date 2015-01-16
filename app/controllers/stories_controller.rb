@@ -1,5 +1,8 @@
 class StoriesController < ApplicationController
   before_filter :authenticate_user!, :except => [:review]
+  before_filter do |controller_instance|
+    controller_instance.send(:valid_role?, User::ROLES[:coordinator])
+  end
   before_filter(:except => [:index, :new, :create, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
     controller_instance.send(:can_edit_story?, params[:id])
   end
@@ -35,6 +38,7 @@ class StoriesController < ApplicationController
     @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
 #    @templates = Template.select_list
     @story_tags = []
+    @themes = Theme.sorted
     
     respond_to do |format|
         format.html #new.html.er
@@ -50,6 +54,7 @@ class StoriesController < ApplicationController
     end 
 #    @templates = Template.select_list(@story.template_id)
     @story_tags = @story.tags.token_input_tags
+    @themes = Theme.sorted
   end
 
   # POST /stories
@@ -67,8 +72,9 @@ class StoriesController < ApplicationController
         if !@story.asset.present? 
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end      
-        @templates = Template.select_list(@story.template_id) 
+        #@templates = Template.select_list(@story.template_id) 
         @story_tags = @story.tags.token_input_tags
+        @themes = Theme.sorted
 
         flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
@@ -101,8 +107,9 @@ class StoriesController < ApplicationController
           if !@story.asset.present? 
             @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
           end 
-          @templates = Template.select_list(@story.template_id)
+          #@templates = Template.select_list(@story.template_id)
           @story_tags = @story.tags.token_input_tags
+          @themes = Theme.sorted
           
           flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
           format.html { render action: "edit" }

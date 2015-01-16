@@ -66,7 +66,9 @@ module ApplicationHelper
 	
   # apply the strip_tags helper and also convert nbsp to a ' '
 	def strip_tags_nbsp(text)
-	  strip_tags(text.gsub('&nbsp;', ' '))
+    if text.present?
+	    strip_tags(text.gsub('&nbsp;', ' '))
+    end
 	end
 	
 

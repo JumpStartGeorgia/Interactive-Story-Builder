@@ -12,7 +12,7 @@
 #####################
 ## Types
 #####################
-# puts "Loading Types"
+puts "Loading Types"
 StoryType.delete_all
 StoryTypeTranslation.delete_all
 t = StoryType.create(:id => 1, :sort_order => 1)
@@ -45,6 +45,89 @@ t.story_type_translations.create(:locale => 'ka', :name => 'Infographic')
 t.story_type_translations.create(:locale => 'ru', :name => 'Infographic')
 t.story_type_translations.create(:locale => 'az', :name => 'Infographic')
 t.story_type_translations.create(:locale => 'am', :name => 'Infographic')
+
+
+#####################
+## Languages
+#####################
+puts 'loading languages'
+Language.delete_all
+langs = [
+  ["af", "Afrikaans"],
+  ["sq", "shqipe"],
+  ["ar", "العربية‏"],
+  ["hy", "Հայերեն"],
+  ["az", "Azərbaycan­ılı"],
+  ["eu", "euskara"],
+  ["be", "Беларускі"],
+  ["bg", "български"],
+  ["ca", "català"],
+  ["hr", "hrvatski"],
+  ["cs", "čeština"],
+  ["da", "dansk"],
+  ["div", "ދިވެހިބަސް‏"],
+  ["nl", "Nederlands"],
+  ["en", "English"],
+  ["et", "eesti"],
+  ["fo", "føroyskt"],
+  ["fi", "suomi"],
+  ["fr", "français"],
+  ["gl", "galego"],
+  ["ka", "ქართული"],
+  ["de", "Deutsch"],
+  ["el", "ελληνικά"],
+  ["gu", "ગુજરાતી"],
+  ["he", "עברית‏"],
+  ["hi", "हिंदी"],
+  ["hu", "magyar"],
+  ["is", "íslenska"],
+  ["id", "Bahasa Indonesia"],
+  ["it", "italiano"],
+  ["ja", "日本語"],
+  ["kn", "ಕನ್ನಡ"],
+  ["kk", "Қазащb"],
+  ["sw", "Kiswahili"],
+  ["kok", "कोंकणी"],
+  ["ko", "한국어"],
+  ["ky", "Кыргыз"],
+  ["lv", "latviešu"],
+  ["lt", "lietuvių"],
+  ["mk", "македонски јазик"],
+  ["ms", "Bahasa Malaysia"],
+  ["mr", "मराठी"],
+  ["mn", "Монгол хэл"],
+  ["no", "norsk"],
+  ["fa", "فارسى‏"],
+  ["pl", "polski"],
+  ["pt", "Português"],
+  ["pa", "ਪੰਜਾਬੀ"],
+  ["ro", "română"],
+  ["ru", "русский"],
+  ["sa", "संस्कृत"],
+  ["sr", "srpski"],
+  ["sk", "slovenčina"],
+  ["sl", "slovenski"],
+  ["es", "español"],
+  ["sv", "svenska"],
+  ["syr", "ܣܘܪܝܝܐ‏"],
+  ["ta", "தமிழ்"],
+  ["tt", "Татар"],
+  ["te", "తెలుగు"],
+  ["th", "ไทย"],
+  ["tr", "Türkçe"],
+  ["uk", "україньска"],
+  ["ur", "اُردو‏"],
+  ["uz", "U'zbek"],
+  ["vi", "Tiếng Việt"],
+  ["zh-TW", "繁體中文"],
+  ["zh-CN", "简体中文"],
+  ["am", "Հայերեն"]
+]
+
+sql = "insert into languages (locale, name) values "
+sql << langs.map{|x| "(\"#{x[0]}\", \"#{x[1]}\")"}.join(', ')
+ActiveRecord::Base.connection.execute(sql)
+
 
 
 =begin OLD STUFF FROM STORYBUILDER
@@ -144,8 +227,9 @@ langs = [
   ["uz", "U'zbek"],
   ["vi", "Tiếng Việt"],
   ["zh-TW", "繁體中文"],
-  ["zh-CN", "简体中文"]
-]
+  ["zh-CN", "简体中文"],
+  ["am", "Հայերեն"]
+]]
 
 sql = "insert into languages (locale, name) values "
 sql << langs.map{|x| "(\"#{x[0]}\", \"#{x[1]}\")"}.join(', ')
