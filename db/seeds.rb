@@ -12,7 +12,7 @@
 #####################
 ## Types
 #####################
-# puts "Loading Types"
+puts "Loading Types"
 StoryType.delete_all
 StoryTypeTranslation.delete_all
 t = StoryType.create(:id => 1, :sort_order => 1)
@@ -45,6 +45,24 @@ t.story_type_translations.create(:locale => 'ka', :name => 'Infographic')
 t.story_type_translations.create(:locale => 'ru', :name => 'Infographic')
 t.story_type_translations.create(:locale => 'az', :name => 'Infographic')
 t.story_type_translations.create(:locale => 'am', :name => 'Infographic')
+
+
+#####################
+## Languages
+#####################
+puts 'loading languages'
+Language.delete_all
+langs = [
+  ["az", "Azərbaycan­ılı"],
+  ["en", "English"],
+  ["ka", "ქართული"],
+  ["ru", "русский"],
+  ["am", "Հայերեն"]
+]
+
+sql = "insert into languages (locale, name) values "
+sql << langs.map{|x| "(\"#{x[0]}\", \"#{x[1]}\")"}.join(', ')
+ActiveRecord::Base.connection.execute(sql)
 
 
 =begin OLD STUFF FROM STORYBUILDER

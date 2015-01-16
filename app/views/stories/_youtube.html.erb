@@ -20,7 +20,7 @@
       <%= as.input :menu_lang , :as => :select, :hint => t('.hint.menu_lang'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "youtubePlayerLang", :class => "selectpicker one-line", :'data-live-search' => "true", :'data-size' => "7"  } %>
 
       <%= as.input :cc_lang , :as => :select, :hint => t('.hint.cc_lang'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "youtubeCCLang", :class => "selectpicker one-line", :'data-live-search' => "true", :'data-size' => "7"  } %>
-      <%= as.input :locale, :as => :hidden, :value => I18n.locale %>
+      <%= as.input :locale, :as => :hidden %>
     <% end %> 
     </div>
 
