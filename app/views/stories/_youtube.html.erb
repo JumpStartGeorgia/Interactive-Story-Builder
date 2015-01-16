@@ -13,7 +13,7 @@
       <%= f.input :loop, :as => :boolean, :hint => t('.hint.loop'), :input_html => { id: "youtubeLoop" } %>   
       <%= f.input :info, :as => :boolean, :hint => t('.hint.info'), :input_html => { id: "youtubeInfo" } %> 
     
-    <%= f.fields_for :youtube_translations, @item.youtube_translations do |as| %>   
+    <%= f.semantic_fields_for :youtube_translations, @item.youtube_translations do |as| %>   
       <%= as.input :cc, :as => :boolean, :hint => t('.hint.cc'), :input_html => { id: "youtubeCC", class: "end-line one-line"}, :class=>'asdf' %> 
     </div>
     <div class='one-line'>  

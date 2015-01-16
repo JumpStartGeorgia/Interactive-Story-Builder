@@ -47,7 +47,13 @@ class Youtube < ActiveRecord::Base
 			end
 		end
 		if ok 
-			self.code = html
+			# if do just self.code, it will create a brand new translation record since the new translation record does not exist yet
+			# so have to directly reference the translations object to get to the existing record
+			if self.youtube_translations.present?
+				self.youtube_translations.first.code = html
+			else
+				self.code = html
+			end
 		else
 			 errors.add(:code, "value can't be generated.")
 			 false
