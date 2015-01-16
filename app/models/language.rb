@@ -9,9 +9,39 @@ class Language < ActiveRecord::Base
     order('name asc')
   end
   
+  # sort with the app locales first
+  def self.app_locale_sorted
+    langs = order('name asc')
+    
+    if langs.present?
+      # get app locales
+      locales = I18n.available_locales.dup
+      temp = []
+
+      # move these locales to the top of the list
+      locales.each do |locale|
+        index = langs.index{|x| x.locale == locale.to_s}
+        if index.present? && index > 0
+          temp << langs[index]
+          langs.delete_at(index)
+        end
+      end
+
+      if temp.present?
+        temp.sort_by!{|x| x.name}
+        langs.to_a.insert(0, temp).flatten!
+      end
+    end
+
+    return langs
+  end
+
+
   def self.with_stories
     where(:has_published_stories => true)
   end
+
+
 =begin
   def self.increment_count(locale)
     where(:locale => locale).update_all('published_story_count = published_story_count + 1')
