@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150115112119) do
+ActiveRecord::Schema.define(:version => 20150116114048) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -238,21 +238,21 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
   end
 
   create_table "stories", :force => true do |t|
-    t.string   "title"
+    t.string   "old_title"
     t.integer  "user_id"
-    t.string   "author"
+    t.string   "old_author"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "media_author"
+    t.string   "old_media_author"
     t.boolean  "published",             :default => false
     t.datetime "published_at"
     t.integer  "template_id",           :default => 1
     t.integer  "impressions_count",     :default => 0
     t.integer  "reviewer_key"
-    t.string   "permalink"
-    t.text     "about"
+    t.string   "old_permalink"
+    t.text     "old_about"
     t.boolean  "publish_home_page",     :default => true
     t.boolean  "staff_pick",            :default => false
     t.string   "story_locale",          :default => "en"
@@ -272,7 +272,7 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
   add_index "stories", ["cached_votes_up"], :name => "index_stories_on_cached_votes_up"
   add_index "stories", ["cached_weighted_score"], :name => "index_stories_on_cached_weighted_score"
   add_index "stories", ["comments_count"], :name => "index_stories_on_comments_count"
-  add_index "stories", ["permalink"], :name => "index_stories_on_permalink"
+  add_index "stories", ["old_permalink"], :name => "index_stories_on_permalink"
   add_index "stories", ["publish_home_page", "staff_pick"], :name => "index_stories_on_publish_home_page_and_staff_pick"
   add_index "stories", ["published"], :name => "index_stories_on_published"
   add_index "stories", ["published_at"], :name => "index_stories_on_published_at"
@@ -316,10 +316,17 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.string   "shortened_url"
+    t.string   "title"
+    t.string   "permalink"
+    t.string   "author"
+    t.string   "media_author"
+    t.text     "about"
   end
 
   add_index "story_translations", ["locale"], :name => "index_story_translations_on_locale"
+  add_index "story_translations", ["permalink"], :name => "index_story_translations_on_permalink"
   add_index "story_translations", ["story_id"], :name => "index_story_translations_on_story_id"
+  add_index "story_translations", ["title"], :name => "index_story_translations_on_title"
 
   create_table "story_type_translations", :force => true do |t|
     t.integer  "story_type_id"

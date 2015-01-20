@@ -1,8 +1,9 @@
 class Story < ActiveRecord::Base	
 
-   @@TYPE = {story: 1, talk_show: 2, video: 3, photo: 4, infographic: 5}
 
-	translates :shortened_url
+  @@TYPE = {story: 1, talk_show: 2, video: 3, photo: 4, infographic: 5}
+
+	translates :shortened_url, :title, :permalink, :permalink_staging, :author, :media_author, :about
 
   # for likes
   acts_as_votable
@@ -11,13 +12,11 @@ class Story < ActiveRecord::Base
   acts_as_taggable
   
   # fields to search for in a story
-  scoped_search :on => [:title, :author, :media_author]
+  scoped_search :in => :story_translations, :on => [:title, :author, :media_author]
   scoped_search :in => :content, :on => [:caption, :sub_caption, :content]
 
   # record public views
   is_impressionable :counter_cache => true 
-  # create permalink to story
-  has_permalink :create_permalink, true
 
   has_many :story_translations, :dependent => :destroy
   has_many :invitations, :dependent => :destroy
@@ -43,13 +42,8 @@ class Story < ActiveRecord::Base
   attr_accessor :send_notification, :send_staff_pick_notification, :send_comment_notification
 #  attr_accessible :name, :tag_list_tokens
   
-	validates :title, :presence => true, length: { maximum: 100 }
-	validates :author, :presence => true, length: { maximum: 255 }
-	validates :permalink, :presence => true
-  validates :story_type_id, :presence => true , :inclusion => { :in => @@TYPE.values }   
-#	validates :about, :presence => true
+  validates :story_type_id, :presence => true
 	validates :template_id, :presence => true
-	validates :media_author, length: { maximum: 255 }
 	validates :story_locale, :presence => true 
 
   # if the title changes, make sure the permalink is updated
@@ -74,6 +68,7 @@ class Story < ActiveRecord::Base
   scope :reads, order("stories.impressions_count desc, stories.published_at desc, stories.title asc")
   scope :likes, order("stories.cached_votes_total desc, stories.published_at desc, stories.title asc")
   scope :comments, order("stories.comments_count desc, stories.published_at desc, stories.title asc")
+
 	scope :is_not_published, where(:published => false)
 	scope :is_published, where(:published => true)
 	scope :is_published_home_page, where(:published => true, :publish_home_page => true)
@@ -85,23 +80,14 @@ class Story < ActiveRecord::Base
   DEMO_ID = 2
   
 
-  
-
-   
-   
-
+  # settings to clone story
 	amoeba do
     enable
-
-    # update the title
-    append :title => " (Clone)"
 
     # reset some fields
     nullify :published
     nullify :published_at
     nullify :reviewer_key
-    nullify :permalink
-    nullify :permalink_staging
     nullify :staff_pick
     # nullify :impressions_count
     # nullify :cached_votes_total
@@ -135,11 +121,8 @@ class Story < ActiveRecord::Base
     # do not copy invitation
     exclude_field :invitations
 
-    # shortened url created when published
-    exclude_field :story_translations
-
     # clone the associations
-		clone [:sections, :categories, :themes]
+		clone [:story_translations, :sections, :categories, :themes]
 	end
 
   def self.can_edit?(story_id, user_id)
@@ -152,10 +135,17 @@ class Story < ActiveRecord::Base
       :id => user_id)
   end
 
-	def self.fullsection(story_id)
-		includes(sections: [:media,:content,:embed_medium,:youtube])
-		.where(stories: {id: story_id})
-		.first
+  # get entire story with the id locale
+	def self.fullsection(story_id, locale=nil)
+    s = Story.select('id, story_locale').find_by_id(story_id)
+
+    if s.present?
+      locale ||= s.story_locale
+      includes(:translations, sections: [:media,:content,:embed_medium,:youtube])
+      .where(stories: {id: story_id})
+      .with_locales(locale)
+      .first
+    end
 	end
 	
 	def self.demo
@@ -248,14 +238,6 @@ class Story < ActiveRecord::Base
 #    self.generate_permalink! if self.title_changed?
 #  end 
   
-  def create_permalink
-    if self.permalink_staging.present? && self.permalink_staging != self.permalink
-      self.permalink_staging.dup
-    else
-      self.title.dup
-    end
-  end
-
   # if the story is published and the counts are not being updated
   # update the filter counts
   def update_filter_counts
