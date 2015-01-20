@@ -1,5 +1,9 @@
-$("#storyViewer").hide().html("<div id='storyForm'><%= escape_javascript( render :partial => 'form') %></div>").fadeIn('slow');
 
+
+$("#storyViewer").hide().html("<div id='storyForm'><%= escape_javascript( render :partial => 'form', locals: {original: true}) %></div>").fadeIn('slow');
+<% if @trans %>
+	$(".form2").hide().html("<div id='storyForm'><%= escape_javascript( render :partial => 'form') %></div>").fadeIn('slow');
+<% end %>
 <% imageTemp = '' %>
 <% if @story.asset.asset.exists? %>
   //<%  imageTemp = "<img  width='100%' src='#{@story.asset.asset.url}'/>" %>

@@ -1,5 +1,5 @@
 <ul id="story-navigation" class="nav nav-tabs">
-  <% cls = current_page?(sections_story_path(@story)) ? 'class=active' : '' %>
+  <% cls = !@tr && current_page?(sections_story_path(@story)) ? 'class=active' : '' %>
   <li <%=cls %>>
     <%= link_to sections_story_path(@story), title: t('helpers.links.story_menu.title.admin_story') do %>
       <span class="glyphicon glyphicon-picture"></span>
@@ -18,8 +18,9 @@
       </span>
     <% end %>
   </li>
+  <% cls = @tr && current_page?(sections_story_path(@story)) ? 'class=active' : '' %>
   <li <%=cls %>>
-    <%= link_to section_translation_story_path(@story), title: 'Translation' do %> <!-- t('helpers.links.story_menu.title.translations')  -->
+    <%= link_to sections_story_path(@story,tr:true,from:@tr_from,to:@tr_to), title: 'Translation' do %> <!-- t('helpers.links.story_menu.title.translations')  -->
       <span class="glyphicon glyphicon-user"></span>
       <span class="nav-text">
         Translations

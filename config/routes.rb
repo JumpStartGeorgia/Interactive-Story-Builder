@@ -75,8 +75,6 @@ BootstrapStarter::Application.routes.draw do
 	        post 'youtube', to: 'stories#new_youtube'
 
 	        get 'get_embed_code', to: 'stories#get_embed_code'
-
-	        get 'section_translation'
 			end			
 		end
 		#match '/stories/:id/edit' => 'stories#get_story'

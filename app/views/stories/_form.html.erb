@@ -1,12 +1,18 @@
 <%= tinymce_assets %>
 <%= tinymce %>
+<% original ||= false %>
+<% readonly = {} %>
 
+<% if original %>
+  <% readonly = { readonly:true , disabled: true } %>
+<% end %>
 <%= semantic_form_for(@story, :html => {:multipart => true, :id => "storyForm"}) do |f| %>
 
   <%= f.inputs do %>
     <%= f.input :user_id , :as => :hidden %>
 
-    <%= f.input :title, hint: t('.hint.title'), placeholder: t('.placeholder.title'), :input_html => { id: "storyTitle", :'data-title-was' => @story.title  }   %>
+    <%= f.input :title, hint: t('.hint.title'), placeholder: t('.placeholder.title'), :input_html => { id: "storyTitle", :'data-title-was' => @story.title },
+     %>
 
     <%= f.input :permalink_staging, hint: t('.hint.permalink'), placeholder: t('.placeholder.permalink'), :input_html => { id: "storyPermalinkStaging"  }   %>
     <%= f.input :permalink, :as => :hidden, :input_html => { id: "storyPermalink"  }   %>
@@ -17,14 +23,14 @@
 
     <%= f.input :about, :as => :text, hint: t('.hint.about'), :input_html => {:class => "tinymce", :rows => 15}  %>
 
-
+  <% if !@trans %>
     <%= f.input :story_locale , :as => :select, :hint => t('.hint.locale'), :title => 'testing', :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "storyLocale", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "7"  } %>
 
 
     <%= f.input :story_type_id, :as => :select, hint: t('.hint.story_type'),  :include_blank => false, collection: @story_types.map{|t|[t.name,t.id]} , :input_html => { :id => "storyType", :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7", :title => t('app.common.nothing_selected')  }   %> 
 
       <%= f.input :themes, :as => :select, :hint => t('.hint.theme'), :collection => @themes.map{|x|[x.formatted_name, x.id]}, :multiple => true, :input_html => { :id => 'storyThemes', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7", :title => t('app.common.nothing_selected') } %>
-
+  <% end %>
 
     <% if false %>
 
@@ -55,10 +61,12 @@
       <%= f.input :publish_home_page, :as => :boolean, hint: t('.hint.publish_home_page') , :input_html => { id: "storyPublishHomePage"} %>   
     <% end %>
   <% end %>
+  <% if !(@trans && original) %>
   <div class="pull-right spacer">
     <%= f.submit nil, :class => 'btn btn-default' %>
     <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          
   </div> 
+  <% end %>
 <% end %>
 
 

@@ -69,7 +69,7 @@ class ApplicationController < ActionController::Base
 	def preload_global_variables
     @story_types = StoryType.sorted
     @published_themes = Theme.published.sorted
-     @languages = Language.app_locale_sorted
+     @languages = Language.app_locale_sorted     
   #   @languages_published = @languages.select{|x| x.has_published_stories == true}
 		# @categories = Category.sorted
   #   @categories_published = @categories.select{|x| x.has_published_stories == true}

@@ -177,7 +177,12 @@ class StoriesController < ApplicationController
 
   def get_data
     type = params[:type]
-
+    @trans = false
+    if params.has_key?(:trans)
+      @trans = true
+      @trans_from = params[:trans].has_key?(:from) ? params[:trans][:from] : @story.story_locale
+      @trans_to = params[:trans].has_key?(:to) ? params[:trans][:to] : @languages.where("locale != '#{@story.story_locale}'").order('locale').first.locale
+    end
     if type == 'story'
       if params[:command]!='n'
         @item = Story.find_by_id(params[:id]) 
@@ -575,23 +580,27 @@ class StoriesController < ApplicationController
   end
 
   def sections
-      @story = Story.fullsection(params[:id])   
+    #Rails.logger.debug("---------------------------------------------#{params.inspect}")
+    @story = Story.fullsection(params[:id])   
+    @tr = params.has_key?(:tr) ? params[:tr] : false
+    if @tr
+      @tr_from  = params.has_key?(:tr_from) ? params[:tr_from] : @story.story_locale
+      @tr_to    = params.has_key?(:tr_to) ? params[:tr_to] : @languages.where("locale != '#{@story.story_locale}'").order('locale').first.locale
+      gon.translate_from = @tr_from
+      gon.translate_to = @tr_to
+      gon.translate = true
+      #Rails.logger.debug("---------------------------------------------#{@tr} #{@tr_from} #{@tr_to}")
+    end
 
-      @js.push("modalos.js")
-      @css.push("modalos.css")
+    @js.push("modalos.js")
+    @css.push("modalos.css")
 
-      # if there are no sections, show the content form by default
-      gon.has_no_sections = @story.sections.blank?
-      respond_to do |format|
-        format.html { render :layout=>"storybuilder" }
-      end
-  end
-  def section_translation
+    # if there are no sections, show the content form by default
+    gon.has_no_sections = @story.sections.blank?
     respond_to do |format|
-      format.html 
+      format.html { render :layout=>"storybuilder" }
     end
   end
-
   def publish
 
     @item = Story.find_by_id(params[:id])

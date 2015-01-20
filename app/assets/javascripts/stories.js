@@ -599,6 +599,40 @@ $('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-remove',funct
   });
 
   $('.story-tree ul li.story > .box > .title').trigger('click');
+
+
+  $('#translateFrom').change(function(){
+  		var fromLang = $(this).selectpicker('val');
+  		var toLang = $('#translateTo').selectpicker('val');
+  		if(fromLang == toLang)
+  		{
+  			$('#translateTo option').each(function(i,d){ 
+  				if(d.value != fromLang)
+  				{
+  				 	$('#translateTo').val(d.value);
+  				 	$('#translateTo').selectpicker('refresh');
+  				 	gon.transalte_to = d.value;
+  					return false;
+  				}
+		 	});
+  		}
+	 	gon.transalte_from = fromLang;
+  		// call new language
+  });
+    $('#translateTo').change(function(){
+  		var fromLang = $('#translateFrom').selectpicker('val');
+  		var toLang = $(this).selectpicker('val');
+  		if(fromLang == toLang)
+  		{
+  			gon.transalte_from = $('#translateFrom').attr('data-default');		
+  			$('#translateFrom').val(gon.transalte_from);
+		 	$('#translateFrom').selectpicker('refresh');  	
+
+  		}
+	 	gon.transalte_from = toLang;
+  		// call new language
+  });
+
 });
 
 function show_story_permalink(d){
@@ -732,13 +766,16 @@ function getData()
 	{		
 		dataTemp['item_id'] = item_id;
 	}
-	console.log(dataTemp);
+	if(gon.translate)
+	{
+		dataTemp['trans'] = {'from':gon.translate_from,'to':gon.translate_to};
+	}	
 	$.ajax
-		({
+		({			
 		  url: 'get_data',
 		  data: dataTemp,
 		  dataType: 'script',
-	      cache: true 
+        cache: true 
 		}).error(function(e){console.log(e)}).done(function(){			
          if(el_type!='s' && method != 'n')
             $('.form-title .form-title-text').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > div > .sub-l').text() + ": " + $('.form-title .form-title-text').text());
