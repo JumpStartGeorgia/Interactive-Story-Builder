@@ -263,7 +263,6 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
     t.integer  "cached_votes_down",     :default => 0
     t.integer  "cached_weighted_score", :default => 0
     t.integer  "comments_count",        :default => 0
-    t.string   "permalink_staging"
     t.integer  "story_type_id"
   end
 
@@ -278,7 +277,7 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
   add_index "stories", ["published"], :name => "index_stories_on_published"
   add_index "stories", ["published_at"], :name => "index_stories_on_published_at"
   add_index "stories", ["reviewer_key"], :name => "index_stories_on_reviewer_key"
-  add_index "stories", ["story_locale"], :name => "index_stories_on_story_locale"
+  add_index "stories", ["story_locale"], :name => "index_stories_on_locale"
   add_index "stories", ["story_type_id"], :name => "index_stories_on_story_type_id"
   add_index "stories", ["template_id"], :name => "index_stories_on_template_id"
   add_index "stories", ["user_id"], :name => "index_stories_on_user_id"

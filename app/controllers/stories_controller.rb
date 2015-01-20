@@ -188,10 +188,11 @@ class StoriesController < ApplicationController
           @item = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
           @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
       end        
-
+      
       respond_to do |format|
         if @item.present?
           @story = @item
+          @themes = Theme.sorted
           format.js { render :action => "get_story" }          
         else
           @get_data_error = I18n.t('app.msgs.error_get_data')

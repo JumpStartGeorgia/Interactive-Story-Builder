@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
   # - check if using a provider and if so return that avatar url
   # - else use the local avatar
   # if neither exists, return the missing url
-  def avatar_url(style = :'40x40')
+  def avatar_url(style = :'50x50')
     if has_provider_avatar? && !local_avatar_exists?
       # append the size to the end of the avatar url so the provider returns the size we want
       sizes = style.to_s.split('x')

@@ -298,6 +298,7 @@ class ApplicationController < ActionController::Base
 
   #######################
 	def render_not_found(exception)
+    Rails.logger.debug("------------------------ Exception #{exception.inspect}")
 		ExceptionNotifier::Notifier
 		  .exception_notification(request.env, exception)
 		  .deliver
@@ -305,6 +306,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def render_error(exception)
+    Rails.logger.debug("------------------------ Exception #{exception.inspect}")
 		ExceptionNotifier::Notifier
 		  .exception_notification(request.env, exception)
 		  .deliver
