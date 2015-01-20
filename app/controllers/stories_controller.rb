@@ -585,6 +585,11 @@ class StoriesController < ApplicationController
         format.html { render :layout=>"storybuilder" }
       end
   end
+  def section_translation
+    respond_to do |format|
+      format.html 
+    end
+  end
 
   def publish
 
