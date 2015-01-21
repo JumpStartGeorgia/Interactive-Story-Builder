@@ -1,4 +1,7 @@
 class Section < ActiveRecord::Base
+  translates :title
+
+  has_many :section_translations, :dependent => :destroy
   belongs_to :story
   has_one :content, dependent: :destroy
   has_one :slideshow, dependent: :destroy
@@ -12,6 +15,10 @@ class Section < ActiveRecord::Base
   has_one :youtube, dependent: :destroy
   acts_as_list scope: :story
 
+  accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
+  accepts_nested_attributes_for :section_translations
+  attr_accessible :section_translations_attributes
+
   attr_accessor :delete_audio
 
   TYPE = {content: 1, media: 2, slideshow: 3, embed_media: 4, youtube: 5}
@@ -24,17 +31,20 @@ class Section < ActiveRecord::Base
 
   }
 
-  accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
-
+  #################################
+  # settings to clone story
   amoeba do
     enable
-    clone [:content, :media, :slideshow, :embed_medium, :youtube]
+    clone [:section_translations, :content, :media, :slideshow, :embed_medium, :youtube]
   end
 
+  #################################
+  ## Validations
   validates :story_id, :presence => true
   validates :type_id, :presence => true, :inclusion => { :in => TYPE.values }  
-  validates :title, :presence => true, length: { maximum: 255, :message => 'Title max length is 255 symbols' } 	
 
+  #################################
+  ## Callbacks
   before_save :check_delete_audio
 
   # if delete_audio flag set, then delete the audio asset
@@ -46,6 +56,8 @@ class Section < ActiveRecord::Base
       self.asset.destroy
     end
   end  
+
+  #################################
 
   def to_json(options={})
     options[:except] ||= [:created_at, :updated_at]

@@ -1,6 +1,9 @@
 class Medium < ActiveRecord::Base
-	belongs_to :section	
+  translates :title, :caption, :caption_align, :source, :infobox_type
+
   acts_as_list scope: :section
+
+	belongs_to :section	
     
   has_one :image,     
     :conditions => "asset_type = #{Asset::TYPE[:media_image]}",    
@@ -14,36 +17,32 @@ class Medium < ActiveRecord::Base
     class_name: "Asset",
     dependent: :destroy
 
+  accepts_nested_attributes_for :image, :reject_if => lambda { |c| c[:asset].blank? }
+  accepts_nested_attributes_for :video, :reject_if => lambda { |c| c[:asset].blank? }
+
+  has_many :medium_translations, :dependent => :destroy
+  accepts_nested_attributes_for :medium_translations
+  attr_accessible :medium_translations_attributes
+
+  attr_accessor :video_date_changed, :is_amoeba
+
+
 	TYPE = {image: 1, video: 2}
   INFOBOX_TYPE = {floating: 0, fixed: 1}
+
+  #################################
+  ## Validations
   validates :section_id, :presence => true
   validates :media_type, :presence => true, :inclusion => { :in => TYPE.values }  
-  validates :title, :presence => true , length: { maximum: 255 }  
-
-  validates :caption, length: { maximum: 2000 }  
 
   validates :image, presence: true, if: :image_type?
   validates :video, presence: true, if: :video_type?
 
-  accepts_nested_attributes_for :image, :reject_if => lambda { |c| c[:asset].blank? }
-  accepts_nested_attributes_for :video, :reject_if => lambda { |c| c[:asset].blank? }
-
-  attr_accessor :video_date_changed, :is_amoeba
-
+  #################################
+  ## Callbacks
   before_save :check_video_date
   after_commit :create_video_image
 
-  amoeba do
-    enable
-
-    # indicate that this is amoeba running so videos are not re-processed
-    customize(lambda { |original_asset,new_asset|
-      new_asset.is_amoeba = true
-    })
-
-    clone [:image, :video]
-  end
-  
   # must call before the save because after save all dirty changes are lost
   def check_video_date
     self.video_date_changed = video_type? && self.video.asset_updated_at_changed?
@@ -78,8 +77,22 @@ Rails.logger.debug "@@@@@@@@ file exists, saving!"
     end
     return true
   end
-    
-    
+
+  #################################
+  # settings to clone story
+  amoeba do
+    enable
+
+    # indicate that this is amoeba running so videos are not re-processed
+    customize(lambda { |original_asset,new_asset|
+      new_asset.is_amoeba = true
+    })
+
+    clone [:image, :video]
+  end
+  
+  #################################
+        
 	def to_json(options={})
      options[:except] ||= [:created_at, :updated_at]
      super(options)

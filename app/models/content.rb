@@ -1,12 +1,25 @@
 class Content < ActiveRecord::Base
-	belongs_to :section	
+  translates :title, :caption, :sub_caption, :text
 
+	belongs_to :section	 
+
+  has_many :content_translations, :dependent => :destroy
+  accepts_nested_attributes_for :content_translations
+  attr_accessible :content_translations_attributes
+
+  #################################
+  # settings to clone story
+  amoeba do
+    enable
+    clone [:content_translations]
+  end
+
+  #################################
+  ## Validations
 	validates :section_id, :presence => true
-	validates :title, :presence => true, length: { maximum: 255 } 	
-	validates :caption, length: { maximum: 255} 	
-	validates :sub_caption, length: { maximum: 255} 	
-	validates :content, :presence => true 	
 	
+
+  #################################
 	def to_json(options={})
      options[:except] ||= [:created_at, :updated_at]
      super(options)

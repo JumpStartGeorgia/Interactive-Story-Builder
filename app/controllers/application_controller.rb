@@ -69,8 +69,8 @@ class ApplicationController < ActionController::Base
 	def preload_global_variables
     @story_types = StoryType.sorted
     @published_themes = Theme.published.sorted
-     @languages = LANGUAGES # its an array that is initialized at rails app start Language.app_locale_sorted 
-  #   @languages_published = @languages.select{|x| x.has_published_stories == true}
+    @languages = LANGUAGES # its an array that is initialized at rails app start Language.app_locale_sorted 
+    @languages_published = @languages.select{|x| x.has_published_stories == true}
 		# @categories = Category.sorted
   #   @categories_published = @categories.select{|x| x.has_published_stories == true}
     @face_id = Rails.env.production? ? ENV['STORY_BUILDER_FACEBOOK_APP_ID'] : ENV['DEV_FACEBOOK_APP_ID']        

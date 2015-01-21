@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150116114048) do
+ActiveRecord::Schema.define(:version => 20150121064004) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -55,28 +55,55 @@ ActiveRecord::Schema.define(:version => 20150116114048) do
   add_index "category_translations", ["name"], :name => "index_category_translations_on_name"
   add_index "category_translations", ["permalink"], :name => "index_category_translations_on_permalink"
 
+  create_table "content_translations", :force => true do |t|
+    t.integer  "content_id"
+    t.string   "locale",      :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "title"
+    t.string   "caption"
+    t.string   "sub_caption"
+    t.text     "text"
+  end
+
+  add_index "content_translations", ["content_id"], :name => "index_content_translations_on_content_id"
+  add_index "content_translations", ["locale"], :name => "index_content_translations_on_locale"
+
   create_table "contents", :force => true do |t|
     t.integer  "section_id"
-    t.string   "title"
-    t.string   "sub_caption"
-    t.text     "content"
+    t.string   "old_title"
+    t.string   "old_sub_caption"
+    t.text     "old_content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "caption"
+    t.string   "old_caption"
   end
 
   add_index "contents", ["section_id"], :name => "index_contents_on_section_id"
 
   create_table "embed_media", :force => true do |t|
     t.integer  "section_id"
-    t.string   "title"
-    t.string   "url"
-    t.text     "code"
+    t.string   "old_title"
+    t.string   "old_url"
+    t.text     "old_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "embed_media", ["section_id"], :name => "index_embed_media_on_section_id"
+
+  create_table "embed_medium_translations", :force => true do |t|
+    t.integer  "embed_medium_id"
+    t.string   "locale",          :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "title"
+    t.string   "url"
+    t.text     "code"
+  end
+
+  add_index "embed_medium_translations", ["embed_medium_id"], :name => "index_embed_medium_translations_on_embed_medium_id"
+  add_index "embed_medium_translations", ["locale"], :name => "index_embed_medium_translations_on_locale"
 
   create_table "impressions", :force => true do |t|
     t.string   "impressionable_type"
@@ -135,21 +162,36 @@ ActiveRecord::Schema.define(:version => 20150116114048) do
   create_table "media", :force => true do |t|
     t.integer  "section_id"
     t.integer  "media_type"
-    t.string   "title"
-    t.string   "caption",       :limit => 180
-    t.integer  "caption_align"
-    t.string   "source"
+    t.string   "old_title"
+    t.string   "old_caption",       :limit => 180
+    t.integer  "old_caption_align"
+    t.string   "old_source"
     t.string   "audio_path"
     t.string   "video_path"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "position"
-    t.boolean  "video_loop",                   :default => true
-    t.integer  "infobox_type",                 :default => 0
+    t.boolean  "video_loop",                       :default => true
+    t.integer  "old_infobox_type",                 :default => 0
   end
 
   add_index "media", ["section_id", "position"], :name => "index_media_on_section_id_and_position"
   add_index "media", ["section_id"], :name => "index_media_on_section_id"
+
+  create_table "medium_translations", :force => true do |t|
+    t.integer  "medium_id"
+    t.string   "locale",        :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "title"
+    t.string   "caption"
+    t.string   "caption_align"
+    t.string   "source"
+    t.string   "infobox_type"
+  end
+
+  add_index "medium_translations", ["locale"], :name => "index_medium_translations_on_locale"
+  add_index "medium_translations", ["medium_id"], :name => "index_medium_translations_on_medium_id"
 
   create_table "news", :force => true do |t|
     t.boolean  "is_published", :default => false
@@ -216,10 +258,21 @@ ActiveRecord::Schema.define(:version => 20150116114048) do
 
   add_index "pages", ["name"], :name => "index_pages_on_name"
 
+  create_table "section_translations", :force => true do |t|
+    t.integer  "section_id"
+    t.string   "locale",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "title"
+  end
+
+  add_index "section_translations", ["locale"], :name => "index_section_translations_on_locale"
+  add_index "section_translations", ["section_id"], :name => "index_section_translations_on_section_id"
+
   create_table "sections", :force => true do |t|
     t.integer  "story_id"
     t.integer  "type_id"
-    t.string   "title"
+    t.string   "old_title"
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -229,13 +282,27 @@ ActiveRecord::Schema.define(:version => 20150116114048) do
   add_index "sections", ["position"], :name => "index_sections_on_position"
   add_index "sections", ["story_id"], :name => "index_sections_on_story_id"
 
-  create_table "slideshows", :force => true do |t|
-    t.integer  "section_id"
+  create_table "slideshow_translations", :force => true do |t|
+    t.integer  "slideshow_id"
+    t.string   "locale",       :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "title"
     t.string   "caption"
+  end
+
+  add_index "slideshow_translations", ["locale"], :name => "index_slideshow_translations_on_locale"
+  add_index "slideshow_translations", ["slideshow_id"], :name => "index_slideshow_translations_on_slideshow_id"
+
+  create_table "slideshows", :force => true do |t|
+    t.integer  "section_id"
+    t.string   "old_title"
+    t.string   "old_caption"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "slideshows", ["section_id"], :name => "index_slideshows_on_section_id"
 
   create_table "stories", :force => true do |t|
     t.string   "old_title"
@@ -468,14 +535,16 @@ ActiveRecord::Schema.define(:version => 20150116114048) do
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
     t.boolean  "cc",         :default => true
+    t.string   "title"
+    t.string   "url"
   end
 
   add_index "youtube_translations", ["youtube_id", "locale"], :name => "index_youtube_langs_on_youtube_id_and_lang"
 
   create_table "youtubes", :force => true do |t|
     t.integer  "section_id"
-    t.string   "title"
-    t.string   "url"
+    t.string   "old_title"
+    t.string   "old_url"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.boolean  "fullscreen", :default => false

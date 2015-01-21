@@ -1,19 +1,27 @@
 class Youtube < ActiveRecord::Base
-	translates :menu_lang, :cc, :cc_lang, :code
-	before_save :generate_iframe
+	translates :title, :url, :menu_lang, :cc, :cc_lang, :code
 
-  	belongs_to :section
-
-  	has_many :youtube_translations
-
-  	validates :youtube_translations, :presence => true
-
-  	attr_accessible :section_id, :title, :url, :fullscreen, :loop, :info, :youtube_translations_attributes
- 	alias_attribute  :trans, :youtube_translations
-	validates :section_id, :title, :url, :presence => true
-	validates :url, :format => {:with => URI::regexp(['http','https'])}, :if => "!url.blank?"
+	belongs_to :section
+	has_many :youtube_translations
 
 	accepts_nested_attributes_for :youtube_translations
+	attr_accessible :section_id, :fullscreen, :loop, :info, :youtube_translations_attributes
+ 	alias_attribute  :trans, :youtube_translations
+
+  #################################
+  ## Validations
+	validates :section_id, :presence => true
+
+  #################################
+  # settings to clone story
+  amoeba do
+    enable
+    clone [:youtube_translations]
+  end
+
+  #################################
+  ## Callbacks
+	before_save :generate_iframe
 
 	def generate_iframe
 		id = ''

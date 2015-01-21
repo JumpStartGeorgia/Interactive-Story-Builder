@@ -37,14 +37,24 @@ class Story < ActiveRecord::Base
 	has_many :content, :through => :sections
 
 	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
+  accepts_nested_attributes_for :story_translations
+  attr_accessible :story_translations_attributes
 
   attr_reader :tag_list_tokens
   attr_accessor :send_notification, :send_staff_pick_notification, :send_comment_notification
 #  attr_accessible :name, :tag_list_tokens
+
+  DEMO_ID = 2
   
+  
+  #################################
+  ## Validations
   validates :story_type_id, :presence => true
 	validates :template_id, :presence => true
 	validates :story_locale, :presence => true 
+
+  #################################
+  ## Callbacks
 
   # if the title changes, make sure the permalink is updated
 #  before_save :check_title
@@ -53,22 +63,79 @@ class Story < ActiveRecord::Base
 	before_save :publish_date
 	before_save :generate_reviewer_key
 	before_save :shortened_url_generation
-	 
 	after_save :update_filter_counts
 
-  scope :recent, order("stories.published_at desc, stories.title asc")
+  # if the story is being published, record the date
+  def publish_date    
+    if self.published_changed? && self.published?
+      self.published_at = Time.now
+    elsif !self.published?
+      self.published_at = nil
+    end    
+    return true 
+  end
+
+  # if the reviewer key does not exist, create it
+  def generate_reviewer_key
+    if self.reviewer_key.blank?
+      self.reviewer_key = Random.new.rand(100_000_000..1_000_000_000-1)
+    end
+    return true
+  end
+
+#  def check_title
+#    self.generate_permalink! if self.title_changed?
+#    return true
+#  end 
   
+  # if the story was published or permalink changed and was published
+  # create a new shortened url 
+  def shortened_url_generation
+    if (self.published_changed? && self.published?) || (self.permalink_changed? && self.published?)
+      generate_shortened_url
+    end     
+    return true
+  end
+  
+  # if the story is published and the counts are not being updated
+  # update the filter counts
+  def update_filter_counts
+    if (self.published_changed? || self.published?) && 
+        !self.cached_votes_total_changed? && !self.impressions_count_changed? && 
+        !self.comments_count_changed? && !self.staff_pick_changed?
 
+      Category.update_published_stories_flags
+      Language.update_published_stories_flags
+#      Category.update_counts
+#      Language.update_counts
+    end
+=begin
+    # languages
+    if self.published_changed?
+      if self.locale_changed?
+        if self.published?
+          Language.increment_count(locale)
+        else
+          Language.decrement_count(locale_was)
+        end
+      elsif self.published?
+        Language.increment_count(locale)
+      else
+        Language.decrement_count(locale)
+      end
+    elsif self.locale_changed? && self.published?
+      Language.decrement_count(locale_was)
+      Language.increment_count(locale)
+    end
+=end    
+  end
 
-# SELECT a.*
-# FROM parallax_chca.stories AS a LEFT JOIN parallax_chca.stories AS b
-# ON (a.story_type_id = b.story_type_id AND a.published_at < b.published_at)
-# WHERE b.published_at IS NULL and a.story_type_id is not null and a.published = 1;
-
-  scope :reads, order("stories.impressions_count desc, stories.published_at desc, stories.title asc")
-  scope :likes, order("stories.cached_votes_total desc, stories.published_at desc, stories.title asc")
-  scope :comments, order("stories.comments_count desc, stories.published_at desc, stories.title asc")
-
+  #################################
+  ## Scopes
+  scope :recent, with_translations(I18n.locale).order("stories.published_at desc, story_translations.title asc")
+  scope :reads, with_translations(I18n.locale).order("stories.impressions_count desc, stories.published_at desc, story_translations.title asc")
+  scope :likes, with_translations(I18n.locale).order("stories.cached_votes_total desc, stories.published_at desc, story_translations.title asc")
+  scope :comments, with_translations(I18n.locale).order("stories.comments_count desc, stories.published_at desc, story_translations.title asc")
 	scope :is_not_published, where(:published => false)
 	scope :is_published, where(:published => true)
 	scope :is_published_home_page, where(:published => true, :publish_home_page => true)
@@ -76,10 +143,16 @@ class Story < ActiveRecord::Base
   scope :stories_by_author, -> (user_id) {
     where(:user_id => user_id, :published => true).recent
   }
+
+# SELECT a.*
+# FROM parallax_chca.stories AS a LEFT JOIN parallax_chca.stories AS b
+# ON (a.story_type_id = b.story_type_id AND a.published_at < b.published_at)
+# WHERE b.published_at IS NULL and a.story_type_id is not null and a.published = 1;
+
   scope :recent_by_type, joins("LEFT JOIN stories b ON `stories`.story_type_id = b.story_type_id and `stories`.published_at < b.published_at").where("`stories`.published = true and b.published_at is null").order("`stories`.story_type_id")
-  DEMO_ID = 2
   
 
+  #################################
   # settings to clone story
 	amoeba do
     enable
@@ -125,6 +198,8 @@ class Story < ActiveRecord::Base
 		clone [:story_translations, :sections, :categories, :themes]
 	end
 
+  #################################
+
   def self.can_edit?(story_id, user_id)
     x = select('id').where(:id => story_id).editable_user(user_id)  
     return x.present?
@@ -141,10 +216,13 @@ class Story < ActiveRecord::Base
 
     if s.present?
       locale ||= s.story_locale
-      includes(:translations, sections: [:media,:content,:embed_medium,:youtube])
-      .where(stories: {id: story_id})
-      .with_locales(locale)
+      includes(:translations, {sections: [:translations, :media,:content,:embed_medium,:youtube,:slideshow]})
+      .where(stories: {id: story_id},
+        story_translations: {locale: locale},
+        section_translations: {locale: locale},
+      )
       .first
+      #.with_locales(locale)
     end
 	end
 	
@@ -224,64 +302,10 @@ class Story < ActiveRecord::Base
     self.cached_votes_total
   end
 
-  # if the story is being published, record the date
-	def publish_date		
-	  if self.published_changed? && self.published?
-	  	self.published_at = Time.now
-  	elsif !self.published?
-	  	self.published_at = nil
-	  end    
-    return true 
-	end
-
-#  def check_title
-#    self.generate_permalink! if self.title_changed?
-#  end 
-  
-  # if the story is published and the counts are not being updated
-  # update the filter counts
-  def update_filter_counts
-    if (self.published_changed? || self.published?) && 
-        !self.cached_votes_total_changed? && !self.impressions_count_changed? && 
-        !self.comments_count_changed? && !self.staff_pick_changed?
-
-      Category.update_published_stories_flags
-      Language.update_published_stories_flags
-#      Category.update_counts
-#      Language.update_counts
-    end
-=begin
-    # languages
-    if self.published_changed?
-      if self.locale_changed?
-        if self.published?
-          Language.increment_count(locale)
-        else
-          Language.decrement_count(locale_was)
-        end
-      elsif self.published?
-        Language.increment_count(locale)
-      else
-        Language.decrement_count(locale)
-      end
-    elsif self.locale_changed? && self.published?
-      Language.decrement_count(locale_was)
-      Language.increment_count(locale)
-    end
-=end    
-  end
 
 	def asset_exists?
 		self.asset.present? && self.asset.asset.exists?
 	end  		
-
-  # if the reviewer key does not exist, create it
-  def generate_reviewer_key
-    if self.reviewer_key.blank?
-      self.reviewer_key = Random.new.rand(100_000_000..1_000_000_000-1)
-    end
-    return true
-  end
 
 	def transliterate_file_name
 	  if thumbnail_file_name.present?
@@ -425,15 +449,6 @@ class Story < ActiveRecord::Base
     self.tag_list = tokens.gsub("'", "")
   end  
   
-  
-  # if the story was published or permalink changed and was published
-  # create a new shortened url 
-  def shortened_url_generation
-	  if (self.published_changed? && self.published?) || (self.permalink_changed? && self.published?)
-      generate_shortened_url
-	  end     
-    return true
-  end
   
   # generate bit.ly shortened url
   def generate_shortened_url

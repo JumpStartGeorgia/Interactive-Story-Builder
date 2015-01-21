@@ -11,7 +11,6 @@ class RootController < ApplicationController
     @navbar_invisible = false
     respond_to do |format|
       format.html  
-      #format.json { render json: @stories }      
       format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}      
     end
   end

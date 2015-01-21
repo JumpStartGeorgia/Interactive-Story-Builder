@@ -19,8 +19,8 @@ class StoryTranslations < ActiveRecord::Migration
     add_index :story_translations, :title
     add_index :story_translations, :permalink
 
+    # move the data using the story_locale as the translation locale
     Story.transaction do
-      # move the data using the story_locale as the translation locale
       Story.all.each do |story|
         puts "- id =#{story.id}; locale = #{story.story_locale}"
         # if story translation for this locale already exists, use it, 

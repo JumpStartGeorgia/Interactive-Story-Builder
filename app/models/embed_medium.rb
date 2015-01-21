@@ -1,6 +1,14 @@
 class EmbedMedium < ActiveRecord::Base
-	belongs_to :section
+  translates :title, :url, :code
 
-	validates :section_id, :title, :url, :code, :presence => true
-	validates :url, :format => {:with => URI::regexp(['http','https'])}, :if => "!url.blank?"
+  belongs_to :section
+
+  has_many :embed_medium_translations, :dependent => :destroy
+  accepts_nested_attributes_for :embed_medium_translations
+  attr_accessible :embed_medium_translations_attributes
+
+
+  #################################
+  ## Validations
+	validates :section_id, :presence => true
 end
