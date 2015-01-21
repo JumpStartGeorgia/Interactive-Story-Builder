@@ -386,6 +386,7 @@ ru:
         slideshow: Only one Item can be added to an Image Slideshow section
         embed_media: Only one Item can be added to an Embed Online Media section
         youtube: Only one Item can be added to a Embed Youtube section
+        general: Only one Item can be added to this type of section        
       destroy_story:
         success: Story was successfully deleted.
         error: "Error occurred while deleting the story: %{err}"

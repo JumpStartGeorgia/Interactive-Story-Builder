@@ -1,9 +1,9 @@
-
 var story_id = -1;
 var section_id = -1;
-
 var item_id = -1;
-var el_type = 's';
+
+var el_type = 'section';
+var selectedType = 'story';
 var method = 'n';
 var tester = null;
 $(document).ready(function() {
@@ -27,33 +27,31 @@ $(document).ready(function() {
 			}
 		);
 	});
-	$('#btnTranslate').click(function(){
-		$('.content .header .trans-from-to').css('display','inline-block');
-		$('.workplace').addClass('translating');
-	});
+
 	$('.story-tree ul').on('click','li.story > .box > .title',function(e) {
 		e.preventDefault();
 		var par = $(this).parent().parent();
 		story_id = par.attr('id');
 		$('.story-tree ul li').removeClass('active');
 		par.addClass('active');	    
-	 	getStory(0,-1);
+      getObject('select','story');
+	 	//getStory(0,-1);
 	    return false;
 	});
 
 	$('.story-tree ul').on('click','li.item > .box > .title',function(e) {
-		e.preventDefault();
-		item_id = -1;
-		section_id = $(this).parent().parent().attr('id');
+		e.preventDefault();		
+		var tmpId = $(this).parent().parent().attr('id');
 		$('.story-tree ul li').removeClass('active');
-		$('.story-tree ul li.item[id='+section_id+']').addClass('active');	    
-	    getStory(section_id);
+		$('.story-tree ul li.item[id='+tmpId+']').addClass('active');	    
+      getObject('select', 'section', tmpId);
+	    //getStory(section_id);
 	    return false;
 	});
    $('.story-tree ul').on('click','li.item > .box > .collapser',function(e) {
       e.preventDefault();
-      section_id = $(this).parent().parent().attr('id');  
-      var t = $('.story-tree ul li.item[id='+section_id+']').toggleClass('open').hasClass('open');
+      var tmpId = $(this).parent().parent().attr('id');  
+      var t = $('.story-tree ul li.item[id='+tmpId+']').toggleClass('open').hasClass('open');
       $(this).text( t ? "-" : "+");       
       $(this).parent().parent().children('ul').toggleClass("opened closed"); 
       return false;
@@ -62,11 +60,16 @@ $(document).ready(function() {
 	$('.story-tree ul').on('click','li.item > ul > li.sub > div > .sub-l',function(e) {
 		e.preventDefault();		
 		var cur = $(this).parent().parent();
-		item_id = cur.attr('id');
-		section_id = cur.parent().parent().attr('id');		
+      var par = cur.parent().parent();
+      var tmpId = par.attr('id');      
+		var tmpSubId = cur.attr('id');
+		var tmpType = par.attr('data-type');
+
 		$('.story-tree ul li').removeClass('active');
-		cur.parent().find('li#'+item_id).addClass('active');   					
-		getStory(section_id,item_id);
+		cur.parent().find('li#'+tmpSubId).addClass('active');   					
+      getObject('select', tmpType, tmpId, tmpSubId);
+
+		//getStory(section_id,item_id);
 		if($( "#slideshowAssets" ).length > 0 )
 		 $( "#slideshowAssets" ).sortable({ items: "> div" });
 	    return false;
@@ -412,15 +415,12 @@ $('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-remove',funct
 {	
 	// change for deleting
 		if(section_id == -1 ) { popuper(gon.nothing_selected,"notice"); return true;}
-
-
-		var c=confirm(gon.confirm_delete);
-		if (!c) return true;
+		if (!confirm(gon.confirm_delete)) return true;
 		  
 
 		var dataTemp = {'_method':'delete','section_id' : section_id, 'type':el_type };
 		
-		if(el_type!='s') 
+		if(el_type!='section') 
 		{		
 			dataTemp['item_id'] = item_id;
 		}
@@ -445,7 +445,11 @@ $('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-remove',funct
 				secT.remove();		
 			}
 			$('.story-viewer').html('');
-			getStory(-1,-1)
+			//getStory(-1,-1);
+         item_id = -1;
+         section_id = -1;
+         $('.story-tree ul li').removeClass('active');
+
 			$("html, body").animate({ scrollTop: 0 }, "slow");
 					
 		}).error(function(e){ popuper(gon.fail_delete,"error");});
@@ -454,35 +458,32 @@ $('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-remove',funct
 	});
 
 
-	$('#btnAddSection').click(function(){ method = 'n';	el_type = 's';  getStory(-1,-1,1);});
+	$('#btnAddSection').click(function(){ 
+      getObject('create','section');
+      //method = 'n';	el_type = 'section';  getStory(-1,-1,1);
+   });
 
 	$('#btnAddItem').click(function(){	
-		var temp;
-		if(section_id == -1) {alert(gon.msgs_select_section); return true;}
-		else  { temp = $('.story-tree ul li.item[id='+ section_id + ']'); }
 		
-		var tempType = temp.data('type');
-		if( tempType == 'content' && temp.has('ul').length==1 )
+		if(section_id == -1) {
+         alert(gon.msgs_select_section); 
+         return true;
+      }
+
+		var temp = $('.story-tree ul li.item[id='+ section_id + ']'); 
+		var check = ['content','slideshow','embed_media','youtube'];
+		var tmpType = temp.data('type');
+
+		if( check.indexOf(tmpType) != -1 && temp.has('ul').length==1 )
 		{			
-			alert(gon.msgs_one_section_content);
-		}
-		else if( tempType == 'slideshow' && temp.has('ul').length==1 )
-		{			
-			alert(gon.msgs_one_section_slideshow);
-		}
-		else if( tempType == 'embed_media' && temp.has('ul').length==1 )
-		{			
-			alert(gon.msgs_one_section_embed_media);
-		}
-		else if( tempType == 'youtube' && temp.has('ul').length==1 )
-		{			
-			alert(gon.msgs_one_section_youtube);
+			alert(gon.msgs_one_section_general);
 		}
 		else 
 		{		
-			method = 'n';
-			el_type = tempType;				
-			getData();
+         getObject('create',tmpType);
+			// method = 'n';
+			// el_type = tmpType;				
+			// getData();
 		}	
 	});
 
@@ -617,6 +618,7 @@ $('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-remove',funct
 		 	});
   		}
 	 	gon.transalte_from = fromLang;
+      getObject('select',selectedType, section_id, item_id, 1);
   		// call new language
   });
     $('#translateTo').change(function(){
@@ -630,6 +632,7 @@ $('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-remove',funct
 
   		}
 	 	gon.transalte_from = toLang;
+      getObject('select',selectedType, section_id, item_id, 2);
   		// call new language
   });
 
@@ -713,76 +716,68 @@ function isUrl(s) {
   var regexp = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
   return regexp.test(s);
 }
-
-
-function getStory(id , subid , state)
+var section_types = ['content','fullscreen','slideshow','embed','youtube'];
+function getObject(method, type, id, sub_id, which)
 {
-	id = typeof id !== 'undefined' ? id : -1;
-	subid = typeof subid !== 'undefined' ? subid : -1;
-	state = typeof state !== 'undefined' ? state : -1;
-	if(id != -1)
-	{
-		el_type = $('.story-tree ul li.item[id='+ id + ']').data('type');	
-	}		
-	if(id == 0)
-	{
-		el_type = $('.story-tree ul li.story[id='+ story_id + ']').data('type');	
-	}	
+   method = typeof method !== 'undefined' ? method : '';  // n - new , s - select, r - remove, a - add
+   type = typeof type !== 'undefined' ? type : '';  
+   id = typeof id !== 'undefined' ? id : -1;
+   sub_id = typeof sub_id !== 'undefined' ? sub_id : -1;
+   which = typeof which !== 'undefined' ? which : 0;
+   selectedType = type;
 
-	if(subid != -1)
-	{		
-		method = 's';		
-		getData();
-					
-	}
-	else if(id == 0)
-	{
-		method = 's';
-		getData();		
-	}
-	else if(id != -1)
-	{		
-		el_type='s';
-		method = 's';
-		getData();					
-	}
-	else
-	{
-		item_id = -1;
-		section_id = -1;
-		$('.story-tree ul li').removeClass('active');
-		if(state == 1) getData();
-		//if(el_type)
-		//el_type = 's'; 
-		//method = 'new';
 
-	}
-}
-function getData()
-{
-	var dataTemp = { 'section_id' : section_id, 'command':method, 'type':el_type };
-	
-	if(el_type!='s' && el_type!='story') 
-	{		
-		dataTemp['item_id'] = item_id;
-	}
-	if(gon.translate)
-	{
-		dataTemp['trans'] = {'from':gon.translate_from,'to':gon.translate_to};
-	}	
-	$.ajax
-		({			
-		  url: 'get_data',
-		  data: dataTemp,
-		  dataType: 'script',
+//   console.log(method,type,id,sub_id,which);
+   
+   var pars = { 'which': which };   
+
+   if(type == 'story')
+   {
+
+   }
+   else if(type=='section')
+   {
+      section_id = id;
+      item_id = -1;
+
+      if(method == 'create')
+      {
+         
+         section_id = -1;
+         $('.story-tree ul li').removeClass('active');
+      }
+   }
+   else if(section_types.indexOf(type) != -1)
+   {
+      item_id = sub_id;
+      pars['sub_id'] = sub_id;
+   }
+   else return false;
+
+   pars['_id'] = section_id;
+   pars['method'] = method;
+   pars['type'] = type;
+
+   if(gon.translate) { pars['trans'] = {'from':gon.translate_from,'to':gon.translate_to}; }  
+
+
+// request data
+   $.ajax
+      ({       
+        url: 'get_data',
+        data: pars,
+        dataType: 'script',
         cache: true 
-		}).error(function(e){console.log(e)}).done(function(){			
-         if(el_type!='s' && method != 'n')
+      }).error(function(e){console.log(e)}).done(function(){         
+         if(el_type!='section' && method != 'n')
             $('.form-title .form-title-text').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > div > .sub-l').text() + ": " + $('.form-title .form-title-text').text());
-		});
+      });
 
-	return true;	
+   return true;   
 }
+
+
+
 
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
@@ -797,3 +792,87 @@ function add_fields(link, association, content) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////// old 
+
+// function getStory(id , subid , state)
+// {
+//    id = typeof id !== 'undefined' ? id : -1;
+//    subid = typeof subid !== 'undefined' ? subid : -1;
+//    state = typeof state !== 'undefined' ? state : -1;
+//    if(id != -1)
+//    {
+//       el_type = $('.story-tree ul li.item[id='+ id + ']').data('type'); 
+//    }     
+//    if(id == 0)
+//    {
+//       el_type = $('.story-tree ul li.story[id='+ story_id + ']').data('type');   
+//    }  
+
+//    if(subid != -1)
+//    {     
+//       method = 's';     
+//       getData();
+               
+//    }
+//    else if(id == 0)
+//    {
+//       method = 's';
+//       getData();     
+//    }
+//    else if(id != -1)
+//    {     
+//       el_type='section';
+//       method = 's';
+//       getData();              
+//    }
+//    else
+//    {
+//       item_id = -1;
+//       section_id = -1;
+//       $('.story-tree ul li').removeClass('active');
+//       if(state == 1) getData();
+//       //if(el_type)
+//       //el_type = 's'; 
+//       //method = 'new';
+
+//    }
+// }
+// function getData()
+// {
+//    var dataTemp = { 'section_id' : section_id, 'command':method, 'type':el_type };
+   
+//    if(el_type!='section' && el_type!='story') 
+//    {     
+//       dataTemp['item_id'] = item_id;
+//    }
+//    if(gon.translate)
+//    {
+//       dataTemp['trans'] = {'from':gon.translate_from,'to':gon.translate_to};
+//    }  
+//    $.ajax
+//       ({       
+//         url: 'get_data',
+//         data: dataTemp,
+//         dataType: 'script',
+//         cache: true 
+//       }).error(function(e){console.log(e)}).done(function(){         
+//          if(el_type!='section' && method != 'n')
+//             $('.form-title .form-title-text').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > div > .sub-l').text() + ": " + $('.form-title .form-title-text').text());
+//       });
+
+//    return true;   
+// }

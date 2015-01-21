@@ -69,7 +69,7 @@ class ApplicationController < ActionController::Base
 	def preload_global_variables
     @story_types = StoryType.sorted
     @published_themes = Theme.published.sorted
-     @languages = Language.app_locale_sorted     
+     @languages = LANGUAGES # its an array that is initialized at rails app start Language.app_locale_sorted 
   #   @languages_published = @languages.select{|x| x.has_published_stories == true}
 		# @categories = Category.sorted
   #   @categories_published = @categories.select{|x| x.has_published_stories == true}
@@ -101,10 +101,12 @@ class ApplicationController < ActionController::Base
     gon.story_url = I18n.t('app.msgs.story_url')
 
     gon.msgs_select_section = I18n.t('app.msgs.select_section')
-    gon.msgs_one_section_content = I18n.t('app.msgs.one_section.content')
-    gon.msgs_one_section_slideshow = I18n.t('app.msgs.one_section.slideshow')
-    gon.msgs_one_section_embed_media = I18n.t('app.msgs.one_section.embed_media')
-    gon.msgs_one_section_youtube = I18n.t('app.msgs.one_section.youtube')
+    gon.msgs_one_section_general = I18n.t('app.msgs.one_section.general')
+    # todo-remove should be deleted from all locale files
+    #gon.msgs_one_section_content = I18n.t('app.msgs.one_section.content')
+    #gon.msgs_one_section_slideshow = I18n.t('app.msgs.one_section.slideshow')
+    #gon.msgs_one_section_embed_media = I18n.t('app.msgs.one_section.embed_media')
+    #gon.msgs_one_section_youtube = I18n.t('app.msgs.one_section.youtube')
 
 		if I18n.locale == :ka
 		  gon.datatable_i18n_url = "/datatable_ka.txt"

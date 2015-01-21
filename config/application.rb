@@ -81,5 +81,6 @@ module BootstrapStarter
     require "#{Rails.root}/app/middleware/handle_invalid_percent_encoding.rb"
     config.middleware.insert 0, HandleInvalidPercentEncoding
     config.middleware.insert 0, Rack::UTF8Sanitizer    
+
   end
 end

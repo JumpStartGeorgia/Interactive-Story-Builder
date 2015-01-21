@@ -173,30 +173,49 @@ class StoriesController < ApplicationController
       #end
     end
   end
-
+# load the item (i.e., Section.find_by_id)
+# call: item.translation_for(locale), where locale is the locale to get text for
+# In partial, add the following do block before you use any of the fields: 
+# Globalize.with_locale(locale) do
+#   # form field stuff here
+#   # @item.title
+# end
 
   def get_data
+
+    id = params[:id]
+    method = params[:method]
     type = params[:type]
+    _id = params[:_id]
+    sub_id = params[:sub_id]
+    @which = params[:which].to_i    
+
     @trans = false
-    if params.has_key?(:trans)
+
+    @story = Story.find_by_id(id) 
+
+    
+    if @story.present? && params.has_key?(:trans)
       @trans = true
       @trans_from = params[:trans].has_key?(:from) ? params[:trans][:from] : @story.story_locale
       @trans_to = params[:trans].has_key?(:to) ? params[:trans][:to] : @languages.where("locale != '#{@story.story_locale}'").order('locale').first.locale
     end
+
+
+
     if type == 'story'
-      if params[:command]!='n'
-        @item = Story.find_by_id(params[:id]) 
+      if method=='select'
+        @item = @story 
         if !@item.asset_exists?
           @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end    
-      else 
+      elsif method=='create'
           @item = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
           @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
       end        
       
       respond_to do |format|
         if @item.present?
-          @story = @item
           @themes = Theme.sorted
           format.js { render :action => "get_story" }          
         else
@@ -204,12 +223,12 @@ class StoriesController < ApplicationController
           format.js
         end
       end
-    elsif type == 's'
+    elsif type == 'section'
 
-      if params[:command]!='n'
-        @item = Section.find_by_id(params[:section_id])    
+      if method=='select'
+        @item = Section.find_by_id(_id)    
       else 
-        @item = Section.new(story_id: params[:id], has_marker: 0)
+        @item = Section.new(story_id: id, has_marker: 0)
       end        
       if @item.present? && !@item.asset_exists?
           @item.build_asset(:asset_type => Asset::TYPE[:section_audio])
@@ -225,10 +244,10 @@ class StoriesController < ApplicationController
 
     elsif type == 'content'
 
-      if params[:command]!='n'
-        @item = Content.find_by_id(params[:item_id])
+      if method=='select'
+        @item = Content.find_by_id(sub_id)
       else 
-        @item = Content.new(:section_id => params[:section_id], :content => '')
+        @item = Content.new(:section_id => _id, :content => '')
       end
       respond_to do |format|
         if @item.present?
@@ -240,10 +259,10 @@ class StoriesController < ApplicationController
       end
 
     elsif type == 'media'
-        if params[:command]!='n'    
-          @item = Medium.find_by_id(params[:item_id])   
+        if method=='select'    
+          @item = Medium.find_by_id(sub_id)   
         else 
-          @item = Medium.new(:section_id => params[:section_id], media_type: Medium::TYPE[:image])
+          @item = Medium.new(:section_id => _id, media_type: Medium::TYPE[:image])
         end
 
         if @item.present? &&  !@item.image_exists? 
@@ -263,10 +282,10 @@ class StoriesController < ApplicationController
         end
     elsif type == 'slideshow'
 
-        if params[:command]!='n'    
-          @item = Slideshow.find_by_id(params[:item_id])           
+        if method=='select'    
+          @item = Slideshow.find_by_id(sub_id)           
         else 
-          @item = Slideshow.new(:section_id => params[:section_id])
+          @item = Slideshow.new(:section_id => _id)
         end
       
        if @item.present? && @item.assets.blank?
@@ -284,11 +303,11 @@ class StoriesController < ApplicationController
       end
     elsif type == 'embed_media'
 
-        if params[:command]!='n'    
-          @item = EmbedMedium.find_by_id(params[:item_id])   
+        if method=='select'    
+          @item = EmbedMedium.find_by_id(sub_id)   
         else 
-          Rails.logger.debug(params[:section_id])
-          @item = EmbedMedium.new(:section_id => params[:section_id])
+          Rails.logger.debug(_id)
+          @item = EmbedMedium.new(:section_id => _id)
         end
         respond_to do |format|
           if @item.present?
@@ -300,10 +319,10 @@ class StoriesController < ApplicationController
         end
     elsif type == 'youtube'
 
-        if params[:command]!='n'    
-          @item = Youtube.find_by_id(params[:item_id])   
+        if method=='select'    
+          @item = Youtube.find_by_id(sub_id)   
         else 
-          @item = Youtube.new(:section_id => params[:section_id])
+          @item = Youtube.new(:section_id => _id)
           @item.youtube_translations.build(:locale => I18n.locale.to_s)
         end
         respond_to do |format|
@@ -507,14 +526,16 @@ class StoriesController < ApplicationController
   def destroy_tree_item  
     item = nil    
     type = params[:type]
-    if type == 's'
+    if type == 'section'
       item = Section.find_by_id(params[:section_id])               
     elsif type == 'content'
       item =  Content.find_by_id(params[:item_id])      
     elsif type == 'media'
       item = Medium.find_by_id(params[:item_id])
     elsif type == 'slideshow'
-      item = Slideshow.find_by_id(params[:item_id])                 
+      item = Slideshow.find_by_id(params[:item_id])    
+    elsif type == 'youtube'
+      item = Youtube.find_by_id(params[:item_id])                       
     end
 
     item.destroy if item.present?

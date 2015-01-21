@@ -384,6 +384,7 @@ ka:
         slideshow: ფოტო სლაიდშოუს სექციაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი
         embed_media: ონლაინ აუდიო/ვიდეო სექციაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი
         youtube: Only one Item can be added to a Embed Youtube section
+        general: Only one Item can be added to this type of section
       destroy_story:
         success: ამბავი წაიშალა.
         error: "ამბის წაშლისას დაფიქსირდა ხარვეზი: %{err}"

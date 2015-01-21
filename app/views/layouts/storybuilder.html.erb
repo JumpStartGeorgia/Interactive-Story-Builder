@@ -56,42 +56,29 @@
       <div class="content">
         <div class="header">
           <% if @tr %>
-<!--             <% if content_for?(:title) %>
-              <div class="story-title">  <%= yield(:title) %></div>
-            <% end %> -->
             <div class='translate'>
-
-            <%= select_tag "translate-from", options_from_collection_for_select(@languages, "locale", "name", @story.story_locale), include_blank: false,
-             :id => "translateFrom", :class => "selectpicker", :'data-size' => "5", :'data-default' => @story.story_locale  %>
-
-            <%= select_tag "translate-to", options_from_collection_for_select(@languages.where("locale !='" +  @story.story_locale + "'"), "locale", "name",@languages.where("locale !='" +  @story.story_locale + "'").first.locale), include_blank: false, :id => "translateTo", :class => "selectpicker", :'data-size' => "4" %>
-
-             <button type="button" id='btnTranslate' class="btn btn-translate" title="<%= t('app.buttons.add_section') %>"><%= t('app.buttons.translate') %></button>
-             <div class='trans-from-to'>
-               From <button type="button" id='btnTranslateFrom' class="btn btn-translate" title="<%= t('app.buttons.add_section') %>"><%= t('app.buttons.from') %></button>
-               To<button type="button" id='btnTranslateTo' class="btn btn-translate" title="<%= t('app.buttons.add_section') %>"><%= t('app.buttons.to') %></button>
-             </div>
+              <div class='translate-from'>
+                <%= select_tag "translate-from", options_from_collection_for_select(@languages, "locale", "name", @story.story_locale), include_blank: false,
+                 :id => "translateFrom", :class => "selectpicker", :'data-size' => "5", :'data-default' => @story.story_locale  %>
+              </div><div class='translate-to'>
+                <%= select_tag "translate-to", options_from_collection_for_select(@languages.select{ |lan|  lan.locale !=  @story.story_locale } , "locale", "name", @languages.select{ |lan|  lan.locale !=  @story.story_locale }[0].locale), include_blank: false, :id => "translateTo", :class => "selectpicker", :'data-size' => "4" %>
+              </div>
             </div>
           <% end %>
             <div class="flash-message">
               <% flash.each do |key, msg| %>
-                <div class="alert <%= flash_translation(key) %> fade in">                  
+                <div class="alert <%= flash_translation(key) %> fade in">
                   <a href="#" data-dismiss="alert" class="close">×</a>
-                  <%= msg %>                  
+                  <%= msg %>
                 </div>
               <% end %>
             </div>
-   
         </div>
         <div class="workplace<%= @tr ? ' tr' : '' %>">
-          <div class='story-viewer form1' id='storyViewer'>&nbsp;</div>
-          <% if @tr %>
-            <div class='form2'>&nbsp;</div>
-          <% end %>
+          <div class='story-viewer story-page1 viewer' id='storyViewer'></div><% if @tr %><div class='story-page2 viewer'></div><% end %>
         </div>
-  
-      </div>	           
-		</div><!--/builder-wrapper-->  
+      </div>
+    </div>
     <%= yield(:footer) %>
     <!-- Javascripts
     ================================================== -->

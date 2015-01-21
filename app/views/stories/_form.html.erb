@@ -1,73 +1,72 @@
-<%= tinymce_assets %>
-<%= tinymce %>
 <% original ||= false %>
+<%= tinymce_assets %>
+<%= tinymce :readonly => 1 %>
 <% readonly = {} %>
-
 <% if original %>
   <% readonly = { readonly:true , disabled: true } %>
 <% end %>
-<%= semantic_form_for(@story, :html => {:multipart => true, :id => "storyForm"}) do |f| %>
+<% locale = 'en' %>
+<% Globalize.with_locale(locale) do %>
+  <%= semantic_form_for(@story, :html => {:multipart => true, :id => "storyForm"}) do |f| %>
 
-  <%= f.inputs do %>
-    <%= f.input :user_id , :as => :hidden %>
+    <%= f.inputs do %>
+      <%= f.input :user_id , :as => :hidden %>
 
-    <%= f.input :title, hint: t('.hint.title'), placeholder: t('.placeholder.title'), :input_html => { id: "storyTitle", :'data-title-was' => @story.title },
-     %>
+      <%= f.input :title, { :required => !original, :input_html => { id: "storyTitle", :'data-title-was' => @story.title }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.title'), placeholder: t('.placeholder.title') })) %>
 
-    <%= f.input :permalink_staging, hint: t('.hint.permalink'), placeholder: t('.placeholder.permalink'), :input_html => { id: "storyPermalinkStaging"  }   %>
-    <%= f.input :permalink, :as => :hidden, :input_html => { id: "storyPermalink"  }   %>
-    <div class="string control-group stringish" id="story_permalink">&nbsp;</div>
+      <%= f.input :permalink_staging, { :input_html => { id: "storyPermalinkStaging"  }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.permalink'), placeholder: t('.placeholder.permalink') }))  %>
 
-    <%= f.input :author, hint: t('.hint.author'), placeholder: t('.placeholder.author'), :input_html => { id: "storyAuthor"  } %>
-    <%= f.input :media_author, hint: t('.hint.media_author'), placeholder: t('.placeholder.media_author'), :input_html => { id: "storyMediaAuthor"  }  %>
-
-    <%= f.input :about, :as => :text, hint: t('.hint.about'), :input_html => {:class => "tinymce", :rows => 15}  %>
-
-  <% if !@trans %>
-    <%= f.input :story_locale , :as => :select, :hint => t('.hint.locale'), :title => 'testing', :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "storyLocale", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "7"  } %>
-
-
-    <%= f.input :story_type_id, :as => :select, hint: t('.hint.story_type'),  :include_blank => false, collection: @story_types.map{|t|[t.name,t.id]} , :input_html => { :id => "storyType", :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7", :title => t('app.common.nothing_selected')  }   %> 
-
-      <%= f.input :themes, :as => :select, :hint => t('.hint.theme'), :collection => @themes.map{|x|[x.formatted_name, x.id]}, :multiple => true, :input_html => { :id => 'storyThemes', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7", :title => t('app.common.nothing_selected') } %>
-  <% end %>
-
-    <% if false %>
-
-  		<%= f.input :categories, :as => :select, :hint => t('.hint.categories'), :collection => @categories, :multiple => true, :input_html => { :id => 'storyCategories', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7", :title => t('app.common.nothing_selected') } %>
-
-      <%= f.input :tag_list, hint: t('.hint.tag_list'), :input_html => { id: "storyTagList", :data => { load: @story_tags}  } %>
-
-      <%= f.input :template_id, :as => :select, hint: t('.hint.template'),  :include_blank => false, collection: @templates.map{|t|["#{t.title} - #{t.description}",t.id]} , :input_html => { :id => "storyTemplate"  }   %> 
+    <% if !@trans %>
+      <%= f.input :permalink, :as => :hidden, :input_html => { id: "storyPermalink"  }   %>
+      <div class="string control-group stringish" id="story_permalink">&nbsp;</div>
     <% end %>
-   
-    <%= f.fields_for :asset, @story.asset do |as| %>
+
+      <%= f.input :author, { :required => !original, :input_html => { id: "storyAuthor" }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.author'), placeholder: t('.placeholder.author') })) %>
+
+      <%= f.input :media_author, { :input_html => { id: "storyMediaAuthor"  }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.media_author'), placeholder: t('.placeholder.media_author') }))  %>
+
+      <%= f.input :about, { :as => :text, :input_html => {:class => "tinymce", :rows => 15}.merge(readonly)  }.merge(( original ? {} : { hint: t('.hint.about') }))  %>
+
+    <% if !@trans %>
+
+      <%= f.input :story_locale , :as => :select, :hint => t('.hint.locale'), :title => 'testing', :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "storyLocale", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "7"  } %>
+
+      <%= f.input :story_type_id, :as => :select, hint: t('.hint.story_type'),  :include_blank => false, collection: @story_types.map{|t|[t.name,t.id]} , :input_html => { :id => "storyType", :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7", :title => t('app.common.nothing_selected')  }   %> 
+
+        <%= f.input :themes, :as => :select, :hint => t('.hint.theme'), :collection => @themes.map{|x|[x.formatted_name, x.id]}, :multiple => true, :input_html => { :id => 'storyThemes', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7", :title => t('app.common.nothing_selected') } %>
+
+    <% end %>
+
+  <% # not used code  %>
+      <% if false %>
+    		<%= f.input :categories, :as => :select, :hint => t('.hint.categories'), :collection => @categories, :multiple => true, :input_html => { :id => 'storyCategories', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7", :title => t('app.common.nothing_selected') } %>
+
+        <%= f.input :tag_list, hint: t('.hint.tag_list'), :input_html => { id: "storyTagList", :data => { load: @story_tags}  } %>
+
+        <%= f.input :template_id, :as => :select, hint: t('.hint.template'),  :include_blank => false, collection: @templates.map{|t|["#{t.title} - #{t.description}",t.id]} , :input_html => { :id => "storyTemplate"  }   %> 
+      <% end %>
+  <% # not used code end %>
+
+
+      <%= f.fields_for :asset, @story.asset do |as| %>
         <%= as.input :asset_type, :as => :hidden %>
 
         <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.story.thumbnail') %></label>
         <% if @story.asset_exists? %>
            <a class='btn btn-default preview' id="story-thumbnail-preview" data-modalos-id="modalos-preview" data-type="image"  data-image-path='<%= "#{@story.asset.asset.url(:thumbnail)}" %>'><%=  t('app.buttons.preview_image') %></a>           
         <% end %>  
-
-        <%= as.input :asset, :as => :file , hint: t('.hint.thumbnail') , :input_html => { :id => "storyThumbnail", accept:".jpg,.jpeg,.png" }, label: false  %> 
-
-    <% end %> 
-
-    <% if false %>
-      <% if @story.id.present? %>
-        <%= f.input :published, :as => :boolean, hint: t('.hint.published') , :input_html => { id: "storyPublished"} %>   
-      <% end %>
-
-      <%= f.input :publish_home_page, :as => :boolean, hint: t('.hint.publish_home_page') , :input_html => { id: "storyPublishHomePage"} %>   
+        <% if !original %>
+          <%= as.input :asset, :as => :file , hint: t('.hint.thumbnail') , :input_html => { :id => "storyThumbnail", accept:".jpg,.jpeg,.png" }, label: false  %> 
+        <% end %> 
+      <% end %> 
+    <% end %>
+    <% if !(@trans && original) %>
+      <div class="pull-right spacer">
+        <%= f.submit nil, :class => 'btn btn-default' %>
+        <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          
+      </div> 
     <% end %>
   <% end %>
-  <% if !(@trans && original) %>
-  <div class="pull-right spacer">
-    <%= f.submit nil, :class => 'btn btn-default' %>
-    <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          
-  </div> 
-  <% end %>
 <% end %>
-
 
 
