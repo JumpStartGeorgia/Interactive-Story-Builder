@@ -29,6 +29,9 @@ class TranslateSlideshow < ActiveRecord::Migration
   end
 
   def down
+    # remove missing index
+    remove_index :slideshows, :section_id
+
     # drop translation table
     Slideshow.drop_translation_table!
 

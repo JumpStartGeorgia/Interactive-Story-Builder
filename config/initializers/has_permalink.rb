@@ -29,7 +29,7 @@ module HasPermalink
     def fix_duplication(permalink)
       if auto_fix_duplication
         # permalink cannot be one of these...
-        restricted = %w( author authors story stories storyteller setting settings tinymce_assets review demo about news contact feedback todo_list about admin user users assets asset system public bootstrap javascrpit javascripts media template log bundle config )
+        restricted = %w( author authors story stories storyteller setting settings tinymce_assets review demo about news contact feedback todo_list about admin user users assets asset system public bootstrap javascrpit javascripts media template log bundle config theme type themes types)
         is_restricted = restricted.include?(permalink)
       
         n = self.class.where(["permalink = ?", permalink]).count

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150121064004) do
+ActiveRecord::Schema.define(:version => 20150121115105) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -185,9 +185,9 @@ ActiveRecord::Schema.define(:version => 20150121064004) do
     t.datetime "updated_at",    :null => false
     t.string   "title"
     t.string   "caption"
-    t.string   "caption_align"
+    t.integer  "caption_align"
     t.string   "source"
-    t.string   "infobox_type"
+    t.integer  "infobox_type"
   end
 
   add_index "medium_translations", ["locale"], :name => "index_medium_translations_on_locale"
@@ -313,8 +313,8 @@ ActiveRecord::Schema.define(:version => 20150121064004) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "old_media_author"
-    t.boolean  "published",             :default => false
-    t.datetime "published_at"
+    t.boolean  "old_published",         :default => false
+    t.datetime "old_published_at"
     t.integer  "template_id",           :default => 1
     t.integer  "impressions_count",     :default => 0
     t.integer  "reviewer_key"
@@ -322,8 +322,8 @@ ActiveRecord::Schema.define(:version => 20150121064004) do
     t.text     "old_about"
     t.boolean  "publish_home_page",     :default => true
     t.boolean  "staff_pick",            :default => false
-    t.string   "story_locale",          :default => "en"
     t.string   "permalink_staging"
+    t.string   "old_story_locale",      :default => "en"
     t.integer  "cached_votes_total",    :default => 0
     t.integer  "cached_votes_score",    :default => 0
     t.integer  "cached_votes_up",       :default => 0
@@ -340,11 +340,11 @@ ActiveRecord::Schema.define(:version => 20150121064004) do
   add_index "stories", ["cached_weighted_score"], :name => "index_stories_on_cached_weighted_score"
   add_index "stories", ["comments_count"], :name => "index_stories_on_comments_count"
   add_index "stories", ["old_permalink"], :name => "index_stories_on_permalink"
+  add_index "stories", ["old_published"], :name => "index_stories_on_published"
+  add_index "stories", ["old_published_at"], :name => "index_stories_on_published_at"
+  add_index "stories", ["old_story_locale"], :name => "index_stories_on_story_locale"
   add_index "stories", ["publish_home_page", "staff_pick"], :name => "index_stories_on_publish_home_page_and_staff_pick"
-  add_index "stories", ["published"], :name => "index_stories_on_published"
-  add_index "stories", ["published_at"], :name => "index_stories_on_published_at"
   add_index "stories", ["reviewer_key"], :name => "index_stories_on_reviewer_key"
-  add_index "stories", ["story_locale"], :name => "index_stories_on_locale"
   add_index "stories", ["story_type_id"], :name => "index_stories_on_story_type_id"
   add_index "stories", ["template_id"], :name => "index_stories_on_template_id"
   add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
@@ -379,19 +379,27 @@ ActiveRecord::Schema.define(:version => 20150121064004) do
 
   create_table "story_translations", :force => true do |t|
     t.integer  "story_id"
-    t.string   "locale",        :null => false
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string   "locale",                                                       :null => false
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
     t.string   "shortened_url"
     t.string   "title"
     t.string   "permalink"
     t.string   "author"
     t.string   "media_author"
     t.text     "about"
+    t.boolean  "published",                                 :default => false
+    t.datetime "published_at"
+    t.integer  "language_type",                :limit => 1, :default => 0
+    t.integer  "translation_percent_complete", :limit => 1, :default => 0
+    t.string   "translation_author"
   end
 
+  add_index "story_translations", ["language_type"], :name => "index_story_translations_on_language_type"
   add_index "story_translations", ["locale"], :name => "index_story_translations_on_locale"
   add_index "story_translations", ["permalink"], :name => "index_story_translations_on_permalink"
+  add_index "story_translations", ["published"], :name => "index_story_translations_on_published"
+  add_index "story_translations", ["published_at"], :name => "index_story_translations_on_published_at"
   add_index "story_translations", ["story_id"], :name => "index_story_translations_on_story_id"
   add_index "story_translations", ["title"], :name => "index_story_translations_on_title"
 

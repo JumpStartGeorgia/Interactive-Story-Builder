@@ -8,7 +8,7 @@ class TranslateMedia < ActiveRecord::Migration
     rename_column :media, :infobox_type, :old_infobox_type
 
     # create translation table
-    Medium.create_translation_table! :title => :string, :caption => :string, :caption_align => :string, :source => :string, :infobox_type => :string
+    Medium.create_translation_table! :title => :string, :caption => :string, :caption_align => :integer, :source => :string, :infobox_type => :integer
 
     # move the data using the story_locale as the translation locale
     Story.transaction do

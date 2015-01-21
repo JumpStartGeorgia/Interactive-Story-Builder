@@ -3,7 +3,8 @@ class Story < ActiveRecord::Base
 
   @@TYPE = {story: 1, talk_show: 2, video: 3, photo: 4, infographic: 5}
 
-	translates :shortened_url, :title, :permalink, :permalink_staging, :author, :media_author, :about
+	translates :shortened_url, :title, :permalink, :permalink_staging, :author, :media_author, :about, 
+              :published, :published_at, :language_type, :translation_percent_complete, :translation_author
 
   # for likes
   acts_as_votable
@@ -12,7 +13,7 @@ class Story < ActiveRecord::Base
   acts_as_taggable
   
   # fields to search for in a story
-  scoped_search :in => :story_translations, :on => [:title, :author, :media_author]
+  scoped_search :in => :story_translations, :on => [:title, :author, :media_author, :translation_author]
   scoped_search :in => :content, :on => [:caption, :sub_caption, :content]
 
   # record public views
@@ -41,10 +42,12 @@ class Story < ActiveRecord::Base
   attr_accessible :story_translations_attributes
 
   attr_reader :tag_list_tokens
-  attr_accessor :send_notification, :send_staff_pick_notification, :send_comment_notification
+  attr_accessor :send_notification, :send_staff_pick_notification, :send_comment_notification, :current_language
 #  attr_accessible :name, :tag_list_tokens
 
   DEMO_ID = 2
+
+  LANGUAGE_TYPE = {:primary => 0, :translation => 1}
   
   
   #################################
@@ -56,24 +59,7 @@ class Story < ActiveRecord::Base
   #################################
   ## Callbacks
 
-  # if the title changes, make sure the permalink is updated
-#  before_save :check_title
-
-  # if publishing, set the published date
-	before_save :publish_date
 	before_save :generate_reviewer_key
-	before_save :shortened_url_generation
-	after_save :update_filter_counts
-
-  # if the story is being published, record the date
-  def publish_date    
-    if self.published_changed? && self.published?
-      self.published_at = Time.now
-    elsif !self.published?
-      self.published_at = nil
-    end    
-    return true 
-  end
 
   # if the reviewer key does not exist, create it
   def generate_reviewer_key
@@ -83,63 +69,16 @@ class Story < ActiveRecord::Base
     return true
   end
 
-#  def check_title
-#    self.generate_permalink! if self.title_changed?
-#    return true
-#  end 
-  
-  # if the story was published or permalink changed and was published
-  # create a new shortened url 
-  def shortened_url_generation
-    if (self.published_changed? && self.published?) || (self.permalink_changed? && self.published?)
-      generate_shortened_url
-    end     
-    return true
-  end
-  
-  # if the story is published and the counts are not being updated
-  # update the filter counts
-  def update_filter_counts
-    if (self.published_changed? || self.published?) && 
-        !self.cached_votes_total_changed? && !self.impressions_count_changed? && 
-        !self.comments_count_changed? && !self.staff_pick_changed?
-
-      Category.update_published_stories_flags
-      Language.update_published_stories_flags
-#      Category.update_counts
-#      Language.update_counts
-    end
-=begin
-    # languages
-    if self.published_changed?
-      if self.locale_changed?
-        if self.published?
-          Language.increment_count(locale)
-        else
-          Language.decrement_count(locale_was)
-        end
-      elsif self.published?
-        Language.increment_count(locale)
-      else
-        Language.decrement_count(locale)
-      end
-    elsif self.locale_changed? && self.published?
-      Language.decrement_count(locale_was)
-      Language.increment_count(locale)
-    end
-=end    
-  end
 
   #################################
   ## Scopes
-  scope :recent, with_translations(I18n.locale).order("stories.published_at desc, story_translations.title asc")
-  scope :reads, with_translations(I18n.locale).order("stories.impressions_count desc, stories.published_at desc, story_translations.title asc")
-  scope :likes, with_translations(I18n.locale).order("stories.cached_votes_total desc, stories.published_at desc, story_translations.title asc")
-  scope :comments, with_translations(I18n.locale).order("stories.comments_count desc, stories.published_at desc, story_translations.title asc")
-	scope :is_not_published, where(:published => false)
-	scope :is_published, where(:published => true)
-	scope :is_published_home_page, where(:published => true, :publish_home_page => true)
-  scope :is_staff_pick, where(:staff_pick => true)  
+  # scope :recent, joins(:story_translations).order("story_translations.published_at desc, story_translations.title asc")
+  # scope :reads, joins(:story_translations).order("stories.impressions_count desc, story_translations.published_at desc, story_translations.title asc")
+  # scope :likes, joins(:story_translations).order("stories.cached_votes_total desc, story_translations.published_at desc, story_translations.title asc")
+  # scope :comments, joins(:story_translations).order("stories.comments_count desc, story_translations.published_at desc, story_translations.title asc")
+
+	scope :is_not_published, joins(:story_translations).where(:story_translations => {:published => false})
+	scope :is_published, joins(:story_translations).where(:story_translations => {:published => true})
   scope :stories_by_author, -> (user_id) {
     where(:user_id => user_id, :published => true).recent
   }
@@ -151,6 +90,20 @@ class Story < ActiveRecord::Base
 
   scope :recent_by_type, joins("LEFT JOIN stories b ON `stories`.story_type_id = b.story_type_id and `stories`.published_at < b.published_at").where("`stories`.published = true and b.published_at is null").order("`stories`.story_type_id")
   
+  # since there can be many language records for a story (thus many published_at dates, titles, etc), it is possible to get duplicate records for a story
+  # so must use the uniq method
+  def self.recent
+    joins(:story_translations).order("story_translations.published_at desc, story_translations.title asc").uniq
+  end
+  def self.reads
+    joins(:story_translations).order("stories.impressions_count desc, story_translations.published_at desc, story_translations.title asc").uniq
+  end
+  def self.likes
+    joins(:story_translations).order("stories.cached_votes_total desc, story_translations.published_at desc, story_translations.title asc").uniq
+  end
+  def self.comments
+    joins(:story_translations).order("stories.comments_count desc, story_translations.published_at desc, story_translations.title asc").uniq
+  end
 
   #################################
   # settings to clone story
@@ -158,8 +111,6 @@ class Story < ActiveRecord::Base
     enable
 
     # reset some fields
-    nullify :published
-    nullify :published_at
     nullify :reviewer_key
     nullify :staff_pick
     # nullify :impressions_count
@@ -210,7 +161,7 @@ class Story < ActiveRecord::Base
       :id => user_id)
   end
 
-  # get entire story with the id locale
+  # get entire story with the id and locale
 	def self.fullsection(story_id, locale=nil)
     s = Story.select('id, story_locale').find_by_id(story_id)
 
@@ -244,12 +195,12 @@ class Story < ActiveRecord::Base
 	
 	# get all of the unique story locales for published stories
 	def self.published_locales
-	  select('story_locale').is_published_home_page.map{|x| x.story_locale}.uniq.sort
+	  joins(:story_translations).select('story_translations.locale').is_published.map{|x| x.story_locale}.uniq.sort
 	end
 
-	# get all of the unique story locales for published stories
+	# get all of the unique story cateogires for published stories
 	def self.published_categories
-    select('story_categories.category_id').is_published_home_page.joins(:story_categories).map{|x| x['category_id']}.uniq.sort
+    joins(:story_categories).select('story_categories.category_id').is_published.map{|x| x['category_id']}.uniq.sort
 	end
 
   def self.include_categories
@@ -449,42 +400,6 @@ class Story < ActiveRecord::Base
     self.tag_list = tokens.gsub("'", "")
   end  
   
-  
-  # generate bit.ly shortened url
-  def generate_shortened_url
-    require 'open-uri'
-    require 'uri'
-    token = Rails.env.production? ? ENV['STORY_BUILDER_BITLY_TOKEN'] : ENV['STORY_BUILDER_BITLY_TOKEN_DEV']
-    # only continue if the token is in the environment variables
-    if token.present?
-      I18n.available_locales.each do |locale|
-        puts "- locale = #{locale}"
-        long_url = URI.encode(UrlHelpers.storyteller_show_url(:id => self.permalink, :locale => locale))
-        url = "https://api-ssl.bitly.com/v3/shorten?access_token=#{token}&longUrl=#{long_url}"
-        puts "- url = #{url}"
-        begin
-          results = open(url)
-          if results.present?
-            json = JSON.parse(results.read)
-            puts "- json = #{json}"
-            trans = self.story_translations.select{|x| x.locale == locale.to_s}
-            if trans.blank?
-              trans = self.story_translations.build(:locale => locale)
-            end
-            # if all went well, save the url
-            if json.present? && json['status_code'] == 200 && json['data']['url'].present?
-              puts "--> saving url"
-              trans.shortened_url = json['data']['url']
-            end
-          end      
-        rescue
-        end    
-      end
-    end
-  end
-  def type
-     @@TYPE.keys[@@TYPE.values.index(self.story_type_id)]   
-  end
   
 
   private 
