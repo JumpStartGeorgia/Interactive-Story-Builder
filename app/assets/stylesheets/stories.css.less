@@ -211,7 +211,7 @@ body#storybuilder_form{
               background-color:#50AE38;;
              }
             }  
-            &.btn-remove
+            &.btn-remove,&.btn-remove-story
             {
               background-color: #D9534F;
               border-color: #D43F3A;
@@ -408,6 +408,7 @@ body#storybuilder_form{
 
     > ul > li.item > ul
     {
+      width:100%;      
       color:#000;
       background-color:#fcfcfc;
       &.closed
@@ -416,7 +417,7 @@ body#storybuilder_form{
       }
       &.opened
       {
-        display:block;
+        display:inline-block;
       }
       > li.sub
       { 
@@ -499,12 +500,12 @@ body#storybuilder_form{
     {
       width:100%;
       margin:0px auto;
-      .btn-new-section
+      .btn-create-section
       {
         padding:14px 28px;
         border:0px;
         border-radius:0px;   
-        margin:13px auto 0px;  
+        margin:13px auto;  
         background-color:#9dac47; 
         color:#fff;
         display:block;
@@ -534,7 +535,7 @@ body#storybuilder_form{
     z-index:2;
 
   }
-  .content
+  > .content
   {
     z-index:1;
     width:100%;    
@@ -661,26 +662,29 @@ body#storybuilder_form{
           }        
         }
       }
-
       .flash-message
       {
         position:absolute;
         top:0px;
         right:0px;
-        display:inline-block; 
-        text-align:right;      
-        
+        display:table; 
+        height:100%;
+        overflow:hidden;
         .alert
         {
           margin:0px;
-          padding:0px 15px;
+          padding: 0px 50px 0px 31px;
           -webkit-border-radius: 0px;
           -moz-border-radius: 0px;
           border-radius: 0px;
+          display:table-cell;
+          vertical-align: middle;
           .close
           {
-            margin:5px 0px 0px 15px;
             padding:0px;
+            position:absolute;
+            top:2px;
+            right:11px;
           }
         }
 
@@ -703,7 +707,6 @@ body#storybuilder_form{
         .story-page1
         {
           width:49%;
-          padding:25px 0px 25px 25px;
         }
         .story-page2
         {
@@ -712,11 +715,13 @@ body#storybuilder_form{
           border-left:1px solid #eee;
         }
       }
-      .story-viewer
+      .story-page1
       {
         display:inline-block;
         width:100%;
+        max-width:832px;
         min-height:100%;
+        padding:25px 0px 25px 25px;
       }  
       .powered-by
       {
@@ -1014,7 +1019,7 @@ div.preview-button{
   font-family:opensans-b;
   font-size:14px;  
 }
-.btn-new-item
+.btn-create
 {
   height:32px;
   line-height:32px;

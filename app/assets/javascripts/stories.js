@@ -6,6 +6,8 @@ var el_type = 'section';
 var selectedType = 'story';
 var method = 'n';
 var tester = null;
+var story_tree = null;
+var section_types = ['content','fullscreen','slideshow','embed','youtube'];
 $(document).ready(function() {
 
 	$('.storytree-toggle').click(function(){
@@ -48,7 +50,7 @@ $(document).ready(function() {
 	    //getStory(section_id);
 	    return false;
 	});
-   $('.story-tree ul').on('click','li.item > .box > .collapser',function(e) {
+   $('.story-tree ul').on('click','li.item > .box > .collapser',function(e) {      
       e.preventDefault();
       var tmpId = $(this).parent().parent().attr('id');  
       var t = $('.story-tree ul li.item[id='+tmpId+']').toggleClass('open').hasClass('open');
@@ -255,9 +257,9 @@ $(document).ready(function() {
 		return true;	
   });
 
-
-	$('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-up',function()
+	$('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-up, .tools .btn-down',function()
 	{
+      var where = $(this).hasClass('btn-up') ? 'top', 'bottom';
 		var cur = $(this).closest('li');
 		var sec_id = -1;
 		var itm_id = -1;
@@ -270,15 +272,13 @@ $(document).ready(function() {
 			itm_id=cur.attr('id');
 			var par = cur.parent().parent('li');
 			sec_id = par.attr('id');
-			var stype = par.attr('data-type');
-			if(stype == 'content' || stype == 'slideshow' || stype == 'embed_media' || stype == 'youtube' ) return true;
 		}
 
 		if(!(sec_id == -1 && itm_id == -1))
 		{
 			$.ajax
 			({
-				url: 'up',			  
+				url: where,			  
 				data: {'s' : sec_id, 'i': itm_id },
 				type: "POST",			
 	        	dataType: 'json'
@@ -286,70 +286,44 @@ $(document).ready(function() {
 			{
 				var secT = $('.story-tree ul li.item[id='+ sec_id + ']');
 				if(itm_id == -1)
-				{			 	
-			 		if(secT.prev().length)
-			 		{
-		 			  $(secT).insertBefore($(secT).prev());
-			 		}
+				{		
+               if(where == 'top')
+               {	 	
+   			 		if(secT.prev().length)
+   			 		{
+   		 			  $(secT).insertBefore($(secT).prev());
+   			 		}
+               }
+               else
+               {
+                  if( secT.next().length)
+                  {
+                    $(secT).insertAfter($(secT).next());
+                  }
+               }
 		 		}
 		 		else
 		 		{
 		 			subT = secT.find('ul li.sub[id='+itm_id+']');
-		 			if( subT.prev().length)
-			 		{
-		 			  $(subT).insertBefore($(subT).prev());
-			 		}
+               if(where == 'top')
+               {  
+   		 			if( subT.prev().length)
+   			 		{
+   		 			  $(subT).insertBefore($(subT).prev());
+   			 		}
+               }
+               else
+               {
+                  if( subT.next().length)
+                  {
+                    $(subT).insertAfter($(subT).next());
+                  }
+               }
 		 		}	
 			}).error(function(e){ popuper(gon.fail_change_order,"error");});	
 		} 	
 	});
-	$('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-down',function()
-	{
-		var cur = $(this).closest('li');
-		var sec_id = -1;
-		var itm_id = -1;
-		if(cur.hasClass('item'))
-		{
-			sec_id = cur.attr('id');
-		}
-		else
-		{
-			itm_id=cur.attr('id');
-			var par = cur.parent().parent('li');
-			sec_id = par.attr('id');
-			if(par.attr('data-type') == 'content') return true;
-		}
-		if(!(sec_id == -1 && itm_id == -1))
-		{
-			$.ajax
-			({
-				url: 'down',			  
-				data: {'s' : sec_id, 'i': itm_id },
-				type: "POST",			
-		        dataType: 'json'
-
-			}).done(function(d) 
-			{
-			 	var secT = $('.story-tree ul li.item[id='+ sec_id + ']');
-
-				if(itm_id == -1)
-				{			 	
-			 		if( secT.next().length)
-			 		{
-		 			  $(secT).insertAfter($(secT).next());
-			 		}
-		 		}
-		 		else
-		 		{
-		 			subT = secT.find('ul li.sub[id='+itm_id+']');
-		 			if( subT.next().length)
-			 		{
-		 			  $(subT).insertAfter($(subT).next());
-			 		}
-		 		}		 				
-			}).error(function(e){ popuper(gon.fail_change_order,"error");});	
-		} 	
-	});
+	
 	$('.story-viewer').on("click",'#btn-up-slideshow', function() {
   			var secT = $(this).parents('.fields');
   			if( !secT.prev().length) return false;
@@ -411,87 +385,95 @@ $(document).ready(function() {
 
 	});
 
-$('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-remove',function()		
-{	
-	// change for deleting
-		if(section_id == -1 ) { popuper(gon.nothing_selected,"notice"); return true;}
-		if (!confirm(gon.confirm_delete)) return true;
-		  
+   $('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-remove',function()		
+   {	
+      var cur = $(this).closest('li');
+      var par = cur;
+      var id = -1;
+      var sub_id = -1;
+      var isItem = false;
+      var type = cur.data('type');
+      var pars = { '_method':'delete' };
 
-		var dataTemp = {'_method':'delete','section_id' : section_id, 'type':el_type };
-		
-		if(el_type!='section') 
-		{		
-			dataTemp['item_id'] = item_id;
-		}
+      if(type.indexOf('_item')!= -1)
+      {
+         isItem = true;
+         type = type.replace('_item','');
+          sub_id=cur.attr('id');
+         par = cur.parent().parent('li');
+         id = par.attr('id');
+         pars['sub_id'] = sub_id;
+      }
+      else 
+      {
+         type = 'section';
+         id = cur.attr('id');  
+      }
+      pars['_id'] = id;
+      pars['type'] = type;
+   
+		if (!confirm(gon.confirm_delete)) return true;
+
 		$.ajax
 		({
-			url: 'tree',			  
-			data: dataTemp,
+			url: 'remove',			  
+			data: pars,
 			type: "POST",			
-	        dataType: 'json'
-
-		}).done(function(d) 
+         dataType: 'json'
+		})
+      .done(function(d) 
 		{
-		 	var secT = $('.story-tree ul li.item[id='+ section_id + ']');
-			if(item_id != -1)
-			{
-				if(secT.find('ul li').length == 1)
-					secT.find('ul li.sub[id='+item_id+']').parent().remove();		
-				else secT.find('ul li.sub[id='+item_id+']').remove();		
-			}
-			else 
-			{	
-				secT.remove();		
-			}
-			$('.story-viewer').html('');
-			//getStory(-1,-1);
-         item_id = -1;
-         section_id = -1;
-         $('.story-tree ul li').removeClass('active');
+         if(!error(d))
+         {
+   		 	//var secT = $('.story-tree ul li.item[id='+ id + ']');
+   			if(isItem)
+   			{
+   				if(cur.find('ul li').length == 1)
+   					cur.parent().remove();		
+   				else cur.remove();		
+   			}
+   			else 
+   			{	
+   				par.remove();		
+   			}
 
-			$("html, body").animate({ scrollTop: 0 }, "slow");
-					
-		}).error(function(e){ popuper(gon.fail_delete,"error");});
-
-		return true;	
+   			$('.builder-wrapper .content .workplace .viewer').html('');            
+            if(cur.hasClass('active'))
+            {
+               item_id = -1;
+               section_id = -1;
+            }
+         }
+		})
+      .error(function(e){ popuper(gon.fail_delete,"error"); });
 	});
 
 
-	$('#btnAddSection').click(function(){ 
-      getObject('create','section');
-      //method = 'n';	el_type = 'section';  getStory(-1,-1,1);
-   });
+   $('.btn-create-section').click(function(){  getObject('create','section'); });
 
-	$('#btnAddItem').click(function(){	
-		
-		if(section_id == -1) {
-         alert(gon.msgs_select_section); 
-         return true;
-      }
+   $('.builder-wrapper .sidebar .story-tree').on('click','li.item > ul > .btn-create',function()     
+   {
+      var cur = $(this).closest('li');
+      var id = cur.attr('id');
+      var type = cur.data('type');
+		if(id == -1) { alert(gon.msgs_select_section); return true; }
 
-		var temp = $('.story-tree ul li.item[id='+ section_id + ']'); 
-		var check = ['content','slideshow','embed_media','youtube'];
-		var tmpType = temp.data('type');
-
-		if( check.indexOf(tmpType) != -1 && temp.has('ul').length==1 )
+		if( ['content','slideshow','embed_media','youtube'].indexOf(type) != -1 && cur.has('ul li').length==1 )
 		{			
 			alert(gon.msgs_one_section_general);
 		}
 		else 
 		{		
-         getObject('create',tmpType);
-			// method = 'n';
-			// el_type = tmpType;				
-			// getData();
+         getObject('create', type, id);
 		}	
 	});
 
   // trigger the add content form if no sections exist
-  if (gon.has_no_sections == true){
-	  $('#btnAddSection').trigger('click');
-  }
-  
+   if (gon.has_no_sections == true)
+   {
+      getObject('create','section');
+   }
+
   var was_title_box_length, was_permalink_box_length = 0;
   
   // if the title changes and there is no permalink or the permalink was equal to the old title, 
@@ -636,6 +618,8 @@ $('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-remove',funct
   		// call new language
   });
 
+  story_tree = $('.story-tree');
+
 });
 
 function show_story_permalink(d){
@@ -716,7 +700,7 @@ function isUrl(s) {
   var regexp = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
   return regexp.test(s);
 }
-var section_types = ['content','fullscreen','slideshow','embed','youtube'];
+
 function getObject(method, type, id, sub_id, which)
 {
    method = typeof method !== 'undefined' ? method : '';  // n - new , s - select, r - remove, a - add
@@ -725,7 +709,6 @@ function getObject(method, type, id, sub_id, which)
    sub_id = typeof sub_id !== 'undefined' ? sub_id : -1;
    which = typeof which !== 'undefined' ? which : 0;
    selectedType = type;
-
 
 //   console.log(method,type,id,sub_id,which);
    
@@ -741,14 +724,14 @@ function getObject(method, type, id, sub_id, which)
       item_id = -1;
 
       if(method == 'create')
-      {
-         
+      {         
          section_id = -1;
          $('.story-tree ul li').removeClass('active');
       }
    }
    else if(section_types.indexOf(type) != -1)
    {
+      section_id = id;
       item_id = sub_id;
       pars['sub_id'] = sub_id;
    }
@@ -759,7 +742,6 @@ function getObject(method, type, id, sub_id, which)
    pars['type'] = type;
 
    if(gon.translate) { pars['trans'] = {'from':gon.translate_from,'to':gon.translate_to}; }  
-
 
 // request data
    $.ajax
@@ -775,10 +757,6 @@ function getObject(method, type, id, sub_id, which)
 
    return true;   
 }
-
-
-
-
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
   $(link).closest(".fields").hide();
@@ -789,90 +767,37 @@ function add_fields(link, association, content) {
   	var regexp = new RegExp("new_" + association, "g")
 	$('#slideshowAssets').append(content.replace(regexp, new_id));
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/////////////////////////////////// old 
-
-// function getStory(id , subid , state)
-// {
-//    id = typeof id !== 'undefined' ? id : -1;
-//    subid = typeof subid !== 'undefined' ? subid : -1;
-//    state = typeof state !== 'undefined' ? state : -1;
-//    if(id != -1)
-//    {
-//       el_type = $('.story-tree ul li.item[id='+ id + ']').data('type'); 
-//    }     
-//    if(id == 0)
-//    {
-//       el_type = $('.story-tree ul li.story[id='+ story_id + ']').data('type');   
-//    }  
-
-//    if(subid != -1)
-//    {     
-//       method = 's';     
-//       getData();
-               
-//    }
-//    else if(id == 0)
-//    {
-//       method = 's';
-//       getData();     
-//    }
-//    else if(id != -1)
-//    {     
-//       el_type='section';
-//       method = 's';
-//       getData();              
-//    }
-//    else
-//    {
-//       item_id = -1;
-//       section_id = -1;
-//       $('.story-tree ul li').removeClass('active');
-//       if(state == 1) getData();
-//       //if(el_type)
-//       //el_type = 's'; 
-//       //method = 'new';
-
-//    }
-// }
-// function getData()
-// {
-//    var dataTemp = { 'section_id' : section_id, 'command':method, 'type':el_type };
+function error(v)
+{
+   return (v == null || typeof v === 'undefined' || !v.hasOwnProperty('e') || v.e == true);
+}
+function change_tree(d)
+{
+   var li = $("<li id='"+d.id+"' data-type='"+d.type+"' class='item open'>" + 
+               "<div class='box'>" + 
+                  "<div class='collapser'>-</div>" + 
+                  "<div class='s "+d.icon+"'></div>" + 
+                  "<div class='title'><span>"+d.title+"</span></div>" + 
+                  d.tools + 
+                  "<div class='storytree-arrow'><div class='arrow'></div></div>" + 
+               "</div>" +
+               "<ul class='opened'>"+d.add_item+"</ul>" + 
+            "</li>");
+   story_tree.find('ul li').removeClass('active'); // todo is it enough for reseting or section_id should be changed too ???
+   story_tree.find('> ul').append(li);   
+   li.find('ul > .btn-create').trigger('click');
+   story_tree.animate({ scrollTop: story_tree.height()}, 1000);
+}
+function change_sub_tree(d)
+{
+   var section = story_tree.find('ul li.item[id='+ d.id + ']');
+   var li = $("<li id='"+d.sub_id+"' class='sub' data-type='"+d.type+"_item'><div><div class='sub-l'>"+d.title+"</div><div class='storytree-arrow'><div class='arrow'></div></div></div></li>");  
+   if(d.type != 'fullscreen')
+   {
+      section.find('ul button').remove();
+   }
+   section.find('ul').append(li);
    
-//    if(el_type!='section' && el_type!='story') 
-//    {     
-//       dataTemp['item_id'] = item_id;
-//    }
-//    if(gon.translate)
-//    {
-//       dataTemp['trans'] = {'from':gon.translate_from,'to':gon.translate_to};
-//    }  
-//    $.ajax
-//       ({       
-//         url: 'get_data',
-//         data: dataTemp,
-//         dataType: 'script',
-//         cache: true 
-//       }).error(function(e){console.log(e)}).done(function(){         
-//          if(el_type!='section' && method != 'n')
-//             $('.form-title .form-title-text').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > div > .sub-l').text() + ": " + $('.form-title .form-title-text').text());
-//       });
-
-//    return true;   
-// }
+   story_tree.find('ul li').removeClass('active');   
+   li.find('.sub-l').trigger('click');
+}

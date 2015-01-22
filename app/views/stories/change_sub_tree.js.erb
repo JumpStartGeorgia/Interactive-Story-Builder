@@ -12,25 +12,9 @@
  	 <% end %>   
   <% end %>
 <% end %>
-
-$(document).ready(function() 
-{
-	var section = $('.story-tree ul li.item[id='+ section_id + ']');
-	var li = null;
-  var secOpen = section.hasClass('open');
-	if(section.has('ul').length>0)
-	{
-		li = "<li id='<%= @item.id %>' class='sub'><div><div class='sub-l'><%= @item.title %></div><div class='sub-a'>›</div></div></li>";	
-		section.find('ul').append(li);
-	}
-	else 
-	{		
-		li = "<ul><li id='<%= @item.id %>' class='sub'><div><div class='sub-l'><%= @item.title %></div><div class='sub-a'>›</div></div></li></ul>";			   
-		section.append(li);	
-	}
-	
-	$('.story-tree ul li').removeClass('active');
-   section.addClass('active').find('ul').addClass(secOpen ? "opened": "closed");
-   if(!secOpen) section.find('.box .collapser').trigger('click'); 	
-   section.find('li#<%=@item.id%>').trigger('click');
+change_sub_tree({
+   'type':'<%= @type %>',
+   'id':<%= @item.section_id %>,
+   'sub_id': <%= @item.id %>,
+   'title':'<%= @item.title %>'
 });

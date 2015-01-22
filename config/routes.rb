@@ -45,7 +45,7 @@ BootstrapStarter::Application.routes.draw do
 	        put 'content', to: 'stories#save_content'
 	        post 'content', to: 'stories#new_content'
 
-	        delete 'tree', to: 'stories#destroy_tree_item'
+	        delete 'remove', to: 'stories#destroy_tree_item'
 
 	        put 'media', to: 'stories#save_media'
 	        post 'media', to: 'stories#new_media'				

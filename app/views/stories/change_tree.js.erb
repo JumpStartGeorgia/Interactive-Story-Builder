@@ -1,8 +1,15 @@
- $(document).ready(function() 
- {  
- 	var li = $("<li id='<%= @item.id %>' data-type='<%= @item.get_str_type %>' class='item'><div class='box'><div class='collapser'>+</div><div class='title'><i class='s <%= @item.get_icon %>'></i><span><%= @item.title %></span></div></div>");
- 	$('.story-tree ul li').removeClass('active');
-	$('.story-tree > ul').append(li.addClass('active'));		
-	li.find('.box > .title').trigger('click');	
-	$('#btnAddItem').trigger('click');
+<% tools = 
+  "<div class='tools'><button type='button' class='btn btn-sort btn-up' title='#{ t('app.buttons.up') }'> <i class='glyphicon glyphicon-arrow-up' ></i> </button>" + 
+  "<button type='button' class='btn btn-sort btn-down' title='#{ t('app.buttons.down') }'> <i class='glyphicon glyphicon-arrow-down' ></i></button>" +
+  "<button type='button' class='btn  btn-danger btn-remove' title='#{ t('app.buttons.delete_item') }' ><i class='glyphicon glyphicon-remove'></i></button></div>" 
+  add_item = "<button type='button' class='btn btn-create' title='#{ t('app.buttons.add_item') }'><i class='glyphicon glyphicon-film' ></i>#{ t('app.buttons.add_item') }</button>"
+%>
+
+change_tree({
+   'type':'<%= @item.get_str_type %>',
+   'id':<%= @item.id %>,
+   'title':'<%= @item.title %>',
+   'icon':'<%= @item.get_icon %>',
+   'tools':"<%= tools.html_safe %>",
+   'add_item':"<%= add_item.html_safe %>"
 });

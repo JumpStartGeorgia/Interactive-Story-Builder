@@ -3,8 +3,8 @@
   "<div class='tools'><button type='button' class='btn btn-sort btn-up' title='#{ t('app.buttons.up') }'> <i class='glyphicon glyphicon-arrow-up' ></i> </button>" + 
   "<button type='button' class='btn btn-sort btn-down' title='#{ t('app.buttons.down') }'> <i class='glyphicon glyphicon-arrow-down' ></i></button>" +
   "<button type='button' class='btn  btn-danger btn-remove' title='#{ t('app.buttons.delete_item') }' ><i class='glyphicon glyphicon-remove'></i></button></div>" 
-  tools_delete = "<div class='tools'><button type='button' id='btnDelete' class='btn  btn-danger' title='#{ t('app.buttons.delete_item') }' ><i class='glyphicon glyphicon-remove'></i></button></div>"
-  add_item = "<button type='button' id='btnAddItem' class='btn btn-new-item' title='#{ t('app.buttons.add_item') }'><i class='glyphicon glyphicon-film' ></i>#{ t('app.buttons.add_item') }</button>"
+  #tools_delete = "<div class='tools'><button type='button' class='btn btn-danger btn-remove' title='#{ t('app.buttons.delete_item') }' ><i class='glyphicon glyphicon-remove'></i></button></div>"
+  add_item = "<button type='button' class='btn btn-create' title='#{ t('app.buttons.add_item') }'><i class='glyphicon glyphicon-film' ></i>#{ t('app.buttons.add_item') }</button>"
 
   %>
    <div class='story-tree' id='<%= @story.id %>'>        
@@ -35,11 +35,14 @@
                     <span class="glyphicon glyphicon-globe" ></span>
                   <% end %>
                   <%= link_to @story, title: t('helpers.links.story_menu.link.delete_story') + ' - ' + t('helpers.links.story_menu.title.delete_story'), 
-                   class: 'preview btn btn-remove', confirm: t("helpers.links.confirm"), method: :delete do %>
+                   class: 'preview btn btn-remove-story', confirm: t("helpers.links.confirm"), method: :delete do %>
                     <span class="glyphicon glyphicon-remove"></span>
                   <% end %>
                 </div>
         </li>
+        <div class='box'>
+            <button type="button" class="btn btn-create-section" title="<%= t('app.buttons.add_section') %>"><i class="glyphicon glyphicon-align-justify"></i><%= t('app.buttons.add_section') %></button>
+        </div>
         <% @story.sections.each do |item| %>          
             <li id='<%= item.id %>' data-type='<%= item.get_str_type %>' class='item'>
               <div class="box">
@@ -49,20 +52,23 @@
                 <%= tools.html_safe %>
                 <div class='storytree-arrow'><div class='arrow'></div></div>
               </div>
-                <% if item.content? && item.content.present? %>
+                <% if item.content? %>                 
                   <ul class="closed">
-                    <li id='<%= item.content.id %>' class='sub'>
-                      <div>
-                        <div class="sub-l"><%= item.content.title %></div>
-                        <%= tools_delete.html_safe %>
-                        <div class='storytree-arrow'><div class='arrow'></div></div>
-                      </div>
-                    </li>
+                    <% if item.content.present? %>
+                      <li id='<%= item.content.id %>' class='sub' data-type='<%= item.get_str_type %>_item'>
+                        <div>
+                          <div class="sub-l"><%= item.content.title %></div>
+                          <div class='storytree-arrow'><div class='arrow'></div></div>
+                        </div>
+                      </li>
+                    <% else %>
+                      <%= add_item.html_safe %>
+                    <% end %>
                   </ul>
                 <% elsif item.media? && item.media.present? %>
                   <ul class="closed">
                       <% item.media.each do |subitem| %>                  
-                      <li id='<%= subitem.id %>' class='sub'>
+                      <li id='<%= subitem.id %>' class='sub' data-type='<%= item.get_str_type %>_item'>
                         <div>
                           <div class="sub-l"><%= subitem.title %></div>                          
                           <%= tools.html_safe %>
@@ -72,42 +78,51 @@
                     <%end%>
                     <%= add_item.html_safe %>
                   </ul>
-                <% elsif item.slideshow? && item.slideshow.present? %>
+                <% elsif item.slideshow? %>
                   <ul class="closed">
-                    <li id='<%= item.slideshow.id %>' class='sub'>
-                      <div>
-                        <div class="sub-l"><%= item.slideshow.title %></div>
-                        <%= tools_delete.html_safe %>
-                        <div class='storytree-arrow'><div class='arrow'></div></div>
-                      </div>
-                    </li>
-                    </ul>
-                 <% elsif item.embed_medium.present? %>
-                    <ul class="closed">
-                      <li id='<%= item.embed_medium.id %>' class='sub'>
+                    <% if item.slideshow.present? %>
+                      <li id='<%= item.slideshow.id %>' class='sub' data-type='<%= item.get_str_type %>_item'>
                         <div>
-                          <div class="sub-l"><%= item.embed_medium.title %></div>
-                          <%= tools_delete.html_safe %>   
-                          <div class='storytree-arrow'><div class='arrow'></div></div>                   
-                        </div>
-                      </li>
-                    </ul>
-                 <% elsif item.youtube.present? %>
-                    <ul class="closed">
-                      <li id='<%= item.youtube.id %>' class='sub'>
-                        <div>
-                          <div class="sub-l"><%= item.youtube.title %></div>
-                          <%= tools_delete.html_safe %>
+                          <div class="sub-l"><%= item.slideshow.title %></div>
                           <div class='storytree-arrow'><div class='arrow'></div></div>
                         </div>
                       </li>
+                    <% else %>
+                      <%= add_item.html_safe %>
+                    <% end %>
+                    </ul>
+                 <% elsif item.embed_media? %>
+                    <ul class="closed">
+                      <% if item.embed_medium.present? %>
+                        <li id='<%= item.embed_medium.id %>' class='sub' data-type='<%= item.get_str_type %>_item'>
+                          <div>
+                            <div class="sub-l"><%= item.embed_medium.title %></div>
+                            <div class='storytree-arrow'><div class='arrow'></div></div>                   
+                          </div>
+                        </li>
+                      <% else %>
+                        <%= add_item.html_safe %>
+                      <% end %>
+                    </ul>
+                 <% elsif item.youtube? %>
+                    <ul class="closed">
+                      <% if item.youtube.present? %>
+                        <li id='<%= item.youtube.id %>' class='sub' data-type='<%= item.get_str_type %>_item'>
+                          <div>
+                            <div class="sub-l"><%= item.youtube.title %></div>
+                            <div class='storytree-arrow'><div class='arrow'></div></div>
+                          </div>
+                        </li>
+                      <% else %>
+                        <%= add_item.html_safe %>
+                      <% end %>
                     </ul>                    
                 <%end%>
             </li>          
         <% end %>            
     </ul>  
     <div class='box'>
-      <button type="button" id='btnAddSection' class="btn btn-new-section" title="<%= t('app.buttons.add_section') %>"><i class="glyphicon glyphicon-align-justify"></i><%= t('app.buttons.add_section') %></button>
+      <button type="button" id='btnAddSection' class="btn btn-create-section" title="<%= t('app.buttons.add_section') %>"><i class="glyphicon glyphicon-align-justify"></i><%= t('app.buttons.add_section') %></button>
     </div>
   </div>  
   <div class='storytree-toggle'><div class='toggler'></div></div>

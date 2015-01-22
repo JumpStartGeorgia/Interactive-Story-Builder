@@ -370,6 +370,7 @@ class StoriesController < ApplicationController
 
     def new_content    
      @item = Content.new(params[:content])   
+     @type = 'content'
      respond_to do |format|
         if @item.save
           flash_success_created(Content.model_name.human,@item.title)                     
@@ -526,30 +527,31 @@ class StoriesController < ApplicationController
   def destroy_tree_item  
     item = nil    
     type = params[:type]
+
     if type == 'section'
-      item = Section.find_by_id(params[:section_id])               
+      item = Section.find_by_id(params[:_id])               
     elsif type == 'content'
-      item =  Content.find_by_id(params[:item_id])      
+      item =  Content.find_by_id(params[:sub_id])      
     elsif type == 'media'
-      item = Medium.find_by_id(params[:item_id])
+      item = Medium.find_by_id(params[:sub_id])
     elsif type == 'slideshow'
-      item = Slideshow.find_by_id(params[:item_id])    
+      item = Slideshow.find_by_id(params[:sub_id])    
     elsif type == 'youtube'
-      item = Youtube.find_by_id(params[:item_id])                       
+      item = Youtube.find_by_id(params[:sub_id])                       
     end
 
     item.destroy if item.present?
     
     respond_to do |format|
       if !item.present?
-          flash[:error] = I18n.t('app.msgs.destroy_item.error_not_found')
-          format.json { render json: nil , status: :created } 
+         flash[:error] = I18n.t('app.msgs.destroy_item.error_not_found')
+         format.json { render json: nil, status: :created } 
       elsif item.destroyed?   
           flash[:success] = I18n.t('app.msgs.destroy_item.success')
-          format.json { render json: nil , status: :created } 
+          format.json { render json: { e:false } , status: :created } 
       else  
-          flash[:error] = I18n.t('app.msgs.destroy_item.error', :err => @item.errors.full_messages.to_sentence)
-          format.json {render json: nil, status: :ok }  
+         flash[:error] = I18n.t('app.msgs.destroy_item.error', :err => @item.errors.full_messages.to_sentence)
+         format.json {render json: { e:true } , status: :ok }  
       end
     end
   end
@@ -1007,7 +1009,7 @@ private
   
   def set_form_gon
     gon.fail_change_order = I18n.t('app.msgs.fail_change_order')
-    gon.nothing_selected = I18n.t('app.msgs.nothing_selected')
+    #gon.nothing_selected = I18n.t('app.msgs.nothing_selected') was used on section or item removing , logic changed so doesn't need anymore
     gon.fail_delete = I18n.t('app.msgs.fail_delete')
     gon.confirm_delete = I18n.t('app.msgs.confirm_delete')
     gon.tokeninput_collaborator_hintText = I18n.t('tokeninput.collaborator.hintText')
