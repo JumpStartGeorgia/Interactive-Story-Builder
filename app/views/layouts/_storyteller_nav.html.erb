@@ -84,7 +84,7 @@
         <% if @story.present? && @story.sections.present? %>                          
                   
            <li>
-            <% markers = @story.sections.select{|t| (t.ok? && t.has_marker? == true) } %>      
+            <% markers = @story.sections.select{|t| (t.has_marker? == true && t.ok?) } %>      
             <% if markers.length > 1 %>    
               <div class="navigation-sections">     
                <% markers.each_with_index do |s,s_i| %>
@@ -146,8 +146,9 @@
     </div>
   <% end %>
   <div class="languages">
-    <span><%= I18n.t('helpers.links.languages') %>:</span>      
-    <%= link_to @story.language.name, root_path(:language => @story.language.locale), :class=>"lang" %> 
+    <span><%= I18n.t('helpers.links.languages') %>:</span>   
+    <% index = @languages.index{|x| x.locale == @story.story_locale}   %>
+    <%= link_to @languages[index].name, root_path(:language => @story.story_locale), :class=>"lang" %> 
   </div>      
 </div>
 <div id="modalos-comments" style="display:none;">

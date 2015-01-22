@@ -103,8 +103,8 @@
                 <% end %>         
                 <%= "<div class='column-caption'>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
                 <%= "<div class='column-sub-caption'>#{section.content.sub_caption}</div>".html_safe  if section.content.sub_caption.present? %>                       
-                <%= section.content.content.html_safe %>   
-                <% if section.content.content.html_safe.lines.count == 1 %>   
+                <%= section.content.text.html_safe %>   
+                <% if section.content.text.html_safe.lines.count == 1 %>   
                   <p>&nbsp;</p>
                 <% end %>
               </div>

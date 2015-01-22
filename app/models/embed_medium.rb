@@ -1,4 +1,6 @@
 class EmbedMedium < ActiveRecord::Base
+  include TranslationOverride
+
   translates :title, :url, :code
 
   belongs_to :section

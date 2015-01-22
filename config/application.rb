@@ -17,6 +17,7 @@ module BootstrapStarter
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += Dir["#{config.root}/lib"]
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     # Only load the plugins named here, in the order given (default is alphabetical).
@@ -33,7 +34,7 @@ module BootstrapStarter
     
     config.i18n.enforce_available_locales = true
     
-    config.i18n.available_locales = [:en, :ka, :am, :az, :ru]
+    config.i18n.available_locales = [:en, :ka, :hy, :az, :ru]
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]

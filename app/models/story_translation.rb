@@ -38,12 +38,12 @@ class StoryTranslation < ActiveRecord::Base
   #################################
   ## Callbacks
   before_save :publish_date
-  before_save :shortened_url_generation
+#  before_save :shortened_url_generation
   after_save :update_filter_counts
 
   # if the story is being published, record the date
   def publish_date    
-    if self.published_changed? && self.published?
+    if self.published_changed? && self.published? && self.published_at.blank?
       self.published_at = Time.now
     elsif !self.published?
       self.published_at = nil

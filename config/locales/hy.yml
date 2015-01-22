@@ -1,5 +1,5 @@
 # encoding: utf-8
-am:
+hy:
   activerecord:
     models:
       user: User
@@ -267,7 +267,7 @@ am:
     language:
       en: English
       ka: ქართული
-      am: Հայերեն
+      hy: Հայերեն
       ru: Русский
       az: Azərbaycan
     buttons:

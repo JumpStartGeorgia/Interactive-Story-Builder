@@ -1,4 +1,6 @@
 class Slideshow < ActiveRecord::Base
+  include TranslationOverride
+
   translates :title, :caption
 
 	belongs_to :section	  	

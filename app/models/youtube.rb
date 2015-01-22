@@ -1,4 +1,6 @@
 class Youtube < ActiveRecord::Base
+  include TranslationOverride
+
 	translates :title, :url, :menu_lang, :cc, :cc_lang, :code
 
 	belongs_to :section

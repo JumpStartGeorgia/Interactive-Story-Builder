@@ -1,10 +1,14 @@
-  <%  
-    title = ""   
-    if story.about.present?     
-      title = truncate(strip_tags_nbsp(story.about), length: 160, separator: ' ')
-    end    
-    path = @editable && !story.published ? preview_story_path(story) : storyteller_show_path(story.permalink)
-  %>   
+<% Globalize.with_locale(story.story_locale) do %>
+
+<%
+  logger.debug "====== story id #{story.id}; story locale #{story.story_locale}; story title #{story.title}"
+
+  title = ""   
+  if story.about.present?     
+    title = truncate(strip_tags_nbsp(story.about), length: 160, separator: ' ')
+  end    
+  path = @editable && !story.published ? preview_story_path(story) : storyteller_show_path(story.permalink)
+%>   
             
   <div class="story-thumbnail">    
      <%= link_to path do %>
@@ -101,3 +105,5 @@
       </div>  
     </div> 
   </div>
+
+<% end %>

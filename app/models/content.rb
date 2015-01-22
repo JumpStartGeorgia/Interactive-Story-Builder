@@ -1,4 +1,6 @@
 class Content < ActiveRecord::Base
+  include TranslationOverride
+
   translates :title, :caption, :sub_caption, :text
 
 	belongs_to :section	 

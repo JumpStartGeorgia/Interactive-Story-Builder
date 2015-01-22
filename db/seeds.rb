@@ -120,8 +120,7 @@ langs = [
   ["uz", "U'zbek"],
   ["vi", "Tiếng Việt"],
   ["zh-TW", "繁體中文"],
-  ["zh-CN", "简体中文"],
-  ["am", "Հայերեն"]
+  ["zh-CN", "简体中文"]
 ]
 
 sql = "insert into languages (locale, name) values "

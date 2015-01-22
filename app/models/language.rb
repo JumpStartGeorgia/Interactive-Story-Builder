@@ -1,10 +1,11 @@
-class Language < ActiveRecord::Base
+  class Language < ActiveRecord::Base
 
 	validates :locale, :presence => true
 	validates :name, :presence => true
 
   has_many :stories, :primary_key => :locale, :foreign_key => :story_locale
-  default_scope { where(locale:['az','en','hy','ka','ru']) }
+#  default_scope { where(locale:['az','en','hy','ka','ru']) }
+
   def self.sorted
     order('name asc')
   end

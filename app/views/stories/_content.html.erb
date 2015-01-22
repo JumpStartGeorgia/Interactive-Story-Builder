@@ -11,7 +11,7 @@
     <%= f.input :title, :placeholder=>t('.placeholder.title'), hint: t('.hint.title') , :input_html => { :id => "contentTitle", } %>
     <%= f.input :caption, :placeholder=>t('.placeholder.caption'), hint: t('.hint.caption'), :input_html => { :id => "contentCaption" } %>    
     <%= f.input :sub_caption, :placeholder=>t('.placeholder.sub_caption'), hint: t('.hint.sub_caption'), :input_html => { :id => "contentSubCaption" } %>    
-    <label><%= t('activerecord.attributes.content.content') %></label>
+    <label><%= t('activerecord.attributes.content.text') %></label>
     <div class="help-inline" title="<%= t('.hint.content') %>"><div>?</div></div>
     <%= f.input :content, :as => :text, :label => false, :input_html => {:class => 'tinymce', :rows => 30, :id => "contentArticle"} %>    
      <!--a class='btn btn-default preview' id="content-preview" data-modalos-id="modalos-preview" data-type="text"><%= t('app.buttons.preview') %></a-->          

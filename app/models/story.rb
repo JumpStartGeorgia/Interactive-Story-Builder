@@ -1,5 +1,5 @@
-class Story < ActiveRecord::Base	
-
+class Story < ActiveRecord::Base
+  include TranslationOverride
 
   @@TYPE = {story: 1, talk_show: 2, video: 3, photo: 4, infographic: 5}
 
@@ -42,7 +42,7 @@ class Story < ActiveRecord::Base
   attr_accessible :story_translations_attributes
 
   attr_reader :tag_list_tokens
-  attr_accessor :send_notification, :send_staff_pick_notification, :send_comment_notification, :current_language
+  attr_accessor :send_notification, :send_staff_pick_notification, :send_comment_notification
 #  attr_accessible :name, :tag_list_tokens
 
   DEMO_ID = 2
@@ -151,6 +151,11 @@ class Story < ActiveRecord::Base
 
   #################################
 
+  # override find by permalink method so that it does not require the current I18n.locale
+  def self.find_by_permalink(permalink)
+    joins(:story_translations).where(:story_translations => {:permalink => permalink}).first
+  end
+
   def self.can_edit?(story_id, user_id)
     x = select('id').where(:id => story_id).editable_user(user_id)  
     return x.present?
@@ -163,17 +168,14 @@ class Story < ActiveRecord::Base
 
   # get entire story with the id and locale
 	def self.fullsection(story_id, locale=nil)
-    s = Story.select('id, story_locale').find_by_id(story_id)
+    s = Story.select('stories.id, stories.story_locale').find_by_id(story_id)
 
     if s.present?
       locale ||= s.story_locale
-      includes(:translations, {sections: [:translations, :media,:content,:embed_medium,:youtube,:slideshow]})
-      .where(stories: {id: story_id},
-        story_translations: {locale: locale},
-        section_translations: {locale: locale},
-      )
+      includes(:translations, {sections: [:media,:content,:embed_medium,:youtube,:slideshow]})
+      .where(stories: {id: story_id})
+      .with_locales(locale)
       .first
-      #.with_locales(locale)
     end
 	end
 	
@@ -195,7 +197,7 @@ class Story < ActiveRecord::Base
 	
 	# get all of the unique story locales for published stories
 	def self.published_locales
-	  joins(:story_translations).select('story_translations.locale').is_published.map{|x| x.story_locale}.uniq.sort
+	  joins(:story_translations).select('story_translations.locale').is_published.map{|x| x.locale}.uniq.sort
 	end
 
 	# get all of the unique story cateogires for published stories

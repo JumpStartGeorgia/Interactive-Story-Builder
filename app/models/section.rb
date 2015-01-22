@@ -1,4 +1,6 @@
 class Section < ActiveRecord::Base
+  include TranslationOverride
+
   translates :title
 
   has_many :section_translations, :dependent => :destroy
@@ -92,7 +94,7 @@ class Section < ActiveRecord::Base
   end  
   def ok?
     if content?
-      return (self.content.present? && self.content.content.present?)
+      return (self.content.present? && self.content.text.present?)
     elsif media?        
         exists = []
         self.media.each_with_index do |m,m_i|

@@ -70,13 +70,17 @@ class ApplicationController < ActionController::Base
     @story_types = StoryType.sorted
     @published_themes = Theme.published.sorted
     @languages = LANGUAGES # its an array that is initialized at rails app start Language.app_locale_sorted 
-    @languages_published = @languages.select{|x| x.has_published_stories == true}
+    #@languages_published = @languages.select{|x| x.has_published_stories == true}
 		# @categories = Category.sorted
   #   @categories_published = @categories.select{|x| x.has_published_stories == true}
     @face_id = Rails.env.production? ? ENV['STORY_BUILDER_FACEBOOK_APP_ID'] : ENV['DEV_FACEBOOK_APP_ID']        
     # for loading extra css/js files    
 		@css = []
 		@js = []
+
+    # variable to tell globalize which locale to use
+    # - should be updated with correct locale after story is loaded
+    @story_current_locale = I18n.locale
     
     # have to insert devise styles/js here since no controllers exist
     if params[:controller].present? && params[:controller].start_with?('devise/')
@@ -123,6 +127,13 @@ class ApplicationController < ActionController::Base
     else
       "application"
     end
+  end
+
+  # set the locale to use for the current story 
+  # if no locale passed in, defaults to story_locale
+  def set_story_current_locale(story, locale=nil)
+    @story_current_locale = locale.present? ? locale : story.story_locale
+    story.current_locale = @story_current_locale
   end
 
   ## process the filter requests

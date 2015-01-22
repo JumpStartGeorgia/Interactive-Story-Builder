@@ -11,10 +11,13 @@ class StorytellerController < ApplicationController
 
     @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css")
     @js.push("storyteller.js","modalos.js","follow.js")    
-  	story = Story.select('id').is_published.find_by_permalink(params[:id])
+  	story = Story.select('stories.id').is_published.find_by_permalink(params[:id])
   	@story = Story.is_published.fullsection(story.id) if story.present?  
 
   	if @story.present?
+      # set story locale (in app controller)
+      set_story_current_locale(@story)
+
       # record if the user has liked this story
       @user_likes = false
     	@user_likes = current_user.voted_up_on? @story if user_signed_in?

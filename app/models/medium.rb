@@ -1,4 +1,6 @@
 class Medium < ActiveRecord::Base
+  include TranslationOverride
+
   translates :title, :caption, :caption_align, :source, :infobox_type
 
   acts_as_list scope: :section

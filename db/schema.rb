@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150121115105) do
+ActiveRecord::Schema.define(:version => 20150121064004) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(:version => 20150121115105) do
   add_index "assets", ["processed"], :name => "index_assets_on_processed"
 
   create_table "categories", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.boolean  "has_published_stories", :default => false
   end
 
@@ -43,11 +43,11 @@ ActiveRecord::Schema.define(:version => 20150121115105) do
 
   create_table "category_translations", :force => true do |t|
     t.integer  "category_id"
-    t.string   "locale"
+    t.string   "locale",      :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "name"
     t.string   "permalink"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   add_index "category_translations", ["category_id"], :name => "index_category_translations_on_category_id"
@@ -105,31 +105,6 @@ ActiveRecord::Schema.define(:version => 20150121115105) do
   add_index "embed_medium_translations", ["embed_medium_id"], :name => "index_embed_medium_translations_on_embed_medium_id"
   add_index "embed_medium_translations", ["locale"], :name => "index_embed_medium_translations_on_locale"
 
-  create_table "impressions", :force => true do |t|
-    t.string   "impressionable_type"
-    t.integer  "impressionable_id"
-    t.integer  "user_id"
-    t.string   "controller_name"
-    t.string   "action_name"
-    t.string   "view_name"
-    t.string   "request_hash"
-    t.string   "ip_address"
-    t.string   "session_hash"
-    t.text     "message"
-    t.text     "referrer"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "impressions", ["controller_name", "action_name", "ip_address"], :name => "controlleraction_ip_index"
-  add_index "impressions", ["controller_name", "action_name", "request_hash"], :name => "controlleraction_request_index"
-  add_index "impressions", ["controller_name", "action_name", "session_hash"], :name => "controlleraction_session_index"
-  add_index "impressions", ["impressionable_type", "impressionable_id", "ip_address"], :name => "poly_ip_index"
-  add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], :name => "poly_request_index"
-  add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], :name => "poly_session_index"
-  add_index "impressions", ["impressionable_type", "message", "impressionable_id"], :name => "impressionable_type_message_index", :length => {"impressionable_type"=>nil, "message"=>255, "impressionable_id"=>nil}
-  add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
-
   create_table "invitations", :force => true do |t|
     t.integer  "from_user_id"
     t.integer  "story_id"
@@ -150,8 +125,8 @@ ActiveRecord::Schema.define(:version => 20150121115105) do
   create_table "languages", :force => true do |t|
     t.string   "locale"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.boolean  "has_published_stories", :default => false
   end
 
@@ -322,14 +297,14 @@ ActiveRecord::Schema.define(:version => 20150121115105) do
     t.text     "old_about"
     t.boolean  "publish_home_page",     :default => true
     t.boolean  "staff_pick",            :default => false
-    t.string   "permalink_staging"
-    t.string   "old_story_locale",      :default => "en"
+    t.string   "story_locale",          :default => "en"
     t.integer  "cached_votes_total",    :default => 0
     t.integer  "cached_votes_score",    :default => 0
     t.integer  "cached_votes_up",       :default => 0
     t.integer  "cached_votes_down",     :default => 0
     t.integer  "cached_weighted_score", :default => 0
     t.integer  "comments_count",        :default => 0
+    t.string   "old_permalink_staging"
     t.integer  "story_type_id"
   end
 
@@ -342,9 +317,9 @@ ActiveRecord::Schema.define(:version => 20150121115105) do
   add_index "stories", ["old_permalink"], :name => "index_stories_on_permalink"
   add_index "stories", ["old_published"], :name => "index_stories_on_published"
   add_index "stories", ["old_published_at"], :name => "index_stories_on_published_at"
-  add_index "stories", ["old_story_locale"], :name => "index_stories_on_story_locale"
   add_index "stories", ["publish_home_page", "staff_pick"], :name => "index_stories_on_publish_home_page_and_staff_pick"
   add_index "stories", ["reviewer_key"], :name => "index_stories_on_reviewer_key"
+  add_index "stories", ["story_locale"], :name => "index_stories_on_story_locale"
   add_index "stories", ["story_type_id"], :name => "index_stories_on_story_type_id"
   add_index "stories", ["template_id"], :name => "index_stories_on_template_id"
   add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
@@ -360,8 +335,8 @@ ActiveRecord::Schema.define(:version => 20150121115105) do
   create_table "story_categories", :force => true do |t|
     t.integer  "story_id"
     t.integer  "category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "story_categories", ["category_id"], :name => "index_story_categories_on_category_id"
@@ -385,6 +360,7 @@ ActiveRecord::Schema.define(:version => 20150121115105) do
     t.string   "shortened_url"
     t.string   "title"
     t.string   "permalink"
+    t.string   "permalink_staging"
     t.string   "author"
     t.string   "media_author"
     t.text     "about"
@@ -525,8 +501,8 @@ ActiveRecord::Schema.define(:version => 20150121115105) do
     t.boolean  "vote_flag"
     t.string   "vote_scope"
     t.integer  "vote_weight"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   add_index "votes", ["votable_id", "votable_type", "vote_scope"], :name => "index_votes_on_votable_id_and_votable_type_and_vote_scope"

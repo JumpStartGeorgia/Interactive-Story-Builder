@@ -7,9 +7,9 @@
     <% else %>
 
       <% @stories.each_with_index do |story,s_i| %>       
-          <div class="col n-3" lang="<%= story.story_locale %>">  
-            <%= render partial: "shared/grid_item" , locals:{:story=>story} %> 
-          </div>  
+        <div class="col n-3" lang="<%= story.story_locale %>">  
+          <%= render partial: "shared/grid_item" , locals:{:story=>story} %> 
+        </div>  
       <% end %>
     <% end %>
   </div> 

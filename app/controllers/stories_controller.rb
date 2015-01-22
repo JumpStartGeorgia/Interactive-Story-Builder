@@ -93,7 +93,7 @@ class StoriesController < ApplicationController
       if !@story.published && params[:story][:published]=="1"
         if !@story.about.present? || !@story.asset_exists?
           flash[:error] = I18n.t('app.msgs.error_publish_missing_fields', :obj => @story.title)            
-        elsif @story.sections.map{|t| t.content? && t.content.present? && t.content.content.present? }.count(true) == 0
+        elsif @story.sections.map{|t| t.content? && t.content.present? && t.content.text.present? }.count(true) == 0
           flash[:error] = I18n.t('app.msgs.error_publish_missing_content_section')            
         end                      
         format.html { render action: "edit" }
@@ -174,7 +174,7 @@ class StoriesController < ApplicationController
     end
   end
 # load the item (i.e., Section.find_by_id)
-# call: item.translation_for(locale), where locale is the locale to get text for
+# call: item.translation_for_custom(locale), where locale is the locale to get text for
 # In partial, add the following do block before you use any of the fields: 
 # Globalize.with_locale(locale) do
 #   # form field stuff here
@@ -188,20 +188,32 @@ class StoriesController < ApplicationController
     type = params[:type]
     _id = params[:_id]
     sub_id = params[:sub_id]
-    @which = params[:which].to_i    
-
+    @which = params[:which].present? ? params[:which].to_i : 1
     @trans = false
+    default_locale = current_user.default_story_locale
 
     @story = Story.find_by_id(id) 
 
-    
-    if @story.present? && params.has_key?(:trans)
-      @trans = true
-      @trans_from = params[:trans].has_key?(:from) ? params[:trans][:from] : @story.story_locale
-      @trans_to = params[:trans].has_key?(:to) ? params[:trans][:to] : @languages.where("locale != '#{@story.story_locale}'").order('locale').first.locale
+    # if story exists, set some params
+    if @story.present?
+      # set default locale to story locale
+      default_locale = @story.story_locale
+
+      # get the translation locales
+      if params.has_key?(:trans)
+        @trans = true
+        @trans_from = params[:trans].has_key?(:from) ? params[:trans][:from] : @story.present? ? @story.story_locale : default_locale
+        @trans_to = params[:trans].has_key?(:to) ? params[:trans][:to] : @languages.where("locale != '#{@story.story_locale}'").order('locale').first.locale
+
+        # set the locale that is to be used for this call
+        if @which == 1 # normal form
+          default_locale = @trans_from
+        elsif @which == 2 #translation form
+          default_locale = @trans_to
+        end
+
+      end
     end
-
-
 
     if type == 'story'
       if method=='select'
@@ -210,12 +222,15 @@ class StoriesController < ApplicationController
           @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end    
       elsif method=='create'
-          @item = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
-          @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
+        @item = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
+        @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
       end        
       
       respond_to do |format|
         if @item.present?
+          # get the translations for this item or build it if not exist yet
+          @item.translation_for_custom(default_locale)
+
           @themes = Theme.sorted
           format.js { render :action => "get_story" }          
         else
@@ -235,6 +250,9 @@ class StoriesController < ApplicationController
       end   
       respond_to do |format|
         if @item.present?
+          # get the translations for this item or build it if not exist yet
+          @item.translation_for_custom(default_locale)
+
           format.js { render :action => "get_section" }          
         else
           @get_data_error = I18n.t('app.msgs.error_get_data')
@@ -251,6 +269,9 @@ class StoriesController < ApplicationController
       end
       respond_to do |format|
         if @item.present?
+          # get the translations for this item or build it if not exist yet
+          @item.translation_for_custom(default_locale)
+
           format.js  {render :action => "get_content" }
         else
           @get_data_error = I18n.t('app.msgs.error_get_data')
@@ -259,80 +280,89 @@ class StoriesController < ApplicationController
       end
 
     elsif type == 'media'
-        if method=='select'    
-          @item = Medium.find_by_id(sub_id)   
-        else 
-          @item = Medium.new(:section_id => _id, media_type: Medium::TYPE[:image])
-        end
+      if method=='select'    
+        @item = Medium.find_by_id(sub_id)   
+      else 
+        @item = Medium.new(:section_id => _id, media_type: Medium::TYPE[:image])
+      end
 
-        if @item.present? &&  !@item.image_exists? 
-          @item.build_image(:asset_type => Asset::TYPE[:media_image])
-        end   
-        if @item.present? && !@item.video_exists?
-          @item.build_video(:asset_type => Asset::TYPE[:media_video])
-        end      
+      if @item.present? &&  !@item.image_exists? 
+        @item.build_image(:asset_type => Asset::TYPE[:media_image])
+      end   
+      if @item.present? && !@item.video_exists?
+        @item.build_video(:asset_type => Asset::TYPE[:media_video])
+      end      
 
-        respond_to do |format|
-           if @item.present?
-            format.js {render :action => "get_media" }
-          else
-            @get_data_error = I18n.t('app.msgs.error_get_data')
-            format.js
-          end
+      respond_to do |format|
+         if @item.present?
+          # get the translations for this item or build it if not exist yet
+          @item.translation_for_custom(default_locale)
+
+          format.js {render :action => "get_media" }
+        else
+          @get_data_error = I18n.t('app.msgs.error_get_data')
+          format.js
         end
+      end
     elsif type == 'slideshow'
+      if method=='select'    
+        @item = Slideshow.find_by_id(sub_id)           
+      else 
+        @item = Slideshow.new(:section_id => _id)
+      end
+    
+     if @item.present? && @item.assets.blank?
+        @item.assets.build(:asset_type => Asset::TYPE[:slideshow_image])
+      end      
 
-        if method=='select'    
-          @item = Slideshow.find_by_id(sub_id)           
-        else 
-          @item = Slideshow.new(:section_id => _id)
+   
+      respond_to do |format|
+        if @item.present?
+          # get the translations for this item or build it if not exist yet
+          @item.translation_for_custom(default_locale)
+
+          format.js {render :action => "get_slideshow" }
+        else
+          @get_data_error = I18n.t('app.msgs.error_get_data')
+          format.js          
         end
-      
-       if @item.present? && @item.assets.blank?
-          @item.assets.build(:asset_type => Asset::TYPE[:slideshow_image])
-        end      
-
-     
-        respond_to do |format|
-          if @item.present?
-              format.js {render :action => "get_slideshow" }
-          else
-            @get_data_error = I18n.t('app.msgs.error_get_data')
-            format.js          
-          end
       end
     elsif type == 'embed_media'
+      if method=='select'    
+        @item = EmbedMedium.find_by_id(sub_id)   
+      else 
+        Rails.logger.debug(_id)
+        @item = EmbedMedium.new(:section_id => _id)
+      end
+      respond_to do |format|
+        if @item.present?
+          # get the translations for this item or build it if not exist yet
+          @item.translation_for_custom(default_locale)
 
-        if method=='select'    
-          @item = EmbedMedium.find_by_id(sub_id)   
-        else 
-          Rails.logger.debug(_id)
-          @item = EmbedMedium.new(:section_id => _id)
+          format.js {render :action => "get_embed_media" }
+        else
+          @get_data_error = I18n.t('app.msgs.error_get_data')
+          format.js          
         end
-        respond_to do |format|
-          if @item.present?
-              format.js {render :action => "get_embed_media" }
-          else
-            @get_data_error = I18n.t('app.msgs.error_get_data')
-            format.js          
-          end
-        end
+      end
     elsif type == 'youtube'
+      if method=='select'    
+        @item = Youtube.find_by_id(sub_id)   
+      else 
+        @item = Youtube.new(:section_id => _id)
+        @item.youtube_translations.build(:locale => I18n.locale.to_s)
+      end
+      respond_to do |format|
+        if @item.present?
+          # get the translations for this item or build it if not exist yet
+          @item.translation_for_custom(default_locale)
 
-        if method=='select'    
-          @item = Youtube.find_by_id(sub_id)   
-        else 
-          @item = Youtube.new(:section_id => _id)
-          @item.youtube_translations.build(:locale => I18n.locale.to_s)
+          format.js {render :action => "get_youtube" }
+        else
+          @get_data_error = I18n.t('app.msgs.error_get_data')
+          format.js          
         end
-        respond_to do |format|
-          if @item.present?
-              format.js {render :action => "get_youtube" }
-          else
-            @get_data_error = I18n.t('app.msgs.error_get_data')
-            format.js          
-          end
-        end
+      end
     end
   end
 
@@ -634,11 +664,11 @@ class StoriesController < ApplicationController
       
       if publishing
         if !(@item.about.present? && @item.asset_exists?)                 
-                  view_context.log(@item.sections.map{|t| t.content? && t.content.present? && t.content.content.present? }.count(true) )
+                  view_context.log(@item.sections.map{|t| t.content? && t.content.present? && t.content.text.present? }.count(true) )
            format.json {render json: { e:true, msg: (t('app.msgs.error_publish_missing_fields', :obj => @item.title) +  
                 " <a href='" +  sections_story_path(@item) + "'>" + t('app.msgs.error_publish_missing_fields_link') + "</a>")} }  
            error = true       
-        elsif @item.sections.map{|t| t.content.present? && t.content.content.present? }.count(true) == 0          
+        elsif @item.sections.map{|t| t.content.present? && t.content.text.present? }.count(true) == 0          
            format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_content_section')} }          
            error = true
         end            
