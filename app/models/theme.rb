@@ -28,7 +28,7 @@ class Theme < ActiveRecord::Base
   end
 
   def self.for_homepage
-    with_translations(I18n.locale).where(:is_published => true, :show_home_page => true)
+    with_translations(I18n.locale).where(:is_published => true, :show_home_page => true).first
   end
 
 

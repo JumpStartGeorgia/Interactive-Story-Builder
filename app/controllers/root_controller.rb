@@ -4,6 +4,7 @@ class RootController < ApplicationController
     @js.push("zeroclipboard.min.js","filter.js")
     @css.push("navbar.css", "filter.css", "grid.css","root.css")    
     @stories = process_filter_querystring(Story.is_published_home_page.paginate(:page => params[:page], :per_page => per_page))      
+    @theme = Theme.for_homepage
     @navbar_invisible = false
     respond_to do |format|
       format.html  

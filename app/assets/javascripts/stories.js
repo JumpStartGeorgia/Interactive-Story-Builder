@@ -259,7 +259,7 @@ $(document).ready(function() {
 
 	$('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-up, .tools .btn-down',function()
 	{
-      var where = $(this).hasClass('btn-up') ? 'top', 'bottom';
+      var where = $(this).hasClass('btn-up') ? 'top' : 'bottom';
 		var cur = $(this).closest('li');
 		var sec_id = -1;
 		var itm_id = -1;
