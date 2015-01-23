@@ -14,7 +14,7 @@ $(document).ready(function() {
 		var t = $(this).parent();
 		var sidebarWidth = t.width();
 		var newLeft = t.hasClass('o') ? -1*sidebarWidth : 0;
-		var content = $('.builder-wrapper .content');
+		var content = $('.builder-wrapper .content .workplace');
 		t.animate({'left': newLeft},
 			{
 				duration:2000, 
@@ -478,22 +478,23 @@ $(document).ready(function() {
   
   // if the title changes and there is no permalink or the permalink was equal to the old title, 
   // add the title into the permalink show field
-  $('input#storyTitle').bind('keyup', debounce(function () {
-    if (($('input#storyPermalinkStaging').val() != '' && $('input#storyPermalinkStaging').val() !== $(this).data('title-was')) || 
-        $(this).val().length == was_title_box_length) {
-        
-      return;
-    } else {
-      $(this).data('title-was', $(this).val());
-      $('input#storyPermalinkStaging').val($(this).val());
-      check_story_permalink($(this).val());
-    }
+  $(document).on('keyup','input#storyTitle', debounce(function(){
+      if (($('input#storyPermalinkStaging').val() != '' && $('input#storyPermalinkStaging').val() !== $(this).data('title-was')) || 
+          $(this).val().length == was_title_box_length) {
+          
+        return;
+      } else {
+        $(this).data('title-was', $(this).val());
+        $('input#storyPermalinkStaging').val($(this).val());
+        check_story_permalink($(this).val());
+      }
 
-    was_title_box_length = $(this).val().length;
+      was_title_box_length = $(this).val().length;
+  
   }));
   
   // if the permalink staging field changes, use the text to generate a new permalink
-  $('input#storyPermalinkStaging').bind('keyup', debounce(function () {
+  $(document).on('keyup','input#storyPermalinkStaging', debounce(function () {
     // if text length is 1 or the length has not changed (e.g., press arrow keys), do nothing
     if ($(this).val().length == 1 || $(this).val().length == was_permalink_box_length) {
       return;
@@ -504,12 +505,8 @@ $(document).ready(function() {
     was_permalink_box_length = $(this).val().length;
   }));
   
-  // when the page loads, show the permalink if it exists  
-  if ($('#story_permalink').length > 0 && $('input#storyPermalink').val().length > 0){
-    was_title_box_length = $('input#storyTitle').val().length;
-    was_permalink_box_length = $('input#storyPermalinkStaging').val().length;;
-    show_story_permalink({'is_duplicate': false, 'permalink':$('input#storyPermalink').val()});
-  }
+
+ 
 
   // add autocomplete for tags
   if ($('#storyTagList').length > 0){

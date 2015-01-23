@@ -439,6 +439,12 @@ ka:
     bug: გვაცნობეთ შეცდომის შესახებ
     feature: მოითხოვეთ ახალი ფუნქციის დამატება
     feedback: გაგვიზიარეთ თქვენი აზრი
+  story_types:
+    story: Story - mixed story TODO
+    talk_show: Talkshow - talkshow story TODO
+    video: Video - video story TODO
+    photo: Photo - photo story TODO
+    infographic: Infographic - infographic story TODO
   filters:
     all: ყველა
     matches: მსგავსი ამბები

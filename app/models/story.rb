@@ -1,4 +1,7 @@
 class Story < ActiveRecord::Base	
+
+   @@TYPE = {story: 1, talk_show: 2, video: 3, photo: 4, infographic: 5}
+
 	translates :shortened_url
 
   # for likes
@@ -43,7 +46,7 @@ class Story < ActiveRecord::Base
 	validates :title, :presence => true, length: { maximum: 100 }
 	validates :author, :presence => true, length: { maximum: 255 }
 	validates :permalink, :presence => true
-  validates :story_type_id, :presence => true
+  validates :story_type_id, :presence => true , :inclusion => { :in => @@TYPE.values }   
 #	validates :about, :presence => true
 	validates :template_id, :presence => true
 	validates :media_author, length: { maximum: 255 }
@@ -60,6 +63,14 @@ class Story < ActiveRecord::Base
 	after_save :update_filter_counts
 
   scope :recent, order("stories.published_at desc, stories.title asc")
+  
+
+
+# SELECT a.*
+# FROM parallax_chca.stories AS a LEFT JOIN parallax_chca.stories AS b
+# ON (a.story_type_id = b.story_type_id AND a.published_at < b.published_at)
+# WHERE b.published_at IS NULL and a.story_type_id is not null and a.published = 1;
+
   scope :reads, order("stories.impressions_count desc, stories.published_at desc, stories.title asc")
   scope :likes, order("stories.cached_votes_total desc, stories.published_at desc, stories.title asc")
   scope :comments, order("stories.comments_count desc, stories.published_at desc, stories.title asc")
@@ -70,9 +81,14 @@ class Story < ActiveRecord::Base
   scope :stories_by_author, -> (user_id) {
     where(:user_id => user_id, :published => true).recent
   }
-
+  scope :recent_by_type, joins("LEFT JOIN stories b ON `stories`.story_type_id = b.story_type_id and `stories`.published_at < b.published_at").where("`stories`.published = true and b.published_at is null").order("`stories`.story_type_id")
   DEMO_ID = 2
   
+
+  
+
+   
+   
 
 	amoeba do
     enable
@@ -469,7 +485,9 @@ class Story < ActiveRecord::Base
       end
     end
   end
-  
+  def type
+     @@TYPE.keys[@@TYPE.values.index(self.story_type_id)]   
+  end
   
 
   private 

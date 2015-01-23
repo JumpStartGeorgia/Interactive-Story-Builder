@@ -8,41 +8,7 @@
 
   %>
    <div class='story-tree' id='<%= @story.id %>'>        
-    <ul>
-      <li id='<%= @story.id %>' data-type='story' class='story'>
-        <div class="box">
-                <div class="s story"></div>
-                <div class="title"><span><%= @story.title %></span></div>
-                <div class='storytree-arrow'><div class='arrow'></div></div>
-                <div class='tools'>
-                  <%= link_to '#', title: t('helpers.links.story_menu.link.preview') + ' - ' + t('helpers.links.story_menu.title.preview'), id: 'btnPreview', class: 'preview btn btn-preview', 
-                      :'data-link' => @story.published ? storyteller_show_path(@story.permalink) : preview_story_path(@story), 
-                      :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story' do %>
-                    <span class="glyphicon glyphicon-eye-open" ></span>          
-                  <% end %>
-                <% if !@story.published %> 
-                    <%= link_to '#', title: t('helpers.links.story_menu.link.review') + ' - ' + t('helpers.links.story_menu.title.review'), id: 'btnReviewer', class: 'btn btn-review',
-                        :'data-title' => @story.title, :'data-modalos-id' => 'modalos-reviewer', :'data-reviewer-key' => review_url(@story.reviewer_key) do %>
-                        <span class="glyphicon glyphicon-share" ></span>        
-                    <% end %>
-                <% end %>
-                  <% 
-                    title = @story.published ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish') 
-                    link_text = @story.published ? t('helpers.links.story_menu.link.unpublish') : t('helpers.links.story_menu.link.publish') 
-                  %>
-                  <%= link_to '#', title: link_text + ' - ' + title, id: 'btnPublish', class: 'btn btn-publish' + (@story.published ? '' : 'disabled'), 
-                      :'data-link' => publish_story_path(@story) do %>
-                    <span class="glyphicon glyphicon-globe" ></span>
-                  <% end %>
-                  <%= link_to @story, title: t('helpers.links.story_menu.link.delete_story') + ' - ' + t('helpers.links.story_menu.title.delete_story'), 
-                   class: 'preview btn btn-remove-story', confirm: t("helpers.links.confirm"), method: :delete do %>
-                    <span class="glyphicon glyphicon-remove"></span>
-                  <% end %>
-                </div>
-        </li>
-        <div class='box'>
-            <button type="button" class="btn btn-create-section" title="<%= t('app.buttons.add_section') %>"><i class="glyphicon glyphicon-align-justify"></i><%= t('app.buttons.add_section') %></button>
-        </div>
+    <ul>     
         <% @story.sections.each do |item| %>          
             <li id='<%= item.id %>' data-type='<%= item.get_str_type %>' class='item'>
               <div class="box">

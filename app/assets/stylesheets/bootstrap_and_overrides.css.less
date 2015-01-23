@@ -257,11 +257,18 @@ html, body
 
   .carousel-inner
   {
-    max-height: 600px;
+    //max-height: 600px;
+    height:600px;
     overflow: hidden;
+    background-color:#000;
     .item
     {
       max-height: 600px;
+      min-height:600px;
+      img {
+          margin:0px auto;
+          width:100%;
+      }
     }
   }  
   .carousel-inner .item img {
@@ -325,14 +332,7 @@ html, body
     }
     .storytype
     {
-      .storytype-logo
-      {
-        background:transparent url('/assets/svg/chaikhana/type_story.svg') no-repeat;
-        background-size: 34px 34px;
-        width:34px;
-        height:34px;
-        display:inline-block;
-      } 
+      
       .storytype-label
       {
 
@@ -346,6 +346,7 @@ html, body
       }
     }  
   }
+
   .sticker
   {
     position:absolute;
@@ -394,6 +395,35 @@ html, body
 
   }
 }
+.storytype .storytype-logo,.story-link .type
+{
+ 
+  background-size: 34px 34px;
+  width:34px;
+  height:34px;
+  display:inline-block;
+  &.story
+  {
+     background:transparent url('/assets/svg/type_story.svg') no-repeat;
+  }
+  &.video
+  {
+     background:transparent url('/assets/svg/type_video.svg') no-repeat;
+  }
+  &.talk_show
+  {
+     background:transparent url('/assets/svg/type_talkshow.svg') no-repeat;
+  }
+  &.photo
+  {
+     background:transparent url('/assets/svg/type_photo.svg') no-repeat;
+  }
+  &.infographic
+  {
+     background:transparent url('/assets/svg/type_infographic.svg') no-repeat;
+  }                        
+} 
+
 .pagination-wrapper
 {display:none;}
 .caret

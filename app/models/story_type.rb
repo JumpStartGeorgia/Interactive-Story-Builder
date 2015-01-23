@@ -8,6 +8,5 @@ class StoryType < ActiveRecord::Base
 
   def self.sorted
     with_translations(I18n.locale).order('story_types.sort_order, story_type_translations.name')
-  end
-  
+  end  
 end

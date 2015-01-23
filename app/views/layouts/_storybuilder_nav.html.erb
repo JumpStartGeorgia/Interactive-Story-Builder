@@ -52,12 +52,6 @@
           <% end %>
                       
           <ul class="dropdown-menu">
-          <li>
-           <%= link_to new_user_session_path({:return_url=>new_story_path}), :tabindex=>2, :class=>"build-story link modalSignIn",  :"data-modalos-id"=>"modalos-sign-in" do %>
-                  <i class="s i-build"></i><%= "#{t('app.common.build')}" %>
-                <% end %>
-          </li>
-
             <li>              
               <%= link_to stories_path do %>         
                <i class="s i-mystories"></i><span><%= t('helpers.titles.story_list') %></span>

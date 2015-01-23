@@ -1,9 +1,17 @@
+
 <% if @which == 0 || @which == 1 %>
 $(".story-page1").hide().html("<%= escape_javascript( render :partial => 'form', locals: {original: true}) %>").fadeIn('slow');
+$('.selectpicker').selectpicker({dropupAuto:false});
 <% end %>
 
 <% if @trans && (@which == 0 || @which == 2) %>$(".story-page2").hide().html("<%= escape_javascript( render :partial => 'form') %>").fadeIn('slow');<% end %>
 
+  // when the page loads, show the permalink if it exists  
+ if ($('#story_permalink').length > 0 && $('input#storyPermalink').val().length > 0){
+    was_title_box_length = $('input#storyTitle').val().length;
+    was_permalink_box_length = $('input#storyPermalinkStaging').val().length;;
+    show_story_permalink({'is_duplicate': false, 'permalink':$('input#storyPermalink').val()});
+  }
 
 
 // # <% imageTemp = '' %>

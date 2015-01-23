@@ -10,10 +10,8 @@
      <%= link_to path do %>
         <%= image_tag story.show_asset.asset.url(:thumbnail) %>              
         <div class="story-link">
-          <% # change this to story's type %>
-          <% m = ['story','talkshow','video','photo'] %>
-          <div class='type type-<%= m[rand(4)] %>'></div>
-          <span lang="<%= story.story_locale %>"><%= story.title %></span>
+          <div class='type <%= story.type %>' title='<%= t("story_types."+ story.type.to_s) %>'></div>
+          <span><%= story.title %></span>
        </div>   
       <% end %>
 

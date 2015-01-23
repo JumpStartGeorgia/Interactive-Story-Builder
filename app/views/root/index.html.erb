@@ -4,43 +4,27 @@
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="1"></li>    
-      <li data-target="#carousel-example-generic" data-slide-to="2"></li>    
-      <li data-target="#carousel-example-generic" data-slide-to="3"></li>    
+     <% @stories_for_slider.each_with_index { |t,i| %>
+      <li data-target="#carousel-example-generic" data-slide-to="<%= i %>" class='<%= i == 0 ? " active" : "" %>'></li>
+    <% } %>  
     </ol>
-
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-      <div class="item active">
-          <img src='http://storybuilder.jumpstart.ge/assets/headers/header-bg-01.jpg' alt=''>
+
+    <% @stories_for_slider.each_with_index { |t,i| %>
+      <div class='item<%= i == 0 ? " active" : "" %>'>
+        <%= image_tag t.show_asset.asset.url %>
         <div class="carousel-caption">
-          <div class='title'>Irregular Maritime Movements in South-East Asia</div>
-          <div class='descr'>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. </div>
+          <div class='title'> <%= t.title %></div>
+          <div class='descr'> <%= t.about %></div>
           <div class='storytype'>
-            <div class='storytype-logo'></div>
-            <div class='storytype-label'>Storybuilder story</div>
+            <div class='storytype-logo <%= t.type %>'></div>
+            <div class='storytype-label' lang='<%= I18n.locale %>'><%= t("story_types."+ t.type.to_s) %></div>
           </div>
         </div>
       </div>
-      <div class="item">
-        <img src='http://storybuilder.jumpstart.ge/assets/headers/header-bg-02.jpg' alt=''>
-        <div class="carousel-caption">
-          somecaption2
-        </div>
-      </div> 
-      <div class="item">
-        <img src='http://storybuilder.jumpstart.ge/assets/headers/header-bg-01.jpg' alt=''>
-        <div class="carousel-caption">
-          somecaption3
-        </div>
-      </div>      
-      <div class="item">
-        <img src='http://storybuilder.jumpstart.ge/assets/headers/header-bg-02.jpg' alt=''>
-        <div class="carousel-caption">
-          somecaption4
-        </div>
-      </div>   
+    <% } %>
+    
     </div>
 
     <!-- Controls -->

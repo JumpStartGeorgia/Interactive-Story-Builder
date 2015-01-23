@@ -437,6 +437,12 @@ en:
     bug: Report a Bug
     feature: Request a Feature
     feedback: General Feedback
+  story_types:
+    story: Story - mixed story TODO
+    talk_show: Talkshow - talkshow story TODO
+    video: Video - video story TODO
+    photo: Photo - photo story TODO
+    infographic: Infographic - infographic story TODO
   filters:
     all: All
     matches: Matches
