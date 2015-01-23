@@ -34,51 +34,51 @@ class StoriesController < ApplicationController
   # GET /stories/new
   # GET /stories/new.json
   def new
-    @story = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
-    @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
+    @item = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
+    @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
 #    @templates = Template.select_list
-    @story_tags = []
+#    @story_tags = []
     @themes = Theme.sorted
     
     respond_to do |format|
         format.html #new.html.er
-        format.json { render json: @story }
+        format.json { render json: @item }
     end
   end
 
   # GET /stories/1/edit
   def edit
-    @story = Story.find(params[:id])
-    if !@story.asset_exists?
-      @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+    @item = Story.find(params[:id])
+    if !@item.asset_exists?
+      @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
     end 
-#    @templates = Template.select_list(@story.template_id)
-    @story_tags = @story.tags.token_input_tags
+#    @templates = Template.select_list(@item.template_id)
+#    @story_tags = @item.tags.token_input_tags
     @themes = Theme.sorted
   end
 
   # POST /stories
   # POST /stories.json
   def create
-    @story = Story.new(params[:story])
+    @item = Story.new(params[:story])
 
     respond_to do |format|
 
-      if @story.save
-        flash_success_created(Story.model_name.human,@story.title)       
-        format.html { redirect_to sections_story_path(@story) }
-      #  format.json { render json: @story, status: :created, location: @story }
+      if @item.save
+        flash_success_created(Story.model_name.human,@item.title)       
+        format.html { redirect_to sections_story_path(@item) }
+      #  format.json { render json: @item, status: :created, location: @item }
       else
-        if !@story.asset.present? 
-          @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+        if !@item.asset.present? 
+          @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end      
-        #@templates = Template.select_list(@story.template_id) 
-        @story_tags = @story.tags.token_input_tags
+        #@templates = Template.select_list(@item.template_id) 
+#        @story_tags = @item.tags.token_input_tags
         @themes = Theme.sorted
 
-        flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
+        flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@item.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
-        #  format.json { render json: @story.errors, status: :unprocessable_entity }
+        #  format.json { render json: @item.errors, status: :unprocessable_entity }
         #  format.js {render action: "flash" , status: :ok }
       end
     end
@@ -87,31 +87,31 @@ class StoriesController < ApplicationController
   # PUT /stories/1
   # PUT /stories/1.json
   def update
-    @story = Story.find(params[:id])
+    @item = Story.find(params[:id])
   
     respond_to do |format|
-      if !@story.published && params[:story][:published]=="1"
-        if !@story.about.present? || !@story.asset_exists?
-          flash[:error] = I18n.t('app.msgs.error_publish_missing_fields', :obj => @story.title)            
-        elsif @story.sections.map{|t| t.content? && t.content.present? && t.content.text.present? }.count(true) == 0
+      if !@item.published && params[:story][:published]=="1"
+        if !@item.about.present? || !@item.asset_exists?
+          flash[:error] = I18n.t('app.msgs.error_publish_missing_fields', :obj => @item.title)            
+        elsif @item.sections.map{|t| t.content? && t.content.present? && t.content.text.present? }.count(true) == 0
           flash[:error] = I18n.t('app.msgs.error_publish_missing_content_section')            
         end                      
         format.html { render action: "edit" }
         format.js {render action: "flash" , status: :ok }
       else
-        if @story.update_attributes(params[:story])
-          flash_success_updated(Story.model_name.human,@story.title)       
-          format.html { redirect_to  sections_story_path(@story) }
+        if @item.update_attributes(params[:story])
+          flash_success_updated(Story.model_name.human,@item.title)       
+          format.html { redirect_to  sections_story_path(@item) }
           format.js { render action: "flash", status: :created }    
         else
-          if !@story.asset.present? 
-            @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+          if !@item.asset.present? 
+            @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
           end 
-          #@templates = Template.select_list(@story.template_id)
-          @story_tags = @story.tags.token_input_tags
+          #@templates = Template.select_list(@item.template_id)
+#          @story_tags = @item.tags.token_input_tags
           @themes = Theme.sorted
           
-          flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
+          flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@item.errors.full_messages.to_sentence)            
           format.html { render action: "edit" }
           format.js {render action: "flash" , status: :ok }
         end
@@ -190,30 +190,32 @@ class StoriesController < ApplicationController
     sub_id = params[:sub_id]
     @which = params[:which].present? ? params[:which].to_i : 1
     @trans = false
-    default_locale = current_user.default_story_locale
+    current_locale = I18n.locale
 
     @story = Story.find_by_id(id) 
 
     # if story exists, set some params
     if @story.present?
       # set default locale to story locale
-      default_locale = @story.story_locale
+      current_locale = @story.story_locale
 
       # get the translation locales
       if params.has_key?(:trans)
         @trans = true
-        @trans_from = params[:trans].has_key?(:from) ? params[:trans][:from] : @story.present? ? @story.story_locale : default_locale
+        @trans_from = params[:trans].has_key?(:from) ? params[:trans][:from] : @story.present? ? @story.story_locale : current_locale
         @trans_to = params[:trans].has_key?(:to) ? params[:trans][:to] : @languages.where("locale != '#{@story.story_locale}'").order('locale').first.locale
 
         # set the locale that is to be used for this call
         if @which == 1 # normal form
-          default_locale = @trans_from
+          current_locale = @trans_from
         elsif @which == 2 #translation form
-          default_locale = @trans_to
+          current_locale = @trans_to
         end
 
       end
     end
+
+    logger.debug "------ locale = #{current_locale}"
 
     if type == 'story'
       if method=='select'
@@ -222,14 +224,15 @@ class StoriesController < ApplicationController
           @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
         end    
       elsif method=='create'
-        @item = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
+        @item = Story.new(:user_id => current_user.id, :story_locale => defualt_locale)     
         @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
       end        
       
       respond_to do |format|
         if @item.present?
           # get the translations for this item or build it if not exist yet
-          @item.translation_for_custom(default_locale)
+          @item.translation_for_custom(current_locale)
+          @item.current_locale = current_locale
 
           @themes = Theme.sorted
           format.js { render :action => "get_story" }          
@@ -251,7 +254,8 @@ class StoriesController < ApplicationController
       respond_to do |format|
         if @item.present?
           # get the translations for this item or build it if not exist yet
-          @item.translation_for_custom(default_locale)
+          @item.translation_for_custom(current_locale)
+          @item.current_locale = current_locale
 
           format.js { render :action => "get_section" }          
         else
@@ -270,7 +274,8 @@ class StoriesController < ApplicationController
       respond_to do |format|
         if @item.present?
           # get the translations for this item or build it if not exist yet
-          @item.translation_for_custom(default_locale)
+          @item.translation_for_custom(current_locale)
+          @item.current_locale = current_locale
 
           format.js  {render :action => "get_content" }
         else
@@ -296,7 +301,8 @@ class StoriesController < ApplicationController
       respond_to do |format|
          if @item.present?
           # get the translations for this item or build it if not exist yet
-          @item.translation_for_custom(default_locale)
+          @item.translation_for_custom(current_locale)
+          @item.current_locale = current_locale
 
           format.js {render :action => "get_media" }
         else
@@ -319,7 +325,8 @@ class StoriesController < ApplicationController
       respond_to do |format|
         if @item.present?
           # get the translations for this item or build it if not exist yet
-          @item.translation_for_custom(default_locale)
+          @item.translation_for_custom(current_locale)
+          @item.current_locale = current_locale
 
           format.js {render :action => "get_slideshow" }
         else
@@ -337,7 +344,8 @@ class StoriesController < ApplicationController
       respond_to do |format|
         if @item.present?
           # get the translations for this item or build it if not exist yet
-          @item.translation_for_custom(default_locale)
+          @item.translation_for_custom(current_locale)
+          @item.current_locale = current_locale
 
           format.js {render :action => "get_embed_media" }
         else
@@ -355,7 +363,8 @@ class StoriesController < ApplicationController
       respond_to do |format|
         if @item.present?
           # get the translations for this item or build it if not exist yet
-          @item.translation_for_custom(default_locale)
+          @item.translation_for_custom(current_locale)
+          @item.current_locale = current_locale
 
           format.js {render :action => "get_youtube" }
         else

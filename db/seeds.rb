@@ -39,12 +39,12 @@ t.story_type_translations.create(:locale => 'ka', :name => 'Photo')
 t.story_type_translations.create(:locale => 'ru', :name => 'Photo')
 t.story_type_translations.create(:locale => 'az', :name => 'Photo')
 t.story_type_translations.create(:locale => 'am', :name => 'Photo')
-t = StoryType.create(:id => 5, :sort_order => 5)
-t.story_type_translations.create(:locale => 'en', :name => 'Infographic')
-t.story_type_translations.create(:locale => 'ka', :name => 'Infographic')
-t.story_type_translations.create(:locale => 'ru', :name => 'Infographic')
-t.story_type_translations.create(:locale => 'az', :name => 'Infographic')
-t.story_type_translations.create(:locale => 'am', :name => 'Infographic')
+# t = StoryType.create(:id => 5, :sort_order => 5)
+# t.story_type_translations.create(:locale => 'en', :name => 'Infographic')
+# t.story_type_translations.create(:locale => 'ka', :name => 'Infographic')
+# t.story_type_translations.create(:locale => 'ru', :name => 'Infographic')
+# t.story_type_translations.create(:locale => 'az', :name => 'Infographic')
+# t.story_type_translations.create(:locale => 'am', :name => 'Infographic')
 
 
 #####################

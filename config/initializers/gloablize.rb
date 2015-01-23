@@ -55,35 +55,44 @@ module Globalize
 
       # override to use current_locale if is story translation
       def write_attribute(name, value, options = {})
-        return super(name, value) unless translated?(name)
-
-        options = is_story_translation == true ? {:locale => current_locale}.merge(options) : {:locale => Globalize.locale}.merge(options)
-
-        # Dirty tracking, paraphrased from
-        # ActiveRecord::AttributeMethods::Dirty#write_attribute.
-        name_str = name.to_s
-        if attribute_changed?(name_str)
-          # If there's already a change, delete it if this undoes the change.
-          old = changed_attributes[name_str]
-          changed_attributes.delete(name_str) if value == old
+        if translated?(name)
+          # Deprecate old use of locale
+          unless options.is_a?(Hash)
+            warn "[DEPRECATION] passing 'locale' as #{options.inspect} is deprecated. Please use {:locale => #{options.inspect}} instead."
+            options = {:locale => options}
+          end
+          options = is_story_translation == true ? {:locale => current_locale}.merge(options) : {:locale => Globalize.locale}.merge(options)
+          
+          # Dirty tracking, paraphrased from
+          # ActiveRecord::AttributeMethods::Dirty#write_attribute.
+          name_str = name.to_s
+          if attribute_changed?(name_str)
+            # If there's already a change, delete it if this undoes the change.
+            old = changed_attributes[name_str]
+            changed_attributes.delete(name_str) if value == old
+          else
+            # If there's not a change yet, record it.
+            old = globalize.fetch(options[:locale], name)
+            old = old.clone if old.duplicable?
+            changed_attributes[name_str] = old if value != old
+          end
+          
+          globalize.write(options[:locale], name, value)
         else
-          # If there's not a change yet, record it.
-          old = globalize.fetch(options[:locale], name)
-          old = old.dup if old.duplicable?
-          changed_attributes[name_str] = old if value != old
+          super(name, value)
         end
-
-        globalize.write(options[:locale], name, value)
       end
 
       # override to use current_locale if is story translation
       def read_attribute(name, options = {})
-        options = {:translated => true, :locale => nil}.merge(options)
-        return super(name) unless options[:translated]
+        # Deprecate old use of locale
+        unless options.is_a?(Hash)
+          warn "[DEPRECATION] passing 'locale' as #{options.inspect} is deprecated. Please use {:locale => #{options.inspect}} instead."
+          options = {:locale => options}
+        end
 
-        if name == :locale
-          self.try(:locale).presence || self.translation.locale
-        elsif self.class.translated?(name)
+        options = {:translated => true, :locale => nil}.merge(options)
+        if self.class.translated?(name) and options[:translated]
           if (is_story_translation == true && value = globalize.fetch(options[:locale] || current_locale, name))
             value
           elsif (is_story_translation == false && value = globalize.fetch(options[:locale] || Globalize.locale, name))

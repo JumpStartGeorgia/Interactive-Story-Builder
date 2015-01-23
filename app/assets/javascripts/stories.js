@@ -582,8 +582,8 @@ $(document).ready(function() {
 
 
   $('#translateFrom').change(function(){
-  		var fromLang = $(this).selectpicker('val');
-  		var toLang = $('#translateTo').selectpicker('val');
+  		var fromLang = $(this).val();
+  		var toLang = $('#translateTo').val();
   		if(fromLang == toLang)
   		{
   			$('#translateTo option').each(function(i,d){ 
@@ -591,26 +591,26 @@ $(document).ready(function() {
   				{
   				 	$('#translateTo').val(d.value);
   				 	$('#translateTo').selectpicker('refresh');
-  				 	gon.transalte_to = d.value;
+  				 	gon.translate_to = d.value;
   					return false;
   				}
 		 	});
   		}
-	 	gon.transalte_from = fromLang;
+	 	gon.translate_from = fromLang;
       getObject('select',selectedType, section_id, item_id, 1);
   		// call new language
   });
     $('#translateTo').change(function(){
-  		var fromLang = $('#translateFrom').selectpicker('val');
-  		var toLang = $(this).selectpicker('val');
+  		var fromLang = $('#translateFrom').val();
+  		var toLang = $(this).val();
   		if(fromLang == toLang)
   		{
-  			gon.transalte_from = $('#translateFrom').attr('data-default');		
-  			$('#translateFrom').val(gon.transalte_from);
+  			gon.translate_from = $('#translateFrom').attr('data-default');		
+  			$('#translateFrom').val(gon.translate_from);
 		 	$('#translateFrom').selectpicker('refresh');  	
 
   		}
-	 	gon.transalte_from = toLang;
+ 	    gon.translate_to = toLang;
       getObject('select',selectedType, section_id, item_id, 2);
   		// call new language
   });

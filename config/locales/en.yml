@@ -34,6 +34,7 @@ en:
         user_ids: Editors
         author: Author(s)
         media_author: Photo and Video Author(s)  
+        translation_author: Translation Author(s)
         published: Publish?
         published_at: Was Published
         publish_home_page: Once published, make your story visible on the homepage?
@@ -572,11 +573,13 @@ en:
         permalink: URL to the story
         author: Author(s) of the article
         media_author: "Author(s) of photos and/or videos"
+        translation_author: "Author(s) that translated the story into this language"
       hint:
         title: Story title will appear at the top of your story
         permalink: The default URL is the title of the story, but you can change it if desired
         author: Author names will appear below the story title
         media_author:  "Author names will appear below the Story Author names"
+        translation_author:  "Author names will appear below the Photo and Video Author names"
         published: Published stories are available for the world to view
         publish_home_page: "If checked, your published story will appear on the site's homepage"
         template: Choose template to apply styling to story

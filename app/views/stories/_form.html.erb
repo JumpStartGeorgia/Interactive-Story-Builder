@@ -4,26 +4,30 @@
 <% readonly = {} %>
 <% if original && @trans %>
   <% readonly = { readonly:true , disabled: true } %>
+  <%= tinymce :readonly => 1 %>
 <% end %>
-<% locale = 'en' %>
-<% Globalize.with_locale(locale) do %>
-  <%= semantic_form_for(@story, :html => {:multipart => true, :id => "storyForm"}) do |f| %>
+
+  <%= semantic_form_for(@item, :html => {:multipart => true, :id => "storyForm"}) do |f| %>
 
     <%= f.inputs do %>
       <%= f.input :user_id , :as => :hidden %>
 
-      <%= f.input :title, { :required => !original, :input_html => { id: "storyTitle", :'data-title-was' => @story.title }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.title'), placeholder: t('.placeholder.title') })) %>
+      <%= f.input :title, { :required => !original, :input_html => { id: "storyTitle", :'data-title-was' => @item.title }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.title'), placeholder: t('.placeholder.title') })) %>
 
       <%= f.input :permalink_staging, { :input_html => { id: "storyPermalinkStaging"  }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.permalink'), placeholder: t('.placeholder.permalink') }))  %>
 
-    <% if !@trans %>
       <%= f.input :permalink, :as => :hidden, :input_html => { id: "storyPermalink"  }   %>
       <div class="string control-group stringish" id="story_permalink">&nbsp;</div>
-    <% end %>
 
       <%= f.input :author, { :required => !original, :input_html => { id: "storyAuthor" }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.author'), placeholder: t('.placeholder.author') })) %>
 
       <%= f.input :media_author, { :input_html => { id: "storyMediaAuthor"  }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.media_author'), placeholder: t('.placeholder.media_author') }))  %>
+
+      <% if !original && @trans %>
+        <%= f.input :translation_author, { :input_html => { id: "storyTranslationAuthor"  }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.translation_author'), placeholder: t('.placeholder.translation_author') }))  %>
+      <% elsif original && @trans %>
+        <div class="translation_author_placeholder" style="height:90px;">&nbsp;</div>
+      <% end %>
 
       <%= f.input :about, { :as => :text, :input_html => {:class => "tinymce", :rows => 15}.merge(readonly)  }.merge(( original ? {} : { hint: t('.hint.about') }))  %>
 
@@ -48,12 +52,12 @@
   <% # not used code end %>
 
 
-      <%= f.fields_for :asset, @story.asset do |as| %>
+      <%= f.fields_for :asset, @item.asset do |as| %>
         <%= as.input :asset_type, :as => :hidden %>
 
         <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.story.thumbnail') %></label>
-        <% if @story.asset_exists? %>
-           <a class='btn btn-default preview' id="story-thumbnail-preview" data-modalos-id="modalos-preview" data-type="image"  data-image-path='<%= "#{@story.asset.asset.url(:thumbnail)}" %>'><%=  t('app.buttons.preview_image') %></a>           
+        <% if @item.asset_exists? %>
+           <a class='btn btn-default preview' id="story-thumbnail-preview" data-modalos-id="modalos-preview" data-type="image"  data-image-path='<%= "#{@item.asset.asset.url(:thumbnail)}" %>'><%=  t('app.buttons.preview_image') %></a>           
         <% end %>  
         <% if !original %>
           <%= as.input :asset, :as => :file , hint: t('.hint.thumbnail') , :input_html => { :id => "storyThumbnail", accept:".jpg,.jpeg,.png" }, label: false  %> 
@@ -67,6 +71,4 @@
       </div> 
     <% end %>
   <% end %>
-<% end %>
-
 

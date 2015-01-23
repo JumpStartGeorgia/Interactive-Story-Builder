@@ -15,8 +15,9 @@ class StorytellerController < ApplicationController
   	@story = Story.is_published.fullsection(story.id) if story.present?  
 
   	if @story.present?
-      # set story locale (in app controller)
-      set_story_current_locale(@story)
+      # set story locale if param exists
+      # - by default the current_locale is set to the story_locale
+      @story.current_locale = params[:story_language] if params[:story_language].present?
 
       # record if the user has liked this story
       @user_likes = false
