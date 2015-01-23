@@ -43,6 +43,8 @@
 
           <%= f.input :themes, :as => :select, :hint => t('.hint.theme'), :collection => @themes.map{|x|[x.formatted_name, x.id]}, :multiple => true, :input_html => { :id => 'storyThemes', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7", :title => t('app.common.nothing_selected') } %>
 
+          <%= f.input :in_theme_slider, :as => :boolean , hint: t('.hint.in_theme_slider'), :default => true, :input_html => { id: "sectionThemeSlider"} %> 
+          
         <% end %>
 
         <% # not used code  %>
@@ -67,6 +69,8 @@
             <%= as.input :asset, :as => :file , hint: t('.hint.thumbnail') , :input_html => { :id => "storyThumbnail", accept:".jpg,.jpeg,.png" }, label: false  %> 
           <% end %> 
         <% end %> 
+
+        
       <% end %>
     <% end %>
     <% if !(@trans && original) %>

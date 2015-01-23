@@ -593,6 +593,7 @@ en:
         tag_list: "Enter text to find existing tags.  If your tag does not exist yet, press 'Enter' to add the new tag to the list."
         story_type: Select the type of your story.
         theme: Select the theme(s) your story belongs to.
+        in_theme_slider: "If checked, this story will appear in the slider at the top of the theme page."
     collaborators:
       title: "Collaborators for '%{title}'"
       owner_header: Story Owner
