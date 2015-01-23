@@ -508,6 +508,14 @@ $(document).ready(function() {
 
  
 
+  // when the story locale changes, make sure the hidden locale field also changes
+  $('#storyLocale').change(function(){
+    $('input#storyHiddenLocale').val($('#storyLocale').val());
+  });
+
+
+
+
   // add autocomplete for tags
   if ($('#storyTagList').length > 0){
     $('#storyTagList').tokenInput(

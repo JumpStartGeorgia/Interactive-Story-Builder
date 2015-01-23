@@ -17,17 +17,26 @@ module Globalize
   module ActiveRecord
     module InstanceMethods
 
-      # ignore the first step that gets all translations on record - just want to get the one that is a match
-      def translation_for_custom(locale, build_if_missing = true)
+      # if this is a story translation, skip the detect step
+      def translation_for(locale, build_if_missing = true)
         unless translation_caches[locale]
           # Fetch translations from database as those in the translation collection may be incomplete
-          # _translation = translations.detect{|t| t.locale.to_s == locale.to_s}
+          _translation = translations.detect{|t| t.locale.to_s == locale.to_s} if is_story_translation == false
           _translation ||= translations.with_locale(locale).first unless translations.loaded?
           _translation ||= translations.build(:locale => locale) if build_if_missing
           translation_caches[locale] = _translation if _translation
         end
         translation_caches[locale]
-      end      
+      end
+ 
+      # if this is a story translation use the current_locale
+      def translation
+        if is_story_translation == true
+          translation_for(current_locale)
+        else
+          translation_for(::Globalize.locale)
+        end
+      end
 
 
       # flag to indicate if translation is for story
@@ -85,6 +94,7 @@ module Globalize
 
       # override to use current_locale if is story translation
       def read_attribute(name, options = {})
+        puts "== read_attribute"
         # Deprecate old use of locale
         unless options.is_a?(Hash)
           warn "[DEPRECATION] passing 'locale' as #{options.inspect} is deprecated. Please use {:locale => #{options.inspect}} instead."
@@ -94,16 +104,34 @@ module Globalize
         options = {:translated => true, :locale => nil}.merge(options)
         if self.class.translated?(name) and options[:translated]
           if (is_story_translation == true && value = globalize.fetch(options[:locale] || current_locale, name))
+            puts "==== 1"
             value
           elsif (is_story_translation == false && value = globalize.fetch(options[:locale] || Globalize.locale, name))
+            puts "==== 2"
             value
           else
+            puts "==== 3"
             super(name)
           end
         else
+            puts "==== 4"
           super(name)
         end
       end
+    end
+  end
+end
+
+module Globalize
+  module ActiveRecord
+    class Adapter
+
+      def fetch_attribute(locale, name)
+        puts "&&&&&&&&&&&& fetch_attribute"
+        translation = record.translation_for(locale, false)
+        return translation && translation.send(name)
+      end
+
     end
   end
 end
@@ -121,3 +149,5 @@ module Globalize
     end
   end
 end
+
+

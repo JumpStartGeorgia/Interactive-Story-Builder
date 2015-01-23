@@ -174,7 +174,7 @@ class StoriesController < ApplicationController
     end
   end
 # load the item (i.e., Section.find_by_id)
-# call: item.translation_for_custom(locale), where locale is the locale to get text for
+# call: item.translation_for(locale), where locale is the locale to get text for
 # In partial, add the following do block before you use any of the fields: 
 # Globalize.with_locale(locale) do
 #   # form field stuff here
@@ -231,7 +231,7 @@ class StoriesController < ApplicationController
       respond_to do |format|
         if @item.present?
           # get the translations for this item or build it if not exist yet
-          @item.translation_for_custom(current_locale)
+          @item.translation_for(current_locale)
           @item.current_locale = current_locale
 
           @themes = Theme.sorted
@@ -254,7 +254,7 @@ class StoriesController < ApplicationController
       respond_to do |format|
         if @item.present?
           # get the translations for this item or build it if not exist yet
-          @item.translation_for_custom(current_locale)
+          @item.translation_for(current_locale)
           @item.current_locale = current_locale
 
           format.js { render :action => "get_section" }          
@@ -274,7 +274,7 @@ class StoriesController < ApplicationController
       respond_to do |format|
         if @item.present?
           # get the translations for this item or build it if not exist yet
-          @item.translation_for_custom(current_locale)
+          @item.translation_for(current_locale)
           @item.current_locale = current_locale
 
           format.js  {render :action => "get_content" }
@@ -301,7 +301,7 @@ class StoriesController < ApplicationController
       respond_to do |format|
          if @item.present?
           # get the translations for this item or build it if not exist yet
-          @item.translation_for_custom(current_locale)
+          @item.translation_for(current_locale)
           @item.current_locale = current_locale
 
           format.js {render :action => "get_media" }
@@ -325,7 +325,7 @@ class StoriesController < ApplicationController
       respond_to do |format|
         if @item.present?
           # get the translations for this item or build it if not exist yet
-          @item.translation_for_custom(current_locale)
+          @item.translation_for(current_locale)
           @item.current_locale = current_locale
 
           format.js {render :action => "get_slideshow" }
@@ -344,7 +344,7 @@ class StoriesController < ApplicationController
       respond_to do |format|
         if @item.present?
           # get the translations for this item or build it if not exist yet
-          @item.translation_for_custom(current_locale)
+          @item.translation_for(current_locale)
           @item.current_locale = current_locale
 
           format.js {render :action => "get_embed_media" }
@@ -363,7 +363,7 @@ class StoriesController < ApplicationController
       respond_to do |format|
         if @item.present?
           # get the translations for this item or build it if not exist yet
-          @item.translation_for_custom(current_locale)
+          @item.translation_for(current_locale)
           @item.current_locale = current_locale
 
           format.js {render :action => "get_youtube" }
@@ -799,12 +799,12 @@ end
     if params[:text].present?
       permalink_staging = params[:text]
       permalink_temp = permalink_normalize(permalink_staging)
-      story = Story.select('permalink, permalink_staging').where(:id => params[:id]).limit(1).first
+      story = StoryTranslation.select('permalink, permalink_staging').where(:story_id => params[:id]).limit(1).first
       # if the story could not be found, use an empty story
       logger.debug "*********** new staging = #{permalink_staging}; story = #{story.inspect}"
       if story.blank?
         logger.debug "*********** story blank"
-        story = Story.new(:permalink_staging => permalink_staging)
+        story = StoryTranslation.new(:permalink_staging => permalink_staging)
         story.generate_permalink
         output = {:permalink => story.permalink, :is_duplicate => story.is_duplicate_permalink?}
         

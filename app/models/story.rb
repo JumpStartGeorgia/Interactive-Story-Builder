@@ -39,7 +39,7 @@ class Story < ActiveRecord::Base
 
 	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
   accepts_nested_attributes_for :story_translations
-  attr_accessible :story_translations_attributes
+#  attr_accessible :story_translations_attributes
 
   attr_reader :tag_list_tokens
   attr_accessor :send_notification, :send_staff_pick_notification, :send_comment_notification
