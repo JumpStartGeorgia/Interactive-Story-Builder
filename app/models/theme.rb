@@ -3,7 +3,7 @@ class Theme < ActiveRecord::Base
 
   has_many :theme_translations, :dependent => :destroy
   accepts_nested_attributes_for :theme_translations
-  attr_accessible :is_published, :published_at, :show_home_page, :theme_translations_attributes
+  attr_accessible :id, :is_published, :published_at, :show_home_page, :theme_translations_attributes
 
 
   scope :published, where(:is_published => 1)

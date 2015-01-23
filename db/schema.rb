@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150121064004) do
+ActiveRecord::Schema.define(:version => 20150123140154) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -104,6 +104,31 @@ ActiveRecord::Schema.define(:version => 20150121064004) do
 
   add_index "embed_medium_translations", ["embed_medium_id"], :name => "index_embed_medium_translations_on_embed_medium_id"
   add_index "embed_medium_translations", ["locale"], :name => "index_embed_medium_translations_on_locale"
+
+  create_table "impressions", :force => true do |t|
+    t.string   "impressionable_type"
+    t.integer  "impressionable_id"
+    t.integer  "user_id"
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.string   "view_name"
+    t.string   "request_hash"
+    t.string   "ip_address"
+    t.string   "session_hash"
+    t.text     "message"
+    t.text     "referrer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "impressions", ["controller_name", "action_name", "ip_address"], :name => "controlleraction_ip_index"
+  add_index "impressions", ["controller_name", "action_name", "request_hash"], :name => "controlleraction_request_index"
+  add_index "impressions", ["controller_name", "action_name", "session_hash"], :name => "controlleraction_session_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "ip_address"], :name => "poly_ip_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], :name => "poly_request_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], :name => "poly_session_index"
+  add_index "impressions", ["impressionable_type", "message", "impressionable_id"], :name => "impressionable_type_message_index", :length => {"impressionable_type"=>nil, "message"=>255, "impressionable_id"=>nil}
+  add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
 
   create_table "invitations", :force => true do |t|
     t.integer  "from_user_id"
@@ -306,6 +331,7 @@ ActiveRecord::Schema.define(:version => 20150121064004) do
     t.integer  "comments_count",        :default => 0
     t.string   "old_permalink_staging"
     t.integer  "story_type_id"
+    t.boolean  "in_theme_slider"
   end
 
   add_index "stories", ["cached_votes_down"], :name => "index_stories_on_cached_votes_down"
@@ -314,6 +340,7 @@ ActiveRecord::Schema.define(:version => 20150121064004) do
   add_index "stories", ["cached_votes_up"], :name => "index_stories_on_cached_votes_up"
   add_index "stories", ["cached_weighted_score"], :name => "index_stories_on_cached_weighted_score"
   add_index "stories", ["comments_count"], :name => "index_stories_on_comments_count"
+  add_index "stories", ["in_theme_slider"], :name => "index_stories_on_in_theme_slider"
   add_index "stories", ["old_permalink"], :name => "index_stories_on_permalink"
   add_index "stories", ["old_published"], :name => "index_stories_on_published"
   add_index "stories", ["old_published_at"], :name => "index_stories_on_published_at"

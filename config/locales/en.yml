@@ -46,7 +46,8 @@ en:
         permalink_staging: Story URL
         tag_list: Tags
         categories: Categories
-        type: Type
+        story_type: Type
+        in_theme_slider: Show Story in Theme Slider
       section:
         title: Title
         audio: Audio Track

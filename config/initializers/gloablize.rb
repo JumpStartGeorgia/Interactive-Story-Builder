@@ -94,7 +94,6 @@ module Globalize
 
       # override to use current_locale if is story translation
       def read_attribute(name, options = {})
-        puts "== read_attribute"
         # Deprecate old use of locale
         unless options.is_a?(Hash)
           warn "[DEPRECATION] passing 'locale' as #{options.inspect} is deprecated. Please use {:locale => #{options.inspect}} instead."
@@ -104,17 +103,13 @@ module Globalize
         options = {:translated => true, :locale => nil}.merge(options)
         if self.class.translated?(name) and options[:translated]
           if (is_story_translation == true && value = globalize.fetch(options[:locale] || current_locale, name))
-            puts "==== 1"
             value
           elsif (is_story_translation == false && value = globalize.fetch(options[:locale] || Globalize.locale, name))
-            puts "==== 2"
             value
           else
-            puts "==== 3"
             super(name)
           end
         else
-            puts "==== 4"
           super(name)
         end
       end
