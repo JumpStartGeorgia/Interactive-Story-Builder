@@ -12,25 +12,32 @@ class TranslateYoutube < ActiveRecord::Migration
     Story.transaction do
       Story.all.each do |story|
         puts "- id =#{story.id}; locale = #{story.story_locale}"
+        Globalize.story_locale = story.story_locale
         story.sections.each do |section|
           if section.youtube? && section.youtube.present?
-            puts "-- section id #{section.id}, youtube id = #{section.youtube.id}"
+            puts "-- section id #{section.id}, youtube id = #{section.youtube.id}; current_locale = #{section.current_locale}"
+
+            trans = section.youtube.translation_for(story.story_locale)
+            trans.title = section.youtube.old_title
+            trans.url = section.youtube.old_url
+            trans.save
+
             # if youtube translation for this locale already exists, use it, 
             # else create a new translation record
-            index = section.youtube.youtube_translations.index{|x| x.locale == story.story_locale}
-            if index.present?
-              puts "-- updating"
-              trans = section.youtube.youtube_translations[index]
-              trans.title = section.youtube.old_title
-              trans.url = section.youtube.old_url
-              trans.save
-            else
-              puts "-- adding"
-              trans = section.youtube.youtube_translations.build(:locale => story.story_locale)
-              trans.title = section.youtube.old_title
-              trans.url = section.youtube.old_url
-              trans.save
-            end              
+            # index = section.youtube.youtube_translations.index{|x| x.locale == story.story_locale}
+            # if index.present?
+            #   puts "-- updating"
+            #   trans = section.youtube.youtube_translations[index]
+            #   trans.title = section.youtube.old_title
+            #   trans.url = section.youtube.old_url
+            #   trans.save
+            # else
+            #   puts "-- adding"
+            #   trans = section.youtube.youtube_translations.build(:locale => story.story_locale)
+            #   trans.title = section.youtube.old_title
+            #   trans.url = section.youtube.old_url
+            #   trans.save
+            # end              
           end
         end        
       end

@@ -14,10 +14,11 @@ class TranslateSlideshow < ActiveRecord::Migration
     Story.transaction do
       Story.all.each do |story|
         puts "- id =#{story.id}; locale = #{story.story_locale}"
+        Globalize.story_locale = story.story_locale
         story.sections.each do |section|
           if section.slideshow? && section.slideshow.present?
-            puts "-- section id #{section.id}, slideshow id = #{section.slideshow.id}"
-            trans = section.slideshow.slideshow_translations.build(:locale => story.story_locale)
+            puts "-- section id #{section.id}, slideshow id = #{section.slideshow.id}; current_locale = #{section.current_locale}"
+            trans = section.slideshow.translation_for(story.story_locale)
             trans.title = section.slideshow.old_title
             trans.caption = section.slideshow.old_caption
             trans.save

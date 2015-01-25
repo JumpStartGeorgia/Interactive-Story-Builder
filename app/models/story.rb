@@ -39,11 +39,9 @@ class Story < ActiveRecord::Base
 
 	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
   accepts_nested_attributes_for :story_translations
-#  attr_accessible :story_translations_attributes
 
   attr_reader :tag_list_tokens
   attr_accessor :send_notification, :send_staff_pick_notification, :send_comment_notification
-#  attr_accessible :name, :tag_list_tokens
 
   DEMO_ID = 2
 
@@ -172,10 +170,23 @@ class Story < ActiveRecord::Base
 
     if s.present?
       locale ||= s.story_locale
-      includes(:translations, {sections: [:media,:content,:embed_medium,:youtube,:slideshow]})
-      .where(stories: {id: story_id})
-      .with_locales(locale)
-      .first
+      # x = includes({sections: [:media,:content,:embed_medium,:youtube,:slideshow]})
+      #   .where(stories: {id: story_id})
+      #   .first
+
+      x = includes(:translations, {sections: [:media,:content,:embed_medium,:youtube,:slideshow]})
+        .where(stories: {id: story_id})
+        .with_locales(locale)
+        .first
+
+      # x = includes({sections: [:media,:content,:embed_medium,:youtube,:slideshow]})
+      #   .where(stories: {id: story_id})
+      #   .with_translations(locale)
+      #   .first
+
+      # x.translation_for(locale)
+
+      return x
     end
 	end
 	

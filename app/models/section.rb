@@ -19,7 +19,6 @@ class Section < ActiveRecord::Base
 
   accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
   accepts_nested_attributes_for :section_translations
-  attr_accessible :section_translations_attributes
 
   attr_accessor :delete_audio
 

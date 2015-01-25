@@ -10,7 +10,7 @@
   <%= semantic_form_for(@item, :html => {:multipart => true, :id => "storyForm"}) do |f| %>
 
     <%= f.inputs do %>
-      <%= f.fields_for :story_translations, @item.translation_for(@item.story_locale) do |f_translation| %>
+      <%= f.fields_for :story_translations, @item.translation_for(@item.current_locale) do |f_translation| %>
 
         <%= f.input :user_id , :as => :hidden %>
 

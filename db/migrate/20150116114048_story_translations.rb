@@ -30,40 +30,55 @@ class StoryTranslations < ActiveRecord::Migration
     add_index :story_translations, :published_at
     add_index :story_translations, :language_type
 
+    # fix story_locale so it does not have default value
+    change_column :stories, :story_locale, :string, :default => nil
+
     # move the data using the story_locale as the translation locale
     Story.transaction do
       Story.all.each do |story|
-        puts "- id =#{story.id}; locale = #{story.story_locale}"
+        puts "- id = #{story.id}; story locale = #{story.story_locale}; current_locale = #{story.current_locale}"
+        
+        trans = story.translation_for(story.current_locale)
+        trans.title = story.old_title
+        trans.permalink = story.old_permalink
+        trans.permalink_staging = story.old_permalink_staging
+        trans.author = story.old_author
+        trans.media_author = story.old_media_author
+        trans.about = story.old_about
+        trans.published = story.old_published
+        trans.published_at = story.old_published_at
+        trans.save
+
         # if story translation for this locale already exists, use it, 
         # else create a new translation record
-        index = story.story_translations.index{|x| x.locale == story.story_locale}
-        if index.present?
-          puts "-- updating"
-          # update
-          trans = story.story_translations[index]
-          trans.title = story.old_title
-          trans.permalink = story.old_permalink
-          trans.permalink_staging = story.old_permalink_staging
-          trans.author = story.old_author
-          trans.media_author = story.old_media_author
-          trans.about = story.old_about
-          trans.published = story.old_published
-          trans.published_at = story.old_published_at
-          trans.save
-        else
-          puts "-- adding"
-          # add
-          trans = story.story_translations.build(:locale => story.story_locale)
-          trans.title = story.old_title
-          trans.permalink = story.old_permalink
-          trans.permalink_staging = story.old_permalink_staging
-          trans.author = story.old_author
-          trans.media_author = story.old_media_author
-          trans.about = story.old_about
-          trans.published = story.old_published
-          trans.published_at = story.old_published_at
-          trans.save
-        end
+        # index = story.story_translations.index{|x| x.locale == story.story_locale}
+        # if index.present?
+        #   puts "-- updating"
+        #   # update
+        #   trans = story.story_translations[index]
+        #   trans.title = story.old_title
+        #   trans.permalink = story.old_permalink
+        #   trans.permalink_staging = story.old_permalink_staging
+        #   trans.author = story.old_author
+        #   trans.media_author = story.old_media_author
+        #   trans.about = story.old_about
+        #   trans.published = story.old_published
+        #   trans.published_at = story.old_published_at
+        #   trans.save
+        # else
+        #   puts "-- adding"
+        #   # add
+        #   trans = story.story_translations.build(:locale => story.story_locale)
+        #   trans.title = story.old_title
+        #   trans.permalink = story.old_permalink
+        #   trans.permalink_staging = story.old_permalink_staging
+        #   trans.author = story.old_author
+        #   trans.media_author = story.old_media_author
+        #   trans.about = story.old_about
+        #   trans.published = story.old_published
+        #   trans.published_at = story.old_published_at
+        #   trans.save
+        # end
       end
     end
   end
@@ -78,6 +93,7 @@ class StoryTranslations < ActiveRecord::Migration
 
     remove_column :story_translations, :title
     remove_column :story_translations, :permalink
+    remove_column :story_translations, :permalink_staging
     remove_column :story_translations, :author
     remove_column :story_translations, :media_author
     remove_column :story_translations, :about

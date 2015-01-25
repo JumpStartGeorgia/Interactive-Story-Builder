@@ -3,7 +3,7 @@ module Globalize
 
   class << self
     def story_locale
-      @story_locale || locale
+      @story_locale || self.locale
     end
 
     def story_locale=(locale)
@@ -17,18 +17,6 @@ module Globalize
   module ActiveRecord
     module InstanceMethods
 
-      # if this is a story translation, skip the detect step
-      def translation_for(locale, build_if_missing = true)
-        unless translation_caches[locale]
-          # Fetch translations from database as those in the translation collection may be incomplete
-          _translation = translations.detect{|t| t.locale.to_s == locale.to_s} if is_story_translation == false
-          _translation ||= translations.with_locale(locale).first unless translations.loaded?
-          _translation ||= translations.build(:locale => locale) if build_if_missing
-          translation_caches[locale] = _translation if _translation
-        end
-        translation_caches[locale]
-      end
- 
       # if this is a story translation use the current_locale
       def translation
         if is_story_translation == true
@@ -58,7 +46,7 @@ module Globalize
 
       def current_locale
         x = @current_locale.present? ? @current_locale : self.read_attribute(:story_locale).present? && self.story_locale.present? ? self.story_locale : Globalize.story_locale
-        puts "========= globalize current locale = #{x}"
+        puts "========= globalize current locale = #{x}; @current = #{@current_locale}; attr present = #{self.read_attribute(:story_locale).present?}; story locale = #{self.story_locale if self.read_attribute(:story_locale).present?}; globalize story locale = #{Globalize.story_locale}"
         return x
       end
 

@@ -644,7 +644,7 @@ class StoriesController < ApplicationController
   def sections
     #Rails.logger.debug("---------------------------------------------#{params.inspect}")
     @story = Story.fullsection(params[:id])   
-    @tr = params.has_key?(:tr) ? params[:tr] : false
+    @tr = params.has_key?(:tr) ? params[:tr].to_bool : false
     if @tr
       @tr_from  = params.has_key?(:tr_from) ? params[:tr_from] : @story.story_locale
       @tr_to    = params.has_key?(:tr_to) ? params[:tr_to] : @languages.where("locale != '#{@story.story_locale}'").order('locale').first.locale

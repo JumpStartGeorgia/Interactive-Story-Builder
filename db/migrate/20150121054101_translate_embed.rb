@@ -12,10 +12,11 @@ class TranslateEmbed < ActiveRecord::Migration
     Story.transaction do
       Story.all.each do |story|
         puts "- id =#{story.id}; locale = #{story.story_locale}"
+        Globalize.story_locale = story.story_locale
         story.sections.each do |section|
           if section.embed_media? && section.embed_medium.present?
-            puts "-- section id #{section.id}, embed_medium id = #{section.embed_medium.id}"
-            trans = section.embed_medium.embed_medium_translations.build(:locale => story.story_locale)
+            puts "-- section id #{section.id}, embed_medium id = #{section.embed_medium.id}; current_locale = #{section.current_locale}"
+            trans = section.embed_medium.translation_for(story.story_locale)
             trans.title = section.embed_medium.old_title
             trans.url = section.embed_medium.old_url
             trans.code = section.embed_medium.old_code

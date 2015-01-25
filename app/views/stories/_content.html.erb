@@ -8,24 +8,29 @@
 
 <%= semantic_form_for(@item, url: content_story_path(id:params[:id]), remote: true) do |f| %>
   <%= f.inputs do %>
-    <%= f.input :title, :placeholder=>t('.placeholder.title'), hint: t('.hint.title') , :input_html => { :id => "contentTitle", } %>
-    <%= f.input :caption, :placeholder=>t('.placeholder.caption'), hint: t('.hint.caption'), :input_html => { :id => "contentCaption" } %>    
-    <%= f.input :sub_caption, :placeholder=>t('.placeholder.sub_caption'), hint: t('.hint.sub_caption'), :input_html => { :id => "contentSubCaption" } %>    
-    <label><%= t('activerecord.attributes.content.text') %></label>
-    <div class="help-inline" title="<%= t('.hint.content') %>"><div>?</div></div>
-    <%= f.input :content, :as => :text, :label => false, :input_html => {:class => 'tinymce', :rows => 30, :id => "contentArticle"} %>    
-     <!--a class='btn btn-default preview' id="content-preview" data-modalos-id="modalos-preview" data-type="text"><%= t('app.buttons.preview') %></a-->          
-     
-    
-    <%= f.input :section_id, :as => :hidden , :input_html => { :id => "contentSection" }  %>
-    <% if @item.id.present? %>
-    	<%= f.input :id, :as => :hidden , :input_html => { :id => "contentId" }  %>    
-    <% end %>
+    <%= f.fields_for :content_translations, @item.translation_for(@item.current_locale) do |f_translation| %>
 
-     <div class="pull-right spacer">      
-      <%= f.submit nil, :class => 'btn btn-default' %> 
-      <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>                
-    </div>
+      <%= f_translation.input :locale , :as => :hidden %>
+
+      <%= f_translation.input :title, :placeholder=>t('.placeholder.title'), hint: t('.hint.title') , :input_html => { :id => "contentTitle", } %>
+      <%= f_translation.input :caption, :placeholder=>t('.placeholder.caption'), hint: t('.hint.caption'), :input_html => { :id => "contentCaption" } %>    
+      <%= f_translation.input :sub_caption, :placeholder=>t('.placeholder.sub_caption'), hint: t('.hint.sub_caption'), :input_html => { :id => "contentSubCaption" } %>    
+      <label><%= t('activerecord.attributes.content.text') %></label>
+      <div class="help-inline" title="<%= t('.hint.content') %>"><div>?</div></div>
+      <%= f_translation.input :text, :as => :text, :label => false, :input_html => {:class => 'tinymce', :rows => 30, :id => "contentArticle"} %>    
+       <!--a class='btn btn-default preview' id="content-preview" data-modalos-id="modalos-preview" data-type="text"><%= t('app.buttons.preview') %></a-->          
+       
+      
+      <%= f.input :section_id, :as => :hidden , :input_html => { :id => "contentSection" }  %>
+      <% if @item.id.present? %>
+      	<%= f.input :id, :as => :hidden , :input_html => { :id => "contentId" }  %>    
+      <% end %>
+
+       <div class="pull-right spacer">      
+        <%= f.submit nil, :class => 'btn btn-default' %> 
+        <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>                
+      </div>
+    <% end %>
   <% end %>
 
 <% end %>

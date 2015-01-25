@@ -7,7 +7,6 @@ class Content < ActiveRecord::Base
 
   has_many :content_translations, :dependent => :destroy
   accepts_nested_attributes_for :content_translations
-  attr_accessible :content_translations_attributes
 
   #################################
   # settings to clone story

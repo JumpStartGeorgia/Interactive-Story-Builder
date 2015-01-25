@@ -19,6 +19,8 @@ class StorytellerController < ApplicationController
       # - by default the current_locale is set to the story_locale
       @story.current_locale = params[:story_language] if params[:story_language].present?
 
+logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; permalink = #{@story.permalink}"
+
       # record if the user has liked this story
       @user_likes = false
     	@user_likes = current_user.voted_up_on? @story if user_signed_in?

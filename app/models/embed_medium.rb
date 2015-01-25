@@ -7,10 +7,17 @@ class EmbedMedium < ActiveRecord::Base
 
   has_many :embed_medium_translations, :dependent => :destroy
   accepts_nested_attributes_for :embed_medium_translations
-  attr_accessible :embed_medium_translations_attributes
 
 
   #################################
   ## Validations
 	validates :section_id, :presence => true
+
+  #################################
+  # settings to clone story
+  amoeba do
+    enable
+    clone [:embed_medium_translations]
+  end
+
 end

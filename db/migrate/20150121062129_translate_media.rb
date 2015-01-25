@@ -14,11 +14,12 @@ class TranslateMedia < ActiveRecord::Migration
     Story.transaction do
       Story.all.each do |story|
         puts "- id =#{story.id}; locale = #{story.story_locale}"
+        Globalize.story_locale = story.story_locale
         story.sections.each do |section|
           if section.media? && section.media.present?
             section.media.each do |medium|
-              puts "-- section id #{section.id}, medium id = #{medium.id}"
-              trans = medium.medium_translations.build(:locale => story.story_locale)
+              puts "-- section id #{section.id}, medium id = #{medium.id}; current_locale = #{section.current_locale}"
+              trans = medium.translation_for(story.story_locale)
               trans.title = medium.old_title
               trans.caption = medium.old_caption
               trans.caption_align = medium.old_caption_align

@@ -322,7 +322,7 @@ ActiveRecord::Schema.define(:version => 20150123140154) do
     t.text     "old_about"
     t.boolean  "publish_home_page",     :default => true
     t.boolean  "staff_pick",            :default => false
-    t.string   "story_locale",          :default => "en"
+    t.string   "story_locale"
     t.integer  "cached_votes_total",    :default => 0
     t.integer  "cached_votes_score",    :default => 0
     t.integer  "cached_votes_up",       :default => 0

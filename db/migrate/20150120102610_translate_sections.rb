@@ -10,9 +10,10 @@ class TranslateSections < ActiveRecord::Migration
     Story.transaction do
       Story.all.each do |story|
         puts "- id =#{story.id}; locale = #{story.story_locale}"
+        Globalize.story_locale = story.story_locale
         story.sections.each do |section|
-          puts "-- section id #{section.id}"
-          trans = section.section_translations.build(:locale => story.story_locale)
+          puts "-- section id #{section.id}; current_locale = #{section.current_locale}"
+          trans = section.translation_for(story.story_locale)
           trans.title = section.old_title
           trans.save
         end        
