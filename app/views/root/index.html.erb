@@ -1,55 +1,54 @@
 
 <% content_for(:header) { %>
 <header>
-  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-     <% @stories_for_slider.each_with_index { |t,i| %>
-      <li data-target="#carousel-example-generic" data-slide-to="<%= i %>" class='<%= i == 0 ? " active" : "" %>'></li>
-    <% } %>  
-    </ol>
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
+  <% if @stories_for_slider.present? %>
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+       <% @stories_for_slider.each_with_index { |t,i| %>
+        <li data-target="#carousel-example-generic" data-slide-to="<%= i %>" class='<%= i == 0 ? " active" : "" %>'></li>
+      <% } %>  
+      </ol>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
 
-    <% @stories_for_slider.each_with_index { |t,i| %>
-      <div class='item<%= i == 0 ? " active" : "" %>'>
-        <%= image_tag t.show_asset.asset.url %>
-        <div class="carousel-caption">
-          <div class='title'> <%= t.title %></div>
-          <div class='descr'> <%= t.about %></div>
-          <div class='storytype'>
-            <div class='storytype-logo <%= t.type %>'></div>
-            <div class='storytype-label' lang='<%= I18n.locale %>'><%= t("story_types."+ t.type.to_s) %></div>
+        <% @stories_for_slider.each_with_index { |story,i| %>
+          <div class='item<%= i == 0 ? " active" : "" %>'>
+            <%= image_tag story.show_asset.asset.url %>
+            <div class="carousel-caption">
+              <div class='title'> <%= story.title %></div>
+              <div class='descr'> <%= strip_tags_nbsp(story.about) %></div>
+              <div class='storytype'>
+                <div class='storytype-logo story_type_<%= story.story_type_id %>'></div>
+                <div class='storytype-label' lang='<%= I18n.locale %>'><%= get_story_type_name(story.story_type_id) %></div>
+              </div>
+            </div>
           </div>
+        <% } %>
+      
+      </div>
+
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="icon arrow-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="icon arrow-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+      <!-- Sticker -->
+      <div class='sticker'>
+        <div class='sticker-wrapper'>
+          <div class='title'><%= @theme.name %></div>
+          <div class='sep'></div>
+          <div class='date'><%= @theme.edition %></div>  <!-- I18n.l(@theme.edition, :format => '%B %Y')  -->
         </div>
       </div>
-    <% } %>
-    
     </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-      <span class="icon arrow-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-      <span class="icon arrow-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-    <!-- Sticker -->
-    <div class='sticker'>
-      <div class='sticker-wrapper'>
-        <div class='title'><%= @theme.name %></div>
-        <div class='sep'></div>
-        <div class='date'><%= @theme.edition %></div>  <!-- I18n.l(@theme.edition, :format => '%B %Y')  -->
-      </div>
-    </div>
-  </div>
-
-
-
-  
+  <% end %>
 </header>
+
     <!-- <header class="header intro<%= (1..2).to_a.sample %>">
       <div class="header-data">
         <div class="h1">    <%= t("app.common.app_intro").split(';')[0].html_safe %></div>

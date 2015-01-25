@@ -86,7 +86,34 @@ class Story < ActiveRecord::Base
 # ON (a.story_type_id = b.story_type_id AND a.published_at < b.published_at)
 # WHERE b.published_at IS NULL and a.story_type_id is not null and a.published = 1;
 
-  scope :recent_by_type, joins("LEFT JOIN stories b ON `stories`.story_type_id = b.story_type_id and `stories`.published_at < b.published_at").where("`stories`.published = true and b.published_at is null").order("`stories`.story_type_id")
+#  scope :recent_by_type, joins("LEFT JOIN stories b ON `stories`.story_type_id = b.story_type_id and `stories`.published_at < b.published_at").where("`stories`.published = true and b.published_at is null").order("`stories`.story_type_id")
+
+  # get the most recent story published by in each story type
+  # options[:theme_id] - ability to get recent stories by type for a specific theme
+  def self.recent_by_type(options = {})
+    # get the id of the stories that are the latest in each type
+    # if theme_id passed in, also filter by that id
+    sql = "select s.id from stories as s "
+    sql << "INNER JOIN story_translations as st ON st.story_id = s.id "
+    sql << "inner join ( "
+    sql << "  SELECT s2.story_type_id, max(st2.published_at) as published_at "
+    sql << "  FROM stories as s2 " 
+    sql << "  INNER JOIN story_translations as st2 ON st2.story_id = s2.id "
+    if options[:theme_id].present?
+      sql << "  inner join story_themes as sth2 on sth2.story_id = s2.id "
+    end
+    sql << "  WHERE s2.story_type_id is not null and st2.published = 1 "
+    if options[:theme_id].present?
+      sql << "  and sth2.theme_id = :theme_id "
+    end
+    sql << "  GROUP BY s2.story_type_id "
+    sql << ") as x on s.story_type_id = x.story_type_id and st.published_at = x.published_at "
+    matches = find_by_sql([sql, theme_id: options[:theme_id]])
+
+    # now get the stories
+    where(:id => matches.map{|x| x.id}).order('story_type_id')
+  end
+
   
   # since there can be many language records for a story (thus many published_at dates, titles, etc), it is possible to get duplicate records for a story
   # so must use the uniq method

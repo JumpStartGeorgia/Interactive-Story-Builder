@@ -70,6 +70,14 @@ module ApplicationHelper
 	    strip_tags(text.gsub('&nbsp;', ' '))
     end
 	end
+
+  # get the story type name from the @story_types global variable
+  def get_story_type_name(id)
+    if @story_types.present?
+      index = @story_types.index{|x| x.id == id}
+      @story_types[index].name if index.present?
+    end
+  end
 	
 
 	# put the default locale first and then sort the remaining locales

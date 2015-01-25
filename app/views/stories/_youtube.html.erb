@@ -6,41 +6,45 @@
 <%= semantic_form_for(@item, url: youtube_story_path(id:params[:id],:format => :js), :html => {:id => "youtubeForm"} ,remote: true) do |f| %>
 <%= error_messages_for f.object %>
   <%= f.inputs do %>
-    <%= f.input :title, hint: t('.hint.title'), :input_html => { :id => "youtubeTitle" } %>
-    <%= f.input :url, :as => :url, :placeholder => t('.placeholder.url'), :hint => t('.hint.url'), :input_html => { :id => "youtubeUrl" } %>
-    <div class='one-line'>
-      <%= f.input :fullscreen, :as => :boolean, :hint => t('.hint.fullscreen'), :input_html => { id: "youtubeFullcsreen" } %>   
-      <%= f.input :loop, :as => :boolean, :hint => t('.hint.loop'), :input_html => { id: "youtubeLoop" } %>   
-      <%= f.input :info, :as => :boolean, :hint => t('.hint.info'), :input_html => { id: "youtubeInfo" } %> 
-    
-    <%= f.semantic_fields_for :youtube_translations, @item.youtube_translations do |as| %>   
-      <%= as.input :cc, :as => :boolean, :hint => t('.hint.cc'), :input_html => { id: "youtubeCC", class: "end-line one-line"}, :class=>'asdf' %> 
-    </div>
-    <div class='one-line'>  
-      <%= as.input :menu_lang , :as => :select, :hint => t('.hint.menu_lang'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "youtubePlayerLang", :class => "selectpicker one-line", :'data-live-search' => "true", :'data-size' => "7"  } %>
+    <%= f.fields_for :youtube_translations, @item.translation_for(@item.current_locale) do |f_translation| %>
 
-      <%= as.input :cc_lang , :as => :select, :hint => t('.hint.cc_lang'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "youtubeCCLang", :class => "selectpicker one-line", :'data-live-search' => "true", :'data-size' => "7"  } %>
-      <%= as.input :locale, :as => :hidden %>
-    <% end %> 
-    </div>
+      <%= f_translation.input :locale , :as => :hidden %>
 
-    <button id="btnGetEmbed" type="button" class="btn btn-info btn-mini" style="padding: 2px 6px"><%= t('.get_media') %></button>
+      <%= f_translation.input :title, hint: t('.hint.title'), :input_html => { :id => "youtubeTitle" } %>
+      <%= f_translation.input :url, :as => :url, :placeholder => t('.placeholder.url'), :hint => t('.hint.url'), :input_html => { :id => "youtubeUrl" } %>
 
-    <div id="youtubePreview">
-      <h3><%= t('.preview') %></h3>
-      <div class="alert alert-danger" id="youtubeError">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <% t('.error') %>
+      <div class='one-line'>
+        <%= f.input :fullscreen, :as => :boolean, :hint => t('.hint.fullscreen'), :input_html => { id: "youtubeFullcsreen" } %>   
+        <%= f.input :loop, :as => :boolean, :hint => t('.hint.loop'), :input_html => { id: "youtubeLoop" } %>   
+        <%= f.input :info, :as => :boolean, :hint => t('.hint.info'), :input_html => { id: "youtubeInfo" } %> 
+      
+        <%= f_translation.input :cc, :as => :boolean, :hint => t('.hint.cc'), :input_html => { id: "youtubeCC", class: "end-line one-line"}, :class=>'asdf' %> 
       </div>
-      <div id="youtubeResult">
-        <%= @item.code.html_safe if @item.code.present? %>
+      <div class='one-line'>  
+        <%= f_translation.input :menu_lang , :as => :select, :hint => t('.hint.menu_lang'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "youtubePlayerLang", :class => "selectpicker one-line", :'data-live-search' => "true", :'data-size' => "7"  } %>
+
+        <%= f_translation.input :cc_lang , :as => :select, :hint => t('.hint.cc_lang'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "youtubeCCLang", :class => "selectpicker one-line", :'data-live-search' => "true", :'data-size' => "7"  } %>
+        <%= f_translation.input :locale, :as => :hidden %>
       </div>
-    </div>
+
+      <button id="btnGetEmbed" type="button" class="btn btn-info btn-mini" style="padding: 2px 6px"><%= t('.get_media') %></button>
+
+      <div id="youtubePreview">
+        <h3><%= t('.preview') %></h3>
+        <div class="alert alert-danger" id="youtubeError">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <% t('.error') %>
+        </div>
+        <div id="youtubeResult">
+          <%= @item.code.html_safe if @item.code.present? %>
+        </div>
+      </div>
 
 
-    <%= f.input :section_id, :as => :hidden , :input_html => { :id => "youtubeSection" }  %>
-    <% if @item.id.present? %>
-      <%= f.input :id, :as => :hidden , :input_html => { :id => "youtubeId" }  %>    
+      <%= f.input :section_id, :as => :hidden , :input_html => { :id => "youtubeSection" }  %>
+      <% if @item.id.present? %>
+        <%= f.input :id, :as => :hidden , :input_html => { :id => "youtubeId" }  %>    
+      <% end %>
     <% end %>
   <% end %>
 
