@@ -305,6 +305,16 @@ class Story < ActiveRecord::Base
 	    self.thumbnail.instance_write(:file_name, "#{StoriesHelper.transliterate(filename)}.#{StoriesHelper.transliterate(extension)}")
 	  end
 	end
+
+  # get the published languages for this story
+  def published_languages
+    locales = StoryTranslation.select('locale').where(:story_id => self.id, :published => true).map{|x| x.locale}
+    if locales.present?
+      Language.where(:locale => locales).sorted
+    else
+      return nil
+    end
+  end
 	
   # use amoeba to clone the story and all of its records
   # after the clone is complete, copy all assets from the original story to the new story
