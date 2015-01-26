@@ -35,7 +35,7 @@ module Globalize
 
       def is_story_translation
         x = @is_story_translation.nil? ? false : @is_story_translation
-        puts "========= globalize is_story_translation = #{x}"
+#        puts "========= globalize is_story_translation = #{x}"
         return x
       end
 
@@ -46,7 +46,7 @@ module Globalize
 
       def current_locale
         x = @current_locale.present? ? @current_locale : self.read_attribute(:story_locale).present? && self.story_locale.present? ? self.story_locale : Globalize.story_locale
-        puts "========= globalize current locale = #{x}; @current = #{@current_locale}; attr present = #{self.read_attribute(:story_locale).present?}; story locale = #{self.story_locale if self.read_attribute(:story_locale).present?}; globalize story locale = #{Globalize.story_locale}"
+#        puts "========= globalize current locale = #{x}; @current = #{@current_locale}; attr present = #{self.read_attribute(:story_locale).present?}; story locale = #{self.story_locale if self.read_attribute(:story_locale).present?}; globalize story locale = #{Globalize.story_locale}"
         return x
       end
 
@@ -105,19 +105,19 @@ module Globalize
   end
 end
 
-module Globalize
-  module ActiveRecord
-    class Adapter
+# module Globalize
+#   module ActiveRecord
+#     class Adapter
 
-      def fetch_attribute(locale, name)
-        puts "&&&&&&&&&&&& fetch_attribute"
-        translation = record.translation_for(locale, false)
-        return translation && translation.send(name)
-      end
+#       def fetch_attribute(locale, name)
+#         puts "&&&&&&&&&&&& fetch_attribute"
+#         translation = record.translation_for(locale, false)
+#         return translation && translation.send(name)
+#       end
 
-    end
-  end
-end
+#     end
+#   end
+# end
 
 # want to allow all field types, not just string and text
 module Globalize
