@@ -4,8 +4,8 @@ set -e
 ##################################
 ##### SET THESE VARIABLES ########
 ##################################
-AS_USER=story-builder-staging # name of user on server
-APP_ROOT=/home/story-builder-staging/Story-Builder-Staging/current # path to application current folder
+AS_USER=chai-khana-staging # name of user on server
+APP_ROOT=/home/chai-khana-staging/Chai-Khana-Staging/current # path to application current folder
 # update the name of the enviroment at '-E _____' to production, staging, etc
 CMD="cd $APP_ROOT; bundle exec unicorn -D -c $APP_ROOT/config/deploy/staging/unicorn.rb -E staging"
 ##################################
