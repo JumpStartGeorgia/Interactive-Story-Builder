@@ -1,6 +1,6 @@
 <% original ||= false %>
-<%= tinymce_assets %>
-<%= tinymce :readonly => 1 %>
+<% #tinymce_assets %>
+<% #tinymce %>
 <% readonly = {} %>
 <% if original && @trans %>
   <% readonly = { readonly:true , disabled: true } %>

@@ -57,6 +57,10 @@
                 <div class="story-title"><span><%= @story.title %></span></div>
                 <div class='tools'>
 
+                <%= link_to '#', title: t('helpers.links.story_menu.link.preview') + ' - ' + t('helpers.links.story_menu.title.preview'), class: 'btn btn-edit-story btn-primary' do %>
+                    <span class="glyphicon glyphicon-edit" ></span>          
+                  <% end %>
+
                 <%= link_to '#', title: t('app.buttons.add_section') , class: 'btn btn-create-section' do %>
                     <span class="glyphicon glyphicon-align-justify" ></span>          
                   <% end %>

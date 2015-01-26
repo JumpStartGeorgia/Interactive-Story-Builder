@@ -7,7 +7,7 @@ var selectedType = 'story';
 var method = 'n';
 var tester = null;
 var story_tree = null;
-var section_types = ['content','fullscreen','slideshow','embed','youtube'];
+var section_types = ['content','media','slideshow','embed_media','youtube'];
 $(document).ready(function() {
 
 	$('.storytree-toggle').click(function(){
@@ -30,15 +30,15 @@ $(document).ready(function() {
 		);
 	});
 
-	$('.story-tree ul').on('click','li.story > .box > .title',function(e) {
-		e.preventDefault();
-		var par = $(this).parent().parent();
-		story_id = par.attr('id');
-		$('.story-tree ul li').removeClass('active');
-		par.addClass('active');	    
+	$(document).on('click','.btn-edit-story',function(e) {
+		e.preventDefault();    
+		//var par = $(this).parent().parent();
+		//story_id = par.attr('id');
+		//$('.story-tree ul li').removeClass('active');
+		//par.addClass('active');	    
       getObject('select','story');
 	 	//getStory(0,-1);
-	    return false;
+	    //return false;
 	});
 
 	$('.story-tree ul').on('click','li.item > .box > .title',function(e) {
@@ -67,7 +67,7 @@ $(document).ready(function() {
 		var tmpSubId = cur.attr('id');
 		var tmpType = par.attr('data-type');
 
-		$('.story-tree ul li').removeClass('active');
+  		$('.story-tree ul li').removeClass('active');
 		cur.parent().find('li#'+tmpSubId).addClass('active');   					
       getObject('select', tmpType, tmpId, tmpSubId);
 
@@ -700,6 +700,7 @@ function isUrl(s) {
 
 function getObject(method, type, id, sub_id, which)
 {
+
    method = typeof method !== 'undefined' ? method : '';  // n - new , s - select, r - remove, a - add
    type = typeof type !== 'undefined' ? type : '';  
    id = typeof id !== 'undefined' ? id : -1;
@@ -708,9 +709,8 @@ function getObject(method, type, id, sub_id, which)
    selectedType = type;
 
 //   console.log(method,type,id,sub_id,which);
-   
+   console.log(section_types,type,section_types.indexOf(type));
    var pars = { 'which': which };   
-
    if(type == 'story')
    {
 
@@ -739,7 +739,7 @@ function getObject(method, type, id, sub_id, which)
    pars['type'] = type;
 
    if(gon.translate) { pars['trans'] = {'from':gon.translate_from,'to':gon.translate_to}; }  
-
+ console.log(pars);
 // request data
    $.ajax
       ({       
@@ -748,8 +748,8 @@ function getObject(method, type, id, sub_id, which)
         dataType: 'script',
         cache: true 
       }).error(function(e){console.log(e)}).done(function(){         
-         if(el_type!='section' && method != 'n')
-            $('.form-title .form-title-text').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > div > .sub-l').text() + ": " + $('.form-title .form-title-text').text());
+         //if(el_type!='section' && method != 'n')
+           // $('.form-title .form-title-text').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > div > .sub-l').text() + ": " + $('.form-title .form-title-text').text());
       });
 
    return true;   
@@ -783,7 +783,7 @@ function change_tree(d)
    story_tree.find('ul li').removeClass('active'); // todo is it enough for reseting or section_id should be changed too ???
    story_tree.find('> ul').append(li);   
    li.find('ul > .btn-create').trigger('click');
-   story_tree.animate({ scrollTop: story_tree.height()}, 1000);
+   //story_tree.animate({ scrollTop: story_tree.height()}, 1000);
 }
 function change_sub_tree(d)
 {

@@ -1,6 +1,6 @@
 
 <% if @which == 0 || @which == 1 %>
-$(".story-page1").hide().html("<%= escape_javascript( render :partial => 'form', locals: {original: true}) %>").fadeIn('slow');
+$(".story-page1").show().html("<%= escape_javascript( render :partial => 'form', locals: {original: true}) %>");//.fadeIn('slow');
 $('.selectpicker').selectpicker({dropupAuto:false});
 <% end %>
 
