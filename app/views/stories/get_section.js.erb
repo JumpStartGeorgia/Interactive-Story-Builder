@@ -1,1 +1,5 @@
-$(".story-page1").hide().html("<div id='sectionForm'><%= escape_javascript( render :partial => 'section') %></div>").fadeIn('slow');
+<% if @which == 0 || @which == 1 %>
+   $(".story-page1").hide().html("<div id='sectionForm'><%= escape_javascript( render :partial => 'section', locals: {original: true}) %></div>").fadeIn('slow');
+<% elsif @trans && (@which == 0 || @which == 2) %>
+   $(".story-page2").hide().html("<div id='sectionForm'><%= escape_javascript( render :partial => 'section') %></div>").fadeIn('slow');
+<% end %>

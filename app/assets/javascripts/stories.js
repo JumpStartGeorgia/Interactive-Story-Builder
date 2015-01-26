@@ -776,6 +776,10 @@ function error(v)
 {
    return (v == null || typeof v === 'undefined' || !v.hasOwnProperty('e') || v.e == true);
 }
+function refresh()
+{
+  
+}
 function change_tree(d)
 {
    var li = $("<li id='"+d.id+"' data-type='"+d.type+"' class='item open'>" + 
