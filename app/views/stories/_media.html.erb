@@ -93,8 +93,8 @@
           <% aligns.each do |align| %>
             <div class="radio">
               <% checked = (align[1] == -1 && @item.caption_align.nil?) || align[1] == @item.caption_align ? 'checked=checked' : '' %>
-              <input <%= checked %> id="medium_caption_align_<%= align[1] %>" name="medium[caption_align]" type="radio" value="<%= align[1] %>">
-              <label class="choice" for="medium_caption_align_<%= align[1] %>">
+              <input <%= checked %> id="medium_medium_translations_attributes_0_caption_align_<%= align[1] %>" name="medium[medium_translations_attributes][0][caption_align]" type="radio" value="<%= align[1] %>">
+              <label class="choice" for="medium_medium_translations_attributes_0_caption_align_<%= align[1] %>">
                 <span class="glyphicon <%= align[2] %>"></span>
                 <%= align[0] %>
               </label>
@@ -102,6 +102,8 @@
           <% end %>
         </div>
       </div>
+
+
 
       <div class="radio_buttons input optional form-group radio-indent radio-hide-button" id="medium_infobox_type_input">
         <label class="control-label" for="medium_infobox_type">
@@ -115,8 +117,8 @@
           <% infobox_types.each do |type| %>
             <div class="radio">
               <% checked = (type[1] == 0 && @item.infobox_type.nil?) || type[1] == @item.infobox_type ? 'checked=checked' : '' %>
-              <input <%= checked %> id="medium_infobox_type_<%= type[1] %>" name="medium[infobox_type]" type="radio" value="<%= type[1] %>">
-              <label class="choice" for="medium_infobox_type_<%= type[1] %>">
+              <input <%= checked %> id="medium_medium_translations_attributes_0_infobox_type_<%= type[1] %>" name="medium_translations_attributes][0][infobox_type]" type="radio" value="<%= type[1] %>">
+              <label class="choice" for="medium_medium_translations_attributes_0_infobox_type_<%= type[1] %>">
                 <span class="glyphicon <%= type[2] %>"></span>
                 <%= type[0] %>
               </label>
