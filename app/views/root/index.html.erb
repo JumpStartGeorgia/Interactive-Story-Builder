@@ -16,7 +16,7 @@
           <div class='item<%= i == 0 ? " active" : "" %>'>
             <%= image_tag story.show_asset.asset.url %>
             <div class="carousel-caption">
-              <div class='title'> <%= story.title %></div>
+              <div class='title'><%= link_to story.title, storyteller_show_path(story.permalink) %></div>
               <div class='descr'> <%= strip_tags_nbsp(story.about) %></div>
               <div class='storytype'>
                 <div class='storytype-logo story_type_<%= story.story_type_id %>'></div>
@@ -40,9 +40,11 @@
       <!-- Sticker -->
       <div class='sticker'>
         <div class='sticker-wrapper'>
-          <div class='title'><%= @theme.name %></div>
-          <div class='sep'></div>
-          <div class='date'><%= @theme.edition %></div>  <!-- I18n.l(@theme.edition, :format => '%B %Y')  -->
+          <%= link_to theme_path(@theme.permalink) do %>
+            <div class='title'><%= @theme.name  %></div>
+            <div class='sep'></div>
+            <div class='date'><%= @theme.edition %></div>  <!-- I18n.l(@theme.edition, :format => '%B %Y')  -->
+          <% end %>
         </div>
       </div>
     </div>

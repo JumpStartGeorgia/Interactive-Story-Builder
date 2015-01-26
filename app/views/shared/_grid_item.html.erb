@@ -13,7 +13,7 @@
         <%= image_tag story.show_asset.asset.url(:thumbnail) %>              
         <div class="story-link">
           <div class='type story_type_<%= story.story_type_id %>' title='<%= get_story_type_name(story.story_type_id) %>'></div>
-          <span><%= story.title %></span>
+          <span title="<%= story.title %>"><%= story.title %></span>
        </div>   
       <% end %>
 
@@ -93,8 +93,13 @@
   <div class='story-info'>                               
     <div class="story-caption">
       <% truncate_length = story.current_locale == 'ka' ? 130 : 150 %>
-      <% about = truncate(strip_tags_nbsp(story.about), length: truncate_length, separator: ' ') %>
-      <%= link_to about, path, :title => about, :lang => story.story_locale if about.present? %>
+      <% 
+        about = truncate(strip_tags_nbsp(story.about), length: truncate_length, separator: ' ') 
+        if about.present?
+          about = about.html_safe 
+      %>
+        <%= link_to about, path, :title => about, :lang => story.story_locale %>
+      <% end %>
     </div>
     <div class="story-misc"> 
       <div class="views" title="<%= t('app.common.views') %>"><%= t('app.common.views') %>: <%= story.impressions_count %></div>  
