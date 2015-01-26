@@ -24,7 +24,6 @@ class Medium < ActiveRecord::Base
 
   has_many :medium_translations, :dependent => :destroy
   accepts_nested_attributes_for :medium_translations
-  attr_accessible :medium_translations_attributes
 
   attr_accessor :video_date_changed, :is_amoeba
 
