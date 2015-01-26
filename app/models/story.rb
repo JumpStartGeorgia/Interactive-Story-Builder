@@ -129,6 +129,10 @@ class Story < ActiveRecord::Base
   def self.comments
     joins(:story_translations).order("stories.comments_count desc, story_translations.published_at desc, story_translations.title asc").uniq
   end
+  # get stories that are in a published theme
+  def self.in_published_theme
+    joins(:themes).where(themes: {is_published: true})
+  end
 
   #################################
   # settings to clone story
