@@ -17,7 +17,7 @@
             <%= image_tag story.show_asset.asset.url %>
             <div class="carousel-caption">
               <div class='title'><%= link_to story.title, storyteller_show_path(story.permalink) %></div>
-              <div class='descr'> <%= strip_tags_nbsp(story.about) %></div>
+              <div class='descr'> <%= strip_tags_nbsp(story.about).html_safe if story.about.present? %></div>
               <div class='storytype'>
                 <div class='storytype-logo story_type_<%= story.story_type_id %>'></div>
                 <div class='storytype-label' lang='<%= I18n.locale %>'><%= get_story_type_name(story.story_type_id) %></div>
