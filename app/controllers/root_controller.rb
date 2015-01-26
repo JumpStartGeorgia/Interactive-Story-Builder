@@ -22,7 +22,7 @@ class RootController < ApplicationController
     if @author.present?
       @js.push("zeroclipboard.min.js", "filter.js","stories.js","follow.js")
       @css.push("navbar.css", "filter.css", "grid.css", "stories.css", "author.css")
-      @stories = process_filter_querystring(Story.stories_by_author(@author.id).paginate(:page => params[:page], :per_page => per_page))      
+      @stories = process_filter_querystring(Story.stories_by_author(@author.id).in_published_theme.paginate(:page => params[:page], :per_page => per_page))      
       @editable = (user_signed_in? && current_user.id == @author.id)
       
       @is_following = Notification.already_following_user(current_user.id, @author.id) if user_signed_in?
@@ -43,7 +43,7 @@ class RootController < ApplicationController
   def embed   
     #@css.push("embed.css")    
            
-    @story = Story.is_published.find_by_permalink(params[:story_id])
+    @story = Story.is_published.in_published_theme.find_by_permalink(params[:story_id])
     #redirect_to root_path, :notice => t('app.msgs.does_not_exist')   
     respond_to do |format|      
       if @story.present?        
@@ -53,8 +53,18 @@ class RootController < ApplicationController
                 @no_nav = true     
                 @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css")
                 @js.push("storyteller.js","modalos.js", "follow.js")    
-                story = Story.select('id').is_published.find_by_permalink(params[:id])
-                @story = Story.is_published.fullsection(story.id) if story.present?  
+                story = Story.select('id').is_published.in_published_theme.find_by_permalink(params[:id])
+                @story = Story.is_published.in_published_theme.fullsection(story.id) if story.present?  
+                if @story.present?
+                  # set story locale 
+                  # if param exists use that
+                  # else check if translation exists for current app locale
+                  if params[:story_language].present?
+                    @story.current_locale = params[:story_language] 
+                  else
+                    @story.use_app_locale_if_translation_exists
+                  end
+                end
                 # record if the user has liked this story
                 @user_likes = false
                 @user_likes = current_user.voted_up_on? @story if user_signed_in?
@@ -143,7 +153,7 @@ class RootController < ApplicationController
 
   def feed
     index = params[:category].present? ? @categories_published.index{|x| x.permalink.downcase == params[:category].downcase} : nil
-    @items =  Story.is_published.include_categories.recent
+    @items =  Story.is_published.in_published_theme.include_categories.recent
     @filtered_by_category = ""
     if index.present?
       @filtered_by_category = @categories_published[index].permalink

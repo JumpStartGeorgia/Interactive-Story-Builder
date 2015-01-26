@@ -1,5 +1,6 @@
 <%
-  logger.debug "====== story id #{story.id}; story locale #{story.story_locale}; story title #{story.title}"
+  story.use_app_locale_if_translation_exists
+  logger.debug "====== story id #{story.id}; current locale #{story.current_locale}; story title #{story.title}"
 
   title = ""   
   if story.about.present?     
@@ -94,11 +95,11 @@
     <div class="story-caption">
       <% truncate_length = story.current_locale == 'ka' ? 130 : 150 %>
       <% 
-        about = truncate(strip_tags_nbsp(story.about), length: truncate_length, separator: ' ') 
+        about = strip_tags_nbsp(story.about) if story.about.present? 
         if about.present?
-          about = about.html_safe 
       %>
-        <%= link_to about, path, :title => about, :lang => story.story_locale %>
+          <%= link_to truncate(about, length: truncate_length, separator: ' ').html_safe, 
+              path, :title => about.html_safe, :lang => story.story_locale %>
       <% end %>
     </div>
     <div class="story-misc"> 

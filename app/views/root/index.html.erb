@@ -5,14 +5,15 @@
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
-       <% @stories_for_slider.each_with_index { |t,i| %>
-        <li data-target="#carousel-example-generic" data-slide-to="<%= i %>" class='<%= i == 0 ? " active" : "" %>'></li>
-      <% } %>  
+        <% [0..@stories_for_slider.length-1].each { |i| %>
+          <li data-target="#carousel-example-generic" data-slide-to="<%= i %>" class='<%= i == 0 ? " active" : "" %>'></li>
+        <% } %>  
       </ol>
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
 
         <% @stories_for_slider.each_with_index { |story,i| %>
+          <% story.use_app_locale_if_translation_exists %>
           <div class='item<%= i == 0 ? " active" : "" %>'>
             <%= image_tag story.show_asset.asset.url %>
             <div class="carousel-caption">
