@@ -47,21 +47,19 @@
   <body>
     <%= render partial: "layouts/storybuilder_nav"%> 
     <%= yield(:header) %>
-    <% if params[:action] != 'about' %>
-  		<div id="wrapper">
-     		<div class="flash-message"></div>
-  				<% if content_for?(:title) %>
-  					<div class="page-header">
-  					  <div class="block">
-                <h1>
-  							  <%= yield(:title) %>
-  						  </h1> 
-  						</div>
-  					</div>
-  				<% end %>         
-          <%= yield %>
-  		</div><!--/wrapper-->
-    <% end %>   
+		<div id="wrapper">
+   		<div class="flash-message"></div>
+				<% if content_for?(:title) %>
+					<div class="page-header">
+					  <div class="block">
+              <h1>
+							  <%= yield(:title) %>
+						  </h1> 
+						</div>
+					</div>
+				<% end %>         
+        <%= yield %>
+		</div><!--/wrapper-->
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

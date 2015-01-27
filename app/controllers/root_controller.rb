@@ -132,11 +132,9 @@ class RootController < ApplicationController
 
 
   def about   
-    @css.push("navbar.css","about.css")   
-    respond_to do |format|
-      format.html 
-    end
-=begin
+    #XXX @css.push("navbar.css","about.css")   
+    @css.push("navbar.css")   
+
     @page = Page.by_name('about')
   
     if @page.present?
@@ -148,7 +146,6 @@ class RootController < ApplicationController
 		  redirect_to root_path(:locale => I18n.locale)
 		  return
 	  end
-=end	  
   end
 
   def feed
