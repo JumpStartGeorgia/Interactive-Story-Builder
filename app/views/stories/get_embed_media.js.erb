@@ -1,1 +1,6 @@
-$(".story-page1").hide().html("<div id='embedMediaForm'><%= escape_javascript( render :partial => 'embed_media') %></div>").fadeIn('slow');
+<% if @which == 0 || @which == 1 %>
+   which(1,"<%= escape_javascript( render :partial => 'embed_media', locals: {original: true}) %>");
+<% end %>
+<% if @trans && (@which == 0 || @which == 2) %>
+   which(2,"<%= escape_javascript( render :partial => 'embed_media') %>");
+<% end %>

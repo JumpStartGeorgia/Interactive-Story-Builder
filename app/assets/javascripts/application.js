@@ -13,6 +13,7 @@
 //= require jquery.remotipart
 //= require jquery.ui.core
 //= require jquery.ui.effect
+//= require jquery.ui.sortable
 //= require twitter/bootstrap
 
 // window.onload =  function() 
@@ -118,7 +119,6 @@ $(window).resize(function() {
     $('.navbar-story .navbar-brand').width($('.navbar-story .navbar-toggle').is(':visible') ? $(window).width() - 103 : 'auto');
 });
 
-    console.log("selectpicker");
   // fancy select boxes with search capability
   if ($('.selectpicker').length > 0){
 

@@ -1,3 +1,4 @@
+//= require tinymce
 var story_id = -1;
 var section_id = -1;
 var item_id = -1;
@@ -592,11 +593,13 @@ $(document).ready(function() {
   $('#translateFrom').change(function(){
   		var fromLang = $(this).val();
   		var toLang = $('#translateTo').val();
+      var which = 1;
   		if(fromLang == toLang)
   		{
   			$('#translateTo option').each(function(i,d){ 
   				if(d.value != fromLang)
   				{
+            which = 0;
   				 	$('#translateTo').val(d.value);
   				 	$('#translateTo').selectpicker('refresh');
   				 	gon.translate_to = d.value;
@@ -605,22 +608,22 @@ $(document).ready(function() {
 		 	});
   		}
 	 	gon.translate_from = fromLang;
-      getObject('select',selectedType, section_id, item_id, 1);
+      getObject('select',selectedType, section_id, item_id, which);
   		// call new language
   });
     $('#translateTo').change(function(){
   		var fromLang = $('#translateFrom').val();
   		var toLang = $(this).val();
+      var which = 2;
   		if(fromLang == toLang)
   		{
+        which = 0;
   			gon.translate_from = $('#translateFrom').attr('data-default');		
   			$('#translateFrom').val(gon.translate_from);
-		 	$('#translateFrom').selectpicker('refresh');  	
-
+		 	  $('#translateFrom').selectpicker('refresh');  	
   		}
  	    gon.translate_to = toLang;
-      getObject('select',selectedType, section_id, item_id, 2);
-  		// call new language
+      getObject('select',selectedType, section_id, item_id, which);
   });
 
   story_tree = $('.story-tree');
@@ -717,7 +720,6 @@ function getObject(method, type, id, sub_id, which)
    selectedType = type;
 
 //   console.log(method,type,id,sub_id,which);
-   console.log(section_types,type,section_types.indexOf(type));
    var pars = { 'which': which };   
    if(type == 'story')
    {
@@ -754,7 +756,7 @@ function getObject(method, type, id, sub_id, which)
         url: 'get_data',
         data: pars,
         dataType: 'script',
-        cache: true 
+        cache: true,
       }).error(function(e){console.log(e)}).done(function(){         
          //if(el_type!='section' && method != 'n')
            // $('.form-title .form-title-text').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > div > .sub-l').text() + ": " + $('.form-title .form-title-text').text());
@@ -809,4 +811,9 @@ function change_sub_tree(d)
    
    story_tree.find('ul li').removeClass('active');   
    li.find('.sub-l').trigger('click');
+}
+
+function which(v,html)
+{
+  $(v==2?".story-page2":".story-page1").hide().html(html).fadeIn('slow');
 }

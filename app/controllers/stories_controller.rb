@@ -190,32 +190,22 @@ class StoriesController < ApplicationController
     sub_id = params[:sub_id]
     @which = params[:which].present? ? params[:which].to_i : 1
     @trans = false
-    current_locale = I18n.locale
-
+    @from = I18n.locale
+    @to = nil
     @story = Story.find_by_id(id) 
 
     # if story exists, set some params
     if @story.present?
       # set default locale to story locale
-      current_locale = @story.story_locale
+      @from = @story.story_locale
 
       # get the translation locales
       if params.has_key?(:trans)
         @trans = true
-        @trans_from = params[:trans].has_key?(:from) ? params[:trans][:from] : @story.present? ? @story.story_locale : current_locale
-        @trans_to = params[:trans].has_key?(:to) ? params[:trans][:to] : @languages.where("locale != '#{@story.story_locale}'").order('locale').first.locale
-
-        # set the locale that is to be used for this call
-        if @which == 1 # normal form
-          current_locale = @trans_from
-        elsif @which == 2 #translation form
-          current_locale = @trans_to
-        end
-
+        @from = params[:trans].has_key?(:from) ? params[:trans][:from] : @story.present? ? @story.story_locale : @from
+        @to = params[:trans].has_key?(:to) ? params[:trans][:to] : @languages.where("locale != '#{@story.story_locale}'").order('locale').first.locale    
       end
     end
-
-    logger.debug "------ locale = #{current_locale}"
 
     if type == 'story'
       if method=='select'
@@ -226,23 +216,9 @@ class StoriesController < ApplicationController
       elsif method=='create'
         @item = Story.new(:user_id => current_user.id, :story_locale => defualt_locale)     
         @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
-      end        
-      
-      respond_to do |format|
-        if @item.present?
-          # get the translations for this item or build it if not exist yet
-          @item.translation_for(current_locale)
-          @item.current_locale = current_locale
-
-          @themes = Theme.sorted
-          format.js { render :action => "get_story" }          
-        else
-          @get_data_error = I18n.t('app.msgs.error_get_data')
-          format.js
-        end
       end
+      @themes = Theme.sorted              
     elsif type == 'section'
-
       if method=='select'
         @item = Section.find_by_id(_id)    
       else 
@@ -251,39 +227,12 @@ class StoriesController < ApplicationController
       if @item.present? && !@item.asset_exists?
           @item.build_asset(:asset_type => Asset::TYPE[:section_audio])
       end   
-      respond_to do |format|
-        if @item.present?
-          # get the translations for this item or build it if not exist yet
-          @item.translation_for(current_locale)
-          @item.current_locale = current_locale
-
-          format.js { render :action => "get_section" }          
-        else
-          @get_data_error = I18n.t('app.msgs.error_get_data')
-          format.js
-        end
-      end
-
     elsif type == 'content'
-
       if method=='select'
         @item = Content.find_by_id(sub_id)
       else 
         @item = Content.new(:section_id => _id, :content => '')
       end
-      respond_to do |format|
-        if @item.present?
-          # get the translations for this item or build it if not exist yet
-          @item.translation_for(current_locale)
-          @item.current_locale = current_locale
-
-          format.js  {render :action => "get_content" }
-        else
-          @get_data_error = I18n.t('app.msgs.error_get_data')
-          format.js
-        end
-      end
-
     elsif type == 'media'
       if method=='select'    
         @item = Medium.find_by_id(sub_id)   
@@ -297,62 +246,22 @@ class StoriesController < ApplicationController
       if @item.present? && !@item.video_exists?
         @item.build_video(:asset_type => Asset::TYPE[:media_video])
       end      
-
-      respond_to do |format|
-         if @item.present?
-          # get the translations for this item or build it if not exist yet
-          @item.translation_for(current_locale)
-          @item.current_locale = current_locale
-
-          format.js {render :action => "get_media" }
-        else
-          @get_data_error = I18n.t('app.msgs.error_get_data')
-          format.js
-        end
-      end
     elsif type == 'slideshow'
       if method=='select'    
         @item = Slideshow.find_by_id(sub_id)           
       else 
         @item = Slideshow.new(:section_id => _id)
       end
-    
      if @item.present? && @item.assets.blank?
         @item.assets.build(:asset_type => Asset::TYPE[:slideshow_image])
-      end      
-
-   
-      respond_to do |format|
-        if @item.present?
-          # get the translations for this item or build it if not exist yet
-          @item.translation_for(current_locale)
-          @item.current_locale = current_locale
-
-          format.js {render :action => "get_slideshow" }
-        else
-          @get_data_error = I18n.t('app.msgs.error_get_data')
-          format.js          
-        end
-      end
+      end          
     elsif type == 'embed_media'
       if method=='select'    
         @item = EmbedMedium.find_by_id(sub_id)   
       else 
         Rails.logger.debug(_id)
         @item = EmbedMedium.new(:section_id => _id)
-      end
-      respond_to do |format|
-        if @item.present?
-          # get the translations for this item or build it if not exist yet
-          @item.translation_for(current_locale)
-          @item.current_locale = current_locale
-
-          format.js {render :action => "get_embed_media" }
-        else
-          @get_data_error = I18n.t('app.msgs.error_get_data')
-          format.js          
-        end
-      end
+      end  
     elsif type == 'youtube'
       if method=='select'    
         @item = Youtube.find_by_id(sub_id)   
@@ -360,17 +269,17 @@ class StoriesController < ApplicationController
         @item = Youtube.new(:section_id => _id)
         @item.youtube_translations.build(:locale => I18n.locale.to_s)
       end
-      respond_to do |format|
-        if @item.present?
-          # get the translations for this item or build it if not exist yet
-          @item.translation_for(current_locale)
-          @item.current_locale = current_locale
+    end
 
-          format.js {render :action => "get_youtube" }
-        else
-          @get_data_error = I18n.t('app.msgs.error_get_data')
-          format.js          
-        end
+    respond_to do |format|
+      if @item.present? 
+        @type = type       
+        @item.translations_for([@from,@to]) # get the translations for this item or build it if not exist yet
+        @item.current_locale = @from
+        format.js { render :action => "get_item" }          
+      else
+        @get_data_error = I18n.t('app.msgs.error_get_data')
+        format.js
       end
     end
   end

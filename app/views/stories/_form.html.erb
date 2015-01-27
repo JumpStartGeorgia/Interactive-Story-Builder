@@ -1,14 +1,21 @@
 <% original ||= false %>
-<% tinymce_assets %>
-<% tinymce %>
 <% readonly = {} %>
-<% if original && @trans %>
-  <% readonly = { readonly:true , disabled: true } %>
-  <%= tinymce :readonly => 1 %>
+<% tinyId = "storyAbout" %>
+<% tinyClass = "tinyEditor" %>
+<% if @trans %>
+  <% if original %>
+    <%= tinymce readonly:1 %>      
+    <% readonly = { readonly:true , disabled: true } %>
+  <% else %>
+    <%= tinymce editor_selector: 'tinyEditor2' %>
+    <% tinyId = "storyAbout2" %>   
+    <% tinyClass = "tinyEditor2" %>   
+  <% end %>
+<% elsif %>
+  <%= tinymce %>
 <% end %>
 
   <%= semantic_form_for(@item, :html => {:multipart => true, :id => "storyForm"}) do |f| %>
-
     <%= f.inputs do %>
       <%= f.fields_for :story_translations, @item.translation_for(@item.current_locale) do |f_translation| %>
 
@@ -33,7 +40,7 @@
           <div class="translation_author_placeholder" style="height:90px;">&nbsp;</div>
         <% end %>
 
-        <%= f_translation.input :about, { :as => :text, :input_html => {:class => "tinymce", :rows => 15}.merge(readonly)  }.merge(( original ? {} : { hint: t('.hint.about') }))  %>
+        <%= f_translation.input :about, { :as => :text, :input_html => {id: tinyId , :class => tinyClass, :rows => 15}.merge(readonly)  }.merge(( original ? {} : { hint: t('.hint.about') }))  %>
 
         <% if !@trans %>
 
@@ -80,4 +87,3 @@
       </div> 
     <% end %>
   <% end %>
-

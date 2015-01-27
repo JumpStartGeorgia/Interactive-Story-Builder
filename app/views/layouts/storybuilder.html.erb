@@ -87,13 +87,15 @@
                 <span class="glyphicon glyphicon-remove"></span>
               <% end %>
             <% if @tr %>
-           <%= select_tag "translate-from", options_from_collection_for_select(@languages, "locale", "name", @story.story_locale), include_blank: false,
-                 :id => "translateFrom", :class => "selectpicker", :'data-size' => "5", :'data-default' => @story.story_locale  %>
+               <%= select_tag "translate-from", options_from_collection_for_select(@languages, "locale", "name", @story.story_locale), include_blank: false,
+                     :id => "translateFrom", :class => "selectpicker", :'data-size' => "5", :'data-default' => @story.story_locale  %>
            <% end %>
             </div>
         </div><div class='right-view'>          
           <div class='view-wrapper'> 
-                 <%= select_tag "translate-to", options_from_collection_for_select(@languages.select{ |lan|  lan.locale !=  @story.story_locale } , "locale", "name", @languages.select{ |lan|  lan.locale !=  @story.story_locale }.sort{|a,b| a <=> b}[0].locale), include_blank: false, :id => "translateTo", :class => "selectpicker", :'data-size' => "4" %>
+            <% if @tr %>
+              <%= select_tag "translate-to", options_from_collection_for_select(@languages.select{ |lan|  lan.locale !=  @story.story_locale } , "locale", "name", @languages.select{ |lan|  lan.locale !=  @story.story_locale }.sort{|a,b| a <=> b}[0].locale), include_blank: false, :id => "translateTo", :class => "selectpicker", :'data-size' => "4" %>
+            <% end %>
           </div>
         </div>
       </div>      
