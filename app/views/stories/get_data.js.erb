@@ -1,4 +1,22 @@
-<% if @get_data_error.present? %>
-  popuper('<%= @get_data_error %>', 'error');
+<% if @error.present? # if error%> 
+  popuper('<%= @error %>', 'error'); 
+<% else # otherwise %>
+   <% if @which == 0 || @which == 1 %>
+      which(1,"<%= escape_javascript( render :partial => @type, locals: {original: true}) %>");
+   <% end %>
+   <% if @trans && (@which == 0 || @which == 2) %>
+      <% @item.current_locale = @to %>
+      which(2,"<%= escape_javascript( render :partial => @type) %>");
+   <% end %>
+
+   <% if @type == 'form' # for story %> 
+      $('.selectpicker').selectpicker({dropupAuto:false});
+      // when the page loads, show the permalink if it exists  
+      if ($('#story_permalink').length > 0 && $('input#storyPermalink').val().length > 0){
+         was_title_box_length = $('input#storyTitle').val().length;
+         was_permalink_box_length = $('input#storyPermalinkStaging').val().length;;
+         show_story_permalink({'is_duplicate': false, 'permalink':$('input#storyPermalink').val()});
+      }
+   <% end %>
 <% end %>
 

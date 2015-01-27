@@ -194,13 +194,9 @@ class StoriesController < ApplicationController
     @to = nil
     @story = Story.find_by_id(id) 
 
-    # if story exists, set some params
-    if @story.present?
-      # set default locale to story locale
-      @from = @story.story_locale
-
-      # get the translation locales
-      if params.has_key?(:trans)
+    if @story.present?     # if story exists, set some params
+      @from = @story.story_locale # set default locale to story locale
+      if params.has_key?(:trans) # get the translation locales
         @trans = true
         @from = params[:trans].has_key?(:from) ? params[:trans][:from] : @story.present? ? @story.story_locale : @from
         @to = params[:trans].has_key?(:to) ? params[:trans][:to] : @languages.where("locale != '#{@story.story_locale}'").order('locale').first.locale    
@@ -217,7 +213,8 @@ class StoriesController < ApplicationController
         @item = Story.new(:user_id => current_user.id, :story_locale => defualt_locale)     
         @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
       end
-      @themes = Theme.sorted              
+      @themes = Theme.sorted   
+      type = 'form'           
     elsif type == 'section'
       if method=='select'
         @item = Section.find_by_id(_id)    
@@ -276,11 +273,10 @@ class StoriesController < ApplicationController
         @type = type       
         @item.translations_for([@from,@to]) # get the translations for this item or build it if not exist yet
         @item.current_locale = @from
-        format.js { render :action => "get_item" }          
       else
-        @get_data_error = I18n.t('app.msgs.error_get_data')
-        format.js
+        @error = I18n.t('app.msgs.error_get_data')
       end
+      format.js
     end
   end
 

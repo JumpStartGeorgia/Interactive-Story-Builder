@@ -14,6 +14,7 @@
 <% elsif %>
   <%= tinymce %>
 <% end %>
+<% isTO = @trans && original # if mode is translate and screen is original(first) %>
 
   <%= semantic_form_for(@item, :html => {:multipart => true, :id => "storyForm"}) do |f| %>
     <%= f.inputs do %>
@@ -23,22 +24,31 @@
 
         <%= f_translation.input :locale , :as => :hidden, :input_html => {id: 'storyHiddenLocale'} %>
 
-        <%= f_translation.input :title, { :required => !original, :input_html => { id: "storyTitle", :'data-title-was' => @item.title }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.title'), placeholder: t('.placeholder.title') })) %>
+        <%= f_translation.input :title, 
+        { 
+          :required => !isTO, :input_html => {}
+          .merge( !isTO ? { id: "storyTitle", :'data-title-was' => @item.title } : { id: nil })
+          .merge(readonly) 
+        }
+        .merge(( (isTO) ? {} : { hint: t('.hint.title'), placeholder: t('.placeholder.title') })) %>
 
-        <%= f_translation.input :permalink_staging, { :input_html => { id: "storyPermalinkStaging"  }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.permalink'), placeholder: t('.placeholder.permalink') }))  %>
 
-        <%= f_translation.input :permalink, :as => :hidden, :input_html => { id: "storyPermalink"  }   %>
-        <div class="string control-group stringish" id="story_permalink">&nbsp;</div>
+        <%= f_translation.input :permalink_staging, { :input_html => { id: (!isTO ? "storyPermalinkStaging" : nil)  }
+        .merge(readonly) }
+        .merge(( isTO ? {} : { hint: t('.hint.permalink'), placeholder: t('.placeholder.permalink') }))  %>
 
-        <%= f_translation.input :author, { :required => !original, :input_html => { id: "storyAuthor" }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.author'), placeholder: t('.placeholder.author') })) %>
 
-        <%= f_translation.input :media_author, { :input_html => { id: "storyMediaAuthor"  }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.media_author'), placeholder: t('.placeholder.media_author') }))  %>
+        <%= f_translation.input :permalink, :as => :hidden, :input_html => { id: (!isTO ? "storyPermalink" : nil)  }   %>
+        <div class="string control-group stringish story_permalink" <%= !isTO ? 'id=story_permalink' : ''%>>&nbsp;</div>
 
-        <% if !original && @trans %>
-          <%= f_translation.input :translation_author, { :input_html => { id: "storyTranslationAuthor"  }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.translation_author'), placeholder: t('.placeholder.translation_author') }))  %>
-        <% elsif original && @trans %>
-          <div class="translation_author_placeholder" style="height:90px;">&nbsp;</div>
-        <% end %>
+        <%= f_translation.input :author, { :required => !isTO, :input_html => { id: (!isTO ? "storyAuthor" : nil) }
+        .merge(readonly) }
+        .merge(( isTO ? {} : { hint: t('.hint.author'), placeholder: t('.placeholder.author') })) %>
+
+        <%= f_translation.input :media_author, { :input_html => { id: (!isTO ? "storyMediaAuthor" : nil) }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.media_author'), placeholder: t('.placeholder.media_author') }))  %>
+
+        
+        <%= f_translation.input :translation_author, { :input_html => { id: (!isTO ? "storyTranslationAuthor" : nil)  }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.translation_author'), placeholder: t('.placeholder.translation_author') }))  %>
 
         <%= f_translation.input :about, { :as => :text, :input_html => {id: tinyId , :class => tinyClass, :rows => 15}.merge(readonly)  }.merge(( original ? {} : { hint: t('.hint.about') }))  %>
 
@@ -72,7 +82,7 @@
           <% if @item.asset_exists? %>
              <a class='btn btn-default preview' id="story-thumbnail-preview" data-modalos-id="modalos-preview" data-type="image"  data-image-path='<%= "#{@item.asset.asset.url(:thumbnail)}" %>'><%=  t('app.buttons.preview_image') %></a>           
           <% end %>  
-          <% if !original %>
+          <% if !isTO %>
             <%= as.input :asset, :as => :file , hint: t('.hint.thumbnail') , :input_html => { :id => "storyThumbnail", accept:".jpg,.jpeg,.png" }, label: false  %> 
           <% end %> 
         <% end %> 
@@ -80,7 +90,7 @@
         
       <% end %>
     <% end %>
-    <% if !(@trans && original) %>
+    <% if !isTO %>
       <div class="pull-right spacer">
         <%= f.submit nil, :class => 'btn btn-default' %>
         <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          

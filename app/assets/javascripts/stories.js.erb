@@ -1,5 +1,4 @@
 //= require tinymce
-var story_id = -1;
 var section_id = -1;
 var item_id = -1;
 
@@ -33,13 +32,7 @@ $(document).ready(function() {
 
 	$(document).on('click','.btn-edit-story',function(e) {
 		e.preventDefault();    
-		//var par = $(this).parent().parent();
-		//story_id = par.attr('id');
-		//$('.story-tree ul li').removeClass('active');
-		//par.addClass('active');	    
-      getObject('select','story');
-	 	//getStory(0,-1);
-	    //return false;
+    getObject('select','story');
 	});
 
 	$('.story-tree ul').on('click','li.item > .box > .title',function(e) {
@@ -470,40 +463,52 @@ $(document).ready(function() {
 	});
 
   // trigger the add content form if no sections exist
-   if (gon.has_no_sections == true)
-   {
-      getObject('create','section');
-   }
+  if (gon.has_no_sections == true)
+  {
+    getObject('create','section');
+  }
+  else 
+  {
+    getObject('select','story');
+  }
 
   var was_title_box_length, was_permalink_box_length = 0;
   
   // if the title changes and there is no permalink or the permalink was equal to the old title, 
   // add the title into the permalink show field
-  $(document).on('keyup','input#storyTitle', debounce(function(){
-      if (($('input#storyPermalinkStaging').val() != '' && $('input#storyPermalinkStaging').val() !== $(this).data('title-was')) || 
-          $(this).val().length == was_title_box_length) {
-          
+  $(document).on('keyup','input#storyTitle', debounce(function()
+  {
+    var staging = $('input#storyPermalinkStaging');
+    var staging_val = staging.val();
+    var t = $(this);
+    var tv = t.val();
+      if ((staging_val != '' && staging_val !== $(this).data('title-was')) || 
+          tv.length == was_title_box_length) {
+          console.log('upper');
         return;
-      } else {
-        $(this).data('title-was', $(this).val());
-        $('input#storyPermalinkStaging').val($(this).val());
-        check_story_permalink($(this).val());
+      } 
+      else 
+      {
+        t.data('title-was', tv);
+        staging.val(tv);
+        check_story_permalink(tv);
+        console.log('down');
       }
-
-      was_title_box_length = $(this).val().length;
-  
+      was_title_box_length = tv.length;
   }));
   
   // if the permalink staging field changes, use the text to generate a new permalink
   $(document).on('keyup','input#storyPermalinkStaging', debounce(function () {
     // if text length is 1 or the length has not changed (e.g., press arrow keys), do nothing
-    if ($(this).val().length == 1 || $(this).val().length == was_permalink_box_length) {
+    var t = $(this);
+    var tv = t.val();
+    var l = tv.length;
+    if (l == 1 || l == was_permalink_box_length) {
       return;
     } else {
-      check_story_permalink($(this).val());
+      check_story_permalink(tv);
     }
-
-    was_permalink_box_length = $(this).val().length;
+    was_permalink_box_length = l;
   }));
   
 
