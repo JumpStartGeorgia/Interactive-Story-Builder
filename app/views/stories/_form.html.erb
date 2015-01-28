@@ -16,7 +16,8 @@
 <% end %>
 <% isTO = @trans && original # if mode is translate and screen is original(first) %>
 
-  <%= semantic_form_for(@item, :html => {:multipart => true, :id => "storyForm"}) do |f| %>
+  <%= semantic_form_for(@item, url: story_path(id:params[:id], :format => :js), :html => {:multipart => true, :id => "storyForm"}, remote: true ) do |f| %>
+    <%= error_messages_for f.object %>
     <%= f.inputs do %>
       <%= f.fields_for :story_translations, @item.translation_for(@item.current_locale) do |f_translation| %>
 

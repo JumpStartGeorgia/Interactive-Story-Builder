@@ -232,7 +232,11 @@ class Story < ActiveRecord::Base
 	def self.by_category(id)
 	  joins(:categories).where('categories.id = ?', id)
 	end
-	
+
+  def self.by_theme(id)
+    joins(:themes).where('themes.id = ?', id)
+  end
+
 	def self.by_authors(user_ids)
     where(:user_id => user_ids)
 	end
