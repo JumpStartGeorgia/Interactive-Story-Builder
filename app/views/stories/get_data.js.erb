@@ -8,7 +8,6 @@
       <% @item.current_locale = @to %>
       which(2,"<%= escape_javascript( render :partial => @type) %>");
    <% end %>
-
    <% if @type == 'form' # for story %> 
       $('.selectpicker').selectpicker({dropupAuto:false});
       // when the page loads, show the permalink if it exists  

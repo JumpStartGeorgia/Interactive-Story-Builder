@@ -1,34 +1,56 @@
+<% original ||= false %>
+<% readonly = {} %>
+<% tinyClass = "tinyEditor" %>
+<% if @trans %>
+  <% if original %>
+    <%= tinymce readonly:1 %>      
+    <% readonly = { readonly:true , disabled: true } %>
+  <% else %>
+    <%= tinymce editor_selector: 'tinyEditor2' %>
+    <% tinyClass = "tinyEditor2" %>   
+  <% end %>
+<% elsif %>
+  <%= tinymce %>
+   <% #tinymce :alternate, uploadimage_form_url: imageuploader_path(id:params[:id]), uploadimage_default_img_class: "image" %>
+<% end %>
+<% isTO = @trans && original # if mode is translate and screen is original(first) %>
+
+
 <h2 class="form-title">
   <span class="glyphicon <%= Section::ICONS[:content] %>"></span>
   <span class="form-title-text"><%= t('.form_title') %></span>
 </h2>
-
-<%= tinymce :alternate, uploadimage_form_url: imageuploader_path(id:params[:id]), uploadimage_default_img_class: "image" %>
-
 <%= semantic_form_for(@item, url: content_story_path(id:params[:id]), remote: true, html: { :id => 'contentForm'}) do |f| %>
   <%= f.inputs do %>
     <%= f.fields_for :content_translations, @item.translation_for(@item.current_locale) do |f_translation| %>
 
-      <%= f_translation.input :locale , :as => :hidden %>
+      <%= (f_translation.input :locale , :as => :hidden) if !isTO %>
 
-      <%= f_translation.input :title, :placeholder=>t('.placeholder.title'), hint: t('.hint.title') , :input_html => { :id => "contentTitle", } %>
-      <%= f_translation.input :caption, :placeholder=>t('.placeholder.caption'), hint: t('.hint.caption'), :input_html => { :id => "contentCaption" } %>    
-      <%= f_translation.input :sub_caption, :placeholder=>t('.placeholder.sub_caption'), hint: t('.hint.sub_caption'), :input_html => { :id => "contentSubCaption" } %>    
-      <label><%= t('activerecord.attributes.content.text') %></label>
-      <div class="help-inline" title="<%= t('.hint.content') %>"><div>?</div></div>
-      <%= f_translation.input :text, :as => :text, :label => false, :input_html => {:class => 'tinymce', :rows => 30, :id => "contentArticle"} %>    
-       <!--a class='btn btn-default preview' id="content-preview" data-modalos-id="modalos-preview" data-type="text"><%= t('app.buttons.preview') %></a-->          
+       <%= f_translation.input :title, { 
+          :required => !isTO, :input_html => { id: (!isTO ?  "contentTitle" : nil) }.merge(readonly) }
+          .merge(( (isTO) ? {} : { hint: t('.hint.title'), placeholder: t('.placeholder.title') })) %>
+
+       <%= f_translation.input :caption, { 
+          :input_html => { id: (!isTO ?  "contentCaption" : nil) }.merge(readonly) 
+        }.merge(( (isTO) ? {} : { hint: t('.hint.caption'), placeholder: t('.placeholder.caption') })) %>
+
+      <%= f_translation.input :sub_caption, { 
+          :input_html => { id: (!isTO ?  "contentCaption" : nil) }.merge(readonly) 
+        }.merge(( (isTO) ? {} : { hint: t('.hint.sub_caption'), placeholder: t('.placeholder.sub_caption') })) %>
+
+      <%= f_translation.input :text, { :as => :text, :input_html => {id: tinyClass , :class => tinyClass, :rows => 15}.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.content') }))  %>      
        
-      
-      <%= f.input :section_id, :as => :hidden , :input_html => { :id => "contentSection" }  %>
-      <% if @item.id.present? %>
-      	<%= f.input :id, :as => :hidden , :input_html => { :id => "contentId" }  %>    
-      <% end %>
+      <% if !isTO %>
+        <%= f.input :section_id, :as => :hidden , :input_html => { :id => "contentSection" } %>
+        <% if @item.id.present? %>
+          <%= f.input :id, :as => :hidden , :input_html => { :id => "contentId" } %>    
+        <% end %>
 
-       <div class="pull-right spacer">      
-        <%= f.submit nil, :class => 'btn btn-default' %> 
-        <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>                
-      </div>
+         <div class="pull-right spacer">      
+          <%= f.submit nil, :class => 'btn btn-default' %> 
+          <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>                
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

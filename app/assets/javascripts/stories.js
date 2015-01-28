@@ -10,6 +10,10 @@ var story_tree = null;
 var section_types = ['content','media','slideshow','embed_media','youtube'];
 $(document).ready(function() {
 
+  calculate_workspace(); 
+  $(window).resize(function() {   
+    calculate_workspace();
+  }); 
 	$('.storytree-toggle').click(function(){
 		var t = $(this).parent();
 		var sidebarWidth = t.width();
@@ -168,20 +172,28 @@ $(document).ready(function() {
 
   $(document).on('click', '#btnPublish', function(e){  	
 		e.preventDefault();		
+
 		var a = $(this);		
 		$.ajax(
 		{	
 			dataType: "json",
 			url: $(this).data('link')}).done(
 			function(d) 
-			{ 		
-				if(typeof(d.e) !== 'undefined' && d.e)	
-				{
-               if(a.closest('.story-edit').length) a.closest('.story-edit').next('.story-message').html(d.msg).fadeIn(1000);
-               else popuper(d.msg,'error');           
-				}
-				else
-					a.find('span:last-child').text(d.title);							
+      {
+        if(typeof(d.e) !== 'undefined' && d.e)  
+        {
+          if(a.closest('.story-edit').length) a.closest('.story-edit').next('.story-message').html(d.msg).fadeIn(1000);     
+          else popuper(d.msg,'error');           
+        }
+        else
+        {
+          if(a.closest('.story-edit').length) a.find('span:last-child').text(d.link).attr('title',d.title);    
+          else 
+          {
+            a.find('span:last-child').attr('title',d.link + ' ' + d.title );
+            a.toggleClass('btn-publish btn-publish-disabled');              
+          }
+        }
 			});	 							
 		return true;	
   });
@@ -443,13 +455,14 @@ $(document).ready(function() {
 	});
 
 
-   $('.btn-create-section').click(function(){  getObject('create','section'); });
+   $('.btn-create-section').click(function(e){ e.preventDefault(); getObject('create','section'); });
 
-   $('.builder-wrapper .sidebar .story-tree').on('click','li.item > ul > .btn-create',function()     
+   $('.builder-wrapper .sidebar .story-tree').on('click','li.item > ul > .btn-create',function(e)     
    {
-      var cur = $(this).closest('li');
-      var id = cur.attr('id');
-      var type = cur.data('type');
+    e.preventDefault();
+    var cur = $(this).closest('li');
+    var id = cur.attr('id');
+    var type = cur.data('type');
 		if(id == -1) { alert(gon.msgs_select_section); return true; }
 
 		if( ['content','slideshow','embed_media','youtube'].indexOf(type) != -1 && cur.has('ul li').length==1 )
@@ -469,7 +482,7 @@ $(document).ready(function() {
   }
   else 
   {
-    getObject('select','story');
+    //getObject('select','story');
   }
 
   var was_title_box_length, was_permalink_box_length = 0;
@@ -716,7 +729,7 @@ function isUrl(s) {
 
 function getObject(method, type, id, sub_id, which)
 {
-
+  console.log('getObject');
    method = typeof method !== 'undefined' ? method : '';  // n - new , s - select, r - remove, a - add
    type = typeof type !== 'undefined' ? type : '';  
    id = typeof id !== 'undefined' ? id : -1;
@@ -725,6 +738,7 @@ function getObject(method, type, id, sub_id, which)
    selectedType = type;
 
 //   console.log(method,type,id,sub_id,which);
+   if(method == 'create') which = 1;
    var pars = { 'which': which };   
    if(type == 'story')
    {
@@ -762,7 +776,7 @@ function getObject(method, type, id, sub_id, which)
         data: pars,
         dataType: 'script',
         cache: true,
-      }).error(function(e){console.log(e)}).done(function(){         
+      }).error(function(e){console.log(e)}).done(function(){  
          //if(el_type!='section' && method != 'n')
            // $('.form-title .form-title-text').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > div > .sub-l').text() + ": " + $('.form-title .form-title-text').text());
       });
@@ -789,6 +803,7 @@ function refresh()
 }
 function change_tree(d)
 {
+  console.log('change_tree',d);
    var li = $("<li id='"+d.id+"' data-type='"+d.type+"' class='item open'>" + 
                "<div class='box'>" + 
                   "<div class='collapser'>-</div>" + 
@@ -806,6 +821,7 @@ function change_tree(d)
 }
 function change_sub_tree(d)
 {
+  console.log('change_tree',d);
    var section = story_tree.find('ul li.item[id='+ d.id + ']');
    var li = $("<li id='"+d.sub_id+"' class='sub' data-type='"+d.type+"_item'><div><div class='sub-l'>"+d.title+"</div><div class='storytree-arrow'><div class='arrow'></div></div></div></li>");  
    if(d.type != 'fullscreen')
@@ -821,4 +837,30 @@ function change_sub_tree(d)
 function which(v,html)
 {
   $(v==2?".story-page2":".story-page1").hide().html(html).fadeIn('slow');
+}
+function calculate_workspace()
+{
+  if($(".builder-wrapper").length)
+  {  
+    var bw = $(".builder-wrapper");  
+    var nav =  $('.nav-tabs');
+    var t = bw.find('.toolbar');       
+    var topOffset = t.outerHeight()+t.offset().top;
+    
+    bw.height($(window).height()- nav.outerHeight()-nav.offset().top);
+
+    var bwh = $(window).height()-topOffset;
+    var content = bw.find("> .content");
+    var toolbar = bw.find("> .toolbar");
+
+    var sidebar = content.find("> .sidebar");
+    var workplace = content.find("> .workplace");
+    var tree =  sidebar.find("> .story-tree");
+    
+
+    tree.height(bwh);
+    workplace.height(bwh);
+
+    content.css('top',topOffset + 'px');
+  }
 }

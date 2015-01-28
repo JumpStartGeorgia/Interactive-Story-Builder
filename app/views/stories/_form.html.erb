@@ -1,6 +1,5 @@
 <% original ||= false %>
 <% readonly = {} %>
-<% tinyId = "storyAbout" %>
 <% tinyClass = "tinyEditor" %>
 <% if @trans %>
   <% if original %>
@@ -8,7 +7,6 @@
     <% readonly = { readonly:true , disabled: true } %>
   <% else %>
     <%= tinymce editor_selector: 'tinyEditor2' %>
-    <% tinyId = "storyAbout2" %>   
     <% tinyClass = "tinyEditor2" %>   
   <% end %>
 <% elsif %>
@@ -51,7 +49,7 @@
         
         <%= f_translation.input :translation_author, { :input_html => { id: (!isTO ? "storyTranslationAuthor" : nil)  }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.translation_author'), placeholder: t('.placeholder.translation_author') }))  %>
 
-        <%= f_translation.input :about, { :as => :text, :input_html => {id: tinyId , :class => tinyClass, :rows => 15}.merge(readonly)  }.merge(( original ? {} : { hint: t('.hint.about') }))  %>
+        <%= f_translation.input :about, { :as => :text, :input_html => {id: tinyClass , :class => tinyClass, :rows => 15}.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.about') }))  %>
 
         <% if !@trans %>
 
