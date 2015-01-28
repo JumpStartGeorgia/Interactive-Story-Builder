@@ -155,6 +155,7 @@ ka:
         subject: "თქვენ მოწვეული ხართ, რათა მონაწილეობა მიიღოთ “სთორიბილდერზე” ამბის შექმნაში!"
         message: "თქვენ მოწვეული ხართ, რათა მონაწილეობა მიიღოთ ამბის შექმნაში სხვა ადამიანებთან ერთად “სთორიბილდერზე”. თუ გსურთ, მიიღოთ მოწვევა, უბრალოდ დააჭირეთ ბმულს 'მოწვევის მიღება'. თუ არ გსურთ მონაწილეობა, უპასუხოდ დატოვეთ მოწვევა."
         from: ვისგან
+        role: Role
         story_title: ამბის სათაური
         msg: გზავნილი
         accept_link: მოწვევის მიღება
@@ -435,6 +436,9 @@ ka:
     youtube: 
       name: Embed Youtube
       description: Fullscreen/common youtube video       
+  story_role:
+    editor: Editor
+    translator: Translator
   message_types:
     bug: გვაცნობეთ შეცდომის შესახებ
     feature: მოითხოვეთ ახალი ფუნქციის დამატება
@@ -720,6 +724,7 @@ ka:
       decline_link: უარის თქმა
       header_date: გაგზავნის თარიღი
       header_story: ამბის სათური
+      header_role: Role
       header_from: გამომგზავნი
     notifications:
       title: შეტყობინებები

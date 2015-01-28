@@ -299,6 +299,8 @@ class NotificationTrigger < ActiveRecord::Base
         emails = invitations.map{|x| x.to_email}.uniq
         if emails.present?
           orig_locale = I18n.locale
+          languages = Language.all
+
           emails.each do |email|
             invs = invitations.select{|x| x.to_email == email}
             if invs.present?
@@ -319,9 +321,28 @@ class NotificationTrigger < ActiveRecord::Base
               message.message_list = []
 
               invs.each do |inv|
-                story = Story.select('title').where(:id => inv.story_id).first
+                story = Story.find_by_id(inv.story_id)
                 if story.present?
-                  message.message_list << [inv.from_user.nickname, story.title, inv.key, inv.message]
+                  # get the story using the user locale if it exsts
+                  story.use_app_locale_if_translation_exists
+
+                  role = inv.role_name
+                  # if role is translator, add in the languages for translation
+                  if inv.role == Story::ROLE[:translator] && inv.translation_locales.present?
+                    role << ' - '
+                    locales = inv.translation_locales.split(',')
+                    locales.each_with_index do |locale, locale_index|
+                      lang = languages.select{|x| x.locale == locale}.first
+                      if lang.present?
+                        role << lang.name
+                        if locale_index < locales.length-1
+                          role << ', '
+                        end
+                      end
+                    end
+                  end
+
+                  message.message_list << [inv.from_user.nickname, story.title, role, inv.key, inv.message]
 		            end
 	            end
               puts " ---> message: #{message.inspect}"

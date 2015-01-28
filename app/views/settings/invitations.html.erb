@@ -9,6 +9,7 @@
       <tr>
         <th><%= t('.header_date') %></th>
         <th><%= t('.header_story') %></th>
+        <th><%= t('.header_role') %></th>
         <th><%= t('.header_from') %></th>
         <th><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
@@ -18,6 +19,19 @@
         <tr>
           <td><%= l(invitation.sent_at, :format => :publish) if invitation.sent_at.present? %></td>
           <td><%= invitation.story.title %></td>
+          <td>
+            <%= invitation.role_name %>
+            <% if invitation.role == Story::ROLE[:translator] && invitation.translation_locales.present?%>
+              <%= ' - ' %>             
+              <% locales = invitation.translation_locales.split(',') %>
+              <% locales.each_with_index do |locale, locale_index| %>
+                <% lang = @languages.select{|x| x.locale == locale}.first %>
+                <% if lang.present? %>
+                  <abbr title="<%= lang.name %>"><%= locale.upcase %></abbr><%= ', ' if locale_index < locales.length-1 %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </td>
           <td>
             <%= image_tag invitation.from_user.avatar_url(:'50x50'), :title => invitation.from_user.nickname, :alt => invitation.from_user.nickname %>
           </td>

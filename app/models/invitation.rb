@@ -43,4 +43,17 @@ class Invitation < ActiveRecord::Base
   def self.delete_invitation(story_id, to_email)
     where(:story_id => story_id, :to_email => to_email).destroy_all
   end
+
+  #################################
+
+  def role_name
+    name = ''
+    index = Story::ROLE.values.index(self.role)
+    if index.present?
+      name = I18n.t("story_role.#{Story::ROLE.keys[index].to_s}") 
+    end
+    return name
+  end
+
+
 end

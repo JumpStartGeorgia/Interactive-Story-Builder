@@ -157,6 +157,7 @@ en:
         subject: "You have been invited to collaborate on a story on Chai Khana!"
         message: "You have received the following invitations to collaborate on stories with other people on Chai Khana. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part."
         from: From
+        role: Role
         story_title: Story Title
         msg: Message
         accept_link: Accept the Invitation
@@ -435,6 +436,9 @@ en:
     youtube: 
       name: Embed Youtube
       description: Fullscreen/common youtube video          
+  story_role:
+    editor: Editor
+    translator: Translator
   message_types:
     bug: Report a Bug
     feature: Request a Feature
@@ -725,6 +729,7 @@ en:
       decline_link: Decline
       header_date: Date Sent
       header_story: Story Title
+      header_role: Role
       header_from: Sent By
     notifications:
       title: Notifications

@@ -3,11 +3,12 @@
 <% @message.message_list.each do |msg| %>
 <%= "#{t('mailer.notification.story_collaboration.from', :locale => @message.locale)}: #{msg[0]}" %>
 <%= "#{t('mailer.notification.story_collaboration.story_title', :locale => @message.locale)}: #{msg[1]}" %>
-<% if msg[3].present? %>
-<%= msg[3] %>
+<%= "#{t('mailer.notification.story_collaboration.role', :locale => @message.locale)}: #{msg[2]}" %>
+<% if msg[4].present? %>
+<%= msg[4] %>
 <% end %>
 
-<%= "#{t('mailer.notification.story_collaboration.accept_link', :locale => @message.locale)}: #{settings_accept_invitation_url(:locale => @message.locale, :key => msg[2])}" %>
+<%= "#{t('mailer.notification.story_collaboration.accept_link', :locale => @message.locale)}: #{settings_accept_invitation_url(:locale => @message.locale, :key => msg[3])}" %>
 
 ------------------
 

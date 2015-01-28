@@ -21,4 +21,14 @@ class StoryUser < ActiveRecord::Base
     where(:role => Story::ROLE[:translator])
   end
 
+  #################################
+  def role_name
+    name = ''
+    index = Story::ROLE.values.index(self.role)
+    if index.present?
+      name = I18n.t("story_role.#{Story::ROLE.keys[index].to_s}") 
+    end
+    return name
+  end
+
 end

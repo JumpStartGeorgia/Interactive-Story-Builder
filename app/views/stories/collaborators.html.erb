@@ -73,7 +73,7 @@
             <%= image_tag user.avatar_url(:'50x50'),:size=>"50x50", :title => user.nickname %>
             <% if inv.translation_locales.present? %>
               <div class="languages">
-                <% translator.translation_locales.split(',').each_with_index do |locale, locale_index| %>
+                <% translator.translation_locales.split(',').each do |locale| %>
                   <% lang = @languages.select{|x| x.locale == locale}.first %>
                   <% if lang.present? %>
                     <abbr title="<%= lang.name %>"><%= locale.upcase %></abbr>
@@ -109,7 +109,7 @@
             <%= image_tag path,:size=>"46x46", :class => 'pending', :title => t('.not_accepted_title', :name => nickname) %>
             <% if inv.translation_locales.present? %>
               <div class="languages">
-                <% inv.translation_locales.split(',').each_with_index do |locale, locale_index| %>
+                <% inv.translation_locales.split(',').each do |locale| %>
                   <% lang = @languages.select{|x| x.locale == locale}.first %>
                   <% if lang.present? %>
                     <abbr title="<%= lang.name %>"><%= locale.upcase %></abbr>
