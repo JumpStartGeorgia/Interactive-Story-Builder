@@ -767,23 +767,17 @@ end
       msgs = {editors: [], translators: []}
       ids = {editors: [], translators: []}
       
-      # if request.post?
-      #   sending_invitations = true  
+      if request.post?
+        sending_invitations = true  
 
-      #   if params[:editor_ids].present?
-      #     role = Story::ROLE[:editor]
-      #     msg = params[:message]
+        if params[:editor_ids].present?
+          user_with_errors[:editors], msgs[:editors], ids[:editors] = process_editor_invitations(params[:editor_ids], params[:message])
+        end
 
-      #     user_with_errors[:editors], msgs[:editors], ids[:editors] = process_invitations(params[:editor_ids], role, msg)
-      #   end
-
-      #   if params[:translator_ids].present?
-      #     role = Story::ROLE[:translator]
-      #     msg = params[:message]
-
-      #     user_with_errors[:translators], msgs[:translators], ids[:translators] = process_invitations(params[:translator_ids], role, msg)
-      #   end
-      # end 
+        if params[:translators].present?
+          user_with_errors[:translators], msgs[:translators], ids[:translators] = process_translator_invitations(params[:translators], params[:message])
+        end
+      end 
 
       # if not all ids were processed for invitations
       # record them so they can be shown in the list again
@@ -819,6 +813,9 @@ end
       @translator_invitations = Invitation.translators.pending_by_story(@story.id)
 
       set_settings_gon
+
+      @css.push("collaborators.css")
+      @js.push("collaborators.js")
 
       respond_to do |format|
         format.html
@@ -906,8 +903,10 @@ private
     @js.push("stories.js", "modalos.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js", "zeroclipboard.min.js", "filter.js", "jquery.tipsy.js")
   end 
   
-  # process the ids for the given role for collaboration invitations
-  def process_invitations(ids, role, message)
+  # process the ids for editor collaboration invitations
+  def process_editor_invitations(ids, message)
+    logger.debug "__________ PROCESS EDITOR INVITATIONS"
+    role = Story::ROLE[:editor]
     user_with_errors = []
     msgs = []
 
@@ -956,6 +955,69 @@ private
           # record the user with the error so that it can be re-displayed in the list
           user_with_errors << {id: email, name: email }
           msgs << "'#{email}' - #{msg.join(', ')}"
+        end
+      end
+    end
+
+    return msgs, user_with_errors, c_ids
+  end
+
+  # process the ids for translator collaboration invitations
+  # translators is an array of locales and user id/email
+  def process_translator_invitations(translators, message)
+    logger.debug "__________ PROCESS TRANSLATOR INVITATIONS"
+    role = Story::ROLE[:translator]
+    user_with_errors = []
+    msgs = []
+    c_ids = nil
+
+    if translators.present?
+      c_ids = translators.values.map{|x| x['id']}
+      translators.values.each do |translator|
+        user_id = nil
+        email = nil
+        locals = translator['locale'].join(',')
+
+        if translator['id'].include?('@')
+          email = translator['id'].gsub("'", '')
+        else
+          user_id = translator['id']
+        end
+
+        logger.debug "__________ user_id = #{user_id}"
+        logger.debug "__________ email = #{email}"
+
+        # send invitation for each existing user
+        if user_id.present?
+          Rails.logger.debug "_______________user id = #{user_id}"
+          user = User.find_by_id(user_id)
+          if user.present?
+            msg = create_invitation(@story, role, user.id, user.email, message, locals)
+            Rails.logger.debug "-------------- msg = #{msg}"
+            if msg.blank?
+              # remove id from list
+              c_ids.delete(user_id)
+            else
+              # record the user with the error so that it can be re-displayed in the list
+              user_with_errors << {id: user.id, name: user.nickname, img_url: user.avatar_url(:'50x50') }
+              msgs << "'#{user.nickname}' - #{msg.join(', ')}"
+            end
+          end  
+        end
+                   
+        # send invitation for new users
+        if email.present?
+          Rails.logger.debug "_____________email = #{email}"
+          msg = create_invitation(@story, role, nil, email, params[:message], locals)
+          Rails.logger.debug "-------------- msg = #{msg}"
+          if msg.blank?
+            # remove email from list
+            c_ids.delete(email)
+          else
+            # record the user with the error so that it can be re-displayed in the list
+            user_with_errors << {id: email, name: email }
+            msgs << "'#{email}' - #{msg.join(', ')}"
+          end
         end
       end
     end

@@ -605,6 +605,8 @@ en:
       editor_label: Enter the names or email addresses of the editors
       language_label: Select the translation language(s)
       translator_label: Enter the name or email address of the translator
+      translator_add: Add Another Translator
+      translator_remove: Remove Translator
       message: Add Message to Notification (optional)
       submit: Send Collaboration Invitation
     media:

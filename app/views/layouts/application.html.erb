@@ -44,7 +44,7 @@
     <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag '/favicon.ico', :rel => 'shortcut icon' %>
   </head>
-  <body>
+  <body id="<%= yield(:body_id) %>">
     <%= render partial: "layouts/storybuilder_nav"%> 
     <%= yield(:header) %>
 		<div id="wrapper">

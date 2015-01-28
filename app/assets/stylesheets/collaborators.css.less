@@ -1,0 +1,53 @@
+.current-collaborators{
+  margin-bottom: 10px;
+  li { 
+    img{
+      display: inline-block;
+      &.pending{
+        border: solid 2px #ED9C28;
+      }
+    }
+
+    .languages {
+      display: inline-block;
+      vertical-align: top;
+      abbr{
+        display: block;
+      }
+    }
+    #remove-editor-message, #remove-translator-message{
+      display:none;
+      margin-top: 5px;
+    }
+  }
+}
+
+a.remove-collaborator, a.remove-translator{
+  display: block;
+  width: 100%; 
+  padding: 1px;  
+}
+a.remove-translator{
+  margin-top: 16px;
+}
+
+#translator-form-row-template{
+  display: none;
+}
+.translator-form-row{
+  border-bottom: solid 1px #ccc;
+  padding: 10px 0;
+  .form-group{
+    margin-bottom: 0;
+  }
+  .bootstrap-select.btn-group:not(.input-group-btn) {
+    margin-bottom: 0;
+
+  }
+  .dropdown-toggle{
+    margin: 0 !important;
+  }
+  .btn{
+    padding: 0;
+  }
+}
