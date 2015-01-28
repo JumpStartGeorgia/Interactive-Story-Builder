@@ -20,31 +20,31 @@ t.story_type_translations.create(:locale => 'en', :name => 'Story')
 t.story_type_translations.create(:locale => 'ka', :name => 'Story')
 t.story_type_translations.create(:locale => 'ru', :name => 'Story')
 t.story_type_translations.create(:locale => 'az', :name => 'Story')
-t.story_type_translations.create(:locale => 'am', :name => 'Story')
+t.story_type_translations.create(:locale => 'hy', :name => 'Story')
 t = StoryType.create(:id => 2, :sort_order => 2)
 t.story_type_translations.create(:locale => 'en', :name => 'Talk Show')
 t.story_type_translations.create(:locale => 'ka', :name => 'Talk Show')
 t.story_type_translations.create(:locale => 'ru', :name => 'Talk Showy')
 t.story_type_translations.create(:locale => 'az', :name => 'Talk Show')
-t.story_type_translations.create(:locale => 'am', :name => 'Talk Show')
+t.story_type_translations.create(:locale => 'hy', :name => 'Talk Show')
 t = StoryType.create(:id => 3, :sort_order => 3)
 t.story_type_translations.create(:locale => 'en', :name => 'Video')
 t.story_type_translations.create(:locale => 'ka', :name => 'Video')
 t.story_type_translations.create(:locale => 'ru', :name => 'Video')
 t.story_type_translations.create(:locale => 'az', :name => 'Video')
-t.story_type_translations.create(:locale => 'am', :name => 'Video')
+t.story_type_translations.create(:locale => 'hy', :name => 'Video')
 t = StoryType.create(:id => 4, :sort_order => 4)
 t.story_type_translations.create(:locale => 'en', :name => 'Photo')
 t.story_type_translations.create(:locale => 'ka', :name => 'Photo')
 t.story_type_translations.create(:locale => 'ru', :name => 'Photo')
 t.story_type_translations.create(:locale => 'az', :name => 'Photo')
-t.story_type_translations.create(:locale => 'am', :name => 'Photo')
+t.story_type_translations.create(:locale => 'hy', :name => 'Photo')
 # t = StoryType.create(:id => 5, :sort_order => 5)
 # t.story_type_translations.create(:locale => 'en', :name => 'Infographic')
 # t.story_type_translations.create(:locale => 'ka', :name => 'Infographic')
 # t.story_type_translations.create(:locale => 'ru', :name => 'Infographic')
 # t.story_type_translations.create(:locale => 'az', :name => 'Infographic')
-# t.story_type_translations.create(:locale => 'am', :name => 'Infographic')
+# t.story_type_translations.create(:locale => 'hy', :name => 'Infographic')
 
 
 #####################
@@ -183,6 +183,19 @@ published[21..published.length-1].each do |story|
   story.save
 end
 
+
+#####################
+## Pages
+#####################
+puts "Loading Pages"
+Page.delete_all
+PageTranslation.delete_all
+p = Page.create(:id => 1, :name => 'about')
+p.page_translations.create(:locale => 'en', :title => 'About Chai Khana')
+p.page_translations.create(:locale => 'ka', :title => 'About Chai Khana')
+p.page_translations.create(:locale => 'az', :title => 'About Chai Khana')
+p.page_translations.create(:locale => 'ru', :title => 'About Chai Khana')
+p.page_translations.create(:locale => 'hy', :title => 'About Chai Khana')
 
 
 =begin OLD STUFF FROM STORYBUILDER

@@ -225,4 +225,9 @@ class User < ActiveRecord::Base
     
     return following
   end
+
+  # get all users in the provided role
+  def self.with_role(role)
+    where(:role => role).order('nickname, email')
+  end
 end

@@ -13,7 +13,7 @@ class StoryTranslation < ActiveRecord::Base
   validates :author, :presence => true, length: { maximum: 255 }
   validates :permalink, :presence => true
   validates :media_author, length: { maximum: 255 }
-  #validates :shortened_url, :presence => true
+  validates :shortened_url, :presence => true
 
   # def required_data_provided?
   #   provided = false
@@ -38,7 +38,7 @@ class StoryTranslation < ActiveRecord::Base
   #################################
   ## Callbacks
   before_save :publish_date
-#  before_save :shortened_url_generation
+  before_save :shortened_url_generation
   after_save :update_filter_counts
 
   # if the story is being published, record the date
@@ -86,8 +86,6 @@ class StoryTranslation < ActiveRecord::Base
 
   end
 
-private
-
   # generate bit.ly shortened url
   def generate_shortened_url
     require 'open-uri'
@@ -95,8 +93,12 @@ private
     token = Rails.env.production? ? ENV['STORY_BUILDER_BITLY_TOKEN'] : ENV['STORY_BUILDER_BITLY_TOKEN_DEV']
     # only continue if the token is in the environment variables
     if token.present?
-      puts "- locale = #{self.locale}"
-      long_url = URI.encode(UrlHelpers.storyteller_show_url(:id => self.permalink, :locale => self.locale))
+      # if the story locale is not one of the app locales, use the default locale
+      locale = self.locale
+      locale = I18n.default_locale if !I18n.available_locales.include?(self.locale.to_sym)
+      puts "- locale = #{locale}"
+
+      long_url = URI.encode(UrlHelpers.storyteller_show_url(:id => self.permalink, :locale => locale))
       url = "https://api-ssl.bitly.com/v3/shorten?access_token=#{token}&longUrl=#{long_url}"
       puts "- url = #{url}"
       begin

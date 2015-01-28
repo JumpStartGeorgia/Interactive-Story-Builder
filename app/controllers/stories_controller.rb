@@ -164,6 +164,16 @@ class StoriesController < ApplicationController
     end    
 
   	@story = Story.fullsection(params[:id])      
+    if @story.present?
+      # set story locale 
+      # if param exists use that
+      # else check if translation exists for current app locale
+      if params[:story_language].present?
+        @story.current_locale = params[:story_language] 
+      else
+        @story.use_app_locale_if_translation_exists
+      end
+    end
 
     respond_to do |format|  
       #if(@story.present?)   

@@ -1,5 +1,13 @@
-<% title t('.title') %>
+<% logger.debug "page = #{@page.inspect}" %>
+<% title @page.present? ? @page.title : t('.title') %>
 
+<% if @page.present? %>
+  <%= simple_format_no_tags(@page.content, {}, {sanitize: false}) %>
+<% end %>
+
+<%
+=begin old
+%>
 <% content_for(:header) { %>
   <header class="header-about %>">
     <div class="header-data">
@@ -33,4 +41,5 @@
     </p>  
   </div>
 <% } %>
-
+<%
+=end %>

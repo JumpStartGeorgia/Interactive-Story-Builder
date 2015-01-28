@@ -7,6 +7,9 @@
     </li>
     <% if current_user.role? User::ROLES[:site_admin] %>
       <li>
+       <%= link_to t('helpers.links.pages'), admin_pages_path %>
+      </li>
+      <li>
        <%= link_to t('helpers.links.themes'), admin_themes_path %>
       </li>
       <li>

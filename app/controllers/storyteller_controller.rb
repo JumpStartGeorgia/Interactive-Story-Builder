@@ -15,9 +15,14 @@ class StorytellerController < ApplicationController
   	@story = Story.is_published.fullsection(story.id) if story.present?  
 
   	if @story.present?
-      # set story locale if param exists
-      # - by default the current_locale is set to the story_locale
-      @story.current_locale = params[:story_language] if params[:story_language].present?
+      # set story locale 
+      # if param exists use that
+      # else check if translation exists for current app locale
+      if params[:story_language].present?
+        @story.current_locale = params[:story_language] 
+      else
+        @story.use_app_locale_if_translation_exists
+      end
 
 logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; permalink = #{@story.permalink}"
 
