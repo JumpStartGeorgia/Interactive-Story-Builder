@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150126200009) do
+ActiveRecord::Schema.define(:version => 20150127124423) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -138,9 +138,11 @@ ActiveRecord::Schema.define(:version => 20150126200009) do
     t.string   "key"
     t.datetime "sent_at"
     t.datetime "accepted_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.text     "message"
+    t.integer  "role",                :limit => 1, :default => 0
+    t.string   "translation_locales"
   end
 
   add_index "invitations", ["key"], :name => "index_invitations_on_key"
@@ -351,14 +353,6 @@ ActiveRecord::Schema.define(:version => 20150126200009) do
   add_index "stories", ["template_id"], :name => "index_stories_on_template_id"
   add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
 
-  create_table "stories_users", :force => true do |t|
-    t.integer "story_id"
-    t.integer "user_id"
-  end
-
-  add_index "stories_users", ["story_id"], :name => "index_stories_users_on_story_id"
-  add_index "stories_users", ["user_id"], :name => "index_stories_users_on_user_id"
-
   create_table "story_categories", :force => true do |t|
     t.integer  "story_id"
     t.integer  "category_id"
@@ -425,6 +419,20 @@ ActiveRecord::Schema.define(:version => 20150126200009) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
   end
+
+  create_table "story_users", :force => true do |t|
+    t.integer  "story_id"
+    t.integer  "user_id"
+    t.integer  "role",                :limit => 1, :default => 0
+    t.string   "translation_locales"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "story_users", ["created_at"], :name => "index_story_users_on_created_at"
+  add_index "story_users", ["role"], :name => "index_story_users_on_role"
+  add_index "story_users", ["story_id"], :name => "index_stories_users_on_story_id"
+  add_index "story_users", ["user_id"], :name => "index_stories_users_on_user_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

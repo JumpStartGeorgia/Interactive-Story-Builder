@@ -30,7 +30,7 @@ en:
         nickname: Nickname
       story:
         title: Story Title
-        user_id: Story Editor
+        user_id: Story Author
         user_ids: Editors
         author: Author(s)
         media_author: Photo and Video Author(s)  
@@ -157,6 +157,7 @@ en:
         subject: "You have been invited to collaborate on a story on Chai Khana!"
         message: "You have received the following invitations to collaborate on stories with other people on Chai Khana. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part."
         from: From
+        role: Role
         story_title: Story Title
         msg: Message
         accept_link: Accept the Invitation
@@ -435,6 +436,9 @@ en:
     youtube: 
       name: Embed Youtube
       description: Fullscreen/common youtube video          
+  story_role:
+    editor: Editor
+    translator: Translator
   message_types:
     bug: Report a Bug
     feature: Request a Feature
@@ -572,6 +576,7 @@ en:
       hint:
         title: Story title will appear at the top of your story
         permalink: The default URL is the title of the story, but you can change it if desired
+        user_id: Select the author of the story to allow the story to appear on their webpage.
         author: Author names will appear below the story title
         media_author:  "Author names will appear below the Story Author names"
         translation_author:  "Author names will appear below the Photo and Video Author names"
@@ -590,15 +595,22 @@ en:
         in_theme_slider: "If checked, this story will appear in the slider at the top of the theme page."
     collaborators:
       title: "Collaborators for '%{title}'"
-      owner_header: Story Owner
+      owner_header: Story Author
       collaborators_header: Story Collaborators
       explanation: A story collaborator is someone that has access to edit this story.
-      current_header: Current Collaborators
+      editors_header: Editors
+      editor_explanation: An Editor has access to add/edit the story and translate the story into any language. An Editor can also add collaborators and publish the story.
+      translators_header: Translators
+      translator_explanation: "A Translator has access to translate the story into a specific language(s). A Translator does not have the ability to edit the original story, add collaborators or publish the story."
       remove_title: 'Remove %{name}'
       not_accepted_title: '%{name} has not accepted the invitation yet'
       add_header: Add Collaborators
       add_explanation: For the users you enter below, an email will be sent inviting them to be a collaborator on this story.
-      search_label: Enter names or email addresses of the people you want to invite
+      editor_label: Enter the names or email addresses of the editors
+      language_label: Select the translation language(s)
+      translator_label: Enter the name or email address of the translator
+      translator_add: Add Another Translator
+      translator_remove: Remove Translator
       message: Add Message to Notification (optional)
       submit: Send Collaboration Invitation
     media:
@@ -717,6 +729,7 @@ en:
       decline_link: Decline
       header_date: Date Sent
       header_story: Story Title
+      header_role: Role
       header_from: Sent By
     notifications:
       title: Notifications

@@ -4,6 +4,10 @@ module ApplicationHelper
     content_for(:title) { page_title.html_safe }
   end
 
+  def body_id(body_id)
+    content_for(:body_id) { body_id.html_safe }
+  end
+
 	def flash_translation(level)
     case level
     when :notice then "alert-info"

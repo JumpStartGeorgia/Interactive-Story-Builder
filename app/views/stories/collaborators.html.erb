@@ -9,74 +9,188 @@
 <p>
   <%= t('.explanation') %>
 </p>
-<h3><%= t('.current_header') %></h3>
-<% if @story.users.present? || @invitations.present? %>
-  <ul id="current-collaborators" style="margin-bottom: 10px;">
-    <% @story.users.each do |user| %>
-      <li style="display:inline-block; margin-right: 5px;">
-        <%= image_tag user.avatar_url(:'50x50'),:size=>"50x50", :title => user.nickname %>
-        <% if current_user.id == @story.user_id %>
-          <%= link_to '#', :class => 'remove-collaborator btn btn-danger btn-xs active', 
-                  :style => 'display: block;width: 50px; padding: 1px;', :title => t('.remove_title', :name => user.nickname),
-                  :'data-id' => user.id,
-                  :'data-url' => story_remove_collaborator_path(@story) do %>
-            <i style="" class="glyphicon glyphicon glyphicon-remove-circle"></i>
-          <% end %>
+<div class="row">
+  <div class="col-sm-6">
+    <h3><%= t('.editors_header') %></h3>
+    <p>
+      <%= t('.editor_explanation') %>
+    </p>
+    <% if @editors.present? || @editor_invitations.present? %>
+      <ul class="current-collaborators list-inline">
+        <% @editors.each do |editor| %>
+          <% user = editor.user %>
+          <li>
+            <%= image_tag user.avatar_url(:'50x50'),:size=>"50x50", :title => user.nickname %>
+            <%= link_to '#', :class => 'remove-collaborator btn btn-danger btn-xs active', 
+                    :title => t('.remove_title', :name => user.nickname),
+                    :'data-id' => user.id,
+                    :'data-url' => story_remove_collaborator_path(@story),
+                    :'data-msg-id' => 'remove-editor-message' do %>
+              <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+            <% end %>
+          </li>
         <% end %>
-      </li>
-    <% end %>
-    <% @invitations.each do |inv| %>
-      <li style="display:inline-block; margin-right: 5px;">
-        <% 
-          path = nil
-          nickname = nil
-          email = nil
-          if inv.to_user_id.present?
-            path = inv.to_user.avatar_url(:'50x50')
-            nickname = inv.to_user.nickname
-            email = inv.to_user.email
-          else
-            path = User.new.avatar_url(:'50x50')
-            nickname = inv.to_email
-            email = inv.to_email
-          end
-        %>
-        <%= image_tag path,:size=>"50x50", :style => 'border: solid 2px #ED9C28;', :title => t('.not_accepted_title', :name => nickname) %>
-        <% if current_user.id == @story.user_id %>
-          <%= link_to '#', :class => 'remove-collaborator btn btn-danger btn-xs active', 
-                  :style => 'display: block;width: 50px; padding: 1px;', :title => t('.remove_title', :name => nickname),
-                  :'data-id' => email, 
-                  :'data-url' => story_remove_invitation_path(@story) do %>
-            <i style="" class="glyphicon glyphicon glyphicon-remove-circle"></i>
-          <% end %>
+        <% @editor_invitations.each do |inv| %>
+          <li>
+            <% 
+              path = nil
+              nickname = nil
+              email = nil
+              if inv.to_user_id.present?
+                path = inv.to_user.avatar_url(:'50x50')
+                nickname = inv.to_user.nickname
+                email = inv.to_user.email
+              else
+                path = User.new.avatar_url(:'50x50')
+                nickname = inv.to_email
+                email = inv.to_email
+              end
+            %>
+            <%= image_tag path,:size=>"50x50", :class => 'pending', :title => t('.not_accepted_title', :name => nickname) %>
+            <%= link_to '#', :class => 'remove-collaborator btn btn-danger btn-xs active', 
+                    :title => t('.remove_title', :name => nickname),
+                    :'data-id' => email, 
+                    :'data-url' => story_remove_invitation_path(@story),
+                    :'data-msg-id' => 'remove-editor-message' do %>
+              <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+            <% end %>
+          </li>
         <% end %>
-      </li>
+        <li id="remove-editor-message" class="alert"></li>
+      </ul>
     <% end %>
-    <li id="remove-collaborator-message" style="display: none;" class="alert"></li>
-  </ul>
+  </div>
+  <div class="col-sm-6">
+    <h3><%= t('.translators_header') %></h3>
+    <p>
+      <%= t('.translator_explanation') %>
+    </p>
+    <% if @translators.present? || @translator_invitations.present? %>
+      <ul class="current-collaborators list-inline">
+        <% @translators.each do |translator| %>
+          <% user = translator.user %>
+          <li>
+            <%= image_tag user.avatar_url(:'50x50'),:size=>"50x50", :title => user.nickname %>
+            <% if inv.translation_locales.present? %>
+              <div class="languages">
+                <% translator.translation_locales.split(',').each do |locale| %>
+                  <% lang = @languages.select{|x| x.locale == locale}.first %>
+                  <% if lang.present? %>
+                    <abbr title="<%= lang.name %>"><%= locale.upcase %></abbr>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+            <%= link_to '#', :class => 'remove-collaborator btn btn-danger btn-xs active', 
+                    :title => t('.remove_title', :name => user.nickname),
+                    :'data-id' => user.id,
+                    :'data-url' => story_remove_collaborator_path(@story),
+                    :'data-msg-id' => 'remove-translator-message' do %>
+              <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+            <% end %>
+          </li>
+        <% end %>
+        <% @translator_invitations.each do |inv| %>
+          <li>
+            <% 
+              path = nil
+              nickname = nil
+              email = nil
+              if inv.to_user_id.present?
+                path = inv.to_user.avatar_url(:'50x50')
+                nickname = inv.to_user.nickname
+                email = inv.to_user.email
+              else
+                path = User.new.avatar_url(:'50x50')
+                nickname = inv.to_email
+                email = inv.to_email
+              end
+            %>
+            <%= image_tag path,:size=>"46x46", :class => 'pending', :title => t('.not_accepted_title', :name => nickname) %>
+            <% if inv.translation_locales.present? %>
+              <div class="languages">
+                <% inv.translation_locales.split(',').each do |locale| %>
+                  <% lang = @languages.select{|x| x.locale == locale}.first %>
+                  <% if lang.present? %>
+                    <abbr title="<%= lang.name %>"><%= locale.upcase %></abbr>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+            <%= link_to '#', :class => 'remove-collaborator btn btn-danger btn-xs active', 
+                    :title => t('.remove_title', :name => nickname),
+                    :'data-id' => email,               
+                    :'data-url' => story_remove_invitation_path(@story),
+                    :'data-msg-id' => 'remove-translator-message' do %>
+              <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+            <% end %>
+          </li>
+        <% end %>
+        <li id="remove-translator-message" class="alert"></li>
+      </ul>
+    <% end %>
+  </div>
+</div>
+
+<hr />
+
+<h2><%= t('.add_header') %></h2>
+<p>
+  <%= t('.add_explanation') %>
+</p>
+
+<%= form_tag collaborators_story_path, method: :post, :id => 'collaborators'  do %>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <h3><%= t('.editors_header') %></h3>
+      <div class="form-group">
+        <label for="editor_ids"><%= t('.editor_label') %></label>
+        <%= text_field_tag "editor_ids", '', class: 'form-control', :data => { load: params[:editor_error_ids]} %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <h3><%= t('.translators_header') %></h3>
+      <div id="translator-form-rows">
+      </div>
+      <p>
+        <%= link_to t('.translator_add'), '#', id: 'add-translator', class: 'btn btn-primary btn-sm' %>
+      </p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="message"><%= t('.message') %></label>
+    <%= text_area_tag "message", params[:message], rows: 5, class: 'form-control' %>
+  </div>
+
+  <div class="pull-right spacer">
+    <%= submit_tag t('.submit'), :class => 'btn btn-default' %>
+    <%= button_tag t('helpers.links.reset'), type: 'reset', class: 'btn btn-default' %> 
+  </div> 
+
 <% end %>
 
-<% if current_user.id == @story.user_id %>
-  <h3><%= t('.add_header') %></h3>
-  <p>
-    <%= t('.add_explanation') %>
-  </p>
 
-  <%= form_tag collaborators_story_path, method: :post, :id => 'collaborators'  do %>
-
-    <div class="form-group">
-      <label for="collaborator_ids"><%= t('.search_label') %></label>
-      <%= text_field_tag "collaborator_ids", '', class: 'form-control', :data => { load: params[:collaborator_error_ids]} %>
+<div id="translator-form-row-template" data-default="<%= I18n.locale %>">
+  <div class="row translator-form-row">
+    <div class="col-sm-5">
+      <div class="form-group">
+        <label for="translators[INDEX][locale][]"><%= t('.language_label') %></label><br/>
+        <%= select_tag "translators[INDEX][locale][]", options_from_collection_for_select(@languages, "locale", "name"), 
+            multiple: true, include_blank: false,
+            :'data-live-search' => "true", :'data-size' => "7" %>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="message"><%= t('.message') %></label>
-      <%= text_area_tag "message", params[:message], rows: 5, class: 'form-control' %>
+    <div class="col-sm-5">
+      <div class="form-group">
+        <label for="translators[INDEX][id]"><%= t('.translator_label') %></label>
+        <%= text_field_tag "translators[INDEX][id]", '', class: 'form-control translator_ids', :data => { load: params[:translator_error_ids]} %>
+      </div>
     </div>
-
-    <div class="pull-right spacer">
-      <%= submit_tag t('.submit'), :class => 'btn btn-default' %>
-      <%= button_tag t('helpers.links.reset'), type: 'reset', class: 'btn btn-default' %> 
-    </div> 
-
-  <% end %>
-<% end %>
+    <div class="col-sm-2">
+      <%= link_to '#', :class => 'remove-translator btn btn-danger btn-xs active', title: t('.translator_remove') do %>
+        <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+      <% end %>
+    </div>    
+  </div>
+</div>

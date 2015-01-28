@@ -13,6 +13,7 @@ class StoryTranslation < ActiveRecord::Base
   validates :author, :presence => true, length: { maximum: 255 }
   validates :permalink, :presence => true
   validates :media_author, length: { maximum: 255 }
+  validates :translation_author, length: { maximum: 255 }
   validates :shortened_url, :presence => true
 
   # def required_data_provided?

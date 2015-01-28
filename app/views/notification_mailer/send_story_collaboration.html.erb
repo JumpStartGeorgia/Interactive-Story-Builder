@@ -13,6 +13,9 @@
       <%= t('mailer.notification.story_collaboration.story_title', :locale => @message.locale) %>
     </th>
     <th style="<%= style %>">  
+      <%= t('mailer.notification.story_collaboration.role', :locale => @message.locale) %>
+    </th>
+    <th style="<%= style %>">  
       <%= t('mailer.notification.story_collaboration.msg', :locale => @message.locale) %>
     </th>
     <th style="<%= style %>">  
@@ -34,13 +37,16 @@
         <%= msg[1] %>
       </td>
       <td style="<%= style %>">  
-        <% if msg[3].present? %>
-          <%= simple_format msg[3] %>
+        <%= msg[2] %>
+      </td>
+      <td style="<%= style %>">  
+        <% if msg[4].present? %>
+          <%= simple_format msg[4] %>
         <% end %>
       </td>
       <td style="<%= style %>">  
         <%= link_to t('mailer.notification.story_collaboration.accept_link', :locale => @message.locale), 
-              settings_accept_invitation_url(:locale => @message.locale, :key => msg[2]) %>
+              settings_accept_invitation_url(:locale => @message.locale, :key => msg[3]) %>
       </td>
     </tr>
   <% end %>
