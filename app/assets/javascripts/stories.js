@@ -534,9 +534,9 @@ $(document).ready(function() {
     ); 
   }
   
-  // add autocomplete for collaborator search
-  if ($('form#collaborators #collaborator_ids').length > 0){
-    $('form#collaborators #collaborator_ids').tokenInput(
+  // add autocomplete for editor collaborator search
+  if ($('form#collaborators #editor_ids').length > 0){
+    $('form#collaborators #editor_ids').tokenInput(
       gon.collaborator_search,
       {
         method: 'POST',
@@ -544,7 +544,36 @@ $(document).ready(function() {
         theme: 'facebook',
         allowCustomEntry: true,
         preventDuplicates: true,
-        prePopulate: $('form#collaborators #collaborator_ids').data('load'),
+        prePopulate: $('form#collaborators #editor_ids').data('load'),
+        hintText: gon.tokeninput_collaborator_hintText,
+        noResultsText: gon.tokeninput_collaborator_noResultsText,
+        searchingText: gon.tokeninput_searchingText,
+        resultsFormatter: function(item){ 
+          return "<li><img src='" + item.img_url + "' title='" + item.name + "' height='28px' width='28px' /><div style='display: inline-block; padding-left: 10px;'><div>" + item.name + "</div></div></li>" 
+        },        
+        tokenFormatter: function(item) { 
+          if (item.img_url == undefined){
+            return "<li><p>" + item.name + "</p></li>" ;
+          }else{
+            return "<li><p><img src='" + item.img_url + "' title='" + item.name + "' height='50px' width='50px' /></p></li>" ;
+          }
+        }
+      }
+    ); 
+  }
+  
+  // add autocomplete for editor collaborator search
+  if ($('form#collaborators .translator_ids').length > 0){
+    $('form#collaborators .translator_ids').tokenInput(
+      gon.collaborator_search,
+      {
+        method: 'POST',
+        minChars: 2,
+        tokenLimit: 1, // only allow one selection
+        theme: 'facebook',
+        allowCustomEntry: true,
+        preventDuplicates: true,
+        prePopulate: $('form#collaborators #translator_ids').data('load'),
         hintText: gon.tokeninput_collaborator_hintText,
         noResultsText: gon.tokeninput_collaborator_noResultsText,
         searchingText: gon.tokeninput_searchingText,
@@ -582,7 +611,7 @@ $(document).ready(function() {
         cls = info;
       }
       // show message
-      $('li#remove-collaborator-message').show().removeClass(dng).removeClass(info).addClass(cls).html(d.msg);
+      $('li#' + $(ths).data('msg-id')).show().removeClass(dng).removeClass(info).addClass(cls).html(d.msg);
     });
   });
 

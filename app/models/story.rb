@@ -30,7 +30,8 @@ class Story < ActiveRecord::Base
 	belongs_to :template
   belongs_to :story_type
 	has_many :sections, :order => 'position', dependent: :destroy
-	has_and_belongs_to_many :users
+  has_many :story_users
+  has_many :users, :through => :story_users, :dependent => :destroy
 	has_one :asset,     
 	  :conditions => "asset_type = #{Asset::TYPE[:story_thumbnail]}", 	 
 	  foreign_key: :item_id,
@@ -45,7 +46,7 @@ class Story < ActiveRecord::Base
 
   DEMO_ID = 2
 
-  LANGUAGE_TYPE = {:primary => 0, :translation => 1}
+  ROLE = {:editor => 0, :translator => 1}
   
   
   #################################
@@ -53,11 +54,13 @@ class Story < ActiveRecord::Base
   validates :story_type_id, :presence => true
 	validates :template_id, :presence => true
 	validates :story_locale, :presence => true 
+  validates :user_id, :presence => true 
 
   #################################
   ## Callbacks
 
 	before_save :generate_reviewer_key
+  after_create :add_coordinators
 
   # if the reviewer key does not exist, create it
   def generate_reviewer_key
@@ -67,6 +70,16 @@ class Story < ActiveRecord::Base
     return true
   end
 
+  # anyone with coordinator role should automatically be added as a collaborator when the story is added
+  def add_coordinators
+    users = User.with_at_least_role(User::ROLES[:coordinator])
+
+    if users.present?
+      self.users << users
+    end
+
+    return true
+  end
 
   #################################
   ## Scopes
@@ -191,8 +204,11 @@ class Story < ActiveRecord::Base
   end
 
   def self.editable_user(user_id)
-    where("stories.user_id = :id or stories.id in ( select story_id from stories_users t where t.user_id = :id )",
-      :id => user_id)
+    where("stories.id in ( select story_id from story_users as su where su.user_id = :user_id )",
+      :user_id => user_id)
+    # story user_id is not allowed to edit story
+    # where("stories.user_id = :id or stories.id in ( select story_id from stories_users t where t.user_id = :id )",
+    #   :id => user_id)
   end
 
   # get entire story with the id and locale

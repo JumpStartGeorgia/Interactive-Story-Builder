@@ -30,7 +30,7 @@ ka:
         nickname: მომხმარებლის სახელი
       story:
         title: ამბის სათაური
-        user_id: გამოქვეყნების მომხმარებელი
+        user_id: Story Author
         user_ids: ამბის რედაქტორები
         author: ავტორ(ებ)ი
         media_author: ფოტოსა და ვიდეოს ავტორ(ებ)ი
@@ -592,15 +592,20 @@ ka:
         theme: Select the theme(s) your story belongs to.
     collaborators:
       title: "ამბის '%{title}' თანაავტორები"
-      owner_header: ამბის მეპატრონე
+      owner_header: Story Author
       collaborators_header: ამბის თანაავტორები
       explanation: თანაავტორებს შეუძლიათ ამბის რედაქტირება
-      current_header: ამჟამინდელი თანაავტორები
+      editors_header: Editors
+      editor_explanation: An Editor has access to add/edit the story and translate the story into any language. An Editor can also add collaborators and publish the story.
+      translators_header: Translators
+      translator_explanation: "A Translator has access to translate the story into a specific language(s). A Translator does not have the ability to edit the original story, add collaborators or publish the story."
       remove_title: '%{name}-ის ამოშლა'
       not_accepted_title: '%{name}-ს ჯერ არ უპასუხია მოწვევაზე'
       add_header: თანაავტორების დამატება
       add_explanation: თქვენ მიერ მითითებულ მომხმარებლებს გაეგზავნებათ მოსაწვევები, რათა მონაწილეობა მიიღონ თქვენთან ერთდ ამ ამბის შექმნაში.
-      search_label: შეიყვანეთ იმ ადამიანების სახელები ან ელ. ფოსტის მისამართები, ვისი მოწვევაც გსურთ
+      editor_label: Enter names or email addresses of the editors
+      language_label: Select the translation language(s)
+      translator_label: Enter the name or email address of the translator
       message: შეტყობინებისთვის გზავნილის დამატება (არ არის სავალდებულო)
       submit: თანაავტორობის მოსაწვევის გაგზავნა
     media:

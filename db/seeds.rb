@@ -183,6 +183,11 @@ published[21..published.length-1].each do |story|
   story.save
 end
 
+# need to make some users authors for testing
+User.where(:role => User::ROLES[:user]).limit(7).update_all(:role => User::ROLES[:author])
+# need to make some users coordinators for testing
+User.where(:role => User::ROLES[:user]).limit(7).update_all(:role => User::ROLES[:coordinator])
+
 
 #####################
 ## Pages

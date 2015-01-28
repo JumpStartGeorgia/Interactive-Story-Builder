@@ -213,7 +213,7 @@ class User < ActiveRecord::Base
     return x.present? ? x.notification_language.to_sym : I18n.default_locale
   end
   
-  # get list of users a user this user is following
+  # get list of users this user is following
   def following_users
     following = []
     # get notifications
@@ -229,5 +229,10 @@ class User < ActiveRecord::Base
   # get all users in the provided role
   def self.with_role(role)
     where(:role => role).order('nickname, email')
+  end
+
+  # get all users that have at least this provided role
+  def self.with_at_least_role(role)
+    where('role >= :role', role: role)
   end
 end
