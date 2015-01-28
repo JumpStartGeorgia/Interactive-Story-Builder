@@ -603,7 +603,7 @@ ka:
       not_accepted_title: '%{name}-ს ჯერ არ უპასუხია მოწვევაზე'
       add_header: თანაავტორების დამატება
       add_explanation: თქვენ მიერ მითითებულ მომხმარებლებს გაეგზავნებათ მოსაწვევები, რათა მონაწილეობა მიიღონ თქვენთან ერთდ ამ ამბის შექმნაში.
-      editor_label: Enter names or email addresses of the editors
+      editor_label: Enter the names or email addresses of the editors
       language_label: Select the translation language(s)
       translator_label: Enter the name or email address of the translator
       message: შეტყობინებისთვის გზავნილის დამატება (არ არის სავალდებულო)

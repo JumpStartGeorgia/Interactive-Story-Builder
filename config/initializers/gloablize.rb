@@ -26,6 +26,9 @@ module Globalize
         end
       end
 
+      def translations_for(v)
+        v.each{ |t| translation_for(t) }     
+      end
 
       # flag to indicate if translation is for story
       # - if so, then use current_locale instead before Globalize.locale

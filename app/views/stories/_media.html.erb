@@ -1,85 +1,86 @@
 <%- model_class = Medium -%>
+<div id='mediaForm'>
+  <h2 class="form-title">
+    <span class="glyphicon <%= Section::ICONS[:media] %>"></span>
+    <span class="form-title-text"><%= t('.form_title') %></span>
+  </h2>
 
-<h2 class="form-title">
-  <span class="glyphicon <%= Section::ICONS[:media] %>"></span>
-  <span class="form-title-text"><%= t('.form_title') %></span>
-</h2>
+  <%= semantic_form_for(@item, url: media_story_path(id:params[:id],:format => :js), :html => { :multipart=> true, :id => "mediaForm" } , remote: true) do |f| %>
+    <%= error_messages_for f.object %>
+    <%= f.inputs do %>
 
-<%= semantic_form_for(@item, url: media_story_path(id:params[:id],:format => :js), :html => { :multipart=> true, :id => "mediaForm" } , remote: true) do |f| %>
-  <%= error_messages_for f.object %>
-  <%= f.inputs do %>
+      <%= f.fields_for :medium_translations, @item.translation_for(@item.current_locale) do |f_translation| %>
 
-    <%= f.fields_for :medium_translations, @item.translation_for(@item.current_locale) do |f_translation| %>
+        <%= f_translation.input :locale , :as => :hidden %>
 
-      <%= f_translation.input :locale , :as => :hidden %>
+        <%= f_translation.input :title, hint: t('.hint.title'), :input_html => { :id => "mediaTitle", :placeholder => t('.placeholder.title') } %>
 
-      <%= f_translation.input :title, hint: t('.hint.title'), :input_html => { :id => "mediaTitle", :placeholder => t('.placeholder.title') } %>
-
-      <div class="radio_buttons input required form-group radio-indent radio-hide-button" id="medium_media_type_input">
-        <label class="  control-label" for="medium_media_type">
-          <%= model_class.human_attribute_name(:media_type) %>
-          <abbr title="<%= t('app.common.required') %>">*</abbr>
-          <div class="help-inline" title="<%= t('.hint.media_type')%>">
-            <div>?</div>
+        <div class="radio_buttons input required form-group radio-indent radio-hide-button" id="medium_media_type_input">
+          <label class="  control-label" for="medium_media_type">
+            <%= model_class.human_attribute_name(:media_type) %>
+            <abbr title="<%= t('app.common.required') %>">*</abbr>
+            <div class="help-inline" title="<%= t('.hint.media_type')%>">
+              <div>?</div>
+            </div>
+          </label>
+          <% types = [[t('.image'), Medium::TYPE[:image], 'glyphicon-picture'], [t('.video'), Medium::TYPE[:video], 'glyphicon-film']] %>
+          <div class="radio-container">
+            <% types.each do |type| %>
+              <div class="radio">
+                <% checked = (type[1] == Medium::TYPE[:image] && @item.media_type.nil?) || type[1] == @item.media_type ? 'checked=checked' : '' %>
+                <input <%= checked %> id="medium_media_type_<%= type[1] %>" name="medium[media_type]" type="radio" value="<%= type[1] %>">
+                <label class="choice" for="medium_media_type_<%= type[1] %>">
+                  <span class="glyphicon <%= type[2] %>"></span>
+                  <%= type[0] %>
+                </label>
+              </div>
+            <% end %>
           </div>
-        </label>
-        <% types = [[t('.image'), Medium::TYPE[:image], 'glyphicon-picture'], [t('.video'), Medium::TYPE[:video], 'glyphicon-film']] %>
-        <div class="radio-container">
-          <% types.each do |type| %>
-            <div class="radio">
-              <% checked = (type[1] == Medium::TYPE[:image] && @item.media_type.nil?) || type[1] == @item.media_type ? 'checked=checked' : '' %>
-              <input <%= checked %> id="medium_media_type_<%= type[1] %>" name="medium[media_type]" type="radio" value="<%= type[1] %>">
-              <label class="choice" for="medium_media_type_<%= type[1] %>">
-                <span class="glyphicon <%= type[2] %>"></span>
-                <%= type[0] %>
-              </label>
-            </div>
-          <% end %>
         </div>
-      </div>
 
-      <%= f.fields_for :image, @item.image do |as| %>
-        <div id='mediaImageBox' <%=  @item.media_type == Medium::TYPE[:video]  ? "style=display:none;" : "" %> >
-          <label class=" control-label" for="media-image-preview"><%= t('activerecord.attributes.medium.image') %></label>
-          <% if @item.image_exists? %>
-            <div class="preview-button">
-              <a class='btn btn-default preview' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image"><%= t('app.buttons.preview_image') %></a>
-            </div>
-          <% end %>    
+        <%= f.fields_for :image, @item.image do |as| %>
+          <div id='mediaImageBox' <%=  @item.media_type == Medium::TYPE[:video]  ? "style=display:none;" : "" %> >
+            <label class=" control-label" for="media-image-preview"><%= t('activerecord.attributes.medium.image') %></label>
+            <% if @item.image_exists? %>
+              <div class="preview-button">
+                <a class='btn btn-default preview' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{@item.image.asset.url}" %>'><%= t('app.buttons.preview_image') %></a>
+              </div>
+            <% end %>    
 
-          <%= as.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:".jpeg,.jpg,.png" }, label: false  %> 
-          <%= as.input :asset_type, :as => :hidden %>
-        </div>
-      <% end %> 
+            <%= as.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:".jpeg,.jpg,.png" }, label: false  %> 
+            <%= as.input :asset_type, :as => :hidden %>
+          </div>
+        <% end %> 
 
-      <%= f.fields_for :video, @item.video do |as| %>
-        <div id='mediaVideoBox' <%=  @item.media_type == Medium::TYPE[:image]  ? "style=display:none;" : "" %> >
-          <label class=" control-label" for="media-video-preview"><%= t('activerecord.attributes.medium.video') %></label>
-          <% if  @item.video.present? && @item.video.asset.exists? %>
-            <% if @item.video.id.present? %>
-              <% if @item.video.processed %>
-                <span class="processed-msg processed">
-                  <%= t('app.msgs.video_processed') %>
-                </span>
-                <div class="preview-button">
-                  <a class='btn btn-default preview' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" ><%= t('app.buttons.preview_video') %></a>
-                </div>
-              <% else %>
-                <span class="processed-msg not-processed">
-                  <%= t('app.msgs.video_not_processed') %>
-                </span>
+        <%= f.fields_for :video, @item.video do |as| %>
+          <div id='mediaVideoBox' <%=  @item.media_type == Medium::TYPE[:image]  ? "style=display:none;" : "" %> >
+            <label class=" control-label" for="media-video-preview"><%= t('activerecord.attributes.medium.video') %></label>
+            <% if  @item.video.present? && @item.video.asset.exists? %>
+              <% if @item.video.id.present? %>
+                <% if @item.video.processed %>
+                  <span class="processed-msg processed">
+                    <%= t('app.msgs.video_processed') %>
+                  </span>
+                  <div class="preview-button">
+                    <a class='btn btn-default preview' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ @item.video.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
+                  </div>
+                <% else %>
+                  <span class="processed-msg not-processed">
+                    <%= t('app.msgs.video_not_processed') %>
+                  </span>
+                <% end %>
               <% end %>
             <% end %>
-          <% end %>
-          <%= as.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:".mp4,.mov,.webm,.ogv,.flv,.avi,.wmv" }, label: false %>
-          <%= as.input :asset_type, :as => :hidden %>
+            <%= as.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:".mp4,.mov,.webm,.ogv,.flv,.avi,.wmv" }, label: false %>
+            <%= as.input :asset_type, :as => :hidden %>
 
-          <%= f.input :video_loop, :as => :boolean , hint: t('.hint.video_loop'), :default => true, :input_html => { id: "sectionVideoLoop"} %> 
-        </div>
-      <% end %> 
+            <%= f.input :video_loop, :as => :boolean , hint: t('.hint.video_loop'), :default => true, :input_html => { id: "sectionVideoLoop"} %> 
+          </div>
+        <% end %> 
 
 
-      <%= f_translation.input :caption, hint: t('.hint.caption'), :input_html => { :id => "mediaCaption" ,:placeholder => t('.placeholder.caption') } %>
+        <%= f_translation.input :caption, hint: t('.hint.caption'), :input_html => { :id => "mediaCaption" ,:placeholder => t('.placeholder.caption') } %>
+
 
       <div class="radio_buttons input optional form-group radio-indent radio-hide-button" id="medium_caption_align_input">
         <label class="control-label" for="medium_caption_align">
@@ -103,8 +104,6 @@
         </div>
       </div>
 
-
-
       <div class="radio_buttons input optional form-group radio-indent radio-hide-button" id="medium_infobox_type_input">
         <label class="control-label" for="medium_infobox_type">
           <%= model_class.human_attribute_name(:infobox_type) %>
@@ -127,17 +126,18 @@
         </div>
       </div>
 
-     <%= f_translation.input :source, hint: t('.hint.source'), :input_html => { :id => "mediaSource", :placeholder => t('.placeholder.source')  } %>
+       <%= f_translation.input :source, hint: t('.hint.source'), :input_html => { :id => "mediaSource", :placeholder => t('.placeholder.source')  } %>
 
-      <%= f.input :section_id, :as => :hidden , :input_html => { :id => "mediaSection" }  %>
-      <% if @item.id.present? %>
-        <%= f.input :id, :as => :hidden , :input_html => { :id => "mediaId" }  %>    
+        <%= f.input :section_id, :as => :hidden , :input_html => { :id => "mediaSection" }  %>
+        <% if @item.id.present? %>
+          <%= f.input :id, :as => :hidden , :input_html => { :id => "mediaId" }  %>    
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
 
-  <div class="pull-right spacer">            
-    <%= f.submit nil, :class => 'btn btn-default' %>
-    <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          
-  </div>
-<% end %>
+    <div class="pull-right spacer">            
+      <%= f.submit nil, :class => 'btn btn-default' %>
+      <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          
+    </div>
+  <% end %>
+</div>

@@ -82,12 +82,15 @@ class RootController < ApplicationController
   end
 
   def theme
+    @js.push("zeroclipboard.min.js","filter.js")
+    @css.push("navbar.css", "filter.css", "grid.css","root.css")    
     @theme = Theme.published.find_by_permalink(params[:id])
+    @stories = process_filter_querystring(Story.is_published.in_published_theme.by_theme(@theme.id).paginate(:page => params[:page], :per_page => per_page))      
+    @stories_for_slider = Story.recent_by_type(theme_id: @theme.id) if @theme.present?
 
     if @theme.present?
       respond_to do |format|
         format.html  
-        #format.json { render json: @stories }      
         format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}      
       end
     else

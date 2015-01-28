@@ -230,9 +230,7 @@ $(document).ready(function() {
 
 
 // for permalink copy 
-var client = new ZeroClipboard( document.getElementById("copy-button"), {
-  moviePath: "/javascripts/ZeroClipboard.swf"
-} );
+var client = new ZeroClipboard( document.getElementById("copy-button"));
 
 client.on( "load", function(client) {
   client.on( "complete", function(client, args) {
