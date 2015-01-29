@@ -42,15 +42,13 @@ BootstrapStarter::Application.routes.draw do
 
 	        get 'get_data'
 
-	        put 'content', to: 'stories#save_content'
-	        post 'content', to: 'stories#new_content'
+	        put 'content', to: 'stories#save_item'
+	        post 'content', to: 'stories#new_item'
 
 	        delete 'remove', to: 'stories#destroy_tree_item'
 
-	        put 'media', to: 'stories#save_media'
-	        post 'media', to: 'stories#new_media'				
-
-
+	        put 'media', to: 'stories#save_item'
+	        post 'media', to: 'stories#new_item'				
 
 	        put 'section', to: 'stories#save_section'
 	        post 'section', to: 'stories#new_section'	
@@ -64,15 +62,15 @@ BootstrapStarter::Application.routes.draw do
 	        get 'clone', to: 'stories#clone'    
 	        get 'export', to: 'stories#export' 		
 
-	        put 'slideshow', to: 'stories#save_slideshow'
-	        post 'slideshow', to: 'stories#new_slideshow'
+	        put 'slideshow', to: 'stories#save_item'
+	        post 'slideshow', to: 'stories#new_item'
 
 
-	        put 'embed_media', to: 'stories#save_embed_media'
-	        post 'embed_media', to: 'stories#new_embed_media'				
+	        put 'embed_media', to: 'stories#save_item'
+	        post 'embed_media', to: 'stories#new_item'				
 
-	        put 'youtube', to: 'stories#save_youtube'
-	        post 'youtube', to: 'stories#new_youtube'
+	        put 'youtube', to: 'stories#save_item'
+	        post 'youtube', to: 'stories#new_item'
 
 	        get 'get_embed_code', to: 'stories#get_embed_code'
 			end			

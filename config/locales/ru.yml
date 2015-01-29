@@ -658,6 +658,7 @@ ru:
       form_title: Image Slideshow Form
       add_image: Add Image
       placeholder:
+        title: Slideshow Title
         caption: optional
       hint:
         title: This text only appears in the left sidebar, it will not show up in the story
@@ -680,6 +681,7 @@ ru:
       preview: Preview of Online Media
       error: The URL could not be processed. Please try again.
       placeholder:
+        title: Embed Online Media Title
         url: Url to online media
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
@@ -690,6 +692,7 @@ ru:
       preview: Preview of Online Media
       error: The URL could not be processed. Please try again.
       placeholder:
+        title: Youtube Embed Online Media Title
         url: Url to online media
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"

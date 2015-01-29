@@ -311,76 +311,32 @@ class StoriesController < ApplicationController
       end    
   end
 
- def new_media
-    @item = Medium.new(params[:medium])    
-#Rails.logger.debug "######### image valid: #{@item.image.valid?}; image validations: #{@item.image.errors.full_messages.to_sentence}" if @item.image.present?
-#Rails.logger.debug "######### video valid: #{@item.video.valid?}; video validations: #{@item.video.errors.full_messages.to_sentence}" if @item.video.present?
+  def new_item   
+    if params[:content].present?
+      @item = Content.new(params[:content])   
+      @type = 'content'
+    elsif params[:medium].present?
+      @item = Medium.new(params[:medium])   
+      #Rails.logger.debug "######### image valid: #{@item.image.valid?}; image validations: #{@item.image.errors.full_messages.to_sentence}" if @item.image.present?
+      #Rails.logger.debug "######### video valid: #{@item.video.valid?}; video validations: #{@item.video.errors.full_messages.to_sentence}" if @item.video.present?
+    elsif params[:slideshow].present?
+      @item = Slideshow.new(params[:slideshow])    
+    elsif params[:embed_medium].present?
+      @item = EmbedMedium.new(params[:embed_medium])  
+    elsif params[:youtube].present?  
+      @item = Youtube.new(params[:youtube])     
+    end
     respond_to do |format|
-        if @item.save       
-          flash_success_created(Medium.model_name.human,@item.title)                     
-          format.js { render action: "change_sub_tree", status: :created }                    
-        else                    
-          flash[:error] = u I18n.t('app.msgs.error_created', obj:Medium.model_name.human, err:@item.errors.full_messages.to_sentence)                       
-#Rails.logger.debug "######### new_media save error: #{@item.errors.full_messages.to_sentence}"
-          format.js {render action: "flash" , status: :ok }
-        end
-      end    
+      if @item.save
+        flash_success_created(@item.class.model_name.human,@item.title)                     
+        format.js { render action: "change_sub_tree", status: :created  }
+      else
+        flash[:error] = u I18n.t('app.msgs.error_created', obj:@item.class.model_name.human, err:@item.errors.full_messages.to_sentence)                  
+        format.js {render action: "flash" , status: :ok }
+      end
+    end    
   end
 
-
-
-    def new_content    
-     @item = Content.new(params[:content])   
-     @type = 'content'
-     respond_to do |format|
-        if @item.save
-          flash_success_created(Content.model_name.human,@item.title)                     
-          format.js { render action: "change_sub_tree", status: :created  }
-        else
-          flash[:error] = u I18n.t('app.msgs.error_created', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)                  
-          format.js {render action: "flash" , status: :ok }
-        end
-      end    
-  end
-  
-   def new_slideshow
-    @item = Slideshow.new(params[:slideshow])    
-    respond_to do |format|
-        if @item.save       
-          flash_success_created(Slideshow.model_name.human,@item.title)                     
-          format.js { render action: "change_sub_tree", status: :created }                    
-        else                    
-          flash[:error] = u I18n.t('app.msgs.error_created', obj:Slideshow.model_name.human, err:@item.errors.full_messages.to_sentence)                       
-          format.js {render action: "flash" , status: :ok }
-        end
-      end    
-  end
-
-  def new_embed_media
-    @item = EmbedMedium.new(params[:embed_medium])       
-    respond_to do |format|
-        if @item.save       
-          flash_success_created(EmbedMedium.model_name.human,@item.title)                     
-          format.js { render action: "change_sub_tree", status: :created }                    
-        else                    
-          flash[:error] = u I18n.t('app.msgs.error_created', obj:EmbedMedium.model_name.human, err:@item.errors.full_messages.to_sentence)                       
-          format.js {render action: "flash" , status: :ok }
-        end
-      end    
-  end
-  
-  def new_youtube
-    @item = Youtube.new(params[:youtube])       
-    respond_to do |format|
-        if @item.save       
-          flash_success_created(Youtube.model_name.human,@item.title)                     
-          format.js { render action: "change_sub_tree", status: :created }                    
-        else                    
-          flash[:error] = u I18n.t('app.msgs.error_created', obj:Youtube.model_name.human, err:@item.errors.full_messages.to_sentence)                       
-          format.js {render action: "flash" , status: :ok }
-        end
-      end    
-  end
 
   def save_section      
     @item = Section.find_by_id(params[:section][:id]) 
@@ -400,15 +356,34 @@ class StoriesController < ApplicationController
       end
     end    
   end
-  def save_content      
-     @item = Content.find_by_id(params[:content][:id])  
+  def save_item 
+
+    if params[:content].present?
+      klass = Content
+      type = :content
+    elsif params[:medium].present?
+      klass = Medium
+      type = :medium
+      #Rails.logger.debug "######### image valid: #{@item.image.valid?}; image validations: #{@item.image.errors.full_messages.to_sentence}" if @item.image.present?
+      #Rails.logger.debug "######### video valid: #{@item.video.valid?}; video validations: #{@item.video.errors.full_messages.to_sentence}" if @item.video.present?
+    elsif params[:slideshow].present?
+      klass = Slideshow
+      type = :slideshow
+    elsif params[:embed_medium].present?
+      klass = EmbedMedium
+      type = :embed_medium
+    elsif params[:youtube].present?  
+      klass = Youtube
+      type = :youtube
+    end   
+     @item = klass.find_by_id(params[type][:id]) 
      respond_to do |format|
       if @item.present?
-        if @item.update_attributes(params[:content].except(:id))          
-          flash_success_updated(Content.model_name.human,@item.title)           
+        if @item.update_attributes(params[type].except(:id))          
+          flash_success_updated(@item.class.model_name.human,@item.title)           
           format.js {render action: "build_tree", status: :created }                  
         else
-          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)                                      
+          flash[:error] = u I18n.t('app.msgs.error_updated', obj:@item.class.model_name.human, err:@item.errors.full_messages.to_sentence)                                      
           format.js {render action: "flash" , status: :ok }
         end
       else
@@ -417,74 +392,8 @@ class StoriesController < ApplicationController
       end
     end    
   end
- def save_media
-    @item = Medium.find_by_id(params[:medium][:id])
-    respond_to do |format|
-      if @item.present?
-        if @item.update_attributes(params[:medium].except(:id))          
-          flash_success_updated(Medium.model_name.human,@item.title)           
-          format.js {render action: "build_tree", status: :created }          
-        else        
-          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Medium.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
-          format.js {render action: "flash", status: :ok }
-        end
-      else
-        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
-        format.js {render action: "flash", status: :ok }
-      end
-    end    
-  end
-  def save_slideshow
-    @item = Slideshow.find_by_id(params[:slideshow][:id])
-    respond_to do |format|
-      if @item.present?
-        if @item.update_attributes(params[:slideshow].except(:id))          
-          flash_success_updated(Slideshow.model_name.human,@item.title)           
-          format.js {render action: "build_tree", status: :created }          
-        else        
-          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Slideshow.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
-          format.js {render action: "flash", status: :ok }
-        end
-      else
-        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
-        format.js {render action: "flash", status: :ok }
-      end
-    end    
-  end
-  def save_embed_media
-    @item = EmbedMedium.find_by_id(params[:embed_medium][:id])
-    respond_to do |format|
-      if @item.present?
-        if @item.update_attributes(params[:embed_medium])          
-          flash_success_updated(EmbedMedium.model_name.human,@item.title)           
-          format.js {render action: "build_tree", status: :created }          
-        else        
-          flash[:error] = u I18n.t('app.msgs.error_updated', obj:EmbedMedium.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
-          format.js {render action: "flash", status: :ok }
-        end
-      else
-        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
-        format.js {render action: "flash", status: :ok }
-      end
-    end    
-  end
-  def save_youtube
-    @item = Youtube.find_by_id(params[:youtube][:id])
-    respond_to do |format|
-      if @item.present?
-        if @item.update_attributes(params[:youtube])          
-          flash_success_updated(Youtube.model_name.human,@item.title)           
-          format.js {render action: "build_tree", status: :created }          
-        else        
-          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Youtube.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
-          format.js {render action: "flash", status: :ok }
-        end
-      else
-        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
-        format.js {render action: "flash", status: :ok }
-      end
-    end    
-  end
+
+
   def destroy_tree_item  
     item = nil    
     type = params[:type]
@@ -530,6 +439,20 @@ class StoriesController < ApplicationController
       render json: nil , status: :unprocessable_entity
     end
   end
+  def down  
+    item = nil
+    if params[:i] == '-1'
+      item = Section.where(story_id: params[:id]).find_by_id(params[:s])
+    else
+      item = Medium.where(section_id: params[:s]).find_by_id(params[:i])
+    end            
+    if item.present?
+      item.move_lower 
+      render json: nil , status: :created    
+    else
+      render json: nil , status: :unprocessable_entity
+    end
+  end
   def up_slideshow    
     item = Asset.find_by_id(params[:asset_id])
     if item.present?
@@ -548,20 +471,7 @@ class StoriesController < ApplicationController
       render json: nil , status: :unprocessable_entity
     end
   end
-  def down  
-    item = nil
-    if params[:i] == '-1'
-      item = Section.where(story_id: params[:id]).find_by_id(params[:s])
-    else
-      item = Medium.where(section_id: params[:s]).find_by_id(params[:i])
-    end            
-    if item.present?
-      item.move_lower 
-      render json: nil , status: :created    
-    else
-      render json: nil , status: :unprocessable_entity
-    end
-  end
+
 
   def sections
     #Rails.logger.debug("---------------------------------------------#{params.inspect}")

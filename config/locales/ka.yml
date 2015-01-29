@@ -667,6 +667,7 @@ ka:
       form_title: გამოსახულების სლაიდშოუს ფორმა
       add_image: გამოსახულების დამატება
       placeholder:
+        title: სლაიდშოუს სათაური
         caption: არ არის სავალდებულო
       hint:
         title: ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში
@@ -689,6 +690,7 @@ ka:
       preview: ონლაინ აუდიო/ვიდეო ფაილის ნახვა
       error: ბმული ვერ დამუშავდა. გთხოვთ, კიდევ სცადეთ.
       placeholder:
+        title: ონლაინ აუდიო/ვიდეო ფაილის სათაური 
         url: ონლაინ აუდიო/ვიდეო ფაილის ბმული
       hint:
         title: ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში
@@ -699,6 +701,7 @@ ka:
       preview: Preview of Online Media
       error: The URL could not be processed. Please try again.
       placeholder:
+        title: Youtube Embed Online Media Title      
         url: Url to online media
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"

@@ -209,29 +209,14 @@ body#storybuilder_form{
         {          
           position:absolute;
           right:12px;   
-          display:none;       
+          display:none;  
           .btn
           {
-            padding:3px 7px;
+            padding:3px 7px !important;
             border:0px;
             border-radius:0px;   
-            margin-top:4px;  
-            &.btn-sort
-            {
-             background-color:#aabc43; 
-             color:#fff;
-             &:hover,&:focus,&:active, &.active
-             {
-              background-color:#84913d;
-              color:#fff;
-             }
-            }       
-            i.glyphicon
-            {
-              top:2px;
-            }
-           
-          }
+            margin:4px 0px 0px !important; 
+          }     
         }
         > .collapser
         {      
@@ -340,29 +325,13 @@ body#storybuilder_form{
           {          
             position:absolute;
             right:12px;   
-            display:none;    
-
+            display:none; 
             .btn
             {
-              padding:3px 7px;
+              padding:3px 7px !important;
               border:0px;
               border-radius:0px;   
-              margin-top:4px;  
-              &.btn-sort
-              {
-               background-color:#aabc43; 
-               color:#fff;
-               &:hover,&:focus,&:active, &.active
-               {
-                background-color:#84913d;
-                color:#fff;
-               }
-              }       
-              i.glyphicon
-              {
-                top:2px;
-              }
-             
+              margin:4px 0px 0px !important;            
             }
           }     
         }     
@@ -833,7 +802,7 @@ body#storybuilder_form{
   .image_asset_fields{
     float: left;
     width: 68%;
-
+    min-height:205px;
     .remove_image_button{
       text-align: right;
       margin-right:20px;
@@ -1110,7 +1079,30 @@ div.preview-button{
 {
   display:none;
 }
-
-
-
-
+.btn.btn-remove-slideshow
+{
+  padding:3px 7px !important;
+  border:0px;
+  border-radius:0px;   
+  margin:0px !important;   
+}
+.btn.btn-sort
+{
+  padding:3px 7px !important;
+  border:0px;
+  border-radius:0px;   
+  margin:0px !important; 
+  background-color:#aabc43; 
+  color:#fff;
+  &:hover,&:focus,&:active, &.active
+  {
+    background-color:#84913d;
+    color:#fff;
+  }
+}       
+.dummy24
+{
+  height:22px;
+  width:100%;
+  display:inline-block;
+}

@@ -40,7 +40,7 @@ class Youtube < ActiveRecord::Base
 			    id = uri[1]
 			  end
 			end
-			if id.length == 11         
+			if id.length == 11    
 			  source = 'https://www.googleapis.com/youtube/v3/videos?key=AIzaSyA5DU2KQn3u4mzw6z1YNIHGGr9wadv9vZM&part=id&id=' + id
 			  result = JSON.parse(Net::HTTP.get_response(URI.parse(source)).body)
 

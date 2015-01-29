@@ -7,21 +7,32 @@
   </div>
 
   <div class="image_asset_fields">
-    <%= f.input :asset, :as => :file , hint: t('.hint.asset') , :input_html => { :id => "slideshowImage", accept:".jpg,.jpeg,.png" }, label: false %>       
-    <%= f.input :caption, placeholder: t('.placeholder.caption'), hint: t('.hint.caption'), :label => t('.label.caption') %>
-    <%= f.input :source,  placeholder: t('.placeholder.source'), hint: t('.hint.source'), :label => t('.label.source') %>
-    <%= f.input :asset_type, :as => :hidden , :input_html => {:value => Asset::TYPE[:slideshow_image]} %>
-    <%= f.input :asset_exists, :as => :hidden %>
+    <%= f.input :caption, 
+    { :input_html => {}.merge(@readonly) }
+    .merge(( (@isTO) ? {} : { hint: t('.hint.caption'), placeholder: t('.placeholder.caption') })) %>
 
+    <%= f.input :source, 
+    { :input_html => {}.merge(@readonly) }
+    .merge(( (@isTO) ? {} : { hint: t('.hint.source'), placeholder: t('.placeholder.source') })) %>
+
+    <% if !@isTO %>
+      <%= f.input :asset, :as => :file , hint: t('.hint.asset') , :input_html => { :id => "slideshowImage", accept:".jpg,.jpeg,.png" }, label: false %> 
+      <%= f.input :asset_type, :as => :hidden , :input_html => {:value => Asset::TYPE[:slideshow_image]} %>
+      <%= f.input :asset_exists, :as => :hidden %>      
+    <% end %>
+
+  <% if !@trans %>
     <div class="remove_image_button">
       <%
         asset_id = asset_item.nil? || asset_item.id.nil? ? 0 : asset_item.id
         # sorting a new item does not affect existing items so turn off sorting for new items
         cls = asset_id == 0 ? 'hide-move' : ''
       %>
-      <button type="button" id='btn-up-slideshow' data-id="<%= asset_id %>" class="btn btn-info  btn-small <%= cls %>" title="<%= t('app.buttons.up') %>"> <i class="glyphicon glyphicon-arrow-up" ></i> </button>
-      <button type="button" id='btn-down-slideshow' data-id="<%= asset_id %>" class="btn btn-info  btn-small <%= cls %>" title="<%= t('app.buttons.down') %>"> <i class="glyphicon glyphicon-arrow-down" ></i></button>
-      <%= link_to_remove_fields t('.remove_image'), f %>
+      <button type="button" data-id="<%= asset_id %>" class="btn btn-sort btn-up-slideshow <%= cls %>" title="<%= t('app.buttons.up') %>"> <i class="glyphicon glyphicon-arrow-up" ></i> </button>
+      <button type="button" data-id="<%= asset_id %>" class="btn btn-sort btn-down-slideshow <%= cls %>" title="<%= t('app.buttons.down') %>"><i class="glyphicon glyphicon-arrow-down" ></i></button>
+      <%= f.input :_destroy, :as => :hidden %>
+      <button type='button' class='btn btn-danger btn-remove-slideshow' title="<%= t('app.buttons.delete') %>" ><i class='glyphicon glyphicon-remove'></i></button>
     </div>
+  <% end %>
   </div>
 </div>
