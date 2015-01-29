@@ -13,3 +13,7 @@ change_tree({
    'tools':"<%= tools.html_safe %>",
    'add_item':"<%= add_item.html_safe %>"
 });
+
+<% if @select_next %>
+   select_next();
+<% end %>

@@ -685,7 +685,7 @@ function isUrl(s) {
 
 function getObject(method, type, id, sub_id, which)
 {
-  console.log('getObject');
+  //console.log('getObject');
    method = typeof method !== 'undefined' ? method : '';  // n - new , s - select, r - remove, a - add
    type = typeof type !== 'undefined' ? type : '';  
    id = typeof id !== 'undefined' ? id : -1;
@@ -724,7 +724,7 @@ function getObject(method, type, id, sub_id, which)
    pars['type'] = type;
 
    if(gon.translate) { pars['trans'] = {'from':gon.translate_from,'to':gon.translate_to}; }  
- console.log(pars);
+ //console.log(pars);
 // request data
    $.ajax
       ({       
@@ -755,7 +755,7 @@ function refresh()
 }
 function change_tree(d)
 {
-  console.log('change_tree',d);
+  //console.log('change_tree',d);
    var li = $("<li id='"+d.id+"' data-type='"+d.type+"' class='item open'>" + 
                "<div class='box'>" + 
                   "<div class='collapser'>-</div>" + 
@@ -814,5 +814,75 @@ function calculate_workspace()
     workplace.height(bwh);
 
     content.css('top',topOffset + 'px');
+  }
+}
+function select_next()
+{
+  console.log('here');
+  var tree = $('.story-tree');
+  var t = tree.find('ul li.active');
+  
+  //console.log('active',t);
+  if(t.length) // if there is active item
+  {
+    var child = t.find('ul li');
+    //console.log(child.length);
+    if(child.length) // select child element if exists
+    {
+      if(!t.hasClass('open')) // if childs list not opened yet open it
+      {
+        t.find('> .box > .collapser').trigger('click');
+      }
+      child.first().find('> div > .sub-l').trigger('click');
+    }
+    else // if has no child li elements
+    {
+      if(t.hasClass('sub')) // if element is sub
+      {
+        var next = t.next('li.sub');
+        if(next.length) // if has sub brothers
+        {
+           next.find('> div > .sub-l').trigger('click');
+        }
+        else // if no brother should jump to next parent
+        {
+          next = t.closest('li.item').next('li.item')
+          if(next.length)
+          {
+            if(!next.hasClass('open')) // if childs list not opened yet open it
+            {
+              next.find('> .box > .collapser').trigger('click');
+            }
+            next.find('> .box > .title').trigger('click');
+            tree.get(0).scrollTop = tree.get(0).scrollTop + next.position().top;
+          }                    
+        }        
+      }
+      else // parent has no inner items so go to next
+      {
+        next = t.next('li.item')
+        if(next.length)
+        {
+          if(!next.hasClass('open')) // if childs list not opened yet open it
+          {
+            next.find('> .box > .collapser').trigger('click');
+          }
+          next.find('> .box > .title').trigger('click');
+          tree.get(0).scrollTop = tree.get(0).scrollTop + next.position().top;
+        }      
+      }
+    }
+  }
+  else // if nothing is selected
+  { 
+    t = $('.story-tree ul li').first();
+    if(t.length) // and if item exists
+    {
+      if(!t.hasClass('open')) // if childs list not opened yet open it
+      {
+        t.find('> .box > .collapser').trigger('click');
+      }
+      t.find('> .box > .title').trigger('click'); // simulate click to get data
+    }
   }
 }

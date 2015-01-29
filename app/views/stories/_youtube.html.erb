@@ -26,10 +26,11 @@
         .merge(( (isTO) ? {} : { hint: t('.hint.url'), placeholder: t('.placeholder.url') })) %>
 
         <div class='one-line'>
-          <%= f.input :fullscreen, :as => :boolean, :hint => t('.hint.fullscreen'), :input_html => { id: "youtubeFullcsreen" } %>   
-          <%= f.input :loop, :as => :boolean, :hint => t('.hint.loop'), :input_html => { id: "youtubeLoop" } %>   
-          <%= f.input :info, :as => :boolean, :hint => t('.hint.info'), :input_html => { id: "youtubeInfo" } %> 
-        
+          <% if @trans %>
+            <%= f.input :fullscreen, :as => :boolean, :hint => t('.hint.fullscreen'), :input_html => { id: "youtubeFullcsreen" } %>   
+            <%= f.input :loop, :as => :boolean, :hint => t('.hint.loop'), :input_html => { id: "youtubeLoop" } %>   
+            <%= f.input :info, :as => :boolean, :hint => t('.hint.info'), :input_html => { id: "youtubeInfo" } %> 
+          <% end %>
           <%= f_translation.input :cc, :as => :boolean, :hint => t('.hint.cc'), :input_html => { id: "youtubeCC", class: "end-line one-line"}, :class=>'asdf' %> 
         </div>
         <div class='one-line'>  
@@ -53,22 +54,22 @@
         </div>
 
 
-        <%= f.input :section_id, :as => :hidden , :input_html => { :id => "youtubeSection" }  %>
-        <% if @item.id.present? %>
-          <%= f.input :id, :as => :hidden , :input_html => { :id => "youtubeId" }  %>    
+        <% if !isTO %>
+          <%= f.input :section_id, :as => :hidden , :input_html => { :id => "youtubeSection" }  %>
+          <% if @item.id.present? %>
+            <%= f.input :id, :as => :hidden , :input_html => { :id => "youtubeId" }  %>    
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
 
-
-    <% 
-      style = '' 
-      if @item.code.blank? 
-        style = "style=display:none;"
-       end 
-    %>
+  <% if !@isTO %>
+    <% style = @item.code.blank? ? "style=display:none;" : "" %>
     <div class="pull-right spacer" id="youtubeButtons" <%= style %>>    
-      <%= f.submit nil, :class => 'btn btn-default' %>
-      <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          
+      <%= f.submit t('app.buttons.save'), :class => 'btn btn-default' %>
+      <%= f.submit t('app.buttons.save_and_next'), :class => 'btn btn-default', :name => "commit_and_next" %>        
+      <%= f.submit t('helpers.links.next'), :class => 'btn btn-default', :type => :button, :onclick => 'select_next();' %> 
+      <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>      
     </div>
+  <% end %>
   <% end %>

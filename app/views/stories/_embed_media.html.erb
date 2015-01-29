@@ -56,8 +56,10 @@
     <% style = @item.code.blank? ? "style=display:none;" : "" %>
     <% if !isTO %>
       <div class="pull-right spacer" id="embedMediaButtons" <%= style %>>    
-        <%= f.submit nil, :class => 'btn btn-default' %>
-        <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          
+        <%= f.submit t('app.buttons.save'), :class => 'btn btn-default' %>
+        <%= f.submit t('app.buttons.save_and_next'), :class => 'btn btn-default', :name => "commit_and_next" %>        
+        <%= f.submit t('helpers.links.next'), :class => 'btn btn-default', :type => :button, :onclick => 'select_next();' %> 
+        <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>                
       </div>
     <% end %>
   <% end %>

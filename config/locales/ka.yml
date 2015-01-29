@@ -229,6 +229,7 @@ ka:
       tags: თეგი
       menu: მენიუ
       pages: საიტზე ტექსტის რედაქტირება
+      next: Next
       story_menu:
         link:
           edit_story: ამბის პარამეტრები
@@ -281,6 +282,7 @@ ka:
       cancel: გაუქმება
       update: განახლება
       save: შენახვა
+      save_and_next: "Save & Next"      
       create: შექმნა
       reset: საწყის კონფიგურაციაზე დაბრუნება
       remove: ამოშლა

@@ -299,10 +299,13 @@ class StoriesController < ApplicationController
   def new_section
     @item = Section.new(params[:section])  
      respond_to do |format|
-        if @item.save         
-          @item.translations_for([:en])
-          Rails.logger.debug "######### new_media save error: #{@item.translations.inspect}"
-          flash_success_created(Section.model_name.human,@item.title)                     
+        if @item.save   
+          @item.reload      
+          @item.translation_for(params[:current_locale])
+          @item.current_locale = params[:current_locale]
+          #Rails.logger.debug "######### new_media save error: #{@item.translations.inspect}"
+          flash_success_created(Section.model_name.human,@item.title)          
+          @select_next = params[:commit_and_next].present? ? true : false             
           format.js { render action: "change_tree", status: :created  }
         else          
           flash[:error] = u I18n.t('app.msgs.error_created', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                  
@@ -328,7 +331,11 @@ class StoriesController < ApplicationController
     end
     respond_to do |format|
       if @item.save
-        flash_success_created(@item.class.model_name.human,@item.title)                     
+        @item.reload      
+        @item.translation_for(params[:current_locale])
+        @item.current_locale = params[:current_locale]
+        flash_success_created(@item.class.model_name.human,@item.title)  
+        @select_next = params[:commit_and_next].present? ? true : false                     
         format.js { render action: "change_sub_tree", status: :created  }
       else
         flash[:error] = u I18n.t('app.msgs.error_created', obj:@item.class.model_name.human, err:@item.errors.full_messages.to_sentence)                  
@@ -338,13 +345,17 @@ class StoriesController < ApplicationController
   end
 
 
-  def save_section      
+  def save_section       
     @item = Section.find_by_id(params[:section][:id]) 
 #logger.debug "+++++++++++++ delete attribute = #{params[:section][:asset_attributes][:delete_asset]}"
     respond_to do |format|
       if @item.present?
         if @item.update_attributes(params[:section].except(:id))
-          flash_success_updated(Section.model_name.human,@item.title)       
+          @item.reload      
+          @item.translation_for(params[:current_locale])
+          @item.current_locale = params[:current_locale]          
+          flash_success_updated(Section.model_name.human,@item.title)
+          @select_next = params[:commit_and_next].present? ? true : false     
           format.js {render action: "build_tree", status: :created }                  
         else
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                            
@@ -379,8 +390,12 @@ class StoriesController < ApplicationController
      @item = klass.find_by_id(params[type][:id]) 
      respond_to do |format|
       if @item.present?
-        if @item.update_attributes(params[type].except(:id))          
-          flash_success_updated(@item.class.model_name.human,@item.title)           
+        if @item.update_attributes(params[type].except(:id))     
+          @item.reload      
+          @item.translation_for(params[:current_locale])
+          @item.current_locale = params[:current_locale]     
+          flash_success_updated(@item.class.model_name.human,@item.title)    
+          @select_next = params[:commit_and_next].present? ? true : false       
           format.js {render action: "build_tree", status: :created }                  
         else
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:@item.class.model_name.human, err:@item.errors.full_messages.to_sentence)                                      

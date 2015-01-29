@@ -228,6 +228,7 @@ hy:
       tags: Tags
       menu: Menu
       pages: Edit Text on Site
+      next: Next
       story_menu:
         link:
           edit_story: Story Settings
@@ -280,6 +281,7 @@ hy:
       cancel: Cancel
       update: Update
       save: Save
+      save_and_next: "Save & Next"      
       create: Create
       reset: Reset
       remove: Remove
