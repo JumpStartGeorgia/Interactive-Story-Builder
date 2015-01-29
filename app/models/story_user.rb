@@ -21,6 +21,11 @@ class StoryUser < ActiveRecord::Base
     where(:role => Story::ROLE[:translator])
   end
 
+  # get record for user
+  def self.by_user(user_id)
+    where(:user_id => user_id).first
+  end
+
   #################################
   def role_name
     name = ''
@@ -31,4 +36,7 @@ class StoryUser < ActiveRecord::Base
     return name
   end
 
+  def translation_locales_array
+    self.translation_locales.split(',') if translation_locales.present?
+  end
 end

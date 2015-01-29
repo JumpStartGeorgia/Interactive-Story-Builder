@@ -24,6 +24,9 @@
   <%= f.inputs do %>
     <%= f.fields_for :content_translations, @item.translation_for(@item.current_locale) do |f_translation| %>
 
+      <%# need this hidden field so can test if user has access to edit the locale if user is translator %>
+      <%= hidden_field_tag :current_locale , @item.current_locale if !isTO %>
+
       <%= (f_translation.input :locale , :as => :hidden) if !isTO %>
 
        <%= f_translation.input :title, { 

@@ -232,8 +232,8 @@ ka:
       next: Next
       story_menu:
         link:
-          edit_story: ამბის პარამეტრები
-          admin_story: კონტენტი
+          story: Story
+          story_settings: Story Settings
           collaborators: თანაავტორები
           preview: ნახვა
           publish: გამოქვეყნება
@@ -242,9 +242,10 @@ ka:
           clone: კლონირება
           export:  ჩამოტვირთვა
           delete_story: წაშლა
+          translations: Translations
         title:
-          edit_story: ამბის სათაურის, ავტორების, ბმულის, მოკლე შინაარსის, ესკიზის, ენის, თეგების და/ან კატეგორიების რედაქტირება
-          admin_story: ტექსტის, გამოსახულებების, ვიდეოს და ა.შ. რედაქტირება
+          story: Edit your story
+          story_settings: ამბის სათაურის, ავტორების, ბმულის, მოკლე შინაარსის, ესკიზის, ენის, თეგების და/ან კატეგორიების რედაქტირება
           collaborators: განსაზღვრეთ, რომელ მომხმარებელს შეუძლია თქვენი ამბის რედაქტირება
           preview: ნახეთ, როგორ გამოიყურება თქვენი ამბავი
           publish: აჩვენეთ თქვენი ამბავი მსოფლიოს
@@ -253,6 +254,7 @@ ka:
           clone:  შექმენით ამ ამბის ასლი
           export: მთლიანი ამბის ჩამოტვირთვა
           delete_story: წაშალეთ ამბავი. ამბის აღდგენა არ იქნება შესაძლებელი
+          translations: Translate your story into other languages
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"

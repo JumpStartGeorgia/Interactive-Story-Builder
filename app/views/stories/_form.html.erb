@@ -19,6 +19,9 @@
     <%= f.inputs do %>
       <%= f.fields_for :story_translations, @item.translation_for(@item.current_locale) do |f_translation| %>
 
+        <%# need this hidden field so can test if user has access to edit the locale if user is translator %>
+        <%= hidden_field_tag :current_locale , @item.current_locale if !isTO %>
+
         <%#= f.input :user_id , :as => :hidden %>
 
         <%= f_translation.input :locale , :as => :hidden, :input_html => {id: 'storyHiddenLocale'} %>
@@ -36,9 +39,9 @@
         .merge(readonly) }
         .merge(( isTO ? {} : { hint: t('.hint.permalink'), placeholder: t('.placeholder.permalink') }))  %>
 
-        <%= f.input :user_id , :as => :select, :hint => t('.hint.user_id'), :collection =>  @authors.map{|x| [x.nickname, x.id]}, :input_html => { :id => "storyUserId", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "7"  } %>
-
-        <%= f_translation.input :author, { :required => !original, :input_html => { id: "storyAuthor" }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.author'), placeholder: t('.placeholder.author') })) %>
+        <% if !@trans %>
+          <%= f.input :user_id , :as => :select, :hint => t('.hint.user_id'), :collection =>  @authors.map{|x| [x.nickname, x.id]}, :input_html => { :id => "storyUserId", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "10"  } %>
+        <% end %>
 
         <%= f_translation.input :permalink, :as => :hidden, :input_html => { id: (!isTO ? "storyPermalink" : nil)  }   %>
         <div class="string control-group stringish story_permalink" <%= !isTO ? 'id=story_permalink' : ''%>>&nbsp;</div>
@@ -55,11 +58,11 @@
 
         <% if !@trans %>
 
-          <%= f.input :story_locale , :as => :select, :hint => t('.hint.locale'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "storyLocale", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "7"  } %>
+          <%= f.input :story_locale , :as => :select, :hint => t('.hint.locale'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "storyLocale", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "10"  } %>
 
-          <%= f.input :story_type_id, :as => :select, hint: t('.hint.story_type'),  :include_blank => false, collection: @story_types.map{|t|[t.name,t.id]} , :input_html => { :id => "storyType", :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7", :title => t('app.common.nothing_selected')  }   %> 
+          <%= f.input :story_type_id, :as => :select, hint: t('.hint.story_type'),  :include_blank => false, collection: @story_types.map{|t|[t.name,t.id]} , :input_html => { :id => "storyType", :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "10", :title => t('app.common.nothing_selected')  }   %> 
 
-          <%= f.input :themes, :as => :select, :hint => t('.hint.theme'), :collection => @themes.map{|x|[x.formatted_name, x.id]}, :multiple => true, :input_html => { :id => 'storyThemes', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7", :title => t('app.common.nothing_selected') } %>
+          <%= f.input :themes, :as => :select, :hint => t('.hint.theme'), :collection => @themes.map{|x|[x.formatted_name, x.id]}, :multiple => true, :input_html => { :id => 'storyThemes', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "10", :title => t('app.common.nothing_selected') } %>
 
           <%= f.input :in_theme_slider, :as => :boolean , hint: t('.hint.in_theme_slider'), :default => true, :input_html => { id: "sectionThemeSlider"} %> 
           

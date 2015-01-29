@@ -723,8 +723,11 @@ function getObject(method, type, id, sub_id, which)
    pars['method'] = method;
    pars['type'] = type;
 
-   if(gon.translate) { pars['trans'] = {'from':gon.translate_from,'to':gon.translate_to}; }  
- //console.log(pars);
+   if(gon.translate) { 
+      pars['tr'] = true;
+      pars['tr_from'] = gon.translate_from;
+      pars['tr_to'] = gon.translate_to;
+    }  
 // request data
    $.ajax
       ({       

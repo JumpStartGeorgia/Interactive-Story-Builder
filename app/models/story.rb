@@ -75,7 +75,9 @@ class Story < ActiveRecord::Base
     users = User.with_at_least_role(User::ROLES[:coordinator])
 
     if users.present?
-      self.users << users
+      users.each do |user|
+        self.story_users.create(user_id: user.id, role: ROLE[:editor])
+      end
     end
 
     return true
@@ -198,17 +200,44 @@ class Story < ActiveRecord::Base
     joins(:story_translations).where(:story_translations => {:permalink => permalink}).first
   end
 
+  # def self.can_edit?(story_id, user_id)
+  #   x = select('id').where(:id => story_id).editable_user(user_id)  
+  #   return x.present?
+  # end
+
+  # def self.editable_user(user_id)
+  #   where("stories.id in ( select story_id from story_users as su where su.user_id = :user_id )",
+  #     :user_id => user_id)
+  #   # story user_id is not allowed to edit story
+  #   # where("stories.user_id = :id or stories.id in ( select story_id from stories_users t where t.user_id = :id )",
+  #   #   :id => user_id)
+  # end
+
+  # determine if user can edit story
+  # return the following:
+  # - can edit boolean flag, default false
+  # - user role, default nil
+  # - translation locales, default nil
   def self.can_edit?(story_id, user_id)
-    x = select('id').where(:id => story_id).editable_user(user_id)  
-    return x.present?
+    can_edit = false
+    role = nil
+    translation_locales = nil
+    x = StoryUser.where(:story_id => story_id, :user_id => user_id)
+    if x.present?
+      can_edit = true
+      role = x.first.role
+      if x.first.translation_locales.present?
+        translation_locales = x.first.translation_locales_array
+      end
+    end
+
+    return can_edit, role, translation_locales
   end
 
-  def self.editable_user(user_id)
-    where("stories.id in ( select story_id from story_users as su where su.user_id = :user_id )",
-      :user_id => user_id)
-    # story user_id is not allowed to edit story
-    # where("stories.user_id = :id or stories.id in ( select story_id from stories_users t where t.user_id = :id )",
-    #   :id => user_id)
+  # get stories that the user can edit
+  def self.editable_stories(user_id)
+    ids = StoryUser.select('distinct story_id').where(:user_id => user_id).map{|x| x.story_id}
+    where(id: ids)
   end
 
   # get entire story with the id and locale
@@ -474,7 +503,18 @@ class Story < ActiveRecord::Base
     self.tag_list = tokens.gsub("'", "")
   end  
   
-  
+
+  # get role of user for this story
+  def user_role(user_id)
+    self.story_users.by_user(user_id)
+  end
+
+  # get the languages the story is in
+  # just look in story translations for locales
+  # returns array of locales
+  def story_locales
+    StoryTranslation.select('locale').where(:story_id => self.id).map{|x| x.locale}
+  end
 
   private 
 

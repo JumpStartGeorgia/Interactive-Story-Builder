@@ -116,7 +116,7 @@ logger.debug "************** nickname after generate: #{u.nickname}"
       s = Story.find_by_id(inv.story_id)
       if inv.accepted_at.blank?
         if s.present?
-          s.users << current_user
+          s.story_users.create(user_id: current_user.id, role: inv.role, translation_locales: inv.translation_locales)
           inv.accepted_at = Time.now
           inv.save
           redirect_to stories_path, :notice => t('app.msgs.invitation.accepted', :title => s.title)

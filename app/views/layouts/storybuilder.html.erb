@@ -51,12 +51,11 @@
     <%= render partial: "shared/story_nav"%>   
 		<div class="builder-wrapper">	
      <div class="toolbar">
-        <div class="story-title"><span><%= @story.title %></span></div>             
+        <div class="story-title"><span title="<%= @story.title %>"><%= @story.title %></span></div>             
         <div class='tools'>         
           <div class="left-view">
-                   <div class='view-wrapper'> 
-
-            <%= link_to '#', title: t('helpers.links.story_menu.link.admin_story') + ' - ' + t('helpers.links.story_menu.title.admin_story'), class: 'btn btn-edit-story' do %>
+           <div class='view-wrapper'> 
+            <%= link_to '#', title: t('helpers.links.story_menu.link.story_settings') + ' - ' + t('helpers.links.story_menu.title.story_settings'), class: 'btn btn-edit-story' do %>
                 <span class="glyphicon glyphicon-edit" ></span>          
               <% end %>
           <% if !@tr %>
@@ -89,14 +88,37 @@
               <% end %>
             <% end %>
             <% if @tr %>
-               <%= select_tag "translate-from", options_from_collection_for_select(@languages, "locale", "name", @story.story_locale), include_blank: false,
-                     :id => "translateFrom", :class => "selectpicker", :'data-size' => "5", :'data-default' => @story.story_locale  %>
+              <% 
+                from_langs = []
+                @story.story_locales.each do |trans_locale|
+                  l = @languages.select{|x| x.locale == trans_locale}.first
+                  if l.present?
+                    from_langs << l
+                  end
+                end
+
+                to_langs = []
+                if @edit_story_role == Story::ROLE[:translator] 
+                  @edit_translation_locales.each do |trans_locale|
+                    l = @languages.select{|x| x.locale == trans_locale}.first
+                    if l.present?
+                      to_langs << l
+                    end
+                  end
+                else
+                  to_langs = @languages
+                end
+              %>
+               <%= select_tag "translate-from", options_from_collection_for_select(from_langs, "locale", "name", @story.story_locale), include_blank: false,
+                     :id => "translateFrom", :class => "selectpicker", 
+                     :'data-live-search' => "true", :'data-size' => "10"  %>
            <% end %>
             </div>
         </div><div class='right-view'>          
           <div class='view-wrapper'> 
             <% if @tr %>
-              <%= select_tag "translate-to", options_from_collection_for_select(@languages.select{ |lan|  lan.locale !=  @story.story_locale } , "locale", "name", @languages.select{ |lan|  lan.locale !=  @story.story_locale }.sort{|a,b| a <=> b}[0].locale), include_blank: false, :id => "translateTo", :class => "selectpicker", :'data-size' => "4" %>
+              <%= select_tag "translate-to", options_from_collection_for_select(to_langs.select{ |lan|  lan.locale !=  @story.story_locale } , "locale", "name", @tr_to), include_blank: false, :id => "translateTo", :class => "selectpicker", 
+                :'data-live-search' => "true", :'data-size' => "10" %>
             <% end %>
           </div>
         </div>

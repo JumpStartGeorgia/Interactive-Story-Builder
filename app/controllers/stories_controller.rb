@@ -3,8 +3,14 @@ class StoriesController < ApplicationController
   before_filter do |controller_instance|
     controller_instance.send(:valid_role?, User::ROLES[:coordinator])
   end
-  before_filter(:except => [:index, :new, :create, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
+  before_filter(:except => [:index, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
     controller_instance.send(:can_edit_story?, params[:id])
+  end
+  before_filter(:except => [:index, :preview, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
+    controller_instance.send(:can_edit_story_locale?)
+  end
+  before_filter(:except => [:index, :preview, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
+    controller_instance.send(:can_access_action?)
   end
   before_filter :asset_filter
   before_filter :set_form_gon
@@ -15,7 +21,7 @@ class StoriesController < ApplicationController
   def index    
     @css.push("navbar.css", "filter.css", "grid.css","author.css")
     @js.push("zeroclipboard.min.js","filter.js","stories.js") 
-    @stories =  process_filter_querystring(Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => per_page))           
+    @stories =  process_filter_querystring(Story.editable_stories(current_user.id).paginate(:page => params[:page], :per_page => per_page))           
     @editable = (user_signed_in?)
 
     respond_to do |format|
@@ -114,7 +120,7 @@ class StoriesController < ApplicationController
 #          @story_tags = @item.tags.token_input_tags
           @themes = Theme.sorted
           @authors = User.with_role(User::ROLES[:author])
-          
+logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to_sentence}"          
           flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@item.errors.full_messages.to_sentence)            
           format.html { render action: "edit" }
           format.js {render action: "flash" , status: :ok }
@@ -178,6 +184,8 @@ class StoriesController < ApplicationController
       else
         @story.use_app_locale_if_translation_exists
       end
+
+logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; permalink = #{@story.permalink}"
     end
 
     respond_to do |format|  
@@ -211,10 +219,10 @@ class StoriesController < ApplicationController
 
     if @story.present?     # if story exists, set some params
       @from = @story.story_locale # set default locale to story locale
-      if params.has_key?(:trans) # get the translation locales
+      if params.has_key?(:tr) # get the translation locales
         @trans = true
-        @from = params[:trans].has_key?(:from) ? params[:trans][:from] : @story.present? ? @story.story_locale : @from
-        @to = params[:trans].has_key?(:to) ? params[:trans][:to] : @languages.where("locale != '#{@story.story_locale}'").order('locale').first.locale    
+        @from = params.has_key?(:tr_from) ? params[:tr_from] : @story.present? ? @story.story_locale : @from
+        @to = params.has_key?(:tr_to) ? params[:tr_to] : @languages.select{|x| x.locale != @story.story_locale}.first.locale
       end
     end
     Rails.logger.debug("-----------------------------------------------#{@which}#{@trans}#{@from}#{@to}#{@story}------------")
@@ -494,7 +502,7 @@ class StoriesController < ApplicationController
     @tr = params.has_key?(:tr) ? params[:tr].to_bool : false
     if @tr
       @from  = params.has_key?(:tr_from) ? params[:tr_from] : @story.story_locale
-      @to    = params.has_key?(:tr_to) ? params[:tr_to] : @languages.where("locale != '#{@story.story_locale}'").order('locale').first.locale
+      @to    = params.has_key?(:tr_to) ? params[:tr_to] : @languages.select{|x| x.locale != @story.story_locale}.first.locale
       gon.translate_from = @from
       gon.translate_to = @to
       gon.translate = true
@@ -512,6 +520,7 @@ class StoriesController < ApplicationController
       format.html { render :layout=>"storybuilder" }
     end
   end
+
   def publish
 
     @item = Story.find_by_id(params[:id])
@@ -815,8 +824,29 @@ end
   
 private
 
+  # if the user is not in StoryUser, stop
   def can_edit_story?(story_id)
-    redirect_to root_path, :notice => t('app.msgs.not_authorized') if !Story.can_edit?(story_id, current_user.id)
+    logger.debug "))))))) can edit story check"
+    @can_edit_story, @edit_story_role, @edit_translation_locales = Story.can_edit?(story_id, current_user.id)
+
+    redirect_to root_path, :notice => t('app.msgs.not_authorized') if !@can_edit_story
+  end
+
+  # if the user is a translator but cannot translate this locale, stop
+  # - check for the following locale params
+  #   - tr_to - indicates what locale to translate to
+  #   - current_locale - indicates form submittal locale 
+  def can_edit_story_locale?
+    locale = params[:tr_to].present? ? params[:tr_to] : params[:current_locale].present? ? params[:current_locale] : nil
+    logger.debug "))))))) can edit story locale check, locale = #{locale}"
+    redirect_to root_path, :notice => t('app.msgs.not_authorized') if @edit_story_role == Story::ROLE[:translator] && !@edit_translation_locales.include?(locale.to_s)
+  end
+
+  # if the user is a translator, limit their access to actions to editing
+  def can_access_action?
+    logger.debug "))))))) can access action check, action = #{params[:action]}"
+    accessible_actions = [:update, :preview, :get_data, :save_section, :save_content, :save_media, :save_slideshow, :save_embed_media, :save_youtube, :sections, :check_permalink]
+    redirect_to root_path, :notice => t('app.msgs.not_authorized') if @edit_story_role == Story::ROLE[:translator] && !accessible_actions.include?(params[:action].to_sym)
   end
 
   def flash_success_created( obj, title)

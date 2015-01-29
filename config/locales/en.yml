@@ -234,7 +234,8 @@ en:
       next: Next
       story_menu:
         link:
-          admin_story: Story
+          story: Story
+          story_settings: Story Settings
           collaborators: Collaborators
           preview: Preview
           publish: Publish
@@ -243,8 +244,10 @@ en:
           clone: Clone
           export: Download
           delete_story: Delete
+          translations: Translations
         title:
-          admin_story: Edit story title, authors, URL, summary, thumbnail, language, tags and/or categories, content etc.
+          story: Edit your story
+          story_settings: Edit story title, authors, URL, summary, thumbnail, language, tags and/or categories, content etc.
           collaborators: Manage which users have access to edit your story
           preview: See how your story looks
           publish: Make your story viewable to the world
@@ -253,6 +256,7 @@ en:
           clone: Copy this story into a new story
           export: Download the complete story
           delete_story: Deleting a story cannot be undone
+          translations: Translate your story into other languages
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
