@@ -9,6 +9,9 @@
     <%= f.inputs do %>
       <%= f.fields_for :embed_medium_translations, @item.translation_for(@item.current_locale) do |f_translation| %>
 
+        <%# need this hidden field so can test if user has access to edit the locale if user is translator %>
+        <%= hidden_field_tag :current_locale , @item.current_locale if !isTO %>
+
         <%= f_translation.input :locale , :as => :hidden %>
 
         <%= f_translation.input :title, hint: t('.hint.title'), :input_html => { :id => "embedMediaTitle" } %>
