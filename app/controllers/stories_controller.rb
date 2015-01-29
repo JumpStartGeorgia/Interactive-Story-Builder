@@ -6,10 +6,10 @@ class StoriesController < ApplicationController
   before_filter(:except => [:index, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
     controller_instance.send(:can_edit_story?, params[:id])
   end
-  before_filter(:except => [:index, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
+  before_filter(:except => [:index, :preview, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
     controller_instance.send(:can_edit_story_locale?)
   end
-  before_filter(:except => [:index, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
+  before_filter(:except => [:index, :preview, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
     controller_instance.send(:can_access_action?)
   end
   before_filter :asset_filter
@@ -184,6 +184,8 @@ logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to
       else
         @story.use_app_locale_if_translation_exists
       end
+
+logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; permalink = #{@story.permalink}"
     end
 
     respond_to do |format|  
