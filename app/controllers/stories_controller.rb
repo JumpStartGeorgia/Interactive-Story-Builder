@@ -154,6 +154,7 @@ logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to
     @story = Story.find_by_reviewer_key(params[:id])
     if @story.present?
       if @story.published?
+        Rails.logger.debug("--------------------------------------------------- storyteller_show_path")
         redirect_to storyteller_show_path(@story.permalink)     
       else
         respond_to do |format|     
@@ -222,7 +223,7 @@ logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to
         @to = params.has_key?(:tr_to) ? params[:tr_to] : @languages.select{|x| x.locale != @story.story_locale}.first.locale
       end
     end
-
+    Rails.logger.debug("-----------------------------------------------#{@which}#{@trans}#{@from}#{@to}#{@story}------------")
     if type == 'story'
       if method=='select'
         @item = @story 
@@ -249,7 +250,7 @@ logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to
       if method=='select'
         @item = Content.find_by_id(sub_id)
       else 
-        @item = Content.new(:section_id => _id, :content => '')
+        @item = Content.new(:section_id => _id)
       end
     elsif type == 'media'
       if method=='select'    
@@ -573,13 +574,15 @@ logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to
     @story = Story.fullsection(params[:id])   
     @tr = params.has_key?(:tr) ? params[:tr].to_bool : false
     if @tr
-      @tr_from  = params.has_key?(:tr_from) ? params[:tr_from] : @story.story_locale
-      @tr_to    = params.has_key?(:tr_to) ? params[:tr_to] : @languages.select{|x| x.locale != @story.story_locale}.first.locale
-      gon.translate_from = @tr_from
-      gon.translate_to = @tr_to
+      @from  = params.has_key?(:tr_from) ? params[:tr_from] : @story.story_locale
+      @to    = params.has_key?(:tr_to) ? params[:tr_to] : @languages.select{|x| x.locale != @story.story_locale}.first.locale
+      gon.translate_from = @from
+      gon.translate_to = @to
       gon.translate = true
       #Rails.logger.debug("---------------------------------------------#{@tr} #{@tr_from} #{@tr_to}")
     end
+    @story.translation_for(@from) # get the translations for this item or build it if not exist yet
+    @story.current_locale = @from
 
     @js.push("modalos.js")
     @css.push("modalos.css")
@@ -615,8 +618,12 @@ logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to
       if !error 
         if @item.update_attributes(published: publishing)     
           flash[:success] =u I18n.t("app.msgs.success_#{publishing ? '' :'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                   
-          pub_title = @item.published ? I18n.t("app.buttons.unpublish")  : I18n.t("app.buttons.publish")                    
-          format.json {render json: { title: pub_title }, status: :ok }
+
+          title = publishing ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish') 
+          link = publishing ? t('helpers.links.story_menu.link.unpublish') : t('helpers.links.story_menu.link.publish') 
+
+          #pub_title = link_text + ' ' + title #@item.published ? I18n.t("app.buttons.unpublish")  : I18n.t("app.buttons.publish")                    
+          format.json {render json: { title: title , link: link }, status: :ok }
         else          
           format.json {render json: { e:true, msg: t("app.msgs.error#{publishing ? '' : 'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")}}     
         end      

@@ -51,23 +51,24 @@
     <%= render partial: "shared/story_nav"%>   
 		<div class="builder-wrapper">	
      <div class="toolbar">
-        <div class="story-title"><span><%= @story.title %></span></div>             
+        <div class="story-title"><span title="<%= @story.title %>"><%= @story.title %></span></div>             
         <div class='tools'>         
           <div class="left-view">
-                   <div class='view-wrapper'> 
-            <%= link_to '#', title: t('helpers.links.story_menu.link.story_settings') + ' - ' + t('helpers.links.story_menu.title.story_settings'), class: 'btn btn-edit-story btn-primary' do %>
+           <div class='view-wrapper'> 
+            <%= link_to '#', title: t('helpers.links.story_menu.link.story_settings') + ' - ' + t('helpers.links.story_menu.title.story_settings'), class: 'btn btn-edit-story' do %>
                 <span class="glyphicon glyphicon-edit" ></span>          
               <% end %>
-
+          <% if !@tr %>
             <%= link_to '#', title: t('app.buttons.add_section') , class: 'btn btn-create-section' do %>
                 <span class="glyphicon glyphicon-align-justify" ></span>          
               <% end %>
-
+          <% end %>
               <%= link_to '#', title: t('helpers.links.story_menu.link.preview') + ' - ' + t('helpers.links.story_menu.title.preview'), id: 'btnPreview', class: 'preview btn btn-preview', 
                   :'data-link' => @story.published ? storyteller_show_path(@story.permalink) : preview_story_path(@story), 
                   :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story' do %>
                 <span class="glyphicon glyphicon-eye-open" ></span>          
               <% end %>
+          <% if !@tr %>
             <% if !@story.published %> 
                 <%= link_to '#', title: t('helpers.links.story_menu.link.review') + ' - ' + t('helpers.links.story_menu.title.review'), id: 'btnReviewer', class: 'btn btn-review',
                     :'data-title' => @story.title, :'data-modalos-id' => 'modalos-reviewer', :'data-reviewer-key' => review_url(@story.reviewer_key) do %>
@@ -78,14 +79,14 @@
                 title = @story.published ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish') 
                 link_text = @story.published ? t('helpers.links.story_menu.link.unpublish') : t('helpers.links.story_menu.link.publish') 
               %>
-              <%= link_to '#', title: link_text + ' - ' + title, id: 'btnPublish', class: 'btn btn-publish' + (@story.published ? '' : 'disabled'), 
-                  :'data-link' => publish_story_path(@story) do %>
+              <%= link_to '#', title: link_text + ' - ' + title, id: 'btnPublish', class: 'btn btn-publish' + (@story.published ? '' : '-disabled'), :'data-link' => publish_story_path(@story) do %>
                 <span class="glyphicon glyphicon-globe" ></span>
               <% end %>
               <%= link_to @story, title: t('helpers.links.story_menu.link.delete_story') + ' - ' + t('helpers.links.story_menu.title.delete_story'), 
                class: 'preview btn btn-remove-story', confirm: t("helpers.links.confirm"), method: :delete do %>
                 <span class="glyphicon glyphicon-remove"></span>
               <% end %>
+            <% end %>
             <% if @tr %>
               <% 
                 from_langs = []
@@ -149,38 +150,6 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag  *(@js.present? ? ["application", @js].flatten : ["application"]), :media => "all" %>      
-    <script>
-      function calculate_workspace()
-      {
-        var bw = $(".builder-wrapper");  
-        var nav =  $('.nav-tabs');
-        var t = bw.find('.toolbar');       
-
-        var topOffset = t.outerHeight()+t.offset().top;
-        
-        bw.height($(window).height()- nav.outerHeight()-nav.offset().top);
-
-        var bwh = $(window).height()-topOffset;
-        var content = bw.find("> .content");
-        var toolbar = bw.find("> .toolbar");
-
-        var sidebar = content.find("> .sidebar");
-        var workplace = content.find("> .workplace");
-        var tree =  sidebar.find("> .story-tree");
-        
-
-        tree.height(bwh);
-        workplace.height(bwh);
-
-        content.css('top',topOffset + 'px');
-      }
-      $(document).ready(function(){
-        calculate_workspace();  
-      });
-      $(window).resize(function() {   
-          calculate_workspace();
-      });
-    </script>
 		<script type="text/javascript">
 			I18n.defaultLocale = "<%= I18n.default_locale %>";
 			I18n.locale = "<%= I18n.locale %>";

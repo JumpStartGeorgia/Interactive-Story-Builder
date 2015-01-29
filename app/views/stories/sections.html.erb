@@ -1,10 +1,10 @@
 <% title @story.title.titlecase %>
-<% tools = 
+<% tools = @tr ? "" :
   "<div class='tools'><button type='button' class='btn btn-sort btn-up' title='#{ t('app.buttons.up') }'> <i class='glyphicon glyphicon-arrow-up' ></i> </button>" + 
   "<button type='button' class='btn btn-sort btn-down' title='#{ t('app.buttons.down') }'> <i class='glyphicon glyphicon-arrow-down' ></i></button>" +
   "<button type='button' class='btn  btn-danger btn-remove' title='#{ t('app.buttons.delete_item') }' ><i class='glyphicon glyphicon-remove'></i></button></div>" 
   #tools_delete = "<div class='tools'><button type='button' class='btn btn-danger btn-remove' title='#{ t('app.buttons.delete_item') }' ><i class='glyphicon glyphicon-remove'></i></button></div>"
-  add_item = "<button type='button' class='btn btn-create' title='#{ t('app.buttons.add_item') }'><i class='glyphicon glyphicon-film' ></i>#{ t('app.buttons.add_item') }</button>"
+  add_item = @tr ? "" : "<button type='button' class='btn btn-create' title='#{ t('app.buttons.add_item') }'><i class='glyphicon glyphicon-film' ></i>#{ t('app.buttons.add_item') }</button>"
 
   %>
    <div class='story-tree' id='<%= @story.id %>'>        
@@ -86,10 +86,12 @@
                 <%end%>
             </li>          
         <% end %>            
-    </ul>  
-    <div class='box'>
-      <button type="button" id='btnAddSection' class="btn btn-create-section" title="<%= t('app.buttons.add_section') %>"><i class="glyphicon glyphicon-align-justify"></i><%= t('app.buttons.add_section') %></button>
-    </div>
+    </ul> 
+    <% if !@tr %>
+      <div class='box'>
+        <button type="button" id='btnAddSection' class="btn btn-create-section" title="<%= t('app.buttons.add_section') %>"><i class="glyphicon glyphicon-align-justify"></i><%= t('app.buttons.add_section') %></button>
+      </div>
+    <% end %>
   </div>  
   <div class='storytree-toggle'><div class='toggler'></div></div>
   

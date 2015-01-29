@@ -9,7 +9,6 @@
         </span>
       <% end %>
     </li>
-
     <% cls = current_page?(collaborators_story_path(@story)) ? 'class=active' : '' %>
     <li <%=cls %>>
       <%= link_to collaborators_story_path(@story), title: t('helpers.links.story_menu.title.collaborators') do %>
@@ -21,7 +20,7 @@
     </li>
     <% cls = @tr && current_page?(sections_story_path(@story)) ? 'class=active' : '' %>
     <li <%=cls %>>
-      <%= link_to sections_story_path(@story,tr:true,from:@tr_from,to:@tr_to), title: t('helpers.links.story_menu.title.translations') do %> <!-- t('helpers.links.story_menu.title.translations')  -->
+      <%= link_to sections_story_path(@story,tr:true,from:@tr_from,to:@tr_to), title: t('helpers.links.story_menu.title.translations') do %> 
         <span class="glyphicon glyphicon-globe"></span>
         <span class="nav-text">
           <%= t('helpers.links.story_menu.link.translations') %>
@@ -47,4 +46,3 @@
   </ul>
   <%= render partial: "shared/story_nav_modals"%> 
 <% end %>
-
