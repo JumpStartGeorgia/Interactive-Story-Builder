@@ -36,14 +36,26 @@
 @navbar-padding-vertical:0px;
 @nav-link-hover-bg:transparent;
 @nav-link-padding:2px 2px;
-@dropdown-bg:#1d1d1d;
+
+// @dropdown-bg:#1d1d1d;
+// @dropdown-link-color:#878787;
+// @dropdown-link-hover-color:#adadad;
+// @dropdown-link-hover-bg:#1d1d1d;
+// @dropdown-link-active-color:#adadad;
+// @dropdown-divider-bg:#eee;
+// @dropdown-caret-color:#878787;
+// @dropdown-link-active-bg:#1d1d1d;
+// @dropdown-link-disabled-color:#eee;
+// @navbar-default-bg:transparent;
+// @dropdown-header-color:transparent;
+@dropdown-bg:#f8f8f8;
 @dropdown-link-color:#878787;
-@dropdown-link-hover-color:#adadad;
-@dropdown-link-hover-bg:#1d1d1d;
-@dropdown-link-active-color:#adadad;
+@dropdown-link-hover-color:#303030;
+@dropdown-link-hover-bg:#e5e5e5;
+@dropdown-link-active-color:#303030;
 @dropdown-divider-bg:#eee;
 @dropdown-caret-color:#878787;
-@dropdown-link-active-bg:#1d1d1d;
+@dropdown-link-active-bg:#e5e5e5;
 @dropdown-link-disabled-color:#eee;
 @navbar-default-bg:transparent;
 @dropdown-header-color:transparent;
@@ -443,12 +455,73 @@ body#grid-layout #wrapper{
 {
   padding-left:10% !important;
 }
-.dropdown-toggle
+.nav 
 {
-  margin:0px 10px !important;
-  color:#646464;
+  .dropdown
+  {
+    padding:0px 10px !important;
+    color:#646464;
+    &.open .dropdown-toggle
+    {
+      color:#adadad;
+    }
+  }
 }
-.dropdown.open .dropdown-toggle
+
+.bootstrap-select.btn-group
 {
-  color:#adadad;
+  margin:0px !important;
+  padding:0px !important;  
+  .btn
+  {
+    margin:0px;
+    padding:0px;
+  }
+  .dropdown-toggle
+  {
+     margin:0px !important;
+     padding: 0px 7px !important; 
+    .filter-option
+    {
+      padding:4px 7px;
+    }
+  }
+
+  .dropdown-menu
+  {
+    background-color:#f8f8f8;
+    text-align:left;
+    color:#000;
+    li
+    {
+      padding:0px !important;
+      a
+      {
+        -moz-transition-property: none;
+        -webkit-transition-property: none;
+        -o-transition-property: none;
+        transition-property: none;
+        padding: 6px 10px;
+        &:hover,&:focus
+        {
+        -moz-transition-property: none;
+        -webkit-transition-property: none;
+        -o-transition-property: none;
+        transition-property: none;
+          background-color: #eee;
+          color:#000;
+        }
+        &:active
+        {
+            -moz-transition-property: none;
+        -webkit-transition-property: none;
+        -o-transition-property: none;
+        transition-property: none;
+          background-color: #e8e8e8;
+          color:#000;
+        }
+      }
+    } 
+    // a span
+  }        
 }

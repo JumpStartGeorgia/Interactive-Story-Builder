@@ -35,9 +35,9 @@
           <%= f_translation.input :cc, :as => :boolean, :hint => t('.hint.cc'), :input_html => { id: "youtubeCC", class: "end-line one-line"}, :class=>'asdf' %> 
         </div>
         <div class='one-line'>  
-          <%= f_translation.input :menu_lang , :as => :select, :hint => t('.hint.menu_lang'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "youtubePlayerLang", :class => "selectpicker one-line", :'data-live-search' => "true", :'data-size' => "7"  } %>
+          <%= f_translation.input :menu_lang , :as => :select, :hint => t('.hint.menu_lang'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "youtubePlayerLang", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "7"  } %>
 
-          <%= f_translation.input :cc_lang , :as => :select, :hint => t('.hint.cc_lang'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "youtubeCCLang", :class => "selectpicker one-line", :'data-live-search' => "true", :'data-size' => "7"  } %>
+          <%= f_translation.input :cc_lang , :as => :select, :hint => t('.hint.cc_lang'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "youtubeCCLang", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "7"  } %>
           <%= f_translation.input :locale, :as => :hidden %>
         </div>
       <% if !isTO %>
