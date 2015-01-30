@@ -60,6 +60,7 @@
 				<% end %>         
         <%= yield %>
 		</div><!--/wrapper-->
+    <%= yield(:footer) %>
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -95,7 +96,7 @@
 
       </script>
 		<% end %>
-  
+    <%= yield(:js) %>
 
   </body>
 </html>

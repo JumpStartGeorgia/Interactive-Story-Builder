@@ -1,4 +1,5 @@
 <% original ||= false %>
+<% @new ||= false %>
 <% readonly = {} %>
 <% tinyClass = "tinyEditor" %>
 <% if @trans %>
@@ -10,12 +11,16 @@
     <% tinyClass = "tinyEditor2" %>   
   <% end %>
 <% elsif %>
-  <%= tinymce %>
+  <% content_for(:js) { %>
+    <%= tinymce %>
+  <% } %>
 <% end %>
 <% isTO = @trans && original # if mode is translate and screen is original(first) %>
 
-  <%= semantic_form_for(@item, url: story_path(id:params[:id], :format => :js), :html => {:multipart => true, :id => "storyForm"}, remote: true ) do |f| %>
-    <%= error_messages_for f.object %>
+  <%= semantic_form_for(@item, { :html => {:multipart => true, :id => "storyForm", :class => "new"} }.merge( @new ? {} : {url: story_path(id: params[:id], :format => :js), remote: true }) ) do |f| %>
+    <% if @new %>
+      <%= error_messages_for f.object %>
+    <% end %>
     <%= f.inputs do %>
       <%= f.fields_for :story_translations, @item.translation_for(@item.current_locale) do |f_translation| %>
 
@@ -97,9 +102,12 @@
     <% if !isTO %>
       <div class="pull-right spacer">
         <%= f.submit t('app.buttons.save'), :class => 'btn btn-default' %>
-        <%= f.submit t('app.buttons.save_and_next'), :class => 'btn btn-default', :name => "commit_and_next" %>        
-        <%= f.submit t('helpers.links.next'), :class => 'btn btn-default', :type => :button, :onclick => 'select_next();' %> 
+        <% if !@new %>
+          <%= f.submit t('app.buttons.save_and_next'), :class => 'btn btn-default', :name => "commit_and_next" %>        
+          <%= f.submit t('helpers.links.next'), :class => 'btn btn-default', :type => :button, :onclick => 'select_next();' %>
+        <% end %> 
         <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>               
       </div> 
     <% end %>
   <% end %>
+

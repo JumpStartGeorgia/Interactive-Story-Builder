@@ -3,7 +3,7 @@ class StoriesController < ApplicationController
   before_filter do |controller_instance|
     controller_instance.send(:valid_role?, User::ROLES[:coordinator])
   end
-  before_filter(:except => [:index, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
+  before_filter(:except => [:index,:new, :create, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
     controller_instance.send(:can_edit_story?, params[:id])
   end
   before_filter(:except => [:index, :preview, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
@@ -41,12 +41,13 @@ class StoriesController < ApplicationController
   # GET /stories/new.json
   def new
     @item = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
-    @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
+    @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])  
+    logger.debug("------------------------------------------------#{@item.inspect}"  )
 #    @templates = Template.select_list
 #    @story_tags = []
     @themes = Theme.sorted
     @authors = User.with_role(User::ROLES[:author])
-    
+    @new = true
     respond_to do |format|
         format.html #new.html.er
         format.json { render json: @item }
@@ -84,7 +85,7 @@ class StoriesController < ApplicationController
 #        @story_tags = @item.tags.token_input_tags
         @themes = Theme.sorted
         @authors = User.with_role(User::ROLES[:author])
-
+        @new = true
         flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@item.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
         #  format.json { render json: @item.errors, status: :unprocessable_entity }
@@ -500,6 +501,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
     #Rails.logger.debug("---------------------------------------------#{params.inspect}")
     @story = Story.fullsection(params[:id])   
     @tr = params.has_key?(:tr) ? params[:tr].to_bool : false
+    @from  = @story.story_locale
     if @tr
       @from  = params.has_key?(:tr_from) ? params[:tr_from] : @story.story_locale
       @to    = params.has_key?(:tr_to) ? params[:tr_to] : @languages.select{|x| x.locale != @story.story_locale}.first.locale
@@ -826,9 +828,8 @@ private
 
   # if the user is not in StoryUser, stop
   def can_edit_story?(story_id)
-    logger.debug "))))))) can edit story check"
+    logger.debug "))))))) can edit story check #{current_user.inspect}"
     @can_edit_story, @edit_story_role, @edit_translation_locales = Story.can_edit?(story_id, current_user.id)
-
     redirect_to root_path, :notice => t('app.msgs.not_authorized') if !@can_edit_story
   end
 

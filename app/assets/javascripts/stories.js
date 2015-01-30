@@ -201,7 +201,7 @@ $(document).ready(function() {
    $('.story-edit-menu ul.nav li > ul.dropdown-menu li').click(function(){$(this).closest('.story-edit').next('.story-message').html("").hide();});
 
     $(document).on('click', '.preview', function(e){  	
-		e.preventDefault();		
+		    e.preventDefault();		
 
         var ml = $('#' + $(this).attr('data-modalos-id'));           
         var v = $('.navbar-storybuilder');
@@ -243,7 +243,11 @@ $(document).ready(function() {
     	}
     	else if(type=='story')
     	{
-    		output = "<iframe height='100%' width='100%' src='"+$(this).data('link') + "?n=n"+"'></iframe>";
+        var sl = "";
+        if($(this).attr('data-sl'))
+          sl = "&story_language=" + gon.translate_to;        
+
+    		output = "<iframe height='100%' width='100%' src='"+$(this).data('link') + "?n=n"+ sl + "'></iframe>";
     		opts = {
 				topOffset: $(v).position().top + $(v).height(),
 	        	fullscreen:true,
@@ -260,7 +264,7 @@ $(document).ready(function() {
     	}
     	if(opts===null) opts = opts_def;    	
         ml.html(output).modalos(opts);
-
+        console.log(ml);
 		return true;	
   });
 

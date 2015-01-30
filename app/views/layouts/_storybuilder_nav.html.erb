@@ -17,17 +17,7 @@
               </li>
             <% end %>
           </ul>
-      </li>  
-      <li class="dropdown dropdown-hover">                    
-          <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= t('helpers.links.types') %><i class="caret"></i></a>                  
-          <ul class="dropdown-menu">            
-            <% @story_types.each do |story_type| %>
-              <li class="story-type">
-                <%= link_to story_type.name, story_type_path(story_type.permalink) %>
-              </li>
-            <% end %>
-          </ul>
-      </li>  
+      </li>        
       <li class="dropdown dropdown-hover">                    
           <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= t("app.language.#{locale}") %><i class="caret"></i></a>                  
           <ul class="dropdown-menu">
@@ -54,53 +44,35 @@
           <ul class="dropdown-menu">
             <li>              
               <%= link_to stories_path do %>         
-               <i class="s i-mystories"></i><span><%= t('helpers.titles.story_list') %></span>
+              <%= t('helpers.titles.story_list') %>
               <% end %>
             </li>  
             <li class="set-build">
               <%= link_to new_story_path do %>         
-               <i class="s i-build-b"></i><span><%= t('app.common.build') %></span>
+              <%= t('app.common.build') %>
               <% end %>              
             </li>              
             <li>
               <%= link_to settings_path do %>         
-               <i class="s i-settings"></i><span><%= t('helpers.links.user_settings') %></span>
+               <%= t('helpers.links.user_settings') %>
               <% end %>              
             </li>              
             <% if current_user.role? User::ROLES[:admin] %>
               <li>
                 <%= link_to admin_path do %>         
-                  <i class="s i-users"></i><span><%= t('helpers.links.admin') %></span>
+                  <%= t('helpers.links.admin') %>
                 <% end %>    
               </li>
             <% end %>               
             <li class="signout">
               <%= link_to destroy_user_session_path , :method => :delete do %>         
-               <i class="s i-signout"></i><span><%= t('helpers.links.sign_out') %></span>
+               <%= t('helpers.links.sign_out') %>
               <% end %>                
             </li>
           </ul>
         </li>
      <% end %> 
        
-<!--         <li class="separator-ver"></li>
-        <li  class="separator-hor"></li>        
-        <li class="social"><a href="https://www.facebook.com/sharer/sharer.php?u=<%= root_url %>" onclick="javascript:window.open(this.href,
-                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link">  
-          <i class="s i-facebook"></i></a>      
-        </li> 
-        <li class="social"><a href='https://twitter.com/share?text=<%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name_not_trans')}" :
-                                t('app.common.app_name_not_trans') %>' onclick="javascript:window.open(this.href,
-                        '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link">
-                        <i class="s i-twitter"></i>
-            </a></li>
-
-        <li class="social"><a href="https://plus.google.com/share?url=<%= root_url %>" onclick="javascript:window.open(this.href,
-          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link">
-              <i class="s i-google"></i>
-            </a></li>  -->
-
-
         <li><%= link_to t('helpers.links.about'), about_path, class:'link' %> </li>
         <li class="separator-ver"></li>
         <li class="dropdown dropdown-hover">                    

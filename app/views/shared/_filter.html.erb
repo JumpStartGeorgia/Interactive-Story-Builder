@@ -19,17 +19,43 @@
         <% end %>
       </ul>
     </li>
+    <li class="dropdown dropdown-hover afilter">                    
+      <a href="#" class="dropdown-toggle<%= @story_filter_sort_recent ? '' : ' selected' %>"
+        data-toggle="dropdown" tabindex="18"  title="<%= t('filters.sort_title') %>"
+        data-filtered-by="<%= @story_filter_sort_permalink %>" data-filter-type="type" 
+        data-filter-default="story"><%= t('helpers.links.types') %><i class="caret"></i></a>                  
+        <ul class="dropdown-menu afilter-list">            
+          <% @story_types.each do |story_type| %>
+            <li class="dropdown">
+              <%= link_to story_type.name, story_type_path(story_type.permalink) %>
+            </li>
+          <% end %>
+        </ul>
+    </li>  
     <% if @story_filter_show_following %>
       <li class="afilter">
         <%= link_to url_for(params.merge(:following => !@story_filter_following)),
           :title => @story_filter_following ? t('filters.following_title_active') : t('filters.following_title'),
           :class => "following #{@story_filter_following == true ? 'active' : ''}", 
-          :tabindex => 18, :"data-filtered-by" => @story_filter_following , 
+          :tabindex => 19, :"data-filtered-by" => @story_filter_following , 
           :"data-filter-type"=>'following',
           :'data-title' => t('filters.following_title'), :'data-title-active' => t('filters.following_title_active') do %>
 
            <i class='s i-follow-b <%= "#{@story_filter_following == true ? 'v' : 'h'}"%>'></i><%=  "#{t('filters.following')}" %>
          <% end %>
+      </li>
+    <% end %>
+   <% if @editable == true %>
+      <li class="afilter">
+        <%= link_to url_for(params.merge(:not_published => !@story_filter_not_published)),
+          :class => "not_published #{@story_filter_not_published == true ? 'active' : ''}", 
+            :tabindex => 13, 
+            :title => @story_filter_not_published ? t('filters.not_published_title_active') : t('filters.not_published_title'),
+            :"data-filtered-by" => @story_filter_not_published , :"data-filter-type"=>'not_published',
+            :'data-title' => t('filters.not_published_title'), :'data-title-active' => t('filters.not_published_title_active') do %>
+
+         <i class='s i-not-published'></i><%=  "#{t('filters.not_published')}" %>
+       <% end %>
       </li>
     <% end %>
   </ul>      

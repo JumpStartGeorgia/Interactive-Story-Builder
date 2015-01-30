@@ -64,7 +64,7 @@
               <% end %>
           <% end %>
               <%= link_to '#', title: t('helpers.links.story_menu.link.preview') + ' - ' + t('helpers.links.story_menu.title.preview'), id: 'btnPreview', class: 'preview btn btn-preview', 
-                  :'data-link' => @story.published ? storyteller_show_path(@story.permalink) : preview_story_path(@story), 
+                  :'data-link' => preview_story_path(@story), 
                   :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story' do %>
                 <span class="glyphicon glyphicon-eye-open" ></span>          
               <% end %>
@@ -119,6 +119,11 @@
             <% if @tr %>
               <%= select_tag "translate-to", options_from_collection_for_select(to_langs.select{ |lan|  lan.locale !=  @story.story_locale } , "locale", "name", @tr_to), include_blank: false, :id => "translateTo", :class => "selectpicker", 
                 :'data-live-search' => "true", :'data-size' => "10" %>
+             <%= link_to '#', title: t('helpers.links.story_menu.link.preview') + ' - ' + t('helpers.links.story_menu.title.preview'), id: 'btnPreview', class: 'preview btn btn-preview', 
+                  :'data-link' =>  preview_story_path(@story), 
+                  :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story', :'data-sl' => true do %>
+                <span class="glyphicon glyphicon-eye-open" ></span>          
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -144,7 +149,7 @@
           <div class='story-viewer story-page1 viewer' id='storyViewer'></div><% if @tr %><div class='story-page2 viewer'></div><% end %>
         </div>
       </div>
-    </div>
+    </div>   
     <%= yield(:footer) %>
     <!-- Javascripts
     ================================================== -->
@@ -177,5 +182,6 @@
 
       </script>
 		<% end %>  
+    <%= yield(:js) %>
   </body>
 </html>

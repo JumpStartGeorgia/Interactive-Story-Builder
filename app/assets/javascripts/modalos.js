@@ -44,7 +44,6 @@
     	
         //Extend dem' options
         var options = $.extend({}, defaults, options); 
-	
         return this.each(function() {
         
 /*---------------------------
@@ -70,7 +69,8 @@
 	      								</div> \
       									<div class='m-content'>	\
 	      								</div> \
-								</div>").appendTo('body');			
+								</div>").appendTo('body');		
+
 			}	
 			if(bg.length == 0) {
 				bg = $('<div class="modalos-bg" />').appendTo('body');

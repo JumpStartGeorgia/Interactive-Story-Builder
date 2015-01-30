@@ -222,7 +222,9 @@ class Story < ActiveRecord::Base
     can_edit = false
     role = nil
     translation_locales = nil
+    logger.debug("---------------------------------------_#{story_id}_#{user_id}")
     x = StoryUser.where(:story_id => story_id, :user_id => user_id)
+
     if x.present?
       can_edit = true
       role = x.first.role
