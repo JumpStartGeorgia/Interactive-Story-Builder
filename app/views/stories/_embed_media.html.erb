@@ -40,7 +40,7 @@
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <%= t('.error') %>
           </div>
-          <div id="embedMediaResult">
+          <div<%= !isTO ? " id=embedMediaResult" : "" %>>
             <%= @item.code.html_safe if @item.code.present? %>
           </div>
         </div>

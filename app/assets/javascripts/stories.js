@@ -89,10 +89,11 @@ $(document).ready(function() {
     $('form.medium input#mediaImage, form.medium input#mediaVideo').unwrap();
 	});
 
-  $('.story-viewer').on('click', '#btnOlly', function(){
+  $('.builder-wrapper .workplace').on('click', '.story-page1 #btnOlly, .story-page2 #btnOlly', function(){
     ths = $('#embedMediaUrl');
 	  url = $(ths).val();
     resetEmbedForm();
+    console.log(ths,url);
     
 	  if (url.length > 0 && isUrl(url)){
       olly.embed(url, document.getElementById("embedMediaResult"), 'timerOllyCompelte', 'ollyFail');
@@ -101,7 +102,7 @@ $(document).ready(function() {
 	  }
 	});
 
-   $('.story-viewer').on('click', '#btnGetEmbed', function(e){
+   $('.builder-wrapper .workplace').on('click', '.story-page1 #btnGetEmbed, .story-page2 #btnGetEmbed', function(e){
 			
 		var id = '';
  		var html = '';
@@ -560,9 +561,6 @@ $(document).ready(function() {
     ); 
   }
   
-  
-  $('.story-tree ul li.story > .box > .title').trigger('click');
-
 
   $('#translateFrom').change(function(){
   		var fromLang = $(this).val();

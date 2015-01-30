@@ -27,7 +27,7 @@
         .merge(( (isTO) ? {} : { hint: t('.hint.url'), placeholder: t('.placeholder.url') })) %>
 
         <div class='one-line'>
-          <% if @trans %>
+          <% if !@trans %>
             <%= f.input :fullscreen, :as => :boolean, :hint => t('.hint.fullscreen'), :input_html => { id: "youtubeFullcsreen" } %>   
             <%= f.input :loop, :as => :boolean, :hint => t('.hint.loop'), :input_html => { id: "youtubeLoop" } %>   
             <%= f.input :info, :as => :boolean, :hint => t('.hint.info'), :input_html => { id: "youtubeInfo" } %> 
@@ -40,16 +40,19 @@
           <%= f_translation.input :cc_lang , :as => :select, :hint => t('.hint.cc_lang'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "youtubeCCLang", :class => "selectpicker one-line", :'data-live-search' => "true", :'data-size' => "7"  } %>
           <%= f_translation.input :locale, :as => :hidden %>
         </div>
-
+      <% if !isTO %>
         <button id="btnGetEmbed" type="button" class="btn btn-info btn-mini" style="padding: 2px 6px"><%= t('.get_media') %></button>
+      <% else %>
+        <div class='dummy24'></div>
+      <% end %>
 
         <div id="youtubePreview">
           <h3><%= t('.preview') %></h3>
           <div class="alert alert-danger" id="youtubeError">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <% t('.error') %>
+            <%= t('.error') %>
           </div>
-          <div id="youtubeResult">
+          <div<%= !isTO ? " id=youtubeResult" : "" %>>
             <%= @item.code.html_safe if @item.code.present? %>
           </div>
         </div>
