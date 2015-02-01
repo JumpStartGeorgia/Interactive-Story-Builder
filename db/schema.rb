@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150129122813) do
+ActiveRecord::Schema.define(:version => 20150201181227) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -26,8 +26,10 @@ ActiveRecord::Schema.define(:version => 20150129122813) do
     t.integer  "position"
     t.integer  "asset_subtype",                      :default => 0
     t.boolean  "processed",                          :default => false
+    t.integer  "asset_clone_id"
   end
 
+  add_index "assets", ["asset_clone_id"], :name => "index_assets_on_asset_clone_id"
   add_index "assets", ["item_id", "asset_type"], :name => "index_assets_on_item_id_and_asset_type"
   add_index "assets", ["item_id", "position"], :name => "index_assets_on_item_id_and_position"
   add_index "assets", ["item_id"], :name => "index_assets_on_item_id"

@@ -16,6 +16,25 @@
          was_permalink_box_length = $('input#storyPermalinkStaging').val().length;;
          show_story_permalink({'is_duplicate': false, 'permalink':$('input#storyPermalink').val()});
       }
+
+     // when indicate whether or not to use cloned asset, act accordingly
+     $('form.form-translation').on('change', 'input#clone_asset', function(){
+       if ($(this).is(':checked')){
+         // hide file field
+         $('form #item-asset').hide();
+         // reset the field
+         $('form #item-asset input[type="file"]').replaceWith($('form #item-asset input[type="file"]').clone());
+         // save the clone id
+//         $('form #item-asset-clone input').val('123');
+       }else{
+         // show file field
+         $('form #item-asset').show();
+         // reset clone id
+         $('form #item-asset-clone input').val('');
+       }
+
+     });
+
    <% end %>
 <% end %>
 

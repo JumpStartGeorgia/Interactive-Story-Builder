@@ -1,6 +1,8 @@
 class Asset < ActiveRecord::Base
   has_attached_file :asset
 
+  belongs_to :asset_clone, foreign_key: :asset_clone_id, class_name: 'Asset'
+
   belongs_to :user, foreign_key: :item_id
   belongs_to :story, foreign_key: :item_id
   belongs_to :section, foreign_key: :item_id
@@ -14,12 +16,39 @@ class Asset < ActiveRecord::Base
 
   acts_as_list scope: [:item_id, :asset_type]
 
+    attr_accessor :init_called, :asset_exists, :stop_check_thumbnail, :process_video, :is_video_image, :is_amoeba
+
+
+
+  #################################
+  ## Validations
+
   validates :asset_type, :presence => true
   validates :asset_type, inclusion: { in: TYPE.values }
-  
 
-  attr_accessor :init_called, :asset_exists, :stop_check_thumbnail, :process_video, :is_video_image, :is_amoeba
+  with_options :if => "self.asset_type == TYPE[:user_avatar]" do |t|    
+    t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
+  end
+  with_options :if => "self.asset_type == TYPE[:story_thumbnail]" do |t|    
+    t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
+  end
+  with_options :if => "self.asset_type == TYPE[:section_audio]" do |t|      
+    t.validates_attachment :asset, {   :presence => true, :content_type => { :content_type => ["audio/mp3"] }, :size => { :in => 0..10.megabytes }}  
+  end
+  with_options :if => "self.asset_type == TYPE[:media_image]" do |t|      
+    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
+  end
+  with_options :if => "self.asset_type == TYPE[:media_video]" do |t|      
+    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["video/mp4", "video/quicktime", "video/webm", "video/ogg", "video/x-flv", "video/avi","video/x-msvideo","video/msvideo","application/x-troff-msvideo", "video/x-ms-wmv" ]}, :size => { :in => 0..25.megabytes }}    
+  end
+ with_options :if => "self.asset_type == TYPE[:slideshow_image]" do |t|      
+    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
+  end
+
+
   
+  #################################
+  ## Callbacks
   after_initialize :init
 
   before_post_process :init
@@ -27,47 +56,6 @@ class Asset < ActiveRecord::Base
   
   before_validation :set_processed_flag
 
-
-  amoeba do
-    enable
-
-    # indicate that this is amoeba running so videos are not re-processed
-    customize(lambda { |original_asset,new_asset|
-      new_asset.is_amoeba = true
-    })
-  end
-  
-  # if the flag is not already true
-  # and if this is not a video, set the flag to true
-  def set_processed_flag
-    if read_attribute(:processed).present? && !read_attribute(:processed) && self.asset_type != TYPE[:media_video]
-      self.processed = true
-    end
-    return true   
-  end
-  
-  # get the processed url of a video
-  def media_video_processed_url
-    if self.asset_type == TYPE[:media_video] && read_attribute(:processed).present? && self.processed == true
-      self.asset.url(:processed,false).gsub(/\.[0-9a-zA-Z]+$/,".mp4")
-    end
-  end
-
-  # get the formatted file name for the asset
-  # - files are formatted with 'id__' pre-pended to the front of the file name for the following:
-  #   - section audio
-  #   - media image
-  #   - media video
-  #   - slideshow image
-  def asset_file_name_formatted
-    case self.asset_type
-    when TYPE[:section_audio], TYPE[:media_image], TYPE[:media_video], TYPE[:slideshow_image]
-      "#{self.id}__#{self.asset_file_name}"
-    else
-      self.asset_file_name
-    end
-  end
-  
   def init
     if self.init_called != true
       # flag to record if asset exists - is used in form so can edit caption without providing new file
@@ -142,26 +130,6 @@ class Asset < ActiveRecord::Base
   end
 
 
-  with_options :if => "self.asset_type == TYPE[:user_avatar]" do |t|    
-    t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
-  end
-  with_options :if => "self.asset_type == TYPE[:story_thumbnail]" do |t|    
-    t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
-  end
-  with_options :if => "self.asset_type == TYPE[:section_audio]" do |t|      
-    t.validates_attachment :asset, {   :presence => true, :content_type => { :content_type => ["audio/mp3"] }, :size => { :in => 0..10.megabytes }}  
-  end
-  with_options :if => "self.asset_type == TYPE[:media_image]" do |t|      
-    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
-  end
-  with_options :if => "self.asset_type == TYPE[:media_video]" do |t|      
-    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["video/mp4", "video/quicktime", "video/webm", "video/ogg", "video/x-flv", "video/avi","video/x-msvideo","video/msvideo","application/x-troff-msvideo", "video/x-ms-wmv" ]}, :size => { :in => 0..25.megabytes }}    
-  end
- with_options :if => "self.asset_type == TYPE[:slideshow_image]" do |t|      
-    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
-  end
-
-   
   def transliterate_file_name
     if asset_file_name.present?
       extension = File.extname(asset_file_name).gsub(/^\.+/, '')
@@ -175,6 +143,72 @@ class Asset < ActiveRecord::Base
     end
   end
   
+
+  # if the flag is not already true
+  # and if this is not a video, set the flag to true
+  def set_processed_flag
+    if read_attribute(:processed).present? && !read_attribute(:processed) && self.asset_type != TYPE[:media_video]
+      self.processed = true
+    end
+    return true   
+  end
+  
+   
+
+  #################################
+  # settings to clone story
+  amoeba do
+    enable
+
+    # indicate that this is amoeba running so videos are not re-processed
+    customize(lambda { |original_asset,new_asset|
+      new_asset.is_amoeba = true
+    })
+  end
+
+  #################################
+
+  # override the paperclip asset method
+  # so can test for clone asset
+  # if clone exists, use that asset,
+  # else use the asset in this record
+  this_asset = instance_method(:asset)
+  define_method(:asset) do
+    a = nil
+    if self.asset_clone_id.present?
+      x = self.asset_clone
+      a = x.asset if x.present?
+    else
+      a = this_asset.bind(self).()
+    end
+    return a
+  end
+
+
+  
+  # get the processed url of a video
+  def media_video_processed_url
+    if self.asset_type == TYPE[:media_video] && read_attribute(:processed).present? && self.processed == true
+      self.asset.url(:processed,false).gsub(/\.[0-9a-zA-Z]+$/,".mp4")
+    end
+  end
+
+  # get the formatted file name for the asset
+  # - files are formatted with 'id__' pre-pended to the front of the file name for the following:
+  #   - section audio
+  #   - media image
+  #   - media video
+  #   - slideshow image
+  def asset_file_name_formatted
+    case self.asset_type
+    when TYPE[:section_audio], TYPE[:media_image], TYPE[:media_video], TYPE[:slideshow_image]
+      "#{self.id}__#{self.asset_file_name}"
+    else
+      self.asset_file_name
+    end
+  end
+  
+
   def transliterate(str)
     # Based on permalink_fu by Rick Olsen
    

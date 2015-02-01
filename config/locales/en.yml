@@ -269,6 +269,7 @@ en:
       staff_pick: Select as Staff Pick
       staff_unpick: Unselect as Staff Pick
       is_staff_pick: Staff Pick
+      clone_asset: "If checked, the file to the left will be used for this translation"
   app:
     language:
       en: English
@@ -353,6 +354,7 @@ en:
       home: Home
       required: Required
       nothing_selected: Nothing Selected
+      clone_asset: Use the original file?
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.

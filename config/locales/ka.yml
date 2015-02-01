@@ -267,6 +267,7 @@ ka:
       staff_pick: რჩეულებში დამატება
       staff_unpick: რჩეულებიდან ამოშლა
       is_staff_pick: რჩეული
+      clone_asset: "If checked, the file to the left will be used for this translation"
   app:
     language:
       en: English
