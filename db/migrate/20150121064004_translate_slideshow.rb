@@ -16,12 +16,15 @@ class TranslateSlideshow < ActiveRecord::Migration
         puts "- id =#{story.id}; locale = #{story.story_locale}"
         Globalize.story_locale = story.story_locale
         story.sections.each do |section|
-          if section.slideshow? && section.slideshow.present?
-            puts "-- section id #{section.id}, slideshow id = #{section.slideshow.id}; current_locale = #{section.current_locale}"
-            trans = section.slideshow.translation_for(story.story_locale)
-            trans.title = section.slideshow.old_title
-            trans.caption = section.slideshow.old_caption
-            trans.save
+          if section.slideshow? 
+            # somehow it is possible that there is more than one record per section so have to manually get the records
+            Slideshow.where(section_id: section.id).each do |slideshow|
+              puts "-- section id #{section.id}, slideshow id = #{slideshow.id}; current_locale = #{section.current_locale}"
+              trans = slideshow.translation_for(story.story_locale)
+              trans.title = slideshow.old_title
+              trans.caption = slideshow.old_caption
+              trans.save
+            end
           end
         end        
       end
