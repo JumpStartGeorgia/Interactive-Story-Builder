@@ -113,9 +113,9 @@ class StoriesController < ApplicationController
           format.html { redirect_to  sections_story_path(@item) }
           format.js { render action: "flash", status: :created }    
         else
-          if !@item.asset.present? 
-            @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
-          end 
+          # if !@item.asset.present? 
+          #   @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+          # end 
           #@templates = Template.select_list(@item.template_id)
 #          @story_tags = @item.tags.token_input_tags
           @themes = Theme.sorted
@@ -229,9 +229,9 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
     if type == 'story'
       if method=='select'
         @item = @story 
-        if !@item.asset_exists?
-          @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
-        end    
+        # if !@item.asset_exists?
+        #   @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+        # end    
       elsif method=='create'
         @item = Story.new(:user_id => current_user.id, :story_locale => defualt_locale)     
         @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
@@ -245,9 +245,9 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
       else 
         @item = Section.new(story_id: id, has_marker: 0)
       end        
-      if @item.present? && !@item.asset_exists?
-          @item.build_asset(:asset_type => Asset::TYPE[:section_audio])
-      end   
+      # if @item.present? && !@item.asset_exists?
+      #     @item.build_asset(:asset_type => Asset::TYPE[:section_audio])
+      # end   
     elsif type == 'content'
       if method=='select'
         @item = Content.find_by_id(sub_id)
@@ -360,7 +360,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
       if @item.present?
         if @item.update_attributes(params[:section].except(:id))
           @item.reload      
-          @item.translation_for(params[:current_locale])
+          @item.with_translation(params[:current_locale])
           @item.current_locale = params[:current_locale]          
           flash_success_updated(Section.model_name.human,@item.title)
           @select_next = params[:commit_and_next].present? ? true : false     

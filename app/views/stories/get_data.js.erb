@@ -21,20 +21,43 @@
      $('form.form-translation').on('change', 'input#clone_asset', function(){
        if ($(this).is(':checked')){
          // hide file field
-         $('form #item-asset').hide();
+         $('form.form-translation #item-asset').hide();
          // reset the field
-         $('form #item-asset input[type="file"]').replaceWith($('form #item-asset input[type="file"]').clone());
+         $('form.form-translation #item-asset input[type="file"]').replaceWith($('form.form-translation #item-asset input[type="file"]').clone());
          // save the clone id
-         $('form #item-asset-clone input').val($('form #item-asset-clone input').data('original-id'));
-         // hide image preview
-         $('form .translated-asset').hide();
+         $('form.form-translation #item-asset-clone input').val($('form.form-translation #item-asset-clone input').data('original-id'));
+         // hide preview
+         $('form.form-translation .translated-asset').hide();
        }else{
          // show file field
-         $('form #item-asset').show();
+         $('form.form-translation #item-asset').show();
          // reset clone id
-         $('form #item-asset-clone input').val('');
-         // show preview imgage
-         $('form .translated-asset').show();
+         $('form.form-translation #item-asset-clone input').val('');
+         // show preview
+         $('form.form-translation .translated-asset').show();
+       }
+
+     });
+
+   <% elsif @type == 'section' %> 
+     // when indicate whether or not to use cloned asset, act accordingly
+     $('form.form-translation').on('change', 'input#clone_asset', function(){
+       if ($(this).is(':checked')){
+         // hide file field
+         $('form.form-translation #item-asset').hide();
+         // reset the field
+         $('form.form-translation #item-asset input[type="file"]').replaceWith($('form.form-translation #item-asset input[type="file"]').clone());
+         // save the clone id
+         $('form.form-translation #item-asset-clone input').val($('form.form-translation #item-asset-clone input').data('original-id'));
+         // hide preview
+         $('form.form-translation .translated-asset').hide();
+       }else{
+         // show file field
+         $('form.form-translation #item-asset').show();
+         // reset clone id
+         $('form.form-translation #item-asset-clone input').val('');
+         // show preview
+         $('form.form-translation .translated-asset').show();
        }
 
      });

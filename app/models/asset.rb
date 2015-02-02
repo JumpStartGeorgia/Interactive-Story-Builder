@@ -52,14 +52,6 @@ class Asset < ActiveRecord::Base
   #################################
   ## Callbacks
 
-  before_save :testing
-
-  def testing
-    logger.debug "$$$$$$$$$$$$ asset changed = #{self.changed?}; asset clone id = #{self.asset_clone_id}; source = #{self.source}; asset clone id changed = #{self.asset_clone_id_changed?}; change = #{self.asset_clone_id_change}"
-    return true
-  end
-
-
   after_initialize :init
 
   before_post_process :init
@@ -68,7 +60,6 @@ class Asset < ActiveRecord::Base
   before_validation :set_processed_flag
 
   def init
-    puts "%%%%%%%%%%%%%%% init is called"
     if self.init_called != true
       # flag to record if asset exists - is used in form so can edit caption without providing new file
       self.asset_exists = self.asset_file_name.present?
@@ -135,8 +126,6 @@ class Asset < ActiveRecord::Base
       end    
 
       self.asset.options.merge!(opt)
-
-      puts "%%%%%%%%%%%%%%% #{self.asset.options}"
 
       # remember that init has already been called
       self.init_called = true

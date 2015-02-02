@@ -49,11 +49,12 @@ en:
         story_type: Type
         in_theme_slider: Show Story in Theme Slider
       section:
-        title: Title
-        audio: Audio Track
         has_marker: Navigation Shortcut
         type_id: Type
         sort_order: Sort Order
+      section_translation:
+        title: Title
+        audio: Audio Track
         delete_audio: Delete the Audio Track?
       content:        
         title: Title          

@@ -12,7 +12,7 @@ Paperclip.interpolates('thumbnail_story_id') do |attachment, style|
   attachment.instance.story_translation.story_id
 end
 Paperclip.interpolates('audio_story_id') do |attachment, style|
-  attachment.instance.section.story_id
+  attachment.instance.section_translation.section.story_id
 end
 Paperclip.interpolates('media_image_story_id') do |attachment, style|
   attachment.instance.image.section.story_id

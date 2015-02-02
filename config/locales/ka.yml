@@ -47,11 +47,12 @@ ka:
         categories: კატეგორიები
         type: ტიპი
       section:
-        title: სათაური
-        audio: აუდიო ფაილი
         has_marker: სექციის გამოყოფა
         type_id: ტიპი
         sort_order: დალაგება
+      section_translation:
+        title: სათაური
+        audio: აუდიო ფაილი
         delete_audio: აუდიო ფაილის წაშლა?
       content:        
         title: სათაური
