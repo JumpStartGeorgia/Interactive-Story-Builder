@@ -64,6 +64,12 @@
     font-weight: 200;
 }
 @font-face {
+    font-family: "dejavusans";    
+    src: url( '/assets/fonts/dejavusans-r.ttf') format("truetype");           
+    font-style: normal;
+    font-weight: 200;
+}
+@font-face {
     font-family: "dejavusans-b";    
     src: url( '/assets/fonts/dejavusans-b.ttf') format("truetype");           
     font-style: normal;
@@ -110,6 +116,13 @@
 * html .clearfix, * html .clear             		{ zoom: 1; } /* IE6 */
 *:first-child+html .clearfix, *:first-child+html .clear { zoom: 1; } /* IE7 */
 * { -webkit-font-smoothing: antialiased; }
+*:lang(ka,ru,hy,az) {
+  font-family:dejavusans,sylfaen;
+}
+*:lang(en) {
+  font-family:opensans,sans-serif;
+}
+
 html,body{background:#F8F8F8;height:100%;min-height:100%;}
 *:focus {outline: 0 !important;}
 /* make bootstrap button link color stay white 
@@ -892,6 +905,11 @@ i.v{visibility:visible;}
   margin: 100px auto;
   -webkit-animation: rotateplane 1.2s infinite ease-in-out;
   animation: rotateplane 1.2s infinite ease-in-out;
+  &.space 
+  {
+    position:relative;
+    top:151px;
+  }
 }
 
 @-webkit-keyframes rotateplane {

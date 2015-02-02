@@ -4,10 +4,12 @@ class RootController < ApplicationController
     @js.push("zeroclipboard.min.js","filter.js")
     @css.push("navbar.css", "filter.css", "grid.css","root.css")    
     @stories = process_filter_querystring(Story.is_published.in_published_theme.paginate(:page => params[:page], :per_page => per_page))      
+    Rails.logger.debug("---------------------------------------------33")
     @theme = Theme.for_homepage
-    @stories_for_slider = Story.recent_by_type(theme_id: @theme.id) if @theme.present?
+
+    @stories_for_slider = Story.recent_by_type(theme_id: @theme.id) if @theme.present?    
     #@story = Story.is_published.recent_by_type
-    #Rails.logger.debug("---------------------------------------------#{@story}")
+    Rails.logger.debug("---------------------------------------------#{@stories}")
     @navbar_invisible = false
     respond_to do |format|
       format.html  
@@ -135,7 +137,6 @@ class RootController < ApplicationController
 
 
   def about   
-    #XXX @css.push("navbar.css","about.css")   
     @css.push("navbar.css")   
 
     @page = Page.by_name('about')

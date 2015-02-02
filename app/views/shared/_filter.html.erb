@@ -20,18 +20,22 @@
       </ul>
     </li>
     <li class="dropdown dropdown-hover afilter">                    
-      <a href="#" class="dropdown-toggle<%= @story_filter_sort_recent ? '' : ' selected' %>"
+      <a href="#" class="dropdown-toggle<%= @story_filter_type_all ? '' : ' selected' %>"
         data-toggle="dropdown" tabindex="18"  title="<%= t('filters.sort_title') %>"
-        data-filtered-by="<%= @story_filter_sort_permalink %>" data-filter-type="type" 
-        data-filter-default="story"><%= t('helpers.links.types') %><i class="caret"></i></a>                  
-        <ul class="dropdown-menu afilter-list">            
-          <% @story_types.each do |story_type| %>
+        data-filtered-by="<%= @story_filter_type_permalink %>" data-filter-type="type" 
+        data-filter-default="all"><%= t('helpers.links.types') %><i class="caret"></i></a>                  
+        <ul class="dropdown-menu afilter-list"> 
+           <li class="dropdown">
+          <%= link_to I18n.t('filters.all'), "#", :class => @story_filter_type == I18n.t('filters.all') ? 'active' : '', :"data-filter" => 'all' %>
+        </li>           
+          <% @story_types.each do |item| %>
             <li class="dropdown">
-              <%= link_to story_type.name, story_type_path(story_type.permalink) %>
+              <%= link_to item.name, "#", :class => @story_filter_type == item.name ? 'active' : '', :"data-filter" => item.permalink %>
             </li>
           <% end %>
         </ul>
     </li>  
+
     <% if @story_filter_show_following %>
       <li class="afilter">
         <%= link_to url_for(params.merge(:following => !@story_filter_following)),
@@ -44,8 +48,29 @@
            <i class='s i-follow-b <%= "#{@story_filter_following == true ? 'v' : 'h'}"%>'></i><%=  "#{t('filters.following')}" %>
          <% end %>
       </li>
-    <% end %>
-   <% if @editable == true %>
+    <% end %>        
+   <% if @editable == true %> 
+      <% if @themes_published.present? %>     
+        <li class="dropdown dropdown-hover theme afilter">
+          <a href="#" class="dropdown-toggle<%= @story_filter_theme_all ? '' : ' selected' %>" 
+            data-toggle="dropdown" tabindex="15" title="<%= t('filters.theme_title') %>"
+            data-filtered-by="<%= @story_filter_theme_permalink %>" 
+            data-filter-type="theme" data-filter-default-label="<%= t('filters.theme_header') %>"
+            data-filter-default="all">
+          <span><%= @story_filter_theme_all ? t('filters.theme_header') : @story_filter_theme %></span><i class='caret'></i></a>
+          <ul class="dropdown-menu afilter-list">          
+            <li class="dropdown">
+              <%= link_to I18n.t('filters.all'), "#", :class => @story_filter_theme == I18n.t('filters.all') ? 'active' : '', :"data-filter" => 'all' %>
+            </li>
+            <% @themes_published.each do |item| %>
+              <li class="dropdown">
+                <%= link_to item.name, "#", :class => @story_filter_theme == item.name ? 'active' : '', :"data-filter" => item.permalink %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+
       <li class="afilter">
         <%= link_to url_for(params.merge(:not_published => !@story_filter_not_published)),
           :class => "not_published #{@story_filter_not_published == true ? 'active' : ''}", 
@@ -57,6 +82,8 @@
          <i class='s i-not-published'></i><%=  "#{t('filters.not_published')}" %>
        <% end %>
       </li>
+
+
     <% end %>
   </ul>      
 </div>

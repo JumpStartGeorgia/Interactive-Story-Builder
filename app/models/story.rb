@@ -276,6 +276,11 @@ class Story < ActiveRecord::Base
 	  where(:story_locale => locale)
 	end
 
+  def self.by_type(id)
+    where('story_type_id = ?', id)
+  end
+
+
 	def self.by_category(id)
 	  joins(:categories).where('categories.id = ?', id)
 	end

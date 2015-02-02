@@ -1,18 +1,4 @@
 
-  <% content_for(:header) { %>
-   <header class="header">   
-     <div class="author-data">
-          <div class="author-logo"><%= image_tag current_user.avatar_url(:'168x168'),:size=>"168x168" %></div>
-          <div class="author-info">
-            <div class="author-nickname"><%= "#{current_user.nickname}" %></div>
-            <div class="author-about"><%= current_user.about.html_safe if current_user.about.present? %></div>          
-          </div>   
-          <div class="build-story"><%= link_to  t("app.common.build"), new_story_path, :tabindex => 1 %></div>       
-      </div>   
-      
-  </header>  
-<% } %>
-
   <%= render partial: "shared/filter" %> 
   <%= render partial: "shared/grid" , locals:{:editable=>true}%>  
 

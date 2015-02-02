@@ -456,6 +456,8 @@ hy:
       likes: Likes
     category_header: Category
     category_title: View stories that belong to a category
+    theme_header: Theme
+    theme_title: View stories that belong to a theme    
     language_header: Language
     language_title: View stories that are written in a particular language
     search: Find a Story

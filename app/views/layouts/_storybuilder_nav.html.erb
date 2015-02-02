@@ -11,7 +11,7 @@
       <li class="dropdown dropdown-hover">                    
           <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= t('helpers.links.themes') %><i class="caret"></i></a>                  
           <ul class="dropdown-menu">            
-            <% @published_themes.each do |theme| %>
+            <% @themes_published.each do |theme| %>
               <li class="story-type">
                 <%= link_to theme.formatted_name, theme_path(theme.permalink) %>
               </li>

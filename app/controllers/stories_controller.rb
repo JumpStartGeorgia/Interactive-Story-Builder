@@ -22,8 +22,7 @@ class StoriesController < ApplicationController
     @css.push("navbar.css", "filter.css", "grid.css","author.css")
     @js.push("zeroclipboard.min.js","filter.js","stories.js") 
     @stories =  process_filter_querystring(Story.editable_stories(current_user.id).paginate(:page => params[:page], :per_page => per_page))           
-    @editable = (user_signed_in?)
-
+    @editable = (user_signed_in?)   
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}          
