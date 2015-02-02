@@ -62,6 +62,27 @@
 
      });
 
+   <% elsif @type == 'slideshow' %> 
+     // when indicate whether or not to use cloned asset, act accordingly
+     $('form.form-translation').on('change', 'input.clone_asset', function(){
+       var parent = $(this).closest('.image_asset_fields');
+
+       if ($(this).is(':checked')){
+         // hide file field
+         $(parent).find('.item-asset').addClass('not-visible');
+         // reset the field
+         $(parent).find('.item-asset input[type="file"]').replaceWith($(parent).find('.item-asset input[type="file"]').clone());
+         // save the clone id
+         $(parent).find('.item-asset-clone input').val($(parent).find('.item-asset-clone input').data('original-id'));
+       }else{
+         // show file field
+         $(parent).find('.item-asset').removeClass('not-visible');
+         // reset clone id
+         $(parent).find('.item-asset-clone input').val('');
+       }
+
+     });
+
    <% end %>
 <% end %>
 

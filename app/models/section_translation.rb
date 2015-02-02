@@ -5,7 +5,7 @@ class SectionTranslation < ActiveRecord::Base
     :conditions => "asset_type = #{Asset::TYPE[:section_audio]}",    
     foreign_key: :item_id,
     dependent: :destroy
-  accepts_nested_attributes_for :asset#, :reject_if => lambda { |c| c[:asset].blank? }
+  accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? && c[:asset_clone_id].blank? }
 
 #  attr_accessible :section_id, :title, :locale, :asset_attributes, :delete_audio
 

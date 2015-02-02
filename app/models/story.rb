@@ -502,7 +502,7 @@ class Story < ActiveRecord::Base
     if @asset.present?
       return @asset
     else
-      x = self.story_translations.where(:locale => self.current_locale).first
+      x = with_translation(self.current_locale, false)
       if x.present?
         @asset = x.asset
         return @asset

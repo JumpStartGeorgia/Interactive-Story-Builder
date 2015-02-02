@@ -21,7 +21,7 @@ Paperclip.interpolates('media_video_story_id') do |attachment, style|
   attachment.instance.video.section.story_id
 end
 Paperclip.interpolates('slideshow_image_story_id') do |attachment, style|
-  attachment.instance.slideshow.section.story_id
+  attachment.instance.slideshow_translation.slideshow.section.story_id
 end
 Paperclip.interpolates('user_avatar_file_name') do |attachment, style|
   attachment.instance.user.avatar_file_name

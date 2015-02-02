@@ -197,7 +197,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
     end
   end
 # load the item (i.e., Section.find_by_id)
-# call: item.translation_for(locale), where locale is the locale to get text for
+# call: item.with_translation(locale), where locale is the locale to get text for
 # In partial, add the following do block before you use any of the fields: 
 # Globalize.with_locale(locale) do
 #   # form field stuff here
@@ -273,9 +273,9 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
       else 
         @item = Slideshow.new(:section_id => _id)
       end
-     if @item.present? && @item.assets.blank?
-        @item.assets.build(:asset_type => Asset::TYPE[:slideshow_image])
-      end          
+     # if @item.present? && @item.assets.blank?
+     #    @item.assets.build(:asset_type => Asset::TYPE[:slideshow_image])
+     #  end          
     elsif type == 'embed_media'
       if method=='select'    
         @item = EmbedMedium.find_by_id(sub_id)   
@@ -309,7 +309,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
      respond_to do |format|
         if @item.save   
           @item.reload      
-          @item.translation_for(params[:current_locale])
+          @item.with_translation(params[:current_locale])
           @item.current_locale = params[:current_locale]
           #Rails.logger.debug "######### new_media save error: #{@item.translations.inspect}"
           flash_success_created(Section.model_name.human,@item.title)          
@@ -340,7 +340,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
     respond_to do |format|
       if @item.save
         @item.reload      
-        @item.translation_for(params[:current_locale])
+        @item.with_translation(params[:current_locale])
         @item.current_locale = params[:current_locale]
         flash_success_created(@item.class.model_name.human,@item.title)  
         @select_next = params[:commit_and_next].present? ? true : false                     
@@ -400,7 +400,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
       if @item.present?
         if @item.update_attributes(params[type].except(:id))     
           @item.reload      
-          @item.translation_for(params[:current_locale])
+          @item.with_translation(params[:current_locale])
           @item.current_locale = params[:current_locale]     
           flash_success_updated(@item.class.model_name.human,@item.title)    
           @select_next = params[:commit_and_next].present? ? true : false       
@@ -509,7 +509,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
       gon.translate = true
       #Rails.logger.debug("---------------------------------------------#{@tr} #{@tr_from} #{@tr_to}")
     end
-    @story.translation_for(@from) # get the translations for this item or build it if not exist yet
+    @story.with_translation(@from) # get the translations for this item or build it if not exist yet
     @story.current_locale = @from
 
     @js.push("modalos.js")

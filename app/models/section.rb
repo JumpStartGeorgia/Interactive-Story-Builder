@@ -87,7 +87,7 @@ class Section < ActiveRecord::Base
     if @asset.present?
       return @asset
     else
-      x = self.section_translations.where(:locale => self.current_locale).first
+      x = with_translation(self.current_locale)
       if x.present?
         @asset = x.asset
         return @asset
