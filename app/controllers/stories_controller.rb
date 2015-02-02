@@ -827,7 +827,7 @@ private
 
   # if the user is not in StoryUser, stop
   def can_edit_story?(story_id)
-    logger.debug "))))))) can edit story check #{current_user.inspect}"
+    logger.debug "))))))) can edit story check #{story_id}"
     @can_edit_story, @edit_story_role, @edit_translation_locales = Story.can_edit?(story_id, current_user.id)
     redirect_to root_path, :notice => t('app.msgs.not_authorized') if !@can_edit_story
   end

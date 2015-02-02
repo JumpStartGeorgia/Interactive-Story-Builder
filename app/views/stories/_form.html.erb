@@ -18,12 +18,15 @@
 <% isTO = @trans && original # if mode is translate and screen is original(first) %>
 <% form_class = @trans == true && original == false ? 'form-translation' : '' %>
 
+<% logger.debug "======== current locale = #{@item.current_locale}" %>
+
   <%= semantic_form_for(@item, { :html => {:multipart => true, :id => "storyForm", :class => "new #{form_class}"} }.merge( @new ? {} : {url: story_path(id: params[:id], :format => :js), remote: true }) ) do |f| %>
     <% if @new %>
       <%= error_messages_for f.object %>
     <% end %>
     <%= f.inputs do %>
-      <%= f.fields_for :story_translations, @item.translation_for(@item.current_locale) do |f_translation| %>
+      <% trans_record = @item.with_translation(@item.current_locale) %>
+      <%= f.fields_for :story_translations, trans_record do |f_translation| %>
 
         <%# need this hidden field so can test if user has access to edit the locale if user is translator %>
         <%= hidden_field_tag :current_locale , @item.current_locale if !isTO %>
@@ -85,19 +88,28 @@
         <% # not used code end %>
 
 
-        <%= f.fields_for :asset, @item.asset do |f_asset| %>
+        <%
+          asset_record = trans_record.asset
+          if asset_record.blank?
+            asset_record = trans_record.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+          end
+        %>
+        <%= f_translation.fields_for :asset, asset_record do |f_asset| %>
           <%= f_asset.input :asset_type, :as => :hidden %>
 
           <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.story.thumbnail') %></label>
-          <% if @item.asset_exists? %>
-             <a class='btn btn-default preview' id="story-thumbnail-preview" data-modalos-id="modalos-preview" data-type="image"  data-image-path='<%= "#{@item.asset.asset.url(:thumbnail)}" %>'><%=  t('app.buttons.preview_image') %></a>           
+          <% if asset_record.file.exists? %>
+            <% 
+              img_class = isTO ? 'original-asset' : 'translated-asset'
+            %>
+             <a class='btn btn-default preview <%= img_class %>' id="story-thumbnail-preview" data-modalos-id="modalos-preview" data-type="image"  data-image-path='<%= "#{asset_record.file.url(:thumbnail)}" %>'><%=  t('app.buttons.preview_image') %></a>           
           <% end %>  
           <% if !isTO %>
             <% if !original %>
               <div class="boolean input optional checkbox" id="asset_clone_thumbnail">
                 <input name="clone_asset" type="hidden" value="0">
                 <label class="  control-label" for="clone_asset">
-                  <input id="clone_asset" name="clone_asset" type="checkbox" value="1" <%= @item.asset.asset_clone_id.present? ? 'checked=checked' : '' %>><%= t('app.common.clone_asset') %>
+                  <input id="clone_asset" name="clone_asset" type="checkbox" value="1" <%= asset_record.asset_clone_id.present? ? 'checked=checked' : '' %>><%= t('app.common.clone_asset') %>
                   <div class="help-inline" original-title="<%= t('helpers.hints.clone_asset') %>">
                     <div>?</div>
                   </div>
@@ -105,9 +117,13 @@
               </div>
 
               <div id="item-asset-clone">
-                <%= f_asset.input :asset_clone_id, :as => :hidden, :'data-original-id' => 0 %>
+                <% 
+                  orig = @item.with_translation(@from)
+                  orig_asset_id = orig.asset.id if orig.present? && orig.asset.present?                  
+                %>
+                <%= f_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id} %>
               </div>
-              <% style = @item.asset.asset_clone_id.present? ? 'display:none;' : '' %>
+              <% style = asset_record.asset_clone_id.present? ? 'display:none;' : '' %>
               <div id="item-asset" style="<%= style %>">
                 <%= f_asset.input :asset, :as => :file , hint: t('.hint.thumbnail') , :input_html => { :id => "storyThumbnail", accept:".jpg,.jpeg,.png" }, label: false  %> 
               </div>

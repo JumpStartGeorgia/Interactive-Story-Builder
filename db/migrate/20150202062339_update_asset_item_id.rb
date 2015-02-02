@@ -139,7 +139,7 @@ class UpdateAssetItemId < ActiveRecord::Migration
 
           when  Asset::TYPE[:media_video]        
             trans = MediumTranslation.where(id: asset.item_id).first
-            if section.present?
+            if trans.present?
               puts "- found section"
               # get the new item id from the translation record
               new_item_id = trans.medium_id
@@ -151,13 +151,12 @@ class UpdateAssetItemId < ActiveRecord::Migration
 
            when  Asset::TYPE[:slideshow_image]        
             trans = SlideshowTranslation.where(id: asset.item_id).first
-            if section.present?
+            if trans.present?
               puts "- found section"
               # get the new item id from the translation record
               new_item_id = trans.slideshow_id
             else
               puts "-- section not found"
-              assets_to_delete << asset.id
             end
         end
 

@@ -32,13 +32,13 @@ class Story < ActiveRecord::Base
 	has_many :sections, :order => 'position', dependent: :destroy
   has_many :story_users
   has_many :users, :through => :story_users, :dependent => :destroy
-	has_one :asset,     
-	  :conditions => "asset_type = #{Asset::TYPE[:story_thumbnail]}", 	 
-	  foreign_key: :item_id,
-	  dependent: :destroy
+	# has_one :asset,     
+	#   :conditions => "asset_type = #{Asset::TYPE[:story_thumbnail]}", 	 
+	#   foreign_key: :item_id,
+	#   dependent: :destroy
 	has_many :content, :through => :sections
 
-	accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
+	# accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
   accepts_nested_attributes_for :story_translations
 
   attr_reader :tag_list_tokens
@@ -491,6 +491,29 @@ class Story < ActiveRecord::Base
   end
 
 
+
+  ##############################
+  ## shortcut methods to get to asset objects in translation
+  ##############################
+  # create model variable @asset to store the asset record for later use without having to call the db again
+  @asset = nil
+
+  def asset
+    if @asset.present?
+      return @asset
+    else
+      x = self.story_translations.where(:locale => self.current_locale).first
+      if x.present?
+        @asset = x.asset
+        return @asset
+      end
+    end
+  end
+
+  def asset_exists?
+    asset.present? && asset.asset.exists?
+  end     
+
   def show_asset
     if self.asset.nil?
       Asset.new(:asset_type => Asset::TYPE[:story_thumbnail])
@@ -498,6 +521,27 @@ class Story < ActiveRecord::Base
       self.asset
     end
   end
+
+
+  #################################
+
+  # get the translation record for the given locale
+  # if it does not exist, build a new one if wanted
+  def with_translation(locale, build_if_missing=true)
+    @local_translations ||= {}
+    if @local_translations[locale].blank?
+      x = self.story_translations.where(:locale => locale).first
+      if x.blank? && build_if_missing
+        x = self.story_translations.build(locale: locale)
+      end
+
+      @local_translations[locale] = x
+    end
+    return @local_translations[locale]
+  end
+
+
+  ##############################
   
   # when a comment occurs, update the count by 1
   def increment_comment_count

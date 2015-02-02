@@ -8,10 +8,10 @@ require 'active_support/deprecation'
 Paperclip.interpolates('item_id') do |attachment, style|
   attachment.instance.item_id
 end
-Paperclip.interpolates('story_id') do |attachment, style|
-  attachment.instance.section.story_id
+Paperclip.interpolates('thumbnail_story_id') do |attachment, style|
+  attachment.instance.story_translation.story_id
 end
-Paperclip.interpolates('storyid_from_parent') do |attachment, style|
+Paperclip.interpolates('audio_story_id') do |attachment, style|
   attachment.instance.section.story_id
 end
 Paperclip.interpolates('media_image_story_id') do |attachment, style|

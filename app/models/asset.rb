@@ -4,19 +4,20 @@ class Asset < ActiveRecord::Base
   belongs_to :asset_clone, foreign_key: :asset_clone_id, class_name: 'Asset'
 
   belongs_to :user, foreign_key: :item_id
-  belongs_to :story, foreign_key: :item_id
-  belongs_to :section, foreign_key: :item_id
-  belongs_to :slideshow, foreign_key: :item_id
+  belongs_to :story_translation, foreign_key: :item_id
+  belongs_to :section_translation, foreign_key: :item_id
+  belongs_to :slideshow_translation, foreign_key: :item_id
 #  belongs_to :media, foreign_key: :item_id
-  belongs_to :image, foreign_key: :item_id, class_name: "Medium"
-  belongs_to :video, foreign_key: :item_id, class_name: "Medium"  
-  acts_as_list scope: :slideshow
+  belongs_to :image, foreign_key: :item_id, class_name: "MediumTranslation"
+  belongs_to :video, foreign_key: :item_id, class_name: "MediumTranslation"  
+
+  acts_as_list scope: :slideshow_translation
+  acts_as_list scope: [:item_id, :asset_type]
 
   TYPE = {story_thumbnail: 1, section_audio: 2, content_image: 3, media_image: 4, media_video: 5, slideshow_image: 6, user_avatar: 7}
 
-  acts_as_list scope: [:item_id, :asset_type]
 
-    attr_accessor :init_called, :asset_exists, :stop_check_thumbnail, :process_video, :is_video_image, :is_amoeba
+  attr_accessor :init_called, :asset_exists, :stop_check_thumbnail, :process_video, :is_video_image, :is_amoeba
 
 
 
@@ -25,30 +26,40 @@ class Asset < ActiveRecord::Base
 
   validates :asset_type, :presence => true
   validates :asset_type, inclusion: { in: TYPE.values }
+  validates_presence_of :asset, :unless => :asset_clone_id?
 
   with_options :if => "self.asset_type == TYPE[:user_avatar]" do |t|    
-    t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
+    t.validates_attachment :asset, {  :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
   with_options :if => "self.asset_type == TYPE[:story_thumbnail]" do |t|    
-    t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
+    t.validates_attachment :asset, {  :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
   with_options :if => "self.asset_type == TYPE[:section_audio]" do |t|      
-    t.validates_attachment :asset, {   :presence => true, :content_type => { :content_type => ["audio/mp3"] }, :size => { :in => 0..10.megabytes }}  
+    t.validates_attachment :asset, {  :content_type => { :content_type => ["audio/mp3"] }, :size => { :in => 0..10.megabytes }}  
   end
   with_options :if => "self.asset_type == TYPE[:media_image]" do |t|      
-    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
+    t.validates_attachment :asset, { :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
   with_options :if => "self.asset_type == TYPE[:media_video]" do |t|      
-    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["video/mp4", "video/quicktime", "video/webm", "video/ogg", "video/x-flv", "video/avi","video/x-msvideo","video/msvideo","application/x-troff-msvideo", "video/x-ms-wmv" ]}, :size => { :in => 0..25.megabytes }}    
+    t.validates_attachment :asset, { :content_type => { :content_type => ["video/mp4", "video/quicktime", "video/webm", "video/ogg", "video/x-flv", "video/avi","video/x-msvideo","video/msvideo","application/x-troff-msvideo", "video/x-ms-wmv" ]}, :size => { :in => 0..25.megabytes }}    
   end
- with_options :if => "self.asset_type == TYPE[:slideshow_image]" do |t|      
-    t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
+  with_options :if => "self.asset_type == TYPE[:slideshow_image]" do |t|      
+    t.validates_attachment :asset, { :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
 
 
   
   #################################
   ## Callbacks
+
+  before_save :testing
+
+  def testing
+    logger.debug "$$$$$$$$$$$$ asset changed = #{self.changed?}; asset clone id = #{self.asset_clone_id}; source = #{self.source}; asset clone id changed = #{self.asset_clone_id_changed?}; change = #{self.asset_clone_id_change}"
+    return true
+  end
+
+
   after_initialize :init
 
   before_post_process :init
@@ -57,6 +68,7 @@ class Asset < ActiveRecord::Base
   before_validation :set_processed_flag
 
   def init
+    puts "%%%%%%%%%%%%%%% init is called"
     if self.init_called != true
       # flag to record if asset exists - is used in form so can edit caption without providing new file
       self.asset_exists = self.asset_file_name.present?
@@ -76,13 +88,13 @@ class Asset < ActiveRecord::Base
 
         when TYPE[:story_thumbnail]        
           opt = { 
-            :url => "/system/places/thumbnail/:item_id/:style/:basename.:extension",
+            :url => "/system/places/thumbnail/:thumbnail_story_id/:style/:basename.:extension",
             :styles => {:thumbnail => {:geometry => "459x328#"}},            
             :default_url => "/assets/missing/story_thumbnail/missing.jpg"
           }
 
         when  TYPE[:section_audio]         
-          opt = {:url => "/system/places/audio/:story_id/:id__:basename.:extension"}  
+          opt = {:url => "/system/places/audio/:audio_story_id/:id__:basename.:extension"}  
 
         when  TYPE[:media_image]        
           opt = { 
@@ -123,6 +135,8 @@ class Asset < ActiveRecord::Base
       end    
 
       self.asset.options.merge!(opt)
+
+      puts "%%%%%%%%%%%%%%% #{self.asset.options}"
 
       # remember that init has already been called
       self.init_called = true
@@ -172,16 +186,30 @@ class Asset < ActiveRecord::Base
   # so can test for clone asset
   # if clone exists, use that asset,
   # else use the asset in this record
-  this_asset = instance_method(:asset)
-  define_method(:asset) do
-    a = nil
+  # this_asset = instance_method(:asset)
+  # define_method(:asset) do
+  #   a = nil
+  #   if self.asset_clone_id.present?
+  #     x = self.asset_clone
+  #     a = x.asset if x.present?
+  #   else
+  #     a = this_asset.bind(self).()
+  #   end
+  #   return a
+  # end
+
+  # use file to get the asset file
+  # if this record is cloning another, then user the clone asset
+  # else use the asset in this record
+  def file
+    f = nil
     if self.asset_clone_id.present?
       x = self.asset_clone
-      a = x.asset if x.present?
+      f = x.asset if x.present?
     else
-      a = this_asset.bind(self).()
+      f = self.asset
     end
-    return a
+    return f
   end
 
 

@@ -2,10 +2,17 @@ class StoryTranslation < ActiveRecord::Base
 	belongs_to :story
   belongs_to :language, :primary_key => :locale, :foreign_key => :locale
 
+  has_one :asset,     
+    :conditions => "asset_type = #{Asset::TYPE[:story_thumbnail]}",    
+    foreign_key: :item_id,
+    dependent: :destroy
+
   has_permalink :create_permalink, true
 
+  accepts_nested_attributes_for :asset#, :reject_if => lambda { |c| c[:asset].blank? }
+
   attr_accessible :story_id, :locale, :shortened_url, :title, :permalink, :permalink_staging, :author, :media_author, :about, 
-      :published, :published_at, :language_type, :translation_percent_complete, :translation_author
+      :published, :published_at, :language_type, :translation_percent_complete, :translation_author, :asset_attributes
 
   #################################
   ## Validations
@@ -112,6 +119,53 @@ class StoryTranslation < ActiveRecord::Base
       rescue
       end    
     end
+  end
+
+  #################################
+
+  # get the translation record for the given locale
+  # if it does not exist, build a new one if wanted
+  # @translations = {}
+  # def self.with_translation(locale, build_if_missing=true)
+  #   logger.debug "------ -> #{@translations.inspect}"
+  #   if @translations[locale].blank?
+  #     logger.debug "------ getting translation from db for #{locale}"
+  #     x = where(:locale => locale).first
+  #     if x.blank? && build_if_missing
+  #       logger.debug "------ -> not found so building"
+  #       x = StoryTranslation.new(locale: locale)
+  #     end
+
+  #     @translations[locale] = x
+  #   end
+  #   logger.debug "------ -> #{@translations[locale].inspect}"
+  #   return @translations[locale]
+  # end
+
+  # after_save :clear_translations
+  # def clear_translations
+  #   logger.debug "------ -> reseting translations!!!!!!!!!"
+
+  #   @translations = {}
+  # end
+
+  # def self.with_translation(locale, build_if_missing=true)
+  #   logger.debug "------ -> with_translation"
+  #   x = where(:locale => locale).first
+  #   if x.blank? && build_if_missing
+  #     logger.debug "------ -> not found so building"
+  #     x = StoryTranslation.new(locale: locale)
+  #   end
+
+  #   return x
+  # end
+
+
+  before_save :testing
+
+  def testing
+    logger.debug "$$$$$$$$$$$$ trans changed = #{self.changed?}"
+    return true
   end
 
 end
