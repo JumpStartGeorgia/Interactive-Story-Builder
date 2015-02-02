@@ -125,7 +125,7 @@
                     <div class="video-container">
                       <% if m.media_type == Medium::TYPE[:image] %>     
                           <% if !@export %> 
-                            <img src="<%= m.image.asset.url(:fullscreen) %>">
+                            <img src="<%= m.image.file.url(:fullscreen) %>">
                           <% else %>
                             <img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>">
                           <% end %>
@@ -137,7 +137,7 @@
                           <% end %>
                       <% elsif m.media_type == Medium::TYPE[:video] && m.is_processed?  %>                    
                           <% if !@export %>                           
-                            <!--[if lte IE 8]><img src="<%= m.image.asset.url(:fullscreen) %>"><![endif]-->
+                            <!--[if lte IE 8]><img src="<%= m.image.file.url(:fullscreen) %>"><![endif]-->
                           <% else %>
                             <!--[if lte IE 8]><img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>"><![endif]-->
                           <% end %>                                                          
@@ -202,7 +202,7 @@
                         <h3>&nbsp;</h3>
                       <% end %>
                                 
-                  <!--[if lte IE 8]><img src="<%= section.slideshow.assets[0].asset.url(:medium) %>" style="width:100%;"><![endif]-->
+                  <!--[if lte IE 8]><img src="<%= section.slideshow.assets[0].file.url(:medium) %>" style="width:100%;"><![endif]-->
                   <div class="slideshow-captions">
                       <% section.slideshow.assets.each_with_index do |t,t_i| %>    
                           <div class="slideshow-caption" data-slug="<%= t.asset_file_name_formatted %>">

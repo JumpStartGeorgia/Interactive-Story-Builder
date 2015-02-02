@@ -89,7 +89,7 @@ class Section < ActiveRecord::Base
      TYPE[:youtube] == self.type_id 
   end
   def asset_exists?
-      self.asset.present? && self.asset.asset.exists?
+      self.asset.present? && self.asset.file.exists?
   end  
   def ok?
     if content?

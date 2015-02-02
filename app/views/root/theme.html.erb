@@ -14,7 +14,7 @@
 
         <% @stories_for_slider.each_with_index { |story,i| %>
           <div class='item<%= i == 0 ? " active" : "" %>'>
-            <%= image_tag story.show_asset.asset.url %>
+            <%= image_tag story.show_asset.file.url %>
             <div class="carousel-caption">
               <div class='title'><%= link_to story.title, storyteller_show_path(story.permalink) %></div>
               <div class='descr'> <%= strip_tags_nbsp(story.about).html_safe if story.about.present? %></div>

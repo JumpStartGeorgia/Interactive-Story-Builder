@@ -12,7 +12,7 @@ atom_feed do |feed|
       entry.author do |author|
         author.name item.author
       end
-      #entry.logo image_tag(item.show_asset.asset.url(:thumbnail)).html_safe 
+      #entry.logo image_tag(item.show_asset.file.url(:thumbnail)).html_safe 
     end
   end
 

@@ -355,7 +355,7 @@ class Story < ActiveRecord::Base
 
 
 	def asset_exists?
-		self.asset.present? && self.asset.asset.exists?
+		self.asset.present? && self.asset.file.exists?
 	end  		
 
 	def transliterate_file_name
@@ -390,16 +390,16 @@ class Story < ActiveRecord::Base
 
       # story thumbnail
       puts "$$$$$$$$$ clone successful - copying thumbnail"
-      if self.asset.present? && self.asset.asset.exists? 
-        Dir.glob(self.asset.asset.path.gsub('/original/', '/*/')).each do |file|       
+      if self.asset.present? && self.asset.file.exists? 
+        Dir.glob(self.asset.file.path.gsub('/original/', '/*/')).each do |file|       
           copy_asset file, file.gsub("/thumbnail/#{original_id}/", "/thumbnail/#{new_id}/") 
         end
       end
 
       # section audio
       puts "$$$$$$$$$ clone successful - copying audio"
-      new_audio = clone.sections.select{|x| x.asset.present? && x.asset.asset.exists?}.map{|x| x.asset}
-      self.sections.select{|x| x.asset.present? && x.asset.asset.exists?}.map{|x| x.asset}.each do |audio|
+      new_audio = clone.sections.select{|x| x.asset.present? && x.asset.file.exists?}.map{|x| x.asset}
+      self.sections.select{|x| x.asset.present? && x.asset.file.exists?}.map{|x| x.asset}.each do |audio|
         # find matching record
         record = new_audio.select{|x| x.asset_file_name == audio.asset_file_name && 
                                       x.asset_content_type == audio.asset_content_type && 
@@ -407,15 +407,15 @@ class Story < ActiveRecord::Base
                                       x.asset_updated_at == audio.asset_updated_at}.first
         # copy the file if match found
         if record.present?
-          copy_asset audio.asset.path, audio.asset.path.gsub("/audio/#{original_id}/", "/audio/#{new_id}/")
+          copy_asset audio.file.path, audio.file.path.gsub("/audio/#{original_id}/", "/audio/#{new_id}/")
                                                         .gsub("/#{audio.id}__", "/#{record.id}__") 
         end
       end
 
       # slideshow
       puts "$$$$$$$$$ clone successful - copying slideshow"
-      new_ss = clone.sections.select{|x| x.slideshow?}.map{|x| x.slideshow.assets}.flatten.select{|x| x.asset.exists?}
-      self.sections.select{|x| x.slideshow?}.map{|x| x.slideshow.assets}.flatten.select{|x| x.asset.exists?}.each do |img|
+      new_ss = clone.sections.select{|x| x.slideshow?}.map{|x| x.slideshow.assets}.flatten.select{|x| x.file.exists?}
+      self.sections.select{|x| x.slideshow?}.map{|x| x.slideshow.assets}.flatten.select{|x| x.file.exists?}.each do |img|
         # find matching record
         record = new_ss.select{|x| x.asset_file_name == img.asset_file_name && 
                                       x.asset_content_type == img.asset_content_type && 
@@ -423,7 +423,7 @@ class Story < ActiveRecord::Base
                                       x.asset_updated_at == img.asset_updated_at}.first
         # copy the file if match found
         if record.present?
-          Dir.glob(img.asset.path.gsub('/original/', '/*/')).each do |file|       
+          Dir.glob(img.file.path.gsub('/original/', '/*/')).each do |file|       
             copy_asset file, file.gsub("/slideshow/#{original_id}/", "/slideshow/#{new_id}/") 
                                   .gsub("/#{img.id}__", "/#{record.id}__") 
           end
@@ -442,7 +442,7 @@ class Story < ActiveRecord::Base
                                       x.asset_updated_at == img.asset_updated_at}.first
         # copy the file if match found
         if record.present?
-          Dir.glob(img.asset.path.gsub('/original/', '/*/')).each do |file|       
+          Dir.glob(img.file.path.gsub('/original/', '/*/')).each do |file|       
             copy_asset file, file.gsub("/images/#{original_id}/", "/images/#{new_id}/") 
                                   .gsub("/#{img.id}__", "/#{record.id}__") 
           end
@@ -461,17 +461,17 @@ class Story < ActiveRecord::Base
         # copy the file if match found
         if record.present?
           # it is possible that the original video is not mp4 so need to look for anything that has same basename (ignore file ext)
-          ext = File.extname(video.asset.path)
-          basename = File.basename(video.asset.path)
-          name = File.basename(video.asset.path, ext)
+          ext = File.extname(video.file.path)
+          basename = File.basename(video.file.path)
+          name = File.basename(video.file.path, ext)
 
-          Dir.glob(video.asset.path.gsub('/original/', '/*/').gsub(basename, "#{name}.*")).each do |file|       
+          Dir.glob(video.file.path.gsub('/original/', '/*/').gsub(basename, "#{name}.*")).each do |file|       
             copy_asset file, file.gsub("/video/#{original_id}/", "/video/#{new_id}/") 
                                   .gsub("/#{video.id}__", "/#{record.id}__") 
           end
 
           # get the poster folder too
-          copy_asset video.asset.path(:poster), video.asset.path(:poster).gsub("/video/#{original_id}/", "/video/#{new_id}/") 
+          copy_asset video.file.path(:poster), video.file.path(:poster).gsub("/video/#{original_id}/", "/video/#{new_id}/") 
                                 .gsub("/#{video.id}__", "/#{record.id}__") 
 
         end
@@ -511,7 +511,7 @@ class Story < ActiveRecord::Base
   end
 
   def asset_exists?
-    asset.present? && asset.asset.exists?
+    asset.present? && asset.file.exists?
   end     
 
   def show_asset

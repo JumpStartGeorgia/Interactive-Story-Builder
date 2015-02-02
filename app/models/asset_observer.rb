@@ -23,7 +23,7 @@ class AssetObserver < ActiveRecord::Observer
             
       story_id = asset.video.section.story_id
       asset_id = asset.id
-      path = asset.asset.url(:original, false)
+      path = asset.file.url(:original, false)
       
       # append line to queue file
       CSV.open(queue_file, "a") do |csv|      

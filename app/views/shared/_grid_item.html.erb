@@ -11,7 +11,7 @@
             
   <div class="story-thumbnail">    
      <%= link_to path do %>
-        <%= image_tag story.show_asset.asset.url(:thumbnail) %>              
+        <%= image_tag story.show_asset.file.url(:thumbnail) %>              
         <div class="story-link">
           <div class='type story_type_<%= story.story_type_id %>' title='<%= get_story_type_name(story.story_type_id) %>'></div>
           <span title="<%= story.title %>"><%= story.title %></span>

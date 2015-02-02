@@ -4,7 +4,7 @@ class ReprocessMediaImages < ActiveRecord::Migration
       imgs = Asset.where(:asset_type => Asset::TYPE[:media_image])
       imgs.each_with_index do |img,index|
         puts "processing img #{index} of #{imgs.length}"
-        img.asset.reprocess! if img.asset.exists?
+        img.asset.reprocess! if img.file.exists?
       end
     end
   end

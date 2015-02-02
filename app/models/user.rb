@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
   
   # see if the user has a local avatar saved
   def local_avatar_exists?
-    self.local_avatar.present? && self.local_avatar.asset.exists?
+    self.local_avatar.present? && self.local_avatar.file.exists?
   end
 
   # get the url to the avatar
@@ -123,9 +123,9 @@ class User < ActiveRecord::Base
         self.avatar
       end
     elsif local_avatar_exists?
-      self.local_avatar.asset.url(style)
+      self.local_avatar.file.url(style)
     else
-      Asset.new(:asset_type => Asset::TYPE[:user_avatar]).asset.url(style)
+      Asset.new(:asset_type => Asset::TYPE[:user_avatar]).file.url(style)
     end
   end
 

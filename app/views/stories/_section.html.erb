@@ -62,16 +62,16 @@
         <%= f.fields_for :asset, @item.asset do |as| %>
           <div id='sectionAudioBox' style='display:inline-block;vertical-align:bottom;'  >     
             <label class=" control-label" for="modalAudio"><%= t('activerecord.attributes.section.audio') %></label>
-            <% if @item.asset.asset.exists? %>
+            <% if @item.asset.file.exists? %>
                 <audio controls>            
-                  <source src="<%= @item.asset.asset.url %>" type="audio/mpeg">
+                  <source src="<%= @item.asset.file.url %>" type="audio/mpeg">
                   Your browser does not support the audio tag.
                 </audio>        
             <% end %>
           </div>
           <% if !isTO %>
             <%= as.input :asset, :as => :file , hint: t('.hint.audio') , :input_html => { :id => "mediaAudio", accept:".mp3" } , label: false  %>
-            <% if @item.asset.asset.exists? %>
+            <% if @item.asset.file.exists? %>
               <%= f.input :delete_audio, :as => :boolean, hint: t('.hint.delete_audio') %>
             <% end %>          
             <%= as.input :asset_type, :as => :hidden %>

@@ -58,7 +58,7 @@ Rails.logger.debug "@@@@@@@@@@@@@@@@   create_video_image"
 Rails.logger.debug "@@@@@@@@@@@@@@@@   video type #{video_type?}; exists #{video_exists?}; updated ad changed #{self.video_date_changed}; is amoeba = #{self.is_amoeba}"
     if video_type? && video_exists? && self.video_date_changed && self.is_amoeba != true
       # get the image
-      image_file = "#{Rails.root}/public#{self.video.asset.url(:poster, false)}"
+      image_file = "#{Rails.root}/public#{self.video.file.url(:poster, false)}"
 Rails.logger.debug "@@@@@@@@ file = #{image_file}"
       # check if exists
       if File.exists?(image_file)
@@ -99,10 +99,10 @@ Rails.logger.debug "@@@@@@@@ file exists, saving!"
      super(options)
    end
   def image_exists?
-    self.image.present? && self.image.asset.exists?
+    self.image.present? && self.image.file.exists?
   end  
   def video_exists?
-    self.video.present? && self.video.asset.exists?
+    self.video.present? && self.video.file.exists?
   end  
 
   def is_processed?

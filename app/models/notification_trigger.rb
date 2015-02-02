@@ -428,7 +428,7 @@ class NotificationTrigger < ActiveRecord::Base
                       # get videos for this story
                       asset_videos = Asset.videos_for_story(story.id)
                       if asset_videos.present?
-                        exists_videos = asset_videos.select{|x| x.asset.exists?}
+                        exists_videos = asset_videos.select{|x| x.file.exists?}
                         if exists_videos.present?
                           total = exists_videos.length
                           processed = exists_videos.select{|x| x.processed == true}.length

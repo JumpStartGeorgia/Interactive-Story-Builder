@@ -1,8 +1,8 @@
 <% asset_item ||= nil %>
 <div class="image_asset_form_container clear">
   <div class="preview_img">
-    <% if asset_item.present? && asset_item.asset.exists? %>
-    	<img src="<%= asset_item.asset.url(:thumbnail_preview) %>" />  
+    <% if asset_item.present? && asset_item.file.exists? %>
+    	<img src="<%= asset_item.file.url(:thumbnail_preview) %>" />  
   	<% end %>
   </div>
 
