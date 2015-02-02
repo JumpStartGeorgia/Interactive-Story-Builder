@@ -29,23 +29,26 @@ ka:
         local_avatar: პროფილის სურათი
         nickname: მომხმარებლის სახელი
       story:
-        title: ამბის სათაური
         user_id: Story Author
         user_ids: ამბის რედაქტორები
-        author: ავტორ(ებ)ი
-        media_author: ფოტოსა და ვიდეოს ავტორ(ებ)ი
-        published: გამოქვეყნება
-        published_at: გამოქვეყნებულია
         publish_home_page: გამოქვეყნების შემდეგ, გსურთ, თქვენი ამბავი გამოჩნდეს მთავარ გვერდზე?
         template_id: შაბლონი
         thumbnail: ესკიზი
-        about: ამბის მოკლე შინაარსი
         story_locale: ამბის ენა
-        permalink: ამბის ბმული 
-        permalink_staging: ამბის ბმული
         tag_list: თეგები
         categories: კატეგორიები
-        type: ტიპი
+        story_type: ტიპი
+        in_theme_slider: Show Story in Theme Slider
+      story_translation:
+        title: ამბის სათაური
+        author: ავტორ(ებ)ი
+        media_author: ფოტოსა და ვიდეოს ავტორ(ებ)ი
+        translation_author: Translation Author(s)
+        published: გამოქვეყნება
+        published_at: გამოქვეყნებულია
+        about: ამბის მოკლე შინაარსი
+        permalink: ამბის ბმული 
+        permalink_staging: ამბის ბმული
       section:
         has_marker: სექციის გამოყოფა
         type_id: ტიპი

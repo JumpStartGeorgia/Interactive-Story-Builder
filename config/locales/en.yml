@@ -29,25 +29,26 @@ en:
         local_avatar: Avatar
         nickname: Nickname
       story:
-        title: Story Title
         user_id: Story Author
         user_ids: Editors
+        publish_home_page: Once published, make your story visible on the homepage?
+        template_id: Template
+        thumbnail: Thumbnail
+        story_locale: Story Language
+        tag_list: Tags
+        categories: Categories
+        story_type: Type
+        in_theme_slider: Show Story in Theme Slider
+      story_translation:
+        title: Story Title
         author: Author(s)
         media_author: Photo and Video Author(s)  
         translation_author: Translation Author(s)
         published: Publish?
         published_at: Was Published
-        publish_home_page: Once published, make your story visible on the homepage?
-        template_id: Template
-        thumbnail: Thumbnail
         about: Story Summary
-        story_locale: Story Language
         permalink: Story URL
         permalink_staging: Story URL
-        tag_list: Tags
-        categories: Categories
-        story_type: Type
-        in_theme_slider: Show Story in Theme Slider
       section:
         has_marker: Navigation Shortcut
         type_id: Type
