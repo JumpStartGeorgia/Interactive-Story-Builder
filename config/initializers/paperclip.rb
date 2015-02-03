@@ -15,10 +15,10 @@ Paperclip.interpolates('audio_story_id') do |attachment, style|
   attachment.instance.section_translation.section.story_id
 end
 Paperclip.interpolates('media_image_story_id') do |attachment, style|
-  attachment.instance.image.section.story_id
+  attachment.instance.image.medium.section.story_id
 end
 Paperclip.interpolates('media_video_story_id') do |attachment, style|
-  attachment.instance.video.section.story_id
+  attachment.instance.video.medium.section.story_id
 end
 Paperclip.interpolates('slideshow_image_story_id') do |attachment, style|
   attachment.instance.slideshow_translation.slideshow.section.story_id

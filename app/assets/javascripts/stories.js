@@ -87,6 +87,9 @@ $(document).ready(function() {
     // make sure the file fields are reset when the option changes
     $('form.medium input#mediaImage, form.medium input#mediaVideo').wrap('<form>').parent('form').trigger('reset');
     $('form.medium input#mediaImage, form.medium input#mediaVideo').unwrap();
+
+    // when the media type is changed, update the translation media type to match
+    $('form.medium input.translation-media-type').val($(this).val());
 	});
 
   $('.builder-wrapper .workplace').on('click', '.story-page1 #btnOlly, .story-page2 #btnOlly', function(){

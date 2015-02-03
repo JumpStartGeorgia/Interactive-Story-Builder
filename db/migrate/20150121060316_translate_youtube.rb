@@ -14,7 +14,7 @@ class TranslateYoutube < ActiveRecord::Migration
         puts "- id =#{story.id}; locale = #{story.story_locale}"
         Globalize.story_locale = story.story_locale
         story.sections.each do |section|
-          if section.youtube? && section.youtube.present?
+          if section.youtube?
             puts "-- section id #{section.id}, youtube id = #{section.youtube.id}; current_locale = #{section.current_locale}"
 
             trans = section.youtube.translation_for(story.story_locale)

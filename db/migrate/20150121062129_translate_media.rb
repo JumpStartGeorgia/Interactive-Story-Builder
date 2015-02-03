@@ -12,24 +12,42 @@ class TranslateMedia < ActiveRecord::Migration
 
     # move the data using the story_locale as the translation locale
     Story.transaction do
-      Story.all.each do |story|
-        puts "- id =#{story.id}; locale = #{story.story_locale}"
-        Globalize.story_locale = story.story_locale
-        story.sections.each do |section|
-          if section.media? && section.media.present?
-            section.media.each do |medium|
-              puts "-- section id #{section.id}, medium id = #{medium.id}; current_locale = #{section.current_locale}"
-              trans = medium.translation_for(story.story_locale)
-              trans.title = medium.old_title
-              trans.caption = medium.old_caption
-              trans.caption_align = medium.old_caption_align
-              trans.source = medium.old_source
-              trans.infobox_type = medium.old_infobox_type
-              trans.save
-            end
-          end
-        end        
+      Medium.all.each do |medium|
+        locale = I18n.default_locale
+        if medium.section.present? and medium.section.story.present?
+          locale = medium.section.story.story_locale 
+          puts "- locale = #{locale}; medium id = #{medium.id}"
+        else
+          puts "---> could not find the story for this record #{content.id}, defaulting to locale #{locale}"
+        end
+        trans = medium.translation_for(locale)
+        trans.title = medium.old_title
+        trans.caption = medium.old_caption
+        trans.caption_align = medium.old_caption_align
+        trans.source = medium.old_source
+        trans.infobox_type = medium.old_infobox_type
+        trans.save
+
       end
+
+      # Story.all.each do |story|
+      #   puts "- id =#{story.id}; locale = #{story.story_locale}"
+      #   Globalize.story_locale = story.story_locale
+      #   story.sections.each do |section|
+      #     if section.media?
+      #       section.media.each do |medium|
+      #         puts "-- section id #{section.id}, medium id = #{medium.id}; current_locale = #{section.current_locale}"
+      #         trans = medium.translation_for(story.story_locale)
+      #         trans.title = medium.old_title
+      #         trans.caption = medium.old_caption
+      #         trans.caption_align = medium.old_caption_align
+      #         trans.source = medium.old_source
+      #         trans.infobox_type = medium.old_infobox_type
+      #         trans.save
+      #       end
+      #     end
+      #   end        
+      # end
     end
 
   end

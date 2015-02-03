@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150202062339) do
+ActiveRecord::Schema.define(:version => 20150203065412) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -184,14 +184,15 @@ ActiveRecord::Schema.define(:version => 20150202062339) do
 
   create_table "medium_translations", :force => true do |t|
     t.integer  "medium_id"
-    t.string   "locale",        :null => false
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string   "locale",                     :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.string   "title"
     t.string   "caption"
     t.integer  "caption_align"
     t.string   "source"
     t.integer  "infobox_type"
+    t.integer  "media_type",    :limit => 1
   end
 
   add_index "medium_translations", ["locale"], :name => "index_medium_translations_on_locale"

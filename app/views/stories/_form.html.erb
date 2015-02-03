@@ -18,8 +18,6 @@
 <% isTO = @trans && original # if mode is translate and screen is original(first) %>
 <% form_class = @trans == true && original == false ? 'form-translation' : '' %>
 
-<% logger.debug "======== current locale = #{@item.current_locale}" %>
-
   <%= semantic_form_for(@item, { :html => {:multipart => true, :id => "storyForm", :class => "new #{form_class}"} }.merge( @new ? {} : {url: story_path(id: params[:id], :format => :js), remote: true }) ) do |f| %>
     <% if @new %>
       <%= error_messages_for f.object %>

@@ -83,6 +83,49 @@
 
      });
 
+   <% elsif @type == 'media' %> 
+     // when indicate whether or not to use cloned asset, act accordingly
+     $('form.form-translation').on('change', 'input#clone_image_asset', function(){
+       if ($(this).is(':checked')){
+         // hide file field
+         $('form.form-translation #item-image-asset').addClass('not-visible');
+         // reset the field
+         $('form.form-translation #item-image-asset input[type="file"]').replaceWith($('form.form-translation #item-image-asset input[type="file"]').clone());
+         // save the clone id
+         $('form.form-translation #item-image-asset-clone input').val($('form.form-translation #item-image-asset-clone input').data('original-id'));
+         // hide preview
+         $('form.form-translation .translated-image-asset').hide();
+       }else{
+         // show file field
+         $('form.form-translation #item-image-asset').removeClass('not-visible');
+         // reset clone id
+         $('form.form-translation #item-image-asset-clone input').val('');
+         // show preview
+         $('form.form-translation .translated-image-asset').show();
+       }
+     });
+
+     $('form.form-translation').on('change', 'input#clone_video_asset', function(){
+       if ($(this).is(':checked')){
+         // hide file field
+         $('form.form-translation #item-video-asset').addClass('not-visible');
+         // reset the field
+         $('form.form-translation #item-video-asset input[type="file"]').replaceWith($('form.form-translation #item-video-asset input[type="file"]').clone());
+         // save the clone id
+         $('form.form-translation #item-video-asset-clone input').val($('form.form-translation #item-video-asset-clone input').data('original-id'));
+         // hide preview
+         $('form.form-translation .translated-video-asset').hide();
+       }else{
+         // show file field
+         $('form.form-translation #item-video-asset').removeClass('not-visible');
+         // reset clone id
+         $('form.form-translation #item-video-asset-clone input').val('');
+         // show preview
+         $('form.form-translation .translated-video-asset').show();
+       }
+
+     });
+
    <% end %>
 <% end %>
 

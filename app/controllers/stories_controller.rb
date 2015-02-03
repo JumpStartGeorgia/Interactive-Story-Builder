@@ -261,12 +261,12 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
         @item = Medium.new(:section_id => _id, media_type: Medium::TYPE[:image])
       end
 
-      if @item.present? &&  !@item.image_exists? 
-        @item.build_image(:asset_type => Asset::TYPE[:media_image])
-      end   
-      if @item.present? && !@item.video_exists?
-        @item.build_video(:asset_type => Asset::TYPE[:media_video])
-      end      
+      # if @item.present? &&  !@item.image_exists? 
+      #   @item.build_image(:asset_type => Asset::TYPE[:media_image])
+      # end   
+      # if @item.present? && !@item.video_exists?
+      #   @item.build_video(:asset_type => Asset::TYPE[:media_video])
+      # end      
     elsif type == 'slideshow'
       if method=='select'    
         @item = Slideshow.find_by_id(sub_id)           
