@@ -22,7 +22,7 @@
 </h2>
 <%= semantic_form_for(@item, url: content_story_path(id:params[:id]), remote: true, html: { :id => 'contentForm'}) do |f| %>
   <%= f.inputs do %>
-    <%= f.fields_for :content_translations, @item.translation_for(@item.current_locale) do |f_translation| %>
+    <%= f.fields_for :content_translations, @item.with_translation(@item.current_locale) do |f_translation| %>
 
       <%# need this hidden field so can test if user has access to edit the locale if user is translator %>
       <%= hidden_field_tag :current_locale , @item.current_locale if !isTO %>

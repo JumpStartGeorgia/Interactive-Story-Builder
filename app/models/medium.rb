@@ -130,7 +130,7 @@ class Medium < ActiveRecord::Base
     else
       x = with_translation(self.current_locale, false)
       if x.present?
-        @video = x.asset
+        @video = x.video
         return @video
       end
     end
@@ -150,6 +150,7 @@ class Medium < ActiveRecord::Base
         return @processed
       end
     end
+    return false
   end
 
 

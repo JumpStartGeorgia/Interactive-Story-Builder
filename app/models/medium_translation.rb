@@ -93,10 +93,13 @@ Rails.logger.debug "@@@@@@@@ file exists, saving!"
   end  
 
   def is_processed?
+    puts "====== trans is processed"
     if video_type?
-      video_exists? && video.processed
+      puts "- video"
+      video_exists? && self.video.processed
     elsif image_type?
-      image_exists? && image.processed 
+      puts "- image"
+      image_exists? && self.image.processed 
     end
   end
 

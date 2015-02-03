@@ -8,7 +8,7 @@ class AddMediaTypeToTrans < ActiveRecord::Migration
         puts "- medium id #{medium.id}; type = #{medium.media_type}"
         trans = medium.medium_translations.first
         trans.media_type = medium.media_type
-        trans.save
+        trans.save(validate: false)
       end
     end
   end

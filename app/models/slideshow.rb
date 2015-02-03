@@ -33,7 +33,7 @@ class Slideshow < ActiveRecord::Base
   # create model variable @asset to store the asset record for later use without having to call the db again
   @assets = nil
 
-  def asset
+  def assets
     if @assets.present?
       return @assets
     else

@@ -15,7 +15,7 @@
 				<h3><%= t("app.language.#{trans.locale}") %></h3>
 
 				<%= translation.input :title %>
-				<%= translation.input :content, :as => :text, rows: 10, :input_html => { class: 'tinymce' } %>
+				<%= translation.input :content, :as => :text, rows: 10, :input_html => { class: 'tinyEditor' } %>
 				<%= translation.hidden_field :locale , :value => trans.locale %>
 			</div>
 
