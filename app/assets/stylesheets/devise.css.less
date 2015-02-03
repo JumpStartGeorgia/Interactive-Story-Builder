@@ -1,135 +1,445 @@
-
-@import "twitter/bootstrap/mixins";
-
-#login-form, #forgot-password-form, #signup-form, #change-password-form {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-
-  & > div {
-    & > div {
-      display: inline-block;
+/* login popup */
+#login-form .submit-row label
+{
+  margin-bottom:30px;
+}
+#login-form,#reset-password-form,#signup-form
+{
+  .title
+  {
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:30px;
+    color:#bdbdbd;
+    margin-bottom:25px;
+    line-height:36px;
+    text-align:center;
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+      
     }
   }
-
-  a{
-    text-decoration: underline;
-    &:hover{
-      opacity: 0.7; 
+  .providers
+  {
+    margin-bottom:25px;
+    text-align:center;
+    a.facebook
+    {
+      display:inline-block;
+      font-family: 'dejavusans-el', Sylfaen;
+      font-size:1.2em;
+      color:#fff;      
+      background: #26acfa;      
+      border:1px solid #fff;
+      -webkit-border-radius: 133px;
+      -moz-border-radius: 133px;
+      border-radius: 133px;      
+      height:57px;
+      padding: 0px 20px 0px 15px;
+      text-decoration: none;
+      line-height: 51px;
+      max-width:290px;
+      opacity:0.8;
+      &:hover
+      {
+        opacity:1;
+      }
+      i
+      {
+        margin-right:10px;
+      }
+      &.signup-form{
+        font-size: 14px;
+      }
+      &:lang(en)
+      {
+        font-family: 'opensans-l', 'sans-serif';
+      }
     }
   }
-
-  .providers {
-    margin-bottom: 20px;
+  .facebook_or_local
+  {
+      display:inline-block;
+      font-family: 'dejavusans-el', Sylfaen;
+      font-size:14px;
+      color:#959595;     
+      text-align:center;  
+      font-style:italic;
+      width:100%; 
+      margin-bottom:15px;          
+      &:lang(en)
+      {
+        font-family: 'opensans-l', 'sans-serif';        
+      }         
   }
-/*
-  input[type="text"], input[type="password"], input[type="email"] {
-    border: 1px solid #e7e7e7;
-    color: #ababab;
-    font-size: 14px;
-    width: 241px;
-    max-width: none;
-    padding-left: 30px !important;
-  }
-
-  input {
-    border: none;
-    -webkit-border-radius: 0px;
-       -moz-border-radius: 0px;
-            border-radius: 0px;
-    -webkit-box-shadow: none;
-       -moz-box-shadow: none;
-            box-shadow: none;
-  }
-*/
-  label.checkbox {
-    font-size: 12px;
-/*    color: #474747;*/
-    cursor: pointer;
-    text-align: left;
-    &, & > input {
-      padding: 0px;
-      margin: 0px;
+  .formtastic 
+  {
+    .input
+    {
+      text-align: center;
     }
-    & > input {
-      margin-top: 2px;
-      margin-right: 10px;
-      margin-left: 1px;
+    input
+    {
+      margin:0px;
+      float:none;
     }
   }
+  .control-group 
+  {
+    width:100%;
+    margin:0px auto;
+    text-align: center;
+    clear:both;
+  }
+  .login-username
+  {
+    display:inline-block;
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:16px !important;
+    color:#c5c5c5;            
+    border:1px solid #d9d9d9;
+    -webkit-border-radius: 133px !important;
+    -moz-border-radius: 133px !important;
+    border-radius: 133px !important;              
+    text-decoration: none;    
+    height:27px;
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+    }  
+  }
+  .login-password,.login-password-confirmation
+  {
+    display:inline-block;
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:16px !important;
+    color:#c5c5c5;            
+    border:1px solid #d9d9d9;
+    -webkit-border-radius: 133px !important;
+    -moz-border-radius: 133px !important;
+    border-radius: 133px !important;              
+    text-decoration: none;    
+    height:27px;
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+    } 
+  }
+  .submit-row
+  {
+    margin-bottom:30px !important; 
+     max-width: 260px !important;
+  }
+  .remember-me
+  {
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:16px !important;
+    color:#8d8d8d; 
+    display:inline-block; 
+    float:left;       
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+    }     
+  }
+  .sign-in   
+  {    
+    float:right !important;
+  }
+  .sign-in,.pass-reset,.sign-up
+  {
+    display:inline-block;
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:16px !important;
+    background-color:#c7c7c7;
+    color:#fff;            
+    border:1px solid #d9d9d9;
+    -webkit-border-radius: 133px !important;
+    -moz-border-radius: 133px !important;
+    border-radius: 133px !important;              
+    text-decoration: none;        
 
-  input[type="submit"] {
-    color: #fff;
-    background: #469E72;
-    width: 279px;
-    height: 30px;
-    font-size: 14px;
-    text-shadow: none;
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    height:27px !important;
+    -webkit-transition:all .15s ease-out;
+    -moz-transition:all .15s ease-out;
+    -ms-transition:all .15s ease-out;
+    transition:all .15s ease-out;
+    &:lang(en)
+    {
+      font-family: 'opensans-b', 'sans-serif';
+    } 
   }
-/*
-  #user_email, #user_password, #user_nickname, #user_password_confirmation {
-    background: 9px center no-repeat;
+  .sign-in:hover,.password-reset:hover
+  {
+    background-color:#333;        
+    -webkit-transition:all .10s ease-out;
+    -moz-transition:all .10s ease-out;
+    -ms-transition:all .10s ease-out;
+    transition:all .10s ease-out;
   }
-
-  #user_email {
-    background-image: url('/assets/email_icon.png');
+  .forgot-link
+  {
+    display:block;
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:14px !important;    
+    color:#888;      
+    text-decoration:underline; 
+    text-align:center !important;    
+    margin-bottom:5px;     
+    &:lang(en)
+    {
+      font-family: 'opensans-b', 'sans-serif';
+    }      
   }
-
-  #user_nickname {
-    background-image: url('/assets/user_icon.png');
+  .sign-up-box,.forgot-box
+  {
+   text-align:center;
+   margin-top: 10px;
   }
-
-  #user_password, #user_password_confirmation {
-    background-image: url('/assets/password_icon.png');
+  .sign-up-box .sign-up-link 
+  {
+     display:inline-block;
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:14px !important;    
+    color:#26acfa;             
+    &:lang(en)
+    {
+      font-family: 'opensans-b', 'sans-serif';
+    }                 
   }
-*/
-
-  .forgot-link, .sign-up-link, .sign-in-link {
-    display: block;
-    background: none;
-    border: none;
-    text-align: left;
-    padding-left: 0px;
-    font-size: 12px;
-    -webkit-box-shadow: none;
-       -moz-box-shadow: none;
-            box-shadow: none;
+  .sign-up-box span, .sign-in-link
+  {    
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:14px !important;    
+    color:#888;          
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+    }         
   }
-
-  .forgot-link {
-    color: #ce495f;
-  }
-
-  .sign-in-link {
-    color: #ce495f;
-  }
-
-  .sign-up-link {
-    color: #474747;
-  }
-/*
-  #error_explanation {
-    li {
-      list-style: none;
-    }
-  }
-*/    
-
-  .help-inline {
-  /*
-    display: block;
-    text-align: left;
-  */
-  }
-/*
-  #error_explanation, .alert {
-    .box-sizing(border-box);
-  }
-
-*/
 }
 
 
+/* changed and not working
+#login-form .submit-row label
+{
+  margin-bottom:30px;
+}
+#login-form,#reset-password-form,#signup-form
+{
+  .title
+  {
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:30px;
+    color:#bdbdbd;
+    margin-bottom:25px;
+    line-height:36px;
+    text-align:center;
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+      
+    }
+  }
+  .title
+  .providers
+  {
+    margin-bottom:25px;
+    text-align:center;
+    a.facebook
+    {
+      display:inline-block;
+      font-family: 'dejavusans-el', Sylfaen;
+      font-size:1.2em;
+      color:#fff;      
+      background: #26acfa;      
+      border:1px solid #fff;
+      -webkit-border-radius: 133px;
+      -moz-border-radius: 133px;
+      border-radius: 133px;      
+      height:57px;
+      padding: 0px 20px 0px 15px;
+      text-decoration: none;
+      line-height: 51px;
+      max-width:290px;
+      opacity:0.8;
+      &:hover
+      {
+        opacity:1;
+      }
+      i
+      {
+        margin-right:10px;
+      }
+      &.signup-form{
+        font-size: 14px;
+      }
+      &:lang(en)
+      {
+        font-family: 'opensans-l', 'sans-serif';
+      }
+    }
+  }
+  .facebook_or_local
+  {
+      display:inline-block;
+      font-family: 'dejavusans-el', Sylfaen;
+      font-size:14px;
+      color:#959595;     
+      text-align:center;  
+      font-style:italic;
+      width:100%; 
+      margin-bottom:15px; 
+      &:lang(en)
+      {
+        font-family: 'opensans-l', 'sans-serif';        
+      }         
+  }
+  .facebook_or_local
+  .formtastic 
+  {
+    .input
+    {
+      text-align: center;
+    }
+    input
+    {
+      margin:0px;
+      float:none;
+    }
+  }
+  .control-group 
+  {
+    width:100%;
+    margin:0px auto;
+    text-align: center;
+    clear:both;
+  }
+  .login-username
+  {
+    display:inline-block;
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:16px !important;
+    color:#c5c5c5;            
+    border:1px solid #d9d9d9;
+    -webkit-border-radius: 133px !important;
+    -moz-border-radius: 133px !important;
+    border-radius: 133px !important;              
+    text-decoration: none;    
+    height:27px;
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+    }  
+  }  
+  .login-password,.login-password-confirmation
+  {
+    display:inline-block;
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:16px !important;
+    color:#c5c5c5;            
+    border:1px solid #d9d9d9;
+    -webkit-border-radius: 133px !important;
+    -moz-border-radius: 133px !important;
+    border-radius: 133px !important;              
+    text-decoration: none;    
+    height:27px;
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+    } 
+  }
+  .submit-row
+  {
+    margin-bottom:30px !important; 
+     max-width: 260px !important;
+  }
+  .remember-me
+  {
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:16px !important;
+    color:#8d8d8d; 
+    display:inline-block; 
+    float:left;  
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+    }     
+  }
+  .sign-in   
+  {    
+    float:right !important;
+  }
+  .sign-in,.pass-reset,.sign-up
+  {
+    display:inline-block;
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:16px !important;
+    background-color:#c7c7c7;
+    color:#fff;            
+    border:1px solid #d9d9d9;
+    -webkit-border-radius: 133px !important;
+    -moz-border-radius: 133px !important;
+    border-radius: 133px !important;              
+    text-decoration: none;        
+
+    height:27px !important;
+    -webkit-transition:all .15s ease-out;
+    -moz-transition:all .15s ease-out;
+    -ms-transition:all .15s ease-out;
+    transition:all .15s ease-out;
+    &:lang(en)
+    {
+      font-family: 'opensans-b', 'sans-serif';
+    } 
+  }
+  .sign-in:hover,.password-reset:hover
+  {
+    background-color:#333;        
+    -webkit-transition:all .10s ease-out;
+    -moz-transition:all .10s ease-out;
+    -ms-transition:all .10s ease-out;
+    transition:all .10s ease-out;
+  }
+  .forgot-link
+  {
+    display:block;
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:14px !important;    
+    color:#888;      
+    text-decoration:underline; 
+    text-align:center !important;    
+    margin-bottom:5px;
+    &:lang(en)
+    {
+      font-family: 'opensans-b', 'sans-serif';
+    }      
+  }
+  .sign-up-box,.forgot-box
+  {
+   text-align:center;
+   margin-top: 10px;
+  }
+  .sign-up-box .sign-up-link 
+  {
+     display:inline-block;
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:14px !important;    
+    color:#26acfa; 
+    &:lang(en)
+    {
+      font-family: 'opensans-b', 'sans-serif';
+    }                 
+  }
+  .sign-up-box span, .sign-in-link
+  {    
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:14px !important;    
+    color:#888;  
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+    }         
+  }
+}
+*/

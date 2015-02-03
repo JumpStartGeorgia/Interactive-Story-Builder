@@ -46,12 +46,12 @@
         .merge(readonly) }
         .merge(( isTO ? {} : { hint: t('.hint.permalink'), placeholder: t('.placeholder.permalink') }))  %>
 
+        <%= f_translation.input :permalink, :as => :hidden, :input_html => { id: (!isTO ? "storyPermalink" : nil)  }   %>
+        <div class="string control-group stringish story_permalink" <%= !isTO ? 'id=story_permalink' : ''%>>&nbsp;</div>
+
         <% if !@trans %>
           <%= f.input :user_id , :as => :select, :hint => t('.hint.user_id'), :collection =>  @authors.map{|x| [x.nickname, x.id]}, :input_html => { :id => "storyUserId", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "10"  } %>
         <% end %>
-
-        <%= f_translation.input :permalink, :as => :hidden, :input_html => { id: (!isTO ? "storyPermalink" : nil)  }   %>
-        <div class="string control-group stringish story_permalink" <%= !isTO ? 'id=story_permalink' : ''%>>&nbsp;</div>
 
         <%= f_translation.input :author, { :required => !isTO, :input_html => { id: (!isTO ? "storyAuthor" : nil) }
         .merge(readonly) }
