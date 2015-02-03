@@ -8,7 +8,7 @@ class UpdateShortenedUrls < ActiveRecord::Migration
         if trans.title.blank? 
           puts " ----- deleting"
           trans.delete
-        elsif trans.permalink.present? && !Rails.env.development?
+        elsif  trans.published && trans.permalink.present? && !Rails.env.development?
           puts " +++++ creating url"
           trans.generate_shortened_url
           trans.save
