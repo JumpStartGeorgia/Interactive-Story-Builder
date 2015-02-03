@@ -31,7 +31,7 @@
   }
   .navbar-brand
   {
-    font-family:opensans-l,georgia;    
+    font-family: 'dejavusans-el', Sylfaen;
     font-weight: 100;
     font-size: 14px;
     color:#000;
@@ -47,11 +47,11 @@
     {
       color:#252525;
     }
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';          
+    }
   }  
-  .navbar-brand:lang(ka)
-  {
-      font-family:dejavusans-el,sylfaen;
-  }
   .navbar-nav li
   { 
     display:inline-block;
@@ -62,26 +62,26 @@
     vertical-align:middle;
     a 
     {
-      font-family:opensans-l;
+      font-family: 'dejavusans-el', Sylfaen;
       color:#000;
       font-size:14px;
       display:inline-block;
       opacity:0.8;
-    } 
-    a:lang(ka)
-    {
-      font-family:dejavusans-el,sylfaen;
-    }
-    a:hover
-    {    
-      color:#000;  
-      opacity:1;
-    }
-    a i
-    {
-      margin-left:15px;
-      margin-right: 3px;      
-    }
+      &:lang(en)
+      {
+        font-family: 'opensans-l', 'sans-serif';          
+      }
+      &:hover
+      {    
+        color:#000;  
+        opacity:1;
+      }
+      & i
+      {
+        margin-left:15px;
+        margin-right: 3px;      
+      }
+    }       
     .navigation-volume
     {
       position:static;
@@ -95,13 +95,13 @@
     }
     .lang
     {
-      font-family:opensans-l, georgia;
+      font-family: 'dejavusans-el', Sylfaen;
       color:#a8a1a1;
       font-size:14px;
-    }
-    .lang:lang(ka)
-    {
-      font-family:dejavusans-el,sylfaen;
+      &:lang(ka)
+      {
+        font-family: 'opensans-l', 'sans-serif'; 
+      }
     }
   }
   .share-link

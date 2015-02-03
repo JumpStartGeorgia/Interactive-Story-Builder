@@ -153,7 +153,7 @@ body#storybuilder_form{
       position:relative;      
       .box
       {      
-        font-family:opensans-r;
+        font-family: dejavusans, Sylfaen;
         font-size:13px;
         font-weight:normal;
         color:#323232;
@@ -162,6 +162,10 @@ body#storybuilder_form{
         display:inline-block;
         width:100%;
         position:relative;
+        &:lang(en)
+        {
+          font-family: opensans, 'sans-serif';
+        }
         div.s
         {
             background-color: transparent;   
@@ -248,10 +252,14 @@ body#storybuilder_form{
       ul
       {
         border-bottom:1px solid #dadada; 
-        font-family:opensans-r;
+        font-family: dejavusans, Sylfaen;
         font-size:13px;
         font-weight:normal;
         color:#323232;     
+        &:lang(en)
+        {
+          font-family: opensans, 'sans-serif';
+        }
       }
     }
 
@@ -407,14 +415,17 @@ body#storybuilder_form{
       left:0px;
       top:0px;
       height:100%;
-      font-family:'opensans-b';
+      font-family: 'dejavusans-b', Sylfaen;
       font-size: 18px;
       color: rgb(59, 59, 59);
       padding:14px 10px 0px;  
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;    
-
+      &:lang(en)
+      {
+        font-family: 'opensans-b', 'sans-serif';
+      }
     }
     .tools
     {    
@@ -597,10 +608,10 @@ body#storybuilder_form{
               }
               &:active
               {
-                                -moz-transition-property: none;
-              -webkit-transition-property: none;
-              -o-transition-property: none;
-              transition-property: none;
+                -moz-transition-property: none;
+                -webkit-transition-property: none;
+                -o-transition-property: none;
+                transition-property: none;
                 background-color: #e8e8e8;
                 color:#000;
               }
@@ -694,7 +705,7 @@ body#storybuilder_form{
       }  
       .powered-by
       {
-        font-family:opensans-l,verdana;
+        font-family: 'dejavusans-el', Sylfaen;
         font-size:14px;
         text-align: right;
         margin:9px 0px 9px 0px;
@@ -705,6 +716,10 @@ body#storybuilder_form{
         background-color:transparent;
         border-top: 1px solid #eeeeee;
         width:100%;
+        &:lang(en)
+        {
+          font-family: 'opensans-l', 'sans-serif';
+        }
       }
       .pull-right
       {
@@ -1003,8 +1018,12 @@ div.js-row{
 }
 .btn
 {
-  font-family:opensans-b;
+  font-family: 'dejavusans-b', Sylfaen;
   font-size:14px;  
+  &:lang(en)
+  {
+    font-family: 'opensans-b', 'sans-serif';
+  }
 }
 .btn-create
 {

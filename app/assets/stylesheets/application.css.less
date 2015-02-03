@@ -116,12 +116,6 @@
 * html .clearfix, * html .clear             		{ zoom: 1; } /* IE6 */
 *:first-child+html .clearfix, *:first-child+html .clear { zoom: 1; } /* IE7 */
 * { -webkit-font-smoothing: antialiased; }
-*:lang(ka,ru,hy,az) {
-  font-family:dejavusans,sylfaen;
-}
-*:lang(en) {
-  font-family:opensans,sans-serif;
-}
 
 html,body{background:#F8F8F8;height:100%;min-height:100%;}
 *:focus {outline: 0 !important;}
@@ -507,7 +501,7 @@ input[type=text]{
 }
 .powered-by
 {
-  font-family:opensans-l,georgia;
+  font-family: 'dejavusans-el', Sylfaen;
   font-size:14px;
   text-align: right;
   margin-right: 27px;
@@ -526,12 +520,11 @@ input[type=text]{
       color:#000;
     }
   }
+  &:lang(en)
+  {
+    font-family: 'opensans-l', 'sans-serif';
+  }
 }
-.powered-by:lang(ka)
-{
-  font-family:dejavusans-r,sylfaen;
-}
-
 /* storybuilder image */
 i.s
 {
@@ -627,17 +620,19 @@ i.v{visibility:visible;}
 {
   .title
   {
-    font-family:opensans-l;
+    font-family: 'dejavusans-el', Sylfaen;
     font-size:30px;
     color:#bdbdbd;
     margin-bottom:25px;
     line-height:36px;
     text-align:center;
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+      
+    }
   }
-  .title:lang(ka)
-  {
-    font-family:dejavusans-el,sylfaen;
-  }
+  .title
   .providers
   {
     margin-bottom:25px;
@@ -645,7 +640,7 @@ i.v{visibility:visible;}
     a.facebook
     {
       display:inline-block;
-      font-family:opensans-l;
+      font-family: 'dejavusans-el', Sylfaen;
       font-size:1.2em;
       color:#fff;      
       background: #26acfa;      
@@ -670,27 +665,28 @@ i.v{visibility:visible;}
       &.signup-form{
         font-size: 14px;
       }
-    }
-    a:lang(ka)
-    {
-      font-family:dejavusans-el,sylfaen;
+      &:lang(en)
+      {
+        font-family: 'opensans-l', 'sans-serif';
+      }
     }
   }
   .facebook_or_local
   {
       display:inline-block;
-      font-family:opensans-l;
+      font-family: 'dejavusans-el', Sylfaen;
       font-size:14px;
       color:#959595;     
       text-align:center;  
       font-style:italic;
       width:100%; 
-      margin-bottom:15px;          
+      margin-bottom:15px; 
+      &:lang(en)
+      {
+        font-family: 'opensans-l', 'sans-serif';        
+      }         
   }
-  .facebook_or_local:lang(ka)
-  {
-    font-family:dejavusans-el,sylfaen;
-  }
+  .facebook_or_local
   .formtastic 
   {
     .input
@@ -713,7 +709,7 @@ i.v{visibility:visible;}
   .login-username
   {
     display:inline-block;
-    font-family:opensans-l;
+    font-family: 'dejavusans-el', Sylfaen;
     font-size:16px !important;
     color:#c5c5c5;            
     border:1px solid #d9d9d9;
@@ -722,15 +718,15 @@ i.v{visibility:visible;}
     border-radius: 133px !important;              
     text-decoration: none;    
     height:27px;
-  }
-  .login-username:lang(ka)
-  {
-    font-family:dejavusans-el,sylfaen;
-  }
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+    }  
+  }  
   .login-password,.login-password-confirmation
   {
     display:inline-block;
-    font-family:opensans-l;
+    font-family: 'dejavusans-el', Sylfaen;
     font-size:16px !important;
     color:#c5c5c5;            
     border:1px solid #d9d9d9;
@@ -739,11 +735,10 @@ i.v{visibility:visible;}
     border-radius: 133px !important;              
     text-decoration: none;    
     height:27px;
-    /*max-width: 260px;*/
-  }
-  .login-password:lang(ka),.login-password-confirmation:lang(ka)
-  {
-    font-family:dejavusans-el,sylfaen;
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+    } 
   }
   .submit-row
   {
@@ -752,15 +747,15 @@ i.v{visibility:visible;}
   }
   .remember-me
   {
-    font-family:opensans-l;
+    font-family: 'dejavusans-el', Sylfaen;
     font-size:16px !important;
     color:#8d8d8d; 
     display:inline-block; 
-    float:left;       
-  }
-  .remember-me:lang(ka)
-  {
-     font-family:dejavusans-el,sylfaen;
+    float:left;  
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+    }     
   }
   .sign-in   
   {    
@@ -769,7 +764,7 @@ i.v{visibility:visible;}
   .sign-in,.pass-reset,.sign-up
   {
     display:inline-block;
-    font-family:opensans-b;
+    font-family: 'dejavusans-el', Sylfaen;
     font-size:16px !important;
     background-color:#c7c7c7;
     color:#fff;            
@@ -784,10 +779,10 @@ i.v{visibility:visible;}
     -moz-transition:all .15s ease-out;
     -ms-transition:all .15s ease-out;
     transition:all .15s ease-out;
-  }
-  .sign-in:lang(ka),.pass-reset:lang(ka),.sign-up:lang(ka)
-  {
-     font-family:dejavusans-el,sylfaen;
+    &:lang(en)
+    {
+      font-family: 'opensans-b', 'sans-serif';
+    } 
   }
   .sign-in:hover,.password-reset:hover
   {
@@ -800,16 +795,16 @@ i.v{visibility:visible;}
   .forgot-link
   {
     display:block;
-    font-family:opensans-l;
+    font-family: 'dejavusans-el', Sylfaen;
     font-size:14px !important;    
     color:#888;      
     text-decoration:underline; 
     text-align:center !important;    
-    margin-bottom:5px;     
-  }
-  .forgot-link:lang(ka)
-  {
-    font-family:dejavusans-el,sylfaen;
+    margin-bottom:5px;
+    &:lang(en)
+    {
+      font-family: 'opensans-b', 'sans-serif';
+    }      
   }
   .sign-up-box,.forgot-box
   {
@@ -819,23 +814,23 @@ i.v{visibility:visible;}
   .sign-up-box .sign-up-link 
   {
      display:inline-block;
-    font-family:opensans-b;
+    font-family: 'dejavusans-el', Sylfaen;
     font-size:14px !important;    
-    color:#26acfa;             
-  }
-  .sign-up-box .sign-up-link:lang(ka)
-  {
-    font-family:dejavusans-el,sylfaen;
+    color:#26acfa; 
+    &:lang(en)
+    {
+      font-family: 'opensans-b', 'sans-serif';
+    }                 
   }
   .sign-up-box span, .sign-in-link
   {    
-    font-family:opensans-l;
+    font-family: 'dejavusans-el', Sylfaen;
     font-size:14px !important;    
-    color:#888;          
-  }
-  .sign-up-box span:lang(ka), .sign-in-link:lang(ka)
-  {
-    font-family:dejavusans-el,sylfaen;
+    color:#888;  
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+    }         
   }
 }
 #news_items,#todo

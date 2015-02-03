@@ -3,15 +3,15 @@
   margin:10px 25px 0px 25px; 
   .title
   {  
-    font-family:bandera-pro;
+    font-family: dejavusans, Sylfaen;
     font-size:30px;
     color:#3D3D3D; 
     line-height: 33px;
     padding-top:6px;
-  }
-  .title:lang(ka)
-  {
-    font-family:dejavusans-el,sylfaen;
+    &:lang(en)
+    {
+      font-family: opensans, 'sans-serif';
+    }
   }
   .text
   {
@@ -20,17 +20,18 @@
     margin-top: 51px;
     p, span
     {
-      font-family:opensans-r;
+      font-family: dejavusans, Sylfaen;
       font-size:15px;
       color:#797979;
       margin:25px 0px 0px 0px;   
       line-height:21px; 
       text-align: justify;
+      &:lang(en)
+      {
+        font-family: opensans, 'sans-serif';
+      }
     }
-    p:lang(ka), span:lang(ka)
-    {
-      font-family:dejavusans-r,sylfaen;
-    }
+   
   } 
   .profile-data
   {
@@ -43,38 +44,37 @@
     padding:8px 0px;
     span
     {
-      font-family:opensans-l;
+      font-family: 'dejavusans-el', Sylfaen;
       font-size:14px;
       color:#353535;
+      &:lang(en)
+      {
+       
+      }
     }
     a
-      {
-        font-family:opensans-l;
-        font-size:13px;
-        color:#2b2c27;
-        background-color:#f3f3f3;
-        margin:3px;
-        padding: 5px 10px;
-        width: auto;
-        display: inline-block;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-      }
-      a:hover
-      {
-        color:#000;
-      }
-    a:lang(ka), span:lang(ka)
     {
-      font-family:dejavusans-el,sylfaen;
-    }
-    a:hover
-    {
-      color:#020202;
-      background-color:#dfdddd;
-      cursor:pointer;
-    }
+      font-family: 'dejavusans-el', Sylfaen;
+      font-size:13px;
+      color:#2b2c27;
+      background-color:#f3f3f3;
+      margin:3px;
+      padding: 5px 10px;
+      width: auto;
+      display: inline-block;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      &:hover {  
+        color:#020202;
+        background-color:#dfdddd;
+        cursor:pointer; 
+      }
+      &:lang(en)
+      {
+        font-family: 'opensans-l', 'sans-serif'; 
+      }
+    }    
   }  
   .logo .avatar
   {     
@@ -99,7 +99,7 @@
   }
   .separator
   {   
-    font-family:opensans-l;
+    font-family: 'dejavusans', Sylfaen;
     font-size:14px;
     color:#818181; 
     border-left:1px solid #818181;
@@ -108,16 +108,24 @@
     top: 4px;
     position: relative;
     margin-left:8px;
+    &:lang(en)
+    {
+      font-family: opensans, 'sans-serif';   
+    }
   }
   .publish
   {   
-    font-family:bandera-pro-b;
+    font-family: 'dejavusans-b', Sylfaen;
     font-size:14px;
     color:#3D3D3D;
     border:1px solid #c4c4c4; 
     padding: 9px 13px;
     float:left;
     margin-right:10px;
+    &:lang(en)
+    {
+      font-family: 'opensans-b', 'sans-serif';   
+    }
     .day
     {
       font-size:40px;
@@ -141,13 +149,17 @@
     margin-left:8px;
     .likes, .views, .comments
     {
-      font-family:opensans-l;
+      font-family: 'dejavusans-el', Sylfaen;
       font-size:16px;
       text-align: center;
       color:#555;
       margin-right:12px;
       vertical-align:middle;
-      display: inline-block;      
+      display: inline-block; 
+      &:lang(en)
+      {
+        font-family: 'opensans-l', 'sans-serif';
+      }     
     }
     i
     {
@@ -164,7 +176,7 @@
   .follow-link
   {
     display:inline-block;
-    font-family:opensans-r;
+    font-family: 'dejavusans-el', Sylfaen;
     font-size:15px;
     color:#555;  
 
@@ -174,14 +186,10 @@
     border-radius: 133px;
     padding: 9px 15px 12px 15px;
     text-decoration:none;
-    // -webkit-transition:all .15s ease-out;
-    // -moz-transition:all .15s ease-out;
-    // -ms-transition:all .15s ease-out;
-    // transition:all .15s ease-out;
-
-
-
-
+    &:lang(en)
+    {
+      font-family: 'opensans', 'sans-serif';
+    }    
     &.follow-story
     {
       padding: 9px 18px 12px 33px;
@@ -213,10 +221,6 @@
       transition:all .10s ease-out;
     }
   } 
-  .follow-link:lang(ka)
-  {
-    font-family:dejavusans-el,sylfaen;
-  }
 }
 
 .share-window
@@ -235,43 +239,43 @@
   }
   .title
   {
-    font-family:opensans-l,georgia;
+    font-family: 'dejavusans-el', Sylfaen;
     font-size:30px;
     color:#bdbdbd;
     margin-bottom:25px;
-  }
-  .title:lang(ka)
-  {
-    font-family:dejavusans-el,sylfaen;
-  }
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+    }   
+  } 
   .permalink,.shortened-url
   {
-    font-family:opensans-r;
+    font-family: 'dejavusans', Sylfaen;
     font-size:14px;
     color:#888;
     margin-bottom:10px;
-  }
-  .permalink:lang(ka),.shortened-url:lang(ka)
-  {
-    font-family:dejavusans-el,sylfaen;
+    &:lang(en)
+    {
+      font-family: 'opensans', 'sans-serif';
+    }     
   }
   .permalink-link,.shortened-url-link
   { 
     margin-bottom:20px;
     a
     {
-      font-family:opensans-r;
+      font-family: 'dejavusans-el', Sylfaen;
       font-size:14px;
       color:#0e0e0e;
       opacity:0.9;
-        &:hover
-        {    
-          opacity:1;   
-        }
-    }
-    a:lang(ka)
-    {
-      font-family:dejavusans-el,sylfaen;
+      &:hover
+      {    
+        opacity:1;   
+      }
+      &:lang(en)
+      {
+        font-family: 'opensans-l', 'sans-serif';
+      }         
     }
   }
   .share
@@ -287,7 +291,7 @@
       width: 55px !important;
       height: 55px !important;    
       opacity:1 !important;
-      font-family:opensans-r !important;
+      font-family: 'dejavusans', Sylfaen !important;
       font-size:18px !important;
       color:#fff !important;    
       border:0px solid #fff !important;
@@ -296,11 +300,11 @@
       border-radius: 133px !important;  
       padding: 0px !important;  
       display: inline-block !important; 
-      vertical-align: middle !important;   
-    }
-    .more .addthis_sharing_toolbox span:lang(ka)
-    {
-      font-family:dejavusans-el,sylfaen;
+      vertical-align: middle !important;
+      &:lang(en)
+      {
+        font-family: 'opensans', 'sans-serif';
+      }     
     }
     > div, > .embed > div
     {
@@ -324,14 +328,14 @@
   }  
   .embed-text
   {
-   margin-bottom:10px; 
-   font-family:opensans-r,georgia;
-   font-size:14px;
-   color:#888;
-  }
-  .embed-text:lang(ka)
-  {
-    font-family:dejavusans-el,sylfaen;
+    margin-bottom:10px; 
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:14px;
+    color:#888;
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+    } 
   }
   .embed-code textarea
   {
@@ -346,7 +350,11 @@
     outline: none;
     padding:3px;
     font-size:12px;
-    font-family:opensans-r,georgia;
+    font-family: 'dejavusans', Sylfaen;
+    &:lang(en)
+    {
+      font-family: 'opensans', 'sans-serif';
+    } 
   }
   .embed-size-w
   {
@@ -360,19 +368,23 @@
       padding: 8px;
       width: 50px;  
       font-size: 14px;
-      font-family: bandera-pro-m,georgia;
+      font-family: 'dejavusans-el', Sylfaen;
       color: #000;
+      &:lang(en)
+      {
+        font-family: 'opensans', 'sans-serif';
+      } 
     }
     span
     {   
-      font-family:opensans-r,georgia;
+      font-family: 'dejavusans-el', Sylfaen;
       font-size:14px;
       color:#939393;
-    }
-    span:lang(ka)
-    {
-      font-family:dejavusans-el,sylfaen;
-    }
+      &:lang(en)
+      {
+        font-family: 'opensans', 'sans-serif';
+      } 
+    }  
   }  
  .embed-type-switcher div
  {
@@ -381,7 +393,7 @@
     color: #000; 
     padding: 5px 10px;    
     font-size: 13px;
-    font-family:opensans-r,georgia;
+    font-family: 'dejavusans-el', Sylfaen;
     float:left;
     cursor:pointer;
     margin-left:5px;
@@ -391,17 +403,17 @@
       background-color:#dfdddd;
       cursor:pointer; 
     }
+    &:lang(en)
+    {
+      font-family: 'opensans', 'sans-serif';
+    } 
  }
-  .embed-type-switcher div:lang(ka)
-  {
-    font-family:dejavusans-el,sylfaen;
-  }
   .facebook, .twitter
   {
     a
     {
       display:inline-block;
-      font-family:opensans-r,georgia;
+      font-family: 'dejavusans-el', Sylfaen;
       font-size:18px;
       color:#fff;      
       background: #26acfa;      
@@ -413,13 +425,12 @@
       padding: 0px 20px 0px 15px;
       text-decoration: none;
       line-height: 51px;
-    }
-    a:lang(ka)
-    {
-      font-family:dejavusans-el,sylfaen;
+      &:lang(ka)
+      {
+        font-family: opensans, 'sans-serif';
+      }
     }
   }
-
   .facebook a i, .twitter a i
   {
     margin-right:2px;

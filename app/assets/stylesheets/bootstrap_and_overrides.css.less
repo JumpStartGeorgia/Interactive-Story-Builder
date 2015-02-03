@@ -92,18 +92,17 @@
      > a
      {
        padding:0px;
-       font-family:opensans-l;
+       font-family:'dejavusans-el', Sylfaen;
        font-size:14px;
      }
-     > a:lang(ka)
+     > a:lang(en)
      {
-        font-family:dejavusans-el, sylfaen;
+        font-family:'opensans-l', 'sans-serif';
      }
    }
 }
-
 .dropdown-menu > li > a {
-  font-family:opensans;
+  font-family:'dejavusans', Sylfaen;
   font-size:14px;
   color:#575757;
   line-height:14px;
@@ -111,6 +110,10 @@
   &:hover
   {
     color:#adadad;
+  }
+  &:lang(en)
+  {
+    font-family:'opensans', 'sans-serif';
   }
 }
 
@@ -131,11 +134,15 @@
    > a
    {
       padding:0px 15px;
-      font-family: dejavusans-el;
+      font-family: 'dejavusans-el', Sylfaen;
       font-size: 18px;
       &:hover
       {
          background-color:transparent !important;
+      }
+      &:lang(en)
+      {
+        font-family:'opensans-l', 'sans-serif';
       }
    }
 }
@@ -177,12 +184,12 @@
   }
   span,a 
   {
-    font-family:opensans-l;
+    font-family:'dejavusans-el', Sylfaen;
     font-size:14px;
   }
-  span:lang(ka),a:lang(ka)
+  span:lang(en),a:lang(en)
   {
-    font-family:dejavusans-el, sylfaen;
+    font-family:'opensans-l', 'sans-serif';
   }
 }
 .dropdown.open .dropdown-toggle
@@ -329,12 +336,21 @@ body#grid-layout #wrapper{
     left:10%;
     right:10%;
     text-align:left;
+    font-family:'dejavusans', Sylfaen;
+    &:lang(en)
+    {
+      font-family: 'opensans', 'sans-serif';
+    }
     .title
     {
-      font-family: 'opensans-b';
+      font-family: 'dejavusans-el', Sylfaen;
       font-size: 36px;
       max-width:590px;
       padding-bottom:20px;
+      &:lang(en)
+      {
+        font-family: 'opensans-b', 'sans-serif';
+      }
       a{
         color:#fff;
         &:hover{
@@ -344,7 +360,6 @@ body#grid-layout #wrapper{
     }
     .descr
     {
-      font-family: opensans;
       font-size: 18px;
       color:#fff;
       max-width:500px;
@@ -357,7 +372,6 @@ body#grid-layout #wrapper{
       .storytype-label
       {
 
-        font-family: opensans;
         font-size: 14px;
         color:#fff;        
         line-height:34px;
@@ -399,18 +413,26 @@ body#grid-layout #wrapper{
       }
       .title
       {
-        font-family:'opensans-b';
+        
         font-size: 26px;
         color: #2d2d2d;
-        padding-bottom: 15px;
-        font-weight:bold;
+        padding-bottom: 15px;        
+        font-family:'dejavusans-b', Sylfaen;
+        &:lang(en)
+        {
+          font-family: 'opensans-b', 'sans-serif';
+        }
       }
       .date
       {
-        font-family:'opensans';
         font-size: 14px;
         padding-top: 12px;
         color: #484848;
+        font-family:'dejavusans', Sylfaen;
+        &:lang(en)
+        {
+          font-family: 'opensans', 'sans-serif';
+        }
       }
     }
 

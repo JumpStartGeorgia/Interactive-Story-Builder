@@ -16,7 +16,7 @@
           <% story.use_app_locale_if_translation_exists %>
           <div class='item<%= i == 0 ? " active" : "" %>'>
             <%= image_tag story.show_asset.asset.url %>
-            <div class="carousel-caption">
+            <div class="carousel-caption" lang="<%= story.current_locale %>">
               <div class='title'><%= link_to story.title, storyteller_show_path(story.permalink) %></div>
               <div class='descr'> <%= strip_tags_nbsp(story.about).html_safe if story.about.present? %></div>
               <div class='storytype'>

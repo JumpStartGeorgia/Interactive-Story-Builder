@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
   }
-
+  * { -webkit-font-smoothing: antialiased; }
   a {
     /*color: #004276;*/
     text-decoration: none;
@@ -71,16 +71,16 @@
   }
   .column p,.column p span
   {
-    font-family: opensans-r !important;
+    font-family: dejavusans, Sylfaen !important;     
+    -webkit-font-smoothing: antialiased;  
     color: #5A5A5A;
     line-height: 24px !important;
     font-size: 16px !important;
     letter-spacing:normal !important;
   }
-  .column p:lang(ka),.column p span:lang(ka)
+  .column p:lang(en),.column p span:lang(en)
   {
-    font-family: 'dejavusans-r' !important;     
-    -webkit-font-smoothing: antialiased;  
+    font-family: 'opensans', 'sans-serif' !important;
   }
   .column blockquote {
     padding: 0 0 0 15px;
@@ -148,20 +148,23 @@
   }
   .dropcap {
     float: left;
-    font: bold 53px/70px opensans-l, Helvetica, Arial, sans-serif;    
+    font: bold 53px/70px dejavusans, Sylfaen;    
     margin: -7px 10px 0 0;
     height: 1em;
+  }
+  .dropcap:lang(en)
+  {
+      font-family: 'opensans-l', 'sans-serif' !important;  
   }
 
   .headline,
   .slideshow-headline {
-    font: 200 30px/40px bandera-pro-b, Georgia, serif;
+    font: 200 30px/40px 'dejavusans-b', Sylfaen;
     line-height:50px;
   }
-  .headline:lang(ka),
-  .slideshow-headline:lang(ka) {
-    font: 200 30px/40px dejavusans-b, Georgia, serif;
-    line-height:50px;
+  .headline:lang(en),
+  .slideshow-headline:lang(en) {
+    font: 200 30px/40px 'opensans-b', 'sans-serif';
   }
 
   .headline {
@@ -176,12 +179,12 @@
   }
 
   .byline {
-    font: 16px opensans-l, Helvetica, Arial, sans-serif;    
+    font: 16px 'dejavusans-el', Sylfaen;    
     opacity: 0.6;
   }
 
-  .byline:lang(ka) {
-    font: 16px dejavu-r, Helvetica, Arial, sans-serif;        
+  .byline:lang(en) {
+    font: 16px opensans-l, 'sans-serif';        
   }
   .byline div{
     display:inline-block;  
@@ -250,9 +253,13 @@
   }
 
   .image .caption {
-    font: 12px/1.4em opensans-r, Helvetica, Arial, sans-serif;
+    font: 12px/1.4em dejavusans, Sylfaen;
     clear: left;
     color: #999;
+  }
+  .image .caption:lang(en) 
+  {
+    font: 12px/1.4em opensans, 'sans-serif';
   }
   .section.column img.image  {
     margin: 0;
@@ -308,13 +315,13 @@
     margin-top: 5px;
     color: #888;
     padding-bottom: 20px;
-    font-family:opensans-b; 
+    font-family: 'dejavusans-b', Sylfaen; 
     font-size:16px;
     line-height: 29px;   
   }
-  .video-caption:lang(ka)
+  .video-caption:lang(en)
   {
-    font-family:dejavusans-b; 
+    font-family: 'opensans-b', 'sans-serif'; 
   }
 
   .video-source
@@ -664,100 +671,6 @@
       padding-top: 0px;
     }
 
-    /* TABLET AND PHONE MAPS */
-
-    .ios .map {
-      margin: 40px 0 40px -94px;
-      width: 100%;
-      height: auto;
-    }
-    .ios .map > * {
-      position: absolute;
-    }
-
-    .ios .map img {
-      position: static;
-    }
-
-    .ios .map-source {
-      right: 0px;
-      bottom: 5px;
-    }
-
-    .ios .nytg-tabletmap {
-      position:relative;
-      line-height: 1 !important;
-      overflow: hidden;
-      letter-spacing: 0;
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    .ios .nytg-tabletmap img {
-      float: none;
-      position: static;
-    }
-
-    .ios .nytg-tabletmap p {
-      font-family:"Helvetica Neue",Helvetica,arial,sans-serif;
-      font-size:13px;
-      line-height:18px;
-      margin:0;
-      color: #fff;
-      opacity:.95;
-      font-weight: 500;
-    }
-
-    .ios .nytg-tabletmap > * {
-      position: absolute;
-    }
-
-    .ios .nytg-phonemap > * {
-      position: absolute;
-    }
-
-    .ios .nytg-phonemap {
-      position:relative;
-      width:100%;
-      font: 12px/15px "Helvetica Neue",Helvetica,arial,sans-serif;
-      color: #fff;
-      letter-spacing: 0;
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    .ios .nytg-phonemap img {
-      float: none;
-      position: static;
-    }
-
-    .ios .nytg-phonemap p{
-      opacity: .95;
-      margin: 0;
-    }
-
-    .ios #nytg-phonemap_0_spratlys {
-      min-height: 273px;
-      background-color: #222;
-    }
-  }
-
-  @media only screen and (min-width: 767px) and (max-width: 782px) {
-    .ios .map-source {
-      right: 10px;
-    }
-  }
-
-  @media only screen and (min-width: 320px) and (max-width: 767px) {
-
     /* SECTIONS + SEQUENCE */
 
     .ios .column {
@@ -1025,7 +938,7 @@
     right: 0;
   }
   .navigation {
-    font: 200 12px/20px opensans-r, Georgia, serif;
+    font: 200 12px/20px 'dejavusans', Sylfaen;   
     position: fixed;
     top: 0;
     width: 100%;
@@ -1033,9 +946,9 @@
     background: #000;
     z-index: 20;
   }
-.navigation {
-     font: 200 12px/20px dejavusans-r, Georgia, serif;
-}
+  .navigation:lang(en) {
+     font: 200 12px/20px opensans, 'sans-serif';
+  }
   .navigation-app
   {
     color: #fff;
@@ -1297,21 +1210,19 @@
     margin:0px auto;
   }
   .column-caption
-  {
-    font-family:opensans-b, Georgia, serif;    
+  {    
+    font-family: 'dejavusans-b', Sylfaen;  
     line-height:24px;
     font-size:22px;
     margin:5px 0px;  
   }
-  .column-caption:lang(ka)
+  .column-caption:lang(en)
   {
-    font-family:dejavusans-b, Georgia, serif; 
-    -webkit-font-smoothing: antialiased;     
+   font-family: 'opensans-b', 'sans-serif';       
   }
-  .column-sub-caption:lang(ka)
+  .column-sub-caption
   {
-    font-family:dejavusans-r, Georgia, serif;   
-    -webkit-font-smoothing: antialiased;      
+    font-family: 'dejavusans', Sylfaen;   
   }
 
   /* slideshow */
@@ -1579,7 +1490,4 @@
   text-align:left;
   margin-top:23px;
 }
-
-
-
 </style>

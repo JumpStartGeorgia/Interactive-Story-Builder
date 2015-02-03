@@ -14,7 +14,7 @@
       a
       {
         display:inline-block;
-        font-family:dejavusans-r,sylfaen;
+        font-family: dejavusans, Sylfaen;
         font-size:19px;
         color:#000 !important;      
         background: transparent url('/assets/svg/build_b.svg') center no-repeat;
@@ -42,11 +42,11 @@
           -ms-transition:background-color .10s ease-out;
           transition:background-color .10s ease-out;
         }
-      }
-      a:lang(en)
-      {
-        font-family:opensans-r;
-      }
+        &:lang(en)
+        {
+          font-family: opensans, 'sans-serif';
+        }
+      }      
    }
 
   .author-follow
@@ -59,7 +59,7 @@
     a
     {
       display:inline-block;
-      font-family:dejavusans-el,sylfaen;
+      font-family:'dejavusans-el', Sylfaen;
       font-size:18px;
       color:#000 !important;    
       background-color:transparent !important;   
@@ -97,7 +97,7 @@
     }
     a:lang(en)
     {
-      font-family:opensans-r;
+      font-family: opensans;
     }
   }
   .author-logo
@@ -111,14 +111,14 @@
       border-radius: 150px;
       -webkit-border-radius: 150px;
       -moz-border-radius: 150px;      
-      font-family: dejavusans-b;
+      font-family: 'dejavusans-b', Sylfaen;
       font-size: 92px;
       color: #fff;
       margin: 5px auto;
       padding: 0px;
       &:lang(en)
       {
-        font-family: opensans-b;
+        font-family: 'opensans-b', 'sans-serif';
       }
     }
   }  
@@ -138,19 +138,19 @@
   }
   .author-nickname 
   {
-    font-family: dejavusans-b;
+    font-family: 'dejavusans-b', Sylfaen;
     font-size: 38px;
     color: #878787;
     padding: 0px;
     text-align:center;
     &:lang(en)
     {
-      font-family: opensans-b;
+      font-family: 'opensans-b', 'sans-serif';
     }
   }
   .author-about 
   {
-    font-family: dejavusans-el;  
+    font-family: 'dejavusans-el', Sylfaen;  
     font-size: 16px;
     color: #878787;
     margin: 30px auto;
@@ -161,6 +161,6 @@
   }
   .author-nickname:lang(en),  .author-about:lang(en)
   {
-    font-family:opensans-l, dejavusans-el;
+    font-family: 'opensans-l', 'sans-serif';
   }
 }

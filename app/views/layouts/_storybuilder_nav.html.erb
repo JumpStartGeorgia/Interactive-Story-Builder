@@ -23,7 +23,7 @@
           <ul class="dropdown-menu">
             <% I18n.available_locales.each do |locale| %>
               <% if locale != I18n.locale %>
-                <li class="lang-switch"><%= link_to t("app.language.#{locale}"), params.merge(:locale =>  locale) %></li>
+                <li class="lang-switch" lang="<%= locale %>"><%= link_to t("app.language.#{locale}"), params.merge(:locale =>  locale) %></li>
               <% end %>
             <% end %>                             
           </ul>

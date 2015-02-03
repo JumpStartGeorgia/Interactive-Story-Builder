@@ -19,7 +19,7 @@ header
   {    
     color:#000;
     opacity:0.8;
-    font-family:opensans-r !important;
+    font-family: 'dejavusans-el', Sylfaen !important;
     font-size:16px;
     font-weight:500;
     text-decoration:none;
@@ -27,9 +27,9 @@ header
 
     &:hover { opacity:1; }
   }  
-  .link:lang(ka)
+  .link:lang(en)
   {
-    font-family:dejavusans-el, sylfaen !important;
+    font-family: opensans, 'sans-serif' !important;
   }
   a.build-story
   {
@@ -81,7 +81,7 @@ header
     /*float:right !important;*/
     a
     {
-      font-family:opensans;
+      font-family: 'dejavusans-el', Sylfaen;
       font-size:14px !important;
       color:#575757;
       font-weight: normal;    
@@ -91,11 +91,11 @@ header
       -o-transition-property: none;
       transition-property: none;
       &:hover { color:#adadad; }
+      &:lang(en)
+      {
+         font-family: 'opensans-l', 'sans-serif' !important;
+      }  
     }
-    a:lang(ka)
-    {
-       font-family:opensans-l, georgia !important;
-    }    
   }  
   .signin
   {
@@ -200,7 +200,7 @@ header
       padding: 6px 30px 6px 6px;
       margin:5px 10px;
       background:#373737 url('/assets/svg/search.svg') no-repeat 222px 8px;
-      font-family:opensans-r;
+      font-family: 'dejavusans-el', Sylfaen;
       font-size:16px; 
       color:#cecece;       
       -webkit-box-shadow: none;
@@ -222,15 +222,15 @@ header
       {
         opacity:1;     
       }
+      &:lang(en)
+      {
+        font-family:opensans, 'sans-serif';
+      }
       @media (max-width: 767px) 
       {
         &, &:focus, &:hover { width: 100%; }
       }
-    }
-    input[type="text"]:lang(ka)
-    {
-      font-family:dejavusans-el, sylfaen;
-    }
+    }   
   }
   &.navbar-invisible
   {
@@ -334,7 +334,7 @@ header
     .common
     {
       width:100%;     
-      font-family:opensans-l;
+      font-family: 'dejavusans-el', Sylfaen;
       font-size:14px;
       text-align:left;
       clear:both;   
@@ -345,6 +345,10 @@ header
       .dropdown-toggle
       {
         display:none;
+      }
+      &:lang(en)
+      {
+        font-family: 'opensans-l', 'sans-serif';
       }
     }    
   }
