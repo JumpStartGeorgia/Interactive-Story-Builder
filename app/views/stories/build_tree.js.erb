@@ -12,16 +12,16 @@
     <% end %>   
   <% end %>
 <% end %>
-
-
+alert('here');
 if(item_id != -1)
 {
 	$('.story-tree ul li.item[id='+ section_id + ']').find(' ul li.sub[id='+item_id+'] > div > .sub-l').text('<%= @item.title %>').trigger('click');	 
 }
 else 
+{
 	$('.story-tree ul li.item[id='+ section_id + '] > .box > .title').text('<%= @item.title %>').trigger('click');
 }	
 
 <% if @select_next %>
-   select_next();
+  select_next();
 <% end %>

@@ -97,10 +97,39 @@
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
                 <% if columnSectionCount == 0 %>
-                  <div class='headline<%= s_i == 0 ? " margin130": ""%>'><%= @story.title %></div>
-                  <div class="byline byline--first" style="margin-bottom:24px;">
-                  <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.author %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
-                  </div>                                 
+
+
+                    <div class='info-top'>
+                        <div class="share">
+                            <div class="addthis_native_toolbox"></div> 
+                            <%= link_to '#',  :id=>"modalShare", :'data-modalos-id' => "modalos-share", :title => t('app.common.share'), :class => "embed" do %>
+          
+                              <% end %> 
+                        </div>
+                      <div class="views" title="">Views: <%= @story.impressions_count %></div>  
+                      <div class='r'>
+                    <%                  from_langs = []
+                @story.story_locales.each do |trans_locale|
+                  l = @languages.select{|x| x.locale == trans_locale}.first
+                  if l.present?
+                    from_langs << l
+                  end
+                end %>
+                        <div class='languages'>Languages:</div>
+                        <%= select_tag "translate-from", options_from_collection_for_select(from_langs, "locale", "name", @story.story_locale), include_blank: false,
+                     :id => "translateFrom", :class => "selectpicker1", 
+                     :'data-live-search' => "false", :'data-size' => "10"  %>
+                        <a href="#" class="navigation-volume"><div class="navigation-icon"></div></a>
+                      </div>
+                    </div>
+
+
+                  <% if isFirst %>
+                    <div class='headline<%= s_i == 0 ? " margin130": ""%>'><%= @story.title %></div>
+                    <div class="byline byline--first" style="margin-bottom:24px;">
+                    <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.author %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                    </div>     
+                  <% end %>                            
                 <% end %>         
                 <%= "<div class='column-caption'>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
                 <%= "<div class='column-sub-caption'>#{section.content.sub_caption}</div>".html_safe  if section.content.sub_caption.present? %>                       

@@ -264,7 +264,6 @@ $(document).ready(function() {
     	}
     	if(opts===null) opts = opts_def;    	
         ml.html(output).modalos(opts);
-        console.log(ml);
 		return true;	
   });
 
@@ -823,7 +822,6 @@ function calculate_workspace()
 }
 function select_next()
 {
-  console.log('here');
   var tree = $('.story-tree');
   var t = tree.find('ul li.active');
   

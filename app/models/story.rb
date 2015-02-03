@@ -293,6 +293,10 @@ class Story < ActiveRecord::Base
     where(:user_id => user_ids)
 	end
 	
+  def random_related_stories(number_to_return=3)
+    story_ids = StoryTheme.where(:theme_id => self.theme_ids).pluck(:story_id).uniq.shuffle[0..number_to_return]
+    Story.where(:id => story_ids)
+  end
 	# get all of the unique story locales for published stories
 	def self.published_locales
 	  joins(:story_translations).select('story_translations.locale').is_published.map{|x| x.locale}.uniq.sort

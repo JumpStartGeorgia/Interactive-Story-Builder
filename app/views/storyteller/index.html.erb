@@ -2,6 +2,7 @@
   @template = @story.template.id 
   @export ||= false
   @no_nav ||= false  
+  @short_url = @story.shortened_url.present? ? @story.shortened_url : storyteller_show_url(@story.permalink)
 %>
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
@@ -15,8 +16,71 @@
     <div id='storyTeller'> 
       <%= render partial: "storyteller/template/#{@template}/content"%>   
     </div>   
-    <%= render partial: "storyteller/template/#{@template}/footer"%>   
+    <%= render partial: "storyteller/template/#{@template}/footer"%> 
+    <div class="info-bottom">
+      <div class="info-row">
+        <div class="l">
+            <div class='author-avatar'>
+              <%= link_to image_tag(@story.user.avatar_url, :class=>"avatar"), "#" , 
+         :class => "avatar", :"data-toggle"=>"dropdown" %>   
+            </div>
+            <div class='author-nickname'><%= link_to @story.user.nickname, author_path(@story.user.permalink), :title => @story.user.nickname %> </div>
+            <% if !user_signed_in? || current_user.id != @story.user_id  %>    
+              <div class="follow-author">
+                <%= render partial: 'layouts/follow_link', 
+              locals: {:user_id => @story.user_id, :is_story_page => true, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
+              </div>  
+            <% end %> 
+        </div>
+        <div class="r">
+          <div class='share'></div>
+        </div>
+      </div>
+      <div class='to-top'>Top</div>
+      <div class="comments">Facebook Comment stuff</div>
+    </div>  
 
+  <% if !@stories.blank? %>
+    <div class="related-stories">
+      <div class="grid-wrapper">
+        <div class="grid col-4">      
+          <% @stories.each_with_index do |story,s_i| %>       
+            <div class="col n-3" lang="<%= story.story_locale %>">  
+              <%= render partial: "shared/grid_item" , locals:{:story=>story} %> 
+            </div>  
+          <% end %>
+        </div> 
+      </div>
+    </div>
+  <% end %>
+
+  
+
+    <div id="modalos-share" style="display:none;" class="share-window">  
+      <div class="title"><%= "#{t('app.common.share_story')}" %></div>
+      <div class="permalink"><%= "#{t('app.common.permalink')}" %>:</div>
+      <div class="permalink-link"><%= link_to storyteller_show_url(@story.permalink), storyteller_show_url(@story.permalink) %></div>
+      <div class="shortened-url"><%= "#{t('app.common.shortened_url')}" %>:</div>
+      <div class="shortened-url-link"><%= link_to @story.shortened_url, @story.shortened_url if @story.shortened_url.present? %></div>
+     
+      <div class="embed">
+        <div class="embed-icon"><i class="s i-embed"></i></div>
+        <div class="embed-text"><%= "#{t('app.msgs.embed_code')}" %>:</div>
+        <div class="embed-code">
+        <textarea rows="4" cols="38"  data-iframe-link="<%=embed_url(@story.permalink) %>"
+        readonly="" onfocus="setTimeout(function (t){ t.select(); }, 10, this);" onmouseup="return false;"><iframe src='<%=embed_url(@story.permalink) %>?type=partial' width='350' height='100%' frameborder='0'></iframe></textarea>
+          <div class="embed-type-switcher">
+            <div class="partial selected" title="<%= "#{t('app.common.partial_text')}" %>" data-width="350"><%= "#{t('app.common.partial')}" %></div>
+            <div class="full" title="<%= "#{t('app.common.full_text')}" %>" data-width="1000"><%= "#{t('app.common.full')}" %></div>
+          </div>
+          <div class="embed-size-w">
+            <input type="text" value="350" class="iframe-size"/>
+            <span>px <%= "#{t('app.common.wide')}" %></span>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
       <% if !@export %>
         <%= javascript_include_tag  *(@js.present? ? ["application", @js].flatten : ["application"]), :media => "all" %>      
@@ -39,7 +103,40 @@
           ga('create', 'UA-12801815-33', 'jumpstart.ge');
           ga('send', 'pageview');
         </script>
-    <% end %>    
+    <% end %>     
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+          <%
+            addthis_id = Rails.env.production? ? ENV['STORY_BUILDER_ADDTHIS_PROFILEID'] : 'ra-51d1537d4a09d85f'
+            if addthis_id.present?
+          %>
+              <script type="text/javascript">
+              var addthis_share = { url: '<%= @short_url %>' }
+              </script>
+              <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<%= addthis_id %>" async="async"></script>
+            <% end %>
+
+   <script type="text/javascript">   
+    $(document).ready(function(){
+       //Check to see if the window is top if not then display button
+       $(window).scroll(function(){
+          if ($(this).scrollTop() > 100) {
+             $('div.to-top').fadeIn();
+          } else {
+             $('div.to-top').fadeOut();
+          }
+       });
+       
+       //Click event to scroll to top
+       $('div.to-top').click(function(){
+          $('html, body').animate({scrollTop : 0},800);
+          return false;
+       });
+    });
+    </script>   
     <%= render partial: "storyteller/template/#{@template}/js"%>
+
   </body>
 </html> 
+
+

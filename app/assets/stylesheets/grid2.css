@@ -226,9 +226,11 @@ input#user_nickname + div + span.check_nickname{
 @media screen and (max-width:1570px)
 {
   #content.full{padding:0}
-  .grid .col.n-3{width:33.33%}
-  .col-4 .col:nth-of-type(3n+1){clear:both;}
+  .grid .col.n-3{width:50%}
+
+  .col-4 .col:nth-of-type(2n+1){clear:both;}
   .col-4 .col:nth-of-type(4n+1){clear:none;}
+
   .grid .col.n-2-5{width:25%}
   .col-5 .col:nth-of-type(5n+1){clear:none}
   .col-5 .col:nth-of-type(4n+1){clear:both}

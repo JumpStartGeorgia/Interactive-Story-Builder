@@ -45,7 +45,7 @@
   .column {
     margin-left: auto;
     margin-right: auto;
-    max-width: 580px;
+    max-width: 730px;
   }
 
   .column em{
@@ -1489,5 +1489,61 @@
 {
   text-align:left;
   margin-top:23px;
+}
+
+
+div.to-top
+{
+  width:50px; 
+  height:50px;
+  padding:10px; 
+  text-align:center;   
+  font-weight: bold;
+  color: #444;
+  text-decoration: none;
+  position:relative;
+  top:-80px;
+  display:none;
+  background: rgb(0, 0, 0) url('arrow_up.png') no-repeat 0px 20px;
+  color: rgb(245, 245, 245);
+  z-index:1;
+  float:right;
+}
+div.to-top:hover{
+  text-decoration:none;
+  cursor:pointer;
+}
+.info-top
+{
+  border: 1px solid rgb(128, 128, 128);
+  height:50px;
+}
+.info-top .share > div,
+.info-top .share > a
+{
+  display:inline-block;
+}
+.info-top > div
+{
+  display:inline-block;
+  height:50px;
+  vertical-align:middle;
+}
+.info-top > div.r
+{
+  float:right;
+}
+.info-top > div.r > div
+{
+  display:inline-block;
+}
+.info-top,.info-bottom
+{
+  margin:0px auto;
+  max-width:730px;
+}
+.info-bottom:
+{
+  position:relative;
 }
 </style>
