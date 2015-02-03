@@ -64,6 +64,10 @@ ka:
         content: ტექსტი
       medium:
         media_type: მედია ტიპი
+        image: სურათი
+        video: ვიდეო
+        video_loop: ვიდეოს გამეორება
+      medium_translation:
         title: სათაური
         caption: წარწერა
         caption_align: წარწერის მდებარეობა
@@ -72,7 +76,6 @@ ka:
         source: წყარო
         image: სურათი
         video: ვიდეო
-        video_loop: ვიდეოს გამეორება
       slideshow:
         title: სათაური
         caption: ფოტოს წარწერა

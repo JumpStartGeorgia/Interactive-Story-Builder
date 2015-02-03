@@ -64,6 +64,10 @@ en:
         content: Text
       medium:
         media_type: Media Type
+        image: Image
+        video: Video
+        video_loop: Loop Video
+      medium_translation:
         title: Title
         caption: Caption
         caption_align: Caption Alignment
@@ -72,7 +76,6 @@ en:
         source: Source
         image: Image
         video: Video
-        video_loop: Loop Video
       slideshow:
         title: Title
         caption: Heading

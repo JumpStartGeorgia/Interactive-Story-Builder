@@ -1,4 +1,5 @@
 <%- model_class = Medium -%>
+<%- model_class_trans = MediumTranslation -%>
 <% original ||= false %>
 <% readonly = {} %>
 <% isTO = @trans && original # if mode is translate and screen is original(first) %>
@@ -194,7 +195,7 @@
 
       <div class="radio_buttons input optional form-group radio-indent radio-hide-button" id="medium_caption_align_input">
         <label class="control-label" for="medium_caption_align">
-          <%= model_class.human_attribute_name(:caption_align) %>
+          <%= model_class_trans.human_attribute_name(:caption_align) %>
           <% if !isTO %>
             <div class="help-inline" title="<%= t('.hint.caption_align')%>">
               <div>?</div>
@@ -220,7 +221,7 @@
 
       <div class="radio_buttons input optional form-group radio-indent radio-hide-button" id="medium_infobox_type_input">
         <label class="control-label" for="medium_infobox_type">
-          <%= model_class.human_attribute_name(:infobox_type) %>
+          <%= model_class_trans.human_attribute_name(:infobox_type) %>
           <% if !isTO %>
             <div class="help-inline" title="<%= t('.hint.infobox_type')%>">
               <div>?</div>
