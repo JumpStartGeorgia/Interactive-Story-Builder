@@ -1,5 +1,7 @@
 BootstrapStarter::Application.routes.draw do
 
+
+
 	#--------------------------------
 	# all resources should be within the scope block below
 	#--------------------------------
@@ -11,6 +13,7 @@ BootstrapStarter::Application.routes.draw do
 											 :controllers => {:omniauth_callbacks => "omniauth_callbacks"}
 
 		namespace :admin do
+		  resources :authors
       resources :pages
 			resources :users
       resources :news

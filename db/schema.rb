@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150203065412) do
+ActiveRecord::Schema.define(:version => 20150203123842) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -34,6 +34,26 @@ ActiveRecord::Schema.define(:version => 20150203065412) do
   add_index "assets", ["item_id", "position"], :name => "index_assets_on_item_id_and_position"
   add_index "assets", ["item_id"], :name => "index_assets_on_item_id"
   add_index "assets", ["processed"], :name => "index_assets_on_processed"
+
+  create_table "author_translations", :force => true do |t|
+    t.integer  "author_id"
+    t.string   "locale",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "name"
+    t.text     "about"
+    t.string   "permalink"
+  end
+
+  add_index "author_translations", ["author_id"], :name => "index_author_translations_on_author_id"
+  add_index "author_translations", ["locale"], :name => "index_author_translations_on_locale"
+  add_index "author_translations", ["name"], :name => "index_author_translations_on_name"
+  add_index "author_translations", ["permalink"], :name => "index_author_translations_on_permalink"
+
+  create_table "authors", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "categories", :force => true do |t|
     t.datetime "created_at",                               :null => false

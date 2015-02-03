@@ -1,0 +1,8 @@
+<%= form_for @author, :html => { :class => 'form-horizontal' } do |f| %>
+
+  
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            authors_path, :class => 'btn btn-default' %>
+ 
+<% end %>
