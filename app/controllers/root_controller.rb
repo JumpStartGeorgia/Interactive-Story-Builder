@@ -19,12 +19,12 @@ class RootController < ApplicationController
 
 
   def author   
-    @author = User.find_by_permalink(params[:user_id])
+    @author = Author.find_by_permalink(params[:user_id])
 
     if @author.present?
       @js.push("zeroclipboard.min.js", "filter.js","stories.js","follow.js")
       @css.push("navbar.css", "filter.css", "grid.css", "stories.css", "author.css")
-      @stories = process_filter_querystring(Story.stories_by_author(@author.id).in_published_theme.paginate(:page => params[:page], :per_page => per_page))      
+      @stories = process_filter_querystring(Story.by_authors(@author.id).in_published_theme.paginate(:page => params[:page], :per_page => per_page))      
       @editable = (user_signed_in? && current_user.id == @author.id)
       
       @is_following = Notification.already_following_user(current_user.id, @author.id) if user_signed_in?

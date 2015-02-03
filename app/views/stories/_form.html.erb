@@ -50,12 +50,8 @@
         <div class="string control-group stringish story_permalink" <%= !isTO ? 'id=story_permalink' : ''%>>&nbsp;</div>
 
         <% if !@trans %>
-          <%= f.input :user_id , :as => :select, :hint => t('.hint.user_id'), :collection =>  @authors.map{|x| [x.nickname, x.id]}, :input_html => { :id => "storyUserId", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "10"  } %>
+          <%= f.input :authors, :as => :select, :hint => t('.hint.author'), :required => true, :collection => @authors.map{|x|[x.name, x.id]}, :multiple => true, :input_html => { :id => 'storyAuthors', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "5", :title => t('app.common.nothing_selected') } %>
         <% end %>
-
-        <%= f_translation.input :author, { :required => !isTO, :input_html => { id: (!isTO ? "storyAuthor" : nil) }
-        .merge(readonly) }
-        .merge(( isTO ? {} : { hint: t('.hint.author'), placeholder: t('.placeholder.author') })) %>
 
         <%= f_translation.input :media_author, { :input_html => { id: (!isTO ? "storyMediaAuthor" : nil) }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.media_author'), placeholder: t('.placeholder.media_author') }))  %>
         

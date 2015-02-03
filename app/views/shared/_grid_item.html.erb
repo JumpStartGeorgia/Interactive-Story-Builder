@@ -28,7 +28,7 @@
         </button>                   
           <ul class="dropdown-menu">
             <% user_role = story.user_role(current_user.id) %>
-            <% if user_role.role == Story::ROLE[:translator] %>
+            <% if user_role.present? && user_role.role == Story::ROLE[:translator] %>
               <li>
                 <%= link_to  sections_story_path(story,tr:true,tr_from:story.story_locale,tr_to:user_role.translation_locales_array.first), title: t('helpers.links.story_menu.title.translations') do %>
                   <i class="glyphicon glyphicon-globe"></i><%=t('helpers.links.story_menu.link.translations')%>

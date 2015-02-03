@@ -183,10 +183,43 @@ published[21..published.length-1].each do |story|
   story.save
 end
 
-# need to make some users authors for testing
-User.where(:role => User::ROLES[:user]).limit(7).update_all(:role => User::ROLES[:author])
 # need to make some users coordinators for testing
 User.where(:role => User::ROLES[:user]).limit(7).update_all(:role => User::ROLES[:coordinator])
+# need to make some author records for testing
+Author.destroy_all
+StoryAuthor.delete_all
+authors = []
+a = Author.create(id: 1)
+a.author_translations.create(locale: 'en', name: 'Demetria Guynes')
+a.author_translations.create(locale: 'ka', name: 'Demetria Guynes')
+authors << a
+a = Author.create(id: 2)
+a.author_translations.create(locale: 'en', name: 'Walter Willis')
+a.author_translations.create(locale: 'ka', name: 'Walter Willis')
+authors << a
+a = Author.create(id: 3)
+a.author_translations.create(locale: 'en', name: 'Allen Konigsberg')
+a.author_translations.create(locale: 'ka', name: 'Allen Konigsberg')
+authors << a
+a = Author.create(id: 4)
+a.author_translations.create(locale: 'en', name: 'Louis Szekely')
+a.author_translations.create(locale: 'ka', name: 'Louis Szekely')
+authors << a
+a = Author.create(id: 5)
+a.author_translations.create(locale: 'en', name: 'Joaquin Rafael Bottom')
+a.author_translations.create(locale: 'ka', name: 'Joaquin Rafael Bottom')
+authors << a
+a = Author.create(id: 6)
+a.author_translations.create(locale: 'en', name: 'Elizabeth Stamatina Fey')
+a.author_translations.create(locale: 'ka', name: 'Elizabeth Stamatina Fey')
+authors << a
+# now need to assign authors to stories
+published.each_with_index do |story, index|
+  story.authors << authors.sample
+  if index % 3 == 0
+    story.authors << authors.sample
+  end
+end
 
 
 #####################

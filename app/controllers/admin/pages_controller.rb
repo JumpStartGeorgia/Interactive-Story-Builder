@@ -103,7 +103,7 @@ class Admin::PagesController < ApplicationController
 protected
 
   def asset_filter
-    @css.push("todo.css","navbar.css")   
+    @css.push("navbar.css")   
   end 
 
 end

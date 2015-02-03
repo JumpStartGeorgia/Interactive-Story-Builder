@@ -108,18 +108,19 @@
   <div class="title" lang="<%= @story.story_locale %>"><%= @story.title %></div>
   <div class="text" lang="<%= @story.story_locale %>"><%= @story.about.html_safe  if @story.about.present? %> </div>
   <div class="profile-data">
+    <% author = @story.authors.first %>
     <div class="logo">
-       <%= link_to image_tag(@story.user.avatar_url, :class=>"avatar"), "#" , 
+       <%= link_to image_tag(author.avatar_url, :class=>"avatar"), "#" , 
          :class => "avatar", :"data-toggle"=>"dropdown" %>   
     </div>   
     <div class="nickname">
-      <%= link_to @story.user.nickname, author_path(@story.user.permalink), :title => @story.user.nickname %>      
+      <%= link_to author.name, author_path(author.permalink) %>      
     </div> 
      
     <% if !user_signed_in? || current_user.id != @story.user_id  %>    
       <div class="follow">
         <%= render partial: 'layouts/follow_link', 
-            locals: {:user_id => @story.user_id, :is_story_page => true, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
+            locals: {:user_id => author.id, :is_story_page => true, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
       </div>  
     <% end %> 
     <div class="stats"> 

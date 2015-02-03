@@ -1,0 +1,13 @@
+<%- model_class = Author -%>
+<% title t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+                                 :default => "New #{model_class.model_name.human}") %>
+<div class="form-actions">
+  <%= link_to t('helpers.links.list'), admin_authors_path,
+  :class => 'btn btn-default' %>
+  <%= link_to t('helpers.links.admin'), admin_path,
+  :class => 'btn btn-default' %>
+</div>
+
+<%= render :partial => 'form' %>
+
+

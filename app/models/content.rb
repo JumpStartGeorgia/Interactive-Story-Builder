@@ -3,7 +3,7 @@ class Content < ActiveRecord::Base
 
   translates :title, :caption, :sub_caption, :text
 
-	belongs_to :section	 
+	belongs_to :content	 
 
   has_many :content_translations, :dependent => :destroy
   accepts_nested_attributes_for :content_translations
@@ -17,7 +17,24 @@ class Content < ActiveRecord::Base
 
   #################################
   ## Validations
-	validates :section_id, :presence => true
+	validates :content_id, :presence => true
+
+  #################################
+
+  # get the translation record for the given locale
+  # if it does not exist, build a new one if wanted
+  def with_translation(locale, build_if_missing=true)
+    @local_translations ||= {}
+    if @local_translations[locale].blank?
+      x = self.content_translations.where(:locale => locale).first
+      if x.blank? && build_if_missing
+        x = self.content_translations.build(locale: locale)
+      end
+
+      @local_translations[locale] = x
+    end
+    return @local_translations[locale]
+  end
 	
   #################################
 

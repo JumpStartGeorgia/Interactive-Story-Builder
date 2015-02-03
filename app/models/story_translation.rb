@@ -17,7 +17,7 @@ class StoryTranslation < ActiveRecord::Base
   #################################
   ## Validations
   validates :title, :presence => true, length: { maximum: 100 }
-  validates :author, :presence => true, length: { maximum: 255 }
+#  validates :author, :presence => true, length: { maximum: 255 }
   validates :permalink, :presence => true
   validates :media_author, length: { maximum: 255 }
   validates :translation_author, length: { maximum: 255 }
