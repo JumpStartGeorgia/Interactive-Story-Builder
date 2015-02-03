@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150203123842) do
+ActiveRecord::Schema.define(:version => 20150203190500) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -375,6 +375,16 @@ ActiveRecord::Schema.define(:version => 20150203123842) do
   add_index "stories", ["story_type_id"], :name => "index_stories_on_story_type_id"
   add_index "stories", ["template_id"], :name => "index_stories_on_template_id"
   add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
+
+  create_table "story_authors", :force => true do |t|
+    t.integer  "story_id"
+    t.integer  "author_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "story_authors", ["author_id"], :name => "index_story_authors_on_author_id"
+  add_index "story_authors", ["story_id"], :name => "index_story_authors_on_story_id"
 
   create_table "story_categories", :force => true do |t|
     t.integer  "story_id"

@@ -4,6 +4,7 @@ class Asset < ActiveRecord::Base
   belongs_to :asset_clone, foreign_key: :asset_clone_id, class_name: 'Asset'
 
   belongs_to :user, foreign_key: :item_id
+  belongs_to :author, foreign_key: :item_id
   belongs_to :story_translation, foreign_key: :item_id
   belongs_to :section_translation, foreign_key: :item_id
   belongs_to :slideshow_translation, foreign_key: :item_id
@@ -14,7 +15,7 @@ class Asset < ActiveRecord::Base
   acts_as_list scope: :slideshow_translation
   acts_as_list scope: [:item_id, :asset_type]
 
-  TYPE = {story_thumbnail: 1, section_audio: 2, content_image: 3, media_image: 4, media_video: 5, slideshow_image: 6, user_avatar: 7}
+  TYPE = {story_thumbnail: 1, section_audio: 2, content_image: 3, media_image: 4, media_video: 5, slideshow_image: 6, user_avatar: 7, author_avatar: 8}
 
 
   attr_accessor :init_called, :asset_exists, :stop_check_thumbnail, :process_video, :is_video_image, :is_amoeba
@@ -29,6 +30,9 @@ class Asset < ActiveRecord::Base
   validates_presence_of :asset, :unless => :asset_clone_id?
 
   with_options :if => "self.asset_type == TYPE[:user_avatar]" do |t|    
+    t.validates_attachment :asset, {  :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
+  end
+  with_options :if => "self.asset_type == TYPE[:author_avatar]" do |t|    
     t.validates_attachment :asset, {  :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
   end
   with_options :if => "self.asset_type == TYPE[:story_thumbnail]" do |t|    
@@ -75,6 +79,17 @@ class Asset < ActiveRecord::Base
                 :'40x40' => {:geometry => "40x40#"}
             },
             :default_url => "/assets/missing/user_avatar/:style/default_user.png"
+          }
+
+        when TYPE[:author_avatar]        
+          opt = { 
+            :url => "/system/authors/:style/:author_avatar_file_name.:extension",
+            :styles => {
+                :'168x168' => {:geometry => "168x168#"},
+                :'50x50' => {:geometry => "50x50#"},
+                :'40x40' => {:geometry => "40x40#"}
+            },
+            :default_url => "/assets/missing/author_avatar/:style/default_user.png"
           }
 
         when TYPE[:story_thumbnail]        

@@ -1,8 +1,14 @@
-class AuthorsController < ApplicationController
+class Admin::AuthorsController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter do |controller_instance|
+    controller_instance.send(:valid_role?, User::ROLES[:site_admin])
+  end
+  before_filter :asset_filter
+
   # GET /authors
   # GET /authors.json
   def index
-    @authors = Author.all
+    @authors = Author.sorted
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,6 +31,11 @@ class AuthorsController < ApplicationController
   # GET /authors/new.json
   def new
     @author = Author.new
+    # create the translation object for however many locales there are
+    # so the form will properly create all of the nested form fields
+    I18n.available_locales.each do |locale|
+      @author.author_translations.build(:locale => locale.to_s)
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,9 +53,11 @@ class AuthorsController < ApplicationController
   def create
     @author = Author.new(params[:author])
 
+    add_missing_translation_content(@author.author_translations)
+
     respond_to do |format|
       if @author.save
-        format.html { redirect_to @author, notice: 'Author was successfully created.' }
+        format.html { redirect_to admin_authors_path, notice: t('app.msgs.success_created', :obj => t('activerecord.models.author')) }
         format.json { render json: @author, status: :created, location: @author }
       else
         format.html { render action: "new" }
@@ -58,9 +71,13 @@ class AuthorsController < ApplicationController
   def update
     @author = Author.find(params[:id])
 
+    @author.assign_attributes(params[:author])
+
+    add_missing_translation_content(@author.author_translations)
+
     respond_to do |format|
-      if @author.update_attributes(params[:author])
-        format.html { redirect_to @author, notice: 'Author was successfully updated.' }
+      if @author.save
+        format.html { redirect_to admin_authors_path, notice: t('app.msgs.success_updated', :obj => t('activerecord.models.author')) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,8 +93,14 @@ class AuthorsController < ApplicationController
     @author.destroy
 
     respond_to do |format|
-      format.html { redirect_to authors_url }
+      format.html { redirect_to admin_authors_url }
       format.json { head :no_content }
     end
   end
+
+protected
+
+  def asset_filter
+    @css.push("navbar.css", "authors.css")   
+  end 
 end

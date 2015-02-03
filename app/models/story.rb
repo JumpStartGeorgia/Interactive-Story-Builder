@@ -25,6 +25,8 @@ class Story < ActiveRecord::Base
 	has_many :categories, :through => :story_categories, :dependent => :destroy
   has_many :story_themes
   has_many :themes, :through => :story_themes, :dependent => :destroy
+  has_many :story_authors
+  has_many :authors, :through => :story_authors, :dependent => :destroy
 	belongs_to :user
   belongs_to :language, :primary_key => :locale, :foreign_key => :story_locale
 	belongs_to :template
@@ -54,7 +56,9 @@ class Story < ActiveRecord::Base
   validates :story_type_id, :presence => true
 	validates :template_id, :presence => true
 	validates :story_locale, :presence => true 
-  validates :user_id, :presence => true 
+  validates :authors, :length => { :minimum => 1, message: I18n.t('activerecord.errors.messages.story_authors')}
+  # validates :user_id, :presence => true 
+
 
   #################################
   ## Callbacks
@@ -92,9 +96,9 @@ class Story < ActiveRecord::Base
 
 	scope :is_not_published, joins(:story_translations).where(:story_translations => {:published => false})
 	scope :is_published, joins(:story_translations).where(:story_translations => {:published => true})
-  scope :stories_by_author, -> (user_id) {
-    where(:user_id => user_id)
-  }
+  # scope :stories_by_author, -> (user_id) {
+  #   where(:user_id => user_id)
+  # }
 
 # SELECT a.*
 # FROM parallax_chca.stories AS a LEFT JOIN parallax_chca.stories AS b
@@ -289,8 +293,8 @@ class Story < ActiveRecord::Base
     joins(:themes).where('themes.id = ?', id)
   end
 
-	def self.by_authors(user_ids)
-    where(:user_id => user_ids)
+	def self.by_authors(ids)
+    joins(:authors).where('authors.id in (?)', ids)
 	end
 	
 	# get all of the unique story locales for published stories
@@ -565,6 +569,11 @@ class Story < ActiveRecord::Base
   # returns array of locales
   def story_locales
     StoryTranslation.select('locale').where(:story_id => self.id).map{|x| x.locale}
+  end
+
+  # get nicely formatted list of author names
+  def story_author_names
+    self.authors.map{|x| x.name}.to_sentence
   end
 
   private 

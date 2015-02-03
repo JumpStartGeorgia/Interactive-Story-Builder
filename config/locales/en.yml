@@ -17,6 +17,7 @@ en:
       page: Text for Pages
       theme: Theme
       story_type: Type
+      author: Author
     attributes:
       user:
         email: Email Address
@@ -28,6 +29,12 @@ en:
         about: Summary of You
         local_avatar: Avatar
         nickname: Nickname
+      author:
+        avatar: Avatar
+      author_translation:
+        name: Name
+        about: About
+        permalink: Permalink
       story:
         user_id: Story Author
         user_ids: Editors
@@ -130,6 +137,7 @@ en:
       messages:
         required_field: "is a required field."
         already_exists: 'already exists in the database.'              
+        story_authors: "must have at least one person selected."
   mailer:
     closing: "Sincerely,"
     signature: The Chai Khana Team
@@ -217,6 +225,7 @@ en:
       reset_or_sign_in: sign in with facebook or reset your password
       add_story: Add Story
       users: Users
+      authors: Authors
       feedback: Feedback
       about: About
       rss: RSS
@@ -269,6 +278,7 @@ en:
     hints:
       nickname: Your nickname is used in the URL to your published stories (e.g., nickname/story-title)        
       local_avatar: Image that is shown in the header bar and on your user page (png and jpg only).
+      avatar: Image that is shown on the Author's page (png and jpg only).
       like: Like this story
       unlike: Unlike this story
       staff_pick: Select as Staff Pick

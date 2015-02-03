@@ -45,7 +45,7 @@ class StoriesController < ApplicationController
 #    @templates = Template.select_list
 #    @story_tags = []
     @themes = Theme.sorted
-    @authors = User.with_role(User::ROLES[:author])
+    @authors = Author.sorted
     @new = true
     respond_to do |format|
         format.html #new.html.er
@@ -62,7 +62,7 @@ class StoriesController < ApplicationController
 #    @templates = Template.select_list(@item.template_id)
 #    @story_tags = @item.tags.token_input_tags
     @themes = Theme.sorted
-    @authors = User.with_role(User::ROLES[:author])
+    @authors = Author.sorted
   end
 
   # POST /stories
@@ -83,7 +83,7 @@ class StoriesController < ApplicationController
         #@templates = Template.select_list(@item.template_id) 
 #        @story_tags = @item.tags.token_input_tags
         @themes = Theme.sorted
-        @authors = User.with_role(User::ROLES[:author])
+        @authors = Author.sorted
         @new = true
         flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@item.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
@@ -119,7 +119,7 @@ class StoriesController < ApplicationController
           #@templates = Template.select_list(@item.template_id)
 #          @story_tags = @item.tags.token_input_tags
           @themes = Theme.sorted
-          @authors = User.with_role(User::ROLES[:author])
+          @authors = Author.sorted
 logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to_sentence}"          
           flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@item.errors.full_messages.to_sentence)            
           format.html { render action: "edit" }
@@ -237,7 +237,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
         @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
       end
       @themes = Theme.sorted   
-      @authors = User.with_role(User::ROLES[:author])
+      @authors = Author.sorted
       type = 'form'           
     elsif type == 'section'
       if method=='select'

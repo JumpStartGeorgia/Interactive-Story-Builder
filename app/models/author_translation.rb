@@ -16,7 +16,7 @@ class AuthorTranslation < ActiveRecord::Base
   
   def add_required_data(obj)
     self.name = obj.name if self.name.blank?
-    self.about = obj.name if self.about.blank?
+    self.about = obj.about if self.about.blank?
   end
 
   def create_permalink

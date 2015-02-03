@@ -1,8 +1,42 @@
-<%= form_for @author, :html => { :class => 'form-horizontal' } do |f| %>
+<%= tinymce_assets %>
+<%= tinymce %>
 
-  
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            authors_path, :class => 'btn btn-default' %>
- 
+<%= semantic_form_for([:admin, @author]) do |f| %>
+  <%= f.error_messages %>
+
+  <% 
+    avatar_record = @author.avatar
+    avatar_record = Asset.new(:asset_type => Asset::TYPE[:author_avatar])
+  %>
+  <%= f.fields_for :avatar, avatar_record do |f_asset| %>
+    <%= f_asset.input :asset_type, :as => :hidden %>
+
+    <label class=" control-label" for="author_avatar_attributes_asset"><%= t('activerecord.attributes.author.avatar') %></label>
+    <div class="avatar_container clear">
+      <%= image_tag @author.avatar_url(:'50x50') %>        
+      <div>
+        <%= f_asset.input :asset, :as => :file , hint: t('helpers.hints.avatar') , :input_html => { accept:".jpg,.jpeg,.png" }, label: false  %> 
+      </div>
+    </div>
+  <% end %> 
+
+
+  <% create_sorted_translation_objects(@author.author_translations).each do |trans| %>
+    <%= f.fields_for :author_translations, trans do |translation| %>
+
+      <div id="form-<%= trans.locale %>" class="multilanguage_nested">
+        <h3><%= t("app.language.#{trans.locale}") %></h3>
+
+        <%= translation.input :name %>
+        <%= translation.input :about, :as => :text, rows: 10, :input_html => { class: 'tinyEditor' } %>
+        <%= translation.hidden_field :locale , :value => trans.locale %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= f.submit t('helpers.links.reset'), :class => 'btn btn-warning', :type => :reset, :name => :reset %>
+    <%= link_to t('helpers.links.cancel'), admin_authors_path, :class => 'btn btn-mini btn-warning' %>
+  </div>
 <% end %>

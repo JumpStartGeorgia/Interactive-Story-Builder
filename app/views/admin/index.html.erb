@@ -1,11 +1,19 @@
 <% title t('.title') %>
 
+<style>
+ul.list{list-style: inherit;}
+ul.list li{margin: 5px 0 5px 10px;}
+</style>
+
  <div class="span4">
-	<ul>
+	<ul class='list'>
     <li>
      <%= link_to t('helpers.links.users'), admin_users_path %>
     </li>
     <% if current_user.role? User::ROLES[:site_admin] %>
+      <li>
+       <%= link_to t('helpers.links.authors'), admin_authors_path %>
+      </li>
       <li>
        <%= link_to t('helpers.links.pages'), admin_pages_path %>
       </li>

@@ -17,6 +17,7 @@ ka:
       page: ტექსტი გვერდებისთვის
       theme: Theme
       story_type: Type
+      author: Author
     attributes:
       user:
         email: ელ. ფოსტა
@@ -28,6 +29,12 @@ ka:
         about: თქვენ შესახებ
         local_avatar: პროფილის სურათი
         nickname: მომხმარებლის სახელი
+      author:
+        avatar: პროფილის სურათი
+      author_translation:
+        name: Name
+        about: About
+        permalink: Permalink
       story:
         user_id: Story Author
         user_ids: ამბის რედაქტორები
@@ -130,6 +137,7 @@ ka:
       messages:
         required_field: "სავალდებულო ველი"
         already_exists: 'უკვე არსებობს მონაცემთა ბაზაში'
+        story_authors: "must have at least one person selected."
   mailer:
     closing: "პატივისცემით,"
     signature: “Chai Khanaს” გუნდი
@@ -217,6 +225,7 @@ ka:
       reset_or_sign_in: შედით facebook-ით ან შეცვალეთ პაროლი
       add_story: ამბის დამატება
       users: მომხმარებლები
+      authors: Authors
       feedback: მოგვწერე
       about: შესახებ
       rss: RSS
@@ -269,6 +278,7 @@ ka:
     hints:
       nickname: თქვენი სახელი გამოყენებულია თქვენ მიერ გამოქვეყნებული ამბების ბმულში (მაგ., სახელი/ამბის-სათაური) 
       local_avatar: ფოტო, რომელიც გამოჩნდება თქვენი გვერდის ზედა სექციაში (მხოლოდ png და jpg).
+      avatar: Image that is shown on the Author's page (png and jpg only).
       like: მოიწონეთ ამბავი
       unlike: აღარ მომწონს ეს ამბავი
       staff_pick: რჩეულებში დამატება
