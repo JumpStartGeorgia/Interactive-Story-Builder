@@ -178,10 +178,11 @@ published[21..published.length-1].each do |story|
   story.save
 end
 
-# need to make some users coordinators for testing
-if User.where(:role => User::ROLES[:coordinator]).count < 7
-  User.where(:role => User::ROLES[:user]).limit(7).update_all(:role => User::ROLES[:coordinator])
-end
+# clear out all existing story user roles if a person is a coordinator
+coords = User.where(:role => User::ROLES[:coordinator]).pluck(:id)
+StoryUser.where(:user_id => coords, :role => 0).delete_all
+User.where(:role => User::ROLES[:coordinator]).update_all(:role => User::ROLES[:user])
+User.where(:role => User::ROLES[:user]).limit(2).update_all(:role => User::ROLES[:coordinator])
 
 # need to make some author records for testing
 Author.destroy_all
