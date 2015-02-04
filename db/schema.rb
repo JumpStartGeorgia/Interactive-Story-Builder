@@ -408,6 +408,19 @@ ActiveRecord::Schema.define(:version => 20150207062551) do
   add_index "story_themes", ["story_id"], :name => "index_story_themes_on_story_id"
   add_index "story_themes", ["theme_id"], :name => "index_story_themes_on_theme_id"
 
+  create_table "story_translation_progresses", :force => true do |t|
+    t.integer  "story_id"
+    t.string   "locale"
+    t.integer  "items_completed", :default => 0
+    t.boolean  "is_story_locale", :default => false
+    t.boolean  "can_publish",     :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
+  add_index "story_translation_progresses", ["story_id", "can_publish"], :name => "index_story_translation_progresses_on_story_id_and_can_publish"
+  add_index "story_translation_progresses", ["story_id", "locale"], :name => "index_story_translation_progresses_on_story_id_and_locale"
+
   create_table "story_translations", :force => true do |t|
     t.integer  "story_id"
     t.string   "locale",                                                       :null => false

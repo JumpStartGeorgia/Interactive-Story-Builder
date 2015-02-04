@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  story_id: 1
+  locale: MyString
+  items_completed: 1
+  is_story_locale: false
+  can_publish: false
+
+two:
+  story_id: 1
+  locale: MyString
+  items_completed: 1
+  is_story_locale: false
+  can_publish: false
