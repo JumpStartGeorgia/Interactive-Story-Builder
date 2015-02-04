@@ -507,6 +507,9 @@ ka:
     reviewer:
       copy: კოპირება
       copied: დაკოპირებულია!
+    storybuilder:
+      source: Source
+      target: Target
   shared:
     grid:
       no_stories: სამწუხაროდ არ მოიძებნა არცერთი ამბავი!

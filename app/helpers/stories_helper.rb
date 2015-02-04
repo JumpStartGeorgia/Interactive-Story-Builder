@@ -36,11 +36,11 @@ module StoriesHelper
 			main = progress_array.select{|x| x.is_story_locale?}.first
 			if main.present?
 				if main.locale == locale.to_s
-					percent = number_to_percentage(100) 
+					percent = "100%"
 				else
 					record = progress_array.select{|x| x.locale == locale.to_s}.first
 					if record.present?
-						percent = number_to_percentage((100 * record.items_completed / main.items_completed))
+						percent = number_to_percentage((100 * record.items_completed / main.items_completed), precision: 0)
 					end
 				end
 			end

@@ -455,10 +455,21 @@ body#storybuilder_form{
       .right-view
       {
         width:49%;
-        border-left: 1px solid rgb(238, 238, 238);
+        border-left: 1px solid #ccc;
         .view-wrapper
         {
           padding-top:10px;
+        }
+      }
+      .trans-source, .trans-target{
+        display: inline-block;
+        font-size: 15px;
+        font-family: 'dejavusans-b', Sylfaen;
+        color: rgb(157, 172, 71);
+        padding-right: 4px;
+        &:lang(en)
+        {
+          font-family: 'opensans-b', 'sans-serif';
         }
       }
       .btn
@@ -555,7 +566,7 @@ body#storybuilder_form{
       {
         margin:0px !important;
         padding:0px !important;
-        width:156px !important;
+        /*width:156px !important;*/
         .btn
         {
           border:0px !important;
@@ -692,7 +703,7 @@ body#storybuilder_form{
         {
           width:49%;
           padding:25px 25px 25px 25px;
-          border-left:1px solid #eee;
+          border-left:1px solid #ccc;
         }
       }
       .story-page1

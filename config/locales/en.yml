@@ -507,6 +507,9 @@ en:
     reviewer:
       copy: Copy To Clipboard...
       copied: Copied!
+    storybuilder:
+      source: Source
+      target: Target
   shared:
     grid:
       no_stories: Oh no - no stories could be found!
