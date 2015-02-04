@@ -351,6 +351,8 @@ ka:
       home: მთავარი
       required: სავალდებულო
       nothing_selected: არ არის არჩეული
+      embed: Embed Code
+      scroll_top: Scroll to the top
     msgs:
       does_not_exist: თქვენ ცდილობთ ისეთი გვერდის ნახვას, რომელიც არ არსებობს.
       not_authorized: თქვენ არ გაქვთ ამ გვერდის ნახვის უფლება.
@@ -717,6 +719,8 @@ ka:
     byline_media: "ფოტოსა და ვიდეოს ავტორი "
     source: "წყარო:"
     by: ""
+    related_stories: Related Stories
+    view_all_stories_in: View all stories in    
   settings:
     index:
       title: პარამეტრები

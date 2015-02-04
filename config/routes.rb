@@ -104,12 +104,12 @@ BootstrapStarter::Application.routes.draw do
 
 
     # published story url/actions
-    match ":id" => "storyteller#index", as: 'storyteller_show'
-		match ":id/staff_pick" => "storyteller#staff_pick", as: 'storyteller_staff_pick', :defaults => { :format => 'json' }
-		match ":id/staff_unpick" => "storyteller#staff_unpick", as: 'storyteller_staff_unpick', :defaults => { :format => 'json' }
-		match ":id/like" => "storyteller#like", as: 'storyteller_like', :defaults => { :format => 'json' }
-		match ":id/unlike" => "storyteller#unlike", as: 'storyteller_unlike', :defaults => { :format => 'json' }
-		match ":id/record_comment" => "storyteller#record_comment", as: 'storyteller_record_comment', :defaults => { :format => 'json' }
+      match ":id(/:sl)" => "storyteller#index", as: 'storyteller_show'
+		#match ":id/staff_pick" => "storyteller#staff_pick", as: 'storyteller_staff_pick', :defaults => { :format => 'json' }
+		#match ":id/staff_unpick" => "storyteller#staff_unpick", as: 'storyteller_staff_unpick', :defaults => { :format => 'json' }
+		#match ":id/like" => "storyteller#like", as: 'storyteller_like', :defaults => { :format => 'json' }
+		#match ":id/unlike" => "storyteller#unlike", as: 'storyteller_unlike', :defaults => { :format => 'json' }
+		#match ":id/record_comment" => "storyteller#record_comment", as: 'storyteller_record_comment', :defaults => { :format => 'json' }
 
 		root :to => 'root#index'
 	  match "*path", :to => redirect("/#{I18n.default_locale}") # handles /en/fake/path/whatever

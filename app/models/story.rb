@@ -294,7 +294,8 @@ class Story < ActiveRecord::Base
 	end
 	
   def random_related_stories(number_to_return=3)
-    story_ids = StoryTheme.where(:theme_id => self.theme_ids).pluck(:story_id).uniq.shuffle[0..number_to_return]
+    themes_ids = self.themes.published.pluck(:id)
+    story_ids = StoryTheme.where(:theme_id => themes_ids).pluck(:story_id).uniq.shuffle[0..number_to_return]
     Story.where(:id => story_ids)
   end
 	# get all of the unique story locales for published stories

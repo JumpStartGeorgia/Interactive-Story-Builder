@@ -97,29 +97,47 @@
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
                 <% if columnSectionCount == 0 %>
-
-
                     <div class='info-top'>
                         <div class="share">
                             <div class="addthis_native_toolbox"></div> 
-                            <%= link_to '#',  :id=>"modalShare", :'data-modalos-id' => "modalos-share", :title => t('app.common.share'), :class => "embed" do %>
+                            <%= link_to '#', :'data-modalos-id' => "modalos-embed", :title => t('app.common.embed'), :class => "embed modalEmbed" do %>
           
                               <% end %> 
                         </div>
-                      <div class="views" title="">Views: <%= @story.impressions_count %></div>  
-                      <div class='r'>
-                    <%                  from_langs = []
-                @story.story_locales.each do |trans_locale|
-                  l = @languages.select{|x| x.locale == trans_locale}.first
-                  if l.present?
-                    from_langs << l
-                  end
-                end %>
-                        <div class='languages'>Languages:</div>
-                        <%= select_tag "translate-from", options_from_collection_for_select(from_langs, "locale", "name", @story.story_locale), include_blank: false,
-                     :id => "translateFrom", :class => "selectpicker1", 
-                     :'data-live-search' => "false", :'data-size' => "10"  %>
-                        <a href="#" class="navigation-volume"><div class="navigation-icon"></div></a>
+                      <div class="views" title=""><%= t('app.common.views') %>:&nbsp;<span><%= @story.impressions_count %></span></div>  
+                      <div class="r">  
+                        <%  
+                          locales = @story.story_locales
+                          cur_locale = @story.current_locale 
+                          cur_lang = @languages.select{|x| x.locale == cur_locale}.first
+                          locales-=[cur_locale]
+                        %>
+                          <div class='translations'>
+                            <div><%= t('helpers.links.languages') %>:&nbsp;</div>
+                            <div class="dropdown">
+                              <button class='btn btn-default dropdown-toggle<%= locales.size > 0 ? "" : " disabled" %>' type="button" id="translationsMenu" data-toggle="dropdown" aria-expanded="true">
+                                <%= cur_lang.name %>
+                                
+                                  <span class="caret"></span>                               
+                              </button>
+                              <% if locales.size > 0 %>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="translationsMenu">
+                                  <%  locales.each do |t| 
+                                        @story.current_locale = t
+                                        l = @languages.select{|x| x.locale == t}.first
+                                        if l.present?
+                                  %>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="<%= storyteller_show_path(:id=>@story.permalink,:sl =>t) %> "><%= l.name %></a></li>
+                                    <% end %>
+                                  <% end %>
+                                </ul>
+                              <% end %>
+                            </div>
+                          </div>
+                        <% 
+                          @story.current_locale = cur_locale
+                        %>
+                        <a href="#" class="navigation-volume"></a>
                       </div>
                     </div>
 
@@ -694,7 +712,7 @@
             fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight);
             d3.select(".video-sequence:first-child").style("margin-top", fixTop + "px");
              //containerFixed.style("height", fixHeight + "px")
-            containerFixed.style("height", innerHeight+ "px").filter(function(d) { //fixHeight 
+            containerFixed.style("height", fixHeight+ "px").filter(function(d) { //fixHeight 
               var rect = this.parentNode.getBoundingClientRect();
               return d.first ? rect.top < fixTop
                   : d.last ? rect.bottom >= fixTop + fixHeight

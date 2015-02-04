@@ -16,7 +16,7 @@
           <div class="about"><a id="modalAbout" data-modalos-id="modalos-about"><%= "#{t('app.common.about_story')}" %></a></div>
           <% if @story.present? && @story.sections.present? %>                          
             <div class="nav-volume-chapters">
-              <div class="nav-volume"><a href="#" class="navigation-volume"><div class="navigation-icon"></div></a></div>
+              <div class="nav-volume"><a href="#" class="navigation-volume"></a></div>
              
               <% markers = @story.sections.select{|t| (t.ok? && t.has_marker? == true) } %>      
               <% if markers.length > 1 %>    

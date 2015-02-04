@@ -353,6 +353,8 @@ en:
       home: Home
       required: Required
       nothing_selected: Nothing Selected
+      embed: Embed Code
+      scroll_top: Scroll to the top
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
@@ -724,6 +726,8 @@ en:
     byline_media: "Photos and videos by "
     source: "Source:"
     by: by
+    related_stories: Related Stories
+    view_all_stories_in: View all stories in
   settings:
     index:
       title: Settings
