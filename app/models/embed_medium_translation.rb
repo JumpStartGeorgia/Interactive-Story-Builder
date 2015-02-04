@@ -1,7 +1,9 @@
 class EmbedMediumTranslation < ActiveRecord::Base
-  belongs_to :sembed_medium
+  belongs_to :embed_medium
 
   attr_accessible :sembed_medium_id, :title, :url, :code, :locale
+
+  attr_accessor :progress_action
 
   #################################
   ## Validations

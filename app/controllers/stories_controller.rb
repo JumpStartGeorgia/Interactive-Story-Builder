@@ -354,6 +354,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
         @select_next = params[:commit_and_next].present? ? true : false                     
         format.js { render action: "change_sub_tree", status: :created  }
       else
+        logger.debug "@@@@@@@@@@@@@@@ error = #{@item.errors.full_messages.to_sentence}"
         flash[:error] = u I18n.t('app.msgs.error_created', obj:@item.class.model_name.human, err:@item.errors.full_messages.to_sentence)                  
         format.js {render action: "flash" , status: :ok }
       end

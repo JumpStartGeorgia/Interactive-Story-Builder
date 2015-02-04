@@ -3,6 +3,8 @@ class YoutubeTranslation < ActiveRecord::Base
 
   attr_accessible :id, :youtube_id, :locale, :title, :url, :menu_lang, :cc, :cc_lang, :code
 
+  attr_accessor :progress_action
+
   #################################
   ## Validations
   validates :title, :presence => true, length: { maximum: 255}  
@@ -18,6 +20,7 @@ class YoutubeTranslation < ActiveRecord::Base
   before_save :generate_iframe
 
   def generate_iframe
+    logger.debug "@@@@@@@@@@@@@@@2 generate_iframe"
     id = ''
     html = ''
     ok = false
@@ -51,8 +54,11 @@ class YoutubeTranslation < ActiveRecord::Base
     if ok       
       self.code = html
     else
+      logger.debug "@@@@@@@@@@@@@@@2 generate_iframe error!"
        errors.add(:code, "value can't be generated.")
        false
     end
+    logger.debug "@@@@@@@@@@@@@@@2 generate_iframe end"
   end
+
 end

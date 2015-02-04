@@ -1,6 +1,5 @@
 <%
   story.use_app_locale_if_translation_exists
-  logger.debug "====== story id #{story.id}; current locale #{story.current_locale}; story title #{story.title}; type = #{story.story_type_id}"
 
   title = ""   
   if story.about.present?     

@@ -18,7 +18,7 @@ class MediumTranslation < ActiveRecord::Base
 
   attr_accessible :medium_id, :locale, :title, :caption, :caption_align, :source, :infobox_type, 
                   :media_type, :image_attributes, :video_attributes
-  attr_accessor :video_date_changed, :is_amoeba
+  attr_accessor :video_date_changed, :is_amoeba, :progress_action
 
   #################################
   ## Validations

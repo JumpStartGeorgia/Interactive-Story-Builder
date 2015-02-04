@@ -3,6 +3,8 @@ class ContentTranslation < ActiveRecord::Base
 
   attr_accessible :content_id, :title, :caption, :sub_caption, :text, :locale
 
+  attr_accessor :progress_action
+
   #################################
   ## Validations
   validates :title, :presence => true, length: { maximum: 255 }   

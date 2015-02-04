@@ -14,6 +14,8 @@ class StoryTranslation < ActiveRecord::Base
   attr_accessible :story_id, :locale, :shortened_url, :title, :permalink, :permalink_staging, :author, :media_author, :about, 
       :published, :published_at, :language_type, :translation_percent_complete, :translation_author, :asset_attributes
 
+  attr_accessor :progress_action
+
   #################################
   ## Validations
   validates :title, :presence => true, length: { maximum: 100 }

@@ -533,9 +533,7 @@ class Story < ActiveRecord::Base
   # get the translation record for the given locale
   # if it does not exist, build a new one if wanted
   def with_translation(locale, build_if_missing=true)
-    logger.debug "===== with translation"
     @local_translations ||= {}
-    logger.debug "===== @locale = #{@locale_translations}"
     if @local_translations[locale].blank?
       x = self.story_translations.where(:locale => locale).first
       if x.blank? && build_if_missing
