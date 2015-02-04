@@ -132,7 +132,7 @@ ActiveRecord::Base.connection.execute(sql)
 #####################
 ## Themes
 #####################
-puts "Loading Test Themes"
+puts "Loading Test/Dummy Data"
 Theme.delete_all
 ThemeTranslation.delete_all
 StoryTheme.delete_all
@@ -214,9 +214,12 @@ a.author_translations.create(locale: 'en', name: 'Elizabeth Stamatina Fey')
 a.author_translations.create(locale: 'ka', name: 'Elizabeth Stamatina Fey')
 authors << a
 # now need to assign authors to stories
-published.each_with_index do |story, index|
+Story.all.each_with_index do |story, index|
   story.authors << authors.sample
   if index % 3 == 0
+    story.authors << authors.sample
+  end
+  if index % 5 == 0
     story.authors << authors.sample
   end
 end

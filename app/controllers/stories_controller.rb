@@ -40,7 +40,7 @@ class StoriesController < ApplicationController
   # GET /stories/new.json
   def new
     @item = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
-    @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])  
+    # @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])  
     logger.debug("------------------------------------------------#{@item.inspect}"  )
 #    @templates = Template.select_list
 #    @story_tags = []
