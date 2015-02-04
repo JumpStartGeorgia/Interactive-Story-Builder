@@ -256,9 +256,8 @@ class Story < ActiveRecord::Base
       #   .where(stories: {id: story_id})
       #   .first
 
-      x = includes(:translations, {sections: [:media,:content,:embed_medium,:youtube,:slideshow]})
+      x = includes({sections: [:media,:content,:embed_medium,:youtube,:slideshow]})
         .where(stories: {id: story_id})
-        .with_locales(locale)
         .first
 
       # x = includes({sections: [:media,:content,:embed_medium,:youtube,:slideshow]})
