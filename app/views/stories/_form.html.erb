@@ -10,10 +10,12 @@
     <%= tinymce editor_selector: 'tinyEditor2' %>
     <% tinyClass = "tinyEditor2" %>   
   <% end %>
-<% elsif %>
+<% elsif params[:action] == 'new' || params[:action] == 'create' %>
   <% content_for(:js) { %>
     <%= tinymce %>
   <% } %>
+<% else %>
+    <%= tinymce %>
 <% end %>
 <% isTO = @trans && original # if mode is translate and screen is original(first) %>
 <% form_class = @trans == true && original == false ? 'form-translation' : '' %>
@@ -23,7 +25,10 @@
       <%= error_messages_for f.object %>
     <% end %>
     <%= f.inputs do %>
-      <% trans_record = @item.with_translation(@item.current_locale) %>
+      <% 
+        trans_record = @item.story_translations.select{|x| x.locale == @item.current_locale}.first
+        trans_record = @item.with_translation(@item.current_locale) if trans_record.blank? 
+      %>
       <%= f.fields_for :story_translations, trans_record do |f_translation| %>
 
         <%# need this hidden field so can test if user has access to edit the locale if user is translator %>
@@ -61,6 +66,7 @@
 
         <% if !@trans %>
 
+          <% @item.story_locale = @item.current_locale if @item.story_locale.blank? %>
           <%= f.input :story_locale , :as => :select, :hint => t('.hint.locale'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "storyLocale", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "5"  } %>
 
           <%= f.input :story_type_id, :as => :select, hint: t('.hint.story_type'),  :include_blank => false, collection: @story_types.map{|t|[t.name,t.id]} , :input_html => { :id => "storyType", :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "5", :title => t('app.common.nothing_selected')  }   %> 

@@ -9,7 +9,7 @@ class StoryTranslation < ActiveRecord::Base
 
   has_permalink :create_permalink, true
 
-  accepts_nested_attributes_for :asset#, :reject_if => lambda { |c| c[:asset].blank? }
+  accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? && c[:asset_clone_id].blank? }
 
   attr_accessible :story_id, :locale, :shortened_url, :title, :permalink, :permalink_staging, :author, :media_author, :about, 
       :published, :published_at, :language_type, :translation_percent_complete, :translation_author, :asset_attributes

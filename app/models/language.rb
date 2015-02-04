@@ -10,7 +10,7 @@
     order('name asc')
   end
   
-  # sort with the app locales first
+  # sort with the app locales first, default locale first
   def self.app_locale_sorted
     langs = order('name asc')
     
@@ -30,6 +30,15 @@
 
       if temp.present?
         temp.sort_by!{|x| x.name}
+
+        # pull out default locale and move to first
+        default_index = temp.index{|x| x.locale == I18n.default_locale.to_s}
+        if default_index.present?
+          default = temp[default_index]
+          temp.delete_at(default_index)
+          temp.insert(0, default)
+        end
+
         langs.to_a.insert(0, temp).flatten!
       end
     end

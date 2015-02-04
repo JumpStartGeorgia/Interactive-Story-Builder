@@ -7,11 +7,14 @@
 <% form_class = @trans == true && original == false ? 'form-translation' : '' %>
 
 
-
   <h2 class="form-title"><%= t('.form_title') %></h2>
   <%= semantic_form_for(@item, url: slideshow_story_path(id:params[:id],:format => :js), :html => { :multipart=> true, :id => "slideshowForm", :class => "#{form_class}" } , remote: true) do |f| %>
     <%= f.inputs do %>
-      <% trans_record = @item.with_translation(@item.current_locale) %>
+
+      <% 
+        trans_record = @item.slideshow_translations.select{|x| x.locale == @item.current_locale}.first
+        trans_record = @item.with_translation(@item.current_locale) if trans_record.blank? 
+      %>
       <%= f.fields_for :slideshow_translations, trans_record do |f_translation| %>
 
         <%= (f_translation.input :locale , :as => :hidden) if !@isTO %>
@@ -69,9 +72,20 @@
                     <% end %> 
                   </div>
               <% end %> 
+            <% else %>
+              <% trans_record.assets.each_with_index do |asset_record, i| %>  
+                <% logger.debug "$$$$$$$$$$$$ asset = #{asset_record.inspect}" %>
+                 <div class="fields clear">
+                    <%= f_translation.fields_for :assets, asset_record do |f_asset| %>
+                      <%= render :partial => 'asset_fields', :locals => {:f => f_asset, :asset_record => asset_record } %>
+                    <% end %> 
+                  </div>
+              <% end %> 
+
             <% end %>
           <% else %>
             <% trans_record.assets.each_with_index do |asset_record, i| %>  
+              <% logger.debug "$$$$$$$$$$$$ asset = #{asset_record.inspect}" %>
                <div class="fields clear">
                   <%= f_translation.fields_for :assets, asset_record do |f_asset| %>
                     <%= render :partial => 'asset_fields', :locals => {:f => f_asset, :asset_record => asset_record } %>

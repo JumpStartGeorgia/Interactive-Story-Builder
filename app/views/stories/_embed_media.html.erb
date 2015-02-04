@@ -8,7 +8,11 @@
   <h2 class="form-title"><%= t('.form_title') %></h2>
   <%= semantic_form_for(@item, url: embed_media_story_path(id:params[:id],:format => :js), :html => {:id => "embedMediaForm"} ,remote: true) do |f| %>  
     <%= f.inputs do %>
-      <%= f.fields_for :embed_medium_translations, @item.with_translation(@item.current_locale) do |f_translation| %>
+      <% 
+        trans_record = @item.embed_medium_translations.select{|x| x.locale == @item.current_locale}.first
+        trans_record = @item.with_translation(@item.current_locale) if trans_record.blank? 
+      %>
+      <%= f.fields_for :embed_medium_translations, trans_record do |f_translation| %>
 
         <%= (f_translation.input :locale , :as => :hidden) if !isTO %>
          <%= (hidden_field_tag :current_locale , @item.current_locale) if !isTO %>

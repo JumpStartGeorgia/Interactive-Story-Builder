@@ -545,6 +545,7 @@ $(document).ready(function() {
   // when the story locale changes, make sure the hidden locale field also changes
   $('#storyLocale').change(function(){
     $('input#storyHiddenLocale').val($('#storyLocale').val());
+    $('input#current_locale').val($('#storyLocale').val());
   });
 
 

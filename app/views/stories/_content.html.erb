@@ -9,7 +9,7 @@
     <%= tinymce editor_selector: 'tinyEditor2' %>
     <% tinyClass = "tinyEditor2" %>   
   <% end %>
-<% elsif %>
+<% else %>
   <%= tinymce %>
    <% #tinymce :alternate, uploadimage_form_url: imageuploader_path(id:params[:id]), uploadimage_default_img_class: "image" %>
 <% end %>
@@ -22,7 +22,11 @@
 </h2>
 <%= semantic_form_for(@item, url: content_story_path(id:params[:id]), remote: true, html: { :id => 'contentForm'}) do |f| %>
   <%= f.inputs do %>
-    <%= f.fields_for :content_translations, @item.with_translation(@item.current_locale) do |f_translation| %>
+    <% 
+      trans_record = @item.content_translations.select{|x| x.locale == @item.current_locale}.first
+      trans_record = @item.with_translation(@item.current_locale) if trans_record.blank? 
+    %>
+    <%= f.fields_for :content_translations, trans_record do |f_translation| %>
 
       <%# need this hidden field so can test if user has access to edit the locale if user is translator %>
       <%= hidden_field_tag :current_locale , @item.current_locale if !isTO %>

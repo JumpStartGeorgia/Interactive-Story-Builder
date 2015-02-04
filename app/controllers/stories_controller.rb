@@ -56,9 +56,9 @@ class StoriesController < ApplicationController
   # GET /stories/1/edit
   def edit
     @item = Story.find(params[:id])
-    if !@item.asset_exists?
-      @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
-    end 
+    # if !@item.asset_exists?
+    #   @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+    # end 
 #    @templates = Template.select_list(@item.template_id)
 #    @story_tags = @item.tags.token_input_tags
     @themes = Theme.sorted
@@ -73,15 +73,19 @@ class StoriesController < ApplicationController
     respond_to do |format|
 
       if @item.save
+        @item.reload      
+        @item.with_translation(params[:current_locale])
+        @item.current_locale = params[:current_locale]
         flash_success_created(Story.model_name.human,@item.title)       
         format.html { redirect_to sections_story_path(@item) }
       #  format.json { render json: @item, status: :created, location: @item }
       else
-        if !@item.asset.present? 
-          @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
-        end      
+        # if !@item.asset.present? 
+        #   @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+        # end      
         #@templates = Template.select_list(@item.template_id) 
 #        @story_tags = @item.tags.token_input_tags
+        @item.current_locale = @item.story_locale
         @themes = Theme.sorted
         @authors = Author.sorted
         @new = true
@@ -109,6 +113,9 @@ class StoriesController < ApplicationController
         format.js {render action: "flash" , status: :ok }
       else
         if @item.update_attributes(params[:story])
+          @item.reload      
+          @item.with_translation(params[:current_locale])
+          @item.current_locale = params[:current_locale]
           flash_success_updated(Story.model_name.human,@item.title)       
           format.html { redirect_to  sections_story_path(@item) }
           format.js { render action: "flash", status: :created }    
@@ -118,6 +125,7 @@ class StoriesController < ApplicationController
           # end 
           #@templates = Template.select_list(@item.template_id)
 #          @story_tags = @item.tags.token_input_tags
+          @item.current_locale = @item.story_locale
           @themes = Theme.sorted
           @authors = Author.sorted
 logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to_sentence}"          
@@ -234,7 +242,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
         # end    
       elsif method=='create'
         @item = Story.new(:user_id => current_user.id, :story_locale => defualt_locale)     
-        @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
+        # @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
       end
       @themes = Theme.sorted   
       @authors = Author.sorted
@@ -288,7 +296,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
         @item = Youtube.find_by_id(sub_id)   
       else 
         @item = Youtube.new(:section_id => _id)
-        @item.youtube_translations.build(:locale => I18n.locale.to_s)
+        # @item.youtube_translations.build(:locale => I18n.locale.to_s)
       end
     end
 

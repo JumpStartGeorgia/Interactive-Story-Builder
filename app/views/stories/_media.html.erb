@@ -11,7 +11,10 @@
   <h2 class="form-title"><%= t('.form_title') %></h2>
   <%= semantic_form_for(@item, url: media_story_path(id:params[:id],:format => :js), :html => { :multipart=> true, :id => "mediaForm", :class => "#{form_class}" } , remote: true) do |f| %>
     <%= f.inputs do %>
-      <% trans_record = @item.with_translation(@item.current_locale) %>
+      <% 
+        trans_record = @item.medium_translations.select{|x| x.locale == @item.current_locale}.first
+        trans_record = @item.with_translation(@item.current_locale) if trans_record.blank? 
+      %>
       <%= f.fields_for :medium_translations, trans_record do |f_translation| %>
 
         <%# need this hidden field so can test if user has access to edit the locale if user is translator %>
