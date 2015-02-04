@@ -497,7 +497,7 @@ $(document).ready(function() {
   }
   else 
   {
-    //getObject('select','story');
+    getObject('select','story');
   }
 
   var was_title_box_length, was_permalink_box_length = 0;

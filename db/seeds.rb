@@ -179,7 +179,10 @@ published[21..published.length-1].each do |story|
 end
 
 # need to make some users coordinators for testing
-User.where(:role => User::ROLES[:user]).limit(7).update_all(:role => User::ROLES[:coordinator])
+if User.where(:role => User::ROLES[:coordinator]).count < 7
+  User.where(:role => User::ROLES[:user]).limit(7).update_all(:role => User::ROLES[:coordinator])
+end
+
 # need to make some author records for testing
 Author.destroy_all
 StoryAuthor.delete_all

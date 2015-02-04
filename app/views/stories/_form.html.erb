@@ -100,34 +100,37 @@
           <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.story.thumbnail') %></label>
           <% if !isTO %>
             <% if !original %>
-              <div class="boolean input optional checkbox" id="asset_clone_thumbnail">
-                <input name="clone_asset" type="hidden" value="0">
-                <label class="  control-label" for="clone_asset">
-                  <input id="clone_asset" name="clone_asset" type="checkbox" value="1" <%= asset_record.asset_clone_id.present? ? 'checked=checked' : '' %>><%= t('app.common.clone_asset') %>
-                  <div class="help-inline" original-title="<%= t('helpers.hints.clone_asset') %>">
-                    <div>?</div>
-                  </div>
-                </label>
-              </div>
+              <% 
+                orig = @item.with_translation(@from)
+                orig_asset_id = orig.asset.id if orig.present? && orig.asset.present?                  
+              %>
 
-              <% if asset_record.asset_clone_id.blank? && asset_record.file.exists? %>
-                <% 
-                  asset_class = isTO ? 'original-asset' : 'translated-asset'
-                %>
-                 <a class='btn btn-default preview <%= asset_class %>' id="story-thumbnail-preview" data-modalos-id="modalos-preview" data-type="image"  data-image-path='<%= "#{asset_record.file.url(:thumbnail)}" %>'><%=  t('app.buttons.preview_image') %></a>           
-              <% end %>  
+              <% if orig_asset_id.present? && orig.asset.file.exists? %>
+                <div class="boolean input optional checkbox" id="asset_clone_thumbnail">
+                  <input name="clone_asset" type="hidden" value="0">
+                  <label class="  control-label" for="clone_asset">
+                    <input id="clone_asset" name="clone_asset" type="checkbox" value="1" <%= asset_record.asset_clone_id.present? ? 'checked=checked' : '' %>><%= t('app.common.clone_asset') %>
+                    <div class="help-inline" original-title="<%= t('helpers.hints.clone_asset') %>">
+                      <div>?</div>
+                    </div>
+                  </label>
+                </div>
 
-              <div id="item-asset-clone">
-                <% 
-                  orig = @item.with_translation(@from)
-                  orig_asset_id = orig.asset.id if orig.present? && orig.asset.present?                  
-                %>
-                <%= f_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id} %>
-              </div>
-              <% style = asset_record.asset_clone_id.present? ? 'display:none;' : '' %>
-              <div id="item-asset" style="<%= style %>">
-                <%= f_asset.input :asset, :as => :file , hint: t('.hint.thumbnail') , :input_html => { :id => "storyThumbnail", accept:".jpg,.jpeg,.png" }, label: false  %> 
-              </div>
+                <% if asset_record.asset_clone_id.blank? && asset_record.file.exists? %>
+                  <% 
+                    asset_class = isTO ? 'original-asset' : 'translated-asset'
+                  %>
+                   <a class='btn btn-default preview <%= asset_class %>' id="story-thumbnail-preview" data-modalos-id="modalos-preview" data-type="image"  data-image-path='<%= "#{asset_record.file.url(:thumbnail)}" %>'><%=  t('app.buttons.preview_image') %></a>           
+                <% end %>  
+
+                <div id="item-asset-clone">
+                  <%= f_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id} %>
+                </div>
+                <% style = asset_record.asset_clone_id.present? ? 'display:none;' : '' %>
+                <div id="item-asset" style="<%= style %>">
+                  <%= f_asset.input :asset, :as => :file , hint: t('.hint.thumbnail') , :input_html => { :id => "storyThumbnail", accept:".jpg,.jpeg,.png" }, label: false  %> 
+                </div>
+              <% end %>
             <% else %>
               <% if asset_record.file.exists? %>
                 <% 
