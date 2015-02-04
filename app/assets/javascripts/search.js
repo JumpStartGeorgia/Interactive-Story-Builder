@@ -16,7 +16,10 @@ $(document).ready(function(){
     "oLanguage": {
       "sUrl": gon.datatable_i18n_url
     },
-    "aaSorting": [[2, 'desc']]
+    "aaSorting": [[5, 'desc']],
+    "columnDefs": [
+       { orderable: false, targets: [0,-1] }
+    ]
   });
 
 });

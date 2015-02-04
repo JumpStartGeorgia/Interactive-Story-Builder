@@ -29,6 +29,9 @@ ka:
         about: თქვენ შესახებ
         local_avatar: პროფილის სურათი
         nickname: მომხმარებლის სახელი
+        sign_in_count: Number of Times Logged In
+        created_at: Date Created
+        current_sign_in_at: Date Last Logged In
       author:
         avatar: პროფილის სურათი
       author_translation:
@@ -335,6 +338,7 @@ ka:
       powered_by_end: " მიერ"
       embed_slogan: შექმენი შენი ამბავი “Chai Khanaთ”
       added_on: "დამატებულია: %{date}"
+      last_sign_in: "Logged in last: %{date}"
       admin: ადმინისტრატორი
       sign_out: გასვლა      
       jumpstart: ჯამპსტარტ ჯორჯია

@@ -1,6 +1,6 @@
 class UsersDatatable
   include Rails.application.routes.url_helpers
-  delegate :params, :h, :link_to, :number_to_currency, :number_with_delimiter, to: :@view
+  delegate :params, :h, :link_to, :image_tag, :number_to_currency, :number_with_delimiter, to: :@view
   delegate :current_user, to: :@current_user
 
   def initialize(view, current_user)
@@ -22,8 +22,13 @@ private
   def data
     users.map do |user|
       [
+        user_image(user),
+        user.nickname,
         user.email,
         user.role_name.humanize,
+        I18n.l(user.created_at, :format => :file),
+        I18n.l(user.current_sign_in_at, :format => :file),
+        user.sign_in_count,
         action_links(user)
       ]
     end
@@ -31,6 +36,10 @@ private
 
   def users
     @users ||= fetch_users
+  end
+
+  def user_image(user)
+    return image_tag(user.avatar_url)
   end
 
   def action_links(user)
@@ -43,8 +52,6 @@ private
                       :method => :delete,
 											:data => { :confirm => I18n.t("helpers.links.confirm") },
                       :class => 'btn btn-mini btn-danger')
-    x << "<br /><br />"
-    x << I18n.t('app.common.added_on', :date => I18n.l(user.created_at, :format => :short))
     return x.html_safe
     return x
   end
@@ -75,7 +82,7 @@ private
   end
 
   def sort_column
-    columns = %w[users.email users.role users.created_at]
+    columns = %w[users.id users.nickname users.email users.role users.created_at users.current_sign_in_at users.sign_in_count]
     columns[params[:iSortCol_0].to_i]
   end
 

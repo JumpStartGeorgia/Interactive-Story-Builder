@@ -29,6 +29,9 @@ en:
         about: Summary of You
         local_avatar: Avatar
         nickname: Nickname
+        sign_in_count: Number of Times Logged In
+        created_at: Date Created
+        current_sign_in_at: Date Last Logged In
       author:
         avatar: Avatar
       author_translation:
@@ -335,6 +338,7 @@ en:
       powered_by_end: ""
       embed_slogan: Build your story with Chai Khana
       added_on: "Added on: %{date}"
+      last_sign_in: "Logged in last: %{date}"
       admin: Admin
       sign_out: Sign Out    
       jumpstart: JumpStart Georgia

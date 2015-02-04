@@ -12,9 +12,14 @@
 <table class="table table-striped display" id="users-datatable" data-source="<%= admin_users_url(:format => :json) %>">
   <thead>
     <tr>
+      <th></th>
+      <th><%= model_class.human_attribute_name(:nickname) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
       <th><%= model_class.human_attribute_name(:role) %></th>
-      <th><%=	t('app.common.actions') %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:current_sign_in_at) %></th>
+      <th><%= model_class.human_attribute_name(:sign_in_count) %></th>
+      <th><%=	t('helpers.actions') %></th>
     </tr>
   </thead>
   <tbody>
