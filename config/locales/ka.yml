@@ -374,6 +374,7 @@ ka:
       error_publish_missing_fields: "%{obj} ვერ  გამოქვეყნებული, სანამ არ დაამატებთ მოკლე შინაარსს და ფოტოს."
       error_publish_missing_fields_link: დაამატეთ გამოტოვებული კონტენტი.
       error_publish_missing_content_section: ამბის გამოქვეყნებისთვის აუცილებელია სულ მცირე ერთი სექცია.
+      error_publish_missing_translations: "The story must be completely translated in %{lang} in order to be published."
       error_unpublish: "%{obj} გამოქვეყნება გაუქმებულია: %{err}"
       error_clone: "%{obj} კლონირება ვერ გაკეთდა." 
       error_clone_notification: "Error occurred while cloning story: %{msg}"

@@ -55,4 +55,24 @@ class StoryTranslationProgress < ActiveRecord::Base
     where(story_id: story_id).delete_all
   end
 
+
+  # determine whether all of the records that need to be translated are translated before published
+  # - if locale is the story_locale, then the return value will always be true
+  def self.can_publish?(story_id, locale)
+    can_publish = false
+
+    records = where(story_id: story_id)
+    primary = records.select{|x| x.is_story_locale?}.first
+
+    if primary.present?
+      if primary.locale == locale.to_s
+        can_publish = true
+      else
+        record = records.select{|x| x.locale == locale.to_s}.first
+        can_publish = record.present? && record.items_completed == primary.items_completed
+      end
+    end
+
+    return can_publish
+  end
 end

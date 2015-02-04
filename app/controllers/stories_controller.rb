@@ -540,11 +540,20 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
     respond_to do |format|    
       
       if publishing
-        if !(@item.about.present? && @item.asset_exists?)                 
+        # if story language passed in, make sure that language has been completely translated
+        if params[:story_language].present? && !StoryTranslationProgress.can_publish?(@item.id, params[:story_language])
+           lang = @languages.select{|x| x.locale == params[:story_language]}.first
+           format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_translations', lang: lang.name)} }          
+           error = true
+
+        # must have about and thumbnail
+        elsif !(@item.about.present? && @item.asset_exists?)                 
                   view_context.log(@item.sections.map{|t| t.content? && t.content.present? && t.content.text.present? }.count(true) )
            format.json {render json: { e:true, msg: (t('app.msgs.error_publish_missing_fields', :obj => @item.title) +  
                 " <a href='" +  sections_story_path(@item) + "'>" + t('app.msgs.error_publish_missing_fields_link') + "</a>")} }  
            error = true       
+
+         # content section must have text
         elsif @item.sections.map{|t| t.content.present? && t.content.text.present? }.count(true) == 0          
            format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_content_section')} }          
            error = true

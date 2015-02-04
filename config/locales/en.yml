@@ -374,6 +374,7 @@ en:
       error_publish_missing_fields: "%{obj} can't be published until you provide a summary and thumbnail image."
       error_publish_missing_fields_link: Add the missing content.
       error_publish_missing_content_section: At least one section required.
+      error_publish_missing_translations: "The story must be completely translated in %{lang} in order to be published."
       error_unpublish: "%{obj} wasn't unpublished: %{err}"
       error_clone: "%{obj} wasn't cloned."
       error_clone_notification: "Error occurred while cloning story: %{msg}"
