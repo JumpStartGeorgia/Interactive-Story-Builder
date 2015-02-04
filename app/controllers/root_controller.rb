@@ -154,7 +154,7 @@ class RootController < ApplicationController
 
   def feed
     index = params[:category].present? ? @categories_published.index{|x| x.permalink.downcase == params[:category].downcase} : nil
-    @items =  Story.is_published.in_published_theme.include_categories.recent
+    @items =  Story.is_published.in_published_theme.recent
     @filtered_by_category = ""
     if index.present?
       @filtered_by_category = @categories_published[index].permalink

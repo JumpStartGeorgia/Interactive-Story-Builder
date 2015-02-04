@@ -1,6 +1,6 @@
 atom_feed do |feed|
   feed.title t('app.common.feed'), :app_name => (t'app.common.app_name_not_trans')
-  feed.updated @items.maximum(:published_at)
+  feed.updated @items.first.published_at
 
   @items.each do |item|
     feed.entry item, :published => item.published_at, :url => storyteller_show_path(item.permalink,:only_path => false)    do |entry|
