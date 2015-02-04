@@ -27,4 +27,26 @@ module StoriesHelper
 
 	  "#{StoriesHelper.transliterate(filename)}.#{StoriesHelper.transliterate(extension)}"
 	end
+
+	# compute translation progress
+	def compute_translation_progress_percent(locale, progress_array)
+		percent = nil
+		if progress_array.present?
+			# get record of story main language
+			main = progress_array.select{|x| x.is_story_locale?}.first
+			if main.present?
+				if main.locale == locale.to_s
+					percent = number_to_percentage(100) 
+				else
+					record = progress_array.select{|x| x.locale == locale.to_s}.first
+					if record.present?
+						percent = number_to_percentage((100 * record.items_completed / main.items_completed))
+					end
+				end
+			end
+		end
+		return percent
+	end
+
+
 end

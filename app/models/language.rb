@@ -4,6 +4,12 @@
 	validates :name, :presence => true
 
   has_many :stories, :primary_key => :locale, :foreign_key => :story_locale
+
+
+  attr_accessor :percent
+
+
+
 #  default_scope { where(locale:['az','en','hy','ka','ru']) }
 
   def self.sorted
@@ -104,4 +110,14 @@
       update_all(:has_published_stories => 0)
     end
   end  
+
+
+  # show the name of the language with the translation percent status
+  def name_with_translation_percent
+    if self.percent.present?
+      return "#{self.name} (#{self.percent})"
+    else
+      return self.name
+    end
+  end
 end

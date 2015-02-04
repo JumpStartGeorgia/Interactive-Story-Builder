@@ -19,6 +19,8 @@ class Story < ActiveRecord::Base
   # record public views
   is_impressionable :counter_cache => true 
 
+  has_many :story_translation_progresses, :dependent => :destroy
+  alias_attribute  :translation_progress, :story_translation_progresses
   has_many :story_translations, :dependent => :destroy
   has_many :invitations, :dependent => :destroy
 	has_many :story_categories
