@@ -129,8 +129,8 @@ class Story < ActiveRecord::Base
     sql << ") as x on s.story_type_id = x.story_type_id and st.published_at = x.published_at "
     matches = find_by_sql([sql, theme_id: options[:theme_id]])
 
-    # now get the stories
-    where(:id => matches.map{|x| x.id}).order('story_type_id')
+    # now get the stories sorted by the story type sort order
+    joins(:story_type).where(:stories => {:id => matches.map{|x| x.id}}).order('story_types.sort_order')
   end
 
   
