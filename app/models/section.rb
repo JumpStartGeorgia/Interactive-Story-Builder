@@ -58,6 +58,17 @@ class Section < ActiveRecord::Base
   #   end
   # end  
 
+  before_validation :trigger_delete_audio
+
+  # have to call this in section because delete_audio is not an attribute in the table
+  # and so Dirty is not applied to it.
+  # can catch the flag here and then call the translation method.
+  def trigger_delete_audio
+    if self.section_translations.first.delete_audio.to_bool == true
+      self.section_translations.first.check_delete_audio
+    end
+    return true
+  end
 
   #################################
 
