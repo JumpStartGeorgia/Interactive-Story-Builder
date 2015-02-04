@@ -3,7 +3,9 @@
 <%= render partial: 'shared/story_nav' %>
 
 <h2><%= t('.owner_header') %></h2>
-<%= image_tag @story.user.avatar_url(:'50x50'),:size=>"50x50", :title => @story.user.nickname %>
+<% @story.authors.each do |author| %>
+  <%= image_tag author.avatar_url(:'50x50'),:size=>"50x50", :title => author.name %>
+<% end %>
 
 <h2><%= t('.collaborators_header') %></h2>
 <p>
