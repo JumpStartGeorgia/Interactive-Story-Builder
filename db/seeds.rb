@@ -140,14 +140,12 @@ StoryTheme.delete_all
 # get stories to add to theme
 published_ids = StoryTranslation.select('distinct story_id').where(:published => true)
 published = Story.where(:id => published_ids.uniq)
-story_types = StoryType.select('id').map{|x| x.id}
 
 t = Theme.create(:ud => 1, :is_published => true, :published_at => '2015-01-15', :show_home_page => true)
 t.theme_translations.create(:locale => 'en', :name => '1st test theme', edition: 'January 2015')
 t.theme_translations.create(:locale => 'ka', :name => '1st test theme', edition: 'January 2015')
 published[0..7].each_with_index do |story, i|
   story.themes << t
-  story.story_type_id = story_types.sample
   if i % 2 == 0
     story.in_theme_slider = true
   end
@@ -158,7 +156,6 @@ t.theme_translations.create(:locale => 'en', :name => '2nd test theme', edition:
 t.theme_translations.create(:locale => 'ka', :name => '2nd test theme', edition: 'December 2014')
 published[8..10].each_with_index do |story, i|
   story.themes << t
-  story.story_type_id = story_types.sample
   if i % 2 == 0
     story.in_theme_slider = true
   end
@@ -170,7 +167,6 @@ t.theme_translations.create(:locale => 'en', :name => '3rd test theme', edition:
 t.theme_translations.create(:locale => 'ka', :name => '3rd test theme', edition: 'November 2015')
 published[10..20].each_with_index do |story, i|
   story.themes << t
-  story.story_type_id = story_types.sample
   if [1, 5, 9].include?(i)
     story.in_theme_slider = true
   end
@@ -179,7 +175,6 @@ end
 
 # add story type to remaining stories
 published[21..published.length-1].each do |story|
-  story.story_type_id = story_types.sample
   story.save
 end
 
@@ -213,7 +208,9 @@ a = Author.create(id: 6)
 a.author_translations.create(locale: 'en', name: 'Elizabeth Stamatina Fey')
 a.author_translations.create(locale: 'ka', name: 'Elizabeth Stamatina Fey')
 authors << a
-# now need to assign authors to stories
+
+# now need to assign authors and story type to stories
+story_types = StoryType.select('id').map{|x| x.id}
 Story.all.each_with_index do |story, index|
   story.authors << authors.sample
   if index % 3 == 0
@@ -222,6 +219,9 @@ Story.all.each_with_index do |story, index|
   if index % 5 == 0
     story.authors << authors.sample
   end
+
+  story.story_type_id = story_types.sample
+  story.save
 end
 
 
