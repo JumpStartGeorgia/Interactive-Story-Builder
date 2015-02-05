@@ -115,6 +115,7 @@ ka:
         is_published: Publish?
         published_at: Date Published
         show_home_page: Show this theme on the home page?
+        published_item_count: Number of Published Items
       theme_translation:
         name: Name
         edition: Edition
@@ -130,6 +131,7 @@ ka:
         required_field: "სავალდებულო ველი"
         already_exists: 'უკვე არსებობს მონაცემთა ბაზაში'
         story_authors: "must have at least one person selected."
+        publish_theme: 'The theme cannot be published until at least one published item has been assigned to the theme.'
   mailer:
     closing: "პატივისცემით,"
     signature: “Chai Khanaს” გუნდი

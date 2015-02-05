@@ -1,8 +1,11 @@
 class Theme < ActiveRecord::Base
   translates :name, :edition, :description, :permalink
 
+  has_many :story_themes, :dependent => :destroy
+  has_many :stories, :through => :story_themes
   has_many :theme_translations, :dependent => :destroy
   accepts_nested_attributes_for :theme_translations
+
   attr_accessible :id, :is_published, :published_at, :show_home_page, :theme_translations_attributes
 
 
@@ -12,6 +15,7 @@ class Theme < ActiveRecord::Base
   #################################
   ## Callbacks
   after_save :reset_show_home_page_flag
+  before_validation :check_if_can_publish
 
   # only one theme can be marked as being on the home page
   # if this record was marked as being on the home page, reset all other themes to not be on home page
@@ -19,6 +23,15 @@ class Theme < ActiveRecord::Base
     if self.is_published? && self.show_home_page? && self.show_home_page_changed?
       Theme.where('id != ?', self.id).update_all(:show_home_page => false)
     end
+  end
+
+  # if trying to publish the story, make sure it can be published
+  # must have published items
+  def check_if_can_publish
+    if self.is_published_changed? && self.is_published? && self.published_item_count == 0
+      self.errors.add(:base, I18n.t('activerecord.errors.messages.publish_theme'))
+    end    
+    return true 
   end
 
   #################################
@@ -37,4 +50,9 @@ class Theme < ActiveRecord::Base
   def formatted_name
     "#{self.name} (#{self.edition})"
   end
+
+  # get the number of published items in this theme
+  def published_item_count
+    Theme.select('distinct stories.id').joins(:stories => :story_translations).where('story_translations.published = 1 and themes.id = ?', self.id).count
+  end  
 end
