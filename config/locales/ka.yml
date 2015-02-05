@@ -8,10 +8,9 @@ ka:
       medium: მთელ ეკრანზე გაშლილი ფოტო/ვიდეო სლაიდშოუ
       content: ტექსტი
       slideshow: ფოტო სლაიდშოუ
-      news: სიახლეები
       message: შეტყობინება
       embed_medium: ჩასასმელი ონლაინ აუდიო/ვიდეო
-      youtube: Youtube Online Media      
+      youtube: YouTube Video      
       language: ენა
       category: კატეგორია
       page: ტექსტი გვერდებისთვის
@@ -89,29 +88,19 @@ ka:
       slideshow:
         title: სათაური
         caption: ფოტოს წარწერა
-      news:
-        title: სათაური
-        content: შინაარსი
-        is_published: გამოვაქვეყნოთ?
-        published_at: გამოქვეყნების თარიღი
-      message:
-        name: სახელი
-        email: ელ. ფოსტის მისამართი
-        message: გზავნილი
-        message_type: გზავნილის მიზანი
       embed_medium:
         title: სათაური
         url: ონლაინ აუდიოს/ვიდეოს ბმული
       youtube:
-        title: Title
-        url: Url to Online Media
         fullscreen: Fullscreen
         loop: Loop
-        info: Show Information Bar
+        info: Show Video Title Bar
       youtube_translation:
-        menu_lang: "Player language"
+        title: Title
+        url: Url to YouTube Video
+        menu_lang: Player Language
         cc: Show Caption/Subtitle
-        cc_lang: "Subtitle language"       
+        cc_lang: Subtitle Language       
       language:
         locale: ენის აღმნიშვნელი
         name: ენა
@@ -160,15 +149,6 @@ ka:
         message: "ამ ამბებზე ცოტა ხნის წინ დატოვეს კომენტარები:"
         comment: "1 კომენტარი"
         comments: "%{num} კომენტარი"
-      published_news:
-        subject: "“Chai Khanaს” სიახლეები!"
-        message: "“სთორიბილდერს” დაემატა სიახლეები. დააჭირეთ ბმულს, რათა გაიგოთ, რა არის ახალი “სთორიბილდერზე”."
-      staff_pick_review:
-        subject: "“სთორიბილდერზე” გამოქვეყნდა ახალი ამბები!"
-        message: "შემდეგი ამბები საჭიროებენ განხილვას, რათა დაემატოს რჩეულებს!"
-      staff_pick_selection:
-        subject: "თქვენი ამბავი “Chai Khanaს” რჩეულია!"
-        message: "გილოცავთ! თქვენი ეს ამბავი გახდა “სთორბილდერის” გუნდის რჩეული:"
       story_collaboration:
         subject: "თქვენ მოწვეული ხართ, რათა მონაწილეობა მიიღოთ “სთორიბილდერზე” ამბის შექმნაში!"
         message: "თქვენ მოწვეული ხართ, რათა მონაწილეობა მიიღოთ ამბის შექმნაში სხვა ადამიანებთან ერთად “სთორიბილდერზე”. თუ გსურთ, მიიღოთ მოწვევა, უბრალოდ დააჭირეთ ბმულს 'მოწვევის მიღება'. თუ არ გსურთ მონაწილეობა, უპასუხოდ დატოვეთ მოწვევა."
@@ -373,6 +353,7 @@ ka:
       home: მთავარი
       required: სავალდებულო
       nothing_selected: არ არის არჩეული
+      clone_asset: Use the original file?
     msgs:
       does_not_exist: თქვენ ცდილობთ ისეთი გვერდის ნახვას, რომელიც არ არსებობს.
       not_authorized: თქვენ არ გაქვთ ამ გვერდის ნახვის უფლება.
@@ -410,7 +391,7 @@ ka:
         content: ტექსტურ სექციაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი
         slideshow: ფოტო სლაიდშოუს სექციაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი
         embed_media: ონლაინ აუდიო/ვიდეო სექციაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი
-        youtube: Only one Item can be added to a Embed Youtube section
+        youtube: Only one Item can be added to a YouTube section
         general: Only one Item can be added to this type of section
       destroy_story:
         success: ამბავი წაიშალა.
@@ -435,8 +416,6 @@ ka:
         new_story_by_category_success: "თქვენ მიიღებთ შეტყობინებას, როდესაც ახალი ამბავი დაემატება კატეგორიას: %{categories}."
         story_comments_yes: თქვენ მიიღებთ შეტყობინებას, როდესაც თქვენს ამბავზე გააკეთებენ კომენტარს.
         story_comments_no: თქვენ არ მიიღებთ შეტყობინებას, როდესაც თქვენს ამბავზე დატოვებენ კომენტარს.
-        news_yes: თქვენ მიიღებთ შეტყობინებას, როდესაც  “სთორიბილდერს” დაემატება სიახლეები.
-        news_no: თქვენ არ მიიღებთ შეტყობინებას, როდესაც  “სთორიბილდერს” დაემატება სიახლეები.
         following_no: "თქვენ აღარ მიიღებთ შეტყობინებებს  '%{nickname}ის' ახალი ისტორიების შესახებ."
         language: თქვენ მიიღებთ შეტყობინებას %{language}.
       fail_change_order: ერთეულის ადგილი ვერ შეიცვალა 
@@ -458,10 +437,10 @@ ka:
       description: ფოტოები ჰორიზონტალურ სლაიდშოუში
     embed_media: 
       name: ონლაინ აუდიო/ვიდეო 
-      description: youtube, vimeo, და ა.შ.
+      description: YouTube, Vimeo, და ა.შ.
     youtube: 
-      name: Embed Youtube
-      description: Fullscreen/common youtube video       
+      name: YouTube Video
+      description: YouTube video with ability to setting caption language
   story_role:
     editor: Editor
     translator: Translator
@@ -469,12 +448,6 @@ ka:
     bug: გვაცნობეთ შეცდომის შესახებ
     feature: მოითხოვეთ ახალი ფუნქციის დამატება
     feedback: გაგვიზიარეთ თქვენი აზრი
-  story_types:
-    story: Story - mixed story TODO
-    talk_show: Talkshow - talkshow story TODO
-    video: Video - video story TODO
-    photo: Photo - photo story TODO
-    infographic: Infographic - infographic story TODO
   filters:
     all: ყველა
     matches: მსგავსი ამბები
@@ -484,6 +457,7 @@ ka:
     sort_header: დალაგება
     sort_title: როგორ გსურთ ამბების დალაგება?
     filters: ფილტრი
+    all_stories: All Stories
     sort:
       recent: ბოლო
       reads: ნახვა
@@ -545,52 +519,8 @@ ka:
         title: მომხმარებლის დეტალები
   root:
     index:
-      title: “Chai Khana” - შექმენი მომავალი თაობის ამბები
-      about_header: რა არის ეს?
-      about_text: “Chai Khana” საშუალებას აძლევს ნებისმიერ ადამიანს,<br> ტექსტით, სურათით, ფოტოთი და/ან ვიდეოთი შექმნას მულტიმედია ამბავი<br> და გაუზიაროს მსოფლიოს. %{demo_link} გაიგეთ, რა არის შესაძლებელი, შემდეგ კი %{start_link}!
-      demo_link: ნახეთ “Chai Khanaს” ამბის ნიმუში
-      start_link: შექმენით და გააზიარეთ თქვენი ამბავი
-      news_header: უახლესი ამბები
-      all_news: მეტი...
-    news:
-      title: სიახლეები “Chai Khanaს” შესახებ
-      no_news: არანაირი ახალი ამბავიც კარგი ამბავია!
-      more_link: გაგრძელება
-    news_show:
-      title: "სიახლეები “Chai Khanaს” შესახებ: %{title}"
-      view_all: ყველა სიახლის ნახვა
-    feedback:
-      title: მოგვწერეთ “Chai Khanaს” შესახებ
-      message_sent: თქვენი შეტყობინება გაგზავნილია! მადლობა, რომ დაგვიკავშირდით.
-      send: გაგზავნა
-      name: სახელი
-      email: ელ. ფოსტის მისამართი
-      message: შეტყობინება
-    todo_list:
-      title: "გეგმაშია, “სთორიბილდერს” დაემატოს"
-      summary: “Chai Khana” ჩამოყალიბების სტადიაში და უამრავ ცვლილებას განიცდის. აქ თავმოყრილია იმ ფუნქციების ჩამონათვალი, რომელზეც ჩვენ ამჟამად ვმუშაობთ, ან ვაპირებთ, რომ ვიმუშაოთ და აპლიკაციას დავამატოთ.
-      last_update: "ბოლოს განახლდა"
-      header_current: განახლებები, რომელზეც ამჟამად ვმუშაობთ
-      header_short_term: მოკლევადიანი განახლებები
-      header_long_term: გრძელვადიანი განახლებები
-      header_completed: დასრულებული განახლებები
-      completed_text: დასრულებული განახლებები სანახავად ეწვიეთ %{link}.
-      news_link: ახალი სექცია
-      header_missing: რამე ხომ არ აკლია?
-      missing_text: ჩამონათვალს ხომ არ აკლია ფუნქცია, რომლის დამატებასაც ისურვებდით? ხომ არ ფიქრობთ, რომ ჩამონათვალის სია უნდა გადავაწყოთ? თუ კი, გთხოვთ მოგვაწოდეთ ინფორმაცია %{link}.
-      feedback_link: უკუკავშირის სექცია
     about:
       title: “Chai Khanaს” შესახებ 
-      intro: "ეს არის პლატფორმა, რომლის საშუალებითაც შეგიძლიათ ტექსტი, აუდიო, სურათი და/ან ვიდეო გარდაქმნათ კრეატიულ ვებ-ამბად და გაუზიაროთ სამყაროს. "
-      p1: "“Chai Khana” არის ხელსაწყო, რომლის საშუალებითაც ნებისმიერ ადამიანს შეუძლია შექმნას შერეული მედია ტიპის ამბავი პროგრამირების ცოდნის გარეშე. მსგავსი აპლიკაციებისგან “სთორიბილდერს” ის განასხვავებს, რომ ავტორს აქვს სრული კონტროლი ამბის სტრუქტურაზე. თითოეული ამბავი შედგება ავტორის სურვილისამებრ დაწყობილი სხვადასხვა ტიპის მედია სექციისგან."
-      p2: "თქვენ ირჩევთ, თუ რა უნდა იყოს თითოეულ სექციაში: ტექსტი/html, მთლიან ეკრანზე გაშლილი გამოსახულება/ვიდეო, ფოტო სლაიდშოუ თუ სხვა. თითოეულ სექციას შეგიძლიათ დაადოთ თქვენ მიერ შერჩეული აუდიო გაფორმება. მთლიანად თქვენზეა დამოკიდებული, რას შექმნით ამ აპლიკაციით!"
-      p3: "“Chai Khanaს” პლატფორმა ღია კოდის მქონეა, რაც იმას ნიშნავს, რომ შეგიძლიათ აპლიკაცია თქვენს სერვერზე განათავსოთ და “ჯამპსტარტ ჯორჯიას” “Chai Khanaსგან” დამოუკიდებლად მართოთ თქვენი ამბები. ასევე, შეგიძლიათ “სთორიბილდერზე” შექმნილი ამბავი ჩამოტვირთოთ და თქვენთვის სასურველ საიტზე განათავსოთ. ამ შემთხვევაში თქვენი ორგანიზაცია არ იქნება დამოკიდებული მესამე მხარის მიერ თქვენი კონტენტის ჰოსტინგზე."
-      p4: "“Chai Khana” შექმნილია “ჯამპსტარტ ჯორჯიას” მიერ იმისათვის, რომ საზოგადოებრივ ორგანიზაციებს, ჟურნალისტებს, აქტივისტებსა და რიგით მოქალაქეებს მთელი მსოფლიოდან გაუადვილდეთ ინტერნეტის გამოყენებით თავიანთი აუდიტორიისთვის ამბების მოყოლა უფრო სახალისო და ინტერაქტიული გზით." 
-      help: "თუ თქვენს ორგანიზაციას სურს, დაგვეხმაროს “Chai Khanaს” დახვეწაში ფინანსური შემოწირულობით, დეველოპმენტის, დიზაინის ან სხვა კუთხით, შეგვეხმიანეთ!" 
-      contact:   
-        subject: “Chai Khanaს” საკონტაქტო ფორმა
-        address1: 'შევჩენკოს ქ. 5, ბინა 2'
-        address2: 'თბილისი, საქართველო 0108'
     embed:
       home_link: შექმნილია “სთორიბილდერზე”
   stories:
@@ -605,11 +535,13 @@ ka:
         permalink: ამბის ბმული
         author: სტატიის ავტორ(ებ)ი
         media_author: ფოტოსა და/ან ვიდეოს ავტორ(ებ)ი
+        translation_author: "Author(s) that translated the story into this language"
       hint:
         title: ამბის სათაური გამოჩნდება ამბის საწყის გვერდზე
         permalink: ავტომატური ბმული შეიცავს ამბის სათაურს, თუმცა, სურვილისამებრ, შეგიძლიათ შეცვალოთ იგი
-        author: ავტორ(ებ)ის სახელები გამოჩნდება ამბის სათაურის ქვემოთ
+        author: Select the author(s) of the story to allow the story to appear on their webpage.
         media_author:  ფოტოს/ვიდეოს ავტორ(ებ)ის სახელები გამოჩნდება ავტორ(ებ)ის სახელების ქვემოთ
+        translation_author:  "Author names will appear below the Photo and Video Author names"
         published: გამოქვეყნებული ამბების ნახვა ყველას შეუძლია
         publish_home_page: "თუ მონიშნავთ, თქვენ მიერ გამოქვეყნებული ამბავი გამოჩნდება საიტის საწყის გვერდზე"
         template: აირჩიეთ შაბლონი ამბის სტილის შესარჩევად
@@ -622,6 +554,7 @@ ka:
         tag_list: "შეიყვანეთ ტექსტი, რომ იპოვოთ არსებული თეგი. თუ თქვენი თეგი ჯერ არ არსებობს, დააჭირეთ 'შეყვანას' და დაამატეთ იგი."
         story_type: Select the type of your story.
         theme: Select the theme(s) your story belongs to.
+        in_theme_slider: "If checked, this story will appear in the slider at the top of the theme page."
     collaborators:
       title: "ამბის '%{title}' თანაავტორები"
       owner_header: Story Author
@@ -722,21 +655,28 @@ ka:
         url: ონლაინ აუდიო/ვიდეო ფაილის ბმული
       hint:
         title: ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში
-        url: "ჩასასმელი ონლაინ აუდიო/ვიდეო ფაილისთვის შეგიძლიათ გამოიყენოთ შემდეგი საიტები: აუდიო: Soundcloud, Spotify; ვიდეო: Youtube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED" 
+        url: "ჩასასმელი ონლაინ აუდიო/ვიდეო ფაილისთვის შეგიძლიათ გამოიყენოთ შემდეგი საიტები: აუდიო: Soundcloud, Spotify; ვიდეო: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED" 
     youtube:
-      form_title: Youtube Embed Online Media Form
-      get_media: Get Youtube Online Media
-      preview: Preview of Online Media
+      form_title: YouTube Video Form
+      get_media: Get Youtube Video
+      preview: Preview of YouTube Video
       error: The URL could not be processed. Please try again.
       placeholder:
-        title: Youtube Embed Online Media Title      
-        url: Url to online media
+        title: YouTube Title
+        url: Url to YouTube video
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
-        url: "The following sites can be used for embeding online media: VIDEO: Youtube"          
+        url: "Copy a YouTube URL and paste it here"
+        fullscreen: "If checked, the video will take up the entire screen"
+        loop: "If checked, the video will loop over and over"
+        info: "If checked, the title bar will be shown on top of the video"
+        cc: "If checked, the video subtitles will be shown by default"
+        menu_lang: "Language of the YouTube menu/controls"
+        cc_lang: "Language of the subtitles to show by default"           
   storyteller:
     byline: ავტორი
     byline_media: "ფოტოსა და ვიდეოს ავტორი "
+    byline_translator: "Translated by "
     source: "წყარო:"
     by: ""
   settings:
@@ -773,10 +713,6 @@ ka:
       new_stories_by_category: "შემატყობინეთ, როდესაც ახალი ამბავი დაემატება შემდეგ კატეგორიას:"
       language_sub_title: შეტყობინების ენა
       language_label: რა ენაზე გსურთ შეტყობინებების მიღება?
-      news_sub_title: შეტყობინებები “Chai Khanaს” განახლებებზე
-      news_label: "გსურთ მიიღოთ შეტყობინებები “Chai Khanaს” განახლებების შესახებ?"
-      news_no: "არა, არ გამომიგზავნოთ შეტყობინებები."
-      news_yes: "დიახ, მსურს შეტყობინებების მიღება."            
       following_sub_title: მომხმარებლები, რომელთაც თქვენ თვალყურს ადევნებთ
       following_label: "თქვენ მიიღებთ შეტყობინებას, როდესაც მომხმარებელი, რომელსაც თვალყურს ადევნებთ, დაამატებს ახალ ისტორიას. ამ შეტყობინებების მიღება თუ არ გსურთ, გააუქმეთ თვალყურის დევნება მათ სურათზე დაჭერით."
       following_not: "ამ დროისთვის თქვენ არცერთ მომხმარებელს არ ადევნებთ თვალყურს."

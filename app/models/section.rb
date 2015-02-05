@@ -64,7 +64,8 @@ class Section < ActiveRecord::Base
   # and so Dirty is not applied to it.
   # can catch the flag here and then call the translation method.
   def trigger_delete_audio
-    if self.section_translations.first.delete_audio.to_bool == true
+    delete_audio = self.section_translations.first.delete_audio
+    if delete_audio.present? && delete_audio.to_bool == true
       self.section_translations.first.check_delete_audio
     end
     return true

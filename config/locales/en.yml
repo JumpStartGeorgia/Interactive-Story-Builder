@@ -7,11 +7,10 @@ en:
       section: Section
       medium: Full-Screen Media Slideshow
       content: Text
-      news: News
       message: Message
       slideshow: Image Slideshow
       embed_medium: Embeddable Online Media
-      youtube: Youtube Online Media
+      youtube: YouTube Video
       language: Language
       category: Category
       page: Text for Pages
@@ -89,29 +88,19 @@ en:
       slideshow:
         title: Title
         caption: Heading
-      news:
-        title: Title
-        content: Content
-        is_published: Publish?
-        published_at: Date Published
-      message:
-        name: Name
-        email: Email Address
-        message: Message
-        message_type: Feedback Type
       embed_medium:
         title: Title
         url: Url to Online Media
       youtube:
-        title: Title
-        url: Url to Online Media
         fullscreen: Fullscreen
         loop: Loop
-        info: Show Information Bar
+        info: Show Video Title Bar
       youtube_translation:
-        menu_lang: "Player language"
+        title: Title
+        url: Url to YouTube Video
+        menu_lang: Player Language
         cc: Show Caption/Subtitle
-        cc_lang: "Subtitle language"       
+        cc_lang: Subtitle Language       
       language:
         locale: Locale
         name: Language Name
@@ -160,15 +149,6 @@ en:
         message: "The following stories have recently received a comment:"
         comment: "1 Comment"
         comments: "%{num} Comments"
-      published_news:
-        subject: "Chai Khana has new updates!"
-        message: "The following updates were just posted on Chai Khana. Click on the link to learn what is going on with Chai Khana."
-      staff_pick_review:
-        subject: "Chai Khana has new published stories to review for Staff Pick!"
-        message: "The following stories need to be reviewed to see if they are worthy to be a Staff Pick:"
-      staff_pick_selection:
-        subject: "Your story has been selected by the Chai Khana Team as a Staff Pick!"
-        message: "Congratulations! The following stories of yours were selected by the Chai Khana Team as Staff Picks:"
       story_collaboration:
         subject: "You have been invited to collaborate on a story on Chai Khana!"
         message: "You have received the following invitations to collaborate on stories with other people on Chai Khana. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part."
@@ -411,7 +391,7 @@ en:
         content: Only one Item can be added to a Text section
         slideshow: Only one Item can be added to an Image Slideshow section
         embed_media: Only one Item can be added to an Embed Online Media section
-        youtube: Only one Item can be added to a Embed Youtube section
+        youtube: Only one Item can be added to a YouTube section
         general: Only one Item can be added to this type of section
       destroy_story:
         success: Story was successfully deleted.
@@ -436,8 +416,6 @@ en:
         new_story_by_category_success: "You will receive a notification when a story is added to these categories: %{categories}."
         story_comments_yes: You will be sent notifications when a comment is made to one of your stories.
         story_comments_no: You will not be sent notifications when a comment is made to one of your stories.
-        news_yes: You will be sent notifications when updates are made to Chai Khana.
-        news_no: You will not be sent notifications when updates are made to Chai Khana.
         following_no: "You will no longer receive notifications about new stories from '%{nickname}'."
         language: You will be sent notifications in %{language}.
       fail_change_order: The item was not able to be moved
@@ -459,10 +437,10 @@ en:
       description: Images in a horizontal slideshow
     embed_media: 
       name: Embed Online Media
-      description: youtube, vimeo, etc   
+      description: YouTube, Vimeo, etc   
     youtube: 
-      name: Embed Youtube
-      description: Fullscreen/common youtube video          
+      name: YouTube Video
+      description: YouTube video with ability to setting caption language
   story_role:
     editor: Editor
     translator: Translator
@@ -541,52 +519,8 @@ en:
         title: User Details
   root:
     index:
-      title: Chai Khana - build and share the next generation story
-      about_header: What is it?
-      about_text: Chai Khana allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world.  %{demo_link} to see what is possible then %{start_link}!
-      demo_link: View the demo
-      start_link: build and share your stories
-      news_header: Latest News
-      all_news: more...
-    news:
-      title: Chai Khana News
-      no_news: No news is good news!
-      more_link: Continue
-    news_show:
-      title: "Chai Khana News: %{title}"
-      view_all: View All News
-    feedback:
-      title: Chai Khana Feedback
-      message_sent: Your message has been sent! Thank you for contacting us.
-      send: Send
-      name: Name
-      email: Email Address
-      message: Message
-    todo_list:
-      title: "Chai Khana's To-Do List"
-      summary: Chai Khana is in its infancy and has much growing to do. Gathered here is a list of tasks that we are working on or plan to working on soon.
-      last_update: "Last Updated On"
-      header_current: Tasks Currently Working On
-      header_short_term: Short Term Tasks
-      header_long_term: Long Term Tasks
-      header_completed: Completed Tasks
-      completed_text: To view the completed tasks, please visit the %{link}.
-      news_link: News section
-      header_missing: Is Something Missing?
-      missing_text: Is there a feature missing from these lists that you would like added?  Do you feel that we should re-prioritize our list?  If so, please let us know by using the %{link}.
-      feedback_link: Feedback section
     about:
       title: About Chai Khana
-      intro: "The platform that allows anyone to turn text, audio tracks, pictures and/or videos into a creative web-story that can be published and shared with the world."   
-      p1: "Chai Khana enables anyone to build mixed-media stories without needing to know how to code. What sets Chai Khana apart from other similar services is that you have complete control over your content. You can publish it on Chai Khana, or your can download the story and host it where you want."
-      p2: "Each story is a sequence of media sections in the order of your choosing. You choose which order and which type of media you want each section to be. Choose from text/html, full screen images/videos, image slideshows, and embeddable online media. You can accompany each chapter with a soundtrack of your choosing. What you do with that is up to you!"
-      p3: "To ensure that your content is yours, we have made the entire platform open source. This means if you do not want to use JumpStart Georgia's live version of Chai Khana, you can install the Chai Khana application on a server of your choice. In this way, you or your organization are not locked into dependency on yet another 3rd-party service hosting your content."
-      p4: "JumpStart Georgia is building Chai Khana for the benefit of improving the ease with which civil society organizations, journalists, activists, and storytellers the world over can tell stories that are engaging and increasingly visceral, changing how audiences can experience stories on the web." 
-      help: "If you or your organization would like to help us improve Chai Khana through funding, development, or design, please don't hesitate to contact us!" 
-      contact:   
-        subject: Chai Khana Contact
-        address1: '#5 Shevchenko St, Apt 2'
-        address2: 'Tbilisi Georgia 0108'
     embed:
       home_link: Built on Chai Khana
   stories:
@@ -605,8 +539,7 @@ en:
       hint:
         title: Story title will appear at the top of your story
         permalink: The default URL is the title of the story, but you can change it if desired
-        user_id: Select the author of the story to allow the story to appear on their webpage.
-        author: Author names will appear below the story title
+        author: Select the author(s) of the story to allow the story to appear on their webpage.
         media_author:  "Author names will appear below the Story Author names"
         translation_author:  "Author names will appear below the Photo and Video Author names"
         published: Published stories are available for the world to view
@@ -722,27 +655,28 @@ en:
         url: Url to online media
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
-        url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: Youtube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
+        url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
     youtube:
-      form_title: Youtube Embed Online Media Form
-      get_media: Get Youtube Online Media
-      preview: Preview of Online Media
+      form_title: YouTube Video Form
+      get_media: Get Youtube Video
+      preview: Preview of YouTube Video
       error: The URL could not be processed. Please try again.
       placeholder:
-        title: Youtube Embed Online Media Title
-        url: Url to online media
+        title: YouTube Title
+        url: Url to YouTube video
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
-        url: "The following sites can be used for embeding online media: VIDEO: Youtube"
-        fullscreen: "Video can be view in a fullscreen mode"
-        loop: "Loop video or stop after first view"
-        cc: "Show subtitles"
-        info: "Show video information"
-        menu_lang: "Player language"
-        cc_lang: "Subtitle language"           
+        url: "Copy a YouTube URL and paste it here"
+        fullscreen: "If checked, the video will take up the entire screen"
+        loop: "If checked, the video will loop over and over"
+        info: "If checked, the title bar will be shown on top of the video"
+        cc: "If checked, the video subtitles will be shown by default"
+        menu_lang: "Language of the YouTube menu/controls"
+        cc_lang: "Language of the subtitles to show by default"           
   storyteller:
     byline: By
     byline_media: "Photos and videos by "
+    byline_translator: "Translated by "
     source: "Source:"
     by: by
   settings:
@@ -779,10 +713,6 @@ en:
       new_stories_by_category: "Notify me when a story is added to:"
       language_sub_title: Notification Language
       language_label: In what language do you want to receive the notifications?
-      news_sub_title: Chai Khana Update Notifications
-      news_label: "Do you want to recieve notifications when updates are made to Chai Khana?"
-      news_no: "No, do not send me any notifications."
-      news_yes: "Yes, I want notifications sent to me."     
       following_sub_title: Chai Khana Users You Are Following
       following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image."
       following_not: "At this time, you are not following any users."

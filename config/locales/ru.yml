@@ -7,16 +7,16 @@ ru:
       section: Section
       medium: Full-Screen Media Slideshow
       content: Text
-      news: News
       message: Message
       slideshow: Image Slideshow
       embed_medium: Embeddable Online Media
-      youtube: Youtube Online Media
+      youtube: YouTube Video
       language: Language
       category: Category
       page: Text for Pages
       theme: Theme
       story_type: Type
+      author: Author
     attributes:
       user:
         email: Email Address
@@ -28,30 +28,43 @@ ru:
         about: Summary of You
         local_avatar: Avatar
         nickname: Nickname
+        sign_in_count: Number of Times Logged In
+        created_at: Date Created
+        current_sign_in_at: Date Last Logged In
+      author:
+        avatar: Avatar
+      author_translation:
+        name: Name
+        about: About
+        permalink: Permalink
       story:
-        title: Story Title
-        user_id: Story Editor
+        user_id: Story Author
         user_ids: Editors
-        author: Author(s)
-        media_author: Photo and Video Author(s)  
-        published: Publish?
-        published_at: Was Published
         publish_home_page: Once published, make your story visible on the homepage?
         template_id: Template
         thumbnail: Thumbnail
-        about: Story Summary
         story_locale: Story Language
-        permalink: Story URL
-        permalink_staging: Story URL
         tag_list: Tags
         categories: Categories
-        type: Type
+        story_type: Type
+        in_theme_slider: Show Story in Theme Slider
+      story_translation:
+        title: Story Title
+        author: Author(s)
+        media_author: Photo and Video Author(s)  
+        translation_author: Translation Author(s)
+        published: Publish?
+        published_at: Was Published
+        about: Story Summary
+        permalink: Story URL
+        permalink_staging: Story URL
       section:
-        title: Title
-        audio: Audio Track
         has_marker: Navigation Shortcut
         type_id: Type
         sort_order: Sort Order
+      section_translation:
+        title: Title
+        audio: Audio Track
         delete_audio: Delete the Audio Track?
       content:        
         title: Title          
@@ -60,6 +73,10 @@ ru:
         content: Text
       medium:
         media_type: Media Type
+        image: Image
+        video: Video
+        video_loop: Loop Video
+      medium_translation:
         title: Title
         caption: Caption
         caption_align: Caption Alignment
@@ -68,33 +85,22 @@ ru:
         source: Source
         image: Image
         video: Video
-        video_loop: Loop Video
       slideshow:
         title: Title
         caption: Heading
-      news:
-        title: Title
-        content: Content
-        is_published: Publish?
-        published_at: Date Published
-      message:
-        name: Name
-        email: Email Address
-        message: Message
-        message_type: Feedback Type
       embed_medium:
         title: Title
         url: Url to Online Media
       youtube:
-        title: Title
-        url: Url to Online Media
         fullscreen: Fullscreen
         loop: Loop
-        info: Show Information Bar
+        info: Show Video Title Bar
       youtube_translation:
-        menu_lang: "Player language"
+        title: Title
+        url: Url to YouTube Video
+        menu_lang: Player Language
         cc: Show Caption/Subtitle
-        cc_lang: "Subtitle language"       
+        cc_lang: Subtitle Language       
       language:
         locale: Locale
         name: Language Name
@@ -123,6 +129,7 @@ ru:
       messages:
         required_field: "is a required field."
         already_exists: 'already exists in the database.'              
+        story_authors: "must have at least one person selected."
   mailer:
     closing: "Sincerely,"
     signature: The Chai Khana Team
@@ -142,19 +149,11 @@ ru:
         message: "The following stories have recently received a comment:"
         comment: "1 Comment"
         comments: "%{num} Comments"
-      published_news:
-        subject: "Chai Khana has new updates!"
-        message: "The following updates were just posted on Chai Khana. Click on the link to learn what is going on with Chai Khana."
-      staff_pick_review:
-        subject: "Chai Khana has new published stories to review for Staff Pick!"
-        message: "The following stories need to be reviewed to see if they are worthy to be a Staff Pick:"
-      staff_pick_selection:
-        subject: "Your story has been selected by the Chai Khana Team as a Staff Pick!"
-        message: "Congratulations! The following stories of yours were selected by the Chai Khana Team as Staff Picks:"
       story_collaboration:
         subject: "You have been invited to collaborate on a story on Chai Khana!"
         message: "You have received the following invitations to collaborate on stories with other people on Chai Khana. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part."
         from: From
+        role: Role
         story_title: Story Title
         msg: Message
         accept_link: Accept the Invitation
@@ -209,6 +208,7 @@ ru:
       reset_or_sign_in: sign in with facebook or reset your password
       add_story: Add Story
       users: Users
+      authors: Authors
       feedback: Feedback
       about: About
       rss: RSS
@@ -221,8 +221,6 @@ ru:
       youtube: YouTube
       subscribe: Subscribe
       user_settings: Settings
-      themes: Themes
-      story_types: Types
       like: Like   
       likes: Likes      
       comments: Comment on this story
@@ -233,8 +231,8 @@ ru:
       next: Next
       story_menu:
         link:
-          edit_story: Story Settings
-          admin_story: Content
+          story: Story
+          story_settings: Story Settings
           collaborators: Collaborators
           preview: Preview
           publish: Publish
@@ -243,9 +241,10 @@ ru:
           clone: Clone
           export: Download
           delete_story: Delete
+          translations: Translations
         title:
-          edit_story: Edit story title, authors, URL, summary, thumbnail, language, tags and/or categories
-          admin_story: Edit text, images, videos, etc.
+          story: Edit your story
+          story_settings: Edit story title, authors, URL, summary, thumbnail, language, tags and/or categories, content etc.
           collaborators: Manage which users have access to edit your story
           preview: See how your story looks
           publish: Make your story viewable to the world
@@ -254,6 +253,7 @@ ru:
           clone: Copy this story into a new story
           export: Download the complete story
           delete_story: Deleting a story cannot be undone
+          translations: Translate your story into other languages
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
@@ -261,11 +261,13 @@ ru:
     hints:
       nickname: Your nickname is used in the URL to your published stories (e.g., nickname/story-title)        
       local_avatar: Image that is shown in the header bar and on your user page (png and jpg only).
+      avatar: Image that is shown on the Author's page (png and jpg only).
       like: Like this story
       unlike: Unlike this story
       staff_pick: Select as Staff Pick
       staff_unpick: Unselect as Staff Pick
       is_staff_pick: Staff Pick
+      clone_asset: "If checked, the file to the left will be used for this translation"
   app:
     language:
       en: English
@@ -309,13 +311,14 @@ ru:
     common:
       app_name_not_trans: Chai Khana
       app_name: Chai Khana
-      app_intro: Build and Share;the Next Generation Story;Chai Khana allows anyone with text, pictures and/or videos to<br>combine this content into a creative story that can be published<br> and shared with the world
-      app_intro_meta: Build and Share the Next Generation Story! Chai Khana allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world
+      app_intro: Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.
+      app_intro_meta: Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.
       powered_by: Powered by
       powered_by_js: Jumpstart Georgia
       powered_by_end: ""
       embed_slogan: Build your story with Chai Khana
       added_on: "Added on: %{date}"
+      last_sign_in: "Logged in last: %{date}"
       admin: Admin
       sign_out: Sign Out    
       jumpstart: JumpStart Georgia
@@ -350,6 +353,7 @@ ru:
       home: Home
       required: Required
       nothing_selected: Nothing Selected
+      clone_asset: Use the original file?
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
@@ -387,8 +391,8 @@ ru:
         content: Only one Item can be added to a Text section
         slideshow: Only one Item can be added to an Image Slideshow section
         embed_media: Only one Item can be added to an Embed Online Media section
-        youtube: Only one Item can be added to a Embed Youtube section
-        general: Only one Item can be added to this type of section        
+        youtube: Only one Item can be added to a YouTube section
+        general: Only one Item can be added to this type of section
       destroy_story:
         success: Story was successfully deleted.
         error: "Error occurred while deleting the story: %{err}"
@@ -412,8 +416,6 @@ ru:
         new_story_by_category_success: "You will receive a notification when a story is added to these categories: %{categories}."
         story_comments_yes: You will be sent notifications when a comment is made to one of your stories.
         story_comments_no: You will not be sent notifications when a comment is made to one of your stories.
-        news_yes: You will be sent notifications when updates are made to Chai Khana.
-        news_no: You will not be sent notifications when updates are made to Chai Khana.
         following_no: "You will no longer receive notifications about new stories from '%{nickname}'."
         language: You will be sent notifications in %{language}.
       fail_change_order: The item was not able to be moved
@@ -435,20 +437,17 @@ ru:
       description: Images in a horizontal slideshow
     embed_media: 
       name: Embed Online Media
-      description: youtube, vimeo, etc   
+      description: YouTube, Vimeo, etc   
     youtube: 
-      name: Embed Youtube
-      description: Fullscreen/common youtube video          
+      name: YouTube Video
+      description: YouTube video with ability to setting caption language
+  story_role:
+    editor: Editor
+    translator: Translator
   message_types:
     bug: Report a Bug
     feature: Request a Feature
     feedback: General Feedback
-  story_types:
-    story: Story - mixed story TODO
-    talk_show: Talkshow - talkshow story TODO
-    video: Video - video story TODO
-    photo: Photo - photo story TODO
-    infographic: Infographic - infographic story TODO    
   filters:
     all: All
     matches: Matches
@@ -458,6 +457,7 @@ ru:
     sort_header: Sorted By    
     sort_title: Indicate how the stories should be sorted
     filters: Filters
+    all_stories: All Stories
     sort:
       recent: Recent
       reads: Views
@@ -465,7 +465,7 @@ ru:
     category_header: Category
     category_title: View stories that belong to a category
     theme_header: Theme
-    theme_title: View stories that belong to a theme       
+    theme_title: View stories that belong to a theme    
     language_header: Language
     language_title: View stories that are written in a particular language
     search: Find a Story
@@ -519,52 +519,8 @@ ru:
         title: User Details
   root:
     index:
-      title: Chai Khana - build and share the next generation story
-      about_header: What is it?
-      about_text: Chai Khana allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world.  %{demo_link} to see what is possible then %{start_link}!
-      demo_link: View the demo
-      start_link: build and share your stories
-      news_header: Latest News
-      all_news: more...
-    news:
-      title: Chai Khana News
-      no_news: No news is good news!
-      more_link: Continue
-    news_show:
-      title: "Chai Khana News: %{title}"
-      view_all: View All News
-    feedback:
-      title: Chai Khana Feedback
-      message_sent: Your message has been sent! Thank you for contacting us.
-      send: Send
-      name: Name
-      email: Email Address
-      message: Message
-    todo_list:
-      title: "Chai Khana's To-Do List"
-      summary: Chai Khana is in its infancy and has much growing to do. Gathered here is a list of tasks that we are working on or plan to working on soon.
-      last_update: "Last Updated On"
-      header_current: Tasks Currently Working On
-      header_short_term: Short Term Tasks
-      header_long_term: Long Term Tasks
-      header_completed: Completed Tasks
-      completed_text: To view the completed tasks, please visit the %{link}.
-      news_link: News section
-      header_missing: Is Something Missing?
-      missing_text: Is there a feature missing from these lists that you would like added?  Do you feel that we should re-prioritize our list?  If so, please let us know by using the %{link}.
-      feedback_link: Feedback section
     about:
       title: About Chai Khana
-      intro: "The platform that allows anyone to turn text, audio tracks, pictures and/or videos into a creative web-story that can be published and shared with the world."   
-      p1: "Chai Khana enables anyone to build mixed-media stories without needing to know how to code. What sets Chai Khana apart from other similar services is that you have complete control over your content. You can publish it on Chai Khana, or your can download the story and host it where you want."
-      p2: "Each story is a sequence of media sections in the order of your choosing. You choose which order and which type of media you want each section to be. Choose from text/html, full screen images/videos, image slideshows, and embeddable online media. You can accompany each chapter with a soundtrack of your choosing. What you do with that is up to you!"
-      p3: "To ensure that your content is yours, we have made the entire platform open source. This means if you do not want to use JumpStart Georgia's live version of Chai Khana, you can install the Chai Khana application on a server of your choice. In this way, you or your organization are not locked into dependency on yet another 3rd-party service hosting your content."
-      p4: "JumpStart Georgia is building Chai Khana for the benefit of improving the ease with which civil society organizations, journalists, activists, and storytellers the world over can tell stories that are engaging and increasingly visceral, changing how audiences can experience stories on the web." 
-      help: "If you or your organization would like to help us improve Chai Khana through funding, development, or design, please don't hesitate to contact us!" 
-      contact:   
-        subject: Chai Khana Contact
-        address1: '#5 Shevchenko St, Apt 2'
-        address2: 'Tbilisi Georgia 0108'
     embed:
       home_link: Built on Chai Khana
   stories:
@@ -579,11 +535,13 @@ ru:
         permalink: URL to the story
         author: Author(s) of the article
         media_author: "Author(s) of photos and/or videos"
+        translation_author: "Author(s) that translated the story into this language"
       hint:
         title: Story title will appear at the top of your story
         permalink: The default URL is the title of the story, but you can change it if desired
-        author: Author names will appear below the story title
+        author: Select the author(s) of the story to allow the story to appear on their webpage.
         media_author:  "Author names will appear below the Story Author names"
+        translation_author:  "Author names will appear below the Photo and Video Author names"
         published: Published stories are available for the world to view
         publish_home_page: "If checked, your published story will appear on the site's homepage"
         template: Choose template to apply styling to story
@@ -596,17 +554,25 @@ ru:
         tag_list: "Enter text to find existing tags.  If your tag does not exist yet, press 'Enter' to add the new tag to the list."
         story_type: Select the type of your story.
         theme: Select the theme(s) your story belongs to.
+        in_theme_slider: "If checked, this story will appear in the slider at the top of the theme page."
     collaborators:
       title: "Collaborators for '%{title}'"
-      owner_header: Story Owner
+      owner_header: Story Author
       collaborators_header: Story Collaborators
       explanation: A story collaborator is someone that has access to edit this story.
-      current_header: Current Collaborators
+      editors_header: Editors
+      editor_explanation: An Editor has access to add/edit the story and translate the story into any language. An Editor can also add collaborators and publish the story.
+      translators_header: Translators
+      translator_explanation: "A Translator has access to translate the story into a specific language(s). A Translator does not have the ability to edit the original story, add collaborators or publish the story."
       remove_title: 'Remove %{name}'
       not_accepted_title: '%{name} has not accepted the invitation yet'
       add_header: Add Collaborators
       add_explanation: For the users you enter below, an email will be sent inviting them to be a collaborator on this story.
-      search_label: Enter names or email addresses of the people you want to invite
+      editor_label: Enter the names or email addresses of the editors
+      language_label: Select the translation language(s)
+      translator_label: Enter the name or email address of the translator
+      translator_add: Add Another Translator
+      translator_remove: Remove Translator
       message: Add Message to Notification (optional)
       submit: Send Collaboration Invitation
     media:
@@ -630,7 +596,7 @@ ru:
         image: "Only jpg format allowed; 3MB file size limit"
         video: "Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receive a notification when the processing is complete, typically within a few minutes."
         caption_align: "The Caption text will appear on top of the image/video (appears on the left by default) "
-        infobox_type: "Caption text and source styling methods floating and fixed. Floating will be predefined width and will move on scroll. Fixed will be at the bottom of screen with full width and transparent background"
+        infobox_type: "The Caption text can float on top of the image/video or can be fixed at the bottom of the image/video"
         video_loop: "If checked, the video will loop infinitly, otherwise the video will not loop"
     section:
       form_title: Section Form
@@ -689,21 +655,28 @@ ru:
         url: Url to online media
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
-        url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: Youtube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
+        url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
     youtube:
-      form_title: Youtube Embed Online Media Form
-      get_media: Get Youtube Online Media
-      preview: Preview of Online Media
+      form_title: YouTube Video Form
+      get_media: Get Youtube Video
+      preview: Preview of YouTube Video
       error: The URL could not be processed. Please try again.
       placeholder:
-        title: Youtube Embed Online Media Title
-        url: Url to online media
+        title: YouTube Title
+        url: Url to YouTube video
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
-        url: "The following sites can be used for embeding online media: VIDEO: Youtube"        
+        url: "Copy a YouTube URL and paste it here"
+        fullscreen: "If checked, the video will take up the entire screen"
+        loop: "If checked, the video will loop over and over"
+        info: "If checked, the title bar will be shown on top of the video"
+        cc: "If checked, the video subtitles will be shown by default"
+        menu_lang: "Language of the YouTube menu/controls"
+        cc_lang: "Language of the subtitles to show by default"           
   storyteller:
     byline: By
     byline_media: "Photos and videos by "
+    byline_translator: "Translated by "
     source: "Source:"
     by: by
   settings:
@@ -722,6 +695,7 @@ ru:
       decline_link: Decline
       header_date: Date Sent
       header_story: Story Title
+      header_role: Role
       header_from: Sent By
     notifications:
       title: Notifications
@@ -739,10 +713,6 @@ ru:
       new_stories_by_category: "Notify me when a story is added to:"
       language_sub_title: Notification Language
       language_label: In what language do you want to receive the notifications?
-      news_sub_title: Chai Khana Update Notifications
-      news_label: "Do you want to recieve notifications when updates are made to Chai Khana?"
-      news_no: "No, do not send me any notifications."
-      news_yes: "Yes, I want notifications sent to me."     
       following_sub_title: Chai Khana Users You Are Following
       following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image."
       following_not: "At this time, you are not following any users."

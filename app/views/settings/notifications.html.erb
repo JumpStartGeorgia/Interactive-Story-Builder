@@ -30,21 +30,6 @@
 	</div>
 
 
-	<h3><%= t('.news_sub_title') %></h3>
-	<div class="section" id="news_notifications">
-		<%= t('.news_label') %>
-		<label for="<%= "news_wants_true"%>" class="radio">
-			<%= radio_button_tag "news[wants]", 'true', @news %>
-			<%= t('.news_yes') %>
-		</label>
-		<label for="<%= "news_wants_false"%>" class="radio">
-			<%= radio_button_tag "news[wants]", 'false', !@news %>
-			<%= t('.news_no') %>
-		</label>
-	</div>
-
-
-
 	<h3><%= t('.new_stories_sub_title') %></h3>
 	<div class="section row clear <%= @enable_notifications ? 'enable_notifications' : 'disable_notifications'%>" id="new_story_notifications">
 		<div class="col-sm-3">
