@@ -18,7 +18,7 @@ class MediumTranslation < ActiveRecord::Base
 
   attr_accessible :medium_id, :locale, :title, :caption, :caption_align, :source, :infobox_type, 
                   :media_type, :image_attributes, :video_attributes
-  attr_accessor :video_date_changed, :is_amoeba, :progress_action
+  attr_accessor :video_date_changed, :is_amoeba, :is_progress_increment, :progress_story_id
 
   #################################
   ## Validations
@@ -30,11 +30,18 @@ class MediumTranslation < ActiveRecord::Base
 
   #################################
   ## Callbacks
+
+  before_destroy :trigger_translation_observer, prepend: true
+  def trigger_translation_observer
+    logger.debug "============== medium translation before destroy"
+  end
+
   before_save :check_video_date
   after_commit :create_video_image
 
   # must call before the save because after save all dirty changes are lost
   def check_video_date
+Rails.logger.debug "@@@@@@@@@@@@@@@@   check video date before save"
     self.video_date_changed = video_type? && self.video.asset_updated_at_changed?
     return true
   end

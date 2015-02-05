@@ -8,6 +8,17 @@ class Content < ActiveRecord::Base
   has_many :content_translations, :dependent => :destroy
   accepts_nested_attributes_for :content_translations
 
+  # #################################
+  # ## Callbacks
+
+  before_destroy :trigger_translation_observer, prepend: true
+  def trigger_translation_observer
+    self.content_translations.each do |trans|
+      trans.is_progress_increment = false
+    end
+  end
+
+
   #################################
   # settings to clone story
   amoeba do
@@ -38,4 +49,6 @@ class Content < ActiveRecord::Base
      options[:except] ||= [:created_at, :updated_at]
      super(options)
    end
+
+
 end

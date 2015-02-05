@@ -46,17 +46,13 @@ class Section < ActiveRecord::Base
 
   # #################################
   # ## Callbacks
-  # before_save :check_delete_audio
 
-  # # if delete_audio flag set, then delete the audio asset
-  # def check_delete_audio
-  #   logger.debug "///////////// check_delete_audio start"
-  #   logger.debug "///////////// delete_audio = #{delete_audio.present? && delete_audio.to_bool}; asset present = #{self.asset.present?}"
-  #   if delete_audio.present? && delete_audio.to_bool == true && self.asset.present?
-  #     logger.debug "///////////// - deleting audio!"
-  #     self.asset.destroy
-  #   end
-  # end  
+  before_destroy :trigger_translation_observer, prepend: true
+  def trigger_translation_observer
+    self.section_translations.each do |trans|
+      trans.is_progress_increment = false
+    end
+  end
 
   before_validation :trigger_delete_audio
 

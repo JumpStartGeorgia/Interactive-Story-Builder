@@ -428,18 +428,21 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
 
   def destroy_tree_item  
     item = nil    
+    trans = nil
     type = params[:type]
 
     if type == 'section'
       item = Section.find_by_id(params[:_id])               
     elsif type == 'content'
-      item =  Content.find_by_id(params[:sub_id])      
+      item = Content.find_by_id(params[:sub_id])      
     elsif type == 'media'
       item = Medium.find_by_id(params[:sub_id])
     elsif type == 'slideshow'
       item = Slideshow.find_by_id(params[:sub_id])    
     elsif type == 'youtube'
       item = Youtube.find_by_id(params[:sub_id])                       
+    elsif type == 'embed_media'
+      item = EmbedMedium.find_by_id(params[:sub_id])      
     end
 
     item.destroy if item.present?

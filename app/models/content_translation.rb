@@ -3,7 +3,7 @@ class ContentTranslation < ActiveRecord::Base
 
   attr_accessible :content_id, :title, :caption, :sub_caption, :text, :locale
 
-  attr_accessor :progress_action
+  attr_accessor :is_progress_increment, :progress_story_id
 
   #################################
   ## Validations

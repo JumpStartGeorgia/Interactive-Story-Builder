@@ -2,14 +2,16 @@ class EmbedMediumTranslationObserver < ActiveRecord::Observer
   
   def after_create(record)
     Rails.logger.debug "@@@@@@@@@@ embed_medium trans after create"
-    record.progress_action = 'inc'
+    record.is_progress_increment = true
+    record.progress_story_id = record.embed_medium.section.story_id
 
     return true
   end
 
   def after_destroy(record)
     Rails.logger.debug "@@@@@@@@@@ embed_medium trans after destroy"
-    record.progress_action = 'dec'
+    record.is_progress_increment = false
+    record.progress_story_id = record.embed_medium.section.story_id
 
     return true
   end
@@ -17,13 +19,13 @@ class EmbedMediumTranslationObserver < ActiveRecord::Observer
 
   # record the progress
   def after_commit(record)
-    Rails.logger.debug "@@@@@@@@@@ embed_medium trans after commit"
+    Rails.logger.debug "@@@@@@@@@@ embed_medium trans after commit, story id #{record.progress_story_id; }; is_progress_increment = #{record.is_progress_increment}"
 
     options = {}
-    options[:action] = record.progress_action
-    story_id = record.embed_medium.section.story_id
-    StoryTranslationProgress.update_progress(story_id, record.locale, options)      
+    options[:is_progress_increment] = record.is_progress_increment
+    StoryTranslationProgress.update_progress(record.progress_story_id, record.locale, options)      
 
     return true
   end
+
 end

@@ -67,6 +67,7 @@ class Story < ActiveRecord::Base
 
 	before_save :generate_reviewer_key
   after_create :add_coordinators
+  before_destroy :trigger_translation_observer, prepend: true
 
   # if the reviewer key does not exist, create it
   def generate_reviewer_key
@@ -87,6 +88,12 @@ class Story < ActiveRecord::Base
     end
 
     return true
+  end
+
+  def trigger_translation_observer
+    self.story_translations.each do |trans|
+      trans.is_progress_increment = false
+    end
   end
 
   #################################

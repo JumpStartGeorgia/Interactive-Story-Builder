@@ -11,7 +11,7 @@ class SlideshowTranslation < ActiveRecord::Base
 
   attr_accessible :slideshow_id, :locale, :title, :caption, :assets_attributes
 
-  attr_accessor :progress_action
+  attr_accessor :is_progress_increment, :progress_story_id
 
   #################################
   ## Validations

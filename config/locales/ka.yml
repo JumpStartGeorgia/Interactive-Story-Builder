@@ -88,7 +88,17 @@ ka:
       slideshow:
         title: სათაური
         caption: ფოტოს წარწერა
-      embed_medium:
+      news:
+        title: სათაური
+        content: შინაარსი
+        is_published: გამოვაქვეყნოთ?
+        published_at: გამოქვეყნების თარიღი
+      message:
+        name: სახელი
+        email: ელ. ფოსტის მისამართი
+        message: გზავნილი
+        message_type: გზავნილის მიზანი
+      embed_medium_translation:
         title: სათაური
         url: ონლაინ აუდიოს/ვიდეოს ბმული
       youtube:

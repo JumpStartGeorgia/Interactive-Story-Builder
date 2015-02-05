@@ -3,7 +3,7 @@ class YoutubeTranslation < ActiveRecord::Base
 
   attr_accessible :id, :youtube_id, :locale, :title, :url, :menu_lang, :cc, :cc_lang, :code
 
-  attr_accessor :progress_action
+  attr_accessor :is_progress_increment, :progress_story_id
 
   #################################
   ## Validations
@@ -17,8 +17,10 @@ class YoutubeTranslation < ActiveRecord::Base
     enable
   end
 
-  before_save :generate_iframe
+  # #################################
+  # ## Callbacks
 
+  before_save :generate_iframe
   def generate_iframe
     logger.debug "@@@@@@@@@@@@@@@2 generate_iframe"
     id = ''

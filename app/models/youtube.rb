@@ -14,6 +14,16 @@ class Youtube < ActiveRecord::Base
   ## Validations
 	validates :section_id, :presence => true
 
+  # #################################
+  # ## Callbacks
+
+  before_destroy :trigger_translation_observer, prepend: true
+  def trigger_translation_observer
+    self.youtube_translations.each do |trans|
+      trans.is_progress_increment = false
+    end
+  end
+
   #################################
   # settings to clone story
   amoeba do

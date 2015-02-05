@@ -3,7 +3,7 @@ class EmbedMediumTranslation < ActiveRecord::Base
 
   attr_accessible :sembed_medium_id, :title, :url, :code, :locale
 
-  attr_accessor :progress_action
+  attr_accessor :is_progress_increment, :progress_story_id
 
   #################################
   ## Validations

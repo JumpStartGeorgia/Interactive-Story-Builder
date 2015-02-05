@@ -1,17 +1,17 @@
 class CreateStoryTranslationProgresses < ActiveRecord::Migration
   def up
-    # create_table :story_translation_progresses do |t|
-    #   t.integer :story_id
-    #   t.string :locale
-    #   t.integer :items_completed, :default => 0
-    #   t.boolean :is_story_locale, :default => false
-    #   t.boolean :can_publish, :default => false
+    create_table :story_translation_progresses do |t|
+      t.integer :story_id
+      t.string :locale
+      t.integer :items_completed, :default => 0
+      t.boolean :is_story_locale, :default => false
+      t.boolean :can_publish, :default => false
 
-    #   t.timestamps
-    # end
+      t.timestamps
+    end
 
-    # add_index :story_translation_progresses, [:story_id, :locale]
-    # add_index :story_translation_progresses, [:story_id, :can_publish]
+    add_index :story_translation_progresses, [:story_id, :locale]
+    add_index :story_translation_progresses, [:story_id, :can_publish]
 
 
     start = Time.now
@@ -75,9 +75,6 @@ class CreateStoryTranslationProgresses < ActiveRecord::Migration
             section.slideshow.slideshow_translations.each do |trans|
               puts "   - slideshow #{trans.slideshow_id}"
               counts[trans.locale] += 1 
-
-              # asset image - increase by number of images
-              counts[trans.locale] += trans.assets.length
             end
           end
         end

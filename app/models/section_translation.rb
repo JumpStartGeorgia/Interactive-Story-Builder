@@ -8,7 +8,7 @@ class SectionTranslation < ActiveRecord::Base
   accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? && c[:asset_clone_id].blank? }
 
 #  attr_accessible :section_id, :title, :locale, :asset_attributes, :delete_audio
-  attr_accessor :delete_audio, :progress_action
+  attr_accessor :delete_audio, :is_progress_increment, :progress_story_id
 
 
   #################################
@@ -18,7 +18,6 @@ class SectionTranslation < ActiveRecord::Base
   #################################
   ## Callbacks
   before_save :check_delete_audio
-
   # if delete_audio flag set, then delete the audio asset
   def check_delete_audio
     logger.debug "///////////// check_delete_audio start"

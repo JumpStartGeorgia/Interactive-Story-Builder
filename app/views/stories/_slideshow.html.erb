@@ -74,7 +74,6 @@
               <% end %> 
             <% else %>
               <% trans_record.assets.each_with_index do |asset_record, i| %>  
-                <% logger.debug "$$$$$$$$$$$$ asset = #{asset_record.inspect}" %>
                  <div class="fields clear">
                     <%= f_translation.fields_for :assets, asset_record do |f_asset| %>
                       <%= render :partial => 'asset_fields', :locals => {:f => f_asset, :asset_record => asset_record } %>
@@ -85,7 +84,6 @@
             <% end %>
           <% else %>
             <% trans_record.assets.each_with_index do |asset_record, i| %>  
-              <% logger.debug "$$$$$$$$$$$$ asset = #{asset_record.inspect}" %>
                <div class="fields clear">
                   <%= f_translation.fields_for :assets, asset_record do |f_asset| %>
                     <%= render :partial => 'asset_fields', :locals => {:f => f_asset, :asset_record => asset_record } %>

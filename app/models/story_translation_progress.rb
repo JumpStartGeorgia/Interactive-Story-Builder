@@ -9,42 +9,45 @@ class StoryTranslationProgress < ActiveRecord::Base
   # update the story translation progress
   # options: 
   # - story locale - set to true if this locale is the story locale; default = false
-  # - action - 'inc' to increase; 'dec' to decrease; default = 'inc'
+  # - is_progress_increment - true to increase; false to decrease; default = true
   def self.update_progress(story_id, locale, options={})
     is_story_locale = options[:is_story_locale]
-    action = options[:action].present? ? options[:action] : 'inc'
+    is_progress_increment = options[:is_progress_increment].nil? ? true : options[:is_progress_increment]
     reset_story_locale = false
 
     Rails.logger.debug "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
-    Rails.logger.debug "&&&&&&&&&&&&&& translation progress update; story #{story_id}, locale #{locale}, is_story_locale #{is_story_locale}, action #{action}"
+    Rails.logger.debug "&&&&&&&&&&&&&& translation progress update; story #{story_id}, locale #{locale}, is_story_locale #{is_story_locale}, is_progress_increment #{is_progress_increment}"
     Rails.logger.debug "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
 
     # see if record already exists    
     record = where(story_id: story_id, locale: locale).first
     
-    if record.blank?
-      # this is the first update, so create the record
-      record = StoryTranslationProgress.new(story_id: story_id, locale: locale)
+    # if the record was not found and this is a decrease, do nothing
+    if !(record.blank? && !is_progress_increment)
+      if record.blank?
+        # this is the first update, so create the record
+        record = StoryTranslationProgress.new(story_id: story_id, locale: locale)
+      end
+
+      # if is_story_locale is provided, set it to true
+      if is_story_locale.present?
+        record.is_story_locale = true 
+        reset_story_locale = true
+      end
+
+      # change the count
+      if is_progress_increment
+        record.items_completed += 1
+      else
+        record.items_completed -= 1
+      end
+
+      record.save
+
+      # if the story locale was set, make sure no other locales in this story have this flag set
+      where(['story_id = ? and id != ?', story_id, record.id]).update_all(is_story_locale: false)
+
     end
-
-    # if is_story_locale is provided, set it to true
-    if is_story_locale.present?
-      record.is_story_locale = true 
-      reset_story_locale = true
-    end
-
-    # change the count
-    if action == 'inc'
-      record.items_completed += 1
-    else
-      record.items_completed -= 1
-    end
-
-    record.save
-
-    # if the story locale was set, make sure no other locales in this story have this flag set
-    where(['story_id = ? and id != ?', story_id, record.id]).update_all(is_story_locale: false)
-
   end
 
   # story was deleted so delete all progress for the story

@@ -39,45 +39,17 @@ class Medium < ActiveRecord::Base
   # validates :image, presence: true, if: :image_type?
   # validates :video, presence: true, if: :video_type?
 
-#   #################################
-#   ## Callbacks
-#   before_save :check_video_date
-#   after_commit :create_video_image
+  # #################################
+  # ## Callbacks
 
-#   # must call before the save because after save all dirty changes are lost
-#   def check_video_date
-#     self.video_date_changed = video_type? && self.video.asset_updated_at_changed?
-#     return true
-#   end
+  before_destroy :trigger_translation_observer, prepend: true
+  def trigger_translation_observer
+    logger.debug "============== medium before destroy"
+    self.medium_translations.each do |trans|
+      trans.is_progress_increment = false
+    end
+  end
 
-#   # if this is a video, generate the image for the video
-#   # - if the story is currently being cloned, do not do this (is_amoeba = true) 
-#   #   for it will be created during the clone process
-#   def create_video_image
-# Rails.logger.debug "@@@@@@@@@@@@@@@@   create_video_image"
-# Rails.logger.debug "@@@@@@@@@@@@@@@@   video type #{video_type?}; exists #{video_exists?}; updated ad changed #{self.video_date_changed}; is amoeba = #{self.is_amoeba}"
-#     if video_type? && video_exists? && self.video_date_changed && self.is_amoeba != true
-#       # get the image
-#       image_file = "#{Rails.root}/public#{self.video.file.url(:poster, false)}"
-# Rails.logger.debug "@@@@@@@@ file = #{image_file}"
-#       # check if exists
-#       if File.exists?(image_file)
-# Rails.logger.debug "@@@@@@@@ file exists, saving!"
-#         File.open(image_file) do |f|
-#           # if image does not exist, create it
-#           # else, update it
-#           if self.image_exists?
-#             self.image.is_video_image = true
-#             self.image.asset = f
-#             self.image.save            
-#           else
-#             self.create_image(:asset_type => Asset::TYPE[:media_image], :is_video_image => true, :asset => f)
-#           end
-#         end 
-#       end
-#     end
-#     return true
-#   end
 
   #################################
   # settings to clone story

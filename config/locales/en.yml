@@ -88,7 +88,17 @@ en:
       slideshow:
         title: Title
         caption: Heading
-      embed_medium:
+      news:
+        title: Title
+        content: Content
+        is_published: Publish?
+        published_at: Date Published
+      message:
+        name: Name
+        email: Email Address
+        message: Message
+        message_type: Feedback Type
+      embed_medium_translation:
         title: Title
         url: Url to Online Media
       youtube:
@@ -355,7 +365,7 @@ en:
       partial_text: Embed a link to the story that has the same look as the story links on the home page of Chai Khana (image, title, author, etc)
       full: Full Story
       full_text: Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look. 
-      feed: Chai Khana Feed Channel
+      feed: Chai Khana Feeds
       home: Home
       required: Required
       nothing_selected: Nothing Selected
