@@ -15,7 +15,7 @@ en:
       category: Category
       page: Text for Pages
       theme: Theme
-      story_type: Type
+      story_type: Story Type
       author: Author
     attributes:
       user:
@@ -545,7 +545,7 @@ en:
         published: Published stories are available for the world to view
         publish_home_page: "If checked, your published story will appear on the site's homepage"
         template: Choose template to apply styling to story
-        thumbnail: Image that is used to show the story on the home page when the story is published (jpg and png only; 3MB file size limit)
+        thumbnail: Image that is used to show the story on the home page when the story is published (jpg and png only; 4MB file size limit)
         editor: Person that created the story record in this website
         editors: Select people that you want to give access to edit the story
         about: Short summary of story that will be used on the home page and when you story is shared
@@ -593,7 +593,7 @@ en:
         media_type: "For videos, an image is necessary because videos are not loaded on mobile devices."
         caption: "Caption text will appear on top of the image/video. If this is the first item in the story, the caption text is hidden."
         source: "Source of the image/video, appears in the bottom-right corner"
-        image: "Only jpg format allowed; 3MB file size limit"
+        image: "Only jpg format allowed; 4MB file size limit"
         video: "Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receive a notification when the processing is complete, typically within a few minutes."
         caption_align: "The Caption text will appear on top of the image/video (appears on the left by default) "
         infobox_type: "The Caption text can float on top of the image/video or can be fixed at the bottom of the image/video"
@@ -641,7 +641,7 @@ en:
       hint:
         caption: Image Description will appear below the image
         source: Source will appear below the Image Description
-        asset: Only jpg and png format allowed; 3MB file size limit
+        asset: Only jpg and png format allowed; 4MB file size limit
       label:
         caption: Image Description
         source: Image Source
@@ -722,7 +722,7 @@ en:
   imageuploader:
     missing: "An error occurred while processing your image. Please try again."
     invalid_type: "Invalid file type. Only .jpg or .png is allowed."
-    size_limit: "Image file size is limited to 5MB"
+    size_limit: "Image file size is limited to 4MB"
   devise:
     mailer:
       reset_password_instructions:

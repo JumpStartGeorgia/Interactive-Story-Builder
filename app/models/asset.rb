@@ -30,25 +30,25 @@ class Asset < ActiveRecord::Base
   validates_presence_of :asset, :unless => :asset_clone_id?
 
   with_options :if => "self.asset_type == TYPE[:user_avatar]" do |t|    
-    t.validates_attachment :asset, {  :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
+    t.validates_attachment :asset, {  :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}  
   end
   with_options :if => "self.asset_type == TYPE[:author_avatar]" do |t|    
-    t.validates_attachment :asset, {  :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
+    t.validates_attachment :asset, {  :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}  
   end
   with_options :if => "self.asset_type == TYPE[:story_thumbnail]" do |t|    
-    t.validates_attachment :asset, {  :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
+    t.validates_attachment :asset, {  :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}  
   end
   with_options :if => "self.asset_type == TYPE[:section_audio]" do |t|      
     t.validates_attachment :asset, {  :content_type => { :content_type => ["audio/mp3", "audio/mpeg"] }, :size => { :in => 0..10.megabytes }}  
   end
   with_options :if => "self.asset_type == TYPE[:media_image]" do |t|      
-    t.validates_attachment :asset, { :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
+    t.validates_attachment :asset, { :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}  
   end
   with_options :if => "self.asset_type == TYPE[:media_video]" do |t|      
     t.validates_attachment :asset, { :content_type => { :content_type => ["video/mp4", "video/quicktime", "video/webm", "video/ogg", "video/x-flv", "video/avi","video/x-msvideo","video/msvideo","application/x-troff-msvideo", "video/x-ms-wmv" ]}, :size => { :in => 0..25.megabytes }}    
   end
   with_options :if => "self.asset_type == TYPE[:slideshow_image]" do |t|      
-    t.validates_attachment :asset, { :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..3.megabytes }}  
+    t.validates_attachment :asset, { :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}  
   end
 
 
