@@ -556,7 +556,7 @@ i.v{visibility:visible;}
 .i-follow-w   { background: url('/assets/svg/check_w.svg'); }
 .i-follow-b   { background: url('/assets/svg/check_b.svg'); }
 .i-build-w    { background: url('/assets/svg/build_w.svg'); }
-.i-build-b    { background: url('/assets/svg/build_b.svg'); }
+.i-build    { background: url('/assets/svg/build.svg'); }
 .i-content-w  { background: url('/assets/svg/content_w.svg'); }
 .i-embed-w    { background: url('/assets/svg/embed_s_w.svg'); }
 .i-fullscreen-w{ background: url('/assets/svg/fullscreen_w.svg'); }
@@ -617,6 +617,8 @@ i.v{visibility:visible;}
 }
 #login-form,#reset-password-form,#signup-form
 {
+  max-width:360px;
+  margin:0px auto;
   .title
   {
     font-family: 'dejavusans-el', Sylfaen;
@@ -631,7 +633,6 @@ i.v{visibility:visible;}
       
     }
   }
-  .title
   .providers
   {
     margin-bottom:25px;
@@ -679,13 +680,12 @@ i.v{visibility:visible;}
       text-align:center;  
       font-style:italic;
       width:100%; 
-      margin-bottom:15px; 
+      margin-bottom:25px; 
       &:lang(en)
       {
         font-family: 'opensans-l', 'sans-serif';        
       }         
   }
-  .facebook_or_local
   .formtastic 
   {
     .input
@@ -849,8 +849,7 @@ i.v{visibility:visible;}
 {
   width:100%;
   clear:both;
-  border-bottom:1px solid #eaeaea;
-  margin-bottom:7px;
+  border-bottom:1px solid #363636;
 }
 .separator-ver-b
 {
@@ -951,4 +950,39 @@ i.v{visibility:visible;}
 {
   background:transparent url('/assets/svg/chaikhana/type_photo.svg') no-repeat;
   background-size:34px 34px;
+}
+
+
+.js-list-basic
+{
+  ul
+  {
+    width: 360px;
+    list-style: none;
+    text-align: left;
+    margin: 0px auto;
+    font-family: 'dejavusans-el', Sylfaen;
+    font-size:14px !important;    
+    color:#888;  
+    &:lang(en)
+    {
+      font-family: 'opensans-l', 'sans-serif';
+    } 
+    li 
+    {
+      width:100%;
+      border-bottom:1px solid #eaeaea;
+      a 
+      {
+        width:100%;
+        padding:6px 10px;
+        display:inline-block;
+        &:hover
+        {
+          background-color: #EAEAEA;
+          cursor:pointer;
+        }
+      }
+    }
+  }
 }

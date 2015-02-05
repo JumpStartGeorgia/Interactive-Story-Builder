@@ -3,11 +3,11 @@ module Globalize
 
   class << self
     def story_locale
-      @story_locale || self.locale
+      @story_locale || self.locale.to_s
     end
 
     def story_locale=(locale)
-      @story_locale = locale
+      @story_locale = locale.to_s
     end
   end
 

@@ -225,7 +225,6 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
         @to = params.has_key?(:tr_to) ? params[:tr_to] : @languages.select{|x| x.locale != @story.story_locale}.first.locale
       end
     end
-    Rails.logger.debug("-----------------------------------------------#{@which}#{@trans}#{@from}#{@to}#{@story}------------")
     if type == 'story'
       if method=='select'
         @item = @story 
@@ -827,7 +826,7 @@ private
 
   # if the user is not in StoryUser, stop
   def can_edit_story?(story_id)
-    logger.debug "))))))) can edit story check #{current_user.inspect}"
+    #logger.debug "))))))) can edit story check #{current_user.inspect}"
     @can_edit_story, @edit_story_role, @edit_translation_locales = Story.can_edit?(story_id, current_user.id)
     redirect_to root_path, :notice => t('app.msgs.not_authorized') if !@can_edit_story
   end
@@ -838,13 +837,13 @@ private
   #   - current_locale - indicates form submittal locale 
   def can_edit_story_locale?
     locale = params[:tr_to].present? ? params[:tr_to] : params[:current_locale].present? ? params[:current_locale] : nil
-    logger.debug "))))))) can edit story locale check, locale = #{locale}"
+    #logger.debug "))))))) can edit story locale check, locale = #{locale}"
     redirect_to root_path, :notice => t('app.msgs.not_authorized') if @edit_story_role == Story::ROLE[:translator] && !@edit_translation_locales.include?(locale.to_s)
   end
 
   # if the user is a translator, limit their access to actions to editing
   def can_access_action?
-    logger.debug "))))))) can access action check, action = #{params[:action]}"
+    #logger.debug "))))))) can access action check, action = #{params[:action]}"
     accessible_actions = [:update, :preview, :get_data, :save_section, :save_content, :save_media, :save_slideshow, :save_embed_media, :save_youtube, :sections, :check_permalink]
     redirect_to root_path, :notice => t('app.msgs.not_authorized') if @edit_story_role == Story::ROLE[:translator] && !accessible_actions.include?(params[:action].to_sym)
   end

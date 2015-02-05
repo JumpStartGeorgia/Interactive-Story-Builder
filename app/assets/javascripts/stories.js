@@ -772,12 +772,13 @@ function change_tree(d)
             "</li>");
    story_tree.find('ul li').removeClass('active'); // todo is it enough for reseting or section_id should be changed too ???
    story_tree.find('> ul').append(li);   
-   li.find('ul > .btn-create').trigger('click');
+   li.find('.box .title').trigger('click');
+   //li.find('ul > .btn-create').trigger('click');
    //story_tree.animate({ scrollTop: story_tree.height()}, 1000);
 }
 function change_sub_tree(d)
 {
-  console.log('change_tree',d);
+  //console.log('change_tree',d);
    var section = story_tree.find('ul li.item[id='+ d.id + ']');
    var li = $("<li id='"+d.sub_id+"' class='sub' data-type='"+d.type+"_item'><div><div class='sub-l'>"+d.title+"</div><div class='storytree-arrow'><div class='arrow'></div></div></div></li>");  
    if(d.type != 'fullscreen')
@@ -858,11 +859,16 @@ function select_next()
             }
             next.find('> .box > .title').trigger('click');
             tree.get(0).scrollTop = tree.get(0).scrollTop + next.position().top;
-          }                    
+          }
+          else
+          {
+            getObject('create','section');
+          }
         }        
       }
       else // parent has no inner items so go to next
       {
+
         next = t.next('li.item')
         if(next.length)
         {
@@ -872,7 +878,11 @@ function select_next()
           }
           next.find('> .box > .title').trigger('click');
           tree.get(0).scrollTop = tree.get(0).scrollTop + next.position().top;
-        }      
+        } 
+        else
+        {
+          t.find('ul > .btn-create').trigger('click');
+        }     
       }
     }
   }

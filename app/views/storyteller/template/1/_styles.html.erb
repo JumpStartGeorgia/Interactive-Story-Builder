@@ -1228,7 +1228,7 @@
 .section.slideshow {
   font: 13px/1.4em arial, helvetica, sans-serif;
   margin:23px auto;
-  max-width: 812px;    
+  max-width: 730px;    
 }
 
 .slideshow-wrapper
@@ -1494,14 +1494,12 @@
 {
   width:51px; 
   height:51px;
-  position:absolute;
-  top:0px;
-  right:-50%;  
   background: rgb(0, 0, 0)  url('<%= @export ? "" : "/" %>assets/svg/top.svg'); no-repeat 0px 20px;
   background-size:51px 51px;
   z-index:1;
   float:right;
   cursor:pointer;
+  margin:40px 0px;
 }
 .info-top
 {
@@ -1577,6 +1575,7 @@
   border-bottom: 1px solid rgb(222, 222, 222);
   padding-bottom: 15px;
   margin-bottom: 20px;
+  clear:both;
 }
 .info-bottom > .info-row > div
 {

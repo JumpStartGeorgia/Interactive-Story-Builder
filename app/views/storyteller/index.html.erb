@@ -18,6 +18,7 @@
     </div>   
     <%= render partial: "storyteller/template/#{@template}/footer"%> 
     <div class="info-bottom">
+    <div class='scroll-top' title="<%= t('app.common.scroll_top') %>"></div>
       <div class="info-row">
         <div class="l js-u-dib">
             <div class='author-avatar'>
@@ -40,20 +41,21 @@
               <% end %> 
           </div>
         </div>
-      </div>
-      <div class='scroll-top' title="<%= t('app.common.scroll_top') %>"></div>
+      </div>      
       <div class="comments">
-        <div class="fb-comments" data-href="<%= storyteller_show_url(:id=>@story.permalink,:sl => @story.current_locale) %>" data-num-posts="5" data-width="730" id="fbComments"></div>
+        <div class="fb-comments" data-href="<%= storyteller_show_url(:id=>@story.permalink,:sl => @story.current_locale) %>" data-num-posts="5" data-width="100%" id="fbComments"></div>
       </div>
-      <div class="related-links">
-        <div class="js-label h1"><%= t('storyteller.related_stories') %></div>
-        <div class="themes js-u-right">
-          <span><%= t('storyteller.view_all_stories_in') %>:&nbsp;</span>
-          <% @story.themes.published.each { |t| %>
-            <%= link_to t.name.split.map(&:capitalize).join(' '), theme_path(t.permalink) %>
-          <% } %>
+      <% if !@stories.blank? %>
+        <div class="related-links">
+          <div class="js-label h1"><%= t('storyteller.related_stories') %></div>
+          <div class="themes js-u-right">
+            <span><%= t('storyteller.view_all_stories_in') %>:&nbsp;</span>
+            <% @story.themes.published.each { |t| %>
+              <%= link_to t.name.split.map(&:capitalize).join(' '), theme_path(t.permalink) %>
+            <% } %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>  
 
 

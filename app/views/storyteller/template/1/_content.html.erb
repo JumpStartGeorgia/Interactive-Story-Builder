@@ -109,7 +109,7 @@
                         <%  
                           locales = @story.story_locales
                           cur_locale = @story.current_locale 
-                          cur_lang = @languages.select{|x| x.locale == cur_locale}.first
+                          cur_lang = @languages.select{ |x| x.locale == cur_locale }.first
                           locales-=[cur_locale]
                         %>
                           <div class='translations'>
@@ -117,7 +117,6 @@
                             <div class="dropdown">
                               <button class='btn btn-default dropdown-toggle<%= locales.size > 0 ? "" : " disabled" %>' type="button" id="translationsMenu" data-toggle="dropdown" aria-expanded="true">
                                 <%= cur_lang.name %>
-                                
                                   <span class="caret"></span>                               
                               </button>
                               <% if locales.size > 0 %>

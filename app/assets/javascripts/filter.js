@@ -105,17 +105,17 @@ function url_update() {
 
 $(document).ready(function() {  
     
-  $('.filters').click(function(){$('#filter .nav').toggleClass('s h'); });
+  //$('.filters').click(function(){$('#filter .nav').toggleClass('s h'); });
   
   //if(gon.page_filtered) { scrolldown(false,'.header'); }
 
 // add search phrase to filters
-  $('form#search-filter').submit(function(e){
-    e.preventDefault();
-    pf = JSON.parse(JSON.stringify(f));
-    f["q"] = $('form#search-filter input#q').val();
-    filter();    
-  });
+  // $('form#search-filter').submit(function(e){
+  //   e.preventDefault();
+  //   pf = JSON.parse(JSON.stringify(f));
+  //   f["q"] = $('form#search-filter input#q').val();
+  //   filter();    
+  // });
 
 
 
@@ -144,23 +144,23 @@ $(document).ready(function() {
       filter();
   });
 // staff_pick via ajax
-    $('.afilter > a.staff_pick').click(function(e){
-      pf = JSON.parse(JSON.stringify(f));
+  //   $('.afilter > a.staff_pick').click(function(e){
+  //     pf = JSON.parse(JSON.stringify(f));
 
-      $(this).toggleClass('active').find('i').toggleClass('i-staffpicked i-staffpick');
-      var tmp = !($(this).attr('data-filtered-by') == "true");  
-      $(this).attr('data-filtered-by', tmp.toString());   
-      f[$(this).attr('data-filter-type')] = tmp.toString();
-      if (tmp){
-        $(this).attr('title', $(this).data('title-active'));
-      }else{
-        $(this).attr('title', $(this).data('title'));
-      }
-      e.preventDefault();
-      e.stopPropagation();
+  //     $(this).toggleClass('active').find('i').toggleClass('i-staffpicked i-staffpick');
+  //     var tmp = !($(this).attr('data-filtered-by') == "true");  
+  //     $(this).attr('data-filtered-by', tmp.toString());   
+  //     f[$(this).attr('data-filter-type')] = tmp.toString();
+  //     if (tmp){
+  //       $(this).attr('title', $(this).data('title-active'));
+  //     }else{
+  //       $(this).attr('title', $(this).data('title'));
+  //     }
+  //     e.preventDefault();
+  //     e.stopPropagation();
 
-      filter();
-  });
+  //     filter();
+  // });
 // following via ajax
     $('.afilter > a.following').click(function(e){
       pf = JSON.parse(JSON.stringify(f));
