@@ -143,6 +143,9 @@ ka:
       new_user:
         subject: "კეთილი იყოს თქვენი მობრძანება “სთორიბილდერზე!”"
         message: "გმადლობთ, რომ გახდით “Chai Khanaს” წევრი. ჩვენ გვსურს, გავიგოთ უფრო მეტი თქვენი ამბების შესახებ!\n\nროცა დრო გექნებათ, გთხოვთ, ეწვიოთ პარამეტრების გვერდს, რათა შეიყვანოთ ინფორმაცია თქვენ შესახებ, შეცვალოთ პროფილის სურათი, სახელი და პირადი ბმულიი: [settings_link].\n\nთქვენ შეიგიძლიათ განსაზღვროთ, როდის გსურთ “Chai Khanaდან” შეტყობინებების მიღება, ამისათვის ეწვიეთ შეტყობინებების გვერდს: [notifications_link]."
+      published_theme:
+        subject: "New themes have been published on Chai Khana!"
+        message: "The following themes you have expressed interest in were recently published:"
       published_story:
         subject: "“სთორიბილდერზე” გამოქვეყნდა ახალი ამბავი!"
         message: "ამბები, რომლითაც თქვენ დაინტერესდით, უკვე გამოქვეყნებულია:"
@@ -336,8 +339,8 @@ ka:
       publish_date: გამოქვეყნების თარიღი
       follow: თვალყურის დევნება
       following: თვალყურის დევნება
-      follow_link_title: დააჭირეთ, რათა მიიღოთ შეტყობინება, როდესაც ეს მომხმარებელი გამოაქვეყნებს ახალ ამბავს
-      unfollow_link_title: დააჭირეთ, რათა შეწყვიტოთ შეტყობინების მიღება, როდესაც ეს მომხმარებელი გამოაქვეყნებს ახალ ამბავს
+      follow_link_title: Click to receive notifications whenever this author publishes new stories
+      unfollow_link_title: Click to stop receiving notifications whenever this author publishes new stories
       email: ელ. ფოსტა
       views: ნახვა
       permalink: მუდმივი ბმული
@@ -414,12 +417,12 @@ ka:
       notification:
         yes: თქვენ მიიღებთ შეტყობინებებს.
         no: თქვენ არ მიიღებთ შეტყობინებებს.
-        new_story_all_success: თქვენ მიიღებთ შეტყობინებას, როდესაც ახალი ამბავი იქნება დამატებული.
-        new_story_none_success: თქვენ არ მიიღებთ შეტყობინებას, როდესაც ახალი ამბავი იქნება დამატებული.
-        new_story_by_category_success: "თქვენ მიიღებთ შეტყობინებას, როდესაც ახალი ამბავი დაემატება კატეგორიას: %{categories}."
+        new_theme_all_success: You will recieve a notification whenever a theme is added.
+        new_theme_none_success: You will not receive any notifications when themes are added.
+        new_story_by_type_success: "You will receive a notification when a story is added to these types: %{types}."
         story_comments_yes: თქვენ მიიღებთ შეტყობინებას, როდესაც თქვენს ამბავზე გააკეთებენ კომენტარს.
         story_comments_no: თქვენ არ მიიღებთ შეტყობინებას, როდესაც თქვენს ამბავზე დატოვებენ კომენტარს.
-        following_no: "თქვენ აღარ მიიღებთ შეტყობინებებს  '%{nickname}ის' ახალი ისტორიების შესახებ."
+        following_no: "თქვენ აღარ მიიღებთ შეტყობინებებს  '%{name}ის' ახალი ისტორიების შესახებ."
         language: თქვენ მიიღებთ შეტყობინებას %{language}.
       fail_change_order: ერთეულის ადგილი ვერ შეიცვალა 
       nothing_selected: გთხოვთ, აირჩიოთ სექცია/ერთეული წასაშლელად
@@ -702,6 +705,7 @@ ka:
       header_from: გამომგზავნი
     notifications:
       title: შეტყობინებები
+      explain: You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.
       all_sub_title: ყველა შეტყობინება
       all_label: გსურთ მიიღოთ შეტყობინებები “Chai Khanaსგან”?
       all_no: "არა, არ გამომიგზავნოთ შეტყობინებები."
@@ -710,17 +714,17 @@ ka:
       story_comment_label: "გსურთ მიიღოთ შეტყობინებები, როდესაც თქვენს ამბავზე დააკომენტარებენ?"
       story_comment_no: "არა, არ გამომიგზავნოთ შეტყობინებები."
       story_comment_yes: "დიახ, მსურს შეტყობინებების მიღება."
-      new_stories_sub_title: ახალი ამბების შესახებ შეტყობინებები
-      new_stories_all: შემატყობინეთ, როდესაც დაემატება ახალი ამბავი.
-      new_stories_none: არ მსურს მივიღო შეტყობინებები ახალი ამბების დამატების შესახებ.
+      new_themes_sub_title: New Theme Notifications
+      new_themes_all: Notify me when any theme is added.
+      new_themes_none: I do not want to receive notifications when a new theme is added.
       new_stories_by_category: "შემატყობინეთ, როდესაც ახალი ამბავი დაემატება შემდეგ კატეგორიას:"
       language_sub_title: შეტყობინების ენა
       language_label: რა ენაზე გსურთ შეტყობინებების მიღება?
       following_sub_title: მომხმარებლები, რომელთაც თქვენ თვალყურს ადევნებთ
       following_label: "თქვენ მიიღებთ შეტყობინებას, როდესაც მომხმარებელი, რომელსაც თვალყურს ადევნებთ, დაამატებს ახალ ისტორიას. ამ შეტყობინებების მიღება თუ არ გსურთ, გააუქმეთ თვალყურის დევნება მათ სურათზე დაჭერით."
       following_not: "ამ დროისთვის თქვენ არცერთ მომხმარებელს არ ადევნებთ თვალყურს."
-      following_title1: "'%{nickname}' თვალყურის დევნების გასაუქმებლად დააჭირეთ ღილაკს"
-      following_title2: "'%{nickname}' თვალყურის სადევნებლად დააჭირეთ ღილაკს"     
+      following_title1: "'%{name}' თვალყურის დევნების გასაუქმებლად დააჭირეთ ღილაკს"
+      following_title2: "'%{name}' თვალყურის სადევნებლად დააჭირეთ ღილაკს"     
       submit: პარამეტრების შენახვა
   imageuploader:
     missing: "გამოსახულების დამუშავებისას დაფიქსირდა შეცდომა. გთხოვთ, სცადოთ ახლიდან."

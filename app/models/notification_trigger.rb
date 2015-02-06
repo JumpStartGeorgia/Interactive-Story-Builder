@@ -7,10 +7,8 @@ class NotificationTrigger < ActiveRecord::Base
     puts "--> Notification Triggers - process all types start at #{Time.now}"
     puts "**************************"
     process_new_user
-    process_published_news
-    process_published_story
+    process_published_theme
     process_story_collaboration
-    process_staff_pick_selection
     process_story_comment
     puts "**************************"
     puts "--> Notification Triggers - process all types end at #{Time.now}"
@@ -44,189 +42,126 @@ class NotificationTrigger < ActiveRecord::Base
   end
 
   #################
-  ## published news
+  ## published theme
   #################
-  def self.add_published_news(id)
-    NotificationTrigger.create(:notification_type => Notification::TYPES[:published_news], :identifier => id)
+  def self.add_published_theme(id)
+    NotificationTrigger.create(:notification_type => Notification::TYPES[:published_theme], :identifier => id)
   end
 
-  def self.process_published_news
-    puts "--> Notification Triggers - process published news"
-    triggers = NotificationTrigger.where(:notification_type => Notification::TYPES[:published_news]).not_processed    
-    if triggers.present?
-      orig_locale = I18n.locale
-      I18n.available_locales.each do |locale|          
-        I18n.locale = locale
-        message = Message.new
-        message.bcc = Notification.for_published_news(locale)
-        if message.bcc.present?
-          message.locale = locale
-          message.subject = I18n.t("mailer.notification.published_news.subject", :locale => locale)
-          message.message = I18n.t("mailer.notification.published_news.message", :locale => locale)                  
-          message.message_list = []
-
-          triggers.map{|x| x.identifier}.uniq.each do |id|
-            news = News.published.find_by_id(id)
-            if news.present?
-              message.message_list << [news.title, news.permalink]
-		        end
-	        end
-          puts " ---> message: #{message.inspect}"
-          NotificationMailer.send_published_news(message).deliver if !Rails.env.staging?
-        end
-      end
-      NotificationTrigger.where(:id => triggers.map{|x| x.id}).update_all(:processed => true)
-
-      # reset the locale      
-      I18n.locale = orig_locale
-    end
-  end
-
-  #################
-  ## published story
-  #################
-  def self.add_published_story(id)
-    NotificationTrigger.create(:notification_type => Notification::TYPES[:published_story], :identifier => id)
-  end
-
-  # published story can trigger the following notifications
-  # - follow new stories
-  # - follow new stories in a category
-  # - follow new stories by a user
-  # - staff pick review
+  # published theme can trigger the following notifications
+  # - follow new themes
+  # - follow new stories in a type
+  # - follow new stories by a author
   # for the following triggers, create custom email for each user that wants notification
-  def self.process_published_story
-    puts "--> Notification Triggers - process published story"
-    triggers = NotificationTrigger.where(:notification_type => Notification::TYPES[:published_story]).not_processed    
+  def self.process_published_theme
+    puts "--> Notification Triggers - process published theme"
+    triggers = NotificationTrigger.where(:notification_type => Notification::TYPES[:published_theme]).not_processed    
     if triggers.present?
-      # get stories for these triggers
-      stories = Story.is_published.recent.where(:id => triggers.map{|x| x.identifier}.uniq)
-      if stories.present?
-        # send staff pick review notification
-        process_staff_pick_review(triggers, stories)
+      # get themes for these triggers
+      themes = Theme.published.where(:id => triggers.map{|x| x.identifier}.uniq)
+      if themes.present?
+        # get stories for these triggers
+        stories = Story.is_published.in_published_theme.recent.joins(:themes).where(:themes => {:id => themes.map{|x| x.id}})
+        if stories.present?
+          # get the author ids and type ids for the stories
+          # so can pull in list of users that want notifications for one of these
+          author_ids = stories.map{|x| [x.id,x.author_ids]}
+          uniq_author_ids = author_ids.map{|x| x[1]}.flatten.uniq if author_ids.present?      
+          type_ids = stories.map{|x| [x.id, x.story_type_id]} 
+          uniq_type_ids = type_ids.map{|x| x[1]}.flatten.uniq if type_ids.present?      
+          
+          orig_locale = I18n.locale
+          I18n.available_locales.each do |locale|          
+            I18n.locale = locale
 
-        # get the author ids and category ids for the stories
-        # so can pull in list of users that want notifications for one of these
-        author_ids = stories.map{|x| [x.id,x.user_id]}
-        uniq_author_ids = author_ids.map{|x| x[1]}.uniq if author_ids.present?      
-        category_ids = stories.map{|x| [x.id, x.story_categories.map{|y| y.category_id}]} 
-        uniq_category_ids = category_ids.map{|x| x[1]}.flatten.uniq if category_ids.present?      
-        
-        orig_locale = I18n.locale
-        I18n.available_locales.each do |locale|          
-          I18n.locale = locale
+            # get users that want one of the following:
+            # - new theme notification
+            # - new story in type notification
+            # - new story by author
+            notifications = Notification.for_published_theme(locale, uniq_author_ids, uniq_type_ids)
+            if notifications.present?
+              # get unique user_ids
+              user_ids = notifications.map{|x| x.user_id}.uniq
+              user_ids.each do |user_id|
+                email = notifications.select{|x| x.user_id == user_id}.map{|x| x.user.email}.uniq.first
 
-          # get users that want one of the following:
-          # - new story notification
-          # - new story in category notification
-          # - new story by author
-          notifications = Notification.for_published_story(locale, uniq_author_ids, uniq_category_ids)
-          if notifications.present?
-            # get unique user_ids
-            user_ids = notifications.map{|x| x.user_id}.uniq
-            user_ids.each do |user_id|
-              email = notifications.select{|x| x.user_id == user_id}.map{|x| x.user.email}.uniq.first
+                # get the notifications for this user
+                user_notifications = notifications.select{|x| x.user_id == user_id}
+                # if this user wants notifications for all themes, send them all
+                # else, get the stories that this user cares about
+                stories_to_send = []
+                themes_to_send = []
+                if user_notifications.index{|x| x.notification_type == Notification::TYPES[:published_theme] && x.identifier.nil?}.present?
+                  # all themes
+                  themes_to_send = themes
+                else
+                  # filter by type and/or author
+                  story_ids = []
 
-              # get the notifications for this user
-              user_notifications = notifications.select{|x| x.user_id == user_id}
-              # if this user wants notifications for all stories, send them all
-              # else, get the stories that this user cares about
-              stories_to_send = []
-              if user_notifications.index{|x| x.notification_type == Notification::TYPES[:published_story] && x.identifier.nil?}.present?
-                # all stories
-                stories_to_send = stories
-              else
-                # filter by category and/or author
-                story_ids = []
-
-                # by category
-                category_notifications = user_notifications.select{|x| x.notification_type == Notification::TYPES[:published_story] && x.identifier.present?}
-                if category_notifications.present?
-                  category_notifications_ids = category_notifications.map{|x| x.identifier}
-                  category_notifications_ids.each do |cat_not_id|
-                    story_ids << category_ids.select{|x| x[1].include?(cat_not_id)}.map{|x| x[0]}
+                  # by type
+                  type_notifications = user_notifications.select{|x| x.notification_type == Notification::TYPES[:published_theme] && x.identifier.present?}
+                  if type_notifications.present?
+                    type_notifications_ids = type_notifications.map{|x| x.identifier}
+                    type_notifications_ids.each do |type_id|
+                      story_ids << type_ids.select{|x| x[1] == type_id}.map{|x| x[0]}
+                    end
                   end
-                end
-                
-                # by author
-                author_notifications = user_notifications.select{|x| x.notification_type == Notification::TYPES[:published_story_by_author] && x.identifier.present?}
-                if author_notifications.present?
-                  author_notifications_ids = author_notifications.map{|x| x.identifier}
-                  author_notifications_ids.each do |aut_not_id|
-                    story_ids << author_ids.select{|x| x[1] == aut_not_id}.map{|x| x[0]}
+                  
+                  # by author
+                  author_notifications = user_notifications.select{|x| x.notification_type == Notification::TYPES[:published_story_by_author] && x.identifier.present?}
+                  if author_notifications.present?
+                    author_notifications_ids = author_notifications.map{|x| x.identifier}
+                    author_notifications_ids.each do |author_id|
+                      story_ids << author_ids.select{|x| x[1] == author_id}.map{|x| x[0]}
+                    end
                   end
+                  
+                  story_ids.flatten!.uniq!
+                  stories_to_send = stories.select{|x| story_ids.include?(x.id)}
                 end
-                
-                story_ids.flatten!.uniq!
-                stories_to_send = stories.select{|x| story_ids.include?(x.id)}
-              end
-            
-              # if stories found, send notification
-              if stories_to_send.present?
-                message = Message.new
-                message.email = email
-                message.locale = locale
-                message.subject = I18n.t("mailer.notification.published_story.subject", :locale => locale)
-                message.message = I18n.t("mailer.notification.published_story.message", :locale => locale)                  
-                message.message_list = []
+              
+                # if themes found, send notification
+                if themes_to_send.present?
+                  message = Message.new
+                  message.email = email
+                  message.locale = locale
+                  message.subject = I18n.t("mailer.notification.published_theme.subject", :locale => locale)
+                  message.message = I18n.t("mailer.notification.published_theme.message", :locale => locale)                  
+                  message.message_list = []
 
-                stories_to_send.each do |story|
-                  message.message_list << [story.title, story.permalink]
+                  themes_to_send.each do |theme|
+                    message.message_list << [theme.formatted_name, theme.permalink]
+                  end
+                  puts " ---> message: #{message.inspect}"
+                  NotificationMailer.send_published_theme(message).deliver if !Rails.env.staging?
+                
+                # if stories found, send notification
+                elsif stories_to_send.present?
+                  message = Message.new
+                  message.email = email
+                  message.locale = locale
+                  message.subject = I18n.t("mailer.notification.published_story.subject", :locale => locale)
+                  message.message = I18n.t("mailer.notification.published_story.message", :locale => locale)                  
+                  message.message_list = []
+
+                  stories_to_send.each do |story|
+                    message.message_list << [story.title, story.permalink]
+                  end
+                  puts " ---> message: #{message.inspect}"
+                  NotificationMailer.send_published_story(message).deliver if !Rails.env.staging?
                 end
-                puts " ---> message: #{message.inspect}"
-                NotificationMailer.send_published_story(message).deliver if !Rails.env.staging?
               end
             end
           end
+          # reset the locale      
+          I18n.locale = orig_locale
         end
-        # reset the locale      
-        I18n.locale = orig_locale
       end
       NotificationTrigger.where(:id => triggers.map{|x| x.id}).update_all(:processed => true)
     end
   end
 
-  #################
-  ## staff pick selection
-  #################
-  def self.add_staff_pick_selection(id)
-    NotificationTrigger.create(:notification_type => Notification::TYPES[:staff_pick_selection], :identifier => id)
-  end
 
-  def self.process_staff_pick_selection
-    puts "--> Notification Triggers - process staff pick selection"
-    triggers = NotificationTrigger.where(:notification_type => Notification::TYPES[:staff_pick_selection]).not_processed    
-    if triggers.present?
-      # get stories for these triggers
-      stories = Story.is_published.recent.where(:id => triggers.map{|x| x.identifier}.uniq)
-      if stories.present?
-        author_ids = stories.map{|x| x.user_id}.uniq
-        
-        orig_locale = I18n.locale
-        author_ids.each do |author_id|
-          user = User.find_by_id(author_id)
-          if user.present?
-            I18n.locale = user.notification_language.to_sym
-            message = Message.new
-            message.email = user.email
-            message.locale = I18n.locale
-            message.subject = I18n.t("mailer.notification.staff_pick_selection.subject", :locale => I18n.locale)
-            message.message = I18n.t("mailer.notification.staff_pick_selection.message", :locale => I18n.locale)                  
-            message.message_list = []
-
-            stories.select{|x| x.user_id == author_id}.each do |story|
-              message.message_list << [story.title, story.permalink]
-            end
-            puts " ---> message: #{message.inspect}"
-            NotificationMailer.send_staff_pick_selection(message).deliver if !Rails.env.staging?
-          end
-        end
-        # reset the locale      
-        I18n.locale = orig_locale
-      end
-      NotificationTrigger.where(:id => triggers.map{|x| x.id}).update_all(:processed => true)
-    end
-  end
 
   #################
   ## story comment
@@ -520,44 +455,4 @@ class NotificationTrigger < ActiveRecord::Base
   end  
   
   
-protected
-
-  #################
-  ## staff pick review
-  #################
-  def self.process_staff_pick_review(triggers, stories)
-    puts "--> Notification Triggers - process staff pick review"
-    if triggers.present? && stories.present?
-      # filter stories that already have staff pick
-      # - should not happen, but just in case
-      to_review = stories.select{|x| x.staff_pick == false}
-    
-      orig_locale = I18n.locale
-      I18n.available_locales.each do |locale|          
-        I18n.locale = locale
-        message = Message.new
-        message.bcc = Notification.for_staff_pick_review(locale)
-        if message.bcc.present?
-          message.locale = locale
-          message.subject = I18n.t("mailer.notification.staff_pick_review.subject", :locale => locale)
-          message.message = I18n.t("mailer.notification.staff_pick_review.message", :locale => locale)                  
-          message.message_list = []
-
-          triggers.map{|x| x.identifier}.uniq.each do |id|
-            story = to_review.select{|x| x.id == id}.first
-            if story.present?
-              message.message_list << [story.title, story.permalink]
-		        end
-	        end
-          puts " ---> message: #{message.inspect}"
-          NotificationMailer.send_staff_pick_review(message).deliver if !Rails.env.staging?
-        end
-      end
-      # reset the locale      
-      I18n.locale = orig_locale
-    end
-  end
-
-  
-
 end

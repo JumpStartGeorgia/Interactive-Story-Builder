@@ -20,17 +20,17 @@ function enable_all_fields(type){
 
 function all_clicked(type){
 	$('input#' + type + '_none').removeAttr('checked');
-	$('select#' + type + '_categories').val([]);
-  $("select#" + type + "_categories").selectpicker('deselectAll');
+	$('select#' + type + '_types').val([]);
+  $("select#" + type + "_types").selectpicker('deselectAll');
 }
 
 function none_clicked(type){
 	$('input#' + type + '_all').removeAttr('checked');
-	$('select#' + type + '_categories').val([]);
-  $("select#" + type + "_categories").selectpicker('deselectAll');
+	$('select#' + type + '_types').val([]);
+  $("select#" + type + "_types").selectpicker('deselectAll');
 }
 
-function categories_clicked(type){
+function types_clicked(type){
 	$('input#' + type + '_all').removeAttr('checked');
 	$('input#' + type + '_none').removeAttr('checked');
 }
@@ -40,9 +40,8 @@ $(document).ready(function(){
 		if (gon.enable_notifications) {
 			// enable new visual and idea form fields
 			enable_notifications('language');
-			enable_notifications('new_story');
-			enable_notifications('story_comment');
-			enable_notifications('news');
+			enable_notifications('new_theme');
+			// enable_notifications('story_comment');
 			enable_notifications('following');
 		}
 
@@ -51,30 +50,28 @@ $(document).ready(function(){
 		$("input[name='enable_notifications']").click(function(){
 			if ($(this).val() === 'true') {
 			  enable_all_fields('language');
-			  enable_all_fields('new_story');
-			  enable_all_fields('story_comment');
-			  enable_all_fields('news');
+			  enable_all_fields('new_theme');
+			  // enable_all_fields('story_comment');
 			  enable_all_fields('following');
 			} else {
 			  disable_all_fields('language');
-			  disable_all_fields('new_story');
-			  disable_all_fields('story_comment');
-			  disable_all_fields('news');
+			  disable_all_fields('new_theme');
+			  // disable_all_fields('story_comment');
 			  disable_all_fields('following');
 			}
 		});
 
 
 		// register click events to clear out other form fields
-		// for new stories
-		$('input#stories_all').click(function(){
-			all_clicked('stories');
+		// for new themes
+		$('input#themes_all').click(function(){
+			all_clicked('themes');
 		});
-		$('input#stories_none').click(function(){
-			none_clicked('stories');
+		$('input#themes_none').click(function(){
+			none_clicked('themes');
 		});
-    $("select#stories_categories").bind("change", function(event, ui){
-			categories_clicked('stories');
+    $("select#themes_types").bind("change", function(event, ui){
+			types_clicked('themes');
     });
 
     // if user clicks on followed user, change the selection value

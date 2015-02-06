@@ -213,14 +213,14 @@ class User < ActiveRecord::Base
     return x.present? ? x.notification_language.to_sym : I18n.default_locale
   end
   
-  # get list of users this user is following
-  def following_users
+  # get list of authors this user is following
+  def following_authors
     following = []
     # get notifications
     notifications = Notification.where(:user_id => self.id, :notification_type => Notification::TYPES[:published_story_by_author])
     if notifications.present?
       # get user object for each user following
-      following = User.where(:id => notifications.map{|x| x.identifier}.uniq)
+      following = Author.where(:id => notifications.map{|x| x.identifier}.uniq)
     end
     
     return following

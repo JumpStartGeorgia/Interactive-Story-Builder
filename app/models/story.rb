@@ -96,9 +96,9 @@ class Story < ActiveRecord::Base
 
 	scope :is_not_published, joins(:story_translations).where(:story_translations => {:published => false})
 	scope :is_published, joins(:story_translations).where(:story_translations => {:published => true})
-  # scope :stories_by_author, -> (user_id) {
-  #   where(:user_id => user_id)
-  # }
+  scope :stories_by_author, -> (author_id) {
+    joins(:authors).where(:authors => {:id => author_id})
+  }
 
 # SELECT a.*
 # FROM parallax_chca.stories AS a LEFT JOIN parallax_chca.stories AS b

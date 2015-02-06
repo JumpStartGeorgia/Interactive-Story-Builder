@@ -1,96 +1,93 @@
 <% title t('.title') %>
 
-<%= render partial: 'shared/settings_nav' %>
+<% if user_signed_in? %>
+
+	<%= render partial: 'shared/settings_nav' %>
 
 
-<%= form_tag settings_notifications_path, :id => "notifications", :class => 'formtastic' do %>
-	<h3><%= t('.all_sub_title') %></h3>
-	<div class="section">
-		<%= t('.all_label') %>
-		<label for="enable_notifications_true" class="radio">
-			<%= radio_button_tag 'enable_notifications', 'true', @enable_notifications %>
-			<%= t('.all_yes') %>
-		</label>
-		<label for="enable_notifications_false" class="radio">
-			<%= radio_button_tag 'enable_notifications', 'false', !@enable_notifications %>
-			<%= t('.all_no') %>
-		</label>
-	</div>
-
-
-	<h3><%= t('.language_sub_title') %></h3>
-	<div class="section" id="language_notifications">
-		<%= t('.language_label') %>
-		<% I18n.available_locales.each do |locale| %>
-			<label for="<%= "language_#{locale}"%>" class="radio">
-				<%= radio_button_tag 'language', locale, locale.to_s == @language ? true : false %>
-				<%= t("app.language.#{locale}") %>
+	<%= form_tag settings_notifications_path, :id => "notifications", :class => 'formtastic' do %>
+		<h3><%= t('.all_sub_title') %></h3>
+		<div class="section">
+			<%= t('.all_label') %>
+			<label for="enable_notifications_true" class="radio">
+				<%= radio_button_tag 'enable_notifications', 'true', @enable_notifications %>
+				<%= t('.all_yes') %>
 			</label>
-		<% end %>
-	</div>
-
-
-	<h3><%= t('.new_stories_sub_title') %></h3>
-	<div class="section row clear <%= @enable_notifications ? 'enable_notifications' : 'disable_notifications'%>" id="new_story_notifications">
-		<div class="col-sm-3">
-			<label for="stories_all" class="checkbox">
-				<%= check_box_tag 'stories_all', 'true', @story_all %>
-				<%= t('.new_stories_all') %>
+			<label for="enable_notifications_false" class="radio">
+				<%= radio_button_tag 'enable_notifications', 'false', !@enable_notifications %>
+				<%= t('.all_no') %>
 			</label>
 		</div>
-		<div class="col-sm-3">
-			<label for="stories_categories">
-				<%= t('.new_stories_by_category') %>
-				<br />
-				<%= select_tag "stories_categories",
-						options_from_collection_for_select(@categories, "id", "name", @story_notifications.map{|x| x.identifier}),
-						:multiple => true, :class => 'selectpicker',
-						:title => t('app.common.nothing_selected'),
-						:'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7" %>
-			</label>
+
+
+		<h3><%= t('.language_sub_title') %></h3>
+		<div class="section" id="language_notifications">
+			<%= t('.language_label') %>
+			<% I18n.available_locales.each do |locale| %>
+				<label for="<%= "language_#{locale}"%>" class="radio">
+					<%= radio_button_tag 'language', locale, locale.to_s == @language ? true : false %>
+					<%= t("app.language.#{locale}") %>
+				</label>
+			<% end %>
 		</div>
-	</div>
-
-	<h3><%= t('.story_comment_sub_title') %></h3>
-	<div class="section" id="story_comment_notifications">
-		<%= t('.story_comment_label') %>
-		<label for="<%= "story_comment_wants_true"%>" class="radio">
-			<%= radio_button_tag "story_comment[wants]", 'true', @story_comment %>
-			<%= t('.story_comment_yes') %>
-		</label>
-		<label for="<%= "story_comment_wants_false"%>" class="radio">
-			<%= radio_button_tag "story_comment[wants]", 'false', !@story_comment %>
-			<%= t('.story_comment_no') %>
-		</label>
-	</div>
 
 
-	<h3><%= t('.following_sub_title') %></h3>
-	<div class="section" id="following_notifications">
-		<%= t('.following_label') %>
-		<% if @following_users.present? %>
-		  <ul id="following_user_list">
-		    <% @following_users.each do |user| %>
-		      <li title="<%= t('.following_title1', :nickname => user.nickname) %>" 
-		          data-follow="<%= t('.following_title2', :nickname => user.nickname) %>" 
-		          data-unfollow="<%= t('.following_title1', :nickname => user.nickname) %>">
-            <%= image_tag user.avatar_url(:'50x50'), :size=>"50x50", :alt => user.nickname %>
-    				<%= hidden_field_tag "following[#{user.id}][nickname]", user.nickname %>
-			      <%= radio_button_tag "following[#{user.id}][wants]", 'true', true %>
-			      <%= radio_button_tag "following[#{user.id}][wants]", 'false', false %>
-		      </li>
-		    <% end %>
-	    </ul>
-		<% else %>
-		  <p>
-  		  <%= t('.following_not') %>
-		  </p>
-		<% end %>
-	</div>
+		<h3><%= t('.new_themes_sub_title') %></h3>
+		<div class="section row clear <%= @enable_notifications ? 'enable_notifications' : 'disable_notifications'%>" id="new_theme_notifications">
+			<div class="col-sm-3">
+				<label for="themes_all" class="checkbox">
+					<%= check_box_tag 'themes_all', 'true', @theme_all %>
+					<%= t('.new_themes_all') %>
+				</label>
+			</div>
+			<div class="col-sm-3">
+				<label for="themes_types">
+					<%= t('.new_stories_by_category') %>
+					<br />
+					<%= select_tag "themes_types",
+							options_from_collection_for_select(@story_types, "id", "name", @theme_notifications.map{|x| x.identifier}),
+							:multiple => true, :class => 'selectpicker',
+							:title => t('app.common.nothing_selected'),
+							:'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7" %>
+				</label>
+			</div>
+		</div>
 
 
-	<div>
-		<%= submit_tag t('.submit'), :class => 'btn btn-default' %>
-	</div>
+		<h3><%= t('.following_sub_title') %></h3>
+		<div class="section" id="following_notifications">
+			<%= t('.following_label') %>
+			<% if @following_authors.present? %>
+			  <ul id="following_user_list">
+			    <% @following_authors.each do |author| %>
+			      <li title="<%= t('.following_title1', :name => author.name) %>" 
+			          data-follow="<%= t('.following_title2', :name => author.name) %>" 
+			          data-unfollow="<%= t('.following_title1', :name => author.name) %>">
+	            <%= image_tag author.avatar_url(:'50x50'), :size=>"50x50", :alt => author.name %>
+	    				<%= hidden_field_tag "following[#{author.id}][name]", author.name %>
+				      <%= radio_button_tag "following[#{author.id}][wants]", 'true', true %>
+				      <%= radio_button_tag "following[#{author.id}][wants]", 'false', false %>
+			      </li>
+			    <% end %>
+		    </ul>
+			<% else %>
+			  <p>
+	  		  <%= t('.following_not') %>
+			  </p>
+			<% end %>
+		</div>
+
+
+		<div>
+			<%= submit_tag t('.submit'), :class => 'btn btn-default' %>
+		</div>
+	<% end %>
+
+<% else %>
+  <p>
+    <%= t('.explain')%>
+  </p>
+  <p>
+    <%= link_to t('helpers.links.sign_in2'), :new_user_session, :class => 'btn btn-default btn-sm' %>
+  </p>
 <% end %>
-

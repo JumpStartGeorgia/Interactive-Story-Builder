@@ -7,6 +7,7 @@ class Theme < ActiveRecord::Base
   accepts_nested_attributes_for :theme_translations
 
   attr_accessible :id, :is_published, :published_at, :show_home_page, :theme_translations_attributes
+  attr_accessor :send_notification
 
 
   scope :published, where(:is_published => 1)

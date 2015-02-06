@@ -29,7 +29,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
       # record if the user has liked this story
       @user_likes = false
     	@user_likes = current_user.voted_up_on? @story if user_signed_in?
-      @is_following = Notification.already_following_user(current_user.id, @story.user_id) if user_signed_in?
+      @is_following = Notification.already_following_user(current_user.id, @story.author_ids) if user_signed_in?
 
       if params[:n] == 'n'
           @no_nav = true

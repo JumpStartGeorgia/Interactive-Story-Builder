@@ -6,8 +6,12 @@ class Notification < ActiveRecord::Base
 
   validates :user_id, :notification_type, :presence => true
 
-  TYPES = {:published_story => 1, :published_story_by_author => 2, :story_comment => 3,
-           :published_news => 4, :staff_pick_selection => 5, :new_user => 6, :story_collaboration => 7, :processed_videos => 8}
+  # TYPES = {:published_story => 1, :published_story_by_author => 2, :story_comment => 3,
+  #          :published_news => 4, :staff_pick_selection => 5, :new_user => 6, :story_collaboration => 7, :processed_videos => 8}
+
+  TYPES = {:published_theme => 1, :published_story_by_author => 2, :story_comment => 3,
+           :new_user => 6, :story_collaboration => 7, :processed_videos => 8}
+
 
   # see if user already following another user
   def self.already_following_user(user_id, follow_user_id)
@@ -38,17 +42,11 @@ class Notification < ActiveRecord::Base
   def self.for_new_user(locale, ids)
     return get_new_user_emails(ids, locale)
   end
-  def self.for_published_story(locale, author_ids, category_ids)
-    return get_published_story_notifications(locale, author_ids, category_ids)
+  def self.for_published_theme(locale, author_ids, type_ids)
+    return get_published_theme_notifications(locale, author_ids, type_ids)
   end
   def self.for_story_comment(locale)
     return get_emails(TYPES[:story_comment], locale)
-  end
-  def self.for_published_news(locale)
-    return get_emails(TYPES[:published_news], locale)
-  end
-  def self.for_staff_pick_review(locale)
-    return get_staff_pick_review_emails(locale)
   end
   def self.for_video_prossing_errors(locale)
     return get_video_prossing_errors_emails(locale)
@@ -70,20 +68,6 @@ protected
       return emails
     end
    
-    # get the email address of users that have a role of staff_pick
-    def self.get_staff_pick_review_emails(locale)
-      emails = []
-      if locale
-         x = User.select("distinct email")
-         .where("users.wants_notifications = 1 and users.notification_language = ? and role >= ?", locale, User::ROLES[:staff_pick])
-      end
-
-      if x.present?
-         emails = x.map{|x| x.email}.join(';')
-      end
-      return emails
-    end
-
     # get the email address of admins
     def self.get_video_prossing_errors_emails(locale)
       emails = []
@@ -100,14 +84,14 @@ protected
    
    # get notifications for users that want notifications of new stories:
    # - any new story
-   # - story in category
+   # - story in type
    # - story by author
-  def self.get_published_story_notifications(locale, author_ids, category_ids)
+  def self.get_published_theme_notifications(locale, author_ids, type_ids)
     notifications = []
     if locale
-      sql = "users.wants_notifications = 1 and users.notification_language = :locale and ((notification_type = :story_type and (identifier is null "
-      if category_ids.present?
-        sql << "or identifier in (:category_ids) "
+      sql = "users.wants_notifications = 1 and users.notification_language = :locale and ((notification_type = :theme_type and (identifier is null "
+      if type_ids.present?
+        sql << "or identifier in (:type_ids) "
       end
       sql << ")) "
       if author_ids.present?
@@ -117,7 +101,7 @@ protected
       
       notifications = includes(:user)
                        .where(sql, 
-                          locale: locale, story_type: TYPES[:published_story], category_ids: category_ids,
+                          locale: locale, theme_type: TYPES[:published_theme], type_ids: type_ids,
                           follow_type: TYPES[:published_story_by_author], author_ids: author_ids)
     end
 

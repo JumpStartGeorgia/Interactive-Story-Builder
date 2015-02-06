@@ -143,6 +143,9 @@ en:
       new_user:
         subject: "Welcome to Chai Khana!"
         message: "Thank you for becoming a member of Chai Khana. We look forward to exploring the stories you build!\n\nWhen you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summary about yourself: [settings_link].\n\nYou can manage when you would like to receive email notifications from Chai Khana by going to the notifications page: [notifications_link]. "
+      published_theme:
+        subject: "New themes have been published on Chai Khana!"
+        message: "The following themes you have expressed interest in were recently published:"
       published_story:
         subject: "New stories have been published on Chai Khana!"
         message: "The following stories you have expressed interest in were recently published:"
@@ -336,8 +339,8 @@ en:
       publish_date: Publish Date
       follow: Follow
       following: Following
-      follow_link_title: Click to receive notifications whenever this user publishes new stories
-      unfollow_link_title: Click to stop receiving notifications whenever this user publishes new stories
+      follow_link_title: Click to receive notifications whenever this author publishes new stories
+      unfollow_link_title: Click to stop receiving notifications whenever this author publishes new stories
       email: Email
       views: Views
       permalink: Permalink
@@ -414,12 +417,12 @@ en:
       notification:
         yes: You will be sent notifications.
         no: You will not be sent notifications.
-        new_story_all_success: You will recieve a notification whenever a story is added.
-        new_story_none_success: You will not receive any notifications when stories are added.
-        new_story_by_category_success: "You will receive a notification when a story is added to these categories: %{categories}."
+        new_theme_all_success: You will recieve a notification whenever a theme is added.
+        new_theme_none_success: You will not receive any notifications when themes are added.
+        new_story_by_type_success: "You will receive a notification when a story is added to these types: %{types}."
         story_comments_yes: You will be sent notifications when a comment is made to one of your stories.
         story_comments_no: You will not be sent notifications when a comment is made to one of your stories.
-        following_no: "You will no longer receive notifications about new stories from '%{nickname}'."
+        following_no: "You will no longer receive notifications about new stories from '%{name}'."
         language: You will be sent notifications in %{language}.
       fail_change_order: The item was not able to be moved
       nothing_selected: Please select a section/item to delete
@@ -702,6 +705,7 @@ en:
       header_from: Sent By
     notifications:
       title: Notifications
+      explain: You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.
       all_sub_title: All Notifications
       all_label: Do you want to recieve any notifications from Chai Khana?
       all_no: "No, do not send me any notifications."
@@ -710,17 +714,17 @@ en:
       story_comment_label: "Do you want to recieve notifications when a comment is made to one of your stories?"
       story_comment_no: "No, do not send me any notifications."
       story_comment_yes: "Yes, I want notifications sent to me."
-      new_stories_sub_title: New Story Notifications
-      new_stories_all: Notify me when any story is added.
-      new_stories_none: I do not want to receive notifications when a new story is added.
+      new_themes_sub_title: New Theme Notifications
+      new_themes_all: Notify me when any theme is added.
+      new_themes_none: I do not want to receive notifications when a new theme is added.
       new_stories_by_category: "Notify me when a story is added to:"
       language_sub_title: Notification Language
       language_label: In what language do you want to receive the notifications?
       following_sub_title: Chai Khana Users You Are Following
       following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image."
       following_not: "At this time, you are not following any users."
-      following_title1: "Click to unfollow '%{nickname}'"
-      following_title2: "Click to follow '%{nickname}'"     
+      following_title1: "Click to unfollow '%{name}'"
+      following_title2: "Click to follow '%{name}'"     
       submit: Save Settings
   imageuploader:
     missing: "An error occurred while processing your image. Please try again."

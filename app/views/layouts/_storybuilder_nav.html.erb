@@ -82,9 +82,11 @@
               <li class="twitter"><a href='#'><%= t('helpers.links.twitter') %></a></li>
               <li class="youtube"><a href='#'><%= t('helpers.links.youtube') %></a></li>
               <li>
-                <%= link_to t('helpers.links.feed'), feed_path, :rel=>"alternate", :type=>"application/feed+xml" %>                                  
+                <%= link_to t('helpers.links.feed'), feed_path, :rel=>"alternate", :type=>"application/feed+xml" %>
               </li>
-              <li class="subscribe"><a href='#'><%= t('helpers.links.subscribe') %></a></li>
+              <li class="subscribe">
+                <%= link_to t('helpers.links.subscribe'), settings_notifications_path %>
+              </li>
             </ul>
         </li>  
         <li>

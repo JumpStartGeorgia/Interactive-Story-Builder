@@ -120,12 +120,10 @@
         <%= link_to author.name, author_path(author.permalink) %>      
       </div> 
        
-      <% if !user_signed_in?  %>    
-        <div class="follow">
-          <%= render partial: 'layouts/follow_link', 
-              locals: {:user_id => author.id, :is_story_page => true, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
-        </div>  
-      <% end %> 
+      <div class="follow">
+        <%= render partial: 'layouts/follow_link', 
+            locals: {:user_id => author.id, :is_story_page => true, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
+      </div>  
     <% end %> 
     <div class="stats"> 
         <span class="likes" title="<%= t('app.common.likes') %>"><i class="s i-likes disabled"></i><%= @story.likes %></span>            
