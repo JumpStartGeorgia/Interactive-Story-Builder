@@ -3,7 +3,7 @@ class Content < ActiveRecord::Base
 
   translates :title, :caption, :sub_caption, :text
 
-	belongs_to :content	 
+	belongs_to :section
 
   has_many :content_translations, :dependent => :destroy
   accepts_nested_attributes_for :content_translations

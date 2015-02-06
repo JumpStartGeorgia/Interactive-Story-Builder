@@ -141,7 +141,7 @@ StoryTheme.delete_all
 published_ids = StoryTranslation.select('distinct story_id').where(:published => true)
 published = Story.where(:id => published_ids.uniq)
 
-t = Theme.create(:ud => 1, :is_published => true, :published_at => '2015-01-15', :show_home_page => true)
+t = Theme.create(:id => 1, :published_at => '2015-01-15', :show_home_page => true)
 t.theme_translations.create(:locale => 'en', :name => '1st test theme', edition: 'January 2015')
 t.theme_translations.create(:locale => 'ka', :name => '1st test theme', edition: 'January 2015')
 published[0..7].each_with_index do |story, i|
@@ -151,7 +151,10 @@ published[0..7].each_with_index do |story, i|
   end
   story.save
 end
-t = Theme.create(:ud => 2, :is_published => true, :published_at => '2014-12-15')
+t.is_published = true
+t.save
+
+t = Theme.create(:id => 2, :published_at => '2014-12-15')
 t.theme_translations.create(:locale => 'en', :name => '2nd test theme', edition: 'December 2014')
 t.theme_translations.create(:locale => 'ka', :name => '2nd test theme', edition: 'December 2014')
 published[8..10].each_with_index do |story, i|
@@ -161,8 +164,11 @@ published[8..10].each_with_index do |story, i|
   end
   story.save
 end
+t.is_published = true
+t.save
 
-t = Theme.create(:ud => 3, :is_published => true, :published_at => '2014-11-15')
+
+t = Theme.create(:id => 3, :published_at => '2014-11-15')
 t.theme_translations.create(:locale => 'en', :name => '3rd test theme', edition: 'November 2015')
 t.theme_translations.create(:locale => 'ka', :name => '3rd test theme', edition: 'November 2015')
 published[10..20].each_with_index do |story, i|
@@ -172,6 +178,9 @@ published[10..20].each_with_index do |story, i|
   end
   story.save
 end
+t.is_published = true
+t.save
+
 
 # add story type to remaining stories
 published[21..published.length-1].each do |story|
