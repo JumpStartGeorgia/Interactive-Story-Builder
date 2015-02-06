@@ -20,8 +20,6 @@ class StorytellerController < ApplicationController
       # else check if translation exists for current app locale
       if params[:sl].present?
         @story.current_locale = params[:sl] 
-      elsif params[:story_language].present?
-        @story.current_locale = params[:story_language] 
       else
         @story.use_app_locale_if_translation_exists
       end

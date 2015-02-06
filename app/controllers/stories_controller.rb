@@ -73,6 +73,7 @@ class StoriesController < ApplicationController
     respond_to do |format|
 
       if @item.save
+        @item.reload      
         flash_success_created(Story.model_name.human,@item.title)       
         format.html { redirect_to sections_story_path(@item) }
       #  format.json { render json: @item, status: :created, location: @item }
@@ -179,13 +180,13 @@ logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to
       # set story locale 
       # if param exists use that
       # else check if translation exists for current app locale
-      if params[:story_language].present?
-        @story.current_locale = params[:story_language] 
+      if params[:sl].present?
+        @story.current_locale = params[:sl] 
       else
         @story.use_app_locale_if_translation_exists
       end
 
-logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; permalink = #{@story.permalink}"
+#logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; permalink = #{@story.permalink}"
     end
 
     respond_to do |format|  
@@ -324,17 +325,21 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
   def new_item   
     if params[:content].present?
       @item = Content.new(params[:content])   
-      @type = 'content'
+      @type = :content
     elsif params[:medium].present?
       @item = Medium.new(params[:medium])   
+      @type = :media
       #Rails.logger.debug "######### image valid: #{@item.image.valid?}; image validations: #{@item.image.errors.full_messages.to_sentence}" if @item.image.present?
       #Rails.logger.debug "######### video valid: #{@item.video.valid?}; video validations: #{@item.video.errors.full_messages.to_sentence}" if @item.video.present?
     elsif params[:slideshow].present?
-      @item = Slideshow.new(params[:slideshow])    
+      @item = Slideshow.new(params[:slideshow]) 
+      @type = :slideshow   
     elsif params[:embed_medium].present?
       @item = EmbedMedium.new(params[:embed_medium])  
+      @type = :embed_medium
     elsif params[:youtube].present?  
-      @item = Youtube.new(params[:youtube])     
+      @item = Youtube.new(params[:youtube])    
+      @type = :youtube 
     end
     respond_to do |format|
       if @item.save

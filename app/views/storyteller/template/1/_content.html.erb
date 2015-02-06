@@ -144,8 +144,11 @@
                   <% if isFirst %>
                     <div class='headline<%= s_i == 0 ? " margin130": ""%>'><%= @story.title %></div>
                     <div class="byline byline--first" style="margin-bottom:24px;">
-                    <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.author %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
-                    </div>     
+                    <span class="caption"><%= t('storyteller.byline') %></span>
+                    <span class="author">&nbsp;<%= @story.author %></span>
+                    <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                    <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
+                    </div> 
                   <% end %>                            
                 <% end %>         
                 <%= "<div class='column-caption'>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
@@ -222,6 +225,7 @@
                         <div class="headline"><%= @story.title %>
                           <div class="byline byline--first" style="margin-bottom:24px;">
                             <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.author %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                             <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
                           </div>         
                         </div>
                       </div> 

@@ -28,7 +28,7 @@ BootstrapStarter::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-
+  
 	# devise requires
 	config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
@@ -39,4 +39,12 @@ BootstrapStarter::Application.configure do
     :exception_recipients => ENV['STORY_BUILDER_ERROR_TO_EMAIL']
     
   Paperclip.options[:command_path] = "/usr/local/bin/"
+end
+
+
+module ActiveSupport
+  class LogSubscriber
+    def debug(*args, &block)
+    end
+  end
 end

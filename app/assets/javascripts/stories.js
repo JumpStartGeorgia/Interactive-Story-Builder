@@ -245,7 +245,7 @@ $(document).ready(function() {
     	{
         var sl = "";
         if($(this).attr('data-sl'))
-          sl = "&story_language=" + gon.translate_to;        
+          sl = "&sl=" + gon.translate_to;        
 
     		output = "<iframe height='100%' width='100%' src='"+$(this).data('link') + "?n=n"+ sl + "'></iframe>";
     		opts = {
@@ -778,15 +778,18 @@ function change_tree(d)
 }
 function change_sub_tree(d)
 {
-  //console.log('change_tree',d);
    var section = story_tree.find('ul li.item[id='+ d.id + ']');
    var li = $("<li id='"+d.sub_id+"' class='sub' data-type='"+d.type+"_item'><div><div class='sub-l'>"+d.title+"</div><div class='storytree-arrow'><div class='arrow'></div></div></div></li>");  
-   if(d.type != 'fullscreen')
+   
+   if(d.type != 'media')
    {
       section.find('ul button').remove();
+      section.find('ul').append(li);
    }
-   section.find('ul').append(li);
-   
+   else
+   {
+      li.insertBefore( section.find('ul button'));
+   }
    story_tree.find('ul li').removeClass('active');   
    li.find('.sub-l').trigger('click');
 }
