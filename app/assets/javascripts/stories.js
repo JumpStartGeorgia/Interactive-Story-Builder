@@ -273,7 +273,7 @@ $(document).ready(function() {
 
 	$('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-up, .tools .btn-down',function()
 	{
-      var where = $(this).hasClass('btn-up') ? 'top' : 'bottom';
+    var where = $(this).hasClass('btn-up') ? 'up' : 'down';
 		var cur = $(this).closest('li');
 		var sec_id = -1;
 		var itm_id = -1;
@@ -301,7 +301,7 @@ $(document).ready(function() {
 				var secT = $('.story-tree ul li.item[id='+ sec_id + ']');
 				if(itm_id == -1)
 				{		
-               if(where == 'top')
+               if(where == 'up')
                {	 	
    			 		if(secT.prev().length)
    			 		{
@@ -319,7 +319,7 @@ $(document).ready(function() {
 		 		else
 		 		{
 		 			subT = secT.find('ul li.sub[id='+itm_id+']');
-               if(where == 'top')
+               if(where == 'up')
                {  
    		 			if( subT.prev().length)
    			 		{

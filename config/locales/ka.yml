@@ -383,7 +383,7 @@ ka:
       error_publish: "%{obj} არ გამოქვეყნებულა: %{err}"
       error_publish_missing_fields: "%{obj} ვერ  გამოქვეყნებული, სანამ არ დაამატებთ მოკლე შინაარსს და ფოტოს."
       error_publish_missing_fields_link: დაამატეთ გამოტოვებული კონტენტი.
-      error_publish_missing_sections: At least one Section required before publishing.
+      error_publish_missing_sections: ამბის გამოქვეყნებისთვის აუცილებელია სულ მცირე ერთი სექცია.
       error_publish_missing_content_section: All Text Sections must have content in it.
       error_publish_missing_translations: "The story must be completely translated in %{lang} in order to be published."
       error_unpublish: "%{obj} გამოქვეყნება გაუქმებულია: %{err}"
