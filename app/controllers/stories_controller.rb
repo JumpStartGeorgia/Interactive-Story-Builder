@@ -75,8 +75,8 @@ class StoriesController < ApplicationController
 
       if @item.save
         @item.reload      
-        @item.with_translation(params[:current_locale])
-        @item.current_locale = params[:current_locale]
+#        @item.with_translation(params[:current_locale])
+ #       @item.current_locale = params[:current_locale]
         flash_success_created(Story.model_name.human,@item.title)       
         format.html { redirect_to sections_story_path(@item) }
       #  format.json { render json: @item, status: :created, location: @item }
@@ -190,13 +190,13 @@ logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to
       # set story locale 
       # if param exists use that
       # else check if translation exists for current app locale
-      if params[:story_language].present?
-        @story.current_locale = params[:story_language] 
+      if params[:sl].present?
+        @story.current_locale = params[:sl] 
       else
         @story.use_app_locale_if_translation_exists
       end
 
-logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; permalink = #{@story.permalink}"
+#logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; permalink = #{@story.permalink}"
     end
 
     respond_to do |format|  
@@ -236,7 +236,6 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
         @to = params.has_key?(:tr_to) ? params[:tr_to] : @languages.select{|x| x.locale != @story.story_locale}.first.locale
       end
     end
-    Rails.logger.debug("-----------------------------------------------#{@which}#{@trans}#{@from}#{@to}#{@story}------------")
     if type == 'story'
       if method=='select'
         @item = @story 
@@ -336,17 +335,21 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
   def new_item   
     if params[:content].present?
       @item = Content.new(params[:content])   
-      @type = 'content'
+      @type = :content
     elsif params[:medium].present?
       @item = Medium.new(params[:medium])   
+      @type = :media
       #Rails.logger.debug "######### image valid: #{@item.image.valid?}; image validations: #{@item.image.errors.full_messages.to_sentence}" if @item.image.present?
       #Rails.logger.debug "######### video valid: #{@item.video.valid?}; video validations: #{@item.video.errors.full_messages.to_sentence}" if @item.video.present?
     elsif params[:slideshow].present?
-      @item = Slideshow.new(params[:slideshow])    
+      @item = Slideshow.new(params[:slideshow]) 
+      @type = :slideshow   
     elsif params[:embed_medium].present?
       @item = EmbedMedium.new(params[:embed_medium])  
+      @type = :embed_medium
     elsif params[:youtube].present?  
-      @item = Youtube.new(params[:youtube])     
+      @item = Youtube.new(params[:youtube])    
+      @type = :youtube 
     end
     respond_to do |format|
       if @item.save
@@ -865,7 +868,7 @@ private
 
   # if the user is not in StoryUser, stop
   def can_edit_story?(story_id)
-    logger.debug "))))))) can edit story check #{story_id}"
+    #logger.debug "))))))) can edit story check #{current_user.inspect}"
     @can_edit_story, @edit_story_role, @edit_translation_locales = Story.can_edit?(story_id, current_user.id)
     redirect_to root_path, :notice => t('app.msgs.not_authorized') if !@can_edit_story
   end
@@ -876,13 +879,13 @@ private
   #   - current_locale - indicates form submittal locale 
   def can_edit_story_locale?
     locale = params[:tr_to].present? ? params[:tr_to] : params[:current_locale].present? ? params[:current_locale] : nil
-    logger.debug "))))))) can edit story locale check, locale = #{locale}"
+    #logger.debug "))))))) can edit story locale check, locale = #{locale}"
     redirect_to root_path, :notice => t('app.msgs.not_authorized') if @edit_story_role == Story::ROLE[:translator] && !@edit_translation_locales.include?(locale.to_s)
   end
 
   # if the user is a translator, limit their access to actions to editing
   def can_access_action?
-    logger.debug "))))))) can access action check, action = #{params[:action]}"
+    #logger.debug "))))))) can access action check, action = #{params[:action]}"
     accessible_actions = [:update, :preview, :get_data, :save_section, :save_content, :save_media, :save_slideshow, :save_embed_media, :save_youtube, :sections, :check_permalink]
     redirect_to root_path, :notice => t('app.msgs.not_authorized') if @edit_story_role == Story::ROLE[:translator] && !accessible_actions.include?(params[:action].to_sym)
   end

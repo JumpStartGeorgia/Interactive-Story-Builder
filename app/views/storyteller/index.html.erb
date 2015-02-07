@@ -2,6 +2,7 @@
   @template = @story.template.id 
   @export ||= false
   @no_nav ||= false  
+  @short_url = @story.shortened_url.present? ? @story.shortened_url : storyteller_show_url(@story.permalink)
 %>
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
@@ -15,8 +16,92 @@
     <div id='storyTeller'> 
       <%= render partial: "storyteller/template/#{@template}/content"%>   
     </div>   
-    <%= render partial: "storyteller/template/#{@template}/footer"%>   
+    <%= render partial: "storyteller/template/#{@template}/footer"%> 
+    <div class="info-bottom">
+    <div class='scroll-top' title="<%= t('app.common.scroll_top') %>"></div>
+      <div class="info-row">
+        <div class="l">
+          <div class='authors'>       
+              <% @story.authors.each{|t| %>
+                <div class='author js-u-dib'>  
+                  <div class='avatar'>
+                    <%= link_to image_tag(t.avatar_url, :class=>"avatar"), "#" , :class => "avatar", :"data-toggle"=>"dropdown" %>
+                  </div>
+                  <div class='name'>
+                    <%= link_to t.name, author_path(t.permalink), :title => t.name %>
+                  </div>
+                  <div class="follow">
+                    <%= render partial: 'layouts/follow_link', locals: {:user_id => t.id, :is_story_page => true, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
+                  </div>  
+                </div>
+              <% } %>
+          </div>
+        </div>
+        <div class="r">
+          <div class='share'>
+                 <div class="addthis_native_toolbox"></div> 
+                  <%= link_to '#',   :'data-modalos-id' => "modalos-embed", :title => t('app.common.embed'), :class => "embed modalEmbed" do %>
 
+              <% end %> 
+          </div>
+        </div>
+      </div>      
+      <div class="comments">
+        <div class="fb-comments" data-href="<%= storyteller_show_url(:id=>@story.permalink,:sl => @story.current_locale) %>" data-num-posts="5" data-width="100%" id="fbComments"></div>
+      </div>
+      <% if !@stories.blank? %>
+        <div class="related-links">
+          <div class="js-label h1"><%= t('storyteller.related_stories') %></div>
+          <div class="themes js-u-right">
+            <span><%= t('storyteller.view_all_stories_in') %>:&nbsp;</span>
+            <% @story.themes.published.each { |t| %>
+              <%= link_to t.name.split.map(&:capitalize).join(' '), theme_path(t.permalink) %>
+            <% } %>
+          </div>
+        </div>
+      <% end %>
+    </div>  
+
+
+  <% if !@stories.blank? %>
+    <div class="related-stories">
+      <div class="grid-wrapper">
+        <div class="grid col-4">      
+          <% @stories.each_with_index do |story,s_i| %>       
+            <div class="col n-3" lang="<%= story.story_locale %>">  
+              <%= render partial: "shared/grid_item" , locals:{:story=>story} %> 
+            </div>  
+          <% end %>
+        </div> 
+      </div>
+    </div>
+  <% end %>
+
+    <div id="modalos-embed" style="display:none;" class="embed-window">  
+      <div class="title"><%= "#{t('app.common.share_story')}" %></div>
+      <div class="permalink"><%= "#{t('app.common.permalink')}" %>:</div>
+      <div class="permalink-link"><%= link_to storyteller_show_url(@story.permalink), storyteller_show_url(@story.permalink) %></div>
+      <div class="shortened-url"><%= "#{t('app.common.shortened_url')}" %>:</div>
+      <div class="shortened-url-link"><%= link_to @story.shortened_url, @story.shortened_url if @story.shortened_url.present? %></div>
+     
+      <div class="embed">
+        <div class="embed-icon"><i class="s i-embed"></i></div>
+        <div class="embed-text"><%= "#{t('app.msgs.embed_code')}" %>:</div>
+        <div class="embed-code">
+        <textarea rows="4" cols="38"  data-iframe-link="<%=embed_url(@story.permalink) %>"
+        readonly="" onfocus="setTimeout(function (t){ t.select(); }, 10, this);" onmouseup="return false;"><iframe src='<%=embed_url(@story.permalink) %>?type=partial' width='350' height='100%' frameborder='0'></iframe></textarea>
+          <div class="embed-type-switcher">
+            <div class="partial selected" title="<%= "#{t('app.common.partial_text')}" %>" data-width="350"><%= "#{t('app.common.partial')}" %></div>
+            <div class="full" title="<%= "#{t('app.common.full_text')}" %>" data-width="1000"><%= "#{t('app.common.full')}" %></div>
+          </div>
+          <div class="embed-size-w">
+            <input type="text" value="350" class="iframe-size"/>
+            <span>px <%= "#{t('app.common.wide')}" %></span>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
       <% if !@export %>
         <%= javascript_include_tag  *(@js.present? ? ["application", @js].flatten : ["application"]), :media => "all" %>      
@@ -30,16 +115,55 @@
           <script src="js/modalos.js"></script>   
           <script src="js/page.js"></script>   
       <% end %>
-      <% if Rails.env.production? %>
-        <script>
+      <div id="fb-root"></div>
+      <script>
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=<%= @face_id %>&version=v2.0";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        <% if Rails.env.production? %>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
           })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
           ga('create', 'UA-12801815-33', 'jumpstart.ge');
           ga('send', 'pageview');
+        <% end %> 
+
+
+        $(document).ready(function(){
+           // $(window).scroll(function(){
+           //    if ($(this).scrollTop() > 100) {
+           //       $('div.to-top').fadeIn();
+           //    } else {
+           //       $('div.to-top').fadeOut();
+           //    }
+           // });
+           
+           $('div.scroll-top').click(function(){
+              $('html, body').animate({scrollTop : 0},800);
+              return false;
+           });
+        });
+      </script>  
+
+      <%
+        addthis_id = Rails.env.production? ? ENV['STORY_BUILDER_ADDTHIS_PROFILEID'] : 'ra-51d1537d4a09d85f'
+        if addthis_id.present?
+      %>
+        <script type="text/javascript">
+        var addthis_share = { url: '<%= @short_url %>' }
         </script>
-    <% end %>    
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<%= addthis_id %>" async="async"></script>
+      <% end %>
+  
     <%= render partial: "storyteller/template/#{@template}/js"%>
+
   </body>
 </html> 
+
+

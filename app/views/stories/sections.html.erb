@@ -18,8 +18,8 @@
                 <%= tools.html_safe %>
                 <div class='storytree-arrow'><div class='arrow'></div></div>
               </div>
+              <ul class="closed">
                 <% if item.content? %>                 
-                  <ul class="closed">
                     <% if item.content.present? %>
                       <li id='<%= item.content.id %>' class='sub' data-type='<%= item.get_str_type %>_item'>
                         <div>
@@ -30,9 +30,8 @@
                     <% else %>
                       <%= add_item.html_safe %>
                     <% end %>
-                  </ul>
-                <% elsif item.media? && item.media.present? %>
-                  <ul class="closed">
+                <% elsif item.media? %>
+                  <% if item.media.present? %>
                       <% item.media.each do |subitem| %>                  
                       <li id='<%= subitem.id %>' class='sub' data-type='<%= item.get_str_type %>_item'>
                         <div>
@@ -41,11 +40,10 @@
                           <div class='storytree-arrow'><div class='arrow'></div></div>
                         </div>
                       </li>
-                    <%end%>
-                    <%= add_item.html_safe %>
-                  </ul>
+                    <% end %>
+                  <% end %>
+                  <%= add_item.html_safe %>
                 <% elsif item.slideshow? %>
-                  <ul class="closed">
                     <% if item.slideshow.present? %>
                       <li id='<%= item.slideshow.id %>' class='sub' data-type='<%= item.get_str_type %>_item'>
                         <div>
@@ -56,9 +54,7 @@
                     <% else %>
                       <%= add_item.html_safe %>
                     <% end %>
-                    </ul>
                  <% elsif item.embed_media? %>
-                    <ul class="closed">
                       <% if item.embed_medium.present? %>
                         <li id='<%= item.embed_medium.id %>' class='sub' data-type='<%= item.get_str_type %>_item'>
                           <div>
@@ -69,9 +65,7 @@
                       <% else %>
                         <%= add_item.html_safe %>
                       <% end %>
-                    </ul>
                  <% elsif item.youtube? %>
-                    <ul class="closed">
                       <% if item.youtube.present? %>
                         <li id='<%= item.youtube.id %>' class='sub' data-type='<%= item.get_str_type %>_item'>
                           <div>
@@ -82,8 +76,8 @@
                       <% else %>
                         <%= add_item.html_safe %>
                       <% end %>
-                    </ul>                    
-                <%end%>
+                  <%end%>
+                </ul>                    
             </li>          
         <% end %>            
     </ul> 

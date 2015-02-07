@@ -92,15 +92,24 @@
               end
            %>            
             <% if section.content? %>
+              <% if isFirst %>
+                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
+              <% end %> 
               <div class="section column" <%= dataAudio.html_safe %>>    
                 <% if section.has_marker? %>
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
                 <% if columnSectionCount == 0 %>
-                  <div class='headline<%= s_i == 0 ? " margin130": ""%>'><%= @story.title %></div>
-                  <div class="byline byline--first" style="margin-bottom:24px;">
-                  <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.story_author_names %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
-                  </div>                                 
+   
+                  <% if isFirst %>
+                    <div class='headline'><%= @story.title %></div>
+                    <div class="byline byline--first" style="margin-bottom:24px;">
+                    <span class="caption"><%= t('storyteller.byline') %></span>
+                    <span class="author">&nbsp;<%= @story.story_author_names %></span>
+                    <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                    <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
+                    </div> 
+                  <% end %>                            
                 <% end %>         
                 <%= "<div class='column-caption'>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
                 <%= "<div class='column-sub-caption'>#{section.content.sub_caption}</div>".html_safe  if section.content.sub_caption.present? %>                       
@@ -115,7 +124,7 @@
                 <% if section.has_marker? %>
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
-                <% section.media.each_with_index do |m,m_i| %>
+                <% section.media.each_with_index do |m,m_i| %>                
                   <% dataVideo = '' %>
                   <% if m.media_type == Medium::TYPE[:video] && m.is_processed? %>                
                     <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name_formatted,'.*')}'".html_safe %>
@@ -176,6 +185,7 @@
                         <div class="headline"><%= @story.title %>
                           <div class="byline byline--first" style="margin-bottom:24px;">
                             <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.story_author_names %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                             <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
                           </div>         
                         </div>
                       </div> 
@@ -197,9 +207,15 @@
                     <% end %>                                                            
                  
                   </div>        
-                <% end %>        
+                <% end %>                   
               </div>
+              <% if isFirst %>
+                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
+                <% end %>     
             <% elsif section.slideshow? %>  
+              <% if isFirst %>
+                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
+              <% end %> 
               <div class="section slideshow">
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
@@ -225,7 +241,10 @@
                   </div>
                 </div>
               </div> 
-            <% elsif section.embed_media? %>             
+            <% elsif section.embed_media? %> 
+              <% if isFirst %>
+                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
+              <% end %>             
               <div class="section embed">
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
@@ -234,7 +253,10 @@
                   <%= section.embed_medium.code.html_safe %>             
                 </div>                         
               </div>
-            <% elsif section.youtube? %>             
+            <% elsif section.youtube? %> 
+              <% if isFirst && !section.youtube.fullscreen %>
+                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
+              <% end %>             
               <div class="section embed<%= section.youtube.fullscreen ? ' fullscreen' : '' %>">
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
@@ -243,6 +265,9 @@
                   <%= section.youtube.code.html_safe %>             
                 </div>                         
               </div>
+              <% if isFirst && section.youtube.fullscreen %>
+                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
+              <% end %>             
             <% end %>                               
             <% isFirst = false %>                    
         <% end %>   
@@ -665,7 +690,7 @@
             fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight);
             d3.select(".video-sequence:first-child").style("margin-top", fixTop + "px");
              //containerFixed.style("height", fixHeight + "px")
-            containerFixed.style("height", innerHeight+ "px").filter(function(d) { //fixHeight 
+            containerFixed.style("height", fixHeight+ "px").filter(function(d) { //fixHeight 
               var rect = this.parentNode.getBoundingClientRect();
               return d.first ? rect.top < fixTop
                   : d.last ? rect.bottom >= fixTop + fixHeight
@@ -1021,6 +1046,6 @@
             d3.event = sourceEvent;
           }
         }
-        await();
+        await();       
     })();</script>
     <!--<![endif]--> 

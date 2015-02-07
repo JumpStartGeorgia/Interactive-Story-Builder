@@ -163,11 +163,11 @@ $(document).ready(function() {
   $(document).on('click', '#btnReviewer', function(e){
 		e.preventDefault();		
 		
-		var ml = $('#' + $(this).attr('data-modalos-id'));   
+		var ml = "<div>"+$('#modalos-reviewer')[0].innerHTML.replace('[title]', $(this).data('title')) + "</div>";
+
+    ml = ml.replace('[url]', $(this).data('reviewer-key')).replace('[url]', $(this).data('reviewer-key')); 
     var v = $('.navbar-storybuilder'); 
-    ml.find('#review_instructions').html(ml.find('#review_instructions').html().replace('[title]', $(this).data('title')));        
-    ml.find('#review_url').attr('src', $(this).data('reviewer-key')).html($(this).data('reviewer-key'));        
-    ml.modalos({
+    $(ml).modalos({
     	topOffset: $(v).position().top + $(v).height() + 30       	        	        	      
     });
 
@@ -261,7 +261,7 @@ $(document).ready(function() {
     	{
         var sl = "";
         if($(this).attr('data-sl'))
-          sl = "&story_language=" + gon.translate_to;        
+          sl = "&sl=" + gon.translate_to;        
 
     		output = "<iframe height='100%' width='100%' src='"+$(this).data('link') + "?n=n"+ sl + "'></iframe>";
     		opts = {
@@ -269,18 +269,12 @@ $(document).ready(function() {
 	        	fullscreen:true,
 	        	aspectratio:true,
 	        	paddings :0,
-	        	contentscroll:false,
-             before_close:function(t)
-            {              
-               $(t).find("iframe").contents().find("video").each(function(){this.pause();})          
-               $(t).find("iframe").contents().find("audio").each(function(){this.pause();})              
-            }
+	        	contentscroll:false
     		};
-
     	}
     	if(opts===null) opts = opts_def;    	
-        ml.html(output).modalos(opts);
-        console.log(ml);
+      $(output).modalos(opts);
+
 		return true;	
   });
 
@@ -790,20 +784,24 @@ function change_tree(d)
             "</li>");
    story_tree.find('ul li').removeClass('active'); // todo is it enough for reseting or section_id should be changed too ???
    story_tree.find('> ul').append(li);   
-   li.find('ul > .btn-create').trigger('click');
+   li.find('.box .title').trigger('click');
+   //li.find('ul > .btn-create').trigger('click');
    //story_tree.animate({ scrollTop: story_tree.height()}, 1000);
 }
 function change_sub_tree(d)
 {
-  console.log('change_tree',d);
    var section = story_tree.find('ul li.item[id='+ d.id + ']');
    var li = $("<li id='"+d.sub_id+"' class='sub' data-type='"+d.type+"_item'><div><div class='sub-l'>"+d.title+"</div><div class='storytree-arrow'><div class='arrow'></div></div></div></li>");  
-   if(d.type != 'fullscreen')
+   
+   if(d.type != 'media')
    {
       section.find('ul button').remove();
+      section.find('ul').append(li);
    }
-   section.find('ul').append(li);
-   
+   else
+   {
+      li.insertBefore( section.find('ul button'));
+   }
    story_tree.find('ul li').removeClass('active');   
    li.find('.sub-l').trigger('click');
 }
@@ -840,7 +838,6 @@ function calculate_workspace()
 }
 function select_next()
 {
-  console.log('here');
   var tree = $('.story-tree');
   var t = tree.find('ul li.active');
   
@@ -877,11 +874,16 @@ function select_next()
             }
             next.find('> .box > .title').trigger('click');
             tree.get(0).scrollTop = tree.get(0).scrollTop + next.position().top;
-          }                    
+          }
+          else
+          {
+            getObject('create','section');
+          }
         }        
       }
       else // parent has no inner items so go to next
       {
+
         next = t.next('li.item')
         if(next.length)
         {
@@ -891,7 +893,11 @@ function select_next()
           }
           next.find('> .box > .title').trigger('click');
           tree.get(0).scrollTop = tree.get(0).scrollTop + next.position().top;
-        }      
+        } 
+        else
+        {
+          t.find('ul > .btn-create').trigger('click');
+        }     
       }
     }
   }

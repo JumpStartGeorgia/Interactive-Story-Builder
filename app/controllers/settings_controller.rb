@@ -4,7 +4,7 @@ class SettingsController < ApplicationController
 
 
   def index
-    @css.push("devise.css", "bootstrap-select.min.css","navbar.css")
+    @css.push("bootstrap-select.min.css","navbar.css")
     @js.push("bootstrap-select.min.js")
 
     if request.put?

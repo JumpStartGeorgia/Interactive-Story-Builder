@@ -8,8 +8,8 @@ class StorytellerController < ApplicationController
 
 
   def index
-
-    @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css")
+    Rails.logger.debug("------------------------------------------------------- storyteller-index ")
+    @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css", "grid2.css")
     @js.push("storyteller.js","modalos.js","follow.js")    
   	story = Story.select('stories.id').is_published.find_by_permalink(params[:id])
   	@story = Story.is_published.fullsection(story.id) if story.present?  
@@ -18,13 +18,13 @@ class StorytellerController < ApplicationController
       # set story locale 
       # if param exists use that
       # else check if translation exists for current app locale
-      if params[:story_language].present?
-        @story.current_locale = params[:story_language] 
+      if params[:sl].present?
+        @story.current_locale = params[:sl] 
       else
         @story.use_app_locale_if_translation_exists
       end
-
-logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; permalink = #{@story.permalink}"
+      @stories = @story.random_related_stories
+#logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; permalink = #{@story.permalink}"
 
       # record if the user has liked this story
       @user_likes = false

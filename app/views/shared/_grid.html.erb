@@ -16,8 +16,10 @@
 </div>                             
 
 
-<% if @editable %>
-  <%= render partial: "shared/story_nav_modals"%> 
+<% if @editable %>  
+  <% content_for(:footer) { %>
+    <%= render partial: "shared/story_nav_modals"%> 
+  <% } %>  
 <% end %>
 
 
