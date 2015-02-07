@@ -586,17 +586,7 @@ class Story < ActiveRecord::Base
     self.authors.map{|x| x.name}.to_sentence
   end
 
-  # set the publish value for a specific locale
-  def update_published_for_locale(locale, is_published=false)
-    trans = self.with_translation(locale, false)
-    if trans.present?
-      trans.published = is_published
-      return trans.save
-    end
-    return false
-  end
-
-  private 
+private 
 
   def copy_asset(original_path, new_path)
     # make sure new path directory structure exists

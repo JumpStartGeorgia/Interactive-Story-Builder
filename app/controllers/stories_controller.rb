@@ -567,7 +567,8 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
 
 
       if !error 
-        if @item.update_published_for_locale(@item.current_locale, publishing)
+        @item.published = publishing
+        if @item.save
           flash[:success] =u I18n.t("app.msgs.success_#{publishing ? '' :'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                   
 
           title = publishing ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish') 
