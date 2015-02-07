@@ -174,14 +174,18 @@ $(document).ready(function() {
 		return true;	
   });
 
-  $(document).on('click', '#btnPublish', function(e){  	
+  $(document).on('click', '.btnPublish', function(e){  	
 		e.preventDefault();		
 
 		var a = $(this);		
+    var url = $(this).data('link');
+    if ($(this).data('sl')){
+      url += "?sl=" + $('.toolbar select#translateTo').val();
+    }
 		$.ajax(
 		{	
 			dataType: "json",
-			url: $(this).data('link')}).done(
+			url: url}).done(
 			function(d) 
       {
         if(typeof(d.e) !== 'undefined' && d.e)  
@@ -196,6 +200,15 @@ $(document).ready(function() {
           {
             a.find('span:last-child').attr('title',d.link + ' ' + d.title );
             a.toggleClass('btn-publish btn-publish-disabled');              
+          }
+
+          // if this is translate publish button and percent is 100%, show button still, else hide
+          if ($(a).data('sl')){
+            if ($(a).data('percent') == '100%'){
+              $(a).removeClass('hide');
+            }else{
+              $(a).addClass('hide');
+            }
           }
         }
 			});	 							

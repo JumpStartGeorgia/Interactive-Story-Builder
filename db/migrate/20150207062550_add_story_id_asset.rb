@@ -15,7 +15,7 @@ class AddStoryIdAsset < ActiveRecord::Migration
         elsif asset.asset_type == Asset::TYPE[:user_avatar]
           asset.avatar_id = asset.user.old_avatar_file_name
         end
-        asset.save
+        asset.save(validate: false)
       end
     end
   end

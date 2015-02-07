@@ -542,18 +542,20 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
   def publish
 
     @item = Story.find_by_id(params[:id])
-    @item.current_locale = params[:story_language].present? ? params[:story_language] : @item.story_locale
+    @item.current_locale = params[:sl].present? ? params[:sl] : @item.story_locale
     publishing = !@item.published
     pub_title = ''
     error = false
     respond_to do |format|    
-      
+logger.debug "$$$$$$$$$$$4 story locale = #{@item.story_locale}; current locale = #{@item.current_locale}"      
       if publishing
         # if story language passed in, make sure that language has been completely translated
-        if params[:story_language].present? && !StoryTranslationProgress.can_publish?(@item.id, params[:story_language])
-           lang = @languages.select{|x| x.locale == params[:story_language]}.first
+        if params[:sl].present? && !StoryTranslationProgress.can_publish?(@item.id, params[:sl])
+           lang = @languages.select{|x| x.locale == params[:sl]}.first
            format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_translations', lang: lang.name)} }          
            error = true
+
+#TODO?        # if translation, original must be published in order to publish trans
 
         # must have about and thumbnail
         elsif !(@item.about.present? && @item.asset_exists?)                 

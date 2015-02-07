@@ -77,7 +77,7 @@
                 title = @story.published ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish') 
                 link_text = @story.published ? t('helpers.links.story_menu.link.unpublish') : t('helpers.links.story_menu.link.publish') 
               %>
-              <%= link_to '#', title: link_text + ' - ' + title, id: 'btnPublish', class: 'btn btn-publish' + (@story.published ? '' : '-disabled'), :'data-link' => publish_story_path(@story) do %>
+              <%= link_to '#', title: link_text + ' - ' + title, class: 'btnPublish btn btn-publish' + (@story.published ? '' : '-disabled'), :'data-link' => publish_story_path(@story) do %>
                 <span class="glyphicon glyphicon-globe" ></span>
               <% end %>
               <%= link_to @story, title: t('helpers.links.story_menu.link.delete_story') + ' - ' + t('helpers.links.story_menu.title.delete_story'), 
@@ -128,13 +128,29 @@
           <div class='view-wrapper'> 
             <% if @tr %>
               <div class="trans-target"><%= t('.target') %><span class="glyphicon glyphicon-play" ></span></div> 
-              <%= select_tag "translate-to", options_from_collection_for_select(to_langs.select{ |lan|  lan.locale !=  @story.story_locale } , "locale", "name_with_translation_percent", @tr_to), include_blank: false, :id => "translateTo", :class => "selectpicker", 
+              <%= select_tag "translate-to", options_from_collection_for_select(to_langs.select{ |lan|  lan.locale !=  @story.story_locale } , "locale", "name_with_translation_percent", @to), include_blank: false, :id => "translateTo", :class => "selectpicker", 
                 :'data-live-search' => "true", :'data-size' => "10" %>
               <%= link_to '#', title: t('helpers.links.story_menu.link.preview') + ' - ' + t('helpers.links.story_menu.title.preview'), id: 'btnPreview', class: 'preview btn btn-preview', 
                 :'data-link' =>  preview_story_path(@story), 
                 :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story', :'data-sl' => true do %>
               
                 <span class="glyphicon glyphicon-eye-open" ></span>          
+
+              <% 
+                trans_story = @story.with_translation(@to)
+                title = trans_story.published ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish') 
+                link_text = trans_story.published ? t('helpers.links.story_menu.link.unpublish') : t('helpers.links.story_menu.link.publish') 
+                progress_from = progress.select{|x| x.locale == @story.story_locale}.first
+                progress_to = progress.select{|x| x.locale == @to}.first
+                btn_class = (trans_story.published || (progress_from.present? && progress_to.present? && progress_from.items_completed == progress_to.items_completed)) ? '' : 'hide'
+                logger.debug "((((((((((((((((( pub = #{trans_story.published}; percent = #{compute_translation_progress_percent(@to, progress)}; pfrom = #{progress_from.items_completed}; pto = #{progress_to.items_completed if progress_to.present?}; class = #{btn_class}"
+
+              %>
+              <%= link_to '#', title: link_text + ' - ' + title, class: "btnPublish btn #{btn_class} btn-publish" + (trans_story.published ? '' : '-disabled'), :'data-link' => publish_story_path(@story), :'data-sl' => true, 
+                :'data-percent' => compute_translation_progress_percent(@to, progress) do %>
+                <span class="glyphicon glyphicon-globe" ></span>
+              <% end %>
+
               <% end %>
             <% end %>
           </div>
