@@ -5,7 +5,7 @@
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
-        <% [0..@stories_for_slider.length-1].each { |i| %>
+       <% @stories_for_slider.each_with_index { |t,i| %>
           <li data-target="#carousel-example-generic" data-slide-to="<%= i %>" class='<%= i == 0 ? " active" : "" %>'></li>
         <% } %>  
       </ol>

@@ -4,7 +4,7 @@
     <div class="logo"><%= image_tag @author.avatar_url(:'168x168'),:size=>"168x168" %></div>
     <div class="info">
       <div class="js-row">
-        <div class="nickname"><%= "#{@author.nickname}" %></div>
+        <div class="nickname"><%= "#{@author.name}" %></div>
          <% if @editable %>     
           <div class="build-story">
             <%= link_to  t("app.common.build"), new_story_path, :tabindex => 1 %>
