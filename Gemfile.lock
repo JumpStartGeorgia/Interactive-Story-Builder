@@ -81,7 +81,7 @@ GEM
       multi_json (~> 1.0)
     acts-as-taggable-on (3.2.6)
       activerecord (>= 3, < 5)
-    acts_as_list (0.4.0)
+    acts_as_list (0.6.0)
       activerecord (>= 3.0)
     acts_as_votable (0.9.0)
     amoeba (2.1.0)
@@ -310,7 +310,7 @@ PLATFORMS
 DEPENDENCIES
   active_attr (~> 0.8.3)
   acts-as-taggable-on (~> 3.2.6)
-  acts_as_list
+  acts_as_list (~> 0.6.0)
   acts_as_votable (~> 0.9.0)
   amoeba (~> 2.1.0)
   bundler

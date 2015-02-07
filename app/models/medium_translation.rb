@@ -31,11 +31,6 @@ class MediumTranslation < ActiveRecord::Base
   #################################
   ## Callbacks
 
-  before_destroy :trigger_translation_observer, prepend: true
-  def trigger_translation_observer
-    logger.debug "============== medium translation before destroy"
-  end
-
   before_save :check_video_date
   after_commit :create_video_image
 

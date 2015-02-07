@@ -3,7 +3,7 @@ class Medium < ActiveRecord::Base
 
   translates :title, :caption, :caption_align, :source, :infobox_type
 
-  acts_as_list scope: :section
+#  acts_as_list scope: :section
 
 	belongs_to :section	
     
