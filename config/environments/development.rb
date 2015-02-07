@@ -42,9 +42,9 @@ BootstrapStarter::Application.configure do
 end
 
 
-module ActiveSupport
-  class LogSubscriber
-    def debug(*args, &block)
-    end
-  end
-end
+# module ActiveSupport
+#   class LogSubscriber
+#     def debug(*args, &block)
+#     end
+#   end
+# end

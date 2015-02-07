@@ -19,7 +19,6 @@
 /*---------------------------
  Extend and Execute
 ----------------------------*/
-	var curModalos = null;
     $.fn.modalos = function(options) {
         
         var defaults = {  
@@ -45,7 +44,7 @@
         //Extend dem' options
         var options = $.extend({}, defaults, options); 
         return this.each(function() {
-        
+        console.log('herer modalos');
 /*---------------------------
  Global Variables
 ----------------------------*/
@@ -55,7 +54,8 @@
           		bg = $('.modalos-bg'), 
           		keeper = $('.modalos-keeper'), 
           		locked = false,
-          		header_height = 15
+          		header_height = 15,
+          		content = null
           	 				
 /*---------------------------
  Create Modal Wrapper and Bg if not exists
@@ -75,26 +75,16 @@
 			if(bg.length == 0) {
 				bg = $('<div class="modalos-bg" />').appendTo('body');
 			}
-			if(keeper.length == 0) {
-				keeper = $('<div class="modalos-keeper"/>').appendTo('body');
-			}	 	    
-     		wrapper.find('.m-content').css("padding",options.paddings);
+     		content = wrapper.find('.m-content').css("padding",options.paddings);
+
 /*---------------------------
  Open & Close Animations
 ----------------------------*/
 			//Entrance Animations
 			modal.bind('modalos:open', function () {
 				var opened = false;
-				if(curModalos!=null)
-				{
-					keeper.append(curModalos);
-					opened = true;
-				}				
-				curModalos = modal;
-				//console.log("modalos:open");
-				//console.log(options.topOffset);
+			
 			    if (options.before_open) options.before_open(this);
-
 			  	bg.unbind('click.modalEvent');
 				$('.m-close').unbind('click.modalEvent');
 
@@ -103,23 +93,13 @@
 				 	lock_scroll();
 					render();				
 				     modal.detach();
-				     var content =  $(wrapper).find('.m-content');
 
 				     if(options.contentscroll)
 				     	content.css("overflow-x","hidden").css("overflow-y","auto");
 				     else content.css("overflow","hidden");
 
 					content.html($(modal).css("display","block"));
-			 
-					// if(options.animation == "fadeAndPop") {
-
-					// 	modal.css({'top': $(document).scrollTop()-topOffset, 'opacity' : 0, 'display' : 'block'});
-					// 	modalBG.fadeIn(options.animationspeed/2);
-					// 	modal.delay(options.animationspeed/2).animate({
-					// 		"top": $(document).scrollTop()+topMeasure + 'px',
-					// 		"opacity" : 1
-					// 	}, options.animationspeed,unlockModal());			
-					// }
+			 				
 					if(options.animation == "fade" && !opened) {
 
 		         	 	wrapper.css({'opacity' : 0, 'display' : 'block'});						
@@ -141,24 +121,10 @@
 			//Closing Animation
 			modal.bind('modalos:close', function () {
 
-				//console.log('modalos:close');
 				if (options.before_close) options.before_close(this);
-				keeper.append(modal);
-				curModalos = null;
 			  if(!locked) {
 					lock();
 					unlock_scroll();
-
-					// if(options.animation == "fadeAndPop") {
-					// 	//modalBG.delay(options.animationspeed).fadeOut(options.animationspeed);
-					// 	modal.animate({
-					// 		"top":  $(document).scrollTop()-topOffset + 'px',
-					// 		"opacity" : 0
-					// 	}, options.animationspeed/2, function() {
-					// 		modal.css({'top':topMeasure, 'opacity' : 1, 'display' : 'none'});
-					// 		unlock();
-					// 	});					
-					// }  	
 					if(options.animation == "fade") {    
 						bg.delay(options.animationspeed).fadeOut(options.animationspeed);
 						wrapper.animate({
@@ -173,28 +139,21 @@
 						bg.css({'display' : 'none'});	
 					}			
 				}
-				
 
 				modal.unbind('modalos:resize');
 				modal.unbind('modalos:close');
+				content.empty();
+
 			});     
 
    			modal.bind('modalos:resize', function () {	
-   				render();
-		      // 	 $(wrapper).height($(window).height() - options.topOffset - options.margins);
-		    	 // $(wrapper).width($(window).width() - options.margins);
-			     // $(wrapper).css("top",options.margins/2 + options.topOffset);
-			     // $(wrapper).css("left",options.margins/2);		         
-
-				 //modal.css({'left': ($(window).width()-modal.outerWidth(true))/2 + 'px'});						
+				render();		  
 			});     
 /*---------------------------
  Open and add Closing Listeners
 ----------------------------*/
         	//Open Modal Immediately
     		modal.trigger('modalos:open');
-			//console.log("listeners");
-			//Close Modal Listeners
 			var closeButton = $('.m-close').bind('click.modalEvent', function () {
 			  modal.trigger('modalos:close')
 			});
@@ -280,9 +239,7 @@
 			{
 				return Math.ceil(ow*h/oh);
 			}
-				
-			
-        	});//each call			
+     	});//each call			
 
     }
 })(jQuery);

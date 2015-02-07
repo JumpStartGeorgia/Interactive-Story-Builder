@@ -160,11 +160,11 @@ $(document).ready(function() {
   $(document).on('click', '#btnReviewer', function(e){
 		e.preventDefault();		
 		
-		var ml = $('#' + $(this).attr('data-modalos-id'));   
+		var ml = $('#modalos-reviewer')[0].outerHTML.replace('[title]', $(this).data('title'));
+
+    ml = ml.replace('[url]', $(this).data('reviewer-key')).replace('[url]', $(this).data('reviewer-key')); 
     var v = $('.navbar-storybuilder'); 
-    ml.find('#review_instructions').html(ml.find('#review_instructions').html().replace('[title]', $(this).data('title')));        
-    ml.find('#review_url').attr('src', $(this).data('reviewer-key')).html($(this).data('reviewer-key'));        
-    ml.modalos({
+    $(ml).modalos({
     	topOffset: $(v).position().top + $(v).height() + 30       	        	        	      
     });
 
@@ -253,17 +253,12 @@ $(document).ready(function() {
 	        	fullscreen:true,
 	        	aspectratio:true,
 	        	paddings :0,
-	        	contentscroll:false,
-             before_close:function(t)
-            {              
-               $(t).find("iframe").contents().find("video").each(function(){this.pause();})          
-               $(t).find("iframe").contents().find("audio").each(function(){this.pause();})              
-            }
+	        	contentscroll:false
     		};
-
     	}
     	if(opts===null) opts = opts_def;    	
-        ml.html(output).modalos(opts);
+      $(output).modalos(opts);
+
 		return true;	
   });
 
