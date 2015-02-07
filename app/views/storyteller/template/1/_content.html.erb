@@ -92,59 +92,17 @@
               end
            %>            
             <% if section.content? %>
+              <% if isFirst %>
+                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
+              <% end %> 
               <div class="section column" <%= dataAudio.html_safe %>>    
                 <% if section.has_marker? %>
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
                 <% if columnSectionCount == 0 %>
-
-                
-                    <div class='info-top'>
-                        <div class="share">
-                            <div class="addthis_native_toolbox"></div> 
-                            <%= link_to '#', :'data-modalos-id' => "modalos-embed", :title => t('app.common.embed'), :class => "embed modalEmbed" do %>
-          
-                              <% end %> 
-                        </div>
-                      <div class="views" title=""><%= t('app.common.views') %>:&nbsp;<span><%= @story.impressions_count %></span></div>  
-                      <div class="r">  
-                        <%  
-                          locales = @story.story_locales
-                          cur_locale = @story.current_locale 
-                          cur_lang = @languages.select{ |x| x.locale == cur_locale }.first
-                          locales-=[cur_locale]
-                        %>
-                          <div class='translations'>
-                            <div><%= t('helpers.links.languages') %>:&nbsp;</div>
-                            <div class="dropdown">
-                              <button class='btn btn-default dropdown-toggle<%= locales.size > 0 ? "" : " disabled" %>' type="button" id="translationsMenu" data-toggle="dropdown" aria-expanded="true">
-                                <%= cur_lang.name %>
-                                  <span class="caret"></span>                               
-                              </button>
-                              <% if locales.size > 0 %>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="translationsMenu">
-                                  <%  locales.each do |t| 
-                                        @story.current_locale = t
-                                        l = @languages.select{|x| x.locale == t}.first
-                                        if l.present?
-                                  %>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="<%= storyteller_show_path(:id=>@story.permalink,:sl =>t) %> "><%= l.name %></a></li>
-                                    <% end %>
-                                  <% end %>
-                                </ul>
-                              <% end %>
-                            </div>
-                          </div>
-                        <% 
-                          @story.current_locale = cur_locale
-                        %>
-                        <a href="#" class="navigation-volume"></a>
-                      </div>
-                    </div>
-
-
+   
                   <% if isFirst %>
-                    <div class='headline<%= s_i == 0 ? " margin130": ""%>'><%= @story.title %></div>
+                    <div class='headline'><%= @story.title %></div>
                     <div class="byline byline--first" style="margin-bottom:24px;">
                     <span class="caption"><%= t('storyteller.byline') %></span>
                     <span class="author">&nbsp;<%= @story.story_author_names %></span>
@@ -166,7 +124,7 @@
                 <% if section.has_marker? %>
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
-                <% section.media.each_with_index do |m,m_i| %>
+                <% section.media.each_with_index do |m,m_i| %>                
                   <% dataVideo = '' %>
                   <% if m.media_type == Medium::TYPE[:video] && m.is_processed? %>                
                     <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name_formatted,'.*')}'".html_safe %>
@@ -249,9 +207,15 @@
                     <% end %>                                                            
                  
                   </div>        
-                <% end %>        
+                <% end %>                   
               </div>
+              <% if isFirst %>
+                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
+                <% end %>     
             <% elsif section.slideshow? %>  
+              <% if isFirst %>
+                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
+              <% end %> 
               <div class="section slideshow">
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
@@ -277,7 +241,10 @@
                   </div>
                 </div>
               </div> 
-            <% elsif section.embed_media? %>             
+            <% elsif section.embed_media? %> 
+              <% if isFirst %>
+                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
+              <% end %>             
               <div class="section embed">
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
@@ -286,7 +253,10 @@
                   <%= section.embed_medium.code.html_safe %>             
                 </div>                         
               </div>
-            <% elsif section.youtube? %>             
+            <% elsif section.youtube? %> 
+              <% if isFirst && !section.youtube.fullscreen %>
+                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
+              <% end %>             
               <div class="section embed<%= section.youtube.fullscreen ? ' fullscreen' : '' %>">
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
@@ -295,6 +265,9 @@
                   <%= section.youtube.code.html_safe %>             
                 </div>                         
               </div>
+              <% if isFirst && section.youtube.fullscreen %>
+                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
+              <% end %>             
             <% end %>                               
             <% isFirst = false %>                    
         <% end %>   
@@ -1073,6 +1046,6 @@
             d3.event = sourceEvent;
           }
         }
-        await();
+        await();       
     })();</script>
     <!--<![endif]--> 

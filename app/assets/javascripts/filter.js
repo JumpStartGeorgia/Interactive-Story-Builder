@@ -189,7 +189,7 @@ $(document).ready(function() {
 //      scrolldown(false,'.header');
 
   });
- $(document).on('DOMMouseScroll mousewheel', function() {
+ $(document).on('scroll DOMMouseScroll mousewheel', function() {
     var url = $('.pagination .next_page a').attr('href');
     if (url && url !='#' && $(window).scrollTop() >= $(document).height() - $(window).height() - 120)
     {

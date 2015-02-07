@@ -54,7 +54,7 @@ class RootController < ApplicationController
                 @no_nav = true     
                 @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css")
                 @js.push("storyteller.js","modalos.js", "follow.js")    
-                story = Story.select('id').is_published.in_published_theme.find_by_permalink(params[:id])
+                story = Story.select('stories.id').is_published.in_published_theme.find_by_permalink(params[:id])
                 @story = Story.is_published.in_published_theme.fullsection(story.id) if story.present?  
                 if @story.present?
                   # set story locale 
