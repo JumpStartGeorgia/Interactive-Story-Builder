@@ -116,6 +116,7 @@ class StoriesController < ApplicationController
           @item.reload      
           @item.with_translation(params[:current_locale])
           @item.current_locale = params[:current_locale]
+          @story_progress = StoryTranslationProgress.get_progress(@item.id)
           flash_success_updated(Story.model_name.human,@item.title)       
           format.html { redirect_to  sections_story_path(@item) }
           format.js { render action: "flash", status: :created }    
@@ -373,6 +374,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
           @item.current_locale = params[:current_locale]          
           flash_success_updated(Section.model_name.human,@item.title)
           @select_next = params[:commit_and_next].present? ? true : false     
+          @story_progress = StoryTranslationProgress.get_progress(@item.story_id)
           format.js {render action: "build_tree", status: :created }                  
         else
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                            
@@ -413,6 +415,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
           @item.current_locale = params[:current_locale]     
           flash_success_updated(@item.class.model_name.human,@item.title)    
           @select_next = params[:commit_and_next].present? ? true : false       
+          @story_progress = StoryTranslationProgress.get_progress(@item.section.story_id)
           format.js {render action: "build_tree", status: :created }                  
         else
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:@item.class.model_name.human, err:@item.errors.full_messages.to_sentence)                                      

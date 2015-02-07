@@ -5,6 +5,11 @@ class StoryTranslationProgress < ActiveRecord::Base
 
   validates :story_id, :locale, :presence => true
 
+  # get all of the progress records for a story
+  def self.get_progress(story_id)
+    where(:story_id => story_id)
+  end
+
 
   # update the story translation progress
   # options: 
@@ -45,7 +50,7 @@ class StoryTranslationProgress < ActiveRecord::Base
       record.save
 
       # if the story locale was set, make sure no other locales in this story have this flag set
-      where(['story_id = ? and id != ?', story_id, record.id]).update_all(is_story_locale: false)
+      where(['story_id = ? and id != ?', story_id, record.id]).update_all(is_story_locale: false) if reset_story_locale
 
     end
   end
