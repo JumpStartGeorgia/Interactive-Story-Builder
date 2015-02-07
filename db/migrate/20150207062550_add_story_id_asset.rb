@@ -1,8 +1,8 @@
 class AddStoryIdAsset < ActiveRecord::Migration
   def up
-    # add_column :assets, :avatar_id, :string
-    # add_column :assets, :story_id, :integer
-    # rename_column :users, :avatar_file_name, :old_avatar_file_name
+    add_column :assets, :avatar_id, :string
+    add_column :assets, :story_id, :integer
+    rename_column :users, :avatar_file_name, :old_avatar_file_name
 
     story_types = [Asset::TYPE[:story_thumbnail], Asset::TYPE[:section_audio], Asset::TYPE[:media_image], Asset::TYPE[:media_video], Asset::TYPE[:slideshow_image]]
 
