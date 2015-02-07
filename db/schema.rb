@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150207061831) do
+ActiveRecord::Schema.define(:version => 20150207062551) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20150207061831) do
     t.integer  "asset_subtype",                      :default => 0
     t.boolean  "processed",                          :default => false
     t.integer  "asset_clone_id"
+    t.string   "avatar_id"
+    t.integer  "story_id"
   end
 
   add_index "assets", ["asset_clone_id"], :name => "index_assets_on_asset_clone_id"
@@ -548,7 +550,7 @@ ActiveRecord::Schema.define(:version => 20150207061831) do
     t.text     "about"
     t.string   "default_story_locale",   :default => "en"
     t.string   "permalink"
-    t.string   "avatar_file_name"
+    t.string   "old_avatar_file_name"
     t.string   "email_no_domain"
     t.boolean  "wants_notifications",    :default => true
     t.string   "notification_language",  :default => "en"

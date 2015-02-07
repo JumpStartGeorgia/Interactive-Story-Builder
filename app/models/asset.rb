@@ -15,7 +15,8 @@ class Asset < ActiveRecord::Base
   acts_as_list scope: :slideshow_translation
   acts_as_list scope: [:item_id, :asset_type]
 
-  TYPE = {story_thumbnail: 1, section_audio: 2, content_image: 3, media_image: 4, media_video: 5, slideshow_image: 6, user_avatar: 7, author_avatar: 8}
+  TYPE = {story_thumbnail: 1, section_audio: 2, content_image: 3, media_image: 4, media_video: 5, 
+          slideshow_image: 6, user_avatar: 7, author_avatar: 8}
 
 
   attr_accessor :init_called, :asset_exists, :stop_check_thumbnail, :process_video, :is_video_image, :is_amoeba
@@ -62,6 +63,7 @@ class Asset < ActiveRecord::Base
   before_post_process :transliterate_file_name
   
   before_validation :set_processed_flag
+  before_create :set_file_id
 
   def init
     if self.init_called != true
@@ -72,7 +74,7 @@ class Asset < ActiveRecord::Base
       case self.asset_type
         when TYPE[:user_avatar]        
           opt = { 
-            :url => "/system/users/:style/:user_avatar_file_name.:extension",
+            :url => "/system/users/:style/:avatar_id.:extension",
             :styles => {
                 :'168x168' => {:geometry => "168x168#"},
                 :'50x50' => {:geometry => "50x50#"},
@@ -83,7 +85,7 @@ class Asset < ActiveRecord::Base
 
         when TYPE[:author_avatar]        
           opt = { 
-            :url => "/system/authors/:style/:author_avatar_file_name.:extension",
+            :url => "/system/authors/:style/:avatar_id.:extension",
             :styles => {
                 :'168x168' => {:geometry => "168x168#"},
                 :'50x50' => {:geometry => "50x50#"},
@@ -94,7 +96,7 @@ class Asset < ActiveRecord::Base
 
         when TYPE[:story_thumbnail]        
           opt = { 
-            :url => "/system/places/thumbnail/:thumbnail_story_id/:style/:basename.:extension",
+            :url => "/system/places/thumbnail/:story_id/:style/:basename.:extension",
             :styles => {
                 :thumbnail => {:geometry => "459x328#"},
                 :slider => {:geometry => "1500>"}
@@ -104,11 +106,11 @@ class Asset < ActiveRecord::Base
           }
 
         when  TYPE[:section_audio]         
-          opt = {:url => "/system/places/audio/:audio_story_id/:id__:basename.:extension"}  
+          opt = {:url => "/system/places/audio/:story_id/:id__:basename.:extension"}  
 
         when  TYPE[:media_image]        
           opt = { 
-                  :url => "/system/places/images/:media_image_story_id/:style/:id__:basename.:extension",
+                  :url => "/system/places/images/:story_id/:style/:id__:basename.:extension",
                   :styles => {
                         :mobile_640 => {:geometry => "640x427"},
                         :mobile_1024 => {:geometry => "1024x623"},
@@ -118,7 +120,7 @@ class Asset < ActiveRecord::Base
 
         when  TYPE[:media_video]        
           opt = {   
-                  :url => "/system/places/video/:media_video_story_id/:style/:id__:basename.:extension",
+                  :url => "/system/places/video/:story_id/:style/:id__:basename.:extension",
                   :styles => { 
                     :poster => { :format => 'jpg', :time => 1 }
                   }, 
@@ -127,7 +129,7 @@ class Asset < ActiveRecord::Base
 
          when  TYPE[:slideshow_image]        
           opt = {   
-                  :url => "/system/places/slideshow/:slideshow_image_story_id/:style/:id__:basename.:extension" ,
+                  :url => "/system/places/slideshow/:story_id/:style/:id__:basename.:extension" ,
                   :styles => {                   
                     :mobile_640 => {:geometry => "640x427"},
                     :mobile_1024 => {:geometry => "1024x623"}, 
@@ -174,7 +176,33 @@ class Asset < ActiveRecord::Base
     end
     return true   
   end
-  
+
+  # for the assets that need the story id or asset id in the file path, set it
+  def set_file_id
+    case self.asset_type
+      when TYPE[:user_avatar]        
+        self.avatar_id = SecureRandom.urlsafe_base64
+
+      when TYPE[:author_avatar]        
+        self.avatar_id = SecureRandom.urlsafe_base64
+
+      when TYPE[:story_thumbnail]        
+        self.story_id = self.story_translation.story_id
+
+      when  TYPE[:section_audio]         
+        self.story_id = self.section_translation.section.story_id
+
+      when  TYPE[:media_image]        
+        self.story_id = self.image.medium.section.story_id
+
+      when  TYPE[:media_video]        
+        self.story_id = self.video.medium.section.story_id
+
+      when  TYPE[:slideshow_image]        
+        self.story_id = self.slideshow_translation.slideshow.section.story_id if self.slideshow_translation.slideshow.section.present?
+            
+    end    
+  end  
    
 
   #################################

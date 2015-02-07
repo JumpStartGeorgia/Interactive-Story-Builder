@@ -74,8 +74,8 @@ class UpdateAssetItemId < ActiveRecord::Migration
               new_item_id = trans.id if trans.present?
             else
               puts "-- section not found"
-              # raise ActiveRecord::Rollback
-              # return
+              trans = SlideshowTranslation.where(slideshow_id: asset.item_id).first
+              new_item_id = trans.id if trans.present?
             end
         end
 

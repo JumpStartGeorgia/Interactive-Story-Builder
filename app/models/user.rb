@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role, 
                   :provider, :uid, :nickname, :avatar,
-                  :about, :default_story_locale, :permalink, :local_avatar_attributes, :avatar_file_name, :email_no_domain,
-                  :wants_notification, :notification_language
+                  :about, :default_story_locale, :permalink, :local_avatar_attributes, :email_no_domain,
+                  :wants_notification, :notification_language#, :avatar_file_name
                   
   attr_accessor :send_notification
 
@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 
   before_create :create_email_no_domain
   before_save :check_nickname_changed  
-	before_save :generate_avatar_file_name
+#	before_save :generate_avatar_file_name
   before_save :set_notification_language
 
   # email_no_domain is used in the search for collaborators 
@@ -130,14 +130,14 @@ class User < ActiveRecord::Base
   end
 
 
-  # create a random string for this user that will 
-  # be used for the filename for the avatar
-  def generate_avatar_file_name
-    if self.avatar_file_name.blank?
-      self.avatar_file_name = SecureRandom.urlsafe_base64
-    end
-    return true
-  end
+  # # create a random string for this user that will 
+  # # be used for the filename for the avatar
+  # def generate_avatar_file_name
+  #   if self.avatar_file_name.blank?
+  #     self.avatar_file_name = SecureRandom.urlsafe_base64
+  #   end
+  #   return true
+  # end
 
 
   def self.no_admins

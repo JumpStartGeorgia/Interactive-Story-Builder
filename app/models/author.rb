@@ -13,7 +13,7 @@ class Author < ActiveRecord::Base
   accepts_nested_attributes_for :author_translations
   accepts_nested_attributes_for :avatar, :reject_if => lambda { |c| c[:asset].blank? }
 
-  attr_accessible :id, :name, :about, :permalink, :author_translations_attributes, :avatar_attributes
+  attr_accessible :id, :author_translations_attributes, :avatar_attributes
 
 
   def self.sorted
