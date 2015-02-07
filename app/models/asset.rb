@@ -95,7 +95,11 @@ class Asset < ActiveRecord::Base
         when TYPE[:story_thumbnail]        
           opt = { 
             :url => "/system/places/thumbnail/:thumbnail_story_id/:style/:basename.:extension",
-            :styles => {:thumbnail => {:geometry => "459x328#"}},            
+            :styles => {
+                :thumbnail => {:geometry => "459x328#"},
+                :slider => {:geometry => "1500>"}
+            },            
+            :convert_options => { :slider => '-quality 85' },
             :default_url => "/assets/missing/story_thumbnail/missing.jpg"
           }
 
