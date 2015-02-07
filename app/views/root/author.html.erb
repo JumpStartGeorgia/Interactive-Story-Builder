@@ -1,7 +1,26 @@
-  <% content_for(:header) { %>
-   <header class="header">   
+<% content_for(:header) { %>
+<header class="header">   
+  <div class="author">
+    <div class="logo"><%= image_tag @author.avatar_url(:'168x168'),:size=>"168x168" %></div>
+    <div class="info">
+      <div class="js-row">
+        <div class="nickname"><%= "#{@author.nickname}" %></div>
+         <% if @editable %>     
+          <div class="build-story">
+            <%= link_to  t("app.common.build"), new_story_path, :tabindex => 1 %>
+          </div> 
+        <% else %>
+          <div class="follow">
+            <%= render partial: 'layouts/follow_link', 
+                  locals: {:user_id => @author.id, :page_to_return_to => author_path(:user_id => @author.permalink, :process_follow => true)} %>
+          </div> 
+        <% end %>
+      </div>
+       <div class="about"><%= @author.about.html_safe if @author.about.present? %></div> 
+    </div>
+  </div>
   </header>  
 <% } %>
 
-  <%= render partial: "shared/filter" %> 
-  <%= render partial: "shared/grid" %>    
+<%= render partial: "shared/filter" %> 
+<%= render partial: "shared/grid" %>    

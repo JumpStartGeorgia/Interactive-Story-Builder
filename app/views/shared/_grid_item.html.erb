@@ -1,6 +1,5 @@
 <%
   story.use_app_locale_if_translation_exists
-
   title = ""   
   if story.about.present?     
     title = truncate(strip_tags_nbsp(story.about), length: 160, separator: ' ')

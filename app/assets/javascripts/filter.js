@@ -25,8 +25,8 @@ function filter()
       }
     } 
     if(!paging) grid.html("");
-    if(!grid_wrapper.find('.loading').length) grid.append('<div class="loading"></div>');
-    if(!paging) grid.find('.loading').addClass('space');
+    if(!grid_wrapper.find('.loading').length) grid_wrapper.append('<div class="loading"></div>');
+    if(!paging) grid_wrapper.find('.loading').addClass('space');
     $.ajax({       
       type: "POST",
       url: gon.filter_path,
@@ -71,7 +71,8 @@ function url_update() {
 
   for (prop in f) 
   {
-    if (!f.hasOwnProperty(prop)) {continue;}   
+    if (!f.hasOwnProperty(prop)) {continue;} 
+    if (prop  == 'page') { continue; }
     var k = prop;
     var v = f[prop];
     var re = new RegExp("([?&])" + k + "=.*?(&|#|$)(.*)", "gi");
@@ -104,21 +105,6 @@ function url_update() {
 
 
 $(document).ready(function() {  
-    
-  $('.filters').click(function(){$('#filter .nav').toggleClass('s h'); });
-  
-  //if(gon.page_filtered) { scrolldown(false,'.header'); }
-
-// add search phrase to filters
-  $('form#search-filter').submit(function(e){
-    e.preventDefault();
-    pf = JSON.parse(JSON.stringify(f));
-    f["q"] = $('form#search-filter input#q').val();
-    filter();    
-  });
-
-
-
 
 // collect all default values for ajax filtering
   $('[data-filter-type]').each(function(v){
@@ -130,24 +116,6 @@ $(document).ready(function() {
       pf = JSON.parse(JSON.stringify(f));
 
       $(this).toggleClass('active');
-      var tmp = !($(this).attr('data-filtered-by') == "true");  
-      $(this).attr('data-filtered-by', tmp.toString());   
-      f[$(this).attr('data-filter-type')] = tmp.toString();
-      if (tmp){
-        $(this).attr('title', $(this).data('title-active'));
-      }else{
-        $(this).attr('title', $(this).data('title'));
-      }
-      e.preventDefault();
-      e.stopPropagation();
-
-      filter();
-  });
-// staff_pick via ajax
-    $('.afilter > a.staff_pick').click(function(e){
-      pf = JSON.parse(JSON.stringify(f));
-
-      $(this).toggleClass('active').find('i').toggleClass('i-staffpicked i-staffpick');
       var tmp = !($(this).attr('data-filtered-by') == "true");  
       $(this).attr('data-filtered-by', tmp.toString());   
       f[$(this).attr('data-filter-type')] = tmp.toString();
@@ -221,12 +189,11 @@ $(document).ready(function() {
 //      scrolldown(false,'.header');
 
   });
-  $(window).on('scroll',function(){
+ $(document).on('DOMMouseScroll mousewheel', function() {
     var url = $('.pagination .next_page a').attr('href');
     if (url && url !='#' && $(window).scrollTop() >= $(document).height() - $(window).height() - 120)
     {
-      console.log('here');
-       var tmp = $('.pagination .next_page a').attr('data-filter');    
+      var tmp = $('.pagination .next_page a').attr('data-filter');    
       f["page"] = tmp == "1" ? "":tmp;
       if(!paging) 
       {

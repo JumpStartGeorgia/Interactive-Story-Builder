@@ -235,7 +235,7 @@ class Story < ActiveRecord::Base
     can_edit = false
     role = nil
     translation_locales = nil
-    logger.debug("---------------------------------------_#{story_id}_#{user_id}")
+    #logger.debug("---------------------------------------_#{story_id}_#{user_id}")
     x = StoryUser.where(:story_id => story_id, :user_id => user_id)
 
     if x.present?
@@ -305,6 +305,11 @@ class Story < ActiveRecord::Base
     joins(:authors).where('authors.id in (?)', ids)
 	end
 	
+  def random_related_stories(number_to_return=3)
+    themes_ids = self.themes.published.pluck(:id)
+    story_ids = StoryTheme.where(:theme_id => themes_ids).pluck(:story_id).uniq.shuffle[0..number_to_return]
+    Story.where(:id => story_ids)
+  end
 	# get all of the unique story locales for published stories
 	def self.published_locales
 	  joins(:story_translations).select('story_translations.locale').is_published.map{|x| x.locale}.uniq.sort

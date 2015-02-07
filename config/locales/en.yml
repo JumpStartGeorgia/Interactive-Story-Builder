@@ -370,6 +370,8 @@ en:
       required: Required
       nothing_selected: Nothing Selected
       clone_asset: Use the original file?
+      embed: Embed Code
+      scroll_top: Scroll to the top
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
@@ -525,6 +527,8 @@ en:
   shared:
     grid:
       no_stories: Oh no - no stories could be found!
+    story_nav_modals:
+      copied: Copied!
   admin:
     index:
       title: Administration Section
@@ -700,6 +704,8 @@ en:
     byline_translator: "Translated by "
     source: "Source:"
     by: by
+    related_stories: Related Stories
+    view_all_stories_in: View all stories in
   settings:
     index:
       title: Settings

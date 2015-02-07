@@ -17,7 +17,8 @@
               </li>
             <% end %>
           </ul>
-      </li>        
+      </li>  
+      <div class="separator-hor"></div> 
       <li class="dropdown dropdown-hover">                    
           <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= t("app.language.#{locale}") %><i class="caret"></i></a>                  
           <ul class="dropdown-menu">
@@ -32,9 +33,10 @@
 
 
 
-      <div class="separator-hor"></div> 
+      
       <ul class="nav navbar-nav navbar-right">    
       <% if user_signed_in? %>
+      <div class="separator-hor"></div> 
         <li class="dropdown dropdown-hover settings">
 
           <%= link_to '#', :tabindex=>2, :class=>"dropdown-toggle avatar-link", :"data-toggle"=>"dropdown"  do %>         
@@ -44,44 +46,46 @@
           <ul class="dropdown-menu">
             <li>              
               <%= link_to stories_path do %>         
-              <%= t('helpers.titles.story_list') %>
+                <i class="s i-mystories"></i>
+                <span><%= t('helpers.titles.story_list') %></span>
               <% end %>
             </li>  
             <li class="set-build">
               <%= link_to new_story_path do %>         
-              <%= t('app.common.build') %>
+              <i class="s i-build"></i><span><%= t('app.common.build') %></span>
               <% end %>              
             </li>              
             <li>
               <%= link_to settings_path do %>         
-               <%= t('helpers.links.user_settings') %>
+               <i class="s i-settings"></i><span><%= t('helpers.links.user_settings') %></span>
               <% end %>              
             </li>              
             <% if current_user.role? User::ROLES[:admin] %>
               <li>
                 <%= link_to admin_path do %>         
-                  <%= t('helpers.links.admin') %>
+                  <i class="s i-users"></i><span><%= t('helpers.links.admin') %></span>
                 <% end %>    
               </li>
             <% end %>               
             <li class="signout">
               <%= link_to destroy_user_session_path , :method => :delete do %>         
-               <%= t('helpers.links.sign_out') %>
+               <i class="s i-signout"></i><span><%= t('helpers.links.sign_out') %></span>
               <% end %>                
             </li>
           </ul>
         </li>
-     <% end %> 
-       
-        <li><%= link_to t('helpers.links.about'), about_path, class:'link' %> </li>
+     <% end %>   
+     <div class="separator-hor"></div> 
+        <li class='about'><%= link_to t('helpers.links.about'), about_path, class:'link' %> </li>
+     <div class="separator-hor"></div>         
         <li class="separator-ver"></li>
-        <li class="dropdown dropdown-hover">                    
+        <li class="dropdown dropdown-hover follow">                    
             <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= t('helpers.links.follow') %><i class="caret"></i></a>                  
             <ul class="dropdown-menu">
               <li class="facebook"><a href='#'><%= t('helpers.links.facebook') %></a></li>
               <li class="twitter"><a href='#'><%= t('helpers.links.twitter') %></a></li>
               <li class="youtube"><a href='#'><%= t('helpers.links.youtube') %></a></li>
-              <li>
+              <li class="feed">
                 <%= link_to t('helpers.links.feed'), feed_path, :rel=>"alternate", :type=>"application/feed+xml" %>
               </li>
               <li class="subscribe">
@@ -89,7 +93,7 @@
               </li>
             </ul>
         </li>  
-        <li>
+        <li class='li-search'>
           <%= form_tag root_path, :method => :get, :id => 'search-form',
           :class => "navbar-form navbar-left", :role => "search" do %>
             <div class="form-group">            

@@ -88,7 +88,17 @@ az:
       slideshow:
         title: Title
         caption: Heading
-      embed_medium:
+      news:
+        title: Title
+        content: Content
+        is_published: Publish?
+        published_at: Date Published
+      message:
+        name: Name
+        email: Email Address
+        message: Message
+        message_type: Feedback Type
+      embed_medium_translation:
         title: Title
         url: Url to Online Media
       youtube:
@@ -115,6 +125,7 @@ az:
         is_published: Publish?
         published_at: Date Published
         show_home_page: Show this theme on the home page?
+        published_item_count: Number of Published Items
       theme_translation:
         name: Name
         edition: Edition
@@ -130,6 +141,7 @@ az:
         required_field: "is a required field."
         already_exists: 'already exists in the database.'              
         story_authors: "must have at least one person selected."
+        publish_theme: 'The theme cannot be published until at least one published item has been assigned to the theme.'
   mailer:
     closing: "Sincerely,"
     signature: The Chai Khana Team
@@ -141,6 +153,9 @@ az:
       new_user:
         subject: "Welcome to Chai Khana!"
         message: "Thank you for becoming a member of Chai Khana. We look forward to exploring the stories you build!\n\nWhen you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summary about yourself: [settings_link].\n\nYou can manage when you would like to receive email notifications from Chai Khana by going to the notifications page: [notifications_link]. "
+      published_theme:
+        subject: "New themes have been published on Chai Khana!"
+        message: "The following themes you have expressed interest in were recently published:"
       published_story:
         subject: "New stories have been published on Chai Khana!"
         message: "The following stories you have expressed interest in were recently published:"
@@ -334,8 +349,8 @@ az:
       publish_date: Publish Date
       follow: Follow
       following: Following
-      follow_link_title: Click to receive notifications whenever this user publishes new stories
-      unfollow_link_title: Click to stop receiving notifications whenever this user publishes new stories
+      follow_link_title: Click to receive notifications whenever this author publishes new stories
+      unfollow_link_title: Click to stop receiving notifications whenever this author publishes new stories
       email: Email
       views: Views
       permalink: Permalink
@@ -350,11 +365,13 @@ az:
       partial_text: Embed a link to the story that has the same look as the story links on the home page of Chai Khana (image, title, author, etc)
       full: Full Story
       full_text: Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look. 
-      feed: Chai Khana Feed Channel
+      feed: Chai Khana Feeds
       home: Home
       required: Required
       nothing_selected: Nothing Selected
       clone_asset: Use the original file?
+      embed: Embed Code
+      scroll_top: Scroll to the top
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
@@ -368,7 +385,9 @@ az:
       error_publish: "%{obj} wasn't published: %{err}"
       error_publish_missing_fields: "%{obj} can't be published until you provide a summary and thumbnail image."
       error_publish_missing_fields_link: Add the missing content.
-      error_publish_missing_content_section: At least one section required.
+      error_publish_missing_sections: At least one Section required before publishing.
+      error_publish_missing_content_section: All Text Sections must have content in it.
+      error_publish_missing_translations: "The story must be completely translated in %{lang} in order to be published."
       error_unpublish: "%{obj} wasn't unpublished: %{err}"
       error_clone: "%{obj} wasn't cloned."
       error_clone_notification: "Error occurred while cloning story: %{msg}"
@@ -412,12 +431,12 @@ az:
       notification:
         yes: You will be sent notifications.
         no: You will not be sent notifications.
-        new_story_all_success: You will recieve a notification whenever a story is added.
-        new_story_none_success: You will not receive any notifications when stories are added.
-        new_story_by_category_success: "You will receive a notification when a story is added to these categories: %{categories}."
+        new_theme_all_success: You will recieve a notification whenever a theme is added.
+        new_theme_none_success: You will not receive any notifications when themes are added.
+        new_story_by_type_success: "You will receive a notification when a story is added to these types: %{types}."
         story_comments_yes: You will be sent notifications when a comment is made to one of your stories.
         story_comments_no: You will not be sent notifications when a comment is made to one of your stories.
-        following_no: "You will no longer receive notifications about new stories from '%{nickname}'."
+        following_no: "You will no longer receive notifications about new stories from '%{name}'."
         language: You will be sent notifications in %{language}.
       fail_change_order: The item was not able to be moved
       nothing_selected: Please select a section/item to delete
@@ -502,9 +521,14 @@ az:
     reviewer:
       copy: Copy To Clipboard...
       copied: Copied!
+    storybuilder:
+      source: Source
+      target: Target
   shared:
     grid:
       no_stories: Oh no - no stories could be found!
+    story_nav_modals:
+      copied: Copied!    
   admin:
     index:
       title: Administration Section
@@ -680,6 +704,8 @@ az:
     byline_translator: "Translated by "
     source: "Source:"
     by: by
+    related_stories: Related Stories
+    view_all_stories_in: View all stories in
   settings:
     index:
       title: Settings
@@ -700,6 +726,7 @@ az:
       header_from: Sent By
     notifications:
       title: Notifications
+      explain: You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.
       all_sub_title: All Notifications
       all_label: Do you want to recieve any notifications from Chai Khana?
       all_no: "No, do not send me any notifications."
@@ -708,17 +735,17 @@ az:
       story_comment_label: "Do you want to recieve notifications when a comment is made to one of your stories?"
       story_comment_no: "No, do not send me any notifications."
       story_comment_yes: "Yes, I want notifications sent to me."
-      new_stories_sub_title: New Story Notifications
-      new_stories_all: Notify me when any story is added.
-      new_stories_none: I do not want to receive notifications when a new story is added.
+      new_themes_sub_title: New Theme Notifications
+      new_themes_all: Notify me when any theme is added.
+      new_themes_none: I do not want to receive notifications when a new theme is added.
       new_stories_by_category: "Notify me when a story is added to:"
       language_sub_title: Notification Language
       language_label: In what language do you want to receive the notifications?
       following_sub_title: Chai Khana Users You Are Following
       following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image."
       following_not: "At this time, you are not following any users."
-      following_title1: "Click to unfollow '%{nickname}'"
-      following_title2: "Click to follow '%{nickname}'"     
+      following_title1: "Click to unfollow '%{name}'"
+      following_title2: "Click to follow '%{name}'"     
       submit: Save Settings
   imageuploader:
     missing: "An error occurred while processing your image. Please try again."

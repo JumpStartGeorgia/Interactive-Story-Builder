@@ -19,8 +19,8 @@ if(item_id != -1)
 }
 else 
 {
-  $('.story-tree ul li.item[id='+ section_id + '] > .box > .title').text('<%= @item.title %>').trigger('click');
-} 
+	$('.story-tree ul li.item[id='+ section_id + '] > .box > .title').text('<%= @item.title %>').trigger('click');
+}	
 
 <% if @select_next %>
   select_next();

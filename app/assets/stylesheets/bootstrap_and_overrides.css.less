@@ -28,7 +28,7 @@
 
 
 @body-bg:#252525;
-@screen-sm:1200px;
+@screen-sm:1400px;
 @screen-md:1424px;
 @screen-lg:1600px;
 @navbar-default-toggle-hover-bg:transparent;
@@ -107,10 +107,7 @@
   color:#575757;
   line-height:14px;
   padding:0px;
-  &:hover
-  {
-    color:#adadad;
-  }
+
   &:lang(en)
   {
     font-family:'opensans', 'sans-serif';
@@ -160,6 +157,11 @@
 .navbar-nav.navbar-right:last-child 
 {
 	margin-right: 0px;
+}
+.navbar-right  .dropdown-menu
+{
+  left:0px;
+  right:initial;
 }
 .dropdown-menu
 {    	
@@ -288,15 +290,30 @@ body#grid-layout #wrapper{
     {
       max-height: 600px;
       min-height:600px;
+     
       img {
           margin:0px auto;
           width:100%;
+          display:inline-block;
+          vertical-align:middle;
+           line-height:600px;
       }
     }
   }  
   .carousel-inner .item img {
     max-height:100%;
   }
+  .carousel-inner .item .img
+  {
+  background-repeat:no-repeat;
+height: 600px;
+ // background-attachment: fixed; 
+background-position: top center;
+/* width: 100%; */
+// background-size: contain;  
+background-size: cover;  
+  }
+  
   .carousel-control
   {
     width:5%;
@@ -354,7 +371,7 @@ body#grid-layout #wrapper{
       a{
         color:#fff;
         &:hover{
-          text-decoration: underline;
+          text-decoration: none;
         }
       }
     }
@@ -389,8 +406,9 @@ body#grid-layout #wrapper{
     right:40px;
     border-radius:100%;
     background-color:#fff;
-    width:200px;
-    height:200px;
+    width:14em;
+    height:14em;
+    overflow: hidden;
     .sticker-wrapper
     {
       position: absolute;
@@ -401,6 +419,10 @@ body#grid-layout #wrapper{
       margin:0px auto;
       text-align:center;
       width:100%;
+      a,a:hover,a:focus,a:active
+      {
+        text-decoration:none;
+      }
       .sep
       {
         width:45%;
@@ -414,7 +436,7 @@ body#grid-layout #wrapper{
       .title
       {
         
-        font-size: 26px;
+        font-size: 1.3em;
         color: #2d2d2d;
         padding-bottom: 15px;        
         font-family:'dejavusans-b', Sylfaen;
@@ -425,7 +447,8 @@ body#grid-layout #wrapper{
       }
       .date
       {
-        font-size: 14px;
+
+        font-size: 0.9em;
         padding-top: 12px;
         color: #484848;
         font-family:'dejavusans', Sylfaen;
@@ -475,7 +498,6 @@ body#grid-layout #wrapper{
 }
 .navbar-left
 {
-  padding-left:10% !important;
 }
 .nav 
 {
@@ -546,4 +568,12 @@ body#grid-layout #wrapper{
     } 
     // a span
   }        
+}
+.formtastic .inputs
+{
+  overflow:visible;
+}
+.bootstrap-select.btn-group .btn .filter-option 
+{
+  text-overflow: ellipsis;
 }

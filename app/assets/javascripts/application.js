@@ -112,12 +112,12 @@ $(".navbar-collapse").swipe(function( direction, offset ) {
     $('.navbar-toggle').trigger('click');
 });
 
-  $('.navbar-story .navbar-brand').width($('.navbar-story .navbar-toggle').is(':visible') ? $(window).width() - 103 : 'auto');
+  // $('.navbar-story .navbar-brand').width($('.navbar-story .navbar-toggle').is(':visible') ? $(window).width() - 103 : 'auto');
 
 
-$(window).resize(function() {   
-    $('.navbar-story .navbar-brand').width($('.navbar-story .navbar-toggle').is(':visible') ? $(window).width() - 103 : 'auto');
-});
+// $(window).resize(function() {   
+//     $('.navbar-story .navbar-brand').width($('.navbar-story .navbar-toggle').is(':visible') ? $(window).width() - 103 : 'auto');
+// });
 
   // fancy select boxes with search capability
   if ($('.selectpicker').length > 0){
@@ -193,7 +193,33 @@ $(window).resize(function() {
 
 
   $('.carousel').carousel({interval:20000});
+
+
+//---------------------------------------------dev stuff-------------------------------------------------
+  $(window).resize(function(){
+    var t = null; 
+    if(firstResize)
+    {
+      t = $("<div class='js-dev-windows-size h'></div>");
+      $('body').append(t);  
+      t.css({"position":"fixed","right":"0px","bottom":"0px", "background-color":"#fff","color":"#000","padding":"6px 10px","font-size":"14px","font-family":"monospace"});
+      firstResize = false;
+    }
+    t = $(document).find('.js-dev-windows-size');
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    t.html(w+"px / "+h+ "px");
+    if(t.hasClass('h'))
+    {
+      t.toggleClass('h').fadeIn(1000).delay(5000).fadeOut(1000,function(){ t.toggleClass('h'); });
+    }
+  });
+//---------------------------------------------dev stuff end-------------------------------------------------
+
 });
+//---------------------------------------------dev stuff-------------------------------------------------
+var firstResize = true;
+//---------------------------------------------dev stuff end-------------------------------------------------
 
 
 $(document).ajaxComplete(function(event, request) {
@@ -228,27 +254,6 @@ function apply_tipsy(){
     $('form div.help-inline,form div.help-block, form label abbr').tipsy({gravity: 'sw', fade: true});
   }
 }
-
-function scrolldown(an,obj)
-{  
-  var src = $(obj).offset().top + $(obj).height() - 54; 
-  an = (typeof an === 'undefined') ? true : an;
-  
-  if(an)
-  {
-      $("html,body").stop().animate(
-      { scrollTop: src },   
-      {
-        duration: 1700,
-        easing: 'easeOutExpo'          
-      });
-  }
-  else 
-  {
-    window.scroll(0,src);
-  }
-}
-
 var debounce = function (fn) {
   var timeout
   return function () {
