@@ -588,7 +588,6 @@ class Story < ActiveRecord::Base
 
   # set the publish value for a specific locale
   def update_published_for_locale(locale, is_published=false)
-    logger.debug "--------- update_published_for_locale; locale = #{locale}; publish = #{is_published}"
     trans = self.with_translation(locale, false)
     if trans.present?
       trans.published = is_published
