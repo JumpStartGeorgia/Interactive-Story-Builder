@@ -94,6 +94,7 @@
             asset_record = trans_record.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
           end
         %>
+
         <%= f_translation.fields_for :asset, asset_record do |f_asset| %>
           <%= f_asset.input :asset_type, :as => :hidden %>
 

@@ -495,7 +495,7 @@ $(document).ready(function() {
   {
     getObject('create','section');
   }
-  else 
+  else if (gon.new_story != true )
   {
     getObject('select','story');
   }

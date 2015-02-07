@@ -38,7 +38,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
         format.html 
       end
       # record the view count
-      impressionist(@story)
+      impressionist(@story, :unique => [:session_hash])
     else
       redirect_to root_path, :notice => t('app.msgs.does_not_exist')
     end

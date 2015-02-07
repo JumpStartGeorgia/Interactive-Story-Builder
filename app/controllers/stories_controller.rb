@@ -47,6 +47,7 @@ class StoriesController < ApplicationController
     @themes = Theme.sorted
     @authors = Author.sorted
     @new = true
+    gon.new_story = true
     respond_to do |format|
         format.html #new.html.er
         format.json { render json: @item }
@@ -89,6 +90,7 @@ class StoriesController < ApplicationController
         @themes = Theme.sorted
         @authors = Author.sorted
         @new = true
+        gon.new_story = true
         flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@item.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
         #  format.json { render json: @item.errors, status: :unprocessable_entity }
@@ -542,7 +544,6 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
     @item = Story.find_by_id(params[:id])
     @item.current_locale = params[:story_language].present? ? params[:story_language] : @item.story_locale
     publishing = !@item.published
-    logger.debug "=========== locale = #{@item.current_locale}; published = #{publishing}"
     pub_title = ''
     error = false
     respond_to do |format|    
@@ -561,8 +562,16 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
                 " <a href='" +  sections_story_path(@item) + "'>" + t('app.msgs.error_publish_missing_fields_link') + "</a>")} }  
            error = true       
 
+         # must have a section
+        elsif !@item.sections.present?
+
+           format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_sections')} }          
+           error = true
+
          # content section must have text
-        elsif @item.sections.map{|t| t.content.present? && t.content.text.present? }.count(true) == 0          
+        elsif !(@item.sections.select{|x| x.content?}.length == 0 || 
+                @item.sections.map{|t| t.content.present? && t.content.text.present? }.count(true) > 0)
+
            format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_content_section')} }          
            error = true
         end            

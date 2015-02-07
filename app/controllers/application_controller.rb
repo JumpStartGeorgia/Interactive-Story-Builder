@@ -87,6 +87,9 @@ class ApplicationController < ActionController::Base
       @css.push('devise.css',"navbar.css")
 #      @js.push('nickname.js')
     end
+
+    # reset globalize story_locale
+    Globalize.story_locale = Globalize.locale
 	end
   
 
