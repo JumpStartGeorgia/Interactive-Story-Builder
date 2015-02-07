@@ -537,7 +537,9 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
   def publish
 
     @item = Story.find_by_id(params[:id])
+    @item.current_locale = params[:story_language].present? ? params[:story_language] : @item.story_locale
     publishing = !@item.published
+    logger.debug "=========== locale = #{@item.current_locale}; published = #{publishing}"
     pub_title = ''
     error = false
     respond_to do |format|    
@@ -565,7 +567,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
 
 
       if !error 
-        if @item.update_attributes(published: publishing)     
+        if @item.update_published_for_locale(@item.current_locale, publishing)
           flash[:success] =u I18n.t("app.msgs.success_#{publishing ? '' :'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                   
 
           title = publishing ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish') 

@@ -319,6 +319,8 @@ class Story < ActiveRecord::Base
     includes(:categories)
   end
 
+  #####################################
+
   # get list of users that match the passed in query
   # - user must not be owner or already have invitation or is already collaborator
   # - search in user nickname and email
@@ -582,6 +584,17 @@ class Story < ActiveRecord::Base
   # get nicely formatted list of author names
   def story_author_names
     self.authors.map{|x| x.name}.to_sentence
+  end
+
+  # set the publish value for a specific locale
+  def update_published_for_locale(locale, is_published=false)
+    logger.debug "--------- update_published_for_locale; locale = #{locale}; publish = #{is_published}"
+    trans = self.with_translation(locale, false)
+    if trans.present?
+      trans.published = is_published
+      return trans.save
+    end
+    return false
   end
 
   private 

@@ -49,7 +49,7 @@ class StoryTranslation < ActiveRecord::Base
   ## Callbacks
   before_save :publish_date
   before_save :shortened_url_generation
-  after_save :update_filter_counts
+#  after_save :update_filter_counts
 
   # if the story is being published, record the date
   def publish_date    
@@ -70,15 +70,15 @@ class StoryTranslation < ActiveRecord::Base
     return true
   end
   
-  # if the story published flag changes
-  # update the filter counts
-  def update_filter_counts
-    if self.published_changed?
+  # # if the story published flag changes
+  # # update the filter counts
+  # def update_filter_counts
+  #   if self.published_changed?
 
-      Category.update_published_stories_flags
-      Language.update_published_stories_flags
-    end
-  end
+  #     Category.update_published_stories_flags
+  #     Language.update_published_stories_flags
+  #   end
+  # end
 
   #################################
   # settings to clone story
