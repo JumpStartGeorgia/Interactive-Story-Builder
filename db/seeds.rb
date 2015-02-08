@@ -123,8 +123,14 @@ langs = [
   ["zh-CN", "简体中文"]
 ]
 
+# only load the languages that the app is in.
+app_langs = []
+I18n.available_locales.each do |locale|
+  app_langs << langs.select{|x| x[0] == locale.to_s}.first
+end
+
 sql = "insert into languages (locale, name) values "
-sql << langs.map{|x| "(\"#{x[0]}\", \"#{x[1]}\")"}.join(', ')
+sql << app_langs.map{|x| "(\"#{x[0]}\", \"#{x[1]}\")"}.join(', ')
 ActiveRecord::Base.connection.execute(sql)
 
 if !Rails.env.production?
@@ -236,75 +242,75 @@ if !Rails.env.production?
     story.story_type_id = story_types.sample
     story.save
   end
-end
 
-#####################
-## Pages
-#####################
-puts "Loading Pages"
-Page.delete_all
-PageTranslation.delete_all
-p = Page.create(:id => 1, :name => 'about')
-p.page_translations.create(:locale => 'en', :title => 'About Us', content: "<p>The Chai Khana or &ldquo;tea house,&rdquo; is symbolic of a collective space where citizens come together and discuss socio-economic issues. It is a focal point for exchanging information and a flourishing place for social interaction and social entrepreneurship. Accordingly, Chai Khana seeks to attract new local and international attention to locally-led dialogue covering the region.</p>
-<p>At Chai Khana, we believe that open access to information, through issue-based multi-media content, could be a catalyst for positive change. We believe that if we invest in building up the skills of young journalists, they will create positive returns for themselves, their communities, and the region at large. The values of the NGO are therefore to build up a more open, ethnical and professional source of alternative media for the South Caucasus.</p>
-<h2>Mission Statement</h2>
-<p>The Mission of Chai Khana is to strengthen citizen engagement and Independent Journalism in the region. In doing so, Chai Khana seeks toencourage the diverse and thriving media landscape in the South Caucasus by helping to use innovative tools to improvethe quality and independence of objective reporting, and promote non-discrimination and tolerance between Armenians, Georgians and Azerbaijanis. Through this collaboration, the NGO seeks to expand the space for free expression and freedom of speech, including critical and alternative views in the South Caucasus.</p>
-<h2>What We Do</h2>
-<p>At Chai Khana, we draw on the talent of young journalists, film-makers, data analysts and photographers to publish an engaging, visually complex and dynamic multi-media series. We provide journalism trainings, mentorship and opportunities for collaboration in Tbilisi, Georgia.</p>
-<h2>Acknowledgements</h2>
-<p>Chai Khana would like to thank NIRAS who manages the fund provided by the Danish Foreign Ministry for their generous support and belief that we are making a difference.In addition, we would like to thank our partner, Jumpstart Georgia for their continued partnership and inspiration. And finally, we would like to thank all the journalists in this project who continue to share their time, skill, and energy to make the project possible.</p>
-<h2>Contact Information</h2>
-<p>chai.khana01@gmail.com</p>
-<h2>Vacancies</h2>
-<p>No current openings at this time</p>")
-p.page_translations.create(:locale => 'ka', :title => 'About Us', content: "<p>The Chai Khana or &ldquo;tea house,&rdquo; is symbolic of a collective space where citizens come together and discuss socio-economic issues. It is a focal point for exchanging information and a flourishing place for social interaction and social entrepreneurship. Accordingly, Chai Khana seeks to attract new local and international attention to locally-led dialogue covering the region.</p>
-<p>At Chai Khana, we believe that open access to information, through issue-based multi-media content, could be a catalyst for positive change. We believe that if we invest in building up the skills of young journalists, they will create positive returns for themselves, their communities, and the region at large. The values of the NGO are therefore to build up a more open, ethnical and professional source of alternative media for the South Caucasus.</p>
-<h2>Mission Statement</h2>
-<p>The Mission of Chai Khana is to strengthen citizen engagement and Independent Journalism in the region. In doing so, Chai Khana seeks toencourage the diverse and thriving media landscape in the South Caucasus by helping to use innovative tools to improvethe quality and independence of objective reporting, and promote non-discrimination and tolerance between Armenians, Georgians and Azerbaijanis. Through this collaboration, the NGO seeks to expand the space for free expression and freedom of speech, including critical and alternative views in the South Caucasus.</p>
-<h2>What We Do</h2>
-<p>At Chai Khana, we draw on the talent of young journalists, film-makers, data analysts and photographers to publish an engaging, visually complex and dynamic multi-media series. We provide journalism trainings, mentorship and opportunities for collaboration in Tbilisi, Georgia.</p>
-<h2>Acknowledgements</h2>
-<p>Chai Khana would like to thank NIRAS who manages the fund provided by the Danish Foreign Ministry for their generous support and belief that we are making a difference.In addition, we would like to thank our partner, Jumpstart Georgia for their continued partnership and inspiration. And finally, we would like to thank all the journalists in this project who continue to share their time, skill, and energy to make the project possible.</p>
-<h2>Contact Information</h2>
-<p>chai.khana01@gmail.com</p>
-<h2>Vacancies</h2>
-<p>No current openings at this time</p>")
-p.page_translations.create(:locale => 'az', :title => 'About Us', content: "<p>The Chai Khana or &ldquo;tea house,&rdquo; is symbolic of a collective space where citizens come together and discuss socio-economic issues. It is a focal point for exchanging information and a flourishing place for social interaction and social entrepreneurship. Accordingly, Chai Khana seeks to attract new local and international attention to locally-led dialogue covering the region.</p>
-<p>At Chai Khana, we believe that open access to information, through issue-based multi-media content, could be a catalyst for positive change. We believe that if we invest in building up the skills of young journalists, they will create positive returns for themselves, their communities, and the region at large. The values of the NGO are therefore to build up a more open, ethnical and professional source of alternative media for the South Caucasus.</p>
-<h2>Mission Statement</h2>
-<p>The Mission of Chai Khana is to strengthen citizen engagement and Independent Journalism in the region. In doing so, Chai Khana seeks toencourage the diverse and thriving media landscape in the South Caucasus by helping to use innovative tools to improvethe quality and independence of objective reporting, and promote non-discrimination and tolerance between Armenians, Georgians and Azerbaijanis. Through this collaboration, the NGO seeks to expand the space for free expression and freedom of speech, including critical and alternative views in the South Caucasus.</p>
-<h2>What We Do</h2>
-<p>At Chai Khana, we draw on the talent of young journalists, film-makers, data analysts and photographers to publish an engaging, visually complex and dynamic multi-media series. We provide journalism trainings, mentorship and opportunities for collaboration in Tbilisi, Georgia.</p>
-<h2>Acknowledgements</h2>
-<p>Chai Khana would like to thank NIRAS who manages the fund provided by the Danish Foreign Ministry for their generous support and belief that we are making a difference.In addition, we would like to thank our partner, Jumpstart Georgia for their continued partnership and inspiration. And finally, we would like to thank all the journalists in this project who continue to share their time, skill, and energy to make the project possible.</p>
-<h2>Contact Information</h2>
-<p>chai.khana01@gmail.com</p>
-<h2>Vacancies</h2>
-<p>No current openings at this time</p>")
-p.page_translations.create(:locale => 'ru', :title => 'About Us', content: "<p>The Chai Khana or &ldquo;tea house,&rdquo; is symbolic of a collective space where citizens come together and discuss socio-economic issues. It is a focal point for exchanging information and a flourishing place for social interaction and social entrepreneurship. Accordingly, Chai Khana seeks to attract new local and international attention to locally-led dialogue covering the region.</p>
-<p>At Chai Khana, we believe that open access to information, through issue-based multi-media content, could be a catalyst for positive change. We believe that if we invest in building up the skills of young journalists, they will create positive returns for themselves, their communities, and the region at large. The values of the NGO are therefore to build up a more open, ethnical and professional source of alternative media for the South Caucasus.</p>
-<h2>Mission Statement</h2>
-<p>The Mission of Chai Khana is to strengthen citizen engagement and Independent Journalism in the region. In doing so, Chai Khana seeks toencourage the diverse and thriving media landscape in the South Caucasus by helping to use innovative tools to improvethe quality and independence of objective reporting, and promote non-discrimination and tolerance between Armenians, Georgians and Azerbaijanis. Through this collaboration, the NGO seeks to expand the space for free expression and freedom of speech, including critical and alternative views in the South Caucasus.</p>
-<h2>What We Do</h2>
-<p>At Chai Khana, we draw on the talent of young journalists, film-makers, data analysts and photographers to publish an engaging, visually complex and dynamic multi-media series. We provide journalism trainings, mentorship and opportunities for collaboration in Tbilisi, Georgia.</p>
-<h2>Acknowledgements</h2>
-<p>Chai Khana would like to thank NIRAS who manages the fund provided by the Danish Foreign Ministry for their generous support and belief that we are making a difference.In addition, we would like to thank our partner, Jumpstart Georgia for their continued partnership and inspiration. And finally, we would like to thank all the journalists in this project who continue to share their time, skill, and energy to make the project possible.</p>
-<h2>Contact Information</h2>
-<p>chai.khana01@gmail.com</p>
-<h2>Vacancies</h2>
-<p>No current openings at this time</p>")
-p.page_translations.create(:locale => 'hy', :title => 'About Us', content: "<p>The Chai Khana or &ldquo;tea house,&rdquo; is symbolic of a collective space where citizens come together and discuss socio-economic issues. It is a focal point for exchanging information and a flourishing place for social interaction and social entrepreneurship. Accordingly, Chai Khana seeks to attract new local and international attention to locally-led dialogue covering the region.</p>
-<p>At Chai Khana, we believe that open access to information, through issue-based multi-media content, could be a catalyst for positive change. We believe that if we invest in building up the skills of young journalists, they will create positive returns for themselves, their communities, and the region at large. The values of the NGO are therefore to build up a more open, ethnical and professional source of alternative media for the South Caucasus.</p>
-<h2>Mission Statement</h2>
-<p>The Mission of Chai Khana is to strengthen citizen engagement and Independent Journalism in the region. In doing so, Chai Khana seeks toencourage the diverse and thriving media landscape in the South Caucasus by helping to use innovative tools to improvethe quality and independence of objective reporting, and promote non-discrimination and tolerance between Armenians, Georgians and Azerbaijanis. Through this collaboration, the NGO seeks to expand the space for free expression and freedom of speech, including critical and alternative views in the South Caucasus.</p>
-<h2>What We Do</h2>
-<p>At Chai Khana, we draw on the talent of young journalists, film-makers, data analysts and photographers to publish an engaging, visually complex and dynamic multi-media series. We provide journalism trainings, mentorship and opportunities for collaboration in Tbilisi, Georgia.</p>
-<h2>Acknowledgements</h2>
-<p>Chai Khana would like to thank NIRAS who manages the fund provided by the Danish Foreign Ministry for their generous support and belief that we are making a difference.In addition, we would like to thank our partner, Jumpstart Georgia for their continued partnership and inspiration. And finally, we would like to thank all the journalists in this project who continue to share their time, skill, and energy to make the project possible.</p>
-<h2>Contact Information</h2>
-<p>chai.khana01@gmail.com</p>
-<h2>Vacancies</h2>
-<p>No current openings at this time</p>")
+  #####################
+  ## Pages
+  #####################
+  puts "Loading Pages"
+  Page.delete_all
+  PageTranslation.delete_all
+  p = Page.create(:id => 1, :name => 'about')
+  p.page_translations.create(:locale => 'en', :title => 'About Us', content: "<p>The Chai Khana or &ldquo;tea house,&rdquo; is symbolic of a collective space where citizens come together and discuss socio-economic issues. It is a focal point for exchanging information and a flourishing place for social interaction and social entrepreneurship. Accordingly, Chai Khana seeks to attract new local and international attention to locally-led dialogue covering the region.</p>
+  <p>At Chai Khana, we believe that open access to information, through issue-based multi-media content, could be a catalyst for positive change. We believe that if we invest in building up the skills of young journalists, they will create positive returns for themselves, their communities, and the region at large. The values of the NGO are therefore to build up a more open, ethnical and professional source of alternative media for the South Caucasus.</p>
+  <h2>Mission Statement</h2>
+  <p>The Mission of Chai Khana is to strengthen citizen engagement and Independent Journalism in the region. In doing so, Chai Khana seeks toencourage the diverse and thriving media landscape in the South Caucasus by helping to use innovative tools to improvethe quality and independence of objective reporting, and promote non-discrimination and tolerance between Armenians, Georgians and Azerbaijanis. Through this collaboration, the NGO seeks to expand the space for free expression and freedom of speech, including critical and alternative views in the South Caucasus.</p>
+  <h2>What We Do</h2>
+  <p>At Chai Khana, we draw on the talent of young journalists, film-makers, data analysts and photographers to publish an engaging, visually complex and dynamic multi-media series. We provide journalism trainings, mentorship and opportunities for collaboration in Tbilisi, Georgia.</p>
+  <h2>Acknowledgements</h2>
+  <p>Chai Khana would like to thank NIRAS who manages the fund provided by the Danish Foreign Ministry for their generous support and belief that we are making a difference.In addition, we would like to thank our partner, Jumpstart Georgia for their continued partnership and inspiration. And finally, we would like to thank all the journalists in this project who continue to share their time, skill, and energy to make the project possible.</p>
+  <h2>Contact Information</h2>
+  <p>chai.khana01@gmail.com</p>
+  <h2>Vacancies</h2>
+  <p>No current openings at this time</p>")
+  p.page_translations.create(:locale => 'ka', :title => 'About Us', content: "<p>The Chai Khana or &ldquo;tea house,&rdquo; is symbolic of a collective space where citizens come together and discuss socio-economic issues. It is a focal point for exchanging information and a flourishing place for social interaction and social entrepreneurship. Accordingly, Chai Khana seeks to attract new local and international attention to locally-led dialogue covering the region.</p>
+  <p>At Chai Khana, we believe that open access to information, through issue-based multi-media content, could be a catalyst for positive change. We believe that if we invest in building up the skills of young journalists, they will create positive returns for themselves, their communities, and the region at large. The values of the NGO are therefore to build up a more open, ethnical and professional source of alternative media for the South Caucasus.</p>
+  <h2>Mission Statement</h2>
+  <p>The Mission of Chai Khana is to strengthen citizen engagement and Independent Journalism in the region. In doing so, Chai Khana seeks toencourage the diverse and thriving media landscape in the South Caucasus by helping to use innovative tools to improvethe quality and independence of objective reporting, and promote non-discrimination and tolerance between Armenians, Georgians and Azerbaijanis. Through this collaboration, the NGO seeks to expand the space for free expression and freedom of speech, including critical and alternative views in the South Caucasus.</p>
+  <h2>What We Do</h2>
+  <p>At Chai Khana, we draw on the talent of young journalists, film-makers, data analysts and photographers to publish an engaging, visually complex and dynamic multi-media series. We provide journalism trainings, mentorship and opportunities for collaboration in Tbilisi, Georgia.</p>
+  <h2>Acknowledgements</h2>
+  <p>Chai Khana would like to thank NIRAS who manages the fund provided by the Danish Foreign Ministry for their generous support and belief that we are making a difference.In addition, we would like to thank our partner, Jumpstart Georgia for their continued partnership and inspiration. And finally, we would like to thank all the journalists in this project who continue to share their time, skill, and energy to make the project possible.</p>
+  <h2>Contact Information</h2>
+  <p>chai.khana01@gmail.com</p>
+  <h2>Vacancies</h2>
+  <p>No current openings at this time</p>")
+  p.page_translations.create(:locale => 'az', :title => 'About Us', content: "<p>The Chai Khana or &ldquo;tea house,&rdquo; is symbolic of a collective space where citizens come together and discuss socio-economic issues. It is a focal point for exchanging information and a flourishing place for social interaction and social entrepreneurship. Accordingly, Chai Khana seeks to attract new local and international attention to locally-led dialogue covering the region.</p>
+  <p>At Chai Khana, we believe that open access to information, through issue-based multi-media content, could be a catalyst for positive change. We believe that if we invest in building up the skills of young journalists, they will create positive returns for themselves, their communities, and the region at large. The values of the NGO are therefore to build up a more open, ethnical and professional source of alternative media for the South Caucasus.</p>
+  <h2>Mission Statement</h2>
+  <p>The Mission of Chai Khana is to strengthen citizen engagement and Independent Journalism in the region. In doing so, Chai Khana seeks toencourage the diverse and thriving media landscape in the South Caucasus by helping to use innovative tools to improvethe quality and independence of objective reporting, and promote non-discrimination and tolerance between Armenians, Georgians and Azerbaijanis. Through this collaboration, the NGO seeks to expand the space for free expression and freedom of speech, including critical and alternative views in the South Caucasus.</p>
+  <h2>What We Do</h2>
+  <p>At Chai Khana, we draw on the talent of young journalists, film-makers, data analysts and photographers to publish an engaging, visually complex and dynamic multi-media series. We provide journalism trainings, mentorship and opportunities for collaboration in Tbilisi, Georgia.</p>
+  <h2>Acknowledgements</h2>
+  <p>Chai Khana would like to thank NIRAS who manages the fund provided by the Danish Foreign Ministry for their generous support and belief that we are making a difference.In addition, we would like to thank our partner, Jumpstart Georgia for their continued partnership and inspiration. And finally, we would like to thank all the journalists in this project who continue to share their time, skill, and energy to make the project possible.</p>
+  <h2>Contact Information</h2>
+  <p>chai.khana01@gmail.com</p>
+  <h2>Vacancies</h2>
+  <p>No current openings at this time</p>")
+  p.page_translations.create(:locale => 'ru', :title => 'About Us', content: "<p>The Chai Khana or &ldquo;tea house,&rdquo; is symbolic of a collective space where citizens come together and discuss socio-economic issues. It is a focal point for exchanging information and a flourishing place for social interaction and social entrepreneurship. Accordingly, Chai Khana seeks to attract new local and international attention to locally-led dialogue covering the region.</p>
+  <p>At Chai Khana, we believe that open access to information, through issue-based multi-media content, could be a catalyst for positive change. We believe that if we invest in building up the skills of young journalists, they will create positive returns for themselves, their communities, and the region at large. The values of the NGO are therefore to build up a more open, ethnical and professional source of alternative media for the South Caucasus.</p>
+  <h2>Mission Statement</h2>
+  <p>The Mission of Chai Khana is to strengthen citizen engagement and Independent Journalism in the region. In doing so, Chai Khana seeks toencourage the diverse and thriving media landscape in the South Caucasus by helping to use innovative tools to improvethe quality and independence of objective reporting, and promote non-discrimination and tolerance between Armenians, Georgians and Azerbaijanis. Through this collaboration, the NGO seeks to expand the space for free expression and freedom of speech, including critical and alternative views in the South Caucasus.</p>
+  <h2>What We Do</h2>
+  <p>At Chai Khana, we draw on the talent of young journalists, film-makers, data analysts and photographers to publish an engaging, visually complex and dynamic multi-media series. We provide journalism trainings, mentorship and opportunities for collaboration in Tbilisi, Georgia.</p>
+  <h2>Acknowledgements</h2>
+  <p>Chai Khana would like to thank NIRAS who manages the fund provided by the Danish Foreign Ministry for their generous support and belief that we are making a difference.In addition, we would like to thank our partner, Jumpstart Georgia for their continued partnership and inspiration. And finally, we would like to thank all the journalists in this project who continue to share their time, skill, and energy to make the project possible.</p>
+  <h2>Contact Information</h2>
+  <p>chai.khana01@gmail.com</p>
+  <h2>Vacancies</h2>
+  <p>No current openings at this time</p>")
+  p.page_translations.create(:locale => 'hy', :title => 'About Us', content: "<p>The Chai Khana or &ldquo;tea house,&rdquo; is symbolic of a collective space where citizens come together and discuss socio-economic issues. It is a focal point for exchanging information and a flourishing place for social interaction and social entrepreneurship. Accordingly, Chai Khana seeks to attract new local and international attention to locally-led dialogue covering the region.</p>
+  <p>At Chai Khana, we believe that open access to information, through issue-based multi-media content, could be a catalyst for positive change. We believe that if we invest in building up the skills of young journalists, they will create positive returns for themselves, their communities, and the region at large. The values of the NGO are therefore to build up a more open, ethnical and professional source of alternative media for the South Caucasus.</p>
+  <h2>Mission Statement</h2>
+  <p>The Mission of Chai Khana is to strengthen citizen engagement and Independent Journalism in the region. In doing so, Chai Khana seeks toencourage the diverse and thriving media landscape in the South Caucasus by helping to use innovative tools to improvethe quality and independence of objective reporting, and promote non-discrimination and tolerance between Armenians, Georgians and Azerbaijanis. Through this collaboration, the NGO seeks to expand the space for free expression and freedom of speech, including critical and alternative views in the South Caucasus.</p>
+  <h2>What We Do</h2>
+  <p>At Chai Khana, we draw on the talent of young journalists, film-makers, data analysts and photographers to publish an engaging, visually complex and dynamic multi-media series. We provide journalism trainings, mentorship and opportunities for collaboration in Tbilisi, Georgia.</p>
+  <h2>Acknowledgements</h2>
+  <p>Chai Khana would like to thank NIRAS who manages the fund provided by the Danish Foreign Ministry for their generous support and belief that we are making a difference.In addition, we would like to thank our partner, Jumpstart Georgia for their continued partnership and inspiration. And finally, we would like to thank all the journalists in this project who continue to share their time, skill, and energy to make the project possible.</p>
+  <h2>Contact Information</h2>
+  <p>chai.khana01@gmail.com</p>
+  <h2>Vacancies</h2>
+  <p>No current openings at this time</p>")
+end
 
 
 =begin OLD STUFF FROM STORYBUILDER
