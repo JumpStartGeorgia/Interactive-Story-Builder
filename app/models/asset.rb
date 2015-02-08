@@ -264,11 +264,23 @@ class Asset < ActiveRecord::Base
   #   - media video
   #   - slideshow image
   def asset_file_name_formatted
-    case self.asset_type
-    when TYPE[:section_audio], TYPE[:media_image], TYPE[:media_video], TYPE[:slideshow_image]
-      "#{self.id}__#{self.asset_file_name}"
+    if self.asset_clone_id.present?
+      x = self.asset_clone
+      if x.present?
+        case self.asset_type
+          when TYPE[:section_audio], TYPE[:media_image], TYPE[:media_video], TYPE[:slideshow_image]
+            "#{x.id}__#{x.asset_file_name}"
+          else
+            x.asset_file_name
+        end
+      end
     else
-      self.asset_file_name
+      case self.asset_type
+        when TYPE[:section_audio], TYPE[:media_image], TYPE[:media_video], TYPE[:slideshow_image]
+          "#{self.id}__#{self.asset_file_name}"
+        else
+          self.asset_file_name
+      end
     end
   end
   
