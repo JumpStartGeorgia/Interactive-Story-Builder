@@ -62,6 +62,7 @@ class RootController < ApplicationController
                   # else check if translation exists for current app locale
                   if params[:sl].present?
                     @story.current_locale = params[:sl] 
+                    Globalize.story_locale = params[:sl] 
                   else
                     @story.use_app_locale_if_translation_exists
                   end

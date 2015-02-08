@@ -502,7 +502,7 @@ $(document).ready(function() {
   {
     getObject('create','section');
   }
-  else if (gon.new_story != true )
+  else if (gon.is_section_page == true )
   {
     getObject('select','story');
   }
@@ -517,19 +517,20 @@ $(document).ready(function() {
     var staging_val = staging.val();
     var t = $(this);
     var tv = t.val();
-      if ((staging_val != '' && staging_val !== $(this).data('title-was')) || 
-          tv.length == was_title_box_length) {
-          console.log('upper');
-        return;
-      } 
-      else 
-      {
-        t.data('title-was', tv);
-        staging.val(tv);
-        check_story_permalink(tv);
-        console.log('down');
-      }
-      was_title_box_length = tv.length;
+    var locale = $(this).closest('form').find('input#current_locale').val();    
+    if ((staging_val != '' && staging_val !== $(this).data('title-was')) || 
+        tv.length == was_title_box_length) {
+        console.log('upper');
+      return;
+    } 
+    else 
+    {
+      t.data('title-was', tv);
+      staging.val(tv);
+      check_story_permalink(tv, locale);
+      console.log('down');
+    }
+    was_title_box_length = tv.length;
   }));
   
   // if the permalink staging field changes, use the text to generate a new permalink
@@ -538,10 +539,11 @@ $(document).ready(function() {
     var t = $(this);
     var tv = t.val();
     var l = tv.length;
+    var locale = $(this).closest('form').find('input#current_locale').val();    
     if (l == 1 || l == was_permalink_box_length) {
       return;
     } else {
-      check_story_permalink(tv);
+      check_story_permalink(tv, locale);
     }
     was_permalink_box_length = l;
   }));
@@ -641,12 +643,16 @@ function show_story_permalink(d){
   $(div + ' > span.check_permalink').html(html);
 }
 
-function check_story_permalink(text){
+function check_story_permalink(text, locale){
   if (text != ''){
     var data = {text: text};
     var url = window.location.href.split('/');
     if (url[url.length-1] == 'edit'){
       data.id = url[url.length-2];
+    }
+    // pass in locale if exists
+    if (locale != undefined){
+      data.sl = locale;
     }
     $.ajax
     ({

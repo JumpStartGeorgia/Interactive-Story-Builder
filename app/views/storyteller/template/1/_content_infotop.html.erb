@@ -25,9 +25,10 @@
              <%  locales.each do |t| 
                    @story.current_locale = t
                    l = @languages.select{|x| x.locale == t}.first
+                   path = @is_preview ? preview_story_path(id: @story, sl: t) : storyteller_show_path(id: @story.permalink,sl: t)
                    if l.present?
              %>
-               <li role="presentation"><a role="menuitem" tabindex="-1" href="<%= storyteller_show_path(:id=>@story.permalink,:sl =>t) %> "><%= l.name %></a></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="<%= path %> "><%= l.name %></a></li>
                <% end %>
              <% end %>
            </ul>

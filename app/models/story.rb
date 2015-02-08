@@ -130,7 +130,7 @@ class Story < ActiveRecord::Base
     if options[:theme_id].present?
       sql << "  inner join story_themes as sth2 on sth2.story_id = s2.id "
     end
-    sql << "  WHERE s2.story_type_id is not null and st2.published = 1 "
+    sql << "  WHERE s2.story_type_id is not null and st2.published = 1 and st2.published_at is not null and s2.in_theme_slider = 1 "
     if options[:theme_id].present?
       sql << "  and sth2.theme_id = :theme_id "
     end
@@ -583,7 +583,7 @@ class Story < ActiveRecord::Base
   # just look in story translations for locales
   # returns array of locales
   def story_locales
-    StoryTranslation.select('locale').where(:story_id => self.id).map{|x| x.locale}
+    StoryTranslation.where(:story_id => self.id).pluck(:locale).uniq
   end
 
   # get nicely formatted list of author names

@@ -53,9 +53,12 @@ class StoryTranslation < ActiveRecord::Base
 
   # if the story is being published, record the date
   def publish_date    
+    logger.debug "%%%%%%%%%%%%% pub date, changed? #{self.published_changed?}; published? #{self.published?}; date blank #{self.published_at.blank?}"
     if self.published_changed? && self.published? && self.published_at.blank?
+      logger.debug "%%%%% setting date"
       self.published_at = Time.now
     elsif !self.published?
+      logger.debug "%%%%% nilling date"
       self.published_at = nil
     end    
     return true 

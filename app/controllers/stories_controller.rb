@@ -47,7 +47,6 @@ class StoriesController < ApplicationController
     @themes = Theme.sorted
     @authors = Author.sorted
     @new = true
-    gon.new_story = true
     respond_to do |format|
         format.html #new.html.er
         format.json { render json: @item }
@@ -90,7 +89,6 @@ class StoriesController < ApplicationController
         @themes = Theme.sorted
         @authors = Author.sorted
         @new = true
-        gon.new_story = true
         flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@item.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
         #  format.json { render json: @item.errors, status: :unprocessable_entity }
@@ -180,6 +178,7 @@ logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to
   def preview
     @css.push("navbar.css", "navbar2.css", "storyteller.css","modalos.css")
     @js.push("storyteller.js","modalos.js")
+    @is_preview = true
 
     if params[:n] == 'n'
       @no_nav = true
@@ -192,11 +191,12 @@ logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to
       # else check if translation exists for current app locale
       if params[:sl].present?
         @story.current_locale = params[:sl] 
+        Globalize.story_locale = params[:sl] 
       else
         @story.use_app_locale_if_translation_exists
       end
 
-#logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; permalink = #{@story.permalink}"
+logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; permalink = #{@story.permalink}"
     end
 
     respond_to do |format|  
@@ -537,6 +537,9 @@ logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to
 
     # if there are no sections, show the content form by default
     gon.has_no_sections = @story.sections.blank?
+    # else show story form by default
+    gon.is_section_page = true
+    
     respond_to do |format|
       format.html { render :layout=>"storybuilder" }
     end
@@ -584,8 +587,10 @@ logger.debug "$$$$$$$$$$$4 story locale = #{@item.story_locale}; current locale 
 
 
       if !error 
-        @item.published = publishing
-        if @item.save
+        # HACK - have to use the translation object in order for the callbacks to get called
+        trans = @item.story_translations.first
+        trans.published = publishing
+        if trans.save
           flash[:success] =u I18n.t("app.msgs.success_#{publishing ? '' :'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                   
 
           title = publishing ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish') 
@@ -697,18 +702,19 @@ end
   # check if this permalink is not already in use
   # - if id is passed in, the story record is loaded and the permalink is created in that record
   #   so it will not cause a duplicate error
-  # params passed in are text and id
+  # params passed in are text, id, and sl (story_locale). If story locale does not exist, use I18n.locale
   def check_permalink
     output = {:permalink => nil, :is_duplicate => false}
     if params[:text].present?
       permalink_staging = params[:text]
       permalink_temp = permalink_normalize(permalink_staging)
-      story = StoryTranslation.select('permalink, permalink_staging').where(:story_id => params[:id]).limit(1).first
+      locale = params[:sl].present? ? params[:sl] : I18n.locale
+      story = StoryTranslation.select('permalink, permalink_staging').where(:story_id => params[:id], :locale => locale).first
       # if the story could not be found, use an empty story
       logger.debug "*********** new staging = #{permalink_staging}; story = #{story.inspect}"
       if story.blank?
         logger.debug "*********** story blank"
-        story = StoryTranslation.new(:permalink_staging => permalink_staging)
+        story = StoryTranslation.new(:permalink_staging => permalink_staging, :locale => locale)
         story.generate_permalink
         output = {:permalink => story.permalink, :is_duplicate => story.is_duplicate_permalink?}
         

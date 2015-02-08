@@ -24,6 +24,7 @@ class Theme < ActiveRecord::Base
     if self.is_published? && self.show_home_page? && self.show_home_page_changed?
       Theme.where('id != ?', self.id).update_all(:show_home_page => false)
     end
+    return true
   end
 
   # if trying to publish the story, make sure it can be published

@@ -1,10 +1,11 @@
 class AuthorTranslation < ActiveRecord::Base
   belongs_to :author
-  has_permalink :create_permalink, true
+  has_permalink :create_permalink
 
   attr_accessible :author_id, :name, :about, :name, :locale
 
   validates :name, :presence => true
+  validates :permalink, :uniqueness => {:scope => :locale, :case_sensitive => false, :message => I18n.t('app.msgs.already_exists')}
 
   def required_data_provided?
     provided = false
