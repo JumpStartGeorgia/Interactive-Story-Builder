@@ -97,7 +97,7 @@
   # update the flags for languages with published stories
   def self.update_published_stories_flags
     # get locales with published stories
-    locales = Story.published_locales
+    locales = Story.all_published_locales
     
     # update the flag values
     if locales.present?

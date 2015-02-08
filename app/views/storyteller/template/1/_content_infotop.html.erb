@@ -8,7 +8,7 @@
  <div class="views" title=""><%= t('app.common.views') %>:&nbsp;<span><%= @story.impressions_count %></span></div>  
  <div class="r">  
    <%  
-     locales = @story.story_locales
+     locales = @is_preview ? @story.story_locales : @story.published_locales
      cur_locale = @story.current_locale 
      cur_lang = @languages.select{ |x| x.locale == cur_locale }.first
      locales-=[cur_locale]

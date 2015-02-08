@@ -106,6 +106,8 @@ function url_update() {
 
 $(document).ready(function() {  
 
+if(gon.page_filtered) { scrolldown(false,'header'); }
+
 // collect all default values for ajax filtering
   $('[data-filter-type]').each(function(v){
     f[$(this).attr('data-filter-type')] = $(this).attr('data-filtered-by');

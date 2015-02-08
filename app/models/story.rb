@@ -14,7 +14,7 @@ class Story < ActiveRecord::Base
   
   # fields to search for in a story
   scoped_search :in => :story_translations, :on => [:title, :author, :media_author, :translation_author]
-  scoped_search :in => :content, :on => [:caption, :sub_caption, :content]
+  scoped_search :in => :content_translations, :on => [:caption, :sub_caption, :text]
 
   # record public views
   is_impressionable :counter_cache => true 
@@ -41,6 +41,7 @@ class Story < ActiveRecord::Base
 	#   foreign_key: :item_id,
 	#   dependent: :destroy
 	has_many :content, :through => :sections
+  has_many :content_translations, :through => :content
 
 	# accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
   accepts_nested_attributes_for :story_translations
@@ -311,12 +312,12 @@ class Story < ActiveRecord::Base
     Story.where(:id => story_ids)
   end
 	# get all of the unique story locales for published stories
-	def self.published_locales
+	def self.all_published_locales
 	  joins(:story_translations).select('story_translations.locale').is_published.map{|x| x.locale}.uniq.sort
 	end
 
 	# get all of the unique story cateogires for published stories
-	def self.published_categories
+	def self.all_published_categories
     joins(:story_categories).select('story_categories.category_id').is_published.map{|x| x['category_id']}.uniq.sort
 	end
 
@@ -385,16 +386,6 @@ class Story < ActiveRecord::Base
 	  end
 	end
 
-  # get the published languages for this story
-  def published_languages
-    locales = StoryTranslation.select('locale').where(:story_id => self.id, :published => true).map{|x| x.locale}
-    if locales.present?
-      Language.where(:locale => locales).sorted
-    else
-      return nil
-    end
-  end
-	
   # use amoeba to clone the story and all of its records
   # after the clone is complete, copy all assets from the original story to the new story
   def clone_story
@@ -585,6 +576,12 @@ class Story < ActiveRecord::Base
   def story_locales
     StoryTranslation.where(:story_id => self.id).pluck(:locale).uniq
   end
+
+  # get the published languages for this story
+  def published_locales
+    StoryTranslation.where(:story_id => self.id, :published => true).pluck(:locale).uniq
+  end
+  
 
   # get nicely formatted list of author names
   def story_author_names

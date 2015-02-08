@@ -254,6 +254,27 @@ function apply_tipsy(){
     $('form div.help-inline,form div.help-block, form label abbr').tipsy({gravity: 'sw', fade: true});
   }
 }
+
+function scrolldown(an,obj)
+{  
+  var src = $(obj).offset().top + $(obj).height() - 54; 
+  an = (typeof an === 'undefined') ? true : an;
+  
+  if(an)
+  {
+      $("html,body").stop().animate(
+      { scrollTop: src },   
+      {
+        duration: 1700,
+        easing: 'easeOutExpo'          
+      });
+  }
+  else 
+  {
+    window.scroll(0,src);
+  }
+}
+
 var debounce = function (fn) {
   var timeout
   return function () {

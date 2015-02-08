@@ -133,11 +133,8 @@ class ApplicationController < ActionController::Base
 
   ## process the filter requests
   def process_filter_querystring(story_objects)    
-    gon.page_filtered = #params[:staff_pick].present? || 
-                        params[:sort].present? || 
+    gon.page_filtered = params[:sort].present? || 
                         params[:theme].present? ||
-                        #params[:category].present? ||
-                        #params[:tag].present? ||
                         params[:language].present? ||
                         params[:q].present? ||
                         params[:following].present?
@@ -261,12 +258,12 @@ class ApplicationController < ActionController::Base
      # logger.debug "/////////////////// @story_filter_following = #{@story_filter_following}"
         
     # search
-  #   @q = ""
-		# if params[:q].present?
-		# 	story_objects = story_objects.search_for(params[:q])
-		# 	gon.q = params[:q]
-  #     @q = params[:q]
-		# end
+    @q = ""
+		if params[:q].present?
+			story_objects = story_objects.search_for(params[:q])
+			gon.q = params[:q]
+      @q = params[:q]
+		end
     return story_objects
   end
 

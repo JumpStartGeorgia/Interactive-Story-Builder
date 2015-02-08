@@ -54,7 +54,7 @@ class Category < ActiveRecord::Base
   # update the flags for categories with published stories
   def self.update_published_stories_flags
     # get categories with published stories
-    categories = Story.published_categories
+    categories = Story.all_published_categories
     
     # update the flag values
     if categories.present?
