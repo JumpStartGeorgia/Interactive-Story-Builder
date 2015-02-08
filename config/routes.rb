@@ -49,6 +49,8 @@ BootstrapStarter::Application.routes.draw do
 
 	        get 'get_data'
 
+	        get 'translation_progress'
+
 	        put 'content', to: 'stories#save_item'
 	        post 'content', to: 'stories#new_item'
 

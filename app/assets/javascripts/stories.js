@@ -613,6 +613,8 @@ $(document).ready(function() {
   		}
  	    gon.translate_to = toLang;
       getObject('select',selectedType, section_id, item_id, which);
+
+      get_translation_progress(toLang);
   });
 
   story_tree = $('.story-tree');
@@ -917,6 +919,70 @@ function select_next()
         t.find('> .box > .collapser').trigger('click');
       }
       t.find('> .box > .title').trigger('click'); // simulate click to get data
+    }
+  }
+}
+
+// get the updated translation progress for this locale
+function get_translation_progress(to_locale){
+  console.log('get_translation_progress for ' + to_locale);
+ $.ajax
+    ({       
+      url: gon.translation_progress_url,
+      data: {sl: to_locale},
+      dataType: 'script'
+    }).error(function(e){console.log(e)}).done(function(){  
+       //if(el_type!='section' && method != 'n')
+         // $('.form-title .form-title-text').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > div > .sub-l').text() + ": " + $('.form-title .form-title-text').text());
+    });
+}
+
+// update the language switchers with the latest progress status for the provided locale
+function update_translation_progress(progress, to_locale, percent, is_published){
+  console.log('update_translation_progress, locale = ' + to_locale + ', percent = ' + percent + ', is pub = ' + is_published);
+  if ($('.toolbar select#translateTo').length > 0){
+    var optionTo = $('.toolbar select#translateTo option[value="' + to_locale + '"]');
+    var pickerTo = $('.toolbar select#translateTo + .bootstrap-select');
+    var optionFrom = $('.toolbar select#translateFrom option[value="' + to_locale + '"]');
+    var pickerFrom = $('.toolbar select#translateFrom + .bootstrap-select');
+    var publishTo = $('.toolbar .right-view a.btnPublish');
+
+    // if the to locale is in the progress list, let's update the text in the drop down list
+    var match = $.grep(progress, function(x){
+      return x.locale == to_locale;
+    });
+    // create percent
+    if (match != undefined && percent != undefined && percent != ""){
+      // found match, now need to udpate text
+      var text;
+      var orig_text = $(optionTo).html();
+      if ($(optionTo).html().indexOf(' (') > -1){
+        // already has percent, so need to replace
+        text = $(optionTo).html().replace(/\s\(\d{1,3}%\)/,  ' (' +  percent + ')');
+      }else{
+        // not have percent, so need to add
+        text = $(optionTo).html() + ' (' +  percent + ')'
+      }
+      $(optionTo).html(text);
+      $(pickerTo).find(" > button").attr('title', text);
+      $(pickerTo).find(" > button span.filter-option").html(text);
+      $(pickerTo).find(" .dropdown-menu ul li a span.text:contains('" + orig_text + "')").html(text);
+      $(pickerFrom).find(" .dropdown-menu ul li a span.text:contains('" + orig_text + "')").html(text);
+      $(publishTo).attr('data-percent', percent);
+      
+      // if to is 100% or story is already published, then turn on publish button
+      console.log('turn on pub button = ' + (percent == '100%' || is_published == 'true'));
+      if (percent == '100%' || is_published == 'true'){
+        $(publishTo).toggleClass('btn-publish-disabled btn-publish').removeClass('hide');
+      }else{
+        $(publishTo).toggleClass('btn-publish btn-publish-disabled ').addClass('hide');
+      }
+ 
+
+    }else{
+      console.log('turnning off pub button since no percent');
+      // turn off pub button since there is no percent
+      $(publishTo).toggleClass('btn-publish btn-publish-disabled ').addClass('hide');
     }
   }
 }

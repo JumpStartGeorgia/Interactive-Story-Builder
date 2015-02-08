@@ -1,0 +1,3 @@
+<% if @story.present? && @story_progress.present? %>
+  update_translation_progress(<%= @story_progress.to_json.html_safe %>, '<%= @story_locale %>', '<%= compute_translation_progress_percent(@story_locale, @story_progress) %>', '<%= @story_locale_published %>');
+<% end %>

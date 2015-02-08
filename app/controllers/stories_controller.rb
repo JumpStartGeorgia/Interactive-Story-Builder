@@ -539,6 +539,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
     gon.has_no_sections = @story.sections.blank?
     # else show story form by default
     gon.is_section_page = true
+    gon.translation_progress_url = translation_progress_story_path(@story)
     
     respond_to do |format|
       format.html { render :layout=>"storybuilder" }
@@ -870,6 +871,28 @@ end
   end
   
   
+  # get the translation progress for a story and locale
+  def translation_progress
+    id = params[:id]
+    locale = params[:sl]
+    @story = Story.find_by_id(id) 
+
+    respond_to do |format|
+      if @story.present?
+        @story_progress = StoryTranslationProgress.get_progress(@story.id)
+        @story.current_locale = locale
+        @story_locale = locale
+        @story_locale_published = @story.published
+
+
+        format.js {render action: "translation_progress", status: :created }                  
+      else
+        flash[:error] = u I18n.t('app.msgs.error_get_data')                            
+        format.js {render action: "flash", status: :ok }
+      end
+    end
+  end
+
 private
 
   # if the user is not in StoryUser, stop
