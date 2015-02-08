@@ -192,7 +192,7 @@ $(".navbar-collapse").swipe(function( direction, offset ) {
   });   
 
 
-  $('.carousel').carousel({interval:20000});
+  $('.carousel').carousel();
 
 
 //---------------------------------------------dev stuff-------------------------------------------------
