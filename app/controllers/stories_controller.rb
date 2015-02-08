@@ -411,7 +411,6 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
       klass = Youtube
       type = :youtube
     end   
-    logger.debug "@@@@@@@@@@@@@ id = #{params[type][:id]}"
      @item = klass.find_by_id(params[type][:id]) 
      respond_to do |format|
       if @item.present?

@@ -1,5 +1,6 @@
  <div class='info-top'>
    <div class="share">
+
        <div class="addthis_native_toolbox"></div> 
        <%= link_to '#', :'data-modalos-id' => "modalos-embed", :title => t('app.common.embed'), :class => "embed modalEmbed" do %>
 
@@ -17,7 +18,7 @@
        <div><%= t('helpers.links.languages') %>:&nbsp;</div>
        <div class="dropdown">
          <button class='btn btn-default dropdown-toggle<%= locales.size > 0 ? "" : " disabled" %>' type="button" id="translationsMenu" data-toggle="dropdown" aria-expanded="true">
-           <%= cur_lang.name %>
+           <%= cur_lang.present? ? cur_lang.name : cur_locale %>
              <span class="caret"></span>                               
          </button>
          <% if locales.size > 0 %>
