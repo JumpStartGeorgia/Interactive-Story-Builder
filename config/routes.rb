@@ -20,7 +20,11 @@ BootstrapStarter::Application.routes.draw do
       resources :languages
       resources :categories
 		  resources :story_types
-		  resources :themes
+		  resources :themes do
+			  member do
+				  get :preview
+			  end
+		  end
 		end
 
 		#get 'tinymce_assets' ,to: 'tinymceassets#index'
