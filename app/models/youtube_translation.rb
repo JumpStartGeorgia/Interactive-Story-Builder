@@ -49,7 +49,7 @@ class YoutubeTranslation < ActiveRecord::Base
         source = "https://www.googleapis.com/youtube/v3/videos?key=#{api_key}&part=id&id=#{id}"
         result = JSON.parse(Net::HTTP.get_response(URI.parse(source)).body)
 
-        pars = (self.youtube.loop ? 'loop=1' : '') + (self.youtube.info == false ? '&shoswinfo=0' : '') +
+        pars = (self.youtube.loop ? 'loop=1' : '') + (self.youtube.info == false ? '&showinfo=0' : '') +
           (self.cc ? '&cc_load_policy=' + (self.cc ? '1' : '0') : '') + 
           (Language.select{|x| x.locale == self.menu_lang}.length > 0 ? '&hl=' + self.menu_lang : '') + 
           (Language.select{|x| x.locale == self.cc_lang}.length > 0 ? '&cc_lang_pref=' + self.cc_lang : '')
