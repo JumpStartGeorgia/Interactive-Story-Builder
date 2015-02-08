@@ -27,7 +27,9 @@
       <tr>
         <td>
           <% if theme.published_item_count > 0 %>
-            <a href="#" id='btnPreview' class='preview' data-link='<%= preview_admin_theme_path(theme) %>'
+            <a href="#" id='btnPreview' class='preview btn btn-default btn-mini' 
+                title="<%= t('helpers.links.story_menu.link.preview') %>"
+                data-link='<%= preview_admin_theme_path(theme) %>'
                 data-modalos-id='modalos-preview' data-type='story'>
               <span class="glyphicon glyphicon-eye-open" ></span>
             </a>

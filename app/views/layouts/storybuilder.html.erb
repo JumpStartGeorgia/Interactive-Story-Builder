@@ -111,10 +111,16 @@
                     end
                   end
                 else
+                  # see if @to has percent?
+                  to_translated = compute_translation_progress_percent(@to, progress).present?
                   @languages.each do |l|
                     x = l.dup
                     # if translation progress percent exists for this locale, add it
                     x.percent = compute_translation_progress_percent(x.locale, progress)
+                    if !to_translated && params[:tr_to].nil? && x.percent.present? && x.locale != @from
+                      @to = x.locale 
+                      to_translated = true
+                    end
                     to_langs << x
                   end
                 end
@@ -143,7 +149,6 @@
                 progress_from = progress.select{|x| x.locale == @story.story_locale}.first
                 progress_to = progress.select{|x| x.locale == @to}.first
                 btn_class = (trans_story.published || (progress_from.present? && progress_to.present? && progress_from.items_completed == progress_to.items_completed)) ? '' : 'hide'
-                logger.debug "((((((((((((((((( pub = #{trans_story.published}; percent = #{compute_translation_progress_percent(@to, progress)}; pfrom = #{progress_from.items_completed}; pto = #{progress_to.items_completed if progress_to.present?}; class = #{btn_class}"
 
               %>
               <%= link_to '#', title: link_text + ' - ' + title, class: "btnPublish btn #{btn_class} btn-publish" + (trans_story.published ? '' : '-disabled'), :'data-link' => publish_story_path(@story), :'data-sl' => true, 
