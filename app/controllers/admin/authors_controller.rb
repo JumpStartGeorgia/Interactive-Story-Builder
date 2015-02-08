@@ -10,6 +10,9 @@ class Admin::AuthorsController < ApplicationController
   def index
     @authors = Author.sorted
 
+    @css.push("dataTables/jquery.dataTables.bootstrap.css")
+    @js.push("dataTables/jquery.dataTables.js", "dataTables/jquery.dataTables.bootstrap.js", "search.js", "stories.js")
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @authors }

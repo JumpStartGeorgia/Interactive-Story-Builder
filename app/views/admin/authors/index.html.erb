@@ -10,7 +10,7 @@
   :class => 'btn btn-default' %>
 </div>
 
-<table class="table table-striped display">
+<table id="author-datatable" class="table table-striped display">
   <thead>
     <tr>
       <th></th>
@@ -22,8 +22,18 @@
   <tbody>
     <% @authors.each do |author| %>
       <tr>
-        <td><%= image_tag author.avatar_url %></td>
-        <td><%= link_to author.name, author_path(author.permalink), target: :blank %></td>
+        <td>
+          <a href="#" id='btnPreview' class='preview btn btn-default btn-mini' 
+              title="<%= t('helpers.links.story_menu.link.preview') %>"
+              data-link='<%= author_path(author.permalink) %>'
+              data-modalos-id='modalos-preview' data-type='story'>
+            <span class="glyphicon glyphicon-eye-open" ></span>
+          </a>
+        </td>
+        <td>
+          <%= image_tag author.avatar_url %>
+          <%= author.name %>
+        </td>
         <td><%= simple_format_no_tags(author.about, {}, {sanitize: false}) %></td>
         <td>
           <%= link_to t('app.buttons.edit'),

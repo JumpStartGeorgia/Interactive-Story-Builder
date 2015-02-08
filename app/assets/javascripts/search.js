@@ -34,4 +34,16 @@ $(document).ready(function(){
 
   });
 
+  $('#author-datatable').dataTable({
+    "dom": '<"top"lf>t<"bottom"pi><"clear">',
+    "order": [[1, 'asc']],
+    "language": {
+      "url": gon.datatable_i18n_url
+    },
+    "columnDefs": [
+       { orderable: false, targets: [0,-1] }
+    ]
+
+  });
+
 });
