@@ -925,7 +925,6 @@ function select_next()
 
 // get the updated translation progress for this locale
 function get_translation_progress(to_locale){
-  console.log('get_translation_progress for ' + to_locale);
  $.ajax
     ({       
       url: gon.translation_progress_url,
@@ -939,7 +938,6 @@ function get_translation_progress(to_locale){
 
 // update the language switchers with the latest progress status for the provided locale
 function update_translation_progress(progress, to_locale, percent, is_published){
-  console.log('update_translation_progress, locale = ' + to_locale + ', percent = ' + percent + ', is pub = ' + is_published);
   if ($('.toolbar select#translateTo').length > 0){
     var optionTo = $('.toolbar select#translateTo option[value="' + to_locale + '"]');
     var pickerTo = $('.toolbar select#translateTo + .bootstrap-select');
@@ -971,7 +969,6 @@ function update_translation_progress(progress, to_locale, percent, is_published)
       $(publishTo).attr('data-percent', percent);
       
       // if to is 100% or story is already published, then turn on publish button
-      console.log('turn on pub button = ' + (percent == '100%' || is_published == 'true'));
       if (percent == '100%' || is_published == 'true'){
         $(publishTo).toggleClass('btn-publish-disabled btn-publish').removeClass('hide');
       }else{
@@ -980,7 +977,6 @@ function update_translation_progress(progress, to_locale, percent, is_published)
  
 
     }else{
-      console.log('turnning off pub button since no percent');
       // turn off pub button since there is no percent
       $(publishTo).toggleClass('btn-publish btn-publish-disabled ').addClass('hide');
     }
