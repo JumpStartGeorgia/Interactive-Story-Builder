@@ -588,7 +588,7 @@ logger.debug "$$$$$$$$$$$4 story locale = #{@item.story_locale}; current locale 
 
       if !error 
         # HACK - have to use the translation object in order for the callbacks to get called
-        trans = @item.story_translations.first
+        trans = @item.story_translations.select{|x| x.locale == @item.current_locale}.first
         trans.published = publishing
         if trans.save
           flash[:success] =u I18n.t("app.msgs.success_#{publishing ? '' :'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                   
