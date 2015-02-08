@@ -1,5 +1,5 @@
 <% 
-  @template = @story.template.id 
+  @template = @story.template_id.present? ? @story.template_id : 1 
   @export ||= false
   @no_nav ||= false  
   @short_url = @story.shortened_url.present? ? @story.shortened_url : storyteller_show_url(@story.permalink)

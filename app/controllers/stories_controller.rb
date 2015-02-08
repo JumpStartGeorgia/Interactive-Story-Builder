@@ -623,7 +623,7 @@ end
       FileUtils.cp_r "#{Rails.root}/public/media/story/.", "#{path}"  
       
       story_id = params[:id]
-      template_id = @story.template_id
+      template_id = @story.template_id.present? ? @story.template_id : 1 
 
       if File.directory?("#{Rails.root}/public/template/#{template_id}/assets")
           FileUtils.cp_r "#{Rails.root}/public/template/#{template_id}/assets/", "#{path}/"
