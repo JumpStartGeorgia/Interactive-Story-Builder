@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   ROLES = {:user => 0, :coordinator => 50, :user_manager => 70, :site_admin => 80, :admin => 99}
 
   before_create :create_email_no_domain
-  before_save :check_nickname_changed  
+#  before_save :check_nickname_changed  
 #	before_save :generate_avatar_file_name
   before_save :set_notification_language
 
