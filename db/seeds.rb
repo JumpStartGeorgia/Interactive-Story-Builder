@@ -127,116 +127,116 @@ sql = "insert into languages (locale, name) values "
 sql << langs.map{|x| "(\"#{x[0]}\", \"#{x[1]}\")"}.join(', ')
 ActiveRecord::Base.connection.execute(sql)
 
+if !Rails.env.production?
 
+  #####################
+  ## Themes
+  #####################
+  puts "Loading Test/Dummy Data"
+  Theme.delete_all
+  ThemeTranslation.delete_all
+  StoryTheme.delete_all
 
-#####################
-## Themes
-#####################
-puts "Loading Test/Dummy Data"
-Theme.delete_all
-ThemeTranslation.delete_all
-StoryTheme.delete_all
+  # get stories to add to theme
+  published_ids = StoryTranslation.select('distinct story_id').where(:published => true)
+  published = Story.where(:id => published_ids.uniq)
 
-# get stories to add to theme
-published_ids = StoryTranslation.select('distinct story_id').where(:published => true)
-published = Story.where(:id => published_ids.uniq)
-
-t = Theme.create(:id => 1, :published_at => '2015-01-15', :show_home_page => true)
-t.theme_translations.create(:locale => 'en', :name => '1st test theme', edition: 'January 2015')
-t.theme_translations.create(:locale => 'ka', :name => '1st test theme', edition: 'January 2015')
-published[0..7].each_with_index do |story, i|
-  story.themes << t
-  if i % 2 == 0
-    story.in_theme_slider = true
+  t = Theme.create(:id => 1, :published_at => '2015-01-15', :show_home_page => true)
+  t.theme_translations.create(:locale => 'en', :name => '1st test theme', edition: 'January 2015')
+  t.theme_translations.create(:locale => 'ka', :name => '1st test theme', edition: 'January 2015')
+  published[0..7].each_with_index do |story, i|
+    story.themes << t
+    if i % 2 == 0
+      story.in_theme_slider = true
+    end
+    story.save
   end
-  story.save
-end
-t.is_published = true
-t.save
+  t.is_published = true
+  t.save
 
-t = Theme.create(:id => 2, :published_at => '2014-12-15')
-t.theme_translations.create(:locale => 'en', :name => '2nd test theme', edition: 'December 2014')
-t.theme_translations.create(:locale => 'ka', :name => '2nd test theme', edition: 'December 2014')
-published[8..10].each_with_index do |story, i|
-  story.themes << t
-  if i % 2 == 0
-    story.in_theme_slider = true
+  t = Theme.create(:id => 2, :published_at => '2014-12-15')
+  t.theme_translations.create(:locale => 'en', :name => '2nd test theme', edition: 'December 2014')
+  t.theme_translations.create(:locale => 'ka', :name => '2nd test theme', edition: 'December 2014')
+  published[8..10].each_with_index do |story, i|
+    story.themes << t
+    if i % 2 == 0
+      story.in_theme_slider = true
+    end
+    story.save
   end
-  story.save
-end
-t.is_published = true
-t.save
+  t.is_published = true
+  t.save
 
 
-t = Theme.create(:id => 3, :published_at => '2014-11-15')
-t.theme_translations.create(:locale => 'en', :name => '3rd test theme', edition: 'November 2015')
-t.theme_translations.create(:locale => 'ka', :name => '3rd test theme', edition: 'November 2015')
-published[10..20].each_with_index do |story, i|
-  story.themes << t
-  if [1, 5, 9].include?(i)
-    story.in_theme_slider = true
+  t = Theme.create(:id => 3, :published_at => '2014-11-15')
+  t.theme_translations.create(:locale => 'en', :name => '3rd test theme', edition: 'November 2015')
+  t.theme_translations.create(:locale => 'ka', :name => '3rd test theme', edition: 'November 2015')
+  published[10..20].each_with_index do |story, i|
+    story.themes << t
+    if [1, 5, 9].include?(i)
+      story.in_theme_slider = true
+    end
+    story.save
   end
-  story.save
-end
-t.is_published = true
-t.save
+  t.is_published = true
+  t.save
 
 
-# add story type to remaining stories
-published[21..published.length-1].each do |story|
-  story.save
-end
+  # add story type to remaining stories
+  published[21..published.length-1].each do |story|
+    story.save
+  end
 
-# clear out all existing story user roles if a person is a coordinator
-coords = User.where(:role => User::ROLES[:coordinator]).pluck(:id)
-StoryUser.where(:user_id => coords, :role => 0).delete_all
-User.where(:role => User::ROLES[:coordinator]).update_all(:role => User::ROLES[:user])
-User.where(:role => User::ROLES[:user]).limit(2).update_all(:role => User::ROLES[:coordinator])
+  # clear out all existing story user roles if a person is a coordinator
+  coords = User.where(:role => User::ROLES[:coordinator]).pluck(:id)
+  StoryUser.where(:user_id => coords, :role => 0).delete_all
+  User.where(:role => User::ROLES[:coordinator]).update_all(:role => User::ROLES[:user])
+  User.where(:role => User::ROLES[:user]).limit(2).update_all(:role => User::ROLES[:coordinator])
 
-# need to make some author records for testing
-Author.destroy_all
-StoryAuthor.delete_all
-authors = []
-a = Author.create(id: 1)
-a.author_translations.create(locale: 'en', name: 'Demetria Guynes')
-a.author_translations.create(locale: 'ka', name: 'Demetria Guynes')
-authors << a
-a = Author.create(id: 2)
-a.author_translations.create(locale: 'en', name: 'Walter Willis')
-a.author_translations.create(locale: 'ka', name: 'Walter Willis')
-authors << a
-a = Author.create(id: 3)
-a.author_translations.create(locale: 'en', name: 'Allen Konigsberg')
-a.author_translations.create(locale: 'ka', name: 'Allen Konigsberg')
-authors << a
-a = Author.create(id: 4)
-a.author_translations.create(locale: 'en', name: 'Louis Szekely')
-a.author_translations.create(locale: 'ka', name: 'Louis Szekely')
-authors << a
-a = Author.create(id: 5)
-a.author_translations.create(locale: 'en', name: 'Joaquin Rafael Bottom')
-a.author_translations.create(locale: 'ka', name: 'Joaquin Rafael Bottom')
-authors << a
-a = Author.create(id: 6)
-a.author_translations.create(locale: 'en', name: 'Elizabeth Stamatina Fey')
-a.author_translations.create(locale: 'ka', name: 'Elizabeth Stamatina Fey')
-authors << a
+  # need to make some author records for testing
+  Author.destroy_all
+  StoryAuthor.delete_all
+  authors = []
+  a = Author.create(id: 1)
+  a.author_translations.create(locale: 'en', name: 'Demetria Guynes')
+  a.author_translations.create(locale: 'ka', name: 'Demetria Guynes')
+  authors << a
+  a = Author.create(id: 2)
+  a.author_translations.create(locale: 'en', name: 'Walter Willis')
+  a.author_translations.create(locale: 'ka', name: 'Walter Willis')
+  authors << a
+  a = Author.create(id: 3)
+  a.author_translations.create(locale: 'en', name: 'Allen Konigsberg')
+  a.author_translations.create(locale: 'ka', name: 'Allen Konigsberg')
+  authors << a
+  a = Author.create(id: 4)
+  a.author_translations.create(locale: 'en', name: 'Louis Szekely')
+  a.author_translations.create(locale: 'ka', name: 'Louis Szekely')
+  authors << a
+  a = Author.create(id: 5)
+  a.author_translations.create(locale: 'en', name: 'Joaquin Rafael Bottom')
+  a.author_translations.create(locale: 'ka', name: 'Joaquin Rafael Bottom')
+  authors << a
+  a = Author.create(id: 6)
+  a.author_translations.create(locale: 'en', name: 'Elizabeth Stamatina Fey')
+  a.author_translations.create(locale: 'ka', name: 'Elizabeth Stamatina Fey')
+  authors << a
 
-# now need to assign authors and story type to stories
-story_types = StoryType.select('id').map{|x| x.id}
-Story.all.each_with_index do |story, index|
-  story.authors << authors.sample
-  if index % 3 == 0
+  # now need to assign authors and story type to stories
+  story_types = StoryType.select('id').map{|x| x.id}
+  Story.all.each_with_index do |story, index|
     story.authors << authors.sample
-  end
-  if index % 5 == 0
-    story.authors << authors.sample
-  end
+    if index % 3 == 0
+      story.authors << authors.sample
+    end
+    if index % 5 == 0
+      story.authors << authors.sample
+    end
 
-  story.story_type_id = story_types.sample
-  story.save
+    story.story_type_id = story_types.sample
+    story.save
+  end
 end
-
 
 #####################
 ## Pages

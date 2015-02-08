@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
                   
   attr_accessor :send_notification
 
-  has_permalink :create_permalink, true
+#  has_permalink :create_permalink, true
 
   validates :role, :presence => true
 
