@@ -6,7 +6,7 @@
     <%= tinymce readonly:1 %>      
     <% readonly = { readonly:true , disabled: true } %>
   <% else %>
-    <%= tinymce editor_selector: 'tinyEditor2' %>
+    <%= tinymce :alternate, uploadimage_form_url: imageuploader_path(id:params[:id]), uploadimage_default_img_class: "image", editor_selector: 'tinyEditor2' %>
     <% tinyClass = "tinyEditor2" %>   
   <% end %>
 <% else %>
