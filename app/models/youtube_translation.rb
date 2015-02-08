@@ -27,6 +27,14 @@ class YoutubeTranslation < ActiveRecord::Base
     html = ''
     ok = false
     u = self.url 
+    api_key = ENV['STORY_BUILDER_YOUTUBE_API_KEY']
+    if api_key.nil?
+      logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+      logger.debug "@@@@@@@@@@@@@@@ you need to register STORY_BUILDER_YOUTUBE_API_KEY ENV key"
+      logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+       self.errors.add(:code, "value can't be generated due to missing API key.")
+       return false
+    end
     if u.present?
       uri = URI.parse(u)
       if(uri.host.nil? && u.length == 11)
@@ -38,7 +46,7 @@ class YoutubeTranslation < ActiveRecord::Base
         end
       end
       if id.length == 11    
-        source = 'https://www.googleapis.com/youtube/v3/videos?key=AIzaSyA5DU2KQn3u4mzw6z1YNIHGGr9wadv9vZM&part=id&id=' + id
+        source = "https://www.googleapis.com/youtube/v3/videos?key=#{api_key}&part=id&id=#{id}"
         result = JSON.parse(Net::HTTP.get_response(URI.parse(source)).body)
 
         pars = (self.youtube.loop ? 'loop=1' : '') + (self.youtube.info == false ? '&showinfo=0' : '') +
@@ -57,8 +65,8 @@ class YoutubeTranslation < ActiveRecord::Base
       self.code = html
     else
       logger.debug "@@@@@@@@@@@@@@@2 generate_iframe error!"
-       errors.add(:code, "value can't be generated.")
-       false
+       self.errors.add(:code, "value can't be generated.")
+       return false
     end
     logger.debug "@@@@@@@@@@@@@@@2 generate_iframe end"
   end
