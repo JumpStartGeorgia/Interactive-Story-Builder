@@ -1,5 +1,7 @@
-<% title @page.present? ? @page.title : t('.title') %>
+<div class="page-about">
+   <% title @page.present? ? @page.title : t('.title') %>
 
-<% if @page.present? %>
-  <%= simple_format_no_tags(@page.content, {}, {sanitize: false}) %>
-<% end %>
+   <% if @page.present? %>
+     <%= simple_format_no_tags(@page.content, {}, {sanitize: false}) %>
+   <% end %>
+</div>

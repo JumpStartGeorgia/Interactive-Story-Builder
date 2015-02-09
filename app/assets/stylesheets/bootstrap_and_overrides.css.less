@@ -285,7 +285,7 @@ body#grid-layout #wrapper{
     //max-height: 600px;
     height:600px;
     overflow: hidden;
-    background-color:#000;
+    background-color:#282828;
     .item
     {
       max-height: 600px;
@@ -296,7 +296,7 @@ body#grid-layout #wrapper{
           width:100%;
           display:inline-block;
           vertical-align:middle;
-           line-height:600px;
+          line-height:600px;
       }
     }
   }  
@@ -305,19 +305,24 @@ body#grid-layout #wrapper{
   }
   .carousel-inner .item .img
   {
-  background-repeat:no-repeat;
+    background-size:cover;
+  // background-repeat:no-repeat;
 height: 600px;
  // background-attachment: fixed; 
-background-position: center center;
+// background-position: center center;
 /* width: 100%; */
 // background-size: contain;  
-background-size: cover;  
-  }
+ }
   
   .carousel-control
   {
     width:5%;
     text-shadow:none;
+    opacity:0.8;
+    &:hover
+    {
+      opacity:1;
+    }
   }
   .carousel-control .icon
   {
@@ -358,31 +363,31 @@ background-size: cover;
     {
       font-family: 'opensans', 'sans-serif';
     }
-    .title
-    {
-      font-family: 'dejavusans-el', Sylfaen;
-      font-size: 36px;
-      max-width:590px;
-      padding-bottom:20px;
-      &:lang(en)
-      {
-        font-family: 'opensans-b', 'sans-serif';
-      }
-      a{
-        color:#fff;
-        &:hover{
-          text-decoration: none;
-        }
-      }
-    }
-    .descr
-    {
-      font-size: 18px;
+    a{
       color:#fff;
-      max-width:500px;
-      padding-left:4px;
-      padding-bottom:20px;
-    }
+      &:hover{
+        text-decoration: none;
+      }
+      .title
+      {
+        font-family: 'dejavusans-b', Sylfaen;
+        font-size: 36px;
+        max-width:590px;
+        padding-bottom:5px;
+        &:lang(en)
+        {
+          font-family: 'opensans-b', 'sans-serif';
+        }     
+      }
+      .descr
+      {
+        font-size: 18px;
+        color:#fff;
+        max-width:500px;
+        padding:5px 0px 10px 4px;
+        line-height: 24px;
+      }
+    }    
     .storytype
     {
       
@@ -409,6 +414,16 @@ background-size: cover;
     width:14em;
     height:14em;
     overflow: hidden;
+    opacity:0.8;
+      -webkit-transition:all .15s ease-out;
+  -moz-transition:all .15s ease-out;
+  -ms-transition:all .15s ease-out;
+  transition:all .15s ease-out;
+    &:hover
+    {
+      opacity:1;
+      cursor:pointer
+    }
     .sticker-wrapper
     {
       position: absolute;
@@ -577,4 +592,12 @@ background-size: cover;
 .bootstrap-select.btn-group .btn .filter-option 
 {
   text-overflow: ellipsis;
+}
+.page-header
+{
+  border:0px;
+  h1
+  {
+    border-bottom: 1px solid rgb(238, 238, 238);
+  }
 }

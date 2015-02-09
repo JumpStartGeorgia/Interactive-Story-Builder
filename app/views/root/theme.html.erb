@@ -6,18 +6,24 @@
       <!-- Indicators -->
       <ol class="carousel-indicators">
        <% @stories_for_slider.each_with_index { |t,i| %>
-        <li data-target="#carousel-example-generic" data-slide-to="<%= i %>" class='<%= i == 0 ? " active" : "" %>'></li>
-      <% } %>  
+          <li data-target="#carousel-example-generic" data-slide-to="<%= i %>" class='<%= i == 0 ? " active" : "" %>'></li>
+        <% } %>  
       </ol>
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
 
         <% @stories_for_slider.each_with_index { |story,i| %>
+          <% story.use_app_locale_if_translation_exists %>
           <div class='item<%= i == 0 ? " active" : "" %>'>
-            <%= image_tag story.show_asset.file.url(:slider) %>
-            <div class="carousel-caption">
-              <div class='title'><%= link_to story.title, storyteller_show_path(story.permalink) %></div>
-              <div class='descr'> <%= strip_tags_nbsp(story.about).html_safe if story.about.present? %></div>
+          <%= link_to storyteller_show_path(story.permalink) do %>
+            <div class='img' style="background: url(/assets/png/thumbnail_mask.png) 100% 100% , url(<%= story.show_asset.file.url(:slider) %>) center center no-repeat; background-size:cover;"></div> <% end %>
+            <div class="carousel-caption" lang="<%= story.current_locale %>">
+              <%= link_to  storyteller_show_path(story.permalink) do %>
+                <div class='title'><%= story.title %></div>
+                <% if story.about.present? %>
+                <div class='descr'><%= strip_tags_nbsp(story.about).html_safe if story.about.present? %></div>
+                <% end %>
+              <% end %>
               <div class='storytype'>
                 <div class='storytype-logo story_type_<%= story.story_type_id %>' title='<%= get_story_type_name(story.story_type_id) %>'></div>
                 <div class='storytype-label' lang='<%= I18n.locale %>'><%= get_story_type_name(story.story_type_id) %></div>
@@ -39,7 +45,7 @@
       <div class='sticker'>
         <div class='sticker-wrapper'>
           <%= link_to theme_path(@theme.permalink) do %>
-            <div class='title'><%= @theme.formatted_name  %></div>
+            <div class='title'><%= @theme.name.split.map(&:capitalize).join(' ') %></div>
             <div class='sep'></div>
             <div class='date'><%= @theme.edition %></div>  <!-- I18n.l(@theme.edition, :format => '%B %Y')  -->
           <% end %>

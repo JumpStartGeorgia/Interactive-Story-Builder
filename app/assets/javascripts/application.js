@@ -191,8 +191,8 @@ $(".navbar-collapse").swipe(function( direction, offset ) {
     return false;
   });   
 
-
-  $('.carousel').carousel();
+$.fn.carousel.defaults = { interval: 5000, pause: 'hover' };
+$('.carousel').carousel();
 
 var dev = true;
 //---------------------------------------------dev stuff-------------------------------------------------

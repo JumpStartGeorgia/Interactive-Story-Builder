@@ -15,10 +15,15 @@
         <% @stories_for_slider.each_with_index { |story,i| %>
           <% story.use_app_locale_if_translation_exists %>
           <div class='item<%= i == 0 ? " active" : "" %>'>
-            <div class='img' style="background-image:url(<%= story.show_asset.file.url(:slider) %>);"></div>
+          <%= link_to storyteller_show_path(story.permalink) do %>
+            <div class='img' style="background: url(/assets/png/thumbnail_mask.png) 100% 100% , url(<%= story.show_asset.file.url(:slider) %>) center center no-repeat; background-size:cover;"></div> <% end %>
             <div class="carousel-caption" lang="<%= story.current_locale %>">
-              <div class='title'><%= link_to story.title, storyteller_show_path(story.permalink) %></div>
-              <div class='descr'> <%= strip_tags_nbsp(story.about).html_safe if story.about.present? %></div>
+              <%= link_to  storyteller_show_path(story.permalink) do %>
+                <div class='title'><%= story.title %></div>
+                <% if story.about.present? %>
+                <div class='descr'><%= strip_tags_nbsp(story.about).html_safe if story.about.present? %></div>
+                <% end %>
+              <% end %>
               <div class='storytype'>
                 <div class='storytype-logo story_type_<%= story.story_type_id %>' title='<%= get_story_type_name(story.story_type_id) %>'></div>
                 <div class='storytype-label' lang='<%= I18n.locale %>'><%= get_story_type_name(story.story_type_id) %></div>
