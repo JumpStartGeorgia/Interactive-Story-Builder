@@ -194,8 +194,10 @@ $(".navbar-collapse").swipe(function( direction, offset ) {
 
   $('.carousel').carousel();
 
-
+var dev = true;
 //---------------------------------------------dev stuff-------------------------------------------------
+if(dev)
+{
   $(window).resize(function(){
     var t = null; 
     if(firstResize)
@@ -214,6 +216,7 @@ $(".navbar-collapse").swipe(function( direction, offset ) {
       t.toggleClass('h').fadeIn(1000).delay(5000).fadeOut(1000,function(){ t.toggleClass('h'); });
     }
   });
+}
 //---------------------------------------------dev stuff end-------------------------------------------------
 
 });
