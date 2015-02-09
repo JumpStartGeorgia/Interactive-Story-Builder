@@ -84,33 +84,34 @@
     <div class="main">
       <div class="article"> 
         <% columnSectionCount = 0 %>
-        <% isFirst = true %>   
-         <% @story.sections.select{|t| t.ok? }.sort_by{|p| p.position}.each_with_index do |section,s_i| %>
+        <% isFirst = true %>  
+        <% secs = @story.sections.select{|t| t.ok? }.sort_by{|p| p.position} %> 
+        <% @section_count = secs.count %> 
+        <% secs.each_with_index do |section,s_i| %>
+
+          <% if isFirst && !(section.media? || (section.youtube? && section.youtube.fullscreen)) %>
+            <div class='info'>
+              <div class='headline'><%= @story.title %></div>
+              <div class="byline">
+                      <span class="caption"><%= t('storyteller.byline') %></span>
+                      <span class="author">&nbsp;<%= @story.story_author_names %></span>
+                      <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                      <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
+              </div> 
+            </div>
+             <%= render partial: "storyteller/template/#{@template}/content_infotop" %>
+          <% end %>
+
           <%  dataAudio = ''
               if section.asset_exists?            
                 dataAudio = "data-audio='#{File.basename(section.asset.asset_file_name_formatted,'.mp3')}'".html_safe 
               end
            %>            
             <% if section.content? %>
-              <% if isFirst %>
-                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
-              <% end %> 
               <div class="section column" <%= dataAudio.html_safe %>>    
                 <% if section.has_marker? %>
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
-                <% end %>
-                <% if columnSectionCount == 0 %>
-   
-                  <% if isFirst %>
-                    <div class='headline'><%= @story.title %></div>
-                    <div class="byline byline--first" style="margin-bottom:24px;">
-                    <span class="caption"><%= t('storyteller.byline') %></span>
-                    <span class="author">&nbsp;<%= @story.story_author_names %></span>
-                    <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
-                    <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
-                    </div> 
-                  <% end %>                            
-                <% end %>         
+                <% end %>                
                 <%= "<div class='column-caption'>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
                 <%= "<div class='column-sub-caption'>#{section.content.sub_caption}</div>".html_safe  if section.content.sub_caption.present? %>                       
                 <%= section.content.text.html_safe %>   
@@ -183,7 +184,7 @@
                     <% if isFirst && m_i == 0  %>   
                       <div class="video-headline">
                         <div class="headline"><%= @story.title %>
-                          <div class="byline byline--first" style="margin-bottom:24px;">
+                          <div class="byline">
                             <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.story_author_names %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
                              <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
                           </div>         
@@ -212,17 +213,11 @@
               <% if isFirst %>
                   <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
                 <% end %>     
-            <% elsif section.slideshow? %>  
-              <% if isFirst %>
-                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
-              <% end %> 
+            <% elsif section.slideshow? %>             
               <div class="section slideshow">
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
-                <% end %> 
-                <% if s_i == 0 %>
-                  <div class='slideshow-headline'><%= @story.title %></div>
-                <% end %>  
+                <% end %>               
                 <div class="slideshow-wrapper">
                       <% if section.slideshow.caption.present? %>
                         <h3><%= section.slideshow.caption %></h3>                      
@@ -241,10 +236,7 @@
                   </div>
                 </div>
               </div> 
-            <% elsif section.embed_media? %> 
-              <% if isFirst %>
-                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
-              <% end %>             
+            <% elsif section.embed_media? %>         
               <div class="section embed">
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
@@ -253,39 +245,31 @@
                   <%= section.embed_medium.code.html_safe %>             
                 </div>                         
               </div>
-            <% elsif section.youtube? %> 
-              <% if isFirst && !section.youtube.fullscreen %>
-                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
-              <% end %>             
+            <% elsif section.youtube? %>           
               <div class="section embed<%= section.youtube.fullscreen ? ' fullscreen' : '' %>">
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %> 
-                <div class="embed-container">
-                  <%= section.youtube.code.html_safe %>             
-                </div>                         
+                <div class="embed-container"><%= section.youtube.code.html_safe %></div>                         
               </div>
               <% if isFirst && section.youtube.fullscreen %>
-                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
+                <div class='info'>
+                <div class='headline'><%= @story.title %></div>
+                <div class="byline">
+                        <span class="caption"><%= t('storyteller.byline') %></span>
+                        <span class="author">&nbsp;<%= @story.story_author_names %></span>
+                        <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                        <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
+                </div> 
+              </div>
+               <%= render partial: "storyteller/template/#{@template}/content_infotop" %>
               <% end %>             
             <% end %>                               
             <% isFirst = false %>                    
         <% end %>   
         
       </div>
-    </div>   
-        <!--
-          <div class="image image--diptych">
-            <img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/696/island-pag-asa.jpg">
-            <img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/696/kids.jpg">
-            <div class="caption">About 120 people live at any one time on Pag-asa, including civilians.</div>
-          </div>
-           <div class="image">
-            <img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/696/chinese-coast-guards.jpg">
-            <div class="caption">Chinese Coast Guard cutters patrol within sight of the Sierra Madre.</div>
-          </div>     
-         -->
-
+    </div>         
       <!-- ****************************************************
       *  data hash for mobile devices , they use different images   
       ********************************************************* -->
@@ -374,40 +358,16 @@
             var _slideshow_assets = "media/slideshow/";
         <% end %>        
         
-
-         
-
+      
         d3.select(window)
           .on("resize", mobileReorient)
           .on("scroll", function() {
               d3.select(".navigation")
                 .classed("navigation-solid", window.scrollY > 350)
-          });
-
-    /*
-      remove br from headlines
-      add ios-loaded class to first video-sequence
-      remove br from byline style
-      we don't need this it's for map sequence
-
-    */
-      //  d3.select(".headline").html( d3.select(".headline").html().replace("<br>", " <br>") )
+          }); 
 
        d3.select(".video-sequence:first-of-type").classed("ios-loaded", true);
 
-       //d3.select(".column .byline").html( d3.select(".column .byline").html().replace("<br>", " <br>") )
-
-        //d3.select(".section:nth-child(7)").classed("map-sequence", true);
-
-
-    /*
-      scripts work with two devices phones and other devices like pads
-      so it would 2 devices in the future phone and pad
-
-      with small delay loop through hash 
-
-      if device is phone then replace values with phone inner values
-    */
         setTimeout(function() {
 
           mobileImages.forEach(function(image) {

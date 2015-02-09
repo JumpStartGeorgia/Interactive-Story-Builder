@@ -3,6 +3,7 @@
   @export ||= false
   @no_nav ||= false  
   @short_url = @story.shortened_url.present? ? @story.shortened_url : storyteller_show_url(@story.permalink)
+  @section_count = 0
 %>
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
@@ -18,7 +19,7 @@
     </div>   
     <%= render partial: "storyteller/template/#{@template}/footer"%> 
     <div class="info-bottom">
-    <div class='scroll-top' title="<%= t('app.common.scroll_top') %>"></div>
+      <div class='scroll-top' title="<%= t('app.common.scroll_top') %>"></div>
       <div class="info-row">
         <div class="l">
           <div class='authors'>       
@@ -37,15 +38,17 @@
               <% } %>
           </div>
         </div>
-        <div class="r">
-          <div class='share'>
-                 <div class="addthis_native_toolbox"></div> 
-                  <%= link_to '#',   :'data-modalos-id' => "modalos-embed", :title => t('app.common.embed'), :class => "embed modalEmbed" do %>
-
-              <% end %> 
+     
+        <% if @section_count != 1 %>
+          <div class="r">
+              <div class='share'>
+                     <div class="addthis_native_toolbox"></div> 
+                      <%= link_to '#',   :'data-modalos-id' => "modalos-embed", :title => t('app.common.embed'), :class => "embed modalEmbed" do %>
+                  <% end %> 
+              </div>
           </div>
-        </div>
-      </div>      
+        <% end %>
+      </div>
       <div class="comments">
         <div class="fb-comments" data-href="<%= storyteller_show_url(:id=>@story.permalink,:sl => @story.current_locale) %>" data-num-posts="5" data-width="100%" id="fbComments"></div>
       </div>

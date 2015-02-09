@@ -169,7 +169,7 @@
 
   .headline {
     font-size: 45px;    
-    margin-bottom: 15px;
+      text-transform: capitalize;
   }
   .slideshow-headline
   {
@@ -179,7 +179,7 @@
 
   .byline {
     font: 16px 'dejavusans-el', Sylfaen;    
-    opacity: 0.6;
+    opacity: 1;
   }
 
   .byline:lang(en) {
@@ -190,16 +190,10 @@
   }
   .byline .caption
   {
-    opacity:0.6;
+    opacity:0.8;
   }
   .byline .author {    
     white-space: nowrap;    
-    opacity:1;
-  }
-
-  .byline--first {
-    margin-bottom: 14px;
-    opacity: 1;        
   }
   .source
   {
@@ -1421,7 +1415,10 @@
   margin-top:23px;
 }
 
-
+.info
+{
+  padding-top:20px;
+}
 .scroll-top
 {
   width:51px; 
@@ -1433,10 +1430,17 @@
   cursor:pointer;
   margin:40px 0px;
 }
+.info,.info-top,.info-bottom
+{
+  margin:0px auto;
+  max-width:730px;
+}
 .info-top
 {
   /*border: 1px solid rgb(128, 128, 128);*/
   height:50px;
+  padding-top:8px;
+  margin-bottom:20px;
 }
 .info-top .share > div,
 .info-top .share > a,
@@ -1492,11 +1496,7 @@
 {
   display:inline-block;
 }
-.info-top,.info-bottom
-{
-  margin:0px auto;
-  max-width:730px;
-}
+
 .info-bottom
 {
   position:relative;
