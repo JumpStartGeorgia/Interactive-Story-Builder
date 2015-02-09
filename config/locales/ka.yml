@@ -88,11 +88,6 @@ ka:
       slideshow:
         title: სათაური
         caption: ფოტოს წარწერა
-      news:
-        title: სათაური
-        content: შინაარსი
-        is_published: გამოვაქვეყნოთ?
-        published_at: გამოქვეყნების თარიღი
       message:
         name: სახელი
         email: ელ. ფოსტის მისამართი

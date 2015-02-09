@@ -7,6 +7,7 @@
   - en.activerecord.attributes.content.content
   - en.section_types.content.name
 - - en.activerecord.models.message
+  - en.activerecord.attributes.message.message
   - en.mailer.notification.story_collaboration.msg
 - - en.activerecord.models.slideshow
   - en.section_types.slideshow.name
@@ -18,12 +19,15 @@
   - en.filters.category_header
 - - en.activerecord.models.theme
   - en.filters.theme_header
+- - en.activerecord.attributes.user.email
+  - en.activerecord.attributes.message.email
 - - en.activerecord.attributes.user.role
   - en.mailer.notification.story_collaboration.role
   - en.settings.invitations.header_role
 - - en.activerecord.attributes.user.local_avatar
   - en.activerecord.attributes.author.avatar
 - - en.activerecord.attributes.author_translation.name
+  - en.activerecord.attributes.message.name
   - en.activerecord.attributes.category_translation.name
   - en.activerecord.attributes.theme_translation.name
   - en.activerecord.attributes.story_type_translation.name
@@ -53,7 +57,7 @@
   - en.activerecord.attributes.content.title
   - en.activerecord.attributes.medium_translation.title
   - en.activerecord.attributes.slideshow.title
-  - en.activerecord.attributes.embed_medium.title
+  - en.activerecord.attributes.embed_medium_translation.title
   - en.activerecord.attributes.youtube_translation.title
 - - en.activerecord.attributes.content.caption
   - en.activerecord.attributes.slideshow.caption
@@ -63,6 +67,8 @@
 - - en.activerecord.attributes.medium.video
   - en.activerecord.attributes.medium_translation.video
   - en.stories.media.video
+- - en.activerecord.attributes.medium_translation.source
+  - en.layouts.storybuilder.source
 - - en.activerecord.attributes.theme_translation.permalink
   - en.activerecord.attributes.story_type_translation.permalink
 - - en.helpers.links.admin
@@ -128,6 +134,8 @@
   - en.filters.following
 - - en.app.common.views
   - en.filters.sort.reads
+- - en.layouts.reviewer.copied
+  - en.shared.story_nav_modals.copied
 - - en.root.index
   - en.stories.index
 - - en.stories.new.title

@@ -88,11 +88,6 @@ en:
       slideshow:
         title: Title
         caption: Heading
-      news:
-        title: Title
-        content: Content
-        is_published: Publish?
-        published_at: Date Published
       message:
         name: Name
         email: Email Address
