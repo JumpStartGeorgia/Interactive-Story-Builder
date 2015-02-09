@@ -335,7 +335,7 @@ class Story < ActiveRecord::Base
       already_exists_ids = []
       already_exists_emails = []
       # add owner
-      already_exists_ids << self.user_id
+      # already_exists_ids << self.user_id
       # add colaborators
       if self.users.present?
         already_exists_ids << self.users.map{|x| x.id}
