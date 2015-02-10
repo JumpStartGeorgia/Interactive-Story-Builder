@@ -1,21 +1,21 @@
 <% original ||= false %>
 <% @new ||= false %>
 <% readonly = {} %>
-<% #tinyClass = "tinyEditor" %>
+<% tinyClass = "tinyEditor" %>
 <% if @trans %>
   <% if original %>
-    <% #tinymce readonly:1 %>      
+    <% tinymce readonly:1 %>      
     <% readonly = { readonly:true , disabled: true } %>
   <% else %>
-    <% #tinymce editor_selector: 'tinyEditor2' %>
-    <% #tinyClass = "tinyEditor2" %>   
+    <% tinymce editor_selector: 'tinyEditor2' %>
+    <% tinyClass = "tinyEditor2" %>   
   <% end %>
-<% #elsif params[:action] == 'new' || params[:action] == 'create' %>
-  <% #content_for(:js) { %>
-    <% #tinymce %>
-  <% #} %>
-<% #else %>
-    <% #tinymce %>
+<% elsif params[:action] == 'new' || params[:action] == 'create' %>
+  <% content_for(:js) { %>
+    <% tinymce %>
+  <% } %>
+<% else %>
+    <% tinymce %>
 <% end %>
 <% isTO = @trans && original # if mode is translate and screen is original(first) %>
 <% form_class = @trans == true && original == false ? 'form-translation' : '' %>
@@ -62,7 +62,7 @@
         
         <%= f_translation.input :translation_author, { :input_html => { id: (!isTO ? "storyTranslationAuthor" : nil)  }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.translation_author'), placeholder: t('.placeholder.translation_author') }))  %>
 
-        <%= f_translation.input :about, { :as => :string, :input_html => { :maxlength => 160 }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.about') }))  %>
+        <%= f_translation.input :about, { :as => :text, :input_html => {id: tinyClass , :class => tinyClass, :rows => 15}.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.about') }))  %>
 
         <% if !@trans %>
 
