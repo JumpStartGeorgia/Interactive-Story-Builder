@@ -108,7 +108,8 @@ class StoriesController < ApplicationController
           flash[:error] = I18n.t('app.msgs.error_publish_missing_fields', :obj => @item.title)            
         elsif @item.sections.map{|t| t.content? && t.content.present? && t.content.text.present? }.count(true) == 0
           flash[:error] = I18n.t('app.msgs.error_publish_missing_content_section')            
-        end                      
+        end   
+        @select_next = params[:commit_and_next].present? ? true : false                    
         format.html { render action: "edit" }
         format.js {render action: "flash" , status: :ok }
       else
@@ -117,7 +118,8 @@ class StoriesController < ApplicationController
           @item.with_translation(params[:current_locale])
           @item.current_locale = params[:current_locale]
           @story_progress = StoryTranslationProgress.get_progress(@item.id)
-          flash_success_updated(Story.model_name.human,@item.title)       
+          flash_success_updated(Story.model_name.human,@item.title)  
+          @select_next = params[:commit_and_next].present? ? true : false       
           format.html { redirect_to  sections_story_path(@item) }
           format.js { render action: "flash", status: :created }    
         else
