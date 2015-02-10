@@ -20,7 +20,7 @@
             <div class="carousel-caption" lang="<%= story.current_locale %>">
               <%= link_to  storyteller_show_path(story.permalink) do %>
                 <div class='title'><%= story.title %></div>
-                <% if story.about.present? %>
+                <% if false #story.about.present? %>
                 <div class='descr'><%= strip_tags_nbsp(story.about).html_safe if story.about.present? %></div>
                 <% end %>
               <% end %>
