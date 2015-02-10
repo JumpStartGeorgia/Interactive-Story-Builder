@@ -2,9 +2,12 @@
  <div class="js-list-basic">
 	<ul>
     <li>
-     <%= link_to t('helpers.links.users'), admin_users_path %>
+     <%= link_to t('helpers.links.authors'), admin_authors_path %>
     </li>
     <% if current_user.role? User::ROLES[:site_admin] %>
+      <li>
+       <%= link_to t('helpers.links.users'), admin_users_path %>
+      </li>
       <li>
        <%= link_to t('helpers.links.authors'), admin_authors_path %>
       </li>
