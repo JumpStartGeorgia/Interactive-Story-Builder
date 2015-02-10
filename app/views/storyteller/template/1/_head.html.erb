@@ -17,7 +17,9 @@
     <meta property="og:type" content="non_profit" />
     <meta property="og:url" content="<%= current_url if !@export %>" />
 <% if @story && @story.id && @story.asset_exists? %>
-    <meta property="og:image" content="<%= @export ? "media/thumbnail/#{@story.asset.asset_file_name}" : full_url(@story.asset.file.url(:thumbnail, false)) %>" />
+    <meta property="og:image" content="<%= @export ? "media/thumbnail/#{@story.asset.asset_file_name}" : full_url(@story.asset.asset.url(:thumbnail, false)) %>" />
+<% else %>
+    <meta property="og:image" content="<%= full_url('/assets/fb-img.jpg') %>" />
 <% end %>
     <meta property="og:site_name" content="<%= @export ? title : t('app.common.app_name_not_trans') %>" />
 <% if !@export && Rails.env.production? %>
