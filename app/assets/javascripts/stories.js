@@ -799,16 +799,16 @@ function change_tree(d)
 function change_sub_tree(d)
 {
    var section = story_tree.find('ul li.item[id='+ d.id + ']');
-   var li = $("<li id='"+d.sub_id+"' class='sub' data-type='"+d.type+"_item'><div><div class='sub-l'>"+d.title+"</div><div class='storytree-arrow'><div class='arrow'></div></div></div></li>");  
+   var li = $("<li id='"+d.sub_id+"' class='sub' data-type='"+d.type+"_item'><div><div class='sub-l'>"+d.title+"</div>"+(d.hasOwnProperty('tools') ? d.tools : '')+"<div class='storytree-arrow'><div class='arrow'></div></div></div></li>");  
    
    if(d.type != 'media')
    {
-      section.find('ul button').remove();
+      section.find('> ul > button').remove();
       section.find('ul').append(li);
    }
    else
    {
-      li.insertBefore( section.find('ul button'));
+      li.insertBefore( section.find('> ul > button'));
    }
    story_tree.find('ul li').removeClass('active');   
    li.find('.sub-l').trigger('click');
