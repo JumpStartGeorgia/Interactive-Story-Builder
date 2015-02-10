@@ -620,15 +620,15 @@ $(document).ready(function() {
   story_tree = $('.story-tree');
 
 
-  $(document).on('mouseenter','.story-page2 input[type=text]', function(){
-    $('.copy-paste').css({'top':$(this).offset().top + 16,'left':$(this).offset().left-32 }).show();
+  // $(document).on('mouseenter','.story-page2 input[type=text]', function(){
+  //   $('.copy-paste').css({'top':$(this).offset().top + 16,'left':$(this).offset().left-32 }).show();
 
-    console.log('over');
-  });
-  $(document).on('mouseleave','.story-page2 input[type=text]', function(){
-    $('.copy-paste').fadeOut(5000);
-    console.log('out over');
-  });
+  //   console.log('over');
+  // });
+  // $(document).on('mouseleave','.story-page2 input[type=text]', function(){
+  //   $('.copy-paste').fadeOut(5000);
+  //   console.log('out over');
+  // });
 
 });
 
