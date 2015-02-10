@@ -621,12 +621,12 @@ $(document).ready(function() {
 
 
   // $(document).on('mouseenter','.story-page2 input[type=text]', function(){
-  //   $('.copy-paste').css({'top':$(this).offset().top - 8,'left':$(this).offset().left-26 }).show();
+  //   $('.copy-paste').css({'top':$(this).offset().top + 16,'left':$(this).offset().left-32 }).show();
 
   //   console.log('over');
   // });
   // $(document).on('mouseleave','.story-page2 input[type=text]', function(){
-  //   $('.copy-paste').hide();
+  //   $('.copy-paste').fadeOut(3000);
   //   console.log('out over');
   // });
 
