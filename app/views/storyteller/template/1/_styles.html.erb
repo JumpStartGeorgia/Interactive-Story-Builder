@@ -392,22 +392,34 @@
     color: rgb(255, 255, 255);
     margin:0px;
     padding:0px 7%;
-    max-width:1024px;
+    /*max-width:1024px;*/
+    position: absolute;
+  bottom: 0px;
+  background-color: rgba(18, 18, 18, 0.9);
   }
   .video-container.infobox-fixed .infobox
   {
-    background-color: rgba(18,18,18,0.9);
-    position: absolute;
+    position: relative;
     bottom: 0px;
     width: 100%;
     margin: 0px;
     padding: 0px;
     z-index: 3;
+    height: 100vh;
+  }
+  .video-container.infobox-fixed .space
+  {
+    width: 100%;
+    position: absolute;
+    top: 100vh;
+    background-color: rgba(18, 18, 18, 0.9);
+    bottom: 0px;
   }
   .video-container.infobox-fixed .infobox .video-caption .caption
   {
     display:table-cell;
     vertical-align:middle;
+    padding:15px 0px;
 
   }
   .video.infobox-floating .video-caption--long {
@@ -441,12 +453,13 @@
     left: 0;
     padding: 0;
     width: 100%;
-    height: 100%;  
+    height: 100%; 
+    height: 100vh; 
   }
   .video-headline .headline
   {    
     position: absolute;
-    bottom: 10%;
+    bottom: 20%;
     color: #fff;
     left: 10%;
     font-size: 4vmin;
@@ -1419,7 +1432,7 @@
 {
   padding-top:20px;
 }
-.scroll-top
+/*.scroll-top
 {
   width:51px; 
   height:51px;
@@ -1428,8 +1441,9 @@
   z-index:1;
   float:right;
   cursor:pointer;
-  margin:40px 0px;
-}
+  margin:0px auto;
+  
+}*/
 .info,.info-top,.info-bottom
 {
   margin:0px auto;
@@ -1438,7 +1452,7 @@
 .info-top
 {
   /*border: 1px solid rgb(128, 128, 128);*/
-  height:50px;
+  min-height:50px;
   padding-top:8px;
   margin-bottom:20px;
 }
@@ -1491,6 +1505,7 @@
 .info-top > div.r
 {
   float:right;
+  clear:both;
 }
 .info-top > div.r > div
 {
@@ -1500,7 +1515,8 @@
 .info-bottom
 {
   position:relative;
-  margin-top:20px;
+  /*margin-top:20px;*/
+  margin:60px auto 40px;
 }
 .info-bottom > .info-row
 {
@@ -1659,5 +1675,19 @@ ul.dropdown-menu li a
 .authors .author .follow a:lang(en)
 {
   font-family: 'opensans-l', 'sans-serif'; 
+}
+.descr
+{
+   font-family: dejavusans, Sylfaen !important;     
+    -webkit-font-smoothing: antialiased;  
+    color: #5A5A5A;
+    line-height: 24px !important;
+    font-size: 14px !important;
+    letter-spacing:normal !important;
+    padding-top: 10px;
+}
+.descr:lang(en)
+{
+  font-family: 'opensans', 'sans-serif' !important;
 }
 </style>
