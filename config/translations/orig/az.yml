@@ -1,5 +1,6 @@
 # encoding: utf-8
-en:
+# encoding: utf-8
+az:
   activerecord:
     models:
       user: User
@@ -538,11 +539,13 @@ en:
       show:
         title: User Details
   root:
+    index:
     about:
       title: About Chai Khana
     embed:
       home_link: Built on Chai Khana
   stories:
+    index:
     new:
       title: Story Settings Form
     edit:

@@ -1,285 +1,284 @@
 # encoding: utf-8
-# encoding: utf-8
 az:
   activerecord:
     models:
-      user: User
-      story: Story
-      section: Section
-      medium: Full-Screen Media Slideshow
-      content: Text
-      message: Message
-      slideshow: Image Slideshow
-      embed_medium: Embeddable Online Media
+      user: "İstifadəçi"
+      story: Hekayə
+      section: Bölmə
+      medium: Tam Ekran Media Slayd nümayişi
+      content: Mətn
+      message: Mesaj
+      slideshow: "Şəkil Slayd Numayişi"
+      embed_medium: Daxil Ediləsi Onlayn Media
       youtube: YouTube Video
-      language: Language
-      category: Category
-      page: Text for Pages
-      theme: Theme
-      story_type: Story Type
-      author: Author
+      language: Dil
+      category: Kateqoriya
+      page: Səhifə üçün Mətn
+      theme: Mövzu
+      story_type: Hekayə Növü
+      author: Müəllif
     attributes:
       user:
-        email: Email Address
-        password: Password
-        password_confirmation: Password Confirmation
-        role: Role
-        remember_me: Remember Me
-        default_story_locale: Default Language for Your Stories 
-        about: Summary of You
+        email: E-poçt ünvanı
+        password: Parol
+        password_confirmation: Parol Təsdiqi
+        role: Rol
+        remember_me: Məni xatırla
+        default_story_locale: Sənin Hekayələrin üçün Defolt Dil
+        about: Sənin Xülasən
         local_avatar: Avatar
-        nickname: Nickname
-        sign_in_count: Number of Times Logged In
-        created_at: Date Created
-        current_sign_in_at: Date Last Logged In
+        nickname: Ləqəb
+        sign_in_count: Daxil Olmanın Sayı
+        created_at: Yaradıldığı Tarix
+        current_sign_in_at: Sonuncu Dəfə Daxil Olmanın Tarixi
       author:
         avatar: Avatar
       author_translation:
-        name: Name
-        about: About
-        permalink: Permalink
+        name: Ad
+        about: Haqqında
+        permalink: Daimi Keçid
       story:
-        user_id: Story Author
-        user_ids: Editors
-        publish_home_page: Once published, make your story visible on the homepage?
-        template_id: Template
-        thumbnail: Thumbnail
-        story_locale: Story Language
-        tag_list: Tags
-        categories: Categories
-        story_type: Type
-        in_theme_slider: Show Story in Theme Slider
+        user_id: 'Hekayənin Müəllifi '
+        user_ids: Redaktorlar
+        publish_home_page: Dərc edildikdən sonra hekayən ana səhifədə göstərilsin mi?
+        template_id: "Şablon"
+        thumbnail: Thumbnail - Xırda Şəkil
+        story_locale: Hekayənin Dili
+        tag_list: Nişanlar
+        categories: Kateqoriyalar
+        story_type: Növ
+        in_theme_slider: 'Hekayəni Mövzu Slaydlarında Göstər '
       story_translation:
-        title: Story Title
-        author: Author(s)
-        media_author: Photo and Video Author(s)  
-        translation_author: Translation Author(s)
-        published: Publish?
-        published_at: Was Published
-        about: Story Summary
-        permalink: Story URL
-        permalink_staging: Story URL
+        title: Hekayənin Sərlövhəsi
+        author: Müəllif(lər)
+        media_author: Foto və Video Müəllifi (singular) Müəllifləri (plural)
+        translation_author: Tərcümə Müəllifi (s) Müəllifləri (pl)
+        published: Dərc et?
+        published_at: Dərc edilmişdir
+        about: Hekayənin Xülasəsi
+        permalink: Hekayənin URL-ı
+        permalink_staging: Hekayənin URL-ı
       section:
-        has_marker: Navigation Shortcut
-        type_id: Type
-        sort_order: Sort Order
+        has_marker: Naviqasiya Qısayolu
+        type_id: Növ ("Yaz" if you mean the verb "to type")
+        sort_order: Sıralama Qaydası
       section_translation:
-        title: Title
-        audio: Audio Track
-        delete_audio: Delete the Audio Track?
-      content:        
-        title: Title          
-        caption: Heading
-        sub_caption: Subheading
-        content: Text
+        title: Sərlövhə
+        audio: Audio Cığırı
+        delete_audio: Audio Cığırını Sil?
+      content:
+        title: Sərlövhə
+        caption: Başlıq
+        sub_caption: Alt-başlıq
+        content: Mətn
       medium:
-        media_type: Media Type
-        image: Image
+        media_type: Media Növü
+        image: "Şəkil"
         video: Video
-        video_loop: Loop Video
+        video_loop: Fasiləsiz Baxış (if playing on repeat) Video Dövrü
       medium_translation:
-        title: Title
-        caption: Caption
-        caption_align: Caption Alignment
-        infobox_type: Caption Position
-        summary: Summary
-        source: Source
-        image: Image
+        title: Sərlövhə
+        caption: "Şəkilaltı imza (if caption is for image)"
+        caption_align: "Şəkilaltı İmzanı Düzləndirmək"
+        infobox_type: "Şəkilaltı İmzanın Yeri"
+        summary: Xülasə
+        source: Mənbə
+        image: "Şəkil"
         video: Video
       slideshow:
-        title: Title
-        caption: Heading
+        title: Sərlövhə
+        caption: Başlıq
       message:
         name: Name
         email: Email Address
         message: Message
         message_type: Feedback Type
       embed_medium_translation:
-        title: Title
-        url: Url to Online Media
+        title: Alt-başlıq
+        url: Onlayn Mediaya URL
       youtube:
-        fullscreen: Fullscreen
-        loop: Loop
-        info: Show Video Title Bar
+        fullscreen: Tam ekran
+        loop: Dövr
+        info: Videonun Sərlövhə Zolağını Göstər
       youtube_translation:
-        title: Title
-        url: Url to YouTube Video
-        menu_lang: Player Language
-        cc: Show Caption/Subtitle
-        cc_lang: Subtitle Language       
+        title: Sərlövhə
+        url: YouTube Videosunun URL-ı
+        menu_lang: Pleyerin Dili
+        cc: "Şəkilaltı İmzanı/Sərlövhəni Göstər"
+        cc_lang: Alt-başlığın dili
       language:
-        locale: Locale
-        name: Language Name
+        locale: Dil
+        name: Dilin Adı
       category_translation:
-        name: Name
+        name: Ad
       page:
-        name: Unique name for content (do not change!)
+        name: Məzmunun Xüsusi adı (bunu dəyişmə!)
       page_translation:
-        title: Title to show above content
-        content: Content
+        title: Məzmunun üstündə göstəriləcək sərlövhə
+        content: Məzmun
       theme:
-        is_published: Publish?
-        published_at: Date Published
-        show_home_page: Show this theme on the home page?
+        is_published: Dərc et?
+        published_at: Dərc Edilmə Tarixi
+        show_home_page: Bu mövzunu ana səhifədə göstər?
         published_item_count: Number of Published Items
       theme_translation:
-        name: Name
-        edition: Edition
-        description: Description
+        name: Ad
+        edition: Buraxılış
+        description: Təsvir
         permalink: URL
       story_type:
-        sort_order: Sort Order
+        sort_order: Sıralama Qaydası
       story_type_translation:
-        name: Name
+        name: Ad
         permalink: URL
     errors:
       messages:
-        required_field: "is a required field."
-        already_exists: 'already exists in the database.'              
-        story_authors: "must have at least one person selected."
-        publish_theme: 'The theme cannot be published until at least one published item has been assigned to the theme.'
+        required_field: tələb edilən sahədir.
+        already_exists: verilənlər bazası artıq mövcuddur.
+        story_authors: "ən azı bir şəxs seçilməlidir."
+        publish_theme: The theme cannot be published until at least one published item has been assigned to the theme.
   mailer:
-    closing: "Sincerely,"
-    signature: The Chai Khana Team
-    unsubscribe: Click here to change your notification settings
+    closing: Hörmətlə,
+    signature: "Çayxana Komandası (Chai Khana also acceptable)"
+    unsubscribe: Bildiriş parametrlərini dəyişmək üçün buraya basın
     contact:
       contact_form:
-        subject: "Chai Khana Contact Form"
+        subject: "Çayxana Əlaqə Forması"
     notification:
       new_user:
-        subject: "Welcome to Chai Khana!"
-        message: "Thank you for becoming a member of Chai Khana. We look forward to exploring the stories you build!\n\nWhen you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summary about yourself: [settings_link].\n\nYou can manage when you would like to receive email notifications from Chai Khana by going to the notifications page: [notifications_link]. "
+        subject: "Çayxanaya Xoş Gəlmisiniz!"
+        message: "Çayxananın üzvü olduğunuz üçün təşəkkür edirik. Sizin yaradacağınız hekayələri səbirsizliklə gözləyirik!\n\nLütfən, imkanınız olanda parametrlər səhifənizə daxil olun ki, avatarınızı, ləqəbinizi, şəxsi URL-ınızı, və özünüz barədə xülasəni yenilədə biləsiniz: [settings_link].\n\nBildiriş səhifəsinə gedərək, Çayxanadan aldığınız bildirişlərin vaxtını müəyyənləşdirə bilərsiniz: [notifications_link]."
       published_theme:
-        subject: "New themes have been published on Chai Khana!"
-        message: "The following themes you have expressed interest in were recently published:"
+        subject: New themes have been published on Chai Khana!
+        message: 'The following themes you have expressed interest in were recently published:'
       published_story:
-        subject: "New stories have been published on Chai Khana!"
-        message: "The following stories you have expressed interest in were recently published:"
+        subject: "Çayxanada yeni hekəyələr dərc edilib!"
+        message: 'Maraq göstərdiyiniz növbəti hekayələr təzəlikcə dərc edilib:'
       story_comment:
-        subject: "Someone has posted a comment on your story on Chai Khana!"
-        message: "The following stories have recently received a comment:"
-        comment: "1 Comment"
-        comments: "%{num} Comments"
+        subject: Kimsə sizin Cayxanadaki hekayənizə şərh yazıb!
+        message: 'Növbəti hekayələr təzəlikcə şərh alıblar:'
+        comment: 1 Şərh
+        comments: "%{num} Şərhlər"
       story_collaboration:
-        subject: "You have been invited to collaborate on a story on Chai Khana!"
-        message: "You have received the following invitations to collaborate on stories with other people on Chai Khana. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part."
-        from: From
-        role: Role
-        story_title: Story Title
-        msg: Message
-        accept_link: Accept the Invitation
-        all_invitations: View all of your Chai Khana collaboration invitations.
+        subject: "Çayxanada bir hekayə üzrə əməkdaşlığa dəvət edilmisiniz!"
+        message: 'Çayxanada başqaları ilə hekayələr üzrə əməkdaşlığa növbəti dəvətləri almısınız. Dəvəti qəbul etmək istəyirsinizsə, sadəcə "Dəvəti qəbul et" keçidinə basın. Əgər dəvəti qəbul etmək istəmirsinizsə, başqa heç bir hərəkət etməyiniz lazım deyil. '
+        from: Kimdən
+        role: Rol
+        story_title: Hekayı Sərlövhəsi
+        msg: Mesaj
+        accept_link: Dəvəti Qəbul Et
+        all_invitations: Bütün Çayxana əmədaşlıq dəvətlərinə bax.
       processed_videos:
-        subject: "Your videos on Chai Khana have been processed!"
-        message: "The following stories of yours have videos that have completed processing:"
-        story_title: 'Story:'
-        status: 'Video Processing Status: %{processed} of %{total} completed'
-        processed: 'Videos Processed:'
-        not_processed: 'Videos Still Processing:'
-        none_processed: No vidoes have been processed.
-        none_processing: All videos have been processed!
+        subject: "Çayxanadakı videolarınız emal edilibdir!"
+        message: 'Növbəti hekayələrinizin videolarının emalı tamamlanıb:'
+        story_title: 'Hekayə:'
+        status: 'Videonun emal vəziyyəti: %{processed} of %{total} tamamlanıb'
+        processed: 'Video emal edilib:'
+        not_processed: 'Videolar hələ emal edilir:'
+        none_processed: Heç bir video emal edilməyib.
+        none_processing: Videoların hamısı emal edildi!
       processed_video_errors:
-        subject: "Videos on Chai Khana have processing errors!"
-        message: "The following videos had errors while being processed:"
-        story_id: Story ID
-        asset_id: Asset ID
-        path: URL of Video
+        subject: Videos on Chai Khana have processing errors!
+        message: 'Növbəti videolar emal edilərkən xətalar baş verib:'
+        story_id: Hekayənin ID-si
+        asset_id: Materialın ID-si
+        path: Videonun URL-ı
   helpers:
-    actions: Actions
+    actions: Hərəkətlər
     links:
-      admin: Admin Section
-      edit: Edit
-      confirm: Are you sure?
-      destroy: Delete
-      new: New
-      list: View All
-      back: View All
-      cancel: Cancel
-      reset: Reset
-      view: View
-      sign_in_facebook: Sign in with Facebook
-      edit_story: Edit Story Settings
-      delete_story: Delete Story
-      admin_story: Edit Content
-      publish_story: Publish Story
-      forgot_password: Forgot Password?
-      change_password: Change Your Password
-      change_password2: Change Password
-      password_reset: Reset Password
-      sign_in2: Sign In
-      sign_in: "Already have an account?"
-      sign_up2: Sign Up
-      sign_up_question: "Not a member yet?"
-      sign_up: "Register now"
-      sign_up_title: Join Chai Khana
-      sign_out: Sign Out
-      sign_in_provider: "Sign in with %{provider}"
-      sign_up_provider: "Sign up with %{provider}"
-      sign_in_local_or_provider: or log in with your email and password
-      reset_or_sign_in: sign in with facebook or reset your password
-      add_story: Add Story
-      users: Users
-      authors: Authors
-      feedback: Feedback
-      about: About
+      admin: "İnzibati Bölmə"
+      edit: Redaktə et
+      confirm: "Əminsinizmi?"
+      destroy: Sil
+      new: Yeni
+      list: Hamısına Bax
+      back: Hamısına Bax
+      cancel: Ləğv Et
+      reset: Sıfırla
+      view: Bax
+      sign_in_facebook: Facebookla Daxil Ol
+      edit_story: Hekayənin Parametrlərini Redaktə Et ("Dəyiş" sounds more appropriate than Redaktə Et, but means "Change")
+      delete_story: Hekayəni Sil
+      admin_story: Məzmunu Redaktə Et
+      publish_story: Hekayəni Dərc Et
+      forgot_password: Parolu unutdun?
+      change_password: Parolunu Dəyiş
+      change_password2: Parolu Dəyiş
+      password_reset: Parolu Sıfırla
+      sign_in2: Daxil Ol
+      sign_in: Artıq Hesabın Var?
+      sign_up2: Qeydiyyatdan Keç
+      sign_up_question: Hələ Üzv deyilsən?
+      sign_up: "İndi Qeyd Ol"
+      sign_up_title: "Çayxanaya Qoşul"
+      sign_out: "Çıx"
+      sign_in_provider: "%{provider}-lə Daxil Ol"
+      sign_up_provider: "%{provider}-lə Qeyd Ol"
+      sign_in_local_or_provider: yaxud e-poçt və parol ilə daxil ol
+      reset_or_sign_in: Facebook-la daxil ol və ya parolunu sıfırla
+      add_story: Hekayəni Əlavə Et
+      users: "İstifadəçilər"
+      authors: Müəlliflər
+      feedback: Qeri bildirim
+      about: Haqqında
       rss: RSS
-      themes: Themes
-      story_types: Types
-      languages: Languages
-      follow: Follow
+      themes: Mövzular
+      story_types: Növlər
+      languages: Dillər
+      follow: "İzlə"
       facebook: Facebook
       twitter: Twitter
       youtube: YouTube
-      subscribe: Subscribe
-      user_settings: Settings
-      like: Like   
-      likes: Likes      
-      comments: Comment on this story
-      views: "%{num} views"
-      tags: Tags
-      menu: Menu
-      pages: Edit Text on Site
-      next: Next
-      feed: Feed
+      subscribe: "Əbunə Ol"
+      user_settings: Parametrlər
+      like: Bəyən
+      likes: Bəyənir
+      comments: Bu hekayə barədə şərh yaz
+      views: "%{num} baxılışlar"
+      tags: Nişanlar
+      menu: Menyu
+      pages: Mətni Saytda Redaktə Et
+      next: Növbəti
+      feed: Xəbər Lenti
       story_menu:
         link:
-          story: Story
-          story_settings: Story Settings
-          collaborators: Collaborators
-          preview: Preview
-          publish: Publish
-          unpublish: Unpublish
-          review: Private URL
-          clone: Clone
-          export: Download
-          delete_story: Delete
-          translations: Translations
+          story: Hekayə
+          story_settings: Hekayə Parametrləri
+          collaborators: "Əməkdaşlar"
+          preview: "Öncəbaxış"
+          publish: Dərc Et
+          unpublish: Dərc etdiyini ləğv et
+          review: "Özəl URL"
+          clone: Kopya Yarat
+          export: Endir
+          delete_story: Sil
+          translations: Tərcümələr
         title:
-          story: Edit your story
-          story_settings: Edit story title, authors, URL, summary, thumbnail, language, tags and/or categories, content etc.
-          collaborators: Manage which users have access to edit your story
-          preview: See how your story looks
-          publish: Make your story viewable to the world
-          unpublish: Make your story NOT viewable to the world
-          review: URL to share this story before publishing
-          clone: Copy this story into a new story
-          export: Download the complete story
-          delete_story: Deleting a story cannot be undone
-          translations: Translate your story into other languages
+          story: Hekayəni redaktə et
+          story_settings: Hekayənin sərlövhəsini, müəlliflərini, URL-nı,xülasəsini, eskizini, dilini, nişanlarını və ya kateqoriyalarını və s. redaktə et.
+          collaborators: Sənin hekayəni redaktə etməyə icazəsi olan istifadəçiləri idarə et
+          preview: Hekayənin görünüşünə bax
+          publish: Goy dünya hekayəni görsün
+          unpublish: 'Dünyanı hekayəni görməyə qoyma '
+          review: Hekayəni dərc etdikdən öncə paylaşılma URL-ı
+          clone: Bu hekayəni yeni hekayəyə köçür
+          export: Tam hekayəni endir
+          delete_story: Hekayəni silmək mümkün deyil
+          translations: Hekayəni başqa dillərə tərcümə et
     titles:
-      new: "New %{model}"
-      edit: "Edit %{model}"
-      story_list: My Stories
+      new: Yeni %{model}
+      edit: Redaktə Et %{model}
+      story_list: Mənim Hekayələrim
     hints:
-      nickname: Your nickname is used in the URL to your published stories (e.g., nickname/story-title)        
-      local_avatar: Image that is shown in the header bar and on your user page (png and jpg only).
-      avatar: Image that is shown on the Author's page (png and jpg only).
-      like: Like this story
-      unlike: Unlike this story
-      staff_pick: Select as Staff Pick
-      staff_unpick: Unselect as Staff Pick
-      is_staff_pick: Staff Pick
-      clone_asset: "If checked, the file to the left will be used for this translation"
+      nickname: Dərc edimiş hekayələrinin URL-ında sənin ləqəbin istifadə edilir (məsələn, ləqəb/hekayə-sərlövhə)
+      local_avatar: Sənin istifadəçi səhifənin başlıq panelində göstərilən şəkil (yalnız png və jpg).
+      avatar: Müəllifin səhifəsində göstərilən şəkil (yalnız png və jpg).
+      like: Bu hekayəni bəyən
+      unlike: Bu hekayəni bəyənmə
+      staff_pick: Redaksiya Heyətinin Seçimi kimi Seç
+      staff_unpick: Redaksiyə Heyətinin Seçimi kimi Seçmə
+      is_staff_pick: Redaksiyə Heyətinin Seçimi
+      clone_asset: Seçilibsə, tərcümə üçün soldakı fayl istifadə ediləcək
   app:
     language:
       en: English
@@ -288,470 +287,468 @@ az:
       ru: Русский
       az: Azərbaycan
     buttons:
-      back: View All
-      list: View All
-      admin: Admin Section
-      delete: Delete
-      edit: Edit
-      show: Show
-      cancel: Cancel
-      update: Update
-      save: Save
-      save_and_next: "Save & Next"
-      create: Create
-      reset: Reset
-      remove: Remove
-      confirm: Are you sure?
-      new: New
-      add_section: Add Section
-      add_item: Add Item into Section
-      up: Move Selected Section/Item Up
-      down: Move Selected Section/Item Down
-      delete_item: Delete Selected Section/Item
-      preview: Preview
-      preview_image: Preview Image
-      preview_video: Preview Video
-      preview_audio: Listen To Audio
-      publish: Publish
-      unpublish: Unpublish
-      clone: Copy this story into a new story
-      export: Download the complete story
-      scroll: Scroll
-      reviewer_key: Get URL to share this story before publishing
-      reviewer_key_published: Your story is published so there is no need to share this non-published URL
-      explore: Explore
+      back: Hamısına Bax
+      list: Hamısına Bax
+      admin: "İnzibati Bölmə"
+      delete: Sil
+      edit: Redaktə Et
+      show: Göstər
+      cancel: "İmtina"
+      update: Təzələ
+      save: Yadda Saxla
+      save_and_next: Yadda Saxla və Növbəti
+      create: Yarat
+      reset: Sıfırla
+      remove: Qaldır
+      confirm: "Əminsənmi?"
+      new: Yeni
+      add_section: Bölmə Əlavə Et
+      add_item: Materialı Bölməyə Əlavə Et
+      up: Seçilən Bölməni/Materialı Yuxarı Tərpət
+      down: Seçilən Bölməni/Materialı AşağıTərpət
+      delete_item: Seçilən Bölməni/Materialı Sil
+      preview: "Öncəbaxış"
+      preview_image: "Şəkilə ilkin baxış"
+      preview_video: Videoya ilkin baxış
+      preview_audio: Audionu dinlə
+      publish: Dərc Et
+      unpublish: Dərc Etdiyini geri al
+      clone: Bu hekayəni yeni hekayəyə köçür
+      export: Tam hekayəni endir
+      scroll: Sürüşdür
+      reviewer_key: Hekayəni dərc etmədən öncə paylaşmaq üçün URL-ı al
+      reviewer_key_published: Sənin hekayən artıq dərc edilibdir, beləcə bu dərc edilməmiş URL-ı paylaşmağa ehtiyac yoxdur
+      explore: Araşdır
     common:
-      app_name_not_trans: Chai Khana
-      app_name: Chai Khana
-      app_intro: Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.
-      app_intro_meta: Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.
-      powered_by: Powered by
+      app_name_not_trans: "Çayxana"
+      app_name: "Çayxana"
+      app_intro: "Çayxana, sərhəd-aşan jurnalistika təlimləri və Cənubi Qafqaz regionunda fərqli mövzular üzrə multimedia materialları üçün onlayn nəşr xidməti təmin edən QHT-dir."
+      app_intro_meta: "Çayxana, sərhəd-aşan jurnalistika təlimləri və Cənubi Qafqaz regionunda fərqli mövzular üzrə multimedia materialları üçün onlayn nəşr xidməti təmin edən QHT-dir."
+      powered_by: xxx tərəfindən dəstəklənir
       powered_by_js: Jumpstart Georgia
-      powered_by_end: ""
-      embed_slogan: Build your story with Chai Khana
-      added_on: "Added on: %{date}"
-      last_sign_in: "Logged in last: %{date}"
-      admin: Admin
-      sign_out: Sign Out    
+      powered_by_end: 
+      embed_slogan: Hekayəni Çayxanayla hazırla
+      added_on: "Əlavə edilib: %{date}"
+      last_sign_in: 'Sonuncu dəfə daxil oldun: %{date}'
+      admin: "İnzibatçılıq"
+      sign_out: "Çıx"
       jumpstart: JumpStart Georgia
-      js_link_title: JumpStart Georgia - We communicate data better!
-      js_link_text: Built by
-      search: Search for Story ...
-      build: Build Story
-      explore: Explore Stories      
-      about_story: About
-      likes: Likes
-      comments: Comments
-      publish_date: Publish Date
-      follow: Follow
-      following: Following
-      follow_link_title: Click to receive notifications whenever this author publishes new stories
-      unfollow_link_title: Click to stop receiving notifications whenever this author publishes new stories
-      email: Email
-      views: Views
-      permalink: Permalink
-      shortened_url: Short URL
-      share_story: Share this story
-      share_facebook: Share on Facebook
-      share_twitter: Share on Twitter
-      share: Share
-      staff_pick: Staff Pick
-      wide: wide
-      partial: Link to Story
-      partial_text: Embed a link to the story that has the same look as the story links on the home page of Chai Khana (image, title, author, etc)
-      full: Full Story
-      full_text: Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look. 
-      feed: Chai Khana Feeds
-      home: Home
-      required: Required
-      nothing_selected: Nothing Selected
-      clone_asset: Use the original file?
+      js_link_title: JumpStart Georgia - Biz məlumatı daha yaxşı paylaşırıq!
+      js_link_text: xxx tərəfindən hazırlanıb
+      search: "...Hekayəni Axtar"
+      build: Hekayəni Hazırla
+      explore: Hekayələri Axtar
+      about_story: Haqqında
+      likes: Bəyənənlər
+      comments: "Şərhlər"
+      publish_date: Dərc Edilmə Tarixi
+      follow: "İzlə"
+      following: "İzləyirəm"
+      follow_link_title: 'Bu istifadəçi yeni hekayələr paylaşanda bildiriş almaq üçün bas '
+      unfollow_link_title: Bu istifadəçi yeni hekayələr paylaşanda bildirişləri dayandırmaq üçün bas
+      email: E-poçt
+      views: Baxışlar
+      permalink: Daimi Keçid
+      shortened_url: Qısa URL
+      share_story: Hekayəni paylaş
+      share_facebook: Facebook-da paylaş
+      share_twitter: Twitter-də paylaş
+      share: Paylaş
+      staff_pick: Redaksiya Heyətinin Seçimi
+      wide: geniş
+      partial: Hekayəyə keçid
+      partial_text: Hekayənizə Çayxananın ana səhifəsindəki hekayə keçidlərinə bənzər keçid əlavə et (şəkil, sərlövhə, müəllif və s.)
+      full: Tam Hekayə
+      full_text: Hekayəni tamamilə başqa sayta daxil et. Ən yaxşı xarici görünüşü yaratmaq üçün, tövsiyəmiz odur ki, eni mümkün olduqca böyüdəsiniz.
+      feed: "Çayxananın Xəbər Lenti"
+      home: Ana Səhifə (homepage)
+      required: Tələb olunur
+      nothing_selected: Heç Nə Seçilməyib
+      clone_asset: Orijinal faylı istifadə et?
       embed: Embed Code
       scroll_top: Scroll to the top
     msgs:
-      does_not_exist: You tried to access a page that does not exist.
-      not_authorized: You are not authorized to view that page.
-      success_created: "%{obj} was successfully created."
-      success_updated: "%{obj} was successfully updated."
-      success_publish: "%{obj} was successfully published."
-      success_unpublish: "%{obj} was successfully unpublished."
-      success_clone: "%{obj} was successfully cloned to %{to}."      
-      error_created: "%{obj} wasn't created: %{err}"
-      error_updated: "%{obj} wasn't updated: %{err}"
-      error_publish: "%{obj} wasn't published: %{err}"
-      error_publish_missing_fields: "%{obj} can't be published until you provide a summary and thumbnail image."
-      error_publish_missing_fields_link: Add the missing content.
+      does_not_exist: Siz mövcud olmayan səhifəyə daxil olmaq istədiniz.
+      not_authorized: O sahifəyə daxil olmağa icazəniz yoxdur.
+      success_created: "%{obj} uğurla yaradıldı."
+      success_updated: "%{obj} uğurla yeniləndi."
+      success_publish: "%{obj} uğurla dərc edildi."
+      success_unpublish: "%{obj}-nin dərc edilməsi uğurla geri alındı."
+      success_clone: "%{obj} uğurla %{to}-ya köçürüldü."
+      error_created: "%{obj} yaradılmadı: %{err}"
+      error_updated: "%{obj} yenilənmədi: %{err}"
+      error_publish: "%{obj} dərc edilmədi: %{err}"
+      error_publish_missing_fields: "%{obj} eskiz və ya xülasə təmin edilmədən dərc edilə bilməz."
+      error_publish_missing_fields_link: "Əskik məzmunu daxil et."
       error_publish_missing_sections: At least one Section required before publishing.
-      error_publish_missing_content_section: All Text Sections must have content in it.
-      error_publish_missing_translations: "The story must be completely translated in %{lang} in order to be published."
-      error_unpublish: "%{obj} wasn't unpublished: %{err}"
-      error_clone: "%{obj} wasn't cloned."
-      error_clone_notification: "Error occurred while cloning story: %{msg}"
-      error_export: "Story can't be downloaded."
-      error_get_data: The selected item could not be found
-      select_section: Please select a Section first in order to add an Item
-      staff_pick: The story has been selected as a Staff Pick
-      staff_unpick: The story has been unselected as a Staff Pick
-      success_settings: Your settings were successfully updated.
-      success_remove_avatar: Your Facebook avatar is now being used.
-      nickname_duplicate: This user URL already exists. 
-      nickname_url: 'Your URL will be:'
-      story_duplicate: This story URL already exists. 
-      story_url: 'Story URL will be:'
+      error_publish_missing_content_section: "Ən azı bir bölmə lazımdır."
+      error_publish_missing_translations: The story must be completely translated in %{lang} in order to be published.
+      error_unpublish: "%{obj} dərc edilməsi geri alınmadı: %{err}"
+      error_clone: "%{obj} köçürülmədi."
+      error_clone_notification: 'Hekayə köçürüləndə xəta baş verdi: %{msg}'
+      error_export: Hekayə endirilə bilinməz.
+      error_get_data: Seçilən material tapılmadı
+      select_section: Material daxil etmək üçün lütfən öncə Bölməni seçin
+      staff_pick: Hekayə Readksiya Heyətinin Seçimi kimi seçilibdir
+      staff_unpick: Hekayə Redaksiya Heyətinin Seçimindən xaric edilibdir
+      success_settings: Sizin parametrlər uğurla yeniləndi.
+      success_remove_avatar: Artıq sizin Facebook avatarınız istifadə edilir.
+      nickname_duplicate: Bu istifadəçinin URL-ı artıq mövcuddur.
+      nickname_url: 'Sizin URL-ınız:'
+      story_duplicate: Bu hekayənin URL-ı artıq mövcuddur.
+      story_url: 'Hekayənin URL-ı:'
       invitation:
-        accepted: "You have accepted the invitation to collaborate on '%{title}'"
-        accepted_already: "You have already accepted the invitation to collaborate on '%{title}'"
-        bad: Sorry, your invitation could not be found or the story has been deleted.
-        declined: Your invitation was declined
+        accepted: "Sən '%{title}' üzrə əməkdaşlıq dəvətini qəbul etmisən"
+        accepted_already: "Sən '%{title}' üzrə əməkdaşlıq dəvətini artıq qəbul etmisən"
+        bad: "Üzr istəyirik, sizin dəvətiniz tapılmadı və ya hekayə silinibdir."
+        declined: Sənin dəvətin qəbul edilmədi
       one_section:
-        content: Only one Item can be added to a Text section
-        slideshow: Only one Item can be added to an Image Slideshow section
-        embed_media: Only one Item can be added to an Embed Online Media section
-        youtube: Only one Item can be added to a YouTube section
-        general: Only one Item can be added to this type of section
+        content: Mətn bölməsinə yalnız bir material daxil edilə bilər
+        slideshow: "Şəkil Slayd Nümayişinə yalnız bir material daxil edilə bilər"
+        embed_media: Daxil Ediləsi Onlayn Media Bölməsinə yalnız bir material əlavə edilə bilər
+        youtube: Youtube bölməsinə yalnız bir material daxil edilə bilər
+        general: Bu növ bölməyə yalnız bir material daxil edilə bilər
       destroy_story:
-        success: Story was successfully deleted.
-        error: "Error occurred while deleting the story: %{err}"
+        success: Hekayə uğurla silindi.
+        error: 'Hekayə silinərkən xəta baş verdi: %{err}'
       destroy_item:
-        success: Item was successfully deleted.
-        error: "Error occurred while deleting the item: %{err}"
-        error_not_found: Item could not be found to delete.
+        success: Material uğurla silindi.
+        error: 'Materialı silərkən xəta baş verdi: %{err}'
+        error_not_found: Silinməli material tapılmadı.
       embed_code: Copy and paste this embed code into your web page
       collaborators:
-        success_remove: '%{name} was removed as a collaborator'
-        user_not_found: User to remove as a collaborator could not be found
-        no_permission: You do not have permission to remove this collaborator
-        success_invitations: Invitations were sent!
-        error_invitations_all: "No invitations were sent due to the following erros: %{msg}"
-        error_invitations_some: "Some invitations were sent, but some were not due to the following erros: %{msg}"
+        success_remove: "%{name} əməkdaşlıqdan xaric edildi"
+        user_not_found: "Əməkdaşlıqdan xaric ediləsi istifadəçi tapılmadı"
+        no_permission: Bu əməkdaşı xaric etməyə icazəniz yoxdur
+        success_invitations: Dəvətlər göndərildi!
+        error_invitations_all: 'Növbəti xətalara görə heç bir dəvət göndərilmədi: %{msg}'
+        error_invitations_some: 'Bəzi dəvətlər göndərildi, amma növbəti xətalara görə bəziləri göndərilmədi: %{msg}'
       notification:
-        yes: You will be sent notifications.
-        no: You will not be sent notifications.
+        true: Sizə bildirişlər göndəriləcək.
+        false: Sizə bildirişlər göndərilməyəcək.
         new_theme_all_success: You will recieve a notification whenever a theme is added.
         new_theme_none_success: You will not receive any notifications when themes are added.
-        new_story_by_type_success: "You will receive a notification when a story is added to these types: %{types}."
-        story_comments_yes: You will be sent notifications when a comment is made to one of your stories.
-        story_comments_no: You will not be sent notifications when a comment is made to one of your stories.
-        following_no: "You will no longer receive notifications about new stories from '%{name}'."
-        language: You will be sent notifications in %{language}.
-      fail_change_order: The item was not able to be moved
-      nothing_selected: Please select a section/item to delete
-      fail_delete: The section/item could not be deleted
-      confirm_delete: Are you sure you want to delete this section/item?
-      video_processed: Your video is processed
-      video_not_processed: Your video is being processed
-      not_found_for_update: The record to update could not be found in the database.
+        new_story_by_type_success: 'You will receive a notification when a story is added to these types: %{types}.'
+        story_comments_yes: Hər hansısa hekayənizə şərh yazılanda sizə bildiriş göndəriləcək.
+        story_comments_no: Hər hansısa hekayənizə şərh yazılanda sizə bildiriş göndərilməyəcək.
+        following_no: "Artıq '%{nickname}' -dən yeni hekayələr barədə sizə bildirişlər göndərilməyəcək."
+        language: Bildirişlər sizə %{language} dilində göndəriləcək.
+      fail_change_order: Materialı tərpətmək mümkün olmadı
+      nothing_selected: Lütfən silinəsi böməni/materialı seçin
+      fail_delete: Bölməni/materialı silmək mümkün olmadı
+      confirm_delete: Bu bölmənin/materialın silinməsindən əminsinizmi?
+      video_processed: Sizin videonuz emal edildi
+      video_not_processed: Sizin videonuz emal edilir
+      not_found_for_update: Yenilənəcək qeyd verilənlər bazasında tapılmadı.
   section_types:
     content:
-      name: Text
-      description: Can include html, css styling and images
+      name: Mətn
+      description: Html, css stilləri və şəkilləri daxil edilə bilər
     media:
-      name: Full-Screen Media Slideshow
-      description: Images and/or videos as a full-screen vertical slideshow
+      name: Tam Ekran Media Slayd Nümayişi
+      description: "Şəkillərin və ya Videoların tam ekran vertikal slayd nümayişi"
     slideshow:
-      name: Image Slideshow
-      description: Images in a horizontal slideshow
-    embed_media: 
-      name: Embed Online Media
-      description: YouTube, Vimeo, etc   
-    youtube: 
-      name: YouTube Video
-      description: YouTube video with ability to setting caption language
+      name: "Şəkil Slayd Nümayişi"
+      description: "Şəkillərin horizontal slayd nümayişində"
+    embed_media:
+      name: Onlayn Medianı Daxil Et
+      description: YouTube, Vimeo, və s.
+    youtube:
+      name: YouTube Videosu
+      description: "Şəkilaltı imza dilinin dəyişmə qabiliyyəti olan YouTube videosu"
   story_role:
-    editor: Editor
-    translator: Translator
+    editor: Redaktor
+    translator: Tərcüməçi
   message_types:
-    bug: Report a Bug
-    feature: Request a Feature
-    feedback: General Feedback
+    bug: Səhvlər barədə məlumat ver
+    feature: Yeni funksiya tələb et
+    feedback: "Ümumi Qiymətləndirmə"
   filters:
-    all: All
-    matches: Matches
-    staff_pick: Staff Pick
-    staff_pick_title: View stories that have been selected as Staff Picks
-    staff_pick_title_active: Remove Staff Pick filter
-    sort_header: Sorted By    
-    sort_title: Indicate how the stories should be sorted
-    filters: Filters
-    all_stories: All Stories
+    all: Hər şey
+    matches: Uyğun gələnlər
+    staff_pick: Redaksiya Heyətinin Seçimi
+    staff_pick_title: Redaksiya Heyətinin Seçimi kimi seçilən hekayələrə bax
+    staff_pick_title_active: Redaksiya Heyətinin Seçimi filtrini aradan qaldır
+    sort_header: xxx - Qaydası ilə Sırala
+    sort_title: Hekayələrin sıralama qaydasını göstər
+    filters: 'Filtrlər '
+    all_stories: Bütün hekayələr
     sort:
-      recent: Recent
-      reads: Views
-      likes: Likes
-    category_header: Category
-    category_title: View stories that belong to a category
-    theme_header: Theme
-    theme_title: View stories that belong to a theme    
-    language_header: Language
-    language_title: View stories that are written in a particular language
-    search: Find a Story
-    following: Following
-    following_title: View stories of users that you are following
-    following_title_active: Remove Following filter
-    not_published: Not Published
-    not_published_title: View stories that are not published
-    not_published_title_active: Show all stories
+      recent: Son hekayələr
+      reads: Baxışlar
+      likes: Bəyənənlər
+    category_header: Kateqoriyalar
+    category_title: Kateqoriyaya aid olan hekayələrə bax
+    theme_header: Mövzu
+    theme_title: Mövuya aid olan hekayələrə bax
+    language_header: Dil
+    language_title: Xüsusi dildə yazılan hekayələrə bax
+    search: Hekayə Tap
+    following: "İzləyirəm"
+    following_title: "İzlədiyin istifadəçilərin hekayələrinə bax"
+    following_title_active: '"İzləyirəm" filtrini aradan qaldır'
+    not_published: Dərc Edilməyib
+    not_published_title: Dərc edilməmiş hekayələrə bax
+    not_published_title_active: Bütün hekayələri göstər
   tokeninput:
-    searchingText: Searching...
+    searchingText: Axtarır...
     tag:
-      hintText: Search for an existing tag or enter a new tag
-      noResultsText: "No matches found. Press 'Enter' to save this new tag."
+      hintText: Mövcud olan nişanı axtar, və ya yeni nişan daxil et
+      noResultsText: Tapılmadı. Yeni nişanı yadda saxlamaq üçün "Enter" düyməsinə bas.
     collaborator:
-      hintText: Search for an existing user or enter the email address for a new user
-      noResultsText: "No matches found. Press 'Enter' to add this email address to the list of invited collaborators."
+      hintText: Mövcud olan istifadəçini axtar, və ya yeni istifadəçinin e-poçtunu daxil et.
+      noResultsText: Tapılmadı. Bu e-poçtu dəvət edilmiş əməkdaşlar siyahısına daxil etmək üçün "Enter" düyməsinə bas.
   layouts:
     unsupported_browser:
-      title: Unsupported Browser
-      video: Your browser does not support this video.
-      p1: We are sorry to report that your browser is out of date and will not properly render the content from this website.
-      p2: On the bright side, there are several free browsers that you can download that are compatible with this site.
+      title: Dəstəklənməyən brauzer
+      video: Sizin brauzeriniz bu videonu dəstəkləmir.
+      p1: Təssüff edirik ki, sizin brauzeriniz köhnədir və bu saytın məzmununu lazımı qaydada göstərməyəcək.
+      p2: Amma, bu sayta uyğun olan bir neçə pulsuz brauzer mövcuddur və siz onları endirə bilərsiniz.
       chrome: Chrome
       firefox: Firefox
-      ie: Internet Explorer (Windows only)
+      ie: Internet Explorer (yalnız Windows üçün)
       opera: Opera
       Safari: Safari
-      admin: Admin
-      sign_out: Sign Out
-      js_link_title: JumpStart Georgia - We communicate data better!
-      js_link_text: Built by
+      admin: "İnzibatçılıq"
+      sign_out: "Çıx"
+      js_link_title: JumpStart Georgia - Biz məlumatı daha yaxşı paylaşırıq!
+      js_link_text: xxx tərəfindən hazırlanıb
     reviewer:
-      copy: Copy To Clipboard...
-      copied: Copied!
+      copy: Mübadilə Buferinə Köçür...
+      copied: Köçürüldü!
     storybuilder:
       source: Source
       target: Target
   shared:
     grid:
-      no_stories: Oh no - no stories could be found!
+      no_stories: Təəssüf ki, heç bir hekayə tapılmadı!
     story_nav_modals:
       copied: Copied!
   admin:
     index:
-      title: Administration Section
-      users: Users
+      title: "İnzibatçılıq Bölməsi"
+      users: "İstifadəçilər"
     users:
       edit:
-        title: Editing User
+        title: Redaktə edən istifadəçi
       index:
-        title: Users
+        title: "İstifadəçilər"
       new:
-        title: New User
+        title: Yeni İstifadəçilər
       show:
-        title: User Details
+        title: "İstifadəçinin detalları"
   root:
-    index:
     about:
-      title: About Chai Khana
+      title: "Çayxana barədə"
     embed:
-      home_link: Built on Chai Khana
+      home_link: "Çayxanada hazırlanıb"
   stories:
-    index:
     new:
-      title: Story Settings Form
+      title: Hekayə parametrlərinin Forması
     edit:
-      title: Story Settings Form
+      title: Hekayə parametrlərinin Forması
     form:
       placeholder:
-        title: Title of Story
-        permalink: URL to the story
-        author: Author(s) of the article
-        media_author: "Author(s) of photos and/or videos"
-        translation_author: "Author(s) that translated the story into this language"
+        title: Hekayənin Sərlövhəsi
+        permalink: Hekayəyə URL
+        author: Məqalənin Müəllifi(Müəllifləri)
+        media_author: "Şəkilin və ya Videonun Müəllifi(Müəllifləri)"
+        translation_author: Hekayəni bu dilə tərcümə edən Müəllif(lər)
       hint:
-        title: Story title will appear at the top of your story
-        permalink: The default URL is the title of the story, but you can change it if desired
-        author: Select the author(s) of the story to allow the story to appear on their webpage.
-        media_author:  "Author names will appear below the Story Author names"
-        translation_author:  "Author names will appear below the Photo and Video Author names"
-        published: Published stories are available for the world to view
-        publish_home_page: "If checked, your published story will appear on the site's homepage"
-        template: Choose template to apply styling to story
-        thumbnail: Image that is used to show the story on the home page when the story is published (jpg and png only; 4MB file size limit)
-        editor: Person that created the story record in this website
-        editors: Select people that you want to give access to edit the story
-        about: Short summary of story that will be used on the home page and when you story is shared
-        locale: Select the language of your story. Allows users to filter stories by a language.
-        categories: Select the category(s) your story belongs to.  Allows users to filter stories by a category.
-        tag_list: "Enter text to find existing tags.  If your tag does not exist yet, press 'Enter' to add the new tag to the list."
-        story_type: Select the type of your story.
-        theme: Select the theme(s) your story belongs to.
-        in_theme_slider: "If checked, this story will appear in the slider at the top of the theme page."
+        title: Hekayə sərlövhəsi hekayənin üstündə göstəriləcək
+        permalink: Defolt URL hekayənin sərlövhəsidir, amma arzunuz varsa bunu dəyişə bilərsiniz
+        author: Hekayənin müəllifini (müəlliflərini) seç ki, hekayə onun (onların) səhifəsində göstərilsin
+        media_author: 'Müəlliflərin adları hekayə müəlliflərinin adlarının altında göstəriləcək '
+        translation_author: 'Müəlliflərin adları Şəkil və Video müəlliflərinin adlarının altında göstəriləcək '
+        published: Dərc edilən hekayələrə bütün dünya baxa bilər
+        publish_home_page: 'Seçilibsə, sizin hekayəniz saytın ana səhifəsində göstəriləcək '
+        template: Stili hekayədə istifadə etmək üçün şablonu seç
+        thumbnail: Hekayə dərc ediləndə onu ana səhifədə göstərən şəkil (yalnız jpg və ya png; fayl böyüklüyü 4MB-a məhduddur)
+        editor: Hekayənin qeydini bu saytda yaradan şəxs
+        editors: Hekayəni redaktə etmək üçün icazəsi olan şəxsləri seç
+        about: Sizin hekayənizin ana səhifəyə yerləşdiriləndə və ya paylaşılanda göstərilən qısa xülasəsi
+        locale: Hekayənin dilini seç. İstifadəçilərə hekayələri dil üzrə filtr etməyə icazə verir.
+        categories: Sənin hekayənin hansı kateqoriyalara aid olduğunu seç. İstifadəçilərə hekayələri kateqoriya üzrə filtr etməyə icazə verir.
+        tag_list: Mövcud olan nişanları tapmaq üçün mətn daxil et. Sizin nişan hələ mövcud deyilsə, "Enter" düyməsinə basaraq onu siyahıya əlavə edə bilərsiniz.
+        story_type: Hekayənin növünü seç.
+        theme: Hekayənizə aid olan mövzuları seçin.
+        in_theme_slider: Seçilibsə, bu hekayə mövzu səhifəsinin yuxarı panelində göstəriləcək.
     collaborators:
-      title: "Collaborators for '%{title}'"
-      owner_header: Story Author
-      collaborators_header: Story Collaborators
-      explanation: A story collaborator is someone that has access to edit this story.
-      editors_header: Editors
-      editor_explanation: An Editor has access to add/edit the story and translate the story into any language. An Editor can also add collaborators and publish the story.
-      translators_header: Translators
-      translator_explanation: "A Translator has access to translate the story into a specific language(s). A Translator does not have the ability to edit the original story, add collaborators or publish the story."
-      remove_title: 'Remove %{name}'
-      not_accepted_title: '%{name} has not accepted the invitation yet'
-      add_header: Add Collaborators
-      add_explanation: For the users you enter below, an email will be sent inviting them to be a collaborator on this story.
-      editor_label: Enter the names or email addresses of the editors
-      language_label: Select the translation language(s)
-      translator_label: Enter the name or email address of the translator
-      translator_add: Add Another Translator
-      translator_remove: Remove Translator
-      message: Add Message to Notification (optional)
-      submit: Send Collaboration Invitation
+      title: "%{title}' Əməkdaşları"
+      owner_header: Hekayə müəllifi
+      collaborators_header: Hekayə əməkdaşları
+      explanation: 'Hekayə əməkdaşı, hekayəni redakte etməyə icazəsi olan şəxsdir. '
+      editors_header: Redaktorlar
+      editor_explanation: 'Redaktorun hekayəyə əlavə/ dəyişiklik və ya tərcümə etməyə icazəsi var. Redaktor həm əməkdaşlar əlavə edə bilər həm də hekayəni dərc edə bilər. '
+      translators_header: Tərcüməçilər
+      translator_explanation: Tərcüməçinin hekayəni xüsusi bir dillərə tərcümə etməyə icazəsi var. Təcüməçinin orijinal hekayəni redaktə etməyə, əməkdaşlar əlavə etməyə və hekayəni dərc etməyə icazəsi yoxdur.
+      remove_title: "%{name} kənarlaşdır"
+      not_accepted_title: "%{name} dəvəti hələ qəbul etməyib"
+      add_header: "Əməkdaşları əlavə et"
+      add_explanation: 'Aşağıda daxil etdiyiniz istifadəçilərə, bu hekayədə əməkdaş olmaları üçün dəvət elektron poçtu göndəriləcək. '
+      editor_label: Redaktorların adlarını və ya e-poçtlarını daxil edin
+      language_label: Tərcümə dillərini seçin
+      translator_label: Tərcüməçinin adını və ya e-poçtunu daxil edin
+      translator_add: Başqa tərcüməçini əlavə et
+      translator_remove: Tərcüməçini kənarlaşdır
+      message: Biıldirişə mesaj əlavə et (könüllü)
+      submit: "Əməkdaşlıq Dəvətini Göndər"
     media:
-      form_title: Full-Screen Media Slideshow Form
-      left: Left
-      center: Center
-      right: Right
-      image: Image
+      form_title: Tam ekran Media Slayd Nümayişinin Forması
+      left: Sol
+      center: Mərkəz
+      right: Sağ
+      image: "Şəkil"
       video: Video
-      floating: Floating
-      fixed: Fixed
+      floating: "Üzən"
+      fixed: Hərəkətsiz
       placeholder:
-        title: Media title
-        caption: "Caption text"
-        source: "Source of the image/video"
+        title: Media Sərlövhəsi
+        caption: "Şəkilaltı imzanın mətni"
+        source: "Şəkilin/videonun mənbəyi"
       hint:
-        title: "This text only appears in the left sidebar, it will not show up in the story"
-        media_type: "For videos, an image is necessary because videos are not loaded on mobile devices."
-        caption: "Caption text will appear on top of the image/video. If this is the first item in the story, the caption text is hidden."
-        source: "Source of the image/video, appears in the bottom-right corner"
-        image: "Only jpg format allowed; 4MB file size limit"
-        video: "Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receive a notification when the processing is complete, typically within a few minutes."
-        caption_align: "The Caption text will appear on top of the image/video (appears on the left by default) "
-        infobox_type: "The Caption text can float on top of the image/video or can be fixed at the bottom of the image/video"
-        video_loop: "If checked, the video will loop infinitly, otherwise the video will not loop"
+        title: 'Bu mətn hekayədə yox, yalnız sol paneldə göstəriləcək. '
+        media_type: Videolar üçün şəkil lazımdır, çünki videolar mobil cihazlarda yüklənmir.
+        caption: "Şəkilaltı imzanın mətni şəkilin/videonun üstündə göstəriləcək. Əgər bu hekayədə ilkin materialdırsa şəkilaltı imzanın mətni qizlənəcək."
+        source: "Şəkilin/videonun mənbəyi sağ alt küncdə göstəriləcək."
+        image: Yalnız jpg fayl növü olar; böyüklüyü 4MB-a məhduddur
+        video: Yalnız mp4, mov, webm, ogv, flv, avi və wmv fayl növləri qəbul edilir; böyüklüyü 25MB-a məhduddur. Videolar yüklənəndən sonra, baxılmağa hazır olmaları üçün emal edilməlidir. Emal bitəndə sizə bildiriş gələcək. Adətən bir neçə dəqiqə çəkir.
+        caption_align: "Şəkilaltı imza, videonun/şəkilin üstündə göstəriləcək (defolt olaraq mətn sol tərəfdə göstərilir)"
+        infobox_type: "Şəkilaltı imza videonun/şəkilin üstündə üzə bilər, və ya videonun/şəkilin altına yerləşdirilə bilər."
+        video_loop: Seçilibsə, video daimi fasiləsiz təkrarlanacaq, əks halda video təkrarlanmayacaq.
     section:
-      form_title: Section Form
-      'yes': 'Yes'
-      'no': 'No'
+      form_title: Bölmə Forması
+      'yes': Bəli
+      'no': Xeyir
       placeholder:
-        title: Section title
+        title: Bölmə Sərlövhəsi
       hint:
-        title: "This text appears in the left sidebar and, if Navigation Shortcut is selected, will appear as the title text for the shortcut"
-        type: "Selecting this type determines what kind of information you can add into this section"
-        has_marker: "If checked, there will be a navigation shortcut link to go to this section"
-        audio: "Background audio to play while this section is in view (mp3 format only; 10mb file size limit)"
-        delete_audio: "If checked, the Audio Track will be deleted"
+        title: 'Bu mətn sol paneldə göstəriləcək, və əgər naviqasiya qisayolu seçilibsə, qisayol keçidin sərlövhəsi olacaq. '
+        type: Bu növü seçməyiniz, bölməyə nə cür məlumatın daxil ediləcəyini müəyyənləşdirir.
+        has_marker: Seçilibsə, naviqasıyada bu bölməyə qisayol keçidi olacaq.
+        audio: Arxa planın audiosu bu bölmə izlənəndə çalacaq (yalnız mp3 fayl növü; böyüklüyü 10mb-a məhduddur)
+        delete_audio: Seçilibsə, Audio Cığır silinəcək
     content:
-      form_title: Text Form
+      form_title: Mətn Forması
       placeholder:
-        title: Text title
-        caption: optional
-        sub_caption: optional
+        title: Mətnin Sərlövhəsi
+        caption: könüllü seçim
+        sub_caption: könüllü seçim
       hint:
-        title: "This text only appears in the left sidebar, it will not show up in the story"
-        caption: Heading of text will appear at the top of the section
-        sub_caption: Subheading of text will appear below the Heading
-        content: Text can include html, css styling and images
+        title: Bu mətn hekayədə yox, yalnız sol paneldə görünəcək.
+        caption: Başlığın mətni, Bölmənin üstündə görünəcək
+        sub_caption: Alt-başlığın mətni başlığın altında görünəcək
+        content: Html, css stilləri və şəkilləri daxil edilə bilər
     reviewer_key:
-      title: Private URL
-      desc: "You can copy and share the following URL with whomever you want to review '%{title}' before it is published. These people will have the ability to read your story, but not edit it."
+      title: "Özəl URL"
+      desc: "Dərc edilmədən öncə, bu URL-i köçürüb istədiyiniz şəxslərlə '%{title}' müzakirə etmək üçün paylaşa bilərsiniz. Bu şəxslərə sizin hekayəni oxumağa icazə veriləcək, amma redaktə etmək üçün icazələri olmayacaq."
     slideshow:
-      form_title: Image Slideshow Form
-      add_image: Add Image
+      form_title: "Şəkil Slayd Nümayişi Forması"
+      add_image: "Şəkil Daxil Et"
       placeholder:
-        title: Slideshow Title
-        caption: optional
+        title: Slayd Nümayişinin Sərlövhəsi
+        caption: könüllü seçim
       hint:
-        title: This text only appears in the left sidebar, it will not show up in the story
-        caption: Heading will appear at the top of the slideshow
+        title: Bu mətn hekayədə yox, yalnız sol paneldə görünəcək.
+        caption: Sərlövhə slayd nümayişinin üstündə görünəcək
     asset_fields:
-      remove_image: Remove
+      remove_image: Sil
       placeholder:
-        caption: optional
-        source: optional
+        caption: könüllü seçim
+        source: könüllü seçim
       hint:
-        caption: Image Description will appear below the image
-        source: Source will appear below the Image Description
-        asset: Only jpg and png format allowed; 4MB file size limit
+        caption: "Şəkilin Təsviri şəkilin altında görünəcək"
+        source: Mənbə Şəkil Təsvirinin altında görünəcək
+        asset: Yalnız jpg və png fayl növü olar; faylın böyüklüyü 4MB-a məhduddur
       label:
-        caption: Image Description
-        source: Image Source
+        caption: "Şəkilin Təsviri"
+        source: "Şəkilin Mənbəyi"
     embed_media:
-      form_title: Embed Online Media Form
-      get_media: Get Online Media
-      preview: Preview of Online Media
-      error: The URL could not be processed. Please try again.
+      form_title: Onlayn Medianı Daxil Etmə Forması
+      get_media: Onlayn Medianı Al
+      preview: Onlayn medianın sınaq baxışı
+      error: URL-ı emal etmək mümkün olmadı. Lütfən bir daha cəhd edin.
       placeholder:
-        title: Embed Online Media Title
-        url: Url to online media
+        title: Daxil Ediləsi Onlayn Medianın Sərlövhəsi
+        url: Onlayn mediaya URL
       hint:
-        title: "This text only appears in the left sidebar, it will not show up in the story"
-        url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
+        title: Bu mətn hekayədə yox, yalnız sol paneldə görünəcək.
+        url: 'Növbəti saytlar, onlayn medianı daxil etmək üçün istifadə edilə bilər: AUDİO: Soundcloud, Spotify; VİDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED'
     youtube:
-      form_title: YouTube Video Form
-      get_media: Get Youtube Video
-      preview: Preview of YouTube Video
-      error: The URL could not be processed. Please try again.
+      form_title: YouTube Video Forması
+      get_media: Youtube Videosunu Al
+      preview: YouTube Videosunun sinaq baxışı
+      error: URL-ı emal etmək mümkün olmadı. Lütfən bir daha cəhd edin.
       placeholder:
-        title: YouTube Title
-        url: Url to YouTube video
+        title: YouTube Sərlövhəsi
+        url: YouTube video URL-ı
       hint:
-        title: "This text only appears in the left sidebar, it will not show up in the story"
-        url: "Copy a YouTube URL and paste it here"
-        fullscreen: "If checked, the video will take up the entire screen"
-        loop: "If checked, the video will loop over and over"
-        info: "If checked, the title bar will be shown on top of the video"
-        cc: "If checked, the video subtitles will be shown by default"
-        menu_lang: "Language of the YouTube menu/controls"
-        cc_lang: "Language of the subtitles to show by default"           
+        title: Bu mətn hekayədə yox, yalnız sol paneldə görünəcək.
+        url: Youtube URL-ını bura köçür
+        fullscreen: Seçilibsə, video tam ekranı əhatə edəcək
+        loop: Seçilibsə, video fasiləsiz təkrarlanacaq
+        info: Seçilibsə, sərlövhə paneli videonun üstundə göstəriləcək
+        cc: Seçilibsə, defolt olaraq videonun subtitrları göstəriləcək
+        menu_lang: YouTube menyu/kontrollarının ilkin dili.
+        cc_lang: Göstərilən subtitrların defolt dili.
   storyteller:
-    byline: By
-    byline_media: "Photos and videos by "
-    byline_translator: "Translated by "
-    source: "Source:"
-    by: by
+    byline: Tərəfindən
+    byline_media: "Şəkillər və videolar xxx tərəfindən hazırlanıb"
+    byline_translator: xxx tərəfindən tərcümə edilib
+    source: 'Mənbə:'
+    by: tərəfindən
     related_stories: Related Stories
     view_all_stories_in: View all stories in
   settings:
     index:
-      title: Settings
-      facebook_avatar: This is your avatar from Facebook.
-      use_facebook_avatar: Use Facebook Avatar
+      title: Parametrlər
+      facebook_avatar: Bu Facebook avatarınızdır.
+      use_facebook_avatar: Facebook Avatarını istifadə et
       hint:
-        about: Short summary about yourself.  This will be shown with the stories that you publish. 
-        default_story_locale: Select the language you want to use by default when creating a new story.
-      submit: Save Settings      
+        about: "Özünüz barədə qısa xülasə. Bu dərc etdiyiniz hekayələrlə göstəriləcək."
+        default_story_locale: Yeni hekayə yaradarkən defolt dili seç.
+      submit: Parametrləri yadda saxla
     invitations:
-      title: Collaboration Invitations
-      no_invitations: At this time you have no invitations waiting for you.
-      accept_link: Accept
-      decline_link: Decline
-      header_date: Date Sent
-      header_story: Story Title
-      header_role: Role
-      header_from: Sent By
+      title: "Əməkdaşlıq Dəvətləri"
+      no_invitations: Hal-hazırda sizə heç bir dəvət yoxdur.
+      accept_link: Qəbul Et
+      decline_link: Rədd Et
+      header_date: Göndərilən tarix
+      header_story: Hekayə sərlövhəsi
+      header_role: Rol
+      header_from: xxx tərəfindən göndərilib
     notifications:
-      title: Notifications
+      title: Bildirişlər
       explain: You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.
-      all_sub_title: All Notifications
-      all_label: Do you want to recieve any notifications from Chai Khana?
-      all_no: "No, do not send me any notifications."
-      all_yes: "Yes, I want notifications sent to me."
-      story_comment_sub_title: New Story Comment Notifications
-      story_comment_label: "Do you want to recieve notifications when a comment is made to one of your stories?"
-      story_comment_no: "No, do not send me any notifications."
-      story_comment_yes: "Yes, I want notifications sent to me."
+      all_sub_title: Bütün Bildirişlər
+      all_label: "Çayxanadan hər hansısa bildiriş almaq istəyirsinizmi?"
+      all_no: Xeyir, bildirişlərin mənə göndərilməsini istəmirəm.
+      all_yes: Bəli, bildirişlərin mənə göndərilməsini istəyirəm.
+      story_comment_sub_title: Yeni Hekayə Şərh Bildirişləri
+      story_comment_label: 'Hekayələrinizdən birinə şərh yazılanda bildiriş almaq istəyirsinizmi? '
+      story_comment_no: Xeyir, bildirişlərin mənə göndərilməsini istəmirəm.
+      story_comment_yes: Bəli, bildirişlərin mənə göndərilməsini istəyirəm.
       new_themes_sub_title: New Theme Notifications
       new_themes_all: Notify me when any theme is added.
       new_themes_none: I do not want to receive notifications when a new theme is added.
-      new_stories_by_category: "Notify me when a story is added to:"
-      language_sub_title: Notification Language
-      language_label: In what language do you want to receive the notifications?
-      following_sub_title: Chai Khana Users You Are Following
-      following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image."
-      following_not: "At this time, you are not following any users."
-      following_title1: "Click to unfollow '%{name}'"
-      following_title2: "Click to follow '%{name}'"     
-      submit: Save Settings
+      new_stories_by_category: ": hekayə daxil ediləndə məni bildirin"
+      language_sub_title: Bildiriş dili
+      language_label: Bildirişləri hansı dildə almaq istəyirsiniz?
+      following_sub_title: "İzlədiyiniz Çayxana istifadəçiləri"
+      following_label: "İzlədiyiniz istifadəçilər hekayə dərc etsələr, sizə hər zaman bildirişlər gələcək. İstifadəçidən bildiriş almamaq üçün, onun şəklinə basaraq izləmə siyahınızdan silin."
+      following_not: Siz hal-hazırda heç bir istifadəçini izləmirsiniz.
+      following_title1: "%{nickname}' izləməmək üçün bura basın"
+      following_title2: "%{nickname}' izləmək üçün bura basın"
+      submit: Parametrləri yadda saxla
   imageuploader:
-    missing: "An error occurred while processing your image. Please try again."
-    invalid_type: "Invalid file type. Only .jpg or .png is allowed."
-    size_limit: "Image file size is limited to 4MB"
+    missing: Sizin şəkiliniz emal ediləndə xəta baş verdi. Lütfən bir daha cəhd edin.
+    invalid_type: Yanlış fayl növü. Yalnız .jpg və ya .png olar.
+    size_limit: "Şəkil faylın böyüklüyü 4MB-a məhduddur"
   devise:
     mailer:
       reset_password_instructions:
-        title: 'Hello %{nickname}!'
-        p1: Someone has requested a link to change your password on Chai Khana, and you can do this through the link below.
-        link_title: Change my password
-        p2: "If you didn't request this, please ignore this email."
-        p3: "Your password won't change until you access the link above and create a new one."
+        title: Salam %{nickname}!
+        p1: Kimsə sizin Çayxana parolunuzu dəyişməyə rica edib, və siz bunu aşağıdaki keçiddən edə bilərsiniz.
+        link_title: Parolu dəyiş
+        p2: Bunu tələb etmədinizsə, lütfən bu e-poçtuna əhəmiyyət verməyin.
+        p3: Yuxadıraki keçidə daxil olub yeni parol yaratmadan sizin parolunuz dəyişməyəcək.

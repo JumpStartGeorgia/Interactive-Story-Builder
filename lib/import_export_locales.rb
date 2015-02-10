@@ -153,17 +153,23 @@ module ImportExportLocales
     def initialize(file_prefix, import_from=nil)
       # Format pertinent paths for files
       here = File.expand_path(File.dirname(__FILE__))
-      config = File.expand_path(File.join(here, "../../config"))
+      config = File.expand_path(File.join(here, "..", "config"))
       @translations_support = File.join(config, "translations")
       @import_folder = import_from ? import_from : File.join(@translations_support, "import")
       @locales_folder = File.join(config, "locales")
-      @base_yml_file = File.join(@locales_folder, "en.yml")
+      @base_locale = I18n.default_locale.to_s
+      @base_file = File.join(@locales_folder, "#{@base_locale}.yml")
+      @base_yml_file = YAML.load_file(@base_file)
       @prefix = file_prefix
       @duplicates_file = File.join(@translations_support, "#{@prefix}_shared_strings.yml")
 
-      @base_locale = YAML.load_file(@base_yml_file)
       load_base_ids
-      @cache = YAML.load_file(@duplicates_file)
+      # @cache = YAML.load_file(@duplicates_file)
+
+      # Create supported foreign languages collection
+      @available_locales = I18n.available_locales.map{|x| x.to_s}
+      # remove the base_locale
+      @available_locales.delete(@base_locale)
 
       @foreign_languages = Dir[File.join(@import_folder, "*#{@prefix}*.csv")].map do |csv|
         m = csv.match(/\.([a-z]{2,2}-?[A-Z]{0,2})\.csv$/)
@@ -203,7 +209,7 @@ module ImportExportLocales
 
     def load_base_ids
       @valid_ids = {}
-      hash_to_ids(@base_locale.dup)
+      hash_to_ids(@base_yml_file.dup)
     end
 
     def hash_to_ids(h, prefix=nil)
@@ -226,7 +232,7 @@ module ImportExportLocales
 
     def csv_to_yml(config)
       load_translations(config).tap do |translations|
-        result = translate_it(config, @base_locale.dup, translations, '')
+        result = translate_it(config, @base_yml_file.dup, translations, '')
         File.open(config[:yml], "wb") do |cf|
           cf.print YAML.dump(result)
         end
@@ -247,22 +253,22 @@ module ImportExportLocales
     def load_translations(config)
       {}.tap do |translations|
         CSV.foreach(config[:csv], headers: true, encoding: 'UTF-8') do |row|
-          id = row[0] # id = row["Key"]
+          id = row[1] # id = row["Key"]
           translation = row[3] # translation = row["Translated Version"]
           raise "Invalid translation ID found: #{id} - #{translation}" if @valid_ids[replace_id_locale(id)].nil?
           translations[id] = translation
         end
 
-        # Populate keys for duplicated strings with common translation
-        @cache.each do |keys|
-          primary_key = keys.first
-          foreign_key = replace_id_locale(primary_key, config[:code])
-          raise "Whoa! No value for #{primary_key}" unless translations.has_key?(foreign_key)
-          keys.select{|k| k != primary_key}.each do |dup_key|
-            dup_key = replace_id_locale(dup_key, config[:code])
-            translations[dup_key] = translations[foreign_key]
-          end
-        end
+        # # Populate keys for duplicated strings with common translation
+        # @cache.each do |keys|
+        #   primary_key = keys.first
+        #   foreign_key = replace_id_locale(primary_key, config[:code])
+        #   raise "Whoa! No value for #{primary_key}" unless translations.has_key?(foreign_key)
+        #   keys.select{|k| k != primary_key}.each do |dup_key|
+        #     dup_key = replace_id_locale(dup_key, config[:code])
+        #     translations[dup_key] = translations[foreign_key]
+        #   end
+        # end
       end
     end
 

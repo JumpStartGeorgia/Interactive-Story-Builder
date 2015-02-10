@@ -17,9 +17,11 @@
  			<li>
        <%= link_to t('helpers.links.pages'), admin_pages_path %>
       </li>
- 			<li>
-       <%= link_to t('helpers.links.langauges'), admin_languages_path %>
-      </li>
+      <% if current_user.role? User::ROLES[:admin] %>
+   			<li>
+         <%= link_to t('helpers.links.langauges'), admin_languages_path %>
+        </li>
+      <% end %>
     <% end %>
 	</ul>
 </div>
