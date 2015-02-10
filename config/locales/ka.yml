@@ -85,9 +85,10 @@ ka:
         source: "წყარო"
         image: "სურათი"
         video: "ვიდეო"
-      slideshow:
+      slideshow_translation:
         title: "სათაური"
         caption: "ფოტოს წარწერა"
+        description: "აღწერა"
       message:
         name: "სახელი"
         email: "ელ. ფოსტის მისამართი"
@@ -657,6 +658,7 @@ ka:
       hint:
         title: "ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში"
         caption: "წარწერა გამოჩნდება სლაიდშოუს ზედა ნაწილში"
+        description: The description will appear below the slideshow
     asset_fields:
       remove_image: "წაშლა"
       placeholder:

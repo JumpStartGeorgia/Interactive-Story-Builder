@@ -85,9 +85,10 @@ en:
         source: Source
         image: Image
         video: Video
-      slideshow:
+      slideshow_translation:
         title: Title
         caption: Heading
+        description: Description
       message:
         name: Name
         email: Email Address
@@ -657,6 +658,7 @@ en:
       hint:
         title: This text only appears in the left sidebar, it will not show up in the story
         caption: Heading will appear at the top of the slideshow
+        description: The description will appear below the slideshow
     asset_fields:
       remove_image: Remove
       placeholder:

@@ -1,9 +1,18 @@
 <% original ||= false %>
 <% @readonly = {} %>
-<% @isTO = @trans && original # if mode is translate and screen is original(first) %>
-<% if @isTO %>
-    <% @readonly = { readonly:true , disabled: true } %>
+<% tinyClass = "tinyEditor" %>
+<% if @trans %>
+  <% if original %>
+    <%= tinymce readonly:1 %>      
+    <% readonly = { readonly:true , disabled: true } %>
+  <% else %>
+    <%= tinymce editor_selector: 'tinyEditor2' %>
+    <% tinyClass = "tinyEditor2" %>   
+  <% end %>
+<% else %>
+   <%= tinymce %>
 <% end %>
+<% @isTO = @trans && original # if mode is translate and screen is original(first) %>
 <% form_class = @trans == true && original == false ? 'form-translation' : '' %>
 
 
@@ -34,6 +43,9 @@
         }
         .merge(( (@isTO) ? {} : { hint: t('.hint.caption'), placeholder: t('.placeholder.caption') })) %>
 
+        <%= f_translation.input :description, { :as => :text, :input_html => {id: tinyClass , :class => tinyClass, :rows => 15}.merge(@readonly) }.merge(( original ? {} : { hint: t('.hint.description') }))  %>      
+         
+
         <div id="slideshowAssets" class="clear">
           <% if !@isTO %>
             <% if !original %>
@@ -45,24 +57,19 @@
                 if orig_assets.length != trans_record.assets.length
                   # if there are no trans assets, build the amount needed to match the original
                   if trans_record.assets.length == 0
-                    logger.debug "%%%%%%%%% no assets in trans yet, building"
                     (0..orig_assets.length-1).each do |i|
-                      logger.debug "%%%%%%%%% i = #{i}"
                       trans_record.assets.build(:asset_type => Asset::TYPE[:slideshow_image])
-                      logger.debug "%%%%%%%%% trans assets length = #{trans_record.assets.length}"
                     end
                   else
                     # go through each orig and see if item with same position exists in trans
                     # if not, create it
                     orig_assets.each_with_index do |orig_asset, i|
                       if trans_record.assets[i].blank? || trans_record.assets[i].position != orig_asset.position
-                        logger.debug "%%%%%%%%% asset at index #{i} does not have same position, adding"
                         trans_record.assets.insert(i, Asset.new(:asset_type => Asset::TYPE[:slideshow_image]))
                       end
                     end
                   end
                 end
-                logger.debug "%%%%%%%%% orig assets length = #{orig_assets.length}; trans assets length = #{trans_record.assets.length}"
               %>
 
               <% trans_record.assets.each_with_index do |asset_record, i| %>  

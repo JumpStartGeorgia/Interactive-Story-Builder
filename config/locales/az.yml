@@ -85,9 +85,10 @@ az:
         source: Mənbə
         image: "Şəkil"
         video: Video
-      slideshow:
+      slideshow_translation:
         title: Sərlövhə
         caption: Başlıq
+        description: Təsvir
       message:
         name: Name
         email: Email Address
@@ -657,6 +658,7 @@ az:
       hint:
         title: Bu mətn hekayədə yox, yalnız sol paneldə görünəcək.
         caption: Sərlövhə slayd nümayişinin üstündə görünəcək
+        description: The description will appear below the slideshow
     asset_fields:
       remove_image: Sil
       placeholder:

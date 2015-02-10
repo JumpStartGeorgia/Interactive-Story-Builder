@@ -235,6 +235,11 @@
                           </div>
                     <% end %>
                   </div>
+                  <% if section.slideshow.description.present? %>
+                    <div class="slideshow-description column">
+                      <%= section.slideshow.description.html_safe %>   
+                    </div>
+                  <% end %>
                 </div>
               </div> 
             <% elsif section.embed_media? %>         

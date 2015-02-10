@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150208222212) do
+ActiveRecord::Schema.define(:version => 20150210122841) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -316,6 +316,7 @@ ActiveRecord::Schema.define(:version => 20150208222212) do
     t.datetime "updated_at",   :null => false
     t.string   "title"
     t.string   "caption"
+    t.text     "description"
   end
 
   add_index "slideshow_translations", ["locale"], :name => "index_slideshow_translations_on_locale"

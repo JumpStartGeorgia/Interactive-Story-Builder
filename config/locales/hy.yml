@@ -85,9 +85,10 @@ hy:
         source: "Աղբյուր"
         image: "Նկար"
         video: "Վիդեո"
-      slideshow:
+      slideshow_translation:
         title: "Վերնագիր"
         caption: "Անվանում"
+        description: "Նկարագրություն"
       message:
         name: Name
         email: Email Address
@@ -657,6 +658,7 @@ hy:
       hint:
         title: "Սույն տեքստը կերևա միայն աջ կողային վահանակի վրա, այն չի ներառվի նյութի մեջ"
         caption: "Վերնագիրը կերևա սլայդշոուի վերևում"
+        description: The description will appear below the slideshow
     asset_fields:
       remove_image: "Հեռացնել"
       placeholder:

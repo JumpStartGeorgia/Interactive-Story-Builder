@@ -9,7 +9,7 @@ class SlideshowTranslation < ActiveRecord::Base
 
   accepts_nested_attributes_for :assets, :reject_if => lambda { |c| c[:asset_clone_id].blank? && c[:asset].blank? && c[:asset_exists] != 'true' }, :allow_destroy => true
 
-  attr_accessible :slideshow_id, :locale, :title, :caption, :assets_attributes
+  attr_accessible :slideshow_id, :locale, :title, :caption, :assets_attributes, :description
 
   attr_accessor :is_progress_increment, :progress_story_id
 

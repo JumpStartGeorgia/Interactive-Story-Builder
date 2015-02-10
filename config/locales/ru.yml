@@ -85,9 +85,10 @@ ru:
         source: "Источник"
         image: "Изображение"
         video: "Видео"
-      slideshow:
+      slideshow_translation:
         title: "Заглавок"
         caption: "Название"
+        description: "Описание"
       message:
         name: Name
         email: Email Address
@@ -657,6 +658,7 @@ ru:
       hint:
         title: "Этот текст появляется только в левой боковой панели, он не будет отображаться в истории"
         caption: "Заголовок появится в верхней части спайдшоу"
+        description: The description will appear below the slideshow
     asset_fields:
       remove_image: "Удалить"
       placeholder:
