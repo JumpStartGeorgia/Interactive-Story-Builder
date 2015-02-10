@@ -407,18 +407,18 @@ height: 600px;
   .sticker
   {
     position:absolute;
-    top:50px;
-    right:40px;
+    top:75px;
+    right:75px;
     border-radius:100%;
     background-color:#fff;
-    width:14em;
-    height:14em;
+    width:17em;
+    height:17em;
     overflow: hidden;
     opacity:0.8;
-      -webkit-transition:all .15s ease-out;
-  -moz-transition:all .15s ease-out;
-  -ms-transition:all .15s ease-out;
-  transition:all .15s ease-out;
+    -webkit-transition:all .15s ease-out;
+    -moz-transition:all .15s ease-out;
+    -ms-transition:all .15s ease-out;
+    transition:all .15s ease-out;
     &:hover
     {
       opacity:1;
@@ -433,7 +433,7 @@ height: 600px;
       transform: translateY(-50%);
       margin:0px auto;
       text-align:center;
-      width:100%;
+      padding: 0px 8%;
       a,a:hover,a:focus,a:active
       {
         text-decoration:none;
@@ -444,8 +444,8 @@ height: 600px;
         height:0px;
         background-color:#000;
         border:0px;
-        border-top:1px solid #000;
-        border-bottom:0px solid #000;
+        border-top:1px solid #7b7b7b;
+        // border-bottom:0px solid #7b7b7b;
         margin:0px auto;
       }
       .title
@@ -454,11 +454,23 @@ height: 600px;
         font-size: 1.3em;
         line-height: 1.3em;
         color: #2d2d2d;
-        padding-bottom: 15px;        
+        padding-bottom: 10px;        
         font-family:'dejavusans-b', Sylfaen;
         &:lang(en)
         {
           font-family: 'opensans-b', 'sans-serif';
+        }
+      }
+      .descr
+      {
+        font-size: 0.9em;
+        line-height: 1.2em;
+        color: #525252;
+        padding-bottom: 15px;        
+        font-family:'dejavusans', Sylfaen;
+        &:lang(en)
+        {
+          font-family: 'opensans', 'sans-serif';
         }
       }
       .date
@@ -466,7 +478,7 @@ height: 600px;
 
         font-size: 0.9em;
         padding-top: 12px;
-        color: #484848;
+        color: #7b7b7b;
         font-family:'dejavusans', Sylfaen;
         &:lang(en)
         {

@@ -56,6 +56,17 @@
         <%= yield %>
 		</div><!--/wrapper-->
     <%= yield(:footer) %>
+    <div class="footer">
+        <%= link_to(image_tag("svg/logo.svg",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name_not_trans')) , root_path(:locale => I18n.locale), title: t('app.common.app_name'), :class=>"logo") %>   
+        <div class="center">
+          <div><%= link_to t('helpers.links.about'), about_path %></div>
+          <div>|</div>
+          <div>&copy; Copyright</div>
+          <div>|</div>
+          <div>Disclaimer</div>
+        </div>
+
+    </div>
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
