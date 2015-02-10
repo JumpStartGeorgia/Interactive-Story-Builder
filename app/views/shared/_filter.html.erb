@@ -21,7 +21,7 @@
       <a href="#" class="dropdown-toggle<%= @story_filter_type_all ? '' : ' selected' %>"
         data-toggle="dropdown" tabindex="18"  title="<%= t('filters.sort_title') %>"
         data-filtered-by="<%= @story_filter_type_permalink %>" data-filter-type="type" 
-        data-filter-default="all"><%= t('helpers.links.types') %><i class="caret"></i></a>                  
+        data-filter-default="all"><%= t('helpers.links.story_types') %><i class="caret"></i></a>                  
         <ul class="dropdown-menu afilter-list"> 
            <li class="dropdown">
           <%= link_to I18n.t('filters.all'), "#", :class => @story_filter_type == I18n.t('filters.all') ? 'active' : '', :"data-filter" => 'all' %>

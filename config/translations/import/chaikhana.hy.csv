@@ -1,0 +1,633 @@
+Line #,Key,en Version,hy Translation
+1,hy.activerecord.models.user,User,Օգտատեր
+2,hy.activerecord.models.story,Story,Նյութ
+3,hy.activerecord.models.section,Section,Բաժին
+4,hy.activerecord.models.medium,Full-Screen Media Slideshow,Սլայդշոու  ամբողջ էկրանով
+5,hy.activerecord.models.content,Text,Տեքստ
+6,hy.activerecord.models.message,Message,Նամակ
+7,hy.activerecord.models.slideshow,Image Slideshow,Նկարների սլայդ շոու
+8,hy.activerecord.models.embed_medium,Embeddable Online Media,Ներդրվող առցանց մեդիա բովանդակություն
+9,hy.activerecord.models.youtube,YouTube Video,YouTube վիդեո
+10,hy.activerecord.models.language,Language,Լեզու
+11,hy.activerecord.models.category,Category,Դասակարգում
+12,hy.activerecord.models.page,Text for Pages,Էջերի համար տեքստ
+13,hy.activerecord.models.theme,Theme,Թեմա
+14,hy.activerecord.models.story_type,Story Type,Տեսակ 
+15,hy.activerecord.models.author,Author,Հեղինակ
+16,hy.activerecord.attributes.user.email,Email Address,Էլեկտրոնային հասցե
+17,hy.activerecord.attributes.user.password,Password,Գաղտնաբառ
+18,hy.activerecord.attributes.user.password_confirmation,Password Confirmation,Հաստատեք գաղտնաբառը
+19,hy.activerecord.attributes.user.role,Role,Դերը
+20,hy.activerecord.attributes.user.remember_me,Remember Me,Հիշիր
+21,hy.activerecord.attributes.user.default_story_locale,Default Language for Your Stories,Ձեր նյութի հիմնական լեզուն 
+22,hy.activerecord.attributes.user.about,Summary of You,Քո մասին
+23,hy.activerecord.attributes.user.local_avatar,Avatar,Ավատար
+24,hy.activerecord.attributes.user.nickname,Nickname,Կեղծանուն
+25,hy.activerecord.attributes.user.sign_in_count,Number of Times Logged In,Կայք մուտքերի քանակը
+26,hy.activerecord.attributes.user.created_at,Date Created,Ստեղծվել է
+27,hy.activerecord.attributes.user.current_sign_in_at,Date Last Logged In,Վերջին այցելությունը
+28,hy.activerecord.attributes.author.avatar,Avatar,Ավատար
+29,hy.activerecord.attributes.author_translation.name,Name,Անուն
+30,hy.activerecord.attributes.author_translation.about,About,Մեր մասին
+31,hy.activerecord.attributes.author_translation.permalink,Permalink,Պերմալինք
+32,hy.activerecord.attributes.story.user_id,Story Author,Հեղինակ
+33,hy.activerecord.attributes.story.user_ids,Editors,Խմբագիրներ
+34,hy.activerecord.attributes.story.publish_home_page,"Once published, make your story visible on the homepage?",Հրապարակելուց հետո տեսանելի դարձնե՞լ Գլխավոր էջում
+35,hy.activerecord.attributes.story.template_id,Template,Կաղապար
+36,hy.activerecord.attributes.story.thumbnail,Thumbnail,Մանրապատկեր (Thumbnail)
+37,hy.activerecord.attributes.story.story_locale,Story Language,Լեզու
+38,hy.activerecord.attributes.story.tag_list,Tags,Պիտակներ (Tags)
+39,hy.activerecord.attributes.story.categories,Categories,Կատեգորիաներ
+40,hy.activerecord.attributes.story.story_type,Type,Տեսակ
+41,hy.activerecord.attributes.story.in_theme_slider,Show Story in Theme Slider,Ցույց տալ պատմությունը նույն թեմատիկ վահանակում
+42,hy.activerecord.attributes.story_translation.title,Story Title,Վերնագիր
+43,hy.activerecord.attributes.story_translation.author,Author(s),Հեղինակ(ներ)
+44,hy.activerecord.attributes.story_translation.media_author,Photo and Video Author(s),Ֆոտո և վիդեո հեղինակ(ներ)
+45,hy.activerecord.attributes.story_translation.translation_author,Translation Author(s),Թարգմանության հեղինակ(ներ)
+46,hy.activerecord.attributes.story_translation.published,Publish?,Հրապարկել?
+47,hy.activerecord.attributes.story_translation.published_at,Was Published,Հրապարակված է
+48,hy.activerecord.attributes.story_translation.about,Story Summary,Համառոտագրություն
+49,hy.activerecord.attributes.story_translation.permalink,Story URL,Նյութի URL
+50,hy.activerecord.attributes.story_translation.permalink_staging,Story URL,Նյութի URL
+51,hy.activerecord.attributes.section.has_marker,Navigation Shortcut,Նավիգացիոն դյուրանցում
+52,hy.activerecord.attributes.section.type_id,Type,Տեսակ
+53,hy.activerecord.attributes.section.sort_order,Sort Order,Դասակարգման հերթականություն
+54,hy.activerecord.attributes.section_translation.title,Title,Վերնագիր
+55,hy.activerecord.attributes.section_translation.audio,Audio Track,Աուդիո 
+56,hy.activerecord.attributes.section_translation.delete_audio,Delete the Audio Track?,Ջնջել աուդիո ֆայլը?
+57,hy.activerecord.attributes.content.title,Title,Անվանում
+58,hy.activerecord.attributes.content.caption,Heading,Վերնագիր
+59,hy.activerecord.attributes.content.sub_caption,Subheading,Ենթավերնագիր
+60,hy.activerecord.attributes.content.content,Text,Տեքստ
+61,hy.activerecord.attributes.medium.media_type,Media Type,Մեդիայի տեսակը
+62,hy.activerecord.attributes.medium.image,Image,Նկար
+63,hy.activerecord.attributes.medium.video,Video,Վիդեո
+64,hy.activerecord.attributes.medium.video_loop,Loop Video,Վերախաղարկել վիդեոն
+65,hy.activerecord.attributes.medium_translation.title,Title,Վերնագիր
+66,hy.activerecord.attributes.medium_translation.caption,Caption,Ենթագրեր
+67,hy.activerecord.attributes.medium_translation.caption_align,Caption Alignment,Ենթագրերի ուղղվածություն
+68,hy.activerecord.attributes.medium_translation.infobox_type,Caption Position,Ենթագրերի դիրք
+69,hy.activerecord.attributes.medium_translation.summary,Summary,Հակիրճ նկարագրություն
+70,hy.activerecord.attributes.medium_translation.source,Source,Աղբյուր
+71,hy.activerecord.attributes.medium_translation.image,Image,Նկար
+72,hy.activerecord.attributes.medium_translation.video,Video,Վիդեո
+73,hy.activerecord.attributes.slideshow.title,Title,Վերնագիր
+74,hy.activerecord.attributes.slideshow.caption,Heading,Անվանում
+75,hy.activerecord.attributes.message.name,Name,Name
+76,hy.activerecord.attributes.message.email,Email Address,Email Address
+77,hy.activerecord.attributes.message.message,Message,Message
+78,hy.activerecord.attributes.message.message_type,Feedback Type,Feedback Type
+79,hy.activerecord.attributes.embed_medium_translation.title,Title,Վերնագիր
+80,hy.activerecord.attributes.embed_medium_translation.url,Url to Online Media,Առցանց Media-ի Url 
+81,hy.activerecord.attributes.youtube.fullscreen,Fullscreen,Ամբողջ էկրանով
+82,hy.activerecord.attributes.youtube.loop,Loop,Վերախաղարկել
+83,hy.activerecord.attributes.youtube.info,Show Video Title Bar,Ցույց տալ վիդեոյի վերնագրի վահանակը
+84,hy.activerecord.attributes.youtube_translation.title,Title,Վերնագիր
+85,hy.activerecord.attributes.youtube_translation.url,Url to YouTube Video,YouTube վիդեոյի Url-ը
+86,hy.activerecord.attributes.youtube_translation.menu_lang,Player Language,Խաղարկչի (փլեերի) լեզուն
+87,hy.activerecord.attributes.youtube_translation.cc,Show Caption/Subtitle,Ցույց տալ ենթագրերը
+88,hy.activerecord.attributes.youtube_translation.cc_lang,Subtitle Language,Ենթագրերի լեզուն
+89,hy.activerecord.attributes.language.locale,Locale,Տեղավայր
+90,hy.activerecord.attributes.language.name,Language Name,Լեզու
+91,hy.activerecord.attributes.category_translation.name,Name,Անուն
+92,hy.activerecord.attributes.page.name,Unique name for content (do not change!),Եզակի անվանում բովանդակության համար (չփոխե՛լ)
+93,hy.activerecord.attributes.page_translation.title,Title to show above content,"Վերնագիր, որը կհայտնվի բովանդակության վերևում "
+94,hy.activerecord.attributes.page_translation.content,Content,Բովանդակություն
+95,hy.activerecord.attributes.theme.is_published,Publish?,Հրապարակե՞լ
+96,hy.activerecord.attributes.theme.published_at,Date Published,Հրապարակման ամսաթիվը
+97,hy.activerecord.attributes.theme.show_home_page,Show this theme on the home page?,Ցո՞ւյց տալ այս թեման գլխավոր էջում
+98,hy.activerecord.attributes.theme.published_item_count,Number of Published Items,Number of Published Items
+99,hy.activerecord.attributes.theme_translation.name,Name,Անուն
+100,hy.activerecord.attributes.theme_translation.edition,Edition,Ելից
+101,hy.activerecord.attributes.theme_translation.description,Description,Նկարագրություն
+102,hy.activerecord.attributes.theme_translation.permalink,URL,URL
+103,hy.activerecord.attributes.story_type.sort_order,Sort Order,Դասակարգման հերթականություն
+104,hy.activerecord.attributes.story_type_translation.name,Name,Անուն
+105,hy.activerecord.attributes.story_type_translation.permalink,URL,URL
+106,hy.activerecord.errors.messages.required_field,is a required field.,Պարտադիր լրացման համար
+107,hy.activerecord.errors.messages.already_exists,already exists in the database.,Արդեն առկա է տվյալների բազայում
+108,hy.activerecord.errors.messages.story_authors,must have at least one person selected.,Անհրաժեշտ է ընտրել նվազագույնը մեկ հոգու
+109,hy.activerecord.errors.messages.publish_theme,The theme cannot be published until at least one published item has been assigned to the theme.,The theme cannot be published until at least one published item has been assigned to the theme.
+110,hy.mailer.closing,"Sincerely,","Հարգանքով,"
+111,hy.mailer.signature,The Chai Khana Team,Չայխանայի թիմ
+112,hy.mailer.unsubscribe,Click here to change your notification settings,Սեղմեք այստեղ՝ փոխելու կարգավորումները
+113,hy.mailer.contact.contact_form.subject,Chai Khana Contact Form,Չայխանային դիմումի ձև
+114,hy.mailer.notification.new_user.subject,Welcome to Chai Khana!,Բարի գալուստ Չայխանա!
+115,hy.mailer.notification.new_user.message,"Thank you for becoming a member of Chai Khana. We look forward to exploring the stories you build!
+
+When you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summary about yourself: [settings_link].
+
+You can manage when you would like to receive email notifications from Chai Khana by going to the notifications page: [notifications_link]. ","Շնորհակալություն Չայխանային միանալու համար: Անհամբեր սպասում ենք Ձեր նյութերին: 
+
+Հնարավորության դեպքում այցելեք Ձեր կարգավորումների էջը, որպեսզի թարմացնեք ավատարը, կեղծանունը, անձնական URL և Ձեր մասին համառոտ նկարագրությունը: [settings_link].         
+Դուք կարող եք կարգավորել Չայխանայից նամակով ծանուցում ստանալու հաճախականությունը՝ այցելելով ծանուցումների էջը: [notifications_link]."
+116,hy.mailer.notification.published_theme.subject,New themes have been published on Chai Khana!,New themes have been published on Chai Khana!
+117,hy.mailer.notification.published_theme.message,The following themes you have expressed interest in were recently published:,The following themes you have expressed interest in were recently published:
+118,hy.mailer.notification.published_story.subject,New stories have been published on Chai Khana!,Չայխանայում հրապարակվել են նոր նյութեր
+119,hy.mailer.notification.published_story.message,The following stories you have expressed interest in were recently published:,"Սույն պատմությունները, որոնք Ձեզ հետաքրքրում էին, հրապարակվել են"
+120,hy.mailer.notification.story_comment.subject,Someone has posted a comment on your story on Chai Khana!,Չայխանայի Ձեր հրապարակումը մեկնաբանել են!
+121,hy.mailer.notification.story_comment.message,The following stories have recently received a comment:,Հետևյալ նյութերը նոր մեկնաբանություններ են ստացել:
+122,hy.mailer.notification.story_comment.comment,1 Comment,1 Մեկնաբանություն
+123,hy.mailer.notification.story_comment.comments,%{num} Comments,%{num} Մեկնաբանություններ
+124,hy.mailer.notification.story_collaboration.subject,You have been invited to collaborate on a story on Chai Khana!,Ձեզ հրավիրել են Չայխանա՝ նյութի շուրջ համագործակցության
+125,hy.mailer.notification.story_collaboration.message,"You have received the following invitations to collaborate on stories with other people on Chai Khana. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part.","Դուք ստացել եք Չայխանայում այլ մարդկանց հետ համագոործակցելու հետևյալ հրավերները: Եթե ցանկանում եք ընդունել հրավերները, պարզապես սեղմեք «Ընդունել հրավերը»  հղումը: Եթե դուք ցանկանում եք մերժել այն, ապա ոչինչ մի արեք:"
+126,hy.mailer.notification.story_collaboration.from,From,Հետադարձ հասցե
+127,hy.mailer.notification.story_collaboration.role,Role,Կարգավիճակ
+128,hy.mailer.notification.story_collaboration.story_title,Story Title,Վերնագիր
+129,hy.mailer.notification.story_collaboration.msg,Message,Նամակ
+130,hy.mailer.notification.story_collaboration.accept_link,Accept the Invitation,Ընդունել հրավերը
+131,hy.mailer.notification.story_collaboration.all_invitations,View all of your Chai Khana collaboration invitations.,Դիտել համագործակցության հրավերները
+132,hy.mailer.notification.processed_videos.subject,Your videos on Chai Khana have been processed!,Ձեր վիդեոների մշակումը Չայխանայում ավարտվեց
+133,hy.mailer.notification.processed_videos.message,The following stories of yours have videos that have completed processing:,"Ձեր հետևյալ պատմությունները, պարունակում էին վիդեոներ, որոնց մշակումն ավարտված է"
+134,hy.mailer.notification.processed_videos.story_title,Story:,նյութ:
+135,hy.mailer.notification.processed_videos.status,Video Processing Status: %{processed} of %{total} completed,Վիդեոյի մշակման ընթացքը՝ %{processed} -ից %{total} ավարտված է
+136,hy.mailer.notification.processed_videos.processed,Videos Processed:,Վիդեոն մշակված է
+137,hy.mailer.notification.processed_videos.not_processed,Videos Still Processing:,Վիդեոյի մշակումն ընթացքի մեջ է
+138,hy.mailer.notification.processed_videos.none_processed,No vidoes have been processed.,Վիդեոներ չեն մշակվել
+139,hy.mailer.notification.processed_videos.none_processing,All videos have been processed!,Բոլոր վիդեոների մշակումն ավարտված է
+140,hy.mailer.notification.processed_video_errors.subject,Videos on Chai Khana have processing errors!,"Չայխանայում, վիդեոյի մշակման ընթացքում ի հայտ է եկել սխալ"
+141,hy.mailer.notification.processed_video_errors.message,The following videos had errors while being processed:,Հետևյալ վիդեոների մշակման ընթացքում ի հայտ է եկել սխալ
+142,hy.mailer.notification.processed_video_errors.story_id,Story ID,Նյութի ID
+143,hy.mailer.notification.processed_video_errors.asset_id,Asset ID,Ֆայլի ID
+144,hy.mailer.notification.processed_video_errors.path,URL of Video,Վիդեոյի URL
+145,hy.helpers.actions,Actions,Գործողություններ
+146,hy.helpers.links.admin,Admin Section,Ադմինի բաժին
+147,hy.helpers.links.edit,Edit,Խմբագրել
+148,hy.helpers.links.confirm,Are you sure?,Համոզված եք?
+149,hy.helpers.links.destroy,Delete,Ջնջել
+150,hy.helpers.links.new,New,Նոր
+151,hy.helpers.links.list,View All,Դիտել բոլորը
+152,hy.helpers.links.back,View All,Դիտել բոլորը
+153,hy.helpers.links.cancel,Cancel,Չեղարկել
+154,hy.helpers.links.reset,Reset,Վերագործարկել
+155,hy.helpers.links.view,View,Դիտել
+156,hy.helpers.links.sign_in_facebook,Sign in with Facebook,Մուտք գործել Ֆեյսբուքով
+157,hy.helpers.links.edit_story,Edit Story Settings,Խմբագրել Նյութի կարգավորումները 
+158,hy.helpers.links.delete_story,Delete Story,Ջնջել նյութը
+159,hy.helpers.links.admin_story,Edit Content,Խմբագրել բովանդակությունը
+160,hy.helpers.links.publish_story,Publish Story,Հրապարակել նյութը
+161,hy.helpers.links.forgot_password,Forgot Password?,Մոռացե՞լ եք գաղտնաբառը
+162,hy.helpers.links.change_password,Change Your Password,Փոխել Ձեր գաղտնաբառը 
+163,hy.helpers.links.change_password2,Change Password,Փոխել գաղտնաբառը 
+164,hy.helpers.links.password_reset,Reset Password,Վերականգնել գատնաբառը
+165,hy.helpers.links.sign_in2,Sign In,Մուտք գործել 
+166,hy.helpers.links.sign_in,Already have an account?,Արդեն գրանցվե՞լ եք
+167,hy.helpers.links.sign_up2,Sign Up,Գրանցվել
+168,hy.helpers.links.sign_up_question,Not a member yet?,Դեռ անդամ չե՞ք
+169,hy.helpers.links.sign_up,Register now,Գրանցվել հիմա
+170,hy.helpers.links.sign_up_title,Join Chai Khana,Միացիր Չայխանային
+171,hy.helpers.links.sign_out,Sign Out,Դուրս գալ
+172,hy.helpers.links.sign_in_provider,Sign in with %{provider},Մուտք գործել %{provider} ով
+173,hy.helpers.links.sign_up_provider,Sign up with %{provider},Գրանցվել %{provider}-ով
+174,hy.helpers.links.sign_in_local_or_provider,or log in with your email and password,կամ մուտք գործել էլեկտրոնային փոտի միջոցով և գաղտնաբառով
+175,hy.helpers.links.reset_or_sign_in,sign in with facebook or reset your password,Մուտք գործել Facebook-ով կամ վերականգնել գաղտնաբառը 
+176,hy.helpers.links.add_story,Add Story,Ավելացնել նյութ
+177,hy.helpers.links.users,Users,Օգտատերեր
+178,hy.helpers.links.authors,Authors,Հեղինակներ
+179,hy.helpers.links.feedback,Feedback,Հետադարձ կապ
+180,hy.helpers.links.about,About,Մեր մասին
+181,hy.helpers.links.rss,RSS,RSS
+182,hy.helpers.links.themes,Themes,Թեմաներ
+183,hy.helpers.links.story_types,Types,Տեսակներ
+184,hy.helpers.links.languages,Languages,Լեզուներ
+185,hy.helpers.links.follow,Follow,Միանալ
+186,hy.helpers.links.facebook,Facebook,Facebook
+187,hy.helpers.links.twitter,Twitter,Twitter
+188,hy.helpers.links.youtube,YouTube,YouTube
+189,hy.helpers.links.subscribe,Subscribe,Բաժանորդագրվել
+190,hy.helpers.links.user_settings,Settings,Կարգավորումներ
+191,hy.helpers.links.like,Like,Հավանել
+192,hy.helpers.links.likes,Likes,Հավանել
+193,hy.helpers.links.comments,Comment on this story,Մեկնաբանել նյութը
+194,hy.helpers.links.views,%{num} views,%{num} Դիտումներ
+195,hy.helpers.links.tags,Tags,Պիտակներ (Tags)
+196,hy.helpers.links.menu,Menu,Մենյու
+197,hy.helpers.links.pages,Edit Text on Site,Խմբագրել տեքստը կայքում
+198,hy.helpers.links.next,Next,Հաջորդը
+199,hy.helpers.links.feed,Feed,Լրահոս
+200,hy.helpers.links.story_menu.link.story,Story,նյութ
+201,hy.helpers.links.story_menu.link.story_settings,Story Settings,Նյութի կարգավորումները
+202,hy.helpers.links.story_menu.link.collaborators,Collaborators,Համագործակիցներ
+203,hy.helpers.links.story_menu.link.preview,Preview,Նախադիտում
+204,hy.helpers.links.story_menu.link.publish,Publish,Հրապարակել
+205,hy.helpers.links.story_menu.link.unpublish,Unpublish,Հրապարակումը չեղարկել 
+206,hy.helpers.links.story_menu.link.review,Private URL,Մասնավոր URL
+207,hy.helpers.links.story_menu.link.clone,Clone,Կրկնoրինակել
+208,hy.helpers.links.story_menu.link.export,Download,Ներբեռնել
+209,hy.helpers.links.story_menu.link.delete_story,Delete,Ջնջել
+210,hy.helpers.links.story_menu.link.translations,Translations,Թարգմանություններ
+211,hy.helpers.links.story_menu.title.story,Edit your story,Խմբագրեք Ձեր նյութը
+212,hy.helpers.links.story_menu.title.story_settings,"Edit story title, authors, URL, summary, thumbnail, language, tags and/or categories, content etc.","Խմբագրել նյութը, վերնագիրը, հեղինակներին, URL-ը, համառոտ նկարագրությունը, մանրապատկերը (thumbnail), lլեզուն, պիտակները (tags) այս կամ այն դասակարգումները, բովանդակությունը և այլն."
+213,hy.helpers.links.story_menu.title.collaborators,Manage which users have access to edit your story,"Կարգավորել, թե որ օգտատերերը կարող են խմբագրել Ձեր նյութը"
+214,hy.helpers.links.story_menu.title.preview,See how your story looks,"Տեսնել, թե ինչ տեսք ունի ձեր նյութը"
+215,hy.helpers.links.story_menu.title.publish,Make your story viewable to the world,Տեսանելի դարձրեք Ձեր նյութն աշխարհին
+216,hy.helpers.links.story_menu.title.unpublish,Make your story NOT viewable to the world,Անտեսանելի դարձրեք Ձեր նյութն աշխարհին
+217,hy.helpers.links.story_menu.title.review,URL to share this story before publishing,Այս նյութի՝ նախքան հրապարակելը տարածելու համար նախատեսված URL 
+218,hy.helpers.links.story_menu.title.clone,Copy this story into a new story,Պատճենել այս նյութը նոր նյութի մեջ 
+219,hy.helpers.links.story_menu.title.export,Download the complete story,Ներբեռնել ամբողջական նյութը 
+220,hy.helpers.links.story_menu.title.delete_story,Deleting a story cannot be undone,Ջնջված նյութը չի վերականգնվի
+221,hy.helpers.links.story_menu.title.translations,Translate your story into other languages,Թարգմանել Ձեր նյութն այլ լեզուներով
+222,hy.helpers.titles.new,New %{model},Նոր %{model}
+223,hy.helpers.titles.edit,Edit %{model},Խմբագրել %{model}
+224,hy.helpers.titles.story_list,My Stories,Իմ նյութերը
+225,hy.helpers.hints.nickname,"Your nickname is used in the URL to your published stories (e.g., nickname/story-title)",Ձեր կեղծանունը օգտագործվում է URL-ում Ձեր հրապարակած նյութերի համար (Օր. կեղծանուն/ նյութ-վերնագիր)
+226,hy.helpers.hints.local_avatar,Image that is shown in the header bar and on your user page (png and jpg only).,"Նկար, որը կտեղադրվի վերին վահանակում և Ձեր էջում (միայն png և jpg)"
+227,hy.helpers.hints.avatar,Image that is shown on the Author's page (png and jpg only).,Հեղինակի էջի նկար (միայն png և jpg)
+228,hy.helpers.hints.like,Like this story,Հավանել այս նյութը
+229,hy.helpers.hints.unlike,Unlike this story,Չհավանել այս նյութը 
+230,hy.helpers.hints.staff_pick,Select as Staff Pick,Նշել որպես «Խմբագրության ընտրանի»
+231,hy.helpers.hints.staff_unpick,Unselect as Staff Pick,Չեղարկել «Խմբագրության ընտրանի»-ն
+232,hy.helpers.hints.is_staff_pick,Staff Pick,Խմբագրության ընտրանի
+233,hy.helpers.hints.clone_asset,"If checked, the file to the left will be used for this translation","Նշելու դեպքում, ձախ կողմում գտնվող ֆայլը կներառվի այս թարգմանության համար"
+234,hy.app.language.en,English,English
+235,hy.app.language.ka,ქართული,ქართული
+236,hy.app.language.hy,Հայերեն,Հայերեն
+237,hy.app.language.ru,Русский,Русский
+238,hy.app.language.az,Azərbaycan,Azərbaycan
+239,hy.app.buttons.back,View All,Դիտել բոլորը
+240,hy.app.buttons.list,View All,Դիտել բոլորը
+241,hy.app.buttons.admin,Admin Section,Ադմինի բաժին
+242,hy.app.buttons.delete,Delete,Ջնջել
+243,hy.app.buttons.edit,Edit,Խմբագրել
+244,hy.app.buttons.show,Show,Ցույց տալ
+245,hy.app.buttons.cancel,Cancel,Չեղարկել
+246,hy.app.buttons.update,Update,Թարմացնել
+247,hy.app.buttons.save,Save,Պահպանել
+248,hy.app.buttons.save_and_next,Save & Next,Պահպանել & Հաջորդը
+249,hy.app.buttons.create,Create,Ստեղծել
+250,hy.app.buttons.reset,Reset,Վերագործարկել
+251,hy.app.buttons.remove,Remove,Հեռացնել
+252,hy.app.buttons.confirm,Are you sure?,Համոզված եք?
+253,hy.app.buttons.new,New,Նոր
+254,hy.app.buttons.add_section,Add Section,Ավելացնել բաժին
+255,hy.app.buttons.add_item,Add Item into Section,Բաժնին ավելացնել օբյեկտ
+256,hy.app.buttons.up,Move Selected Section/Item Up,Տեղափոխել նշված բաժինը/օբյեկտը վերև
+257,hy.app.buttons.down,Move Selected Section/Item Down,Տեղափոխել նշված բաժինը/օբյեկտը ներքև
+258,hy.app.buttons.delete_item,Delete Selected Section/Item,Ջնջել նշված բաժինը/օբյեկտը
+259,hy.app.buttons.preview,Preview,Նախադիտում
+260,hy.app.buttons.preview_image,Preview Image,Նկարի նախադիտում
+261,hy.app.buttons.preview_video,Preview Video,Վիդեոյի նախադիտում
+262,hy.app.buttons.preview_audio,Listen To Audio,Լսել աուդիոն
+263,hy.app.buttons.publish,Publish,Հրապարակել
+264,hy.app.buttons.unpublish,Unpublish,Հրապարակումը չեղարկել 
+265,hy.app.buttons.clone,Copy this story into a new story,Պատճենել այս նյութը նոր Նյութի մեջ
+266,hy.app.buttons.export,Download the complete story,Ներբեռնել ամբողջական նյութը 
+267,hy.app.buttons.scroll,Scroll,Ոլորում
+268,hy.app.buttons.reviewer_key,Get URL to share this story before publishing,Ստացիր URL-ը՝ տարածելու նյութը նախքան հրապարակելը
+269,hy.app.buttons.reviewer_key_published,Your story is published so there is no need to share this non-published URL,"Ձեր նյութը հրապարակվել է, այլևս կարիք չկա տարածելու այս չհրապարակված URL-ը"
+270,hy.app.buttons.explore,Explore,Բացահայտել
+271,hy.app.common.app_name_not_trans,Chai Khana,Չայխանա
+272,hy.app.common.app_name,Chai Khana,Չայխանա
+273,hy.app.common.app_intro,Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.,Չայխանա ՀԿ-ն կազմակերպում է դասընթացներ տարածաշրջանի լրագրողների համար և առցանց հրապարակում մուլտիմեդիա նյութեր հարավկովկասյան խնդիրների վերաբերյալ
+274,hy.app.common.app_intro_meta,Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.,Չայխանա ՀԿ-ն կազմակերպում է դասընթացներ տարածաշրջանի լրագրողների համար և առցանց հրապարակում մուլտիմեդիա նյութեր հարավկովկասյան խնդիրների վերաբերյալ
+275,hy.app.common.powered_by,Powered by,Աջակցությամբ
+276,hy.app.common.powered_by_js,Jumpstart Georgia,Jumpstart Georgia
+277,hy.app.common.powered_by_end,,
+278,hy.app.common.embed_slogan,Build your story with Chai Khana,Ստեղծեք Ձեր նյութը Չայխանայում
+279,hy.app.common.added_on,Added on: %{date},Ավելացվել է: %{date}
+280,hy.app.common.last_sign_in,Logged in last: %{date},Վերջին մուտքը: %{date}
+281,hy.app.common.admin,Admin,Ադմին
+282,hy.app.common.sign_out,Sign Out,Դուրս գալ
+283,hy.app.common.jumpstart,JumpStart Georgia,JumpStart Georgia
+284,hy.app.common.js_link_title,JumpStart Georgia - We communicate data better!,JumpStart Georgia - Ավելի լավ ենք համադրում տվյալները
+285,hy.app.common.js_link_text,Built by,Ստեղծող
+286,hy.app.common.search,Search for Story ...,Փնտրել նյութը
+287,hy.app.common.build,Build Story,Ստեղծել նյութ
+288,hy.app.common.explore,Explore Stories,Բացահայտել նյութեր
+289,hy.app.common.about_story,About,Մեր մասին
+290,hy.app.common.likes,Likes,Հավանումներ
+291,hy.app.common.comments,Comments,Մեկնաբանություններ
+292,hy.app.common.publish_date,Publish Date,Հրապարակման ամսաթիվը
+293,hy.app.common.follow,Follow,Միանալ
+294,hy.app.common.following,Following,Միացածները
+295,hy.app.common.follow_link_title,Click to receive notifications whenever this author publishes new stories,"Սեղմեք, որպեսզի ստանաք ծանուցումներ այս օգտատիրոջ նոր հրապարակումների վերաբերյալ"
+296,hy.app.common.unfollow_link_title,Click to stop receiving notifications whenever this author publishes new stories,"Սեղմեք, որպեսզի դադարեք ստանալ ծանուցումներ այս օգտատիրոջ նոր հրապարակումների վերաբերյալ"
+297,hy.app.common.email,Email,Էլեկտրոնային փոստ
+298,hy.app.common.views,Views,Դիտումներ
+299,hy.app.common.permalink,Permalink,Պերմալինկ
+300,hy.app.common.shortened_url,Short URL,Կարճ URL
+301,hy.app.common.share_story,Share this story,Տարածել այս նյութը
+302,hy.app.common.share_facebook,Share on Facebook,Տարածել Facebook-ում
+303,hy.app.common.share_twitter,Share on Twitter,Տարածել Twitter-ում
+304,hy.app.common.share,Share,Տարածել
+305,hy.app.common.staff_pick,Staff Pick,Խմբագրության ընտրանի
+306,hy.app.common.wide,wide,Լայն դիտում
+307,hy.app.common.partial,Link to Story,Նյութի հղումը
+308,hy.app.common.partial_text,"Embed a link to the story that has the same look as the story links on the home page of Chai Khana (image, title, author, etc)","Նյութի մեջ ներդնել հղում, որը ունի նույն տեսքը, ինչը որ ունեն Չայխանայի գլխավոր էջի նյութերը (նկար, վերնագիր, հեղինակ, և այլն)"
+309,hy.app.common.full,Full Story,Ամբողջական նյութը
+310,hy.app.common.full_text,Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look.,"Ներդնել նյութը այլ կայքում. մենք խորհուրդ ենք տալիս, որպեսզի ընտրեք առավելագույն լայնություն` հնարավորինս բարձր որակով դիտման համար"
+311,hy.app.common.feed,Chai Khana Feeds,Չայխանայի լրահոսը
+312,hy.app.common.home,Home,Գլխավոր էջ
+313,hy.app.common.required,Required,Պարտադիր
+314,hy.app.common.nothing_selected,Nothing Selected,Ոչինիչ չի ընտրվել
+315,hy.app.common.clone_asset,Use the original file?,Օգտագործել օրիգինալ ֆայլը?
+316,hy.app.common.embed,Embed Code,Embed Code
+317,hy.app.common.scroll_top,Scroll to the top,Scroll to the top
+318,hy.app.msgs.does_not_exist,You tried to access a page that does not exist.,Էջը գոյություն չունի
+319,hy.app.msgs.not_authorized,You are not authorized to view that page.,Չեք կարող դիտել այս էջը.
+320,hy.app.msgs.success_created,%{obj} was successfully created.,%{obj} հաջողությամբ ստեղծվել է
+321,hy.app.msgs.success_updated,%{obj} was successfully updated.,%{obj} հաջողությամբ թարմացվել է
+322,hy.app.msgs.success_publish,%{obj} was successfully published.,%{obj} հաջողությամբ հրապարակվել է
+323,hy.app.msgs.success_unpublish,%{obj} was successfully unpublished.,%{obj} հաջողությամբ չի հրապարակվել
+324,hy.app.msgs.success_clone,%{obj} was successfully cloned to %{to}.,%{obj} հաջողությամբ կրկնօրինակվել է %{to}.
+325,hy.app.msgs.error_created,%{obj} wasn't created: %{err},%{obj} չի ստեղծվել: %{err}
+326,hy.app.msgs.error_updated,%{obj} wasn't updated: %{err},%{obj} չի թարմացվել: %{err}
+327,hy.app.msgs.error_publish,%{obj} wasn't published: %{err},%{obj} չի հրապարակվել: %{err}
+328,hy.app.msgs.error_publish_missing_fields,%{obj} can't be published until you provide a summary and thumbnail image.,"%{obj} չի կարող հրապարակվել, քանի դեռ բացակայում է համառոտ նկարագրությունը և մանրապատկերը (thumbnail)"
+329,hy.app.msgs.error_publish_missing_fields_link,Add the missing content.,Լրացնել բացթողնված բովանդակությունը.
+330,hy.app.msgs.error_publish_missing_sections,At least one Section required before publishing.,At least one Section required before publishing.
+331,hy.app.msgs.error_publish_missing_content_section,All Text Sections must have content in it.,Պահանջվում է առնվազը մեկ բաժին
+332,hy.app.msgs.error_publish_missing_translations,The story must be completely translated in %{lang} in order to be published.,The story must be completely translated in %{lang} in order to be published.
+333,hy.app.msgs.error_unpublish,%{obj} wasn't unpublished: %{err},%{obj} չի հրապարակվել: %{err}
+334,hy.app.msgs.error_clone,%{obj} wasn't cloned.,%{obj} չի կրկնօրինակվել
+335,hy.app.msgs.error_clone_notification,Error occurred while cloning story: %{msg},Կրկնօրինակման ընթացքում ի հայտ եկավ սխալ: %{msg}
+336,hy.app.msgs.error_export,Story can't be downloaded.,Նյութը հնարավոր չէ ներբեռնել
+337,hy.app.msgs.error_get_data,The selected item could not be found,Նշված օբյեկտը չի հայտնաբերվել
+338,hy.app.msgs.select_section,Please select a Section first in order to add an Item,Խնդրում ենք ավելացնելու համար նախ նշել բաժին և ապա օբյեկտ
+339,hy.app.msgs.staff_pick,The story has been selected as a Staff Pick,Նյութը ընդգրկվեց «Խմբագրության ընտրանիում»
+340,hy.app.msgs.staff_unpick,The story has been unselected as a Staff Pick,Նյութը հանվեց «Խմբագրության ընտրանուց»
+341,hy.app.msgs.success_settings,Your settings were successfully updated.,Ձեր կարգավորումները հաջողությամբ թարմացվել են
+342,hy.app.msgs.success_remove_avatar,Your Facebook avatar is now being used.,Օգտագործվում է Ձեր Facebook-ի ավատարը
+343,hy.app.msgs.nickname_duplicate,This user URL already exists.,Այս օգտատերի URL-ն արդեն առկա է
+344,hy.app.msgs.nickname_url,Your URL will be:,Ձեր URL կլինի :
+345,hy.app.msgs.story_duplicate,This story URL already exists.,Այս Նյութի URL արդեն առկա է
+346,hy.app.msgs.story_url,Story URL will be:,Նյութի URL կլինի:
+347,hy.app.msgs.invitation.accepted,You have accepted the invitation to collaborate on '%{title}',Դուք ընդունել եք '%{title}'-ում համագործակցելու հրավերը 
+348,hy.app.msgs.invitation.accepted_already,You have already accepted the invitation to collaborate on '%{title}',Դուք արդեն ընդունել եք %{title}'-ում համագործակցելու հրավերը 
+349,hy.app.msgs.invitation.bad,"Sorry, your invitation could not be found or the story has been deleted.",Ցավոք Ձեր հրավերը հնարավոր չէ գտնել կամ նյութը ջնջվել է
+350,hy.app.msgs.invitation.declined,Your invitation was declined,Ձեր հրավերը մերժվել է 
+351,hy.app.msgs.one_section.content,Only one Item can be added to a Text section,Տեքստի բաժնին կարող է ավելացվել միայն մեկ օբյեկտ
+352,hy.app.msgs.one_section.slideshow,Only one Item can be added to an Image Slideshow section,Սլայդշուի բաժնին կարող է ավելացվել միայն մեկ օբյեկտ
+353,hy.app.msgs.one_section.embed_media,Only one Item can be added to an Embed Online Media section,Ներդրված առցանց մեդիայի բաժիններին կարող է ավելացվել միայն մեկ օբյեկտ
+354,hy.app.msgs.one_section.youtube,Only one Item can be added to a YouTube section,YouTube-ի բաժիններին կարող է ավելացվել միայն մեկ օբյեկտ
+355,hy.app.msgs.one_section.general,Only one Item can be added to this type of section,Այս տիպի բաժիններին կարող է ավելացվել միայն մեկ օբյեկտ
+356,hy.app.msgs.destroy_story.success,Story was successfully deleted.,Նյութը հաջողությամբ ջնջվեց
+357,hy.app.msgs.destroy_story.error,Error occurred while deleting the story: %{err},Նյութի ջնջման ընթացքում ի հայտ եկավ սխալ: %{err}
+358,hy.app.msgs.destroy_item.success,Item was successfully deleted.,Օբյեկտը հաջողությամբ ջնջվեց
+359,hy.app.msgs.destroy_item.error,Error occurred while deleting the item: %{err},Օբյեկտի ջնջման ընթացքում ի հայտ եկավ սխալ: %{err}
+360,hy.app.msgs.destroy_item.error_not_found,Item could not be found to delete.,Ջնջելու ենթակա օբյեկտը չի հայտնաբերվել
+361,hy.app.msgs.embed_code,Copy and paste this embed code into your web page,Պատճենեք և տեղադրեք այս ներդրված կոդը Ձեր էջում
+362,hy.app.msgs.collaborators.success_remove,%{name} was removed as a collaborator,%{name} օգտատերը հեռացվել է համագործակցությունից
+363,hy.app.msgs.collaborators.user_not_found,User to remove as a collaborator could not be found,"Օգտատերը, որին Դուք ցանկանում էիք հեռացնել, որպես համագործակցող, չի հայտնաբերվել"
+364,hy.app.msgs.collaborators.no_permission,You do not have permission to remove this collaborator,Դուք այս համագործակցողին հեռացնելու  իրավունք չունեք 
+365,hy.app.msgs.collaborators.success_invitations,Invitations were sent!,Հրավերները ուղարկված են
+366,hy.app.msgs.collaborators.error_invitations_all,No invitations were sent due to the following erros: %{msg},Ոչ մի հրավեր չի ուղարկվել սույն սխալի պատճառով: %{msg}
+367,hy.app.msgs.collaborators.error_invitations_some,"Some invitations were sent, but some were not due to the following erros: %{msg}",Որոշ հրավերներ չեն ուղարկվել սույն սխալի պատճառով: %{msg}
+368,hy.app.msgs.notification.true,You will be sent notifications.,Ձեզ ծանուցում կուղարկվի
+369,hy.app.msgs.notification.false,You will not be sent notifications.,Ձեզ ծանուցում չի ուղարկվի
+370,hy.app.msgs.notification.new_theme_all_success,You will recieve a notification whenever a theme is added.,You will recieve a notification whenever a theme is added.
+371,hy.app.msgs.notification.new_theme_none_success,You will not receive any notifications when themes are added.,You will not receive any notifications when themes are added.
+372,hy.app.msgs.notification.new_story_by_type_success,You will receive a notification when a story is added to these types: %{types}.,You will receive a notification when a story is added to these types: %{types}.
+373,hy.app.msgs.notification.story_comments_yes,You will be sent notifications when a comment is made to one of your stories.,"Դուք կծանուցվեք, Ձեր նյութերի տակ նոր մեկնաբանությունների մասին"
+374,hy.app.msgs.notification.story_comments_no,You will not be sent notifications when a comment is made to one of your stories.,"Դուք չեք ծանուցվի, Ձեր նյութերի տակ նոր մեկնաբանությունների մասին"
+375,hy.app.msgs.notification.following_no,You will no longer receive notifications about new stories from '%{name}'.,Դուք այլևս չեք ստանա ծանուցումներ  '%{nickname}' օգտատիրոջ նոր նյութեր մասին
+376,hy.app.msgs.notification.language,You will be sent notifications in %{language}.,Ձեզ կուղարկվի ծանուցում %{language} լեզվով
+377,hy.app.msgs.fail_change_order,The item was not able to be moved,Օբյեկտը տեղափոխել հնարավոր չէ
+378,hy.app.msgs.nothing_selected,Please select a section/item to delete,Խնդրում ենք նշել ջնջելու ենթակա բաժինը/օբյեկտը
+379,hy.app.msgs.fail_delete,The section/item could not be deleted,Բաժինը/օբյեկտը ջնջել չհաջողվեց
+380,hy.app.msgs.confirm_delete,Are you sure you want to delete this section/item?,"Վստա՞հ եք, որ ցանկանում եք ջնջել բաժինը/օբյեկտը"
+381,hy.app.msgs.video_processed,Your video is processed,Ձեր վիդեոն մշակվեց
+382,hy.app.msgs.video_not_processed,Your video is being processed,Ձեր վիդեոն մշակման փուլում է
+383,hy.app.msgs.not_found_for_update,The record to update could not be found in the database.,Պահոցում թարմացվող գրանցումը հայտնաբերել չհաջողցեց
+384,hy.section_types.content.name,Text,Տեքստ
+385,hy.section_types.content.description,"Can include html, css styling and images","Կարող է ներառել html, css ոճեր և պատկերներ"
+386,hy.section_types.media.name,Full-Screen Media Slideshow,Սլայդշոու ամբողջ էկրանով
+387,hy.section_types.media.description,Images and/or videos as a full-screen vertical slideshow,"Նկարներ/վիդեոներ ուղղահայաց սլայդշոուով, ողջ էկրանով"
+388,hy.section_types.slideshow.name,Image Slideshow,Նկարների սլայդշոու
+389,hy.section_types.slideshow.description,Images in a horizontal slideshow,Նկարները հորիզոնական սլայդշոույով
+390,hy.section_types.embed_media.name,Embed Online Media,Ներդրված առցանց մեդիա
+391,hy.section_types.embed_media.description,"YouTube, Vimeo, etc","YouTube, Vimeo, և այլն"
+392,hy.section_types.youtube.name,YouTube Video,Վիդեո YouTube-ում
+393,hy.section_types.youtube.description,YouTube video with ability to setting caption language,Ենթագրերի լեզվի կարգավորումներով վիդեո YouTube-ում
+394,hy.story_role.editor,Editor,Խմբագիր
+395,hy.story_role.translator,Translator,Թարգմանիչ
+396,hy.message_types.bug,Report a Bug,Հաղորդել սխալի մասին
+397,hy.message_types.feature,Request a Feature,Պահանջել նոր կարգավորում/հատկություն
+398,hy.message_types.feedback,General Feedback,Ընդհանուր դիտողություններ
+399,hy.filters.all,All,Բոլորը
+400,hy.filters.matches,Matches,Համընկնումներ
+401,hy.filters.staff_pick,Staff Pick,Խմբագրության ընտրանի
+402,hy.filters.staff_pick_title,View stories that have been selected as Staff Picks,"Դիտել նյութերը, որոնք ընգրկվել են «Խմբագրության ընտրանիում» "
+403,hy.filters.staff_pick_title_active,Remove Staff Pick filter,Հեռացնել «Խմբագրության ընտրանի» ֆիլտրը 
+404,hy.filters.sort_header,Sorted By,Դասակարգել ըստ
+405,hy.filters.sort_title,Indicate how the stories should be sorted,Նշեք նյութերի դասակարգումը  
+406,hy.filters.filters,Filters,Ֆիլտրեր
+407,hy.filters.all_stories,All Stories,Բոլոր նյութերը
+408,hy.filters.sort.recent,Recent,Վերջին դիտվածները
+409,hy.filters.sort.reads,Views,Դիտումեր
+410,hy.filters.sort.likes,Likes,Հավանումներ
+411,hy.filters.category_header,Category,Դասակարգում
+412,hy.filters.category_title,View stories that belong to a category,Դիտել որոշակի դասակարգման նյութեր
+413,hy.filters.theme_header,Theme,Թեմա
+414,hy.filters.theme_title,View stories that belong to a theme,Դիտել որոոշակի թեմայով նյութեր
+415,hy.filters.language_header,Language,Լեզու
+416,hy.filters.language_title,View stories that are written in a particular language,Դիտել որոշակի լեզվով նյութեր
+417,hy.filters.search,Find a Story,Գտնել նյութը
+418,hy.filters.following,Following,Հավանել
+419,hy.filters.following_title,View stories of users that you are following,"Դիտել այն օգտագերերի նյութերը, որոնց դուք բաժանորդագրված եք"
+420,hy.filters.following_title_active,Remove Following filter,Հեռացնել հետևյալ ֆիլտրը
+421,hy.filters.not_published,Not Published,Չի հրապարակվել
+422,hy.filters.not_published_title,View stories that are not published,Դիտել չհրապարակված նյութերը
+423,hy.filters.not_published_title_active,Show all stories,Ցույց տալ բոլոր նյութերը
+424,hy.tokeninput.searchingText,Searching...,Որունում է
+425,hy.tokeninput.tag.hintText,Search for an existing tag or enter a new tag,"Առկա պիտակների (tag) որոնում, նորերի ստեղծման համար"
+426,hy.tokeninput.tag.noResultsText,No matches found. Press 'Enter' to save this new tag.,"Համընկնումներ չեն հայտնաբերվել, սեղմեք 'Enter' որպեսզի ավելացնեք այս պիտակը (tag)"
+427,hy.tokeninput.collaborator.hintText,Search for an existing user or enter the email address for a new user,"Փնտրեք առկա օգտատիրոջ, կամ մուտքագրեք էլեկտրոնային հասցե նոր օգտատիրոջ համար"
+428,hy.tokeninput.collaborator.noResultsText,No matches found. Press 'Enter' to add this email address to the list of invited collaborators.,"Համընկնումներ չեն հայտնաբերվել, սեղմեք 'Enter' որպեսզի ավելացնեք այս էլեկտրոնային հասցեն հրավիրված համագործակցողների ցուցակին"
+429,hy.layouts.unsupported_browser.title,Unsupported Browser,Չսատարվող բրաուզեր
+430,hy.layouts.unsupported_browser.video,Your browser does not support this video.,Ձեր բրաուզերը չի սատարում այս վիդեոն
+431,hy.layouts.unsupported_browser.p1,We are sorry to report that your browser is out of date and will not properly render the content from this website.,"Ցավոք, Ձեր բրաուզերը հնացած է, և պատշաճ չի ցուցադրի մեր կայքի բովանդակությունը"
+432,hy.layouts.unsupported_browser.p2,"On the bright side, there are several free browsers that you can download that are compatible with this site.","Սակայն կան մի քանի անվճար բրաուզերներ, որոնք դուք կարող եք ներբեռնել, և որոնք կիրառելի են այս կայքի համար"
+433,hy.layouts.unsupported_browser.chrome,Chrome,Chrome
+434,hy.layouts.unsupported_browser.firefox,Firefox,Firefox
+435,hy.layouts.unsupported_browser.ie,Internet Explorer (Windows only),Internet Explorer (Միայն Windows-ի համար)
+436,hy.layouts.unsupported_browser.opera,Opera,Opera
+437,hy.layouts.unsupported_browser.Safari,Safari,Safari
+438,hy.layouts.unsupported_browser.admin,Admin,Ադմին
+439,hy.layouts.unsupported_browser.sign_out,Sign Out,Դուրս գալ
+440,hy.layouts.unsupported_browser.js_link_title,JumpStart Georgia - We communicate data better!,JumpStart Georgia - Ավելի լավ ենք համադրում տվյալները
+441,hy.layouts.unsupported_browser.js_link_text,Built by,Ստեղծվել է
+442,hy.layouts.reviewer.copy,Copy To Clipboard...,Պատճենել սեղմատախտակում (clipboard)
+443,hy.layouts.reviewer.copied,Copied!,Պատճենված է!
+444,hy.layouts.storybuilder.source,Source,Source
+445,hy.layouts.storybuilder.target,Target,Target
+446,hy.shared.grid.no_stories,Oh no - no stories could be found!,Օ ոչ՛ ... նյութեր չգտնվեցին
+447,hy.shared.story_nav_modals.copied,Copied!,Copied!
+448,hy.admin.index.title,Administration Section,Ադինիստրատիվ բաժին
+449,hy.admin.index.users,Users,Օգտատերեր
+450,hy.admin.users.edit.title,Editing User,Խմբագրող օգտատեր
+451,hy.admin.users.index.title,Users,Օգտատերեր
+452,hy.admin.users.new.title,New User,Նոր օգտատեր
+453,hy.admin.users.show.title,User Details,Օգտատերի տվյալները
+454,hy.root.about.title,About Chai Khana,Չայխանայի մասին
+455,hy.root.embed.home_link,Built on Chai Khana,Ստեղծվել է Չայխանայում
+456,hy.stories.new.title,Story Settings Form,Նյութի կարգավորումների ձև
+457,hy.stories.edit.title,Story Settings Form,Նյութի կարգավորումների ձև
+458,hy.stories.form.placeholder.title,Title of Story,Նյութի վերնագիր
+459,hy.stories.form.placeholder.permalink,URL to the story,Նյութի URL
+460,hy.stories.form.placeholder.author,Author(s) of the article,Հոդվածի հեղինակ(ներ)
+461,hy.stories.form.placeholder.media_author,Author(s) of photos and/or videos,Ֆոտոների և/կամ (վիդեոների) հեղինակներ
+462,hy.stories.form.placeholder.translation_author,Author(s) that translated the story into this language,"Հեղինակ(ներ), որոնք թարգմանել են նյութն այս լեզվով "
+463,hy.stories.form.hint.title,Story title will appear at the top of your story,Նյութի վերնագիրը կհայտնվի վերևում 
+464,hy.stories.form.hint.permalink,"The default URL is the title of the story, but you can change it if desired","Նյութի URL-ը մնում է նյութի վերնագիրը, եթե այլ հրահանգ չկա"
+465,hy.stories.form.hint.author,Select the author(s) of the story to allow the story to appear on their webpage.,"Ընտրեք նյութի համահեղինակներին, որպեսզի նյութը երևա նաև նրանց էջերում"
+466,hy.stories.form.hint.media_author,Author names will appear below the Story Author names,Համահեղինակների անունները կերևան նյութի հեղինակի անվան տակ
+467,hy.stories.form.hint.translation_author,Author names will appear below the Photo and Video Author names,Համահեղինակների անունները կերևան վիդեոյի/նկարի հեղինակի անունների տակ
+468,hy.stories.form.hint.published,Published stories are available for the world to view,Հրապարակված նյութերը հասանելի են ողջ աշխհարհում
+469,hy.stories.form.hint.publish_home_page,"If checked, your published story will appear on the site's homepage",Նշելու դեպքում Ձեր նյութը կհայտնի գլխավոր էջում
+470,hy.stories.form.hint.template,Choose template to apply styling to story,Ընտրեք նյութի ոճի համար կաղապար
+471,hy.stories.form.hint.thumbnail,Image that is used to show the story on the home page when the story is published (jpg and png only; 4MB file size limit),"Նկարը, որը կօգտագործվի Ձեր նյութը գլխավոր էջում հրապարակելուց (միայն՝ jpg և png, առավելագույն ծավալը 4MB)"
+472,hy.stories.form.hint.editor,Person that created the story record in this website,"Անձը, որը ստեղծել է այս նյութը"
+473,hy.stories.form.hint.editors,Select people that you want to give access to edit the story,"Նշեք մարդկանց, որոնց թույլ եք տալիս խմբագրել Ձեր նյութը"
+474,hy.stories.form.hint.about,Short summary of story that will be used on the home page and when you story is shared,Նյութի համառոտ նկարագրություն. այն կօգտագործվի գլխավոր էջում Ձեր նյութի հրապարակման ժամանակ
+475,hy.stories.form.hint.locale,Select the language of your story. Allows users to filter stories by a language.,"Ընտրեք Ձեր նյութի լեզուն, որպեսզի օգտատերերը կարողանան զտել նյութերը ըստ լեզուների"
+476,hy.stories.form.hint.categories,Select the category(s) your story belongs to.  Allows users to filter stories by a category.,"Նշեք, թե Ձեր նյութը որ դասակարգմանը (դասակարգումներին) է պատկանում, որպեսզի օգտատերերը կարողանան զտել նյութերն ըստ դասակարգումների."
+477,hy.stories.form.hint.tag_list,"Enter text to find existing tags.  If your tag does not exist yet, press 'Enter' to add the new tag to the list.","Մուտքագրեք՝ գոյություն ունեցող պիտակները (tag) գտնելու համար. եթե նրանք գոյություն չունեն, ապա սեղմեք  'Enter' նոր պիտակ ավելացնելու համար:"
+478,hy.stories.form.hint.story_type,Select the type of your story.,Ընտրել նյութի տեսակը
+479,hy.stories.form.hint.theme,Select the theme(s) your story belongs to.,Ընտրել նյութի թեմաները
+480,hy.stories.form.hint.in_theme_slider,"If checked, this story will appear in the slider at the top of the theme page.",Նշելու դեպքում նյութը կհայտնվի թեմայի էջի վերևի շարքում
+481,hy.stories.collaborators.title,Collaborators for '%{title}','%{title}' նյութի համագործակցողները
+482,hy.stories.collaborators.owner_header,Story Author,Նյութի հեղինակ
+483,hy.stories.collaborators.collaborators_header,Story Collaborators,Նյութի համագործակցող
+484,hy.stories.collaborators.explanation,A story collaborator is someone that has access to edit this story.,Նյութի համագործակցողը կարող է խմբագրել այս նյութը.
+485,hy.stories.collaborators.editors_header,Editors,Խմբագիրներ
+486,hy.stories.collaborators.editor_explanation,An Editor has access to add/edit the story and translate the story into any language. An Editor can also add collaborators and publish the story.,Խմբագիրն իրավունք ունի ավելացնել/խմբագրել նյութը և թարգմանել այն: Խմբգաիրը կարող է նաև ավելացնել համագործակցողների և հրապարակել նյութը:
+487,hy.stories.collaborators.translators_header,Translators,Թարգմանիչներ
+488,hy.stories.collaborators.translator_explanation,"A Translator has access to translate the story into a specific language(s). A Translator does not have the ability to edit the original story, add collaborators or publish the story.","Թարգմանիչը ունի նյութը որոշակի լեզվով /լեզուներով թարգմանելու իրավունք. Թարգմանիչը իրավունք չունի խմբագրել տեքստը, ավելացնել համագործակցողների կամ հրապարակել"
+489,hy.stories.collaborators.remove_title,Remove %{name},Հեռացնել %{name} օգտատիրոջը
+490,hy.stories.collaborators.not_accepted_title,%{name} has not accepted the invitation yet,%{name} օգտատերը դեռ չի ընդունել Ձեր հրավերը
+491,hy.stories.collaborators.add_header,Add Collaborators,Ավելացնել համագործակցողների
+492,hy.stories.collaborators.add_explanation,"For the users you enter below, an email will be sent inviting them to be a collaborator on this story.",Ստորև մուտքագրված օգտատերերին կուղարկվի ծանուցում համագործակցության հրավերի մասին
+493,hy.stories.collaborators.editor_label,Enter the names or email addresses of the editors,Մուտքագրել խմբագիրների անունները կամ էլեկտրոնային հասցեները
+494,hy.stories.collaborators.language_label,Select the translation language(s),Ընտրել թարգմանության լեզու(ներ)
+495,hy.stories.collaborators.translator_label,Enter the name or email address of the translator,Մուտքագրել թարգմանչի անունը կամ էլեկտրոնային հասցեն
+496,hy.stories.collaborators.translator_add,Add Another Translator,Ավելացնել մեկ այլ թարգմանչի
+497,hy.stories.collaborators.translator_remove,Remove Translator,Հեռացնել թարգմանչին
+498,hy.stories.collaborators.message,Add Message to Notification (optional),Ծանուցմանը կցել նամակ (ընտրովի)
+499,hy.stories.collaborators.submit,Send Collaboration Invitation,Ուղարկել համագործակցության հրավեր
+500,hy.stories.media.form_title,Full-Screen Media Slideshow Form,Ողջ էկրանով մեդիա սլայդշոույի ձև
+501,hy.stories.media.left,Left,Ձախ
+502,hy.stories.media.center,Center,Կենտրոն
+503,hy.stories.media.right,Right,Աջ
+504,hy.stories.media.image,Image,Նկար
+505,hy.stories.media.video,Video,Վիդեո
+506,hy.stories.media.floating,Floating,Լողացող
+507,hy.stories.media.fixed,Fixed,Ֆիքսված
+508,hy.stories.media.placeholder.title,Media title,Մեդիայի վերնագիրը
+509,hy.stories.media.placeholder.caption,Caption text,Ենթագրերի տեքստը
+510,hy.stories.media.placeholder.source,Source of the image/video,Նկարի/վիդեոյի աղբյուրը
+511,hy.stories.media.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Սույն տեքստը կերևա միայն ձախ կողային վահանակի վրա, այն չի ներառվի նյութի մեջ"
+512,hy.stories.media.hint.media_type,"For videos, an image is necessary because videos are not loaded on mobile devices.","Վիդեոների համաև անհրաժեշտ է պատկեր, քանի որ նրանք չեն բեռնվելու բջջային սարքերի վրա"
+513,hy.stories.media.hint.caption,"Caption text will appear on top of the image/video. If this is the first item in the story, the caption text is hidden.","Ենթագրերի տեքստը կերևա նկարի/վիդեոյի վերևի հատվածում. եթե վերջինս առաջինն օբյեկտն է, ապա ենթագրերը չեն երևա"
+514,hy.stories.media.hint.source,"Source of the image/video, appears in the bottom-right corner",Նկարի/վիդեոյի աղբյուրը կերևա ներքևի աջ անկյունում
+515,hy.stories.media.hint.image,Only jpg format allowed; 4MB file size limit,"Ընդունվում է միայն .jpg ֆայլեր, առավելագույն ծավալը՝ 4MB"
+516,hy.stories.media.hint.video,"Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receive a notification when the processing is complete, typically within a few minutes.","Ընդունելի են միայն mp4, mov, webm, ogv, flv, avi և wmv Ֆորմատները; Առավելագույն ծավալը՝ 25MB. Վերբեռնումից հետո, վիդեոները պետք է անցնեն մշակում, որից հետո միայն կդառնան տեսանելի. Մշակման ավարտին պես (սովորաբար մի քանի րոպեների ընթացքում) Դուք կծանուցվեք:"
+517,hy.stories.media.hint.caption_align,The Caption text will appear on top of the image/video (appears on the left by default) ,"Ենթագրերի տեքստը կհայտնվի պատկերի/վիդեոյի վերևի հատվածում (ձախ մասում, եթե այլ հրահանգ չկա)"
+518,hy.stories.media.hint.infobox_type,The Caption text can float on top of the image/video or can be fixed at the bottom of the image/video,"Ենթագրերի տեքստը կարող է «լողալ» նկարի/վիդեոյի վերևի հատվածում, կամ լինել ֆիքսված ներքևում"
+519,hy.stories.media.hint.video_loop,"If checked, the video will loop infinitly, otherwise the video will not loop",Նշելու դեպքում վիդեոն անընդհատ կվերախաղաղարկվի (այլ պարագայում այն չի վերախաղարկվի)
+520,hy.stories.section.form_title,Section Form,Բաժնի ձև
+521,hy.stories.section.yes,Yes,Այո
+522,hy.stories.section.no,No,Ոչ
+523,hy.stories.section.placeholder.title,Section title,Բաժնի վերնագիր
+524,hy.stories.section.hint.title,"This text appears in the left sidebar and, if Navigation Shortcut is selected, will appear as the title text for the shortcut","Սույն տեքստը կերևա միայն աջ կողային վահանակի վրա, այն չի ներառվի նյութի մեջ, և եթե նշված է նավիգացիոն դյուրանցումը, ապա այն կցուցադրվի վերջինիս վերնագիր:"
+525,hy.stories.section.hint.type,Selecting this type determines what kind of information you can add into this section,"Նշելու դեպքում, այն կսահմանի բաժնին ավելացվելիք տեղեկության տեսակը"
+526,hy.stories.section.hint.has_marker,"If checked, there will be a navigation shortcut link to go to this section","Նշելու դեպքում, կլինի նավիգացիոն դյուրանցման հղում սույն բաժին գալու համար"
+527,hy.stories.section.hint.audio,Background audio to play while this section is in view (mp3 format only; 10mb file size limit),"Ֆոնային աուդիո բաժնի դիտման ժամանակ հնչելու համար (միայն mp3, առավելագույն ծավալ 10mb)"
+528,hy.stories.section.hint.delete_audio,"If checked, the Audio Track will be deleted",Ընտրելու դեպքում սույն աուդիոֆայլը կջնջվի
+529,hy.stories.content.form_title,Text Form,Տեքստի ձև
+530,hy.stories.content.placeholder.title,Text title,Տեքստի վերնագիրը
+531,hy.stories.content.placeholder.caption,optional,ընտրովի
+532,hy.stories.content.placeholder.sub_caption,optional,ընտրովի
+533,hy.stories.content.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Սույն տեքստը կերևա միայն աջ կողային վահանակի վրա, այն չի ներառվի նյութի մեջ"
+534,hy.stories.content.hint.caption,Heading of text will appear at the top of the section,Վերնագիրը կհայտնվի բաժնի վերևի հատվածում
+535,hy.stories.content.hint.sub_caption,Subheading of text will appear below the Heading,Ենթավերնագիրը կհայտնի վերնագրի անմիջապես ներքևում
+536,hy.stories.content.hint.content,"Text can include html, css styling and images","Տեքստը կարող է ներառել html, css styling և նկարներ"
+537,hy.stories.reviewer_key.title,Private URL,Մասնավոր URL
+538,hy.stories.reviewer_key.desc,"You can copy and share the following URL with whomever you want to review '%{title}' before it is published. These people will have the ability to read your story, but not edit it.","Հետևյալ URL-ի միջոցով Դուք ստուգել/գրախոսելու նպատակով կարող եք կիսվել '%{title}' նյութով ցանկացած մարդու հետ մինչև հրապարակումը. նրանք կկարողանան միայն կարդալ Ձեր նյութը, սակայն չեն կարողանա խմբագրել այն"
+539,hy.stories.slideshow.form_title,Image Slideshow Form,Նկարների սլայդշոուի ձև
+540,hy.stories.slideshow.add_image,Add Image,Ավելացնել նկար
+541,hy.stories.slideshow.placeholder.title,Slideshow Title,Սլայդշոուի վերնագիր
+542,hy.stories.slideshow.placeholder.caption,optional,ընտրովի
+543,hy.stories.slideshow.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Սույն տեքստը կերևա միայն աջ կողային վահանակի վրա, այն չի ներառվի նյութի մեջ"
+544,hy.stories.slideshow.hint.caption,Heading will appear at the top of the slideshow,Վերնագիրը կերևա սլայդշոուի վերևում
+545,hy.stories.asset_fields.remove_image,Remove,Հեռացնել
+546,hy.stories.asset_fields.placeholder.caption,optional,ընտրովի
+547,hy.stories.asset_fields.placeholder.source,optional,ընտրովի
+548,hy.stories.asset_fields.hint.caption,Image Description will appear below the image,Նկարի նկարագրությունը կերևա նկարի ներքևում
+549,hy.stories.asset_fields.hint.source,Source will appear below the Image Description,Նկարի աղբյուրը կերևա նկարի ներքևում
+550,hy.stories.asset_fields.hint.asset,Only jpg and png format allowed; 4MB file size limit,"Թույլատրվում է միայն jpg և png, առավելագույն ծավալը 4MB"
+551,hy.stories.asset_fields.label.caption,Image Description,Նկարի նկարագրություն
+552,hy.stories.asset_fields.label.source,Image Source,Լուսանկարի աղբյուր
+553,hy.stories.embed_media.form_title,Embed Online Media Form,Ներդրվող մեդիայի ձև
+554,hy.stories.embed_media.get_media,Get Online Media,Բերել առցանց մեդիա
+555,hy.stories.embed_media.preview,Preview of Online Media,Առցանց մեդիայի նախադիտում
+556,hy.stories.embed_media.error,The URL could not be processed. Please try again.,URL  մշակումը չիրականացավ.խնդրում ենք կրկին փորձել
+557,hy.stories.embed_media.placeholder.title,Embed Online Media Title,Ներդրվող մեդիայի վերնագիր
+558,hy.stories.embed_media.placeholder.url,Url to online media,Առցանց մեդիայի URL
+559,hy.stories.embed_media.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Սույն տեքստը կերևա միայն աջ կողային վահանակի վրա, այն չի ներառվի նյութի մեջ"
+560,hy.stories.embed_media.hint.url,"The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED","Ներդրված բովանդակության համար կարող են օգտագործել հետևյալ կայքերը. Աուդիո՝ Soundcloud, Spotify; Վիդեո՝ YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
+561,hy.stories.youtube.form_title,YouTube Video Form,YouTube-ի վիդեոների ձև
+562,hy.stories.youtube.get_media,Get Youtube Video,Բերել վիդեոն Youtube-ից
+563,hy.stories.youtube.preview,Preview of YouTube Video,YouTube-ի վիդեոյի նախադիտում
+564,hy.stories.youtube.error,The URL could not be processed. Please try again.,Հղման մշակումը չիրականացավ. խնդրում ենք կրկին փորձել:
+565,hy.stories.youtube.placeholder.title,YouTube Title,Վերնագիրը YouTube-ում
+566,hy.stories.youtube.placeholder.url,Url to YouTube video,YouTube-ի վիդեոյի URL-ը
+567,hy.stories.youtube.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Սույն տեքստը կերևա միայն աջ կողային վահանակի վրա, այն չի ներառվի նյութի մեջ"
+568,hy.stories.youtube.hint.url,Copy a YouTube URL and paste it here,Պատճենե՛ք և տեղադրեք YouTube-ի հղումը
+569,hy.stories.youtube.hint.fullscreen,"If checked, the video will take up the entire screen",Նշելու դեպքում վիդեոն կցուցադրվի ողջ էկրանով
+570,hy.stories.youtube.hint.loop,"If checked, the video will loop over and over",Նշելու դեպքում վիդեոն անընդհատ կխաղաղարկվի
+571,hy.stories.youtube.hint.info,"If checked, the title bar will be shown on top of the video",Նշելու դեպքում վերնագիրը կցուցադրվի վիդեոյի վերևի հատվածում
+572,hy.stories.youtube.hint.cc,"If checked, the video subtitles will be shown by default",Նշելու դեպքում ենթագրերը կցուցադրվեն ինքնըստինքյան
+573,hy.stories.youtube.hint.menu_lang,Language of the YouTube menu/controls,YouTube-ի մենյույի/կարգավորումների լեզուն
+574,hy.stories.youtube.hint.cc_lang,Language of the subtitles to show by default,Ենթագրերի հիմնական լեզուն 
+575,hy.storyteller.byline,By,Կողմից
+576,hy.storyteller.byline_media,Photos and videos by ,Ֆոտոների և վիդեոների հեղինակ 
+577,hy.storyteller.byline_translator,Translated by ,Թարգմանությունը
+578,hy.storyteller.source,Source:,Աղբյուր:
+579,hy.storyteller.by,by,կողմից
+580,hy.storyteller.related_stories,Related Stories,Related Stories
+581,hy.storyteller.view_all_stories_in,View all stories in,View all stories in
+582,hy.settings.index.title,Settings,Կարգավորումներ
+583,hy.settings.index.facebook_avatar,This is your avatar from Facebook.,Սա Ձեր Facebook-ի ավաթարն է
+584,hy.settings.index.use_facebook_avatar,Use Facebook Avatar,Օգտագործել Facebook-ի ավաթարը
+585,hy.settings.index.hint.about,Short summary about yourself.  This will be shown with the stories that you publish.,Համառոտ Ձեր մասին. այն կերևա Ձեր նյութերի հետ
+586,hy.settings.index.hint.default_story_locale,Select the language you want to use by default when creating a new story.,Ընտրել նյութերի ստեղծման Ձեր հիմնական լեզուն
+587,hy.settings.index.submit,Save Settings,Պահպանել կարգավորումները
+588,hy.settings.invitations.title,Collaboration Invitations,Համագործակցության հրավերներ
+589,hy.settings.invitations.no_invitations,At this time you have no invitations waiting for you.,Ներկա պահին Դուք հրավերներ չունեք
+590,hy.settings.invitations.accept_link,Accept,Ընդունել
+591,hy.settings.invitations.decline_link,Decline,Մերժել
+592,hy.settings.invitations.header_date,Date Sent,Ուղարկված ամսաթիվը
+593,hy.settings.invitations.header_story,Story Title,Նյութի վերնագիրը 
+594,hy.settings.invitations.header_role,Role,Դերը
+595,hy.settings.invitations.header_from,Sent By,Ուղարկված է
+596,hy.settings.notifications.title,Notifications,Ծանուցումներ
+597,hy.settings.notifications.explain,You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.,You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.
+598,hy.settings.notifications.all_sub_title,All Notifications,Բոլոր ծանուցումները 
+599,hy.settings.notifications.all_label,Do you want to recieve any notifications from Chai Khana?,Ցանկանում եք Չայխանայից ծանուցումներ ստանալ? 
+600,hy.settings.notifications.all_no,"No, do not send me any notifications.","Ոչ, մի ուղարկեք ինձ ծանուցումներ."
+601,hy.settings.notifications.all_yes,"Yes, I want notifications sent to me.","Այո, ես ցանկանում եմ ստանալ ծանուցումներ."
+602,hy.settings.notifications.story_comment_sub_title,New Story Comment Notifications,Նյութի նոր մեկնաբանությունների մասին ծանուցումներ
+603,hy.settings.notifications.story_comment_label,Do you want to recieve notifications when a comment is made to one of your stories?,"Ցանկանո՞ւմ եք ստանալ ծանուցումներ, երբ Ձեր նյութի վերաբերյալ լինեն մեկնաբանություններ"
+604,hy.settings.notifications.story_comment_no,"No, do not send me any notifications.","Ոչ, մի ուղարկեք ինձ ծանուցումներ."
+605,hy.settings.notifications.story_comment_yes,"Yes, I want notifications sent to me.","Այո, ես ցանկանում եմ ստանալ ծանուցումներ."
+606,hy.settings.notifications.new_themes_sub_title,New Theme Notifications,New Theme Notifications
+607,hy.settings.notifications.new_themes_all,Notify me when any theme is added.,Notify me when any theme is added.
+608,hy.settings.notifications.new_themes_none,I do not want to receive notifications when a new theme is added.,I do not want to receive notifications when a new theme is added.
+609,hy.settings.notifications.new_stories_by_category,Notify me when a story is added to:,"Ծանուցե՛ք ինձ, երբ նյութ ավելացվի այստեղ:"
+610,hy.settings.notifications.language_sub_title,Notification Language,Ծանուցումների լեզուն
+611,hy.settings.notifications.language_label,In what language do you want to receive the notifications?,Ո՞ր լեզվով եք ցանկանում ստանալ ծանուցումները
+612,hy.settings.notifications.following_sub_title,Chai Khana Users You Are Following,"Չայխանայի օգտագերերը, որոնց դուք հետևում եք"
+613,hy.settings.notifications.following_label,"You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image.","Դուք կստանաք ծանուցում, հենց որ Ձեր հետևած օգտագերը նյութ կհրապարակի. Որպեսզի չստանաք ծանուցում որևէ օգտագիրոջ վերաբերյալ, խնդրում ենք չեղարկեք նրան հետևելը՝ սեղմելով նրա պատկերին;"
+614,hy.settings.notifications.following_not,"At this time, you are not following any users.",Ներկա պահին Դուք ոչ ոքի չեք հետևում
+615,hy.settings.notifications.following_title1,Click to unfollow '%{name}',"Սեղմեք, որպեսզի դադարեցնեք հետևելը '%{nickname}' օգտատիրոջը"
+616,hy.settings.notifications.following_title2,Click to follow '%{name}',"Սեղմել, որ հետևեք '%{nickname}' օգտատիրոջը"
+617,hy.settings.notifications.submit,Save Settings,Պահպանել կարգավորումները
+618,hy.imageuploader.missing,An error occurred while processing your image. Please try again.,Ձեր նկարի մշակման ժամանակ տեղի է ունեցել սխալ. խնդրում ենք կրկին փորձել
+619,hy.imageuploader.invalid_type,Invalid file type. Only .jpg or .png is allowed.,Անընդունելի ֆայլի տեսակ. թույլատրվում է միայն .jpg և .png
+620,hy.imageuploader.size_limit,Image file size is limited to 4MB,Նկարների առավելագույն ծավալը 4MB
+621,hy.devise.mailer.reset_password_instructions.title,Hello %{nickname}!,Ողջո՛ւյն %{nickname}
+622,hy.devise.mailer.reset_password_instructions.p1,"Someone has requested a link to change your password on Chai Khana, and you can do this through the link below.",Ձեր Չայխանայի գաղտնաբառի փոփոխման համար պահանջվել է հղում. Դուք կարող եք փոխել գաղտնաբառը՝ հղմանը հետևելով
+623,hy.devise.mailer.reset_password_instructions.link_title,Change my password,Փոխել գաղտնաբառը
+624,hy.devise.mailer.reset_password_instructions.p2,"If you didn't request this, please ignore this email.","Եթե Դուք սա չեք պահանջել, խնդրում ենք անտեսել"
+625,hy.devise.mailer.reset_password_instructions.p3,Your password won't change until you access the link above and create a new one.,"Ձեր  գաղնտաբառը չի փոխվի, մինչև Դուք չգնաք հետևյալ հղմամբ և չստեղծեք նորը"
