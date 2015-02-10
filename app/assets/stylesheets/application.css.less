@@ -1035,16 +1035,68 @@ i.v{visibility:visible;}
   {
     font-family: 'dejavusans', Sylfaen;
     font-size:15px; 
-    color:#585656; 
+    color:#585858; 
     text-align:center;
     height: 100%;
     display: table;
     margin: 0px auto;
+    &:lang(en)
+    {
+      font-family: 'opensans', 'sans-serif';
+    }
     >div 
     {      
       display: table-cell;
       vertical-align:middle;
       padding:0px 6px;
+      &:hover
+      {
+        cursor:pointer;
+      }
+    }
+    a
+    {
+      font-family: 'dejavusans', Sylfaen;
+      font-size:15px; 
+      color:#585858; 
+      &:lang(en)
+      {
+        font-family: 'opensans', 'sans-serif';
+      }
+      &:hover
+      {
+        cursor:pointer;
+      }
     }    
+  }
+}
+
+
+.tip
+{
+  position:absolute;
+  display:none;
+  .content
+  {
+    font-family: 'dejavusans', Sylfaen;
+    font-size:13px; 
+    color:#585858; 
+    background-color:#323232;
+    padding: 6px 10px;    
+    max-width: 400px;
+    line-height: 18px;
+    &:lang(en)
+    {
+      font-family: 'opensans', 'sans-serif';
+    }
+  }
+  .pointer
+  {
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #323232;
+    margin: 0px auto;
   }
 }

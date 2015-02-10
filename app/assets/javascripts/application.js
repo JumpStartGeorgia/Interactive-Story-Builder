@@ -217,6 +217,19 @@ if(dev)
     }
   });
 }
+
+// tip
+ $(document).on('mouseenter','[data-tip]', function(){
+  var tip = $('.tip');
+  var t = $(this);
+    var content = tip.find('.content').html(t.attr('data-tip'));
+    var h = tip.height();
+    var w = tip.width();
+    tip.css({'top':t.offset().top - h + 20,'left':t.offset().left-w/2+t.width()/2 }).show();
+  });
+  $(document).on('mouseleave','[data-tip]', function(){
+    $('.tip').hide();
+  }); 
 //---------------------------------------------dev stuff end-------------------------------------------------
 
 });

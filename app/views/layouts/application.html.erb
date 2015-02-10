@@ -61,12 +61,12 @@
         <div class="center">
           <div><%= link_to t('helpers.links.about'), about_path %></div>
           <div>|</div>
-          <div>&copy; Copyright</div>
+          <div class='copy' data-tip="<%= t('.copyright_text') %>">&copy; <%= t('.copyright') %></div>
           <div>|</div>
-          <div>Disclaimer</div>
+           <div data-tip="<%= t('.disclaimer_text') %>"><%= t('.disclaimer') %></div>
         </div>
-
     </div>
+    <div class="tip"><div class="content"></div><div class="pointer"></div></div>
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
