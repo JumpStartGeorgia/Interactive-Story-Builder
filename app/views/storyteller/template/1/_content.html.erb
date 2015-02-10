@@ -651,7 +651,7 @@
             fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight);
             d3.select(".video-sequence:first-child").style("margin-top", fixTop + "px");
              //containerFixed.style("height", fixHeight + "px")
-            containerFixed.style("height", fixHeight+ "px").filter(function(d) { //fixHeight 
+            containerFixed.style("height", innerHeight+ "px").filter(function(d) { //fixHeight 
               var rect = this.parentNode.getBoundingClientRect();
               return d.first ? rect.top < fixTop
                   : d.last ? rect.bottom >= fixTop + fixHeight
