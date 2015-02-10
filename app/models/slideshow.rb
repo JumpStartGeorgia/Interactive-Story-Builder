@@ -1,7 +1,7 @@
 class Slideshow < ActiveRecord::Base
   include TranslationOverride
 
-  translates :title, :caption
+  translates :title, :caption, :description
 
 	belongs_to :section	  	
 	# has_many :assets,     

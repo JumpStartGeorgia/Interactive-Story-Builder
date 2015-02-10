@@ -14,13 +14,14 @@
    <%= tinymce :alternate, uploadimage_form_url: imageuploader_path(id:params[:id]), uploadimage_default_img_class: "image" %>
 <% end %>
 <% isTO = @trans && original # if mode is translate and screen is original(first) %>
+<% form_class = @trans == true && original == false ? 'form-translation' : '' %>
 
 
 <h2 class="form-title">
   <span class="glyphicon <%= Section::ICONS[:content] %>"></span>
   <span class="form-title-text"><%= t('.form_title') %></span>
 </h2>
-<%= semantic_form_for(@item, url: content_story_path(id:params[:id]), remote: true, html: { :id => 'contentForm'}) do |f| %>
+<%= semantic_form_for(@item, url: content_story_path(id:params[:id]), remote: true, html: { :id => 'contentForm', :class => "#{form_class}"}) do |f| %>
   <%= f.inputs do %>
     <% 
       trans_record = @item.content_translations.select{|x| x.locale == @item.current_locale}.first

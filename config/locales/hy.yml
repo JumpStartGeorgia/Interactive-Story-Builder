@@ -85,9 +85,10 @@ hy:
         source: "Աղբյուր"
         image: "Նկար"
         video: "Վիդեո"
-      slideshow:
+      slideshow_translation:
         title: "Վերնագիր"
         caption: "Անվանում"
+        description: "Նկարագրություն"
       message:
         name: Name
         email: Email Address
@@ -499,6 +500,11 @@ hy:
       hintText: "Փնտրեք առկա օգտատիրոջ, կամ մուտքագրեք էլեկտրոնային հասցե նոր օգտատիրոջ համար"
       noResultsText: "Համընկնումներ չեն հայտնաբերվել, սեղմեք 'Enter' որպեսզի ավելացնեք այս էլեկտրոնային հասցեն հրավիրված համագործակցողների ցուցակին"
   layouts:
+    application:
+      copyright: Copyright
+      copyright_text: Copyright of these reports belongs to the Chai-Khana NGO. Any republishing of materials is not allowed without the prior consent of Chai-Khana.
+      disclaimer: Disclaimer
+      disclaimer_text: "This publication has been produced with the assistance of MYMEDIA, a DANIDA funded project. The content of this publication is the sole responsibility of the author/contractor/implementing partner/international organisation and can in no way be taken to reflect the official opinion of MYMEDIA / DANIDA. "
     unsupported_browser:
       title: "Չսատարվող բրաուզեր"
       video: "Ձեր բրաուզերը չի սատարում այս վիդեոն"
@@ -652,6 +658,7 @@ hy:
       hint:
         title: "Սույն տեքստը կերևա միայն աջ կողային վահանակի վրա, այն չի ներառվի նյութի մեջ"
         caption: "Վերնագիրը կերևա սլայդշոուի վերևում"
+        description: The description will appear below the slideshow
     asset_fields:
       remove_image: "Հեռացնել"
       placeholder:
