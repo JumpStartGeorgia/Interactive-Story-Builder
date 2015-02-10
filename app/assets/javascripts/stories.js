@@ -619,6 +619,14 @@ $(document).ready(function() {
 
   story_tree = $('.story-tree');
 
+
+  // $(document).on('mouseenter','.story-page2 input[type=text]', function(){
+  //   console.log('over');
+  // });
+  // $(document).on('mouseleave','.story-page2 input[type=text]', function(){
+  //   console.log('out over');
+  // });
+
 });
 
 function show_story_permalink(d){
