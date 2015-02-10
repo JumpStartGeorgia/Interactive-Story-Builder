@@ -4,18 +4,18 @@
 <% tinyClass = "tinyEditor" %>
 <% if @trans %>
   <% if original %>
-    <% tinymce readonly:1 %>      
+    <%= tinymce readonly:1 %>      
     <% readonly = { readonly:true , disabled: true } %>
   <% else %>
-    <% tinymce editor_selector: 'tinyEditor2' %>
+    <%= tinymce editor_selector: 'tinyEditor2' %>
     <% tinyClass = "tinyEditor2" %>   
   <% end %>
 <% elsif params[:action] == 'new' || params[:action] == 'create' %>
   <% content_for(:js) { %>
-    <% tinymce %>
+    <%= tinymce %>
   <% } %>
 <% else %>
-    <% tinymce %>
+    <%= tinymce %>
 <% end %>
 <% isTO = @trans && original # if mode is translate and screen is original(first) %>
 <% form_class = @trans == true && original == false ? 'form-translation' : '' %>

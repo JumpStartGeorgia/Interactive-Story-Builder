@@ -626,7 +626,7 @@ $(document).ready(function() {
   //   console.log('over');
   // });
   // $(document).on('mouseleave','.story-page2 input[type=text]', function(){
-  //   $('.copy-paste').fadeOut(3000);
+  //   $('.copy-paste').fadeOut(5000);
   //   console.log('out over');
   // });
 
