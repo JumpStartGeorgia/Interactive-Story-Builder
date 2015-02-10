@@ -499,6 +499,11 @@ ru:
       hintText: "Поиск для существующего пользователя или введите адрес электронной почты для нового пользователя"
       noResultsText: Совпадений не найдено. Нажмите "Enter", чтобы добавить этот адрес электронной почты в список приглашенных сотрудников.
   layouts:
+    application:
+      copyright: Copyright
+      copyright_text: Copyright of these reports belongs to the Chai-Khana NGO. Any republishing of materials is not allowed without the prior consent of Chai-Khana.
+      disclaimer: Disclaimer
+      disclaimer_text: "This publication has been produced with the assistance of MYMEDIA, a DANIDA funded project. The content of this publication is the sole responsibility of the author/contractor/implementing partner/international organisation and can in no way be taken to reflect the official opinion of MYMEDIA / DANIDA. "
     unsupported_browser:
       title: "Браузер не поддерживается"
       video: "Ваш браузер не поддерживает этого видео."

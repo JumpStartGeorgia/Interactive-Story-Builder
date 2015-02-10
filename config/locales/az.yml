@@ -499,6 +499,11 @@ az:
       hintText: Mövcud olan istifadəçini axtar, və ya yeni istifadəçinin e-poçtunu daxil et.
       noResultsText: Tapılmadı. Bu e-poçtu dəvət edilmiş əməkdaşlar siyahısına daxil etmək üçün "Enter" düyməsinə bas.
   layouts:
+    application:
+      copyright: Copyright
+      copyright_text: Copyright of these reports belongs to the Chai-Khana NGO. Any republishing of materials is not allowed without the prior consent of Chai-Khana.
+      disclaimer: Disclaimer
+      disclaimer_text: "This publication has been produced with the assistance of MYMEDIA, a DANIDA funded project. The content of this publication is the sole responsibility of the author/contractor/implementing partner/international organisation and can in no way be taken to reflect the official opinion of MYMEDIA / DANIDA. "
     unsupported_browser:
       title: Dəstəklənməyən brauzer
       video: Sizin brauzeriniz bu videonu dəstəkləmir.
