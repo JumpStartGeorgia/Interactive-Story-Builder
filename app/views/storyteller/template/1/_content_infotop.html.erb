@@ -40,5 +40,8 @@
      @story.current_locale = cur_locale
    %>
    <a href="#" class="navigation-volume"></a>
- </div>
+  </div>
+  <% if @story.story_type_id != 1 && @story.about.present? %>
+    <div class='descr'><%= strip_tags_nbsp(@story.about).html_safe %></div>
+  <% end %>
 </div>
