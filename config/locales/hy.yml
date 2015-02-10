@@ -519,6 +519,7 @@ hy:
     storybuilder:
       source: Source
       target: Target
+      copy_paste: Copy from source      
   shared:
     grid:
       no_stories: "Օ ոչ՛ ... նյութեր չգտնվեցին"

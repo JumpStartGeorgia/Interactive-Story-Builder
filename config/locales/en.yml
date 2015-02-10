@@ -519,6 +519,7 @@ en:
     storybuilder:
       source: Source
       target: Target
+      copy_paste: Copy from source
   shared:
     grid:
       no_stories: Oh no - no stories could be found!

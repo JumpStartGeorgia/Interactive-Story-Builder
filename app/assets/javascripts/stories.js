@@ -619,16 +619,23 @@ $(document).ready(function() {
 
   story_tree = $('.story-tree');
 
-
-  // $(document).on('mouseenter','.story-page2 input[type=text]', function(){
-  //   $('.copy-paste').css({'top':$(this).offset().top + 16,'left':$(this).offset().left-32 }).show();
-
-  //   console.log('over');
-  // });
-  // $(document).on('mouseleave','.story-page2 input[type=text]', function(){
-  //   $('.copy-paste').fadeOut(5000);
-  //   console.log('out over');
-  // });
+// copy paste for translation form fields
+  $(document).on('mouseenter','.story-page2 input[type=text]', function(){
+    var id = $(this).closest('.form-group').attr('id');
+    $('.copy-paste').stop().css({'top':$(this).offset().top + 14,'left':$(this).offset().left-22 }).attr('data-id',id).fadeIn(500);
+  });
+  $(document).on('mouseleave','.story-page2 input[type=text]', function(){
+    $('.copy-paste').fadeOut(5000);
+  });
+  $('.copy-paste').click(function(){
+    var id = $(this).attr('data-id');
+    var from = $('.story-page1 #' + id + ' input');
+    var to = $('.story-page2 #' + id + ' input');
+    if(from.length && from.val() != "")
+    {
+      to.val(from.val());
+    }
+  });
 
 });
 

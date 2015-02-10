@@ -519,6 +519,7 @@ az:
     storybuilder:
       source: Source
       target: Target
+      copy_paste: Copy from source      
   shared:
     grid:
       no_stories: Təəssüf ki, heç bir hekayə tapılmadı!

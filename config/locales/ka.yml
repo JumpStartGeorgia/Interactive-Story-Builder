@@ -519,6 +519,7 @@ ka:
     storybuilder:
       source: Source
       target: Target
+      copy_paste: Copy from source      
   shared:
     grid:
       no_stories: "სამწუხაროდ არ მოიძებნა არცერთი ამბავი!"
