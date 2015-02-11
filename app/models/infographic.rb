@@ -36,6 +36,19 @@ class Infographic < ActiveRecord::Base
   # create model variable @asset to store the asset record for later use without having to call the db again
   @image = nil
   @dataset_file = nil
+  @datasources = nil
+
+  def datasources
+    if @datasources.present?
+      return @datasources
+    else
+      x = with_translation(self.current_locale, false)
+      if x.present?
+        @datasources = x.infographic_datasources
+        return @datasources
+      end
+    end
+  end
 
   def image
     if @image.present?
