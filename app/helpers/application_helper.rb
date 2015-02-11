@@ -38,7 +38,7 @@ module ApplicationHelper
 	end
   
  def link_to_remove_fields(name, f)
-    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)", :class=>"btn btn-small btn-danger")
+    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)", :class=>"btn btn-sm btn-danger")
   end
   
   def link_to_add_fields(name, f, association)
@@ -48,7 +48,7 @@ module ApplicationHelper
       render(association.to_s.singularize + "_fields", :f => builder)
     end
     fields << '</div>'
-    link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", :class=>"btn btn-small btn-success")
+    link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", :class=>"btn btn-sm btn-success")
   end
 
 	# put the default locale first and then sort the remaining locales

@@ -84,7 +84,7 @@
                 </div>
 
                 <% if image_asset_record.asset_clone_id.blank? && image_asset_record.file.exists? %>
-                  <a class='btn btn-default preview <%= asset_class %>' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url}" %>'><%= t('app.buttons.preview_image') %></a>
+                  <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url(:mobile_640)}" %>'><%= t('app.buttons.preview_image') %></a>
                 <% end %>  
 
                 <div id="item-image-asset-clone">
@@ -101,13 +101,13 @@
                 </div>
               <% else %>
                 <% if image_asset_record.file.exists? %>
-                  <a class='btn btn-default preview <%= asset_class %>' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url}" %>'><%= t('app.buttons.preview_image') %></a>
+                  <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url(:mobile_640)}" %>'><%= t('app.buttons.preview_image') %></a>
                 <% end %>  
                 <%= f_image_asset.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:".jpeg,.jpg,.png" }, label: false  %> 
               <% end %>
             <% else %>
               <div style="height: 35px;">&nbsp;</div>
-              <a class='btn btn-default preview <%= asset_class %>' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url}" %>'><%= t('app.buttons.preview_image') %></a>
+              <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url(:mobile_640)}" %>'><%= t('app.buttons.preview_image') %></a>
             <% end %>    
           </div>
         <% end %> 
@@ -157,7 +157,7 @@
 
                 <div class="js-row">
                   <% if video_asset_record.asset_clone_id.blank? && preview %>
-                    <a class='btn btn-default preview' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ video_asset_record.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
+                    <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ video_asset_record.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
                   <% end %>
                   <div id="item-video-asset-clone">
                     <% 
@@ -174,14 +174,14 @@
                 </div>
               <% else %>
                 <% if video_asset_record.file.exists? && preview %>
-                  <a class='btn btn-default preview' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ video_asset_record.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
+                  <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ video_asset_record.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
                 <% end %>  
                 <%= f_video_asset.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:".mp4,.mov,.webm,.ogv,.flv,.avi,.wmv" }, label: false %>
               <% end %>
             <% else %>
               <% if video_asset_record.file.exists? && preview %>
                 <div style="height: 35px;">&nbsp;</div>
-                <a class='btn btn-default preview' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ video_asset_record.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
+                <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ video_asset_record.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
               <% else %>
                 <div style="height: 66px;">&nbsp;</div>
               <% end %>

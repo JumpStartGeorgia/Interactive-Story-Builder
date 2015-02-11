@@ -112,16 +112,16 @@ ru:
         image: Infographic Image
         dataset_file: Dataset File
         datasources: Data Sources
-      infographic_translations:
+      infographic_translation:
         title: Title
         caption: Heading
         description: Description
         image: Infographic Image
         dataset_file: Dataset File
-        dataset_url: Dataset URL
+        dataset_url: Online Dataset
       infographic_datasource:
         name: Data Source Name
-        ulr: Data Source URL
+        url: Data Source URL
       language:
         locale: "О локали."
         name: "Язык"
@@ -256,6 +256,7 @@ ru:
       pages: "Редактировать текст на сайте"
       next: "Следующий"
       feed: "Лента новостей"
+      download: Download
       story_menu:
         link:
           story: "История"
@@ -733,11 +734,10 @@ ru:
         dataset_url: URL to Dataset
     infographic_datasource_fields:
       placeholder:
-        name: Data Source Name
         url: optional
       hint:
         name: Name of the data source
-        url: URL to the data source
+        url: URL to the online data source
   storyteller:
     byline: Oт
     byline_media: "Фото и видео от"

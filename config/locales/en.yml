@@ -112,16 +112,16 @@ en:
         image: Infographic Image
         dataset_file: Dataset File
         datasources: Data Sources
-      infographic_translations:
+      infographic_translation:
         title: Title
         caption: Heading
         description: Description
         image: Infographic Image
         dataset_file: Dataset File
-        dataset_url: Dataset URL
+        dataset_url: Online Dataset
       infographic_datasource:
         name: Data Source Name
-        ulr: Data Source URL
+        url: Data Source URL
       language:
         locale: Locale
         name: Language Name
@@ -256,6 +256,7 @@ en:
       pages: Edit Text on Site
       next: Next
       feed: Feed
+      download: Download
       story_menu:
         link:
           story: Story
@@ -733,11 +734,10 @@ en:
         dataset_url: URL to Dataset
     infographic_datasource_fields:
       placeholder:
-        name: Data Source Name
         url: optional
       hint:
         name: Name of the data source
-        url: URL to the data source
+        url: URL to the online data source
   storyteller:
     byline: By
     byline_media: "Photos and videos by "

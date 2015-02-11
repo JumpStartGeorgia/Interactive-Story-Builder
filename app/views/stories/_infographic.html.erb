@@ -56,7 +56,7 @@
           <% 
             asset_class = @isTO ? 'original-image-asset' : 'translated-image-asset'
           %>
-          <div id='infographicImageBox'>
+          <div id='infographicImageBox' class="clear">
             <label class=" control-label" for="infographic-image-preview"><%= t('activerecord.attributes.infographic.image') %></label>
             <% if !@isTO %>
               <% if !original %>
@@ -71,7 +71,7 @@
                 </div>
 
                 <% if image_asset_record.asset_clone_id.blank? && image_asset_record.file.exists? %>
-                  <a class='btn btn-default preview <%= asset_class %>' id="infographic-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url}" %>'><%= t('app.buttons.preview_image') %></a>
+                  <a class='btn btn-default preview preview-translated <%= asset_class %>' id="infographic-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url}" %>'><%= t('app.buttons.preview_image') %></a>
                 <% end %>  
 
                 <div id="item-image-asset-clone">
@@ -88,13 +88,13 @@
                 </div>
               <% else %>
                 <% if image_asset_record.file.exists? %>
-                  <a class='btn btn-default preview <%= asset_class %>' id="infographic-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url}" %>'><%= t('app.buttons.preview_image') %></a>
+                  <a class='btn btn-default preview preview-translated <%= asset_class %>' id="infographic-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url}" %>'><%= t('app.buttons.preview_image') %></a>
                 <% end %>  
                 <%= f_image_asset.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "infographicImage", accept:".jpeg,.jpg,.png" }, label: false  %> 
               <% end %>
             <% else %>
               <div style="height: 35px;">&nbsp;</div>
-              <a class='btn btn-default preview <%= asset_class %>' id="infographic-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url}" %>'><%= t('app.buttons.preview_image') %></a>
+              <a class='btn btn-default preview preview-translated <%= asset_class %>' id="infographic-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url}" %>'><%= t('app.buttons.preview_image') %></a>
             <% end %>    
           </div>
         <% end %> 
@@ -120,7 +120,7 @@
             asset_class = @isTO ? 'original-dataset-asset' : 'translated-dataset-asset'
           %>
 
-          <div id='infographicDatasetFileBox'>
+          <div id='infographicDatasetFileBox' class="clear">
             <label class=" control-label" for="infographic-dataset-preview"><%= t('activerecord.attributes.infographic.dataset_file') %></label>
 
             <% if !@isTO %>
@@ -136,8 +136,8 @@
                 </div>
 
                 <div class="js-row">
-                  <% if dataset_asset_record.asset_clone_id.blank? && preview %>
-                    <a class='btn btn-default preview' id="infographic-dataset-preview" data-modalos-id="modalos-preview" data-type="dataset" data-dataset-path='<%= "#{ dataset_asset_record.file.url}" %>'><%= t('app.buttons.preview_dataset') %></a>
+                  <% if dataset_asset_record.asset_clone_id.blank? && dataset_asset_record.file.exists? %>
+                    <a class='btn btn-default preview-translated <%= asset_class %>' id="infographic-dataset-preview" href='<%= "#{ dataset_asset_record.file.url}" %>'><%= t('helpers.links.download') %></a>
                   <% end %>
                   <div id="item-dataset-asset-clone">
                     <% 
@@ -154,14 +154,14 @@
                 </div>
               <% else %>
                 <% if dataset_asset_record.file.exists? %>
-                <a class='btn btn-default preview' id="infographic-dataset-preview" data-modalos-id="modalos-preview" data-type="dataset" data-dataset-path='<%= "#{ dataset_asset_record.file.url}" %>'><%= t('app.buttons.preview_dataset') %></a>
+                  <a class='btn btn-default preview-translated <%= asset_class %>' id="infographic-dataset-preview" href='<%= "#{ dataset_asset_record.file.url}" %>'><%= t('helpers.links.download') %></a>
                 <% end %>  
                 <%= f_dataset_asset.input :asset, :as => :file , hint: t('.hint.dataset_file') , :input_html => { :id => "infographicDataset" }, label: false %>
               <% end %>
             <% else %>
               <% if dataset_asset_record.file.exists? %>
                 <div style="height: 35px;">&nbsp;</div>
-                <a class='btn btn-default preview' id="infographic-dataset-preview" data-modalos-id="modalos-preview" data-type="dataset" data-dataset-path='<%= "#{ dataset_asset_record.file.url}" %>'><%= t('app.buttons.preview_dataset') %></a>
+                <a class='btn btn-default preview-translated <%= asset_class %>' id="infographic-dataset-preview" href='<%= "#{ dataset_asset_record.file.url}" %>'><%= t('helpers.links.download') %></a>
               <% else %>
                 <div style="height: 66px;">&nbsp;</div>
               <% end %>
@@ -193,7 +193,7 @@
               <% trans_record.infographic_datasources.each_with_index do |datasource_record, i| %>  
                  <div class="fields clear">
                     <%= f_translation.fields_for :infographic_datasources, datasource_record do |f_datasource| %>
-                      <%= render :partial => 'infographic_datasource_fields', :locals => {:f => f_datasource, :datasource_record => datasource_record, original: original, orig_datasource_id: orig_datasources[i].id } %>
+                      <%= render :partial => 'infographic_datasource_fields', :locals => {:f => f_datasource} %>
                     <% end %> 
                   </div>
               <% end %> 
@@ -201,7 +201,7 @@
               <% trans_record.infographic_datasources.each_with_index do |datasource_record, i| %>  
                  <div class="fields clear">
                     <%= f_translation.fields_for :infographic_datasources, datasource_record do |f_datasource| %>
-                      <%= render :partial => 'infographic_datasource_fields', :locals => {:f => f_datasource, :datasource_record => datasource_record } %>
+                      <%= render :partial => 'infographic_datasource_fields', :locals => {:f => f_datasource} %>
                     <% end %> 
                   </div>
               <% end %> 
@@ -211,7 +211,7 @@
             <% trans_record.infographic_datasources.each_with_index do |datasource_record, i| %>  
                <div class="fields clear">
                   <%= f_translation.fields_for :infographic_datasources, datasource_record do |f_datasource| %>
-                    <%= render :partial => 'infographic_datasource_fields', :locals => {:f => f_datasource, :datasource_record => datasource_record } %>
+                    <%= render :partial => 'infographic_datasource_fields', :locals => {:f => f_datasource} %>
                   <% end %> 
                 </div>
             <% end %> 
