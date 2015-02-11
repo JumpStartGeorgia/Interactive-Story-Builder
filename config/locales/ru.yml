@@ -523,14 +523,14 @@ ru:
       copy: "Копировать в буфер обмена ..."
       copied: "Скопировано!"
     storybuilder:
-      source: Source
-      target: Target
-      copy_paste: Copy from source      
+      source: Источник
+      target: Цель
+      copy_paste: Скопировать из источника
   shared:
     grid:
       no_stories: "О, нет - истории не могут быть найдены!"
     story_nav_modals:
-      copied: Copied!
+      copied: Скопировано
   admin:
     index:
       title: "Раздел одминистрации"
@@ -658,7 +658,7 @@ ru:
       hint:
         title: "Этот текст появляется только в левой боковой панели, он не будет отображаться в истории"
         caption: "Заголовок появится в верхней части спайдшоу"
-        description: The description will appear below the slideshow
+        description: Описание появится под слайдом
     asset_fields:
       remove_image: "Удалить"
       placeholder:
@@ -727,7 +727,7 @@ ru:
       header_from: "Отправлено от"
     notifications:
       title: "Уведомления"
-      explain: You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.
+      explain: You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.Как только новые материалы будут опубликованы на сайте Chai Khana, вы сможете получать уведомления по электронной почте! Просто подпишитесь на наш сайт.
       all_sub_title: "Все Уведомления"
       all_label: "Вы хотите получить какие-либо уведомления от Чай Хана?"
       all_no: "Нет, не присылайте мне никаких уведомленией"
@@ -736,9 +736,9 @@ ru:
       story_comment_label: "Вы хотите получить уведомление, коментировают одного из ваших рассказов?"
       story_comment_no: "Нет, не присылайте мне уведомления вообще."
       story_comment_yes: "Да, я хочу уведомлений."
-      new_themes_sub_title: New Theme Notifications
-      new_themes_all: Notify me when any theme is added.
-      new_themes_none: I do not want to receive notifications when a new theme is added.
+      new_themes_sub_title: Уведомление о новых темах 
+      new_themes_all: Уведомляйте меня когда будет добавлена новая тема.
+      new_themes_none: Я не хочу получать никаких уведомлений о новых добавленных темах.
       new_stories_by_category: "Сообщите мне, когда добавлена история в "
       language_sub_title: "Язык Уведомленией"
       language_label: "На каком языке вы хотите получать уведомления?"

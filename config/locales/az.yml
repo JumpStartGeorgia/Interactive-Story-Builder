@@ -523,14 +523,14 @@ az:
       copy: Mübadilə Buferinə Köçür...
       copied: Köçürüldü!
     storybuilder:
-      source: Source
-      target: Target
-      copy_paste: Copy from source      
+      source: Mənbə
+      target: Hədəf
+      copy_paste: mənbədən köçürd
   shared:
     grid:
       no_stories: Təəssüf ki, heç bir hekayə tapılmadı!
     story_nav_modals:
-      copied: Copied!
+      copied: Köçürüldü
   admin:
     index:
       title: "İnzibatçılıq Bölməsi"
@@ -658,7 +658,7 @@ az:
       hint:
         title: Bu mətn hekayədə yox, yalnız sol paneldə görünəcək.
         caption: Sərlövhə slayd nümayişinin üstündə görünəcək
-        description: The description will appear below the slideshow
+        description: təsvir slaydın altında yerləşir
     asset_fields:
       remove_image: Sil
       placeholder:
@@ -727,7 +727,7 @@ az:
       header_from: xxx tərəfindən göndərilib
     notifications:
       title: Bildirişlər
-      explain: You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.
+      explain: Yeni hekayələr dərc olunanda siz bildiriş ala biləcəksiniz. Sadəcə abunə olun!
       all_sub_title: Bütün Bildirişlər
       all_label: "Çayxanadan hər hansısa bildiriş almaq istəyirsinizmi?"
       all_no: Xeyir, bildirişlərin mənə göndərilməsini istəmirəm.
@@ -736,9 +736,9 @@ az:
       story_comment_label: 'Hekayələrinizdən birinə şərh yazılanda bildiriş almaq istəyirsinizmi? '
       story_comment_no: Xeyir, bildirişlərin mənə göndərilməsini istəmirəm.
       story_comment_yes: Bəli, bildirişlərin mənə göndərilməsini istəyirəm.
-      new_themes_sub_title: New Theme Notifications
-      new_themes_all: Notify me when any theme is added.
-      new_themes_none: I do not want to receive notifications when a new theme is added.
+      new_themes_sub_title: Yeni mövzunun bildirişi
+      new_themes_all: Yeni mövzu əlavə olunanda bildirin..
+      new_themes_none: Yeni hekayələr dərc olunanda mən bildiriş almaq istəmirəm. .
       new_stories_by_category: ": hekayə daxil ediləndə məni bildirin"
       language_sub_title: Bildiriş dili
       language_label: Bildirişləri hansı dildə almaq istəyirsiniz?

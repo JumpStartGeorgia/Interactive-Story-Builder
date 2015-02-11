@@ -523,14 +523,14 @@ ka:
       copy: "კოპირება"
       copied: "დაკოპირებულია!"
     storybuilder:
-      source: Source
-      target: Target
-      copy_paste: Copy from source      
+      source: წყარო
+      target: მიზანი
+      copy_paste: წყაროდან დაკოპირება      
   shared:
     grid:
       no_stories: "სამწუხაროდ არ მოიძებნა არცერთი ამბავი!"
     story_nav_modals:
-      copied: Copied!
+      copied: დაკოპირებულია!
   admin:
     index:
       title: "ადმინისტრატორის განყოფილება"
@@ -658,7 +658,7 @@ ka:
       hint:
         title: "ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში"
         caption: "წარწერა გამოჩნდება სლაიდშოუს ზედა ნაწილში"
-        description: The description will appear below the slideshow
+        description: არღწერა გამოჩნდება სლაიდშოუს ქვემოთ
     asset_fields:
       remove_image: "წაშლა"
       placeholder:
@@ -727,7 +727,7 @@ ka:
       header_from: "გამომგზავნი"
     notifications:
       title: "შეტყობინებები"
-      explain: You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.
+      explain: თქვენ შეგიძლიათ მიიღოთ ელექტორონული ფოსტის შეტყობინება, როცა ახალი ამბავი დაემატება "ჩაი ხანას" ვებგვერდზე! ამისთვის საჭიროა მონიშნოთ თვალყურის დევნის ღილაკი.
       all_sub_title: "ყველა შეტყობინება"
       all_label: "გსურთ მიიღოთ შეტყობინებები “Chai Khanaსგან”?"
       all_no: "არა, არ გამომიგზავნოთ შეტყობინებები."
@@ -736,9 +736,9 @@ ka:
       story_comment_label: "გსურთ მიიღოთ შეტყობინებები, როდესაც თქვენს ამბავზე დააკომენტარებენ?"
       story_comment_no: "არა, არ გამომიგზავნოთ შეტყობინებები."
       story_comment_yes: "დიახ, მსურს შეტყობინებების მიღება."
-      new_themes_sub_title: New Theme Notifications
-      new_themes_all: Notify me when any theme is added.
-      new_themes_none: I do not want to receive notifications when a new theme is added.
+      new_themes_sub_title: ახალი თემის შეტყობინება
+      new_themes_all: შემატყობინეთ, როცა ახალი თემა იქნება დამატებული.
+      new_themes_none: არ მსურს მივიღო შეტყობინებები, როცა ახალი თემა იქნება დამატებული.
       new_stories_by_category: "შემატყობინეთ, როდესაც ახალი ამბავი დაემატება შემდეგ კატეგორიას:"
       language_sub_title: "შეტყობინების ენა"
       language_label: "რა ენაზე გსურთ შეტყობინებების მიღება?"

@@ -523,14 +523,14 @@ hy:
       copy: "Պատճենել սեղմատախտակում (clipboard)"
       copied: "Պատճենված է!"
     storybuilder:
-      source: Source
-      target: Target
-      copy_paste: Copy from source      
+      source: Աղբյուր
+      target: Թիրախ
+      copy_paste: Պատճենել աղբյուրից      
   shared:
     grid:
       no_stories: "Օ ոչ՛ ... նյութեր չգտնվեցին"
     story_nav_modals:
-      copied: Copied!
+      copied: Պատճենված է
   admin:
     index:
       title: "Ադինիստրատիվ բաժին"
@@ -658,7 +658,7 @@ hy:
       hint:
         title: "Սույն տեքստը կերևա միայն աջ կողային վահանակի վրա, այն չի ներառվի նյութի մեջ"
         caption: "Վերնագիրը կերևա սլայդշոուի վերևում"
-        description: The description will appear below the slideshow
+        description: Նկարագրությունը կհայտնվի սլայդ շոուից ներքև
     asset_fields:
       remove_image: "Հեռացնել"
       placeholder:
@@ -727,7 +727,7 @@ hy:
       header_from: "Ուղարկված է"
     notifications:
       title: "Ծանուցումներ"
-      explain: You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.
+      explain: Դուք կարող եք ստանալ ծանուցումներ էլ. նամակով, երբ նոր նյութեր հրապարակվեն Չայխանայում.պարզապես բաժանորդագրվեք
       all_sub_title: "Բոլոր ծանուցումները "
       all_label: "Ցանկանում եք Չայխանայից ծանուցումներ ստանալ? "
       all_no: "Ոչ, մի ուղարկեք ինձ ծանուցումներ."
@@ -736,9 +736,9 @@ hy:
       story_comment_label: "Ցանկանո՞ւմ եք ստանալ ծանուցումներ, երբ Ձեր նյութի վերաբերյալ լինեն մեկնաբանություններ"
       story_comment_no: "Ոչ, մի ուղարկեք ինձ ծանուցումներ."
       story_comment_yes: "Այո, ես ցանկանում եմ ստանալ ծանուցումներ."
-      new_themes_sub_title: New Theme Notifications
-      new_themes_all: Notify me when any theme is added.
-      new_themes_none: I do not want to receive notifications when a new theme is added.
+      new_themes_sub_title: Նոր թեմաների ծանուցումներ 
+      new_themes_all: Ծանուցեք ինձ, երբ թեմա ավելացվի.
+      new_themes_none: Չեմ ցանկանում ստանալ ծանուցումներ նոր թեմաների մասին.
       new_stories_by_category: "Ծանուցե՛ք ինձ, երբ նյութ ավելացվի այստեղ:"
       language_sub_title: "Ծանուցումների լեզուն"
       language_label: "Ո՞ր լեզվով եք ցանկանում ստանալ ծանուցումները"
