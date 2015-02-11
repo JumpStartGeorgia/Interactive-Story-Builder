@@ -66,7 +66,7 @@ ka:
         title: "სათაური"
         audio: "აუდიო ფაილი"
         delete_audio: "აუდიო ფაილის წაშლა?"
-      content:
+      content_translation:
         title: "სათაური"
         caption: "ტექსტის სათაური"
         sub_caption: "ტექსტის ქვესათაური"
@@ -107,6 +107,21 @@ ka:
         menu_lang: "პლეერის პარამეტრების ენა"
         cc: "წარწერის/სუბტიტრების ჩვენება"
         cc_lang: "სუბტიტრების ენა"
+      infographic:
+        published_at: Date Published
+        image: Infographic Image
+        dataset_file: Dataset File
+        datasources: Data Sources
+      infographic_translations:
+        title: Title
+        caption: Heading
+        description: Description
+        image: Infographic Image
+        dataset_file: Dataset File
+        dataset_url: Dataset URL
+      infographic_datasource:
+        name: Data Source Name
+        ulr: Data Source URL
       language:
         locale: "ენის აღმნიშვნელი"
         name: "ენა"
@@ -457,6 +472,9 @@ ka:
     youtube:
       name: YouTube Video
       description: YouTube-ის ვედეო წარწერის დამატების შესაძლებლობით
+    infographic: 
+      name: Infographic
+      description: Infographic or factoids with ability to add datasets and data sources
   story_role:
     editor: "რედაქტირება"
     translator: "თარგმნა"
@@ -699,6 +717,27 @@ ka:
         cc: "თუ მონიშნულია სუბტიტრები ავტომატურად გამოჩნდება"
         menu_lang: YouTube მენიუს ენა
         cc_lang: "ავტომატური სუბტიტრების ენა"
+    infographic:
+      form_title: Infographic Form
+      add_datasource: Add Data Source
+      placeholder:
+        title: Title
+        caption: Infographic Title
+        dataset_url: optional
+      hint:
+        title: This text only appears in the left sidebar, it will not show up in the story
+        caption: Title of the infographic
+        description: The description will appear below the infographic
+        image: Only jpg and png format allowed; 8MB file size limit
+        dataset_file: Please try to compress files to make for quicker download; 25MB file size limit
+        dataset_url: URL to Dataset
+    infographic_datasource_fields:
+      placeholder:
+        name: Data Source Name
+        url: optional
+      hint:
+        name: Name of the data source
+        url: URL to the data source
   storyteller:
     byline: "ავტორი"
     byline_media: "ფოტოსა და ვიდეოს ავტორი"

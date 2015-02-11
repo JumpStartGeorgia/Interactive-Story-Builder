@@ -7,7 +7,7 @@ var selectedType = 'story';
 var method = 'n';
 var tester = null;
 var story_tree = null;
-var section_types = ['content','media','slideshow','embed_media','youtube'];
+var section_types = ['content','media','slideshow','embed_media','youtube', 'infographic'];
 $(document).ready(function() {
 
   calculate_workspace(); 
@@ -487,7 +487,7 @@ $(document).ready(function() {
     var type = cur.data('type');
 		if(id == -1) { alert(gon.msgs_select_section); return true; }
 
-		if( ['content','slideshow','embed_media','youtube'].indexOf(type) != -1 && cur.has('ul li').length==1 )
+		if( ['content','slideshow','embed_media','youtube', 'infographic'].indexOf(type) != -1 && cur.has('ul li').length==1 )
 		{			
 			alert(gon.msgs_one_section_general);
 		}

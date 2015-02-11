@@ -1,0 +1,245 @@
+<%- model_class = Infographic -%>
+<%- model_class_trans = InfographicTranslation -%>
+<%- model_class_source = InfographicDatasource -%>
+<% original ||= false %>
+<% @readonly = {} %>
+<% tinyClass = "tinyEditor" %>
+<% if @trans %>
+  <% if original %>
+    <%= tinymce readonly:1 %>      
+    <% @readonly = { readonly:true , disabled: true } %>
+  <% else %>
+    <%= tinymce editor_selector: 'tinyEditor2' %>
+    <% tinyClass = "tinyEditor2" %>   
+  <% end %>
+<% else %>
+  <%= tinymce %>
+<% end %>
+<% @isTO = @trans && original # if mode is translate and screen is original(first) %>
+<% form_class = @trans == true && original == false ? 'form-translation' : '' %>
+
+  <h2 class="form-title"><%= t('.form_title') %></h2>
+  <%= semantic_form_for(@item, url: infographic_story_path(id:params[:id],:format => :js), :html => { :multipart=> true, :id => "infographicForm", :class => "#{form_class}" } , remote: true) do |f| %>
+    <%= f.inputs do %>
+      <% 
+        trans_record = @item.infographic_translations.select{|x| x.locale == @item.current_locale}.first
+        trans_record = @item.with_translation(@item.current_locale) if trans_record.blank? 
+      %>
+      <%= f.fields_for :infographic_translations, trans_record do |f_translation| %>
+
+        <%# need this hidden field so can test if user has access to edit the locale if user is translator %>
+        <%= (hidden_field_tag :current_locale , @item.current_locale) if !@isTO %>
+
+        <%= (f_translation.input :locale , :as => :hidden) if !@isTO %>
+
+        <%= f_translation.input :title, 
+        { 
+          :required => !@isTO, :input_html => { id: (!@isTO ?  "infographicTitle" : nil) }      
+          .merge(@readonly) 
+        }
+        .merge(( (@isTO) ? {} : { hint: t('.hint.title'), placeholder: t('.placeholder.title') })) %>
+
+       <%= f_translation.input :caption, { 
+          :input_html => { id: (!@isTO ?  "infographicCaption" : nil) }.merge(@readonly) 
+        }.merge(( (@isTO) ? {} : { hint: t('.hint.caption'), placeholder: t('.placeholder.caption') })) %>
+
+      <%= f_translation.input :description, { :as => :text, :input_html => {id: tinyClass , :class => tinyClass, :rows => 15}.merge(@readonly) }.merge(( original ? {} : { hint: t('.hint.description') }))  %>      
+       
+        <%
+          image_asset_record = trans_record.image
+          if image_asset_record.blank?
+            image_asset_record = trans_record.build_image(:asset_type => Asset::TYPE[:infographic])
+          end
+        %>
+        <%= f_translation.fields_for :image, image_asset_record do |f_image_asset| %>
+          <%= f_image_asset.input :asset_type, :as => :hidden %>
+          <% 
+            asset_class = @isTO ? 'original-image-asset' : 'translated-image-asset'
+          %>
+          <div id='infographicImageBox'>
+            <label class=" control-label" for="infographic-image-preview"><%= t('activerecord.attributes.infographic.image') %></label>
+            <% if !@isTO %>
+              <% if !original %>
+                <div class="boolean input optional checkbox" id="asset_clone_thumbnail">
+                  <input name="clone_image_asset" type="hidden" value="0">
+                  <label class="  control-label" for="clone_image_asset">
+                    <input id="clone_image_asset" name="clone_image_asset" type="checkbox" value="1" <%= image_asset_record.asset_clone_id.present? ? 'checked=checked' : '' %>><%= t('app.common.clone_asset') %>
+                    <div class="help-inline" original-title="<%= t('helpers.hints.clone_asset') %>">
+                      <div>?</div>
+                    </div>
+                  </label>
+                </div>
+
+                <% if image_asset_record.asset_clone_id.blank? && image_asset_record.file.exists? %>
+                  <a class='btn btn-default preview <%= asset_class %>' id="infographic-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url}" %>'><%= t('app.buttons.preview_image') %></a>
+                <% end %>  
+
+                <div id="item-image-asset-clone">
+                  <% 
+                    orig = @item.with_translation(@from)
+                    orig_datasource_id = orig.image.id if orig.present? && orig.image.present?                  
+                  %>
+                  <%= f_image_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_datasource_id} %>
+                </div>
+
+                <% vis_class = image_asset_record.asset_clone_id.present? ? 'not-visible' : '' %>
+                <div id="item-image-asset" class="item-asset <%= vis_class %>">
+                  <%= f_image_asset.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "infographicImage", accept:".jpeg,.jpg,.png" }, label: false  %> 
+                </div>
+              <% else %>
+                <% if image_asset_record.file.exists? %>
+                  <a class='btn btn-default preview <%= asset_class %>' id="infographic-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url}" %>'><%= t('app.buttons.preview_image') %></a>
+                <% end %>  
+                <%= f_image_asset.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "infographicImage", accept:".jpeg,.jpg,.png" }, label: false  %> 
+              <% end %>
+            <% else %>
+              <div style="height: 35px;">&nbsp;</div>
+              <a class='btn btn-default preview <%= asset_class %>' id="infographic-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url}" %>'><%= t('app.buttons.preview_image') %></a>
+            <% end %>    
+          </div>
+        <% end %> 
+
+        <%= f_translation.input :dataset_url, 
+        { 
+          :as => :url,
+          :input_html => { id: (!@isTO ?  "infographicDatasetUrl" : nil) }      
+          .merge(@readonly) 
+        }
+        .merge(( (@isTO) ? {} : { hint: t('.hint.dataset_url'), placeholder: t('.placeholder.dataset_url') })) %>
+
+
+        <%
+          dataset_asset_record = trans_record.dataset_file
+          if dataset_asset_record.blank?
+            dataset_asset_record = trans_record.build_dataset_file(:asset_type => Asset::TYPE[:infographic_dataset])
+          end
+        %>
+        <%= f_translation.fields_for :dataset_file, dataset_asset_record do |f_dataset_asset| %>
+          <%= f_dataset_asset.input :asset_type, :as => :hidden %>
+          <% 
+            asset_class = @isTO ? 'original-dataset-asset' : 'translated-dataset-asset'
+          %>
+
+          <div id='infographicDatasetFileBox'>
+            <label class=" control-label" for="infographic-dataset-preview"><%= t('activerecord.attributes.infographic.dataset_file') %></label>
+
+            <% if !@isTO %>
+              <% if !original %>
+                <div class="boolean input optional checkbox" id="asset_clone_thumbnail">
+                  <input name="clone_dataset_asset" type="hidden" value="0">
+                  <label class="  control-label" for="clone_dataset_asset">
+                    <input id="clone_dataset_asset" name="clone_dataset_asset" type="checkbox" value="1" <%= dataset_asset_record.asset_clone_id.present? ? 'checked=checked' : '' %>><%= t('app.common.clone_asset') %>
+                    <div class="help-inline" original-title="<%= t('helpers.hints.clone_asset') %>">
+                      <div>?</div>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="js-row">
+                  <% if dataset_asset_record.asset_clone_id.blank? && preview %>
+                    <a class='btn btn-default preview' id="infographic-dataset-preview" data-modalos-id="modalos-preview" data-type="dataset" data-dataset-path='<%= "#{ dataset_asset_record.file.url}" %>'><%= t('app.buttons.preview_dataset') %></a>
+                  <% end %>
+                  <div id="item-dataset-asset-clone">
+                    <% 
+                      orig = @item.with_translation(@from)
+                      orig_datasource_id = orig.dataset_file.id if orig.present? && orig.dataset_file.present?                  
+                    %>
+                    <%= f_dataset_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_datasource_id} %>
+                  </div>
+
+                  <% vis_class = dataset_asset_record.asset_clone_id.present? ? 'not-visible' : '' %>
+                  <div id="item-dataset-asset" class="item-asset <%= vis_class %>">
+                    <%= f_dataset_asset.input :asset, :as => :file , hint: t('.hint.dataset_file') , :input_html => { :id => "infographicDataset" }, label: false %>
+                  </div>
+                </div>
+              <% else %>
+                <% if dataset_asset_record.file.exists? %>
+                <a class='btn btn-default preview' id="infographic-dataset-preview" data-modalos-id="modalos-preview" data-type="dataset" data-dataset-path='<%= "#{ dataset_asset_record.file.url}" %>'><%= t('app.buttons.preview_dataset') %></a>
+                <% end %>  
+                <%= f_dataset_asset.input :asset, :as => :file , hint: t('.hint.dataset_file') , :input_html => { :id => "infographicDataset" }, label: false %>
+              <% end %>
+            <% else %>
+              <% if dataset_asset_record.file.exists? %>
+                <div style="height: 35px;">&nbsp;</div>
+                <a class='btn btn-default preview' id="infographic-dataset-preview" data-modalos-id="modalos-preview" data-type="dataset" data-dataset-path='<%= "#{ dataset_asset_record.file.url}" %>'><%= t('app.buttons.preview_dataset') %></a>
+              <% else %>
+                <div style="height: 66px;">&nbsp;</div>
+              <% end %>
+            <% end %>    
+          </div>
+        <% end %> 
+
+
+        <div id="infographicDataSources" class="clear">
+          <label class=" control-label" for="infographic-datasource"><%= t('activerecord.attributes.infographic.datasources') %></label>
+          <% if !@isTO %>
+            <% if !original %>
+              <% 
+                orig = @item.with_translation(@from)
+                orig_datasources = nil
+                orig_datasources = orig.infographic_datasources if orig.present? && orig.infographic_datasources.present?
+
+                if orig_datasources.length != trans_record.infographic_datasources.length
+                  # add missing datasource objects to match the orig length
+                  num = trans_record.infographic_datasources.present? ? (orig_datasources.length - trans_record.infographic_datasources.length) : orig_datasources.length 
+                  if num > 0
+                    (0..num-1).each do |i|
+                      trans_record.infographic_datasources.build
+                    end
+                  end
+                end
+              %>
+
+              <% trans_record.infographic_datasources.each_with_index do |datasource_record, i| %>  
+                 <div class="fields clear">
+                    <%= f_translation.fields_for :infographic_datasources, datasource_record do |f_datasource| %>
+                      <%= render :partial => 'infographic_datasource_fields', :locals => {:f => f_datasource, :datasource_record => datasource_record, original: original, orig_datasource_id: orig_datasources[i].id } %>
+                    <% end %> 
+                  </div>
+              <% end %> 
+            <% else %>
+              <% trans_record.infographic_datasources.each_with_index do |datasource_record, i| %>  
+                 <div class="fields clear">
+                    <%= f_translation.fields_for :infographic_datasources, datasource_record do |f_datasource| %>
+                      <%= render :partial => 'infographic_datasource_fields', :locals => {:f => f_datasource, :datasource_record => datasource_record } %>
+                    <% end %> 
+                  </div>
+              <% end %> 
+
+            <% end %>
+          <% else %>
+            <% trans_record.infographic_datasources.each_with_index do |datasource_record, i| %>  
+               <div class="fields clear">
+                  <%= f_translation.fields_for :infographic_datasources, datasource_record do |f_datasource| %>
+                    <%= render :partial => 'infographic_datasource_fields', :locals => {:f => f_datasource, :datasource_record => datasource_record } %>
+                  <% end %> 
+                </div>
+            <% end %> 
+
+          <% end %>      
+        </div>
+
+        <% if !@trans %>
+          <div class="add_datasource_button">
+            <%= link_to_add_fields t('.add_datasource'), f_translation, :infographic_datasources %>
+          </div>
+        <% end %>
+
+
+        <% if !@isTO %>
+          <%= f.input :section_id, :as => :hidden , :input_html => { :id => "infographicSection" }  %>
+          <% if @item.id.present? %>
+            <%= f.input :id, :as => :hidden , :input_html => { :id => "infographicId" }  %>    
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% if !@isTO %>
+      <div class="pull-right spacer">            
+        <%= f.submit t('app.buttons.save'), :class => 'btn btn-default' %>
+        <%= f.submit t('app.buttons.save_and_next'), :class => 'btn btn-default', :name => "commit_and_next" %>        
+        <%= f.submit t('helpers.links.next'), :class => 'btn btn-default', :type => :button, :onclick => 'select_next();' %> 
+        <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          
+      </div>
+    <% end %>
+  <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150210122841) do
+ActiveRecord::Schema.define(:version => 20150210215404) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -153,6 +153,39 @@ ActiveRecord::Schema.define(:version => 20150210122841) do
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], :name => "poly_session_index"
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], :name => "impressionable_type_message_index", :length => {"impressionable_type"=>nil, "message"=>255, "impressionable_id"=>nil}
   add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
+
+  create_table "infographic_datasources", :force => true do |t|
+    t.integer  "infographic_translation_id"
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  add_index "infographic_datasources", ["infographic_translation_id"], :name => "index_infographic_datasources_on_infographic_translation_id"
+
+  create_table "infographic_translations", :force => true do |t|
+    t.integer  "infographic_id"
+    t.string   "locale",         :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "title"
+    t.string   "caption"
+    t.text     "description"
+    t.string   "dataset_url"
+  end
+
+  add_index "infographic_translations", ["infographic_id"], :name => "index_infographic_translations_on_infographic_id"
+  add_index "infographic_translations", ["locale"], :name => "index_infographic_translations_on_locale"
+
+  create_table "infographics", :force => true do |t|
+    t.integer  "section_id"
+    t.date     "published_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "infographics", ["section_id"], :name => "index_infographics_on_section_id"
 
   create_table "invitations", :force => true do |t|
     t.integer  "from_user_id"

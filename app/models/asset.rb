@@ -11,12 +11,14 @@ class Asset < ActiveRecord::Base
 #  belongs_to :media, foreign_key: :item_id
   belongs_to :image, foreign_key: :item_id, class_name: "MediumTranslation"
   belongs_to :video, foreign_key: :item_id, class_name: "MediumTranslation"  
+  belongs_to :infographic_translation, foreign_key: :item_id, class_name: "InfographicTranslation"
+  belongs_to :dataset_file, foreign_key: :item_id, class_name: "InfographicTranslation"  
 
   acts_as_list scope: :slideshow_translation
   acts_as_list scope: [:item_id, :asset_type]
 
   TYPE = {story_thumbnail: 1, section_audio: 2, content_image: 3, media_image: 4, media_video: 5, 
-          slideshow_image: 6, user_avatar: 7, author_avatar: 8}
+          slideshow_image: 6, user_avatar: 7, author_avatar: 8, infographic: 9, infographic_dataset: 10}
 
 
   attr_accessor :init_called, :asset_exists, :stop_check_thumbnail, :process_video, :is_video_image, :is_amoeba
@@ -50,6 +52,12 @@ class Asset < ActiveRecord::Base
   end
   with_options :if => "self.asset_type == TYPE[:slideshow_image]" do |t|      
     t.validates_attachment :asset, { :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}  
+  end
+  with_options :if => "self.asset_type == TYPE[:infographic]" do |t|      
+    t.validates_attachment :asset, { :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..8.megabytes }}  
+  end
+  with_options :if => "self.asset_type == TYPE[:infographic_dataset]" do |t|      
+    t.validates_attachment :asset, { :size => { :in => 0..25.megabytes }}  
   end
 
 
@@ -143,6 +151,20 @@ class Asset < ActiveRecord::Base
                   }
           }    
 
+        when  TYPE[:infographic]        
+          opt = {   
+                  :url => "/system/places/infographic/:story_id/:style/:id__:basename.:extension",
+                  :styles => {
+                    :thumb => {:geometry => "230x230#"},
+                    :medium => {:geometry => "600x>"},
+                    :large => {:geometry => "900x>"}
+                  }
+          }  
+
+        when  TYPE[:infographic_dataset]        
+          opt = {   
+                  :url => "/system/places/infographic_dataset/:story_id/:id__:basename.:extension"
+          }  
               
       end    
 
@@ -201,6 +223,12 @@ class Asset < ActiveRecord::Base
       when  TYPE[:slideshow_image]        
         self.story_id = self.slideshow_translation.slideshow.section.story_id if self.slideshow_translation.slideshow.section.present?
             
+      when  TYPE[:infographic]        
+        self.story_id = self.infographic_translation.infographic.section.story_id
+
+      when  TYPE[:infographic_dataset]        
+        self.story_id = self.infographic_translation.infographic.section.story_id
+
     end    
   end  
    
@@ -263,12 +291,14 @@ class Asset < ActiveRecord::Base
   #   - media image
   #   - media video
   #   - slideshow image
+  #   - infographic
+  #   - infographic_dataset
   def asset_file_name_formatted
     if self.asset_clone_id.present?
       x = self.asset_clone
       if x.present?
         case self.asset_type
-          when TYPE[:section_audio], TYPE[:media_image], TYPE[:media_video], TYPE[:slideshow_image]
+          when TYPE[:section_audio], TYPE[:media_image], TYPE[:media_video], TYPE[:slideshow_image], TYPE[:infographic], TYPE[:infographic_dataset]
             "#{x.id}__#{x.asset_file_name}"
           else
             x.asset_file_name

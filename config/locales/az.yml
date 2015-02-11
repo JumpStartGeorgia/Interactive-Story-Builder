@@ -66,7 +66,7 @@ az:
         title: Sərlövhə
         audio: Audio Cığırı
         delete_audio: Audio Cığırını Sil?
-      content:
+      content_translation:
         title: Sərlövhə
         caption: Başlıq
         sub_caption: Alt-başlıq
@@ -107,6 +107,21 @@ az:
         menu_lang: Pleyerin Dili
         cc: "Şəkilaltı İmzanı/Sərlövhəni Göstər"
         cc_lang: Alt-başlığın dili
+      infographic:
+        published_at: Date Published
+        image: Infographic Image
+        dataset_file: Dataset File
+        datasources: Data Sources
+      infographic_translations:
+        title: Title
+        caption: Heading
+        description: Description
+        image: Infographic Image
+        dataset_file: Dataset File
+        dataset_url: Dataset URL
+      infographic_datasource:
+        name: Data Source Name
+        ulr: Data Source URL
       language:
         locale: Dil
         name: Dilin Adı
@@ -457,6 +472,9 @@ az:
     youtube:
       name: YouTube Videosu
       description: "Şəkilaltı imza dilinin dəyişmə qabiliyyəti olan YouTube videosu"
+    infographic: 
+      name: Infographic
+      description: Infographic or factoids with ability to add datasets and data sources
   story_role:
     editor: Redaktor
     translator: Tərcüməçi
@@ -699,6 +717,27 @@ az:
         cc: Seçilibsə, defolt olaraq videonun subtitrları göstəriləcək
         menu_lang: YouTube menyu/kontrollarının ilkin dili.
         cc_lang: Göstərilən subtitrların defolt dili.
+    infographic:
+      form_title: Infographic Form
+      add_datasource: Add Data Source
+      placeholder:
+        title: Title
+        caption: Infographic Title
+        dataset_url: optional
+      hint:
+        title: This text only appears in the left sidebar, it will not show up in the story
+        caption: Title of the infographic
+        description: The description will appear below the infographic
+        image: Only jpg and png format allowed; 8MB file size limit
+        dataset_file: Please try to compress files to make for quicker download; 25MB file size limit
+        dataset_url: URL to Dataset
+    infographic_datasource_fields:
+      placeholder:
+        name: Data Source Name
+        url: optional
+      hint:
+        name: Name of the data source
+        url: URL to the data source
   storyteller:
     byline: Tərəfindən
     byline_media: "Şəkillər və videolar xxx tərəfindən hazırlanıb"

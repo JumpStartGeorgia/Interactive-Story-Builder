@@ -302,6 +302,13 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
         @item = Youtube.new(:section_id => _id)
         # @item.youtube_translations.build(:locale => I18n.locale.to_s)
       end
+    elsif type == 'infographic'
+      if method=='select'    
+        @item = Infographic.find_by_id(sub_id)   
+      else 
+        @item = Infographic.new(:section_id => _id)
+        # @item.infographic_translations.build(:locale => I18n.locale.to_s)
+      end
     end
 
     respond_to do |format|
@@ -352,6 +359,9 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
     elsif params[:youtube].present?  
       @item = Youtube.new(params[:youtube])    
       @type = :youtube 
+    elsif params[:infographic].present?  
+      @item = Infographic.new(params[:infographic])    
+      @type = :infographic 
     end
     respond_to do |format|
       if @item.save
@@ -412,6 +422,9 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
     elsif params[:youtube].present?  
       klass = Youtube
       type = :youtube
+    elsif params[:infographic].present?  
+      klass = Infographic
+      type = :infographic
     end   
      @item = klass.find_by_id(params[type][:id]) 
      respond_to do |format|
@@ -453,6 +466,8 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
       item = Youtube.find_by_id(params[:sub_id])                       
     elsif type == 'embed_media'
       item = EmbedMedium.find_by_id(params[:sub_id])      
+    elsif type == 'infographic'
+      item = Infographic.find_by_id(params[:sub_id])                       
     end
 
     item.destroy if item.present?
@@ -917,7 +932,7 @@ private
   # if the user is a translator, limit their access to actions to editing
   def can_access_action?
     #logger.debug "))))))) can access action check, action = #{params[:action]}"
-    accessible_actions = [:update, :preview, :get_data, :save_section, :save_content, :save_media, :save_slideshow, :save_embed_media, :save_youtube, :sections, :check_permalink]
+    accessible_actions = [:update, :preview, :get_data, :save_section, :save_item, :sections, :check_permalink]
     redirect_to root_path, :notice => t('app.msgs.not_authorized') if @edit_story_role == Story::ROLE[:translator] && !accessible_actions.include?(params[:action].to_sym)
   end
 

@@ -4,11 +4,14 @@
    <% if @which == 0 || @which == 1 %>
       which(1,"<%= escape_javascript( render :partial => @type, locals: {original: true}) %>");
    <% end %>
+
    <% if @trans && (@which == 0 || @which == 2) %>
       <% @item.current_locale = @to %>
       which(2,"<%= escape_javascript( render :partial => @type) %>");
    <% end %>
+   
    $('form .selectpicker').selectpicker();   
+   
    <% if @type == 'form' # for story %> 
       // when the page loads, show the permalink if it exists  
       if ($('#story_permalink').length > 0 && $('input#storyPermalink').val().length > 0){

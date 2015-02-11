@@ -15,6 +15,7 @@ class Section < ActiveRecord::Base
   has_one :embed_medium, dependent: :destroy
   has_many :media, :order => 'position', dependent: :destroy
   has_one :youtube, dependent: :destroy
+  has_one :infographic, dependent: :destroy
   acts_as_list scope: :story
 
   # accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? }
@@ -22,13 +23,14 @@ class Section < ActiveRecord::Base
 
   # attr_accessor :delete_audio
 
-  TYPE = {content: 1, media: 2, slideshow: 3, embed_media: 4, youtube: 5}
+  TYPE = {content: 1, media: 2, slideshow: 3, embed_media: 4, youtube: 5, infographic: 6}
   ICONS = {
     content: 'i-content-b', 
     media: 'i-fullscreen-b', 
     slideshow: 'i-slideshow-b', 
     embed_media: 'i-embed-b',
-    youtube: 'i-youtube-b'
+    youtube: 'i-youtube-b',
+    infographic: 'i-infographic-b'
 
   }
 
@@ -36,7 +38,7 @@ class Section < ActiveRecord::Base
   # settings to clone story
   amoeba do
     enable
-    clone [:section_translations, :content, :media, :slideshow, :embed_medium, :youtube]
+    clone [:section_translations, :content, :media, :slideshow, :embed_medium, :youtube, :infographic]
   end
 
   #################################
@@ -140,8 +142,11 @@ class Section < ActiveRecord::Base
   def embed_media?
      TYPE[:embed_media] == self.type_id 
   end
-    def youtube?
+  def youtube?
      TYPE[:youtube] == self.type_id 
+  end
+  def infographic?
+     TYPE[:infographic] == self.type_id 
   end
 
 
@@ -168,8 +173,10 @@ class Section < ActiveRecord::Base
       return self.slideshow.present? && self.slideshow.assets.present?
     elsif embed_media?
       return self.embed_medium.present? && self.embed_medium.code.present?
-   elsif youtube?
+    elsif youtube?
       return self.youtube.present? && self.youtube.code.present?
+    elsif infographic?
+      return self.infographic.present? && self.infographic.asset.present?
     end
   end
 end

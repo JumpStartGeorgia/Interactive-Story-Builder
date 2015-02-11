@@ -66,7 +66,7 @@ ru:
         title: "Название"
         audio: "Аудиофайл"
         delete_audio: "Удалить аудиофайл?"
-      content:
+      content_translation:
         title: "Название"
         caption: "Заглавок"
         sub_caption: "Подзаглавок"
@@ -107,6 +107,21 @@ ru:
         menu_lang: "Язык плеера"
         cc: "Показать субтитры"
         cc_lang: "Язык субтитров"
+      infographic:
+        published_at: Date Published
+        image: Infographic Image
+        dataset_file: Dataset File
+        datasources: Data Sources
+      infographic_translations:
+        title: Title
+        caption: Heading
+        description: Description
+        image: Infographic Image
+        dataset_file: Dataset File
+        dataset_url: Dataset URL
+      infographic_datasource:
+        name: Data Source Name
+        ulr: Data Source URL
       language:
         locale: "О локали."
         name: "Язык"
@@ -457,6 +472,9 @@ ru:
     youtube:
       name: YouTube видео
       description: 'YouTube видео, с переключаемыми субтитрами '
+    infographic: 
+      name: Infographic
+      description: Infographic or factoids with ability to add datasets and data sources
   story_role:
     editor: "Редактор"
     translator: "Переводчик"
@@ -699,6 +717,27 @@ ru:
         cc: "При выборе этого субтитры будут отображаться по умолчанию"
         menu_lang: "Язык YouTube меню / управления"
         cc_lang: "Язык субтитров - показать по умолчанию"
+    infographic:
+      form_title: Infographic Form
+      add_datasource: Add Data Source
+      placeholder:
+        title: Title
+        caption: Infographic Title
+        dataset_url: optional
+      hint:
+        title: This text only appears in the left sidebar, it will not show up in the story
+        caption: Title of the infographic
+        description: The description will appear below the infographic
+        image: Only jpg and png format allowed; 8MB file size limit
+        dataset_file: Please try to compress files to make for quicker download; 25MB file size limit
+        dataset_url: URL to Dataset
+    infographic_datasource_fields:
+      placeholder:
+        name: Data Source Name
+        url: optional
+      hint:
+        name: Name of the data source
+        url: URL to the data source
   storyteller:
     byline: Oт
     byline_media: "Фото и видео от"
