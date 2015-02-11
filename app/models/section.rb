@@ -176,7 +176,7 @@ class Section < ActiveRecord::Base
     elsif youtube?
       return self.youtube.present? && self.youtube.code.present?
     elsif infographic?
-      return self.infographic.present? && self.infographic.asset.present?
+      return self.infographic.present? && self.infographic.image.present?
     end
   end
 end

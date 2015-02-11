@@ -1,9 +1,3 @@
-<% 
-  datasource_record ||= nil 
-  original ||= false 
-  orig_asset_id ||= nil 
-%>
-
 <div class="infographic_datasource_asset_form_container clear">
 
     <%= f.input :name, 
@@ -11,7 +5,7 @@
       :input_html => { id: (!@isTO ?  "infographicDataSourceName" : nil) }      
       .merge(@readonly) 
     }
-    .merge(( (@isTO) ? {} : { hint: t('.hint.datasource_name'), placeholder: t('.placeholder.datasource_name') })) %>
+    .merge(( (@isTO) ? {} : { hint: t('.hint.name') })) %>
 
     <%= f.input :url,
     { 
@@ -19,7 +13,7 @@
       :input_html => { id: (!@isTO ?  "infographicDataSourceUrl" : nil) }      
       .merge(@readonly) 
     }
-    .merge(( (@isTO) ? {} : { hint: t('.hint.datasource_url'), placeholder: t('.placeholder.datasource_url') })) %>
+    .merge(( (@isTO) ? {} : { hint: t('.hint.url'), placeholder: t('.placeholder.url') })) %>
 
   <% if !@trans %>
     <div class="remove_datasource_button">

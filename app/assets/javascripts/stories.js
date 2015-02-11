@@ -785,7 +785,11 @@ function getObject(method, type, id, sub_id, which)
 function add_fields(link, association, content) {
   	var new_id = new Date().getTime();
   	var regexp = new RegExp("new_" + association, "g")
-	$('#slideshowAssets').append(content.replace(regexp, new_id));
+    if (association == 'assets'){
+      $('#slideshowAssets').append(content.replace(regexp, new_id));
+    }else if (association == 'infographic_datasources'){
+      $('#infographicDataSources').append(content.replace(regexp, new_id));
+    }
 }
 function error(v)
 {
