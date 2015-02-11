@@ -56,11 +56,11 @@
 - - en.activerecord.attributes.section_translation.title
   - en.activerecord.attributes.content.title
   - en.activerecord.attributes.medium_translation.title
-  - en.activerecord.attributes.slideshow.title
+  - en.activerecord.attributes.slideshow_translation.title
   - en.activerecord.attributes.embed_medium_translation.title
   - en.activerecord.attributes.youtube_translation.title
 - - en.activerecord.attributes.content.caption
-  - en.activerecord.attributes.slideshow.caption
+  - en.activerecord.attributes.slideshow_translation.caption
 - - en.activerecord.attributes.medium.image
   - en.activerecord.attributes.medium_translation.image
   - en.stories.media.image
@@ -69,6 +69,8 @@
   - en.stories.media.video
 - - en.activerecord.attributes.medium_translation.source
   - en.layouts.storybuilder.source
+- - en.activerecord.attributes.slideshow_translation.description
+  - en.activerecord.attributes.theme_translation.description
 - - en.activerecord.attributes.theme_translation.permalink
   - en.activerecord.attributes.story_type_translation.permalink
 - - en.helpers.links.admin
@@ -136,8 +138,6 @@
   - en.filters.sort.reads
 - - en.layouts.reviewer.copied
   - en.shared.story_nav_modals.copied
-- - en.root.index
-  - en.stories.index
 - - en.stories.new.title
   - en.stories.edit.title
 - - en.stories.media.hint.title

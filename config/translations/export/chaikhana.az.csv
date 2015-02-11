@@ -1,636 +1,641 @@
 Line #,Key,en Version,az Translation
-1,az.activerecord.models.user,User,User
-2,az.activerecord.models.story,Story,Story
-3,az.activerecord.models.section,Section,Section
-4,az.activerecord.models.medium,Full-Screen Media Slideshow,Full-Screen Media Slideshow
-5,az.activerecord.models.content,Text,Text
-6,az.activerecord.models.message,Message,Message
-7,az.activerecord.models.slideshow,Image Slideshow,Image Slideshow
-8,az.activerecord.models.embed_medium,Embeddable Online Media,Embeddable Online Media
+1,az.activerecord.models.user,User,İstifadəçi
+2,az.activerecord.models.story,Story,Hekayə
+3,az.activerecord.models.section,Section,Bölmə
+4,az.activerecord.models.medium,Full-Screen Media Slideshow,Tam Ekran Media Slayd nümayişi
+5,az.activerecord.models.content,Text,Mətn
+6,az.activerecord.models.message,Message,Mesaj
+7,az.activerecord.models.slideshow,Image Slideshow,Şəkil Slayd Numayişi
+8,az.activerecord.models.embed_medium,Embeddable Online Media,Daxil Ediləsi Onlayn Media
 9,az.activerecord.models.youtube,YouTube Video,YouTube Video
-10,az.activerecord.models.language,Language,Language
-11,az.activerecord.models.category,Category,Category
-12,az.activerecord.models.page,Text for Pages,Text for Pages
-13,az.activerecord.models.theme,Theme,Theme
-14,az.activerecord.models.story_type,Story Type,Story Type
-15,az.activerecord.models.author,Author,Author
-16,az.activerecord.attributes.user.email,Email Address,Email Address
-17,az.activerecord.attributes.user.password,Password,Password
-18,az.activerecord.attributes.user.password_confirmation,Password Confirmation,Password Confirmation
-19,az.activerecord.attributes.user.role,Role,Role
-20,az.activerecord.attributes.user.remember_me,Remember Me,Remember Me
-21,az.activerecord.attributes.user.default_story_locale,Default Language for Your Stories,Default Language for Your Stories
-22,az.activerecord.attributes.user.about,Summary of You,Summary of You
+10,az.activerecord.models.language,Language,Dil
+11,az.activerecord.models.category,Category,Kateqoriya
+12,az.activerecord.models.page,Text for Pages,Səhifə üçün Mətn
+13,az.activerecord.models.theme,Theme,Mövzu
+14,az.activerecord.models.story_type,Story Type,Hekayə Növü
+15,az.activerecord.models.author,Author,Müəllif
+16,az.activerecord.attributes.user.email,Email Address,E-poçt ünvanı
+17,az.activerecord.attributes.user.password,Password,Parol
+18,az.activerecord.attributes.user.password_confirmation,Password Confirmation,Parol Təsdiqi
+19,az.activerecord.attributes.user.role,Role,Rol
+20,az.activerecord.attributes.user.remember_me,Remember Me,Məni xatırla
+21,az.activerecord.attributes.user.default_story_locale,Default Language for Your Stories,Sənin Hekayələrin üçün Defolt Dil
+22,az.activerecord.attributes.user.about,Summary of You,Sənin Xülasən
 23,az.activerecord.attributes.user.local_avatar,Avatar,Avatar
-24,az.activerecord.attributes.user.nickname,Nickname,Nickname
-25,az.activerecord.attributes.user.sign_in_count,Number of Times Logged In,Number of Times Logged In
-26,az.activerecord.attributes.user.created_at,Date Created,Date Created
-27,az.activerecord.attributes.user.current_sign_in_at,Date Last Logged In,Date Last Logged In
+24,az.activerecord.attributes.user.nickname,Nickname,Ləqəb
+25,az.activerecord.attributes.user.sign_in_count,Number of Times Logged In,Daxil Olmanın Sayı
+26,az.activerecord.attributes.user.created_at,Date Created,Yaradıldığı Tarix
+27,az.activerecord.attributes.user.current_sign_in_at,Date Last Logged In,Sonuncu Dəfə Daxil Olmanın Tarixi
 28,az.activerecord.attributes.author.avatar,Avatar,Avatar
-29,az.activerecord.attributes.author_translation.name,Name,Name
-30,az.activerecord.attributes.author_translation.about,About,About
-31,az.activerecord.attributes.author_translation.permalink,Permalink,Permalink
-32,az.activerecord.attributes.story.user_id,Story Author,Story Author
-33,az.activerecord.attributes.story.user_ids,Editors,Editors
-34,az.activerecord.attributes.story.publish_home_page,"Once published, make your story visible on the homepage?","Once published, make your story visible on the homepage?"
-35,az.activerecord.attributes.story.template_id,Template,Template
-36,az.activerecord.attributes.story.thumbnail,Thumbnail,Thumbnail
-37,az.activerecord.attributes.story.story_locale,Story Language,Story Language
-38,az.activerecord.attributes.story.tag_list,Tags,Tags
-39,az.activerecord.attributes.story.categories,Categories,Categories
-40,az.activerecord.attributes.story.story_type,Type,Type
-41,az.activerecord.attributes.story.in_theme_slider,Show Story in Theme Slider,Show Story in Theme Slider
-42,az.activerecord.attributes.story_translation.title,Story Title,Story Title
-43,az.activerecord.attributes.story_translation.author,Author(s),Author(s)
-44,az.activerecord.attributes.story_translation.media_author,Photo and Video Author(s),Photo and Video Author(s)
-45,az.activerecord.attributes.story_translation.translation_author,Translation Author(s),Translation Author(s)
-46,az.activerecord.attributes.story_translation.published,Publish?,Publish?
-47,az.activerecord.attributes.story_translation.published_at,Was Published,Was Published
-48,az.activerecord.attributes.story_translation.about,Story Summary,Story Summary
-49,az.activerecord.attributes.story_translation.permalink,Story URL,Story URL
-50,az.activerecord.attributes.story_translation.permalink_staging,Story URL,Story URL
-51,az.activerecord.attributes.section.has_marker,Navigation Shortcut,Navigation Shortcut
-52,az.activerecord.attributes.section.type_id,Type,Type
-53,az.activerecord.attributes.section.sort_order,Sort Order,Sort Order
-54,az.activerecord.attributes.section_translation.title,Title,Title
-55,az.activerecord.attributes.section_translation.audio,Audio Track,Audio Track
-56,az.activerecord.attributes.section_translation.delete_audio,Delete the Audio Track?,Delete the Audio Track?
-57,az.activerecord.attributes.content.title,Title,Title
-58,az.activerecord.attributes.content.caption,Heading,Heading
-59,az.activerecord.attributes.content.sub_caption,Subheading,Subheading
-60,az.activerecord.attributes.content.content,Text,Text
-61,az.activerecord.attributes.medium.media_type,Media Type,Media Type
-62,az.activerecord.attributes.medium.image,Image,Image
+29,az.activerecord.attributes.author_translation.name,Name,Ad
+30,az.activerecord.attributes.author_translation.about,About,Haqqında
+31,az.activerecord.attributes.author_translation.permalink,Permalink,Daimi Keçid
+32,az.activerecord.attributes.story.user_id,Story Author,Hekayənin Müəllifi 
+33,az.activerecord.attributes.story.user_ids,Editors,Redaktorlar
+34,az.activerecord.attributes.story.publish_home_page,"Once published, make your story visible on the homepage?",Dərc edildikdən sonra hekayən ana səhifədə göstərilsin mi?
+35,az.activerecord.attributes.story.template_id,Template,Şablon
+36,az.activerecord.attributes.story.thumbnail,Thumbnail,Thumbnail - Xırda Şəkil
+37,az.activerecord.attributes.story.story_locale,Story Language,Hekayənin Dili
+38,az.activerecord.attributes.story.tag_list,Tags,Nişanlar
+39,az.activerecord.attributes.story.categories,Categories,Kateqoriyalar
+40,az.activerecord.attributes.story.story_type,Type,Növ
+41,az.activerecord.attributes.story.in_theme_slider,Show Story in Theme Slider,Hekayəni Mövzu Slaydlarında Göstər 
+42,az.activerecord.attributes.story_translation.title,Story Title,Hekayənin Sərlövhəsi
+43,az.activerecord.attributes.story_translation.author,Author(s),Müəllif(lər)
+44,az.activerecord.attributes.story_translation.media_author,Photo and Video Author(s),Foto və Video Müəllifi (singular) Müəllifləri (plural)
+45,az.activerecord.attributes.story_translation.translation_author,Translation Author(s),Tərcümə Müəllifi (s) Müəllifləri (pl)
+46,az.activerecord.attributes.story_translation.published,Publish?,Dərc et?
+47,az.activerecord.attributes.story_translation.published_at,Was Published,Dərc edilmişdir
+48,az.activerecord.attributes.story_translation.about,Story Summary,Hekayənin Xülasəsi
+49,az.activerecord.attributes.story_translation.permalink,Story URL,Hekayənin URL-ı
+50,az.activerecord.attributes.story_translation.permalink_staging,Story URL,Hekayənin URL-ı
+51,az.activerecord.attributes.section.has_marker,Navigation Shortcut,Naviqasiya Qısayolu
+52,az.activerecord.attributes.section.type_id,Type,"Növ (""Yaz"" if you mean the verb ""to type"")"
+53,az.activerecord.attributes.section.sort_order,Sort Order,Sıralama Qaydası
+54,az.activerecord.attributes.section_translation.title,Title,Sərlövhə
+55,az.activerecord.attributes.section_translation.audio,Audio Track,Audio Cığırı
+56,az.activerecord.attributes.section_translation.delete_audio,Delete the Audio Track?,Audio Cığırını Sil?
+57,az.activerecord.attributes.content.title,Title,Sərlövhə
+58,az.activerecord.attributes.content.caption,Heading,Başlıq
+59,az.activerecord.attributes.content.sub_caption,Subheading,Alt-başlıq
+60,az.activerecord.attributes.content.content,Text,Mətn
+61,az.activerecord.attributes.medium.media_type,Media Type,Media Növü
+62,az.activerecord.attributes.medium.image,Image,Şəkil
 63,az.activerecord.attributes.medium.video,Video,Video
-64,az.activerecord.attributes.medium.video_loop,Loop Video,Loop Video
-65,az.activerecord.attributes.medium_translation.title,Title,Title
-66,az.activerecord.attributes.medium_translation.caption,Caption,Caption
-67,az.activerecord.attributes.medium_translation.caption_align,Caption Alignment,Caption Alignment
-68,az.activerecord.attributes.medium_translation.infobox_type,Caption Position,Caption Position
-69,az.activerecord.attributes.medium_translation.summary,Summary,Summary
-70,az.activerecord.attributes.medium_translation.source,Source,Source
-71,az.activerecord.attributes.medium_translation.image,Image,Image
+64,az.activerecord.attributes.medium.video_loop,Loop Video,Fasiləsiz Baxış (if playing on repeat) Video Dövrü
+65,az.activerecord.attributes.medium_translation.title,Title,Sərlövhə
+66,az.activerecord.attributes.medium_translation.caption,Caption,Şəkilaltı imza (if caption is for image)
+67,az.activerecord.attributes.medium_translation.caption_align,Caption Alignment,Şəkilaltı İmzanı Düzləndirmək
+68,az.activerecord.attributes.medium_translation.infobox_type,Caption Position,Şəkilaltı İmzanın Yeri
+69,az.activerecord.attributes.medium_translation.summary,Summary,Xülasə
+70,az.activerecord.attributes.medium_translation.source,Source,Mənbə
+71,az.activerecord.attributes.medium_translation.image,Image,Şəkil
 72,az.activerecord.attributes.medium_translation.video,Video,Video
-73,az.activerecord.attributes.slideshow.title,Title,Title
-74,az.activerecord.attributes.slideshow.caption,Heading,Heading
-75,az.activerecord.attributes.message.name,Name,Name
-76,az.activerecord.attributes.message.email,Email Address,Email Address
-77,az.activerecord.attributes.message.message,Message,Message
-78,az.activerecord.attributes.message.message_type,Feedback Type,Feedback Type
-79,az.activerecord.attributes.embed_medium_translation.title,Title,Title
-80,az.activerecord.attributes.embed_medium_translation.url,Url to Online Media,Url to Online Media
-81,az.activerecord.attributes.youtube.fullscreen,Fullscreen,Fullscreen
-82,az.activerecord.attributes.youtube.loop,Loop,Loop
-83,az.activerecord.attributes.youtube.info,Show Video Title Bar,Show Video Title Bar
-84,az.activerecord.attributes.youtube_translation.title,Title,Title
-85,az.activerecord.attributes.youtube_translation.url,Url to YouTube Video,Url to YouTube Video
-86,az.activerecord.attributes.youtube_translation.menu_lang,Player Language,Player Language
-87,az.activerecord.attributes.youtube_translation.cc,Show Caption/Subtitle,Show Caption/Subtitle
-88,az.activerecord.attributes.youtube_translation.cc_lang,Subtitle Language,Subtitle Language
-89,az.activerecord.attributes.language.locale,Locale,Locale
-90,az.activerecord.attributes.language.name,Language Name,Language Name
-91,az.activerecord.attributes.category_translation.name,Name,Name
-92,az.activerecord.attributes.page.name,Unique name for content (do not change!),Unique name for content (do not change!)
-93,az.activerecord.attributes.page_translation.title,Title to show above content,Title to show above content
-94,az.activerecord.attributes.page_translation.content,Content,Content
-95,az.activerecord.attributes.theme.is_published,Publish?,Publish?
-96,az.activerecord.attributes.theme.published_at,Date Published,Date Published
-97,az.activerecord.attributes.theme.show_home_page,Show this theme on the home page?,Show this theme on the home page?
-98,az.activerecord.attributes.theme.published_item_count,Number of Published Items,Number of Published Items
-99,az.activerecord.attributes.theme_translation.name,Name,Name
-100,az.activerecord.attributes.theme_translation.edition,Edition,Edition
-101,az.activerecord.attributes.theme_translation.description,Description,Description
-102,az.activerecord.attributes.theme_translation.permalink,URL,URL
-103,az.activerecord.attributes.story_type.sort_order,Sort Order,Sort Order
-104,az.activerecord.attributes.story_type_translation.name,Name,Name
-105,az.activerecord.attributes.story_type_translation.permalink,URL,URL
-106,az.activerecord.errors.messages.required_field,is a required field.,is a required field.
-107,az.activerecord.errors.messages.already_exists,already exists in the database.,already exists in the database.
-108,az.activerecord.errors.messages.story_authors,must have at least one person selected.,must have at least one person selected.
-109,az.activerecord.errors.messages.publish_theme,The theme cannot be published until at least one published item has been assigned to the theme.,The theme cannot be published until at least one published item has been assigned to the theme.
-110,az.mailer.closing,"Sincerely,","Sincerely,"
-111,az.mailer.signature,The Chai Khana Team,The Chai Khana Team
-112,az.mailer.unsubscribe,Click here to change your notification settings,Click here to change your notification settings
-113,az.mailer.contact.contact_form.subject,Chai Khana Contact Form,Chai Khana Contact Form
-114,az.mailer.notification.new_user.subject,Welcome to Chai Khana!,Welcome to Chai Khana!
-115,az.mailer.notification.new_user.message,"Thank you for becoming a member of Chai Khana. We look forward to exploring the stories you build!
+73,az.activerecord.attributes.slideshow_translation.title,Title,Sərlövhə
+74,az.activerecord.attributes.slideshow_translation.caption,Heading,Başlıq
+75,az.activerecord.attributes.slideshow_translation.description,Description,Təsvir
+76,az.activerecord.attributes.message.name,Name,Name
+77,az.activerecord.attributes.message.email,Email Address,Email Address
+78,az.activerecord.attributes.message.message,Message,Message
+79,az.activerecord.attributes.message.message_type,Feedback Type,Feedback Type
+80,az.activerecord.attributes.embed_medium_translation.title,Title,Alt-başlıq
+81,az.activerecord.attributes.embed_medium_translation.url,Url to Online Media,Onlayn Mediaya URL
+82,az.activerecord.attributes.youtube.fullscreen,Fullscreen,Tam ekran
+83,az.activerecord.attributes.youtube.loop,Loop,Dövr
+84,az.activerecord.attributes.youtube.info,Show Video Title Bar,Videonun Sərlövhə Zolağını Göstər
+85,az.activerecord.attributes.youtube_translation.title,Title,Sərlövhə
+86,az.activerecord.attributes.youtube_translation.url,Url to YouTube Video,YouTube Videosunun URL-ı
+87,az.activerecord.attributes.youtube_translation.menu_lang,Player Language,Pleyerin Dili
+88,az.activerecord.attributes.youtube_translation.cc,Show Caption/Subtitle,Şəkilaltı İmzanı/Sərlövhəni Göstər
+89,az.activerecord.attributes.youtube_translation.cc_lang,Subtitle Language,Alt-başlığın dili
+90,az.activerecord.attributes.language.locale,Locale,Dil
+91,az.activerecord.attributes.language.name,Language Name,Dilin Adı
+92,az.activerecord.attributes.category_translation.name,Name,Ad
+93,az.activerecord.attributes.page.name,Unique name for content (do not change!),Məzmunun Xüsusi adı (bunu dəyişmə!)
+94,az.activerecord.attributes.page_translation.title,Title to show above content,Məzmunun üstündə göstəriləcək sərlövhə
+95,az.activerecord.attributes.page_translation.content,Content,Məzmun
+96,az.activerecord.attributes.theme.is_published,Publish?,Dərc et?
+97,az.activerecord.attributes.theme.published_at,Date Published,Dərc Edilmə Tarixi
+98,az.activerecord.attributes.theme.show_home_page,Show this theme on the home page?,Bu mövzunu ana səhifədə göstər?
+99,az.activerecord.attributes.theme.published_item_count,Number of Published Items,Dərc olunan məhsulların sayı
+100,az.activerecord.attributes.theme_translation.name,Name,Ad
+101,az.activerecord.attributes.theme_translation.edition,Edition,Buraxılış
+102,az.activerecord.attributes.theme_translation.description,Description,Təsvir
+103,az.activerecord.attributes.theme_translation.permalink,URL,URL
+104,az.activerecord.attributes.story_type.sort_order,Sort Order,Sıralama Qaydası
+105,az.activerecord.attributes.story_type_translation.name,Name,Ad
+106,az.activerecord.attributes.story_type_translation.permalink,URL,URL
+107,az.activerecord.errors.messages.required_field,is a required field.,tələb edilən sahədir.
+108,az.activerecord.errors.messages.already_exists,already exists in the database.,verilənlər bazası artıq mövcuddur.
+109,az.activerecord.errors.messages.story_authors,must have at least one person selected.,ən azı bir şəxs seçilməlidir.
+110,az.activerecord.errors.messages.publish_theme,The theme cannot be published until at least one published item has been assigned to the theme.,Dərc olunan maddə təyin edilməmiş qədər  mövzu dərc edilə bilməz.
+111,az.mailer.closing,"Sincerely,","Hörmətlə,"
+112,az.mailer.signature,The Chai Khana Team,Çayxana Komandası (Chai Khana also acceptable)
+113,az.mailer.unsubscribe,Click here to change your notification settings,Bildiriş parametrlərini dəyişmək üçün buraya basın
+114,az.mailer.contact.contact_form.subject,Chai Khana Contact Form,Çayxana Əlaqə Forması
+115,az.mailer.notification.new_user.subject,Welcome to Chai Khana!,Çayxanaya Xoş Gəlmisiniz!
+116,az.mailer.notification.new_user.message,"Thank you for becoming a member of Chai Khana. We look forward to exploring the stories you build!
 
 When you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summary about yourself: [settings_link].
 
-You can manage when you would like to receive email notifications from Chai Khana by going to the notifications page: [notifications_link]. ","Thank you for becoming a member of Chai Khana. We look forward to exploring the stories you build!
+You can manage when you would like to receive email notifications from Chai Khana by going to the notifications page: [notifications_link]. ","Çayxananın üzvü olduğunuz üçün təşəkkür edirik. Sizin yaradacağınız hekayələri səbirsizliklə gözləyirik!
 
-When you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summary about yourself: [settings_link].
+Lütfən, imkanınız olanda parametrlər səhifənizə daxil olun ki, avatarınızı, ləqəbinizi, şəxsi URL-ınızı, və özünüz barədə xülasəni yenilədə biləsiniz: [settings_link].
 
-You can manage when you would like to receive email notifications from Chai Khana by going to the notifications page: [notifications_link]. "
-116,az.mailer.notification.published_theme.subject,New themes have been published on Chai Khana!,New themes have been published on Chai Khana!
-117,az.mailer.notification.published_theme.message,The following themes you have expressed interest in were recently published:,The following themes you have expressed interest in were recently published:
-118,az.mailer.notification.published_story.subject,New stories have been published on Chai Khana!,New stories have been published on Chai Khana!
-119,az.mailer.notification.published_story.message,The following stories you have expressed interest in were recently published:,The following stories you have expressed interest in were recently published:
-120,az.mailer.notification.story_comment.subject,Someone has posted a comment on your story on Chai Khana!,Someone has posted a comment on your story on Chai Khana!
-121,az.mailer.notification.story_comment.message,The following stories have recently received a comment:,The following stories have recently received a comment:
-122,az.mailer.notification.story_comment.comment,1 Comment,1 Comment
-123,az.mailer.notification.story_comment.comments,%{num} Comments,%{num} Comments
-124,az.mailer.notification.story_collaboration.subject,You have been invited to collaborate on a story on Chai Khana!,You have been invited to collaborate on a story on Chai Khana!
-125,az.mailer.notification.story_collaboration.message,"You have received the following invitations to collaborate on stories with other people on Chai Khana. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part.","You have received the following invitations to collaborate on stories with other people on Chai Khana. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part."
-126,az.mailer.notification.story_collaboration.from,From,From
-127,az.mailer.notification.story_collaboration.role,Role,Role
-128,az.mailer.notification.story_collaboration.story_title,Story Title,Story Title
-129,az.mailer.notification.story_collaboration.msg,Message,Message
-130,az.mailer.notification.story_collaboration.accept_link,Accept the Invitation,Accept the Invitation
-131,az.mailer.notification.story_collaboration.all_invitations,View all of your Chai Khana collaboration invitations.,View all of your Chai Khana collaboration invitations.
-132,az.mailer.notification.processed_videos.subject,Your videos on Chai Khana have been processed!,Your videos on Chai Khana have been processed!
-133,az.mailer.notification.processed_videos.message,The following stories of yours have videos that have completed processing:,The following stories of yours have videos that have completed processing:
-134,az.mailer.notification.processed_videos.story_title,Story:,Story:
-135,az.mailer.notification.processed_videos.status,Video Processing Status: %{processed} of %{total} completed,Video Processing Status: %{processed} of %{total} completed
-136,az.mailer.notification.processed_videos.processed,Videos Processed:,Videos Processed:
-137,az.mailer.notification.processed_videos.not_processed,Videos Still Processing:,Videos Still Processing:
-138,az.mailer.notification.processed_videos.none_processed,No vidoes have been processed.,No vidoes have been processed.
-139,az.mailer.notification.processed_videos.none_processing,All videos have been processed!,All videos have been processed!
-140,az.mailer.notification.processed_video_errors.subject,Videos on Chai Khana have processing errors!,Videos on Chai Khana have processing errors!
-141,az.mailer.notification.processed_video_errors.message,The following videos had errors while being processed:,The following videos had errors while being processed:
-142,az.mailer.notification.processed_video_errors.story_id,Story ID,Story ID
-143,az.mailer.notification.processed_video_errors.asset_id,Asset ID,Asset ID
-144,az.mailer.notification.processed_video_errors.path,URL of Video,URL of Video
-145,az.helpers.actions,Actions,Actions
-146,az.helpers.links.admin,Admin Section,Admin Section
-147,az.helpers.links.edit,Edit,Edit
-148,az.helpers.links.confirm,Are you sure?,Are you sure?
-149,az.helpers.links.destroy,Delete,Delete
-150,az.helpers.links.new,New,New
-151,az.helpers.links.list,View All,View All
-152,az.helpers.links.back,View All,View All
-153,az.helpers.links.cancel,Cancel,Cancel
-154,az.helpers.links.reset,Reset,Reset
-155,az.helpers.links.view,View,View
-156,az.helpers.links.sign_in_facebook,Sign in with Facebook,Sign in with Facebook
-157,az.helpers.links.edit_story,Edit Story Settings,Edit Story Settings
-158,az.helpers.links.delete_story,Delete Story,Delete Story
-159,az.helpers.links.admin_story,Edit Content,Edit Content
-160,az.helpers.links.publish_story,Publish Story,Publish Story
-161,az.helpers.links.forgot_password,Forgot Password?,Forgot Password?
-162,az.helpers.links.change_password,Change Your Password,Change Your Password
-163,az.helpers.links.change_password2,Change Password,Change Password
-164,az.helpers.links.password_reset,Reset Password,Reset Password
-165,az.helpers.links.sign_in2,Sign In,Sign In
-166,az.helpers.links.sign_in,Already have an account?,Already have an account?
-167,az.helpers.links.sign_up2,Sign Up,Sign Up
-168,az.helpers.links.sign_up_question,Not a member yet?,Not a member yet?
-169,az.helpers.links.sign_up,Register now,Register now
-170,az.helpers.links.sign_up_title,Join Chai Khana,Join Chai Khana
-171,az.helpers.links.sign_out,Sign Out,Sign Out
-172,az.helpers.links.sign_in_provider,Sign in with %{provider},Sign in with %{provider}
-173,az.helpers.links.sign_up_provider,Sign up with %{provider},Sign up with %{provider}
-174,az.helpers.links.sign_in_local_or_provider,or log in with your email and password,or log in with your email and password
-175,az.helpers.links.reset_or_sign_in,sign in with facebook or reset your password,sign in with facebook or reset your password
-176,az.helpers.links.add_story,Add Story,Add Story
-177,az.helpers.links.users,Users,Users
-178,az.helpers.links.authors,Authors,Authors
-179,az.helpers.links.feedback,Feedback,Feedback
-180,az.helpers.links.about,About,About
-181,az.helpers.links.rss,RSS,RSS
-182,az.helpers.links.themes,Themes,Themes
-183,az.helpers.links.story_types,Types,Types
-184,az.helpers.links.languages,Languages,Languages
-185,az.helpers.links.follow,Follow,Follow
-186,az.helpers.links.facebook,Facebook,Facebook
-187,az.helpers.links.twitter,Twitter,Twitter
-188,az.helpers.links.youtube,YouTube,YouTube
-189,az.helpers.links.subscribe,Subscribe,Subscribe
-190,az.helpers.links.user_settings,Settings,Settings
-191,az.helpers.links.like,Like,Like
-192,az.helpers.links.likes,Likes,Likes
-193,az.helpers.links.comments,Comment on this story,Comment on this story
-194,az.helpers.links.views,%{num} views,%{num} views
-195,az.helpers.links.tags,Tags,Tags
-196,az.helpers.links.menu,Menu,Menu
-197,az.helpers.links.pages,Edit Text on Site,Edit Text on Site
-198,az.helpers.links.next,Next,Next
-199,az.helpers.links.feed,Feed,Feed
-200,az.helpers.links.story_menu.link.story,Story,Story
-201,az.helpers.links.story_menu.link.story_settings,Story Settings,Story Settings
-202,az.helpers.links.story_menu.link.collaborators,Collaborators,Collaborators
-203,az.helpers.links.story_menu.link.preview,Preview,Preview
-204,az.helpers.links.story_menu.link.publish,Publish,Publish
-205,az.helpers.links.story_menu.link.unpublish,Unpublish,Unpublish
-206,az.helpers.links.story_menu.link.review,Private URL,Private URL
-207,az.helpers.links.story_menu.link.clone,Clone,Clone
-208,az.helpers.links.story_menu.link.export,Download,Download
-209,az.helpers.links.story_menu.link.delete_story,Delete,Delete
-210,az.helpers.links.story_menu.link.translations,Translations,Translations
-211,az.helpers.links.story_menu.title.story,Edit your story,Edit your story
-212,az.helpers.links.story_menu.title.story_settings,"Edit story title, authors, URL, summary, thumbnail, language, tags and/or categories, content etc.","Edit story title, authors, URL, summary, thumbnail, language, tags and/or categories, content etc."
-213,az.helpers.links.story_menu.title.collaborators,Manage which users have access to edit your story,Manage which users have access to edit your story
-214,az.helpers.links.story_menu.title.preview,See how your story looks,See how your story looks
-215,az.helpers.links.story_menu.title.publish,Make your story viewable to the world,Make your story viewable to the world
-216,az.helpers.links.story_menu.title.unpublish,Make your story NOT viewable to the world,Make your story NOT viewable to the world
-217,az.helpers.links.story_menu.title.review,URL to share this story before publishing,URL to share this story before publishing
-218,az.helpers.links.story_menu.title.clone,Copy this story into a new story,Copy this story into a new story
-219,az.helpers.links.story_menu.title.export,Download the complete story,Download the complete story
-220,az.helpers.links.story_menu.title.delete_story,Deleting a story cannot be undone,Deleting a story cannot be undone
-221,az.helpers.links.story_menu.title.translations,Translate your story into other languages,Translate your story into other languages
-222,az.helpers.titles.new,New %{model},New %{model}
-223,az.helpers.titles.edit,Edit %{model},Edit %{model}
-224,az.helpers.titles.story_list,My Stories,My Stories
-225,az.helpers.hints.nickname,"Your nickname is used in the URL to your published stories (e.g., nickname/story-title)","Your nickname is used in the URL to your published stories (e.g., nickname/story-title)"
-226,az.helpers.hints.local_avatar,Image that is shown in the header bar and on your user page (png and jpg only).,Image that is shown in the header bar and on your user page (png and jpg only).
-227,az.helpers.hints.avatar,Image that is shown on the Author's page (png and jpg only).,Image that is shown on the Author's page (png and jpg only).
-228,az.helpers.hints.like,Like this story,Like this story
-229,az.helpers.hints.unlike,Unlike this story,Unlike this story
-230,az.helpers.hints.staff_pick,Select as Staff Pick,Select as Staff Pick
-231,az.helpers.hints.staff_unpick,Unselect as Staff Pick,Unselect as Staff Pick
-232,az.helpers.hints.is_staff_pick,Staff Pick,Staff Pick
-233,az.helpers.hints.clone_asset,"If checked, the file to the left will be used for this translation","If checked, the file to the left will be used for this translation"
-234,az.app.language.en,English,English
-235,az.app.language.ka,ქართული,ქართული
-236,az.app.language.hy,Հայերեն,Հայերեն
-237,az.app.language.ru,Русский,Русский
-238,az.app.language.az,Azərbaycan,Azərbaycan
-239,az.app.buttons.back,View All,View All
-240,az.app.buttons.list,View All,View All
-241,az.app.buttons.admin,Admin Section,Admin Section
-242,az.app.buttons.delete,Delete,Delete
-243,az.app.buttons.edit,Edit,Edit
-244,az.app.buttons.show,Show,Show
-245,az.app.buttons.cancel,Cancel,Cancel
-246,az.app.buttons.update,Update,Update
-247,az.app.buttons.save,Save,Save
-248,az.app.buttons.save_and_next,Save & Next,Save & Next
-249,az.app.buttons.create,Create,Create
-250,az.app.buttons.reset,Reset,Reset
-251,az.app.buttons.remove,Remove,Remove
-252,az.app.buttons.confirm,Are you sure?,Are you sure?
-253,az.app.buttons.new,New,New
-254,az.app.buttons.add_section,Add Section,Add Section
-255,az.app.buttons.add_item,Add Item into Section,Add Item into Section
-256,az.app.buttons.up,Move Selected Section/Item Up,Move Selected Section/Item Up
-257,az.app.buttons.down,Move Selected Section/Item Down,Move Selected Section/Item Down
-258,az.app.buttons.delete_item,Delete Selected Section/Item,Delete Selected Section/Item
-259,az.app.buttons.preview,Preview,Preview
-260,az.app.buttons.preview_image,Preview Image,Preview Image
-261,az.app.buttons.preview_video,Preview Video,Preview Video
-262,az.app.buttons.preview_audio,Listen To Audio,Listen To Audio
-263,az.app.buttons.publish,Publish,Publish
-264,az.app.buttons.unpublish,Unpublish,Unpublish
-265,az.app.buttons.clone,Copy this story into a new story,Copy this story into a new story
-266,az.app.buttons.export,Download the complete story,Download the complete story
-267,az.app.buttons.scroll,Scroll,Scroll
-268,az.app.buttons.reviewer_key,Get URL to share this story before publishing,Get URL to share this story before publishing
-269,az.app.buttons.reviewer_key_published,Your story is published so there is no need to share this non-published URL,Your story is published so there is no need to share this non-published URL
-270,az.app.buttons.explore,Explore,Explore
-271,az.app.common.app_name_not_trans,Chai Khana,Chai Khana
-272,az.app.common.app_name,Chai Khana,Chai Khana
-273,az.app.common.app_intro,Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.,Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.
-274,az.app.common.app_intro_meta,Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.,Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.
-275,az.app.common.powered_by,Powered by,Powered by
-276,az.app.common.powered_by_js,Jumpstart Georgia,Jumpstart Georgia
-277,az.app.common.powered_by_end,"",""
-278,az.app.common.embed_slogan,Build your story with Chai Khana,Build your story with Chai Khana
-279,az.app.common.added_on,Added on: %{date},Added on: %{date}
-280,az.app.common.last_sign_in,Logged in last: %{date},Logged in last: %{date}
-281,az.app.common.admin,Admin,Admin
-282,az.app.common.sign_out,Sign Out,Sign Out
-283,az.app.common.jumpstart,JumpStart Georgia,JumpStart Georgia
-284,az.app.common.js_link_title,JumpStart Georgia - We communicate data better!,JumpStart Georgia - We communicate data better!
-285,az.app.common.js_link_text,Built by,Built by
-286,az.app.common.search,Search for Story ...,Search for Story ...
-287,az.app.common.build,Build Story,Build Story
-288,az.app.common.explore,Explore Stories,Explore Stories
-289,az.app.common.about_story,About,About
-290,az.app.common.likes,Likes,Likes
-291,az.app.common.comments,Comments,Comments
-292,az.app.common.publish_date,Publish Date,Publish Date
-293,az.app.common.follow,Follow,Follow
-294,az.app.common.following,Following,Following
-295,az.app.common.follow_link_title,Click to receive notifications whenever this author publishes new stories,Click to receive notifications whenever this author publishes new stories
-296,az.app.common.unfollow_link_title,Click to stop receiving notifications whenever this author publishes new stories,Click to stop receiving notifications whenever this author publishes new stories
-297,az.app.common.email,Email,Email
-298,az.app.common.views,Views,Views
-299,az.app.common.permalink,Permalink,Permalink
-300,az.app.common.shortened_url,Short URL,Short URL
-301,az.app.common.share_story,Share this story,Share this story
-302,az.app.common.share_facebook,Share on Facebook,Share on Facebook
-303,az.app.common.share_twitter,Share on Twitter,Share on Twitter
-304,az.app.common.share,Share,Share
-305,az.app.common.staff_pick,Staff Pick,Staff Pick
-306,az.app.common.wide,wide,wide
-307,az.app.common.partial,Link to Story,Link to Story
-308,az.app.common.partial_text,"Embed a link to the story that has the same look as the story links on the home page of Chai Khana (image, title, author, etc)","Embed a link to the story that has the same look as the story links on the home page of Chai Khana (image, title, author, etc)"
-309,az.app.common.full,Full Story,Full Story
-310,az.app.common.full_text,Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look.,Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look.
-311,az.app.common.feed,Chai Khana Feeds,Chai Khana Feeds
-312,az.app.common.home,Home,Home
-313,az.app.common.required,Required,Required
-314,az.app.common.nothing_selected,Nothing Selected,Nothing Selected
-315,az.app.common.clone_asset,Use the original file?,Use the original file?
-316,az.app.common.embed,Embed Code,Embed Code
-317,az.app.common.scroll_top,Scroll to the top,Scroll to the top
-318,az.app.msgs.does_not_exist,You tried to access a page that does not exist.,You tried to access a page that does not exist.
-319,az.app.msgs.not_authorized,You are not authorized to view that page.,You are not authorized to view that page.
-320,az.app.msgs.success_created,%{obj} was successfully created.,%{obj} was successfully created.
-321,az.app.msgs.success_updated,%{obj} was successfully updated.,%{obj} was successfully updated.
-322,az.app.msgs.success_publish,%{obj} was successfully published.,%{obj} was successfully published.
-323,az.app.msgs.success_unpublish,%{obj} was successfully unpublished.,%{obj} was successfully unpublished.
-324,az.app.msgs.success_clone,%{obj} was successfully cloned to %{to}.,%{obj} was successfully cloned to %{to}.
-325,az.app.msgs.error_created,%{obj} wasn't created: %{err},%{obj} wasn't created: %{err}
-326,az.app.msgs.error_updated,%{obj} wasn't updated: %{err},%{obj} wasn't updated: %{err}
-327,az.app.msgs.error_publish,%{obj} wasn't published: %{err},%{obj} wasn't published: %{err}
-328,az.app.msgs.error_publish_missing_fields,%{obj} can't be published until you provide a summary and thumbnail image.,%{obj} can't be published until you provide a summary and thumbnail image.
-329,az.app.msgs.error_publish_missing_fields_link,Add the missing content.,Add the missing content.
-330,az.app.msgs.error_publish_missing_sections,At least one Section required before publishing.,At least one Section required before publishing.
-331,az.app.msgs.error_publish_missing_content_section,All Text Sections must have content in it.,All Text Sections must have content in it.
-332,az.app.msgs.error_publish_missing_translations,The story must be completely translated in %{lang} in order to be published.,The story must be completely translated in %{lang} in order to be published.
-333,az.app.msgs.error_unpublish,%{obj} wasn't unpublished: %{err},%{obj} wasn't unpublished: %{err}
-334,az.app.msgs.error_clone,%{obj} wasn't cloned.,%{obj} wasn't cloned.
-335,az.app.msgs.error_clone_notification,Error occurred while cloning story: %{msg},Error occurred while cloning story: %{msg}
-336,az.app.msgs.error_export,Story can't be downloaded.,Story can't be downloaded.
-337,az.app.msgs.error_get_data,The selected item could not be found,The selected item could not be found
-338,az.app.msgs.select_section,Please select a Section first in order to add an Item,Please select a Section first in order to add an Item
-339,az.app.msgs.staff_pick,The story has been selected as a Staff Pick,The story has been selected as a Staff Pick
-340,az.app.msgs.staff_unpick,The story has been unselected as a Staff Pick,The story has been unselected as a Staff Pick
-341,az.app.msgs.success_settings,Your settings were successfully updated.,Your settings were successfully updated.
-342,az.app.msgs.success_remove_avatar,Your Facebook avatar is now being used.,Your Facebook avatar is now being used.
-343,az.app.msgs.nickname_duplicate,This user URL already exists.,This user URL already exists.
-344,az.app.msgs.nickname_url,Your URL will be:,Your URL will be:
-345,az.app.msgs.story_duplicate,This story URL already exists.,This story URL already exists.
-346,az.app.msgs.story_url,Story URL will be:,Story URL will be:
-347,az.app.msgs.invitation.accepted,You have accepted the invitation to collaborate on '%{title}',You have accepted the invitation to collaborate on '%{title}'
-348,az.app.msgs.invitation.accepted_already,You have already accepted the invitation to collaborate on '%{title}',You have already accepted the invitation to collaborate on '%{title}'
-349,az.app.msgs.invitation.bad,"Sorry, your invitation could not be found or the story has been deleted.","Sorry, your invitation could not be found or the story has been deleted."
-350,az.app.msgs.invitation.declined,Your invitation was declined,Your invitation was declined
-351,az.app.msgs.one_section.content,Only one Item can be added to a Text section,Only one Item can be added to a Text section
-352,az.app.msgs.one_section.slideshow,Only one Item can be added to an Image Slideshow section,Only one Item can be added to an Image Slideshow section
-353,az.app.msgs.one_section.embed_media,Only one Item can be added to an Embed Online Media section,Only one Item can be added to an Embed Online Media section
-354,az.app.msgs.one_section.youtube,Only one Item can be added to a YouTube section,Only one Item can be added to a YouTube section
-355,az.app.msgs.one_section.general,Only one Item can be added to this type of section,Only one Item can be added to this type of section
-356,az.app.msgs.destroy_story.success,Story was successfully deleted.,Story was successfully deleted.
-357,az.app.msgs.destroy_story.error,Error occurred while deleting the story: %{err},Error occurred while deleting the story: %{err}
-358,az.app.msgs.destroy_item.success,Item was successfully deleted.,Item was successfully deleted.
-359,az.app.msgs.destroy_item.error,Error occurred while deleting the item: %{err},Error occurred while deleting the item: %{err}
-360,az.app.msgs.destroy_item.error_not_found,Item could not be found to delete.,Item could not be found to delete.
-361,az.app.msgs.embed_code,Copy and paste this embed code into your web page,Copy and paste this embed code into your web page
-362,az.app.msgs.collaborators.success_remove,%{name} was removed as a collaborator,%{name} was removed as a collaborator
-363,az.app.msgs.collaborators.user_not_found,User to remove as a collaborator could not be found,User to remove as a collaborator could not be found
-364,az.app.msgs.collaborators.no_permission,You do not have permission to remove this collaborator,You do not have permission to remove this collaborator
-365,az.app.msgs.collaborators.success_invitations,Invitations were sent!,Invitations were sent!
-366,az.app.msgs.collaborators.error_invitations_all,No invitations were sent due to the following erros: %{msg},No invitations were sent due to the following erros: %{msg}
-367,az.app.msgs.collaborators.error_invitations_some,"Some invitations were sent, but some were not due to the following erros: %{msg}","Some invitations were sent, but some were not due to the following erros: %{msg}"
-368,az.app.msgs.notification.true,You will be sent notifications.,You will be sent notifications.
-369,az.app.msgs.notification.false,You will not be sent notifications.,You will not be sent notifications.
-370,az.app.msgs.notification.new_theme_all_success,You will recieve a notification whenever a theme is added.,You will recieve a notification whenever a theme is added.
-371,az.app.msgs.notification.new_theme_none_success,You will not receive any notifications when themes are added.,You will not receive any notifications when themes are added.
-372,az.app.msgs.notification.new_story_by_type_success,You will receive a notification when a story is added to these types: %{types}.,You will receive a notification when a story is added to these types: %{types}.
-373,az.app.msgs.notification.story_comments_yes,You will be sent notifications when a comment is made to one of your stories.,You will be sent notifications when a comment is made to one of your stories.
-374,az.app.msgs.notification.story_comments_no,You will not be sent notifications when a comment is made to one of your stories.,You will not be sent notifications when a comment is made to one of your stories.
-375,az.app.msgs.notification.following_no,You will no longer receive notifications about new stories from '%{name}'.,You will no longer receive notifications about new stories from '%{name}'.
-376,az.app.msgs.notification.language,You will be sent notifications in %{language}.,You will be sent notifications in %{language}.
-377,az.app.msgs.fail_change_order,The item was not able to be moved,The item was not able to be moved
-378,az.app.msgs.nothing_selected,Please select a section/item to delete,Please select a section/item to delete
-379,az.app.msgs.fail_delete,The section/item could not be deleted,The section/item could not be deleted
-380,az.app.msgs.confirm_delete,Are you sure you want to delete this section/item?,Are you sure you want to delete this section/item?
-381,az.app.msgs.video_processed,Your video is processed,Your video is processed
-382,az.app.msgs.video_not_processed,Your video is being processed,Your video is being processed
-383,az.app.msgs.not_found_for_update,The record to update could not be found in the database.,The record to update could not be found in the database.
-384,az.section_types.content.name,Text,Text
-385,az.section_types.content.description,"Can include html, css styling and images","Can include html, css styling and images"
-386,az.section_types.media.name,Full-Screen Media Slideshow,Full-Screen Media Slideshow
-387,az.section_types.media.description,Images and/or videos as a full-screen vertical slideshow,Images and/or videos as a full-screen vertical slideshow
-388,az.section_types.slideshow.name,Image Slideshow,Image Slideshow
-389,az.section_types.slideshow.description,Images in a horizontal slideshow,Images in a horizontal slideshow
-390,az.section_types.embed_media.name,Embed Online Media,Embed Online Media
-391,az.section_types.embed_media.description,"YouTube, Vimeo, etc","YouTube, Vimeo, etc"
-392,az.section_types.youtube.name,YouTube Video,YouTube Video
-393,az.section_types.youtube.description,YouTube video with ability to setting caption language,YouTube video with ability to setting caption language
-394,az.story_role.editor,Editor,Editor
-395,az.story_role.translator,Translator,Translator
-396,az.message_types.bug,Report a Bug,Report a Bug
-397,az.message_types.feature,Request a Feature,Request a Feature
-398,az.message_types.feedback,General Feedback,General Feedback
-399,az.filters.all,All,All
-400,az.filters.matches,Matches,Matches
-401,az.filters.staff_pick,Staff Pick,Staff Pick
-402,az.filters.staff_pick_title,View stories that have been selected as Staff Picks,View stories that have been selected as Staff Picks
-403,az.filters.staff_pick_title_active,Remove Staff Pick filter,Remove Staff Pick filter
-404,az.filters.sort_header,Sorted By,Sorted By
-405,az.filters.sort_title,Indicate how the stories should be sorted,Indicate how the stories should be sorted
-406,az.filters.filters,Filters,Filters
-407,az.filters.all_stories,All Stories,All Stories
-408,az.filters.sort.recent,Recent,Recent
-409,az.filters.sort.reads,Views,Views
-410,az.filters.sort.likes,Likes,Likes
-411,az.filters.category_header,Category,Category
-412,az.filters.category_title,View stories that belong to a category,View stories that belong to a category
-413,az.filters.theme_header,Theme,Theme
-414,az.filters.theme_title,View stories that belong to a theme,View stories that belong to a theme
-415,az.filters.language_header,Language,Language
-416,az.filters.language_title,View stories that are written in a particular language,View stories that are written in a particular language
-417,az.filters.search,Find a Story,Find a Story
-418,az.filters.following,Following,Following
-419,az.filters.following_title,View stories of users that you are following,View stories of users that you are following
-420,az.filters.following_title_active,Remove Following filter,Remove Following filter
-421,az.filters.not_published,Not Published,Not Published
-422,az.filters.not_published_title,View stories that are not published,View stories that are not published
-423,az.filters.not_published_title_active,Show all stories,Show all stories
-424,az.tokeninput.searchingText,Searching...,Searching...
-425,az.tokeninput.tag.hintText,Search for an existing tag or enter a new tag,Search for an existing tag or enter a new tag
-426,az.tokeninput.tag.noResultsText,No matches found. Press 'Enter' to save this new tag.,No matches found. Press 'Enter' to save this new tag.
-427,az.tokeninput.collaborator.hintText,Search for an existing user or enter the email address for a new user,Search for an existing user or enter the email address for a new user
-428,az.tokeninput.collaborator.noResultsText,No matches found. Press 'Enter' to add this email address to the list of invited collaborators.,No matches found. Press 'Enter' to add this email address to the list of invited collaborators.
-429,az.layouts.unsupported_browser.title,Unsupported Browser,Unsupported Browser
-430,az.layouts.unsupported_browser.video,Your browser does not support this video.,Your browser does not support this video.
-431,az.layouts.unsupported_browser.p1,We are sorry to report that your browser is out of date and will not properly render the content from this website.,We are sorry to report that your browser is out of date and will not properly render the content from this website.
-432,az.layouts.unsupported_browser.p2,"On the bright side, there are several free browsers that you can download that are compatible with this site.","On the bright side, there are several free browsers that you can download that are compatible with this site."
-433,az.layouts.unsupported_browser.chrome,Chrome,Chrome
-434,az.layouts.unsupported_browser.firefox,Firefox,Firefox
-435,az.layouts.unsupported_browser.ie,Internet Explorer (Windows only),Internet Explorer (Windows only)
-436,az.layouts.unsupported_browser.opera,Opera,Opera
-437,az.layouts.unsupported_browser.Safari,Safari,Safari
-438,az.layouts.unsupported_browser.admin,Admin,Admin
-439,az.layouts.unsupported_browser.sign_out,Sign Out,Sign Out
-440,az.layouts.unsupported_browser.js_link_title,JumpStart Georgia - We communicate data better!,JumpStart Georgia - We communicate data better!
-441,az.layouts.unsupported_browser.js_link_text,Built by,Built by
-442,az.layouts.reviewer.copy,Copy To Clipboard...,Copy To Clipboard...
-443,az.layouts.reviewer.copied,Copied!,Copied!
-444,az.layouts.storybuilder.source,Source,Source
-445,az.layouts.storybuilder.target,Target,Target
-446,az.shared.grid.no_stories,Oh no - no stories could be found!,Oh no - no stories could be found!
-447,az.shared.story_nav_modals.copied,Copied!,Copied!
-448,az.admin.index.title,Administration Section,Administration Section
-449,az.admin.index.users,Users,Users
-450,az.admin.users.edit.title,Editing User,Editing User
-451,az.admin.users.index.title,Users,Users
-452,az.admin.users.new.title,New User,New User
-453,az.admin.users.show.title,User Details,User Details
-454,az.root.index,,
-455,az.root.about.title,About Chai Khana,About Chai Khana
-456,az.root.embed.home_link,Built on Chai Khana,Built on Chai Khana
-457,az.stories.index,,
-458,az.stories.new.title,Story Settings Form,Story Settings Form
-459,az.stories.edit.title,Story Settings Form,Story Settings Form
-460,az.stories.form.placeholder.title,Title of Story,Title of Story
-461,az.stories.form.placeholder.permalink,URL to the story,URL to the story
-462,az.stories.form.placeholder.author,Author(s) of the article,Author(s) of the article
-463,az.stories.form.placeholder.media_author,Author(s) of photos and/or videos,Author(s) of photos and/or videos
-464,az.stories.form.placeholder.translation_author,Author(s) that translated the story into this language,Author(s) that translated the story into this language
-465,az.stories.form.hint.title,Story title will appear at the top of your story,Story title will appear at the top of your story
-466,az.stories.form.hint.permalink,"The default URL is the title of the story, but you can change it if desired","The default URL is the title of the story, but you can change it if desired"
-467,az.stories.form.hint.author,Select the author(s) of the story to allow the story to appear on their webpage.,Select the author(s) of the story to allow the story to appear on their webpage.
-468,az.stories.form.hint.media_author,Author names will appear below the Story Author names,Author names will appear below the Story Author names
-469,az.stories.form.hint.translation_author,Author names will appear below the Photo and Video Author names,Author names will appear below the Photo and Video Author names
-470,az.stories.form.hint.published,Published stories are available for the world to view,Published stories are available for the world to view
-471,az.stories.form.hint.publish_home_page,"If checked, your published story will appear on the site's homepage","If checked, your published story will appear on the site's homepage"
-472,az.stories.form.hint.template,Choose template to apply styling to story,Choose template to apply styling to story
-473,az.stories.form.hint.thumbnail,Image that is used to show the story on the home page when the story is published (jpg and png only; 4MB file size limit),Image that is used to show the story on the home page when the story is published (jpg and png only; 4MB file size limit)
-474,az.stories.form.hint.editor,Person that created the story record in this website,Person that created the story record in this website
-475,az.stories.form.hint.editors,Select people that you want to give access to edit the story,Select people that you want to give access to edit the story
-476,az.stories.form.hint.about,Short summary of story that will be used on the home page and when you story is shared,Short summary of story that will be used on the home page and when you story is shared
-477,az.stories.form.hint.locale,Select the language of your story. Allows users to filter stories by a language.,Select the language of your story. Allows users to filter stories by a language.
-478,az.stories.form.hint.categories,Select the category(s) your story belongs to.  Allows users to filter stories by a category.,Select the category(s) your story belongs to.  Allows users to filter stories by a category.
-479,az.stories.form.hint.tag_list,"Enter text to find existing tags.  If your tag does not exist yet, press 'Enter' to add the new tag to the list.","Enter text to find existing tags.  If your tag does not exist yet, press 'Enter' to add the new tag to the list."
-480,az.stories.form.hint.story_type,Select the type of your story.,Select the type of your story.
-481,az.stories.form.hint.theme,Select the theme(s) your story belongs to.,Select the theme(s) your story belongs to.
-482,az.stories.form.hint.in_theme_slider,"If checked, this story will appear in the slider at the top of the theme page.","If checked, this story will appear in the slider at the top of the theme page."
-483,az.stories.collaborators.title,Collaborators for '%{title}',Collaborators for '%{title}'
-484,az.stories.collaborators.owner_header,Story Author,Story Author
-485,az.stories.collaborators.collaborators_header,Story Collaborators,Story Collaborators
-486,az.stories.collaborators.explanation,A story collaborator is someone that has access to edit this story.,A story collaborator is someone that has access to edit this story.
-487,az.stories.collaborators.editors_header,Editors,Editors
-488,az.stories.collaborators.editor_explanation,An Editor has access to add/edit the story and translate the story into any language. An Editor can also add collaborators and publish the story.,An Editor has access to add/edit the story and translate the story into any language. An Editor can also add collaborators and publish the story.
-489,az.stories.collaborators.translators_header,Translators,Translators
-490,az.stories.collaborators.translator_explanation,"A Translator has access to translate the story into a specific language(s). A Translator does not have the ability to edit the original story, add collaborators or publish the story.","A Translator has access to translate the story into a specific language(s). A Translator does not have the ability to edit the original story, add collaborators or publish the story."
-491,az.stories.collaborators.remove_title,Remove %{name},Remove %{name}
-492,az.stories.collaborators.not_accepted_title,%{name} has not accepted the invitation yet,%{name} has not accepted the invitation yet
-493,az.stories.collaborators.add_header,Add Collaborators,Add Collaborators
-494,az.stories.collaborators.add_explanation,"For the users you enter below, an email will be sent inviting them to be a collaborator on this story.","For the users you enter below, an email will be sent inviting them to be a collaborator on this story."
-495,az.stories.collaborators.editor_label,Enter the names or email addresses of the editors,Enter the names or email addresses of the editors
-496,az.stories.collaborators.language_label,Select the translation language(s),Select the translation language(s)
-497,az.stories.collaborators.translator_label,Enter the name or email address of the translator,Enter the name or email address of the translator
-498,az.stories.collaborators.translator_add,Add Another Translator,Add Another Translator
-499,az.stories.collaborators.translator_remove,Remove Translator,Remove Translator
-500,az.stories.collaborators.message,Add Message to Notification (optional),Add Message to Notification (optional)
-501,az.stories.collaborators.submit,Send Collaboration Invitation,Send Collaboration Invitation
-502,az.stories.media.form_title,Full-Screen Media Slideshow Form,Full-Screen Media Slideshow Form
-503,az.stories.media.left,Left,Left
-504,az.stories.media.center,Center,Center
-505,az.stories.media.right,Right,Right
-506,az.stories.media.image,Image,Image
-507,az.stories.media.video,Video,Video
-508,az.stories.media.floating,Floating,Floating
-509,az.stories.media.fixed,Fixed,Fixed
-510,az.stories.media.placeholder.title,Media title,Media title
-511,az.stories.media.placeholder.caption,Caption text,Caption text
-512,az.stories.media.placeholder.source,Source of the image/video,Source of the image/video
-513,az.stories.media.hint.title,"This text only appears in the left sidebar, it will not show up in the story","This text only appears in the left sidebar, it will not show up in the story"
-514,az.stories.media.hint.media_type,"For videos, an image is necessary because videos are not loaded on mobile devices.","For videos, an image is necessary because videos are not loaded on mobile devices."
-515,az.stories.media.hint.caption,"Caption text will appear on top of the image/video. If this is the first item in the story, the caption text is hidden.","Caption text will appear on top of the image/video. If this is the first item in the story, the caption text is hidden."
-516,az.stories.media.hint.source,"Source of the image/video, appears in the bottom-right corner","Source of the image/video, appears in the bottom-right corner"
-517,az.stories.media.hint.image,Only jpg format allowed; 4MB file size limit,Only jpg format allowed; 4MB file size limit
-518,az.stories.media.hint.video,"Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receive a notification when the processing is complete, typically within a few minutes.","Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receive a notification when the processing is complete, typically within a few minutes."
-519,az.stories.media.hint.caption_align,The Caption text will appear on top of the image/video (appears on the left by default) ,The Caption text will appear on top of the image/video (appears on the left by default) 
-520,az.stories.media.hint.infobox_type,The Caption text can float on top of the image/video or can be fixed at the bottom of the image/video,The Caption text can float on top of the image/video or can be fixed at the bottom of the image/video
-521,az.stories.media.hint.video_loop,"If checked, the video will loop infinitly, otherwise the video will not loop","If checked, the video will loop infinitly, otherwise the video will not loop"
-522,az.stories.section.form_title,Section Form,Section Form
-523,az.stories.section.yes,Yes,Yes
-524,az.stories.section.no,No,No
-525,az.stories.section.placeholder.title,Section title,Section title
-526,az.stories.section.hint.title,"This text appears in the left sidebar and, if Navigation Shortcut is selected, will appear as the title text for the shortcut","This text appears in the left sidebar and, if Navigation Shortcut is selected, will appear as the title text for the shortcut"
-527,az.stories.section.hint.type,Selecting this type determines what kind of information you can add into this section,Selecting this type determines what kind of information you can add into this section
-528,az.stories.section.hint.has_marker,"If checked, there will be a navigation shortcut link to go to this section","If checked, there will be a navigation shortcut link to go to this section"
-529,az.stories.section.hint.audio,Background audio to play while this section is in view (mp3 format only; 10mb file size limit),Background audio to play while this section is in view (mp3 format only; 10mb file size limit)
-530,az.stories.section.hint.delete_audio,"If checked, the Audio Track will be deleted","If checked, the Audio Track will be deleted"
-531,az.stories.content.form_title,Text Form,Text Form
-532,az.stories.content.placeholder.title,Text title,Text title
-533,az.stories.content.placeholder.caption,optional,optional
-534,az.stories.content.placeholder.sub_caption,optional,optional
-535,az.stories.content.hint.title,"This text only appears in the left sidebar, it will not show up in the story","This text only appears in the left sidebar, it will not show up in the story"
-536,az.stories.content.hint.caption,Heading of text will appear at the top of the section,Heading of text will appear at the top of the section
-537,az.stories.content.hint.sub_caption,Subheading of text will appear below the Heading,Subheading of text will appear below the Heading
-538,az.stories.content.hint.content,"Text can include html, css styling and images","Text can include html, css styling and images"
-539,az.stories.reviewer_key.title,Private URL,Private URL
-540,az.stories.reviewer_key.desc,"You can copy and share the following URL with whomever you want to review '%{title}' before it is published. These people will have the ability to read your story, but not edit it.","You can copy and share the following URL with whomever you want to review '%{title}' before it is published. These people will have the ability to read your story, but not edit it."
-541,az.stories.slideshow.form_title,Image Slideshow Form,Image Slideshow Form
-542,az.stories.slideshow.add_image,Add Image,Add Image
-543,az.stories.slideshow.placeholder.title,Slideshow Title,Slideshow Title
-544,az.stories.slideshow.placeholder.caption,optional,optional
-545,az.stories.slideshow.hint.title,"This text only appears in the left sidebar, it will not show up in the story","This text only appears in the left sidebar, it will not show up in the story"
-546,az.stories.slideshow.hint.caption,Heading will appear at the top of the slideshow,Heading will appear at the top of the slideshow
-547,az.stories.asset_fields.remove_image,Remove,Remove
-548,az.stories.asset_fields.placeholder.caption,optional,optional
-549,az.stories.asset_fields.placeholder.source,optional,optional
-550,az.stories.asset_fields.hint.caption,Image Description will appear below the image,Image Description will appear below the image
-551,az.stories.asset_fields.hint.source,Source will appear below the Image Description,Source will appear below the Image Description
-552,az.stories.asset_fields.hint.asset,Only jpg and png format allowed; 4MB file size limit,Only jpg and png format allowed; 4MB file size limit
-553,az.stories.asset_fields.label.caption,Image Description,Image Description
-554,az.stories.asset_fields.label.source,Image Source,Image Source
-555,az.stories.embed_media.form_title,Embed Online Media Form,Embed Online Media Form
-556,az.stories.embed_media.get_media,Get Online Media,Get Online Media
-557,az.stories.embed_media.preview,Preview of Online Media,Preview of Online Media
-558,az.stories.embed_media.error,The URL could not be processed. Please try again.,The URL could not be processed. Please try again.
-559,az.stories.embed_media.placeholder.title,Embed Online Media Title,Embed Online Media Title
-560,az.stories.embed_media.placeholder.url,Url to online media,Url to online media
-561,az.stories.embed_media.hint.title,"This text only appears in the left sidebar, it will not show up in the story","This text only appears in the left sidebar, it will not show up in the story"
-562,az.stories.embed_media.hint.url,"The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED","The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
-563,az.stories.youtube.form_title,YouTube Video Form,YouTube Video Form
-564,az.stories.youtube.get_media,Get Youtube Video,Get Youtube Video
-565,az.stories.youtube.preview,Preview of YouTube Video,Preview of YouTube Video
-566,az.stories.youtube.error,The URL could not be processed. Please try again.,The URL could not be processed. Please try again.
-567,az.stories.youtube.placeholder.title,YouTube Title,YouTube Title
-568,az.stories.youtube.placeholder.url,Url to YouTube video,Url to YouTube video
-569,az.stories.youtube.hint.title,"This text only appears in the left sidebar, it will not show up in the story","This text only appears in the left sidebar, it will not show up in the story"
-570,az.stories.youtube.hint.url,Copy a YouTube URL and paste it here,Copy a YouTube URL and paste it here
-571,az.stories.youtube.hint.fullscreen,"If checked, the video will take up the entire screen","If checked, the video will take up the entire screen"
-572,az.stories.youtube.hint.loop,"If checked, the video will loop over and over","If checked, the video will loop over and over"
-573,az.stories.youtube.hint.info,"If checked, the title bar will be shown on top of the video","If checked, the title bar will be shown on top of the video"
-574,az.stories.youtube.hint.cc,"If checked, the video subtitles will be shown by default","If checked, the video subtitles will be shown by default"
-575,az.stories.youtube.hint.menu_lang,Language of the YouTube menu/controls,Language of the YouTube menu/controls
-576,az.stories.youtube.hint.cc_lang,Language of the subtitles to show by default,Language of the subtitles to show by default
-577,az.storyteller.byline,By,By
-578,az.storyteller.byline_media,Photos and videos by ,Photos and videos by 
-579,az.storyteller.byline_translator,Translated by ,Translated by 
-580,az.storyteller.source,Source:,Source:
-581,az.storyteller.by,by,by
-582,az.storyteller.related_stories,Related Stories,Related Stories
-583,az.storyteller.view_all_stories_in,View all stories in,View all stories in
-584,az.settings.index.title,Settings,Settings
-585,az.settings.index.facebook_avatar,This is your avatar from Facebook.,This is your avatar from Facebook.
-586,az.settings.index.use_facebook_avatar,Use Facebook Avatar,Use Facebook Avatar
-587,az.settings.index.hint.about,Short summary about yourself.  This will be shown with the stories that you publish.,Short summary about yourself.  This will be shown with the stories that you publish.
-588,az.settings.index.hint.default_story_locale,Select the language you want to use by default when creating a new story.,Select the language you want to use by default when creating a new story.
-589,az.settings.index.submit,Save Settings,Save Settings
-590,az.settings.invitations.title,Collaboration Invitations,Collaboration Invitations
-591,az.settings.invitations.no_invitations,At this time you have no invitations waiting for you.,At this time you have no invitations waiting for you.
-592,az.settings.invitations.accept_link,Accept,Accept
-593,az.settings.invitations.decline_link,Decline,Decline
-594,az.settings.invitations.header_date,Date Sent,Date Sent
-595,az.settings.invitations.header_story,Story Title,Story Title
-596,az.settings.invitations.header_role,Role,Role
-597,az.settings.invitations.header_from,Sent By,Sent By
-598,az.settings.notifications.title,Notifications,Notifications
-599,az.settings.notifications.explain,You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.,You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.
-600,az.settings.notifications.all_sub_title,All Notifications,All Notifications
-601,az.settings.notifications.all_label,Do you want to recieve any notifications from Chai Khana?,Do you want to recieve any notifications from Chai Khana?
-602,az.settings.notifications.all_no,"No, do not send me any notifications.","No, do not send me any notifications."
-603,az.settings.notifications.all_yes,"Yes, I want notifications sent to me.","Yes, I want notifications sent to me."
-604,az.settings.notifications.story_comment_sub_title,New Story Comment Notifications,New Story Comment Notifications
-605,az.settings.notifications.story_comment_label,Do you want to recieve notifications when a comment is made to one of your stories?,Do you want to recieve notifications when a comment is made to one of your stories?
-606,az.settings.notifications.story_comment_no,"No, do not send me any notifications.","No, do not send me any notifications."
-607,az.settings.notifications.story_comment_yes,"Yes, I want notifications sent to me.","Yes, I want notifications sent to me."
-608,az.settings.notifications.new_themes_sub_title,New Theme Notifications,New Theme Notifications
-609,az.settings.notifications.new_themes_all,Notify me when any theme is added.,Notify me when any theme is added.
-610,az.settings.notifications.new_themes_none,I do not want to receive notifications when a new theme is added.,I do not want to receive notifications when a new theme is added.
-611,az.settings.notifications.new_stories_by_category,Notify me when a story is added to:,Notify me when a story is added to:
-612,az.settings.notifications.language_sub_title,Notification Language,Notification Language
-613,az.settings.notifications.language_label,In what language do you want to receive the notifications?,In what language do you want to receive the notifications?
-614,az.settings.notifications.following_sub_title,Chai Khana Users You Are Following,Chai Khana Users You Are Following
-615,az.settings.notifications.following_label,"You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image.","You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image."
-616,az.settings.notifications.following_not,"At this time, you are not following any users.","At this time, you are not following any users."
-617,az.settings.notifications.following_title1,Click to unfollow '%{name}',Click to unfollow '%{name}'
-618,az.settings.notifications.following_title2,Click to follow '%{name}',Click to follow '%{name}'
-619,az.settings.notifications.submit,Save Settings,Save Settings
-620,az.imageuploader.missing,An error occurred while processing your image. Please try again.,An error occurred while processing your image. Please try again.
-621,az.imageuploader.invalid_type,Invalid file type. Only .jpg or .png is allowed.,Invalid file type. Only .jpg or .png is allowed.
-622,az.imageuploader.size_limit,Image file size is limited to 4MB,Image file size is limited to 4MB
-623,az.devise.mailer.reset_password_instructions.title,Hello %{nickname}!,Hello %{nickname}!
-624,az.devise.mailer.reset_password_instructions.p1,"Someone has requested a link to change your password on Chai Khana, and you can do this through the link below.","Someone has requested a link to change your password on Chai Khana, and you can do this through the link below."
-625,az.devise.mailer.reset_password_instructions.link_title,Change my password,Change my password
-626,az.devise.mailer.reset_password_instructions.p2,"If you didn't request this, please ignore this email.","If you didn't request this, please ignore this email."
-627,az.devise.mailer.reset_password_instructions.p3,Your password won't change until you access the link above and create a new one.,Your password won't change until you access the link above and create a new one.
+Bildiriş səhifəsinə gedərək, Çayxanadan aldığınız bildirişlərin vaxtını müəyyənləşdirə bilərsiniz: [notifications_link]."
+117,az.mailer.notification.published_theme.subject,New themes have been published on Chai Khana!,New themes have been published on Chai Khana!
+118,az.mailer.notification.published_theme.message,The following themes you have expressed interest in were recently published:,The following themes you have expressed interest in were recently published:
+119,az.mailer.notification.published_story.subject,New stories have been published on Chai Khana!,Çayxanada yeni hekəyələr dərc edilib!
+120,az.mailer.notification.published_story.message,The following stories you have expressed interest in were recently published:,Maraq göstərdiyiniz növbəti hekayələr təzəlikcə dərc edilib:
+121,az.mailer.notification.story_comment.subject,Someone has posted a comment on your story on Chai Khana!,Kimsə sizin Cayxanadaki hekayənizə şərh yazıb!
+122,az.mailer.notification.story_comment.message,The following stories have recently received a comment:,Növbəti hekayələr təzəlikcə şərh alıblar:
+123,az.mailer.notification.story_comment.comment,1 Comment,1 Şərh
+124,az.mailer.notification.story_comment.comments,%{num} Comments,%{num} Şərhlər
+125,az.mailer.notification.story_collaboration.subject,You have been invited to collaborate on a story on Chai Khana!,Çayxanada bir hekayə üzrə əməkdaşlığa dəvət edilmisiniz!
+126,az.mailer.notification.story_collaboration.message,"You have received the following invitations to collaborate on stories with other people on Chai Khana. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part.","Çayxanada başqaları ilə hekayələr üzrə əməkdaşlığa növbəti dəvətləri almısınız. Dəvəti qəbul etmək istəyirsinizsə, sadəcə ""Dəvəti qəbul et"" keçidinə basın. Əgər dəvəti qəbul etmək istəmirsinizsə, başqa heç bir hərəkət etməyiniz lazım deyil. "
+127,az.mailer.notification.story_collaboration.from,From,Kimdən
+128,az.mailer.notification.story_collaboration.role,Role,Rol
+129,az.mailer.notification.story_collaboration.story_title,Story Title,Hekayı Sərlövhəsi
+130,az.mailer.notification.story_collaboration.msg,Message,Mesaj
+131,az.mailer.notification.story_collaboration.accept_link,Accept the Invitation,Dəvəti Qəbul Et
+132,az.mailer.notification.story_collaboration.all_invitations,View all of your Chai Khana collaboration invitations.,Bütün Çayxana əmədaşlıq dəvətlərinə bax.
+133,az.mailer.notification.processed_videos.subject,Your videos on Chai Khana have been processed!,Çayxanadakı videolarınız emal edilibdir!
+134,az.mailer.notification.processed_videos.message,The following stories of yours have videos that have completed processing:,Növbəti hekayələrinizin videolarının emalı tamamlanıb:
+135,az.mailer.notification.processed_videos.story_title,Story:,Hekayə:
+136,az.mailer.notification.processed_videos.status,Video Processing Status: %{processed} of %{total} completed,Videonun emal vəziyyəti: %{processed} of %{total} tamamlanıb
+137,az.mailer.notification.processed_videos.processed,Videos Processed:,Video emal edilib:
+138,az.mailer.notification.processed_videos.not_processed,Videos Still Processing:,Videolar hələ emal edilir:
+139,az.mailer.notification.processed_videos.none_processed,No vidoes have been processed.,Heç bir video emal edilməyib.
+140,az.mailer.notification.processed_videos.none_processing,All videos have been processed!,Videoların hamısı emal edildi!
+141,az.mailer.notification.processed_video_errors.subject,Videos on Chai Khana have processing errors!,Videos on Chai Khana have processing errors!
+142,az.mailer.notification.processed_video_errors.message,The following videos had errors while being processed:,Növbəti videolar emal edilərkən xətalar baş verib:
+143,az.mailer.notification.processed_video_errors.story_id,Story ID,Hekayənin ID-si
+144,az.mailer.notification.processed_video_errors.asset_id,Asset ID,Materialın ID-si
+145,az.mailer.notification.processed_video_errors.path,URL of Video,Videonun URL-ı
+146,az.helpers.actions,Actions,Hərəkətlər
+147,az.helpers.links.admin,Admin Section,İnzibati Bölmə
+148,az.helpers.links.edit,Edit,Redaktə et
+149,az.helpers.links.confirm,Are you sure?,Əminsinizmi?
+150,az.helpers.links.destroy,Delete,Sil
+151,az.helpers.links.new,New,Yeni
+152,az.helpers.links.list,View All,Hamısına Bax
+153,az.helpers.links.back,View All,Hamısına Bax
+154,az.helpers.links.cancel,Cancel,Ləğv Et
+155,az.helpers.links.reset,Reset,Sıfırla
+156,az.helpers.links.view,View,Bax
+157,az.helpers.links.sign_in_facebook,Sign in with Facebook,Facebookla Daxil Ol
+158,az.helpers.links.edit_story,Edit Story Settings,"Hekayənin Parametrlərini Redaktə Et (""Dəyiş"" sounds more appropriate than Redaktə Et, but means ""Change"")"
+159,az.helpers.links.delete_story,Delete Story,Hekayəni Sil
+160,az.helpers.links.admin_story,Edit Content,Məzmunu Redaktə Et
+161,az.helpers.links.publish_story,Publish Story,Hekayəni Dərc Et
+162,az.helpers.links.forgot_password,Forgot Password?,Parolu unutdun?
+163,az.helpers.links.change_password,Change Your Password,Parolunu Dəyiş
+164,az.helpers.links.change_password2,Change Password,Parolu Dəyiş
+165,az.helpers.links.password_reset,Reset Password,Parolu Sıfırla
+166,az.helpers.links.sign_in2,Sign In,Daxil Ol
+167,az.helpers.links.sign_in,Already have an account?,Artıq Hesabın Var?
+168,az.helpers.links.sign_up2,Sign Up,Qeydiyyatdan Keç
+169,az.helpers.links.sign_up_question,Not a member yet?,Hələ Üzv deyilsən?
+170,az.helpers.links.sign_up,Register now,İndi Qeyd Ol
+171,az.helpers.links.sign_up_title,Join Chai Khana,Çayxanaya Qoşul
+172,az.helpers.links.sign_out,Sign Out,Çıx
+173,az.helpers.links.sign_in_provider,Sign in with %{provider},%{provider}-lə Daxil Ol
+174,az.helpers.links.sign_up_provider,Sign up with %{provider},%{provider}-lə Qeyd Ol
+175,az.helpers.links.sign_in_local_or_provider,or log in with your email and password,yaxud e-poçt və parol ilə daxil ol
+176,az.helpers.links.reset_or_sign_in,sign in with facebook or reset your password,Facebook-la daxil ol və ya parolunu sıfırla
+177,az.helpers.links.add_story,Add Story,Hekayəni Əlavə Et
+178,az.helpers.links.users,Users,İstifadəçilər
+179,az.helpers.links.authors,Authors,Müəlliflər
+180,az.helpers.links.feedback,Feedback,Qeri bildirim
+181,az.helpers.links.about,About,Haqqında
+182,az.helpers.links.rss,RSS,RSS
+183,az.helpers.links.themes,Themes,Mövzular
+184,az.helpers.links.story_types,Types,Növlər
+185,az.helpers.links.languages,Languages,Dillər
+186,az.helpers.links.follow,Follow,İzlə
+187,az.helpers.links.facebook,Facebook,Facebook
+188,az.helpers.links.twitter,Twitter,Twitter
+189,az.helpers.links.youtube,YouTube,YouTube
+190,az.helpers.links.subscribe,Subscribe,Əbunə Ol
+191,az.helpers.links.user_settings,Settings,Parametrlər
+192,az.helpers.links.like,Like,Bəyən
+193,az.helpers.links.likes,Likes,Bəyənir
+194,az.helpers.links.comments,Comment on this story,Bu hekayə barədə şərh yaz
+195,az.helpers.links.views,%{num} views,%{num} baxılışlar
+196,az.helpers.links.tags,Tags,Nişanlar
+197,az.helpers.links.menu,Menu,Menyu
+198,az.helpers.links.pages,Edit Text on Site,Mətni Saytda Redaktə Et
+199,az.helpers.links.next,Next,Növbəti
+200,az.helpers.links.feed,Feed,Xəbər Lenti
+201,az.helpers.links.story_menu.link.story,Story,Hekayə
+202,az.helpers.links.story_menu.link.story_settings,Story Settings,Hekayə Parametrləri
+203,az.helpers.links.story_menu.link.collaborators,Collaborators,Əməkdaşlar
+204,az.helpers.links.story_menu.link.preview,Preview,Öncəbaxış
+205,az.helpers.links.story_menu.link.publish,Publish,Dərc Et
+206,az.helpers.links.story_menu.link.unpublish,Unpublish,Dərc etdiyini ləğv et
+207,az.helpers.links.story_menu.link.review,Private URL,Özəl URL
+208,az.helpers.links.story_menu.link.clone,Clone,Kopya Yarat
+209,az.helpers.links.story_menu.link.export,Download,Endir
+210,az.helpers.links.story_menu.link.delete_story,Delete,Sil
+211,az.helpers.links.story_menu.link.translations,Translations,Tərcümələr
+212,az.helpers.links.story_menu.title.story,Edit your story,Hekayəni redaktə et
+213,az.helpers.links.story_menu.title.story_settings,"Edit story title, authors, URL, summary, thumbnail, language, tags and/or categories, content etc.","Hekayənin sərlövhəsini, müəlliflərini, URL-nı,xülasəsini, eskizini, dilini, nişanlarını və ya kateqoriyalarını və s. redaktə et."
+214,az.helpers.links.story_menu.title.collaborators,Manage which users have access to edit your story,Sənin hekayəni redaktə etməyə icazəsi olan istifadəçiləri idarə et
+215,az.helpers.links.story_menu.title.preview,See how your story looks,Hekayənin görünüşünə bax
+216,az.helpers.links.story_menu.title.publish,Make your story viewable to the world,Goy dünya hekayəni görsün
+217,az.helpers.links.story_menu.title.unpublish,Make your story NOT viewable to the world,Dünyanı hekayəni görməyə qoyma 
+218,az.helpers.links.story_menu.title.review,URL to share this story before publishing,Hekayəni dərc etdikdən öncə paylaşılma URL-ı
+219,az.helpers.links.story_menu.title.clone,Copy this story into a new story,Bu hekayəni yeni hekayəyə köçür
+220,az.helpers.links.story_menu.title.export,Download the complete story,Tam hekayəni endir
+221,az.helpers.links.story_menu.title.delete_story,Deleting a story cannot be undone,Hekayəni silmək mümkün deyil
+222,az.helpers.links.story_menu.title.translations,Translate your story into other languages,Hekayəni başqa dillərə tərcümə et
+223,az.helpers.titles.new,New %{model},Yeni %{model}
+224,az.helpers.titles.edit,Edit %{model},Redaktə Et %{model}
+225,az.helpers.titles.story_list,My Stories,Mənim Hekayələrim
+226,az.helpers.hints.nickname,"Your nickname is used in the URL to your published stories (e.g., nickname/story-title)","Dərc edimiş hekayələrinin URL-ında sənin ləqəbin istifadə edilir (məsələn, ləqəb/hekayə-sərlövhə)"
+227,az.helpers.hints.local_avatar,Image that is shown in the header bar and on your user page (png and jpg only).,Sənin istifadəçi səhifənin başlıq panelində göstərilən şəkil (yalnız png və jpg).
+228,az.helpers.hints.avatar,Image that is shown on the Author's page (png and jpg only).,Müəllifin səhifəsində göstərilən şəkil (yalnız png və jpg).
+229,az.helpers.hints.like,Like this story,Bu hekayəni bəyən
+230,az.helpers.hints.unlike,Unlike this story,Bu hekayəni bəyənmə
+231,az.helpers.hints.staff_pick,Select as Staff Pick,Redaksiya Heyətinin Seçimi kimi Seç
+232,az.helpers.hints.staff_unpick,Unselect as Staff Pick,Redaksiyə Heyətinin Seçimi kimi Seçmə
+233,az.helpers.hints.is_staff_pick,Staff Pick,Redaksiyə Heyətinin Seçimi
+234,az.helpers.hints.clone_asset,"If checked, the file to the left will be used for this translation","Seçilibsə, tərcümə üçün soldakı fayl istifadə ediləcək"
+235,az.app.language.en,English,English
+236,az.app.language.ka,ქართული,ქართული
+237,az.app.language.hy,Հայերեն,Հայերեն
+238,az.app.language.ru,Русский,Русский
+239,az.app.language.az,Azərbaycan,Azərbaycan
+240,az.app.buttons.back,View All,Hamısına Bax
+241,az.app.buttons.list,View All,Hamısına Bax
+242,az.app.buttons.admin,Admin Section,İnzibati Bölmə
+243,az.app.buttons.delete,Delete,Sil
+244,az.app.buttons.edit,Edit,Redaktə Et
+245,az.app.buttons.show,Show,Göstər
+246,az.app.buttons.cancel,Cancel,İmtina
+247,az.app.buttons.update,Update,Təzələ
+248,az.app.buttons.save,Save,Yadda Saxla
+249,az.app.buttons.save_and_next,Save & Next,Yadda Saxla və Növbəti
+250,az.app.buttons.create,Create,Yarat
+251,az.app.buttons.reset,Reset,Sıfırla
+252,az.app.buttons.remove,Remove,Qaldır
+253,az.app.buttons.confirm,Are you sure?,Əminsənmi?
+254,az.app.buttons.new,New,Yeni
+255,az.app.buttons.add_section,Add Section,Bölmə Əlavə Et
+256,az.app.buttons.add_item,Add Item into Section,Materialı Bölməyə Əlavə Et
+257,az.app.buttons.up,Move Selected Section/Item Up,Seçilən Bölməni/Materialı Yuxarı Tərpət
+258,az.app.buttons.down,Move Selected Section/Item Down,Seçilən Bölməni/Materialı AşağıTərpət
+259,az.app.buttons.delete_item,Delete Selected Section/Item,Seçilən Bölməni/Materialı Sil
+260,az.app.buttons.preview,Preview,Öncəbaxış
+261,az.app.buttons.preview_image,Preview Image,Şəkilə ilkin baxış
+262,az.app.buttons.preview_video,Preview Video,Videoya ilkin baxış
+263,az.app.buttons.preview_audio,Listen To Audio,Audionu dinlə
+264,az.app.buttons.publish,Publish,Dərc Et
+265,az.app.buttons.unpublish,Unpublish,Dərc Etdiyini geri al
+266,az.app.buttons.clone,Copy this story into a new story,Bu hekayəni yeni hekayəyə köçür
+267,az.app.buttons.export,Download the complete story,Tam hekayəni endir
+268,az.app.buttons.scroll,Scroll,Sürüşdür
+269,az.app.buttons.reviewer_key,Get URL to share this story before publishing,Hekayəni dərc etmədən öncə paylaşmaq üçün URL-ı al
+270,az.app.buttons.reviewer_key_published,Your story is published so there is no need to share this non-published URL,"Sənin hekayən artıq dərc edilibdir, beləcə bu dərc edilməmiş URL-ı paylaşmağa ehtiyac yoxdur"
+271,az.app.buttons.explore,Explore,Araşdır
+272,az.app.common.app_name_not_trans,Chai Khana,Çayxana
+273,az.app.common.app_name,Chai Khana,Çayxana
+274,az.app.common.app_intro,Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.,"Çayxana, sərhəd-aşan jurnalistika təlimləri və Cənubi Qafqaz regionunda fərqli mövzular üzrə multimedia materialları üçün onlayn nəşr xidməti təmin edən QHT-dir."
+275,az.app.common.app_intro_meta,Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.,"Çayxana, sərhəd-aşan jurnalistika təlimləri və Cənubi Qafqaz regionunda fərqli mövzular üzrə multimedia materialları üçün onlayn nəşr xidməti təmin edən QHT-dir."
+276,az.app.common.powered_by,Powered by,xxx tərəfindən dəstəklənir
+277,az.app.common.powered_by_js,Jumpstart Georgia,Jumpstart Georgia
+278,az.app.common.powered_by_end,"",
+279,az.app.common.embed_slogan,Build your story with Chai Khana,Hekayəni Çayxanayla hazırla
+280,az.app.common.added_on,Added on: %{date},Əlavə edilib: %{date}
+281,az.app.common.last_sign_in,Logged in last: %{date},Sonuncu dəfə daxil oldun: %{date}
+282,az.app.common.admin,Admin,İnzibatçılıq
+283,az.app.common.sign_out,Sign Out,Çıx
+284,az.app.common.jumpstart,JumpStart Georgia,JumpStart Georgia
+285,az.app.common.js_link_title,JumpStart Georgia - We communicate data better!,JumpStart Georgia - Biz məlumatı daha yaxşı paylaşırıq!
+286,az.app.common.js_link_text,Built by,xxx tərəfindən hazırlanıb
+287,az.app.common.search,Search for Story ...,...Hekayəni Axtar
+288,az.app.common.build,Build Story,Hekayəni Hazırla
+289,az.app.common.explore,Explore Stories,Hekayələri Axtar
+290,az.app.common.about_story,About,Haqqında
+291,az.app.common.likes,Likes,Bəyənənlər
+292,az.app.common.comments,Comments,Şərhlər
+293,az.app.common.publish_date,Publish Date,Dərc Edilmə Tarixi
+294,az.app.common.follow,Follow,İzlə
+295,az.app.common.following,Following,İzləyirəm
+296,az.app.common.follow_link_title,Click to receive notifications whenever this author publishes new stories,Bu istifadəçi yeni hekayələr paylaşanda bildiriş almaq üçün bas 
+297,az.app.common.unfollow_link_title,Click to stop receiving notifications whenever this author publishes new stories,Bu istifadəçi yeni hekayələr paylaşanda bildirişləri dayandırmaq üçün bas
+298,az.app.common.email,Email,E-poçt
+299,az.app.common.views,Views,Baxışlar
+300,az.app.common.permalink,Permalink,Daimi Keçid
+301,az.app.common.shortened_url,Short URL,Qısa URL
+302,az.app.common.share_story,Share this story,Hekayəni paylaş
+303,az.app.common.share_facebook,Share on Facebook,Facebook-da paylaş
+304,az.app.common.share_twitter,Share on Twitter,Twitter-də paylaş
+305,az.app.common.share,Share,Paylaş
+306,az.app.common.staff_pick,Staff Pick,Redaksiya Heyətinin Seçimi
+307,az.app.common.wide,wide,geniş
+308,az.app.common.partial,Link to Story,Hekayəyə keçid
+309,az.app.common.partial_text,"Embed a link to the story that has the same look as the story links on the home page of Chai Khana (image, title, author, etc)","Hekayənizə Çayxananın ana səhifəsindəki hekayə keçidlərinə bənzər keçid əlavə et (şəkil, sərlövhə, müəllif və s.)"
+310,az.app.common.full,Full Story,Tam Hekayə
+311,az.app.common.full_text,Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look.,"Hekayəni tamamilə başqa sayta daxil et. Ən yaxşı xarici görünüşü yaratmaq üçün, tövsiyəmiz odur ki, eni mümkün olduqca böyüdəsiniz."
+312,az.app.common.feed,Chai Khana Feeds,Çayxananın Xəbər Lenti
+313,az.app.common.home,Home,Ana Səhifə (homepage)
+314,az.app.common.required,Required,Tələb olunur
+315,az.app.common.nothing_selected,Nothing Selected,Heç Nə Seçilməyib
+316,az.app.common.clone_asset,Use the original file?,Orijinal faylı istifadə et?
+317,az.app.common.embed,Embed Code,Daxil edilən kod
+318,az.app.common.scroll_top,Scroll to the top,Yuxarıya sürüşdür
+319,az.app.msgs.does_not_exist,You tried to access a page that does not exist.,Siz mövcud olmayan səhifəyə daxil olmaq istədiniz.
+320,az.app.msgs.not_authorized,You are not authorized to view that page.,O sahifəyə daxil olmağa icazəniz yoxdur.
+321,az.app.msgs.success_created,%{obj} was successfully created.,%{obj} uğurla yaradıldı.
+322,az.app.msgs.success_updated,%{obj} was successfully updated.,%{obj} uğurla yeniləndi.
+323,az.app.msgs.success_publish,%{obj} was successfully published.,%{obj} uğurla dərc edildi.
+324,az.app.msgs.success_unpublish,%{obj} was successfully unpublished.,%{obj}-nin dərc edilməsi uğurla geri alındı.
+325,az.app.msgs.success_clone,%{obj} was successfully cloned to %{to}.,%{obj} uğurla %{to}-ya köçürüldü.
+326,az.app.msgs.error_created,%{obj} wasn't created: %{err},%{obj} yaradılmadı: %{err}
+327,az.app.msgs.error_updated,%{obj} wasn't updated: %{err},%{obj} yenilənmədi: %{err}
+328,az.app.msgs.error_publish,%{obj} wasn't published: %{err},%{obj} dərc edilmədi: %{err}
+329,az.app.msgs.error_publish_missing_fields,%{obj} can't be published until you provide a summary and thumbnail image.,%{obj} eskiz və ya xülasə təmin edilmədən dərc edilə bilməz.
+330,az.app.msgs.error_publish_missing_fields_link,Add the missing content.,Əskik məzmunu daxil et.
+331,az.app.msgs.error_publish_missing_sections,At least one Section required before publishing.,Dərc olunannan əvvəl ən azı bir bölmə tələb olunur.
+332,az.app.msgs.error_publish_missing_content_section,All Text Sections must have content in it.,Ən azı bir bölmə lazımdır.
+333,az.app.msgs.error_publish_missing_translations,The story must be completely translated in %{lang} in order to be published.,Dərc olunmaq üçün bu material tamamilə %{lang} tərcümə olunmalıdır.
+334,az.app.msgs.error_unpublish,%{obj} wasn't unpublished: %{err},%{obj} dərc edilməsi geri alınmadı: %{err}
+335,az.app.msgs.error_clone,%{obj} wasn't cloned.,%{obj} köçürülmədi.
+336,az.app.msgs.error_clone_notification,Error occurred while cloning story: %{msg},Hekayə köçürüləndə xəta baş verdi: %{msg}
+337,az.app.msgs.error_export,Story can't be downloaded.,Hekayə endirilə bilinməz.
+338,az.app.msgs.error_get_data,The selected item could not be found,Seçilən material tapılmadı
+339,az.app.msgs.select_section,Please select a Section first in order to add an Item,Material daxil etmək üçün lütfən öncə Bölməni seçin
+340,az.app.msgs.staff_pick,The story has been selected as a Staff Pick,Hekayə Readksiya Heyətinin Seçimi kimi seçilibdir
+341,az.app.msgs.staff_unpick,The story has been unselected as a Staff Pick,Hekayə Redaksiya Heyətinin Seçimindən xaric edilibdir
+342,az.app.msgs.success_settings,Your settings were successfully updated.,Sizin parametrlər uğurla yeniləndi.
+343,az.app.msgs.success_remove_avatar,Your Facebook avatar is now being used.,Artıq sizin Facebook avatarınız istifadə edilir.
+344,az.app.msgs.nickname_duplicate,This user URL already exists.,Bu istifadəçinin URL-ı artıq mövcuddur.
+345,az.app.msgs.nickname_url,Your URL will be:,Sizin URL-ınız:
+346,az.app.msgs.story_duplicate,This story URL already exists.,Bu hekayənin URL-ı artıq mövcuddur.
+347,az.app.msgs.story_url,Story URL will be:,Hekayənin URL-ı:
+348,az.app.msgs.invitation.accepted,You have accepted the invitation to collaborate on '%{title}',Sən '%{title}' üzrə əməkdaşlıq dəvətini qəbul etmisən
+349,az.app.msgs.invitation.accepted_already,You have already accepted the invitation to collaborate on '%{title}',Sən '%{title}' üzrə əməkdaşlıq dəvətini artıq qəbul etmisən
+350,az.app.msgs.invitation.bad,"Sorry, your invitation could not be found or the story has been deleted.","Üzr istəyirik, sizin dəvətiniz tapılmadı və ya hekayə silinibdir."
+351,az.app.msgs.invitation.declined,Your invitation was declined,Sənin dəvətin qəbul edilmədi
+352,az.app.msgs.one_section.content,Only one Item can be added to a Text section,Mətn bölməsinə yalnız bir material daxil edilə bilər
+353,az.app.msgs.one_section.slideshow,Only one Item can be added to an Image Slideshow section,Şəkil Slayd Nümayişinə yalnız bir material daxil edilə bilər
+354,az.app.msgs.one_section.embed_media,Only one Item can be added to an Embed Online Media section,Daxil Ediləsi Onlayn Media Bölməsinə yalnız bir material əlavə edilə bilər
+355,az.app.msgs.one_section.youtube,Only one Item can be added to a YouTube section,Youtube bölməsinə yalnız bir material daxil edilə bilər
+356,az.app.msgs.one_section.general,Only one Item can be added to this type of section,Bu növ bölməyə yalnız bir material daxil edilə bilər
+357,az.app.msgs.destroy_story.success,Story was successfully deleted.,Hekayə uğurla silindi.
+358,az.app.msgs.destroy_story.error,Error occurred while deleting the story: %{err},Hekayə silinərkən xəta baş verdi: %{err}
+359,az.app.msgs.destroy_item.success,Item was successfully deleted.,Material uğurla silindi.
+360,az.app.msgs.destroy_item.error,Error occurred while deleting the item: %{err},Materialı silərkən xəta baş verdi: %{err}
+361,az.app.msgs.destroy_item.error_not_found,Item could not be found to delete.,Silinməli material tapılmadı.
+362,az.app.msgs.embed_code,Copy and paste this embed code into your web page,Copy and paste this embed code into your web page
+363,az.app.msgs.collaborators.success_remove,%{name} was removed as a collaborator,%{name} əməkdaşlıqdan xaric edildi
+364,az.app.msgs.collaborators.user_not_found,User to remove as a collaborator could not be found,Əməkdaşlıqdan xaric ediləsi istifadəçi tapılmadı
+365,az.app.msgs.collaborators.no_permission,You do not have permission to remove this collaborator,Bu əməkdaşı xaric etməyə icazəniz yoxdur
+366,az.app.msgs.collaborators.success_invitations,Invitations were sent!,Dəvətlər göndərildi!
+367,az.app.msgs.collaborators.error_invitations_all,No invitations were sent due to the following erros: %{msg},Növbəti xətalara görə heç bir dəvət göndərilmədi: %{msg}
+368,az.app.msgs.collaborators.error_invitations_some,"Some invitations were sent, but some were not due to the following erros: %{msg}","Bəzi dəvətlər göndərildi, amma növbəti xətalara görə bəziləri göndərilmədi: %{msg}"
+369,az.app.msgs.notification.true,You will be sent notifications.,Sizə bildirişlər göndəriləcək.
+370,az.app.msgs.notification.false,You will not be sent notifications.,Sizə bildirişlər göndərilməyəcək.
+371,az.app.msgs.notification.new_theme_all_success,You will recieve a notification whenever a theme is added.,Mövzu əlavə olunanda siz bildiriş alacaqsınız.
+372,az.app.msgs.notification.new_theme_none_success,You will not receive any notifications when themes are added.,Bu mövzular əlavə olunanda siz bildiriş ala bilməyəcəksiniz.
+373,az.app.msgs.notification.new_story_by_type_success,You will receive a notification when a story is added to these types: %{types}.,Material növlərə  əlavə olunanda siz bildiriş alacaqsınız  %{types}.
+374,az.app.msgs.notification.story_comments_yes,You will be sent notifications when a comment is made to one of your stories.,Hər hansısa hekayənizə şərh yazılanda sizə bildiriş göndəriləcək.
+375,az.app.msgs.notification.story_comments_no,You will not be sent notifications when a comment is made to one of your stories.,Hər hansısa hekayənizə şərh yazılanda sizə bildiriş göndərilməyəcək.
+376,az.app.msgs.notification.following_no,You will no longer receive notifications about new stories from '%{name}'.,Artıq '%{nickname}' -dən yeni hekayələr barədə sizə bildirişlər göndərilməyəcək.
+377,az.app.msgs.notification.language,You will be sent notifications in %{language}.,Bildirişlər sizə %{language} dilində göndəriləcək.
+378,az.app.msgs.fail_change_order,The item was not able to be moved,Materialı tərpətmək mümkün olmadı
+379,az.app.msgs.nothing_selected,Please select a section/item to delete,Lütfən silinəsi böməni/materialı seçin
+380,az.app.msgs.fail_delete,The section/item could not be deleted,Bölməni/materialı silmək mümkün olmadı
+381,az.app.msgs.confirm_delete,Are you sure you want to delete this section/item?,Bu bölmənin/materialın silinməsindən əminsinizmi?
+382,az.app.msgs.video_processed,Your video is processed,Sizin videonuz emal edildi
+383,az.app.msgs.video_not_processed,Your video is being processed,Sizin videonuz emal edilir
+384,az.app.msgs.not_found_for_update,The record to update could not be found in the database.,Yenilənəcək qeyd verilənlər bazasında tapılmadı.
+385,az.section_types.content.name,Text,Mətn
+386,az.section_types.content.description,"Can include html, css styling and images","Html, css stilləri və şəkilləri daxil edilə bilər"
+387,az.section_types.media.name,Full-Screen Media Slideshow,Tam Ekran Media Slayd Nümayişi
+388,az.section_types.media.description,Images and/or videos as a full-screen vertical slideshow,Şəkillərin və ya Videoların tam ekran vertikal slayd nümayişi
+389,az.section_types.slideshow.name,Image Slideshow,Şəkil Slayd Nümayişi
+390,az.section_types.slideshow.description,Images in a horizontal slideshow,Şəkillərin horizontal slayd nümayişində
+391,az.section_types.embed_media.name,Embed Online Media,Onlayn Medianı Daxil Et
+392,az.section_types.embed_media.description,"YouTube, Vimeo, etc","YouTube, Vimeo, və s."
+393,az.section_types.youtube.name,YouTube Video,YouTube Videosu
+394,az.section_types.youtube.description,YouTube video with ability to setting caption language,Şəkilaltı imza dilinin dəyişmə qabiliyyəti olan YouTube videosu
+395,az.story_role.editor,Editor,Redaktor
+396,az.story_role.translator,Translator,Tərcüməçi
+397,az.message_types.bug,Report a Bug,Səhvlər barədə məlumat ver
+398,az.message_types.feature,Request a Feature,Yeni funksiya tələb et
+399,az.message_types.feedback,General Feedback,Ümumi Qiymətləndirmə
+400,az.filters.all,All,Hər şey
+401,az.filters.matches,Matches,Uyğun gələnlər
+402,az.filters.staff_pick,Staff Pick,Redaksiya Heyətinin Seçimi
+403,az.filters.staff_pick_title,View stories that have been selected as Staff Picks,Redaksiya Heyətinin Seçimi kimi seçilən hekayələrə bax
+404,az.filters.staff_pick_title_active,Remove Staff Pick filter,Redaksiya Heyətinin Seçimi filtrini aradan qaldır
+405,az.filters.sort_header,Sorted By,xxx - Qaydası ilə Sırala
+406,az.filters.sort_title,Indicate how the stories should be sorted,Hekayələrin sıralama qaydasını göstər
+407,az.filters.filters,Filters,Filtrlər 
+408,az.filters.all_stories,All Stories,Bütün hekayələr
+409,az.filters.sort.recent,Recent,Son hekayələr
+410,az.filters.sort.reads,Views,Baxışlar
+411,az.filters.sort.likes,Likes,Bəyənənlər
+412,az.filters.category_header,Category,Kateqoriyalar
+413,az.filters.category_title,View stories that belong to a category,Kateqoriyaya aid olan hekayələrə bax
+414,az.filters.theme_header,Theme,Mövzu
+415,az.filters.theme_title,View stories that belong to a theme,Mövuya aid olan hekayələrə bax
+416,az.filters.language_header,Language,Dil
+417,az.filters.language_title,View stories that are written in a particular language,Xüsusi dildə yazılan hekayələrə bax
+418,az.filters.search,Find a Story,Hekayə Tap
+419,az.filters.following,Following,İzləyirəm
+420,az.filters.following_title,View stories of users that you are following,İzlədiyin istifadəçilərin hekayələrinə bax
+421,az.filters.following_title_active,Remove Following filter,"""İzləyirəm"" filtrini aradan qaldır"
+422,az.filters.not_published,Not Published,Dərc Edilməyib
+423,az.filters.not_published_title,View stories that are not published,Dərc edilməmiş hekayələrə bax
+424,az.filters.not_published_title_active,Show all stories,Bütün hekayələri göstər
+425,az.tokeninput.searchingText,Searching...,Axtarır...
+426,az.tokeninput.tag.hintText,Search for an existing tag or enter a new tag,"Mövcud olan nişanı axtar, və ya yeni nişan daxil et"
+427,az.tokeninput.tag.noResultsText,No matches found. Press 'Enter' to save this new tag.,"Tapılmadı. Yeni nişanı yadda saxlamaq üçün ""Enter"" düyməsinə bas."
+428,az.tokeninput.collaborator.hintText,Search for an existing user or enter the email address for a new user,"Mövcud olan istifadəçini axtar, və ya yeni istifadəçinin e-poçtunu daxil et."
+429,az.tokeninput.collaborator.noResultsText,No matches found. Press 'Enter' to add this email address to the list of invited collaborators.,"Tapılmadı. Bu e-poçtu dəvət edilmiş əməkdaşlar siyahısına daxil etmək üçün ""Enter"" düyməsinə bas."
+430,az.layouts.application.copyright,Copyright,Müəllif Hüquqları
+431,az.layouts.application.copyright_text,Copyright of these reports belongs to the Chai-Khana NGO. Any republishing of materials is not allowed without the prior consent of Chai-Khana.,Bu materialların Müəllif Hüquqları  Chai-Khana QHT-ya məxsusdur. Chai-Khana-nın əvvəlcədən razılığı olmadan materialların yayınmasında yol verilmir.
+432,az.layouts.application.disclaimer,Disclaimer,Məsuliyyətdən imtina
+433,az.layouts.application.disclaimer_text,"This publication has been produced with the assistance of MYMEDIA, a DANIDA funded project. The content of this publication is the sole responsibility of the author/contractor/implementing partner/international organisation and can in no way be taken to reflect the official opinion of MYMEDIA / DANIDA. ","Bu sayt MYMEDIA, DANIDA tərəfindən maliyyə yardımı ilə hazırlanmışdır. Saytın məzmunu  müəllif/ işə götürən/ tərəfdaş/ beynaxalq təşkilatı məsuliyyəti daşıyır və  MyMedia/ Danida rəsmi mövqeyini əks etdirmir. "
+434,az.layouts.unsupported_browser.title,Unsupported Browser,Dəstəklənməyən brauzer
+435,az.layouts.unsupported_browser.video,Your browser does not support this video.,Sizin brauzeriniz bu videonu dəstəkləmir.
+436,az.layouts.unsupported_browser.p1,We are sorry to report that your browser is out of date and will not properly render the content from this website.,"Təssüff edirik ki, sizin brauzeriniz köhnədir və bu saytın məzmununu lazımı qaydada göstərməyəcək."
+437,az.layouts.unsupported_browser.p2,"On the bright side, there are several free browsers that you can download that are compatible with this site.","Amma, bu sayta uyğun olan bir neçə pulsuz brauzer mövcuddur və siz onları endirə bilərsiniz."
+438,az.layouts.unsupported_browser.chrome,Chrome,Chrome
+439,az.layouts.unsupported_browser.firefox,Firefox,Firefox
+440,az.layouts.unsupported_browser.ie,Internet Explorer (Windows only),Internet Explorer (yalnız Windows üçün)
+441,az.layouts.unsupported_browser.opera,Opera,Opera
+442,az.layouts.unsupported_browser.Safari,Safari,Safari
+443,az.layouts.unsupported_browser.admin,Admin,İnzibatçılıq
+444,az.layouts.unsupported_browser.sign_out,Sign Out,Çıx
+445,az.layouts.unsupported_browser.js_link_title,JumpStart Georgia - We communicate data better!,JumpStart Georgia - Biz məlumatı daha yaxşı paylaşırıq!
+446,az.layouts.unsupported_browser.js_link_text,Built by,xxx tərəfindən hazırlanıb
+447,az.layouts.reviewer.copy,Copy To Clipboard...,Mübadilə Buferinə Köçür...
+448,az.layouts.reviewer.copied,Copied!,Köçürüldü!
+449,az.layouts.storybuilder.source,Source,Mənbə
+450,az.layouts.storybuilder.target,Target,Hədəf
+451,az.layouts.storybuilder.copy_paste,Copy from source,mənbədən köçürd
+452,az.shared.grid.no_stories,Oh no - no stories could be found!,"Təəssüf ki, heç bir hekayə tapılmadı!"
+453,az.shared.story_nav_modals.copied,Copied!,Köçürüldü
+454,az.admin.index.title,Administration Section,İnzibatçılıq Bölməsi
+455,az.admin.index.users,Users,İstifadəçilər
+456,az.admin.users.edit.title,Editing User,Redaktə edən istifadəçi
+457,az.admin.users.index.title,Users,İstifadəçilər
+458,az.admin.users.new.title,New User,Yeni İstifadəçilər
+459,az.admin.users.show.title,User Details,İstifadəçinin detalları
+460,az.root.about.title,About Chai Khana,Çayxana barədə
+461,az.root.embed.home_link,Built on Chai Khana,Çayxanada hazırlanıb
+462,az.stories.new.title,Story Settings Form,Hekayə parametrlərinin Forması
+463,az.stories.edit.title,Story Settings Form,Hekayə parametrlərinin Forması
+464,az.stories.form.placeholder.title,Title of Story,Hekayənin Sərlövhəsi
+465,az.stories.form.placeholder.permalink,URL to the story,Hekayəyə URL
+466,az.stories.form.placeholder.author,Author(s) of the article,Məqalənin Müəllifi(Müəllifləri)
+467,az.stories.form.placeholder.media_author,Author(s) of photos and/or videos,Şəkilin və ya Videonun Müəllifi(Müəllifləri)
+468,az.stories.form.placeholder.translation_author,Author(s) that translated the story into this language,Hekayəni bu dilə tərcümə edən Müəllif(lər)
+469,az.stories.form.hint.title,Story title will appear at the top of your story,Hekayə sərlövhəsi hekayənin üstündə göstəriləcək
+470,az.stories.form.hint.permalink,"The default URL is the title of the story, but you can change it if desired","Defolt URL hekayənin sərlövhəsidir, amma arzunuz varsa bunu dəyişə bilərsiniz"
+471,az.stories.form.hint.author,Select the author(s) of the story to allow the story to appear on their webpage.,"Hekayənin müəllifini (müəlliflərini) seç ki, hekayə onun (onların) səhifəsində göstərilsin"
+472,az.stories.form.hint.media_author,Author names will appear below the Story Author names,Müəlliflərin adları hekayə müəlliflərinin adlarının altında göstəriləcək 
+473,az.stories.form.hint.translation_author,Author names will appear below the Photo and Video Author names,Müəlliflərin adları Şəkil və Video müəlliflərinin adlarının altında göstəriləcək 
+474,az.stories.form.hint.published,Published stories are available for the world to view,Dərc edilən hekayələrə bütün dünya baxa bilər
+475,az.stories.form.hint.publish_home_page,"If checked, your published story will appear on the site's homepage","Seçilibsə, sizin hekayəniz saytın ana səhifəsində göstəriləcək "
+476,az.stories.form.hint.template,Choose template to apply styling to story,Stili hekayədə istifadə etmək üçün şablonu seç
+477,az.stories.form.hint.thumbnail,Image that is used to show the story on the home page when the story is published (jpg and png only; 4MB file size limit),Hekayə dərc ediləndə onu ana səhifədə göstərən şəkil (yalnız jpg və ya png; fayl böyüklüyü 4MB-a məhduddur)
+478,az.stories.form.hint.editor,Person that created the story record in this website,Hekayənin qeydini bu saytda yaradan şəxs
+479,az.stories.form.hint.editors,Select people that you want to give access to edit the story,Hekayəni redaktə etmək üçün icazəsi olan şəxsləri seç
+480,az.stories.form.hint.about,Short summary of story that will be used on the home page and when you story is shared,Sizin hekayənizin ana səhifəyə yerləşdiriləndə və ya paylaşılanda göstərilən qısa xülasəsi
+481,az.stories.form.hint.locale,Select the language of your story. Allows users to filter stories by a language.,Hekayənin dilini seç. İstifadəçilərə hekayələri dil üzrə filtr etməyə icazə verir.
+482,az.stories.form.hint.categories,Select the category(s) your story belongs to.  Allows users to filter stories by a category.,Sənin hekayənin hansı kateqoriyalara aid olduğunu seç. İstifadəçilərə hekayələri kateqoriya üzrə filtr etməyə icazə verir.
+483,az.stories.form.hint.tag_list,"Enter text to find existing tags.  If your tag does not exist yet, press 'Enter' to add the new tag to the list.","Mövcud olan nişanları tapmaq üçün mətn daxil et. Sizin nişan hələ mövcud deyilsə, ""Enter"" düyməsinə basaraq onu siyahıya əlavə edə bilərsiniz."
+484,az.stories.form.hint.story_type,Select the type of your story.,Hekayənin növünü seç.
+485,az.stories.form.hint.theme,Select the theme(s) your story belongs to.,Hekayənizə aid olan mövzuları seçin.
+486,az.stories.form.hint.in_theme_slider,"If checked, this story will appear in the slider at the top of the theme page.","Seçilibsə, bu hekayə mövzu səhifəsinin yuxarı panelində göstəriləcək."
+487,az.stories.collaborators.title,Collaborators for '%{title}',%{title}' Əməkdaşları
+488,az.stories.collaborators.owner_header,Story Author,Hekayə müəllifi
+489,az.stories.collaborators.collaborators_header,Story Collaborators,Hekayə əməkdaşları
+490,az.stories.collaborators.explanation,A story collaborator is someone that has access to edit this story.,"Hekayə əməkdaşı, hekayəni redakte etməyə icazəsi olan şəxsdir. "
+491,az.stories.collaborators.editors_header,Editors,Redaktorlar
+492,az.stories.collaborators.editor_explanation,An Editor has access to add/edit the story and translate the story into any language. An Editor can also add collaborators and publish the story.,Redaktorun hekayəyə əlavə/ dəyişiklik və ya tərcümə etməyə icazəsi var. Redaktor həm əməkdaşlar əlavə edə bilər həm də hekayəni dərc edə bilər. 
+493,az.stories.collaborators.translators_header,Translators,Tərcüməçilər
+494,az.stories.collaborators.translator_explanation,"A Translator has access to translate the story into a specific language(s). A Translator does not have the ability to edit the original story, add collaborators or publish the story.","Tərcüməçinin hekayəni xüsusi bir dillərə tərcümə etməyə icazəsi var. Təcüməçinin orijinal hekayəni redaktə etməyə, əməkdaşlar əlavə etməyə və hekayəni dərc etməyə icazəsi yoxdur."
+495,az.stories.collaborators.remove_title,Remove %{name},%{name} kənarlaşdır
+496,az.stories.collaborators.not_accepted_title,%{name} has not accepted the invitation yet,%{name} dəvəti hələ qəbul etməyib
+497,az.stories.collaborators.add_header,Add Collaborators,Əməkdaşları əlavə et
+498,az.stories.collaborators.add_explanation,"For the users you enter below, an email will be sent inviting them to be a collaborator on this story.","Aşağıda daxil etdiyiniz istifadəçilərə, bu hekayədə əməkdaş olmaları üçün dəvət elektron poçtu göndəriləcək. "
+499,az.stories.collaborators.editor_label,Enter the names or email addresses of the editors,Redaktorların adlarını və ya e-poçtlarını daxil edin
+500,az.stories.collaborators.language_label,Select the translation language(s),Tərcümə dillərini seçin
+501,az.stories.collaborators.translator_label,Enter the name or email address of the translator,Tərcüməçinin adını və ya e-poçtunu daxil edin
+502,az.stories.collaborators.translator_add,Add Another Translator,Başqa tərcüməçini əlavə et
+503,az.stories.collaborators.translator_remove,Remove Translator,Tərcüməçini kənarlaşdır
+504,az.stories.collaborators.message,Add Message to Notification (optional),Biıldirişə mesaj əlavə et (könüllü)
+505,az.stories.collaborators.submit,Send Collaboration Invitation,Əməkdaşlıq Dəvətini Göndər
+506,az.stories.media.form_title,Full-Screen Media Slideshow Form,Tam ekran Media Slayd Nümayişinin Forması
+507,az.stories.media.left,Left,Sol
+508,az.stories.media.center,Center,Mərkəz
+509,az.stories.media.right,Right,Sağ
+510,az.stories.media.image,Image,Şəkil
+511,az.stories.media.video,Video,Video
+512,az.stories.media.floating,Floating,Üzən
+513,az.stories.media.fixed,Fixed,Hərəkətsiz
+514,az.stories.media.placeholder.title,Media title,Media Sərlövhəsi
+515,az.stories.media.placeholder.caption,Caption text,Şəkilaltı imzanın mətni
+516,az.stories.media.placeholder.source,Source of the image/video,Şəkilin/videonun mənbəyi
+517,az.stories.media.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Bu mətn hekayədə yox, yalnız sol paneldə göstəriləcək. "
+518,az.stories.media.hint.media_type,"For videos, an image is necessary because videos are not loaded on mobile devices.","Videolar üçün şəkil lazımdır, çünki videolar mobil cihazlarda yüklənmir."
+519,az.stories.media.hint.caption,"Caption text will appear on top of the image/video. If this is the first item in the story, the caption text is hidden.",Şəkilaltı imzanın mətni şəkilin/videonun üstündə göstəriləcək. Əgər bu hekayədə ilkin materialdırsa şəkilaltı imzanın mətni qizlənəcək.
+520,az.stories.media.hint.source,"Source of the image/video, appears in the bottom-right corner",Şəkilin/videonun mənbəyi sağ alt küncdə göstəriləcək.
+521,az.stories.media.hint.image,Only jpg format allowed; 4MB file size limit,Yalnız jpg fayl növü olar; böyüklüyü 4MB-a məhduddur
+522,az.stories.media.hint.video,"Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receive a notification when the processing is complete, typically within a few minutes.","Yalnız mp4, mov, webm, ogv, flv, avi və wmv fayl növləri qəbul edilir; böyüklüyü 25MB-a məhduddur. Videolar yüklənəndən sonra, baxılmağa hazır olmaları üçün emal edilməlidir. Emal bitəndə sizə bildiriş gələcək. Adətən bir neçə dəqiqə çəkir."
+523,az.stories.media.hint.caption_align,The Caption text will appear on top of the image/video (appears on the left by default) ,"Şəkilaltı imza, videonun/şəkilin üstündə göstəriləcək (defolt olaraq mətn sol tərəfdə göstərilir)"
+524,az.stories.media.hint.infobox_type,The Caption text can float on top of the image/video or can be fixed at the bottom of the image/video,"Şəkilaltı imza videonun/şəkilin üstündə üzə bilər, və ya videonun/şəkilin altına yerləşdirilə bilər."
+525,az.stories.media.hint.video_loop,"If checked, the video will loop infinitly, otherwise the video will not loop","Seçilibsə, video daimi fasiləsiz təkrarlanacaq, əks halda video təkrarlanmayacaq."
+526,az.stories.section.form_title,Section Form,Bölmə Forması
+527,az.stories.section.yes,Yes,Bəli
+528,az.stories.section.no,No,Xeyir
+529,az.stories.section.placeholder.title,Section title,Bölmə Sərlövhəsi
+530,az.stories.section.hint.title,"This text appears in the left sidebar and, if Navigation Shortcut is selected, will appear as the title text for the shortcut","Bu mətn sol paneldə göstəriləcək, və əgər naviqasiya qisayolu seçilibsə, qisayol keçidin sərlövhəsi olacaq. "
+531,az.stories.section.hint.type,Selecting this type determines what kind of information you can add into this section,"Bu növü seçməyiniz, bölməyə nə cür məlumatın daxil ediləcəyini müəyyənləşdirir."
+532,az.stories.section.hint.has_marker,"If checked, there will be a navigation shortcut link to go to this section","Seçilibsə, naviqasıyada bu bölməyə qisayol keçidi olacaq."
+533,az.stories.section.hint.audio,Background audio to play while this section is in view (mp3 format only; 10mb file size limit),Arxa planın audiosu bu bölmə izlənəndə çalacaq (yalnız mp3 fayl növü; böyüklüyü 10mb-a məhduddur)
+534,az.stories.section.hint.delete_audio,"If checked, the Audio Track will be deleted","Seçilibsə, Audio Cığır silinəcək"
+535,az.stories.content.form_title,Text Form,Mətn Forması
+536,az.stories.content.placeholder.title,Text title,Mətnin Sərlövhəsi
+537,az.stories.content.placeholder.caption,optional,könüllü seçim
+538,az.stories.content.placeholder.sub_caption,optional,könüllü seçim
+539,az.stories.content.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Bu mətn hekayədə yox, yalnız sol paneldə görünəcək."
+540,az.stories.content.hint.caption,Heading of text will appear at the top of the section,"Başlığın mətni, Bölmənin üstündə görünəcək"
+541,az.stories.content.hint.sub_caption,Subheading of text will appear below the Heading,Alt-başlığın mətni başlığın altında görünəcək
+542,az.stories.content.hint.content,"Text can include html, css styling and images","Html, css stilləri və şəkilləri daxil edilə bilər"
+543,az.stories.reviewer_key.title,Private URL,Özəl URL
+544,az.stories.reviewer_key.desc,"You can copy and share the following URL with whomever you want to review '%{title}' before it is published. These people will have the ability to read your story, but not edit it.","Dərc edilmədən öncə, bu URL-i köçürüb istədiyiniz şəxslərlə '%{title}' müzakirə etmək üçün paylaşa bilərsiniz. Bu şəxslərə sizin hekayəni oxumağa icazə veriləcək, amma redaktə etmək üçün icazələri olmayacaq."
+545,az.stories.slideshow.form_title,Image Slideshow Form,Şəkil Slayd Nümayişi Forması
+546,az.stories.slideshow.add_image,Add Image,Şəkil Daxil Et
+547,az.stories.slideshow.placeholder.title,Slideshow Title,Slayd Nümayişinin Sərlövhəsi
+548,az.stories.slideshow.placeholder.caption,optional,könüllü seçim
+549,az.stories.slideshow.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Bu mətn hekayədə yox, yalnız sol paneldə görünəcək."
+550,az.stories.slideshow.hint.caption,Heading will appear at the top of the slideshow,Sərlövhə slayd nümayişinin üstündə görünəcək
+551,az.stories.slideshow.hint.description,The description will appear below the slideshow,təsvir slaydın altında yerləşir
+552,az.stories.asset_fields.remove_image,Remove,Sil
+553,az.stories.asset_fields.placeholder.caption,optional,könüllü seçim
+554,az.stories.asset_fields.placeholder.source,optional,könüllü seçim
+555,az.stories.asset_fields.hint.caption,Image Description will appear below the image,Şəkilin Təsviri şəkilin altında görünəcək
+556,az.stories.asset_fields.hint.source,Source will appear below the Image Description,Mənbə Şəkil Təsvirinin altında görünəcək
+557,az.stories.asset_fields.hint.asset,Only jpg and png format allowed; 4MB file size limit,Yalnız jpg və png fayl növü olar; faylın böyüklüyü 4MB-a məhduddur
+558,az.stories.asset_fields.label.caption,Image Description,Şəkilin Təsviri
+559,az.stories.asset_fields.label.source,Image Source,Şəkilin Mənbəyi
+560,az.stories.embed_media.form_title,Embed Online Media Form,Onlayn Medianı Daxil Etmə Forması
+561,az.stories.embed_media.get_media,Get Online Media,Onlayn Medianı Al
+562,az.stories.embed_media.preview,Preview of Online Media,Onlayn medianın sınaq baxışı
+563,az.stories.embed_media.error,The URL could not be processed. Please try again.,URL-ı emal etmək mümkün olmadı. Lütfən bir daha cəhd edin.
+564,az.stories.embed_media.placeholder.title,Embed Online Media Title,Daxil Ediləsi Onlayn Medianın Sərlövhəsi
+565,az.stories.embed_media.placeholder.url,Url to online media,Onlayn mediaya URL
+566,az.stories.embed_media.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Bu mətn hekayədə yox, yalnız sol paneldə görünəcək."
+567,az.stories.embed_media.hint.url,"The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED","Növbəti saytlar, onlayn medianı daxil etmək üçün istifadə edilə bilər: AUDİO: Soundcloud, Spotify; VİDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
+568,az.stories.youtube.form_title,YouTube Video Form,YouTube Video Forması
+569,az.stories.youtube.get_media,Get Youtube Video,Youtube Videosunu Al
+570,az.stories.youtube.preview,Preview of YouTube Video,YouTube Videosunun sinaq baxışı
+571,az.stories.youtube.error,The URL could not be processed. Please try again.,URL-ı emal etmək mümkün olmadı. Lütfən bir daha cəhd edin.
+572,az.stories.youtube.placeholder.title,YouTube Title,YouTube Sərlövhəsi
+573,az.stories.youtube.placeholder.url,Url to YouTube video,YouTube video URL-ı
+574,az.stories.youtube.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Bu mətn hekayədə yox, yalnız sol paneldə görünəcək."
+575,az.stories.youtube.hint.url,Copy a YouTube URL and paste it here,Youtube URL-ını bura köçür
+576,az.stories.youtube.hint.fullscreen,"If checked, the video will take up the entire screen","Seçilibsə, video tam ekranı əhatə edəcək"
+577,az.stories.youtube.hint.loop,"If checked, the video will loop over and over","Seçilibsə, video fasiləsiz təkrarlanacaq"
+578,az.stories.youtube.hint.info,"If checked, the title bar will be shown on top of the video","Seçilibsə, sərlövhə paneli videonun üstundə göstəriləcək"
+579,az.stories.youtube.hint.cc,"If checked, the video subtitles will be shown by default","Seçilibsə, defolt olaraq videonun subtitrları göstəriləcək"
+580,az.stories.youtube.hint.menu_lang,Language of the YouTube menu/controls,YouTube menyu/kontrollarının ilkin dili.
+581,az.stories.youtube.hint.cc_lang,Language of the subtitles to show by default,Göstərilən subtitrların defolt dili.
+582,az.storyteller.byline,By,Tərəfindən
+583,az.storyteller.byline_media,Photos and videos by ,Şəkillər və videolar xxx tərəfindən hazırlanıb
+584,az.storyteller.byline_translator,Translated by ,xxx tərəfindən tərcümə edilib
+585,az.storyteller.source,Source:,Mənbə:
+586,az.storyteller.by,by,tərəfindən
+587,az.storyteller.related_stories,Related Stories,Buna aid xəbərlərə bax
+588,az.storyteller.view_all_stories_in,View all stories in,Bütün hekayələrə bax
+589,az.settings.index.title,Settings,Parametrlər
+590,az.settings.index.facebook_avatar,This is your avatar from Facebook.,Bu Facebook avatarınızdır.
+591,az.settings.index.use_facebook_avatar,Use Facebook Avatar,Facebook Avatarını istifadə et
+592,az.settings.index.hint.about,Short summary about yourself.  This will be shown with the stories that you publish.,Özünüz barədə qısa xülasə. Bu dərc etdiyiniz hekayələrlə göstəriləcək.
+593,az.settings.index.hint.default_story_locale,Select the language you want to use by default when creating a new story.,Yeni hekayə yaradarkən defolt dili seç.
+594,az.settings.index.submit,Save Settings,Parametrləri yadda saxla
+595,az.settings.invitations.title,Collaboration Invitations,Əməkdaşlıq Dəvətləri
+596,az.settings.invitations.no_invitations,At this time you have no invitations waiting for you.,Hal-hazırda sizə heç bir dəvət yoxdur.
+597,az.settings.invitations.accept_link,Accept,Qəbul Et
+598,az.settings.invitations.decline_link,Decline,Rədd Et
+599,az.settings.invitations.header_date,Date Sent,Göndərilən tarix
+600,az.settings.invitations.header_story,Story Title,Hekayə sərlövhəsi
+601,az.settings.invitations.header_role,Role,Rol
+602,az.settings.invitations.header_from,Sent By,xxx tərəfindən göndərilib
+603,az.settings.notifications.title,Notifications,Bildirişlər
+604,az.settings.notifications.explain,You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.,Yeni hekayələr dərc olunanda siz bildiriş ala biləcəksiniz. Sadəcə abunə olun!
+605,az.settings.notifications.all_sub_title,All Notifications,Bütün Bildirişlər
+606,az.settings.notifications.all_label,Do you want to recieve any notifications from Chai Khana?,Çayxanadan hər hansısa bildiriş almaq istəyirsinizmi?
+607,az.settings.notifications.all_no,"No, do not send me any notifications.","Xeyir, bildirişlərin mənə göndərilməsini istəmirəm."
+608,az.settings.notifications.all_yes,"Yes, I want notifications sent to me.","Bəli, bildirişlərin mənə göndərilməsini istəyirəm."
+609,az.settings.notifications.story_comment_sub_title,New Story Comment Notifications,Yeni Hekayə Şərh Bildirişləri
+610,az.settings.notifications.story_comment_label,Do you want to recieve notifications when a comment is made to one of your stories?,Hekayələrinizdən birinə şərh yazılanda bildiriş almaq istəyirsinizmi? 
+611,az.settings.notifications.story_comment_no,"No, do not send me any notifications.","Xeyir, bildirişlərin mənə göndərilməsini istəmirəm."
+612,az.settings.notifications.story_comment_yes,"Yes, I want notifications sent to me.","Bəli, bildirişlərin mənə göndərilməsini istəyirəm."
+613,az.settings.notifications.new_themes_sub_title,New Theme Notifications,Yeni mövzunun bildirişi
+614,az.settings.notifications.new_themes_all,Notify me when any theme is added.,Yeni mövzu əlavə olunanda bildirin..
+615,az.settings.notifications.new_themes_none,I do not want to receive notifications when a new theme is added.,Yeni hekayələr dərc olunanda mən bildiriş almaq istəmirəm. .
+616,az.settings.notifications.new_stories_by_category,Notify me when a story is added to:,: hekayə daxil ediləndə məni bildirin
+617,az.settings.notifications.language_sub_title,Notification Language,Bildiriş dili
+618,az.settings.notifications.language_label,In what language do you want to receive the notifications?,Bildirişləri hansı dildə almaq istəyirsiniz?
+619,az.settings.notifications.following_sub_title,Chai Khana Users You Are Following,İzlədiyiniz Çayxana istifadəçiləri
+620,az.settings.notifications.following_label,"You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image.","İzlədiyiniz istifadəçilər hekayə dərc etsələr, sizə hər zaman bildirişlər gələcək. İstifadəçidən bildiriş almamaq üçün, onun şəklinə basaraq izləmə siyahınızdan silin."
+621,az.settings.notifications.following_not,"At this time, you are not following any users.",Siz hal-hazırda heç bir istifadəçini izləmirsiniz.
+622,az.settings.notifications.following_title1,Click to unfollow '%{name}',%{nickname}' izləməmək üçün bura basın
+623,az.settings.notifications.following_title2,Click to follow '%{name}',%{nickname}' izləmək üçün bura basın
+624,az.settings.notifications.submit,Save Settings,Parametrləri yadda saxla
+625,az.imageuploader.missing,An error occurred while processing your image. Please try again.,Sizin şəkiliniz emal ediləndə xəta baş verdi. Lütfən bir daha cəhd edin.
+626,az.imageuploader.invalid_type,Invalid file type. Only .jpg or .png is allowed.,Yanlış fayl növü. Yalnız .jpg və ya .png olar.
+627,az.imageuploader.size_limit,Image file size is limited to 4MB,Şəkil faylın böyüklüyü 4MB-a məhduddur
+628,az.devise.mailer.reset_password_instructions.title,Hello %{nickname}!,Salam %{nickname}!
+629,az.devise.mailer.reset_password_instructions.p1,"Someone has requested a link to change your password on Chai Khana, and you can do this through the link below.","Kimsə sizin Çayxana parolunuzu dəyişməyə rica edib, və siz bunu aşağıdaki keçiddən edə bilərsiniz."
+630,az.devise.mailer.reset_password_instructions.link_title,Change my password,Parolu dəyiş
+631,az.devise.mailer.reset_password_instructions.p2,"If you didn't request this, please ignore this email.","Bunu tələb etmədinizsə, lütfən bu e-poçtuna əhəmiyyət verməyin."
+632,az.devise.mailer.reset_password_instructions.p3,Your password won't change until you access the link above and create a new one.,Yuxadıraki keçidə daxil olub yeni parol yaratmadan sizin parolunuz dəyişməyəcək.
