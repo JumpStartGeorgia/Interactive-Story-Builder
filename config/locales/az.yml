@@ -121,7 +121,7 @@ az:
         is_published: Dərc et?
         published_at: Dərc Edilmə Tarixi
         show_home_page: Bu mövzunu ana səhifədə göstər?
-        published_item_count: Number of Published Items
+        published_item_count: Dərc olunan məhsulların sayı
       theme_translation:
         name: Ad
         edition: Buraxılış
@@ -137,7 +137,7 @@ az:
         required_field: tələb edilən sahədir.
         already_exists: verilənlər bazası artıq mövcuddur.
         story_authors: "ən azı bir şəxs seçilməlidir."
-        publish_theme: The theme cannot be published until at least one published item has been assigned to the theme.
+        publish_theme: Dərc olunan maddə təyin edilməmiş qədər  mövzu dərc edilə bilməz.
   mailer:
     closing: Hörmətlə,
     signature: "Çayxana Komandası (Chai Khana also acceptable)"
@@ -366,8 +366,8 @@ az:
       required: Tələb olunur
       nothing_selected: Heç Nə Seçilməyib
       clone_asset: Orijinal faylı istifadə et?
-      embed: Embed Code
-      scroll_top: Scroll to the top
+      embed: Daxil edilən kod
+      scroll_top: Yuxarıya sürüşdür
     msgs:
       does_not_exist: Siz mövcud olmayan səhifəyə daxil olmaq istədiniz.
       not_authorized: O sahifəyə daxil olmağa icazəniz yoxdur.
@@ -501,10 +501,10 @@ az:
       noResultsText: Tapılmadı. Bu e-poçtu dəvət edilmiş əməkdaşlar siyahısına daxil etmək üçün "Enter" düyməsinə bas.
   layouts:
     application:
-      copyright: Copyright
-      copyright_text: Copyright of these reports belongs to the Chai-Khana NGO. Any republishing of materials is not allowed without the prior consent of Chai-Khana.
-      disclaimer: Disclaimer
-      disclaimer_text: "This publication has been produced with the assistance of MYMEDIA, a DANIDA funded project. The content of this publication is the sole responsibility of the author/contractor/implementing partner/international organisation and can in no way be taken to reflect the official opinion of MYMEDIA / DANIDA. "
+      copyright: Müəllif Hüquqları
+      copyright_text: Bu materialların Müəllif Hüquqları  Chai-Khana QHT-ya məxsusdur. Chai-Khana-nın əvvəlcədən razılığı olmadan materialların yayınmasında yol verilmir.
+      disclaimer: Məsuliyyətdən imtina
+      disclaimer_text: "Bu sayt MYMEDIA, DANIDA tərəfindən maliyyə yardımı ilə hazırlanmışdır. Saytın məzmunu  müəllif/ işə götürən/ tərəfdaş/ beynaxalq təşkilatı məsuliyyəti daşıyır və  MyMedia/ Danida rəsmi mövqeyini əks etdirmir. "
     unsupported_browser:
       title: Dəstəklənməyən brauzer
       video: Sizin brauzeriniz bu videonu dəstəkləmir.
