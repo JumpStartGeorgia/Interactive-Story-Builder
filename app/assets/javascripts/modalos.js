@@ -44,7 +44,6 @@
         //Extend dem' options
         var options = $.extend({}, defaults, options); 
         return this.each(function() {
-        console.log('herer modalos');
 /*---------------------------
  Global Variables
 ----------------------------*/
@@ -221,7 +220,7 @@
 			    	else 
 		    		{		    			    	 		
 		    			// console.log(options)
-		    			$(wrapper).width(options.width-options.margins);
+		    			$(wrapper).width(options.width+options.margins);
 		    			if(options.height + options.topOffset > h)
 			    	 	{
 		    	 			$(wrapper).height(h - options.topOffset - options.margins);

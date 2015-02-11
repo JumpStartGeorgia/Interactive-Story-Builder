@@ -96,11 +96,33 @@ $(document).ready(function(){
           lastScroll = st;
       });
     }
+
+      $('.section.infographic .container .content').click(function(){
+        var t = $(this);
+        var ml =  $('<div id="modalos-infographic"></div>');
+        var image =  $('<img>',
+        {
+            on: 
+            {
+              load: function() { 
+                console.log(this.width);
+                ml.append(image).modalos({topOffset: 100 , width: this.width });
+                
+              },
+              error: function(e) { 
+                console.log(this,' - not loaded'); 
+              }
+            },
+            "src":t.attr('data-original')
+        });
+       
+      });
+
+
       $('.modalEmbed').on('click', function(e) {      
-      console.log('here');  
         var ml = $(this).attr('data-modalos-id');  
         var v = $('.navbar-storybuilder');      
-        $('#'+ml).modalos({topOffset: $(v).position().top + $(v).height() + 30, width:672, height:400});
+        $('#'+ml).modalos({topOffset: v.position().top + v.height() + 30, width:672, height:400});
         e.preventDefault();
       });     
 

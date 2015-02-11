@@ -274,9 +274,9 @@
               <% item = section.infographic %>       
               <div class="section infographic">
                 <% if section.has_marker? %><a class="navigation-marker" id="<%= s_i + 1 %>"></a><% end %> 
-                <div class="container" data-original='<%= section.infographic.image.file.url %>'>
+                <div class="container" >
                   <div class="caption"><%= item.caption %></div>
-                  <div class="content">
+                  <div class="content" data-original='<%= section.infographic.image.file.url %>'>
                     <img src="<%= section.infographic.image.file.url(:poster) %>">
                     <div class="bg"></div>
                   </div>
@@ -298,8 +298,8 @@
                       <% section.infographic.datasources.each do |t| %>
                        <div class='source'><%= link_to t.name, t.url %></div>
                       <% end %>
-                    </div>
-                  <% end %>
+                    </div>                    
+                  <% end %>                    
                 </div>                         
               </div>
               
@@ -1047,4 +1047,5 @@
         }
         await();       
     })();</script>
-    <!--<![endif]--> 
+    <!--<![endif]-->      
+   
