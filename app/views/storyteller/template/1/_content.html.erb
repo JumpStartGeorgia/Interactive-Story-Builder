@@ -260,16 +260,36 @@
               </div>
               <% if isFirst && section.youtube.fullscreen %>
                 <div class='info'>
-                <div class='headline'><%= @story.title %></div>
-                <div class="byline">
-                        <span class="caption"><%= t('storyteller.byline') %></span>
-                        <span class="author">&nbsp;<%= @story.story_author_names %></span>
-                        <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
-                        <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
-                </div> 
-              </div>
+                  <div class='headline'><%= @story.title %></div>
+                  <div class="byline">
+                          <span class="caption"><%= t('storyteller.byline') %></span>
+                          <span class="author">&nbsp;<%= @story.story_author_names %></span>
+                          <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                          <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
+                  </div> 
+                </div>
                <%= render partial: "storyteller/template/#{@template}/content_infotop" %>
-              <% end %>             
+              <% end %>
+              <% elsif section.infographic? %>    
+              <% item = section.infographic %>       
+              <div class="section infographic">
+                <% if section.has_marker? %><a class="navigation-marker" id="<%= s_i + 1 %>"></a><% end %> 
+                <div class="container" data-original='<%= section.infographic.image.file.url %>'>
+                  <div class="caption"><%= item.caption %></div>
+                  <img src="<%= section.infographic.image.file.url(:poster) %>">
+                  <div class="description"><%= item.description %></div>
+                  <div class="dataset">
+                    <% #if item.dataset_url.present? %>
+                  </div>
+                  <div class="sources">
+                    <% #section.infographic.infographic_datasources.each do |t| %>
+
+                    <% #end %>
+                  </div>
+                  
+                </div>                         
+              </div>
+              
             <% end %>                               
             <% isFirst = false %>                    
         <% end %>   
