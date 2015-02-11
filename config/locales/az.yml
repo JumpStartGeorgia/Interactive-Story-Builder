@@ -381,9 +381,9 @@ az:
       error_publish: "%{obj} dərc edilmədi: %{err}"
       error_publish_missing_fields: "%{obj} eskiz və ya xülasə təmin edilmədən dərc edilə bilməz."
       error_publish_missing_fields_link: "Əskik məzmunu daxil et."
-      error_publish_missing_sections: At least one Section required before publishing.
+      error_publish_missing_sections: Dərc olunannan əvvəl ən azı bir bölmə tələb olunur.
       error_publish_missing_content_section: "Ən azı bir bölmə lazımdır."
-      error_publish_missing_translations: The story must be completely translated in %{lang} in order to be published.
+      error_publish_missing_translations: Dərc olunmaq üçün bu material tamamilə %{lang} tərcümə olunmalıdır.
       error_unpublish: "%{obj} dərc edilməsi geri alınmadı: %{err}"
       error_clone: "%{obj} köçürülmədi."
       error_clone_notification: 'Hekayə köçürüləndə xəta baş verdi: %{msg}'
@@ -427,9 +427,9 @@ az:
       notification:
         true: Sizə bildirişlər göndəriləcək.
         false: Sizə bildirişlər göndərilməyəcək.
-        new_theme_all_success: You will recieve a notification whenever a theme is added.
-        new_theme_none_success: You will not receive any notifications when themes are added.
-        new_story_by_type_success: 'You will receive a notification when a story is added to these types: %{types}.'
+        new_theme_all_success: Mövzu əlavə olunanda siz bildiriş alacaqsınız.
+        new_theme_none_success: Bu mövzular əlavə olunanda siz bildiriş ala bilməyəcəksiniz.
+        new_story_by_type_success: 'Material növlərə  əlavə olunanda siz bildiriş alacaqsınız  %{types}.'
         story_comments_yes: Hər hansısa hekayənizə şərh yazılanda sizə bildiriş göndəriləcək.
         story_comments_no: Hər hansısa hekayənizə şərh yazılanda sizə bildiriş göndərilməyəcək.
         following_no: "Artıq '%{nickname}' -dən yeni hekayələr barədə sizə bildirişlər göndərilməyəcək."
@@ -705,8 +705,8 @@ az:
     byline_translator: xxx tərəfindən tərcümə edilib
     source: 'Mənbə:'
     by: tərəfindən
-    related_stories: Related Stories
-    view_all_stories_in: View all stories in
+    related_stories: Buna aid xəbərlərə bax
+    view_all_stories_in: Bütün hekayələrə bax
   settings:
     index:
       title: Parametrlər

@@ -381,7 +381,7 @@ ru:
       error_publish: "Опубликование %{obj} не осуществлен: %{err}"
       error_publish_missing_fields: "Не возможно опубликовать %{obj}, пока Вы не предоставите конспект и уменьшенное изображение (тамбнейл)."
       error_publish_missing_fields_link: "Добавить отсутствующее содержание."
-      error_publish_missing_sections: At least one Section required before publishing.
+      error_publish_missing_sections: По меньшей мере один Раздел обязателен перед публикацией.
       error_publish_missing_content_section: "Требуеться по крайней мере одна секция"
       error_publish_missing_translations: The story must be completely translated in %{lang} in order to be published.
       error_unpublish: "Отмена публикации %{obj} не произошла: %{err}"
@@ -427,8 +427,8 @@ ru:
       notification:
         true: "Вам будут отправлены оповешения."
         false: "Вам не будут отправлены оповешения."
-        new_theme_all_success: You will recieve a notification whenever a theme is added.
-        new_theme_none_success: You will not receive any notifications when themes are added.
+        new_theme_all_success: Когда тема будет добавлена, вы получите уведомление.
+        new_theme_none_success: Когда темы будут добавлены, вы не получите никаких уведомлений.
         new_story_by_type_success: 'You will receive a notification when a story is added to these types: %{types}.'
         story_comments_yes: "Вы получите оповешения при коментарии на Ваших историях"
         story_comments_no: "Вы не получите оповешения при коментарии на Ваших историях"
@@ -705,8 +705,8 @@ ru:
     byline_translator: "Переводчик"
     source: "Источник"
     by: "От"
-    related_stories: Related Stories
-    view_all_stories_in: View all stories in
+    related_stories: Также по теме
+    view_all_stories_in: Просмотреть все материалы в
   settings:
     index:
       title: "Настройки"

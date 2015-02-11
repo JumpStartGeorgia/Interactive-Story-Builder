@@ -381,9 +381,9 @@ hy:
       error_publish: "%{obj} չի հրապարակվել: %{err}"
       error_publish_missing_fields: "%{obj} չի կարող հրապարակվել, քանի դեռ բացակայում է համառոտ նկարագրությունը և մանրապատկերը (thumbnail)"
       error_publish_missing_fields_link: "Լրացնել բացթողնված բովանդակությունը."
-      error_publish_missing_sections: At least one Section required before publishing.
+      error_publish_missing_sections: Նվազագույնը մեկ բաժին է պահանջվում նախքան հրապարակելը.
       error_publish_missing_content_section: "Պահանջվում է առնվազը մեկ բաժին"
-      error_publish_missing_translations: The story must be completely translated in %{lang} in order to be published.
+      error_publish_missing_translations: Նյութը պետք է ամբողջությամբ թարգմանվի %{lang}-ով, որպեսզի հրապարակվի.
       error_unpublish: "%{obj} չի հրապարակվել: %{err}"
       error_clone: "%{obj} չի կրկնօրինակվել"
       error_clone_notification: "Կրկնօրինակման ընթացքում ի հայտ եկավ սխալ: %{msg}"
@@ -427,9 +427,9 @@ hy:
       notification:
         true: "Ձեզ ծանուցում կուղարկվի"
         false: "Ձեզ ծանուցում չի ուղարկվի"
-        new_theme_all_success: You will recieve a notification whenever a theme is added.
-        new_theme_none_success: You will not receive any notifications when themes are added.
-        new_story_by_type_success: 'You will receive a notification when a story is added to these types: %{types}.'
+        new_theme_all_success: Դուք կստանաք ծանուցում, երբ թեմա ավելացվի.
+        new_theme_none_success: Դուք չեք ստանա ոչ մի ծանուցում, երբ թեմաներ ավելացվեն.
+        new_story_by_type_success: 'Դուք ծանուցում կստանաք, երբ նյութ ավելացվի այս տեսակներին: %{types}.'
         story_comments_yes: "Դուք կծանուցվեք, Ձեր նյութերի տակ նոր մեկնաբանությունների մասին"
         story_comments_no: "Դուք չեք ծանուցվի, Ձեր նյութերի տակ նոր մեկնաբանությունների մասին"
         following_no: "Դուք այլևս չեք ստանա ծանուցումներ  '%{nickname}' օգտատիրոջ նոր նյութեր մասին"
@@ -705,8 +705,8 @@ hy:
     byline_translator: "Թարգմանությունը"
     source: "Աղբյուր:"
     by: "կողմից"
-    related_stories: Related Stories
-    view_all_stories_in: View all stories in
+    related_stories: Առնչվող նյութեր
+    view_all_stories_in: Դիտել բոլոր նյութերը
   settings:
     index:
       title: "Կարգավորումներ"
