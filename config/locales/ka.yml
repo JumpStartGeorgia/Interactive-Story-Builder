@@ -121,7 +121,7 @@ ka:
         is_published: "გამოვაქვეყნოთ?"
         published_at: "გამოქვეყნების თარიღი"
         show_home_page: "ვაჩვენოთ ეს თემა მთავარ გვერდზე?"
-        published_item_count: Number of Published Items
+        published_item_count: გამოქვეყნებულ ამბავთა რაოდენობა
       theme_translation:
         name: "სათაური"
         edition: "გამოცემა"
@@ -137,7 +137,7 @@ ka:
         required_field: "სავალდებულო ველი"
         already_exists: "უკვე არსებობს მონაცემთა ბაზაში"
         story_authors: "საჭიროა ერთი ადამიანის ონიშვნა მაინც."
-        publish_theme: The theme cannot be published until at least one published item has been assigned to the theme.
+        publish_theme: თემის გამოქვეყნება შეუძლებელია, თუ ამ თემას ერთი ამბავი მაინც არ აქვს მისადაგებული.
   mailer:
     closing: "პატივისცემით,"
     signature: "“ჩაი ხანას” გუნდი"
@@ -366,8 +366,8 @@ ka:
       required: "სავალდებულო"
       nothing_selected: "არ არის არჩეული"
       clone_asset: "გამოვიყენოთ საწყისი ფაილის?"
-      embed: Embed Code
-      scroll_top: Scroll to the top
+      embed: კოდის ჩასმა
+      scroll_top: მაღლა ასვლა
     msgs:
       does_not_exist: "თქვენ ცდილობთ ისეთი გვერდის ნახვას, რომელიც არ არსებობს."
       not_authorized: "თქვენ არ გაქვთ ამ გვერდის ნახვის უფლება."
@@ -501,10 +501,10 @@ ka:
       noResultsText: "მსგავსება არ მოიძებნა. დააჭირეთ 'შეყვანას', რომ დაამატოთ ეს ელ. ფოსტის მისამართი თანაავტორთა სიაში."
   layouts:
     application:
-      copyright: Copyright
-      copyright_text: Copyright of these reports belongs to the Chai-Khana NGO. Any republishing of materials is not allowed without the prior consent of Chai-Khana.
-      disclaimer: Disclaimer
-      disclaimer_text: "This publication has been produced with the assistance of MYMEDIA, a DANIDA funded project. The content of this publication is the sole responsibility of the author/contractor/implementing partner/international organisation and can in no way be taken to reflect the official opinion of MYMEDIA / DANIDA. "
+      copyright: საავტორო უფლება
+      copyright_text: ამ მასალაზე საავტორო უფლებას ფლობს არასამთავრობო ორგანიზაცია "ჩაი ხანა". მისი ხელახალი გამოქვეყნება "ჩაი ხანასთან" შეთანხმების გარეშე არ შეიძლება.
+      disclaimer: განაცხადი
+      disclaimer_text: "ეს ვებგვერდი მომზადდა DANIDA-ას ფონდის მიერ დაფინანსებულ პროექტ MYMEDIA-ს დახმარებით. პუბლიკაციის შინაარსზე პასუხისმგებლობას იღებს ავტორი/კონტრაქტორი/განმახორციებელი პარტნიორი/პარტნიორი საერთაშორისო ორგანიზაცია და არანაირად არ ასახავს  MYMEDIA/DANIDA-ს ოფიციალურ აზრის."
     unsupported_browser:
       title: "არასათანადო ბრაუზერი"
       video: "თქვენ ბრაუზერს ვიდეოს მხარდაჭერა არ აქვს"

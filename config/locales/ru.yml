@@ -121,7 +121,7 @@ ru:
         is_published: "Публиковать?"
         published_at: "Дата опубликования"
         show_home_page: "Показать тему на главной странице"
-        published_item_count: Number of Published Items
+        published_item_count: Количество опубликованных объектов
       theme_translation:
         name: "Имя"
         edition: "Выпуск"
@@ -137,7 +137,7 @@ ru:
         required_field: "Поле обязательно для заполнения"
         already_exists: "В базе данных уже существует."
         story_authors: "Должны выбрать по крайней мере одного человека."
-        publish_theme: The theme cannot be published until at least one published item has been assigned to the theme.
+        publish_theme: Тема не может быть опубликованна если хотя бы одна деталь не будет добавлена.
   mailer:
     closing: "С уважением"
     signature: "Команда Чайхана"
@@ -366,8 +366,8 @@ ru:
       required: "Обязательно"
       nothing_selected: "Нет отмеченных"
       clone_asset: "Использывать оригинал?"
-      embed: Embed Code
-      scroll_top: Scroll to the top
+      embed: Вставить код
+      scroll_top: Прокрутить вверх
     msgs:
       does_not_exist: "Вы пытались получить доступ к странице, которая не существует."
       not_authorized: "Вы не авторизованы для просмотра этой страницы"
@@ -501,10 +501,10 @@ ru:
       noResultsText: Совпадений не найдено. Нажмите "Enter", чтобы добавить этот адрес электронной почты в список приглашенных сотрудников.
   layouts:
     application:
-      copyright: Copyright
-      copyright_text: Copyright of these reports belongs to the Chai-Khana NGO. Any republishing of materials is not allowed without the prior consent of Chai-Khana.
-      disclaimer: Disclaimer
-      disclaimer_text: "This publication has been produced with the assistance of MYMEDIA, a DANIDA funded project. The content of this publication is the sole responsibility of the author/contractor/implementing partner/international organisation and can in no way be taken to reflect the official opinion of MYMEDIA / DANIDA. "
+      copyright: Авторское право
+      copyright_text: Авторское право этих материалов принадлежит Чай-Хана НПО. Любая повторная публикация материалов не допускается без предварительного согласия с Чай-Хана.
+      disclaimer: Отказ от ответственности
+      disclaimer_text: "Этот сайт была подготовлен при содействии проекта Mymedia, финансируемый DANIDA. Содержание данной публикации является предметом ответственности автора / сотрудника / исполнителя / партнера международной организации и никоим образом не отражает официальное мнение Mymedia / DANIDA. "
     unsupported_browser:
       title: "Браузер не поддерживается"
       video: "Ваш браузер не поддерживает этого видео."
