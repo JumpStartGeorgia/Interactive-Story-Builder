@@ -1703,4 +1703,21 @@ ul.dropdown-menu li a
   padding:0px;
   width:auto;
 }
+.section.infographic .container .content
+{
+  position:relative;
+}
+.section.infographic .container .content:hover
+{
+  cursor:pointer;
+}
+.section.infographic .container .content:hover .bg
+{
+  background:rgba(0,0,0,0.3) url(<%= image_path('svg/infographic_hand.svg') %>) center center no-repeat;
+  width:100%;
+  height:100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
 </style>
