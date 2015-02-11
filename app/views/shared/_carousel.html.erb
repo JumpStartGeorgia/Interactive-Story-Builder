@@ -1,0 +1,56 @@
+<% content_for(:header) { %>
+<header>
+  <% if @stories_for_slider.present? %>
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+       <% @stories_for_slider.each_with_index { |t,i| %>
+          <li data-target="#carousel-example-generic" data-slide-to="<%= i %>" class='<%= i == 0 ? " active" : "" %>'></li>
+        <% } %>  
+      </ol>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+
+        <% @stories_for_slider.each_with_index { |story,i| %>
+          <% story.use_app_locale_if_translation_exists %>
+          <div class='item<%= i == 0 ? " active" : "" %>'>
+          <%= link_to storyteller_show_path(story.permalink) do %>
+            <div class='img' style="background: url(/assets/png/thumbnail_mask.png) 100% 100% , url(<%= story.show_asset.file.url(:slider) %>) center center no-repeat; background-size:cover;"></div> <% end %>
+            <div class="carousel-caption" lang="<%= story.current_locale %>">
+              <%= link_to  storyteller_show_path(story.permalink) do %>
+                <div class='title'><%= story.title %></div>
+                <% if false #story.about.present? %>
+                <div class='descr'><%= strip_tags_nbsp(story.about).html_safe if story.about.present? %></div>
+                <% end %>
+              <% end %>
+              <div class='storytype'>
+                <div class='storytype-logo story_type_<%= story.story_type_id %>' title='<%= get_story_type_name(story.story_type_id) %>'></div>
+                <div class='storytype-label' lang='<%= I18n.locale %>'><%= get_story_type_name(story.story_type_id) %></div>
+              </div>
+            </div>
+          </div>
+        <% } %>      
+      </div>
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="icon arrow-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="icon arrow-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+      <!-- Sticker -->
+      <div class='sticker'>
+        <div class='sticker-wrapper'>
+          <%= link_to theme_path(@theme.permalink) do %>
+            <div class='title'><%= @theme.name.split.map(&:capitalize).join(' ') %></div>
+            <div class='sep'></div>
+            <div class='date'><%= @theme.edition %></div>  <!-- I18n.l(@theme.edition, :format => '%B %Y')  -->
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</header>
+<% } %>
