@@ -76,6 +76,17 @@
                       <% else %>
                         <%= add_item.html_safe %>
                       <% end %>
+                 <% elsif item.infographic? %>
+                      <% if item.infographic.present? %>
+                        <li id='<%= item.infographic.id %>' class='sub' data-type='<%= item.get_str_type %>_item'>
+                          <div>
+                            <div class="sub-l"><%= item.infographic.title %></div>
+                            <div class='storytree-arrow'><div class='arrow'></div></div>
+                          </div>
+                        </li>
+                      <% else %>
+                        <%= add_item.html_safe %>
+                      <% end %>                      
                   <%end%>
                 </ul>                    
             </li>          

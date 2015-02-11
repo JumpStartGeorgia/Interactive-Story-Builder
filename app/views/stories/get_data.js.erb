@@ -19,30 +19,10 @@
          was_permalink_box_length = $('input#storyPermalinkStaging').val().length;;
          show_story_permalink({'is_duplicate': false, 'permalink':$('input#storyPermalink').val()});
       }
+    <% end %>
 
-     // when indicate whether or not to use cloned asset, act accordingly
-     $('form.form-translation').on('change', 'input#clone_asset', function(){
-       if ($(this).is(':checked')){
-         // hide file field
-         $('form.form-translation #item-asset').hide();
-         // reset the field
-         $('form.form-translation #item-asset input[type="file"]').replaceWith($('form.form-translation #item-asset input[type="file"]').clone());
-         // save the clone id
-         $('form.form-translation #item-asset-clone input').val($('form.form-translation #item-asset-clone input').data('original-id'));
-         // hide preview
-         $('form.form-translation .translated-asset').hide();
-       }else{
-         // show file field
-         $('form.form-translation #item-asset').show();
-         // reset clone id
-         $('form.form-translation #item-asset-clone input').val('');
-         // show preview
-         $('form.form-translation .translated-asset').show();
-       }
 
-     });
-
-   <% elsif @type == 'section' %> 
+    <% if @type == 'form' || @type == 'section' %>
      // when indicate whether or not to use cloned asset, act accordingly
      $('form.form-translation').on('change', 'input#clone_asset', function(){
        if ($(this).is(':checked')){

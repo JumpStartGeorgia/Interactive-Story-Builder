@@ -155,10 +155,12 @@ class Asset < ActiveRecord::Base
           opt = {   
                   :url => "/system/places/infographic/:story_id/:style/:id__:basename.:extension",
                   :styles => {
-                    :thumb => {:geometry => "230x230#"},
-                    :medium => {:geometry => "600x>"},
-                    :large => {:geometry => "900x>"}
+                    :poster => {:geometry => "730x>"},
+                  },
+                  :convert_options => {
+                    :poster => "-gravity north -crop 730x730+0+0"
                   }
+
           }  
 
         when  TYPE[:infographic_dataset]        
