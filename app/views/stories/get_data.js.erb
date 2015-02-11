@@ -109,6 +109,49 @@
 
      });
 
+   <% elsif @type == 'infographic' %> 
+     // when indicate whether or not to use cloned asset, act accordingly
+     $('form.form-translation').on('change', 'input#clone_image_asset', function(){
+       if ($(this).is(':checked')){
+         // hide file field
+         $('form.form-translation #item-image-asset').addClass('not-visible');
+         // reset the field
+         $('form.form-translation #item-image-asset input[type="file"]').replaceWith($('form.form-translation #item-image-asset input[type="file"]').clone());
+         // save the clone id
+         $('form.form-translation #item-image-asset-clone input').val($('form.form-translation #item-image-asset-clone input').data('original-id'));
+         // hide preview
+         $('form.form-translation .translated-image-asset').hide();
+       }else{
+         // show file field
+         $('form.form-translation #item-image-asset').removeClass('not-visible');
+         // reset clone id
+         $('form.form-translation #item-image-asset-clone input').val('');
+         // show preview
+         $('form.form-translation .translated-image-asset').show();
+       }
+     });
+
+     $('form.form-translation').on('change', 'input#clone_dataset_asset', function(){
+       if ($(this).is(':checked')){
+         // hide file field
+         $('form.form-translation #item-dataset-asset').addClass('not-visible');
+         // reset the field
+         $('form.form-translation #item-dataset-asset input[type="file"]').replaceWith($('form.form-translation #item-dataset-asset input[type="file"]').clone());
+         // save the clone id
+         $('form.form-translation #item-dataset-asset-clone input').val($('form.form-translation #item-dataset-asset-clone input').data('original-id'));
+         // hide preview
+         $('form.form-translation .translated-dataset-asset').hide();
+       }else{
+         // show file field
+         $('form.form-translation #item-dataset-asset').removeClass('not-visible');
+         // reset clone id
+         $('form.form-translation #item-dataset-asset-clone input').val('');
+         // show preview
+         $('form.form-translation .translated-dataset-asset').show();
+       }
+
+     });
+
    <% end %>
 <% end %>
 

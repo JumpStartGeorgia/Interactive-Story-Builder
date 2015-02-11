@@ -620,11 +620,11 @@ $(document).ready(function() {
   story_tree = $('.story-tree');
 
 // copy paste for translation form fields
-  $(document).on('mouseenter','.story-page2 input[type=text]', function(){
+  $(document).on('mouseenter','.story-page2 input[type=text], .story-page2 input[type=url]', function(){
     var id = $(this).closest('.form-group').attr('id');
     $('.copy-paste').stop().css({'top':$(this).offset().top + 14,'left':$(this).offset().left-22 }).attr('data-id',id).fadeIn(500);
   });
-  $(document).on('mouseleave','.story-page2 input[type=text]', function(){
+  $(document).on('mouseleave','.story-page2 input[type=text], .story-page2 input[type=url]', function(){
     $('.copy-paste').fadeOut(5000);
   });
   $('.copy-paste').click(function(){
