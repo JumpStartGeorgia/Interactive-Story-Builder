@@ -45,6 +45,7 @@
         <div class='sticker-wrapper'>
           <%= link_to theme_path(@theme.permalink) do %>
             <div class='title'><%= @theme.name.split.map(&:capitalize).join(' ') %></div>
+            <div class='descr'><%= @theme.description %></div>
             <div class='sep'></div>
             <div class='date'><%= @theme.edition %></div>  <!-- I18n.l(@theme.edition, :format => '%B %Y')  -->
           <% end %>
