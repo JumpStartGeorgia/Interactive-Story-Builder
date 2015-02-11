@@ -16,6 +16,7 @@
       <th></th>
       <th><%= model_class_trans.human_attribute_name(:name) %></th>
       <th><%= model_class_trans.human_attribute_name(:edition) %></th>
+      <th><%= model_class_trans.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:published_at) %></th>
       <th><%= model_class.human_attribute_name(:show_home_page) %></th>
       <th><%= model_class.human_attribute_name(:published_item_count) %></th>
@@ -37,6 +38,7 @@
         </td>
         <td><%= theme.name %></td>
         <td><%= theme.edition %></td>
+        <td><%= theme.description %></td>
         <td><%= l theme.published_at if theme.published_at.present? %></td>
         <td><%= theme.show_home_page? ? t('formtastic.yes') : '' %></td>
         <td><%= theme.published_item_count %></td>
