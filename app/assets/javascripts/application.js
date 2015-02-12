@@ -195,10 +195,10 @@ $(".navbar-collapse").swipe(function( direction, offset ) {
 $.fn.carousel.defaults = { interval: 5000, pause: 'hover' };
 $('.carousel').carousel();
 
-var dev = true;
 //---------------------------------------------dev stuff-------------------------------------------------
-if(dev)
+if(gon.dev)
 {
+  var firstResize = true;
   $(window).resize(function(){
     var t = null; 
     if(firstResize)
@@ -231,12 +231,9 @@ if(dev)
   $(document).on('mouseleave','[data-tip]', function(){
     $('.tip').hide();
   }); 
-//---------------------------------------------dev stuff end-------------------------------------------------
 
 });
-//---------------------------------------------dev stuff-------------------------------------------------
-var firstResize = true;
-//---------------------------------------------dev stuff end-------------------------------------------------
+
 
 
 $(document).ajaxComplete(function(event, request) {

@@ -119,6 +119,7 @@ class ApplicationController < ActionController::Base
 		else
 		  gon.datatable_i18n_url = ""
 		end
+     gon.dev = Rails.env.development?
 	end
 
 
