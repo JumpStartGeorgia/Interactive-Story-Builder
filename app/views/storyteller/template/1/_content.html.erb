@@ -275,31 +275,37 @@
               <div class="section infographic">
                 <% if section.has_marker? %><a class="navigation-marker" id="<%= s_i + 1 %>"></a><% end %> 
                 <div class="container" >
+                <% if item.caption.present? %>
                   <div class="caption"><%= item.caption %></div>
+                <% end %>
                   <div class="content" data-original='<%= section.infographic.image.file.url %>'>
                     <img src="<%= section.infographic.image.file.url(:poster) %>">
                     <div class="bg"></div>
                   </div>
-                  <div class="description"><%= item.description %></div>
+                  <div class="description"><%= item.description.html_safe %></div>
+                  <% if !item.datasources.empty? %>
+                    <div class="sources">
+                      <div class="title"><%= t('storyteller.infographic.source') %>:&nbsp;</div>
+                      <% section.infographic.datasources.each do |t| %>
+                      <% if t.url.present? %>
+                       <div class='source'><%= link_to t.name+";", t.url, :target=>'blank' %></div>
+                     <% else %>
+                       <div class='source'><%= t.name %></div>
+                     <% end %>
+                      <% end %>
+                    </div>                    
+                  <% end %>        
                   <% if item.dataset_url.present? || item.dataset_file_exists? %>
                     <div class="dataset">
-                      <div class="label">მონაცემთა დატასორსი</div>
-                      <% if item.dataset_url.present? %>
-                        <div class='url'><%= item.dataset_url %></div>
-                      <% end %>
+                      <div class="title"><%= t('storyteller.infographic.dataset') %>:&nbsp;</div>
                       <% if item.dataset_file_exists? %>
-                        <div class='file'><%= full_url(item.dataset_file.file.url) %></div>
+                        <div class='file'><%= link_to t('storyteller.infographic.download'), full_url(item.dataset_file.file.url) %></div>
+                      <% end %>
+                      <% if item.dataset_url.present? %>
+                        <div class='url'><%= link_to t('storyteller.infographic.online'), item.dataset_url, :target=>'blank' %></div>
                       <% end %>
                     </div>
                   <% end %>
-                  <% if !item.datasources.empty? %>
-                    <div class="sources">
-                      <div class="label">მონაცემთა წყარო</div>
-                      <% section.infographic.datasources.each do |t| %>
-                       <div class='source'><%= link_to t.name, t.url %></div>
-                      <% end %>
-                    </div>                    
-                  <% end %>                    
                 </div>                         
               </div>
               

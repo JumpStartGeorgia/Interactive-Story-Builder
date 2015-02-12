@@ -26,8 +26,7 @@ class InfographicTranslation < ActiveRecord::Base
 
   #################################
   ## Validations
-  validates :title, :presence => true, length: { maximum: 255}  
-  validates :caption, :presence => true
+  validates :title, :presence => true, length: { maximum: 255}    
   validates :image, presence: true
   validates :dataset_url, :format => {:with => URI::regexp(['http','https'])}, :if => "!dataset_url.blank?"
 

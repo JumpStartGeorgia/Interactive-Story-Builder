@@ -746,6 +746,11 @@ en:
     by: by
     related_stories: Related Stories
     view_all_stories_in: View all stories in
+    infographic:
+      source: Data Source
+      dataset: Dataset
+      download: Download File
+      online: View Data Online
   settings:
     index:
       title: Settings
