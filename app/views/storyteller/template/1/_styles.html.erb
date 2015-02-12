@@ -1711,8 +1711,15 @@ ul.dropdown-menu li a
 {
   cursor:pointer;
 }
+.section.infographic .container .content img
+{
+  vertical-align:top;
+}
 .section.infographic .container .content:hover .bg
 {
+  transition: background-color .1s ease-in-out;
+  -moz-transition: background-color .1s ease-in-out;
+  -webkit-transition: background-color .1s ease-in-out;
   background:rgba(0,0,0,0.3) url(<%= image_path('svg/infographic_hand.svg') %>) center center no-repeat;
   width:100%;
   height:100%;

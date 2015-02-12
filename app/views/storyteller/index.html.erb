@@ -91,16 +91,17 @@
         <div class="embed-icon"><i class="s i-embed"></i></div>
         <div class="embed-text"><%= "#{t('app.msgs.embed_code')}" %>:</div>
         <div class="embed-code">
-        <textarea rows="4" cols="38"  data-iframe-link="<%=embed_url(@story.permalink) %>"
+        <textarea rows="6" cols="10"  data-iframe-link="<%=embed_url(@story.permalink) %>"
         readonly="" onfocus="setTimeout(function (t){ t.select(); }, 10, this);" onmouseup="return false;"><iframe src='<%=embed_url(@story.permalink) %>?type=partial' width='350' height='100%' frameborder='0'></iframe></textarea>
           <div class="embed-type-switcher">
             <div class="partial selected" title="<%= "#{t('app.common.partial_text')}" %>" data-width="350"><%= "#{t('app.common.partial')}" %></div>
             <div class="full" title="<%= "#{t('app.common.full_text')}" %>" data-width="1000"><%= "#{t('app.common.full')}" %></div>
+            <div class="embed-size-w">
+              <input type="text" value="350" class="iframe-size"/>
+              <span>px <%= "#{t('app.common.wide')}" %></span>
+            </div>
           </div>
-          <div class="embed-size-w">
-            <input type="text" value="350" class="iframe-size"/>
-            <span>px <%= "#{t('app.common.wide')}" %></span>
-          </div>
+       
 
         </div>
       </div>
