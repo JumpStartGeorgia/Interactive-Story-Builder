@@ -22,7 +22,97 @@
     <%= f.input :show_home_page, :as => :radio %>
   <% end %>
 
+  <hr />
 
+  <div id="features">
+    <% 
+      stories = @theme.stories.is_published.sorted
+      features = @theme.theme_features
+      feature_ids = features.map{|x| x.story_id}
+    %>
+    <h2><%= t('.header_features') %></h2>
+
+      <h3><%= t('.header_add_story') %></h3>
+      <%#= select_tag :add_story, options_from_collection_for_select(stories, "id", "title"), class: 'selectpicker', 
+          :'data-live-search' => "true", :'data-size' => "5", include_blank : true %>
+  
+      <select class="add-story selectpicker" data-live-search="true" data-width="auto" data-hide-disabled="true">
+        <option value=""></option>
+        <% stories.each do |story| %>
+          <% 
+            html = "<div class='type story_type_#{story.story_type_id}' title='#{get_story_type_name(story.story_type_id)}'></div>" 
+            html << "#{story.title}"
+            disabled = feature_ids.include?(story.id) ? 'disabled=disabled' : ''
+          %>
+
+          <option value="<%= story.id %>" data-content="<%= html %>" data-image="<%= story.asset.file.url(:thumbnail) %>" <%= disabled %>><%= story.title %></option>
+        <% end %>
+      </select>
+
+
+      <h3><%= t('.header_current_features') %></h3>
+
+      <% no_cls = stories.present? ? '' : 'hide' %>
+      <p id="no_stories" class="<%= no_cls %>">
+        <%= t('.no_stories') %>
+      </p>
+
+      <% cls = features.present? ? 'hide' : '' %>
+      <p id="no_features" class="<%= cls %>">
+        <%= t('.no_features') %>
+      </p>
+
+      <div id="feature-container">
+        <% features.each_with_index do |feature, index| %>  
+          <% 
+            story = feature.featured_story 
+            row_cls = index%2==0 ? 'even-row' : 'odd-row'
+          %>
+
+          <div class="feature <%= row_cls %>" data-story-id="<%= story.id %>">
+            <div class="feature-image">
+              <%= image_tag story.asset.file.url(:thumbnail) if story.asset_exists? %>
+            </div>
+            <div class="feature-info">
+              <div class='type story_type_<%=story.story_type_id %>'></div>
+              <%= story.title %>
+            </div>
+            <div class="feature-actions">
+              <button type="button" data-id="<%= feature.id %>" class="btn btn-sort btn-up" title="<%= t('app.buttons.up') %>"> <i class="glyphicon glyphicon-arrow-up" ></i> </button>
+              <button type="button" data-id="<%= feature.id %>" class="btn btn-sort btn-down" title="<%= t('app.buttons.down') %>"><i class="glyphicon glyphicon-arrow-down" ></i></button>
+              <button type='button' class='btn btn-danger btn-remove' title="<%= t('app.buttons.delete') %>" ><i class='glyphicon glyphicon-remove'></i></button>
+              <input type="hidden" class="input-id" name="theme[theme_features_attributes][<%= index %>][id]" value="<%= feature.id %>" />
+              <input type="hidden" class="input-story-id" name="theme[theme_features_attributes][<%= index %>][story_id]" value="<%= feature.story_id %>" />
+              <input type="hidden" class="input-position" name="theme[theme_features_attributes][<%= index %>][position]" value="<%= feature.position %>" />
+              <input type="hidden" class="input-delete" name="theme[theme_features_attributes][<%= index %>][_destroy]" value="" />
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+    <div id="feature-template">
+      <div class="feature">
+        <div class="feature-image">
+          <img src="" />
+        </div>
+        <div class="feature-info">
+        </div>
+        <div class="feature-actions">
+          <button type="button" data-id="" class="btn btn-sort btn-up" title="<%= t('app.buttons.up') %>"> <i class="glyphicon glyphicon-arrow-up" ></i> </button>
+          <button type="button" data-id="" class="btn btn-sort btn-down" title="<%= t('app.buttons.down') %>"><i class="glyphicon glyphicon-arrow-down" ></i></button>
+          <button type='button' class='btn btn-danger btn-remove' title="<%= t('app.buttons.delete') %>" ><i class='glyphicon glyphicon-remove'></i></button>
+          <input type="hidden" class="input-story-id" name="theme[theme_features_attributes][FEATURE-INDEX][story_id]" value="" />
+          <input type="hidden" class="input-position" name="theme[theme_features_attributes][FEATURE-INDEX][position]" value="" />
+          <input type="hidden" class="input-delete" name="theme[theme_features_attributes][FEATURE-INDEX][_destroy]" value="" />
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr />
+
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= f.submit t('helpers.links.reset'), :class => 'btn btn-warning', :type => :reset, :name => :reset %>

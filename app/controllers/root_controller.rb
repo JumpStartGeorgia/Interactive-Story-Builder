@@ -8,7 +8,7 @@ class RootController < ApplicationController
     @theme = Theme.for_homepage
     
 
-    @stories_for_slider = Story.recent_by_type(theme_id: @theme.id) if @theme.present?    
+    @stories_for_slider = @theme.featured_stories if @theme.present?    
     @navbar_invisible = false
     respond_to do |format|
       format.html  
@@ -88,7 +88,7 @@ class RootController < ApplicationController
     @css.push("navbar.css", "filter.css", "grid.css","root.css")    
     @theme = Theme.published.find_by_permalink(params[:id])
     @stories = process_filter_querystring(Story.is_published.in_published_theme.by_theme(@theme.id).paginate(:page => params[:page], :per_page => per_page))      
-    @stories_for_slider = Story.recent_by_type(theme_id: @theme.id) if @theme.present?
+    @stories_for_slider = @theme.featured_stories if @theme.present?
 
     if @theme.present?
       respond_to do |format|

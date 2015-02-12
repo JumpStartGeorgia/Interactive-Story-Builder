@@ -122,6 +122,7 @@ hy:
         published_at: "Հրապարակման ամսաթիվը"
         show_home_page: "Ցո՞ւյց տալ այս թեման գլխավոր էջում"
         published_item_count: Հրապարակված օբյեկտների քանակը
+        featured_stories: Featured Stories
       theme_translation:
         name: "Անուն"
         edition: "Ելից"
@@ -544,6 +545,13 @@ hy:
         title: "Նոր օգտատեր"
       show:
         title: "Օգտատերի տվյալները"
+    themes:
+      form:
+        header_features: Features
+        header_add_story: Select Story to be Feature
+        header_current_features: Featured Stories In the Order They Will Appear
+        no_stories: No stories have been assigned to this theme yet.
+        no_features: No stories have been selected to be features.
   root:
     about:
       title: "Չայխանայի մասին"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150210122841) do
+ActiveRecord::Schema.define(:version => 20150212102317) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -153,6 +153,39 @@ ActiveRecord::Schema.define(:version => 20150210122841) do
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], :name => "poly_session_index"
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], :name => "impressionable_type_message_index", :length => {"impressionable_type"=>nil, "message"=>255, "impressionable_id"=>nil}
   add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
+
+  create_table "infographic_datasources", :force => true do |t|
+    t.integer  "infographic_translation_id"
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  add_index "infographic_datasources", ["infographic_translation_id"], :name => "index_infographic_datasources_on_infographic_translation_id"
+
+  create_table "infographic_translations", :force => true do |t|
+    t.integer  "infographic_id"
+    t.string   "locale",         :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "title"
+    t.string   "caption"
+    t.text     "description"
+    t.string   "dataset_url"
+  end
+
+  add_index "infographic_translations", ["infographic_id"], :name => "index_infographic_translations_on_infographic_id"
+  add_index "infographic_translations", ["locale"], :name => "index_infographic_translations_on_locale"
+
+  create_table "infographics", :force => true do |t|
+    t.integer  "section_id"
+    t.date     "published_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "infographics", ["section_id"], :name => "index_infographics_on_section_id"
 
   create_table "invitations", :force => true do |t|
     t.integer  "from_user_id"
@@ -359,7 +392,7 @@ ActiveRecord::Schema.define(:version => 20150210122841) do
     t.integer  "comments_count",        :default => 0
     t.string   "old_permalink_staging"
     t.integer  "story_type_id"
-    t.boolean  "in_theme_slider"
+    t.boolean  "old_in_theme_slider"
   end
 
   add_index "stories", ["cached_votes_down"], :name => "index_stories_on_cached_votes_down"
@@ -368,7 +401,7 @@ ActiveRecord::Schema.define(:version => 20150210122841) do
   add_index "stories", ["cached_votes_up"], :name => "index_stories_on_cached_votes_up"
   add_index "stories", ["cached_weighted_score"], :name => "index_stories_on_cached_weighted_score"
   add_index "stories", ["comments_count"], :name => "index_stories_on_comments_count"
-  add_index "stories", ["in_theme_slider"], :name => "index_stories_on_in_theme_slider"
+  add_index "stories", ["old_in_theme_slider"], :name => "index_stories_on_in_theme_slider"
   add_index "stories", ["old_permalink"], :name => "index_stories_on_permalink"
   add_index "stories", ["old_published"], :name => "index_stories_on_published"
   add_index "stories", ["old_published_at"], :name => "index_stories_on_published_at"
@@ -515,6 +548,18 @@ ActiveRecord::Schema.define(:version => 20150210122841) do
   end
 
   add_index "templates", ["title"], :name => "index_templates_on_title"
+
+  create_table "theme_features", :force => true do |t|
+    t.integer  "theme_id"
+    t.integer  "story_id"
+    t.integer  "position"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "theme_features", ["position"], :name => "index_theme_features_on_position"
+  add_index "theme_features", ["story_id", "position"], :name => "index_theme_features_on_story_id_and_position"
+  add_index "theme_features", ["theme_id", "position"], :name => "index_theme_features_on_theme_id_and_position"
 
   create_table "theme_translations", :force => true do |t|
     t.integer  "theme_id"

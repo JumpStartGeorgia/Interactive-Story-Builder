@@ -122,6 +122,7 @@ az:
         published_at: Dərc Edilmə Tarixi
         show_home_page: Bu mövzunu ana səhifədə göstər?
         published_item_count: Dərc olunan məhsulların sayı
+        featured_stories: Featured Stories
       theme_translation:
         name: Ad
         edition: Buraxılış
@@ -544,6 +545,13 @@ az:
         title: Yeni İstifadəçilər
       show:
         title: "İstifadəçinin detalları"
+    themes:
+      form:
+        header_features: Features
+        header_add_story: Select Story to be Feature
+        header_current_features: Featured Stories In the Order They Will Appear
+        no_stories: No stories have been assigned to this theme yet.
+        no_features: No stories have been selected to be features.
   root:
     about:
       title: "Çayxana barədə"

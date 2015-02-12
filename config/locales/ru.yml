@@ -122,6 +122,7 @@ ru:
         published_at: "Дата опубликования"
         show_home_page: "Показать тему на главной странице"
         published_item_count: Количество опубликованных объектов
+        featured_stories: Featured Stories
       theme_translation:
         name: "Имя"
         edition: "Выпуск"
@@ -544,6 +545,13 @@ ru:
         title: "Новый пользыватель"
       show:
         title: "Данные и пользывателе"
+    themes:
+      form:
+        header_features: Features
+        header_add_story: Select Story to be Feature
+        header_current_features: Featured Stories In the Order They Will Appear
+        no_stories: No stories have been assigned to this theme yet.
+        no_features: No stories have been selected to be features.
   root:
     about:
       title: "О Чайхане"

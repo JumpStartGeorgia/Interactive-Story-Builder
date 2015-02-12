@@ -122,6 +122,7 @@ ka:
         published_at: "გამოქვეყნების თარიღი"
         show_home_page: "ვაჩვენოთ ეს თემა მთავარ გვერდზე?"
         published_item_count: გამოქვეყნებულ ამბავთა რაოდენობა
+        featured_stories: Featured Stories
       theme_translation:
         name: "სათაური"
         edition: "გამოცემა"
@@ -544,6 +545,13 @@ ka:
         title: "ახალი მომხმარებელი"
       show:
         title: "მომხმარებლის დეტალები"
+    themes:
+      form:
+        header_features: Features
+        header_add_story: Select Story to be Feature
+        header_current_features: Featured Stories In the Order They Will Appear
+        no_stories: No stories have been assigned to this theme yet.
+        no_features: No stories have been selected to be features.
   root:
     about:
       title: "“ჩაი ხანას” შესახებ"

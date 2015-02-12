@@ -4,6 +4,8 @@ class StoryTheme < ActiveRecord::Base
 
   attr_accessible :story_id, :theme_id
 
+  #################################
+  ## Validations
   validates :story_id, :theme_id, :presence => true
   
 end

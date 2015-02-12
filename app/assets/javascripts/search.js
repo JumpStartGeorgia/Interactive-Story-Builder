@@ -24,12 +24,12 @@ $(document).ready(function(){
 
   $('#theme-datatable').dataTable({
     "dom": '<"top"lf>t<"bottom"pi><"clear">',
-    "order": [[1, 'asc']],
+    "order": [[4, 'desc']],
     "language": {
       "url": gon.datatable_i18n_url
     },
     "columnDefs": [
-       { orderable: false, targets: [0,-1] }
+       { orderable: false, targets: [0,-2, -1] }
     ]
 
   });
