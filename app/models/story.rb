@@ -27,6 +27,7 @@ class Story < ActiveRecord::Base
 	has_many :categories, :through => :story_categories, :dependent => :destroy
   has_many :story_themes
   has_many :themes, :through => :story_themes, :dependent => :destroy
+  has_many :theme_features, :dependent => :destroy
   has_many :story_authors
   has_many :authors, :through => :story_authors, :dependent => :destroy
 	belongs_to :user
@@ -119,33 +120,36 @@ class Story < ActiveRecord::Base
 
   # get the most recent story published by in each story type
   # options[:theme_id] - ability to get recent stories by type for a specific theme
-  def self.recent_by_type(options = {})
-    # get the id of the stories that are the latest in each type
-    # if theme_id passed in, also filter by that id
-    sql = "select s.id from stories as s "
-    sql << "INNER JOIN story_translations as st ON st.story_id = s.id "
-    sql << "inner join ( "
-    sql << "  SELECT s2.story_type_id, max(st2.published_at) as published_at "
-    sql << "  FROM stories as s2 " 
-    sql << "  INNER JOIN story_translations as st2 ON st2.story_id = s2.id "
-    if options[:theme_id].present?
-      sql << "  inner join story_themes as sth2 on sth2.story_id = s2.id "
-    end
-    sql << "  WHERE s2.story_type_id is not null and st2.published = 1 and st2.published_at is not null and s2.in_theme_slider = 1 "
-    if options[:theme_id].present?
-      sql << "  and sth2.theme_id = :theme_id "
-    end
-    sql << "  GROUP BY s2.story_type_id "
-    sql << ") as x on s.story_type_id = x.story_type_id and st.published_at = x.published_at "
-    matches = find_by_sql([sql, theme_id: options[:theme_id]])
+  # def self.recent_by_type(options = {})
+  #   # get the id of the stories that are the latest in each type
+  #   # if theme_id passed in, also filter by that id
+  #   sql = "select s.id from stories as s "
+  #   sql << "INNER JOIN story_translations as st ON st.story_id = s.id "
+  #   sql << "inner join ( "
+  #   sql << "  SELECT s2.story_type_id, max(st2.published_at) as published_at "
+  #   sql << "  FROM stories as s2 " 
+  #   sql << "  INNER JOIN story_translations as st2 ON st2.story_id = s2.id "
+  #   if options[:theme_id].present?
+  #     sql << "  inner join story_themes as sth2 on sth2.story_id = s2.id "
+  #   end
+  #   sql << "  WHERE s2.story_type_id is not null and st2.published = 1 and st2.published_at is not null and s2.in_theme_slider = 1 "
+  #   if options[:theme_id].present?
+  #     sql << "  and sth2.theme_id = :theme_id "
+  #   end
+  #   sql << "  GROUP BY s2.story_type_id "
+  #   sql << ") as x on s.story_type_id = x.story_type_id and st.published_at = x.published_at "
+  #   matches = find_by_sql([sql, theme_id: options[:theme_id]])
 
-    # now get the stories sorted by the story type sort order
-    joins(:story_type).where(:stories => {:id => matches.map{|x| x.id}}).order('story_types.sort_order')
-  end
+  #   # now get the stories sorted by the story type sort order
+  #   joins(:story_type).where(:stories => {:id => matches.map{|x| x.id}}).order('story_types.sort_order')
+  # end
 
   
   # since there can be many language records for a story (thus many published_at dates, titles, etc), it is possible to get duplicate records for a story
   # so must use the uniq method
+  def self.sorted
+    joins(:story_translations).order("story_translations.title asc").uniq
+  end
   def self.recent
     joins(:story_translations).order("story_translations.published_at desc, story_translations.title asc").uniq
   end

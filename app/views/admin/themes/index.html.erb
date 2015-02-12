@@ -20,6 +20,7 @@
       <th><%= model_class.human_attribute_name(:published_at) %></th>
       <th><%= model_class.human_attribute_name(:show_home_page) %></th>
       <th><%= model_class.human_attribute_name(:published_item_count) %></th>
+      <th><%= model_class.human_attribute_name(:featured_stories) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -42,6 +43,12 @@
         <td><%= l theme.published_at if theme.published_at.present? %></td>
         <td><%= theme.show_home_page? ? t('formtastic.yes') : '' %></td>
         <td><%= theme.published_item_count %></td>
+        <td>
+          <ol class="standard">
+          <% theme.featured_stories.each do |story| %>
+            <li><%= story.title %></li>
+          <% end %>
+        </td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_admin_theme_path(theme), :class => 'btn btn-mini btn-default' %>
