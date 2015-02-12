@@ -14,6 +14,7 @@
 //= require jquery.ui.core
 //= require jquery.ui.effect
 //= require jquery.ui.sortable
+////= require jquery.ui.draggable
 //= require twitter/bootstrap
 
 // window.onload =  function() 

@@ -1,0 +1,24 @@
+<div class="infographic_datasource_asset_form_container clear">
+
+    <%= f.input :name, 
+    { 
+      :input_html => { id: (!@isTO ?  "infographicDataSourceName" : nil) }      
+      .merge(@readonly) 
+    }
+    .merge(( (@isTO) ? {} : { hint: t('.hint.name') })) %>
+
+    <%= f.input :url,
+    { 
+      :as => :url,
+      :input_html => { id: (!@isTO ?  "infographicDataSourceUrl" : nil) }      
+      .merge(@readonly) 
+    }
+    .merge(( (@isTO) ? {} : { hint: t('.hint.url'), placeholder: t('.placeholder.url') })) %>
+
+  <% if !@trans %>
+    <div class="remove_datasource_button">
+      <%= f.input :_destroy, :as => :hidden %>
+      <button type='button' class='btn btn-danger btn-remove-slideshow' title="<%= t('app.buttons.delete') %>" ><i class='glyphicon glyphicon-remove'></i></button>
+    </div>
+  <% end %>
+</div>

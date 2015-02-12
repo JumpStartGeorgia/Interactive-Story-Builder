@@ -66,7 +66,7 @@ en:
         title: Title
         audio: Audio Track
         delete_audio: Delete the Audio Track?
-      content:        
+      content_translation:        
         title: Title          
         caption: Heading
         sub_caption: Subheading
@@ -106,7 +106,22 @@ en:
         url: Url to YouTube Video
         menu_lang: Player Language
         cc: Show Caption/Subtitle
-        cc_lang: Subtitle Language       
+        cc_lang: Subtitle Language  
+      infographic:
+        published_at: Date Published
+        image: Infographic Image
+        dataset_file: Dataset File
+        datasources: Data Sources
+      infographic_translation:
+        title: Title
+        caption: Heading
+        description: Description
+        image: Infographic Image
+        dataset_file: Dataset File
+        dataset_url: Online Dataset
+      infographic_datasource:
+        name: Data Source Name
+        url: Data Source URL
       language:
         locale: Locale
         name: Language Name
@@ -242,6 +257,7 @@ en:
       pages: Edit Text on Site
       next: Next
       feed: Feed
+      download: Download
       story_menu:
         link:
           story: Story
@@ -458,6 +474,9 @@ en:
     youtube: 
       name: YouTube Video
       description: YouTube video with ability to setting caption language
+    infographic: 
+      name: Infographic
+      description: Infographic or factoids with ability to add datasets and data sources
   story_role:
     editor: Editor
     translator: Translator
@@ -707,6 +726,26 @@ en:
         cc: "If checked, the video subtitles will be shown by default"
         menu_lang: "Language of the YouTube menu/controls"
         cc_lang: "Language of the subtitles to show by default"           
+    infographic:
+      form_title: Infographic Form
+      add_datasource: Add Data Source
+      placeholder:
+        title: Title
+        caption: Infographic Title
+        dataset_url: optional
+      hint:
+        title: This text only appears in the left sidebar, it will not show up in the story
+        caption: Title of the infographic
+        description: The description will appear below the infographic
+        image: Only jpg and png format allowed; 8MB file size limit
+        dataset_file: Please try to compress files to make for quicker download; 25MB file size limit
+        dataset_url: URL to Dataset
+    infographic_datasource_fields:
+      placeholder:
+        url: optional
+      hint:
+        name: Name of the data source
+        url: URL to the online data source
   storyteller:
     byline: By
     byline_media: "Photos and videos by "
@@ -715,6 +754,11 @@ en:
     by: by
     related_stories: Related Stories
     view_all_stories_in: View all stories in
+    infographic:
+      source: Data Source
+      dataset: Dataset
+      download: Download File
+      online: View Data Online
   settings:
     index:
       title: Settings

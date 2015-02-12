@@ -22,16 +22,12 @@ class YoutubeTranslation < ActiveRecord::Base
 
   before_save :generate_iframe
   def generate_iframe
-    logger.debug "@@@@@@@@@@@@@@@2 generate_iframe"
     id = ''
     html = ''
     ok = false
     u = self.url 
     api_key = ENV['STORY_BUILDER_YOUTUBE_API_KEY']
     if api_key.nil?
-      logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-      logger.debug "@@@@@@@@@@@@@@@ you need to register STORY_BUILDER_YOUTUBE_API_KEY ENV key"
-      logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
        self.errors.add(:code, "value can't be generated due to missing API key.")
        return false
     end
@@ -52,10 +48,9 @@ class YoutubeTranslation < ActiveRecord::Base
         pars = (self.youtube.loop ? 'loop=1' : '') + (self.youtube.info == false ? '&showinfo=0' : '') +
           (self.cc ? '&cc_load_policy=' + (self.cc ? '1' : '0') : '') + 
           (Language.select{|x| x.locale == self.menu_lang}.length > 0 ? '&hl=' + self.menu_lang : '') + 
-          (Language.select{|x| x.locale == self.cc_lang}.length > 0 ? '&cc_lang_pref=' + self.cc_lang : '')
+          (Language.select{|x| x.locale == self.cc_lang}.length > 0 ? '&cc_lang_pref=' + self.cc_lang : '') + 
+          ('&rel=0')
         pars.slice!(0) if pars[0]=='&'
-
-        logger.debug "@@@@@@@@@@@@@@@2 result = #{result}"
 
           if result['items'].present?
             html =  '<iframe width="640" height="360" src="http://www.youtube.com/embed/' + 
@@ -67,11 +62,8 @@ class YoutubeTranslation < ActiveRecord::Base
     if ok       
       self.code = html
     else
-      logger.debug "@@@@@@@@@@@@@@@2 generate_iframe error!"
        self.errors.add(:code, "value can't be generated.")
        return false
     end
-    logger.debug "@@@@@@@@@@@@@@@2 generate_iframe end"
   end
-
 end

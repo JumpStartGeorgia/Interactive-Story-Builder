@@ -4,11 +4,14 @@
    <% if @which == 0 || @which == 1 %>
       which(1,"<%= escape_javascript( render :partial => @type, locals: {original: true}) %>");
    <% end %>
+
    <% if @trans && (@which == 0 || @which == 2) %>
       <% @item.current_locale = @to %>
       which(2,"<%= escape_javascript( render :partial => @type) %>");
    <% end %>
+   
    $('form .selectpicker').selectpicker();   
+   
    <% if @type == 'form' # for story %> 
       // when the page loads, show the permalink if it exists  
       if ($('#story_permalink').length > 0 && $('input#storyPermalink').val().length > 0){
@@ -16,30 +19,10 @@
          was_permalink_box_length = $('input#storyPermalinkStaging').val().length;;
          show_story_permalink({'is_duplicate': false, 'permalink':$('input#storyPermalink').val()});
       }
+    <% end %>
 
-     // when indicate whether or not to use cloned asset, act accordingly
-     $('form.form-translation').on('change', 'input#clone_asset', function(){
-       if ($(this).is(':checked')){
-         // hide file field
-         $('form.form-translation #item-asset').hide();
-         // reset the field
-         $('form.form-translation #item-asset input[type="file"]').replaceWith($('form.form-translation #item-asset input[type="file"]').clone());
-         // save the clone id
-         $('form.form-translation #item-asset-clone input').val($('form.form-translation #item-asset-clone input').data('original-id'));
-         // hide preview
-         $('form.form-translation .translated-asset').hide();
-       }else{
-         // show file field
-         $('form.form-translation #item-asset').show();
-         // reset clone id
-         $('form.form-translation #item-asset-clone input').val('');
-         // show preview
-         $('form.form-translation .translated-asset').show();
-       }
 
-     });
-
-   <% elsif @type == 'section' %> 
+    <% if @type == 'form' || @type == 'section' %>
      // when indicate whether or not to use cloned asset, act accordingly
      $('form.form-translation').on('change', 'input#clone_asset', function(){
        if ($(this).is(':checked')){
@@ -122,6 +105,49 @@
          $('form.form-translation #item-video-asset-clone input').val('');
          // show preview
          $('form.form-translation .translated-video-asset').show();
+       }
+
+     });
+
+   <% elsif @type == 'infographic' %> 
+     // when indicate whether or not to use cloned asset, act accordingly
+     $('form.form-translation').on('change', 'input#clone_image_asset', function(){
+       if ($(this).is(':checked')){
+         // hide file field
+         $('form.form-translation #item-image-asset').addClass('not-visible');
+         // reset the field
+         $('form.form-translation #item-image-asset input[type="file"]').replaceWith($('form.form-translation #item-image-asset input[type="file"]').clone());
+         // save the clone id
+         $('form.form-translation #item-image-asset-clone input').val($('form.form-translation #item-image-asset-clone input').data('original-id'));
+         // hide preview
+         $('form.form-translation .translated-image-asset').hide();
+       }else{
+         // show file field
+         $('form.form-translation #item-image-asset').removeClass('not-visible');
+         // reset clone id
+         $('form.form-translation #item-image-asset-clone input').val('');
+         // show preview
+         $('form.form-translation .translated-image-asset').show();
+       }
+     });
+
+     $('form.form-translation').on('change', 'input#clone_dataset_asset', function(){
+       if ($(this).is(':checked')){
+         // hide file field
+         $('form.form-translation #item-dataset-asset').addClass('not-visible');
+         // reset the field
+         $('form.form-translation #item-dataset-asset input[type="file"]').replaceWith($('form.form-translation #item-dataset-asset input[type="file"]').clone());
+         // save the clone id
+         $('form.form-translation #item-dataset-asset-clone input').val($('form.form-translation #item-dataset-asset-clone input').data('original-id'));
+         // hide preview
+         $('form.form-translation .translated-dataset-asset').hide();
+       }else{
+         // show file field
+         $('form.form-translation #item-dataset-asset').removeClass('not-visible');
+         // reset clone id
+         $('form.form-translation #item-dataset-asset-clone input').val('');
+         // show preview
+         $('form.form-translation .translated-dataset-asset').show();
        }
 
      });

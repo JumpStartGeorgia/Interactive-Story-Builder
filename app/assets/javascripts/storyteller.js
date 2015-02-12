@@ -96,15 +96,37 @@ $(document).ready(function(){
           lastScroll = st;
       });
     }
+
+      $('.section.infographic .container .content').click(function(){
+        var t = $(this);
+        //var ml =  $('<div id="modalos-infographic"></div>');
+        var image =  $('<img>',
+        {
+            on: 
+            {
+              load: function() { 
+                console.log(this.width);
+                 var v = $('.navbar-storybuilder');   
+                image.modalos({topOffset: v.position().top + v.height() + 30, leftOffset: 30, width: this.width, height: this.height, paddings:0, margins:0, klass:'infographic', dragscroll:true });
+                
+              },
+              error: function(e) { 
+                console.log(this,' - not loaded'); 
+              }
+            },
+            "src":t.attr('data-original')
+        });
+       
+      });
+
+
       $('.modalEmbed').on('click', function(e) {      
-      console.log('here');  
-        var ml = $(this).attr('data-modalos-id');  
-        var v = $('.navbar-storybuilder');      
-        $('#'+ml).modalos({topOffset: $(v).position().top + $(v).height() + 30, width:672, height:400});
+        var v = $('.navbar-storybuilder');   
+        $($('#modalos-embed').get(0).outerHTML).modalos({topOffset: v.position().top + v.height() + 30, width:350, height:370});
         e.preventDefault();
       });     
 
-      $('.embed-type-switcher > div').click(function(){        
+      $(document).on('click','.embed-type-switcher > div',function(){        
         $('.embed-type-switcher > div').each(function(){$(this).toggleClass('selected');}); 
         var frame_code = $('.embed-code textarea');
         var iframe_width= $(this).data('width');
@@ -117,7 +139,7 @@ $(document).ready(function(){
         $('.iframe-size').val(iframe_width);
       });
 
-      $('.iframe-size').change(function(){
+      $(document).on('change', '.iframe-size', function(){
         var iframe_width=$(this).val();
         var frame_code = $('.embed-code textarea'); 
         var embed_type = 'partial';
