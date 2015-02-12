@@ -179,7 +179,7 @@
                 orig_datasources = nil
                 orig_datasources = orig.infographic_datasources if orig.present? && orig.infographic_datasources.present?
 
-                if orig_datasources.length != trans_record.infographic_datasources.length
+                if orig_datasource.present? && orig_datasources.length != trans_record.infographic_datasources.length
                   # add missing datasource objects to match the orig length
                   num = trans_record.infographic_datasources.present? ? (orig_datasources.length - trans_record.infographic_datasources.length) : orig_datasources.length 
                   if num > 0

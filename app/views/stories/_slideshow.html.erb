@@ -54,7 +54,7 @@
                 orig_assets = nil
                 orig_assets = orig.assets if orig.present? && orig.assets.present?
 
-                if orig_assets.length != trans_record.assets.length
+                if orig_assets.present? && orig_assets.length != trans_record.assets.length
                   # if there are no trans assets, build the amount needed to match the original
                   if trans_record.assets.length == 0
                     (0..orig_assets.length-1).each do |i|
