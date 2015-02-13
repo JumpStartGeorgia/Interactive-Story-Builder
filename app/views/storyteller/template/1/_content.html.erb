@@ -288,7 +288,7 @@
                   <% if isFirst %>
                     <div class='js-row'>
                       <% if @story.story_type_id != 1 && @story.about.present? %>
-                        <div class='descr'><%= strip_tags_nbsp(@story.about).html_safe %></div>
+                        <div class='description'><%= strip_tags_nbsp(@story.about).html_safe %></div>
                       <% end %>
                     </div>
                   <% end %>
