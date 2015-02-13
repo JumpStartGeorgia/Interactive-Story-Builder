@@ -280,7 +280,7 @@
                 <% end %>
                   <div class="content" data-original='<%= section.infographic.image.file.url %>'>
                     <%
-                      alt = section.infographic.alt_text.present? ? section.infographic.alt_text : @story.about
+                      alt = section.infographic.alt_text.present? ? section.infographic.alt_text : isFirst ? @story.about : ''
                     %>
                     <img src="<%= section.infographic.image.file.url(:poster) %>" alt="<%= strip_tags_nbsp(alt) %>">
                     <div class="bg"></div>
