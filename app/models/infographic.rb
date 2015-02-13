@@ -99,5 +99,21 @@ class Infographic < ActiveRecord::Base
     return @local_translations[locale]
   end
 
+#################################
 
+  # create the alt text for the infographic image
+  def alt_text
+    alt = ''
+
+    if self.caption.present?
+      alt << self.caption
+      alt << ' - '
+    end
+
+    if self.description.present?
+      alt << self.description
+    end
+
+    return alt
+  end
 end

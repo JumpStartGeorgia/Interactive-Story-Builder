@@ -99,7 +99,7 @@
                       <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
               </div> 
             </div>
-             <%= render partial: "storyteller/template/#{@template}/content_infotop" %>
+             <%= render partial: "storyteller/template/#{@template}/content_infotop", locals: {is_infographic: section.infographic?} %>
           <% end %>
 
           <%  dataAudio = ''
@@ -270,7 +270,7 @@
                 </div>
                <%= render partial: "storyteller/template/#{@template}/content_infotop" %>
               <% end %>
-              <% elsif section.infographic? %>    
+            <% elsif section.infographic? %>    
               <% item = section.infographic %>       
               <div class="section infographic">
                 <% if section.has_marker? %><a class="navigation-marker" id="<%= s_i + 1 %>"></a><% end %> 
@@ -279,9 +279,19 @@
                   <div class="caption"><%= item.caption %></div>
                 <% end %>
                   <div class="content" data-original='<%= section.infographic.image.file.url %>'>
-                    <img src="<%= section.infographic.image.file.url(:poster) %>">
+                    <%
+                      alt = section.infographic.alt_text.present? ? section.infographic.alt_text : @story.about
+                    %>
+                    <img src="<%= section.infographic.image.file.url(:poster) %>" alt="<%= strip_tags_nbsp(alt) %>">
                     <div class="bg"></div>
                   </div>
+                  <% if isFirst %>
+                    <div class='js-row'>
+                      <% if @story.story_type_id != 1 && @story.about.present? %>
+                        <div class='descr'><%= strip_tags_nbsp(@story.about).html_safe %></div>
+                      <% end %>
+                    </div>
+                  <% end %>
                   <div class="description"><%= item.description.html_safe %></div>
                   <% if !item.datasources.empty? %>
                     <div class="sources">

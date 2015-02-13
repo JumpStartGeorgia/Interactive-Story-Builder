@@ -1,3 +1,6 @@
+<%
+  is_infographic ||= false
+%>
  <div class='info-top'>
   <div class='js-row'>
     <div class="share">
@@ -43,7 +46,7 @@
     </div>
   </div>
   <div class='js-row'>
-    <% if @story.story_type_id != 1 && @story.about.present? %>
+    <% if @story.story_type_id != 1 && @story.about.present? && !is_infographic %>
       <div class='descr'><%= strip_tags_nbsp(@story.about).html_safe %></div>
     <% end %>
   </div>
