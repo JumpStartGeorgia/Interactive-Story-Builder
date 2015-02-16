@@ -12,6 +12,9 @@
  	 <% end %>   
   <% end %>
 <% end %>
+
 <% if @select_next %>
   select_next();
+<% else %>  
+  getObject('select','story');
 <% end %>

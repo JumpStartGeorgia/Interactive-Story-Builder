@@ -813,10 +813,10 @@ function change_tree(d)
                "<ul class='opened'>"+d.add_item+"</ul>" + 
             "</li>");
    story_tree.find('ul li').removeClass('active'); // todo is it enough for reseting or section_id should be changed too ???
-   story_tree.find('> ul').append(li);   
-   li.find('.box .title').trigger('click');
-   //li.find('ul > .btn-create').trigger('click');
-   //story_tree.animate({ scrollTop: story_tree.height()}, 1000);
+   story_tree.find('> ul').append(li);
+
+   if(d.select_next) select_next(); 
+   else li.find('.box .title').trigger('click');
 }
 function change_sub_tree(d)
 {
@@ -832,8 +832,10 @@ function change_sub_tree(d)
    {
       li.insertBefore( section.find('> ul > button'));
    }
-   story_tree.find('ul li').removeClass('active');   
-   li.find('.sub-l').trigger('click');
+   story_tree.find('ul li').removeClass('active');
+   if(d.select_next) select_next(); 
+   else li.find('.sub-l').trigger('click');
+   
 }
 
 function which(v,html)

@@ -16,15 +16,13 @@
   "<div class='tools'><button type='button' class='btn btn-sort btn-up' title='#{ t('app.buttons.up') }'> <i class='glyphicon glyphicon-arrow-up' ></i> </button>" + 
   "<button type='button' class='btn btn-sort btn-down' title='#{ t('app.buttons.down') }'> <i class='glyphicon glyphicon-arrow-down' ></i></button>" +
   "<button type='button' class='btn  btn-danger btn-remove' title='#{ t('app.buttons.delete_item') }' ><i class='glyphicon glyphicon-remove'></i></button></div>" 
+  @select_next ||= false  
 %>
 change_sub_tree({
    'type':'<%= @type %>',
    'id':<%= @item.section_id %>,
    'sub_id': <%= @item.id %>,
    'title':'<%= @item.title %>',
-   'tools': "<%= @type == :media ? tools : '' %>"
+   'tools': "<%= @type == :media ? tools : '' %>",
+   'select_next':<%= @select_next %>
 });
-
-<% if @select_next %>
-   select_next();
-<% end %>

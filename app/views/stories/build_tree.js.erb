@@ -12,18 +12,12 @@
     <% end %>   
   <% end %>
 <% end %>
-
-if(item_id != -1)
-{
-  $('.story-tree ul li.item[id='+ section_id + ']').find(' ul li.sub[id='+item_id+'] > div > .sub-l').text('<%= @item.title %>').trigger('click');   
-}
-else 
-{
-	$('.story-tree ul li.item[id='+ section_id + '] > .box > .title').text('<%= @item.title %>').trigger('click');
-}	
+var f = $('.story-tree ul li.item[id='+ section_id + ']').find(item_id != -1 ? ' ul li.sub[id='+item_id+'] > div > .sub-l' : ' > .box > .title').text('<%= @item.title %>');
 
 <% if @select_next %>
   select_next();
+<% else %>
+  f.trigger('click');
 <% end %>
 
 <% if @story_progress.present? %>
