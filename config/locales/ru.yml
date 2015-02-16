@@ -417,6 +417,7 @@ ru:
       nickname_url: "Ваш URL будет:"
       story_duplicate: "Такой URL истроии уже существует"
       story_url: 'URL Вашей истории будет:'
+      update_translations: "Don't forget to translate this new item!"
       invitation:
         accepted: "Вы приняли приглашение на сотрудничество на  '%{title}'"
         accepted_already: "Вы уже приняли приглашение на сотрудничество на '%{title}'"

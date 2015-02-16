@@ -417,6 +417,7 @@ hy:
       nickname_url: "Ձեր URL կլինի :"
       story_duplicate: "Այս Նյութի URL արդեն առկա է"
       story_url: "Նյութի URL կլինի:"
+      update_translations: "Don't forget to translate this new item!"
       invitation:
         accepted: "Դուք ընդունել եք '%{title}'-ում համագործակցելու հրավերը "
         accepted_already: "Դուք արդեն ընդունել եք %{title}'-ում համագործակցելու հրավերը "

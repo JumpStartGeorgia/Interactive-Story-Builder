@@ -417,6 +417,7 @@ ka:
       nickname_url: "თქვენი მომხმარებლის ბმული იქნება:"
       story_duplicate: "ამ ამბის ბმული უკვე არსებობს."
       story_url: "ამ ამბის ბმული იქნება:"
+      update_translations: "Don't forget to translate this new item!"
       invitation:
         accepted: "თქვენ დათანხმდით თანაავტორობის მოწვევას შემდეგ ამბავზე: '%{title}'"
         accepted_already: "თქვენ უკვე დათანხმდით თანაავტორობის მოწვევას შემდეგ ამბავზე: '%{title}'"

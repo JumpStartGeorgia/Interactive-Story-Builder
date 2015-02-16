@@ -417,6 +417,7 @@ az:
       nickname_url: 'Sizin URL-ınız:'
       story_duplicate: Bu hekayənin URL-ı artıq mövcuddur.
       story_url: 'Hekayənin URL-ı:'
+      update_translations: "Don't forget to translate this new item!"
       invitation:
         accepted: "Sən '%{title}' üzrə əməkdaşlıq dəvətini qəbul etmisən"
         accepted_already: "Sən '%{title}' üzrə əməkdaşlıq dəvətini artıq qəbul etmisən"

@@ -417,6 +417,7 @@ en:
       nickname_url: 'Your URL will be:'
       story_duplicate: This story URL already exists. 
       story_url: 'Story URL will be:'
+      update_translations: "Don't forget to translate this new item!"
       invitation:
         accepted: "You have accepted the invitation to collaborate on '%{title}'"
         accepted_already: "You have already accepted the invitation to collaborate on '%{title}'"

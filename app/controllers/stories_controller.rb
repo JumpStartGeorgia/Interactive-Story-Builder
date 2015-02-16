@@ -936,12 +936,15 @@ private
     redirect_to root_path, :notice => t('app.msgs.not_authorized') if @edit_story_role == Story::ROLE[:translator] && !accessible_actions.include?(params[:action].to_sym)
   end
 
-  def flash_success_created( obj, title, warning)
+  def flash_success_created( obj, title, warning=false)
     warning ||= false
+    msg = I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
     if !warning
-      flash[:success] = request.xhr? ? u(I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")) : I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
+      flash[:success] = request.xhr? ? u(msg) : msg
     else 
-      flash[:success] = request.xhr? ? u(I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")) : I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
+      msg << ' '
+      msg << I18n.t('app.msgs.update_translations')
+      flash[:notice] = request.xhr? ? u(msg) : msg
     end;
   end
   def flash_success_updated( obj, title)
