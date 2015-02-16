@@ -331,7 +331,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
           @item.with_translation(params[:current_locale])
           @item.current_locale = params[:current_locale]
           #Rails.logger.debug "######### new_media save error: #{@item.translations.inspect}"
-          flash_success_created(Section.model_name.human,@item.title)          
+          flash_success_created(Section.model_name.human,@item.title, (StoryTranslationProgress.length(params[:id]) > 1))          
           @select_next = params[:commit_and_next].present? ? true : false             
           format.js { render action: "change_tree", status: :created  }
         else          
@@ -368,7 +368,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
         @item.reload      
         @item.with_translation(params[:current_locale])
         @item.current_locale = params[:current_locale]
-        flash_success_created(@item.class.model_name.human,@item.title)  
+        flash_success_created(@item.class.model_name.human,@item.title, (StoryTranslationProgress.length(params[:id]) > 1))          
         @select_next = params[:commit_and_next].present? ? true : false                     
         format.js { render action: "change_sub_tree", status: :created  }
       else
@@ -936,8 +936,13 @@ private
     redirect_to root_path, :notice => t('app.msgs.not_authorized') if @edit_story_role == Story::ROLE[:translator] && !accessible_actions.include?(params[:action].to_sym)
   end
 
-  def flash_success_created( obj, title)
+  def flash_success_created( obj, title, warning)
+    warning ||= false
+    if !warning
       flash[:success] = request.xhr? ? u(I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")) : I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
+    else 
+      flash[:success] = request.xhr? ? u(I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")) : I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
+    end;
   end
   def flash_success_updated( obj, title)
     flash[:success] = request.xhr? ? u(I18n.t('app.msgs.success_updated', obj:"#{obj} \"#{title}\"")) : I18n.t('app.msgs.success_updated', obj:"#{obj} \"#{title}\"")

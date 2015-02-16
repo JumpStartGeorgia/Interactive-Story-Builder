@@ -9,7 +9,9 @@ class StoryTranslationProgress < ActiveRecord::Base
   def self.get_progress(story_id)
     where(:story_id => story_id)
   end
-
+  def self.length(story_id)
+    where(:story_id => story_id).count
+  end
 
   # update the story translation progress
   # options: 
