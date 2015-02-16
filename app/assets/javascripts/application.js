@@ -249,7 +249,7 @@ function popuper(msg,msg_type)
   var type = types[msg_type];
   if (msg && type)
   {
-    $('.flash-message').append('<div class="alert '+ type +' fade in">' +
+    $('.flash-message').html('<div class="alert '+ type +' fade in">' +
 					    '<a href="#" data-dismiss="alert" class="close">×</a>' +
 					     urldecode(msg) +
 					    '</div>');
