@@ -20,16 +20,17 @@ class YoutubeTranslation < ActiveRecord::Base
   # #################################
   # ## Callbacks
 
-  before_save :generate_iframe
+  before_validation :generate_iframe
   def generate_iframe
     id = ''
     html = ''
     ok = false
     u = self.url 
-    api_key = ENV['STORY_BUILDER_YOUTUBE_API_KEY']
+    api_key = nil # ENV['STORY_BUILDER_YOUTUBE_API_KEY']
     if api_key.nil?
-       self.errors.add(:code, "value can't be generated due to missing API key.")
-       return false
+      #errors[:base] << "Student Error: asdfdf"
+       errors.add(:code, I18n.t('stories.youtube.generate_iframe.missing_api_key'))
+       return
     end
     if u.present?
       uri = URI.parse(u)
@@ -62,8 +63,7 @@ class YoutubeTranslation < ActiveRecord::Base
     if ok       
       self.code = html
     else
-       self.errors.add(:code, "value can't be generated.")
-       return false
+       errors.add(:code, I18n.t('stories.youtube.generate_iframe.error'))       
     end
   end
 end

@@ -258,6 +258,8 @@ az:
       next: Növbəti
       feed: Xəbər Lenti
       download: Download
+      previous: Previous
+      next: Next
       story_menu:
         link:
           story: Hekayə
@@ -714,6 +716,9 @@ az:
       get_media: Youtube Videosunu Al
       preview: YouTube Videosunun sinaq baxışı
       error: URL-ı emal etmək mümkün olmadı. Lütfən bir daha cəhd edin.
+      generate_iframe:
+        missing_api_key: "value can't be generated due to missing API key."
+        error: "value can't be generated."      
       placeholder:
         title: YouTube Sərlövhəsi
         url: YouTube video URL-ı

@@ -815,8 +815,8 @@ function change_tree(d)
    story_tree.find('ul li').removeClass('active'); // todo is it enough for reseting or section_id should be changed too ???
    story_tree.find('> ul').append(li);
 
-   if(d.select_next) select_next(); 
-   else li.find('.box .title').trigger('click');
+  li.find('.box .title').trigger('click');
+  if(d.select_next) select_next();
 }
 function change_sub_tree(d)
 {
@@ -833,9 +833,8 @@ function change_sub_tree(d)
       li.insertBefore( section.find('> ul > button'));
    }
    story_tree.find('ul li').removeClass('active');
+   li.find('.sub-l').trigger('click');
    if(d.select_next) select_next(); 
-   else li.find('.sub-l').trigger('click');
-   
 }
 
 function which(v,html)
@@ -913,23 +912,23 @@ function select_next()
           }
         }        
       }
-      else // parent has no inner items so go to next
+      else // parent has no inner items so go to create page
       {
-
-        next = t.next('li.item')
-        if(next.length)
-        {
-          if(!next.hasClass('open')) // if childs list not opened yet open it
-          {
-            next.find('> .box > .collapser').trigger('click');
-          }
-          next.find('> .box > .title').trigger('click');
-          tree.get(0).scrollTop = tree.get(0).scrollTop + next.position().top;
-        } 
-        else
-        {
-          t.find('ul > .btn-create').trigger('click');
-        }     
+        t.find('ul > .btn-create').trigger('click');
+        // next = t.next('li.item')
+        // if(next.length)
+        // {
+        //   if(!next.hasClass('open')) // if childs list not opened yet open it
+        //   {
+        //     next.find('> .box > .collapser').trigger('click');
+        //   }
+        //   next.find('> .box > .title').trigger('click');
+        //   tree.get(0).scrollTop = tree.get(0).scrollTop + next.position().top;
+        // } 
+        // else
+        // {
+          
+        // }     
       }
     }
   }

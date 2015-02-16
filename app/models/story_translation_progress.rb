@@ -20,9 +20,9 @@ class StoryTranslationProgress < ActiveRecord::Base
     is_progress_increment = options[:is_progress_increment].nil? ? true : options[:is_progress_increment]
     reset_story_locale = false
 
-    Rails.logger.debug "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
-    Rails.logger.debug "&&&&&&&&&&&&&& translation progress update; story #{story_id}, locale #{locale}, is_story_locale #{is_story_locale}, is_progress_increment #{is_progress_increment}"
-    Rails.logger.debug "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
+    #Rails.logger.debug "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
+    #Rails.logger.debug "&&&&&&&&&&&&&& translation progress update; story #{story_id}, locale #{locale}, is_story_locale #{is_story_locale}, is_progress_increment #{is_progress_increment}"
+    #Rails.logger.debug "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
 
     # see if record already exists    
     record = where(story_id: story_id, locale: locale).first
@@ -57,9 +57,9 @@ class StoryTranslationProgress < ActiveRecord::Base
 
   # story was deleted so delete all progress for the story
   def self.delete_progress(story_id)
-    Rails.logger.debug "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
-    Rails.logger.debug "&&&&&&&&&&&&&& translation progress deletion; story #{story_id}"
-    Rails.logger.debug "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
+    #Rails.logger.debug "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
+    #Rails.logger.debug "&&&&&&&&&&&&&& translation progress deletion; story #{story_id}"
+    #Rails.logger.debug "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
     where(story_id: story_id).delete_all
   end
 

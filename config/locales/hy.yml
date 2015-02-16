@@ -258,6 +258,8 @@ hy:
       next: "Հաջորդը"
       feed: "Լրահոս"
       download: Download
+      previous: Previous
+      next: Next
       story_menu:
         link:
           story: "նյութ"
@@ -714,6 +716,9 @@ hy:
       get_media: "Բերել վիդեոն Youtube-ից"
       preview: YouTube-ի վիդեոյի նախադիտում
       error: "Հղման մշակումը չիրականացավ. խնդրում ենք կրկին փորձել:"
+      generate_iframe:
+        missing_api_key: "value can't be generated due to missing API key."
+        error: "value can't be generated."      
       placeholder:
         title: "Վերնագիրը YouTube-ում"
         url: YouTube-ի վիդեոյի URL-ը

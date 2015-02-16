@@ -258,6 +258,8 @@ ru:
       next: "Следующий"
       feed: "Лента новостей"
       download: Download
+      previous: Previous
+      next: Next      
       story_menu:
         link:
           story: "История"
@@ -714,6 +716,9 @@ ru:
       get_media: "Получить видео из YouTube"
       preview: "Предтварительный просмотр видео из YouTube"
       error: URL не может быть обработан. Пожалуйста, попробуйте еще раз.
+      generate_iframe:
+        missing_api_key: "value can't be generated due to missing API key."
+        error: "value can't be generated."      
       placeholder:
         title: "Заглавок видео из YouTube"
         url: URL к видео на YouTube

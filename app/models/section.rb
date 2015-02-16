@@ -159,9 +159,7 @@ class Section < ActiveRecord::Base
           if m.present?
             if m.media_type == Medium::TYPE[:image]
               exists << m.image_exists?                                
-               puts "----------------------------------------------#{m.inspect}"
             elsif m.media_type == Medium::TYPE[:video]
-              puts "----------------------------------------------#{m.inspect}"
               exists << (m.image_exists? && m.video_exists?)
             end          
           else

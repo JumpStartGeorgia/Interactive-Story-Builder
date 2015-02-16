@@ -36,7 +36,7 @@ class MediumTranslation < ActiveRecord::Base
 
   # must call before the save because after save all dirty changes are lost
   def check_video_date
-Rails.logger.debug "@@@@@@@@@@@@@@@@   check video date before save"
+#Rails.logger.debug "@@@@@@@@@@@@@@@@   check video date before save"
     self.video_date_changed = video_type? && self.video.asset_updated_at_changed?
     return true
   end
@@ -45,15 +45,15 @@ Rails.logger.debug "@@@@@@@@@@@@@@@@   check video date before save"
   # - if the story is currently being cloned, do not do this (is_amoeba = true) 
   #   for it will be created during the clone process
   def create_video_image
-Rails.logger.debug "@@@@@@@@@@@@@@@@   create_video_image"
-Rails.logger.debug "@@@@@@@@@@@@@@@@   video type #{video_type?}; exists #{video_exists?}; updated ad changed #{self.video_date_changed}; is amoeba = #{self.is_amoeba}"
+#Rails.logger.debug "@@@@@@@@@@@@@@@@   create_video_image"
+#Rails.logger.debug "@@@@@@@@@@@@@@@@   video type #{video_type?}; exists #{video_exists?}; updated ad changed #{self.video_date_changed}; is amoeba = #{self.is_amoeba}"
     if video_type? && video_exists? && self.video_date_changed && self.is_amoeba != true
       # get the image
       image_file = "#{Rails.root}/public#{self.video.file.url(:poster, false)}"
-Rails.logger.debug "@@@@@@@@ file = #{image_file}"
+#Rails.logger.debug "@@@@@@@@ file = #{image_file}"
       # check if exists
       if File.exists?(image_file)
-Rails.logger.debug "@@@@@@@@ file exists, saving!"
+#Rails.logger.debug "@@@@@@@@ file exists, saving!"
         File.open(image_file) do |f|
           # if image does not exist, create it
           # else, update it

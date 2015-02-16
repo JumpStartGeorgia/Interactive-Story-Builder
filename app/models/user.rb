@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
 
   # if the nickname changes, then the permalink must also change
   def check_nickname_changed
-    logger.debug "************** checking nickname changed"
+    #logger.debug "************** checking nickname changed"
     
     # if this is a create (id does not exist) make sure the nickname is unique
     fix_nickname_duplication if self.id.blank?
@@ -54,9 +54,9 @@ class User < ActiveRecord::Base
     # if nickname changed text, not just case, create new permalink
     new_nickname = ActionController::Base.helpers.strip_links(self.nickname)
     nickname_was = self.nickname_was.present? ? self.nickname_was.downcase.strip : nil
-    logger.debug "************** nickname was: #{self.nickname_was}; nickname now: #{new_nickname}"
+    #logger.debug "************** nickname was: #{self.nickname_was}; nickname now: #{new_nickname}"
     if nickname_was != new_nickname.downcase.strip
-      logger.debug "************** nickname changed, creating new permalink"
+      #logger.debug "************** nickname changed, creating new permalink"
       # make sure there are no tags in the nickname
       self.nickname = new_nickname
       self.generate_permalink! 
@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
   
   # if this nickname already exists, add a # to the end to make it unique
   def fix_nickname_duplication 
-    logger.debug "************** fix_nickname_duplication "
+    #logger.debug "************** fix_nickname_duplication "
     # if the nickname does not exist, populate with the first part of the email
     if read_attribute(:nickname).blank?
       self.nickname = self.email.split('@')[0]
@@ -86,7 +86,7 @@ class User < ActiveRecord::Base
       end         
       self.nickname = "#{self.nickname}-#{number+1}"
     end  
-    logger.debug "************** fix_nickname_duplication nickname now: #{self.nickname} "
+    #logger.debug "************** fix_nickname_duplication nickname now: #{self.nickname} "
   end
 
   def create_permalink   

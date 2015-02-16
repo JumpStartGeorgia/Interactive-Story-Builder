@@ -13,7 +13,7 @@
   <% end %>
 <% end %>
 var f = $('.story-tree ul li.item[id='+ section_id + ']').find(item_id != -1 ? ' ul li.sub[id='+item_id+'] > div > .sub-l' : ' > .box > .title').text('<%= @item.title %>');
-
+<% @select_next ||= false %>
 <% if @select_next %>
   select_next();
 <% else %>

@@ -44,7 +44,7 @@ class Medium < ActiveRecord::Base
 
   before_destroy :trigger_translation_observer, prepend: true
   def trigger_translation_observer
-    logger.debug "============== medium before destroy"
+    #logger.debug "============== medium before destroy"
     self.medium_translations.each do |trans|
       trans.is_progress_increment = false
     end

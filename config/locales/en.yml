@@ -258,6 +258,8 @@ en:
       next: Next
       feed: Feed
       download: Download
+      previous: Previous
+      next: Next
       story_menu:
         link:
           story: Story
@@ -714,6 +716,9 @@ en:
       get_media: Get Youtube Video
       preview: Preview of YouTube Video
       error: The URL could not be processed. Please try again.
+      generate_iframe:
+        missing_api_key: "value can't be generated due to missing API key."
+        error: "value can't be generated."
       placeholder:
         title: YouTube Title
         url: Url to YouTube video

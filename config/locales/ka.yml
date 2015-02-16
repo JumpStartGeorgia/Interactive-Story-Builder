@@ -258,6 +258,8 @@ ka:
       next: "შემდეგი "
       feed: "ველი"
       download: Download
+      previous: Previous
+      next: Next
       story_menu:
         link:
           story: "ამბავი"
@@ -714,6 +716,9 @@ ka:
       get_media: "მიიღეთ თქვენი Youtube ვიდეო"
       preview: YouTube ვიდეოს წინასწარი ნახვა
       error: URL-ი ვერ დამუშავდა. გთხოვთ სცადოთ ხელახლა.
+      generate_iframe:
+        missing_api_key: "value can't be generated due to missing API key."
+        error: "value can't be generated."
       placeholder:
         title: YouTube სათაური
         url: YouTube ვიდეოს Url
