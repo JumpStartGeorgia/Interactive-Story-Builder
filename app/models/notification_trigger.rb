@@ -173,7 +173,7 @@ class NotificationTrigger < ActiveRecord::Base
   def self.process_story_comment
     puts "--> Notification Triggers - process story comment"
     triggers = NotificationTrigger.where(:notification_type => Notification::TYPES[:story_comment]).not_processed    
-    # if triggers.present?
+    if triggers.present?
     #   # get stories for these triggers
     #   stories = Story.is_published.recent.where(:id => triggers.map{|x| x.identifier}.uniq)
     #   if stories.present?
