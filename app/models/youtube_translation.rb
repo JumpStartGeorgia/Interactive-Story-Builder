@@ -26,9 +26,8 @@ class YoutubeTranslation < ActiveRecord::Base
     html = ''
     ok = false
     u = self.url 
-    api_key = nil # ENV['STORY_BUILDER_YOUTUBE_API_KEY']
+    api_key = ENV['STORY_BUILDER_YOUTUBE_API_KEY']
     if api_key.nil?
-      #errors[:base] << "Student Error: asdfdf"
        errors.add(:code, I18n.t('stories.youtube.generate_iframe.missing_api_key'))
        return
     end
