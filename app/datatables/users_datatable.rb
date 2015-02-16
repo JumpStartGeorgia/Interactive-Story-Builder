@@ -27,7 +27,7 @@ private
         user.email,
         user.role_name.humanize,
         I18n.l(user.created_at, :format => :file),
-        I18n.l(user.current_sign_in_at, :format => :file),
+        user.current_sign_in_at.present? ? I18n.l(user.current_sign_in_at, :format => :file) : nil,
         user.sign_in_count,
         action_links(user)
       ]
@@ -53,7 +53,6 @@ private
 											:data => { :confirm => I18n.t("helpers.links.confirm") },
                       :class => 'btn btn-mini btn-danger')
     return x.html_safe
-    return x
   end
 
   def user_query
