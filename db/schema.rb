@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150212102317) do
+ActiveRecord::Schema.define(:version => 20150216084130) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -472,6 +472,7 @@ ActiveRecord::Schema.define(:version => 20150212102317) do
     t.integer  "language_type",                :limit => 1, :default => 0
     t.integer  "translation_percent_complete", :limit => 1, :default => 0
     t.string   "translation_author"
+    t.integer  "impressions_count",                         :default => 0
   end
 
   add_index "story_translations", ["language_type"], :name => "index_story_translations_on_language_type"

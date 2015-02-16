@@ -16,7 +16,6 @@
 //= require jquery.ui.sortable
 ////= require jquery.ui.draggable
 //= require twitter/bootstrap
-
 // window.onload =  function() 
 // {
 //   document.getElementById('search-input').blur();
@@ -250,7 +249,7 @@ function popuper(msg,msg_type)
   var type = types[msg_type];
   if (msg && type)
   {
-    $('.flash-message').html('<div class="alert '+ type +' fade in">' +
+    $('.flash-message').append('<div class="alert '+ type +' fade in">' +
 					    '<a href="#" data-dismiss="alert" class="close">×</a>' +
 					     urldecode(msg) +
 					    '</div>');

@@ -73,8 +73,8 @@ module BootstrapStarter
     config.assets.precompile += %w( bootstrap-select.min.js jquery.tokeninput.js olly.js zeroclipboard.min.js jquery.tipsy.js )
     config.assets.precompile += %w( bootstrap-select.min.css jquery-ui-1.7.3.custom.css token-input-facebook.css tipsy.css)
     # build into gems
-    config.assets.precompile += %w( dataTables/jquery.dataTables.bootstrap.css )
-    config.assets.precompile += %w( dataTables/jquery.dataTables.js dataTables/jquery.dataTables.bootstrap.js jquery.ui.datepicker.js )
+    config.assets.precompile += %w( dataTables/bootstrap/3/jquery.dataTables.bootstrap.css )
+    config.assets.precompile += %w( dataTables/jquery.dataTables.js dataTables/bootstrap/3/jquery.dataTables.bootstrap.js jquery.ui.datepicker.js )
 
     config.assets.precompile += %w( jquery.ui.datepicker.js )    
     config.assets.precompile += %w( jquery.ui.datepicker.css )    

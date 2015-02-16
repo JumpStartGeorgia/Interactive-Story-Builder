@@ -68,8 +68,10 @@ class Story < ActiveRecord::Base
   ## Callbacks
 
 	before_save :generate_reviewer_key
+  #after_save :process_impression_count
   after_create :add_coordinators
   before_destroy :trigger_translation_observer, prepend: true
+
 
   # if the reviewer key does not exist, create it
   def generate_reviewer_key
@@ -79,6 +81,15 @@ class Story < ActiveRecord::Base
     return true
   end
 
+  #def process_impression_count
+  #  Rails.logger.debug(
+  #  if self.impressions_count_changed?
+  #    trans = self.with_translation(self.current_locale)
+  #    trans.impressions_count += 1
+  #    trans.save
+  #  end
+  #  return true
+  #end
   # anyone with coordinator role should automatically be added as a collaborator when the story is added
   def add_coordinators
     users = User.with_at_least_role(User::ROLES[:coordinator])

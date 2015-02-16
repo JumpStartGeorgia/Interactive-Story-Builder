@@ -72,7 +72,7 @@ class RootController < ApplicationController
                 @user_likes = current_user.voted_up_on? @story if user_signed_in?
               
                 format.html { render 'storyteller/index', :layout => false }            
-                impressionist(@story)                  
+                impressionist(@story, :unique => [:session_hash])
           else 
             format.html { render 'embed', layout: false }    
           end

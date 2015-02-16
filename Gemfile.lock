@@ -7,14 +7,6 @@ GIT
       less (~> 2.5.0)
 
 GIT
-  remote: git://github.com/rweng/jquery-datatables-rails.git
-  revision: d637e0967dc66e9824345009ad74fbfdb1e4349f
-  specs:
-    jquery-datatables-rails (1.12.2)
-      jquery-rails
-      sass-rails
-
-GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: feb28d576cdcf3bf9fc6ff4ab206286adf56c68c
   branch: bootstrap3
@@ -149,6 +141,11 @@ GEM
       httpclient (~> 2.2)
       nokogiri (~> 1.6.0)
     journey (1.0.4)
+    jquery-datatables-rails (3.1.1)
+      actionpack (>= 3.1)
+      jquery-rails
+      railties (>= 3.1)
+      sass-rails
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -328,7 +325,7 @@ DEPENDENCIES
   has_permalink (~> 0.1.4)
   i18n-js (~> 2.1.2)
   impressionist (= 1.4.1)
-  jquery-datatables-rails!
+  jquery-datatables-rails (~> 3.1.1)
   jquery-rails (~> 3.1.0)
   jquery-ui-rails (~> 4.1.2)
   json
