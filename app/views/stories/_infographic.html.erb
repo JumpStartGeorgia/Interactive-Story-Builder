@@ -43,7 +43,7 @@
           :input_html => { id: (!@isTO ?  "infographicCaption" : nil) }.merge(@readonly) 
         }.merge(( (@isTO) ? {} : { hint: t('.hint.caption'), placeholder: t('.placeholder.caption') })) %>
 
-      <%= f_translation.input :description, { :as => :text, :input_html => {id: tinyClass , :class => tinyClass, :rows => 15}.merge(@readonly) }.merge(( original ? {} : { hint: t('.hint.description') }))  %>      
+      <%= f_translation.input :description, { :as => :text, :input_html => {id: tinyClass , :class => tinyClass, :rows => 15}.merge(@readonly) }.merge(( @isTO ? {} : { hint: t('.hint.description') }))  %>      
        
         <%
           image_asset_record = trans_record.image

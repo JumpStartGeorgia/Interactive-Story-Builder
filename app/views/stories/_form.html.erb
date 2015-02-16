@@ -58,11 +58,11 @@
           <%= f.input :authors, :as => :select, :hint => t('.hint.author'), :required => true, :collection => @authors.map{|x|[x.name, x.id]}, :multiple => true, :input_html => { :id => 'storyAuthors', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "5", :title => t('app.common.nothing_selected') } %>
         <% end %>
 
-        <%= f_translation.input :media_author, { :input_html => { id: (!isTO ? "storyMediaAuthor" : nil) }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.media_author'), placeholder: t('.placeholder.media_author') }))  %>
+        <%= f_translation.input :media_author, { :input_html => { id: (!isTO ? "storyMediaAuthor" : nil) }.merge(readonly) }.merge(( isTO ? {} : { hint: t('.hint.media_author'), placeholder: t('.placeholder.media_author') }))  %>
         
-        <%= f_translation.input :translation_author, { :input_html => { id: (!isTO ? "storyTranslationAuthor" : nil)  }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.translation_author'), placeholder: t('.placeholder.translation_author') }))  %>
+        <%= f_translation.input :translation_author, { :input_html => { id: (!isTO ? "storyTranslationAuthor" : nil)  }.merge(readonly) }.merge(( isTO ? {} : { hint: t('.hint.translation_author'), placeholder: t('.placeholder.translation_author') }))  %>
 
-        <%= f_translation.input :about, { :as => :text, :input_html => {id: tinyClass , :class => tinyClass, :rows => 15}.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.about') }))  %>
+        <%= f_translation.input :about, { :as => :text, :input_html => {id: tinyClass , :class => tinyClass, :rows => 15}.merge(readonly) }.merge(( isTO ? {} : { hint: t('.hint.about') }))  %>
 
         <% if !@trans %>
 
