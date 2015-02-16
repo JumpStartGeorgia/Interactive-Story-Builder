@@ -173,41 +173,41 @@ class NotificationTrigger < ActiveRecord::Base
   def self.process_story_comment
     puts "--> Notification Triggers - process story comment"
     triggers = NotificationTrigger.where(:notification_type => Notification::TYPES[:story_comment]).not_processed    
-    if triggers.present?
-      # get stories for these triggers
-      stories = Story.is_published.recent.where(:id => triggers.map{|x| x.identifier}.uniq)
-      if stories.present?
-        author_ids = stories.map{|x| x.user_id}.uniq
+    # if triggers.present?
+    #   # get stories for these triggers
+    #   stories = Story.is_published.recent.where(:id => triggers.map{|x| x.identifier}.uniq)
+    #   if stories.present?
+    #     author_ids = stories.map{|x| x.user_id}.uniq
         
-        orig_locale = I18n.locale
-        author_ids.each do |author_id|
-          user = User.find_by_id(author_id)
-          if user.present?
-            I18n.locale = user.notification_language.to_sym
-            message = Message.new
-            message.email = user.email
-            message.locale = I18n.locale
-            message.subject = I18n.t("mailer.notification.story_comment.subject", :locale => I18n.locale)
-            message.message = I18n.t("mailer.notification.story_comment.message", :locale => I18n.locale)                  
-            message.message_list = []
+    #     orig_locale = I18n.locale
+    #     author_ids.each do |author_id|
+    #       user = User.find_by_id(author_id)
+    #       if user.present?
+    #         I18n.locale = user.notification_language.to_sym
+    #         message = Message.new
+    #         message.email = user.email
+    #         message.locale = I18n.locale
+    #         message.subject = I18n.t("mailer.notification.story_comment.subject", :locale => I18n.locale)
+    #         message.message = I18n.t("mailer.notification.story_comment.message", :locale => I18n.locale)                  
+    #         message.message_list = []
 
-            stories.select{|x| x.user_id == author_id}.each do |story|
-              comment_num = triggers.select{|x| x.identifier == story.id}.length
-              comment_text = ''
-              if comment_num > 1
-                comment_text = I18n.t("mailer.notification.story_comment.comments", :locale => I18n.locale, :num => comment_num)
-              elsif comment_num == 1
-                comment_text = I18n.t("mailer.notification.story_comment.comment", :locale => I18n.locale)
-              end
-              message.message_list << [story.title, story.permalink, comment_text]
-            end
-            puts " ---> message: #{message.inspect}"
-            NotificationMailer.send_story_comment(message).deliver if !Rails.env.staging?
-          end
-        end
-        # reset the locale      
-        I18n.locale = orig_locale
-      end
+    #         stories.select{|x| x.user_id == author_id}.each do |story|
+    #           comment_num = triggers.select{|x| x.identifier == story.id}.length
+    #           comment_text = ''
+    #           if comment_num > 1
+    #             comment_text = I18n.t("mailer.notification.story_comment.comments", :locale => I18n.locale, :num => comment_num)
+    #           elsif comment_num == 1
+    #             comment_text = I18n.t("mailer.notification.story_comment.comment", :locale => I18n.locale)
+    #           end
+    #           message.message_list << [story.title, story.permalink, comment_text]
+    #         end
+    #         puts " ---> message: #{message.inspect}"
+    #         NotificationMailer.send_story_comment(message).deliver if !Rails.env.staging?
+    #       end
+    #     end
+    #     # reset the locale      
+    #     I18n.locale = orig_locale
+    #   end
       NotificationTrigger.where(:id => triggers.map{|x| x.id}).update_all(:processed => true)
     end
   end
@@ -332,74 +332,74 @@ class NotificationTrigger < ActiveRecord::Base
           asset_ids = videos.map{|x| x[1]}.uniq
           Asset.where(:id => asset_ids).update_all(:processed => true)
 
-          # only send notifications if this is production
-          puts "--> env = #{Rails.env}"
-          # create notification for each user
-          # - notification email has all stories in one email
-          # - trigger is created at end
-          story_ids = videos.map{|x| x[0]}.uniq
-          puts "-- - story ids = #{story_ids}"
-          stories = Story.where(:id => story_ids)
-          if stories.present?
-            puts "-- - found stories!"
-            user_ids = stories.map{|x| x.user_id}.uniq
-            if user_ids.present?
-              puts "-- - story ids = #{user_ids}"
-              user_ids.each do |user_id|
-                user = User.find_by_id(user_id)
-                if user.present?
-                  user_stories = stories.select{|x| x.user_id == user_id}
-                  if user_stories.present?
-                    puts "-- - user stories = #{user_stories}"
-                    I18n.locale = user.notification_language.to_sym
-                    message = Message.new
-                    message.email = user.email
-                    message.locale = I18n.locale
-                    message.subject = I18n.t("mailer.notification.processed_videos.subject", :locale => I18n.locale)
-                    message.message = I18n.t("mailer.notification.processed_videos.message", :locale => I18n.locale)                  
-                    message.message_list = []
+          # # only send notifications if this is production
+          # puts "--> env = #{Rails.env}"
+          # # create notification for each user
+          # # - notification email has all stories in one email
+          # # - trigger is created at end
+          # story_ids = videos.map{|x| x[0]}.uniq
+          # puts "-- - story ids = #{story_ids}"
+          # stories = Story.where(:id => story_ids)
+          # if stories.present?
+          #   puts "-- - found stories!"
+          #   user_ids = stories.map{|x| x.user_id}.uniq
+          #   if user_ids.present?
+          #     puts "-- - story ids = #{user_ids}"
+          #     user_ids.each do |user_id|
+          #       user = User.find_by_id(user_id)
+          #       if user.present?
+          #         user_stories = stories.select{|x| x.user_id == user_id}
+          #         if user_stories.present?
+          #           puts "-- - user stories = #{user_stories}"
+          #           I18n.locale = user.notification_language.to_sym
+          #           message = Message.new
+          #           message.email = user.email
+          #           message.locale = I18n.locale
+          #           message.subject = I18n.t("mailer.notification.processed_videos.subject", :locale => I18n.locale)
+          #           message.message = I18n.t("mailer.notification.processed_videos.message", :locale => I18n.locale)                  
+          #           message.message_list = []
 
-                    user_stories.each do |story|
-                      # get videos for this story
-                      asset_videos = Asset.videos_for_story(story.id)
-                      if asset_videos.present?
-                        exists_videos = asset_videos.select{|x| x.file.exists?}
-                        if exists_videos.present?
-                          total = exists_videos.length
-                          processed = exists_videos.select{|x| x.processed == true}.length
-                          info = []
-                          info << story.title
-                          info << story.id
-                          info << processed 
-                          info << total
-                          info << exists_videos.select{|x| x.processed == true}.map{|x| x.asset_file_name}
-                          info << exists_videos.select{|x| x.processed == false}.map{|x| x.asset_file_name}
-                          message.message_list << info
-                        end
-                      end
-                    end
-                    puts "-- - message list = #{message.message_list}"
+          #           user_stories.each do |story|
+          #             # get videos for this story
+          #             asset_videos = Asset.videos_for_story(story.id)
+          #             if asset_videos.present?
+          #               exists_videos = asset_videos.select{|x| x.file.exists?}
+          #               if exists_videos.present?
+          #                 total = exists_videos.length
+          #                 processed = exists_videos.select{|x| x.processed == true}.length
+          #                 info = []
+          #                 info << story.title
+          #                 info << story.id
+          #                 info << processed 
+          #                 info << total
+          #                 info << exists_videos.select{|x| x.processed == true}.map{|x| x.asset_file_name}
+          #                 info << exists_videos.select{|x| x.processed == false}.map{|x| x.asset_file_name}
+          #                 message.message_list << info
+          #               end
+          #             end
+          #           end
+          #           puts "-- - message list = #{message.message_list}"
                     
-                    # send the notification to this user
-                    puts " ---> message: #{message.inspect}"
-                    NotificationMailer.send_processed_videos(message).deliver if message.message_list.present? && !Rails.env.staging?
+          #           # send the notification to this user
+          #           puts " ---> message: #{message.inspect}"
+          #           NotificationMailer.send_processed_videos(message).deliver if message.message_list.present? && !Rails.env.staging?
 
-                    # record notifications
-                    user_videos = videos.select{|x| user_stories.map{|y| y.id.to_s}.include?(x[0].to_s)}
-                    if user_videos.present?
-                      puts " --> creating trigger record"
-                      user_videos.each do |user_video|
-                        NotificationTrigger.create(:notification_type => Notification::TYPES[:processed_videos],
-                          :identifier => user_video[1],
-                          :processed => true
-                        )
-                      end
-                    end
-                  end
-                end
-              end
-            end
-          end
+          #           # record notifications
+          #           user_videos = videos.select{|x| user_stories.map{|y| y.id.to_s}.include?(x[0].to_s)}
+          #           if user_videos.present?
+          #             puts " --> creating trigger record"
+          #             user_videos.each do |user_video|
+          #               NotificationTrigger.create(:notification_type => Notification::TYPES[:processed_videos],
+          #                 :identifier => user_video[1],
+          #                 :processed => true
+          #               )
+          #             end
+          #           end
+          #         end
+          #       end
+          #     end
+          #   end
+          # end
         end
       end
       
