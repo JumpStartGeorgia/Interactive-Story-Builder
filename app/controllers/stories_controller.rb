@@ -359,6 +359,14 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
     elsif params[:youtube].present?  
       @item = Youtube.new(params[:youtube])    
       @type = :youtube 
+
+      # copy the loop/info data into the translation records
+      # so the get code method can use these values
+      loop = params[:youtube][:loop]
+      info = params[:youtube][:info]
+      params[:youtube][:youtube_translations_attributes]['0'][:loop] = loop
+      params[:youtube][:youtube_translations_attributes]['0'][:info] = info
+
     elsif params[:infographic].present?  
       @item = Infographic.new(params[:infographic])    
       @type = :infographic 
@@ -422,6 +430,14 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
     elsif params[:youtube].present?  
       klass = Youtube
       type = :youtube
+
+      # copy the loop/info data into the translation records
+      # so the get code method can use these values
+      loop = params[:youtube][:loop]
+      info = params[:youtube][:info]
+      params[:youtube][:youtube_translations_attributes]['0'][:loop] = loop
+      params[:youtube][:youtube_translations_attributes]['0'][:info] = info
+
     elsif params[:infographic].present?  
       klass = Infographic
       type = :infographic
@@ -438,6 +454,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
           @story_progress = StoryTranslationProgress.get_progress(@item.section.story_id)
           format.js {render action: "build_tree", status: :created }                  
         else
+        logger.debug "@@@@@@@@@@@@@@@ error = #{@item.errors.full_messages.to_sentence}"
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:@item.class.model_name.human, err:@item.errors.full_messages.to_sentence)                                      
           format.js {render action: "flash" , status: :ok }
         end
@@ -936,12 +953,15 @@ private
     redirect_to root_path, :notice => t('app.msgs.not_authorized') if @edit_story_role == Story::ROLE[:translator] && !accessible_actions.include?(params[:action].to_sym)
   end
 
-  def flash_success_created( obj, title, warning)
+  def flash_success_created( obj, title, warning=false)
     warning ||= false
+    msg = I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
     if !warning
-      flash[:success] = request.xhr? ? u(I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")) : I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
+      flash[:success] = request.xhr? ? u(msg) : msg
     else 
-      flash[:success] = request.xhr? ? u(I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")) : I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
+      msg << ' '
+      msg << I18n.t('app.msgs.update_translations')
+      flash[:notice] = request.xhr? ? u(msg) : msg
     end;
   end
   def flash_success_updated( obj, title)

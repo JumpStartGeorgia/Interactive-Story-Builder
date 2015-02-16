@@ -417,6 +417,7 @@ az:
       nickname_url: 'Sizin URL-ınız:'
       story_duplicate: Bu hekayənin URL-ı artıq mövcuddur.
       story_url: 'Hekayənin URL-ı:'
+      update_translations: "Don't forget to translate this new item!"
       invitation:
         accepted: "Sən '%{title}' üzrə əməkdaşlıq dəvətini qəbul etmisən"
         accepted_already: "Sən '%{title}' üzrə əməkdaşlıq dəvətini artıq qəbul etmisən"
@@ -736,12 +737,12 @@ az:
       add_datasource: Add Data Source
       placeholder:
         title: Title
-        caption: Infographic Title
+        caption: optional
         dataset_url: optional
       hint:
         title: This text only appears in the left sidebar, it will not show up in the story
-        caption: Title of the infographic
-        description: The description will appear below the infographic
+        caption: "Heading of infographic will appear above the infographic image. If this Infographic Section is first in the story, you should leave this blank and use the Story Title field."
+        description: "The description will appear below the infographic. If this Infographic Section is first in the story, the Story Summary will appear below the infographic image so if the Story Summary and Infographic Description are the same, you should leave this field blank."
         image: Only jpg and png format allowed; 8MB file size limit
         dataset_file: Please try to compress files to make for quicker download; 25MB file size limit
         dataset_url: URL to Dataset

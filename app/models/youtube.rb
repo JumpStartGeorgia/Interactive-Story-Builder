@@ -18,9 +18,20 @@ class Youtube < ActiveRecord::Base
   # ## Callbacks
 
   before_destroy :trigger_translation_observer, prepend: true
+  before_validation :trigger_translation_validation, prepend: true
+
   def trigger_translation_observer
     self.youtube_translations.each do |trans|
       trans.is_progress_increment = false
+    end
+  end
+
+  # need this so if loop or info flags change the code will be updated in translation
+  def trigger_translation_validation
+    if self.loop_changed? || self.info_changed?
+      self.youtube_translations.each do |trans|
+        trans.code_will_change!
+      end
     end
   end
 
