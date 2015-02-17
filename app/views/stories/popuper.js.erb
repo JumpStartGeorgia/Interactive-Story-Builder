@@ -1,0 +1,14 @@
+<%= remotipart_response do %>
+  <% if remotipart_submitted? 
+      msg = ""
+      msg_type = ""
+      [:success, :notice, :error, :alert].each do |type|        
+            msg = flash[type] unless flash[type].blank?
+            msg_type = type.to_s unless flash[type].blank?                       
+      end      
+    %>    
+    <% if !msg.empty? %>
+      popuper("<%= msg %>" , "<%= msg_type %>");
+    <% end %>   
+  <% end %>
+<% end %>

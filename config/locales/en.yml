@@ -19,6 +19,11 @@ en:
       author: Author
       asset: File
     attributes:
+      asset: &asset
+        asset_file_name: File
+        asset_content_type: File Content Type
+        asset_file_size: File Size
+      avatar: *asset
       user:
         email: Email Address
         password: Password
@@ -33,11 +38,11 @@ en:
         created_at: Date Created
         current_sign_in_at: Date Last Logged In
       author:
-        avatar: Avatar
+        name: Avatar
       author_translation: &author_translation
         name: Name
         about: About
-        permalink: Permalink
+        permalink: Permalink        
       author_translations: *author_translation
       story:
         user_id: Story Author
@@ -60,7 +65,8 @@ en:
         about: Story Summary
         permalink: Story URL
         permalink_staging: Story URL
-      story_translations: *story_translation
+        asset: *asset
+      story_translations: *story_translation      
       section:
         has_marker: Navigation Shortcut
         type_id: Type
@@ -69,6 +75,7 @@ en:
         title: Title
         audio: Audio Track
         delete_audio: Delete the Audio Track?
+        asset: *asset
       section_translations:  *section_translation
       content_translation: &content_translation
         title: Title          
@@ -88,14 +95,16 @@ en:
         infobox_type: Caption Position
         summary: Summary
         source: Source
-        image: Image
-        video: Video
+        image: *asset
+        video: *asset
       medium_translations: *medium_translation
       slideshow_translation: &slideshow_translation
         title: Title
         caption: Heading
         description: Description
-      slideshow_translations: *slideshow_translation        
+        asset: *asset
+        assets: *asset
+      slideshow_translations: *slideshow_translation
       message:
         name: Name
         email: Email Address
@@ -125,9 +134,9 @@ en:
         title: Title
         caption: Heading
         description: Description
-        image: Infographic Image
-        dataset_file: Dataset File
         dataset_url: Online Dataset
+        image: *asset     
+        dataset_file: *asset
       infographic_translations: *infographic_translation
       infographic_datasource:
         name: Data Source Name
@@ -161,7 +170,7 @@ en:
       story_type_translation: &story_type_translation
         name: Name
         permalink: URL
-      story_type_translations: *story_type_translation
+      story_type_translations: *story_type_translation      
     errors:
       messages:
         required_field: "is a required field."

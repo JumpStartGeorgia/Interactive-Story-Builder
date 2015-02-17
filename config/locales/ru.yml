@@ -17,7 +17,13 @@ ru:
       theme: "Тема"
       story_type: "Тип истории"
       author: "Автор"
+      asset: File      
     attributes:
+      asset: &asset
+        asset_file_name: File
+        asset_content_type: File Content Type
+        asset_file_size: File Size
+      avatar: *asset    
       user:
         email: "Адрес электронной почты"
         password: "Пароль"
@@ -33,10 +39,11 @@ ru:
         current_sign_in_at: "Дата последнего посещения на сайт"
       author:
         avatar: "Аватар"
-      author_translation:
+      author_translation: &author_translation
         name: "Имя"
         about: "Про нас"
         permalink: "Постоянная ссылка"
+      author_translations: *author_translation        
       story:
         user_id: "Автор истории"
         user_ids: "Редакторы"
@@ -48,7 +55,7 @@ ru:
         categories: "Категории"
         story_type: "Тип"
         in_theme_slider: "Показать историю в тематическом слайдере"
-      story_translation:
+      story_translation: &story_translation
         title: "Название истории"
         author: "Автор(ы)"
         media_author: "Автор(ы) видео и фото"
@@ -58,96 +65,112 @@ ru:
         about: "Конспект историй"
         permalink: URL Истории
         permalink_staging: URL Истории
+        asset: *asset        
+      story_translations: *story_translation        
       section:
         has_marker: "Навигационная ссылка"
         type_id: "Тип"
         sort_order: "Порядок Сортировки"
-      section_translation:
+      section_translation:  &section_translation
         title: "Название"
         audio: "Аудиофайл"
         delete_audio: "Удалить аудиофайл?"
-      content_translation:
+        asset: *asset        
+      section_translations:  *section_translation
+      content_translation: &content_translation
         title: "Название"
         caption: "Заглавок"
         sub_caption: "Подзаглавок"
         content: "Текс"
+      content_translations: *content_translation
       medium:
         media_type: "Тип медии"
         image: "Изображение"
         video: "Видео"
         video_loop: "Переигрывать видео"
-      medium_translation:
+      medium_translation: &medium_translation
         title: "Название"
         caption: "Титры"
         caption_align: "Выровнивание титров"
         infobox_type: "Расположение титров"
         summary: "Конспект"
         source: "Источник"
-        image: "Изображение"
-        video: "Видео"
-      slideshow_translation:
+        image: *asset
+        video: *asset
+      medium_translations: *medium_translation
+      slideshow_translation: &slideshow_translation
         title: "Заглавок"
         caption: "Название"
         description: "Описание"
+        asset: *asset
+        assets: *asset
+      slideshow_translations: *slideshow_translation        
       message:
         name: Name
         email: Email Address
         message: Message
         message_type: Feedback Type
-      embed_medium_translation:
+      embed_medium_translation: &embed_medium_translation
         title: "Заглавок"
         url: Url к онлайн медии
+      embed_medium_translations: *embed_medium_translation        
       youtube:
         fullscreen: "Во весь экран"
         loop: "Переигровка"
         info: "Показать заглавок видео"
-      youtube_translation:
+      youtube_translation: &youtube_translation
         title: "Заглавок"
         url: "Ссылка на YouTube"
         menu_lang: "Язык плеера"
         cc: "Показать субтитры"
         cc_lang: "Язык субтитров"
+      youtube_translations: *youtube_translation        
       infographic:
         published_at: Date Published
         image: Infographic Image
         dataset_file: Dataset File
         datasources: Data Sources
-      infographic_translation:
+      infographic_translation: &infographic_translation
         title: Title
         caption: Heading
         description: Description
-        image: Infographic Image
-        dataset_file: Dataset File
         dataset_url: Online Dataset
+        image: *asset     
+        dataset_file: *asset
+      infographic_translations: *infographic_translation        
       infographic_datasource:
         name: Data Source Name
         url: Data Source URL
       language:
         locale: "О локали."
         name: "Язык"
-      category_translation:
+      category_translation: &category_translation
         name: "Имя"
+      category_translations: *category_translation        
       page:
         name: "Уникальное название для контента (не изменять!)"
-      page_translation:
+      page_translation: &page_translation
         title: "Назвнаие, которое будет показываться над контентом"
         content: "Контент"
+      page_translations: *page_translation        
       theme:
         is_published: "Публиковать?"
         published_at: "Дата опубликования"
         show_home_page: "Показать тему на главной странице"
         published_item_count: Количество опубликованных объектов
         featured_stories: Featured Stories
-      theme_translation:
+      theme_translation: &theme_translation
         name: "Имя"
         edition: "Выпуск"
         description: "Описание"
         permalink: URL (Единый указатель ресурсов)
+      theme_translations: *theme_translation        
       story_type:
         sort_order: "Порядок Сортировки"
-      story_type_translation:
+      story_type_translation: &story_type_translation
         name: "Название"
         permalink: URL (Единый указатель ресурсов)
+      story_type_translations: *story_type_translation        
     errors:
       messages:
         required_field: "Поле обязательно для заполнения"

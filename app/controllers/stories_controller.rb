@@ -111,7 +111,7 @@ class StoriesController < ApplicationController
         end   
         @select_next = params[:commit_and_next].present? ? true : false                    
         format.html { render action: "edit" }
-        format.js {render action: "flash" , status: :ok }
+        format.js {render action: "popuper" , status: :ok }
       else
         if @item.update_attributes(params[:story])
           @item.reload      
@@ -131,10 +131,10 @@ class StoriesController < ApplicationController
           @item.current_locale = @item.story_locale
           @themes = Theme.sorted
           @authors = Author.sorted
-          #logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to_sentence}"          
-          flash[:error] = u(I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@item.errors.full_messages.to_sentence))            
+          #logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to_sentence}"                
+          flash[:error] = u(I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@item.errors.full_messages(true).to_sentence))            
           format.html { render action: "edit" }
-          format.js {render action: "flash" , status: :ok }
+          format.js {render action: "popuper" , status: :ok }
         end
       end
     end
@@ -336,7 +336,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
           format.js { render action: "change_tree", status: :created  }
         else          
           flash[:error] = u I18n.t('app.msgs.error_created', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                  
-          format.js {render action: "flash" , status: :ok }
+          format.js {render action: "popuper" , status: :ok }
         end
       end    
   end
@@ -381,8 +381,8 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
         format.js { render action: "change_sub_tree", status: :created  }
       else
         logger.debug "@@@@@@@@@@@@@@@ error = #{@item.errors.full_messages.to_sentence}"
-        flash[:error] = u I18n.t('app.msgs.error_created', obj:@item.class.model_name.human, err:@item.errors.full_messages.to_sentence)                  
-        format.js {render action: "flash" , status: :ok }
+        flash[:error] = u I18n.t('app.msgs.error_created', obj:@item.class.model_name.human, err:@item.errors.full_messages(true).to_sentence)                  
+        format.js {render action: "popuper" , status: :ok }
       end
     end    
   end
@@ -403,11 +403,11 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
           format.js {render action: "build_tree", status: :created }                  
         else
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                            
-          format.js {render action: "flash", status: :ok }
+          format.js {render action: "popuper", status: :ok }
         end
       else
         flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
-        format.js {render action: "flash", status: :ok }
+        format.js {render action: "popuper", status: :ok }
       end
     end    
   end
@@ -456,11 +456,11 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
         else
         logger.debug "@@@@@@@@@@@@@@@ error = #{@item.errors.full_messages.to_sentence}"
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:@item.class.model_name.human, err:@item.errors.full_messages.to_sentence)                                      
-          format.js {render action: "flash" , status: :ok }
+          format.js {render action: "popuper" , status: :ok }
         end
       else
         flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
-        format.js {render action: "flash", status: :ok }
+        format.js {render action: "popuper", status: :ok }
       end
     end    
   end
@@ -922,7 +922,7 @@ end
         format.js {render action: "translation_progress", status: :created }                  
       else
         flash[:error] = u I18n.t('app.msgs.error_get_data')                            
-        format.js {render action: "flash", status: :ok }
+        format.js {render action: "popuper", status: :ok }
       end
     end
   end

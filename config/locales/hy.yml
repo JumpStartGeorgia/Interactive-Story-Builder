@@ -19,6 +19,11 @@ hy:
       author: "Հեղինակ"
       asset: File
     attributes:
+      asset: &asset
+        asset_file_name: File
+        asset_content_type: File Content Type
+        asset_file_size: File Size
+      avatar: *asset
       user:
         email: "Էլեկտրոնային հասցե"
         password: "Գաղտնաբառ"
@@ -60,6 +65,7 @@ hy:
         about: "Համառոտագրություն"
         permalink: "Նյութի URL"
         permalink_staging: "Նյութի URL"
+        asset: *asset
       story_translations: *story_translation        
       section:
         has_marker: "Նավիգացիոն դյուրանցում"
@@ -69,6 +75,7 @@ hy:
         title: "Վերնագիր"
         audio: "Աուդիո "
         delete_audio: "Ջնջել աուդիո ֆայլը?"
+        asset: *asset
       section_translations:  *section_translation        
       content_translation: &content_translation
         title: "Անվանում"
@@ -88,13 +95,15 @@ hy:
         infobox_type: "Ենթագրերի դիրք"
         summary: "Հակիրճ նկարագրություն"
         source: "Աղբյուր"
-        image: "Նկար"
-        video: "Վիդեո"
+        image: *asset
+        video: *asset
       medium_translations: *medium_translation
       slideshow_translation: &slideshow_translation
         title: "Վերնագիր"
         caption: "Անվանում"
         description: "Նկարագրություն"
+        asset: *asset
+        assets: *asset        
       slideshow_translations: *slideshow_translation          
       message:
         name: Name
@@ -125,9 +134,9 @@ hy:
         title: Title
         caption: Heading
         description: Description
-        image: Infographic Image
-        dataset_file: Dataset File
         dataset_url: Online Dataset
+        image: *asset     
+        dataset_file: *asset
       infographic_translations: *infographic_translation        
       infographic_datasource:
         name: Data Source Name
