@@ -17,6 +17,7 @@ ka:
       theme: "თემა"
       story_type: "ამბის ტიპი"
       author: "ავტორი"
+      asset: File
     attributes:
       user:
         email: "ელ. ფოსტა"
@@ -33,10 +34,11 @@ ka:
         current_sign_in_at: "ბოლო შემოსვლის თარიღი"
       author:
         avatar: "პროფილის სურათი"
-      author_translation:
+      author_translation: &author_translation
         name: "სახელი"
         about: "შესახებ"
         permalink: "მუდმივი ბმული"
+      author_translations: *author_translation        
       story:
         user_id: "ამბის ავტორი"
         user_ids: "ამბის რედაქტორები"
@@ -48,7 +50,7 @@ ka:
         categories: "კატეგორიები"
         story_type: "ტიპი"
         in_theme_slider: "ამბის სლაიდერში ჩვენება"
-      story_translation:
+      story_translation: &story_translation      
         title: "ამბის სათაური"
         author: "ავტორ(ებ)ი"
         media_author: "ფოტოსა და ვიდეოს ავტორ(ებ)ი"
@@ -58,19 +60,22 @@ ka:
         about: "ამბის მოკლე შინაარსი"
         permalink: "ამბის ბმული"
         permalink_staging: "ამბის ბმული"
+      story_translations: *story_translation        
       section:
         has_marker: "სექციის გამოყოფა"
         type_id: "ტიპი"
         sort_order: "დალაგება"
-      section_translation:
+      section_translation:  &section_translation
         title: "სათაური"
         audio: "აუდიო ფაილი"
         delete_audio: "აუდიო ფაილის წაშლა?"
-      content_translation:
+      section_translations:  *section_translation
+      content_translation: &content_translation
         title: "სათაური"
         caption: "ტექსტის სათაური"
         sub_caption: "ტექსტის ქვესათაური"
         content: "ტექსტი"
+      content_translations: *content_translation        
       medium:
         media_type: "მედია ტიპი"
         image: "სურათი"

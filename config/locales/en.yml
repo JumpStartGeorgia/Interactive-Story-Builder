@@ -17,6 +17,7 @@ en:
       theme: Theme
       story_type: Story Type
       author: Author
+      asset: File
     attributes:
       user:
         email: Email Address
@@ -33,10 +34,11 @@ en:
         current_sign_in_at: Date Last Logged In
       author:
         avatar: Avatar
-      author_translation:
+      author_translation: &author_translation
         name: Name
         about: About
         permalink: Permalink
+      author_translations: *author_translation
       story:
         user_id: Story Author
         user_ids: Editors
@@ -48,7 +50,7 @@ en:
         categories: Categories
         story_type: Type
         in_theme_slider: Show Story in Theme Slider
-      story_translation:
+      story_translation: &story_translation
         title: Story Title
         author: Author(s)
         media_author: Photo and Video Author(s)  
@@ -58,25 +60,28 @@ en:
         about: Story Summary
         permalink: Story URL
         permalink_staging: Story URL
+      story_translations: *story_translation
       section:
         has_marker: Navigation Shortcut
         type_id: Type
         sort_order: Sort Order
-      section_translation:
+      section_translation:  &section_translation
         title: Title
         audio: Audio Track
         delete_audio: Delete the Audio Track?
-      content_translation:        
+      section_translations:  *section_translation
+      content_translation: &content_translation
         title: Title          
         caption: Heading
         sub_caption: Subheading
         content: Text
+      content_translations: *content_translation
       medium:
         media_type: Media Type
         image: Image
         video: Video
         video_loop: Loop Video
-      medium_translation:
+      medium_translation: &medium_translation
         title: Title
         caption: Caption
         caption_align: Caption Alignment
@@ -85,69 +90,78 @@ en:
         source: Source
         image: Image
         video: Video
-      slideshow_translation:
+      medium_translations: *medium_translation
+      slideshow_translation: &slideshow_translation
         title: Title
         caption: Heading
         description: Description
+      slideshow_translations: *slideshow_translation        
       message:
         name: Name
         email: Email Address
         message: Message
         message_type: Feedback Type
-      embed_medium_translation:
+      embed_medium_translation: &embed_medium_translation
         title: Title
         url: Url to Online Media
+      embed_medium_translations: *embed_medium_translation
       youtube:
         fullscreen: Fullscreen
         loop: Loop
         info: Show Video Title Bar
-      youtube_translation:
+      youtube_translation: &youtube_translation
         title: Title
         url: Url to YouTube Video
         menu_lang: Player Language
         cc: Show Caption/Subtitle
-        cc_lang: Subtitle Language  
+        cc_lang: Subtitle Language
+      youtube_translations: *youtube_translation
       infographic:
         published_at: Date Published
         image: Infographic Image
         dataset_file: Dataset File
         datasources: Data Sources
-      infographic_translation:
+      infographic_translation: &infographic_translation
         title: Title
         caption: Heading
         description: Description
         image: Infographic Image
         dataset_file: Dataset File
         dataset_url: Online Dataset
+      infographic_translations: *infographic_translation
       infographic_datasource:
         name: Data Source Name
         url: Data Source URL
       language:
         locale: Locale
         name: Language Name
-      category_translation:
+      category_translation: &category_translation
         name: Name
+      category_translations: *category_translation
       page:
         name: Unique name for content (do not change!)
-      page_translation:
+      page_translation: &page_translation
         title: Title to show above content
         content: Content
+      page_translations: *page_translation
       theme:
         is_published: Publish?
         published_at: Date Published
         show_home_page: Show this theme on the home page?
         published_item_count: Number of Published Items
         featured_stories: Featured Stories
-      theme_translation:
+      theme_translation: &theme_translation
         name: Name
         edition: Edition
         description: Description
         permalink: URL
+      theme_translations: *theme_translation
       story_type:
         sort_order: Sort Order
-      story_type_translation:
+      story_type_translation: &story_type_translation
         name: Name
         permalink: URL
+      story_type_translations: *story_type_translation
     errors:
       messages:
         required_field: "is a required field."

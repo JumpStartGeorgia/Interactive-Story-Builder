@@ -105,9 +105,9 @@ class StoriesController < ApplicationController
     respond_to do |format|
       if !@item.published && params[:story][:published]=="1"
         if !@item.about.present? || !@item.asset_exists?
-          flash[:error] = I18n.t('app.msgs.error_publish_missing_fields', :obj => @item.title)            
+          flash[:error] = u(I18n.t('app.msgs.error_publish_missing_fields', :obj => @item.title))           
         elsif @item.sections.map{|t| t.content? && t.content.present? && t.content.text.present? }.count(true) == 0
-          flash[:error] = I18n.t('app.msgs.error_publish_missing_content_section')            
+          flash[:error] = u(I18n.t('app.msgs.error_publish_missing_content_section'))            
         end   
         @select_next = params[:commit_and_next].present? ? true : false                    
         format.html { render action: "edit" }
@@ -131,8 +131,8 @@ class StoriesController < ApplicationController
           @item.current_locale = @item.story_locale
           @themes = Theme.sorted
           @authors = Author.sorted
-logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to_sentence}"          
-          flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@item.errors.full_messages.to_sentence)            
+          #logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to_sentence}"          
+          flash[:error] = u(I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@item.errors.full_messages.to_sentence))            
           format.html { render action: "edit" }
           format.js {render action: "flash" , status: :ok }
         end

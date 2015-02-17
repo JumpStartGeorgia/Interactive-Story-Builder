@@ -17,6 +17,7 @@ hy:
       theme: "Թեմա"
       story_type: "Տեսակ "
       author: "Հեղինակ"
+      asset: File
     attributes:
       user:
         email: "Էլեկտրոնային հասցե"
@@ -33,10 +34,11 @@ hy:
         current_sign_in_at: "Վերջին այցելությունը"
       author:
         avatar: "Ավատար"
-      author_translation:
+      author_translation: &author_translation
         name: "Անուն"
         about: "Մեր մասին"
         permalink: "Պերմալինք"
+      author_translations: *author_translation        
       story:
         user_id: "Հեղինակ"
         user_ids: "Խմբագիրներ"
@@ -48,7 +50,7 @@ hy:
         categories: "Կատեգորիաներ"
         story_type: "Տեսակ"
         in_theme_slider: "Ցույց տալ պատմությունը նույն թեմատիկ վահանակում"
-      story_translation:
+      story_translation: &story_translation
         title: "Վերնագիր"
         author: "Հեղինակ(ներ)"
         media_author: "Ֆոտո և վիդեո հեղինակ(ներ)"
@@ -58,25 +60,28 @@ hy:
         about: "Համառոտագրություն"
         permalink: "Նյութի URL"
         permalink_staging: "Նյութի URL"
+      story_translations: *story_translation        
       section:
         has_marker: "Նավիգացիոն դյուրանցում"
         type_id: "Տեսակ"
         sort_order: "Դասակարգման հերթականություն"
-      section_translation:
+      section_translation:  &section_translation
         title: "Վերնագիր"
         audio: "Աուդիո "
         delete_audio: "Ջնջել աուդիո ֆայլը?"
-      content_translation:
+      section_translations:  *section_translation        
+      content_translation: &content_translation
         title: "Անվանում"
         caption: "Վերնագիր"
         sub_caption: "Ենթավերնագիր"
         content: "Տեքստ"
+      content_translations: *content_translation        
       medium:
         media_type: "Մեդիայի տեսակը"
         image: "Նկար"
         video: "Վիդեո"
         video_loop: "Վերախաղարկել վիդեոն"
-      medium_translation:
+      medium_translation: &medium_translation
         title: "Վերնագիր"
         caption: "Ենթագրեր"
         caption_align: "Ենթագրերի ուղղվածություն"
@@ -85,69 +90,78 @@ hy:
         source: "Աղբյուր"
         image: "Նկար"
         video: "Վիդեո"
-      slideshow_translation:
+      medium_translations: *medium_translation
+      slideshow_translation: &slideshow_translation
         title: "Վերնագիր"
         caption: "Անվանում"
         description: "Նկարագրություն"
+      slideshow_translations: *slideshow_translation          
       message:
         name: Name
         email: Email Address
         message: Message
         message_type: Feedback Type
-      embed_medium_translation:
+      embed_medium_translation: &embed_medium_translation
         title: "Վերնագիր"
         url: "Առցանց Media-ի Url "
+      embed_medium_translations: *embed_medium_translation        
       youtube:
         fullscreen: "Ամբողջ էկրանով"
         loop: "Վերախաղարկել"
         info: "Ցույց տալ վիդեոյի վերնագրի վահանակը"
-      youtube_translation:
+      youtube_translation: &youtube_translation
         title: "Վերնագիր"
         url: YouTube վիդեոյի Url-ը
         menu_lang: "Խաղարկչի (փլեերի) լեզուն"
         cc: "Ցույց տալ ենթագրերը"
         cc_lang: "Ենթագրերի լեզուն"
+      youtube_translations: *youtube_translation        
       infographic:
         published_at: Date Published
         image: Infographic Image
         dataset_file: Dataset File
         datasources: Data Sources
-      infographic_translation:
+      infographic_translation: &infographic_translation
         title: Title
         caption: Heading
         description: Description
         image: Infographic Image
         dataset_file: Dataset File
         dataset_url: Online Dataset
+      infographic_translations: *infographic_translation        
       infographic_datasource:
         name: Data Source Name
         url: Data Source URL
       language:
         locale: "Տեղավայր"
         name: "Լեզու"
-      category_translation:
+      category_translation: &category_translation
         name: "Անուն"
+      category_translations: *category_translation        
       page:
         name: "Եզակի անվանում բովանդակության համար (չփոխե՛լ)"
-      page_translation:
+      page_translation: &page_translation
         title: "Վերնագիր, որը կհայտնվի բովանդակության վերևում "
         content: "Բովանդակություն"
+      page_translations: *page_translation        
       theme:
         is_published: "Հրապարակե՞լ"
         published_at: "Հրապարակման ամսաթիվը"
         show_home_page: "Ցո՞ւյց տալ այս թեման գլխավոր էջում"
         published_item_count: Հրապարակված օբյեկտների քանակը
         featured_stories: Featured Stories
-      theme_translation:
+      theme_translation: &theme_translation
         name: "Անուն"
         edition: "Ելից"
         description: "Նկարագրություն"
         permalink: URL
+      theme_translations: *theme_translation        
       story_type:
         sort_order: "Դասակարգման հերթականություն"
-      story_type_translation:
+      story_type_translation: &story_type_translation
         name: "Անուն"
         permalink: URL
+      story_type_translations: *story_type_translation        
     errors:
       messages:
         required_field: "Պարտադիր լրացման համար"
