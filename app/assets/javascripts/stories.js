@@ -95,8 +95,7 @@ $(document).ready(function() {
   $('.builder-wrapper .workplace').on('click', '.story-page1 #btnOlly, .story-page2 #btnOlly', function(){
     ths = $('#embedMediaUrl');
 	  url = $(ths).val();
-    resetEmbedForm();
-    console.log(ths,url);
+    resetEmbedForm();    
     
 	  if (url.length > 0 && isUrl(url)){
       olly.embed(url, document.getElementById("embedMediaResult"), 'timerOllyCompelte', 'ollyFail');

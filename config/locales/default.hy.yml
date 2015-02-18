@@ -86,6 +86,7 @@ hy:
       greater_than_or_equal_to: "պետք է լինի %{count} –ից ավելի կամ հավասար"
       inclusion: "ցուցակում չկա"
       invalid: "սխալ է"
+      invalid_format_url: has an invalid url format. The url should be like http://example.com.
       less_than: "պետք է լինի %{count} –ից քիչ"
       less_than_or_equal_to: "պետք է լինի %{count} –ից քիչ կամ հավասար"
       not_a_number: "թիվ չկա"

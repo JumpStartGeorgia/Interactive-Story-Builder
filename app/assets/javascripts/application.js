@@ -181,7 +181,7 @@ $(".navbar-collapse").swipe(function( direction, offset ) {
         },
         error: function (data)
         {     
-             console.log(data)           ;
+             //console.log(data)           ;
           $(t).parent().find('.alert').remove();  
           $(t + ' form').before('<div class="alert alert-danger fade in"><a href="#" data-dismiss="alert" class="close">×</a> ' + data.responseText + '</div>');          
           $(t + ' :input:visible:enabled:first').focus();

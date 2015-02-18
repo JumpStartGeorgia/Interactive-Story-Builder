@@ -28,7 +28,7 @@ class InfographicTranslation < ActiveRecord::Base
   ## Validations
   validates :title, :presence => true, length: { maximum: 255}    
   validates :image, presence: true
-  validates :dataset_url, :format => {:with => URI::regexp(['http','https'])}, :if => "!dataset_url.blank?"
+  validates :dataset_url, :format => {:with => URI::regexp(['http','https']), :message => I18n.t('errors.messages.invalid_format_url') }, :if => "!dataset_url.blank?"
 
   #################################
   # settings to clone story

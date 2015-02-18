@@ -149,6 +149,7 @@ ka:
       inclusion: "არ არის სიაში"
       exclusion: "დაკავებულია"
       invalid: "არასწორია"
+      invalid_format_url: has an invalid url format. The url should be like http://example.com.
       confirmation: "ვერ დასტურდება"
       accepted: "საჭიროებს თანხმობას"
       empty: "არ უნდა იყოს ცარიელი"

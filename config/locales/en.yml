@@ -128,7 +128,7 @@ en:
       infographic:
         published_at: Date Published
         image: Infographic Image
-        dataset_file: Dataset File
+        dataset_file: Related File
         datasources: Data Sources
       infographic_translation: &infographic_translation
         title: Title
@@ -785,7 +785,7 @@ en:
     view_all_stories_in: View all stories in
     infographic:
       source: Data Source
-      dataset: Dataset
+      dataset: Related Items
       download: Download File
       online: View Data Online
   settings:

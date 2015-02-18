@@ -9,7 +9,6 @@ function filter()
 {    
   if(JSON.stringify(f) !== JSON.stringify(pf))
   { 
-    console.log('here'); 
     var ftmp = {};   
 
     if(!paging) { f['page'] = ''; } 

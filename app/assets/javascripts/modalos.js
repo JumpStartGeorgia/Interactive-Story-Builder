@@ -167,7 +167,6 @@
 ----------------------------*/
 			function unlock() { 
 				locked = false;	
-				console.log('hererere');			
 			}
 			function lock() {
 				locked = true;				
