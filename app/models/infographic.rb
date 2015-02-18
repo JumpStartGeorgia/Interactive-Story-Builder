@@ -7,11 +7,12 @@ class Infographic < ActiveRecord::Base
   has_many :infographic_translations, :dependent => :destroy
   accepts_nested_attributes_for :infographic_translations
 
+  TYPE = {static: 1, dynamic: 2}
 
   #################################
   ## Validations
   validates :section_id, :presence => true
-
+  validates :subtype, :presence => true, :inclusion => { :in => TYPE.values }  
   #################################
   ## Callbacks
 
@@ -29,6 +30,10 @@ class Infographic < ActiveRecord::Base
     enable
     clone [:infographic_translations]
   end
+
+
+
+
 
   ##############################
   ## shortcut methods to get to asset objects in translation

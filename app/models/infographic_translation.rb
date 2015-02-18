@@ -20,7 +20,7 @@ class InfographicTranslation < ActiveRecord::Base
   accepts_nested_attributes_for :dataset_file, :reject_if => lambda { |c| c[:asset].blank? && c[:asset_clone_id].blank? }
 
   attr_accessible :infographic_id, :locale, :title, :caption, :description, :dataset_url, 
-                  :image_attributes, :dataset_file_attributes, :infographic_datasources_attributes
+                  :image_attributes, :dataset_file_attributes, :infographic_datasources_attributes, :subtype
 
   attr_accessor :is_progress_increment, :progress_story_id
 
@@ -47,5 +47,13 @@ class InfographicTranslation < ActiveRecord::Base
   def dataset_file_exists?
     self.dataset_file.present? && self.dataset_file.file.exists?
   end  
+
+private
+  def static_type?    
+    self.subtype == Infographic::TYPE[:static]
+  end
+  def dynamic_type?    
+    self.subtype == Infographic::TYPE[:dynamic]
+  end
 
 end

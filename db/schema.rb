@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150216084130) do
+ActiveRecord::Schema.define(:version => 20150218092312) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -173,6 +173,9 @@ ActiveRecord::Schema.define(:version => 20150216084130) do
     t.string   "caption"
     t.text     "description"
     t.string   "dataset_url"
+    t.integer  "subtype"
+    t.string   "dynamic_url"
+    t.text     "dynamic_code"
   end
 
   add_index "infographic_translations", ["infographic_id"], :name => "index_infographic_translations_on_infographic_id"
@@ -181,8 +184,11 @@ ActiveRecord::Schema.define(:version => 20150216084130) do
   create_table "infographics", :force => true do |t|
     t.integer  "section_id"
     t.date     "published_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "subtype"
+    t.integer  "dynamic_width",  :default => 0
+    t.integer  "dynamic_height", :default => 0
   end
 
   add_index "infographics", ["section_id"], :name => "index_infographics_on_section_id"

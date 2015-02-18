@@ -77,20 +77,35 @@ $(document).ready(function() {
 
   // when media type changes, show the correct file fields
 	$('.story-viewer').on('change','input[name="medium[media_type]"]:radio',function(){
-		if($(this).val()==1) {
-		  $('#mediaImageBox').show();
-		  $('#mediaVideoBox').hide();
-	  }else {
-		  $('#mediaImageBox').hide();
-	    $('#mediaVideoBox').show();
-    }
+
+    var b = $(this).val()==1;
+    var form = $('form.medium');
+    form.find('#mediaImageBox').toggle(b);
+    form.find('#mediaVideoBox').toggle(!b);
+
     // make sure the file fields are reset when the option changes
-    $('form.medium input#mediaImage, form.medium input#mediaVideo').wrap('<form>').parent('form').trigger('reset');
-    $('form.medium input#mediaImage, form.medium input#mediaVideo').unwrap();
+    form.find('input#mediaImage, input#mediaVideo').wrap('<form>').parent('form').trigger('reset');
+    form.find('input#mediaImage, input#mediaVideo').unwrap();
 
     // when the media type is changed, update the translation media type to match
-    $('form.medium input.translation-media-type').val($(this).val());
+    form.find('input.translation-type').val($(this).val());
 	});
+
+  // when infographic type changes, show the correct file fields
+  $('.story-viewer').on('change','input[name="infographic[type]"]:radio',function(){
+console.log('herer');
+    var b = $(this).val()==1;
+    var form = $('form.infographic');
+    form.find('#infographicStaticBox').toggle(b);
+    form.find('#infographicDynamicBox').toggle(!b);
+
+    // make sure the file fields are reset when the option changes    
+    form.find('input#infographicStatic, input#infographicDynamic').wrap('<form>').parent('form').trigger('reset');
+    form.find('input#infographicStatic, input#infographicDynamic').unwrap();
+    // when the infographic type is changed, update the translation infographic type to match
+    form.find('input.translation-type').val($(this).val());
+  });
+
 
   $('.builder-wrapper .workplace').on('click', '.story-page1 #btnOlly, .story-page2 #btnOlly', function(){
     ths = $('#embedMediaUrl');

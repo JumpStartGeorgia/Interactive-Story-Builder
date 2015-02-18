@@ -130,6 +130,7 @@ ru:
         image: Infographic Image
         dataset_file: Dataset File
         datasources: Data Sources
+        subtype: Infographic Type        
       infographic_translation: &infographic_translation
         title: Title
         caption: Heading
@@ -758,6 +759,8 @@ ru:
     infographic:
       form_title: Infographic Form
       add_datasource: Add Data Source
+      static: Static
+      dynamic: Dynamic      
       placeholder:
         title: Title
         caption: optional
@@ -769,6 +772,7 @@ ru:
         image: Only jpg and png format allowed; 8MB file size limit
         dataset_file: Please try to compress files to make for quicker download; 25MB file size limit
         dataset_url: URL to Dataset
+        subtype: "Static infographics are images, Dynamic infographics require a url."        
     infographic_datasource_fields:
       placeholder:
         url: optional

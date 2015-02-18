@@ -130,6 +130,7 @@ en:
         image: Infographic Image
         dataset_file: Related File
         datasources: Data Sources
+        subtype: Infographic Type
       infographic_translation: &infographic_translation
         title: Title
         caption: Heading
@@ -758,10 +759,17 @@ en:
     infographic:
       form_title: Infographic Form
       add_datasource: Add Data Source
+      static: Static
+      dynamic: Dynamic
+      label:
+        dynamic_size: Infographic dimensions WidthxHeight
       placeholder:
         title: Title
         caption: optional
         dataset_url: optional
+        dynamic_url: Interactive Url
+        dynamic_width: 0
+        dynamic_height: 0        
       hint:
         title: This text only appears in the left sidebar, it will not show up in the story
         caption: "Heading of infographic will appear above the infographic image. If this Infographic Section is first in the story, you should leave this blank and use the Story Title field."
@@ -769,6 +777,9 @@ en:
         image: Only jpg and png format allowed; 8MB file size limit
         dataset_file: Please try to compress files to make for quicker download; 25MB file size limit
         dataset_url: URL to Dataset
+        subtype: "Static infographics are images, Dynamic infographics require a url."        
+        dynamic_url: Url to web page with interactive infographic
+        dynamic_size: Leave 0 if you want width and height to be fullscreen or specify size in px
     infographic_datasource_fields:
       placeholder:
         url: optional
