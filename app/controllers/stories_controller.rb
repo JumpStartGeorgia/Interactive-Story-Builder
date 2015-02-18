@@ -360,16 +360,15 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
       @item = Youtube.new(params[:youtube])    
       @type = :youtube 
 
-      # copy the loop/info data into the translation records
-      # so the get code method can use these values
-      loop = params[:youtube][:loop]
-      info = params[:youtube][:info]
-      params[:youtube][:youtube_translations_attributes]['0'][:loop] = loop
-      params[:youtube][:youtube_translations_attributes]['0'][:info] = info
+      # copy the loop/info data into the translation records;  so the get code method can use these values
+      params[:youtube][:youtube_translations_attributes]['0'][:loop] = params[:youtube][:loop]
+      params[:youtube][:youtube_translations_attributes]['0'][:info] = params[:youtube][:info]
 
     elsif params[:infographic].present?  
       @item = Infographic.new(params[:infographic])    
       @type = :infographic 
+      params[:infographic][:infographic_translations_attributes]['0'][:width] = params[:infographic][:dynamic_width]
+      params[:infographic][:infographic_translations_attributes]['0'][:height] = params[:infographic][:dynamic_height]
     end
     respond_to do |format|
       if @item.save
@@ -430,17 +429,15 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
     elsif params[:youtube].present?  
       klass = Youtube
       type = :youtube
-
-      # copy the loop/info data into the translation records
-      # so the get code method can use these values
-      loop = params[:youtube][:loop]
-      info = params[:youtube][:info]
-      params[:youtube][:youtube_translations_attributes]['0'][:loop] = loop
-      params[:youtube][:youtube_translations_attributes]['0'][:info] = info
+      # copy the loop/info data into the translation records;  so the get code method can use these values
+      params[:youtube][:youtube_translations_attributes]['0'][:loop] = params[:youtube][:loop]
+      params[:youtube][:youtube_translations_attributes]['0'][:info] = params[:youtube][:info]
 
     elsif params[:infographic].present?  
       klass = Infographic
       type = :infographic
+      params[:infographic][:infographic_translations_attributes]['0'][:width] = params[:infographic][:dynamic_width]
+      params[:infographic][:infographic_translations_attributes]['0'][:height] = params[:infographic][:dynamic_height]
     end   
      @item = klass.find_by_id(params[type][:id]) 
      respond_to do |format|

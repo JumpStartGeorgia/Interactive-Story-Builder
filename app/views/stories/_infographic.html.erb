@@ -90,7 +90,7 @@
           <% 
             asset_class = @isTO ? 'original-image-asset' : 'translated-image-asset'
           %>
-          <div id='infographicStaticBox' class="input">
+          <div id='infographicStaticBox' class="input" <%= @item.subtype == Infographic::TYPE[:dynamic]  ? "style=display:none;" : "" %> >
             <label class=" control-label" for="infographic-image-preview"><%= t('activerecord.attributes.infographic.image') %></label>
             <% if !@isTO %>
               <% if !original %>

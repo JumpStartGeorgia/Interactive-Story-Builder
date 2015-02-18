@@ -1697,14 +1697,30 @@ ul.dropdown-menu li a
 /* infographic */
 .section.infographic
 {
-  margin: 23px auto;
-  max-width:730px;
+  width:100%;
 }
 .section.infographic .container
 {
-  margin:0px;
+  margin:0px auto;
   padding:0px;
-  width:auto;
+  width:100%;
+}
+.section.infographic .container .content,
+.section.infographic .container .caption,
+.section.infographic .container .description,
+.section.infographic .container .sources,
+.section.infographic .container .dataset
+{
+  margin: 0px auto;
+  max-width:730px;
+}
+.section.infographic .container .content.wide
+{  
+  max-width:100%;
+}
+.section.infographic .container .content.wide iframe
+{  
+  width:100%;
 }
 .section.infographic .container .caption
 {
@@ -1727,7 +1743,7 @@ ul.dropdown-menu li a
   font-size:16px;
   color:#545454;
   line-height:24px;
-  margin:20px 0px 10px;
+  margin:20px auto 10px;
 }
 .section.infographic .container .description:lang(en)
 {
@@ -1746,7 +1762,7 @@ ul.dropdown-menu li a
   font-size:14px;
   color:#5e5e5e;  
   font-style:normal;
-  margin:5px 0px 10px;
+  margin:5px auto 10px;
 }
 .section.infographic .container .sources:lang(en),
 .section.infographic .container .dataset:lang(en)
@@ -1784,8 +1800,6 @@ ul.dropdown-menu li a
   background-color:#e3e3e3;
   text-decoration:none;  
 }
-
-
 .section.infographic .container .content
 {
   position:relative;

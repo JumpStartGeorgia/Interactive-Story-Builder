@@ -278,13 +278,17 @@
                 <% if item.caption.present? %>
                   <div class="caption"><%= item.caption %></div>
                 <% end %>
-                  <div class="content" data-original='<%= section.infographic.image.file.url %>'>
-                    <%
-                      alt = section.infographic.alt_text.present? ? section.infographic.alt_text : isFirst ? @story.about : ''
-                    %>
-                    <img src="<%= section.infographic.image.file.url(:poster) %>" alt="<%= strip_tags_nbsp(alt) %>">
+                <% if item.subtype == Infographic::TYPE[:static] %> 
+                  <div class="content" data-original='<%= item.image.file.url %>'>
+                    <% alt = item.alt_text.present? ? item.alt_text : isFirst ? @story.about : '' %>
+                    <img src="<%= item.image.file.url(:poster) %>" alt="<%= strip_tags_nbsp(alt) %>">
                     <div class="bg"></div>
                   </div>
+                <% else %>
+                  <div class="content<%= item.dynamic_width == 0 ? ' wide' : '' %>">
+                    <%= item.dynamic_code.html_safe %>
+                  </div>
+                <% end %>
                   <% if isFirst %>
                     <div class='js-row'>
                       <% if @story.story_type_id != 1 && @story.about.present? %>
