@@ -114,93 +114,79 @@
 
         <%
           video_asset_record = trans_record.video
-          video_image_asset_record = trans_record.image
           if video_asset_record.blank?
             video_asset_record = trans_record.build_video(:asset_type => Asset::TYPE[:media_video])
-          end
-          if video_image_asset_record.blank?
-            video_image_asset_record = trans_record.build_image(:asset_type => Asset::TYPE[:media_image])
           end
         %>
         <%= f_translation.fields_for :video, video_asset_record do |f_video_asset| %>
           <%= f_video_asset.input :asset_type, :as => :hidden %>
-          <%= f_translation.fields_for :image, video_image_asset_record do |f_video_image_asset| %>
-            <%= f_video_image_asset.input :asset_type, :as => :hidden %>
+          <% 
+            asset_class = isTO ? 'original-video-asset' : 'translated-video-asset'
+          %>
 
-            <% 
-              asset_class = isTO ? 'original-video-asset' : 'translated-video-asset'
-            %>
-
-            <div id='mediaVideoBox' <%=  @item.media_type == Medium::TYPE[:image]  ? "style=display:none;" : "" %> >
-              <div>
-                <label class=" control-label" for="media-video-preview"><%= t('activerecord.attributes.medium.video') %></label>
-                <% preview = false %>
-                <% if  video_asset_record.file.exists? && video_asset_record.asset_clone_id.blank? %>
-                  <% if video_asset_record.processed %>
-                    <span class="processed-msg processed">
-                      <%= t('app.msgs.video_processed') %>
-                    </span>
-                    <% preview = true %>
-                   
-                  <% else %>
-                    <span class="processed-msg not-processed">
-                      <%= t('app.msgs.video_not_processed') %>
-                    </span>
-                  <% end %>
-                <% end %>
-              </div>
-
-              <% if !isTO %>
-                <% if !original %>
-                  <div class="boolean input optional checkbox" id="asset_clone_thumbnail">
-                    <input name="clone_video_asset" type="hidden" value="0">
-                    <label class="  control-label" for="clone_video_asset">
-                      <input id="clone_video_asset" name="clone_video_asset" type="checkbox" value="1" <%= video_asset_record.asset_clone_id.present? ? 'checked=checked' : '' %>><%= t('app.common.clone_asset') %>
-                      <div class="help-inline" original-title="<%= t('helpers.hints.clone_asset') %>">
-                        <div>?</div>
-                      </div>
-                    </label>
-                  </div>
-
-                  <div class="js-row">
-                    <% if video_asset_record.asset_clone_id.blank? && preview %>
-                      <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ video_asset_record.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
-                    <% end %>
-                    <div id="item-video-asset-clone">
-                      <% 
-                        orig = @item.with_translation(@from)
-                        orig_asset_id = orig.present? && orig.video.present? ? orig.video.id : nil
-                      %>
-                      <%= f_video_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id} %>
-                    </div>
-                    <div id="item-video-image-asset-clone">
-                      <% 
-                        orig_asset_id = orig.present? && orig.image.present? ? orig.image.id : nil
-                      %>
-                      <%= f_video_image_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id} %>
-                    </div>
-
-                    <% vis_class = video_asset_record.asset_clone_id.present? ? 'not-visible' : '' %>
-                    <div id="item-video-asset" class="item-asset <%= vis_class %>">
-                      <%= f_video_asset.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:".mp4,.mov,.webm,.ogv,.flv,.avi,.wmv" }, label: false %>
-                    </div>
-                  </div>
+          <div id='mediaVideoBox' <%=  @item.media_type == Medium::TYPE[:image]  ? "style=display:none;" : "" %> >
+            <div>
+              <label class=" control-label" for="media-video-preview"><%= t('activerecord.attributes.medium.video') %></label>
+              <% preview = false %>
+              <% if  video_asset_record.file.exists? && video_asset_record.asset_clone_id.blank? %>
+                <% if video_asset_record.processed %>
+                  <span class="processed-msg processed">
+                    <%= t('app.msgs.video_processed') %>
+                  </span>
+                  <% preview = true %>
+                 
                 <% else %>
-                  <% if video_asset_record.file.exists? && preview %>
-                    <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ video_asset_record.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
-                  <% end %>  
-                  <%= f_video_asset.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:".mp4,.mov,.webm,.ogv,.flv,.avi,.wmv" }, label: false %>
+                  <span class="processed-msg not-processed">
+                    <%= t('app.msgs.video_not_processed') %>
+                  </span>
                 <% end %>
+              <% end %>
+            </div>
+
+            <% if !isTO %>
+              <% if !original %>
+                <div class="boolean input optional checkbox" id="asset_clone_thumbnail">
+                  <input name="clone_video_asset" type="hidden" value="0">
+                  <label class="  control-label" for="clone_video_asset">
+                    <input id="clone_video_asset" name="clone_video_asset" type="checkbox" value="1" <%= video_asset_record.asset_clone_id.present? ? 'checked=checked' : '' %>><%= t('app.common.clone_asset') %>
+                    <div class="help-inline" original-title="<%= t('helpers.hints.clone_asset') %>">
+                      <div>?</div>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="js-row">
+                  <% if video_asset_record.asset_clone_id.blank? && preview %>
+                    <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ video_asset_record.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
+                  <% end %>
+                  <div id="item-video-asset-clone">
+                    <% 
+                      orig = @item.with_translation(@from)
+                      orig_asset_id = orig.present? && orig.video.present? ? orig.video.id : nil
+                    %>
+                    <%= f_video_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id} %>
+                  </div>
+
+                  <% vis_class = video_asset_record.asset_clone_id.present? ? 'not-visible' : '' %>
+                  <div id="item-video-asset" class="item-asset <%= vis_class %>">
+                    <%= f_video_asset.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:".mp4,.mov,.webm,.ogv,.flv,.avi,.wmv" }, label: false %>
+                  </div>
+                </div>
               <% else %>
                 <% if video_asset_record.file.exists? && preview %>
-                  <div style="height: 35px;">&nbsp;</div>
                   <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ video_asset_record.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
-                <% else %>
-                  <div style="height: 66px;">&nbsp;</div>
-                <% end %>
-              <% end %>    
-            </div>
-          <% end %> 
+                <% end %>  
+                <%= f_video_asset.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:".mp4,.mov,.webm,.ogv,.flv,.avi,.wmv" }, label: false %>
+              <% end %>
+            <% else %>
+              <% if video_asset_record.file.exists? && preview %>
+                <div style="height: 35px;">&nbsp;</div>
+                <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ video_asset_record.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
+              <% else %>
+                <div style="height: 66px;">&nbsp;</div>
+              <% end %>
+            <% end %>    
+          </div>
         <% end %> 
 
         <%= f_translation.input :caption, 
