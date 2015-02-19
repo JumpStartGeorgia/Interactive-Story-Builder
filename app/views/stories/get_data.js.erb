@@ -49,6 +49,8 @@
      // when indicate whether or not to use cloned asset, act accordingly
      $('form.form-translation').on('change', 'input.clone_asset', function(){
        var parent = $(this).closest('.image_asset_fields');
+       var master_parent = $(this).closest('.image_asset_form_container');
+       var img_block = $(master_parent).find('.preview_img');
 
        if ($(this).is(':checked')){
          // hide file field
@@ -57,11 +59,32 @@
          $(parent).find('.item-asset input[type="file"]').replaceWith($(parent).find('.item-asset input[type="file"]').clone());
          // save the clone id
          $(parent).find('.item-asset-clone input').val($(parent).find('.item-asset-clone input').data('original-id'));
+         // load the clone image
+         // if no image exists yet, load the clone img
+         // else replace the clone img src
+         var index = $('.story-page2 form .image_asset_form_container').index(master_parent);
+         if ($(img_block).has('img').length == 0){
+          // add img
+          $(img_block).html($($('.story-page1 form .image_asset_form_container')[index]).find('.preview_img').html());
+         }else{
+          // update src and save original src
+          $(img_block).find('img').attr('data-src', $(img_block).find('img').attr('src'));
+          $(img_block).find('img').attr('src', $($('.story-page1 form .image_asset_form_container')[index]).find('.preview_img img').attr('src'));
+         }
        }else{
          // show file field
          $(parent).find('.item-asset').removeClass('not-visible');
          // reset clone id
          $(parent).find('.item-asset-clone input').val('');
+         // reset the clone image
+         // if data-src exists, then replace the src with it
+         // else remove img
+         var index = $('.story-page2 form .image_asset_form_container').index(master_parent);
+         if ($(img_block).find('img').data('src') == undefined){
+           $(img_block).html('');
+         }else{
+           $(img_block).find('img').attr('src', $(img_block).find('img').data('src'));
+         }
        }
 
      });
