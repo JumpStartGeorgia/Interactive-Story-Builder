@@ -19,7 +19,7 @@
     </div>   
     <%= render partial: "storyteller/template/#{@template}/footer"%> 
     <div class="info-bottom">
-      <!-- <div class='scroll-top' title="<%= t('app.common.scroll_top') %>"></div> -->
+      <!-- <div class='scroll-top' title="<%= t('app.common.scroll_top', locale: @story.current_locale) %>"></div> -->
       <div class="info-row">
         <div class="l">
           <div class='authors'>       
@@ -32,7 +32,7 @@
                     <%= link_to t.name, author_path(t.permalink), :title => t.name %>
                   </div>
                   <div class="follow">
-                    <%= render partial: 'layouts/follow_link', locals: {:user_id => t.id, :is_story_page => true, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
+                    <%= render partial: 'layouts/follow_link', locals: {:locale => @story.current_locale, :user_id => t.id, :is_story_page => true, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
                   </div>  
                 </div>
               <% } %>
@@ -43,7 +43,7 @@
           <div class="r">
               <div class='share'>
                      <div class="addthis_native_toolbox"></div> 
-                      <%= link_to '#',   :'data-modalos-id' => "modalos-embed", :title => t('app.common.embed'), :class => "embed modalEmbed" do %>
+                      <%= link_to '#',   :'data-modalos-id' => "modalos-embed", :title => t('app.common.embed', locale: @story.current_locale), :class => "embed modalEmbed" do %>
                       <% end %> 
               </div>
           </div>

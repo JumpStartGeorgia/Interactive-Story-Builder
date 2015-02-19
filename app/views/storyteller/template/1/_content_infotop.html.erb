@@ -5,11 +5,11 @@
   <div class='js-row'>
     <div class="share">
       <div class="addthis_native_toolbox"></div> 
-       <%= link_to '#', :'data-modalos-id' => "modalos-embed", :title => t('app.common.embed'), :class => "embed modalEmbed" do %>
+       <%= link_to '#', :'data-modalos-id' => "modalos-embed", :title => t('app.common.embed', locale: @story.current_locale), :class => "embed modalEmbed" do %>
 
          <% end %> 
       </div>
-      <div class="views" title=""><%= t('app.common.views') %>:&nbsp;<span><%= @story.impressions_count %></span></div>  
+      <div class="views" title=""><%= t('app.common.views', locale: @story.current_locale) %>:&nbsp;<span><%= @story.impressions_count %></span></div>  
       <div class="r">  
       <%  
        locales = @is_preview ? @story.story_locales : @story.published_locales
@@ -18,7 +18,7 @@
        locales-=[cur_locale]
       %>
        <div class='translations'>
-         <div><%= t('helpers.links.languages') %>:&nbsp;</div>
+         <div><%= t('helpers.links.languages', locale: @story.current_locale) %>:&nbsp;</div>
          <div class="dropdown">
            <button class='btn btn-default dropdown-toggle<%= locales.size > 0 ? "" : " disabled" %>' type="button" id="translationsMenu" data-toggle="dropdown" aria-expanded="true">
              <%= cur_lang.present? ? cur_lang.name : cur_locale %>

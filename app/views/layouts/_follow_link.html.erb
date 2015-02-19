@@ -1,9 +1,10 @@
 <%
+  locale ||= I18n.locale
   is_story_page ||= false
   page_to_return_to ||= current_url
   @is_following ||= false
-  text = t('app.common.follow')
-  title = t('app.common.follow_link_title')
+  text = t('app.common.follow', locale: locale)
+  title = t('app.common.follow_link_title', locale: locale)
   css = 'follow-link '  
 
   if !user_signed_in?
@@ -13,8 +14,8 @@
   data_css = is_story_page ? 'follow-story' : 'follow-author'
 
   if @is_following
-    text = t('app.common.following')
-    title = t('app.common.unfollow_link_title')
+    text = t('app.common.following', locale: locale)
+    title = t('app.common.unfollow_link_title', locale: locale)
     css << data_css
   end
 %>
@@ -23,8 +24,8 @@
   <%= link_to text, '#', :class => css, :title => title,
         :'data-id' => (user_id.present? ? user_id : nil), :'data-css' => data_css,
         :'data-follow-href' => settings_follow_user_path, :'data-unfollow-href' => settings_unfollow_user_path,
-        :'data-follow' => t('app.common.follow'), :'data-following' => t('app.common.following'),
-        :'data-follow-title' => t('app.common.follow_link_title'), :'data-unfollow-title' => t('app.common.unfollow_link_title') %>
+        :'data-follow' => t('app.common.follow', locale: locale), :'data-following' => t('app.common.following', locale: locale),
+        :'data-follow-title' => t('app.common.follow_link_title', locale: locale), :'data-unfollow-title' => t('app.common.unfollow_link_title', locale: locale) %>
 <% else %>
   <%= link_to text, new_user_session_path({:return_url => page_to_return_to}), :title => title,
         :class => css,  :"data-modalos-id" => "modalos-sign-in" %>
