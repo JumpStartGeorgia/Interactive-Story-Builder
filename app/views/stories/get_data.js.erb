@@ -96,13 +96,17 @@
          $('form.form-translation #item-video-asset input[type="file"]').replaceWith($('form.form-translation #item-video-asset input[type="file"]').clone());
          // save the clone id
          $('form.form-translation #item-video-asset-clone input').val($('form.form-translation #item-video-asset-clone input').data('original-id'));
+         $('form.form-translation #item-video-image-asset-clone input').val($('form.form-translation #item-video-image-asset-clone input').data('original-id'));
          // hide preview
          $('form.form-translation .translated-video-asset').hide();
+         // set clone_image_asset field
+         $('form.form-translation input#clone_image_asset').val(1);
        }else{
          // show file field
          $('form.form-translation #item-video-asset').removeClass('not-visible');
          // reset clone id
          $('form.form-translation #item-video-asset-clone input').val('');
+         $('form.form-translation #item-video-image-asset-clone input').val('');
          // show preview
          $('form.form-translation .translated-video-asset').show();
        }

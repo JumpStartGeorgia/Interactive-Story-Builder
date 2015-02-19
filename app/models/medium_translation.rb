@@ -98,10 +98,10 @@ class MediumTranslation < ActiveRecord::Base
     puts "====== trans is processed"
     if video_type?
       puts "- video"
-      video_exists? && self.video.processed
+      video_exists? && self.video.is_processed?
     elsif image_type?
       puts "- image"
-      image_exists? && self.image.processed 
+      image_exists? && self.image.is_processed?
     end
   end
 
