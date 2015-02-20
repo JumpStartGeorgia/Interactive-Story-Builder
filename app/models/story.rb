@@ -502,6 +502,43 @@ class Story < ActiveRecord::Base
         end
       end
 
+
+      # infographic
+      puts "$$$$$$$$$ clone successful - copying infographic"
+      new_info = clone.sections.select{|x| x.infographic?}.map{|x| x.infographic}.flatten.select{|x| x.image_exists?}.map{|x| x.image}
+      self.sections.select{|x| x.infographic?}.map{|x| x.infographic}.flatten.select{|x| x.image_exists?}.map{|x| x.image}.each do |img|
+        # find matching record
+        record = new_info.select{|x| x.asset_file_name == img.asset_file_name && 
+                                      x.asset_content_type == img.asset_content_type && 
+                                      x.asset_file_size == img.asset_file_size && 
+                                      x.asset_updated_at == img.asset_updated_at}.first
+        # copy the file if match found
+        if record.present?
+          Dir.glob(img.file.path.gsub('/original/', '/*/')).each do |file|       
+            copy_asset file, file.gsub("/infographic/#{original_id}/", "/infographic/#{new_id}/") 
+                                  .gsub("/#{img.id}__", "/#{record.id}__") 
+          end
+        end
+      end
+      
+      # infographic_dataset
+      puts "$$$$$$$$$ clone successful - copying infographic_dataset"
+      new_info_dataset = clone.sections.select{|x| x.infographic?}.map{|x| x.infographic}.flatten.select{|x| x.dataset_file_exists?}.map{|x| x.dataset_file}
+      self.sections.select{|x| x.infographic?}.map{|x| x.infographic}.flatten.select{|x| x.dataset_file_exists?}.map{|x| x.dataset_file}.each do |img|
+        # find matching record
+        record = new_info_dataset.select{|x| x.asset_file_name == img.asset_file_name && 
+                                      x.asset_content_type == img.asset_content_type && 
+                                      x.asset_file_size == img.asset_file_size && 
+                                      x.asset_updated_at == img.asset_updated_at}.first
+        # copy the file if match found
+        if record.present?
+          Dir.glob(img.file.path.gsub('/original/', '/*/')).each do |file|       
+            copy_asset file, file.gsub("/infographic_dataset/#{original_id}/", "/infographic_dataset/#{new_id}/") 
+                                  .gsub("/#{img.id}__", "/#{record.id}__") 
+          end
+        end
+      end
+
       # # look in each directory in path and see if it has folder for original_id
       # # if so, copy it for new story
       # Dir.glob("#{path}/*").select {|f| File.directory? f}.each do |directory|
