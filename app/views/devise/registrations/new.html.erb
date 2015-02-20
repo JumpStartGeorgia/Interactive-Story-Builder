@@ -46,12 +46,12 @@
 	    <% end %>
     <% end %>
     
-	  <div class="control-group submit-row">
+	  <div class="form-group submit-row">
 		  <%= f.submit t('helpers.links.sign_up2'), :class => 'btn btn-default sign-up' %>
 	  </div>
   <% end %>
 
-  <div class="control-group">
+  <div class="form-group">
   <%- if controller_name != 'sessions' %>
 		  <%= link_to t('helpers.links.sign_in'), new_session_path(resource_name), :class => 'sign-in-link modalSignIn', :"data-modalos-id"=>"modalos-sign-in", :"data-modalos-class"=>"sign-in-window" %>
 	  <% end -%>

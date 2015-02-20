@@ -27,12 +27,12 @@
 	  <%= f.input :password_confirmation, :input_html => { :size => 35, :placeholder => t('activerecord.attributes.user.password_confirmation') }, :label => false %>
 
 
-	  <div class="control-group">
+	  <div class="form-group">
 		  <%= f.submit t('helpers.links.change_password2'), :class => 'btn btn-default' %>
 	  </div>
   <% end %>
 
-  <div class="control-group">
+  <div class="form-group">
 	  <%- if controller_name != 'sessions' %>
 		  <%= link_to t('helpers.links.sign_in'), new_session_path(resource_name), :class => 'sign-in-link' %>
 	  <% end -%>

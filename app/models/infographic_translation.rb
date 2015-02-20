@@ -55,8 +55,7 @@ class InfographicTranslation < ActiveRecord::Base
     u = self.dynamic_url
     if u.present?
       uri = URI.parse(u)
-      Rails.logger.debug("-------------------------------------#{self.width==0}")
-      html =  '<iframe '+(self.width!="0" ? 'width="'+self.width.to_s+'"': '')+(self.height!="0" ? 'height ="'+self.height.to_s+'"': '') + 'src="'+self.dynamic_url+'" frameborder="0" allowfullscreen class="infographic" sandbox="allow-scripts"></iframe>' 
+      html =  '<iframe '+(self.width!="0" ? 'width="'+self.width.to_s+'"': '')+(self.height!="0" ? 'height ="'+self.height.to_s+'"': '') + 'src="'+self.dynamic_url+'" frameborder="0" allowfullscreen class="infographic' + (self.height=="0" ? ' height': '') +'" sandbox="allow-scripts allow-same-origin"></iframe>' 
       ok = true
     end   
 

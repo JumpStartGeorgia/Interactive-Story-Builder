@@ -703,6 +703,7 @@
           }
 
           function resized() {
+
             fixHeight = innerWidth / fixRatio;
             fixTop = Math.round((innerHeight - fixHeight) / 2);
             fadeTop = Math.max(200, fixTop);
@@ -715,6 +716,8 @@
                   : d.last ? rect.bottom >= fixTop + fixHeight
                   : true;
             }).style("top","0px");
+            // append height for infographic if height class present
+            d3.selectAll(".infographic iframe.height").attr("height", innerHeight);
           }
 
           function fixscrolled(d) {

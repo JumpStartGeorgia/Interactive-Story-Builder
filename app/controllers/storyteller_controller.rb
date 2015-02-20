@@ -8,7 +8,8 @@ class StorytellerController < ApplicationController
 
 
   def index
-    Rails.logger.debug("------------------------------------------------------- storyteller-index ")
+
+    #Rails.logger.debug("------------------------------------------------------- storyteller-index ")
     @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css", "grid2.css")
     @js.push("storyteller.js","modalos.js","follow.js")    
   	story = Story.select('stories.id').is_published.find_by_permalink(params[:id])

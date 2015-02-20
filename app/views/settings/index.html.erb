@@ -21,7 +21,7 @@
             <% if current_user.has_provider_avatar? && !current_user.local_avatar_exists? %>
               <%= t('.facebook_avatar') %>
             <% elsif current_user.has_provider_avatar? %>
-              <%= link_to t('.use_facebook_avatar'), settings_remove_avatar_path, :class => 'btn btn-mini btn-warning' %>
+              <%= link_to t('.use_facebook_avatar'), settings_remove_avatar_path, :class => 'btn btn-xs btn-warning' %>
             <% end %>
             <%= as.input :asset, :as => :file , hint: t('helpers.hints.local_avatar') , :input_html => { accept:".jpg,.jpeg,.png" }, label: false  %> 
           </div>
