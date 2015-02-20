@@ -1,5 +1,8 @@
 # encoding: utf-8
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+#too_long: çox uzundur (%{count} simvoldan çox olmalı deyil)
+#too_short: çox qısadır (%{count} simvoldan az olmalı deyil)
+#wrong_length: uzunluqu səhvdir (%{count} simvol olmalıdır)
 
 az:
   date:
@@ -103,6 +106,7 @@ az:
     messages:
       accepted: qəbul olunmalıdır
       blank: boş ola bilməz
+      present: must be blank      
       confirmation: təsdiqə uygun deyil
       empty: boş ola bilməz
       equal_to: ! '%{count}-ə bərabər olmalıdır'
@@ -119,10 +123,20 @@ az:
       not_an_integer: tam rəqəm olmalıdır
       odd: tək olmalıdır
       record_invalid: ! 'Yoxlama uğursuz oldu: %{errors}'
+      restrict_dependent_destroy:
+        one: "Cannot delete record because a dependent %{record} exists"
+        many: "Cannot delete record because dependent %{record} exist"            
       taken: artıq mövcuddur
-      too_long: çox uzundur (%{count} simvoldan çox olmalı deyil)
-      too_short: çox qısadır (%{count} simvoldan az olmalı deyil)
-      wrong_length: uzunluqu səhvdir (%{count} simvol olmalıdır)
+      too_long:
+        one: is too long (maximum is 1 character)
+        other: is too long (maximum is %{count} characters)
+      too_short:
+        one: is too short (minimum is 1 character)
+        other: is too short (minimum is %{count} characters)
+      wrong_length:
+        one: is the wrong length (should be 1 character)
+        other: is the wrong length (should be %{count} characters)
+      other_than: "must be other than %{count}"
     template:
       body: ! 'Aşağıdaki səhvlər üzə çıxdı:'
       header:
@@ -179,6 +193,7 @@ az:
     percentage:
       format:
         delimiter: ''
+        format: "%n%"        
     precision:
       format:
         delimiter: ''
@@ -198,6 +213,7 @@ az:
       day: ! '%d'
       month_year: ! '%m, %Y'
     pm: günortadan sonra
+
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:

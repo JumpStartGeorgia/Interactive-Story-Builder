@@ -1,20 +1,9 @@
 # encoding: utf-8
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
+# too_long: "շատ երկար է (նշանների առավելագույն քանակությունը %{count} )"
+# too_short: "շատ կարճ է (նշանների նվազագույն քանակությունը %{count} )"
+# wrong_length: "սխալ երկարություն (պետք է լինի %{count} )"
 hy:
-  activerecord:
-    errors:
-      full_messages:
-        format: "%{attribute} %{message}"
-      messages:
-        taken: "արդեն զբաղված է"
-        record_invalid: "վալիդացիան տապալվեց %{errors} "
-
-      template:
-        body: "հայտնաբերվել են հատեւյալ դաշտերի հետ կապված հիմնախնդիրներ"
-        header:
-          one: "պատճառով –հ պահումի հնարավոր չէ"
-          other: "պատճառով –հ պահումի հնարավոր չէ"
   date:
     abbr_day_names: [կիր, երկ, երե, չոր, հին, ուրբ, շաբ]
     abbr_month_names: [nil, հունվ, փետր, մար, ապր, մայիս, հուն, հուլ, օգ, սեպ, հոկ, նոյ, դեկ]
@@ -77,6 +66,7 @@ hy:
     messages: 
       accepted: "պահանջվում է համաձայնություն"
       blank: "դատարկ չպետք է լինի"
+      present: must be blank      
       confirmation: "չի հաստատվում"
       empty: "դատարկ չպետք է լինի"
       equal_to: "պետք է լինի %{count} –ին հավասար"
@@ -92,9 +82,26 @@ hy:
       not_a_number: "թիվ չկա"
       not_an_integer: "պետք է լինի ամբողջ թիվ"
       odd: "պետք է լինի կենտ"
-      too_long: "շատ երկար է (նշանների առավելագույն քանակությունը %{count} )"
-      too_short: "շատ կարճ է (նշանների նվազագույն քանակությունը %{count} )"
-      wrong_length: "սխալ երկարություն (պետք է լինի %{count} )"
+      record_invalid: "վալիդացիան տապալվեց %{errors} " 
+      restrict_dependent_destroy:
+        one: "Cannot delete record because a dependent %{record} exists"
+        many: "Cannot delete record because dependent %{record} exist"      
+      taken: "արդեն զբաղված է"
+      too_long:
+        one: is too long (maximum is 1 character)
+        other: is too long (maximum is %{count} characters)
+      too_short:
+        one: is too short (minimum is 1 character)
+        other: is too short (minimum is %{count} characters)
+      wrong_length:
+        one: is the wrong length (should be 1 character)
+        other: is the wrong length (should be %{count} characters)
+      other_than: "must be other than %{count}"
+      template:
+        body: "հայտնաբերվել են հատեւյալ դաշտերի հետ կապված հիմնախնդիրներ"
+        header:
+          one: "պատճառով –հ պահումի հնարավոր չէ"
+          other: "պատճառով –հ պահումի հնարավոր չէ"
   helpers:
     select:
       prompt: "խնդրում ենք, ընտրեք"
@@ -146,6 +153,7 @@ hy:
     percentage:
       format:
         delimiter: ""
+        format: "%n%"        
     precision:
       format:
         delimiter: ""
@@ -160,9 +168,9 @@ hy:
     am: am
     formats:
       default: "%a, %d %b %Y %H:%M:%S %z"
-      file: "%Y %m %d %H:%M:%S"
       long: "%d %b %Y %H:%M"
       short: "%d %b %H:%M"
+      file: "%Y %m %d %H:%M:%S"
       publish: ! '%d/%m/%Y'
       day: ! '%d'
       month_year: ! '%m, %Y'
@@ -174,4 +182,4 @@ hy:
       <<: *errors
   activerecord:
     errors:
-      <<: *errors    
+      <<: *errors

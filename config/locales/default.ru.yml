@@ -125,6 +125,7 @@ ru:
     messages:
       accepted: нужно подтвердить
       blank: не может быть пустым
+      present: must be blank      
       confirmation: 'не совпадает с  %{attribute}'
       empty: не может быть пустым
       equal_to: может иметь лишь значение, равное %{count}
@@ -141,6 +142,9 @@ ru:
       not_an_integer: не является целым числом
       odd: может иметь лишь четное значение
       record_invalid: ! 'Возникли ошибки: %{errors}'
+      restrict_dependent_destroy:
+        one: "Cannot delete record because a dependent %{record} exists"
+        many: "Cannot delete record because dependent %{record} exist"            
       taken: уже существует
       too_long:
         few: слишком большой длины (не может быть больше чем %{count} символа)
@@ -237,6 +241,7 @@ ru:
     percentage:
       format:
         delimiter: ''
+        format: "%n%"        
     precision:
       format:
         delimiter: ''
