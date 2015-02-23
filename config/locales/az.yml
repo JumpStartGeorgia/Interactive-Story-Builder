@@ -102,6 +102,7 @@ az:
         title: Sərlövhə
         caption: Başlıq
         description: Təsvir
+        asset_files: Image(s)        
         asset: *asset
         assets: *asset        
       slideshow_translations: *slideshow_translation        
@@ -178,6 +179,7 @@ az:
         already_exists: verilənlər bazası artıq mövcuddur.
         story_authors: "ən azı bir şəxs seçilməlidir."
         publish_theme: Dərc olunan maddə təyin edilməmiş qədər  mövzu dərc edilə bilməz.
+        not_provided: 'must be provided.'        
   mailer:
     closing: Hörmətlə,
     signature: "Çayxana Komandası (Chai Khana also acceptable)"
@@ -713,7 +715,7 @@ az:
         title: Bu mətn hekayədə yox, yalnız sol paneldə görünəcək.
         caption: Sərlövhə slayd nümayişinin üstündə görünəcək
         description: təsvir slaydın altında yerləşir
-    asset_fields:
+    asset_file_fields:
       remove_image: Sil
       placeholder:
         caption: könüllü seçim

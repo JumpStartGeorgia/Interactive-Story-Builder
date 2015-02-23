@@ -239,11 +239,12 @@ class Asset < ActiveRecord::Base
   # settings to clone story
   amoeba do
     enable
-
+    nullify :story_id
     # indicate that this is amoeba running so videos are not re-processed
     customize(lambda { |original_asset,new_asset|
       new_asset.is_amoeba = true
     })
+
   end
 
   #################################

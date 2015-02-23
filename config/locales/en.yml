@@ -22,7 +22,7 @@ en:
       asset: &asset
         asset_file_name: File
         asset_content_type: File Content Type
-        asset_file_size: File Size
+        asset_file_size: File Size        
       avatar: *asset
       user:
         email: Email Address
@@ -102,6 +102,7 @@ en:
         title: Title
         caption: Heading
         description: Description
+        asset_files: Image(s)
         asset: *asset
         assets: *asset
       slideshow_translations: *slideshow_translation
@@ -178,6 +179,7 @@ en:
         already_exists: 'already exists in the database.'              
         story_authors: "must have at least one person selected."
         publish_theme: 'The theme cannot be published until at least one published item has been assigned to the theme.'
+        not_provided: 'must be provided.'
   mailer:
     closing: "Sincerely,"
     signature: The Chai Khana Team
@@ -713,7 +715,7 @@ en:
         title: This text only appears in the left sidebar, it will not show up in the story
         caption: Heading will appear at the top of the slideshow
         description: The description will appear below the slideshow
-    asset_fields:
+    asset_file_fields:
       remove_image: Remove
       placeholder:
         caption: optional

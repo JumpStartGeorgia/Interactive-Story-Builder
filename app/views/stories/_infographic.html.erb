@@ -59,8 +59,8 @@
               <% types.each do |type| %>
                 <div class="radio">
                   <% checked = (type[1] == Infographic::TYPE[:static] && @item.subtype.nil?) || type[1] == @item.subtype ? 'checked=checked' : '' %>
-                  <input <%= checked %> id="infographic_type_<%= type[1] %>" name="infographic[type]" type="radio" value="<%= type[1] %>">
-                  <label class="choice" for="infographic_type_<%= type[1] %>">
+                  <input <%= checked %> id="infographic_type_<%= type[1] %>" name="infographic[type]" type="radio" value="<%= type[1] %>" <%= (@item.id.present?) ? "disabled" : "" %>>
+                  <label class="choice<%= @item.id.present? ? ' disabled' : '' %>" for="infographic_type_<%= type[1] %>">
                     <span class="glyphicon <%= type[2] %>"></span>
                     <%= type[0] %>
                   </label>

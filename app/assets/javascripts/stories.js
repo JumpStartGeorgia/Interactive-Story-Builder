@@ -70,8 +70,8 @@ $(document).ready(function() {
       getObject('select', tmpType, tmpId, tmpSubId);
 
 		//getStory(section_id,item_id);
-		if($( "#slideshowAssets" ).length > 0 )
-		 $( "#slideshowAssets" ).sortable({ items: "> div" });
+		if($( "#slideshowAssetFiles" ).length > 0 )
+		 $( "#slideshowAssetFiles" ).sortable({ items: "> div" });
 	    return false;
 	});
 
@@ -799,8 +799,8 @@ function getObject(method, type, id, sub_id, which)
 function add_fields(link, association, content) {
   	var new_id = new Date().getTime();
   	var regexp = new RegExp("new_" + association, "g")
-    if (association == 'assets'){
-      $('#slideshowAssets').append(content.replace(regexp, new_id));
+    if (association == 'asset_files'){
+      $('#slideshowAssetFiles').append(content.replace(regexp, new_id));
     }else if (association == 'infographic_datasources'){
       $('#infographicDataSources').append(content.replace(regexp, new_id));
     }

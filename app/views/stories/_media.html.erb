@@ -43,8 +43,8 @@
               <% types.each do |type| %>
                 <div class="radio">
                   <% checked = (type[1] == Medium::TYPE[:image] && @item.media_type.nil?) || type[1] == @item.media_type ? 'checked=checked' : '' %>
-                  <input <%= checked %> id="medium_media_type_<%= type[1] %>" name="medium[media_type]" type="radio" value="<%= type[1] %>">
-                  <label class="choice" for="medium_media_type_<%= type[1] %>">
+                  <input <%= checked %> id="medium_media_type_<%= type[1] %>" name="medium[media_type]" type="radio" value="<%= type[1] %>" <%= (@item.id.present?) ? "disabled" : "" %>>
+                  <label class="choice<%= @item.id.present? ? ' disabled' : '' %>" for="medium_media_type_<%= type[1] %>">
                     <span class="glyphicon <%= type[2] %>"></span>
                     <%= type[0] %>
                   </label>

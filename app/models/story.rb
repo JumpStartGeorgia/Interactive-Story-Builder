@@ -60,7 +60,7 @@ class Story < ActiveRecord::Base
   validates :story_type_id, :presence => true
 	validates :template_id, :presence => true
 	validates :story_locale, :presence => true 
-  validates :authors, :length => { :minimum => 1, message: I18n.t('activerecord.errors.messages.story_authors')}
+  validates :story_authors, :length => { :minimum => 1, message: I18n.t('activerecord.errors.messages.story_authors')}
   # validates :user_id, :presence => true 
 
 
@@ -219,7 +219,7 @@ class Story < ActiveRecord::Base
     exclude_field :invitations
 
     # clone the associations
-		clone [:story_translations, :sections, :categories, :themes]
+		clone [:story_translations, :story_translation_progresses, :sections, :story_themes, :story_authors, :story_users]
 	end
 
   #################################
@@ -422,9 +422,11 @@ class Story < ActiveRecord::Base
       end
 
       # section audio
+      sec.section_translations.select{|x| x.asset.present? }.map{|x| x.asset.file_name}
+
       puts "$$$$$$$$$ clone successful - copying audio"
-      new_audio = clone.sections.select{|x| x.asset.present? && x.asset.file.exists?}.map{|x| x.asset}
-      self.sections.select{|x| x.asset.present? && x.asset.file.exists?}.map{|x| x.asset}.each do |audio|
+      new_audio = clone.sections.select{|x| x.asset.present? && x.asset.file.exists?}.map{|x| x.section_translations }.flatten.map{|x| x.asset }
+      self.sections.select{|x| x.asset.present? && x.asset.file.exists?}.map{|x| x.section_translations }.flatten.map{|x| x.asset }.each do |audio|
         # find matching record
         record = new_audio.select{|x| x.asset_file_name == audio.asset_file_name && 
                                       x.asset_content_type == audio.asset_content_type && 
@@ -437,10 +439,13 @@ class Story < ActiveRecord::Base
         end
       end
 
+
+  #def video_exists?
+#    video.present? && video.file.exists?
       # slideshow
       puts "$$$$$$$$$ clone successful - copying slideshow"
-      new_ss = clone.sections.select{|x| x.slideshow?}.map{|x| x.slideshow.assets}.flatten.select{|x| x.file.exists?}
-      self.sections.select{|x| x.slideshow?}.map{|x| x.slideshow.assets}.flatten.select{|x| x.file.exists?}.each do |img|
+      new_ss = clone.sections.select{|x| x.slideshow? && x.slideshow.present? }.map{|x| x.section_translations }.flatten.map{|x| x.slideshow.asset_files }.flatten.select{|x| x.file.exists?}
+      self.sections.select{|x| x.slideshow?  && x.slideshow.present? }.map{|x| x.slideshow.assets}.flatten.select{|x| x.file.exists?}.each do |img|
         # find matching record
         record = new_ss.select{|x| x.asset_file_name == img.asset_file_name && 
                                       x.asset_content_type == img.asset_content_type && 

@@ -102,6 +102,7 @@ ru:
         title: "Заглавок"
         caption: "Название"
         description: "Описание"
+        asset_files: Image(s)        
         asset: *asset
         assets: *asset
       slideshow_translations: *slideshow_translation        
@@ -178,6 +179,7 @@ ru:
         already_exists: "В базе данных уже существует."
         story_authors: "Должны выбрать по крайней мере одного человека."
         publish_theme: Тема не может быть опубликованна если хотя бы одна деталь не будет добавлена.
+        not_provided: 'must be provided.'        
   mailer:
     closing: "С уважением"
     signature: "Команда Чайхана"
@@ -713,7 +715,7 @@ ru:
         title: "Этот текст появляется только в левой боковой панели, он не будет отображаться в истории"
         caption: "Заголовок появится в верхней части спайдшоу"
         description: Описание появится под слайдом
-    asset_fields:
+    asset_file_fields:
       remove_image: "Удалить"
       placeholder:
         caption: "необязательно"

@@ -168,7 +168,7 @@ class Section < ActiveRecord::Base
         end
         return !exists.include?(false)
     elsif slideshow?
-      return self.slideshow.present? && self.slideshow.assets.present?
+      return self.slideshow.present? && self.slideshow.images.present?
     elsif embed_media?
       return self.embed_medium.present? && self.embed_medium.code.present?
     elsif youtube?

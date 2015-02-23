@@ -102,6 +102,7 @@ hy:
         title: "Վերնագիր"
         caption: "Անվանում"
         description: "Նկարագրություն"
+        asset_files: Image(s)
         asset: *asset
         assets: *asset        
       slideshow_translations: *slideshow_translation          
@@ -178,6 +179,7 @@ hy:
         already_exists: "Արդեն առկա է տվյալների բազայում"
         story_authors: "Անհրաժեշտ է ընտրել նվազագույնը մեկ հոգու"
         publish_theme: Նյութը չի կարող հրապարակվել քանի դեռ նվազագույնը մեկ տպագրված օբյեկտ չի կցվել թեմային.
+        not_provided: 'must be provided.'        
   mailer:
     closing: "Հարգանքով,"
     signature: "Չայխանայի թիմ"
@@ -713,7 +715,7 @@ hy:
         title: "Սույն տեքստը կերևա միայն աջ կողային վահանակի վրա, այն չի ներառվի նյութի մեջ"
         caption: "Վերնագիրը կերևա սլայդշոուի վերևում"
         description: Նկարագրությունը կհայտնվի սլայդ շոուից ներքև
-    asset_fields:
+    asset_file_fields:
       remove_image: "Հեռացնել"
       placeholder:
         caption: "ընտրովի"

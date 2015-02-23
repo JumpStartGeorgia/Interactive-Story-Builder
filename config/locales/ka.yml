@@ -102,6 +102,7 @@ ka:
         title: "სათაური"
         caption: "ფოტოს წარწერა"
         description: "აღწერა"
+        asset_files: Image(s)        
         asset: *asset
         assets: *asset        
       slideshow_translations: *slideshow_translation        
@@ -178,6 +179,7 @@ ka:
         already_exists: "უკვე არსებობს მონაცემთა ბაზაში"
         story_authors: "საჭიროა ერთი ადამიანის ონიშვნა მაინც."
         publish_theme: თემის გამოქვეყნება შეუძლებელია, თუ ამ თემას ერთი ამბავი მაინც არ აქვს მისადაგებული.
+        not_provided: 'must be provided.'        
   mailer:
     closing: "პატივისცემით,"
     signature: "“ჩაი ხანას” გუნდი"
@@ -713,7 +715,7 @@ ka:
         title: "ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში"
         caption: "წარწერა გამოჩნდება სლაიდშოუს ზედა ნაწილში"
         description: არღწერა გამოჩნდება სლაიდშოუს ქვემოთ
-    asset_fields:
+    asset_file_fields:
       remove_image: "წაშლა"
       placeholder:
         caption: "არ არის სავალდებულო"
