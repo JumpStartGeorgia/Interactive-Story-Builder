@@ -93,7 +93,7 @@
             <div class='info'>
               <div class='headline'><%= @story.title %></div>
               <div class="byline">
-                      <span class="caption"><%= t('storyteller.byline') %></span>
+                      <span class="caption"><%= t('storyteller.byline', locale: @story.current_locale) %></span>
                       <span class="author">&nbsp;<%= @story.story_author_names %></span>
                       <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
                       <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
@@ -186,7 +186,7 @@
                       <div class="video-headline">
                         <div class="headline"><%= @story.title %>
                           <div class="byline">
-                            <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.story_author_names %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                            <span class="caption"><%= t('storyteller.byline', locale: @story.current_locale) %></span><span class="author">&nbsp;<%= @story.story_author_names %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
                              <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
                           </div>         
                         </div>
@@ -262,7 +262,7 @@
                 <div class='info'>
                   <div class='headline'><%= @story.title %></div>
                   <div class="byline">
-                          <span class="caption"><%= t('storyteller.byline') %></span>
+                          <span class="caption"><%= t('storyteller.byline', locale: @story.current_locale) %></span>
                           <span class="author">&nbsp;<%= @story.story_author_names %></span>
                           <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
                           <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
@@ -295,7 +295,7 @@
                   <div class="description"><%= item.description.html_safe %></div>
                   <% if !item.datasources.empty? %>
                     <div class="sources">
-                      <div class="title"><%= t('storyteller.infographic.source') %>:&nbsp;</div>
+                      <div class="title"><%= t('storyteller.infographic.source', locale: @story.current_locale) %>:&nbsp;</div>
                       <% section.infographic.datasources.each do |t| %>
                       <% if t.url.present? %>
                        <div class='source'><%= link_to t.name+";", t.url, :target=>'blank' %></div>
@@ -307,12 +307,12 @@
                   <% end %>        
                   <% if item.dataset_url.present? || item.dataset_file_exists? %>
                     <div class="dataset">
-                      <div class="title"><%= t('storyteller.infographic.dataset') %>:&nbsp;</div>
+                      <div class="title"><%= t('storyteller.infographic.dataset', locale: @story.current_locale) %>:&nbsp;</div>
                       <% if item.dataset_file_exists? %>
-                        <div class='file'><%= link_to t('storyteller.infographic.download'), full_url(item.dataset_file.file.url) %></div>
+                        <div class='file'><%= link_to t('storyteller.infographic.download', locale: @story.current_locale), full_url(item.dataset_file.file.url) %></div>
                       <% end %>
                       <% if item.dataset_url.present? %>
-                        <div class='url'><%= link_to t('storyteller.infographic.online'), item.dataset_url, :target=>'blank' %></div>
+                        <div class='url'><%= link_to t('storyteller.infographic.online', locale: @story.current_locale), item.dataset_url, :target=>'blank' %></div>
                       <% end %>
                     </div>
                   <% end %>

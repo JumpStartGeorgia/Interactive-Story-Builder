@@ -162,7 +162,7 @@
                   <div id="item-video-asset-clone">
                     <% 
                       orig = @item.with_translation(@from)
-                      orig_asset_id = orig.video.id if orig.present? && orig.video.present?                  
+                      orig_asset_id = orig.present? && orig.video.present? ? orig.video.id : nil
                     %>
                     <%= f_video_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id} %>
                   </div>

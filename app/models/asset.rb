@@ -278,7 +278,11 @@ class Asset < ActiveRecord::Base
     return f
   end
 
-
+  # if this record is cloning another, then user the clone 
+  # else use this record
+  def is_processed?
+    self.asset_clone_id.present? ? self.asset_clone.processed : self.processed
+  end
   
   # get the processed url of a video
   def media_video_processed_url
