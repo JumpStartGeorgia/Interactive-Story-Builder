@@ -20,7 +20,8 @@ class InfographicTranslation < ActiveRecord::Base
   accepts_nested_attributes_for :dataset_file, :reject_if => lambda { |c| c[:asset].blank? && c[:asset_clone_id].blank? }
 
   attr_accessible :infographic_id, :locale, :title, :caption, :description, :dataset_url, 
-                  :image_attributes, :dataset_file_attributes, :infographic_datasources_attributes, :subtype, :dynamic_url, :dynamic_code, :width, :height
+                  :image_attributes, :dataset_file_attributes, :infographic_datasources_attributes, 
+                  :subtype, :dynamic_url, :dynamic_code, :width, :height
 
   attr_accessor :is_progress_increment, :progress_story_id, :width, :height
 
@@ -49,13 +50,18 @@ class InfographicTranslation < ActiveRecord::Base
     self.dataset_file.present? && self.dataset_file.file.exists?
   end  
   def generate_iframe
+    # if width or heights do not have values, default value to 0
+    self.width ||= "0"
+    self.height ||= "0"
+
     if dynamic_type? 
       ok = false
       html = ''
       u = self.dynamic_url
       if u.present?
+
         uri = URI.parse(u)
-        html =  '<iframe '+(self.width!="0" ? 'width="'+self.width.to_s+'"': '')+(self.height!="0" ? 'height ="'+self.height.to_s+'"': '') + 'src="'+self.dynamic_url+'" frameborder="0" allowfullscreen class="infographic' + (self.height=="0" ? ' height': '') +'" sandbox="allow-scripts allow-same-origin"></iframe>' 
+        html =  '<iframe '+(self.width!="0" ? ' width="'+self.width.to_s+'"': '')+(self.height!="0" ? ' height ="'+self.height.to_s+'"': '') + ' src="'+self.dynamic_url+'" frameborder="0" allowfullscreen class="infographic' + (self.height=="0" ? ' height': '') +'" sandbox="allow-scripts allow-same-origin"></iframe>' 
         ok = true
       end   
 

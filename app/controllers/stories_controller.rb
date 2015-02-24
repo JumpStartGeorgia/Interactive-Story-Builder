@@ -357,18 +357,21 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
       @item = EmbedMedium.new(params[:embed_medium])  
       @type = :embed_medium
     elsif params[:youtube].present?  
-      @item = Youtube.new(params[:youtube])    
-      @type = :youtube 
-
       # copy the loop/info data into the translation records;  so the get code method can use these values
       params[:youtube][:youtube_translations_attributes]['0'][:loop] = params[:youtube][:loop]
       params[:youtube][:youtube_translations_attributes]['0'][:info] = params[:youtube][:info]
 
+      @item = Youtube.new(params[:youtube])    
+      @type = :youtube 
+
     elsif params[:infographic].present?  
-      @item = Infographic.new(params[:infographic])    
-      @type = :infographic 
+      # copy the width/height data into the translation records;  so the get code method can use these values
       params[:infographic][:infographic_translations_attributes]['0'][:width] = params[:infographic][:dynamic_width]
       params[:infographic][:infographic_translations_attributes]['0'][:height] = params[:infographic][:dynamic_height]
+
+      @item = Infographic.new(params[:infographic])    
+      @type = :infographic 
+
     end
     respond_to do |format|
       if @item.save
@@ -436,8 +439,13 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
     elsif params[:infographic].present?  
       klass = Infographic
       type = :infographic
+
+      # copy the width/height data into the translation records;  so the get code method can use these values
       params[:infographic][:infographic_translations_attributes]['0'][:width] = params[:infographic][:dynamic_width]
       params[:infographic][:infographic_translations_attributes]['0'][:height] = params[:infographic][:dynamic_height]
+
+logger.debug "@@@@@@@@@@@@@ d width = #{params[:infographic][:dynamic_width]}; width = #{params[:infographic][:infographic_translations_attributes]['0'][:width]}"
+logger.debug "@@@@@@@@@@@@@ d height = #{params[:infographic][:dynamic_height]}; height = #{params[:infographic][:infographic_translations_attributes]['0'][:height]}"
     end   
      @item = klass.find_by_id(params[type][:id]) 
      respond_to do |format|
