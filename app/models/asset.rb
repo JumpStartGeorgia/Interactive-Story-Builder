@@ -280,6 +280,20 @@ class Asset < ActiveRecord::Base
   end
 
 
+  # use file_file_name to get the asset file name
+  # if this record is cloning another, then user the clone asset
+  # else use the asset in this record
+  def file_file_name
+    f = nil
+    if self.asset_clone_id.present?
+      x = self.asset_clone
+      f = x.asset_file_name if x.present?
+    else
+      f = self.asset_file_name
+    end
+    return f
+  end
+
   
   # get the processed url of a video
   def media_video_processed_url
