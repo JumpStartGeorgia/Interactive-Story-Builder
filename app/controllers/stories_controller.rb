@@ -306,7 +306,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
       if method=='select'    
         @item = Infographic.find_by_id(sub_id)   
       else 
-        @item = Infographic.new(:section_id => _id)
+        @item = Infographic.new(:section_id => _id, subtype: Infographic::TYPE[:static])
         # @item.infographic_translations.build(:locale => I18n.locale.to_s)
       end
     end

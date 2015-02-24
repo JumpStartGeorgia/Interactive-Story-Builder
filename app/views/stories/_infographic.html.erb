@@ -46,8 +46,8 @@
       <%= f_translation.input :description, { :as => :text, :input_html => {id: tinyClass , :class => tinyClass, :rows => 15}.merge(@readonly) }.merge(( @isTO ? {} : { hint: t('.hint.description') }))  %>      
        
         <% if !@trans %>
-          <div class="radio_buttons input required form-group radio-indent radio-hide-button" id="infographic_type_input">
-            <label class="  control-label" for="infographic_type">
+          <div class="radio_buttons input required form-group radio-indent radio-hide-button" id="infographic_subtype_input">
+            <label class="  control-label" for="infographic_subtype">
               <%= model_class.human_attribute_name(:subtype) %>
               <abbr title="<%= t('app.common.required') %>">*</abbr>
               <div class="help-inline" title="<%= t('.hint.subtype')%>">
@@ -59,8 +59,8 @@
               <% types.each do |type| %>
                 <div class="radio">
                   <% checked = (type[1] == Infographic::TYPE[:static] && @item.subtype.nil?) || type[1] == @item.subtype ? 'checked=checked' : '' %>
-                  <input <%= checked %> id="infographic_type_<%= type[1] %>" name="infographic[type]" type="radio" value="<%= type[1] %>" <%= (@item.id.present?) ? "disabled" : "" %>>
-                  <label class="choice<%= @item.id.present? ? ' disabled' : '' %>" for="infographic_type_<%= type[1] %>">
+                  <input <%= checked %> id="infographic_subtype_<%= type[1] %>" name="infographic[subtype]" type="radio" value="<%= type[1] %>" <%= (@item.id.present?) ? "disabled" : "" %>>
+                  <label class="choice<%= @item.id.present? ? ' disabled' : '' %>" for="infographic_subtype_<%= type[1] %>">
                     <span class="glyphicon <%= type[2] %>"></span>
                     <%= type[0] %>
                   </label>
@@ -72,7 +72,7 @@
 
         <%= (f_translation.input :subtype , :as => :hidden, :input_html => {
             :value => trans_record.subtype.present? ? trans_record.subtype : @item.subtype,
-            :class => 'translation-type'}) if !@isTO %>
+            :class => 'translation-subtype'}) if !@isTO %>
 
 
 

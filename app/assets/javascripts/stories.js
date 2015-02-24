@@ -93,7 +93,6 @@ $(document).ready(function() {
 
   // when infographic type changes, show the correct file fields
   $('.story-viewer').on('change','input[name="infographic[type]"]:radio',function(){
-console.log('herer');
     var b = $(this).val()==1;
     var form = $('form.infographic');
     form.find('#infographicStaticBox').toggle(b);
@@ -103,7 +102,7 @@ console.log('herer');
     form.find('input#infographicStatic, input#infographicDynamic').wrap('<form>').parent('form').trigger('reset');
     form.find('input#infographicStatic, input#infographicDynamic').unwrap();
     // when the infographic type is changed, update the translation infographic type to match
-    form.find('input.translation-type').val($(this).val());
+    form.find('input.translation-subtype').val($(this).val());
   });
 
 
