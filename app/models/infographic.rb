@@ -13,8 +13,8 @@ class Infographic < ActiveRecord::Base
   ## Validations
   validates :section_id, :presence => true
   validates :subtype, :presence => true, :inclusion => { :in => TYPE.values }  
-  validates :dynamic_width, presence: true, if: :dynamic_type? 
-  validates :dynamic_height, presence: true, if: :dynamic_type?
+  validates :dynamic_width, numericality: { greater_than_or_equal_to: 0, allow_nil: false }, if: :dynamic_type? 
+  validates :dynamic_height, numericality: { greater_than_or_equal_to: 0, allow_nil: false },  if: :dynamic_type?
 
 
   #################################

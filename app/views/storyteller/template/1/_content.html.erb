@@ -270,7 +270,7 @@
                 </div>
                <%= render partial: "storyteller/template/#{@template}/content_infotop" %>
               <% end %>
-            <% elsif section.infographic? %>    
+            <% elsif section.infographic? %>              
               <% item = section.infographic %>       
               <div class="section infographic">
                 <% if section.has_marker? %><a class="navigation-marker" id="<%= s_i + 1 %>"></a><% end %> 
