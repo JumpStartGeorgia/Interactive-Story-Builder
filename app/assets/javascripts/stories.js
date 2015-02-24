@@ -92,7 +92,7 @@ $(document).ready(function() {
 	});
 
   // when infographic type changes, show the correct file fields
-  $('.story-viewer').on('change','input[name="infographic[type]"]:radio',function(){
+  $('.story-viewer').on('change','input[name="infographic[subtype]"]:radio',function(){
     var b = $(this).val()==1;
     var form = $('form.infographic');
     form.find('#infographicStaticBox').toggle(b);
