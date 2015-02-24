@@ -46,6 +46,7 @@
     	
         //Extend dem' options
         var options = $.extend({}, defaults, options); 
+         console.log(options);
         return this.each(function() {
 /*---------------------------
  Global Variables
@@ -78,8 +79,8 @@
 			//if(bg.length == 0) {
 		//		bg = $('<div class="modalos-bg" />').appendTo('body');
 		//	}
-     		content = wrapper.find('.m-content');
-     		box = wrapper.find('.m-box').css("padding",options.paddings);
+     		content = wrapper.find('.m-content').css("padding",options.paddings);
+     		box = wrapper.find('.m-box');
 
 /*---------------------------
  Open & Close Animations

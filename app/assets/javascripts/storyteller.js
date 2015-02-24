@@ -122,7 +122,7 @@ $(document).ready(function(){
 
       $('.modalEmbed').on('click', function(e) {      
         var v = $('.navbar-storybuilder');   
-        $($('#modalos-embed').get(0).outerHTML).modalos({topOffset: v.position().top + v.height() + 30, width:350, height:370});
+        $($('#modalos-embed').get(0).outerHTML).modalos({topOffset: v.position().top + v.height() + 30, width:360, klass:'embed'}); // height:370,
         e.preventDefault();
       });     
 

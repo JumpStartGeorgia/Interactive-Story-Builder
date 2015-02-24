@@ -247,7 +247,13 @@ console.log('herer');
         };
         if(type == 'image')
         {
-    	 	output = "<img src='" +  $(this).data('image-path') + "' style='width:640px;'/>";
+    	 	 output = "<img src='" +  $(this).data('image-path') + "' style='width:640px;'/>";
+         opts = {
+            paddings : 20,
+            width:640,
+            contentscroll:false
+
+          };
         }
         else if(type == 'video')
         {
@@ -259,7 +265,7 @@ console.log('herer');
             topOffset: $(v).position().top + $(v).height() + 30,                   
             paddings :20,
             contentscroll:false,
-            width:722,
+            width:640,
             before_close:function(t)
             {
                $(t).find('video').each(function(){ this.pause(); })
@@ -267,7 +273,7 @@ console.log('herer');
             }
          };
         }
-        else if(type == 'text')
+      else if(type == 'text')
     	{
     		output = $("#contentArticle").val();
     	}
@@ -286,7 +292,8 @@ console.log('herer');
 	        	contentscroll:false
     		};
     	}
-    	if(opts===null) opts = opts_def;    	
+    	if(opts===null) opts = opts_def;   
+       console.log(opts); 	
       $(output).modalos(opts);
 
 		return true;	
