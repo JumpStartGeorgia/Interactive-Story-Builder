@@ -224,9 +224,9 @@
                         <h3><%= section.slideshow.caption %></h3>                      
                       <% end %>
                                 
-                  <!--[if lte IE 8]><img src="<%= section.slideshow.assets[0].file.url(:medium) %>" style="width:100%;"><![endif]-->
+                  <!--[if lte IE 8]><img src="<%= section.slideshow.asset_files[0].file.url(:medium) %>" style="width:100%;"><![endif]-->
                   <div class="slideshow-captions">
-                      <% section.slideshow.assets.each_with_index do |t,t_i| %>    
+                      <% section.slideshow.asset_files.each_with_index do |t,t_i| %>    
                           <div class="slideshow-caption" data-slug="<%= t.asset_file_name_formatted %>">
                             <%= t.caption.html_safe %>
                             <% if t.source.present? %> 
@@ -356,8 +356,8 @@
                     output<< item
                   end
                 elsif s.slideshow?
-                  subLength = s.slideshow.assets.length   
-                  s.slideshow.assets.each_with_index do |t,t_i| 
+                  subLength = s.slideshow.asset_files.length   
+                  s.slideshow.asset_files.each_with_index do |t,t_i| 
                     item = {}
 
                     item[:type] = "slideshow"

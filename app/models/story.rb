@@ -422,10 +422,9 @@ class Story < ActiveRecord::Base
       end
 
       # section audio
-      sec.section_translations.select{|x| x.asset.present? }.map{|x| x.asset.file_name}
 
       puts "$$$$$$$$$ clone successful - copying audio"
-      new_audio = clone.sections.select{|x| x.asset.present? && x.asset.file.exists?}.map{|x| x.section_translations }.flatten.map{|x| x.asset }
+      new_audio = clone.sections.map{|x| x.section_translations }.flatten.select{|x| x.asset.present? && x.asset.file.exists?}.map{|x| x.asset }
       self.sections.select{|x| x.asset.present? && x.asset.file.exists?}.map{|x| x.section_translations }.flatten.map{|x| x.asset }.each do |audio|
         # find matching record
         record = new_audio.select{|x| x.asset_file_name == audio.asset_file_name && 
@@ -439,13 +438,10 @@ class Story < ActiveRecord::Base
         end
       end
 
-
-  #def video_exists?
-#    video.present? && video.file.exists?
       # slideshow
       puts "$$$$$$$$$ clone successful - copying slideshow"
-      new_ss = clone.sections.select{|x| x.slideshow? && x.slideshow.present? }.map{|x| x.section_translations }.flatten.map{|x| x.slideshow.asset_files }.flatten.select{|x| x.file.exists?}
-      self.sections.select{|x| x.slideshow?  && x.slideshow.present? }.map{|x| x.slideshow.assets}.flatten.select{|x| x.file.exists?}.each do |img|
+      new_ss = clone.sections.select{|x| x.slideshow? && x.slideshow.present? }.map{|x| x.slideshow.slideshow_translations }.flatten.map{|x| x.asset_files }.flatten.select{|x| x.asset.exists? }
+      self.sections.select{|x| x.slideshow? && x.slideshow.present? }.map{|x| x.slideshow.slideshow_translations }.flatten.map{|x| x.asset_files }.flatten.select{|x| x.asset.exists? }.each do |img|
         # find matching record
         record = new_ss.select{|x| x.asset_file_name == img.asset_file_name && 
                                       x.asset_content_type == img.asset_content_type && 
@@ -460,11 +456,10 @@ class Story < ActiveRecord::Base
         end
       end
 
-
-      # images
+      # media image
       puts "$$$$$$$$$ clone successful - copying images"
-      new_img = clone.sections.select{|x| x.media?}.map{|x| x.media}.flatten.select{|x| x.image_exists?}.map{|x| x.image}
-      self.sections.select{|x| x.media?}.map{|x| x.media}.flatten.select{|x| x.image_exists?}.map{|x| x.image}.each do |img|
+      new_img = clone.sections.select{|x| x.media? && x.media.present? }.map{ |x| x.media }.flatten.map{|x| x.medium_translations}.flatten.select{|x| x.image_exists? }.map{|x| x.image }
+      self.sections.select{|x| x.media? && x.media.present? }.map{ |x| x.media }.flatten.map{|x| x.medium_translations}.flatten.select{|x| x.image_exists? }.map{|x| x.image }.each do |img|
         # find matching record
         record = new_img.select{|x| x.asset_file_name == img.asset_file_name && 
                                       x.asset_content_type == img.asset_content_type && 
@@ -481,8 +476,8 @@ class Story < ActiveRecord::Base
 
       # videos
       puts "$$$$$$$$$ clone successful - copying videos"
-      new_video = clone.sections.select{|x| x.media?}.map{|x| x.media}.flatten.select{|x| x.video_exists?}.map{|x| x.video}
-      self.sections.select{|x| x.media?}.map{|x| x.media}.flatten.select{|x| x.video_exists?}.map{|x| x.video}.each do |video|
+      new_video = clone.sections.select{|x| x.media? && x.media.present? }.map{ |x| x.media }.flatten.map{|x| x.medium_translations}.flatten.select{|x| x.video_exists? }.map{|x| x.video }
+      self.sections.select{|x| x.media? && x.media.present? }.map{ |x| x.media }.flatten.map{|x| x.medium_translations}.flatten.select{|x| x.video_exists? }.map{|x| x.video }.each do |video|
         # find matching record
         record = new_video.select{|x| x.asset_file_name == video.asset_file_name && 
                                       x.asset_content_type == video.asset_content_type && 
@@ -510,8 +505,8 @@ class Story < ActiveRecord::Base
 
       # infographic
       puts "$$$$$$$$$ clone successful - copying infographic"
-      new_info = clone.sections.select{|x| x.infographic?}.map{|x| x.infographic}.flatten.select{|x| x.image_exists?}.map{|x| x.image}
-      self.sections.select{|x| x.infographic?}.map{|x| x.infographic}.flatten.select{|x| x.image_exists?}.map{|x| x.image}.each do |img|
+      new_info = clone.sections.select{|x| x.infographic? && x.infographic.present? }.map{|x| x.infographic.infographic_translations  }.flatten.select{|x| x.image_exists?}.map{|x| x.image}
+      self.sections.select{|x| x.infographic? && x.infographic.present? }.map{|x| x.infographic.infographic_translations  }.flatten.select{|x| x.image_exists?}.map{|x| x.image}.each do |img|
         # find matching record
         record = new_info.select{|x| x.asset_file_name == img.asset_file_name && 
                                       x.asset_content_type == img.asset_content_type && 
@@ -528,8 +523,8 @@ class Story < ActiveRecord::Base
       
       # infographic_dataset
       puts "$$$$$$$$$ clone successful - copying infographic_dataset"
-      new_info_dataset = clone.sections.select{|x| x.infographic?}.map{|x| x.infographic}.flatten.select{|x| x.dataset_file_exists?}.map{|x| x.dataset_file}
-      self.sections.select{|x| x.infographic?}.map{|x| x.infographic}.flatten.select{|x| x.dataset_file_exists?}.map{|x| x.dataset_file}.each do |img|
+      new_info_dataset = clone.sections.select{|x| x.infographic? && x.infographic.present? }.map{|x| x.infographic.infographic_translations  }.flatten.select{|x| x.dataset_file_exists?}.map{|x| x.dataset_file}
+      self.sections.select{|x| x.infographic? && x.infographic.present? }.map{|x| x.infographic.infographic_translations  }.flatten.select{|x| x.dataset_file_exists?}.map{|x| x.dataset_file}.each do |img|
         # find matching record
         record = new_info_dataset.select{|x| x.asset_file_name == img.asset_file_name && 
                                       x.asset_content_type == img.asset_content_type && 

@@ -422,8 +422,8 @@ console.log('herer');
 
 	});
   $('.story-viewer').on("click",'.btn-remove-slideshow', function() {
-    $(this).prev("input[type=hidden]").val("1");
-    $(this).closest(".fields").hide();
+    var t = $(this).closest(".fields").hide();
+    t.find("input[type=hidden].destroy-asset").val("1");
   });
 
    $('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-remove',function()		

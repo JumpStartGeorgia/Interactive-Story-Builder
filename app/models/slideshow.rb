@@ -22,8 +22,6 @@ class Slideshow < ActiveRecord::Base
   # #################################
   # ## Callbacks
   before_destroy :trigger_translation_observer, prepend: true
-  # todo here
-  #before_validation :trigger_translation_validation, prepend: true
 
   # need this so if loop or info flags change the code will be updated in translation
   # def trigger_translation_validation
@@ -38,9 +36,7 @@ class Slideshow < ActiveRecord::Base
       trans.is_progress_increment = false
     end
   end
-  def before_save_process
-    self.title_will_change!
-  end
+
 
   #################################
   # settings to clone story

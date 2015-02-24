@@ -17,7 +17,15 @@ class SlideshowTranslation < ActiveRecord::Base
   #################################
   ## Validations
   validates :title, :presence => true, length: { maximum: 255}  
-  validates_length_of :asset_files, :minimum => 1, :message => I18n.t('activerecord.errors.messages.not_provided')
+
+  validate :check_asset_files_existence
+
+  def check_asset_files_existence   
+    if self.asset_files.select{|x| !x._destroy}.length <= 0
+      errors.add(:asset_files, I18n.t('activerecord.errors.messages.not_provided'))
+    end
+  end
+
   #################################
   # settings to clone story
   amoeba do

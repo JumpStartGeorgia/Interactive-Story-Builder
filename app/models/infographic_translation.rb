@@ -36,7 +36,6 @@ class InfographicTranslation < ActiveRecord::Base
   # settings to clone story
   amoeba do
     enable
-
     clone [:image, :dataset_file]
   end
 
@@ -50,24 +49,26 @@ class InfographicTranslation < ActiveRecord::Base
     self.dataset_file.present? && self.dataset_file.file.exists?
   end  
   def generate_iframe
-    ok = false
-    html = ''
-    u = self.dynamic_url
-    if u.present?
-      uri = URI.parse(u)
-      html =  '<iframe '+(self.width!="0" ? 'width="'+self.width.to_s+'"': '')+(self.height!="0" ? 'height ="'+self.height.to_s+'"': '') + 'src="'+self.dynamic_url+'" frameborder="0" allowfullscreen class="infographic' + (self.height=="0" ? ' height': '') +'" sandbox="allow-scripts allow-same-origin"></iframe>' 
-      ok = true
-    end   
+    if dynamic_type? 
+      ok = false
+      html = ''
+      u = self.dynamic_url
+      if u.present?
+        uri = URI.parse(u)
+        html =  '<iframe '+(self.width!="0" ? 'width="'+self.width.to_s+'"': '')+(self.height!="0" ? 'height ="'+self.height.to_s+'"': '') + 'src="'+self.dynamic_url+'" frameborder="0" allowfullscreen class="infographic' + (self.height=="0" ? ' height': '') +'" sandbox="allow-scripts allow-same-origin"></iframe>' 
+        ok = true
+      end   
 
-    if ok       
-      self.dynamic_code = html
-      return true
+      if ok       
+        self.dynamic_code = html
+        return true
+      else
+       self.errors.add(:dynamic_code, I18n.t('stories.youtube.generate_iframe.error'))       
+       return false
+      end
     else
-     self.errors.add(:dynamic_code, I18n.t('stories.youtube.generate_iframe.error'))       
-     return false
+      return true
     end
-
-
   end
 private
   def static_type?    
