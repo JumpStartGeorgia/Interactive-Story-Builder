@@ -288,7 +288,8 @@ $(document).ready(function() {
 	        	fullscreen:true,
 	        	aspectratio:true,
 	        	paddings :0,
-	        	contentscroll:false
+	        	contentscroll:false,
+            klass:'story'
     		};
     	}
     	if(opts===null) opts = opts_def;   
