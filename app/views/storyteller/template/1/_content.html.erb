@@ -256,8 +256,10 @@
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %> 
-                <div class="embed-container"><%= section.youtube.code.html_safe %></div>                         
-                <div class="container" data-yid="<%= section.youtube.url.last(11) %>"></div>                         
+                <!-- <div class="embed-container"><%= section.youtube.code.html_safe %></div>                          -->
+                <div class="container">
+                  <div data-yid="<%= section.youtube.url.last(11) %>"></div>
+                </div>                         
               </div>
               <% if isFirst && section.youtube.fullscreen %>
                 <div class='info'>
