@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150218092312) do
+ActiveRecord::Schema.define(:version => 20150224135346) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
