@@ -134,11 +134,11 @@ class Infographic < ActiveRecord::Base
 
     return alt
   end
-  private
-    def static_type?    
-      self.subtype == Infographic::TYPE[:static]
-    end
-    def dynamic_type?    
-      self.subtype == Infographic::TYPE[:dynamic]
-    end
+
+  def static_type?    
+    self.subtype == Infographic::TYPE[:static]
+  end
+  def dynamic_type?    
+    self.subtype == Infographic::TYPE[:dynamic]
+  end
 end
