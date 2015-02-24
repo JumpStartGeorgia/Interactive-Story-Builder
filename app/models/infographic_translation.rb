@@ -49,6 +49,7 @@ class InfographicTranslation < ActiveRecord::Base
     self.dataset_file.present? && self.dataset_file.file.exists?
   end  
   def generate_iframe
+     Rails.logger.debug("--------------------------------------------#{self.width}")
     if dynamic_type? 
       ok = false
       html = ''
