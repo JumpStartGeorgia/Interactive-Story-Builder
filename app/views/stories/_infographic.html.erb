@@ -203,33 +203,38 @@
 
             <% if !@isTO %>
               <% if !original %>
-                <div class="boolean input optional checkbox" id="asset_clone_thumbnail">
-                  <input name="clone_dataset_asset" type="hidden" value="0">
-                  <label class="  control-label" for="clone_dataset_asset">
-                    <input id="clone_dataset_asset" name="clone_dataset_asset" type="checkbox" value="1" <%= dataset_asset_record.asset_clone_id.present? ? 'checked=checked' : '' %>><%= t('app.common.clone_asset') %>
-                    <div class="help-inline" original-title="<%= t('helpers.hints.clone_asset') %>">
-                      <div>?</div>
+                <% 
+                  orig = @item.with_translation(@from)
+                  orig_datasource_id = orig.dataset_file.id if orig.present? && orig.dataset_file.present?                  
+                %>
+
+                <% if orig_datasource_id.present? %>
+                  <div class="boolean input optional checkbox" id="asset_clone_thumbnail">
+                    <input name="clone_dataset_asset" type="hidden" value="0">
+                    <label class="  control-label" for="clone_dataset_asset">
+                      <input id="clone_dataset_asset" name="clone_dataset_asset" type="checkbox" value="1" <%= dataset_asset_record.asset_clone_id.present? ? 'checked=checked' : '' %>><%= t('app.common.clone_asset') %>
+                      <div class="help-inline" original-title="<%= t('helpers.hints.clone_asset') %>">
+                        <div>?</div>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div class="js-row">
+                    <% if dataset_asset_record.asset_clone_id.blank? && dataset_asset_record.file.exists? %>
+                      <a class='btn btn-default preview-translated <%= asset_class %>' id="infographic-dataset-preview" href='<%= "#{ dataset_asset_record.file.url}" %>'><%= t('helpers.links.download') %></a>
+                    <% end %>
+                    <div id="item-dataset-asset-clone">
+                      <%= f_dataset_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_datasource_id} %>
                     </div>
-                  </label>
-                </div>
 
-                <div class="js-row">
-                  <% if dataset_asset_record.asset_clone_id.blank? && dataset_asset_record.file.exists? %>
-                    <a class='btn btn-default preview-translated <%= asset_class %>' id="infographic-dataset-preview" href='<%= "#{ dataset_asset_record.file.url}" %>'><%= t('helpers.links.download') %></a>
-                  <% end %>
-                  <div id="item-dataset-asset-clone">
-                    <% 
-                      orig = @item.with_translation(@from)
-                      orig_datasource_id = orig.dataset_file.id if orig.present? && orig.dataset_file.present?                  
-                    %>
-                    <%= f_dataset_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_datasource_id} %>
+                    <% vis_class = dataset_asset_record.asset_clone_id.present? ? 'not-visible' : '' %>
+                    <div id="item-dataset-asset" class="item-asset <%= vis_class %>">
+                      <%= f_dataset_asset.input :asset, :as => :file , hint: t('.hint.dataset_file') , :input_html => { :id => "infographicDataset" }, label: false %>
+                    </div>
                   </div>
-
-                  <% vis_class = dataset_asset_record.asset_clone_id.present? ? 'not-visible' : '' %>
-                  <div id="item-dataset-asset" class="item-asset <%= vis_class %>">
-                    <%= f_dataset_asset.input :asset, :as => :file , hint: t('.hint.dataset_file') , :input_html => { :id => "infographicDataset" }, label: false %>
-                  </div>
-                </div>
+                <% else %>
+                  <div style="height: 66px;">&nbsp;</div>
+                <% end %>
               <% else %>
                 <% if dataset_asset_record.file.exists? %>
                   <a class='btn btn-default preview-translated <%= asset_class %>' id="infographic-dataset-preview" href='<%= "#{ dataset_asset_record.file.url}" %>'><%= t('helpers.links.download') %></a>
