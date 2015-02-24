@@ -471,23 +471,24 @@ input[type=text]{
 }
 .powered-by
 {
-  font-family: 'dejavusans-el';
-  font-size:14px;
-  text-align: right;
-  margin-right: 27px;
-  height:16px;
-  margin-bottom:15px;
-  padding-top: 6px;
-  color:#333;
-  background-color:transparent;
+  font-family: 'dejavusans';
+  font-size: 15px;
+  color: rgb(88, 88, 88);
+  margin-top: 27px;
+  // text-align: right;
+  // margin-right: 27px;
+  
+  // margin-bottom:15px;
+  // padding-top: 6px;
   float:right;
   a
-  {
-    color:#333;
-    &:hover, &:focus
+  {    
+    color: rgb(88, 88, 88);
+    &:hover, &:focus, &:active
     {
-      text-decoration:underline;  
-      color:#000;
+      text-decoration:none;  
+      cursor:pointer;  
+      color: rgb(88, 88, 88);  
     }
   }
   &:lang(en)
@@ -1002,12 +1003,15 @@ i.v{visibility:visible;}
   // bottom: 0px;
   width: 100%;
   margin-top:-70px;
+  &.story
+  {
+    margin:0px auto;
+  }
   .logo
   {
     width:212px;    
     float:left;
-    padding-top:12px;
-    position:absolute;
+    padding-top:14px;
     img
     {
       width:212px; 

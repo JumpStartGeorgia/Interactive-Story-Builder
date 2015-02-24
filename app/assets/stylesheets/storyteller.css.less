@@ -410,3 +410,30 @@ a.embed
     }  
   } 
 }
+.powered-by-js
+{
+  font-family: 'dejavusans';
+  font-size: 15px;
+  color: rgb(88, 88, 88);
+
+  background-color:#1d1d1d;
+  width:100%;
+  text-align: center;
+  padding: 8px 10px 8px 0px;
+  a
+  {    
+    opacity:0.9;
+    color: rgb(88, 88, 88);
+    &:hover, &:focus, &:active
+    {
+      color: rgb(88, 88, 88);
+      opacity:1;
+      text-decoration:none;  
+      cursor:pointer      
+    }
+  }
+  &:lang(en)
+  {
+    font-family: 'opensans-l';
+  }
+}

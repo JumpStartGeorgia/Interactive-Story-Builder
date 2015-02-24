@@ -79,6 +79,19 @@
       </div>
     </div>
   <% end %>
+  <div class="footer story">
+      <%= link_to(image_tag("svg/logo.svg",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name_not_trans')) , root_path(:locale => I18n.locale), title: t('app.common.app_name'), :class=>"logo") %>  
+      <div class="powered-by">
+        <%= t("app.common.powered_by") %>&nbsp;&nbsp;<a href="http://www.jumpstart.ge" target="_blank" title="<%= t("app.common.js_link_title") %>"><%= t("app.common.powered_by_js") %></a><%= t("app.common.powered_by_end") %>
+      </div> 
+      <div class="center">
+        <div><%= link_to t('helpers.links.about'), about_path %></div>
+        <div>|</div>
+        <div class='copy' data-tip="<%= t('layouts.application.copyright_text') %>">&copy; <%= t('layouts.application.copyright') %></div>
+        <div>|</div>
+         <div data-tip="<%= t('layouts.application.disclaimer_text') %>"><%= t('layouts.application.disclaimer') %></div>
+      </div>        
+  </div>
 
     <div id="modalos-embed" style="display:none;" class="embed-window">  
       <div class="title"><%= "#{t('app.common.share_story')}" %></div>
@@ -106,6 +119,8 @@
         </div>
       </div>
     </div>
+    <div class="tip"><div class="content"></div><div class="pointer"></div></div> 
+       
       <% if !@export %>
         <%= javascript_include_tag  *(@js.present? ? ["application", @js].flatten : ["application"]), :media => "all" %>      
   		  <script type="text/javascript">
