@@ -505,7 +505,7 @@ az:
       description: "Şəkilaltı imza dilinin dəyişmə qabiliyyəti olan YouTube videosu"
     infographic: 
       name: Infographic
-      description: Infographic or factoids with ability to add datasets and data sources
+      description: Infographic, interactive, or factoids with ability to add datasets and data sources
   story_role:
     editor: Redaktor
     translator: Tərcüməçi

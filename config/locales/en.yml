@@ -505,7 +505,7 @@ en:
       description: YouTube video with ability to setting caption language
     infographic: 
       name: Infographic
-      description: Infographic or factoids with ability to add datasets and data sources
+      description: Infographic, interactive, or factoids with ability to add datasets and data sources
   story_role:
     editor: Editor
     translator: Translator

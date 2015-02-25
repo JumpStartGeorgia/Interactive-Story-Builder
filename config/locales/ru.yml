@@ -505,7 +505,7 @@ ru:
       description: 'YouTube видео, с переключаемыми субтитрами '
     infographic: 
       name: Infographic
-      description: Infographic or factoids with ability to add datasets and data sources
+      description: Infographic, interactive, or factoids with ability to add datasets and data sources
   story_role:
     editor: "Редактор"
     translator: "Переводчик"

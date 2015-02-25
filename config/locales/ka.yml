@@ -505,7 +505,7 @@ ka:
       description: YouTube-ის ვედეო წარწერის დამატების შესაძლებლობით
     infographic: 
       name: Infographic
-      description: Infographic or factoids with ability to add datasets and data sources
+      description: Infographic, interactive, or factoids with ability to add datasets and data sources
   story_role:
     editor: "რედაქტირება"
     translator: "თარგმნა"

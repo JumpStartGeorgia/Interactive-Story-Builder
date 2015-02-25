@@ -505,7 +505,7 @@ hy:
       description: "Ենթագրերի լեզվի կարգավորումներով վիդեո YouTube-ում"
     infographic: 
       name: Infographic
-      description: Infographic or factoids with ability to add datasets and data sources
+      description: Infographic, interactive, or factoids with ability to add datasets and data sources
   story_role:
     editor: "Խմբագիր"
     translator: "Թարգմանիչ"
