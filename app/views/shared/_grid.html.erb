@@ -18,7 +18,7 @@
 
 <% if @editable %>  
   <% content_for(:footer) { %>
-    <%= render partial: "shared/story_nav_modals"%> 
+    <script>var reviewer = "<%= escape_javascript(render :partial => 'shared/story_nav_modals') %>";</script>
   <% } %>  
 <% end %>
 
