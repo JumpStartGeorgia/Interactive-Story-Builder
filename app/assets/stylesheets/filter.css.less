@@ -13,8 +13,8 @@
     > li > 
     {
       a
-      {     
-        font-family:opensans,verdana;
+      { 
+        font-family:'dejavusans-el';    
         font-size:16px;
         color:#575757;
         &:hover
@@ -22,9 +22,9 @@
           color:#adadad;
         }
       }
-      a:lang(ka)
+      a:lang(en)
       {
-        font-family:dejavusans-el,sylfaen;
+        font-family:opensans;
       }
       ul > li > a 
       {
@@ -35,9 +35,13 @@
   }
   .all-stories
   {
-    font-family:'opensans-eb';
+    font-family:'dejavusans-b';    
     font-size:24px;
     color:#767676;
+    &:lang(en)
+    {
+      font-family:'opensans-eb';
+    }
   }
   .dropdown-menu
   {
@@ -88,29 +92,28 @@
   }
   .nav li.dropdown a.dropdown-toggle.selected
   {
-    
-    font-family:opensans-b,verdana;
+    font-family: 'dejavusans-r';  
+    &:lang(en)
+    {
+      font-family:'opensans-b';
+    }
   }
-  .nav li.dropdown a.dropdown-toggle.selected:lang(ka)
-  {
-    font-family:dejavusans-r,sylfaen;
-  }
+
   .dropdown-menu > li > a
   {
-    font-family:opensans,verdana; 
+    font-family: 'dejavusans';  
     font-size:14px;
     color:#575757;
     background-color: transparent; 
+    &:lang(en)
+    {
+      font-family:'opensans';
+    }
   }
   .dropdown-menu > li > a.active,.dropdown-menu > li > a:hover
   {       
     color: #adadad;      
   }
-  .dropdown-menu > li > a.active:lang(ka)
-  {
-    font-family:dejavusans-r,sylfaen;
-  }
-
   #search-filter input[type="text"] 
   {    
     border: 0 none;            
@@ -118,7 +121,7 @@
     padding: 6px 15px 6px 35px;
     background: url('/assets/svg/search_b.svg') no-repeat 5px;
     background-size:21px 21px;
-    font-family:opensans-r;
+    font-family:'dejavusans-el';    
     font-size:16px; 
     color:#000;       
     -webkit-box-shadow: none;
@@ -131,6 +134,10 @@
     outline:none;
     opacity:0.8;
     &:focus,&:hover { opacity:1; }
+    &:lang(en)
+    {
+      font-family: opensans;
+    }
     @media (max-width: 767px) 
     {
       &,&:focus,&:hover
@@ -138,10 +145,6 @@
         width: 100%;
       }
     }
-  }
-  #search-filter input[type="text"]:lang(ka)
-  {
-    font-family:dejavusans-el,sylfaen;
   }
   #search-input
   {
@@ -162,7 +165,7 @@
       > li 
       {         
         width:100%;
-        border-bottom:1px solid #eaeaea;
+        border-bottom:1px solid #363636;
         margin:0px;
         > a
         {
@@ -224,7 +227,7 @@
         border-right:1px solid #eaeaea;
         border-bottom:0px solid #eaeaea;
         padding:0px 10px;
-        font-family: opensans-r, verdana;
+        font-family:dejavusans;
         font-size: 16px;
         color:#000;
         white-space: nowrap;
@@ -233,12 +236,12 @@
         {
           text-decoration:none;
           cursor:pointer;
-        }      
-      }
-      > .filters:lang(ka)
-      {
-        font-family:dejavusans-r,sylfaen;
-      }
+        } 
+        &:lang(en)
+        {
+          font-family: opensans;
+        }     
+      }    
     }    
   }
 
@@ -296,16 +299,16 @@
     }
     .sort-label
     {    
-      font-family:opensans,verdana;
+      font-family:dejavusans;
       font-size: 16px;                    
       color: #646464;
       background-color: transparent;    
-      margin:0px 0px 0px 60px;            
-    }    
-    .sort-label:lang(ka) 
-    {
-      font-family:dejavusans-r,sylfaen;
-    }
+      margin:0px 0px 0px 60px; 
+      &:lang(en)
+      {
+        font-family: opensans,verdana;
+      }           
+    }      
   }
 
   /* Medium Devices, Desktops */

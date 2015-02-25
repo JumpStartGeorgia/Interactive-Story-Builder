@@ -17,11 +17,6 @@
     <% end %>
 	  <meta property="og:type" content="non_profit" />
 	  <meta property="og:url" content="<%= current_url %>" />
-	  <% if @story && @story.id && @story.asset_exists? %>
-	     <meta property="og:image" content="<%= full_url(@story.asset.asset.url(:"250x250", false)) %>" />
-    <% else %>
-      <meta property="og:image" content="<%= full_url('/assets/fb-img.jpg') %>" />
-	  <% end %>
 	  <meta property="og:site_name" content="<%= t('app.common.app_name_not_trans') %>" />
 	  <meta property="fb:app_id" content="<%= ENV['STORY_BUILDER_FACEBOOK_APP_ID'] %>" />
 
@@ -50,75 +45,131 @@
     <%= render partial: "layouts/storybuilder_nav"%>   
     <%= render partial: "shared/story_nav"%>   
 		<div class="builder-wrapper">	
-
      <div class="toolbar">
-
- <!-- <li id='<%= @story.id %>' data-type='story' class='story'> -->
-                <div class="story-title"><span><%= @story.title %></span></div>
-                <div class='left-view'>
-                  <div class='tools'>
-
-                <%= link_to '#', title: t('helpers.links.story_menu.link.preview') + ' - ' + t('helpers.links.story_menu.title.preview'), class: 'btn btn-edit-story btn-primary' do %>
-                    <span class="glyphicon glyphicon-edit" ></span>          
-                  <% end %>
-
-                <%= link_to '#', title: t('app.buttons.add_section') , class: 'btn btn-create-section' do %>
-                    <span class="glyphicon glyphicon-align-justify" ></span>          
-                  <% end %>
-
-                  <%= link_to '#', title: t('helpers.links.story_menu.link.preview') + ' - ' + t('helpers.links.story_menu.title.preview'), id: 'btnPreview', class: 'preview btn btn-preview', 
-                      :'data-link' => @story.published ? storyteller_show_path(@story.permalink) : preview_story_path(@story), 
-                      :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story' do %>
-                    <span class="glyphicon glyphicon-eye-open" ></span>          
-                  <% end %>
-                <% if !@story.published %> 
-                    <%= link_to '#', title: t('helpers.links.story_menu.link.review') + ' - ' + t('helpers.links.story_menu.title.review'), id: 'btnReviewer', class: 'btn btn-review',
-                        :'data-title' => @story.title, :'data-modalos-id' => 'modalos-reviewer', :'data-reviewer-key' => review_url(@story.reviewer_key) do %>
-                        <span class="glyphicon glyphicon-share" ></span>        
-                    <% end %>
-                <% end %>
-                  <% 
-                    title = @story.published ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish') 
-                    link_text = @story.published ? t('helpers.links.story_menu.link.unpublish') : t('helpers.links.story_menu.link.publish') 
-                  %>
-                  <%= link_to '#', title: link_text + ' - ' + title, id: 'btnPublish', class: 'btn btn-publish' + (@story.published ? '' : 'disabled'), 
-                      :'data-link' => publish_story_path(@story) do %>
-                    <span class="glyphicon glyphicon-globe" ></span>
-                  <% end %>
-                  <%= link_to @story, title: t('helpers.links.story_menu.link.delete_story') + ' - ' + t('helpers.links.story_menu.title.delete_story'), 
-                   class: 'preview btn btn-remove-story', confirm: t("helpers.links.confirm"), method: :delete do %>
-                    <span class="glyphicon glyphicon-remove"></span>
-                  <% end %>
-
-                            <% if @tr %>
-            <div class='translate'>
-              <div class='translate-from'>
-                <%= select_tag "translate-from", options_from_collection_for_select(@languages, "locale", "name", @story.story_locale), include_blank: false,
-                 :id => "translateFrom", :class => "selectpicker", :'data-size' => "5", :'data-default' => @story.story_locale  %>
-              </div><div class='translate-to'>
-                <%= select_tag "translate-to", options_from_collection_for_select(@languages.select{ |lan|  lan.locale !=  @story.story_locale } , "locale", "name", @languages.select{ |lan|  lan.locale !=  @story.story_locale }[0].locale), include_blank: false, :id => "translateTo", :class => "selectpicker", :'data-size' => "4" %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-                </div>
-                <div class='right-view'></div>
-                
-
-        
-
-
-
-
-            <div class="flash-message">
-              <% flash.each do |key, msg| %>
-                <div class="alert <%= flash_translation(key) %> fade in">
-                  <a href="#" data-dismiss="alert" class="close">×</a>
-                  <%= msg %>
-                </div>
+      <div class="story-title"><span title="<%= @story.title %>"><%= @story.title %></span></div>             
+        <div class='tools'>         
+          <div class="left-view">
+           <div class='view-wrapper'> 
+            <% if @tr %>
+              <div class="trans-source"><%= t('.source') %><span class="glyphicon glyphicon-play" ></span></div> 
+            <% end %>
+            <%= link_to '#', title: t('helpers.links.story_menu.link.story_settings') + ' - ' + t('helpers.links.story_menu.title.story_settings'), class: 'btn btn-edit-story' do %>
+                <span class="glyphicon glyphicon-edit" ></span>          
               <% end %>
-            </div>
+          <% if !@tr %>
+            <%= link_to '#', title: t('app.buttons.add_section') , class: 'btn btn-create-section' do %>
+                <span class="glyphicon glyphicon-align-justify" ></span>          
+              <% end %>
+          <% end %>
+              <%= link_to '#', title: t('helpers.links.story_menu.link.preview') + ' - ' + t('helpers.links.story_menu.title.preview'), id: 'btnPreview', class: 'preview btn btn-preview', 
+                  :'data-link' => preview_story_path(@story), 
+                  :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story' do %>
+                <span class="glyphicon glyphicon-eye-open" ></span>          
+              <% end %>
+          <% if !@tr %>
+            <% if !@story.published %> 
+                <%= link_to '#', title: t('helpers.links.story_menu.link.review') + ' - ' + t('helpers.links.story_menu.title.review'), id: 'btnReviewer', class: 'btn btn-review',
+                    :'data-title' => @story.title, :'data-modalos-id' => 'modalos-reviewer', :'data-reviewer-key' => review_url(@story.reviewer_key) do %>
+                    <span class="glyphicon glyphicon-share" ></span>        
+                <% end %>
+            <% end %>
+              <% 
+                title = @story.published ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish') 
+                link_text = @story.published ? t('helpers.links.story_menu.link.unpublish') : t('helpers.links.story_menu.link.publish') 
+              %>
+              <%= link_to '#', title: link_text + ' - ' + title, class: 'btnPublish btn btn-publish' + (@story.published ? '' : '-disabled'), :'data-link' => publish_story_path(@story) do %>
+                <span class="glyphicon glyphicon-globe" ></span>
+              <% end %>
+              <%= link_to @story, title: t('helpers.links.story_menu.link.delete_story') + ' - ' + t('helpers.links.story_menu.title.delete_story'), 
+               class: 'preview btn btn-remove-story', confirm: t("helpers.links.confirm"), method: :delete do %>
+                <span class="glyphicon glyphicon-remove"></span>
+              <% end %>
+            <% end %>
+            <% if @tr %>
+              <% 
+                progress = @story.translation_progress
+                from_langs = []
+                @story.story_locales.each do |trans_locale|
+                  l = @languages.select{|x| x.locale == trans_locale}.first
+                  if l.present?
+                    x = l.dup
+                    # if translation progress percent exists for this locale, add it
+                    x.percent = compute_translation_progress_percent(x.locale, progress)
+                    from_langs << x
+                  end
+                end
+
+                to_langs = []
+                if @edit_story_role == Story::ROLE[:translator] 
+                  @edit_translation_locales.each do |trans_locale|
+                    l = @languages.select{|x| x.locale == trans_locale}.first
+                    if l.present?
+                      x = l.dup
+                      # if translation progress percent exists for this locale, add it
+                      x.percent = compute_translation_progress_percent(x.locale, progress)
+                      to_langs << x
+                    end
+                  end
+                else
+                  # see if @to has percent?
+                  to_translated = compute_translation_progress_percent(@to, progress).present?
+                  @languages.each do |l|
+                    x = l.dup
+                    # if translation progress percent exists for this locale, add it
+                    x.percent = compute_translation_progress_percent(x.locale, progress)
+                    if !to_translated && params[:tr_to].nil? && x.percent.present? && x.locale != @from
+                      @to = x.locale 
+                      to_translated = true
+                    end
+                    to_langs << x
+                  end
+                end
+              %>
+               <%= select_tag "translate-from", options_from_collection_for_select(from_langs, "locale", "name_with_translation_percent", @story.story_locale), include_blank: false,
+                     :id => "translateFrom", :class => "selectpicker", 
+                     :'data-live-search' => "true", :'data-size' => "10"  %>
+           <% end %>
+          </div>
         </div>
+        <div class='right-view'>          
+          <div class='view-wrapper'> 
+            <% if @tr %>
+              <div class="trans-target"><%= t('.target') %><span class="glyphicon glyphicon-play" ></span></div> 
+              <%= select_tag "translate-to", options_from_collection_for_select(to_langs.select{ |lan|  lan.locale !=  @story.story_locale } , "locale", "name_with_translation_percent", @to), include_blank: false, :id => "translateTo", :class => "selectpicker", 
+                :'data-live-search' => "true", :'data-size' => "10" %>
+              <%= link_to '#', title: t('helpers.links.story_menu.link.preview') + ' - ' + t('helpers.links.story_menu.title.preview'), id: 'btnPreview', class: 'preview btn btn-preview', 
+                :'data-link' =>  preview_story_path(@story), 
+                :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story', :'data-sl' => true do %>
+              
+                <span class="glyphicon glyphicon-eye-open" ></span>          
+
+              <% 
+                trans_story = @story.with_translation(@to)
+                title = trans_story.published ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish') 
+                link_text = trans_story.published ? t('helpers.links.story_menu.link.unpublish') : t('helpers.links.story_menu.link.publish') 
+                progress_from = progress.select{|x| x.locale == @story.story_locale}.first
+                progress_to = progress.select{|x| x.locale == @to}.first
+                btn_class = (trans_story.published || (progress_from.present? && progress_to.present? && progress_from.items_completed == progress_to.items_completed)) ? '' : 'hide'
+
+              %>
+              <%= link_to '#', title: link_text + ' - ' + title, class: "btnPublish btn #{btn_class} btn-publish" + (trans_story.published ? '' : '-disabled'), :'data-link' => publish_story_path(@story), :'data-sl' => true, 
+                :'data-percent' => compute_translation_progress_percent(@to, progress) do %>
+                <span class="glyphicon glyphicon-globe" ></span>
+              <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>      
+      <div class="flash-message">
+        <% flash.each do |key, msg| %>
+          <div class="alert <%= flash_translation(key) %> fade in">
+            <a href="#" data-dismiss="alert" class="close">×</a>
+            <%= msg %>
+          </div>
+        <% end %>
+      </div>       
+  </div>
 
 
 
@@ -131,44 +182,13 @@
           <div class='story-viewer story-page1 viewer' id='storyViewer'></div><% if @tr %><div class='story-page2 viewer'></div><% end %>
         </div>
       </div>
-    </div>
+    </div> 
+    <div class="copy-paste" title="<%= t('layouts.storybuilder.copy_paste') %>"></div>  
     <%= yield(:footer) %>
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag  *(@js.present? ? ["application", @js].flatten : ["application"]), :media => "all" %>      
-    <script>
-      function calculate_workspace()
-      {
-        var bw = $(".builder-wrapper");  
-        var nav =  $('.nav-tabs');
-        var t = bw.find('.toolbar');       
-
-        var topOffset = t.outerHeight()+t.offset().top;
-        
-        bw.height($(window).height()- nav.outerHeight()-nav.offset().top);
-
-        var bwh = $(window).height()-topOffset;
-        var content = bw.find("> .content");
-        var toolbar = bw.find("> .toolbar");
-
-        var sidebar = content.find("> .sidebar");
-        var workplace = content.find("> .workplace");
-        var tree =  sidebar.find("> .story-tree");
-        
-
-        tree.height(bwh);
-        workplace.height(bwh);
-
-        content.css('top',topOffset + 'px');
-      }
-      $(document).ready(function(){
-        calculate_workspace();  
-      });
-      $(window).resize(function() {   
-          calculate_workspace();
-      });
-    </script>
 		<script type="text/javascript">
 			I18n.defaultLocale = "<%= I18n.default_locale %>";
 			I18n.locale = "<%= I18n.locale %>";
@@ -191,10 +211,11 @@
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-12801815-33', 'jumpstart.ge');
+        ga('create', 'UA-12801815-39', 'auto');
         ga('send', 'pageview');
 
       </script>
 		<% end %>  
+    <%= yield(:js) %>
   </body>
 </html>

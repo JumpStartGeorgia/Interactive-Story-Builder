@@ -1,4 +1,4 @@
-var story_id = -1;
+//= require tinymce
 var section_id = -1;
 var item_id = -1;
 
@@ -7,9 +7,13 @@ var selectedType = 'story';
 var method = 'n';
 var tester = null;
 var story_tree = null;
-var section_types = ['content','media','slideshow','embed_media','youtube'];
+var section_types = ['content','media','slideshow','embed_media','youtube', 'infographic'];
 $(document).ready(function() {
 
+  calculate_workspace(); 
+  $(window).resize(function() {   
+    calculate_workspace();
+  }); 
 	$('.storytree-toggle').click(function(){
 		var t = $(this).parent();
 		var sidebarWidth = t.width();
@@ -32,13 +36,7 @@ $(document).ready(function() {
 
 	$(document).on('click','.btn-edit-story',function(e) {
 		e.preventDefault();    
-		//var par = $(this).parent().parent();
-		//story_id = par.attr('id');
-		//$('.story-tree ul li').removeClass('active');
-		//par.addClass('active');	    
-      getObject('select','story');
-	 	//getStory(0,-1);
-	    //return false;
+    getObject('select','story');
 	});
 
 	$('.story-tree ul').on('click','li.item > .box > .title',function(e) {
@@ -72,29 +70,46 @@ $(document).ready(function() {
       getObject('select', tmpType, tmpId, tmpSubId);
 
 		//getStory(section_id,item_id);
-		if($( "#slideshowAssets" ).length > 0 )
-		 $( "#slideshowAssets" ).sortable({ items: "> div" });
+		if($( "#slideshowAssetFiles" ).length > 0 )
+		 $( "#slideshowAssetFiles" ).sortable({ items: "> div" });
 	    return false;
 	});
 
   // when media type changes, show the correct file fields
 	$('.story-viewer').on('change','input[name="medium[media_type]"]:radio',function(){
-		if($(this).val()==1) {
-		  $('#mediaImageBox').show();
-		  $('#mediaVideoBox').hide();
-	  }else {
-		  $('#mediaImageBox').hide();
-	    $('#mediaVideoBox').show();
-    }
+
+    var b = $(this).val()==1;
+    var form = $('form.medium');
+    form.find('#mediaImageBox').toggle(b);
+    form.find('#mediaVideoBox').toggle(!b);
+
     // make sure the file fields are reset when the option changes
-    $('form.medium input#mediaImage, form.medium input#mediaVideo').wrap('<form>').parent('form').trigger('reset');
-    $('form.medium input#mediaImage, form.medium input#mediaVideo').unwrap();
+    form.find('input#mediaImage, input#mediaVideo').wrap('<form>').parent('form').trigger('reset');
+    form.find('input#mediaImage, input#mediaVideo').unwrap();
+
+    // when the media type is changed, update the translation media type to match
+    form.find('input.translation-type').val($(this).val());
 	});
 
-  $('.story-viewer').on('click', '#btnOlly', function(){
+  // when infographic type changes, show the correct file fields
+  $('.story-viewer').on('change','input[name="infographic[subtype]"]:radio',function(){
+    var b = $(this).val()==1;
+    var form = $('form.infographic');
+    form.find('#infographicStaticBox').toggle(b);
+    form.find('#infographicDynamicBox').toggle(!b);
+
+    // make sure the file fields are reset when the option changes    
+    form.find('input#infographicStatic, input#infographicDynamic').wrap('<form>').parent('form').trigger('reset');
+    form.find('input#infographicStatic, input#infographicDynamic').unwrap();
+    // when the infographic type is changed, update the translation infographic type to match
+    form.find('input.translation-subtype').val($(this).val());
+  });
+
+
+  $('.builder-wrapper .workplace').on('click', '.story-page1 #btnOlly, .story-page2 #btnOlly', function(){
     ths = $('#embedMediaUrl');
 	  url = $(ths).val();
-    resetEmbedForm();
+    resetEmbedForm();    
     
 	  if (url.length > 0 && isUrl(url)){
       olly.embed(url, document.getElementById("embedMediaResult"), 'timerOllyCompelte', 'ollyFail');
@@ -103,7 +118,7 @@ $(document).ready(function() {
 	  }
 	});
 
-   $('.story-viewer').on('click', '#btnGetEmbed', function(e){
+   $('.builder-wrapper .workplace').on('click', '.story-page1 #btnGetEmbed, .story-page2 #btnGetEmbed', function(e){
 			
 		var id = '';
  		var html = '';
@@ -161,40 +176,61 @@ $(document).ready(function() {
   $(document).on('click', '#btnReviewer', function(e){
 		e.preventDefault();		
 		
-		var ml = $('#' + $(this).attr('data-modalos-id'));   
+		var ml = "<div>"+$('#modalos-reviewer')[0].innerHTML.replace('[title]', $(this).data('title')) + "</div>";
+
+    ml = ml.replace('[url]', $(this).data('reviewer-key')).replace('[url]', $(this).data('reviewer-key')); 
     var v = $('.navbar-storybuilder'); 
-    ml.find('#review_instructions').html(ml.find('#review_instructions').html().replace('[title]', $(this).data('title')));        
-    ml.find('#review_url').attr('src', $(this).data('reviewer-key')).html($(this).data('reviewer-key'));        
-    ml.modalos({
+    $(ml).modalos({
     	topOffset: $(v).position().top + $(v).height() + 30       	        	        	      
     });
 
 		return true;	
   });
 
-  $(document).on('click', '#btnPublish', function(e){  	
+  $(document).on('click', '.btnPublish', function(e){  	
 		e.preventDefault();		
+
 		var a = $(this);		
+    var url = $(this).data('link');
+    if ($(this).data('sl')){
+      url += "?sl=" + $('.toolbar select#translateTo').val();
+    }
 		$.ajax(
 		{	
 			dataType: "json",
-			url: $(this).data('link')}).done(
+			url: url}).done(
 			function(d) 
-			{ 		
-				if(typeof(d.e) !== 'undefined' && d.e)	
-				{
-               if(a.closest('.story-edit').length) a.closest('.story-edit').next('.story-message').html(d.msg).fadeIn(1000);
-               else popuper(d.msg,'error');           
-				}
-				else
-					a.find('span:last-child').text(d.title);							
+      {
+        if(typeof(d.e) !== 'undefined' && d.e)  
+        {
+          if(a.closest('.story-edit').length) a.closest('.story-edit').next('.story-message').html(d.msg).fadeIn(1000);     
+          else popuper(d.msg,'error');           
+        }
+        else
+        {
+          if(a.closest('.story-edit').length) a.find('span:last-child').text(d.link).attr('title',d.title);    
+          else 
+          {
+            a.find('span:last-child').attr('title',d.link + ' ' + d.title );
+            a.toggleClass('btn-publish btn-publish-disabled');              
+          }
+
+          // if this is translate publish button and percent is 100%, show button still, else hide
+          if ($(a).data('sl')){
+            if ($(a).data('percent') == '100%'){
+              $(a).removeClass('hide');
+            }else{
+              $(a).addClass('hide');
+            }
+          }
+        }
 			});	 							
 		return true;	
   });
    $('.story-edit-menu ul.nav li > ul.dropdown-menu li').click(function(){$(this).closest('.story-edit').next('.story-message').html("").hide();});
 
     $(document).on('click', '.preview', function(e){  	
-		e.preventDefault();		
+		    e.preventDefault();		
 
         var ml = $('#' + $(this).attr('data-modalos-id'));           
         var v = $('.navbar-storybuilder');
@@ -210,7 +246,13 @@ $(document).ready(function() {
         };
         if(type == 'image')
         {
-    	 	output = "<img src='" +  $(this).data('image-path') + "' style='width:640px;'/>";
+    	 	 output = "<img src='" +  $(this).data('image-path') + "' style='width:640px;'/>";
+         opts = {
+            paddings : 20,
+            width:640,
+            contentscroll:false
+
+          };
         }
         else if(type == 'video')
         {
@@ -222,7 +264,7 @@ $(document).ready(function() {
             topOffset: $(v).position().top + $(v).height() + 30,                   
             paddings :20,
             contentscroll:false,
-            width:722,
+            width:640,
             before_close:function(t)
             {
                $(t).find('video').each(function(){ this.pause(); })
@@ -230,36 +272,36 @@ $(document).ready(function() {
             }
          };
         }
-        else if(type == 'text')
+      else if(type == 'text')
     	{
     		output = $("#contentArticle").val();
     	}
     	else if(type=='story')
     	{
-    		output = "<iframe height='100%' width='100%' src='"+$(this).data('link') + "?n=n"+"'></iframe>";
+        var sl = "";
+        if($(this).attr('data-sl'))
+          sl = "&sl=" + gon.translate_to;        
+
+    		output = "<iframe height='100%' width='100%' src='"+$(this).data('link') + "?n=n"+ sl + "'></iframe>";
     		opts = {
 				topOffset: $(v).position().top + $(v).height(),
 	        	fullscreen:true,
 	        	aspectratio:true,
 	        	paddings :0,
 	        	contentscroll:false,
-             before_close:function(t)
-            {              
-               $(t).find("iframe").contents().find("video").each(function(){this.pause();})          
-               $(t).find("iframe").contents().find("audio").each(function(){this.pause();})              
-            }
+            klass:'story'
     		};
-
     	}
-    	if(opts===null) opts = opts_def;    	
-        ml.html(output).modalos(opts);
+    	if(opts===null) opts = opts_def;   
+       console.log(opts); 	
+      $(output).modalos(opts);
 
 		return true;	
   });
 
 	$('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-up, .tools .btn-down',function()
 	{
-      var where = $(this).hasClass('btn-up') ? 'top' : 'bottom';
+    var where = $(this).hasClass('btn-up') ? 'up' : 'down';
 		var cur = $(this).closest('li');
 		var sec_id = -1;
 		var itm_id = -1;
@@ -287,7 +329,7 @@ $(document).ready(function() {
 				var secT = $('.story-tree ul li.item[id='+ sec_id + ']');
 				if(itm_id == -1)
 				{		
-               if(where == 'top')
+               if(where == 'up')
                {	 	
    			 		if(secT.prev().length)
    			 		{
@@ -305,7 +347,7 @@ $(document).ready(function() {
 		 		else
 		 		{
 		 			subT = secT.find('ul li.sub[id='+itm_id+']');
-               if(where == 'top')
+               if(where == 'up')
                {  
    		 			if( subT.prev().length)
    			 		{
@@ -324,7 +366,7 @@ $(document).ready(function() {
 		} 	
 	});
 	
-	$('.story-viewer').on("click",'#btn-up-slideshow', function() {
+	$('.story-viewer').on("click",'.btn-up-slideshow', function() {
   			var secT = $(this).parents('.fields');
   			if( !secT.prev().length) return false;
   			
@@ -353,7 +395,9 @@ $(document).ready(function() {
 			    }).error(function(e){ popuper(gon.fail_change_order,"error");});	
 			  }
 	});
-		$('.story-viewer').on("click",'#btn-down-slideshow', function() {
+
+
+		$('.story-viewer').on("click",'.btn-down-slideshow', function() {
 			var secT = $(this).parents('.fields');
 			if( !secT.next().length) return false;
 
@@ -384,6 +428,10 @@ $(document).ready(function() {
 
 
 	});
+  $('.story-viewer').on("click",'.btn-remove-slideshow', function() {
+    var t = $(this).closest(".fields").hide();
+    t.find("input[type=hidden].destroy-asset").val("1");
+  });
 
    $('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-remove',function()		
    {	
@@ -449,16 +497,18 @@ $(document).ready(function() {
 	});
 
 
-   $('.btn-create-section').click(function(){  getObject('create','section'); });
+   $('.btn-create-section').click(function(e){ e.preventDefault(); getObject('create','section'); });
 
-   $('.builder-wrapper .sidebar .story-tree').on('click','li.item > ul > .btn-create',function()     
+
+   $('.builder-wrapper .sidebar .story-tree').on('click','li.item > ul > .btn-create',function(e)     
    {
-      var cur = $(this).closest('li');
-      var id = cur.attr('id');
-      var type = cur.data('type');
+    e.preventDefault();
+    var cur = $(this).closest('li');
+    var id = cur.attr('id');
+    var type = cur.data('type');
 		if(id == -1) { alert(gon.msgs_select_section); return true; }
 
-		if( ['content','slideshow','embed_media','youtube'].indexOf(type) != -1 && cur.has('ul li').length==1 )
+		if( ['content','slideshow','embed_media','youtube', 'infographic'].indexOf(type) != -1 && cur.has('ul li').length==1 )
 		{			
 			alert(gon.msgs_one_section_general);
 		}
@@ -469,44 +519,67 @@ $(document).ready(function() {
 	});
 
   // trigger the add content form if no sections exist
-   if (gon.has_no_sections == true)
-   {
-      getObject('create','section');
-   }
+  if (gon.has_no_sections == true)
+  {
+    getObject('create','section');
+  }
+  else if (gon.is_section_page == true )
+  {
+    getObject('select','story');
+  }
 
   var was_title_box_length, was_permalink_box_length = 0;
   
   // if the title changes and there is no permalink or the permalink was equal to the old title, 
   // add the title into the permalink show field
-  $(document).on('keyup','input#storyTitle', debounce(function(){
-      if (($('input#storyPermalinkStaging').val() != '' && $('input#storyPermalinkStaging').val() !== $(this).data('title-was')) || 
-          $(this).val().length == was_title_box_length) {
-          
-        return;
-      } else {
-        $(this).data('title-was', $(this).val());
-        $('input#storyPermalinkStaging').val($(this).val());
-        check_story_permalink($(this).val());
-      }
-
-      was_title_box_length = $(this).val().length;
-  
+  $(document).on('keyup','input#storyTitle', debounce(function()
+  {
+    var staging = $('input#storyPermalinkStaging');
+    var staging_val = staging.val();
+    var t = $(this);
+    var tv = t.val();
+    var locale = $(this).closest('form').find('input#current_locale').val();    
+    if ((staging_val != '' && staging_val !== $(this).data('title-was')) || 
+        tv.length == was_title_box_length) {
+        console.log('upper');
+      return;
+    } 
+    else 
+    {
+      t.data('title-was', tv);
+      staging.val(tv);
+      check_story_permalink(tv, locale);
+      console.log('down');
+    }
+    was_title_box_length = tv.length;
   }));
   
   // if the permalink staging field changes, use the text to generate a new permalink
   $(document).on('keyup','input#storyPermalinkStaging', debounce(function () {
     // if text length is 1 or the length has not changed (e.g., press arrow keys), do nothing
-    if ($(this).val().length == 1 || $(this).val().length == was_permalink_box_length) {
+    var t = $(this);
+    var tv = t.val();
+    var l = tv.length;
+    var locale = $(this).closest('form').find('input#current_locale').val();    
+    if (l == 1 || l == was_permalink_box_length) {
       return;
     } else {
-      check_story_permalink($(this).val());
+      check_story_permalink(tv, locale);
     }
-
-    was_permalink_box_length = $(this).val().length;
+    was_permalink_box_length = l;
   }));
   
 
  
+
+  // when the story locale changes, make sure the hidden locale field also changes
+  $('#storyLocale').change(function(){
+    $('input#storyHiddenLocale').val($('#storyLocale').val());
+    $('input#current_locale').val($('#storyLocale').val());
+  });
+
+
+
 
   // add autocomplete for tags
   if ($('#storyTagList').length > 0){
@@ -526,96 +599,64 @@ $(document).ready(function() {
     ); 
   }
   
-  // add autocomplete for collaborator search
-  if ($('form#collaborators #collaborator_ids').length > 0){
-    $('form#collaborators #collaborator_ids').tokenInput(
-      gon.collaborator_search,
-      {
-        method: 'POST',
-        minChars: 2,
-        theme: 'facebook',
-        allowCustomEntry: true,
-        preventDuplicates: true,
-        prePopulate: $('form#collaborators #collaborator_ids').data('load'),
-        hintText: gon.tokeninput_collaborator_hintText,
-        noResultsText: gon.tokeninput_collaborator_noResultsText,
-        searchingText: gon.tokeninput_searchingText,
-        resultsFormatter: function(item){ 
-          return "<li><img src='" + item.img_url + "' title='" + item.name + "' height='28px' width='28px' /><div style='display: inline-block; padding-left: 10px;'><div>" + item.name + "</div></div></li>" 
-        },        
-        tokenFormatter: function(item) { 
-          if (item.img_url == undefined){
-            return "<li><p>" + item.name + "</p></li>" ;
-          }else{
-            return "<li><p><img src='" + item.img_url + "' title='" + item.name + "' height='50px' width='50px' /></p></li>" ;
-          }
-        }
-      }
-    ); 
-  }
-  
-  // remove collaborator
-  $('#current-collaborators a.remove-collaborator').click(function(e){
-		e.preventDefault();		
-    var ths = this;
-    $.ajax
-    ({
-	    url: $(ths).data('url'),			  
-	    data: {user_id: $(ths).data('id')},
-	    type: "POST",			
-      dataType: 'json'
-    }).done(function(d) {
-      var dng = 'alert-danger';
-      var info = 'alert-info';
-      var cls = dng;
-      if (d.success){
-        // hide user
-        $(ths).closest('li').fadeOut();
-        cls = info;
-      }
-      // show message
-      $('li#remove-collaborator-message').show().removeClass(dng).removeClass(info).addClass(cls).html(d.msg);
-    });
-  });
-
-  $('.story-tree ul li.story > .box > .title').trigger('click');
-
 
   $('#translateFrom').change(function(){
-  		var fromLang = $(this).selectpicker('val');
-  		var toLang = $('#translateTo').selectpicker('val');
+  		var fromLang = $(this).val();
+  		var toLang = $('#translateTo').val();
+      var which = 1;
   		if(fromLang == toLang)
   		{
   			$('#translateTo option').each(function(i,d){ 
   				if(d.value != fromLang)
   				{
+            which = 0;
   				 	$('#translateTo').val(d.value);
   				 	$('#translateTo').selectpicker('refresh');
-  				 	gon.transalte_to = d.value;
+  				 	gon.translate_to = d.value;
   					return false;
   				}
 		 	});
   		}
-	 	gon.transalte_from = fromLang;
-      getObject('select',selectedType, section_id, item_id, 1);
+	 	gon.translate_from = fromLang;
+      getObject('select',selectedType, section_id, item_id, which);
   		// call new language
   });
     $('#translateTo').change(function(){
-  		var fromLang = $('#translateFrom').selectpicker('val');
-  		var toLang = $(this).selectpicker('val');
+  		var fromLang = $('#translateFrom').val();
+  		var toLang = $(this).val();
+      var which = 2;
   		if(fromLang == toLang)
   		{
-  			gon.transalte_from = $('#translateFrom').attr('data-default');		
-  			$('#translateFrom').val(gon.transalte_from);
-		 	$('#translateFrom').selectpicker('refresh');  	
-
+        which = 0;
+  			gon.translate_from = $('#translateFrom').attr('data-default');		
+  			$('#translateFrom').val(gon.translate_from);
+		 	  $('#translateFrom').selectpicker('refresh');  	
   		}
-	 	gon.transalte_from = toLang;
-      getObject('select',selectedType, section_id, item_id, 2);
-  		// call new language
+ 	    gon.translate_to = toLang;
+      getObject('select',selectedType, section_id, item_id, which);
+
+      get_translation_progress(toLang);
   });
 
   story_tree = $('.story-tree');
+
+// copy paste for translation form fields
+  $(document).on('mouseenter','.story-page2 input[type=text], .story-page2 input[type=url]', function(){
+    var id = $(this).closest('.form-group').attr('id');
+    $('.copy-paste').stop().css({'top':$(this).offset().top + 14,'left':$(this).offset().left-22 }).attr('data-id',id).fadeIn(500);
+  });
+  $(document).on('mouseleave','.story-page2 input[type=text], .story-page2 input[type=url]', function(){
+    $('.copy-paste').fadeOut(5000);
+  });
+  $('.copy-paste').click(function(){
+    var id = $(this).attr('data-id');
+    var from = $('.story-page1 #' + id + ' input');
+    var to = $('.story-page2 #' + id + ' input');
+    if(from.length && from.val() != "")
+    {
+      to.val(from.val());
+    }
+  });
 
 });
 
@@ -643,12 +684,16 @@ function show_story_permalink(d){
   $(div + ' > span.check_permalink').html(html);
 }
 
-function check_story_permalink(text){
+function check_story_permalink(text, locale){
   if (text != ''){
     var data = {text: text};
     var url = window.location.href.split('/');
     if (url[url.length-1] == 'edit'){
       data.id = url[url.length-2];
+    }
+    // pass in locale if exists
+    if (locale != undefined){
+      data.sl = locale;
     }
     $.ajax
     ({
@@ -700,7 +745,7 @@ function isUrl(s) {
 
 function getObject(method, type, id, sub_id, which)
 {
-
+  //console.log('getObject');
    method = typeof method !== 'undefined' ? method : '';  // n - new , s - select, r - remove, a - add
    type = typeof type !== 'undefined' ? type : '';  
    id = typeof id !== 'undefined' ? id : -1;
@@ -709,7 +754,7 @@ function getObject(method, type, id, sub_id, which)
    selectedType = type;
 
 //   console.log(method,type,id,sub_id,which);
-   console.log(section_types,type,section_types.indexOf(type));
+   if(method == 'create') which = 1;
    var pars = { 'which': which };   
    if(type == 'story')
    {
@@ -738,38 +783,46 @@ function getObject(method, type, id, sub_id, which)
    pars['method'] = method;
    pars['type'] = type;
 
-   if(gon.translate) { pars['trans'] = {'from':gon.translate_from,'to':gon.translate_to}; }  
- console.log(pars);
+   if(gon.translate) { 
+      pars['tr'] = true;
+      pars['tr_from'] = gon.translate_from;
+      pars['tr_to'] = gon.translate_to;
+    }  
 // request data
    $.ajax
       ({       
         url: 'get_data',
         data: pars,
         dataType: 'script',
-        cache: true 
-      }).error(function(e){console.log(e)}).done(function(){         
+        cache: true,
+      }).error(function(e){console.log(e)}).done(function(){  
          //if(el_type!='section' && method != 'n')
            // $('.form-title .form-title-text').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > div > .sub-l').text() + ": " + $('.form-title .form-title-text').text());
       });
 
    return true;   
 }
-function remove_fields(link) {
-  $(link).prev("input[type=hidden]").val("1");
-  $(link).closest(".fields").hide();
-}
 
 function add_fields(link, association, content) {
   	var new_id = new Date().getTime();
   	var regexp = new RegExp("new_" + association, "g")
-	$('#slideshowAssets').append(content.replace(regexp, new_id));
+    if (association == 'asset_files'){
+      $('#slideshowAssetFiles').append(content.replace(regexp, new_id));
+    }else if (association == 'infographic_datasources'){
+      $('#infographicDataSources').append(content.replace(regexp, new_id));
+    }
 }
 function error(v)
 {
    return (v == null || typeof v === 'undefined' || !v.hasOwnProperty('e') || v.e == true);
 }
+function refresh()
+{
+  
+}
 function change_tree(d)
 {
+  //console.log('change_tree',d);
    var li = $("<li id='"+d.id+"' data-type='"+d.type+"' class='item open'>" + 
                "<div class='box'>" + 
                   "<div class='collapser'>-</div>" + 
@@ -781,20 +834,195 @@ function change_tree(d)
                "<ul class='opened'>"+d.add_item+"</ul>" + 
             "</li>");
    story_tree.find('ul li').removeClass('active'); // todo is it enough for reseting or section_id should be changed too ???
-   story_tree.find('> ul').append(li);   
-   li.find('ul > .btn-create').trigger('click');
-   //story_tree.animate({ scrollTop: story_tree.height()}, 1000);
+   story_tree.find('> ul').append(li);
+
+  li.find('.box .title').trigger('click');
+  if(d.select_next) select_next();
 }
 function change_sub_tree(d)
 {
    var section = story_tree.find('ul li.item[id='+ d.id + ']');
-   var li = $("<li id='"+d.sub_id+"' class='sub' data-type='"+d.type+"_item'><div><div class='sub-l'>"+d.title+"</div><div class='storytree-arrow'><div class='arrow'></div></div></div></li>");  
-   if(d.type != 'fullscreen')
-   {
-      section.find('ul button').remove();
-   }
-   section.find('ul').append(li);
+   var li = $("<li id='"+d.sub_id+"' class='sub' data-type='"+d.type+"_item'><div><div class='sub-l'>"+d.title+"</div>"+(d.hasOwnProperty('tools') ? d.tools : '')+"<div class='storytree-arrow'><div class='arrow'></div></div></div></li>");  
    
-   story_tree.find('ul li').removeClass('active');   
+   if(d.type != 'media')
+   {
+      section.find('> ul > button').remove();
+      section.find('ul').append(li);
+   }
+   else
+   {
+      li.insertBefore( section.find('> ul > button'));
+   }
+   story_tree.find('ul li').removeClass('active');
    li.find('.sub-l').trigger('click');
+   if(d.select_next) select_next(); 
+}
+
+function which(v,html)
+{
+  $(v==2?".story-page2":".story-page1").hide().html(html).fadeIn('slow');
+}
+function calculate_workspace()
+{
+  if($(".builder-wrapper").length)
+  {  
+    var bw = $(".builder-wrapper");  
+    var nav =  $('.nav-tabs');
+    var t = bw.find('.toolbar');       
+    var topOffset = t.outerHeight()+t.offset().top;
+    
+    bw.height($(window).height()- nav.outerHeight()-nav.offset().top);
+
+    var bwh = $(window).height()-topOffset;
+    var content = bw.find("> .content");
+    var toolbar = bw.find("> .toolbar");
+
+    var sidebar = content.find("> .sidebar");
+    var workplace = content.find("> .workplace");
+    var tree =  sidebar.find("> .story-tree");
+    
+
+    tree.height(bwh);
+    workplace.height(bwh);
+
+    content.css('top',topOffset + 'px');
+  }
+}
+function select_next()
+{
+  var tree = $('.story-tree');
+  var t = tree.find('ul li.active');
+  
+  //console.log('active',t);
+  if(t.length) // if there is active item
+  {
+    var child = t.find('ul li');
+    //console.log(child.length);
+    if(child.length) // select child element if exists
+    {
+      if(!t.hasClass('open')) // if childs list not opened yet open it
+      {
+        t.find('> .box > .collapser').trigger('click');
+      }
+      child.first().find('> div > .sub-l').trigger('click');
+    }
+    else // if has no child li elements
+    {
+      if(t.hasClass('sub')) // if element is sub
+      {
+        var next = t.next('li.sub');
+        if(next.length) // if has sub brothers
+        {
+           next.find('> div > .sub-l').trigger('click');
+        }
+        else // if no brother should jump to next parent
+        {
+          next = t.closest('li.item').next('li.item')
+          if(next.length)
+          {
+            if(!next.hasClass('open')) // if childs list not opened yet open it
+            {
+              next.find('> .box > .collapser').trigger('click');
+            }
+            next.find('> .box > .title').trigger('click');
+            tree.get(0).scrollTop = tree.get(0).scrollTop + next.position().top;
+          }
+          else
+          {
+            getObject('create','section');
+          }
+        }        
+      }
+      else // parent has no inner items so go to create page
+      {
+        t.find('ul > .btn-create').trigger('click');
+        // next = t.next('li.item')
+        // if(next.length)
+        // {
+        //   if(!next.hasClass('open')) // if childs list not opened yet open it
+        //   {
+        //     next.find('> .box > .collapser').trigger('click');
+        //   }
+        //   next.find('> .box > .title').trigger('click');
+        //   tree.get(0).scrollTop = tree.get(0).scrollTop + next.position().top;
+        // } 
+        // else
+        // {
+          
+        // }     
+      }
+    }
+  }
+  else // if nothing is selected
+  { 
+    t = $('.story-tree ul li').first();
+    if(t.length) // and if item exists
+    {
+      if(!t.hasClass('open')) // if childs list not opened yet open it
+      {
+        t.find('> .box > .collapser').trigger('click');
+      }
+      t.find('> .box > .title').trigger('click'); // simulate click to get data
+    }
+  }
+}
+
+// get the updated translation progress for this locale
+function get_translation_progress(to_locale){
+ $.ajax
+    ({       
+      url: gon.translation_progress_url,
+      data: {sl: to_locale},
+      dataType: 'script'
+    }).error(function(e){console.log(e)}).done(function(){  
+       //if(el_type!='section' && method != 'n')
+         // $('.form-title .form-title-text').text($('.story-tree > ul > li.item[id='+section_id+'].open > ul > li.sub.active > div > .sub-l').text() + ": " + $('.form-title .form-title-text').text());
+    });
+}
+
+// update the language switchers with the latest progress status for the provided locale
+function update_translation_progress(progress, to_locale, percent, is_published){
+  if ($('.toolbar select#translateTo').length > 0){
+    var optionTo = $('.toolbar select#translateTo option[value="' + to_locale + '"]');
+    var pickerTo = $('.toolbar select#translateTo + .bootstrap-select');
+    var optionFrom = $('.toolbar select#translateFrom option[value="' + to_locale + '"]');
+    var pickerFrom = $('.toolbar select#translateFrom + .bootstrap-select');
+    var publishTo = $('.toolbar .right-view a.btnPublish');
+
+    // if the to locale is in the progress list, let's update the text in the drop down list
+    var match = $.grep(progress, function(x){
+      return x.locale == to_locale;
+    });
+    // create percent
+    if (match != undefined && percent != undefined && percent != ""){
+      // found match, now need to udpate text
+      var text;
+      var orig_text = $(optionTo).html();
+      if ($(optionTo).html().indexOf(' (') > -1){
+        // already has percent, so need to replace
+        text = $(optionTo).html().replace(/\s\(\d{1,3}%\)/,  ' (' +  percent + ')');
+      }else{
+        // not have percent, so need to add
+        text = $(optionTo).html() + ' (' +  percent + ')'
+      }
+      $(optionTo).html(text);
+      $(pickerTo).find(" > button").attr('title', text);
+      $(pickerTo).find(" > button span.filter-option").html(text);
+      $(pickerTo).find(" .dropdown-menu ul li a span.text:contains('" + orig_text + "')").html(text);
+      $(pickerFrom).find(" .dropdown-menu ul li a span.text:contains('" + orig_text + "')").html(text);
+      $(publishTo).attr('data-percent', percent);
+      
+      // if to is 100% or story is already published, then turn on publish button
+      if (percent == '100%' || is_published == 'true'){
+        $(publishTo).toggleClass('btn-publish-disabled btn-publish').removeClass('hide');
+      }else{
+        $(publishTo).toggleClass('btn-publish btn-publish-disabled ').addClass('hide');
+      }
+ 
+
+    }else{
+      // turn off pub button since there is no percent
+      $(publishTo).toggleClass('btn-publish btn-publish-disabled ').addClass('hide');
+    }
+  }
 }

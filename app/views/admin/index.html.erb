@@ -1,11 +1,13 @@
 <% title t('.title') %>
-
- <div class="span4">
+ <div class="js-list-basic">
 	<ul>
     <li>
-     <%= link_to t('helpers.links.users'), admin_users_path %>
+     <%= link_to t('helpers.links.authors'), admin_authors_path %>
     </li>
     <% if current_user.role? User::ROLES[:site_admin] %>
+      <li>
+       <%= link_to t('helpers.links.users'), admin_users_path %>
+      </li>
       <li>
        <%= link_to t('helpers.links.themes'), admin_themes_path %>
       </li>
@@ -15,9 +17,11 @@
  			<li>
        <%= link_to t('helpers.links.pages'), admin_pages_path %>
       </li>
- 			<li>
-       <%= link_to t('helpers.links.langauges'), admin_languages_path %>
-      </li>
+      <% if current_user.role? User::ROLES[:admin] %>
+   			<li>
+         <%= link_to t('helpers.links.langauges'), admin_languages_path %>
+        </li>
+      <% end %>
     <% end %>
 	</ul>
 </div>

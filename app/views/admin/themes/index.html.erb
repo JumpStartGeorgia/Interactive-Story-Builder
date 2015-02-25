@@ -2,7 +2,7 @@
 <%- model_class_trans = ThemeTranslation -%>
 <% title t '.title', :default => model_class.model_name.human.pluralize %>
 
-<div class="form-actions">
+<div>
   <%= link_to t('helpers.links.new'),
               new_admin_theme_path,
               :class => 'btn btn-primary' %>
@@ -10,31 +10,53 @@
   :class => 'btn btn-default' %>
 </div>
 
-<table class="table table-striped">
+<table id="theme-datatable" class="table table-striped">
   <thead>
     <tr>
+      <th></th>
       <th><%= model_class_trans.human_attribute_name(:name) %></th>
       <th><%= model_class_trans.human_attribute_name(:edition) %></th>
+      <th><%= model_class_trans.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:published_at) %></th>
       <th><%= model_class.human_attribute_name(:show_home_page) %></th>
+      <th><%= model_class.human_attribute_name(:published_item_count) %></th>
+      <th><%= model_class.human_attribute_name(:featured_stories) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @themes.each do |theme| %>
       <tr>
+        <td>
+          <% if theme.published_item_count > 0 %>
+            <a href="#" id='btnPreview' class='preview btn btn-default btn-xs' 
+                title="<%= t('helpers.links.story_menu.link.preview') %>"
+                data-link='<%= preview_admin_theme_path(theme) %>'
+                data-modalos-id='modalos-preview' data-type='story'>
+              <span class="glyphicon glyphicon-eye-open" ></span>
+            </a>
+          <% end %>
+        </td>
         <td><%= theme.name %></td>
         <td><%= theme.edition %></td>
+        <td><%= theme.description %></td>
         <td><%= l theme.published_at if theme.published_at.present? %></td>
         <td><%= theme.show_home_page? ? t('formtastic.yes') : '' %></td>
+        <td><%= theme.published_item_count %></td>
+        <td>
+          <ol class="standard">
+          <% theme.featured_stories.each do |story| %>
+            <li><%= story.title %></li>
+          <% end %>
+        </td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_admin_theme_path(theme), :class => 'btn btn-mini btn-default' %>
+                      edit_admin_theme_path(theme), :class => 'btn btn-xs btn-default' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       admin_theme_path(theme),
                       :method => :delete,
                       :data => { :confirm => I18n.t("helpers.links.confirm") },
-                      :class => 'btn btn-mini btn-danger' %>
+                      :class => 'btn btn-xs btn-danger' %>
         </td>
       </tr>
     <% end %>

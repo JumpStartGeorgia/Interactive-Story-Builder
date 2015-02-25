@@ -9,16 +9,29 @@ class StorytellerController < ApplicationController
 
   def index
 
-    @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css")
+    #Rails.logger.debug("------------------------------------------------------- storyteller-index ")
+    @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css", "grid2.css")
     @js.push("storyteller.js","modalos.js","follow.js")    
-  	story = Story.select('id').is_published.find_by_permalink(params[:id])
+  	story = Story.select('stories.id').is_published.find_by_permalink(params[:id])
   	@story = Story.is_published.fullsection(story.id) if story.present?  
 
   	if @story.present?
+      # set story locale 
+      # if param exists use that
+      # else check if translation exists for current app locale
+      if params[:sl].present?
+        @story.current_locale = params[:sl] 
+        Globalize.story_locale = params[:sl] 
+      else
+        @story.use_app_locale_if_translation_exists
+      end
+      @stories = @story.random_related_stories
+#logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; permalink = #{@story.permalink}"
+
       # record if the user has liked this story
       @user_likes = false
     	@user_likes = current_user.voted_up_on? @story if user_signed_in?
-      @is_following = Notification.already_following_user(current_user.id, @story.user_id) if user_signed_in?
+      @is_following = Notification.already_following_user(current_user.id, @story.author_ids) if user_signed_in?
 
       if params[:n] == 'n'
           @no_nav = true
@@ -27,7 +40,7 @@ class StorytellerController < ApplicationController
         format.html 
       end
       # record the view count
-      impressionist(@story)
+      impressionist(@story, :unique => [:session_hash])
     else
       redirect_to root_path, :notice => t('app.msgs.does_not_exist')
     end

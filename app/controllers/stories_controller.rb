@@ -3,8 +3,14 @@ class StoriesController < ApplicationController
   before_filter do |controller_instance|
     controller_instance.send(:valid_role?, User::ROLES[:coordinator])
   end
-  before_filter(:except => [:index, :new, :create, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
+  before_filter(:except => [:index,:new, :create, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
     controller_instance.send(:can_edit_story?, params[:id])
+  end
+  before_filter(:except => [:index, :preview, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
+    controller_instance.send(:can_edit_story_locale?)
+  end
+  before_filter(:except => [:index, :preview, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
+    controller_instance.send(:can_access_action?)
   end
   before_filter :asset_filter
   before_filter :set_form_gon
@@ -15,9 +21,8 @@ class StoriesController < ApplicationController
   def index    
     @css.push("navbar.css", "filter.css", "grid.css","author.css")
     @js.push("zeroclipboard.min.js","filter.js","stories.js") 
-    @stories =  process_filter_querystring(Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => per_page))           
-    @editable = (user_signed_in?)
-
+    @stories =  process_filter_querystring(Story.editable_stories(current_user.id).paginate(:page => params[:page], :per_page => per_page))           
+    @editable = (user_signed_in?)   
     respond_to do |format|
       format.html  #index.html.erb
       format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}          
@@ -34,51 +39,59 @@ class StoriesController < ApplicationController
   # GET /stories/new
   # GET /stories/new.json
   def new
-    @story = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
-    @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
+    @item = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
+    # @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])  
+    logger.debug("------------------------------------------------#{@item.inspect}"  )
 #    @templates = Template.select_list
-    @story_tags = []
+#    @story_tags = []
     @themes = Theme.sorted
-    
+    @authors = Author.sorted
+    @new = true
     respond_to do |format|
         format.html #new.html.er
-        format.json { render json: @story }
+        format.json { render json: @item }
     end
   end
 
   # GET /stories/1/edit
   def edit
-    @story = Story.find(params[:id])
-    if !@story.asset_exists?
-      @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
-    end 
-#    @templates = Template.select_list(@story.template_id)
-    @story_tags = @story.tags.token_input_tags
+    @item = Story.find(params[:id])
+    # if !@item.asset_exists?
+    #   @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+    # end 
+#    @templates = Template.select_list(@item.template_id)
+#    @story_tags = @item.tags.token_input_tags
     @themes = Theme.sorted
+    @authors = Author.sorted
   end
 
   # POST /stories
   # POST /stories.json
   def create
-    @story = Story.new(params[:story])
+    @item = Story.new(params[:story])
 
     respond_to do |format|
 
-      if @story.save
-        flash_success_created(Story.model_name.human,@story.title)       
-        format.html { redirect_to sections_story_path(@story) }
-      #  format.json { render json: @story, status: :created, location: @story }
+      if @item.save
+        @item.reload      
+#        @item.with_translation(params[:current_locale])
+ #       @item.current_locale = params[:current_locale]
+        flash_success_created(Story.model_name.human,@item.title)       
+        format.html { redirect_to sections_story_path(@item) }
+      #  format.json { render json: @item, status: :created, location: @item }
       else
-        if !@story.asset.present? 
-          @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
-        end      
-        #@templates = Template.select_list(@story.template_id) 
-        @story_tags = @story.tags.token_input_tags
+        # if !@item.asset.present? 
+        #   @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+        # end      
+        #@templates = Template.select_list(@item.template_id) 
+#        @story_tags = @item.tags.token_input_tags
+        @item.current_locale = @item.story_locale
         @themes = Theme.sorted
-
-        flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
+        @authors = Author.sorted
+        @new = true
+        flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@item.errors.full_messages.to_sentence)     
         format.html { render action: "new" }
-        #  format.json { render json: @story.errors, status: :unprocessable_entity }
+        #  format.json { render json: @item.errors, status: :unprocessable_entity }
         #  format.js {render action: "flash" , status: :ok }
       end
     end
@@ -87,33 +100,41 @@ class StoriesController < ApplicationController
   # PUT /stories/1
   # PUT /stories/1.json
   def update
-    @story = Story.find(params[:id])
+    @item = Story.find(params[:id])
   
     respond_to do |format|
-      if !@story.published && params[:story][:published]=="1"
-        if !@story.about.present? || !@story.asset_exists?
-          flash[:error] = I18n.t('app.msgs.error_publish_missing_fields', :obj => @story.title)            
-        elsif @story.sections.map{|t| t.content? && t.content.present? && t.content.content.present? }.count(true) == 0
-          flash[:error] = I18n.t('app.msgs.error_publish_missing_content_section')            
-        end                      
+      if !@item.published && params[:story][:published]=="1"
+        if !@item.about.present? || !@item.asset_exists?
+          flash[:error] = u(I18n.t('app.msgs.error_publish_missing_fields', :obj => @item.title))           
+        elsif @item.sections.map{|t| t.content? && t.content.present? && t.content.text.present? }.count(true) == 0
+          flash[:error] = u(I18n.t('app.msgs.error_publish_missing_content_section'))            
+        end   
+        @select_next = params[:commit_and_next].present? ? true : false                    
         format.html { render action: "edit" }
-        format.js {render action: "flash" , status: :ok }
+        format.js {render action: "popuper" , status: :ok }
       else
-        if @story.update_attributes(params[:story])
-          flash_success_updated(Story.model_name.human,@story.title)       
-          format.html { redirect_to  sections_story_path(@story) }
+        if @item.update_attributes(params[:story])
+          @item.reload      
+          @item.with_translation(params[:current_locale])
+          @item.current_locale = params[:current_locale]
+          @story_progress = StoryTranslationProgress.get_progress(@item.id)
+          flash_success_updated(Story.model_name.human,@item.title)  
+          @select_next = params[:commit_and_next].present? ? true : false       
+          format.html { redirect_to  sections_story_path(@item) }
           format.js { render action: "flash", status: :created }    
         else
-          if !@story.asset.present? 
-            @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
-          end 
-          #@templates = Template.select_list(@story.template_id)
-          @story_tags = @story.tags.token_input_tags
+          # if !@item.asset.present? 
+          #   @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+          # end 
+          #@templates = Template.select_list(@item.template_id)
+#          @story_tags = @item.tags.token_input_tags
+          @item.current_locale = @item.story_locale
           @themes = Theme.sorted
-          
-          flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
+          @authors = Author.sorted
+          #logger.debug "$$$$$$$$$$$$44 story update error: #{@item.errors.full_messages.to_sentence}"                
+          flash[:error] = u(I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@item.errors.full_messages(true).to_sentence))            
           format.html { render action: "edit" }
-          format.js {render action: "flash" , status: :ok }
+          format.js {render action: "popuper" , status: :ok }
         end
       end
     end
@@ -144,6 +165,7 @@ class StoriesController < ApplicationController
     @story = Story.find_by_reviewer_key(params[:id])
     if @story.present?
       if @story.published?
+        Rails.logger.debug("--------------------------------------------------- storyteller_show_path")
         redirect_to storyteller_show_path(@story.permalink)     
       else
         respond_to do |format|     
@@ -158,12 +180,26 @@ class StoriesController < ApplicationController
   def preview
     @css.push("navbar.css", "navbar2.css", "storyteller.css","modalos.css")
     @js.push("storyteller.js","modalos.js")
+    @is_preview = true
 
     if params[:n] == 'n'
       @no_nav = true
     end    
 
   	@story = Story.fullsection(params[:id])      
+    if @story.present?
+      # set story locale 
+      # if param exists use that
+      # else check if translation exists for current app locale
+      if params[:sl].present?
+        @story.current_locale = params[:sl] 
+        Globalize.story_locale = params[:sl] 
+      else
+        @story.use_app_locale_if_translation_exists
+      end
+
+logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; permalink = #{@story.permalink}"
+    end
 
     respond_to do |format|  
       #if(@story.present?)   
@@ -174,7 +210,7 @@ class StoriesController < ApplicationController
     end
   end
 # load the item (i.e., Section.find_by_id)
-# call: item.translation_for(locale), where locale is the locale to get text for
+# call: item.with_translation(locale), where locale is the locale to get text for
 # In partial, add the following do block before you use any of the fields: 
 # Globalize.with_locale(locale) do
 #   # form field stuff here
@@ -188,356 +224,272 @@ class StoriesController < ApplicationController
     type = params[:type]
     _id = params[:_id]
     sub_id = params[:sub_id]
-    @which = params[:which].to_i    
-
+    @which = params[:which].present? ? params[:which].to_i : 1
     @trans = false
-
+    @from = I18n.locale
+    @to = nil
     @story = Story.find_by_id(id) 
 
-    
-    if @story.present? && params.has_key?(:trans)
-      @trans = true
-      @trans_from = params[:trans].has_key?(:from) ? params[:trans][:from] : @story.story_locale
-      @trans_to = params[:trans].has_key?(:to) ? params[:trans][:to] : @languages.where("locale != '#{@story.story_locale}'").order('locale').first.locale
+    if @story.present?     # if story exists, set some params
+      @from = @story.story_locale # set default locale to story locale
+      if params.has_key?(:tr) # get the translation locales
+        @trans = true
+        @from = params.has_key?(:tr_from) ? params[:tr_from] : @story.present? ? @story.story_locale : @from
+        @to = params.has_key?(:tr_to) ? params[:tr_to] : @languages.select{|x| x.locale != @story.story_locale}.first.locale
+      end
     end
-
-
-
     if type == 'story'
       if method=='select'
         @item = @story 
-        if !@item.asset_exists?
-          @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
-        end    
+        # if !@item.asset_exists?
+        #   @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+        # end    
       elsif method=='create'
-          @item = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
-          @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
-      end        
-      
-      respond_to do |format|
-        if @item.present?
-          @themes = Theme.sorted
-          format.js { render :action => "get_story" }          
-        else
-          @get_data_error = I18n.t('app.msgs.error_get_data')
-          format.js
-        end
+        @item = Story.new(:user_id => current_user.id, :story_locale => defualt_locale)     
+        # @item.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
       end
+      @themes = Theme.sorted   
+      @authors = Author.sorted
+      type = 'form'           
     elsif type == 'section'
-
       if method=='select'
         @item = Section.find_by_id(_id)    
       else 
         @item = Section.new(story_id: id, has_marker: 0)
       end        
-      if @item.present? && !@item.asset_exists?
-          @item.build_asset(:asset_type => Asset::TYPE[:section_audio])
-      end   
-      respond_to do |format|
-        if @item.present?
-          format.js { render :action => "get_section" }          
-        else
-          @get_data_error = I18n.t('app.msgs.error_get_data')
-          format.js
-        end
-      end
-
+      # if @item.present? && !@item.asset_exists?
+      #     @item.build_asset(:asset_type => Asset::TYPE[:section_audio])
+      # end   
     elsif type == 'content'
-
       if method=='select'
         @item = Content.find_by_id(sub_id)
       else 
-        @item = Content.new(:section_id => _id, :content => '')
+        @item = Content.new(:section_id => _id)
       end
-      respond_to do |format|
-        if @item.present?
-          format.js  {render :action => "get_content" }
-        else
-          @get_data_error = I18n.t('app.msgs.error_get_data')
-          format.js
-        end
-      end
-
     elsif type == 'media'
-        if method=='select'    
-          @item = Medium.find_by_id(sub_id)   
-        else 
-          @item = Medium.new(:section_id => _id, media_type: Medium::TYPE[:image])
-        end
-
-        if @item.present? &&  !@item.image_exists? 
-          @item.build_image(:asset_type => Asset::TYPE[:media_image])
-        end   
-        if @item.present? && !@item.video_exists?
-          @item.build_video(:asset_type => Asset::TYPE[:media_video])
-        end      
-
-        respond_to do |format|
-           if @item.present?
-            format.js {render :action => "get_media" }
-          else
-            @get_data_error = I18n.t('app.msgs.error_get_data')
-            format.js
-          end
-        end
-    elsif type == 'slideshow'
-
-        if method=='select'    
-          @item = Slideshow.find_by_id(sub_id)           
-        else 
-          @item = Slideshow.new(:section_id => _id)
-        end
-      
-       if @item.present? && @item.assets.blank?
-          @item.assets.build(:asset_type => Asset::TYPE[:slideshow_image])
-        end      
-
-     
-        respond_to do |format|
-          if @item.present?
-              format.js {render :action => "get_slideshow" }
-          else
-            @get_data_error = I18n.t('app.msgs.error_get_data')
-            format.js          
-          end
+      if method=='select'    
+        @item = Medium.find_by_id(sub_id)   
+      else 
+        @item = Medium.new(:section_id => _id, media_type: Medium::TYPE[:image])
       end
+
+      # if @item.present? &&  !@item.image_exists? 
+      #   @item.build_image(:asset_type => Asset::TYPE[:media_image])
+      # end   
+      # if @item.present? && !@item.video_exists?
+      #   @item.build_video(:asset_type => Asset::TYPE[:media_video])
+      # end      
+    elsif type == 'slideshow'
+      if method=='select'    
+        @item = Slideshow.find_by_id(sub_id)           
+      else 
+        @item = Slideshow.new(:section_id => _id)
+      end
+     # if @item.present? && @item.assets.blank?
+     #    @item.assets.build(:asset_type => Asset::TYPE[:slideshow_image])
+     #  end          
     elsif type == 'embed_media'
-
-        if method=='select'    
-          @item = EmbedMedium.find_by_id(sub_id)   
-        else 
-          Rails.logger.debug(_id)
-          @item = EmbedMedium.new(:section_id => _id)
-        end
-        respond_to do |format|
-          if @item.present?
-              format.js {render :action => "get_embed_media" }
-          else
-            @get_data_error = I18n.t('app.msgs.error_get_data')
-            format.js          
-          end
-        end
+      if method=='select'    
+        @item = EmbedMedium.find_by_id(sub_id)   
+      else 
+        Rails.logger.debug(_id)
+        @item = EmbedMedium.new(:section_id => _id)
+      end  
     elsif type == 'youtube'
+      if method=='select'    
+        @item = Youtube.find_by_id(sub_id)   
+      else 
+        @item = Youtube.new(:section_id => _id)
+        # @item.youtube_translations.build(:locale => I18n.locale.to_s)
+      end
+    elsif type == 'infographic'
+      if method=='select'    
+        @item = Infographic.find_by_id(sub_id)   
+      else 
+        @item = Infographic.new(:section_id => _id, subtype: Infographic::TYPE[:static])
+        # @item.infographic_translations.build(:locale => I18n.locale.to_s)
+      end
+    end
 
-        if method=='select'    
-          @item = Youtube.find_by_id(sub_id)   
-        else 
-          @item = Youtube.new(:section_id => _id)
-          @item.youtube_translations.build(:locale => I18n.locale.to_s)
-        end
-        respond_to do |format|
-          if @item.present?
-              format.js {render :action => "get_youtube" }
-          else
-            @get_data_error = I18n.t('app.msgs.error_get_data')
-            format.js          
-          end
-        end
+    respond_to do |format|
+      if @item.present? 
+        @type = type       
+        @item.translations_for([@from,@to]) # get the translations for this item or build it if not exist yet
+        @item.current_locale = @from
+      else
+        @error = I18n.t('app.msgs.error_get_data')
+      end
+      format.js
     end
   end
 
   def new_section
     @item = Section.new(params[:section])  
-
      respond_to do |format|
-        if @item.save         
-          flash_success_created(Section.model_name.human,@item.title)                     
+        if @item.save   
+          @item.reload      
+          @item.with_translation(params[:current_locale])
+          @item.current_locale = params[:current_locale]
+          #Rails.logger.debug "######### new_media save error: #{@item.translations.inspect}"
+          flash_success_created(Section.model_name.human,@item.title, (StoryTranslationProgress.length(params[:id]) > 1))          
+          @select_next = params[:commit_and_next].present? ? true : false             
           format.js { render action: "change_tree", status: :created  }
         else          
           flash[:error] = u I18n.t('app.msgs.error_created', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                  
-          format.js {render action: "flash" , status: :ok }
+          format.js {render action: "popuper" , status: :ok }
         end
       end    
   end
 
- def new_media
-    @item = Medium.new(params[:medium])    
-#Rails.logger.debug "######### image valid: #{@item.image.valid?}; image validations: #{@item.image.errors.full_messages.to_sentence}" if @item.image.present?
-#Rails.logger.debug "######### video valid: #{@item.video.valid?}; video validations: #{@item.video.errors.full_messages.to_sentence}" if @item.video.present?
+  def new_item   
+    if params[:content].present?
+      @item = Content.new(params[:content])   
+      @type = :content
+    elsif params[:medium].present?
+      @item = Medium.new(params[:medium])   
+      @type = :media
+      #Rails.logger.debug "######### image valid: #{@item.image.valid?}; image validations: #{@item.image.errors.full_messages.to_sentence}" if @item.image.present?
+      #Rails.logger.debug "######### video valid: #{@item.video.valid?}; video validations: #{@item.video.errors.full_messages.to_sentence}" if @item.video.present?
+    elsif params[:slideshow].present?
+      @item = Slideshow.new(params[:slideshow]) 
+      @type = :slideshow   
+    elsif params[:embed_medium].present?
+      @item = EmbedMedium.new(params[:embed_medium])  
+      @type = :embed_medium
+    elsif params[:youtube].present?  
+      # copy the loop/info data into the translation records;  so the get code method can use these values
+      params[:youtube][:youtube_translations_attributes]['0'][:loop] = params[:youtube][:loop]
+      params[:youtube][:youtube_translations_attributes]['0'][:info] = params[:youtube][:info]
+
+      @item = Youtube.new(params[:youtube])    
+      @type = :youtube 
+
+    elsif params[:infographic].present?  
+      # copy the width/height data into the translation records;  so the get code method can use these values
+      params[:infographic][:infographic_translations_attributes]['0'][:width] = params[:infographic][:dynamic_width]
+      params[:infographic][:infographic_translations_attributes]['0'][:height] = params[:infographic][:dynamic_height]
+
+      @item = Infographic.new(params[:infographic])    
+      @type = :infographic 
+
+    end
     respond_to do |format|
-        if @item.save       
-          flash_success_created(Medium.model_name.human,@item.title)                     
-          format.js { render action: "change_sub_tree", status: :created }                    
-        else                    
-          flash[:error] = u I18n.t('app.msgs.error_created', obj:Medium.model_name.human, err:@item.errors.full_messages.to_sentence)                       
-#Rails.logger.debug "######### new_media save error: #{@item.errors.full_messages.to_sentence}"
-          format.js {render action: "flash" , status: :ok }
-        end
-      end    
+      if @item.save
+        @item.reload      
+        @item.with_translation(params[:current_locale])
+        @item.current_locale = params[:current_locale]
+        flash_success_created(@item.class.model_name.human,@item.title, (StoryTranslationProgress.length(params[:id]) > 1))          
+        @select_next = params[:commit_and_next].present? ? true : false                     
+        format.js { render action: "change_sub_tree", status: :created  }
+      else
+        #logger.debug "@@@@@@@@@@@@@@@ error = #{@item.errors.full_messages.to_sentence}"
+        flash[:error] = u I18n.t('app.msgs.error_created', obj:@item.class.model_name.human, err:@item.errors.full_messages(true).to_sentence)                  
+        format.js {render action: "popuper" , status: :ok }
+      end
+    end    
   end
 
 
-
-    def new_content    
-     @item = Content.new(params[:content])   
-     @type = 'content'
-     respond_to do |format|
-        if @item.save
-          flash_success_created(Content.model_name.human,@item.title)                     
-          format.js { render action: "change_sub_tree", status: :created  }
-        else
-          flash[:error] = u I18n.t('app.msgs.error_created', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)                  
-          format.js {render action: "flash" , status: :ok }
-        end
-      end    
-  end
-  
-   def new_slideshow
-    @item = Slideshow.new(params[:slideshow])    
-    respond_to do |format|
-        if @item.save       
-          flash_success_created(Slideshow.model_name.human,@item.title)                     
-          format.js { render action: "change_sub_tree", status: :created }                    
-        else                    
-          flash[:error] = u I18n.t('app.msgs.error_created', obj:Slideshow.model_name.human, err:@item.errors.full_messages.to_sentence)                       
-          format.js {render action: "flash" , status: :ok }
-        end
-      end    
-  end
-
-  def new_embed_media
-    @item = EmbedMedium.new(params[:embed_medium])       
-    respond_to do |format|
-        if @item.save       
-          flash_success_created(EmbedMedium.model_name.human,@item.title)                     
-          format.js { render action: "change_sub_tree", status: :created }                    
-        else                    
-          flash[:error] = u I18n.t('app.msgs.error_created', obj:EmbedMedium.model_name.human, err:@item.errors.full_messages.to_sentence)                       
-          format.js {render action: "flash" , status: :ok }
-        end
-      end    
-  end
-  
-  def new_youtube
-    @item = Youtube.new(params[:youtube])       
-    respond_to do |format|
-        if @item.save       
-          flash_success_created(Youtube.model_name.human,@item.title)                     
-          format.js { render action: "change_sub_tree", status: :created }                    
-        else                    
-          flash[:error] = u I18n.t('app.msgs.error_created', obj:Youtube.model_name.human, err:@item.errors.full_messages.to_sentence)                       
-          format.js {render action: "flash" , status: :ok }
-        end
-      end    
-  end
-
-  def save_section      
+  def save_section       
     @item = Section.find_by_id(params[:section][:id]) 
 #logger.debug "+++++++++++++ delete attribute = #{params[:section][:asset_attributes][:delete_asset]}"
     respond_to do |format|
       if @item.present?
         if @item.update_attributes(params[:section].except(:id))
-          flash_success_updated(Section.model_name.human,@item.title)       
+          @item.reload      
+          @item.with_translation(params[:current_locale])
+          @item.current_locale = params[:current_locale]          
+          flash_success_updated(Section.model_name.human,@item.title)
+          @select_next = params[:commit_and_next].present? ? true : false     
+          @story_progress = StoryTranslationProgress.get_progress(@item.story_id)
           format.js {render action: "build_tree", status: :created }                  
         else
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                            
-          format.js {render action: "flash", status: :ok }
+          format.js {render action: "popuper", status: :ok }
         end
       else
         flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
-        format.js {render action: "flash", status: :ok }
+        format.js {render action: "popuper", status: :ok }
       end
     end    
   end
-  def save_content      
-     @item = Content.find_by_id(params[:content][:id])  
+  def save_item 
+
+    if params[:content].present?
+      klass = Content
+      type = :content
+    elsif params[:medium].present?
+      klass = Medium
+      type = :medium
+      #Rails.logger.debug "######### image valid: #{@item.image.valid?}; image validations: #{@item.image.errors.full_messages.to_sentence}" if @item.image.present?
+      #Rails.logger.debug "######### video valid: #{@item.video.valid?}; video validations: #{@item.video.errors.full_messages.to_sentence}" if @item.video.present?
+    elsif params[:slideshow].present?
+      klass = Slideshow
+      type = :slideshow
+    elsif params[:embed_medium].present?
+      klass = EmbedMedium
+      type = :embed_medium
+    elsif params[:youtube].present?  
+      klass = Youtube
+      type = :youtube
+      # copy the loop/info data into the translation records;  so the get code method can use these values
+      params[:youtube][:youtube_translations_attributes]['0'][:loop] = params[:youtube][:loop]
+      params[:youtube][:youtube_translations_attributes]['0'][:info] = params[:youtube][:info]
+
+    elsif params[:infographic].present?  
+      klass = Infographic
+      type = :infographic
+
+      # copy the width/height data into the translation records;  so the get code method can use these values
+      params[:infographic][:infographic_translations_attributes]['0'][:width] = params[:infographic][:dynamic_width]
+      params[:infographic][:infographic_translations_attributes]['0'][:height] = params[:infographic][:dynamic_height]
+
+logger.debug "@@@@@@@@@@@@@ d width = #{params[:infographic][:dynamic_width]}; width = #{params[:infographic][:infographic_translations_attributes]['0'][:width]}"
+logger.debug "@@@@@@@@@@@@@ d height = #{params[:infographic][:dynamic_height]}; height = #{params[:infographic][:infographic_translations_attributes]['0'][:height]}"
+    end   
+     @item = klass.find_by_id(params[type][:id]) 
      respond_to do |format|
       if @item.present?
-        if @item.update_attributes(params[:content].except(:id))          
-          flash_success_updated(Content.model_name.human,@item.title)           
+        if @item.update_attributes(params[type].except(:id))     
+          @item.reload      
+          @item.with_translation(params[:current_locale])
+          @item.current_locale = params[:current_locale]     
+          flash_success_updated(@item.class.model_name.human,@item.title)    
+          @select_next = params[:commit_and_next].present? ? true : false       
+          @story_progress = StoryTranslationProgress.get_progress(@item.section.story_id)
           format.js {render action: "build_tree", status: :created }                  
         else
-          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)                                      
-          format.js {render action: "flash" , status: :ok }
+        logger.debug "@@@@@@@@@@@@@@@ error = #{@item.errors.full_messages.to_sentence}"
+          flash[:error] = u I18n.t('app.msgs.error_updated', obj:@item.class.model_name.human, err:@item.errors.full_messages.to_sentence)                                      
+          format.js {render action: "popuper" , status: :ok }
         end
       else
         flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
-        format.js {render action: "flash", status: :ok }
+        format.js {render action: "popuper", status: :ok }
       end
     end    
   end
- def save_media
-    @item = Medium.find_by_id(params[:medium][:id])
-    respond_to do |format|
-      if @item.present?
-        if @item.update_attributes(params[:medium].except(:id))          
-          flash_success_updated(Medium.model_name.human,@item.title)           
-          format.js {render action: "build_tree", status: :created }          
-        else        
-          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Medium.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
-          format.js {render action: "flash", status: :ok }
-        end
-      else
-        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
-        format.js {render action: "flash", status: :ok }
-      end
-    end    
-  end
-  def save_slideshow
-    @item = Slideshow.find_by_id(params[:slideshow][:id])
-    respond_to do |format|
-      if @item.present?
-        if @item.update_attributes(params[:slideshow].except(:id))          
-          flash_success_updated(Slideshow.model_name.human,@item.title)           
-          format.js {render action: "build_tree", status: :created }          
-        else        
-          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Slideshow.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
-          format.js {render action: "flash", status: :ok }
-        end
-      else
-        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
-        format.js {render action: "flash", status: :ok }
-      end
-    end    
-  end
-  def save_embed_media
-    @item = EmbedMedium.find_by_id(params[:embed_medium][:id])
-    respond_to do |format|
-      if @item.present?
-        if @item.update_attributes(params[:embed_medium])          
-          flash_success_updated(EmbedMedium.model_name.human,@item.title)           
-          format.js {render action: "build_tree", status: :created }          
-        else        
-          flash[:error] = u I18n.t('app.msgs.error_updated', obj:EmbedMedium.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
-          format.js {render action: "flash", status: :ok }
-        end
-      else
-        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
-        format.js {render action: "flash", status: :ok }
-      end
-    end    
-  end
-  def save_youtube
-    @item = Youtube.find_by_id(params[:youtube][:id])
-    respond_to do |format|
-      if @item.present?
-        if @item.update_attributes(params[:youtube])          
-          flash_success_updated(Youtube.model_name.human,@item.title)           
-          format.js {render action: "build_tree", status: :created }          
-        else        
-          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Youtube.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
-          format.js {render action: "flash", status: :ok }
-        end
-      else
-        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
-        format.js {render action: "flash", status: :ok }
-      end
-    end    
-  end
+
+
   def destroy_tree_item  
     item = nil    
+    trans = nil
     type = params[:type]
 
     if type == 'section'
       item = Section.find_by_id(params[:_id])               
     elsif type == 'content'
-      item =  Content.find_by_id(params[:sub_id])      
+      item = Content.find_by_id(params[:sub_id])      
     elsif type == 'media'
       item = Medium.find_by_id(params[:sub_id])
     elsif type == 'slideshow'
       item = Slideshow.find_by_id(params[:sub_id])    
     elsif type == 'youtube'
       item = Youtube.find_by_id(params[:sub_id])                       
+    elsif type == 'embed_media'
+      item = EmbedMedium.find_by_id(params[:sub_id])      
+    elsif type == 'infographic'
+      item = Infographic.find_by_id(params[:sub_id])                       
     end
 
     item.destroy if item.present?
@@ -569,6 +521,20 @@ class StoriesController < ApplicationController
       render json: nil , status: :unprocessable_entity
     end
   end
+  def down  
+    item = nil
+    if params[:i] == '-1'
+      item = Section.where(story_id: params[:id]).find_by_id(params[:s])
+    else
+      item = Medium.where(section_id: params[:s]).find_by_id(params[:i])
+    end            
+    if item.present?
+      item.move_lower 
+      render json: nil , status: :created    
+    else
+      render json: nil , status: :unprocessable_entity
+    end
+  end
   def up_slideshow    
     item = Asset.find_by_id(params[:asset_id])
     if item.present?
@@ -587,58 +553,73 @@ class StoriesController < ApplicationController
       render json: nil , status: :unprocessable_entity
     end
   end
-  def down  
-    item = nil
-    if params[:i] == '-1'
-      item = Section.where(story_id: params[:id]).find_by_id(params[:s])
-    else
-      item = Medium.where(section_id: params[:s]).find_by_id(params[:i])
-    end            
-    if item.present?
-      item.move_lower 
-      render json: nil , status: :created    
-    else
-      render json: nil , status: :unprocessable_entity
-    end
-  end
+
 
   def sections
     #Rails.logger.debug("---------------------------------------------#{params.inspect}")
     @story = Story.fullsection(params[:id])   
-    @tr = params.has_key?(:tr) ? params[:tr] : false
+    @tr = params.has_key?(:tr) ? params[:tr].to_bool : false
+    @from  = @story.story_locale
     if @tr
-      @tr_from  = params.has_key?(:tr_from) ? params[:tr_from] : @story.story_locale
-      @tr_to    = params.has_key?(:tr_to) ? params[:tr_to] : @languages.where("locale != '#{@story.story_locale}'").order('locale').first.locale
-      gon.translate_from = @tr_from
-      gon.translate_to = @tr_to
+      @from  = params.has_key?(:tr_from) ? params[:tr_from] : @story.story_locale
+      @to    = params.has_key?(:tr_to) ? params[:tr_to] : @languages.select{|x| x.locale != @story.story_locale}.first.locale
+      gon.translate_from = @from
+      gon.translate_to = @to
       gon.translate = true
       #Rails.logger.debug("---------------------------------------------#{@tr} #{@tr_from} #{@tr_to}")
     end
+    @story.with_translation(@from) # get the translations for this item or build it if not exist yet
+    @story.current_locale = @from
 
     @js.push("modalos.js")
     @css.push("modalos.css")
 
     # if there are no sections, show the content form by default
     gon.has_no_sections = @story.sections.blank?
+    # else show story form by default
+    gon.is_section_page = true
+    gon.translation_progress_url = translation_progress_story_path(@story)
+    
     respond_to do |format|
       format.html { render :layout=>"storybuilder" }
     end
   end
+
   def publish
 
     @item = Story.find_by_id(params[:id])
+    @item.current_locale = params[:sl].present? ? params[:sl] : @item.story_locale
     publishing = !@item.published
     pub_title = ''
     error = false
     respond_to do |format|    
-      
+logger.debug "$$$$$$$$$$$4 story locale = #{@item.story_locale}; current locale = #{@item.current_locale}"      
       if publishing
-        if !(@item.about.present? && @item.asset_exists?)                 
-                  view_context.log(@item.sections.map{|t| t.content? && t.content.present? && t.content.content.present? }.count(true) )
+        # if story language passed in, make sure that language has been completely translated
+        if params[:sl].present? && !StoryTranslationProgress.can_publish?(@item.id, params[:sl])
+           lang = @languages.select{|x| x.locale == params[:sl]}.first
+           format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_translations', lang: lang.name)} }          
+           error = true
+
+#TODO?        # if translation, original must be published in order to publish trans
+
+        # must have about and thumbnail
+        elsif !(@item.about.present? && @item.asset_exists?)                 
+                  view_context.log(@item.sections.map{|t| t.content? && t.content.present? && t.content.text.present? }.count(true) )
            format.json {render json: { e:true, msg: (t('app.msgs.error_publish_missing_fields', :obj => @item.title) +  
                 " <a href='" +  sections_story_path(@item) + "'>" + t('app.msgs.error_publish_missing_fields_link') + "</a>")} }  
            error = true       
-        elsif @item.sections.map{|t| t.content.present? && t.content.content.present? }.count(true) == 0          
+
+         # must have a section
+        elsif !@item.sections.present?
+
+           format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_sections')} }          
+           error = true
+
+         # content section must have text
+        elsif !(@item.sections.select{|x| x.content?}.length == 0 || 
+                @item.sections.map{|t| t.content.present? && t.content.text.present? }.count(true) > 0)
+
            format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_content_section')} }          
            error = true
         end            
@@ -646,10 +627,17 @@ class StoriesController < ApplicationController
 
 
       if !error 
-        if @item.update_attributes(published: publishing)     
+        # HACK - have to use the translation object in order for the callbacks to get called
+        trans = @item.story_translations.select{|x| x.locale == @item.current_locale}.first
+        trans.published = publishing
+        if trans.save
           flash[:success] =u I18n.t("app.msgs.success_#{publishing ? '' :'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                   
-          pub_title = @item.published ? I18n.t("app.buttons.unpublish")  : I18n.t("app.buttons.publish")                    
-          format.json {render json: { title: pub_title }, status: :ok }
+
+          title = publishing ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish') 
+          link = publishing ? t('helpers.links.story_menu.link.unpublish') : t('helpers.links.story_menu.link.publish') 
+
+          #pub_title = link_text + ' ' + title #@item.published ? I18n.t("app.buttons.unpublish")  : I18n.t("app.buttons.publish")                    
+          format.json {render json: { title: title , link: link }, status: :ok }
         else          
           format.json {render json: { e:true, msg: t("app.msgs.error#{publishing ? '' : 'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")}}     
         end      
@@ -674,7 +662,7 @@ end
       FileUtils.cp_r "#{Rails.root}/public/media/story/.", "#{path}"  
       
       story_id = params[:id]
-      template_id = @story.template_id
+      template_id = @story.template_id.present? ? @story.template_id : 1 
 
       if File.directory?("#{Rails.root}/public/template/#{template_id}/assets")
           FileUtils.cp_r "#{Rails.root}/public/template/#{template_id}/assets/", "#{path}/"
@@ -754,18 +742,19 @@ end
   # check if this permalink is not already in use
   # - if id is passed in, the story record is loaded and the permalink is created in that record
   #   so it will not cause a duplicate error
-  # params passed in are text and id
+  # params passed in are text, id, and sl (story_locale). If story locale does not exist, use I18n.locale
   def check_permalink
     output = {:permalink => nil, :is_duplicate => false}
     if params[:text].present?
       permalink_staging = params[:text]
       permalink_temp = permalink_normalize(permalink_staging)
-      story = Story.select('permalink, permalink_staging').where(:id => params[:id]).limit(1).first
+      locale = params[:sl].present? ? params[:sl] : I18n.locale
+      story = StoryTranslation.select('permalink, permalink_staging').where(:story_id => params[:id], :locale => locale).first
       # if the story could not be found, use an empty story
       logger.debug "*********** new staging = #{permalink_staging}; story = #{story.inspect}"
       if story.blank?
         logger.debug "*********** story blank"
-        story = Story.new(:permalink_staging => permalink_staging)
+        story = StoryTranslation.new(:permalink_staging => permalink_staging, :locale => locale)
         story.generate_permalink
         output = {:permalink => story.permalink, :is_duplicate => story.is_duplicate_permalink?}
         
@@ -803,83 +792,60 @@ end
     @story = Story.find_by_id(params[:id])
 
     if @story.present?
-      user_with_errors = []
       sending_invitations = false
-      msgs = []
+      user_with_errors = {editors: [], translators: []}
+      msgs = {editors: [], translators: []}
+      ids = {editors: [], translators: []}
       
-      if params[:collaborator_ids].present? && request.post?
+      if request.post?
         sending_invitations = true  
 
-        # split out the ids
-        c_ids = params[:collaborator_ids].split(',')
-        
-        # pull out the user ids for existing users (numbers)
-        user_ids = c_ids.select{|x| x =~ /^[0-9]+$/ }
-        
-        # pull out the email addresses for new users (not numbers)
-        emails = c_ids.select{|x| x !~ /^[0-9]+$/ }.map{|x| x.gsub("'", '')}
-        
-        logger.debug "__________ user_ids = #{user_ids}"
-        logger.debug "__________ emails = #{emails}"
-
-        # send invitation for each existing user
-        if user_ids.present?
-          user_ids.each do |user_id|
-            Rails.logger.debug "_______________user id = #{user_id}"
-            user = User.find_by_id(user_id)
-            if user.present?
-              msg = create_invitation(@story, user.id, user.email, params[:message])
-              Rails.logger.debug "-------------- msg = #{msg}"
-              if msg.blank?
-    		        # remove id from list
-    		        c_ids.delete(user_id)
-    		      else
-    		        # record the user with the error so that it can be re-displayed in the list
-      		      user_with_errors << {id: user.id, name: user.nickname, img_url: user.avatar_url(:'50x50') }
-      		      msgs << "'#{user.nickname}' - #{msg.join(', ')}"
-              end
-            end  
-          end
+        if params[:editor_ids].present?
+          user_with_errors[:editors], msgs[:editors], ids[:editors] = process_editor_invitations(params[:editor_ids], params[:message])
         end
-                   
-        # send invitation for new users
-        if emails.present?
-          emails.each do |email|          
-            Rails.logger.debug "_____________email = #{email}"
-            msg = create_invitation(@story, nil, email, params[:message])
-            Rails.logger.debug "-------------- msg = #{msg}"
-            if msg.blank?
-  		        # remove email from list
-  		        c_ids.delete(email)
-  		      else
-  		        # record the user with the error so that it can be re-displayed in the list
-    		      user_with_errors << {id: email, name: email }
-    		      msgs << "'#{email}' - #{msg.join(', ')}"
-  		      end
-          end
+
+        if params[:translators].present?
+          user_with_errors[:translators], msgs[:translators], ids[:translators] = process_translator_invitations(params[:translators], params[:message])
         end
       end 
 
       # if not all ids were processed for invitations
       # record them so they can be shown in the list again
-      params[:collaborator_error_ids] = user_with_errors
+      params[:editor_error_ids] = user_with_errors[:editors]
+      params[:translator_error_ids] = user_with_errors[:translators]
       
-      if sending_invitations && user_with_errors.present?
-        if user_with_errors.length == c_ids.length
-          flash[:error] = t('app.msgs.collaborators.error_invitations_all', :msg => msgs.join('; '))
-        else
-          flash[:error] = t('app.msgs.collaborators.error_invitations_some', :msg => msgs.join('; '))
+      if sending_invitations && (user_with_errors[:editors].present? || user_with_errors[:translators].present?)
+        flash[:error] = ''
+        if user_with_errors[:editors].present?
+          if user_with_errors[:editors].length == ids[:editors].length
+            flash[:error] << t('app.msgs.collaborators.error_invitations_all', :msg => msgs[:editors].join('; '))
+          else
+            flash[:error] << t('app.msgs.collaborators.error_invitations_some', :msg => msgs[:editors].join('; '))
+          end
+        end
+
+        if user_with_errors[:translators].present?
+          if user_with_errors[:translators].length == ids[:translators].length
+            flash[:error] << t('app.msgs.collaborators.error_invitations_all', :msg => msgs[:translators].join('; '))
+          else
+            flash[:error] << t('app.msgs.collaborators.error_invitations_some', :msg => msgs[:translators].join('; '))
+          end
         end
       elsif sending_invitations
         flash[:success] = t('app.msgs.collaborators.success_invitations')
         params[:message] = ''
       end
 
-      # get the invitations on file
       # - have this at the bottom here so any new invitations that were saved will be pulled
-      @invitations = Invitation.pending_by_story(@story.id)
+      @editors = @story.story_users.editors.sorted
+      @translators = @story.story_users.translators.sorted
+      @editor_invitations = Invitation.editors.pending_by_story(@story.id)
+      @translator_invitations = Invitation.translators.pending_by_story(@story.id)
 
       set_settings_gon
+
+      @css.push("collaborators.css")
+      @js.push("collaborators.js")
 
       respond_to do |format|
         format.html
@@ -904,23 +870,17 @@ end
   end
   
   # remove a collaborator from a story
-  # - must be story owner to remove
   def remove_collaborator
     story = Story.find_by_id(params[:id])
 		msg = ''
 		has_errors = false
   
-    if story.user_id == current_user.id
-      user = User.find_by_id(params[:user_id])
-      if user.present?
-        story.users.delete(user)
-        msg = I18n.t('app.msgs.collaborators.success_remove', :name => user.nickname)
-      else
-        msg = I18n.t('app.msgs.collaborators.user_not_found')
-    		has_errors = true
-      end
+    user = User.find_by_id(params[:user_id])
+    if user.present?
+      story.users.delete(user)
+      msg = I18n.t('app.msgs.collaborators.success_remove', :name => user.nickname)
     else
-      msg = I18n.t('app.msgs.collaborators.no_permission')
+      msg = I18n.t('app.msgs.collaborators.user_not_found')
   		has_errors = true
     end
   
@@ -936,16 +896,11 @@ end
 		msg = ''
 		has_errors = false
   
-    if story.user_id == current_user.id
-      if params[:user_id].present?
-        Invitation.delete_invitation(params[:id], params[:user_id])
-        msg = I18n.t('app.msgs.collaborators.success_remove', :name => params[:user_id])
-      else
-        msg = I18n.t('app.msgs.collaborators.user_not_found')
-    		has_errors = true
-      end
+    if params[:user_id].present?
+      Invitation.delete_invitation(params[:id], params[:user_id])
+      msg = I18n.t('app.msgs.collaborators.success_remove', :name => params[:user_id])
     else
-      msg = I18n.t('app.msgs.collaborators.no_permission')
+      msg = I18n.t('app.msgs.collaborators.user_not_found')
   		has_errors = true
     end
   
@@ -955,14 +910,64 @@ end
   end
   
   
-private
+  # get the translation progress for a story and locale
+  def translation_progress
+    id = params[:id]
+    locale = params[:sl]
+    @story = Story.find_by_id(id) 
 
-  def can_edit_story?(story_id)
-    redirect_to root_path, :notice => t('app.msgs.not_authorized') if !Story.can_edit?(story_id, current_user.id)
+    respond_to do |format|
+      if @story.present?
+        @story_progress = StoryTranslationProgress.get_progress(@story.id)
+        @story.current_locale = locale
+        @story_locale = locale
+        @story_locale_published = @story.published
+
+
+        format.js {render action: "translation_progress", status: :created }                  
+      else
+        flash[:error] = u I18n.t('app.msgs.error_get_data')                            
+        format.js {render action: "popuper", status: :ok }
+      end
+    end
   end
 
-  def flash_success_created( obj, title)
-      flash[:success] = request.xhr? ? u(I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")) : I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
+private
+
+  # if the user is not in StoryUser, stop
+  def can_edit_story?(story_id)
+    #logger.debug "))))))) can edit story check #{current_user.inspect}"
+    @can_edit_story, @edit_story_role, @edit_translation_locales = Story.can_edit?(story_id, current_user.id)
+    redirect_to root_path, :notice => t('app.msgs.not_authorized') if !@can_edit_story
+  end
+
+  # if the user is a translator but cannot translate this locale, stop
+  # - check for the following locale params
+  #   - tr_to - indicates what locale to translate to
+  #   - current_locale - indicates form submittal locale 
+  def can_edit_story_locale?
+    locale = params[:tr_to].present? ? params[:tr_to] : params[:current_locale].present? ? params[:current_locale] : nil
+    #logger.debug "))))))) can edit story locale check, locale = #{locale}"
+    redirect_to root_path, :notice => t('app.msgs.not_authorized') if @edit_story_role == Story::ROLE[:translator] && !@edit_translation_locales.include?(locale.to_s)
+  end
+
+  # if the user is a translator, limit their access to actions to editing
+  def can_access_action?
+    #logger.debug "))))))) can access action check, action = #{params[:action]}"
+    accessible_actions = [:update, :preview, :get_data, :save_section, :save_item, :sections, :check_permalink]
+    redirect_to root_path, :notice => t('app.msgs.not_authorized') if @edit_story_role == Story::ROLE[:translator] && !accessible_actions.include?(params[:action].to_sym)
+  end
+
+  def flash_success_created( obj, title, warning=false)
+    warning ||= false
+    msg = I18n.t('app.msgs.success_created', obj:"#{obj} \"#{title}\"")
+    if !warning
+      flash[:success] = request.xhr? ? u(msg) : msg
+    else 
+      msg << ' '
+      msg << I18n.t('app.msgs.update_translations')
+      flash[:notice] = request.xhr? ? u(msg) : msg
+    end;
   end
   def flash_success_updated( obj, title)
     flash[:success] = request.xhr? ? u(I18n.t('app.msgs.success_updated', obj:"#{obj} \"#{title}\"")) : I18n.t('app.msgs.success_updated', obj:"#{obj} \"#{title}\"")
@@ -978,7 +983,129 @@ private
     @js.push("stories.js", "modalos.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js", "zeroclipboard.min.js", "filter.js", "jquery.tipsy.js")
   end 
   
-  def create_invitation(story, user_id=nil, email=nil, msg=nil)
+  # process the ids for editor collaboration invitations
+  def process_editor_invitations(ids, message)
+    logger.debug "__________ PROCESS EDITOR INVITATIONS"
+    role = Story::ROLE[:editor]
+    user_with_errors = []
+    msgs = []
+
+    # split out the ids
+    c_ids = ids.split(',')
+    
+    # pull out the user ids for existing users (numbers)
+    user_ids = c_ids.select{|x| x =~ /^[0-9]+$/ }
+    
+    # pull out the email addresses for new users (not numbers)
+    emails = c_ids.select{|x| x !~ /^[0-9]+$/ }.map{|x| x.gsub("'", '')}
+    
+    logger.debug "__________ user_ids = #{user_ids}"
+    logger.debug "__________ emails = #{emails}"
+
+    # send invitation for each existing user
+    if user_ids.present?
+      user_ids.each do |user_id|
+        Rails.logger.debug "_______________user id = #{user_id}"
+        user = User.find_by_id(user_id)
+        if user.present?
+          msg = create_invitation(@story, role, user.id, user.email, message)
+          Rails.logger.debug "-------------- msg = #{msg}"
+          if msg.blank?
+            # remove id from list
+            c_ids.delete(user_id)
+          else
+            # record the user with the error so that it can be re-displayed in the list
+            user_with_errors << {id: user.id, name: user.nickname, img_url: user.avatar_url(:'50x50') }
+            msgs << "'#{user.nickname}' - #{msg.join(', ')}"
+          end
+        end  
+      end
+    end
+               
+    # send invitation for new users
+    if emails.present?
+      emails.each do |email|          
+        Rails.logger.debug "_____________email = #{email}"
+        msg = create_invitation(@story, role, nil, email, params[:message])
+        Rails.logger.debug "-------------- msg = #{msg}"
+        if msg.blank?
+          # remove email from list
+          c_ids.delete(email)
+        else
+          # record the user with the error so that it can be re-displayed in the list
+          user_with_errors << {id: email, name: email }
+          msgs << "'#{email}' - #{msg.join(', ')}"
+        end
+      end
+    end
+
+    return msgs, user_with_errors, c_ids
+  end
+
+  # process the ids for translator collaboration invitations
+  # translators is an array of locales and user id/email
+  def process_translator_invitations(translators, message)
+    logger.debug "__________ PROCESS TRANSLATOR INVITATIONS"
+    role = Story::ROLE[:translator]
+    user_with_errors = []
+    msgs = []
+    c_ids = nil
+
+    if translators.present?
+      c_ids = translators.values.map{|x| x['id']}
+      translators.values.each do |translator|
+        user_id = nil
+        email = nil
+        locals = translator['locale'].join(',')
+
+        if translator['id'].include?('@')
+          email = translator['id'].gsub("'", '')
+        else
+          user_id = translator['id']
+        end
+
+        logger.debug "__________ user_id = #{user_id}"
+        logger.debug "__________ email = #{email}"
+
+        # send invitation for each existing user
+        if user_id.present?
+          Rails.logger.debug "_______________user id = #{user_id}"
+          user = User.find_by_id(user_id)
+          if user.present?
+            msg = create_invitation(@story, role, user.id, user.email, message, locals)
+            Rails.logger.debug "-------------- msg = #{msg}"
+            if msg.blank?
+              # remove id from list
+              c_ids.delete(user_id)
+            else
+              # record the user with the error so that it can be re-displayed in the list
+              user_with_errors << {id: user.id, name: user.nickname, img_url: user.avatar_url(:'50x50') }
+              msgs << "'#{user.nickname}' - #{msg.join(', ')}"
+            end
+          end  
+        end
+                   
+        # send invitation for new users
+        if email.present?
+          Rails.logger.debug "_____________email = #{email}"
+          msg = create_invitation(@story, role, nil, email, params[:message], locals)
+          Rails.logger.debug "-------------- msg = #{msg}"
+          if msg.blank?
+            # remove email from list
+            c_ids.delete(email)
+          else
+            # record the user with the error so that it can be re-displayed in the list
+            user_with_errors << {id: email, name: email }
+            msgs << "'#{email}' - #{msg.join(', ')}"
+          end
+        end
+      end
+    end
+
+    return msgs, user_with_errors, c_ids
+  end
+
+  def create_invitation(story, role, user_id=nil, email=nil, msg=nil, translation_locales=nil)
 		error_msg = nil
 
     if story.present? && (user_id.present? || email.present?)
@@ -987,16 +1114,18 @@ private
       if existing_inv.present?
         Rails.logger.debug "@@@@@ invitation already exists, ignoring"
         # already sent, so ignore
-        return true
+        return nil
       end
 
       # save the invitation
       inv = Invitation.new
       inv.story_id = story.id
+      inv.role = role
       inv.from_user_id = current_user.id
       inv.to_user_id = user_id
       inv.to_email = email
       inv.message = msg if msg.present?
+      inv.translation_locales = translation_locales if translation_locales.present?
 
       if !inv.save
         Rails.logger.debug "========= message error = #{message.errors.full_messages}"

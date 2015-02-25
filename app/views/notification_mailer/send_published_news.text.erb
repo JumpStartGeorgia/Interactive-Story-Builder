@@ -1,6 +1,0 @@
-<%= @message.message %>
-
-<% @message.message_list.each do |msg| %>
-  <%= "#{msg[0]} - #{news_show_url(:id => msg[1], :locale => @message.locale)}" %>
-<% end %>
-

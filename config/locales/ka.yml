@@ -2,353 +2,420 @@
 ka:
   activerecord:
     models:
-      user: მომხმარებელი
-      story: ამბავი
-      section: სექცია
-      medium: მთელ ეკრანზე გაშლილი ფოტო/ვიდეო სლაიდშოუ
-      content: ტექსტი
-      slideshow: ფოტო სლაიდშოუ
-      news: სიახლეები
-      message: შეტყობინება
-      embed_medium: ჩასასმელი ონლაინ აუდიო/ვიდეო
-      youtube: Youtube Online Media      
-      language: ენა
-      category: კატეგორია
-      page: ტექსტი გვერდებისთვის
-      theme: Theme
-      story_type: Type
+      user: "მომხმარებელი"
+      story: "ამბავი"
+      section: "სექცია"
+      medium: "მთელ ეკრანზე გაშლილი ფოტო/ვიდეო სლაიდშოუ"
+      content: "ტექსტი"
+      message: "შეტყობინება"
+      slideshow: "ფოტო სლაიდშოუ"
+      embed_medium: "ჩასასმელი ონლაინ აუდიო/ვიდეო"
+      youtube: YouTube ვიდეო
+      language: "ენა"
+      category: "კატეგორია"
+      page: "ტექსტი გვერდებისთვის"
+      theme: "თემა"
+      story_type: "ამბის ტიპი"
+      author: "ავტორი"
+      asset: File
     attributes:
+      asset: &asset
+        asset_file_name: File
+        asset_content_type: File Content Type
+        asset_file_size: File Size
+      avatar: *asset    
       user:
-        email: ელ. ფოსტა
-        password: პაროლი
-        password_confirmation: გაიმეორეთ პაროლი
-        role: როლი
-        remember_me: დამიმახსოვრე                  
-        default_story_locale: თქვენი ამბის ავტომატური ენა 
-        about: თქვენ შესახებ
-        local_avatar: პროფილის სურათი
-        nickname: მომხმარებლის სახელი
+        email: "ელ. ფოსტა"
+        password: "პაროლი"
+        password_confirmation: "გაიმეორეთ პაროლი"
+        role: "როლი"
+        remember_me: "დამიმახსოვრე"
+        default_story_locale: "თქვენი ამბის ავტომატური ენა"
+        about: "თქვენ შესახებ"
+        local_avatar: "პროფილის სურათი"
+        nickname: "მომხმარებლის სახელი"
+        sign_in_count: "შემოსვლის რაოდენობა"
+        created_at: "შექმნის თარიღი"
+        current_sign_in_at: "ბოლო შემოსვლის თარიღი"
+      author:
+        avatar: "პროფილის სურათი"
+      author_translation: &author_translation
+        name: "სახელი"
+        about: "შესახებ"
+        permalink: "მუდმივი ბმული"
+      author_translations: *author_translation        
       story:
-        title: ამბის სათაური
-        user_id: გამოქვეყნების მომხმარებელი
-        user_ids: ამბის რედაქტორები
-        author: ავტორ(ებ)ი
-        media_author: ფოტოსა და ვიდეოს ავტორ(ებ)ი
-        published: გამოქვეყნება
-        published_at: გამოქვეყნებულია
-        publish_home_page: გამოქვეყნების შემდეგ, გსურთ, თქვენი ამბავი გამოჩნდეს მთავარ გვერდზე?
-        template_id: შაბლონი
-        thumbnail: ესკიზი
-        about: ამბის მოკლე შინაარსი
-        story_locale: ამბის ენა
-        permalink: ამბის ბმული 
-        permalink_staging: ამბის ბმული
-        tag_list: თეგები
-        categories: კატეგორიები
-        type: ტიპი
+        user_id: "ამბის ავტორი"
+        user_ids: "ამბის რედაქტორები"
+        publish_home_page: "გამოქვეყნების შემდეგ, გსურთ, თქვენი ამბავი გამოჩნდეს მთავარ გვერდზე?"
+        template_id: "შაბლონი"
+        thumbnail: "ესკიზი"
+        story_locale: "ამბის ენა"
+        tag_list: "თეგები"
+        categories: "კატეგორიები"
+        story_type: "ტიპი"
+        in_theme_slider: "ამბის სლაიდერში ჩვენება"
+      story_translation: &story_translation      
+        title: "ამბის სათაური"
+        author: "ავტორ(ებ)ი"
+        media_author: "ფოტოსა და ვიდეოს ავტორ(ებ)ი"
+        translation_author: "თარგმნის ავტორი"
+        published: "გამოქვეყნება"
+        published_at: "გამოქვეყნებულია"
+        about: "ამბის მოკლე შინაარსი"
+        permalink: "ამბის ბმული"
+        permalink_staging: "ამბის ბმული"
+        asset: *asset        
+      story_translations: *story_translation        
       section:
-        title: სათაური
-        audio: აუდიო ფაილი
-        has_marker: სექციის გამოყოფა
-        type_id: ტიპი
-        sort_order: დალაგება
-        delete_audio: აუდიო ფაილის წაშლა?
-      content:        
-        title: სათაური
-        caption: ტექსტის სათაური
-        sub_caption: ტექსტის ქვესათაური
-        content: ტექსტი
+        has_marker: "სექციის გამოყოფა"
+        type_id: "ტიპი"
+        sort_order: "დალაგება"
+      section_translation:  &section_translation
+        title: "სათაური"
+        audio: "აუდიო ფაილი"
+        delete_audio: "აუდიო ფაილის წაშლა?"
+        asset: *asset        
+      section_translations:  *section_translation
+      content_translation: &content_translation
+        title: "სათაური"
+        caption: "ტექსტის სათაური"
+        sub_caption: "ტექსტის ქვესათაური"
+        content: "ტექსტი"
+      content_translations: *content_translation        
       medium:
-        media_type: მედია ტიპი
-        title: სათაური
-        caption: წარწერა
-        caption_align: წარწერის მდებარეობა
-        infobox_type: Caption Position
-        summary: მოკლე შინაარსი
-        source: წყარო
-        image: სურათი
-        video: ვიდეო
-        video_loop: ვიდეოს გამეორება
-      slideshow:
-        title: სათაური
-        caption: ფოტოს წარწერა
-      news:
-        title: სათაური
-        content: შინაარსი
-        is_published: გამოვაქვეყნოთ?
-        published_at: გამოქვეყნების თარიღი
+        media_type: "მედია ტიპი"
+        image: "სურათი"
+        video: "ვიდეო"
+        video_loop: "ვიდეოს გამეორება"
+      medium_translation: &medium_translation
+        title: "სათაური"
+        caption: "წარწერა"
+        caption_align: "წარწერის მდებარეობა"
+        infobox_type: "წარწერის მდებარეობა"
+        summary: "მოკლე შინაარსი"
+        source: "წყარო"
+        image: *asset
+        video: *asset
+      medium_translations: *medium_translation
+      slideshow_translation: &slideshow_translation
+        title: "სათაური"
+        caption: "ფოტოს წარწერა"
+        description: "აღწერა"
+        asset_files: Image(s)        
+        asset: *asset
+        assets: *asset        
+      slideshow_translations: *slideshow_translation        
       message:
-        name: სახელი
-        email: ელ. ფოსტის მისამართი
-        message: გზავნილი
-        message_type: გზავნილის მიზანი
-      embed_medium:
-        title: სათაური
-        url: ონლაინ აუდიოს/ვიდეოს ბმული
+        name: "სახელი"
+        email: "ელ. ფოსტის მისამართი"
+        message: "გზავნილი"
+        message_type: "გზავნილის მიზანი"
+      embed_medium_translation: &embed_medium_translation
+        title: "სათაური"
+        url: "ონლაინ აუდიოს/ვიდეოს ბმული"
+      embed_medium_translations: *embed_medium_translation        
       youtube:
-        title: Title
-        url: Url to Online Media
-        fullscreen: Fullscreen
-        loop: Loop
-        info: Show Information Bar
-      youtube_translation:
-        menu_lang: "Player language"
-        cc: Show Caption/Subtitle
-        cc_lang: "Subtitle language"       
-      language:
-        locale: ენის აღმნიშვნელი
-        name: ენა
-      category_translation:
-        name: სახელი
-      page:
-        name: კონტენტის უნიკალური სახელი (არ შეცვალოთ!)
-      page_translation:
-        title: სათაური, რომელიც გამოჩნდება კონტენტის ზემოთ
-        content: კონტენტი
-      theme:
-        is_published: Publish?
+        fullscreen: "მთელ ეკრანზე გაშლილი"
+        loop: "გამეორება"
+        info: "ვიდეოს სათაურის ჩვენება"
+      youtube_translation: &youtube_translation
+        title: "სათაური"
+        url: YouTube ვიდეოს Url-ი
+        menu_lang: "პლეერის პარამეტრების ენა"
+        cc: "წარწერის/სუბტიტრების ჩვენება"
+        cc_lang: "სუბტიტრების ენა"
+      youtube_translations: *youtube_translation        
+      infographic:
         published_at: Date Published
-        show_home_page: Show this theme on the home page?
-      theme_translation:
-        name: Name
-        edition: Edition
+        image: Infographic Image
+        dataset_file: Dataset File
+        datasources: Data Sources
+        subtype: Infographic Type
+      infographic_translation: &infographic_translation
+        title: Title
+        caption: Heading
         description: Description
-        permalink: URL
+        dataset_url: Online Dataset
+        image: *asset     
+        dataset_file: *asset
+      infographic_translations: *infographic_translation        
+      infographic_datasource:
+        name: Data Source Name
+        url: Data Source URL
+      language:
+        locale: "ენის აღმნიშვნელი"
+        name: "ენა"
+      category_translation: &category_translation
+        name: "სახელი"
+      category_translations: *category_translation        
+      page:
+        name: "კონტენტის უნიკალური სახელი (არ შეცვალოთ!)"
+      page_translation: &page_translation
+        title: "სათაური, რომელიც გამოჩნდება კონტენტის ზემოთ"
+        content: "კონტენტი"
+      page_translations: *page_translation        
+      theme:
+        is_published: "გამოვაქვეყნოთ?"
+        published_at: "გამოქვეყნების თარიღი"
+        show_home_page: "ვაჩვენოთ ეს თემა მთავარ გვერდზე?"
+        published_item_count: გამოქვეყნებულ ამბავთა რაოდენობა
+        featured_stories: Featured Stories
+      theme_translation: &theme_translation
+        name: "სათაური"
+        edition: "გამოცემა"
+        description: "აღწერა"
+        permalink: URL-ი
+      theme_translations: *theme_translation        
       story_type:
-        sort_order: Sort Order
-      story_type_translation:
-        name: Name
-        permalink: URL
+        sort_order: "დალაგება"
+      story_type_translation: &story_type_translation
+        name: "სათაური"
+        permalink: URL-ი
+      story_type_translations: *story_type_translation        
     errors:
       messages:
         required_field: "სავალდებულო ველი"
-        already_exists: 'უკვე არსებობს მონაცემთა ბაზაში'
+        already_exists: "უკვე არსებობს მონაცემთა ბაზაში"
+        story_authors: "საჭიროა ერთი ადამიანის ონიშვნა მაინც."
+        publish_theme: თემის გამოქვეყნება შეუძლებელია, თუ ამ თემას ერთი ამბავი მაინც არ აქვს მისადაგებული.
+        not_provided: 'must be provided.'        
   mailer:
     closing: "პატივისცემით,"
-    signature: “Chai Khanaს” გუნდი
-    unsubscribe: დააჭირეთ და შეცვალეთ შეტყობინებების პარამეტრები
+    signature: "“ჩაი ხანას” გუნდი"
+    unsubscribe: "დააჭირეთ და შეცვალეთ შეტყობინებების პარამეტრები"
     contact:
       contact_form:
-        subject: “Chai Khanaს” საკონტაქტო ფორმა
+        subject: "“ჩაი ხანას” საკონტაქტო ფორმა"
     notification:
       new_user:
         subject: "კეთილი იყოს თქვენი მობრძანება “სთორიბილდერზე!”"
-        message: "გმადლობთ, რომ გახდით “Chai Khanaს” წევრი. ჩვენ გვსურს, გავიგოთ უფრო მეტი თქვენი ამბების შესახებ!\n\nროცა დრო გექნებათ, გთხოვთ, ეწვიოთ პარამეტრების გვერდს, რათა შეიყვანოთ ინფორმაცია თქვენ შესახებ, შეცვალოთ პროფილის სურათი, სახელი და პირადი ბმულიი: [settings_link].\n\nთქვენ შეიგიძლიათ განსაზღვროთ, როდის გსურთ “Chai Khanaდან” შეტყობინებების მიღება, ამისათვის ეწვიეთ შეტყობინებების გვერდს: [notifications_link]."
+        message: "გმადლობთ, რომ გახდით “ჩაი ხანას” წევრი. ჩვენ გვსურს, გავიგოთ უფრო მეტი თქვენი ამბების შესახებ!\n\nროცა დრო გექნებათ, გთხოვთ, ეწვიოთ პარამეტრების გვერდს, რათა შეიყვანოთ ინფორმაცია თქვენ შესახებ, შეცვალოთ პროფილის სურათი, სახელი და პირადი ბმულიი: [settings_link].\n\nთქვენ შეიგიძლიათ განსაზღვროთ, როდის გსურთ “Chai Khanaდან” შეტყობინებების მიღება, ამისათვის ეწვიეთ შეტყობინებების გვერდს: [notifications_link]."
+      published_theme:
+        subject: New themes have been published on Chai Khana!
+        message: 'The following themes you have expressed interest in were recently published:'
       published_story:
         subject: "“სთორიბილდერზე” გამოქვეყნდა ახალი ამბავი!"
         message: "ამბები, რომლითაც თქვენ დაინტერესდით, უკვე გამოქვეყნებულია:"
       story_comment:
         subject: "ვიღაცამ დატოვა კომენტარი “სთორიბილდერზე” თქვენ მიერ გამოქვეყნებულ ამბავზე!"
         message: "ამ ამბებზე ცოტა ხნის წინ დატოვეს კომენტარები:"
-        comment: "1 კომენტარი"
+        comment: 1 კომენტარი
         comments: "%{num} კომენტარი"
-      published_news:
-        subject: "“Chai Khanaს” სიახლეები!"
-        message: "“სთორიბილდერს” დაემატა სიახლეები. დააჭირეთ ბმულს, რათა გაიგოთ, რა არის ახალი “სთორიბილდერზე”."
-      staff_pick_review:
-        subject: "“სთორიბილდერზე” გამოქვეყნდა ახალი ამბები!"
-        message: "შემდეგი ამბები საჭიროებენ განხილვას, რათა დაემატოს რჩეულებს!"
-      staff_pick_selection:
-        subject: "თქვენი ამბავი “Chai Khanaს” რჩეულია!"
-        message: "გილოცავთ! თქვენი ეს ამბავი გახდა “სთორბილდერის” გუნდის რჩეული:"
       story_collaboration:
         subject: "თქვენ მოწვეული ხართ, რათა მონაწილეობა მიიღოთ “სთორიბილდერზე” ამბის შექმნაში!"
         message: "თქვენ მოწვეული ხართ, რათა მონაწილეობა მიიღოთ ამბის შექმნაში სხვა ადამიანებთან ერთად “სთორიბილდერზე”. თუ გსურთ, მიიღოთ მოწვევა, უბრალოდ დააჭირეთ ბმულს 'მოწვევის მიღება'. თუ არ გსურთ მონაწილეობა, უპასუხოდ დატოვეთ მოწვევა."
-        from: ვისგან
-        story_title: ამბის სათაური
-        msg: გზავნილი
-        accept_link: მოწვევის მიღება
-        all_invitations: იხილეთ ყველა მოწვევა “სთორბილიდერზე” ამბების თანაავტორობის შესახებ.
+        from: "ვისგან"
+        role: "როლი"
+        story_title: "ამბის სათაური"
+        msg: "გზავნილი"
+        accept_link: "მოწვევის მიღება"
+        all_invitations: "იხილეთ ყველა მოწვევა “სთორბილიდერზე” ამბების თანაავტორობის შესახებ."
       processed_videos:
         subject: "თქვენი ვიდეოები დამუშავებულია."
         message: "ეს ამბები შეიცავს ვიდეო ფაილებს, რომელთა დამუშავებაც დასრულებულია."
-        story_title: 'ამბის სათაური:'
-        status: 'ვიდეოს დამუშავების სტატუსი: %{total}-დან %{processed} დამუშავებულია'
-        processed: 'ვიდეო დამუშავებულია:'
-        not_processed: 'ვიდეო დამუშავების პროცესშია:'
-        none_processed: არცერთი ვიდეო არ არის დამუშავებული
-        none_processing: ყველა ვიდეო დამუშავებულია
+        story_title: "ამბის სათაური:"
+        status: "ვიდეოს დამუშავების სტატუსი: %{total}-დან %{processed} დამუშავებულია"
+        processed: "ვიდეო დამუშავებულია:"
+        not_processed: "ვიდეო დამუშავების პროცესშია:"
+        none_processed: "არცერთი ვიდეო არ არის დამუშავებული"
+        none_processing: "ყველა ვიდეო დამუშავებულია"
       processed_video_errors:
-        subject: "“სთორიბილდერზე” ვიდეოების დამუშავებისას დაფიქსირდა ხარვეზი! "
+        subject: "“სთორიბილდერზე” ვიდეოების დამუშავებისას დაფიქსირდა ხარვეზი!"
         message: "შემდეგი ვიდეოებისას დამუშავებისას დაფიქსირდა ხარვეზი:"
-        story_id: ამბის ID
-        asset_id: ფაილის ID
-        path: ვიდეოს ბმული
+        story_id: "ამბის ID"
+        asset_id: "ფაილის ID"
+        path: "ვიდეოს ბმული"
   helpers:
-    actions: მოქმედება
+    actions: "მოქმედება"
     links:
-      admin: ადმინისტრატორის განყოფილება
-      edit: შეცვლა
-      confirm: დარწმუნებული ხართ?
-      destroy: წაშლა
-      new: ახალი
-      list: ყველას ნახვა
-      back: ყველას ნახვა
-      cancel: გაუქმება
-      reset: საწყის კონფიგურაციაზე დაბრუნება
-      view: ნახვა
+      admin: "ადმინისტრატორის განყოფილება"
+      edit: "შეცვლა"
+      confirm: "დარწმუნებული ხართ?"
+      destroy: "წაშლა"
+      new: "ახალი"
+      list: "ყველას ნახვა"
+      back: "ყველას ნახვა"
+      cancel: "გაუქმება"
+      reset: "საწყის კონფიგურაციაზე დაბრუნება"
+      view: "ნახვა"
       sign_in_facebook: Facebook-ით შესვლა
-      edit_story: ამბის პარამეტრების რედაქტირება
-      delete_story: ამბის წაშლა
-      admin_story: კონტენტის რედაქტირება
-      publish_story: ამბის გამოქვეყნება      
-      forgot_password: დაგავიწყდათ პაროლი?
-      change_password: პაროლის შეცვლა
-      change_password2: პაროლის შეცვლა
-      password_reset: პაროლის აღდგენა
-      sign_in2: შესვლა
-      sign_in: უკვე გაქვთ ანგარიში?      
-      sign_up2: რეგისტრაცია
+      edit_story: "ამბის პარამეტრების რედაქტირება"
+      delete_story: "ამბის წაშლა"
+      admin_story: "კონტენტის რედაქტირება"
+      publish_story: "ამბის გამოქვეყნება"
+      forgot_password: "დაგავიწყდათ პაროლი?"
+      change_password: "პაროლის შეცვლა"
+      change_password2: "პაროლის შეცვლა"
+      password_reset: "პაროლის აღდგენა"
+      sign_in2: "შესვლა"
+      sign_in: "უკვე გაქვთ ანგარიში?"
+      sign_up2: "რეგისტრაცია"
       sign_up_question: "არ გაქვთ ანგარიში?"
-      sign_up: დარეგისტრირდით
-      sign_up_title: შემოგვიერთდი “სთორიბილდერზე”
-      sign_out: გასვლა
+      sign_up: "დარეგისტრირდით"
+      sign_up_title: "შემოგვიერთდი “სთორიბილდერზე”"
+      sign_out: "გასვლა"
       sign_in_provider: "შესვლა %{provider}-ით"
-      sign_up_provider: "დარეგისტრირდით  %{provider}-ით"
-      sign_in_local_or_provider: ან შეიყვანეთ თქვენი ელ. ფოსტა და პაროლი
-      reset_or_sign_in: შედით facebook-ით ან შეცვალეთ პაროლი
-      add_story: ამბის დამატება
-      users: მომხმარებლები
-      feedback: მოგვწერე
-      about: შესახებ
-      rss: RSS
-      themes: Themes
-      story_types: Types
-      languages: ენები
-      follow: თვალყურის დევნება
+      sign_up_provider: "დარეგისტრირდით %{provider}-ით"
+      sign_in_local_or_provider: "ან შეიყვანეთ თქვენი ელ. ფოსტა და პაროლი"
+      reset_or_sign_in: "შედით facebook-ით ან შეცვალეთ პაროლი"
+      add_story: "ამბის დამატება"
+      users: "მომხმარებლები"
+      authors: "ავტორი"
+      feedback: "მოგვწერე"
+      about: 'ჩვენ შესახებ'
+      rss: RSS-ი
+      themes: "თემა"
+      story_types: "ტიპი"
+      languages: "ენები"
+      follow: "მიყოლა"
       facebook: Facebook
       twitter: Twitter
       youtube: YouTube
-      subscribe: Subscribe
-      user_settings: პარამეტრები
-      like: მოწონება
-      likes: მოწონება
-      comments: კომენტარები ამ ამბავზე
+      subscribe: "გამოწერა"
+      user_settings: "პარამეტრები"
+      like: "მოწონება"
+      likes: "მოწონება"
+      comments: "კომენტარები ამ ამბავზე"
       views: "%{num} წაკითხვა"
-      tags: თეგი
-      menu: მენიუ
-      pages: საიტზე ტექსტის რედაქტირება
+      tags: "თეგი"
+      menu: "მენიუ"
+      pages: "საიტზე ტექსტის რედაქტირება"
+      next: "შემდეგი "
+      feed: "ველი"
+      download: Download
+      previous: Previous
+      next: Next
       story_menu:
         link:
-          edit_story: ამბის პარამეტრები
-          admin_story: კონტენტი
-          collaborators: თანაავტორები
-          preview: ნახვა
-          publish: გამოქვეყნება
-          unpublish: გამოყვეყნების გაუქმება
-          review: არასაჯარო ბმული
-          clone: კლონირება
-          export:  ჩამოტვირთვა
-          delete_story: წაშლა
+          story: "ამბავი"
+          story_settings: "ამბის პარამეტრები"
+          collaborators: "თანაავტორები"
+          preview: "ნახვა"
+          publish: "გამოქვეყნება"
+          unpublish: "გამოყვეყნების გაუქმება"
+          review: "არასაჯარო ბმული"
+          clone: "კლონირება"
+          export: "ჩამოტვირთვა"
+          delete_story: "წაშლა"
+          translations: "თარგმანები"
         title:
-          edit_story: ამბის სათაურის, ავტორების, ბმულის, მოკლე შინაარსის, ესკიზის, ენის, თეგების და/ან კატეგორიების რედაქტირება
-          admin_story: ტექსტის, გამოსახულებების, ვიდეოს და ა.შ. რედაქტირება
-          collaborators: განსაზღვრეთ, რომელ მომხმარებელს შეუძლია თქვენი ამბის რედაქტირება
-          preview: ნახეთ, როგორ გამოიყურება თქვენი ამბავი
-          publish: აჩვენეთ თქვენი ამბავი მსოფლიოს
-          unpublish: აღარ აჩვენოთ თქვენი ამბავი მსოფლიოს 
-          review: გაუზიარეთ ეს ამბავი სხვებს ამბის გამოქვეყნებამდე
-          clone:  შექმენით ამ ამბის ასლი
-          export: მთლიანი ამბის ჩამოტვირთვა
-          delete_story: წაშალეთ ამბავი. ამბის აღდგენა არ იქნება შესაძლებელი
+          story: "საკუთარი ამბის რედაქტირება"
+          story_settings: "ამბის სათაურის, ავტორების, ბმულის, მოკლე შინაარსის, ესკიზის, ენის, თეგების და/ან კატეგორიების რედაქტირება"
+          collaborators: "განსაზღვრეთ, რომელ მომხმარებელს შეუძლია თქვენი ამბის რედაქტირება"
+          preview: "ნახეთ, როგორ გამოიყურება თქვენი ამბავი"
+          publish: "აჩვენეთ თქვენი ამბავი მსოფლიოს"
+          unpublish: "აღარ აჩვენოთ თქვენი ამბავი მსოფლიოს"
+          review: "გაუზიარეთ ეს ამბავი სხვებს ამბის გამოქვეყნებამდე"
+          clone: "შექმენით ამ ამბის ასლი"
+          export: "მთლიანი ამბის ჩამოტვირთვა"
+          delete_story: "წაშალეთ ამბავი. ამბის აღდგენა არ იქნება შესაძლებელი"
+          translations: "ამბის სხვა ენაზე თარგმნა"
     titles:
       new: "ახალი %{model}"
       edit: "შეცვლა %{model}"
-      story_list: ჩემი ამბები
+      story_list: "ჩემი ამბები"
     hints:
-      nickname: თქვენი სახელი გამოყენებულია თქვენ მიერ გამოქვეყნებული ამბების ბმულში (მაგ., სახელი/ამბის-სათაური) 
-      local_avatar: ფოტო, რომელიც გამოჩნდება თქვენი გვერდის ზედა სექციაში (მხოლოდ png და jpg).
-      like: მოიწონეთ ამბავი
-      unlike: აღარ მომწონს ეს ამბავი
-      staff_pick: რჩეულებში დამატება
-      staff_unpick: რჩეულებიდან ამოშლა
-      is_staff_pick: რჩეული
+      nickname: "თქვენი სახელი გამოყენებულია თქვენ მიერ გამოქვეყნებული ამბების ბმულში (მაგ., სახელი/ამბის-სათაური)"
+      local_avatar: "ფოტო, რომელიც გამოჩნდება თქვენი გვერდის ზედა სექციაში (მხოლოდ png და jpg)."
+      avatar: "ფოტო რომელიც გამოჩნდება ავტორის გვერდზე (მხოლოდ png და jpg)"
+      like: "მოიწონეთ ამბავი"
+      unlike: "აღარ მომწონს ეს ამბავი"
+      staff_pick: "რჩეულებში დამატება"
+      staff_unpick: "რჩეულებიდან ამოშლა"
+      is_staff_pick: "რჩეული"
+      clone_asset: "თუ მონიშნავთ მარცხნივ მდებარე ფაილი გამოყენებული ქნება სათარგმნად"
   app:
     language:
       en: English
-      ka: ქართული
-      am: Հայերեն
-      ru: Русский
+      ka: "ქართული"
+      hy: "Հայերեն"
+      ru: "Русский"
       az: Azərbaycan
     buttons:
-      back: იხილეთ ყველა
-      list: იხილეთ ყველა
-      admin: ადმინისტრატორის განყოფილება
-      delete: წაშლა
-      edit: შეცვლა
-      show: ჩვენება
-      cancel: გაუქმება
-      update: განახლება
-      save: შენახვა
-      create: შექმნა
-      reset: საწყის კონფიგურაციაზე დაბრუნება
-      remove: ამოშლა
-      confirm: დარწმუნებული ხართ?
-      new: ახალი            
-      add_section: ახალი სექცია
-      add_item: განყოფილებაში პუნქტის დამატება
-      up: არჩეული განყოფილების/პუნქტის ზემოთ ატანა
-      down: არჩეული განყოფილების/პუნქტის ქვემოთ ჩამოტანა
-      delete_item: არჩეული განყოფილების/პუნქტის წაშლა
-      preview: ნახვა
-      preview_image: სურათის ნახვა
-      preview_video: ვიდეოს ნახვა
-      preview_audio: აუდიოს მოსმენა
-      publish: გამოქვეყნება
-      unpublish: გამოყვეყნების გაუქმება
-      clone: კლონირება
-      export: მთლიანი ამბის ჩამოტვირთვა
-      scroll: დასქროლე
-      reviewer_key: მიიღეთ URL, რათა გააზიაროთ ამბავი მის გამოქვეყნებამდე
-      reviewer_key_published: თქვენი ამბავი გამოქვეყნებულია, აღარაა საჭირო ამ ბმულის გამოყენება
-      explore: დაათვალიერე
+      back: "იხილეთ ყველა"
+      list: "იხილეთ ყველა"
+      admin: "ადმინისტრატორის განყოფილება"
+      delete: "წაშლა"
+      edit: "შეცვლა"
+      show: "ჩვენება"
+      cancel: "გაუქმება"
+      update: "განახლება"
+      save: "შენახვა"
+      save_and_next: "შენახვა და შემდეგი"
+      create: "შექმნა"
+      reset: "საწყის კონფიგურაციაზე დაბრუნება"
+      remove: "ამოშლა"
+      confirm: "დარწმუნებული ხართ?"
+      new: "ახალი"
+      add_section: "ახალი სექცია"
+      add_item: "განყოფილებაში პუნქტის დამატება"
+      up: "არჩეული განყოფილების/პუნქტის ზემოთ ატანა"
+      down: "არჩეული განყოფილების/პუნქტის ქვემოთ ჩამოტანა"
+      delete_item: "არჩეული განყოფილების/პუნქტის წაშლა"
+      preview: "ნახვა"
+      preview_image: "სურათის ნახვა"
+      preview_video: "ვიდეოს ნახვა"
+      preview_audio: "აუდიოს მოსმენა"
+      publish: "გამოქვეყნება"
+      unpublish: "გამოყვეყნების გაუქმება"
+      clone: "კლონირება"
+      export: "მთლიანი ამბის ჩამოტვირთვა"
+      scroll: "დასქროლე"
+      reviewer_key: "მიიღეთ URL, რათა გააზიაროთ ამბავი მის გამოქვეყნებამდე"
+      reviewer_key_published: "თქვენი ამბავი გამოქვეყნებულია, აღარაა საჭირო ამ ბმულის გამოყენება"
+      explore: "დაათვალიერე"
     common:
-      app_name_not_trans: Chai Khana
-      app_name: “Chai Khana”
-      app_intro: შექმენი და გააზიარე; ახალი თაობის ამბები; “Chai Khana” საშუალებას აძლევს ნებისმიერ ადამიანს,<br> ტექსტით, სურათით, ფოტოთი და/ან ვიდეოთი შექმნას მულტიმედია ამბავი<br> და გაუზიაროს მსოფლიოს
-      app_intro_meta: შექმენი და გააზიარე ახალი თაობის ამბები! ”Chai Khana” საშუალებას აძლევს ნებისმიერ ადამიანს, ტექსტით, სურათით, ფოტოთი და/ან ვიდეოთი შექმნას მულტიმედია ამბავი და გაუზიაროს მსოფლიოს
-      powered_by: შექმნილია
-      powered_by_js: '“ჯამპსტარტ ჯორჯიას”'
-      powered_by_end: " მიერ"
-      embed_slogan: შექმენი შენი ამბავი “Chai Khanaთ”
+      app_name_not_trans: '"ჩაი ხანა"'
+      app_name: "“ჩაი ხანა”"
+      app_intro: '"ჩაი ხანა" არის არასამთავრობო ორგანიზაცია, რომელიც ინტერნეტ გამოცემითა და ტრენინგებით უზრუნველყოფს სამხრეთ კავკასიის რეგიონულში  პრობლემური საკითხების გაშუქებას.'
+      app_intro_meta: '"ჩაი ხანა" არის არასამთავრობო ორგანიზაცია, რომელიც ინტერნეტ გამოცემითა და ტრენინგებით უზრუნველყოფს სამხრეთ კავკასიის რეგიონულში  პრობლემური საკითხების გაშუქებას.'
+      powered_by: "შექმნილია"
+      powered_by_js: "“ჯამპსტარტ ჯორჯიას”"
+      powered_by_end: "მიერ"
+      embed_slogan: "შექმენი შენი ამბავი “ჩაი ხანას” გამოყენებით"
       added_on: "დამატებულია: %{date}"
-      admin: ადმინისტრატორი
-      sign_out: გასვლა      
-      jumpstart: ჯამპსტარტ ჯორჯია
-      js_link_title: ჯამპსტარტ ჯორჯია - ჩვენ გაწვდით მონაცემებს უკეთ!
-      js_link_text: აგებულია
-      search: ამბის მოძებნა
-      build: ამბის შექმნა
-      explore: ამბების დათვალიერება
-      about_story: შესახებ
-      likes: მოწონება
-      comments: კომენტარები
-      publish_date: გამოქვეყნების თარიღი
-      follow: თვალყურის დევნება
-      following: თვალყურის დევნება
-      follow_link_title: დააჭირეთ, რათა მიიღოთ შეტყობინება, როდესაც ეს მომხმარებელი გამოაქვეყნებს ახალ ამბავს
-      unfollow_link_title: დააჭირეთ, რათა შეწყვიტოთ შეტყობინების მიღება, როდესაც ეს მომხმარებელი გამოაქვეყნებს ახალ ამბავს
-      email: ელ. ფოსტა
-      views: ნახვა
-      permalink: მუდმივი ბმული
-      shortened_url: მოკლე ბმული
-      share_story: ამბის გაზიარება
+      last_sign_in: "ბოლო შემოსვლა: %{date}"
+      admin: "ადმინისტრატორი"
+      sign_out: "გასვლა"
+      jumpstart: "ჯამპსტარტ ჯორჯია"
+      js_link_title: "ჯამპსტარტ ჯორჯია - ჩვენ გაწვდით მონაცემებს უკეთ!"
+      js_link_text: "აგებულია"
+      search: "ამბის მოძებნა"
+      build: "ამბის შექმნა"
+      explore: "ამბების დათვალიერება"
+      about_story: "შესახებ"
+      likes: "მოწონება"
+      comments: "კომენტარები"
+      publish_date: "გამოქვეყნების თარიღი"
+      follow: "თვალყურის დევნება"
+      following: "თვალყურის დევნება"
+      follow_link_title: "დააჭირეთ, რათა მიიღოთ შეტყობინება, როდესაც ეს მომხმარებელი გამოაქვეყნებს ახალ ამბავს"
+      unfollow_link_title: "დააჭირეთ, რათა შეწყვიტოთ შეტყობინების მიღება, როდესაც ეს მომხმარებელი გამოაქვეყნებს ახალ ამბავს"
+      email: "ელ. ფოსტა"
+      views: "ნახვა"
+      permalink: "მუდმივი ბმული"
+      shortened_url: "მოკლე ბმული"
+      share_story: "ამბის გაზიარება"
       share_facebook: Facebook-ზე გაზიარება
       share_twitter: Twitter-ზე გაზიარება
-      share: გაზიარება
-      staff_pick: რჩეული
-      wide: (სიგანე)
-      partial: ამბის ბმული
-      partial_text: გამოიყენე ისეთი ჩასასმელი ბმული, რომელსაც აქვს იგივე სახე, რაც ამბებს “Chai Khanaს” საწყის გვერდზე (ფოტო, სათაური, ავტორი, თარიღი, და ა.შ.)
-      full: სრული ამბავი
-      full_text: გადაიტანე ამბის სრული ვერსია სხვა საიტზე. ჩვენ გირჩევთ, გამოიყენოთ მაქსიმალური სიგანე, რათა მიიღოთ უკეთესი გამოსახულება.
-      feed: “Chai Khanaს” Feed Channel
-      home: მთავარი
-      required: სავალდებულო
-      nothing_selected: არ არის არჩეული
+      share: "გაზიარება"
+      staff_pick: "რჩეული"
+      wide: "(სიგანე)"
+      partial: "ამბის ბმული"
+      partial_text: "გამოიყენე ისეთი ჩასასმელი ბმული, რომელსაც აქვს იგივე სახე, რაც ამბებს “Chai Khanaს” საწყის გვერდზე (ფოტო, სათაური, ავტორი, თარიღი, და ა.შ.)"
+      full: "სრული ამბავი"
+      full_text: "გადაიტანე ამბის სრული ვერსია სხვა საიტზე. ჩვენ გირჩევთ, გამოიყენოთ მაქსიმალური სიგანე, რათა მიიღოთ უკეთესი გამოსახულება."
+      feed: '"ჩაი ხანას" სიახლეების ზოლი'
+      home: "მთავარი"
+      required: "სავალდებულო"
+      nothing_selected: "არ არის არჩეული"
+      clone_asset: "გამოვიყენოთ საწყისი ფაილის?"
+      embed: კოდის ჩასმა
+      scroll_top: მაღლა ასვლა
     msgs:
-      does_not_exist: თქვენ ცდილობთ ისეთი გვერდის ნახვას, რომელიც არ არსებობს.
-      not_authorized: თქვენ არ გაქვთ ამ გვერდის ნახვის უფლება.
+      does_not_exist: "თქვენ ცდილობთ ისეთი გვერდის ნახვას, რომელიც არ არსებობს."
+      not_authorized: "თქვენ არ გაქვთ ამ გვერდის ნახვის უფლება."
       success_created: "%{obj} შექმნილია."
       success_updated: "%{obj} განახლებულია."
       success_publish: "%{obj} გამოქვეყნებულია."
@@ -357,398 +424,433 @@ ka:
       error_created: "%{obj} არ შექმნილა: %{err}"
       error_updated: "%{obj} არ განახლებულა: %{err}"
       error_publish: "%{obj} არ გამოქვეყნებულა: %{err}"
-      error_publish_missing_fields: "%{obj} ვერ  გამოქვეყნებული, სანამ არ დაამატებთ მოკლე შინაარსს და ფოტოს."
-      error_publish_missing_fields_link: დაამატეთ გამოტოვებული კონტენტი.
-      error_publish_missing_content_section: ამბის გამოქვეყნებისთვის აუცილებელია სულ მცირე ერთი სექცია.
+      error_publish_missing_fields: "%{obj} ვერ გამოქვეყნებული, სანამ არ დაამატებთ მოკლე შინაარსს და ფოტოს."
+      error_publish_missing_fields_link: "დაამატეთ გამოტოვებული კონტენტი."
+      error_publish_missing_sections: ერთი სექცია მაინც არის საჭირო სანამ გამოაქვეყნებთ.
+      error_publish_missing_content_section: "ამბის გამოქვეყნებისთვის აუცილებელია სულ მცირე ერთი სექცია."
+      error_publish_missing_translations: ამბავი უნდა იყოს სრულად ნათარბმნი %{lang} ენაზე სანამ გამოაქვეყნებთ.
       error_unpublish: "%{obj} გამოქვეყნება გაუქმებულია: %{err}"
-      error_clone: "%{obj} კლონირება ვერ გაკეთდა." 
-      error_clone_notification: "Error occurred while cloning story: %{msg}"
-      error_export: "ამბის ჩამოტვირთვა შეუძლებელია"     
-      error_get_data: არჩეული ერთეული ვერ მოიძებნა
-      select_section: ერთეულის დამატებამდე, გთხოვთ, აირჩიოთ სექცია 
-      staff_pick: ამბავი რჩეულში იქნა დამატებული
-      staff_unpick: ამბავი დაემატა რჩეულებს
-      success_settings: თქვენი პარამეტრები წარმატებით განახლდა.
-      success_remove_avatar: პროფილის სურათად თქვენი გვერდის Facebook-ის პროფილის სურათია გამოყენებული.
-      nickname_duplicate: მომხმარებელი ამ ბმულით უკვე არსებობს.
-      nickname_url: 'თქვენი მომხმარებლის ბმული იქნება:'
-      story_duplicate: ამ ამბის ბმული უკვე არსებობს. 
-      story_url: 'ამ ამბის ბმული იქნება:'
+      error_clone: "%{obj} კლონირება ვერ გაკეთდა."
+      error_clone_notification: "დაფიქსირდა შეცდომა შემდეგი ამბის კლონირების დროს: %{msg}"
+      error_export: "ამბის ჩამოტვირთვა შეუძლებელია"
+      error_get_data: "არჩეული ერთეული ვერ მოიძებნა"
+      select_section: "ერთეულის დამატებამდე, გთხოვთ, აირჩიოთ სექცია"
+      staff_pick: "ამბავი რჩეულში იქნა დამატებული"
+      staff_unpick: "ამბავი დაემატა რჩეულებს"
+      success_settings: "თქვენი პარამეტრები წარმატებით განახლდა."
+      success_remove_avatar: "პროფილის სურათად თქვენი გვერდის Facebook-ის პროფილის სურათია გამოყენებული."
+      nickname_duplicate: "მომხმარებელი ამ ბმულით უკვე არსებობს."
+      nickname_url: "თქვენი მომხმარებლის ბმული იქნება:"
+      story_duplicate: "ამ ამბის ბმული უკვე არსებობს."
+      story_url: "ამ ამბის ბმული იქნება:"
+      update_translations: "Don't forget to translate this new item!"
       invitation:
         accepted: "თქვენ დათანხმდით თანაავტორობის მოწვევას შემდეგ ამბავზე: '%{title}'"
         accepted_already: "თქვენ უკვე დათანხმდით თანაავტორობის მოწვევას შემდეგ ამბავზე: '%{title}'"
-        bad: უკაცრავად, თქვენი მოწვევა ვერ მოიძებნა ან ამბავი არის წაშლილი.
-        declined: თქვენი მოწვევა გაუქმებულია
+        bad: "უკაცრავად, თქვენი მოწვევა ვერ მოიძებნა ან ამბავი არის წაშლილი."
+        declined: "თქვენი მოწვევა გაუქმებულია"
       one_section:
-        content: ტექსტურ სექციაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი
-        slideshow: ფოტო სლაიდშოუს სექციაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი
-        embed_media: ონლაინ აუდიო/ვიდეო სექციაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი
-        youtube: Only one Item can be added to a Embed Youtube section
-        general: Only one Item can be added to this type of section
+        content: "ტექსტურ სექციაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი"
+        slideshow: "ფოტო სლაიდშოუს სექციაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი"
+        embed_media: "ონლაინ აუდიო/ვიდეო სექციაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი"
+        youtube: "მხოლოდ ერთი თემის დამატება არის შესაძლებელი YouTube-ის სექციაში"
+        general: "მხოლოდ ერთი თემის დამატება არის შესაძლებელი ამ ტიპის სექციაში"
       destroy_story:
-        success: ამბავი წაიშალა.
+        success: "ამბავი წაიშალა."
         error: "ამბის წაშლისას დაფიქსირდა ხარვეზი: %{err}"
       destroy_item:
-        success: ერთეული წაიშალა.
+        success: "ერთეული წაიშალა."
         error: "ერთეულის წაშლისას დაფიქსირდა ხარვეზი: %{err}"
-        error_not_found: წასაშლელი ერთეული ვერ მოიძებნა.
-      embed_code: დააკოპირეთ და ჩასვით ბმული თქვენს ვებგვერდზე
+        error_not_found: "წასაშლელი ერთეული ვერ მოიძებნა."
+      embed_code: "დააკოპირეთ და ჩასვით ბმული თქვენს ვებგვერდზე"
       collaborators:
-        success_remove: '%{name} წაიშალა თანაავტორთა სიიდან'
-        user_not_found: მომხმარებელი ვერ მოიძებნა, რათა წაშლილიყო თანაავტორთა სიიდან
-        no_permission: თქვენ არ გაქვთ უფლება, წაშალოთ ეს მომხმარებელი თანაავტორთა სიიდან
-        success_invitations: მოწვევები გაგზავნილია!
+        success_remove: "%{name} წაიშალა თანაავტორთა სიიდან"
+        user_not_found: "მომხმარებელი ვერ მოიძებნა, რათა წაშლილიყო თანაავტორთა სიიდან"
+        no_permission: "თქვენ არ გაქვთ უფლება, წაშალოთ ეს მომხმარებელი თანაავტორთა სიიდან"
+        success_invitations: "მოწვევები გაგზავნილია!"
         error_invitations_all: "მოწვევები ვერ გაიგზავნა შემდეგი ხარვეზის გამო: %{msg}"
         error_invitations_some: "ზოგიერთი მოწვევა ვერ გაიგზავნა შემდეგი ხარვეზის გამო: %{msg}"
       notification:
-        yes: თქვენ მიიღებთ შეტყობინებებს.
-        no: თქვენ არ მიიღებთ შეტყობინებებს.
-        new_story_all_success: თქვენ მიიღებთ შეტყობინებას, როდესაც ახალი ამბავი იქნება დამატებული.
-        new_story_none_success: თქვენ არ მიიღებთ შეტყობინებას, როდესაც ახალი ამბავი იქნება დამატებული.
-        new_story_by_category_success: "თქვენ მიიღებთ შეტყობინებას, როდესაც ახალი ამბავი დაემატება კატეგორიას: %{categories}."
-        story_comments_yes: თქვენ მიიღებთ შეტყობინებას, როდესაც თქვენს ამბავზე გააკეთებენ კომენტარს.
-        story_comments_no: თქვენ არ მიიღებთ შეტყობინებას, როდესაც თქვენს ამბავზე დატოვებენ კომენტარს.
-        news_yes: თქვენ მიიღებთ შეტყობინებას, როდესაც  “სთორიბილდერს” დაემატება სიახლეები.
-        news_no: თქვენ არ მიიღებთ შეტყობინებას, როდესაც  “სთორიბილდერს” დაემატება სიახლეები.
-        following_no: "თქვენ აღარ მიიღებთ შეტყობინებებს  '%{nickname}ის' ახალი ისტორიების შესახებ."
-        language: თქვენ მიიღებთ შეტყობინებას %{language}.
-      fail_change_order: ერთეულის ადგილი ვერ შეიცვალა 
-      nothing_selected: გთხოვთ, აირჩიოთ სექცია/ერთეული წასაშლელად
-      fail_delete: სექცია/ერთეული ვერ წაიშალა
-      confirm_delete: დარწმუნებული ხართ, რომ გინდათ ამ სექციის/ერთეულის წაშლა?
-      video_processed: თქვენი ვიდეო დამუშავებულია
-      video_not_processed: თქვენი ვიდეო დამუშავების პროცესშია
-      not_found_for_update: The record to update could not be found in the database.
+        true: "თქვენ მიიღებთ შეტყობინებებს."
+        false: "თქვენ არ მიიღებთ შეტყობინებებს."
+        new_theme_all_success: თქვენ მიიღებთ შეტყობინებას, როცა თემა იქნება დამატებული.
+        new_theme_none_success: თქვენ არ მიიღებთ შეტყობინებას, როცა თემა იქნება დამატებული.
+        new_story_by_type_success: 'თქვენ მიიღებთ შეტყობინებას, როცა ახალი ამბავი დაემატება შემდებ ტიპებს: %{types}.'
+        story_comments_yes: "თქვენ მიიღებთ შეტყობინებას, როდესაც თქვენს ამბავზე გააკეთებენ კომენტარს."
+        story_comments_no: "თქვენ არ მიიღებთ შეტყობინებას, როდესაც თქვენს ამბავზე დატოვებენ კომენტარს."
+        following_no: "თქვენ აღარ მიიღებთ შეტყობინებებს '%{nickname}ის' ახალი ისტორიების შესახებ."
+        language: "თქვენ მიიღებთ შეტყობინებას %{language}."
+      fail_change_order: "ერთეულის ადგილი ვერ შეიცვალა"
+      nothing_selected: "გთხოვთ, აირჩიოთ სექცია/ერთეული წასაშლელად"
+      fail_delete: "სექცია/ერთეული ვერ წაიშალა"
+      confirm_delete: "დარწმუნებული ხართ, რომ გინდათ ამ სექციის/ერთეულის წაშლა?"
+      video_processed: "თქვენი ვიდეო დამუშავებულია"
+      video_not_processed: "თქვენი ვიდეო დამუშავების პროცესშია"
+      not_found_for_update: "მასალა რედაქტირებისთვის არ მოიძებნა."
   section_types:
     content:
-      name: ტექსტი
-      description: შეიძლება შედგებოდეს html-ისგან, css სტილისგან და ფოტოებისგან
+      name: "ტექსტი"
+      description: "შეიძლება შედგებოდეს html-ისგან, css სტილისგან და ფოტოებისგან"
     media:
-      name: მთელ ეკრანზე გაშლილი მედია სლაიდშოუ
-      description: ფოტოები და/ან ვიდეოები განთავსებული, როგორც სრულ ეკრანზე გაშლილი ვერტიკალური სლაიდშოუ
+      name: "მთელ ეკრანზე გაშლილი მედია სლაიდშოუ"
+      description: "ფოტოები და/ან ვიდეოები განთავსებული, როგორც სრულ ეკრანზე გაშლილი ვერტიკალური სლაიდშოუ"
     slideshow:
-      name: ფოტო სლაიდშოუ
-      description: ფოტოები ჰორიზონტალურ სლაიდშოუში
-    embed_media: 
-      name: ონლაინ აუდიო/ვიდეო 
-      description: youtube, vimeo, და ა.შ.
-    youtube: 
-      name: Embed Youtube
-      description: Fullscreen/common youtube video       
+      name: "ფოტო სლაიდშოუ"
+      description: "ფოტოები ჰორიზონტალურ სლაიდშოუში"
+    embed_media:
+      name: "ონლაინ აუდიო/ვიდეო"
+      description: YouTube, Vimeo, და ა.შ.
+    youtube:
+      name: YouTube Video
+      description: YouTube-ის ვედეო წარწერის დამატების შესაძლებლობით
+    infographic: 
+      name: Infographic
+      description: Infographic or factoids with ability to add datasets and data sources
+  story_role:
+    editor: "რედაქტირება"
+    translator: "თარგმნა"
   message_types:
-    bug: გვაცნობეთ შეცდომის შესახებ
-    feature: მოითხოვეთ ახალი ფუნქციის დამატება
-    feedback: გაგვიზიარეთ თქვენი აზრი
-  story_types:
-    story: Story - mixed story TODO
-    talk_show: Talkshow - talkshow story TODO
-    video: Video - video story TODO
-    photo: Photo - photo story TODO
-    infographic: Infographic - infographic story TODO
+    bug: "გვაცნობეთ შეცდომის შესახებ"
+    feature: "მოითხოვეთ ახალი ფუნქციის დამატება"
+    feedback: "გაგვიზიარეთ თქვენი აზრი"
   filters:
-    all: ყველა
-    matches: მსგავსი ამბები
-    staff_pick: რჩეული
-    staff_pick_title: იხილეთ რჩეული ამბები
-    staff_pick_title_active: რჩეულის ფილტრის გაუქმება
-    sort_header: დალაგება
-    sort_title: როგორ გსურთ ამბების დალაგება?
-    filters: ფილტრი
+    all: "ყველა"
+    matches: "მსგავსი ამბები"
+    staff_pick: "რჩეული"
+    staff_pick_title: "იხილეთ რჩეული ამბები"
+    staff_pick_title_active: "რჩეულის ფილტრის გაუქმება"
+    sort_header: "დალაგება"
+    sort_title: "როგორ გსურთ ამბების დალაგება?"
+    filters: "ფილტრი"
+    all_stories: "ყველა ამბავი"
     sort:
-      recent: ბოლო
-      reads: ნახვა
-      likes: მოწონება
-    category_header: კატეგორია
-    category_title: იხილეთ ამბები კატეგორიიდან
-    language_header: ენა
+      recent: "ბოლო"
+      reads: "ნახვა"
+      likes: "მოწონება"
+    category_header: "კატეგორია"
+    category_title: "იხილეთ ამბები კატეგორიიდან"
+    theme_header: "თემა"
+    theme_title: "ამ თემის ამბებოს ნახვა"
+    language_header: "ენა"
     language_title: "იხილეთ ამბები ამ ენაზე:"
-    search: ამბის მოძებნა
-    following: თვალყურის დევნება
-    following_title: ნახეთ იმ მომხმარებლების ამბები, რომელთაც თქვენ თვალყურს ადევნებთ
-    following_title_active: თვალყურის დევნების ფილტრის გაუქმება
-    not_published: არ არის გამოქვეყნებული
-    not_published_title: ნახეთ გამოუქვეყნებელი ამბები
-    not_published_title_active: ნახეთ ყველა ამბავი
+    search: "ამბის მოძებნა"
+    following: "თვალყურის დევნება"
+    following_title: "ნახეთ იმ მომხმარებლების ამბები, რომელთაც თქვენ თვალყურს ადევნებთ"
+    following_title_active: "თვალყურის დევნების ფილტრის გაუქმება"
+    not_published: "არ არის გამოქვეყნებული"
+    not_published_title: "ნახეთ გამოუქვეყნებელი ამბები"
+    not_published_title_active: "ნახეთ ყველა ამბავი"
   tokeninput:
-    searchingText: ძიება...
+    searchingText: "ძიება..."
     tag:
-      hintText: თეგის ძიება ან ახალი თეგის დამატება
+      hintText: "თეგის ძიება ან ახალი თეგის დამატება"
       noResultsText: "მსგავსება არ არის აღმოჩენილი. დააჭირეთ 'შეყვანას', რომ დაამატოთ თეგი."
     collaborator:
-      hintText: მოძებნეთ უკვე არსებული მომხმარებელი ან შეიყვანეთ ელ. ფოსტის მისამართი, რათა დაამატოთ ახალი მომხმარებელი
+      hintText: "მოძებნეთ უკვე არსებული მომხმარებელი ან შეიყვანეთ ელ. ფოსტის მისამართი, რათა დაამატოთ ახალი მომხმარებელი"
       noResultsText: "მსგავსება არ მოიძებნა. დააჭირეთ 'შეყვანას', რომ დაამატოთ ეს ელ. ფოსტის მისამართი თანაავტორთა სიაში."
   layouts:
+    application:
+      copyright: საავტორო უფლება
+      copyright_text: ამ მასალაზე საავტორო უფლებას ფლობს არასამთავრობო ორგანიზაცია "ჩაი ხანა". მისი ხელახალი გამოქვეყნება "ჩაი ხანასთან" შეთანხმების გარეშე არ შეიძლება.
+      disclaimer: განაცხადი
+      disclaimer_text: "ეს ვებგვერდი მომზადდა DANIDA-ას ფონდის მიერ დაფინანსებულ პროექტ MYMEDIA-ს დახმარებით. პუბლიკაციის შინაარსზე პასუხისმგებლობას იღებს ავტორი/კონტრაქტორი/განმახორციებელი პარტნიორი/პარტნიორი საერთაშორისო ორგანიზაცია და არანაირად არ ასახავს  MYMEDIA/DANIDA-ს ოფიციალურ აზრის."
     unsupported_browser:
-      title: არასათანადო ბრაუზერი
-      video: თქვენ ბრაუზერს ვიდეოს მხარდაჭერა არ აქვს
-      p1: სამწუხაროდ, თქვენი ინტერნეტ ბრაუზერის მოხმარების ვადა გასულია და ვერ მოხდება ვებ-გვერდთან სრულად დაკავშირება.
-      p2: არსებობს რამდენიმე უფასო ბრაუზერი, რომელთა გადმოწერის შემდეგ შეძლებთ ვებ-გვერდით სარგებლობას.
+      title: "არასათანადო ბრაუზერი"
+      video: "თქვენ ბრაუზერს ვიდეოს მხარდაჭერა არ აქვს"
+      p1: "სამწუხაროდ, თქვენი ინტერნეტ ბრაუზერის მოხმარების ვადა გასულია და ვერ მოხდება ვებ-გვერდთან სრულად დაკავშირება."
+      p2: "არსებობს რამდენიმე უფასო ბრაუზერი, რომელთა გადმოწერის შემდეგ შეძლებთ ვებ-გვერდით სარგებლობას."
       chrome: Chrome
       firefox: Firefox
       ie: Internet Explorer (მხოლოდ Windows-ზე)
       opera: Opera
       Safari: Safari
-      admin: ადმინისტრატორი
-      sign_out: გასვლა
-      js_link_title: ჯამპსტარტ ჯორჯია - ჩვენ გაწვდით ინფორმაციას უკეთ!
-      js_link_text: შექმნილია
+      admin: "ადმინისტრატორი"
+      sign_out: "გასვლა"
+      js_link_title: "ჯამპსტარტ ჯორჯია - ჩვენ გაწვდით ინფორმაციას უკეთ!"
+      js_link_text: "შექმნილია"
     reviewer:
-      copy: კოპირება
-      copied: დაკოპირებულია!
+      copy: "კოპირება"
+      copied: "დაკოპირებულია!"
+    storybuilder:
+      source: წყარო
+      target: მიზანი
+      copy_paste: წყაროდან დაკოპირება      
   shared:
     grid:
-      no_stories: სამწუხაროდ არ მოიძებნა არცერთი ამბავი!
+      no_stories: "სამწუხაროდ არ მოიძებნა არცერთი ამბავი!"
+    story_nav_modals:
+      copied: დაკოპირებულია!
   admin:
     index:
-      title: ადმინისტრატორის განყოფილება
-      users: მომხმარებლები
+      title: "ადმინისტრატორის განყოფილება"
+      users: "მომხმარებლები"
     users:
       edit:
-        title: ცვლილებების შეტანა მომხმარებლის გვერდზე
+        title: "ცვლილებების შეტანა მომხმარებლის გვერდზე"
       index:
-        title: მომხმარებლები
+        title: "მომხმარებლები"
       new:
-        title: ახალი მომხმარებელი
+        title: "ახალი მომხმარებელი"
       show:
-        title: მომხმარებლის დეტალები
+        title: "მომხმარებლის დეტალები"
+    themes:
+      form:
+        header_features: Features
+        header_add_story: Select Story to be Feature
+        header_current_features: Featured Stories In the Order They Will Appear
+        no_stories: No stories have been assigned to this theme yet.
+        no_features: No stories have been selected to be features.
   root:
-    index:
-      title: “Chai Khana” - შექმენი მომავალი თაობის ამბები
-      about_header: რა არის ეს?
-      about_text: “Chai Khana” საშუალებას აძლევს ნებისმიერ ადამიანს,<br> ტექსტით, სურათით, ფოტოთი და/ან ვიდეოთი შექმნას მულტიმედია ამბავი<br> და გაუზიაროს მსოფლიოს. %{demo_link} გაიგეთ, რა არის შესაძლებელი, შემდეგ კი %{start_link}!
-      demo_link: ნახეთ “Chai Khanaს” ამბის ნიმუში
-      start_link: შექმენით და გააზიარეთ თქვენი ამბავი
-      news_header: უახლესი ამბები
-      all_news: მეტი...
-    news:
-      title: სიახლეები “Chai Khanaს” შესახებ
-      no_news: არანაირი ახალი ამბავიც კარგი ამბავია!
-      more_link: გაგრძელება
-    news_show:
-      title: "სიახლეები “Chai Khanaს” შესახებ: %{title}"
-      view_all: ყველა სიახლის ნახვა
-    feedback:
-      title: მოგვწერეთ “Chai Khanaს” შესახებ
-      message_sent: თქვენი შეტყობინება გაგზავნილია! მადლობა, რომ დაგვიკავშირდით.
-      send: გაგზავნა
-      name: სახელი
-      email: ელ. ფოსტის მისამართი
-      message: შეტყობინება
-    todo_list:
-      title: "გეგმაშია, “სთორიბილდერს” დაემატოს"
-      summary: “Chai Khana” ჩამოყალიბების სტადიაში და უამრავ ცვლილებას განიცდის. აქ თავმოყრილია იმ ფუნქციების ჩამონათვალი, რომელზეც ჩვენ ამჟამად ვმუშაობთ, ან ვაპირებთ, რომ ვიმუშაოთ და აპლიკაციას დავამატოთ.
-      last_update: "ბოლოს განახლდა"
-      header_current: განახლებები, რომელზეც ამჟამად ვმუშაობთ
-      header_short_term: მოკლევადიანი განახლებები
-      header_long_term: გრძელვადიანი განახლებები
-      header_completed: დასრულებული განახლებები
-      completed_text: დასრულებული განახლებები სანახავად ეწვიეთ %{link}.
-      news_link: ახალი სექცია
-      header_missing: რამე ხომ არ აკლია?
-      missing_text: ჩამონათვალს ხომ არ აკლია ფუნქცია, რომლის დამატებასაც ისურვებდით? ხომ არ ფიქრობთ, რომ ჩამონათვალის სია უნდა გადავაწყოთ? თუ კი, გთხოვთ მოგვაწოდეთ ინფორმაცია %{link}.
-      feedback_link: უკუკავშირის სექცია
     about:
-      title: “Chai Khanaს” შესახებ 
-      intro: "ეს არის პლატფორმა, რომლის საშუალებითაც შეგიძლიათ ტექსტი, აუდიო, სურათი და/ან ვიდეო გარდაქმნათ კრეატიულ ვებ-ამბად და გაუზიაროთ სამყაროს. "
-      p1: "“Chai Khana” არის ხელსაწყო, რომლის საშუალებითაც ნებისმიერ ადამიანს შეუძლია შექმნას შერეული მედია ტიპის ამბავი პროგრამირების ცოდნის გარეშე. მსგავსი აპლიკაციებისგან “სთორიბილდერს” ის განასხვავებს, რომ ავტორს აქვს სრული კონტროლი ამბის სტრუქტურაზე. თითოეული ამბავი შედგება ავტორის სურვილისამებრ დაწყობილი სხვადასხვა ტიპის მედია სექციისგან."
-      p2: "თქვენ ირჩევთ, თუ რა უნდა იყოს თითოეულ სექციაში: ტექსტი/html, მთლიან ეკრანზე გაშლილი გამოსახულება/ვიდეო, ფოტო სლაიდშოუ თუ სხვა. თითოეულ სექციას შეგიძლიათ დაადოთ თქვენ მიერ შერჩეული აუდიო გაფორმება. მთლიანად თქვენზეა დამოკიდებული, რას შექმნით ამ აპლიკაციით!"
-      p3: "“Chai Khanaს” პლატფორმა ღია კოდის მქონეა, რაც იმას ნიშნავს, რომ შეგიძლიათ აპლიკაცია თქვენს სერვერზე განათავსოთ და “ჯამპსტარტ ჯორჯიას” “Chai Khanaსგან” დამოუკიდებლად მართოთ თქვენი ამბები. ასევე, შეგიძლიათ “სთორიბილდერზე” შექმნილი ამბავი ჩამოტვირთოთ და თქვენთვის სასურველ საიტზე განათავსოთ. ამ შემთხვევაში თქვენი ორგანიზაცია არ იქნება დამოკიდებული მესამე მხარის მიერ თქვენი კონტენტის ჰოსტინგზე."
-      p4: "“Chai Khana” შექმნილია “ჯამპსტარტ ჯორჯიას” მიერ იმისათვის, რომ საზოგადოებრივ ორგანიზაციებს, ჟურნალისტებს, აქტივისტებსა და რიგით მოქალაქეებს მთელი მსოფლიოდან გაუადვილდეთ ინტერნეტის გამოყენებით თავიანთი აუდიტორიისთვის ამბების მოყოლა უფრო სახალისო და ინტერაქტიული გზით." 
-      help: "თუ თქვენს ორგანიზაციას სურს, დაგვეხმაროს “Chai Khanaს” დახვეწაში ფინანსური შემოწირულობით, დეველოპმენტის, დიზაინის ან სხვა კუთხით, შეგვეხმიანეთ!" 
-      contact:   
-        subject: “Chai Khanaს” საკონტაქტო ფორმა
-        address1: 'შევჩენკოს ქ. 5, ბინა 2'
-        address2: 'თბილისი, საქართველო 0108'
+      title: "“ჩაი ხანას” შესახებ"
     embed:
-      home_link: შექმნილია “სთორიბილდერზე”
+      home_link: "შექმნილია “სთორიბილდერზე”"
   stories:
-    index:
     new:
-      title: პარამეტრების ფორმა
+      title: "პარამეტრების ფორმა"
     edit:
-      title: პარამეტრების ფორმა
+      title: "პარამეტრების ფორმა"
     form:
       placeholder:
-        title: ამბის სათაური
-        permalink: ამბის ბმული
-        author: სტატიის ავტორ(ებ)ი
-        media_author: ფოტოსა და/ან ვიდეოს ავტორ(ებ)ი
+        title: "ამბის სათაური"
+        permalink: "ამბის ბმული"
+        author: "სტატიის ავტორ(ებ)ი"
+        media_author: "ფოტოსა და/ან ვიდეოს ავტორ(ებ)ი"
+        translation_author: "ავტორი, რომელმაც თარგმნა ეს ამბავი"
       hint:
-        title: ამბის სათაური გამოჩნდება ამბის საწყის გვერდზე
-        permalink: ავტომატური ბმული შეიცავს ამბის სათაურს, თუმცა, სურვილისამებრ, შეგიძლიათ შეცვალოთ იგი
-        author: ავტორ(ებ)ის სახელები გამოჩნდება ამბის სათაურის ქვემოთ
-        media_author:  ფოტოს/ვიდეოს ავტორ(ებ)ის სახელები გამოჩნდება ავტორ(ებ)ის სახელების ქვემოთ
-        published: გამოქვეყნებული ამბების ნახვა ყველას შეუძლია
+        title: "ამბის სათაური გამოჩნდება ამბის საწყის გვერდზე"
+        permalink: "ავტომატური ბმული შეიცავს ამბის სათაურს, თუმცა, სურვილისამებრ, შეგიძლიათ შეცვალოთ იგი"
+        author: "აირჩიეთ ავტორი, რათა ეს ამბავი მის გვერდზე გამოჩნდეს"
+        media_author: "ფოტოს/ვიდეოს ავტორ(ებ)ის სახელები გამოჩნდება ავტორ(ებ)ის სახელების ქვემოთ"
+        translation_author: "ავტორის სახელი გამოჩნდება ფოტოსა და ვიდეოს ქვემოთ"
+        published: "გამოქვეყნებული ამბების ნახვა ყველას შეუძლია"
         publish_home_page: "თუ მონიშნავთ, თქვენ მიერ გამოქვეყნებული ამბავი გამოჩნდება საიტის საწყის გვერდზე"
-        template: აირჩიეთ შაბლონი ამბის სტილის შესარჩევად
-        thumbnail: გამოსახულება, რომელიც გამოჩნდება საწყის გვერდზე, ამბის გამოქვეყნების შემდეგ (მხოლოდ jpg და png ფორმატი; ფაილის მაქსიმალური ზომა 3MB)
-        editor: მომხმარებელი, რომელმაც შექმნა ამბის ჩანაწერი სისტემაში
-        editors: მონიშნეთ ადამიანები, რომლებსაც შეეძლებათ გამოქვეყნებამდე ამბის რედაქტირება
-        about: ამბის მოკლე შინაარსი, რომელიც გამოჩნდება საწყის გვერდზე, როდესაც თქვენი ამბავი გამოქვეყნდება
-        locale: მიუთითეთ ამბის ენა. ეს საშუალებას მისცემს მომხმარებლებს, მოიძიონ ამბავი ენის მიხედვით.
-        categories: აირჩიეთ, რომელ კატეგორიას განეკუთვნება თქვენი ამბავი. ეს საშუალებას მისცემს მომხმარებლებს, მოიძიონ ამბავი კატეგორიის მიხედვით.
+        template: "აირჩიეთ შაბლონი ამბის სტილის შესარჩევად"
+        thumbnail: "გამოსახულება, რომელიც გამოჩნდება საწყის გვერდზე, ამბის გამოქვეყნების შემდეგ (მხოლოდ jpg და png ფორმატი; ფაილის მაქსიმალური ზომა 4MB)"
+        editor: "მომხმარებელი, რომელმაც შექმნა ამბის ჩანაწერი სისტემაში"
+        editors: "მონიშნეთ ადამიანები, რომლებსაც შეეძლებათ გამოქვეყნებამდე ამბის რედაქტირება"
+        about: "ამბის მოკლე შინაარსი, რომელიც გამოჩნდება საწყის გვერდზე, როდესაც თქვენი ამბავი გამოქვეყნდება"
+        locale: "მიუთითეთ ამბის ენა. ეს საშუალებას მისცემს მომხმარებლებს, მოიძიონ ამბავი ენის მიხედვით."
+        categories: "აირჩიეთ, რომელ კატეგორიას განეკუთვნება თქვენი ამბავი. ეს საშუალებას მისცემს მომხმარებლებს, მოიძიონ ამბავი კატეგორიის მიხედვით."
         tag_list: "შეიყვანეთ ტექსტი, რომ იპოვოთ არსებული თეგი. თუ თქვენი თეგი ჯერ არ არსებობს, დააჭირეთ 'შეყვანას' და დაამატეთ იგი."
-        story_type: Select the type of your story.
-        theme: Select the theme(s) your story belongs to.
+        story_type: "აირჩიეტ ამბის ტიპი"
+        theme: "აირჩიეთ თემა, რომელსაც თქვენი ამბავი განეკუთვნება"
+        in_theme_slider: "თუ მონიშნავთ ეს ამბავი გამოჩნდება სლაიდერში, თემის გვერდის ზედა ნაწილში"
     collaborators:
       title: "ამბის '%{title}' თანაავტორები"
-      owner_header: ამბის მეპატრონე
-      collaborators_header: ამბის თანაავტორები
-      explanation: თანაავტორებს შეუძლიათ ამბის რედაქტირება
-      current_header: ამჟამინდელი თანაავტორები
-      remove_title: '%{name}-ის ამოშლა'
-      not_accepted_title: '%{name}-ს ჯერ არ უპასუხია მოწვევაზე'
-      add_header: თანაავტორების დამატება
-      add_explanation: თქვენ მიერ მითითებულ მომხმარებლებს გაეგზავნებათ მოსაწვევები, რათა მონაწილეობა მიიღონ თქვენთან ერთდ ამ ამბის შექმნაში.
-      search_label: შეიყვანეთ იმ ადამიანების სახელები ან ელ. ფოსტის მისამართები, ვისი მოწვევაც გსურთ
-      message: შეტყობინებისთვის გზავნილის დამატება (არ არის სავალდებულო)
-      submit: თანაავტორობის მოსაწვევის გაგზავნა
+      owner_header: "ამბის ავტორი"
+      collaborators_header: "ამბის თანაავტორები"
+      explanation: "თანაავტორებს შეუძლიათ ამბის რედაქტირება"
+      editors_header: "რედაქტორები"
+      editor_explanation: "რედაქტორს აქვს უფლება დაამატოს/დაარედაქტიროს ამბავი და თარგმნოს იგი სხვადასხვა ენაზე. რედაქტორს ასევე შეუძლია დაამატოს თანაავტორი და გამოაქვეყნოს ამბავი."
+      translators_header: "მთარგმნელები"
+      translator_explanation: "მთარმგნელს აქვს წვდომა თარქმნოს ამავი სხვადასხვა ენაზე. მას არ აქვს ამბის რედაქტირების, თანაავტორის დამატების ან ამბის გამოქვეყნების შესაძლებლობა."
+      remove_title: "%{name}-ის ამოშლა"
+      not_accepted_title: "%{name}-ს ჯერ არ უპასუხია მოწვევაზე"
+      add_header: "თანაავტორების დამატება"
+      add_explanation: "თქვენ მიერ მითითებულ მომხმარებლებს გაეგზავნებათ მოსაწვევები, რათა მონაწილეობა მიიღონ თქვენთან ერთდ ამ ამბის შექმნაში."
+      editor_label: "შეიყვანეთ რედაქტორების სახელები ან საფოსტო მისამართები"
+      language_label: "შეიყვანეთ თარგმანის ენა"
+      translator_label: "შეიყვანეთ მთარგმნელის სახელი ან საფოსტო მისამართი"
+      translator_add: "სხვა მთარგმნელის დამატება"
+      translator_remove: "მთარგმნელის წაშლა"
+      message: "შეტყობინებისთვის გზავნილის დამატება (არ არის სავალდებულო)"
+      submit: "თანაავტორობის მოსაწვევის გაგზავნა"
     media:
-      form_title: მთელ ეკრანზე გაშლილი მედია სლაიდშოუ
-      left: მარცხნივ
-      center: ცენტრში
-      right: მარჯვნივ
-      image: გამოსახულება
-      video: ვიდეო
-      floating: Floating
-      fixed: Fixed
+      form_title: "მთელ ეკრანზე გაშლილი მედია სლაიდშოუ"
+      left: "მარცხნივ"
+      center: "ცენტრში"
+      right: "მარჯვნივ"
+      image: "გამოსახულება"
+      video: "ვიდეო"
+      floating: "მოსიარულე"
+      fixed: "ფიქსირებული"
       placeholder:
-        title: მედიაფაილის სათაური
-        caption: წარწერა
-        source: ფოტოს/ვიდეოს წყარო
+        title: "მედიაფაილის სათაური"
+        caption: "წარწერა"
+        source: "ფოტოს/ვიდეოს წყარო"
       hint:
-        title: ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში
-        media_type: ვიდეოსთვის ფოტო აუცილებელია, რადგან ვიდეო არ იტვირთება მობილურ ტელეფონებზე
-        caption:  წარწერა გამოჩნდება გამოსახულებაზე/ვიდეოზე. თუ ეს ფოტო/ვიდეო ამბის პირველი სექციაა, წარწერა არ გამოჩნდება.
-        source: ფოტოს/ვიდეოს წყარო, გამოჩნდება ქვედა მარჯვენა კუთხეში
-        image: დასაშვებია მხოლოდ jpg ფორმატი; ფაილის მაქსიმალური ზომა 3MB
-        video: "დასაშვებია mp4, mov, webm, ogv, flv, avi და wmv ფორმატები; ფაილის მაქსიმალური ზომა 25MB. ატვირთვის შემდეგ, სანამ ვიდეო ამბავს დაემატება, საჭიროა მათი დამუშავება, რაც, ჩვეულებრივ, რამდენიმე წუთს გრძელდება.  როდესაც ვიდეოს დამუშავება დასრულდება, თქვენ მიიღებთ შეტყობინებას."
-        caption_align: წარწერა გამოჩნდება სურათზე/ვიდეოზე (ტექსტის ავტომატური მდებარეობა მარცხენა მხარეა, რისი შეცვლაც შეგიძლიათ)
-        infobox_type: "Caption text and source styling methods floating and fixed. Floating will be predefined width and will move on scroll. Fixed will be at the bottom of screen with full width and transparent background"
-        video_loop: თუ მონიშნავთ, ვიდეო განმეორდება უსასრულოდ, სხვა შემთხვევაში ვიდეო არ განმეორდება
+        title: "ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში"
+        media_type: "ვიდეოსთვის ფოტო აუცილებელია, რადგან ვიდეო არ იტვირთება მობილურ ტელეფონებზე"
+        caption: "წარწერა გამოჩნდება გამოსახულებაზე/ვიდეოზე. თუ ეს ფოტო/ვიდეო ამბის პირველი სექციაა, წარწერა არ გამოჩნდება."
+        source: "ფოტოს/ვიდეოს წყარო, გამოჩნდება ქვედა მარჯვენა კუთხეში"
+        image: "დასაშვებია მხოლოდ jpg ფორმატი; ფაილის მაქსიმალური ზომა 4MB"
+        video: "დასაშვებია mp4, mov, webm, ogv, flv, avi და wmv ფორმატები; ფაილის მაქსიმალური ზომა 25MB. ატვირთვის შემდეგ, სანამ ვიდეო ამბავს დაემატება, საჭიროა მათი დამუშავება, რაც, ჩვეულებრივ, რამდენიმე წუთს გრძელდება. როდესაც ვიდეოს დამუშავება დასრულდება, თქვენ მიიღებთ შეტყობინებას."
+        caption_align: "წარწერა გამოჩნდება სურათზე/ვიდეოზე (ტექსტის ავტომატური მდებარეობა მარცხენა მხარეა, რისი შეცვლაც შეგიძლიათ)"
+        infobox_type: "ამ ტექსტს შეუძლია ფოტოზე/ვიდეოზე ზემოდან იმოძრაოს, ან იყოს დაფიქსირებული ფოტოს/ვიდეოს ქვედა ნაწილში"
+        video_loop: "თუ მონიშნავთ, ვიდეო განმეორდება უსასრულოდ, სხვა შემთხვევაში ვიდეო არ განმეორდება"
     section:
-      form_title: სექციის ფორმა
-      'yes': 'კი'
-      'no': 'არა'
+      form_title: "სექციის ფორმა"
+      'yes': "კი"
+      'no': "არა"
       placeholder:
-        title: სექციის სათაური
+        title: "სექციის სათაური"
       hint:
-        title: ეს ტექსტი გამოჩნდება მარცხენა განყოფილებაში და, თუ ეს თავი გამოყოფილია, გამოჩნდება ამ თავის სათაურად
-        type: ამ ტიპის არჩევა განსაზღვრავს იმას, თუ რა სახის ინფორმაციის დამატება შეგეძლებათ ამ სექციაში 
-        has_marker: თუ მონიშნავთ, ეს სექცია გამოიყოფა და შესაძლებელი იქნება მასზე ცალკე ბმულით გადასვლა
-        audio: მუსიკალური გაფორმება ამ სექციისთვის (დასაშვებია მხოლოდ mp3 ფორმატი; ფაილის მაქსიმალური ზომა 10MB)
+        title: "ეს ტექსტი გამოჩნდება მარცხენა განყოფილებაში და, თუ ეს თავი გამოყოფილია, გამოჩნდება ამ თავის სათაურად"
+        type: "ამ ტიპის არჩევა განსაზღვრავს იმას, თუ რა სახის ინფორმაციის დამატება შეგეძლებათ ამ სექციაში"
+        has_marker: "თუ მონიშნავთ, ეს სექცია გამოიყოფა და შესაძლებელი იქნება მასზე ცალკე ბმულით გადასვლა"
+        audio: "მუსიკალური გაფორმება ამ სექციისთვის (დასაშვებია მხოლოდ mp3 ფორმატი; ფაილის მაქსიმალური ზომა 10MB)"
         delete_audio: "თუ მონიშნავთ, აუდიო ფაილი წაიშლება"
     content:
-      form_title: ტექსტის ფორმა
+      form_title: "ტექსტის ფორმა"
       placeholder:
-        title: ტექსტის სათაური
-        caption: არ არის სავალდებულო
-        sub_caption: არ არის სავალდებულო
+        title: "ტექსტის სათაური"
+        caption: "არ არის სავალდებულო"
+        sub_caption: "არ არის სავალდებულო"
       hint:
-        title: ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში
-        caption: კონტენტის სათაური გამოჩნდება სექციის ზემოთ 
-        sub_caption: ტექსტის ქვესათური გამოჩნდება ტექსტის სათაურის ქვემოთ 
-        content: ტექსტი შეიძლება შეიცავდეს html, css სტილს და ფოტოს
+        title: "ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში"
+        caption: "კონტენტის სათაური გამოჩნდება სექციის ზემოთ"
+        sub_caption: "ტექსტის ქვესათური გამოჩნდება ტექსტის სათაურის ქვემოთ"
+        content: "ტექსტი შეიძლება შეიცავდეს html, css სტილს და ფოტოს"
     reviewer_key:
-      title: ბმული ამბის სანახავად
+      title: "ბმული ამბის სანახავად"
       desc: "თქვენ შეგიძლიათ დააკოპიროთ და გაუზიაროთ ეს ბმული ადამიანებს, ვისაც შეეძლებათ ამბის '%{title}' ნახვა მის გამოქვეყნებამდე. ამ ბმულით შესაძლებელია მხოლოდ ამბის ნახვა და არა მისი რედაქტირება."
     slideshow:
-      form_title: გამოსახულების სლაიდშოუს ფორმა
-      add_image: გამოსახულების დამატება
+      form_title: "გამოსახულების სლაიდშოუს ფორმა"
+      add_image: "გამოსახულების დამატება"
       placeholder:
-        caption: არ არის სავალდებულო
+        title: "სლაიდშოუს სათაური"
+        caption: "არ არის სავალდებულო"
       hint:
-        title: ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში
-        caption: წარწერა გამოჩნდება სლაიდშოუს ზედა ნაწილში
-    asset_fields:
-      remove_image: წაშლა
+        title: "ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში"
+        caption: "წარწერა გამოჩნდება სლაიდშოუს ზედა ნაწილში"
+        description: არღწერა გამოჩნდება სლაიდშოუს ქვემოთ
+    asset_file_fields:
+      remove_image: "წაშლა"
       placeholder:
-        caption: არ არის სავალდებულო
-        source: არ არის სავალდებულო
+        caption: "არ არის სავალდებულო"
+        source: "არ არის სავალდებულო"
       hint:
-        caption: სურათის აღწერა გამოჩნდება სურათის ქვემოთ
-        source: წყარო გამოჩნდება სურათის აღწერის ქვემოთ
-        asset: მხოლოდ jpg და png ფორმატია დასაშვები; ფაილის მაქსიმალური ზომა 3MB
+        caption: "სურათის აღწერა გამოჩნდება სურათის ქვემოთ"
+        source: "წყარო გამოჩნდება სურათის აღწერის ქვემოთ"
+        asset: "მხოლოდ jpg და png ფორმატია დასაშვები; ფაილის მაქსიმალური ზომა 4MB"
       label:
-        caption: სურათის აღწერა
-        source: სურათის წყარო
+        caption: "სურათის აღწერა"
+        source: "სურათის წყარო"
     embed_media:
-      form_title: ჩასასმელი ონლაინ აუდიო/ვიდეო ფაილის ფორმა 
-      get_media: ონლაინ აუდიო/ვიდეო ფაილის ჩასმა
-      preview: ონლაინ აუდიო/ვიდეო ფაილის ნახვა
-      error: ბმული ვერ დამუშავდა. გთხოვთ, კიდევ სცადეთ.
+      form_title: "ჩასასმელი ონლაინ აუდიო/ვიდეო ფაილის ფორმა"
+      get_media: "ონლაინ აუდიო/ვიდეო ფაილის ჩასმა"
+      preview: "ონლაინ აუდიო/ვიდეო ფაილის ნახვა"
+      error: "ბმული ვერ დამუშავდა. გთხოვთ, კიდევ სცადეთ."
       placeholder:
-        url: ონლაინ აუდიო/ვიდეო ფაილის ბმული
+        title: "ონლაინ აუდიო/ვიდეო ფაილის სათაური"
+        url: "ონლაინ აუდიო/ვიდეო ფაილის ბმული"
       hint:
-        title: ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში
-        url: "ჩასასმელი ონლაინ აუდიო/ვიდეო ფაილისთვის შეგიძლიათ გამოიყენოთ შემდეგი საიტები: აუდიო: Soundcloud, Spotify; ვიდეო: Youtube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED" 
+        title: "ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში"
+        url: "ჩასასმელი ონლაინ აუდიო/ვიდეო ფაილისთვის შეგიძლიათ გამოიყენოთ შემდეგი საიტები: აუდიო: Soundcloud, Spotify; ვიდეო: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
     youtube:
-      form_title: Youtube Embed Online Media Form
-      get_media: Get Youtube Online Media
-      preview: Preview of Online Media
-      error: The URL could not be processed. Please try again.
+      form_title: YouTube ვიდეოს ფორმა
+      get_media: "მიიღეთ თქვენი Youtube ვიდეო"
+      preview: YouTube ვიდეოს წინასწარი ნახვა
+      error: URL-ი ვერ დამუშავდა. გთხოვთ სცადოთ ხელახლა.
+      generate_iframe:
+        missing_api_key: "value can't be generated due to missing API key."
+        error: "value can't be generated."
       placeholder:
-        url: Url to online media
+        title: YouTube სათაური
+        url: YouTube ვიდეოს Url
       hint:
-        title: "This text only appears in the left sidebar, it will not show up in the story"
-        url: "The following sites can be used for embeding online media: VIDEO: Youtube"          
+        title: "ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში"
+        url: "დააკოპირეთ YouTube URL-ი და ჩასვით აქ"
+        fullscreen: "თუ მონიშნულია ვიდეო დაიკავებს მთლიან ეკრანს"
+        loop: "თუ მონიშნულია ვიდეო დასრულების თანავე ხელახლა ჩაიტვირთება"
+        info: "თუ მონიშნულია სათაურის ველი გამოჩნდება ვიდეოს ზედა ნაწილში"
+        cc: "თუ მონიშნულია სუბტიტრები ავტომატურად გამოჩნდება"
+        menu_lang: YouTube მენიუს ენა
+        cc_lang: "ავტომატური სუბტიტრების ენა"
+    infographic:
+      form_title: Infographic Form
+      add_datasource: Add Data Source
+      static: Static
+      dynamic: Dynamic  
+      label:
+        dynamic_size: Infographic dimensions WidthxHeight          
+      placeholder:
+        title: Title
+        caption: optional
+        dataset_url: optional
+        dynamic_url: Interactive Url
+        dynamic_width: 0
+        dynamic_height: 0           
+      hint:
+        title: This text only appears in the left sidebar, it will not show up in the story
+        caption: "Heading of infographic will appear above the infographic image. If this Infographic Section is first in the story, you should leave this blank and use the Story Title field."
+        description: "The description will appear below the infographic. If this Infographic Section is first in the story, the Story Summary will appear below the infographic image so if the Story Summary and Infographic Description are the same, you should leave this field blank."
+        image: Only jpg and png format allowed; 8MB file size limit
+        dataset_file: Please try to compress files to make for quicker download; 25MB file size limit
+        dataset_url: URL to Dataset
+        subtype: "Static infographics are images, Dynamic infographics require a url."
+        dynamic_url: Url to web page with interactive infographic
+        dynamic_size: Leave 0 if you want width and height to be fullscreen or specify size in px        
+    infographic_datasource_fields:
+      placeholder:
+        url: optional
+      hint:
+        name: Name of the data source
+        url: URL to the online data source
   storyteller:
-    byline: ავტორი
-    byline_media: "ფოტოსა და ვიდეოს ავტორი "
+    byline: "ავტორი"
+    byline_media: "ფოტოსა და ვიდეოს ავტორი"
+    byline_translator: "თარგმნა"
     source: "წყარო:"
-    by: ""
+    by: 
+    related_stories: მსგავსი ამბები
+    view_all_stories_in: ყველა ამბის ნახვა
+    infographic:
+      source: Data Source
+      dataset: Dataset
+      download: Download File
+      online: View Data Online    
   settings:
     index:
-      title: პარამეტრები
-      facebook_avatar: ეს არის თქვენი პროფილის სურათი Facebook-იდან.
-      use_facebook_avatar: გამოიყენეთ Facebook-ის პროფილის სურათი
+      title: "პარამეტრები"
+      facebook_avatar: "ეს არის თქვენი პროფილის სურათი Facebook-იდან."
+      use_facebook_avatar: "გამოიყენეთ Facebook-ის პროფილის სურათი"
       hint:
-        about: მოკლე ტექსტი თქვენ შესახებ. ეს გამოჩნდება თქვენ მიერ გამოქვეყნებულ ამბებთან ერთად. 
-        default_story_locale: აირჩიეთ ენა, რომელსაც გამოიყენებთ ამბის შექმნისას.
-      submit: პარამეტრების შენახვა
+        about: "მოკლე ტექსტი თქვენ შესახებ. ეს გამოჩნდება თქვენ მიერ გამოქვეყნებულ ამბებთან ერთად."
+        default_story_locale: "აირჩიეთ ენა, რომელსაც გამოიყენებთ ამბის შექმნისას."
+      submit: "პარამეტრების შენახვა"
     invitations:
-      title: თანაავტორების მოწვევა
-      no_invitations: ამ დროისთვის თქვენ არ გაქვთ ახალი მოწვევა თანაავტორობაზე.
-      accept_link: დათანხმება
-      decline_link: უარის თქმა
-      header_date: გაგზავნის თარიღი
-      header_story: ამბის სათური
-      header_from: გამომგზავნი
+      title: "თანაავტორების მოწვევა"
+      no_invitations: "ამ დროისთვის თქვენ არ გაქვთ ახალი მოწვევა თანაავტორობაზე."
+      accept_link: "დათანხმება"
+      decline_link: "უარის თქმა"
+      header_date: "გაგზავნის თარიღი"
+      header_story: "ამბის სათური"
+      header_role: "როლი"
+      header_from: "გამომგზავნი"
     notifications:
-      title: შეტყობინებები
-      all_sub_title: ყველა შეტყობინება
-      all_label: გსურთ მიიღოთ შეტყობინებები “Chai Khanaსგან”?
+      title: "შეტყობინებები"
+      explain: თქვენ შეგიძლიათ მიიღოთ ელექტორონული ფოსტის შეტყობინება, როცა ახალი ამბავი დაემატება "ჩაი ხანას" ვებგვერდზე! ამისთვის საჭიროა მონიშნოთ თვალყურის დევნის ღილაკი.
+      all_sub_title: "ყველა შეტყობინება"
+      all_label: "გსურთ მიიღოთ შეტყობინებები “Chai Khanaსგან”?"
       all_no: "არა, არ გამომიგზავნოთ შეტყობინებები."
       all_yes: "დიახ, მსურს შეტყობინებების მიღება."
-      story_comment_sub_title: შეტყობინებები ამბის კომენტარებზე
+      story_comment_sub_title: "შეტყობინებები ამბის კომენტარებზე"
       story_comment_label: "გსურთ მიიღოთ შეტყობინებები, როდესაც თქვენს ამბავზე დააკომენტარებენ?"
       story_comment_no: "არა, არ გამომიგზავნოთ შეტყობინებები."
       story_comment_yes: "დიახ, მსურს შეტყობინებების მიღება."
-      new_stories_sub_title: ახალი ამბების შესახებ შეტყობინებები
-      new_stories_all: შემატყობინეთ, როდესაც დაემატება ახალი ამბავი.
-      new_stories_none: არ მსურს მივიღო შეტყობინებები ახალი ამბების დამატების შესახებ.
+      new_themes_sub_title: ახალი თემის შეტყობინება
+      new_themes_all: შემატყობინეთ, როცა ახალი თემა იქნება დამატებული.
+      new_themes_none: არ მსურს მივიღო შეტყობინებები, როცა ახალი თემა იქნება დამატებული.
       new_stories_by_category: "შემატყობინეთ, როდესაც ახალი ამბავი დაემატება შემდეგ კატეგორიას:"
-      language_sub_title: შეტყობინების ენა
-      language_label: რა ენაზე გსურთ შეტყობინებების მიღება?
-      news_sub_title: შეტყობინებები “Chai Khanaს” განახლებებზე
-      news_label: "გსურთ მიიღოთ შეტყობინებები “Chai Khanaს” განახლებების შესახებ?"
-      news_no: "არა, არ გამომიგზავნოთ შეტყობინებები."
-      news_yes: "დიახ, მსურს შეტყობინებების მიღება."            
-      following_sub_title: მომხმარებლები, რომელთაც თქვენ თვალყურს ადევნებთ
+      language_sub_title: "შეტყობინების ენა"
+      language_label: "რა ენაზე გსურთ შეტყობინებების მიღება?"
+      following_sub_title: "მომხმარებლები, რომელთაც თქვენ თვალყურს ადევნებთ"
       following_label: "თქვენ მიიღებთ შეტყობინებას, როდესაც მომხმარებელი, რომელსაც თვალყურს ადევნებთ, დაამატებს ახალ ისტორიას. ამ შეტყობინებების მიღება თუ არ გსურთ, გააუქმეთ თვალყურის დევნება მათ სურათზე დაჭერით."
       following_not: "ამ დროისთვის თქვენ არცერთ მომხმარებელს არ ადევნებთ თვალყურს."
-      following_title1: "'%{nickname}' თვალყურის დევნების გასაუქმებლად დააჭირეთ ღილაკს"
-      following_title2: "'%{nickname}' თვალყურის სადევნებლად დააჭირეთ ღილაკს"     
-      submit: პარამეტრების შენახვა
+      following_title1: "%{nickname}' თვალყურის დევნების გასაუქმებლად დააჭირეთ ღილაკს"
+      following_title2: "%{nickname}' თვალყურის სადევნებლად დააჭირეთ ღილაკს"
+      submit: "პარამეტრების შენახვა"
   imageuploader:
     missing: "გამოსახულების დამუშავებისას დაფიქსირდა შეცდომა. გთხოვთ, სცადოთ ახლიდან."
     invalid_type: "არასწორი ფაილის ტიპი. დასაშვებია jpg და png ფორმატი"
-    size_limit: "მაქსიმალური ზომა 5MB"
+    size_limit: "მაქსიმალური ზომა 4MB"
   devise:
     mailer:
       reset_password_instructions:
-        title: 'მოგესალმებით, %{nickname}!'
-        p1: მივიღეთ მოთხოვნა %{app_name} თქვენი პაროლის შეცვლის შესახებ. პაროლის შესაცვლელად, მიჰყევით შემდეგ ბმულს.
-        link_title: პაროლის შეცვლა
+        title: "მოგესალმებით, %{nickname}!"
+        p1: "მივიღეთ მოთხოვნა %{app_name} თქვენი პაროლის შეცვლის შესახებ. პაროლის შესაცვლელად, მიჰყევით შემდეგ ბმულს."
+        link_title: "პაროლის შეცვლა"
         p2: "თუ თქვენ არ მოგითხოვიათ პაროლის შეცვლა, გთხოვთ, არ მიაქციოთ ყურადღება ამ შეტყობინებას."
-        p3: "თქვენი პაროლი იგივე დარჩება, სანამ არ გადახვალთ ზემოთ მითითებულ ბმულზე და შექმნით ახალ პაროლს."    
+        p3: "თქვენი პაროლი იგივე დარჩება, სანამ არ გადახვალთ ზემოთ მითითებულ ბმულზე და შექმნით ახალ პაროლს."

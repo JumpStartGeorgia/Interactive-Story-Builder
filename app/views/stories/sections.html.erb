@@ -1,10 +1,10 @@
 <% title @story.title.titlecase %>
-<% tools = 
+<% tools = @tr ? "" :
   "<div class='tools'><button type='button' class='btn btn-sort btn-up' title='#{ t('app.buttons.up') }'> <i class='glyphicon glyphicon-arrow-up' ></i> </button>" + 
   "<button type='button' class='btn btn-sort btn-down' title='#{ t('app.buttons.down') }'> <i class='glyphicon glyphicon-arrow-down' ></i></button>" +
   "<button type='button' class='btn  btn-danger btn-remove' title='#{ t('app.buttons.delete_item') }' ><i class='glyphicon glyphicon-remove'></i></button></div>" 
   #tools_delete = "<div class='tools'><button type='button' class='btn btn-danger btn-remove' title='#{ t('app.buttons.delete_item') }' ><i class='glyphicon glyphicon-remove'></i></button></div>"
-  add_item = "<button type='button' class='btn btn-create' title='#{ t('app.buttons.add_item') }'><i class='glyphicon glyphicon-film' ></i>#{ t('app.buttons.add_item') }</button>"
+  add_item = @tr ? "" : "<button type='button' class='btn btn-create' title='#{ t('app.buttons.add_item') }'><i class='glyphicon glyphicon-film' ></i>#{ t('app.buttons.add_item') }</button>"
 
   %>
    <div class='story-tree' id='<%= @story.id %>'>        
@@ -18,8 +18,8 @@
                 <%= tools.html_safe %>
                 <div class='storytree-arrow'><div class='arrow'></div></div>
               </div>
+              <ul class="closed">
                 <% if item.content? %>                 
-                  <ul class="closed">
                     <% if item.content.present? %>
                       <li id='<%= item.content.id %>' class='sub' data-type='<%= item.get_str_type %>_item'>
                         <div>
@@ -30,9 +30,8 @@
                     <% else %>
                       <%= add_item.html_safe %>
                     <% end %>
-                  </ul>
-                <% elsif item.media? && item.media.present? %>
-                  <ul class="closed">
+                <% elsif item.media? %>
+                  <% if item.media.present? %>
                       <% item.media.each do |subitem| %>                  
                       <li id='<%= subitem.id %>' class='sub' data-type='<%= item.get_str_type %>_item'>
                         <div>
@@ -41,11 +40,10 @@
                           <div class='storytree-arrow'><div class='arrow'></div></div>
                         </div>
                       </li>
-                    <%end%>
-                    <%= add_item.html_safe %>
-                  </ul>
+                    <% end %>
+                  <% end %>
+                  <%= add_item.html_safe %>
                 <% elsif item.slideshow? %>
-                  <ul class="closed">
                     <% if item.slideshow.present? %>
                       <li id='<%= item.slideshow.id %>' class='sub' data-type='<%= item.get_str_type %>_item'>
                         <div>
@@ -56,9 +54,7 @@
                     <% else %>
                       <%= add_item.html_safe %>
                     <% end %>
-                    </ul>
                  <% elsif item.embed_media? %>
-                    <ul class="closed">
                       <% if item.embed_medium.present? %>
                         <li id='<%= item.embed_medium.id %>' class='sub' data-type='<%= item.get_str_type %>_item'>
                           <div>
@@ -69,9 +65,7 @@
                       <% else %>
                         <%= add_item.html_safe %>
                       <% end %>
-                    </ul>
                  <% elsif item.youtube? %>
-                    <ul class="closed">
                       <% if item.youtube.present? %>
                         <li id='<%= item.youtube.id %>' class='sub' data-type='<%= item.get_str_type %>_item'>
                           <div>
@@ -82,21 +76,26 @@
                       <% else %>
                         <%= add_item.html_safe %>
                       <% end %>
-                    </ul>                    
-                <%end%>
+                 <% elsif item.infographic? %>
+                      <% if item.infographic.present? %>
+                        <li id='<%= item.infographic.id %>' class='sub' data-type='<%= item.get_str_type %>_item'>
+                          <div>
+                            <div class="sub-l"><%= item.infographic.title %></div>
+                            <div class='storytree-arrow'><div class='arrow'></div></div>
+                          </div>
+                        </li>
+                      <% else %>
+                        <%= add_item.html_safe %>
+                      <% end %>                      
+                  <%end%>
+                </ul>                    
             </li>          
         <% end %>            
-    </ul>  
-    <div class='box'>
-      <button type="button" id='btnAddSection' class="btn btn-create-section" title="<%= t('app.buttons.add_section') %>"><i class="glyphicon glyphicon-align-justify"></i><%= t('app.buttons.add_section') %></button>
-    </div>
+    </ul> 
+    <% if !@tr %>
+      <div class='box'>
+        <button type="button" id='btnAddSection' class="btn btn-create-section" title="<%= t('app.buttons.add_section') %>"><i class="glyphicon glyphicon-align-justify"></i><%= t('app.buttons.add_section') %></button>
+      </div>
+    <% end %>
   </div>  
   <div class='storytree-toggle'><div class='toggler'></div></div>
-  
-
-
-
-
-
-
-

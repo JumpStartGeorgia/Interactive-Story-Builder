@@ -21,9 +21,9 @@ class AssetObserver < ActiveRecord::Observer
       # make sure directory exists
 			FileUtils.mkpath(File.dirname(queue_file))
             
-      story_id = asset.video.section.story_id
+      story_id = asset.story_id
       asset_id = asset.id
-      path = asset.asset.url(:original, false)
+      path = asset.file.url(:original, false)
       
       # append line to queue file
       CSV.open(queue_file, "a") do |csv|      

@@ -1,71 +1,160 @@
 <%- model_class = Story -%>
-
-<h2 class="form-title">
-  <%= t('.form_title') %>
-</h2>
-<%= semantic_form_for(@item, url: section_story_path(id:params[:id],:format => :js), :html => {:multipart => true, :id => "sectionForm"} ,remote: true) do |f| %>
-  <%= f.inputs do %>
-    <%= f.input :title, :placeholder => t('.placeholder.title'), hint: t('.hint.title'), :input_html => { :id => "sectionTitle" } %>
-     
-    <div class="radio_buttons input required form-group radio-indent radio-hide-button" id="section_type_id_input">
-      <label class="control-label" for="section_type_id">
-        <%= model_class.human_attribute_name(:type) %>
-        <abbr title="<%= t('app.common.required') %>">*</abbr>
-        <div class="help-inline" title="<%= t('.hint.type')%>">
-          <div>?</div>
-        </div>
-      </label>
-      <%
-        types = []
-        Section::TYPE.each{|k,v| types << [I18n.t("section_types.#{k}.name"), v, I18n.t("section_types.#{k}.description"), Section::ICONS[k]]} 
-        types.sort_by!{|x| x[0]}
-      %>
-      <div class="radio-container">
-        <% types.each do |type| %>
-          <div class="radio">
-            <% checked = type[1] == @item.type_id ? 'checked=checked' : '' %>
-            <input <%= checked %> id="section_type_id_<%= type[1] %>" name="section[type_id]" type="radio" value="<%= type[1] %>" <%= (@item.id.present?) ? "disabled" : "" %>>
-            <label class="choice<%= @item.id.present? ? ' disabled' : '' %>" for="section_type_id_<%= type[1] %>">
-              <i class="s <%= type[3] %>"></i>
-              <%= type[0] %>
-              <div class="help-inline" title="<%= type[2] %>">
-                <div>?</div>
-              </div>
-            </label>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-    <%= f.input :has_marker, :as => :boolean, :hint => t('.hint.has_marker'), :input_html => { id: "sectionHasMarker"} %> 
-  
-    <%= f.fields_for :asset, @item.asset do |as| %>
-      <div id='sectionAudioBox'  >     
-        <label class=" control-label" for="modalAudio"><%= t('activerecord.attributes.section.audio') %></label>
-        <% if @item.asset.asset.exists? %>
-            <audio controls>            
-              <source src="<%= @item.asset.asset.url %>" type="audio/mpeg">
-              Your browser does not support the audio tag.
-            </audio>        
-        <% end %>
-      </div>
-
-      <%= as.input :asset, :as => :file , hint: t('.hint.audio') , :input_html => { :id => "mediaAudio", accept:".mp3" } , label: false  %>
-      <% if @item.asset.asset.exists? %>
-        <%= f.input :delete_audio, :as => :boolean, hint: t('.hint.delete_audio') %>
-      <% end %>
-      
-      <%= as.input :asset_type, :as => :hidden %>
-    <% end %> 
-    <% if @item.id.present? %>
-      <%= f.input :id, :as => :hidden , :input_html => { :id => "sectionId" }  %>    
-    <% end %>
-    <%= f.input :story_id, :as => :hidden , :input_html => { :id => "storyId" }  %>    
-  <% end %>
-
-
-  <div class="pull-right spacer">    
-    <%= f.submit nil, :class => 'btn btn-default' %>
-    <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          
-  </div>
+<% original ||= false %>
+<% readonly = {} %>
+<% isTO = @trans && original # if mode is translate and screen is original(first) %>
+<% if isTO %>
+    <% readonly = { readonly:true , disabled: true } %>
 <% end %>
+<% form_class = @trans == true && original == false ? 'form-translation' : '' %>
+
+
+  <h2 class="form-title"><%= t('.form_title') %></h2>
+  <%= semantic_form_for(@item, url: section_story_path(id:params[:id],:format => :js), :html => {:multipart => true, :id => "sectionForm", class: "#{form_class}"} ,remote: true) do |f| %>
+    <%= f.inputs do %>
+      <% 
+        trans_record = @item.section_translations.select{|x| x.locale == @item.current_locale}.first
+        trans_record = @item.with_translation(@item.current_locale) if trans_record.blank? 
+      %>
+      <%= f.fields_for :section_translations, trans_record do |f_translation| %>
+
+        <%# need this hidden field so can test if user has access to edit the locale if user is translator %>
+        <%= hidden_field_tag :current_locale , @item.current_locale if !isTO %>
+
+        <%= (f_translation.input :locale , :as => :hidden) if !isTO %>
+     
+        <%= f_translation.input :title, 
+        { 
+          :required => !isTO, :input_html => { id: (!isTO ?  "sectionTitle" : nil) }      
+          .merge(readonly) 
+        }
+        .merge(( (isTO) ? {} : { hint: t('.hint.title'), placeholder: t('.placeholder.title') })) %>
+
+      <% if !@trans %>   
+        <div class="radio_buttons input required form-group radio-indent radio-hide-button" id="section_type_id_input">
+          <label class="control-label" for="section_type_id">
+            <%= model_class.human_attribute_name(:type) %>
+            <abbr title="<%= t('app.common.required') %>">*</abbr>
+            <div class="help-inline" title="<%= t('.hint.type')%>">
+              <div>?</div>
+            </div>
+          </label>
+          <%
+            types = []
+            Section::TYPE.each{|k,v| types << [I18n.t("section_types.#{k}.name"), v, I18n.t("section_types.#{k}.description"), Section::ICONS[k]]} 
+            types.sort_by!{|x| x[0]}
+          %>
+          <div class="radio-container">
+            <% types.each do |type| %>
+              <div class="radio">
+                <% checked = type[1] == @item.type_id ? 'checked=checked' : '' %>
+                <input <%= checked %> id="section_type_id_<%= type[1] %>" name="section[type_id]" type="radio" value="<%= type[1] %>" <%= (@item.id.present?) ? "disabled" : "" %>>
+                <label class="choice<%= @item.id.present? ? ' disabled' : '' %>" for="section_type_id_<%= type[1] %>">
+                  <i class="s <%= type[3] %>"></i>
+                  <%= type[0] %>
+                  <div class="help-inline" title="<%= type[2] %>">
+                    <div>?</div>
+                  </div>
+                </label>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <%= f.input :has_marker, :as => :boolean, :hint => t('.hint.has_marker'), :input_html => { id: "sectionHasMarker"} %> 
+      <% end %>
+
+        <%
+          asset_record = trans_record.asset
+          if asset_record.blank?
+            asset_record = trans_record.build_asset(:asset_type => Asset::TYPE[:section_audio])
+          end
+        %>
+        <%= f_translation.fields_for :asset, asset_record do |f_asset| %>
+          <%= f_asset.input :asset_type, :as => :hidden %>
+
+          <div id='sectionAudioBox' style='display:inline-block;vertical-align:bottom;'  >     
+            <label class=" control-label" for="modalAudio"><%= t('activerecord.attributes.section_translation.audio') %></label>
+            <% if !isTO %>
+              <% if !original %>
+                <% 
+                  orig = @item.with_translation(@from)
+                  orig_asset_id = orig.asset.id if orig.present? && orig.asset.present?                  
+                %>
+                <% if orig_asset_id.present? %>
+                  <div class="boolean input optional checkbox" id="asset_clone_thumbnail">
+                    <input name="clone_asset" type="hidden" value="0">
+                    <label class="  control-label" for="clone_asset">
+                      <input id="clone_asset" name="clone_asset" type="checkbox" value="1" <%= asset_record.asset_clone_id.present? ? 'checked=checked' : '' %>><%= t('app.common.clone_asset') %>
+                      <div class="help-inline" original-title="<%= t('helpers.hints.clone_asset') %>">
+                        <div>?</div>
+                      </div>
+                    </label>
+                  </div>
+
+                  <% if asset_record.asset_clone_id.blank? && asset_record.file.exists? %>
+                    <% 
+                      asset_class = isTO ? 'original-asset' : 'translated-asset'
+                    %>
+                    <audio controls class="<%= asset_class %>">            
+                      <source src="<%= asset_record.file.url %>" type="audio/mpeg">
+                      Your browser does not support the audio tag.
+                    </audio>        
+                  <% end %>
+
+                  <div id="item-asset-clone">
+                    <%= f_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id} %>
+                  </div>
+                  <% style = asset_record.asset_clone_id.present? ? 'display:none;' : '' %>
+                  <div id="item-asset" style="<%= style %>">
+                    <%= f_asset.input :asset, :as => :file , hint: t('.hint.audio') , :input_html => { :id => "mediaAudio", accept:".mp3" } , label: false  %>
+                    <% if asset_record.asset.exists? %>
+                      <%= f_translation.input :delete_audio, :as => :boolean, hint: t('.hint.delete_audio') %>
+                    <% end %>          
+                  </div>
+                <% end %>
+              <% else %>
+                <% if asset_record.file.exists? %>
+                  <% 
+                    asset_class = isTO ? 'original-asset' : 'translated-asset'
+                  %>
+                  <audio controls class="<%= asset_class %>">            
+                    <source src="<%= asset_record.file.url %>" type="audio/mpeg">
+                    Your browser does not support the audio tag.
+                  </audio>        
+                <% end %>
+                <%= f_asset.input :asset, :as => :file , hint: t('.hint.audio') , :input_html => { :id => "mediaAudio", accept:".mp3" } , label: false  %>
+                <% if asset_record.file.exists? %>
+                  <%= f_translation.input :delete_audio, :as => :boolean, hint: t('.hint.delete_audio') %>
+                <% end %>          
+              <% end %>
+            <% else %>
+              <% if asset_record.file.exists? %>
+                <% 
+                  asset_class = isTO ? 'original-asset' : 'translated-asset'
+                %>
+                <audio controls class="<%= asset_class %>">            
+                  <source src="<%= asset_record.file.url %>" type="audio/mpeg">
+                  Your browser does not support the audio tag.
+                </audio>        
+              <% end %>
+            <% end %>
+          </div>
+        <% end %> 
+        <% if !isTO %>  
+          <% if @item.id.present? %>
+            <%= (f.input :id, :as => :hidden , :input_html => { :id => "sectionId" }) if !isTO  %>    
+          <% end %>
+          <%= (f.input :story_id, :as => :hidden , :input_html => { :id => "storyId" }) if !isTO  %>    
+        <% end %> 
+      <% end %>
+    <% end %>
+
+    <% if !isTO %>
+      <div class="pull-right spacer">    
+        <%= f.submit t('app.buttons.save'), :class => 'btn btn-default' %>
+        <%= f.submit t('app.buttons.save_and_next'), :class => 'btn btn-default', :name => "commit_and_next" %>        
+        <%= f.submit t('helpers.links.next'), :class => 'btn btn-default', :type => :button, :onclick => 'select_next();' %> 
+        <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>  
+      </div>
+    <% end %>
+  <% end %>

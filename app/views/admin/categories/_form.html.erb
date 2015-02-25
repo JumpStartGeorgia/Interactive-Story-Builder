@@ -14,11 +14,11 @@
 	  <% end %>
   <% end %>
 
-  <div class="form-actions">
+  <div>
     <%= f.submit nil, :class => 'btn btn-primary' %>
 	  <%= f.submit t('helpers.links.reset'), :class => 'btn btn-warning', :type => :reset, :name => :reset %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                admin_categories_path, :class => 'btn btn-mini btn-warning' %>
+                admin_categories_path, :class => 'btn btn-xs btn-warning' %>
   </div>
 
 <% end %>

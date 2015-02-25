@@ -84,8 +84,24 @@
     <div class="main">
       <div class="article"> 
         <% columnSectionCount = 0 %>
-        <% isFirst = true %>   
-         <% @story.sections.select{|t| t.ok? }.sort_by{|p| p.position}.each_with_index do |section,s_i| %>
+        <% isFirst = true %>  
+        <% secs = @story.sections.select{|t| t.ok? }.sort_by{|p| p.position} %> 
+        <% @section_count = secs.count %> 
+        <% secs.each_with_index do |section,s_i| %>
+
+          <% if isFirst && !(section.media? || (section.youtube? && section.youtube.fullscreen)) %>
+            <div class='info'>
+              <div class='headline'><%= @story.title %></div>
+              <div class="byline">
+                      <span class="caption"><%= t('storyteller.byline', locale: @story.current_locale) %></span>
+                      <span class="author">&nbsp;<%= @story.story_author_names %></span>
+                      <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                      <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
+              </div> 
+            </div>
+             <%= render partial: "storyteller/template/#{@template}/content_infotop", locals: {is_infographic: section.infographic?} %>
+          <% end %>
+
           <%  dataAudio = ''
               if section.asset_exists?            
                 dataAudio = "data-audio='#{File.basename(section.asset.asset_file_name_formatted,'.mp3')}'".html_safe 
@@ -95,17 +111,11 @@
               <div class="section column" <%= dataAudio.html_safe %>>    
                 <% if section.has_marker? %>
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
-                <% end %>
-                <% if columnSectionCount == 0 %>
-                  <div class='headline<%= s_i == 0 ? " margin130": ""%>'><%= @story.title %></div>
-                  <div class="byline byline--first" style="margin-bottom:24px;">
-                  <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.author %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
-                  </div>                                 
-                <% end %>         
+                <% end %>                
                 <%= "<div class='column-caption'>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
                 <%= "<div class='column-sub-caption'>#{section.content.sub_caption}</div>".html_safe  if section.content.sub_caption.present? %>                       
-                <%= section.content.content.html_safe %>   
-                <% if section.content.content.html_safe.lines.count == 1 %>   
+                <%= section.content.text.html_safe %>   
+                <% if section.content.text.html_safe.lines.count == 1 %>   
                   <p>&nbsp;</p>
                 <% end %>
               </div>   
@@ -115,7 +125,7 @@
                 <% if section.has_marker? %>
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
-                <% section.media.each_with_index do |m,m_i| %>
+                <% section.media.each_with_index do |m,m_i| %>                
                   <% dataVideo = '' %>
                   <% if m.media_type == Medium::TYPE[:video] && m.is_processed? %>                
                     <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name_formatted,'.*')}'".html_safe %>
@@ -124,7 +134,7 @@
                     <div class="video-container infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %>">
                       <% if m.media_type == Medium::TYPE[:image] %>     
                           <% if !@export %> 
-                            <img src="<%= m.image.asset.url(:fullscreen) %>">
+                            <img src="<%= m.image.file.url(:fullscreen) %>">
                           <% else %>
                             <img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>">
                           <% end %>
@@ -136,7 +146,7 @@
                           <% end %>
                       <% elsif m.media_type == Medium::TYPE[:video] && m.is_processed?  %>                    
                             <% if !@export %>                           
-                              <!--[if lte IE 8]><img src="<%= m.image.asset.url(:fullscreen) %>"><![endif]-->
+                              <!--[if lte IE 8]><img src="<%= m.image.file.url(:fullscreen) %>"><![endif]-->
                             <% else %>
                               <!--[if lte IE 8]><img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>"><![endif]-->
                             <% end %>                                             
@@ -164,7 +174,8 @@
                             <% if m.source.present? %>
                                <div class="video-source"><%= m.source %></div>                       
                             <% end %>
-                          </div> 
+                          </div>
+                          <div class='space'></div> 
                         <% end %>    
                       <% end %>    
 
@@ -174,8 +185,9 @@
                     <% if isFirst && m_i == 0  %>   
                       <div class="video-headline">
                         <div class="headline"><%= @story.title %>
-                          <div class="byline byline--first" style="margin-bottom:24px;">
-                            <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.author %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                          <div class="byline">
+                            <span class="caption"><%= t('storyteller.byline', locale: @story.current_locale) %></span><span class="author">&nbsp;<%= @story.story_author_names %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                             <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
                           </div>         
                         </div>
                       </div> 
@@ -197,24 +209,24 @@
                     <% end %>                                                            
                  
                   </div>        
-                <% end %>        
+                <% end %>                   
               </div>
-            <% elsif section.slideshow? %>  
+              <% if isFirst %>
+                  <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
+                <% end %>     
+            <% elsif section.slideshow? %>             
               <div class="section slideshow">
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
-                <% end %> 
-                <% if s_i == 0 %>
-                  <div class='slideshow-headline'><%= @story.title %></div>
-                <% end %>  
+                <% end %>               
                 <div class="slideshow-wrapper">
                       <% if section.slideshow.caption.present? %>
                         <h3><%= section.slideshow.caption %></h3>                      
                       <% end %>
                                 
-                  <!--[if lte IE 8]><img src="<%= section.slideshow.assets[0].asset.url(:medium) %>" style="width:100%;"><![endif]-->
+                  <!--[if lte IE 8]><img src="<%= section.slideshow.asset_files[0].file.url(:medium) %>" style="width:100%;"><![endif]-->
                   <div class="slideshow-captions">
-                      <% section.slideshow.assets.each_with_index do |t,t_i| %>    
+                      <% section.slideshow.asset_files.each_with_index do |t,t_i| %>    
                           <div class="slideshow-caption" data-slug="<%= t.asset_file_name_formatted %>">
                             <%= t.caption.html_safe %>
                             <% if t.source.present? %> 
@@ -223,9 +235,14 @@
                           </div>
                     <% end %>
                   </div>
+                  <% if section.slideshow.description.present? %>
+                    <div class="slideshow-description column">
+                      <%= section.slideshow.description.html_safe %>   
+                    </div>
+                  <% end %>
                 </div>
               </div> 
-            <% elsif section.embed_media? %>             
+            <% elsif section.embed_media? %>         
               <div class="section embed">
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
@@ -234,33 +251,80 @@
                   <%= section.embed_medium.code.html_safe %>             
                 </div>                         
               </div>
-            <% elsif section.youtube? %>             
+            <% elsif section.youtube? %>           
               <div class="section embed<%= section.youtube.fullscreen ? ' fullscreen' : '' %>">
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %> 
-                <div class="embed-container">
-                  <%= section.youtube.code.html_safe %>             
+                <div class="embed-container"><%= section.youtube.code.html_safe %></div>                         
+              </div>
+              <% if isFirst && section.youtube.fullscreen %>
+                <div class='info'>
+                  <div class='headline'><%= @story.title %></div>
+                  <div class="byline">
+                          <span class="caption"><%= t('storyteller.byline', locale: @story.current_locale) %></span>
+                          <span class="author">&nbsp;<%= @story.story_author_names %></span>
+                          <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                          <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
+                  </div> 
+                </div>
+               <%= render partial: "storyteller/template/#{@template}/content_infotop" %>
+              <% end %>
+            <% elsif section.infographic? %>              
+              <% item = section.infographic %>       
+              <div class="section infographic">
+                <% if section.has_marker? %><a class="navigation-marker" id="<%= s_i + 1 %>"></a><% end %> 
+                <div class="container" >
+                <% if item.caption.present? %>
+                  <div class="caption"><%= item.caption %></div>
+                <% end %>
+                <% if item.subtype == Infographic::TYPE[:static] %> 
+                  <div class="content" data-original='<%= item.image.file.url %>'>
+                    <% alt = item.alt_text.present? ? item.alt_text : isFirst ? @story.about : '' %>
+                    <img src="<%= item.image.file.url(:poster) %>" alt="<%= strip_tags_nbsp(alt) %>">
+                    <div class="bg"></div>
+                  </div>
+                <% elsif item.subtype == Infographic::TYPE[:dynamic] %>
+                  <div class="content<%= item.dynamic_width == 0 ? ' wide' : '' %>">
+                    <%= item.dynamic_code.html_safe %>
+                  </div>
+                <% end %>
+                  <% if isFirst && @story.story_type_id != 1 && @story.about.present? %>
+                    <div class='description'><%= @story.about.html_safe %></div>
+                  <% end %>
+                  <div class="description"><%= item.description.html_safe %></div>
+                  <% if !item.datasources.empty? %>
+                    <div class="sources">
+                      <div class="title"><%= t('storyteller.infographic.source', locale: @story.current_locale) %>:&nbsp;</div>
+                      <% section.infographic.datasources.each do |t| %>
+                      <% if t.url.present? %>
+                       <div class='source'><%= link_to t.name+";", t.url, :target=>'blank' %></div>
+                     <% else %>
+                       <div class='source'><%= t.name %></div>
+                     <% end %>
+                      <% end %>
+                    </div>                    
+                  <% end %>        
+                  <% if item.dataset_url.present? || item.dataset_file_exists? %>
+                    <div class="dataset">
+                      <div class="title"><%= t('storyteller.infographic.dataset', locale: @story.current_locale) %>:&nbsp;</div>
+                      <% if item.dataset_file_exists? %>
+                        <div class='file'><%= link_to t('storyteller.infographic.download', locale: @story.current_locale), full_url(item.dataset_file.file.url) %></div>
+                      <% end %>
+                      <% if item.dataset_url.present? %>
+                        <div class='url'><%= link_to t('storyteller.infographic.online', locale: @story.current_locale), item.dataset_url, :target=>'blank' %></div>
+                      <% end %>
+                    </div>
+                  <% end %>
                 </div>                         
               </div>
+              
             <% end %>                               
             <% isFirst = false %>                    
         <% end %>   
         
       </div>
-    </div>   
-        <!--
-          <div class="image image--diptych">
-            <img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/696/island-pag-asa.jpg">
-            <img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/696/kids.jpg">
-            <div class="caption">About 120 people live at any one time on Pag-asa, including civilians.</div>
-          </div>
-           <div class="image">
-            <img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/696/chinese-coast-guards.jpg">
-            <div class="caption">Chinese Coast Guard cutters patrol within sight of the Sierra Madre.</div>
-          </div>     
-         -->
-
+    </div>         
       <!-- ****************************************************
       *  data hash for mobile devices , they use different images   
       ********************************************************* -->
@@ -288,8 +352,8 @@
                     output<< item
                   end
                 elsif s.slideshow?
-                  subLength = s.slideshow.assets.length   
-                  s.slideshow.assets.each_with_index do |t,t_i| 
+                  subLength = s.slideshow.asset_files.length   
+                  s.slideshow.asset_files.each_with_index do |t,t_i| 
                     item = {}
 
                     item[:type] = "slideshow"
@@ -349,40 +413,16 @@
             var _slideshow_assets = "media/slideshow/";
         <% end %>        
         
-
-         
-
+      
         d3.select(window)
           .on("resize", mobileReorient)
           .on("scroll", function() {
               d3.select(".navigation")
                 .classed("navigation-solid", window.scrollY > 350)
-          });
-
-    /*
-      remove br from headlines
-      add ios-loaded class to first video-sequence
-      remove br from byline style
-      we don't need this it's for map sequence
-
-    */
-      //  d3.select(".headline").html( d3.select(".headline").html().replace("<br>", " <br>") )
+          }); 
 
        d3.select(".video-sequence:first-of-type").classed("ios-loaded", true);
 
-       //d3.select(".column .byline").html( d3.select(".column .byline").html().replace("<br>", " <br>") )
-
-        //d3.select(".section:nth-child(7)").classed("map-sequence", true);
-
-
-    /*
-      scripts work with two devices phones and other devices like pads
-      so it would 2 devices in the future phone and pad
-
-      with small delay loop through hash 
-
-      if device is phone then replace values with phone inner values
-    */
         setTimeout(function() {
 
           mobileImages.forEach(function(image) {
@@ -659,6 +699,7 @@
           }
 
           function resized() {
+
             fixHeight = innerWidth / fixRatio;
             fixTop = Math.round((innerHeight - fixHeight) / 2);
             fadeTop = Math.max(200, fixTop);
@@ -671,6 +712,8 @@
                   : d.last ? rect.bottom >= fixTop + fixHeight
                   : true;
             }).style("top","0px");
+            // append height for infographic if height class present
+            d3.selectAll(".infographic iframe.height").attr("height", innerHeight);
           }
 
           function fixscrolled(d) {
@@ -1021,6 +1064,7 @@
             d3.event = sourceEvent;
           }
         }
-        await();
+        await();       
     })();</script>
-    <!--<![endif]--> 
+    <!--<![endif]-->      
+   

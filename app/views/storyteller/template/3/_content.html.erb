@@ -98,13 +98,13 @@
                 <% if columnSectionCount == 0 %>
                   <div class='headline'><%= @story.title.downcase %></div>              
                   <div class="byline byline--first" style="margin-bottom:24px;">
-                    <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.author %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                    <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.story_author_names %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
                   </div>                 
                 <% end %>         
                 <%= "<div class='column-caption'>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
                 <%= "<div class='column-sub-caption'>#{section.content.sub_caption}</div>".html_safe  if section.content.sub_caption.present? %>                       
-                <%= section.content.content.html_safe %>   
-                <% if section.content.content.html_safe.lines.count == 1 %>   
+                <%= section.content.text.html_safe %>   
+                <% if section.content.text.html_safe.lines.count == 1 %>   
                   <p>&nbsp;</p>
                 <% end %>
               </div>
@@ -123,7 +123,7 @@
                     <div class="video-container">
                       <% if m.media_type == Medium::TYPE[:image] %>     
                           <% if !@export %> 
-                            <img src="<%= m.image.asset.url(:fullscreen) %>">
+                            <img src="<%= m.image.file.url(:fullscreen) %>">
                           <% else %>
                             <img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>">
                           <% end %>
@@ -135,7 +135,7 @@
                           <% end %>
                       <% elsif m.media_type == Medium::TYPE[:video] && m.is_processed?  %>                    
                           <% if !@export %>                           
-                            <!--[if lte IE 8]><img src="<%= m.image.asset.url(:fullscreen) %>"><![endif]-->
+                            <!--[if lte IE 8]><img src="<%= m.image.file.url(:fullscreen) %>"><![endif]-->
                           <% else %>
                             <!--[if lte IE 8]><img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>"><![endif]-->
                           <% end %>                                                          
@@ -200,7 +200,7 @@
                         <h3>&nbsp;</h3>
                       <% end %>
                                 
-                  <!--[if lte IE 8]><img src="<%= section.slideshow.assets[0].asset.url(:medium) %>" style="width:100%;"><![endif]-->
+                  <!--[if lte IE 8]><img src="<%= section.slideshow.assets[0].file.url(:medium) %>" style="width:100%;"><![endif]-->
                   <div class="slideshow-captions">
                       <% section.slideshow.assets.each_with_index do |t,t_i| %>    
                           <div class="slideshow-caption" data-slug="<%= t.asset_file_name_formatted %>">

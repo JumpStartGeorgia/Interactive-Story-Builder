@@ -12,3 +12,13 @@
  	 <% end %>   
   <% end %>
 <% end %>
+<% @select_next ||= false  %>
+<% if @select_next %>
+  select_next();
+<% else %>  
+  getObject('select','story');
+<% end %>
+
+<% if @story_progress.present? %>
+  update_translation_progress(<%= @story_progress.to_json.html_safe %>, '<%= @item.current_locale %>', '<%= compute_translation_progress_percent(@item.current_locale, @story_progress) %>');
+<% end %>

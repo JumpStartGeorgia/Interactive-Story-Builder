@@ -1,0 +1,641 @@
+Line #,Key,en Version,ka Translation
+1,ka.activerecord.models.user,User,მომხმარებელი
+2,ka.activerecord.models.story,Story,ამბავი
+3,ka.activerecord.models.section,Section,სექცია
+4,ka.activerecord.models.medium,Full-Screen Media Slideshow,მთელ ეკრანზე გაშლილი ფოტო/ვიდეო სლაიდშოუ
+5,ka.activerecord.models.content,Text,ტექსტი
+6,ka.activerecord.models.message,Message,შეტყობინება
+7,ka.activerecord.models.slideshow,Image Slideshow,ფოტო სლაიდშოუ
+8,ka.activerecord.models.embed_medium,Embeddable Online Media,ჩასასმელი ონლაინ აუდიო/ვიდეო
+9,ka.activerecord.models.youtube,YouTube Video,YouTube ვიდეო
+10,ka.activerecord.models.language,Language,ენა
+11,ka.activerecord.models.category,Category,კატეგორია
+12,ka.activerecord.models.page,Text for Pages,ტექსტი გვერდებისთვის
+13,ka.activerecord.models.theme,Theme,თემა
+14,ka.activerecord.models.story_type,Story Type,ამბის ტიპი
+15,ka.activerecord.models.author,Author,ავტორი
+16,ka.activerecord.attributes.user.email,Email Address,ელ. ფოსტა
+17,ka.activerecord.attributes.user.password,Password,პაროლი
+18,ka.activerecord.attributes.user.password_confirmation,Password Confirmation,გაიმეორეთ პაროლი
+19,ka.activerecord.attributes.user.role,Role,როლი
+20,ka.activerecord.attributes.user.remember_me,Remember Me,დამიმახსოვრე
+21,ka.activerecord.attributes.user.default_story_locale,Default Language for Your Stories,თქვენი ამბის ავტომატური ენა
+22,ka.activerecord.attributes.user.about,Summary of You,თქვენ შესახებ
+23,ka.activerecord.attributes.user.local_avatar,Avatar,პროფილის სურათი
+24,ka.activerecord.attributes.user.nickname,Nickname,მომხმარებლის სახელი
+25,ka.activerecord.attributes.user.sign_in_count,Number of Times Logged In,შემოსვლის რაოდენობა
+26,ka.activerecord.attributes.user.created_at,Date Created,შექმნის თარიღი
+27,ka.activerecord.attributes.user.current_sign_in_at,Date Last Logged In,ბოლო შემოსვლის თარიღი
+28,ka.activerecord.attributes.author.avatar,Avatar,პროფილის სურათი
+29,ka.activerecord.attributes.author_translation.name,Name,სახელი
+30,ka.activerecord.attributes.author_translation.about,About,შესახებ
+31,ka.activerecord.attributes.author_translation.permalink,Permalink,მუდმივი ბმული
+32,ka.activerecord.attributes.story.user_id,Story Author,ამბის ავტორი
+33,ka.activerecord.attributes.story.user_ids,Editors,ამბის რედაქტორები
+34,ka.activerecord.attributes.story.publish_home_page,"Once published, make your story visible on the homepage?","გამოქვეყნების შემდეგ, გსურთ, თქვენი ამბავი გამოჩნდეს მთავარ გვერდზე?"
+35,ka.activerecord.attributes.story.template_id,Template,შაბლონი
+36,ka.activerecord.attributes.story.thumbnail,Thumbnail,ესკიზი
+37,ka.activerecord.attributes.story.story_locale,Story Language,ამბის ენა
+38,ka.activerecord.attributes.story.tag_list,Tags,თეგები
+39,ka.activerecord.attributes.story.categories,Categories,კატეგორიები
+40,ka.activerecord.attributes.story.story_type,Type,ტიპი
+41,ka.activerecord.attributes.story.in_theme_slider,Show Story in Theme Slider,ამბის სლაიდერში ჩვენება
+42,ka.activerecord.attributes.story_translation.title,Story Title,ამბის სათაური
+43,ka.activerecord.attributes.story_translation.author,Author(s),ავტორ(ებ)ი
+44,ka.activerecord.attributes.story_translation.media_author,Photo and Video Author(s),ფოტოსა და ვიდეოს ავტორ(ებ)ი
+45,ka.activerecord.attributes.story_translation.translation_author,Translation Author(s),თარგმნის ავტორი
+46,ka.activerecord.attributes.story_translation.published,Publish?,გამოქვეყნება
+47,ka.activerecord.attributes.story_translation.published_at,Was Published,გამოქვეყნებულია
+48,ka.activerecord.attributes.story_translation.about,Story Summary,ამბის მოკლე შინაარსი
+49,ka.activerecord.attributes.story_translation.permalink,Story URL,ამბის ბმული
+50,ka.activerecord.attributes.story_translation.permalink_staging,Story URL,ამბის ბმული
+51,ka.activerecord.attributes.section.has_marker,Navigation Shortcut,სექციის გამოყოფა
+52,ka.activerecord.attributes.section.type_id,Type,ტიპი
+53,ka.activerecord.attributes.section.sort_order,Sort Order,დალაგება
+54,ka.activerecord.attributes.section_translation.title,Title,სათაური
+55,ka.activerecord.attributes.section_translation.audio,Audio Track,აუდიო ფაილი
+56,ka.activerecord.attributes.section_translation.delete_audio,Delete the Audio Track?,აუდიო ფაილის წაშლა?
+57,ka.activerecord.attributes.content.title,Title,სათაური
+58,ka.activerecord.attributes.content.caption,Heading,ტექსტის სათაური
+59,ka.activerecord.attributes.content.sub_caption,Subheading,ტექსტის ქვესათაური
+60,ka.activerecord.attributes.content.content,Text,ტექსტი
+61,ka.activerecord.attributes.medium.media_type,Media Type,მედია ტიპი
+62,ka.activerecord.attributes.medium.image,Image,სურათი
+63,ka.activerecord.attributes.medium.video,Video,ვიდეო
+64,ka.activerecord.attributes.medium.video_loop,Loop Video,ვიდეოს გამეორება
+65,ka.activerecord.attributes.medium_translation.title,Title,სათაური
+66,ka.activerecord.attributes.medium_translation.caption,Caption,წარწერა
+67,ka.activerecord.attributes.medium_translation.caption_align,Caption Alignment,წარწერის მდებარეობა
+68,ka.activerecord.attributes.medium_translation.infobox_type,Caption Position,წარწერის მდებარეობა
+69,ka.activerecord.attributes.medium_translation.summary,Summary,მოკლე შინაარსი
+70,ka.activerecord.attributes.medium_translation.source,Source,წყარო
+71,ka.activerecord.attributes.medium_translation.image,Image,სურათი
+72,ka.activerecord.attributes.medium_translation.video,Video,ვიდეო
+73,ka.activerecord.attributes.slideshow_translation.title,Title,სათაური
+74,ka.activerecord.attributes.slideshow_translation.caption,Heading,ფოტოს წარწერა
+75,ka.activerecord.attributes.slideshow_translation.description,Description,აღწერა
+76,ka.activerecord.attributes.message.name,Name,სახელი
+77,ka.activerecord.attributes.message.email,Email Address,ელ. ფოსტის მისამართი
+78,ka.activerecord.attributes.message.message,Message,გზავნილი
+79,ka.activerecord.attributes.message.message_type,Feedback Type,გზავნილის მიზანი
+80,ka.activerecord.attributes.embed_medium_translation.title,Title,სათაური
+81,ka.activerecord.attributes.embed_medium_translation.url,Url to Online Media,ონლაინ აუდიოს/ვიდეოს ბმული
+82,ka.activerecord.attributes.youtube.fullscreen,Fullscreen,მთელ ეკრანზე გაშლილი
+83,ka.activerecord.attributes.youtube.loop,Loop,გამეორება
+84,ka.activerecord.attributes.youtube.info,Show Video Title Bar,ვიდეოს სათაურის ჩვენება
+85,ka.activerecord.attributes.youtube_translation.title,Title,სათაური
+86,ka.activerecord.attributes.youtube_translation.url,Url to YouTube Video,YouTube ვიდეოს Url-ი
+87,ka.activerecord.attributes.youtube_translation.menu_lang,Player Language,პლეერის პარამეტრების ენა
+88,ka.activerecord.attributes.youtube_translation.cc,Show Caption/Subtitle,წარწერის/სუბტიტრების ჩვენება
+89,ka.activerecord.attributes.youtube_translation.cc_lang,Subtitle Language,სუბტიტრების ენა
+90,ka.activerecord.attributes.language.locale,Locale,ენის აღმნიშვნელი
+91,ka.activerecord.attributes.language.name,Language Name,ენა
+92,ka.activerecord.attributes.category_translation.name,Name,სახელი
+93,ka.activerecord.attributes.page.name,Unique name for content (do not change!),კონტენტის უნიკალური სახელი (არ შეცვალოთ!)
+94,ka.activerecord.attributes.page_translation.title,Title to show above content,"სათაური, რომელიც გამოჩნდება კონტენტის ზემოთ"
+95,ka.activerecord.attributes.page_translation.content,Content,კონტენტი
+96,ka.activerecord.attributes.theme.is_published,Publish?,გამოვაქვეყნოთ?
+97,ka.activerecord.attributes.theme.published_at,Date Published,გამოქვეყნების თარიღი
+98,ka.activerecord.attributes.theme.show_home_page,Show this theme on the home page?,ვაჩვენოთ ეს თემა მთავარ გვერდზე?
+99,ka.activerecord.attributes.theme.published_item_count,Number of Published Items,გამოქვეყნებულ ამბავთა რაოდენობა
+100,ka.activerecord.attributes.theme_translation.name,Name,სათაური
+101,ka.activerecord.attributes.theme_translation.edition,Edition,გამოცემა
+102,ka.activerecord.attributes.theme_translation.description,Description,აღწერა
+103,ka.activerecord.attributes.theme_translation.permalink,URL,URL-ი
+104,ka.activerecord.attributes.story_type.sort_order,Sort Order,დალაგება
+105,ka.activerecord.attributes.story_type_translation.name,Name,სათაური
+106,ka.activerecord.attributes.story_type_translation.permalink,URL,URL-ი
+107,ka.activerecord.errors.messages.required_field,is a required field.,სავალდებულო ველი
+108,ka.activerecord.errors.messages.already_exists,already exists in the database.,უკვე არსებობს მონაცემთა ბაზაში
+109,ka.activerecord.errors.messages.story_authors,must have at least one person selected.,საჭიროა ერთი ადამიანის ონიშვნა მაინც.
+110,ka.activerecord.errors.messages.publish_theme,The theme cannot be published until at least one published item has been assigned to the theme.,"თემის გამოქვეყნება შეუძლებელია, თუ ამ თემას ერთი ამბავი მაინც არ აქვს მისადაგებული."
+111,ka.mailer.closing,"Sincerely,","პატივისცემით,"
+112,ka.mailer.signature,The Chai Khana Team,“ჩაი ხანას” გუნდი
+113,ka.mailer.unsubscribe,Click here to change your notification settings,დააჭირეთ და შეცვალეთ შეტყობინებების პარამეტრები
+114,ka.mailer.contact.contact_form.subject,Chai Khana Contact Form,“ჩაი ხანას” საკონტაქტო ფორმა
+115,ka.mailer.notification.new_user.subject,Welcome to Chai Khana!,კეთილი იყოს თქვენი მობრძანება “სთორიბილდერზე!”
+116,ka.mailer.notification.new_user.message,"Thank you for becoming a member of Chai Khana. We look forward to exploring the stories you build!
+
+When you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summary about yourself: [settings_link].
+
+You can manage when you would like to receive email notifications from Chai Khana by going to the notifications page: [notifications_link]. ","გმადლობთ, რომ გახდით “ჩაი ხანას” წევრი. ჩვენ გვსურს, გავიგოთ უფრო მეტი თქვენი ამბების შესახებ!
+
+როცა დრო გექნებათ, გთხოვთ, ეწვიოთ პარამეტრების გვერდს, რათა შეიყვანოთ ინფორმაცია თქვენ შესახებ, შეცვალოთ პროფილის სურათი, სახელი და პირადი ბმულიი: [settings_link].
+
+თქვენ შეიგიძლიათ განსაზღვროთ, როდის გსურთ “Chai Khanaდან” შეტყობინებების მიღება, ამისათვის ეწვიეთ შეტყობინებების გვერდს: [notifications_link]."
+117,ka.mailer.notification.published_theme.subject,New themes have been published on Chai Khana!,New themes have been published on Chai Khana!
+118,ka.mailer.notification.published_theme.message,The following themes you have expressed interest in were recently published:,The following themes you have expressed interest in were recently published:
+119,ka.mailer.notification.published_story.subject,New stories have been published on Chai Khana!,“სთორიბილდერზე” გამოქვეყნდა ახალი ამბავი!
+120,ka.mailer.notification.published_story.message,The following stories you have expressed interest in were recently published:,"ამბები, რომლითაც თქვენ დაინტერესდით, უკვე გამოქვეყნებულია:"
+121,ka.mailer.notification.story_comment.subject,Someone has posted a comment on your story on Chai Khana!,ვიღაცამ დატოვა კომენტარი “სთორიბილდერზე” თქვენ მიერ გამოქვეყნებულ ამბავზე!
+122,ka.mailer.notification.story_comment.message,The following stories have recently received a comment:,ამ ამბებზე ცოტა ხნის წინ დატოვეს კომენტარები:
+123,ka.mailer.notification.story_comment.comment,1 Comment,1 კომენტარი
+124,ka.mailer.notification.story_comment.comments,%{num} Comments,%{num} კომენტარი
+125,ka.mailer.notification.story_collaboration.subject,You have been invited to collaborate on a story on Chai Khana!,"თქვენ მოწვეული ხართ, რათა მონაწილეობა მიიღოთ “სთორიბილდერზე” ამბის შექმნაში!"
+126,ka.mailer.notification.story_collaboration.message,"You have received the following invitations to collaborate on stories with other people on Chai Khana. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part.","თქვენ მოწვეული ხართ, რათა მონაწილეობა მიიღოთ ამბის შექმნაში სხვა ადამიანებთან ერთად “სთორიბილდერზე”. თუ გსურთ, მიიღოთ მოწვევა, უბრალოდ დააჭირეთ ბმულს 'მოწვევის მიღება'. თუ არ გსურთ მონაწილეობა, უპასუხოდ დატოვეთ მოწვევა."
+127,ka.mailer.notification.story_collaboration.from,From,ვისგან
+128,ka.mailer.notification.story_collaboration.role,Role,როლი
+129,ka.mailer.notification.story_collaboration.story_title,Story Title,ამბის სათაური
+130,ka.mailer.notification.story_collaboration.msg,Message,გზავნილი
+131,ka.mailer.notification.story_collaboration.accept_link,Accept the Invitation,მოწვევის მიღება
+132,ka.mailer.notification.story_collaboration.all_invitations,View all of your Chai Khana collaboration invitations.,იხილეთ ყველა მოწვევა “სთორბილიდერზე” ამბების თანაავტორობის შესახებ.
+133,ka.mailer.notification.processed_videos.subject,Your videos on Chai Khana have been processed!,თქვენი ვიდეოები დამუშავებულია.
+134,ka.mailer.notification.processed_videos.message,The following stories of yours have videos that have completed processing:,"ეს ამბები შეიცავს ვიდეო ფაილებს, რომელთა დამუშავებაც დასრულებულია."
+135,ka.mailer.notification.processed_videos.story_title,Story:,ამბის სათაური:
+136,ka.mailer.notification.processed_videos.status,Video Processing Status: %{processed} of %{total} completed,ვიდეოს დამუშავების სტატუსი: %{total}-დან %{processed} დამუშავებულია
+137,ka.mailer.notification.processed_videos.processed,Videos Processed:,ვიდეო დამუშავებულია:
+138,ka.mailer.notification.processed_videos.not_processed,Videos Still Processing:,ვიდეო დამუშავების პროცესშია:
+139,ka.mailer.notification.processed_videos.none_processed,No vidoes have been processed.,არცერთი ვიდეო არ არის დამუშავებული
+140,ka.mailer.notification.processed_videos.none_processing,All videos have been processed!,ყველა ვიდეო დამუშავებულია
+141,ka.mailer.notification.processed_video_errors.subject,Videos on Chai Khana have processing errors!,“სთორიბილდერზე” ვიდეოების დამუშავებისას დაფიქსირდა ხარვეზი!
+142,ka.mailer.notification.processed_video_errors.message,The following videos had errors while being processed:,შემდეგი ვიდეოებისას დამუშავებისას დაფიქსირდა ხარვეზი:
+143,ka.mailer.notification.processed_video_errors.story_id,Story ID,ამბის ID
+144,ka.mailer.notification.processed_video_errors.asset_id,Asset ID,ფაილის ID
+145,ka.mailer.notification.processed_video_errors.path,URL of Video,ვიდეოს ბმული
+146,ka.helpers.actions,Actions,მოქმედება
+147,ka.helpers.links.admin,Admin Section,ადმინისტრატორის განყოფილება
+148,ka.helpers.links.edit,Edit,შეცვლა
+149,ka.helpers.links.confirm,Are you sure?,დარწმუნებული ხართ?
+150,ka.helpers.links.destroy,Delete,წაშლა
+151,ka.helpers.links.new,New,ახალი
+152,ka.helpers.links.list,View All,ყველას ნახვა
+153,ka.helpers.links.back,View All,ყველას ნახვა
+154,ka.helpers.links.cancel,Cancel,გაუქმება
+155,ka.helpers.links.reset,Reset,საწყის კონფიგურაციაზე დაბრუნება
+156,ka.helpers.links.view,View,ნახვა
+157,ka.helpers.links.sign_in_facebook,Sign in with Facebook,Facebook-ით შესვლა
+158,ka.helpers.links.edit_story,Edit Story Settings,ამბის პარამეტრების რედაქტირება
+159,ka.helpers.links.delete_story,Delete Story,ამბის წაშლა
+160,ka.helpers.links.admin_story,Edit Content,კონტენტის რედაქტირება
+161,ka.helpers.links.publish_story,Publish Story,ამბის გამოქვეყნება
+162,ka.helpers.links.forgot_password,Forgot Password?,დაგავიწყდათ პაროლი?
+163,ka.helpers.links.change_password,Change Your Password,პაროლის შეცვლა
+164,ka.helpers.links.change_password2,Change Password,პაროლის შეცვლა
+165,ka.helpers.links.password_reset,Reset Password,პაროლის აღდგენა
+166,ka.helpers.links.sign_in2,Sign In,შესვლა
+167,ka.helpers.links.sign_in,Already have an account?,უკვე გაქვთ ანგარიში?
+168,ka.helpers.links.sign_up2,Sign Up,რეგისტრაცია
+169,ka.helpers.links.sign_up_question,Not a member yet?,არ გაქვთ ანგარიში?
+170,ka.helpers.links.sign_up,Register now,დარეგისტრირდით
+171,ka.helpers.links.sign_up_title,Join Chai Khana,შემოგვიერთდი “სთორიბილდერზე”
+172,ka.helpers.links.sign_out,Sign Out,გასვლა
+173,ka.helpers.links.sign_in_provider,Sign in with %{provider},შესვლა %{provider}-ით
+174,ka.helpers.links.sign_up_provider,Sign up with %{provider},დარეგისტრირდით %{provider}-ით
+175,ka.helpers.links.sign_in_local_or_provider,or log in with your email and password,ან შეიყვანეთ თქვენი ელ. ფოსტა და პაროლი
+176,ka.helpers.links.reset_or_sign_in,sign in with facebook or reset your password,შედით facebook-ით ან შეცვალეთ პაროლი
+177,ka.helpers.links.add_story,Add Story,ამბის დამატება
+178,ka.helpers.links.users,Users,მომხმარებლები
+179,ka.helpers.links.authors,Authors,ავტორი
+180,ka.helpers.links.feedback,Feedback,მოგვწერე
+181,ka.helpers.links.about,About,ჩვენ შესახებ
+182,ka.helpers.links.rss,RSS,RSS-ი
+183,ka.helpers.links.themes,Themes,თემა
+184,ka.helpers.links.story_types,Types,ტიპი
+185,ka.helpers.links.languages,Languages,ენები
+186,ka.helpers.links.follow,Follow,მიყოლა
+187,ka.helpers.links.facebook,Facebook,Facebook
+188,ka.helpers.links.twitter,Twitter,Twitter
+189,ka.helpers.links.youtube,YouTube,YouTube
+190,ka.helpers.links.subscribe,Subscribe,გამოწერა
+191,ka.helpers.links.user_settings,Settings,პარამეტრები
+192,ka.helpers.links.like,Like,მოწონება
+193,ka.helpers.links.likes,Likes,მოწონება
+194,ka.helpers.links.comments,Comment on this story,კომენტარები ამ ამბავზე
+195,ka.helpers.links.views,%{num} views,%{num} წაკითხვა
+196,ka.helpers.links.tags,Tags,თეგი
+197,ka.helpers.links.menu,Menu,მენიუ
+198,ka.helpers.links.pages,Edit Text on Site,საიტზე ტექსტის რედაქტირება
+199,ka.helpers.links.next,Next,შემდეგი 
+200,ka.helpers.links.feed,Feed,ველი
+201,ka.helpers.links.story_menu.link.story,Story,ამბავი
+202,ka.helpers.links.story_menu.link.story_settings,Story Settings,ამბის პარამეტრები
+203,ka.helpers.links.story_menu.link.collaborators,Collaborators,თანაავტორები
+204,ka.helpers.links.story_menu.link.preview,Preview,ნახვა
+205,ka.helpers.links.story_menu.link.publish,Publish,გამოქვეყნება
+206,ka.helpers.links.story_menu.link.unpublish,Unpublish,გამოყვეყნების გაუქმება
+207,ka.helpers.links.story_menu.link.review,Private URL,არასაჯარო ბმული
+208,ka.helpers.links.story_menu.link.clone,Clone,კლონირება
+209,ka.helpers.links.story_menu.link.export,Download,ჩამოტვირთვა
+210,ka.helpers.links.story_menu.link.delete_story,Delete,წაშლა
+211,ka.helpers.links.story_menu.link.translations,Translations,თარგმანები
+212,ka.helpers.links.story_menu.title.story,Edit your story,საკუთარი ამბის რედაქტირება
+213,ka.helpers.links.story_menu.title.story_settings,"Edit story title, authors, URL, summary, thumbnail, language, tags and/or categories, content etc.","ამბის სათაურის, ავტორების, ბმულის, მოკლე შინაარსის, ესკიზის, ენის, თეგების და/ან კატეგორიების რედაქტირება"
+214,ka.helpers.links.story_menu.title.collaborators,Manage which users have access to edit your story,"განსაზღვრეთ, რომელ მომხმარებელს შეუძლია თქვენი ამბის რედაქტირება"
+215,ka.helpers.links.story_menu.title.preview,See how your story looks,"ნახეთ, როგორ გამოიყურება თქვენი ამბავი"
+216,ka.helpers.links.story_menu.title.publish,Make your story viewable to the world,აჩვენეთ თქვენი ამბავი მსოფლიოს
+217,ka.helpers.links.story_menu.title.unpublish,Make your story NOT viewable to the world,აღარ აჩვენოთ თქვენი ამბავი მსოფლიოს
+218,ka.helpers.links.story_menu.title.review,URL to share this story before publishing,გაუზიარეთ ეს ამბავი სხვებს ამბის გამოქვეყნებამდე
+219,ka.helpers.links.story_menu.title.clone,Copy this story into a new story,შექმენით ამ ამბის ასლი
+220,ka.helpers.links.story_menu.title.export,Download the complete story,მთლიანი ამბის ჩამოტვირთვა
+221,ka.helpers.links.story_menu.title.delete_story,Deleting a story cannot be undone,წაშალეთ ამბავი. ამბის აღდგენა არ იქნება შესაძლებელი
+222,ka.helpers.links.story_menu.title.translations,Translate your story into other languages,ამბის სხვა ენაზე თარგმნა
+223,ka.helpers.titles.new,New %{model},ახალი %{model}
+224,ka.helpers.titles.edit,Edit %{model},შეცვლა %{model}
+225,ka.helpers.titles.story_list,My Stories,ჩემი ამბები
+226,ka.helpers.hints.nickname,"Your nickname is used in the URL to your published stories (e.g., nickname/story-title)","თქვენი სახელი გამოყენებულია თქვენ მიერ გამოქვეყნებული ამბების ბმულში (მაგ., სახელი/ამბის-სათაური)"
+227,ka.helpers.hints.local_avatar,Image that is shown in the header bar and on your user page (png and jpg only).,"ფოტო, რომელიც გამოჩნდება თქვენი გვერდის ზედა სექციაში (მხოლოდ png და jpg)."
+228,ka.helpers.hints.avatar,Image that is shown on the Author's page (png and jpg only).,ფოტო რომელიც გამოჩნდება ავტორის გვერდზე (მხოლოდ png და jpg)
+229,ka.helpers.hints.like,Like this story,მოიწონეთ ამბავი
+230,ka.helpers.hints.unlike,Unlike this story,აღარ მომწონს ეს ამბავი
+231,ka.helpers.hints.staff_pick,Select as Staff Pick,რჩეულებში დამატება
+232,ka.helpers.hints.staff_unpick,Unselect as Staff Pick,რჩეულებიდან ამოშლა
+233,ka.helpers.hints.is_staff_pick,Staff Pick,რჩეული
+234,ka.helpers.hints.clone_asset,"If checked, the file to the left will be used for this translation",თუ მონიშნავთ მარცხნივ მდებარე ფაილი გამოყენებული ქნება სათარგმნად
+235,ka.app.language.en,English,English
+236,ka.app.language.ka,ქართული,ქართული
+237,ka.app.language.hy,Հայերեն,Հայերեն
+238,ka.app.language.ru,Русский,Русский
+239,ka.app.language.az,Azərbaycan,Azərbaycan
+240,ka.app.buttons.back,View All,იხილეთ ყველა
+241,ka.app.buttons.list,View All,იხილეთ ყველა
+242,ka.app.buttons.admin,Admin Section,ადმინისტრატორის განყოფილება
+243,ka.app.buttons.delete,Delete,წაშლა
+244,ka.app.buttons.edit,Edit,შეცვლა
+245,ka.app.buttons.show,Show,ჩვენება
+246,ka.app.buttons.cancel,Cancel,გაუქმება
+247,ka.app.buttons.update,Update,განახლება
+248,ka.app.buttons.save,Save,შენახვა
+249,ka.app.buttons.save_and_next,Save & Next,შენახვა და შემდეგი
+250,ka.app.buttons.create,Create,შექმნა
+251,ka.app.buttons.reset,Reset,საწყის კონფიგურაციაზე დაბრუნება
+252,ka.app.buttons.remove,Remove,ამოშლა
+253,ka.app.buttons.confirm,Are you sure?,დარწმუნებული ხართ?
+254,ka.app.buttons.new,New,ახალი
+255,ka.app.buttons.add_section,Add Section,ახალი სექცია
+256,ka.app.buttons.add_item,Add Item into Section,განყოფილებაში პუნქტის დამატება
+257,ka.app.buttons.up,Move Selected Section/Item Up,არჩეული განყოფილების/პუნქტის ზემოთ ატანა
+258,ka.app.buttons.down,Move Selected Section/Item Down,არჩეული განყოფილების/პუნქტის ქვემოთ ჩამოტანა
+259,ka.app.buttons.delete_item,Delete Selected Section/Item,არჩეული განყოფილების/პუნქტის წაშლა
+260,ka.app.buttons.preview,Preview,ნახვა
+261,ka.app.buttons.preview_image,Preview Image,სურათის ნახვა
+262,ka.app.buttons.preview_video,Preview Video,ვიდეოს ნახვა
+263,ka.app.buttons.preview_audio,Listen To Audio,აუდიოს მოსმენა
+264,ka.app.buttons.publish,Publish,გამოქვეყნება
+265,ka.app.buttons.unpublish,Unpublish,გამოყვეყნების გაუქმება
+266,ka.app.buttons.clone,Copy this story into a new story,კლონირება
+267,ka.app.buttons.export,Download the complete story,მთლიანი ამბის ჩამოტვირთვა
+268,ka.app.buttons.scroll,Scroll,დასქროლე
+269,ka.app.buttons.reviewer_key,Get URL to share this story before publishing,"მიიღეთ URL, რათა გააზიაროთ ამბავი მის გამოქვეყნებამდე"
+270,ka.app.buttons.reviewer_key_published,Your story is published so there is no need to share this non-published URL,"თქვენი ამბავი გამოქვეყნებულია, აღარაა საჭირო ამ ბმულის გამოყენება"
+271,ka.app.buttons.explore,Explore,დაათვალიერე
+272,ka.app.common.app_name_not_trans,Chai Khana,"""ჩაი ხანა"""
+273,ka.app.common.app_name,Chai Khana,“ჩაი ხანა”
+274,ka.app.common.app_intro,Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.,"""ჩაი ხანა"" არის არასამთავრობო ორგანიზაცია, რომელიც ინტერნეტ გამოცემითა და ტრენინგებით უზრუნველყოფს სამხრეთ კავკასიის რეგიონულში  პრობლემური საკითხების გაშუქებას."
+275,ka.app.common.app_intro_meta,Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.,"""ჩაი ხანა"" არის არასამთავრობო ორგანიზაცია, რომელიც ინტერნეტ გამოცემითა და ტრენინგებით უზრუნველყოფს სამხრეთ კავკასიის რეგიონულში  პრობლემური საკითხების გაშუქებას."
+276,ka.app.common.powered_by,Powered by,შექმნილია
+277,ka.app.common.powered_by_js,Jumpstart Georgia,“ჯამპსტარტ ჯორჯიას”
+278,ka.app.common.powered_by_end,"",მიერ
+279,ka.app.common.embed_slogan,Build your story with Chai Khana,შექმენი შენი ამბავი “ჩაი ხანას” გამოყენებით
+280,ka.app.common.added_on,Added on: %{date},დამატებულია: %{date}
+281,ka.app.common.last_sign_in,Logged in last: %{date},ბოლო შემოსვლა: %{date}
+282,ka.app.common.admin,Admin,ადმინისტრატორი
+283,ka.app.common.sign_out,Sign Out,გასვლა
+284,ka.app.common.jumpstart,JumpStart Georgia,ჯამპსტარტ ჯორჯია
+285,ka.app.common.js_link_title,JumpStart Georgia - We communicate data better!,ჯამპსტარტ ჯორჯია - ჩვენ გაწვდით მონაცემებს უკეთ!
+286,ka.app.common.js_link_text,Built by,აგებულია
+287,ka.app.common.search,Search for Story ...,ამბის მოძებნა
+288,ka.app.common.build,Build Story,ამბის შექმნა
+289,ka.app.common.explore,Explore Stories,ამბების დათვალიერება
+290,ka.app.common.about_story,About,შესახებ
+291,ka.app.common.likes,Likes,მოწონება
+292,ka.app.common.comments,Comments,კომენტარები
+293,ka.app.common.publish_date,Publish Date,გამოქვეყნების თარიღი
+294,ka.app.common.follow,Follow,თვალყურის დევნება
+295,ka.app.common.following,Following,თვალყურის დევნება
+296,ka.app.common.follow_link_title,Click to receive notifications whenever this author publishes new stories,"დააჭირეთ, რათა მიიღოთ შეტყობინება, როდესაც ეს მომხმარებელი გამოაქვეყნებს ახალ ამბავს"
+297,ka.app.common.unfollow_link_title,Click to stop receiving notifications whenever this author publishes new stories,"დააჭირეთ, რათა შეწყვიტოთ შეტყობინების მიღება, როდესაც ეს მომხმარებელი გამოაქვეყნებს ახალ ამბავს"
+298,ka.app.common.email,Email,ელ. ფოსტა
+299,ka.app.common.views,Views,ნახვა
+300,ka.app.common.permalink,Permalink,მუდმივი ბმული
+301,ka.app.common.shortened_url,Short URL,მოკლე ბმული
+302,ka.app.common.share_story,Share this story,ამბის გაზიარება
+303,ka.app.common.share_facebook,Share on Facebook,Facebook-ზე გაზიარება
+304,ka.app.common.share_twitter,Share on Twitter,Twitter-ზე გაზიარება
+305,ka.app.common.share,Share,გაზიარება
+306,ka.app.common.staff_pick,Staff Pick,რჩეული
+307,ka.app.common.wide,wide,(სიგანე)
+308,ka.app.common.partial,Link to Story,ამბის ბმული
+309,ka.app.common.partial_text,"Embed a link to the story that has the same look as the story links on the home page of Chai Khana (image, title, author, etc)","გამოიყენე ისეთი ჩასასმელი ბმული, რომელსაც აქვს იგივე სახე, რაც ამბებს “Chai Khanaს” საწყის გვერდზე (ფოტო, სათაური, ავტორი, თარიღი, და ა.შ.)"
+310,ka.app.common.full,Full Story,სრული ამბავი
+311,ka.app.common.full_text,Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look.,"გადაიტანე ამბის სრული ვერსია სხვა საიტზე. ჩვენ გირჩევთ, გამოიყენოთ მაქსიმალური სიგანე, რათა მიიღოთ უკეთესი გამოსახულება."
+312,ka.app.common.feed,Chai Khana Feeds,"""ჩაი ხანას"" სიახლეების ზოლი"
+313,ka.app.common.home,Home,მთავარი
+314,ka.app.common.required,Required,სავალდებულო
+315,ka.app.common.nothing_selected,Nothing Selected,არ არის არჩეული
+316,ka.app.common.clone_asset,Use the original file?,გამოვიყენოთ საწყისი ფაილის?
+317,ka.app.common.embed,Embed Code,კოდის ჩასმა
+318,ka.app.common.scroll_top,Scroll to the top,მაღლა ასვლა
+319,ka.app.msgs.does_not_exist,You tried to access a page that does not exist.,"თქვენ ცდილობთ ისეთი გვერდის ნახვას, რომელიც არ არსებობს."
+320,ka.app.msgs.not_authorized,You are not authorized to view that page.,თქვენ არ გაქვთ ამ გვერდის ნახვის უფლება.
+321,ka.app.msgs.success_created,%{obj} was successfully created.,%{obj} შექმნილია.
+322,ka.app.msgs.success_updated,%{obj} was successfully updated.,%{obj} განახლებულია.
+323,ka.app.msgs.success_publish,%{obj} was successfully published.,%{obj} გამოქვეყნებულია.
+324,ka.app.msgs.success_unpublish,%{obj} was successfully unpublished.,%{obj}ის გამოქვეყნება გაუქმებულია.
+325,ka.app.msgs.success_clone,%{obj} was successfully cloned to %{to}.,%{obj}-ის კლონი შექმნილია: %{to}.
+326,ka.app.msgs.error_created,%{obj} wasn't created: %{err},%{obj} არ შექმნილა: %{err}
+327,ka.app.msgs.error_updated,%{obj} wasn't updated: %{err},%{obj} არ განახლებულა: %{err}
+328,ka.app.msgs.error_publish,%{obj} wasn't published: %{err},%{obj} არ გამოქვეყნებულა: %{err}
+329,ka.app.msgs.error_publish_missing_fields,%{obj} can't be published until you provide a summary and thumbnail image.,"%{obj} ვერ გამოქვეყნებული, სანამ არ დაამატებთ მოკლე შინაარსს და ფოტოს."
+330,ka.app.msgs.error_publish_missing_fields_link,Add the missing content.,დაამატეთ გამოტოვებული კონტენტი.
+331,ka.app.msgs.error_publish_missing_sections,At least one Section required before publishing.,ერთი სექცია მაინც არის საჭირო სანამ გამოაქვეყნებთ.
+332,ka.app.msgs.error_publish_missing_content_section,All Text Sections must have content in it.,ამბის გამოქვეყნებისთვის აუცილებელია სულ მცირე ერთი სექცია.
+333,ka.app.msgs.error_publish_missing_translations,The story must be completely translated in %{lang} in order to be published.,ამბავი უნდა იყოს სრულად ნათარბმნი %{lang} ენაზე სანამ გამოაქვეყნებთ.
+334,ka.app.msgs.error_unpublish,%{obj} wasn't unpublished: %{err},%{obj} გამოქვეყნება გაუქმებულია: %{err}
+335,ka.app.msgs.error_clone,%{obj} wasn't cloned.,%{obj} კლონირება ვერ გაკეთდა.
+336,ka.app.msgs.error_clone_notification,Error occurred while cloning story: %{msg},დაფიქსირდა შეცდომა შემდეგი ამბის კლონირების დროს: %{msg}
+337,ka.app.msgs.error_export,Story can't be downloaded.,ამბის ჩამოტვირთვა შეუძლებელია
+338,ka.app.msgs.error_get_data,The selected item could not be found,არჩეული ერთეული ვერ მოიძებნა
+339,ka.app.msgs.select_section,Please select a Section first in order to add an Item,"ერთეულის დამატებამდე, გთხოვთ, აირჩიოთ სექცია"
+340,ka.app.msgs.staff_pick,The story has been selected as a Staff Pick,ამბავი რჩეულში იქნა დამატებული
+341,ka.app.msgs.staff_unpick,The story has been unselected as a Staff Pick,ამბავი დაემატა რჩეულებს
+342,ka.app.msgs.success_settings,Your settings were successfully updated.,თქვენი პარამეტრები წარმატებით განახლდა.
+343,ka.app.msgs.success_remove_avatar,Your Facebook avatar is now being used.,პროფილის სურათად თქვენი გვერდის Facebook-ის პროფილის სურათია გამოყენებული.
+344,ka.app.msgs.nickname_duplicate,This user URL already exists.,მომხმარებელი ამ ბმულით უკვე არსებობს.
+345,ka.app.msgs.nickname_url,Your URL will be:,თქვენი მომხმარებლის ბმული იქნება:
+346,ka.app.msgs.story_duplicate,This story URL already exists.,ამ ამბის ბმული უკვე არსებობს.
+347,ka.app.msgs.story_url,Story URL will be:,ამ ამბის ბმული იქნება:
+348,ka.app.msgs.invitation.accepted,You have accepted the invitation to collaborate on '%{title}',თქვენ დათანხმდით თანაავტორობის მოწვევას შემდეგ ამბავზე: '%{title}'
+349,ka.app.msgs.invitation.accepted_already,You have already accepted the invitation to collaborate on '%{title}',თქვენ უკვე დათანხმდით თანაავტორობის მოწვევას შემდეგ ამბავზე: '%{title}'
+350,ka.app.msgs.invitation.bad,"Sorry, your invitation could not be found or the story has been deleted.","უკაცრავად, თქვენი მოწვევა ვერ მოიძებნა ან ამბავი არის წაშლილი."
+351,ka.app.msgs.invitation.declined,Your invitation was declined,თქვენი მოწვევა გაუქმებულია
+352,ka.app.msgs.one_section.content,Only one Item can be added to a Text section,ტექსტურ სექციაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი
+353,ka.app.msgs.one_section.slideshow,Only one Item can be added to an Image Slideshow section,ფოტო სლაიდშოუს სექციაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი
+354,ka.app.msgs.one_section.embed_media,Only one Item can be added to an Embed Online Media section,ონლაინ აუდიო/ვიდეო სექციაში მხოლოდ ერთი ერთეულის დამატებაა შესაძლებელი
+355,ka.app.msgs.one_section.youtube,Only one Item can be added to a YouTube section,მხოლოდ ერთი თემის დამატება არის შესაძლებელი YouTube-ის სექციაში
+356,ka.app.msgs.one_section.general,Only one Item can be added to this type of section,მხოლოდ ერთი თემის დამატება არის შესაძლებელი ამ ტიპის სექციაში
+357,ka.app.msgs.destroy_story.success,Story was successfully deleted.,ამბავი წაიშალა.
+358,ka.app.msgs.destroy_story.error,Error occurred while deleting the story: %{err},ამბის წაშლისას დაფიქსირდა ხარვეზი: %{err}
+359,ka.app.msgs.destroy_item.success,Item was successfully deleted.,ერთეული წაიშალა.
+360,ka.app.msgs.destroy_item.error,Error occurred while deleting the item: %{err},ერთეულის წაშლისას დაფიქსირდა ხარვეზი: %{err}
+361,ka.app.msgs.destroy_item.error_not_found,Item could not be found to delete.,წასაშლელი ერთეული ვერ მოიძებნა.
+362,ka.app.msgs.embed_code,Copy and paste this embed code into your web page,დააკოპირეთ და ჩასვით ბმული თქვენს ვებგვერდზე
+363,ka.app.msgs.collaborators.success_remove,%{name} was removed as a collaborator,%{name} წაიშალა თანაავტორთა სიიდან
+364,ka.app.msgs.collaborators.user_not_found,User to remove as a collaborator could not be found,"მომხმარებელი ვერ მოიძებნა, რათა წაშლილიყო თანაავტორთა სიიდან"
+365,ka.app.msgs.collaborators.no_permission,You do not have permission to remove this collaborator,"თქვენ არ გაქვთ უფლება, წაშალოთ ეს მომხმარებელი თანაავტორთა სიიდან"
+366,ka.app.msgs.collaborators.success_invitations,Invitations were sent!,მოწვევები გაგზავნილია!
+367,ka.app.msgs.collaborators.error_invitations_all,No invitations were sent due to the following erros: %{msg},მოწვევები ვერ გაიგზავნა შემდეგი ხარვეზის გამო: %{msg}
+368,ka.app.msgs.collaborators.error_invitations_some,"Some invitations were sent, but some were not due to the following erros: %{msg}",ზოგიერთი მოწვევა ვერ გაიგზავნა შემდეგი ხარვეზის გამო: %{msg}
+369,ka.app.msgs.notification.true,You will be sent notifications.,თქვენ მიიღებთ შეტყობინებებს.
+370,ka.app.msgs.notification.false,You will not be sent notifications.,თქვენ არ მიიღებთ შეტყობინებებს.
+371,ka.app.msgs.notification.new_theme_all_success,You will recieve a notification whenever a theme is added.,"თქვენ მიიღებთ შეტყობინებას, როცა თემა იქნება დამატებული."
+372,ka.app.msgs.notification.new_theme_none_success,You will not receive any notifications when themes are added.,"თქვენ არ მიიღებთ შეტყობინებას, როცა თემა იქნება დამატებული."
+373,ka.app.msgs.notification.new_story_by_type_success,You will receive a notification when a story is added to these types: %{types}.,"თქვენ მიიღებთ შეტყობინებას, როცა ახალი ამბავი დაემატება შემდებ ტიპებს: %{types}."
+374,ka.app.msgs.notification.story_comments_yes,You will be sent notifications when a comment is made to one of your stories.,"თქვენ მიიღებთ შეტყობინებას, როდესაც თქვენს ამბავზე გააკეთებენ კომენტარს."
+375,ka.app.msgs.notification.story_comments_no,You will not be sent notifications when a comment is made to one of your stories.,"თქვენ არ მიიღებთ შეტყობინებას, როდესაც თქვენს ამბავზე დატოვებენ კომენტარს."
+376,ka.app.msgs.notification.following_no,You will no longer receive notifications about new stories from '%{name}'.,თქვენ აღარ მიიღებთ შეტყობინებებს '%{nickname}ის' ახალი ისტორიების შესახებ.
+377,ka.app.msgs.notification.language,You will be sent notifications in %{language}.,თქვენ მიიღებთ შეტყობინებას %{language}.
+378,ka.app.msgs.fail_change_order,The item was not able to be moved,ერთეულის ადგილი ვერ შეიცვალა
+379,ka.app.msgs.nothing_selected,Please select a section/item to delete,"გთხოვთ, აირჩიოთ სექცია/ერთეული წასაშლელად"
+380,ka.app.msgs.fail_delete,The section/item could not be deleted,სექცია/ერთეული ვერ წაიშალა
+381,ka.app.msgs.confirm_delete,Are you sure you want to delete this section/item?,"დარწმუნებული ხართ, რომ გინდათ ამ სექციის/ერთეულის წაშლა?"
+382,ka.app.msgs.video_processed,Your video is processed,თქვენი ვიდეო დამუშავებულია
+383,ka.app.msgs.video_not_processed,Your video is being processed,თქვენი ვიდეო დამუშავების პროცესშია
+384,ka.app.msgs.not_found_for_update,The record to update could not be found in the database.,მასალა რედაქტირებისთვის არ მოიძებნა.
+385,ka.section_types.content.name,Text,ტექსტი
+386,ka.section_types.content.description,"Can include html, css styling and images","შეიძლება შედგებოდეს html-ისგან, css სტილისგან და ფოტოებისგან"
+387,ka.section_types.media.name,Full-Screen Media Slideshow,მთელ ეკრანზე გაშლილი მედია სლაიდშოუ
+388,ka.section_types.media.description,Images and/or videos as a full-screen vertical slideshow,"ფოტოები და/ან ვიდეოები განთავსებული, როგორც სრულ ეკრანზე გაშლილი ვერტიკალური სლაიდშოუ"
+389,ka.section_types.slideshow.name,Image Slideshow,ფოტო სლაიდშოუ
+390,ka.section_types.slideshow.description,Images in a horizontal slideshow,ფოტოები ჰორიზონტალურ სლაიდშოუში
+391,ka.section_types.embed_media.name,Embed Online Media,ონლაინ აუდიო/ვიდეო
+392,ka.section_types.embed_media.description,"YouTube, Vimeo, etc","YouTube, Vimeo, და ა.შ."
+393,ka.section_types.youtube.name,YouTube Video,YouTube Video
+394,ka.section_types.youtube.description,YouTube video with ability to setting caption language,YouTube-ის ვედეო წარწერის დამატების შესაძლებლობით
+395,ka.story_role.editor,Editor,რედაქტირება
+396,ka.story_role.translator,Translator,თარგმნა
+397,ka.message_types.bug,Report a Bug,გვაცნობეთ შეცდომის შესახებ
+398,ka.message_types.feature,Request a Feature,მოითხოვეთ ახალი ფუნქციის დამატება
+399,ka.message_types.feedback,General Feedback,გაგვიზიარეთ თქვენი აზრი
+400,ka.filters.all,All,ყველა
+401,ka.filters.matches,Matches,მსგავსი ამბები
+402,ka.filters.staff_pick,Staff Pick,რჩეული
+403,ka.filters.staff_pick_title,View stories that have been selected as Staff Picks,იხილეთ რჩეული ამბები
+404,ka.filters.staff_pick_title_active,Remove Staff Pick filter,რჩეულის ფილტრის გაუქმება
+405,ka.filters.sort_header,Sorted By,დალაგება
+406,ka.filters.sort_title,Indicate how the stories should be sorted,როგორ გსურთ ამბების დალაგება?
+407,ka.filters.filters,Filters,ფილტრი
+408,ka.filters.all_stories,All Stories,ყველა ამბავი
+409,ka.filters.sort.recent,Recent,ბოლო
+410,ka.filters.sort.reads,Views,ნახვა
+411,ka.filters.sort.likes,Likes,მოწონება
+412,ka.filters.category_header,Category,კატეგორია
+413,ka.filters.category_title,View stories that belong to a category,იხილეთ ამბები კატეგორიიდან
+414,ka.filters.theme_header,Theme,თემა
+415,ka.filters.theme_title,View stories that belong to a theme,ამ თემის ამბებოს ნახვა
+416,ka.filters.language_header,Language,ენა
+417,ka.filters.language_title,View stories that are written in a particular language,იხილეთ ამბები ამ ენაზე:
+418,ka.filters.search,Find a Story,ამბის მოძებნა
+419,ka.filters.following,Following,თვალყურის დევნება
+420,ka.filters.following_title,View stories of users that you are following,"ნახეთ იმ მომხმარებლების ამბები, რომელთაც თქვენ თვალყურს ადევნებთ"
+421,ka.filters.following_title_active,Remove Following filter,თვალყურის დევნების ფილტრის გაუქმება
+422,ka.filters.not_published,Not Published,არ არის გამოქვეყნებული
+423,ka.filters.not_published_title,View stories that are not published,ნახეთ გამოუქვეყნებელი ამბები
+424,ka.filters.not_published_title_active,Show all stories,ნახეთ ყველა ამბავი
+425,ka.tokeninput.searchingText,Searching...,ძიება...
+426,ka.tokeninput.tag.hintText,Search for an existing tag or enter a new tag,თეგის ძიება ან ახალი თეგის დამატება
+427,ka.tokeninput.tag.noResultsText,No matches found. Press 'Enter' to save this new tag.,"მსგავსება არ არის აღმოჩენილი. დააჭირეთ 'შეყვანას', რომ დაამატოთ თეგი."
+428,ka.tokeninput.collaborator.hintText,Search for an existing user or enter the email address for a new user,"მოძებნეთ უკვე არსებული მომხმარებელი ან შეიყვანეთ ელ. ფოსტის მისამართი, რათა დაამატოთ ახალი მომხმარებელი"
+429,ka.tokeninput.collaborator.noResultsText,No matches found. Press 'Enter' to add this email address to the list of invited collaborators.,"მსგავსება არ მოიძებნა. დააჭირეთ 'შეყვანას', რომ დაამატოთ ეს ელ. ფოსტის მისამართი თანაავტორთა სიაში."
+430,ka.layouts.application.copyright,Copyright,საავტორო უფლება
+431,ka.layouts.application.copyright_text,Copyright of these reports belongs to the Chai-Khana NGO. Any republishing of materials is not allowed without the prior consent of Chai-Khana.,"ამ მასალაზე საავტორო უფლებას ფლობს არასამთავრობო ორგანიზაცია ""ჩაი ხანა"". მისი ხელახალი გამოქვეყნება ""ჩაი ხანასთან"" შეთანხმების გარეშე არ შეიძლება."
+432,ka.layouts.application.disclaimer,Disclaimer,განაცხადი
+433,ka.layouts.application.disclaimer_text,"This publication has been produced with the assistance of MYMEDIA, a DANIDA funded project. The content of this publication is the sole responsibility of the author/contractor/implementing partner/international organisation and can in no way be taken to reflect the official opinion of MYMEDIA / DANIDA. ",ეს ვებგვერდი მომზადდა DANIDA-ას ფონდის მიერ დაფინანსებულ პროექტ MYMEDIA-ს დახმარებით. პუბლიკაციის შინაარსზე პასუხისმგებლობას იღებს ავტორი/კონტრაქტორი/განმახორციებელი პარტნიორი/პარტნიორი საერთაშორისო ორგანიზაცია და არანაირად არ ასახავს  MYMEDIA/DANIDA-ს ოფიციალურ აზრის.
+434,ka.layouts.unsupported_browser.title,Unsupported Browser,არასათანადო ბრაუზერი
+435,ka.layouts.unsupported_browser.video,Your browser does not support this video.,თქვენ ბრაუზერს ვიდეოს მხარდაჭერა არ აქვს
+436,ka.layouts.unsupported_browser.p1,We are sorry to report that your browser is out of date and will not properly render the content from this website.,"სამწუხაროდ, თქვენი ინტერნეტ ბრაუზერის მოხმარების ვადა გასულია და ვერ მოხდება ვებ-გვერდთან სრულად დაკავშირება."
+437,ka.layouts.unsupported_browser.p2,"On the bright side, there are several free browsers that you can download that are compatible with this site.","არსებობს რამდენიმე უფასო ბრაუზერი, რომელთა გადმოწერის შემდეგ შეძლებთ ვებ-გვერდით სარგებლობას."
+438,ka.layouts.unsupported_browser.chrome,Chrome,Chrome
+439,ka.layouts.unsupported_browser.firefox,Firefox,Firefox
+440,ka.layouts.unsupported_browser.ie,Internet Explorer (Windows only),Internet Explorer (მხოლოდ Windows-ზე)
+441,ka.layouts.unsupported_browser.opera,Opera,Opera
+442,ka.layouts.unsupported_browser.Safari,Safari,Safari
+443,ka.layouts.unsupported_browser.admin,Admin,ადმინისტრატორი
+444,ka.layouts.unsupported_browser.sign_out,Sign Out,გასვლა
+445,ka.layouts.unsupported_browser.js_link_title,JumpStart Georgia - We communicate data better!,ჯამპსტარტ ჯორჯია - ჩვენ გაწვდით ინფორმაციას უკეთ!
+446,ka.layouts.unsupported_browser.js_link_text,Built by,შექმნილია
+447,ka.layouts.reviewer.copy,Copy To Clipboard...,კოპირება
+448,ka.layouts.reviewer.copied,Copied!,დაკოპირებულია!
+449,ka.layouts.storybuilder.source,Source,წყარო
+450,ka.layouts.storybuilder.target,Target,მიზანი
+451,ka.layouts.storybuilder.copy_paste,Copy from source,წყაროდან დაკოპირება
+452,ka.shared.grid.no_stories,Oh no - no stories could be found!,სამწუხაროდ არ მოიძებნა არცერთი ამბავი!
+453,ka.shared.story_nav_modals.copied,Copied!,დაკოპირებულია!
+454,ka.admin.index.title,Administration Section,ადმინისტრატორის განყოფილება
+455,ka.admin.index.users,Users,მომხმარებლები
+456,ka.admin.users.edit.title,Editing User,ცვლილებების შეტანა მომხმარებლის გვერდზე
+457,ka.admin.users.index.title,Users,მომხმარებლები
+458,ka.admin.users.new.title,New User,ახალი მომხმარებელი
+459,ka.admin.users.show.title,User Details,მომხმარებლის დეტალები
+460,ka.root.about.title,About Chai Khana,“ჩაი ხანას” შესახებ
+461,ka.root.embed.home_link,Built on Chai Khana,შექმნილია “სთორიბილდერზე”
+462,ka.stories.new.title,Story Settings Form,პარამეტრების ფორმა
+463,ka.stories.edit.title,Story Settings Form,პარამეტრების ფორმა
+464,ka.stories.form.placeholder.title,Title of Story,ამბის სათაური
+465,ka.stories.form.placeholder.permalink,URL to the story,ამბის ბმული
+466,ka.stories.form.placeholder.author,Author(s) of the article,სტატიის ავტორ(ებ)ი
+467,ka.stories.form.placeholder.media_author,Author(s) of photos and/or videos,ფოტოსა და/ან ვიდეოს ავტორ(ებ)ი
+468,ka.stories.form.placeholder.translation_author,Author(s) that translated the story into this language,"ავტორი, რომელმაც თარგმნა ეს ამბავი"
+469,ka.stories.form.hint.title,Story title will appear at the top of your story,ამბის სათაური გამოჩნდება ამბის საწყის გვერდზე
+470,ka.stories.form.hint.permalink,"The default URL is the title of the story, but you can change it if desired","ავტომატური ბმული შეიცავს ამბის სათაურს, თუმცა, სურვილისამებრ, შეგიძლიათ შეცვალოთ იგი"
+471,ka.stories.form.hint.author,Select the author(s) of the story to allow the story to appear on their webpage.,"აირჩიეთ ავტორი, რათა ეს ამბავი მის გვერდზე გამოჩნდეს"
+472,ka.stories.form.hint.media_author,Author names will appear below the Story Author names,ფოტოს/ვიდეოს ავტორ(ებ)ის სახელები გამოჩნდება ავტორ(ებ)ის სახელების ქვემოთ
+473,ka.stories.form.hint.translation_author,Author names will appear below the Photo and Video Author names,ავტორის სახელი გამოჩნდება ფოტოსა და ვიდეოს ქვემოთ
+474,ka.stories.form.hint.published,Published stories are available for the world to view,გამოქვეყნებული ამბების ნახვა ყველას შეუძლია
+475,ka.stories.form.hint.publish_home_page,"If checked, your published story will appear on the site's homepage","თუ მონიშნავთ, თქვენ მიერ გამოქვეყნებული ამბავი გამოჩნდება საიტის საწყის გვერდზე"
+476,ka.stories.form.hint.template,Choose template to apply styling to story,აირჩიეთ შაბლონი ამბის სტილის შესარჩევად
+477,ka.stories.form.hint.thumbnail,Image that is used to show the story on the home page when the story is published (jpg and png only; 4MB file size limit),"გამოსახულება, რომელიც გამოჩნდება საწყის გვერდზე, ამბის გამოქვეყნების შემდეგ (მხოლოდ jpg და png ფორმატი; ფაილის მაქსიმალური ზომა 4MB)"
+478,ka.stories.form.hint.editor,Person that created the story record in this website,"მომხმარებელი, რომელმაც შექმნა ამბის ჩანაწერი სისტემაში"
+479,ka.stories.form.hint.editors,Select people that you want to give access to edit the story,"მონიშნეთ ადამიანები, რომლებსაც შეეძლებათ გამოქვეყნებამდე ამბის რედაქტირება"
+480,ka.stories.form.hint.about,Short summary of story that will be used on the home page and when you story is shared,"ამბის მოკლე შინაარსი, რომელიც გამოჩნდება საწყის გვერდზე, როდესაც თქვენი ამბავი გამოქვეყნდება"
+481,ka.stories.form.hint.locale,Select the language of your story. Allows users to filter stories by a language.,"მიუთითეთ ამბის ენა. ეს საშუალებას მისცემს მომხმარებლებს, მოიძიონ ამბავი ენის მიხედვით."
+482,ka.stories.form.hint.categories,Select the category(s) your story belongs to.  Allows users to filter stories by a category.,"აირჩიეთ, რომელ კატეგორიას განეკუთვნება თქვენი ამბავი. ეს საშუალებას მისცემს მომხმარებლებს, მოიძიონ ამბავი კატეგორიის მიხედვით."
+483,ka.stories.form.hint.tag_list,"Enter text to find existing tags.  If your tag does not exist yet, press 'Enter' to add the new tag to the list.","შეიყვანეთ ტექსტი, რომ იპოვოთ არსებული თეგი. თუ თქვენი თეგი ჯერ არ არსებობს, დააჭირეთ 'შეყვანას' და დაამატეთ იგი."
+484,ka.stories.form.hint.story_type,Select the type of your story.,აირჩიეტ ამბის ტიპი
+485,ka.stories.form.hint.theme,Select the theme(s) your story belongs to.,"აირჩიეთ თემა, რომელსაც თქვენი ამბავი განეკუთვნება"
+486,ka.stories.form.hint.in_theme_slider,"If checked, this story will appear in the slider at the top of the theme page.","თუ მონიშნავთ ეს ამბავი გამოჩნდება სლაიდერში, თემის გვერდის ზედა ნაწილში"
+487,ka.stories.collaborators.title,Collaborators for '%{title}',ამბის '%{title}' თანაავტორები
+488,ka.stories.collaborators.owner_header,Story Author,ამბის ავტორი
+489,ka.stories.collaborators.collaborators_header,Story Collaborators,ამბის თანაავტორები
+490,ka.stories.collaborators.explanation,A story collaborator is someone that has access to edit this story.,თანაავტორებს შეუძლიათ ამბის რედაქტირება
+491,ka.stories.collaborators.editors_header,Editors,რედაქტორები
+492,ka.stories.collaborators.editor_explanation,An Editor has access to add/edit the story and translate the story into any language. An Editor can also add collaborators and publish the story.,რედაქტორს აქვს უფლება დაამატოს/დაარედაქტიროს ამბავი და თარგმნოს იგი სხვადასხვა ენაზე. რედაქტორს ასევე შეუძლია დაამატოს თანაავტორი და გამოაქვეყნოს ამბავი.
+493,ka.stories.collaborators.translators_header,Translators,მთარგმნელები
+494,ka.stories.collaborators.translator_explanation,"A Translator has access to translate the story into a specific language(s). A Translator does not have the ability to edit the original story, add collaborators or publish the story.","მთარმგნელს აქვს წვდომა თარქმნოს ამავი სხვადასხვა ენაზე. მას არ აქვს ამბის რედაქტირების, თანაავტორის დამატების ან ამბის გამოქვეყნების შესაძლებლობა."
+495,ka.stories.collaborators.remove_title,Remove %{name},%{name}-ის ამოშლა
+496,ka.stories.collaborators.not_accepted_title,%{name} has not accepted the invitation yet,%{name}-ს ჯერ არ უპასუხია მოწვევაზე
+497,ka.stories.collaborators.add_header,Add Collaborators,თანაავტორების დამატება
+498,ka.stories.collaborators.add_explanation,"For the users you enter below, an email will be sent inviting them to be a collaborator on this story.","თქვენ მიერ მითითებულ მომხმარებლებს გაეგზავნებათ მოსაწვევები, რათა მონაწილეობა მიიღონ თქვენთან ერთდ ამ ამბის შექმნაში."
+499,ka.stories.collaborators.editor_label,Enter the names or email addresses of the editors,შეიყვანეთ რედაქტორების სახელები ან საფოსტო მისამართები
+500,ka.stories.collaborators.language_label,Select the translation language(s),შეიყვანეთ თარგმანის ენა
+501,ka.stories.collaborators.translator_label,Enter the name or email address of the translator,შეიყვანეთ მთარგმნელის სახელი ან საფოსტო მისამართი
+502,ka.stories.collaborators.translator_add,Add Another Translator,სხვა მთარგმნელის დამატება
+503,ka.stories.collaborators.translator_remove,Remove Translator,მთარგმნელის წაშლა
+504,ka.stories.collaborators.message,Add Message to Notification (optional),შეტყობინებისთვის გზავნილის დამატება (არ არის სავალდებულო)
+505,ka.stories.collaborators.submit,Send Collaboration Invitation,თანაავტორობის მოსაწვევის გაგზავნა
+506,ka.stories.media.form_title,Full-Screen Media Slideshow Form,მთელ ეკრანზე გაშლილი მედია სლაიდშოუ
+507,ka.stories.media.left,Left,მარცხნივ
+508,ka.stories.media.center,Center,ცენტრში
+509,ka.stories.media.right,Right,მარჯვნივ
+510,ka.stories.media.image,Image,გამოსახულება
+511,ka.stories.media.video,Video,ვიდეო
+512,ka.stories.media.floating,Floating,მოსიარულე
+513,ka.stories.media.fixed,Fixed,ფიქსირებული
+514,ka.stories.media.placeholder.title,Media title,მედიაფაილის სათაური
+515,ka.stories.media.placeholder.caption,Caption text,წარწერა
+516,ka.stories.media.placeholder.source,Source of the image/video,ფოტოს/ვიდეოს წყარო
+517,ka.stories.media.hint.title,"This text only appears in the left sidebar, it will not show up in the story","ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში"
+518,ka.stories.media.hint.media_type,"For videos, an image is necessary because videos are not loaded on mobile devices.","ვიდეოსთვის ფოტო აუცილებელია, რადგან ვიდეო არ იტვირთება მობილურ ტელეფონებზე"
+519,ka.stories.media.hint.caption,"Caption text will appear on top of the image/video. If this is the first item in the story, the caption text is hidden.","წარწერა გამოჩნდება გამოსახულებაზე/ვიდეოზე. თუ ეს ფოტო/ვიდეო ამბის პირველი სექციაა, წარწერა არ გამოჩნდება."
+520,ka.stories.media.hint.source,"Source of the image/video, appears in the bottom-right corner","ფოტოს/ვიდეოს წყარო, გამოჩნდება ქვედა მარჯვენა კუთხეში"
+521,ka.stories.media.hint.image,Only jpg format allowed; 4MB file size limit,დასაშვებია მხოლოდ jpg ფორმატი; ფაილის მაქსიმალური ზომა 4MB
+522,ka.stories.media.hint.video,"Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receive a notification when the processing is complete, typically within a few minutes.","დასაშვებია mp4, mov, webm, ogv, flv, avi და wmv ფორმატები; ფაილის მაქსიმალური ზომა 25MB. ატვირთვის შემდეგ, სანამ ვიდეო ამბავს დაემატება, საჭიროა მათი დამუშავება, რაც, ჩვეულებრივ, რამდენიმე წუთს გრძელდება. როდესაც ვიდეოს დამუშავება დასრულდება, თქვენ მიიღებთ შეტყობინებას."
+523,ka.stories.media.hint.caption_align,The Caption text will appear on top of the image/video (appears on the left by default) ,"წარწერა გამოჩნდება სურათზე/ვიდეოზე (ტექსტის ავტომატური მდებარეობა მარცხენა მხარეა, რისი შეცვლაც შეგიძლიათ)"
+524,ka.stories.media.hint.infobox_type,The Caption text can float on top of the image/video or can be fixed at the bottom of the image/video,"ამ ტექსტს შეუძლია ფოტოზე/ვიდეოზე ზემოდან იმოძრაოს, ან იყოს დაფიქსირებული ფოტოს/ვიდეოს ქვედა ნაწილში"
+525,ka.stories.media.hint.video_loop,"If checked, the video will loop infinitly, otherwise the video will not loop","თუ მონიშნავთ, ვიდეო განმეორდება უსასრულოდ, სხვა შემთხვევაში ვიდეო არ განმეორდება"
+526,ka.stories.section.form_title,Section Form,სექციის ფორმა
+527,ka.stories.section.yes,Yes,კი
+528,ka.stories.section.no,No,არა
+529,ka.stories.section.placeholder.title,Section title,სექციის სათაური
+530,ka.stories.section.hint.title,"This text appears in the left sidebar and, if Navigation Shortcut is selected, will appear as the title text for the shortcut","ეს ტექსტი გამოჩნდება მარცხენა განყოფილებაში და, თუ ეს თავი გამოყოფილია, გამოჩნდება ამ თავის სათაურად"
+531,ka.stories.section.hint.type,Selecting this type determines what kind of information you can add into this section,"ამ ტიპის არჩევა განსაზღვრავს იმას, თუ რა სახის ინფორმაციის დამატება შეგეძლებათ ამ სექციაში"
+532,ka.stories.section.hint.has_marker,"If checked, there will be a navigation shortcut link to go to this section","თუ მონიშნავთ, ეს სექცია გამოიყოფა და შესაძლებელი იქნება მასზე ცალკე ბმულით გადასვლა"
+533,ka.stories.section.hint.audio,Background audio to play while this section is in view (mp3 format only; 10mb file size limit),მუსიკალური გაფორმება ამ სექციისთვის (დასაშვებია მხოლოდ mp3 ფორმატი; ფაილის მაქსიმალური ზომა 10MB)
+534,ka.stories.section.hint.delete_audio,"If checked, the Audio Track will be deleted","თუ მონიშნავთ, აუდიო ფაილი წაიშლება"
+535,ka.stories.content.form_title,Text Form,ტექსტის ფორმა
+536,ka.stories.content.placeholder.title,Text title,ტექსტის სათაური
+537,ka.stories.content.placeholder.caption,optional,არ არის სავალდებულო
+538,ka.stories.content.placeholder.sub_caption,optional,არ არის სავალდებულო
+539,ka.stories.content.hint.title,"This text only appears in the left sidebar, it will not show up in the story","ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში"
+540,ka.stories.content.hint.caption,Heading of text will appear at the top of the section,კონტენტის სათაური გამოჩნდება სექციის ზემოთ
+541,ka.stories.content.hint.sub_caption,Subheading of text will appear below the Heading,ტექსტის ქვესათური გამოჩნდება ტექსტის სათაურის ქვემოთ
+542,ka.stories.content.hint.content,"Text can include html, css styling and images","ტექსტი შეიძლება შეიცავდეს html, css სტილს და ფოტოს"
+543,ka.stories.reviewer_key.title,Private URL,ბმული ამბის სანახავად
+544,ka.stories.reviewer_key.desc,"You can copy and share the following URL with whomever you want to review '%{title}' before it is published. These people will have the ability to read your story, but not edit it.","თქვენ შეგიძლიათ დააკოპიროთ და გაუზიაროთ ეს ბმული ადამიანებს, ვისაც შეეძლებათ ამბის '%{title}' ნახვა მის გამოქვეყნებამდე. ამ ბმულით შესაძლებელია მხოლოდ ამბის ნახვა და არა მისი რედაქტირება."
+545,ka.stories.slideshow.form_title,Image Slideshow Form,გამოსახულების სლაიდშოუს ფორმა
+546,ka.stories.slideshow.add_image,Add Image,გამოსახულების დამატება
+547,ka.stories.slideshow.placeholder.title,Slideshow Title,სლაიდშოუს სათაური
+548,ka.stories.slideshow.placeholder.caption,optional,არ არის სავალდებულო
+549,ka.stories.slideshow.hint.title,"This text only appears in the left sidebar, it will not show up in the story","ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში"
+550,ka.stories.slideshow.hint.caption,Heading will appear at the top of the slideshow,წარწერა გამოჩნდება სლაიდშოუს ზედა ნაწილში
+551,ka.stories.slideshow.hint.description,The description will appear below the slideshow,არღწერა გამოჩნდება სლაიდშოუს ქვემოთ
+552,ka.stories.asset_fields.remove_image,Remove,წაშლა
+553,ka.stories.asset_fields.placeholder.caption,optional,არ არის სავალდებულო
+554,ka.stories.asset_fields.placeholder.source,optional,არ არის სავალდებულო
+555,ka.stories.asset_fields.hint.caption,Image Description will appear below the image,სურათის აღწერა გამოჩნდება სურათის ქვემოთ
+556,ka.stories.asset_fields.hint.source,Source will appear below the Image Description,წყარო გამოჩნდება სურათის აღწერის ქვემოთ
+557,ka.stories.asset_fields.hint.asset,Only jpg and png format allowed; 4MB file size limit,მხოლოდ jpg და png ფორმატია დასაშვები; ფაილის მაქსიმალური ზომა 4MB
+558,ka.stories.asset_fields.label.caption,Image Description,სურათის აღწერა
+559,ka.stories.asset_fields.label.source,Image Source,სურათის წყარო
+560,ka.stories.embed_media.form_title,Embed Online Media Form,ჩასასმელი ონლაინ აუდიო/ვიდეო ფაილის ფორმა
+561,ka.stories.embed_media.get_media,Get Online Media,ონლაინ აუდიო/ვიდეო ფაილის ჩასმა
+562,ka.stories.embed_media.preview,Preview of Online Media,ონლაინ აუდიო/ვიდეო ფაილის ნახვა
+563,ka.stories.embed_media.error,The URL could not be processed. Please try again.,"ბმული ვერ დამუშავდა. გთხოვთ, კიდევ სცადეთ."
+564,ka.stories.embed_media.placeholder.title,Embed Online Media Title,ონლაინ აუდიო/ვიდეო ფაილის სათაური
+565,ka.stories.embed_media.placeholder.url,Url to online media,ონლაინ აუდიო/ვიდეო ფაილის ბმული
+566,ka.stories.embed_media.hint.title,"This text only appears in the left sidebar, it will not show up in the story","ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში"
+567,ka.stories.embed_media.hint.url,"The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED","ჩასასმელი ონლაინ აუდიო/ვიდეო ფაილისთვის შეგიძლიათ გამოიყენოთ შემდეგი საიტები: აუდიო: Soundcloud, Spotify; ვიდეო: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
+568,ka.stories.youtube.form_title,YouTube Video Form,YouTube ვიდეოს ფორმა
+569,ka.stories.youtube.get_media,Get Youtube Video,მიიღეთ თქვენი Youtube ვიდეო
+570,ka.stories.youtube.preview,Preview of YouTube Video,YouTube ვიდეოს წინასწარი ნახვა
+571,ka.stories.youtube.error,The URL could not be processed. Please try again.,URL-ი ვერ დამუშავდა. გთხოვთ სცადოთ ხელახლა.
+572,ka.stories.youtube.placeholder.title,YouTube Title,YouTube სათაური
+573,ka.stories.youtube.placeholder.url,Url to YouTube video,YouTube ვიდეოს Url
+574,ka.stories.youtube.hint.title,"This text only appears in the left sidebar, it will not show up in the story","ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში"
+575,ka.stories.youtube.hint.url,Copy a YouTube URL and paste it here,დააკოპირეთ YouTube URL-ი და ჩასვით აქ
+576,ka.stories.youtube.hint.fullscreen,"If checked, the video will take up the entire screen",თუ მონიშნულია ვიდეო დაიკავებს მთლიან ეკრანს
+577,ka.stories.youtube.hint.loop,"If checked, the video will loop over and over",თუ მონიშნულია ვიდეო დასრულების თანავე ხელახლა ჩაიტვირთება
+578,ka.stories.youtube.hint.info,"If checked, the title bar will be shown on top of the video",თუ მონიშნულია სათაურის ველი გამოჩნდება ვიდეოს ზედა ნაწილში
+579,ka.stories.youtube.hint.cc,"If checked, the video subtitles will be shown by default",თუ მონიშნულია სუბტიტრები ავტომატურად გამოჩნდება
+580,ka.stories.youtube.hint.menu_lang,Language of the YouTube menu/controls,YouTube მენიუს ენა
+581,ka.stories.youtube.hint.cc_lang,Language of the subtitles to show by default,ავტომატური სუბტიტრების ენა
+582,ka.storyteller.byline,By,ავტორი
+583,ka.storyteller.byline_media,Photos and videos by ,ფოტოსა და ვიდეოს ავტორი
+584,ka.storyteller.byline_translator,Translated by ,თარგმნა
+585,ka.storyteller.source,Source:,წყარო:
+586,ka.storyteller.by,by,
+587,ka.storyteller.related_stories,Related Stories,მსგავსი ამბები
+588,ka.storyteller.view_all_stories_in,View all stories in,ყველა ამბის ნახვა
+589,ka.settings.index.title,Settings,პარამეტრები
+590,ka.settings.index.facebook_avatar,This is your avatar from Facebook.,ეს არის თქვენი პროფილის სურათი Facebook-იდან.
+591,ka.settings.index.use_facebook_avatar,Use Facebook Avatar,გამოიყენეთ Facebook-ის პროფილის სურათი
+592,ka.settings.index.hint.about,Short summary about yourself.  This will be shown with the stories that you publish.,მოკლე ტექსტი თქვენ შესახებ. ეს გამოჩნდება თქვენ მიერ გამოქვეყნებულ ამბებთან ერთად.
+593,ka.settings.index.hint.default_story_locale,Select the language you want to use by default when creating a new story.,"აირჩიეთ ენა, რომელსაც გამოიყენებთ ამბის შექმნისას."
+594,ka.settings.index.submit,Save Settings,პარამეტრების შენახვა
+595,ka.settings.invitations.title,Collaboration Invitations,თანაავტორების მოწვევა
+596,ka.settings.invitations.no_invitations,At this time you have no invitations waiting for you.,ამ დროისთვის თქვენ არ გაქვთ ახალი მოწვევა თანაავტორობაზე.
+597,ka.settings.invitations.accept_link,Accept,დათანხმება
+598,ka.settings.invitations.decline_link,Decline,უარის თქმა
+599,ka.settings.invitations.header_date,Date Sent,გაგზავნის თარიღი
+600,ka.settings.invitations.header_story,Story Title,ამბის სათური
+601,ka.settings.invitations.header_role,Role,როლი
+602,ka.settings.invitations.header_from,Sent By,გამომგზავნი
+603,ka.settings.notifications.title,Notifications,შეტყობინებები
+604,ka.settings.notifications.explain,You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.,"თქვენ შეგიძლიათ მიიღოთ ელექტორონული ფოსტის შეტყობინება, როცა ახალი ამბავი დაემატება ""ჩაი ხანას"" ვებგვერდზე! ამისთვის საჭიროა მონიშნოთ თვალყურის დევნის ღილაკი."
+605,ka.settings.notifications.all_sub_title,All Notifications,ყველა შეტყობინება
+606,ka.settings.notifications.all_label,Do you want to recieve any notifications from Chai Khana?,გსურთ მიიღოთ შეტყობინებები “Chai Khanaსგან”?
+607,ka.settings.notifications.all_no,"No, do not send me any notifications.","არა, არ გამომიგზავნოთ შეტყობინებები."
+608,ka.settings.notifications.all_yes,"Yes, I want notifications sent to me.","დიახ, მსურს შეტყობინებების მიღება."
+609,ka.settings.notifications.story_comment_sub_title,New Story Comment Notifications,შეტყობინებები ამბის კომენტარებზე
+610,ka.settings.notifications.story_comment_label,Do you want to recieve notifications when a comment is made to one of your stories?,"გსურთ მიიღოთ შეტყობინებები, როდესაც თქვენს ამბავზე დააკომენტარებენ?"
+611,ka.settings.notifications.story_comment_no,"No, do not send me any notifications.","არა, არ გამომიგზავნოთ შეტყობინებები."
+612,ka.settings.notifications.story_comment_yes,"Yes, I want notifications sent to me.","დიახ, მსურს შეტყობინებების მიღება."
+613,ka.settings.notifications.new_themes_sub_title,New Theme Notifications,ახალი თემის შეტყობინება
+614,ka.settings.notifications.new_themes_all,Notify me when any theme is added.,"შემატყობინეთ, როცა ახალი თემა იქნება დამატებული."
+615,ka.settings.notifications.new_themes_none,I do not want to receive notifications when a new theme is added.,"არ მსურს მივიღო შეტყობინებები, როცა ახალი თემა იქნება დამატებული."
+616,ka.settings.notifications.new_stories_by_category,Notify me when a story is added to:,"შემატყობინეთ, როდესაც ახალი ამბავი დაემატება შემდეგ კატეგორიას:"
+617,ka.settings.notifications.language_sub_title,Notification Language,შეტყობინების ენა
+618,ka.settings.notifications.language_label,In what language do you want to receive the notifications?,რა ენაზე გსურთ შეტყობინებების მიღება?
+619,ka.settings.notifications.following_sub_title,Chai Khana Users You Are Following,"მომხმარებლები, რომელთაც თქვენ თვალყურს ადევნებთ"
+620,ka.settings.notifications.following_label,"You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image.","თქვენ მიიღებთ შეტყობინებას, როდესაც მომხმარებელი, რომელსაც თვალყურს ადევნებთ, დაამატებს ახალ ისტორიას. ამ შეტყობინებების მიღება თუ არ გსურთ, გააუქმეთ თვალყურის დევნება მათ სურათზე დაჭერით."
+621,ka.settings.notifications.following_not,"At this time, you are not following any users.",ამ დროისთვის თქვენ არცერთ მომხმარებელს არ ადევნებთ თვალყურს.
+622,ka.settings.notifications.following_title1,Click to unfollow '%{name}',%{nickname}' თვალყურის დევნების გასაუქმებლად დააჭირეთ ღილაკს
+623,ka.settings.notifications.following_title2,Click to follow '%{name}',%{nickname}' თვალყურის სადევნებლად დააჭირეთ ღილაკს
+624,ka.settings.notifications.submit,Save Settings,პარამეტრების შენახვა
+625,ka.imageuploader.missing,An error occurred while processing your image. Please try again.,"გამოსახულების დამუშავებისას დაფიქსირდა შეცდომა. გთხოვთ, სცადოთ ახლიდან."
+626,ka.imageuploader.invalid_type,Invalid file type. Only .jpg or .png is allowed.,არასწორი ფაილის ტიპი. დასაშვებია jpg და png ფორმატი
+627,ka.imageuploader.size_limit,Image file size is limited to 4MB,მაქსიმალური ზომა 4MB
+628,ka.devise.mailer.reset_password_instructions.title,Hello %{nickname}!,"მოგესალმებით, %{nickname}!"
+629,ka.devise.mailer.reset_password_instructions.p1,"Someone has requested a link to change your password on Chai Khana, and you can do this through the link below.","მივიღეთ მოთხოვნა %{app_name} თქვენი პაროლის შეცვლის შესახებ. პაროლის შესაცვლელად, მიჰყევით შემდეგ ბმულს."
+630,ka.devise.mailer.reset_password_instructions.link_title,Change my password,პაროლის შეცვლა
+631,ka.devise.mailer.reset_password_instructions.p2,"If you didn't request this, please ignore this email.","თუ თქვენ არ მოგითხოვიათ პაროლის შეცვლა, გთხოვთ, არ მიაქციოთ ყურადღება ამ შეტყობინებას."
+632,ka.devise.mailer.reset_password_instructions.p3,Your password won't change until you access the link above and create a new one.,"თქვენი პაროლი იგივე დარჩება, სანამ არ გადახვალთ ზემოთ მითითებულ ბმულზე და შექმნით ახალ პაროლს."

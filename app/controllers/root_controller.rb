@@ -3,27 +3,27 @@ class RootController < ApplicationController
     
     @js.push("zeroclipboard.min.js","filter.js")
     @css.push("navbar.css", "filter.css", "grid.css","root.css")    
-    @stories = process_filter_querystring(Story.is_published_home_page.paginate(:page => params[:page], :per_page => per_page))      
+    p = (request.xhr? ? params[:page] : 1)
+    @stories = process_filter_querystring(Story.is_published.in_published_theme.paginate(:page => p, :per_page => per_page))
     @theme = Theme.for_homepage
-    @stories_for_slider = Story.recent_by_type
-    #@story = Story.is_published.recent_by_type
-    #Rails.logger.debug("---------------------------------------------#{@story}")
+    
+
+    @stories_for_slider = @theme.featured_stories if @theme.present?    
     @navbar_invisible = false
     respond_to do |format|
       format.html  
-      #format.json { render json: @stories }      
       format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}      
     end
   end
 
 
   def author   
-    @author = User.find_by_permalink(params[:user_id])
+    @author = Author.find_by_permalink(params[:user_id])
 
     if @author.present?
       @js.push("zeroclipboard.min.js", "filter.js","stories.js","follow.js")
       @css.push("navbar.css", "filter.css", "grid.css", "stories.css", "author.css")
-      @stories = process_filter_querystring(Story.stories_by_author(@author.id).paginate(:page => params[:page], :per_page => per_page))      
+      @stories = process_filter_querystring(Story.by_authors(@author.id).in_published_theme.paginate(:page => params[:page], :per_page => per_page))      
       @editable = (user_signed_in? && current_user.id == @author.id)
       
       @is_following = Notification.already_following_user(current_user.id, @author.id) if user_signed_in?
@@ -44,7 +44,7 @@ class RootController < ApplicationController
   def embed   
     #@css.push("embed.css")    
            
-    @story = Story.is_published.find_by_permalink(params[:story_id])
+    @story = Story.is_published.in_published_theme.find_by_permalink(params[:story_id])
     #redirect_to root_path, :notice => t('app.msgs.does_not_exist')   
     respond_to do |format|      
       if @story.present?        
@@ -54,14 +54,25 @@ class RootController < ApplicationController
                 @no_nav = true     
                 @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css")
                 @js.push("storyteller.js","modalos.js", "follow.js")    
-                story = Story.select('id').is_published.find_by_permalink(params[:id])
-                @story = Story.is_published.fullsection(story.id) if story.present?  
+                story = Story.select('stories.id').is_published.in_published_theme.find_by_permalink(params[:id])
+                @story = Story.is_published.in_published_theme.fullsection(story.id) if story.present?  
+                if @story.present?
+                  # set story locale 
+                  # if param exists use that
+                  # else check if translation exists for current app locale
+                  if params[:sl].present?
+                    @story.current_locale = params[:sl] 
+                    Globalize.story_locale = params[:sl] 
+                  else
+                    @story.use_app_locale_if_translation_exists
+                  end
+                end
                 # record if the user has liked this story
                 @user_likes = false
                 @user_likes = current_user.voted_up_on? @story if user_signed_in?
               
                 format.html { render 'storyteller/index', :layout => false }            
-                impressionist(@story)                  
+                impressionist(@story, :unique => [:session_hash])
           else 
             format.html { render 'embed', layout: false }    
           end
@@ -73,12 +84,15 @@ class RootController < ApplicationController
   end
 
   def theme
+    @js.push("zeroclipboard.min.js","filter.js")
+    @css.push("navbar.css", "filter.css", "grid.css","root.css")    
     @theme = Theme.published.find_by_permalink(params[:id])
+    @stories = process_filter_querystring(Story.is_published.in_published_theme.by_theme(@theme.id).paginate(:page => params[:page], :per_page => per_page))      
+    @stories_for_slider = @theme.featured_stories if @theme.present?
 
     if @theme.present?
       respond_to do |format|
         format.html  
-        #format.json { render json: @stories }      
         format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}      
       end
     else
@@ -123,11 +137,8 @@ class RootController < ApplicationController
 
 
   def about   
-    @css.push("navbar.css","about.css")   
-    respond_to do |format|
-      format.html 
-    end
-=begin
+    @css.push("navbar.css")   
+
     @page = Page.by_name('about')
   
     if @page.present?
@@ -139,12 +150,11 @@ class RootController < ApplicationController
 		  redirect_to root_path(:locale => I18n.locale)
 		  return
 	  end
-=end	  
   end
 
   def feed
     index = params[:category].present? ? @categories_published.index{|x| x.permalink.downcase == params[:category].downcase} : nil
-    @items =  Story.is_published_home_page.include_categories.recent
+    @items =  Story.is_published.in_published_theme.recent
     @filtered_by_category = ""
     if index.present?
       @filtered_by_category = @categories_published[index].permalink

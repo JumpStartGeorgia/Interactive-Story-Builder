@@ -1,36 +1,7 @@
-<% title t('.title') %>
+<div class="page-about">
+   <% title @page.present? ? @page.title : t('.title') %>
 
-<% content_for(:header) { %>
-  <header class="header-about %>">
-    <div class="header-data">
-      <div class="title"><%= t('.title') %></div>
-      <div class="intro"><%= t(".intro").html_safe %></div>
-    </div>
-  </header>
-  <div class="about-text">
-    <p>
-      <%= t('.p1') %>
-    </p>
-    <p>
-      <%= t('.p2') %>
-    </p>
-    <p>
-      <%= t('.p3') %>
-    </p>
-    <p>
-      <%= t('.p4') %>
-    </p>
-    <p class="help">
-      <%= t('.help') %>
-    </p>
-    <p class="contact">
-      <%= t('app.common.jumpstart') %>
-      <br /><%= mail_to 'info@jumpstart.ge', nil, :encode => "javascript", :subject => t('.contact.subject') %>
-      <br />+995 032 214 29 26
-      <br /><%= t('.contact.address1') %>
-      <br /><%= t('.contact.address2') %>
-      <br />41.697971, 44.796738
-    </p>  
-  </div>
-<% } %>
-
+   <% if @page.present? %>
+     <%= simple_format_no_tags(@page.content, {}, {sanitize: false}) %>
+   <% end %>
+</div>

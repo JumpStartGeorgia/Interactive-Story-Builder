@@ -2,755 +2,855 @@
 ru:
   activerecord:
     models:
-      user: User
-      story: Story
-      section: Section
-      medium: Full-Screen Media Slideshow
-      content: Text
-      news: News
-      message: Message
-      slideshow: Image Slideshow
-      embed_medium: Embeddable Online Media
-      youtube: Youtube Online Media
-      language: Language
-      category: Category
-      page: Text for Pages
-      theme: Theme
-      story_type: Type
+      user: "пользователь"
+      story: "история"
+      section: "Раздел"
+      medium: "Медиа слайд-шоу во весь экран"
+      content: "Текст"
+      message: "Сообщение"
+      slideshow: "Слайд-шоу картинок"
+      embed_medium: "Встраиваемый онлайн медиа контент"
+      youtube: YouTube видео
+      language: "Язык"
+      category: "Категория"
+      page: "Текст для страницы"
+      theme: "Тема"
+      story_type: "Тип истории"
+      author: "Автор"
+      asset: File      
     attributes:
+      asset: &asset
+        asset_file_name: File
+        asset_content_type: File Content Type
+        asset_file_size: File Size
+      avatar: *asset    
       user:
-        email: Email Address
-        password: Password
-        password_confirmation: Password Confirmation
-        role: Role
-        remember_me: Remember Me
-        default_story_locale: Default Language for Your Stories 
-        about: Summary of You
-        local_avatar: Avatar
-        nickname: Nickname
+        email: "Адрес электронной почты"
+        password: "Пароль"
+        password_confirmation: "Подтвердите Пароль"
+        role: "Роль"
+        remember_me: "Запомнить меня"
+        default_story_locale: "Язык по умолчанию для историей"
+        about: "Коротко о себе"
+        local_avatar: "Аватар"
+        nickname: "Никнейм"
+        sign_in_count: Number of Times Logged In
+        created_at: "Дата создания"
+        current_sign_in_at: "Дата последнего посещения на сайт"
+      author:
+        avatar: "Аватар"
+      author_translation: &author_translation
+        name: "Имя"
+        about: "Про нас"
+        permalink: "Постоянная ссылка"
+      author_translations: *author_translation        
       story:
-        title: Story Title
-        user_id: Story Editor
-        user_ids: Editors
-        author: Author(s)
-        media_author: Photo and Video Author(s)  
-        published: Publish?
-        published_at: Was Published
-        publish_home_page: Once published, make your story visible on the homepage?
-        template_id: Template
-        thumbnail: Thumbnail
-        about: Story Summary
-        story_locale: Story Language
-        permalink: Story URL
-        permalink_staging: Story URL
-        tag_list: Tags
-        categories: Categories
-        type: Type
+        user_id: "Автор истории"
+        user_ids: "Редакторы"
+        publish_home_page: "Сделать Вашу историю видимой на странице после публикации?"
+        template_id: "Шаблон"
+        thumbnail: "Эскиз (тамбнейл)"
+        story_locale: "Язык истории"
+        tag_list: "Тег"
+        categories: "Категории"
+        story_type: "Тип"
+        in_theme_slider: "Показать историю в тематическом слайдере"
+      story_translation: &story_translation
+        title: "Название истории"
+        author: "Автор(ы)"
+        media_author: "Автор(ы) видео и фото"
+        translation_author: "Автор(ы) перевода"
+        published: "Публиковать?"
+        published_at: "Опубликована"
+        about: "Конспект историй"
+        permalink: URL Истории
+        permalink_staging: URL Истории
+        asset: *asset        
+      story_translations: *story_translation        
       section:
-        title: Title
-        audio: Audio Track
-        has_marker: Navigation Shortcut
-        type_id: Type
-        sort_order: Sort Order
-        delete_audio: Delete the Audio Track?
-      content:        
-        title: Title          
-        caption: Heading
-        sub_caption: Subheading
-        content: Text
+        has_marker: "Навигационная ссылка"
+        type_id: "Тип"
+        sort_order: "Порядок Сортировки"
+      section_translation:  &section_translation
+        title: "Название"
+        audio: "Аудиофайл"
+        delete_audio: "Удалить аудиофайл?"
+        asset: *asset        
+      section_translations:  *section_translation
+      content_translation: &content_translation
+        title: "Название"
+        caption: "Заглавок"
+        sub_caption: "Подзаглавок"
+        content: "Текс"
+      content_translations: *content_translation
       medium:
-        media_type: Media Type
-        title: Title
-        caption: Caption
-        caption_align: Caption Alignment
-        infobox_type: Caption Position
-        summary: Summary
-        source: Source
-        image: Image
-        video: Video
-        video_loop: Loop Video
-      slideshow:
-        title: Title
-        caption: Heading
-      news:
-        title: Title
-        content: Content
-        is_published: Publish?
-        published_at: Date Published
+        media_type: "Тип медии"
+        image: "Изображение"
+        video: "Видео"
+        video_loop: "Переигрывать видео"
+      medium_translation: &medium_translation
+        title: "Название"
+        caption: "Титры"
+        caption_align: "Выровнивание титров"
+        infobox_type: "Расположение титров"
+        summary: "Конспект"
+        source: "Источник"
+        image: *asset
+        video: *asset
+      medium_translations: *medium_translation
+      slideshow_translation: &slideshow_translation
+        title: "Заглавок"
+        caption: "Название"
+        description: "Описание"
+        asset_files: Image(s)        
+        asset: *asset
+        assets: *asset
+      slideshow_translations: *slideshow_translation        
       message:
         name: Name
         email: Email Address
         message: Message
         message_type: Feedback Type
-      embed_medium:
-        title: Title
-        url: Url to Online Media
+      embed_medium_translation: &embed_medium_translation
+        title: "Заглавок"
+        url: Url к онлайн медии
+      embed_medium_translations: *embed_medium_translation        
       youtube:
-        title: Title
-        url: Url to Online Media
-        fullscreen: Fullscreen
-        loop: Loop
-        info: Show Information Bar
-      youtube_translation:
-        menu_lang: "Player language"
-        cc: Show Caption/Subtitle
-        cc_lang: "Subtitle language"       
-      language:
-        locale: Locale
-        name: Language Name
-      category_translation:
-        name: Name
-      page:
-        name: Unique name for content (do not change!)
-      page_translation:
-        title: Title to show above content
-        content: Content
-      theme:
-        is_published: Publish?
+        fullscreen: "Во весь экран"
+        loop: "Переигровка"
+        info: "Показать заглавок видео"
+      youtube_translation: &youtube_translation
+        title: "Заглавок"
+        url: "Ссылка на YouTube"
+        menu_lang: "Язык плеера"
+        cc: "Показать субтитры"
+        cc_lang: "Язык субтитров"
+      youtube_translations: *youtube_translation        
+      infographic:
         published_at: Date Published
-        show_home_page: Show this theme on the home page?
-      theme_translation:
-        name: Name
-        edition: Edition
+        image: Infographic Image
+        dataset_file: Dataset File
+        datasources: Data Sources
+        subtype: Infographic Type        
+      infographic_translation: &infographic_translation
+        title: Title
+        caption: Heading
         description: Description
-        permalink: URL
+        dataset_url: Online Dataset
+        image: *asset     
+        dataset_file: *asset
+      infographic_translations: *infographic_translation        
+      infographic_datasource:
+        name: Data Source Name
+        url: Data Source URL
+      language:
+        locale: "О локали."
+        name: "Язык"
+      category_translation: &category_translation
+        name: "Имя"
+      category_translations: *category_translation        
+      page:
+        name: "Уникальное название для контента (не изменять!)"
+      page_translation: &page_translation
+        title: "Назвнаие, которое будет показываться над контентом"
+        content: "Контент"
+      page_translations: *page_translation        
+      theme:
+        is_published: "Публиковать?"
+        published_at: "Дата опубликования"
+        show_home_page: "Показать тему на главной странице"
+        published_item_count: Количество опубликованных объектов
+        featured_stories: Featured Stories
+      theme_translation: &theme_translation
+        name: "Имя"
+        edition: "Выпуск"
+        description: "Описание"
+        permalink: URL (Единый указатель ресурсов)
+      theme_translations: *theme_translation        
       story_type:
-        sort_order: Sort Order
-      story_type_translation:
-        name: Name
-        permalink: URL
+        sort_order: "Порядок Сортировки"
+      story_type_translation: &story_type_translation
+        name: "Название"
+        permalink: URL (Единый указатель ресурсов)
+      story_type_translations: *story_type_translation        
     errors:
       messages:
-        required_field: "is a required field."
-        already_exists: 'already exists in the database.'              
+        required_field: "Поле обязательно для заполнения"
+        already_exists: "В базе данных уже существует."
+        story_authors: "Должны выбрать по крайней мере одного человека."
+        publish_theme: Тема не может быть опубликованна если хотя бы одна деталь не будет добавлена.
+        not_provided: 'must be provided.'        
   mailer:
-    closing: "Sincerely,"
-    signature: The Chai Khana Team
-    unsubscribe: Click here to change your notification settings
+    closing: "С уважением"
+    signature: "Команда Чайхана"
+    unsubscribe: "Нажмите здесь чтобы изменить настройки уведомлений."
     contact:
       contact_form:
-        subject: "Chai Khana Contact Form"
+        subject: "Форма обратной связи с Чай-Хана."
     notification:
       new_user:
-        subject: "Welcome to Chai Khana!"
-        message: "Thank you for becoming a member of Chai Khana. We look forward to exploring the stories you build!\n\nWhen you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summary about yourself: [settings_link].\n\nYou can manage when you would like to receive email notifications from Chai Khana by going to the notifications page: [notifications_link]. "
+        subject: "Добро пожаловать в Чай-Хана"
+        message: "Спасибо что стали участником Чай-Ханы. Мы с нетерпением ждем Ваших историей.\n\nПожалуйста посетите страницу настроек, когда у Вас будет время. Там Вы сможете изменить свой аватар, никнейм, личный URL, и написать коротко о себе: [settings_link].\n\nВы можете настроить получения оповещений от Чай-Ханы на электронную почту посетив соответствующую страницу: [notifications_link]."
+      published_theme:
+        subject: New themes have been published on Chai Khana!
+        message: 'The following themes you have expressed interest in were recently published:'
       published_story:
-        subject: "New stories have been published on Chai Khana!"
-        message: "The following stories you have expressed interest in were recently published:"
+        subject: "На Чай-Хане были опубликованы новые истории!"
+        message: "Истории которыми Вы интересовались, были недавно опубликованы."
       story_comment:
-        subject: "Someone has posted a comment on your story on Chai Khana!"
-        message: "The following stories have recently received a comment:"
-        comment: "1 Comment"
-        comments: "%{num} Comments"
-      published_news:
-        subject: "Chai Khana has new updates!"
-        message: "The following updates were just posted on Chai Khana. Click on the link to learn what is going on with Chai Khana."
-      staff_pick_review:
-        subject: "Chai Khana has new published stories to review for Staff Pick!"
-        message: "The following stories need to be reviewed to see if they are worthy to be a Staff Pick:"
-      staff_pick_selection:
-        subject: "Your story has been selected by the Chai Khana Team as a Staff Pick!"
-        message: "Congratulations! The following stories of yours were selected by the Chai Khana Team as Staff Picks:"
+        subject: "Кто то оставил комментарию на Вашей истории в Чай-Хане."
+        message: "Следующие истории недавно получили комментарий:"
+        comment: 1 Комментарий
+        comments: "%{num} Комментарии"
       story_collaboration:
-        subject: "You have been invited to collaborate on a story on Chai Khana!"
-        message: "You have received the following invitations to collaborate on stories with other people on Chai Khana. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part."
-        from: From
-        story_title: Story Title
-        msg: Message
-        accept_link: Accept the Invitation
-        all_invitations: View all of your Chai Khana collaboration invitations.
+        subject: "Вы были приглашены на сотрудничество над историей на Чай-Хане!"
+        message: Вы получили следующие приглашения к сотрудничеству над историей с другими участниками Чайханы. Если вы хотите принять приглашение, просто нажмите на ссылку "принять приглашение". Если вы хотите отказаться от этого приглашения, никаких действий не требуется с вашей стороны.
+        from: "От"
+        role: "Уровень"
+        story_title: "Заглавок истории"
+        msg: "Письмо"
+        accept_link: "Принять приглашение"
+        all_invitations: "Просмотреть все приглашения на сотрудничество в Чайхане."
       processed_videos:
-        subject: "Your videos on Chai Khana have been processed!"
-        message: "The following stories of yours have videos that have completed processing:"
-        story_title: 'Story:'
-        status: 'Video Processing Status: %{processed} of %{total} completed'
-        processed: 'Videos Processed:'
-        not_processed: 'Videos Still Processing:'
-        none_processed: No vidoes have been processed.
-        none_processing: All videos have been processed!
+        subject: "Ваши видео на чайхане были обработаны!"
+        message: "В ваших следующих рассказах есть видеоматериалы, обработка которых была завершена."
+        story_title: "История:"
+        status: "Состояание обработвки видеоматериала: %{processed} от %{total} завершена."
+        processed: "Видеоматериал обработан."
+        not_processed: "Видеоматериал находится в процессе обработки."
+        none_processed: "Видеоматериалы пока не обработаны."
+        none_processing: "Все видеоматериалы обработаны."
       processed_video_errors:
-        subject: "Videos on Chai Khana have processing errors!"
-        message: "The following videos had errors while being processed:"
-        story_id: Story ID
-        asset_id: Asset ID
-        path: URL of Video
+        subject: "Появилась ощибка при обработке видеоматериала на Чайхане."
+        message: "В процессе обработки у следующих видеоматериалов появились ошибки."
+        story_id: ID Истории
+        asset_id: ID Файла
+        path: URL Видео
   helpers:
-    actions: Actions
+    actions: "Действия."
     links:
-      admin: Admin Section
-      edit: Edit
-      confirm: Are you sure?
-      destroy: Delete
-      new: New
-      list: View All
-      back: View All
-      cancel: Cancel
-      reset: Reset
-      view: View
-      sign_in_facebook: Sign in with Facebook
-      edit_story: Edit Story Settings
-      delete_story: Delete Story
-      admin_story: Edit Content
-      publish_story: Publish Story
-      forgot_password: Forgot Password?
-      change_password: Change Your Password
-      change_password2: Change Password
-      password_reset: Reset Password
-      sign_in2: Sign In
-      sign_in: "Already have an account?"
-      sign_up2: Sign Up
-      sign_up_question: "Not a member yet?"
-      sign_up: "Register now"
-      sign_up_title: Join Chai Khana
-      sign_out: Sign Out
-      sign_in_provider: "Sign in with %{provider}"
-      sign_up_provider: "Sign up with %{provider}"
-      sign_in_local_or_provider: or log in with your email and password
-      reset_or_sign_in: sign in with facebook or reset your password
-      add_story: Add Story
-      users: Users
-      feedback: Feedback
-      about: About
+      admin: "Раздел Админа."
+      edit: "Редактировать."
+      confirm: "Вы уверенны?"
+      destroy: "Удалить!"
+      new: "Новый"
+      list: "Посмотреть все"
+      back: "Посмотреть все"
+      cancel: "Отменить"
+      reset: "Сброс"
+      view: "Посмотреть"
+      sign_in_facebook: "Войти через Facebook"
+      edit_story: "Изменить настройки истории."
+      delete_story: "Удалить историю."
+      admin_story: "Редактировать контент."
+      publish_story: "Опубликовать историю."
+      forgot_password: "Забыли пароль?"
+      change_password: "Изменить Вашу пароль"
+      change_password2: "Изменить пароль."
+      password_reset: "Восстановить пароль."
+      sign_in2: "Войти"
+      sign_in: "Уже зарегистрированы?"
+      sign_up2: "Создать акаунт"
+      sign_up_question: "Еще не участник?"
+      sign_up: "Зарегистрироваться сейчас"
+      sign_up_title: "Присоединиться к Чайхане"
+      sign_out: "Выйти"
+      sign_in_provider: "Войти через %{provider}"
+      sign_up_provider: "Зарегистрироваться через %{provider}"
+      sign_in_local_or_provider: "или войти через эл.почту и пароль"
+      reset_or_sign_in: "войти через Facebook или восстановить пороль."
+      add_story: "Добавить историю"
+      users: "Пользователи"
+      authors: "Авторы"
+      feedback: "Отзывы"
+      about: "О Чайхане"
       rss: RSS
-      themes: Themes
-      story_types: Types
-      languages: Languages
-      follow: Follow
+      themes: "Темы"
+      story_types: "Типы"
+      languages: "Языки"
+      follow: "Подписаться"
       facebook: Facebook
       twitter: Twitter
       youtube: YouTube
-      subscribe: Subscribe
-      user_settings: Settings
-      themes: Themes
-      story_types: Types
-      like: Like   
-      likes: Likes      
-      comments: Comment on this story
-      views: "%{num} views"
-      tags: Tags
-      menu: Menu
-      pages: Edit Text on Site
+      subscribe: "Подписаться"
+      user_settings: "Настройки"
+      like: "Нравится"
+      likes: Отметки "Нравится"
+      comments: "Комментарий"
+      views: "%{num} просмотров"
+      tags: "Теги"
+      menu: "Меню"
+      pages: "Редактировать текст на сайте"
+      next: "Следующий"
+      feed: "Лента новостей"
+      download: Download
+      previous: Previous
+      next: Next      
       story_menu:
         link:
-          edit_story: Story Settings
-          admin_story: Content
-          collaborators: Collaborators
-          preview: Preview
-          publish: Publish
-          unpublish: Unpublish
-          review: Private URL
-          clone: Clone
-          export: Download
-          delete_story: Delete
+          story: "История"
+          story_settings: "Настройки историй"
+          collaborators: "Сотрудники"
+          preview: "Предварительный просмотр"
+          publish: "Опубликовать"
+          unpublish: "Отменить опубликование"
+          review: "Личный URL"
+          clone: "Клон"
+          export: "Загрузить"
+          delete_story: "Удалить"
+          translations: "Переводы"
         title:
-          edit_story: Edit story title, authors, URL, summary, thumbnail, language, tags and/or categories
-          admin_story: Edit text, images, videos, etc.
-          collaborators: Manage which users have access to edit your story
-          preview: See how your story looks
-          publish: Make your story viewable to the world
-          unpublish: Make your story NOT viewable to the world
-          review: URL to share this story before publishing
-          clone: Copy this story into a new story
-          export: Download the complete story
-          delete_story: Deleting a story cannot be undone
+          story: "Редактировать Вашу историю"
+          story_settings: "Редактировать заглавок истроии, авторов, URL, конскпект, эскиз (тамбнейл), язык, теги и/или категории, контент, итд"
+          collaborators: "Настроить доступ других ползывателей к редактированию Вашей истории"
+          preview: "Посмотреть как выглядит Ваша история"
+          publish: "Сделать Вашу историю видимой во всем мире"
+          unpublish: "Сделать Вашу историю НЕ видимой во всем мире"
+          review: URL для обмена до публикации
+          clone: "Скопировать это историю в новую историю"
+          export: "Загрузить историю полностью"
+          delete_story: "Удаление истории не возможно отменить"
+          translations: "Перевести Вашу историю на другие языки"
     titles:
-      new: "New %{model}"
-      edit: "Edit %{model}"
-      story_list: My Stories
+      new: "Новый %{model}"
+      edit: "Редактировать %{model}"
+      story_list: "Мои истории"
     hints:
-      nickname: Your nickname is used in the URL to your published stories (e.g., nickname/story-title)        
-      local_avatar: Image that is shown in the header bar and on your user page (png and jpg only).
-      like: Like this story
-      unlike: Unlike this story
-      staff_pick: Select as Staff Pick
-      staff_unpick: Unselect as Staff Pick
-      is_staff_pick: Staff Pick
+      nickname: "Ваш ник используется в URL ваших опубликованных историей (например, ник / история-название)"
+      local_avatar: "Изображение, которое будет отображаться в строке заголовка и на вашу страницу пользователя (только png и jpg )."
+      avatar: "Изображение на странице автора (только .png и .jpg)"
+      like: "Нравится эта история"
+      unlike: Отменить "Нравится эта история"
+      staff_pick: Отметить как "Выбор Редакции"
+      staff_unpick: Отменить "Выбор Редакции"
+      is_staff_pick: "Выбор Редакции"
+      clone_asset: "Если отметить, то файл, который находиться на левой стороне, будет выбран для этого перевода"
   app:
     language:
       en: English
       ka: ქართული
-      am: Հայերեն
+      hy: Հայերեն
       ru: Русский
       az: Azərbaycan
     buttons:
-      back: View All
-      list: View All
-      admin: Admin Section
-      delete: Delete
-      edit: Edit
-      show: Show
-      cancel: Cancel
-      update: Update
-      save: Save
-      create: Create
-      reset: Reset
-      remove: Remove
-      confirm: Are you sure?
-      new: New
-      add_section: Add Section
-      add_item: Add Item into Section
-      up: Move Selected Section/Item Up
-      down: Move Selected Section/Item Down
-      delete_item: Delete Selected Section/Item
-      preview: Preview
-      preview_image: Preview Image
-      preview_video: Preview Video
-      preview_audio: Listen To Audio
-      publish: Publish
-      unpublish: Unpublish
-      clone: Copy this story into a new story
-      export: Download the complete story
-      scroll: Scroll
-      reviewer_key: Get URL to share this story before publishing
-      reviewer_key_published: Your story is published so there is no need to share this non-published URL
-      explore: Explore
+      back: "Посмотреть все"
+      list: "Посмотреть все"
+      admin: "Раздел Админа."
+      delete: "Удалить"
+      edit: "Редактировать"
+      show: "Показать"
+      cancel: "Отменить"
+      update: "Обновить"
+      save: "Сохранить"
+      save_and_next: "Сохранить и перейти к следующему"
+      create: "Создать"
+      reset: "Сброс"
+      remove: "Удалить"
+      confirm: "Вы уверенны?"
+      new: "Новый"
+      add_section: "Добавить раздел"
+      add_item: "Добавить пункт к разделу"
+      up: "Переместить выбранный раздел / элемент вверх"
+      down: "Переместить выбранный раздел / элемент вниз"
+      delete_item: "Удалить выбранный раздел / элемент"
+      preview: "Предварительный просмотр"
+      preview_image: "Предварительный просмотр изображений"
+      preview_video: "Предварительный просмотр видео"
+      preview_audio: "Послушать аудио"
+      publish: "Опубликовать"
+      unpublish: "Отменить опубликование"
+      clone: "Скопировать это историю в новую историю"
+      export: "Загрузить историю полностью"
+      scroll: "Прокрутить"
+      reviewer_key: "Получить URL истории для обмена до публикации"
+      reviewer_key_published: "Ваша история уже опубликована, и Вам птедтворительный URL уже не нужен"
+      explore: "Просматривать"
     common:
-      app_name_not_trans: Chai Khana
-      app_name: Chai Khana
-      app_intro: Build and Share;the Next Generation Story;Chai Khana allows anyone with text, pictures and/or videos to<br>combine this content into a creative story that can be published<br> and shared with the world
-      app_intro_meta: Build and Share the Next Generation Story! Chai Khana allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world
-      powered_by: Powered by
+      app_name_not_trans: "Чайхана"
+      app_name: "Чайхана"
+      app_intro: "Чайхана является неправительственной организацией, которая обеспечивает трансграничные журналистские тренинги и онлайн-публикации для  мультимедийных материалов оповещающих о проблемах южнокавказского региона."
+      app_intro_meta: "Чайхана является неправительственной организацией, которая обеспечивает трансграничные журналистские тренинги и онлайн-публикации для \ мультимедийных материалов оповещающих о проблемах южнокавказского региона."
+      powered_by: "При поддержке"
       powered_by_js: Jumpstart Georgia
-      powered_by_end: ""
-      embed_slogan: Build your story with Chai Khana
-      added_on: "Added on: %{date}"
-      admin: Admin
-      sign_out: Sign Out    
+      powered_by_end: 
+      embed_slogan: "Создайте свой историю в Чайхане"
+      added_on: "Добавлено: %{date}"
+      last_sign_in: "Последний визит на сайт: %{date}"
+      admin: "Админ"
+      sign_out: "Выйти"
       jumpstart: JumpStart Georgia
-      js_link_title: JumpStart Georgia - We communicate data better!
-      js_link_text: Built by
-      search: Search for Story ...
-      build: Build Story
-      explore: Explore Stories      
-      about_story: About
-      likes: Likes
-      comments: Comments
-      publish_date: Publish Date
-      follow: Follow
-      following: Following
-      follow_link_title: Click to receive notifications whenever this user publishes new stories
-      unfollow_link_title: Click to stop receiving notifications whenever this user publishes new stories
-      email: Email
-      views: Views
-      permalink: Permalink
-      shortened_url: Short URL
-      share_story: Share this story
-      share_facebook: Share on Facebook
-      share_twitter: Share on Twitter
-      share: Share
-      staff_pick: Staff Pick
-      wide: wide
-      partial: Link to Story
-      partial_text: Embed a link to the story that has the same look as the story links on the home page of Chai Khana (image, title, author, etc)
-      full: Full Story
-      full_text: Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look. 
-      feed: Chai Khana Feed Channel
-      home: Home
-      required: Required
-      nothing_selected: Nothing Selected
+      js_link_title: JumpStart Georgia - Мы связываем данные лучше!
+      js_link_text: "Создан"
+      search: "Поиск историей..."
+      build: "Создайте историю"
+      explore: "Просматриваете истории"
+      about_story: "О нас"
+      likes: Отметки "Нравится"
+      comments: "Коментарии"
+      publish_date: "Дата публикации"
+      follow: "Подписаться"
+      following: "Подписчики"
+      follow_link_title: "Нажмите чтобы получать оповещения при новой публикации этого пользывателя"
+      unfollow_link_title: "Нажмите чтобы больше не получать оповещения при новой публикации этого пользывателя"
+      email: "Электронная почта"
+      views: "Просмотров"
+      permalink: "Пермалинк"
+      shortened_url: "Короткий URL"
+      share_story: "Поделтиься"
+      share_facebook: "Поделиться на Facebook"
+      share_twitter: "Поделиться на Twitter"
+      share: "Поделиться"
+      staff_pick: "Выбор Редакции"
+      wide: "Широкий обзор"
+      partial: "Ссылка к истории"
+      partial_text: "Вставить ссылку к истории, что имеет тот же вид, как и на главной странице Чайхана (изображение, название, автора и т.д.)"
+      full: "Полная история"
+      full_text: "Вставить полную историю на другом веб-сайте. Мы предлагаем Вам сделать ширину как можно больше, чтобы получить наилучший вид."
+      feed: "Лента новостей Чайхана"
+      home: "Главная"
+      required: "Обязательно"
+      nothing_selected: "Нет отмеченных"
+      clone_asset: "Использывать оригинал?"
+      embed: Вставить код
+      scroll_top: Прокрутить вверх
     msgs:
-      does_not_exist: You tried to access a page that does not exist.
-      not_authorized: You are not authorized to view that page.
-      success_created: "%{obj} was successfully created."
-      success_updated: "%{obj} was successfully updated."
-      success_publish: "%{obj} was successfully published."
-      success_unpublish: "%{obj} was successfully unpublished."
-      success_clone: "%{obj} was successfully cloned to %{to}."      
-      error_created: "%{obj} wasn't created: %{err}"
-      error_updated: "%{obj} wasn't updated: %{err}"
-      error_publish: "%{obj} wasn't published: %{err}"
-      error_publish_missing_fields: "%{obj} can't be published until you provide a summary and thumbnail image."
-      error_publish_missing_fields_link: Add the missing content.
-      error_publish_missing_content_section: At least one section required.
-      error_unpublish: "%{obj} wasn't unpublished: %{err}"
-      error_clone: "%{obj} wasn't cloned."
-      error_clone_notification: "Error occurred while cloning story: %{msg}"
-      error_export: "Story can't be downloaded."
-      error_get_data: The selected item could not be found
-      select_section: Please select a Section first in order to add an Item
-      staff_pick: The story has been selected as a Staff Pick
-      staff_unpick: The story has been unselected as a Staff Pick
-      success_settings: Your settings were successfully updated.
-      success_remove_avatar: Your Facebook avatar is now being used.
-      nickname_duplicate: This user URL already exists. 
-      nickname_url: 'Your URL will be:'
-      story_duplicate: This story URL already exists. 
-      story_url: 'Story URL will be:'
+      does_not_exist: "Вы пытались получить доступ к странице, которая не существует."
+      not_authorized: "Вы не авторизованы для просмотра этой страницы"
+      success_created: "Создание %{obj} прошло удачно "
+      success_updated: "Обновление %{obj} прошло удачно"
+      success_publish: "Опубликование %{obj} прошло удачно"
+      success_unpublish: "Публикация %{obj} была удачно отменена"
+      success_clone: "Клонирование %{obj}  в %{to} прошло удачно"
+      error_created: "Создание %{obj} не осуществлен: %{err}"
+      error_updated: "Обновление %{obj} не осуществлен: %{err}"
+      error_publish: "Опубликование %{obj} не осуществлен: %{err}"
+      error_publish_missing_fields: "Не возможно опубликовать %{obj}, пока Вы не предоставите конспект и уменьшенное изображение (тамбнейл)."
+      error_publish_missing_fields_link: "Добавить отсутствующее содержание."
+      error_publish_missing_sections: По меньшей мере один Раздел обязателен перед публикацией.
+      error_publish_missing_content_section: "Требуеться по крайней мере одна секция"
+      error_publish_missing_translations: The story must be completely translated in %{lang} in order to be published.
+      error_unpublish: "Отмена публикации %{obj} не произошла: %{err}"
+      error_clone: "%{obj} клонирование не произошло."
+      error_clone_notification: "Ошибка при клонировании истории: %{msg}"
+      error_export: "Загрузка историй не возможна"
+      error_get_data: "Выбранный объект не может быть найден"
+      select_section: "Пожалуйста, первую очередь  выберите раздел, чтобы добавить объект "
+      staff_pick: История была выбрана в как "Выбор Редакции"
+      staff_unpick: Статус истории "Выбор Редакции" был отменен
+      success_settings: "Ваши настройки были удачно обновлены."
+      success_remove_avatar: "В данное  время используеться Ваш аватар страницы Facebook "
+      nickname_duplicate: "Такой пользывательский URL уже существует"
+      nickname_url: "Ваш URL будет:"
+      story_duplicate: "Такой URL истроии уже существует"
+      story_url: 'URL Вашей истории будет:'
+      update_translations: "Don't forget to translate this new item!"
       invitation:
-        accepted: "You have accepted the invitation to collaborate on '%{title}'"
-        accepted_already: "You have already accepted the invitation to collaborate on '%{title}'"
-        bad: Sorry, your invitation could not be found or the story has been deleted.
-        declined: Your invitation was declined
+        accepted: "Вы приняли приглашение на сотрудничество на  '%{title}'"
+        accepted_already: "Вы уже приняли приглашение на сотрудничество на '%{title}'"
+        bad: "К сожалению, Ваше приглашение не может быть найден или история была удалена."
+        declined: "Ваше приглашение было отклонено"
       one_section:
-        content: Only one Item can be added to a Text section
-        slideshow: Only one Item can be added to an Image Slideshow section
-        embed_media: Only one Item can be added to an Embed Online Media section
-        youtube: Only one Item can be added to a Embed Youtube section
-        general: Only one Item can be added to this type of section        
+        content: "К разделу текста может быть добавлен только один объект"
+        slideshow: "К разделу слайдшоу может быть добавлен только один объект"
+        embed_media: "К разделу встроенной онлайн медии может быть добавлен только один объект"
+        youtube: "К разделу YouTube может быть добавлен только один объект"
+        general: "К такому разделу может быть добавлен только один объект"
       destroy_story:
-        success: Story was successfully deleted.
-        error: "Error occurred while deleting the story: %{err}"
+        success: "История была удачно удалена"
+        error: "При удалении истории произошла ошибка: %{err}"
       destroy_item:
-        success: Item was successfully deleted.
-        error: "Error occurred while deleting the item: %{err}"
-        error_not_found: Item could not be found to delete.
-      embed_code: Copy and paste this embed code into your web page
+        success: "Объект %{obj} был удачно удален"
+        error: "При удалении  объекта произошла ошибка: %{err}"
+        error_not_found: "Объект не был найден и удален. "
+      embed_code: "Скопируйте и вставьте этот встроенный код в веб-страницу"
       collaborators:
-        success_remove: '%{name} was removed as a collaborator'
-        user_not_found: User to remove as a collaborator could not be found
-        no_permission: You do not have permission to remove this collaborator
-        success_invitations: Invitations were sent!
-        error_invitations_all: "No invitations were sent due to the following erros: %{msg}"
-        error_invitations_some: "Some invitations were sent, but some were not due to the following erros: %{msg}"
+        success_remove: "%{name} был удален из сотрудников"
+        user_not_found: "Пользыватель не найден для удаления"
+        no_permission: "У Вас нет права удалить этого сотрудника"
+        success_invitations: "Приглашения были отправлены"
+        error_invitations_all: "Приглашения не были отправлены из за ошибок: %{msg}"
+        error_invitations_some: "Часть приглашенией не была отправлена из за ошибок: %{msg}"
       notification:
-        yes: You will be sent notifications.
-        no: You will not be sent notifications.
-        new_story_all_success: You will recieve a notification whenever a story is added.
-        new_story_none_success: You will not receive any notifications when stories are added.
-        new_story_by_category_success: "You will receive a notification when a story is added to these categories: %{categories}."
-        story_comments_yes: You will be sent notifications when a comment is made to one of your stories.
-        story_comments_no: You will not be sent notifications when a comment is made to one of your stories.
-        news_yes: You will be sent notifications when updates are made to Chai Khana.
-        news_no: You will not be sent notifications when updates are made to Chai Khana.
-        following_no: "You will no longer receive notifications about new stories from '%{nickname}'."
-        language: You will be sent notifications in %{language}.
-      fail_change_order: The item was not able to be moved
-      nothing_selected: Please select a section/item to delete
-      fail_delete: The section/item could not be deleted
-      confirm_delete: Are you sure you want to delete this section/item?
-      video_processed: Your video is processed
-      video_not_processed: Your video is being processed
-      not_found_for_update: The record to update could not be found in the database.
+        true: "Вам будут отправлены оповешения."
+        false: "Вам не будут отправлены оповешения."
+        new_theme_all_success: Когда тема будет добавлена, вы получите уведомление.
+        new_theme_none_success: Когда темы будут добавлены, вы не получите никаких уведомлений.
+        new_story_by_type_success: 'You will receive a notification when a story is added to these types: %{types}.'
+        story_comments_yes: "Вы получите оповешения при коментарии на Ваших историях"
+        story_comments_no: "Вы не получите оповешения при коментарии на Ваших историях"
+        following_no: "Вы больше не получите оповешения про новые истории от  '%{nickname}'."
+        language: "Вы получите оповешения на %{language}."
+      fail_change_order: "Объект не может быть перемещен"
+      nothing_selected: "Пожалуйста, выберите раздел/объект чтобы удалить "
+      fail_delete: "Раздел/объект не может быть удален"
+      confirm_delete: "Вы уверены, что хотите удалить этот раздел/объект?"
+      video_processed: "Ваше видео обработано"
+      video_not_processed: "Ваше видео в процессе обработки"
+      not_found_for_update: "Запись для обновления не может быть найден в базе данных."
   section_types:
     content:
-      name: Text
-      description: Can include html, css styling and images
+      name: "Текст"
+      description: "Может включать HTML, CSS стиль и образы"
     media:
-      name: Full-Screen Media Slideshow
-      description: Images and/or videos as a full-screen vertical slideshow
+      name: "Медиа слайд-шоу во весь экран"
+      description: "Посмотреть изображения и/или видео на вертикальном слайд-шоу во весь экран"
     slideshow:
-      name: Image Slideshow
-      description: Images in a horizontal slideshow
-    embed_media: 
-      name: Embed Online Media
-      description: youtube, vimeo, etc   
-    youtube: 
-      name: Embed Youtube
-      description: Fullscreen/common youtube video          
+      name: "Слайд-шоу изображенеи"
+      description: "Изображения на горизонтальный слайд-шоу"
+    embed_media:
+      name: "Добавить на страницу Онлайн Медиа"
+      description: YouTube, Vimeo, итд
+    youtube:
+      name: YouTube видео
+      description: 'YouTube видео, с переключаемыми субтитрами '
+    infographic: 
+      name: Infographic
+      description: Infographic or factoids with ability to add datasets and data sources
+  story_role:
+    editor: "Редактор"
+    translator: "Переводчик"
   message_types:
-    bug: Report a Bug
-    feature: Request a Feature
-    feedback: General Feedback
-  story_types:
-    story: Story - mixed story TODO
-    talk_show: Talkshow - talkshow story TODO
-    video: Video - video story TODO
-    photo: Photo - photo story TODO
-    infographic: Infographic - infographic story TODO    
+    bug: "Сообщить об ошибках"
+    feature: "Запросить о новых функциях"
+    feedback: "Поделитесь своим мнением о нас"
   filters:
-    all: All
-    matches: Matches
-    staff_pick: Staff Pick
-    staff_pick_title: View stories that have been selected as Staff Picks
-    staff_pick_title_active: Remove Staff Pick filter
-    sort_header: Sorted By    
-    sort_title: Indicate how the stories should be sorted
-    filters: Filters
+    all: "Все"
+    matches: "Похожее"
+    staff_pick: "Выбор Редакции"
+    staff_pick_title: Посмотреть истории отмеченные как "Выбор Редакции"
+    staff_pick_title_active: Удалить фильтр "Выбор редакции"
+    sort_header: "Группировать по"
+    sort_title: "Укажите признак группирования"
+    filters: "Фильтры"
+    all_stories: "Все истории"
     sort:
-      recent: Recent
-      reads: Views
-      likes: Likes
-    category_header: Category
-    category_title: View stories that belong to a category
-    language_header: Language
-    language_title: View stories that are written in a particular language
-    search: Find a Story
-    following: Following
-    following_title: View stories of users that you are following
-    following_title_active: Remove Following filter
-    not_published: Not Published
-    not_published_title: View stories that are not published
-    not_published_title_active: Show all stories
+      recent: "Последние"
+      reads: "Просмотры"
+      likes: Отметки "Нравится"
+    category_header: "Категория"
+    category_title: "Прoсмотривать истории которые относятся к категории"
+    theme_header: "Тема"
+    theme_title: "Просмотривать истории по теме"
+    language_header: "Язык"
+    language_title: "Просмотривать истории созданные на определенным языке"
+    search: "Найти историю"
+    following: "Подпосчики"
+    following_title: "Просмотривать истории пользывателей к которым Вы подписаны"
+    following_title_active: Удалить фильтр "Мои подписки"
+    not_published: "Не опубликованные"
+    not_published_title: "Просмотривать неопубликованнуе истории"
+    not_published_title_active: "Показать все истории"
   tokeninput:
-    searchingText: Searching...
+    searchingText: "ведется поиск..."
     tag:
-      hintText: Search for an existing tag or enter a new tag
-      noResultsText: "No matches found. Press 'Enter' to save this new tag."
+      hintText: "Поиск существующих тегов для создания новых"
+      noResultsText: Совпадений не найдено. Нажмите "Enter", чтобы сохранить этот новый тег.
     collaborator:
-      hintText: Search for an existing user or enter the email address for a new user
-      noResultsText: "No matches found. Press 'Enter' to add this email address to the list of invited collaborators."
+      hintText: "Поиск для существующего пользователя или введите адрес электронной почты для нового пользователя"
+      noResultsText: Совпадений не найдено. Нажмите "Enter", чтобы добавить этот адрес электронной почты в список приглашенных сотрудников.
   layouts:
+    application:
+      copyright: Авторское право
+      copyright_text: Авторское право этих материалов принадлежит Чай-Хана НПО. Любая повторная публикация материалов не допускается без предварительного согласия с Чай-Хана.
+      disclaimer: Отказ от ответственности
+      disclaimer_text: "Этот сайт была подготовлен при содействии проекта Mymedia, финансируемый DANIDA. Содержание данной публикации является предметом ответственности автора / сотрудника / исполнителя / партнера международной организации и никоим образом не отражает официальное мнение Mymedia / DANIDA. "
     unsupported_browser:
-      title: Unsupported Browser
-      video: Your browser does not support this video.
-      p1: We are sorry to report that your browser is out of date and will not properly render the content from this website.
-      p2: On the bright side, there are several free browsers that you can download that are compatible with this site.
+      title: "Браузер не поддерживается"
+      video: "Ваш браузер не поддерживает этого видео."
+      p1: "К сожалению Ваш браузер устарел и не будет должным образом воспроизводить контент с этого сайта"
+      p2: "Но есть несколько бесплатных браузеров, которые можно загрузить, и которые совместимы с этого сайта"
       chrome: Chrome
       firefox: Firefox
-      ie: Internet Explorer (Windows only)
+      ie: Internet Explorer (только Windows)
       opera: Opera
       Safari: Safari
-      admin: Admin
-      sign_out: Sign Out
-      js_link_title: JumpStart Georgia - We communicate data better!
-      js_link_text: Built by
+      admin: "Админ"
+      sign_out: "Выйти"
+      js_link_title: JumpStart Georgia - Мы связываем данные лучше!
+      js_link_text: "Создано"
     reviewer:
-      copy: Copy To Clipboard...
-      copied: Copied!
+      copy: "Копировать в буфер обмена ..."
+      copied: "Скопировано!"
+    storybuilder:
+      source: Источник
+      target: Цель
+      copy_paste: Скопировать из источника
   shared:
     grid:
-      no_stories: Oh no - no stories could be found!
+      no_stories: "О, нет - истории не могут быть найдены!"
+    story_nav_modals:
+      copied: Скопировано
   admin:
     index:
-      title: Administration Section
-      users: Users
+      title: "Раздел одминистрации"
+      users: "Пользыватели"
     users:
       edit:
-        title: Editing User
+        title: "Редактирующи пользователь"
       index:
-        title: Users
+        title: "Пользыватели"
       new:
-        title: New User
+        title: "Новый пользыватель"
       show:
-        title: User Details
+        title: "Данные и пользывателе"
+    themes:
+      form:
+        header_features: Features
+        header_add_story: Select Story to be Feature
+        header_current_features: Featured Stories In the Order They Will Appear
+        no_stories: No stories have been assigned to this theme yet.
+        no_features: No stories have been selected to be features.
   root:
-    index:
-      title: Chai Khana - build and share the next generation story
-      about_header: What is it?
-      about_text: Chai Khana allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world.  %{demo_link} to see what is possible then %{start_link}!
-      demo_link: View the demo
-      start_link: build and share your stories
-      news_header: Latest News
-      all_news: more...
-    news:
-      title: Chai Khana News
-      no_news: No news is good news!
-      more_link: Continue
-    news_show:
-      title: "Chai Khana News: %{title}"
-      view_all: View All News
-    feedback:
-      title: Chai Khana Feedback
-      message_sent: Your message has been sent! Thank you for contacting us.
-      send: Send
-      name: Name
-      email: Email Address
-      message: Message
-    todo_list:
-      title: "Chai Khana's To-Do List"
-      summary: Chai Khana is in its infancy and has much growing to do. Gathered here is a list of tasks that we are working on or plan to working on soon.
-      last_update: "Last Updated On"
-      header_current: Tasks Currently Working On
-      header_short_term: Short Term Tasks
-      header_long_term: Long Term Tasks
-      header_completed: Completed Tasks
-      completed_text: To view the completed tasks, please visit the %{link}.
-      news_link: News section
-      header_missing: Is Something Missing?
-      missing_text: Is there a feature missing from these lists that you would like added?  Do you feel that we should re-prioritize our list?  If so, please let us know by using the %{link}.
-      feedback_link: Feedback section
     about:
-      title: About Chai Khana
-      intro: "The platform that allows anyone to turn text, audio tracks, pictures and/or videos into a creative web-story that can be published and shared with the world."   
-      p1: "Chai Khana enables anyone to build mixed-media stories without needing to know how to code. What sets Chai Khana apart from other similar services is that you have complete control over your content. You can publish it on Chai Khana, or your can download the story and host it where you want."
-      p2: "Each story is a sequence of media sections in the order of your choosing. You choose which order and which type of media you want each section to be. Choose from text/html, full screen images/videos, image slideshows, and embeddable online media. You can accompany each chapter with a soundtrack of your choosing. What you do with that is up to you!"
-      p3: "To ensure that your content is yours, we have made the entire platform open source. This means if you do not want to use JumpStart Georgia's live version of Chai Khana, you can install the Chai Khana application on a server of your choice. In this way, you or your organization are not locked into dependency on yet another 3rd-party service hosting your content."
-      p4: "JumpStart Georgia is building Chai Khana for the benefit of improving the ease with which civil society organizations, journalists, activists, and storytellers the world over can tell stories that are engaging and increasingly visceral, changing how audiences can experience stories on the web." 
-      help: "If you or your organization would like to help us improve Chai Khana through funding, development, or design, please don't hesitate to contact us!" 
-      contact:   
-        subject: Chai Khana Contact
-        address1: '#5 Shevchenko St, Apt 2'
-        address2: 'Tbilisi Georgia 0108'
+      title: "О Чайхане"
     embed:
-      home_link: Built on Chai Khana
+      home_link: "Создан на Чайхане"
   stories:
-    index:
     new:
-      title: Story Settings Form
+      title: "Форма параметров истории"
     edit:
-      title: Story Settings Form
+      title: "Форма параметров истории"
     form:
       placeholder:
-        title: Title of Story
-        permalink: URL to the story
-        author: Author(s) of the article
-        media_author: "Author(s) of photos and/or videos"
+        title: "Заглавок истории"
+        permalink: URL к истории
+        author: "Автор(ы) статьи"
+        media_author: "Автор(ы) фото/видео"
+        translation_author: "Автор(ы) переводной историй на этот язык"
       hint:
-        title: Story title will appear at the top of your story
-        permalink: The default URL is the title of the story, but you can change it if desired
-        author: Author names will appear below the story title
-        media_author:  "Author names will appear below the Story Author names"
-        published: Published stories are available for the world to view
-        publish_home_page: "If checked, your published story will appear on the site's homepage"
-        template: Choose template to apply styling to story
-        thumbnail: Image that is used to show the story on the home page when the story is published (jpg and png only; 3MB file size limit)
-        editor: Person that created the story record in this website
-        editors: Select people that you want to give access to edit the story
-        about: Short summary of story that will be used on the home page and when you story is shared
-        locale: Select the language of your story. Allows users to filter stories by a language.
-        categories: Select the category(s) your story belongs to.  Allows users to filter stories by a category.
-        tag_list: "Enter text to find existing tags.  If your tag does not exist yet, press 'Enter' to add the new tag to the list."
-        story_type: Select the type of your story.
-        theme: Select the theme(s) your story belongs to.
+        title: "Заглавок будет виден над вашей историей"
+        permalink: URL по умолчанию будет название рассказа, но при желании вы можете изменить его
+        author: "Выберите автора (ов) истории, чтобы история могля  появиться и на их странице"
+        media_author: "Имена соавторов появятся под именем автора истории"
+        translation_author: "Имена соавторов появятся под именем автора фото/видео"
+        published: "Опубликованные истории доступны для всего мира"
+        publish_home_page: "Если отметить, то Ваша история будет на главной странице сайта"
+        template: "Выберите шаблон для стиля истории"
+        thumbnail: "Изображение, которое используется, чтобы показать историю на главной странице после опубликования (JPG и PNG только, ограничение на размер файла 4MB )"
+        editor: "Человек который создал эту запись на сайте"
+        editors: "Выберите людей, которым Вы хотите давать доступ на редактирования истории"
+        about: "Краткое содержание (конспект) истории, которое будет использоваться на главной странице после опубликования"
+        locale: "Выберите язык вашей истории - это позволит пользователям фильтровать истории по языку"
+        categories: "Выберите категории для вашей истории - это позволит пользователям фильтровать истории по категориям"
+        tag_list: Введите текст, чтобы найти существующие теги. Если ваш тег пока не существует, нажмите "Enter", чтобы добавить новый тег в список.
+        story_type: "Выберите тип вашей истории."
+        theme: "Выберите тему (ы) Вашей истории"
+        in_theme_slider: "При выборе этого, история появится в верхней ползунке тем."
     collaborators:
-      title: "Collaborators for '%{title}'"
-      owner_header: Story Owner
-      collaborators_header: Story Collaborators
-      explanation: A story collaborator is someone that has access to edit this story.
-      current_header: Current Collaborators
-      remove_title: 'Remove %{name}'
-      not_accepted_title: '%{name} has not accepted the invitation yet'
-      add_header: Add Collaborators
-      add_explanation: For the users you enter below, an email will be sent inviting them to be a collaborator on this story.
-      search_label: Enter names or email addresses of the people you want to invite
-      message: Add Message to Notification (optional)
-      submit: Send Collaboration Invitation
+      title: "Сотрудники '%{title}'"
+      owner_header: "Автор истории"
+      collaborators_header: "Сотрудники истории"
+      explanation: "У сотрудников есть доступ на редактирование истории"
+      editors_header: "Редакторы"
+      editor_explanation: "У редакторов есть доступ на добавление/редактирование истории, на перевод в другой язык, на приглашение сотрудников и на опубликование."
+      translators_header: "Переводчики"
+      translator_explanation: "У переводчиков есть доступ на осуществления перевода текста на другой язык. У переводчиков нету доступа на редактирование оригинальной истории, добавления сотрудников или на опукование."
+      remove_title: "Удалить %{name}"
+      not_accepted_title: "%{name} еще не принял/а Ваше приглашение"
+      add_header: "Добавить сотрудника"
+      add_explanation: "Введенным пользывателям будет отправлено электронное письмо, с приглашеним на сотрудничество на эту историю"
+      editor_label: "Введите имена или адреса электронных почт редакторов"
+      language_label: "Выберите языд(и) для перевода"
+      translator_label: "Введите имя или электронный адрес переводчика"
+      translator_add: "Добавить другого переводчика"
+      translator_remove: "Удалить переводчика"
+      message: "Добавить сообшение к оповешению"
+      submit: "Отправить приглашения на сотрудничество"
     media:
-      form_title: Full-Screen Media Slideshow Form
-      left: Left
-      center: Center
-      right: Right
-      image: Image
-      video: Video
-      floating: Floating
-      fixed: Fixed
+      form_title: "Форма для медиа слайд-шоу на весь экран"
+      left: "Левый"
+      center: "Центр"
+      right: "Правый"
+      image: "Изображение"
+      video: "Видео"
+      floating: "Плавающий"
+      fixed: "Фиксированный"
       placeholder:
-        title: Media title
-        caption: "Caption text"
-        source: "Source of the image/video"
+        title: "Заглавок медии"
+        caption: "Текст титров"
+        source: "Источник изображения / видео"
       hint:
-        title: "This text only appears in the left sidebar, it will not show up in the story"
-        media_type: "For videos, an image is necessary because videos are not loaded on mobile devices."
-        caption: "Caption text will appear on top of the image/video. If this is the first item in the story, the caption text is hidden."
-        source: "Source of the image/video, appears in the bottom-right corner"
-        image: "Only jpg format allowed; 3MB file size limit"
-        video: "Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receive a notification when the processing is complete, typically within a few minutes."
-        caption_align: "The Caption text will appear on top of the image/video (appears on the left by default) "
-        infobox_type: "Caption text and source styling methods floating and fixed. Floating will be predefined width and will move on scroll. Fixed will be at the bottom of screen with full width and transparent background"
-        video_loop: "If checked, the video will loop infinitly, otherwise the video will not loop"
+        title: "Этот текст появляется только на левой боковой панели, он не будет отображаться в истории"
+        media_type: "Для видео, изображения, необходимо потому, что видео не загружен на мобильных устройствах"
+        caption: "Текст титров появится на верхней части изображения / видео. Если это первыйо бьект в истории, то текст титров будет скрыта"
+        source: "Источник изображения / видео, появится в нижнем правом углу"
+        image: "Разрешен только формат JPG: ограничение на размер файла - 4 Мб "
+        video: "Принимаются только форматы МP4, MOV, WebM, OGV, FLV, AVI и WMV; 2 5MB - предельный размер файлов. После загружения видео должно быть обработанно, прежде чем станет доступным для просмотра. Вы получите уведомление, когда обработка завершится (как правило, в течение нескольких минут)."
+        caption_align: "Текст титров появится в верхней части изображения / видео (по умолчанию - на левой стороне) "
+        infobox_type: "Текст титров может плавать в верхней части изображения / видео или фиксированна на нижней части изображения / видео"
+        video_loop: "При выборе этого видео будет бесконечно переигрываться, иначе видео не будет переигрываться"
     section:
-      form_title: Section Form
-      'yes': 'Yes'
-      'no': 'No'
+      form_title: "Форма раздела"
+      'yes': "Да"
+      'no': "Нет"
       placeholder:
-        title: Section title
+        title: "Заглавок раздела"
       hint:
-        title: "This text appears in the left sidebar and, if Navigation Shortcut is selected, will appear as the title text for the shortcut"
-        type: "Selecting this type determines what kind of information you can add into this section"
-        has_marker: "If checked, there will be a navigation shortcut link to go to this section"
-        audio: "Background audio to play while this section is in view (mp3 format only; 10mb file size limit)"
-        delete_audio: "If checked, the Audio Track will be deleted"
+        title: "Этот текст появляется в левой боковой панели и, если отмечена Навигационная ссылка, то текст будет отображаться в качестве заголовки ярлыка"
+        type: "При выборе этого типа определяет, какого рода информацией Вы можете добавить в этот раздел"
+        has_marker: "При выборе этого будет навигационная ссылка, чтобы перейти к этому разделу"
+        audio: "Фоновый аудиофайл, для проигрывания во время просмотра этого (формат - только MP3; предел размера файла - 10 МБ )"
+        delete_audio: "При выборе этого аудиофайл будет удален"
     content:
-      form_title: Text Form
+      form_title: "Форма текста"
       placeholder:
-        title: Text title
-        caption: optional
-        sub_caption: optional
+        title: "Заглавок текста"
+        caption: "необязательно"
+        sub_caption: "необязательно"
       hint:
-        title: "This text only appears in the left sidebar, it will not show up in the story"
-        caption: Heading of text will appear at the top of the section
-        sub_caption: Subheading of text will appear below the Heading
-        content: Text can include html, css styling and images
+        title: "Этот текст появляется только в левой боковой панели, он не будет отображаться в истории"
+        caption: "Заголовок текста появится в верхней части раздела"
+        sub_caption: "Подзаголовок текста появится под заголовком"
+        content: "Текст может включать в себя HTML, CSS стиль и образы"
     reviewer_key:
-      title: Private URL
-      desc: "You can copy and share the following URL with whomever you want to review '%{title}' before it is published. These people will have the ability to read your story, but not edit it."
+      title: "Личный URL"
+      desc: "Вы можете копировать и распространять следующий URL, с кем вы хотите просмотреть '% {title}', до опубликации. Эти люди будут иметь возможность только читать историю, но не редактировать его."
     slideshow:
-      form_title: Image Slideshow Form
-      add_image: Add Image
+      form_title: "Форма для слайд-шоу изображенеи"
+      add_image: "Добавить изображение"
       placeholder:
+        title: "Заглавок слайд-шоу"
+        caption: "необязательно"
+      hint:
+        title: "Этот текст появляется только в левой боковой панели, он не будет отображаться в истории"
+        caption: "Заголовок появится в верхней части спайдшоу"
+        description: Описание появится под слайдом
+    asset_file_fields:
+      remove_image: "Удалить"
+      placeholder:
+        caption: "необязательно"
+        source: "необязательно"
+      hint:
+        caption: "Описание изображения будет отображаться под картиной"
+        source: "Источник появится под описанием изображения"
+        asset: "Только форматы JPG и PNG, ограничение на размер файла 4MB"
+      label:
+        caption: "Описание изображения"
+        source: "Источник изображения"
+    embed_media:
+      form_title: "Форма встроенного онлайн медиа контента"
+      get_media: "Получить медиа контент"
+      preview: "Предтварительный просмотр контента"
+      error: URL не может быть обработан. Пожалуйста, попробуйте еще раз.
+      placeholder:
+        title: "Заглавок встроенного контента"
+        url: URL к медиа контенту
+      hint:
+        title: "Этот текст появляется только в левой боковой панели, он не будет отображаться в истории"
+        url: "Дла встроенного медиа контента могут быть использованы следующие сайты Аудио: Soundcloud, Spotify; Видео: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
+    youtube:
+      form_title: "Форма для видео из YouTube"
+      get_media: "Получить видео из YouTube"
+      preview: "Предтварительный просмотр видео из YouTube"
+      error: URL не может быть обработан. Пожалуйста, попробуйте еще раз.
+      generate_iframe:
+        missing_api_key: "value can't be generated due to missing API key."
+        error: "value can't be generated."      
+      placeholder:
+        title: "Заглавок видео из YouTube"
+        url: URL к видео на YouTube
+      hint:
+        title: "Этот текст появляется только в левой боковой панели, он не будет отображаться в истории"
+        url: "Скопируйте URL-адрес YouTube и вставить его здесь"
+        fullscreen: "При выборе этого видео будет занимать весь экран"
+        loop: "При выборе этого видео будет бесконечно переигрываться"
+        info: "При выборе этого в заглвoка будет показан на верхней части видео"
+        cc: "При выборе этого субтитры будут отображаться по умолчанию"
+        menu_lang: "Язык YouTube меню / управления"
+        cc_lang: "Язык субтитров - показать по умолчанию"
+    infographic:
+      form_title: Infographic Form
+      add_datasource: Add Data Source
+      static: Static
+      dynamic: Dynamic
+      label:
+        dynamic_size: Infographic dimensions WidthxHeight
+      placeholder:
+        title: Title
         caption: optional
+        dataset_url: optional
+        dynamic_url: Interactive Url
+        dynamic_width: 0
+        dynamic_height: 0  
       hint:
         title: This text only appears in the left sidebar, it will not show up in the story
-        caption: Heading will appear at the top of the slideshow
-    asset_fields:
-      remove_image: Remove
+        caption: "Heading of infographic will appear above the infographic image. If this Infographic Section is first in the story, you should leave this blank and use the Story Title field."
+        description: "The description will appear below the infographic. If this Infographic Section is first in the story, the Story Summary will appear below the infographic image so if the Story Summary and Infographic Description are the same, you should leave this field blank."
+        image: Only jpg and png format allowed; 8MB file size limit
+        dataset_file: Please try to compress files to make for quicker download; 25MB file size limit
+        dataset_url: URL to Dataset
+        subtype: "Static infographics are images, Dynamic infographics require a url."        
+        dynamic_url: Url to web page with interactive infographic
+        dynamic_size: Leave 0 if you want width and height to be fullscreen or specify size in px        
+    infographic_datasource_fields:
       placeholder:
-        caption: optional
-        source: optional
+        url: optional
       hint:
-        caption: Image Description will appear below the image
-        source: Source will appear below the Image Description
-        asset: Only jpg and png format allowed; 3MB file size limit
-      label:
-        caption: Image Description
-        source: Image Source
-    embed_media:
-      form_title: Embed Online Media Form
-      get_media: Get Online Media
-      preview: Preview of Online Media
-      error: The URL could not be processed. Please try again.
-      placeholder:
-        url: Url to online media
-      hint:
-        title: "This text only appears in the left sidebar, it will not show up in the story"
-        url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: Youtube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
-    youtube:
-      form_title: Youtube Embed Online Media Form
-      get_media: Get Youtube Online Media
-      preview: Preview of Online Media
-      error: The URL could not be processed. Please try again.
-      placeholder:
-        url: Url to online media
-      hint:
-        title: "This text only appears in the left sidebar, it will not show up in the story"
-        url: "The following sites can be used for embeding online media: VIDEO: Youtube"        
+        name: Name of the data source
+        url: URL to the online data source
   storyteller:
-    byline: By
-    byline_media: "Photos and videos by "
-    source: "Source:"
-    by: by
+    byline: Oт
+    byline_media: "Фото и видео от"
+    byline_translator: "Переводчик"
+    source: "Источник"
+    by: "От"
+    related_stories: Также по теме
+    view_all_stories_in: Просмотреть все материалы в
+    infographic:
+      source: Data Source
+      dataset: Dataset
+      download: Download File
+      online: View Data Online    
   settings:
     index:
-      title: Settings
-      facebook_avatar: This is your avatar from Facebook.
-      use_facebook_avatar: Use Facebook Avatar
+      title: "Настройки"
+      facebook_avatar: "Это ваш аватар из Facebook."
+      use_facebook_avatar: "Используйте аватар Facebook"
       hint:
-        about: Short summary about yourself.  This will be shown with the stories that you publish. 
-        default_story_locale: Select the language you want to use by default when creating a new story.
-      submit: Save Settings      
+        about: "Коротко о себе - это будет показано с Вашими историями"
+        default_story_locale: "Выберите язык, который вы хотите использовать по умолчанию при создании новой истории."
+      submit: "Сохранить настройки"
     invitations:
-      title: Collaboration Invitations
-      no_invitations: At this time you have no invitations waiting for you.
-      accept_link: Accept
-      decline_link: Decline
-      header_date: Date Sent
-      header_story: Story Title
-      header_from: Sent By
+      title: "Приглашения на сотрудничество"
+      no_invitations: "На данный момент у вас нет приглашенией"
+      accept_link: "Принимать"
+      decline_link: "Отклонить"
+      header_date: "Дата отправки"
+      header_story: "Заглавок истории"
+      header_role: "Роль"
+      header_from: "Отправлено от"
     notifications:
-      title: Notifications
-      all_sub_title: All Notifications
-      all_label: Do you want to recieve any notifications from Chai Khana?
-      all_no: "No, do not send me any notifications."
-      all_yes: "Yes, I want notifications sent to me."
-      story_comment_sub_title: New Story Comment Notifications
-      story_comment_label: "Do you want to recieve notifications when a comment is made to one of your stories?"
-      story_comment_no: "No, do not send me any notifications."
-      story_comment_yes: "Yes, I want notifications sent to me."
-      new_stories_sub_title: New Story Notifications
-      new_stories_all: Notify me when any story is added.
-      new_stories_none: I do not want to receive notifications when a new story is added.
-      new_stories_by_category: "Notify me when a story is added to:"
-      language_sub_title: Notification Language
-      language_label: In what language do you want to receive the notifications?
-      news_sub_title: Chai Khana Update Notifications
-      news_label: "Do you want to recieve notifications when updates are made to Chai Khana?"
-      news_no: "No, do not send me any notifications."
-      news_yes: "Yes, I want notifications sent to me."     
-      following_sub_title: Chai Khana Users You Are Following
-      following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image."
-      following_not: "At this time, you are not following any users."
-      following_title1: "Click to unfollow '%{nickname}'"
-      following_title2: "Click to follow '%{nickname}'"     
-      submit: Save Settings
+      title: "Уведомления"
+      explain: You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.Как только новые материалы будут опубликованы на сайте Chai Khana, вы сможете получать уведомления по электронной почте! Просто подпишитесь на наш сайт.
+      all_sub_title: "Все Уведомления"
+      all_label: "Вы хотите получить какие-либо уведомления от Чай Хана?"
+      all_no: "Нет, не присылайте мне никаких уведомленией"
+      all_yes: "Да, я хочу уведомлений."
+      story_comment_sub_title: "Уведомления о новых комментариях"
+      story_comment_label: "Вы хотите получить уведомление, коментировают одного из ваших рассказов?"
+      story_comment_no: "Нет, не присылайте мне уведомления вообще."
+      story_comment_yes: "Да, я хочу уведомлений."
+      new_themes_sub_title: Уведомление о новых темах 
+      new_themes_all: Уведомляйте меня когда будет добавлена новая тема.
+      new_themes_none: Я не хочу получать никаких уведомлений о новых добавленных темах.
+      new_stories_by_category: "Сообщите мне, когда добавлена история в "
+      language_sub_title: "Язык Уведомленией"
+      language_label: "На каком языке вы хотите получать уведомления?"
+      following_sub_title: "Пользыватели Чайханы, которым вы подписаны. Люди вы следуете"
+      following_label: "Вы будете получать уведомления, когда пользователь к комы Вы подписаны публикует историю. Чтобы не получать уведомления от пользователя, отпишитесь от них, нажав на их изображения."
+      following_not: "На данный момент вы не следуете никого."
+      following_title1: "Нажмите что бы отписаться от '%{nickname}'"
+      following_title2: "Нажмите что бы подписаться к '%{nickname}'"
+      submit: "Сохранить настройки"
   imageuploader:
-    missing: "An error occurred while processing your image. Please try again."
-    invalid_type: "Invalid file type. Only .jpg or .png is allowed."
-    size_limit: "Image file size is limited to 5MB"
+    missing: "Произошла ошибка при обработке изображения. Пожалуйста, попробуйте еще раз."
+    invalid_type: "Неверный тип файла -допускается только .jpg или .png "
+    size_limit: "Максимум размер файла 4МB"
   devise:
     mailer:
       reset_password_instructions:
-        title: 'Hello %{nickname}!'
-        p1: Someone has requested a link to change your password on Chai Khana, and you can do this through the link below.
-        link_title: Change my password
-        p2: "If you didn't request this, please ignore this email."
-        p3: "Your password won't change until you access the link above and create a new one."
+        title: "Привет %{nickname}!"
+        p1: "Кто-то просил ссылку, чтобы изменить пароль на Чайхане, и вы можете сделать это через ссылку ниже."
+        link_title: "Изменение пароля"
+        p2: "Если вы не запрашивали это, не обращайте внимания на это сообщение."
+        p3: "Ваш пароль не будет меняться до тех пор, пока Вы не поидете по ссылке выше и не создадите новый."

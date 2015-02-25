@@ -1,7 +1,7 @@
 class Admin::PagesController < ApplicationController
   before_filter :authenticate_user!
   before_filter do |controller_instance|
-    controller_instance.send(:valid_role?, User::ROLES[:admin])
+    controller_instance.send(:valid_role?, User::ROLES[:site_admin])
   end
   before_filter :asset_filter
 
@@ -103,7 +103,7 @@ class Admin::PagesController < ApplicationController
 protected
 
   def asset_filter
-    @css.push("todo.css","navbar.css")   
+    @css.push("navbar.css")   
   end 
 
 end

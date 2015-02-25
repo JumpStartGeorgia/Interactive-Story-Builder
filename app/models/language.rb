@@ -1,15 +1,22 @@
-class Language < ActiveRecord::Base
+  class Language < ActiveRecord::Base
 
 	validates :locale, :presence => true
 	validates :name, :presence => true
 
   has_many :stories, :primary_key => :locale, :foreign_key => :story_locale
-  default_scope { where(locale:['az','en','hy','ka','ru']) }
+
+
+  attr_accessor :percent
+
+
+
+#  default_scope { where(locale:['az','en','hy','ka','ru']) }
+
   def self.sorted
     order('name asc')
   end
   
-  # sort with the app locales first
+  # sort with the app locales first, default locale first
   def self.app_locale_sorted
     langs = order('name asc')
     
@@ -29,6 +36,15 @@ class Language < ActiveRecord::Base
 
       if temp.present?
         temp.sort_by!{|x| x.name}
+
+        # pull out default locale and move to first
+        default_index = temp.index{|x| x.locale == I18n.default_locale.to_s}
+        if default_index.present?
+          default = temp[default_index]
+          temp.delete_at(default_index)
+          temp.insert(0, default)
+        end
+
         langs.to_a.insert(0, temp).flatten!
       end
     end
@@ -81,7 +97,7 @@ class Language < ActiveRecord::Base
   # update the flags for languages with published stories
   def self.update_published_stories_flags
     # get locales with published stories
-    locales = Story.published_locales
+    locales = Story.all_published_locales
     
     # update the flag values
     if locales.present?
@@ -94,4 +110,14 @@ class Language < ActiveRecord::Base
       update_all(:has_published_stories => 0)
     end
   end  
+
+
+  # show the name of the language with the translation percent status
+  def name_with_translation_percent
+    if self.percent.present?
+      return "#{self.name} (#{self.percent})"
+    else
+      return self.name
+    end
+  end
 end

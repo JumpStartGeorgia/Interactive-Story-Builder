@@ -1,48 +1,47 @@
-<ul id="story-navigation" class="nav nav-tabs">
-  <% cls = !@tr && current_page?(sections_story_path(@story)) ? 'class=active' : '' %>
-  <li <%=cls %>>
-    <%= link_to sections_story_path(@story), title: t('helpers.links.story_menu.title.admin_story') do %>
-      <span class="glyphicon glyphicon-picture"></span>
-      <span class="nav-text">
-        <%=t('helpers.links.story_menu.link.admin_story')%>
-      </span>
-    <% end %>
-  </li>
-
-  <% cls = current_page?(collaborators_story_path(@story)) ? 'class=active' : '' %>
-  <li <%=cls %>>
-    <%= link_to collaborators_story_path(@story), title: t('helpers.links.story_menu.title.collaborators') do %>
-      <span class="glyphicon glyphicon-user"></span>
-      <span class="nav-text">
-        <%=t('helpers.links.story_menu.link.collaborators')%>
-      </span>
-    <% end %>
-  </li>
-  <% cls = @tr && current_page?(sections_story_path(@story)) ? 'class=active' : '' %>
-  <li <%=cls %>>
-    <%= link_to sections_story_path(@story,tr:true,from:@tr_from,to:@tr_to), title: 'Translation' do %> <!-- t('helpers.links.story_menu.title.translations')  -->
-      <span class="glyphicon glyphicon-user"></span>
-      <span class="nav-text">
-        Translations
-      </span>
-    <% end %>
-  </li>
-  <li>
-    <%= link_to clone_story_path(@story), title: t('helpers.links.story_menu.title.clone') do %>
-      <span class="glyphicon glyphicon-camera"></span>
-      <span class="nav-text">
-        <%=t('helpers.links.story_menu.link.clone')%>
-      </span>
-    <% end %> 
-  </li>                        
-  <li>  
-    <%= link_to export_story_path(@story), title: t('helpers.links.story_menu.title.export') do %>
-      <span class="glyphicon glyphicon-download"></span>
-      <span class="nav-text">
-        <%=t('helpers.links.story_menu.link.export')%>
-      </span>
-    <% end %>
-  </li>                          
-</ul>
-<%= render partial: "shared/story_nav_modals"%> 
-
+<% if @edit_story_role != Story::ROLE[:translator] %>
+  <ul id="story-navigation" class="nav nav-tabs">
+    <% cls = !@tr && current_page?(sections_story_path(@story)) ? 'class=active' : '' %>
+    <li <%=cls %>>
+      <%= link_to sections_story_path(@story), title: t('helpers.links.story_menu.title.story') do %>
+        <span class="glyphicon glyphicon-picture"></span>
+        <span class="nav-text">
+          <%=t('helpers.links.story_menu.link.story')%>
+        </span>
+      <% end %>
+    </li>
+    <% cls = current_page?(collaborators_story_path(@story)) ? 'class=active' : '' %>
+    <li <%=cls %>>
+      <%= link_to collaborators_story_path(@story), title: t('helpers.links.story_menu.title.collaborators') do %>
+        <span class="glyphicon glyphicon-user"></span>
+        <span class="nav-text">
+          <%=t('helpers.links.story_menu.link.collaborators')%>
+        </span>
+      <% end %>
+    </li>
+    <% cls = @tr && current_page?(sections_story_path(@story)) ? 'class=active' : '' %>
+    <li <%=cls %>>
+      <%= link_to sections_story_path(@story,tr:true,from:@tr_from,to:@tr_to), title: t('helpers.links.story_menu.title.translations') do %> 
+        <span class="glyphicon glyphicon-globe"></span>
+        <span class="nav-text">
+          <%= t('helpers.links.story_menu.link.translations') %>
+        </span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to clone_story_path(@story), title: t('helpers.links.story_menu.title.clone') do %>
+        <span class="glyphicon glyphicon-camera"></span>
+        <span class="nav-text">
+          <%=t('helpers.links.story_menu.link.clone')%>
+        </span>
+      <% end %> 
+    </li>                        
+    <li>  
+      <%= link_to export_story_path(@story), title: t('helpers.links.story_menu.title.export') do %>
+        <span class="glyphicon glyphicon-download"></span>
+        <span class="nav-text">
+          <%=t('helpers.links.story_menu.link.export')%>
+        </span>
+      <% end %>
+    </li>                          
+  </ul>
+<% end %>

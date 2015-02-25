@@ -15,36 +15,36 @@
 puts "Loading Types"
 StoryType.delete_all
 StoryTypeTranslation.delete_all
-t = StoryType.create(:id => 1, :sort_order => 1)
+t = StoryType.create(:id => 1, :sort_order => 3)
 t.story_type_translations.create(:locale => 'en', :name => 'Story')
 t.story_type_translations.create(:locale => 'ka', :name => 'Story')
 t.story_type_translations.create(:locale => 'ru', :name => 'Story')
 t.story_type_translations.create(:locale => 'az', :name => 'Story')
-t.story_type_translations.create(:locale => 'am', :name => 'Story')
-t = StoryType.create(:id => 2, :sort_order => 2)
+t.story_type_translations.create(:locale => 'hy', :name => 'Story')
+t = StoryType.create(:id => 2, :sort_order => 4)
 t.story_type_translations.create(:locale => 'en', :name => 'Talk Show')
 t.story_type_translations.create(:locale => 'ka', :name => 'Talk Show')
-t.story_type_translations.create(:locale => 'ru', :name => 'Talk Showy')
+t.story_type_translations.create(:locale => 'ru', :name => 'Talk Show')
 t.story_type_translations.create(:locale => 'az', :name => 'Talk Show')
-t.story_type_translations.create(:locale => 'am', :name => 'Talk Show')
-t = StoryType.create(:id => 3, :sort_order => 3)
+t.story_type_translations.create(:locale => 'hy', :name => 'Talk Show')
+t = StoryType.create(:id => 3, :sort_order => 2)
 t.story_type_translations.create(:locale => 'en', :name => 'Video')
 t.story_type_translations.create(:locale => 'ka', :name => 'Video')
 t.story_type_translations.create(:locale => 'ru', :name => 'Video')
 t.story_type_translations.create(:locale => 'az', :name => 'Video')
-t.story_type_translations.create(:locale => 'am', :name => 'Video')
-t = StoryType.create(:id => 4, :sort_order => 4)
+t.story_type_translations.create(:locale => 'hy', :name => 'Video')
+t = StoryType.create(:id => 4, :sort_order => 1)
 t.story_type_translations.create(:locale => 'en', :name => 'Photo')
 t.story_type_translations.create(:locale => 'ka', :name => 'Photo')
 t.story_type_translations.create(:locale => 'ru', :name => 'Photo')
 t.story_type_translations.create(:locale => 'az', :name => 'Photo')
-t.story_type_translations.create(:locale => 'am', :name => 'Photo')
-t = StoryType.create(:id => 5, :sort_order => 5)
-t.story_type_translations.create(:locale => 'en', :name => 'Infographic')
-t.story_type_translations.create(:locale => 'ka', :name => 'Infographic')
-t.story_type_translations.create(:locale => 'ru', :name => 'Infographic')
-t.story_type_translations.create(:locale => 'az', :name => 'Infographic')
-t.story_type_translations.create(:locale => 'am', :name => 'Infographic')
+t.story_type_translations.create(:locale => 'hy', :name => 'Photo')
+# t = StoryType.create(:id => 5, :sort_order => 5)
+# t.story_type_translations.create(:locale => 'en', :name => 'Infographic')
+# t.story_type_translations.create(:locale => 'ka', :name => 'Infographic')
+# t.story_type_translations.create(:locale => 'ru', :name => 'Infographic')
+# t.story_type_translations.create(:locale => 'az', :name => 'Infographic')
+# t.story_type_translations.create(:locale => 'hy', :name => 'Infographic')
 
 
 #####################
@@ -120,14 +120,197 @@ langs = [
   ["uz", "U'zbek"],
   ["vi", "Tiếng Việt"],
   ["zh-TW", "繁體中文"],
-  ["zh-CN", "简体中文"],
-  ["am", "Հայերեն"]
+  ["zh-CN", "简体中文"]
 ]
 
+# only load the languages that the app is in.
+app_langs = []
+I18n.available_locales.each do |locale|
+  app_langs << langs.select{|x| x[0] == locale.to_s}.first
+end
+
 sql = "insert into languages (locale, name) values "
-sql << langs.map{|x| "(\"#{x[0]}\", \"#{x[1]}\")"}.join(', ')
+sql << app_langs.map{|x| "(\"#{x[0]}\", \"#{x[1]}\")"}.join(', ')
 ActiveRecord::Base.connection.execute(sql)
 
+if !Rails.env.production?
+
+  #####################
+  ## Themes
+  #####################
+  puts "Loading Test/Dummy Data"
+  Theme.delete_all
+  ThemeTranslation.delete_all
+  StoryTheme.delete_all
+
+  # get stories to add to theme
+  published_ids = StoryTranslation.select('distinct story_id').where(:published => true)
+  published = Story.where(:id => published_ids.uniq)
+
+  t = Theme.create(:id => 1, :published_at => '2015-01-15', :show_home_page => true)
+  t.theme_translations.create(:locale => 'en', :name => '1st test theme', edition: 'January 2015')
+  t.theme_translations.create(:locale => 'ka', :name => '1st test theme', edition: 'January 2015')
+  published[0..7].each_with_index do |story, i|
+    story.themes << t
+    if i % 2 == 0
+      story.in_theme_slider = true
+    end
+    story.save
+  end
+  t.is_published = true
+  t.save
+
+  t = Theme.create(:id => 2, :published_at => '2014-12-15')
+  t.theme_translations.create(:locale => 'en', :name => '2nd test theme', edition: 'December 2014')
+  t.theme_translations.create(:locale => 'ka', :name => '2nd test theme', edition: 'December 2014')
+  published[8..10].each_with_index do |story, i|
+    story.themes << t
+    if i % 2 == 0
+      story.in_theme_slider = true
+    end
+    story.save
+  end
+  t.is_published = true
+  t.save
+
+
+  t = Theme.create(:id => 3, :published_at => '2014-11-15')
+  t.theme_translations.create(:locale => 'en', :name => '3rd test theme', edition: 'November 2015')
+  t.theme_translations.create(:locale => 'ka', :name => '3rd test theme', edition: 'November 2015')
+  published[10..20].each_with_index do |story, i|
+    story.themes << t
+    if [1, 5, 9].include?(i)
+      story.in_theme_slider = true
+    end
+    story.save
+  end
+  t.is_published = true
+  t.save
+
+
+  # add story type to remaining stories
+  published[21..published.length-1].each do |story|
+    story.save
+  end
+
+  # clear out all existing story user roles if a person is a coordinator
+  coords = User.where(:role => User::ROLES[:coordinator]).pluck(:id)
+  StoryUser.where(:user_id => coords, :role => 0).delete_all
+  User.where(:role => User::ROLES[:coordinator]).update_all(:role => User::ROLES[:user])
+  User.where(:role => User::ROLES[:user]).limit(2).update_all(:role => User::ROLES[:coordinator])
+
+  # need to make some author records for testing
+  Author.destroy_all
+  StoryAuthor.delete_all
+  authors = []
+  a = Author.create(id: 1)
+  a.author_translations.create(locale: 'en', name: 'Demetria Guynes')
+  a.author_translations.create(locale: 'ka', name: 'Demetria Guynes')
+  authors << a
+  a = Author.create(id: 2)
+  a.author_translations.create(locale: 'en', name: 'Walter Willis')
+  a.author_translations.create(locale: 'ka', name: 'Walter Willis')
+  authors << a
+  a = Author.create(id: 3)
+  a.author_translations.create(locale: 'en', name: 'Allen Konigsberg')
+  a.author_translations.create(locale: 'ka', name: 'Allen Konigsberg')
+  authors << a
+  a = Author.create(id: 4)
+  a.author_translations.create(locale: 'en', name: 'Louis Szekely')
+  a.author_translations.create(locale: 'ka', name: 'Louis Szekely')
+  authors << a
+  a = Author.create(id: 5)
+  a.author_translations.create(locale: 'en', name: 'Joaquin Rafael Bottom')
+  a.author_translations.create(locale: 'ka', name: 'Joaquin Rafael Bottom')
+  authors << a
+  a = Author.create(id: 6)
+  a.author_translations.create(locale: 'en', name: 'Elizabeth Stamatina Fey')
+  a.author_translations.create(locale: 'ka', name: 'Elizabeth Stamatina Fey')
+  authors << a
+
+  # now need to assign authors and story type to stories
+  story_types = StoryType.select('id').map{|x| x.id}
+  Story.all.each_with_index do |story, index|
+    story.authors << authors.sample
+    if index % 3 == 0
+      story.authors << authors.sample
+    end
+    if index % 5 == 0
+      story.authors << authors.sample
+    end
+
+    story.story_type_id = story_types.sample
+    story.save
+  end
+
+  #####################
+  ## Pages
+  #####################
+  puts "Loading Pages"
+  Page.delete_all
+  PageTranslation.delete_all
+  p = Page.create(:id => 1, :name => 'about')
+  p.page_translations.create(:locale => 'en', :title => 'About Us', content: "<p>The Chai Khana or &ldquo;tea house,&rdquo; is symbolic of a collective space where citizens come together and discuss socio-economic issues. It is a focal point for exchanging information and a flourishing place for social interaction and social entrepreneurship. Accordingly, Chai Khana seeks to attract new local and international attention to locally-led dialogue covering the region.</p>
+  <p>At Chai Khana, we believe that open access to information, through issue-based multi-media content, could be a catalyst for positive change. We believe that if we invest in building up the skills of young journalists, they will create positive returns for themselves, their communities, and the region at large. The values of the NGO are therefore to build up a more open, ethnical and professional source of alternative media for the South Caucasus.</p>
+  <h2>Mission Statement</h2>
+  <p>The Mission of Chai Khana is to strengthen citizen engagement and Independent Journalism in the region. In doing so, Chai Khana seeks toencourage the diverse and thriving media landscape in the South Caucasus by helping to use innovative tools to improvethe quality and independence of objective reporting, and promote non-discrimination and tolerance between Armenians, Georgians and Azerbaijanis. Through this collaboration, the NGO seeks to expand the space for free expression and freedom of speech, including critical and alternative views in the South Caucasus.</p>
+  <h2>What We Do</h2>
+  <p>At Chai Khana, we draw on the talent of young journalists, film-makers, data analysts and photographers to publish an engaging, visually complex and dynamic multi-media series. We provide journalism trainings, mentorship and opportunities for collaboration in Tbilisi, Georgia.</p>
+  <h2>Acknowledgements</h2>
+  <p>Chai Khana would like to thank NIRAS who manages the fund provided by the Danish Foreign Ministry for their generous support and belief that we are making a difference.In addition, we would like to thank our partner, Jumpstart Georgia for their continued partnership and inspiration. And finally, we would like to thank all the journalists in this project who continue to share their time, skill, and energy to make the project possible.</p>
+  <h2>Contact Information</h2>
+  <p>chai.khana01@gmail.com</p>
+  <h2>Vacancies</h2>
+  <p>No current openings at this time</p>")
+  p.page_translations.create(:locale => 'ka', :title => 'About Us', content: "<p>The Chai Khana or &ldquo;tea house,&rdquo; is symbolic of a collective space where citizens come together and discuss socio-economic issues. It is a focal point for exchanging information and a flourishing place for social interaction and social entrepreneurship. Accordingly, Chai Khana seeks to attract new local and international attention to locally-led dialogue covering the region.</p>
+  <p>At Chai Khana, we believe that open access to information, through issue-based multi-media content, could be a catalyst for positive change. We believe that if we invest in building up the skills of young journalists, they will create positive returns for themselves, their communities, and the region at large. The values of the NGO are therefore to build up a more open, ethnical and professional source of alternative media for the South Caucasus.</p>
+  <h2>Mission Statement</h2>
+  <p>The Mission of Chai Khana is to strengthen citizen engagement and Independent Journalism in the region. In doing so, Chai Khana seeks toencourage the diverse and thriving media landscape in the South Caucasus by helping to use innovative tools to improvethe quality and independence of objective reporting, and promote non-discrimination and tolerance between Armenians, Georgians and Azerbaijanis. Through this collaboration, the NGO seeks to expand the space for free expression and freedom of speech, including critical and alternative views in the South Caucasus.</p>
+  <h2>What We Do</h2>
+  <p>At Chai Khana, we draw on the talent of young journalists, film-makers, data analysts and photographers to publish an engaging, visually complex and dynamic multi-media series. We provide journalism trainings, mentorship and opportunities for collaboration in Tbilisi, Georgia.</p>
+  <h2>Acknowledgements</h2>
+  <p>Chai Khana would like to thank NIRAS who manages the fund provided by the Danish Foreign Ministry for their generous support and belief that we are making a difference.In addition, we would like to thank our partner, Jumpstart Georgia for their continued partnership and inspiration. And finally, we would like to thank all the journalists in this project who continue to share their time, skill, and energy to make the project possible.</p>
+  <h2>Contact Information</h2>
+  <p>chai.khana01@gmail.com</p>
+  <h2>Vacancies</h2>
+  <p>No current openings at this time</p>")
+  p.page_translations.create(:locale => 'az', :title => 'About Us', content: "<p>The Chai Khana or &ldquo;tea house,&rdquo; is symbolic of a collective space where citizens come together and discuss socio-economic issues. It is a focal point for exchanging information and a flourishing place for social interaction and social entrepreneurship. Accordingly, Chai Khana seeks to attract new local and international attention to locally-led dialogue covering the region.</p>
+  <p>At Chai Khana, we believe that open access to information, through issue-based multi-media content, could be a catalyst for positive change. We believe that if we invest in building up the skills of young journalists, they will create positive returns for themselves, their communities, and the region at large. The values of the NGO are therefore to build up a more open, ethnical and professional source of alternative media for the South Caucasus.</p>
+  <h2>Mission Statement</h2>
+  <p>The Mission of Chai Khana is to strengthen citizen engagement and Independent Journalism in the region. In doing so, Chai Khana seeks toencourage the diverse and thriving media landscape in the South Caucasus by helping to use innovative tools to improvethe quality and independence of objective reporting, and promote non-discrimination and tolerance between Armenians, Georgians and Azerbaijanis. Through this collaboration, the NGO seeks to expand the space for free expression and freedom of speech, including critical and alternative views in the South Caucasus.</p>
+  <h2>What We Do</h2>
+  <p>At Chai Khana, we draw on the talent of young journalists, film-makers, data analysts and photographers to publish an engaging, visually complex and dynamic multi-media series. We provide journalism trainings, mentorship and opportunities for collaboration in Tbilisi, Georgia.</p>
+  <h2>Acknowledgements</h2>
+  <p>Chai Khana would like to thank NIRAS who manages the fund provided by the Danish Foreign Ministry for their generous support and belief that we are making a difference.In addition, we would like to thank our partner, Jumpstart Georgia for their continued partnership and inspiration. And finally, we would like to thank all the journalists in this project who continue to share their time, skill, and energy to make the project possible.</p>
+  <h2>Contact Information</h2>
+  <p>chai.khana01@gmail.com</p>
+  <h2>Vacancies</h2>
+  <p>No current openings at this time</p>")
+  p.page_translations.create(:locale => 'ru', :title => 'About Us', content: "<p>The Chai Khana or &ldquo;tea house,&rdquo; is symbolic of a collective space where citizens come together and discuss socio-economic issues. It is a focal point for exchanging information and a flourishing place for social interaction and social entrepreneurship. Accordingly, Chai Khana seeks to attract new local and international attention to locally-led dialogue covering the region.</p>
+  <p>At Chai Khana, we believe that open access to information, through issue-based multi-media content, could be a catalyst for positive change. We believe that if we invest in building up the skills of young journalists, they will create positive returns for themselves, their communities, and the region at large. The values of the NGO are therefore to build up a more open, ethnical and professional source of alternative media for the South Caucasus.</p>
+  <h2>Mission Statement</h2>
+  <p>The Mission of Chai Khana is to strengthen citizen engagement and Independent Journalism in the region. In doing so, Chai Khana seeks toencourage the diverse and thriving media landscape in the South Caucasus by helping to use innovative tools to improvethe quality and independence of objective reporting, and promote non-discrimination and tolerance between Armenians, Georgians and Azerbaijanis. Through this collaboration, the NGO seeks to expand the space for free expression and freedom of speech, including critical and alternative views in the South Caucasus.</p>
+  <h2>What We Do</h2>
+  <p>At Chai Khana, we draw on the talent of young journalists, film-makers, data analysts and photographers to publish an engaging, visually complex and dynamic multi-media series. We provide journalism trainings, mentorship and opportunities for collaboration in Tbilisi, Georgia.</p>
+  <h2>Acknowledgements</h2>
+  <p>Chai Khana would like to thank NIRAS who manages the fund provided by the Danish Foreign Ministry for their generous support and belief that we are making a difference.In addition, we would like to thank our partner, Jumpstart Georgia for their continued partnership and inspiration. And finally, we would like to thank all the journalists in this project who continue to share their time, skill, and energy to make the project possible.</p>
+  <h2>Contact Information</h2>
+  <p>chai.khana01@gmail.com</p>
+  <h2>Vacancies</h2>
+  <p>No current openings at this time</p>")
+  p.page_translations.create(:locale => 'hy', :title => 'About Us', content: "<p>The Chai Khana or &ldquo;tea house,&rdquo; is symbolic of a collective space where citizens come together and discuss socio-economic issues. It is a focal point for exchanging information and a flourishing place for social interaction and social entrepreneurship. Accordingly, Chai Khana seeks to attract new local and international attention to locally-led dialogue covering the region.</p>
+  <p>At Chai Khana, we believe that open access to information, through issue-based multi-media content, could be a catalyst for positive change. We believe that if we invest in building up the skills of young journalists, they will create positive returns for themselves, their communities, and the region at large. The values of the NGO are therefore to build up a more open, ethnical and professional source of alternative media for the South Caucasus.</p>
+  <h2>Mission Statement</h2>
+  <p>The Mission of Chai Khana is to strengthen citizen engagement and Independent Journalism in the region. In doing so, Chai Khana seeks toencourage the diverse and thriving media landscape in the South Caucasus by helping to use innovative tools to improvethe quality and independence of objective reporting, and promote non-discrimination and tolerance between Armenians, Georgians and Azerbaijanis. Through this collaboration, the NGO seeks to expand the space for free expression and freedom of speech, including critical and alternative views in the South Caucasus.</p>
+  <h2>What We Do</h2>
+  <p>At Chai Khana, we draw on the talent of young journalists, film-makers, data analysts and photographers to publish an engaging, visually complex and dynamic multi-media series. We provide journalism trainings, mentorship and opportunities for collaboration in Tbilisi, Georgia.</p>
+  <h2>Acknowledgements</h2>
+  <p>Chai Khana would like to thank NIRAS who manages the fund provided by the Danish Foreign Ministry for their generous support and belief that we are making a difference.In addition, we would like to thank our partner, Jumpstart Georgia for their continued partnership and inspiration. And finally, we would like to thank all the journalists in this project who continue to share their time, skill, and energy to make the project possible.</p>
+  <h2>Contact Information</h2>
+  <p>chai.khana01@gmail.com</p>
+  <h2>Vacancies</h2>
+  <p>No current openings at this time</p>")
+end
 
 
 =begin OLD STUFF FROM STORYBUILDER

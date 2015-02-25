@@ -1,11 +1,11 @@
 class SettingsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:check_nickname]
+  before_filter :authenticate_user!, :except => [:check_nickname, :notifications]
   before_filter :asset_filter
 
 
   def index
-    @css.push("devise.css", "bootstrap-select.min.css","navbar.css")
-    @js.push("nickname.js", "bootstrap-select.min.js")
+    @css.push("bootstrap-select.min.css","navbar.css")
+    @js.push("bootstrap-select.min.js")
 
     if request.put?
       if current_user.update_attributes(params[:user])
@@ -116,7 +116,7 @@ logger.debug "************** nickname after generate: #{u.nickname}"
       s = Story.find_by_id(inv.story_id)
       if inv.accepted_at.blank?
         if s.present?
-          s.users << current_user
+          s.story_users.create(user_id: current_user.id, role: inv.role, translation_locales: inv.translation_locales)
           inv.accepted_at = Time.now
           inv.save
           redirect_to stories_path, :notice => t('app.msgs.invitation.accepted', :title => s.title)
@@ -155,146 +155,110 @@ logger.debug "************** nickname after generate: #{u.nickname}"
     @css.push("bootstrap-select.min.css")
     @js.push("bootstrap-select.min.js")
 
-		msg = []
-		if request.post?
-			if params[:enable_notifications].to_s.to_bool == true
-				# make sure user is marked as wanting notifications
-				if !current_user.wants_notifications
-					current_user.wants_notifications = true
-					current_user.save
-					msg << I18n.t('app.msgs.notification.yes')
-				end
+    if user_signed_in?
+  		msg = []
+  		if request.post?
+  			if params[:enable_notifications].to_s.to_bool == true
+  				# make sure user is marked as wanting notifications
+  				if !current_user.wants_notifications
+  					current_user.wants_notifications = true
+  					current_user.save
+  					msg << I18n.t('app.msgs.notification.yes')
+  				end
 
-				# language
-				if params[:language]
-					current_user.notification_language = params[:language]
-					current_user.save
-					msg << I18n.t('app.msgs.notification.language', :language => t("app.language.#{params[:language]}"))
-				end
+  				# language
+  				if params[:language]
+  					current_user.notification_language = params[:language]
+  					current_user.save
+  					msg << I18n.t('app.msgs.notification.language', :language => t("app.language.#{params[:language]}"))
+  				end
 
-				# process news notifications
-				if params[:news].present?
-					# delete anything on file first
-					Notification.where(:notification_type => Notification::TYPES[:published_news],
-																					:user_id => current_user.id).delete_all
+          # process theme notifications
+  				if params[:themes_all]
+  					# all notifications
+  					# delete anything on file first
+  					Notification.where(:notification_type => Notification::TYPES[:published_theme],
+  																					:user_id => current_user.id).delete_all
+  					# add all option
+  					Notification.create(:notification_type => Notification::TYPES[:published_theme],
+  																					:user_id => current_user.id)
 
-					if params[:news][:wants].to_s.to_bool == true
-						Notification.create(:notification_type => Notification::TYPES[:published_news],
-																						:user_id => current_user.id)
+  					msg << I18n.t('app.msgs.notification.new_theme_all_success')
+  				elsif params[:themes_types].present?
+  					# by type
+  					# delete anything on file first
+  					Notification.where(:notification_type => Notification::TYPES[:published_theme],
+  																					:user_id => current_user.id).delete_all
+  					# add each type
+  					params[:themes_types].each do |type_id|
+  						Notification.create(:notification_type => Notification::TYPES[:published_theme],
+  																						:user_id => current_user.id,
+  																						:identifier => type_id)
+  					end
+  					msg << I18n.t('app.msgs.notification.new_story_by_type_success',
+  						:types => @story_types.select{|x| params[:themes_types].index(x.id.to_s)}.map{|x| x.name}.join(", "))
+  				else
+  					# delete all notifications
+  					Notification.where(:notification_type => Notification::TYPES[:published_theme],
+  																					:user_id => current_user.id).delete_all
+  					msg << I18n.t('app.msgs.notification.new_theme_none_success')
+          end
 
-						msg << I18n.t('app.msgs.notification.news_yes')
-					else
-						msg << I18n.t('app.msgs.notification.news_no')
-					end
-				end
+  				# process following notifications
+  				if params[:following].present?
+  					existing = Notification.where(:notification_type => Notification::TYPES[:published_story_by_author],
+  																					:user_id => current_user.id)
+            if existing.present?
+    					params[:following].keys.each do |follow_author_id|
+  						  if params[:following][follow_author_id][:wants].to_s.to_bool == false 
+                  existing.select{|x| x.identifier.to_s == follow_author_id.to_s}.each do |notification|
+                    notification.delete
+                  end
 
-        # process story notifications
-				if params[:stories_all]
-					# all notifications
-					# delete anything on file first
-					Notification.where(:notification_type => Notification::TYPES[:published_story],
-																					:user_id => current_user.id).delete_all
-					# add all option
-					Notification.create(:notification_type => Notification::TYPES[:published_story],
-																					:user_id => current_user.id)
-
-					msg << I18n.t('app.msgs.notification.new_story_all_success')
-				elsif params[:stories_categories].present?
-					# by category
-					# delete anything on file first
-					Notification.where(:notification_type => Notification::TYPES[:published_story],
-																					:user_id => current_user.id).delete_all
-					# add each category
-					params[:stories_categories].each do |cat_id|
-						Notification.create(:notification_type => Notification::TYPES[:published_story],
-																						:user_id => current_user.id,
-																						:identifier => cat_id)
-					end
-					msg << I18n.t('app.msgs.notification.new_story_by_category_success',
-						:categories => @categories.select{|x| params[:stories_categories].index(x.id.to_s)}.map{|x| x.name}.join(", "))
-				else
-					# delete all notifications
-					Notification.where(:notification_type => Notification::TYPES[:published_story],
-																					:user_id => current_user.id).delete_all
-					msg << I18n.t('app.msgs.notification.new_story_none_success')
-        end
-
-				# process story comment notifications
-				if params[:story_comment].present?
-					# delete anything on file first
-					Notification.where(:notification_type => Notification::TYPES[:story_comment],
-																					:user_id => current_user.id).delete_all
-
-					if params[:story_comment][:wants].to_s.to_bool == true
-						Notification.create(:notification_type => Notification::TYPES[:story_comment],
-																						:user_id => current_user.id)
-
-						msg << I18n.t('app.msgs.notification.story_comments_yes')
-					else
-						msg << I18n.t('app.msgs.notification.story_comments_no')
-					end
-				end
-
-				# process following notifications
-				if params[:following].present?
-					existing = Notification.where(:notification_type => Notification::TYPES[:published_story_by_author],
-																					:user_id => current_user.id)
-          if existing.present?
-  					params[:following].keys.each do |follow_user_id|
-						  if params[:following][follow_user_id][:wants].to_s.to_bool == false 
-                existing.select{|x| x.identifier.to_s == follow_user_id.to_s}.each do |notification|
-                  notification.delete
+  							  msg << I18n.t('app.msgs.notification.following_no',
+  								  :name => params[:following][follow_author_id][:name])
                 end
+  						end
+  					end
+  				end
 
-							  msg << I18n.t('app.msgs.notification.following_no',
-								  :nickname => params[:following][follow_user_id][:nickname])
-              end
-						end
-					end
-				end
+  			else
+  				# indicate user does not want notifications
+  				if current_user.wants_notifications
+  					current_user.wants_notifications = false
+  					current_user.save
+  				end
 
-			else
-				# indicate user does not want notifications
-				if current_user.wants_notifications
-					current_user.wants_notifications = false
-					current_user.save
-				end
+  				# delete any on record
+  				Notification.where(:notification_type => Notification::TYPES[:published_theme],
+  																				:user_id => current_user.id).delete_all
 
-				# delete any on record
-				Notification.where(:notification_type => Notification::TYPES[:published_story],
-																				:user_id => current_user.id).delete_all
+  				msg << I18n.t('app.msgs.notification.no')
+  			end
+  		end
 
-				msg << I18n.t('app.msgs.notification.no')
-			end
-		end
+  		# see if user wants notifications
+  		@enable_notifications = current_user.wants_notifications
+  		gon.enable_notifications = @enable_notifications
 
-		# see if user wants notifications
-		@enable_notifications = current_user.wants_notifications
-		gon.enable_notifications = @enable_notifications
+  		# get the notfification language
+  		@language = current_user.notification_language.nil? ? I18n.default_locale.to_s : current_user.notification_language
 
-		# get the notfification language
-		@language = current_user.notification_language.nil? ? I18n.default_locale.to_s : current_user.notification_language
+  		# get new story data to load the form
+  		@theme_notifications = Notification.where(:notification_type => Notification::TYPES[:published_theme],
+  																			:user_id => current_user.id)
 
-		# get new story data to load the form
-		@story_notifications = Notification.where(:notification_type => Notification::TYPES[:published_story],
-																			:user_id => current_user.id)
+  		@theme_all = false
 
-		@story_all = false
+  		if @theme_notifications.present? && @theme_notifications.length == 1 && @theme_notifications.first.identifier.nil?
+  			@theme_all = true
+  		end
 
-		if @story_notifications.present? && @story_notifications.length == 1 && @story_notifications.first.identifier.nil?
-			@story_all = true
-		end
+      # users following
+      @following_authors = current_user.following_authors
 
-		# get story comments
-		@story_comment = Notification.where(:notification_type => Notification::TYPES[:story_comment], :user_id => current_user.id).present?
-
-		# get news
-		@news = Notification.where(:notification_type => Notification::TYPES[:published_news],:user_id => current_user.id).present?
-
-    # users following
-    @following_users = current_user.following_users
-
-		flash[:notice] = msg.join("<br />").html_safe if !msg.empty?
+  		flash[:notice] = msg.join("<br />").html_safe if !msg.empty?
+    end
 	end
 
 protected

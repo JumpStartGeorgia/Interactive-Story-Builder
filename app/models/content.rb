@@ -1,14 +1,54 @@
 class Content < ActiveRecord::Base
-	belongs_to :section	
+  include TranslationOverride
 
-	validates :section_id, :presence => true
-	validates :title, :presence => true, length: { maximum: 255 } 	
-	validates :caption, length: { maximum: 255} 	
-	validates :sub_caption, length: { maximum: 255} 	
-	validates :content, :presence => true 	
-	
+  translates :title, :caption, :sub_caption, :text
+
+	belongs_to :section	 
+
+  has_many :content_translations, :dependent => :destroy
+  accepts_nested_attributes_for :content_translations
+
+  # #################################
+  # ## Callbacks
+
+  before_destroy :trigger_translation_observer, prepend: true
+  def trigger_translation_observer
+    self.content_translations.each do |trans|
+      trans.is_progress_increment = false
+    end
+  end
+
+
+  #################################
+  # settings to clone story
+  amoeba do
+    enable
+    clone [:content_translations]
+  end
+
+
+  #################################
+
+  # get the translation record for the given locale
+  # if it does not exist, build a new one if wanted
+  def with_translation(locale, build_if_missing=true)
+    @local_translations ||= {}
+    if @local_translations[locale].blank?
+      x = self.content_translations.where(:locale => locale).first
+      if x.blank? && build_if_missing
+        x = self.content_translations.build(locale: locale)
+      end
+
+      @local_translations[locale] = x
+    end
+    return @local_translations[locale]
+  end
+
+  #################################
 	def to_json(options={})
      options[:except] ||= [:created_at, :updated_at]
      super(options)
    end
+
+
 end

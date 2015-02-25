@@ -7,17 +7,23 @@ en:
       section: Section
       medium: Full-Screen Media Slideshow
       content: Text
-      news: News
       message: Message
       slideshow: Image Slideshow
       embed_medium: Embeddable Online Media
-      youtube: Youtube Online Media
+      youtube: YouTube Video
       language: Language
       category: Category
       page: Text for Pages
       theme: Theme
-      story_type: Type
+      story_type: Story Type
+      author: Author
+      asset: File
     attributes:
+      asset: &asset
+        asset_file_name: File
+        asset_content_type: File Content Type
+        asset_file_size: File Size        
+      avatar: *asset
       user:
         email: Email Address
         password: Password
@@ -28,101 +34,152 @@ en:
         about: Summary of You
         local_avatar: Avatar
         nickname: Nickname
+        sign_in_count: Number of Times Logged In
+        created_at: Date Created
+        current_sign_in_at: Date Last Logged In
+      author:
+        name: Avatar
+      author_translation: &author_translation
+        name: Name
+        about: About
+        permalink: Permalink        
+      author_translations: *author_translation
       story:
-        title: Story Title
-        user_id: Story Editor
+        user_id: Story Author
         user_ids: Editors
-        author: Author(s)
-        media_author: Photo and Video Author(s)  
-        published: Publish?
-        published_at: Was Published
         publish_home_page: Once published, make your story visible on the homepage?
         template_id: Template
         thumbnail: Thumbnail
-        about: Story Summary
         story_locale: Story Language
-        permalink: Story URL
-        permalink_staging: Story URL
         tag_list: Tags
         categories: Categories
-        type: Type
+        story_type: Type
+        in_theme_slider: Show Story in Theme Slider
+      story_translation: &story_translation
+        title: Story Title
+        author: Author(s)
+        media_author: Photo and Video Author(s)  
+        translation_author: Translation Author(s)
+        published: Publish?
+        published_at: Was Published
+        about: Story Summary
+        permalink: Story URL
+        permalink_staging: Story URL
+        asset: *asset
+      story_translations: *story_translation      
       section:
-        title: Title
-        audio: Audio Track
         has_marker: Navigation Shortcut
         type_id: Type
         sort_order: Sort Order
+      section_translation:  &section_translation
+        title: Title
+        audio: Audio Track
         delete_audio: Delete the Audio Track?
-      content:        
+        asset: *asset
+      section_translations:  *section_translation
+      content_translation: &content_translation
         title: Title          
         caption: Heading
         sub_caption: Subheading
         content: Text
+      content_translations: *content_translation
       medium:
         media_type: Media Type
+        image: Image
+        video: Video
+        video_loop: Loop Video
+      medium_translation: &medium_translation
         title: Title
         caption: Caption
         caption_align: Caption Alignment
         infobox_type: Caption Position
         summary: Summary
         source: Source
-        image: Image
-        video: Video
-        video_loop: Loop Video
-      slideshow:
+        image: *asset
+        video: *asset
+      medium_translations: *medium_translation
+      slideshow_translation: &slideshow_translation
         title: Title
         caption: Heading
-      news:
-        title: Title
-        content: Content
-        is_published: Publish?
-        published_at: Date Published
+        description: Description
+        asset_files: Image(s)
+        asset: *asset
+        assets: *asset
+      slideshow_translations: *slideshow_translation
       message:
         name: Name
         email: Email Address
         message: Message
         message_type: Feedback Type
-      embed_medium:
+      embed_medium_translation: &embed_medium_translation
         title: Title
         url: Url to Online Media
+      embed_medium_translations: *embed_medium_translation
       youtube:
-        title: Title
-        url: Url to Online Media
         fullscreen: Fullscreen
         loop: Loop
-        info: Show Information Bar
-      youtube_translation:
-        menu_lang: "Player language"
+        info: Show Video Title Bar
+      youtube_translation: &youtube_translation
+        title: Title
+        url: Url to YouTube Video
+        menu_lang: Player Language
         cc: Show Caption/Subtitle
-        cc_lang: "Subtitle language"       
+        cc_lang: Subtitle Language
+      youtube_translations: *youtube_translation
+      infographic:
+        published_at: Date Published
+        image: Infographic Image
+        dataset_file: Related File
+        datasources: Data Sources
+        subtype: Infographic Type
+      infographic_translation: &infographic_translation
+        title: Title
+        caption: Heading
+        description: Description
+        dataset_url: Online Dataset
+        image: *asset     
+        dataset_file: *asset
+      infographic_translations: *infographic_translation
+      infographic_datasource:
+        name: Data Source Name
+        url: Data Source URL
       language:
         locale: Locale
         name: Language Name
-      category_translation:
+      category_translation: &category_translation
         name: Name
+      category_translations: *category_translation
       page:
         name: Unique name for content (do not change!)
-      page_translation:
+      page_translation: &page_translation
         title: Title to show above content
         content: Content
+      page_translations: *page_translation
       theme:
         is_published: Publish?
         published_at: Date Published
         show_home_page: Show this theme on the home page?
-      theme_translation:
+        published_item_count: Number of Published Items
+        featured_stories: Featured Stories
+      theme_translation: &theme_translation
         name: Name
         edition: Edition
         description: Description
         permalink: URL
+      theme_translations: *theme_translation
       story_type:
         sort_order: Sort Order
-      story_type_translation:
+      story_type_translation: &story_type_translation
         name: Name
         permalink: URL
+      story_type_translations: *story_type_translation      
     errors:
       messages:
         required_field: "is a required field."
         already_exists: 'already exists in the database.'              
+        story_authors: "must have at least one person selected."
+        publish_theme: 'The theme cannot be published until at least one published item has been assigned to the theme.'
+        not_provided: 'must be provided.'
   mailer:
     closing: "Sincerely,"
     signature: The Chai Khana Team
@@ -134,6 +191,9 @@ en:
       new_user:
         subject: "Welcome to Chai Khana!"
         message: "Thank you for becoming a member of Chai Khana. We look forward to exploring the stories you build!\n\nWhen you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summary about yourself: [settings_link].\n\nYou can manage when you would like to receive email notifications from Chai Khana by going to the notifications page: [notifications_link]. "
+      published_theme:
+        subject: "New themes have been published on Chai Khana!"
+        message: "The following themes you have expressed interest in were recently published:"
       published_story:
         subject: "New stories have been published on Chai Khana!"
         message: "The following stories you have expressed interest in were recently published:"
@@ -142,19 +202,11 @@ en:
         message: "The following stories have recently received a comment:"
         comment: "1 Comment"
         comments: "%{num} Comments"
-      published_news:
-        subject: "Chai Khana has new updates!"
-        message: "The following updates were just posted on Chai Khana. Click on the link to learn what is going on with Chai Khana."
-      staff_pick_review:
-        subject: "Chai Khana has new published stories to review for Staff Pick!"
-        message: "The following stories need to be reviewed to see if they are worthy to be a Staff Pick:"
-      staff_pick_selection:
-        subject: "Your story has been selected by the Chai Khana Team as a Staff Pick!"
-        message: "Congratulations! The following stories of yours were selected by the Chai Khana Team as Staff Picks:"
       story_collaboration:
         subject: "You have been invited to collaborate on a story on Chai Khana!"
         message: "You have received the following invitations to collaborate on stories with other people on Chai Khana. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part."
         from: From
+        role: Role
         story_title: Story Title
         msg: Message
         accept_link: Accept the Invitation
@@ -209,6 +261,7 @@ en:
       reset_or_sign_in: sign in with facebook or reset your password
       add_story: Add Story
       users: Users
+      authors: Authors
       feedback: Feedback
       about: About
       rss: RSS
@@ -228,9 +281,15 @@ en:
       tags: Tags
       menu: Menu
       pages: Edit Text on Site
+      next: Next
+      feed: Feed
+      download: Download
+      previous: Previous
+      next: Next
       story_menu:
         link:
-          admin_story: Story
+          story: Story
+          story_settings: Story Settings
           collaborators: Collaborators
           preview: Preview
           publish: Publish
@@ -239,8 +298,10 @@ en:
           clone: Clone
           export: Download
           delete_story: Delete
+          translations: Translations
         title:
-          admin_story: Edit story title, authors, URL, summary, thumbnail, language, tags and/or categories, content etc.
+          story: Edit your story
+          story_settings: Edit story title, authors, URL, summary, thumbnail, language, tags and/or categories, content etc.
           collaborators: Manage which users have access to edit your story
           preview: See how your story looks
           publish: Make your story viewable to the world
@@ -249,6 +310,7 @@ en:
           clone: Copy this story into a new story
           export: Download the complete story
           delete_story: Deleting a story cannot be undone
+          translations: Translate your story into other languages
     titles:
       new: "New %{model}"
       edit: "Edit %{model}"
@@ -256,16 +318,18 @@ en:
     hints:
       nickname: Your nickname is used in the URL to your published stories (e.g., nickname/story-title)        
       local_avatar: Image that is shown in the header bar and on your user page (png and jpg only).
+      avatar: Image that is shown on the Author's page (png and jpg only).
       like: Like this story
       unlike: Unlike this story
       staff_pick: Select as Staff Pick
       staff_unpick: Unselect as Staff Pick
       is_staff_pick: Staff Pick
+      clone_asset: "If checked, the file to the left will be used for this translation"
   app:
     language:
       en: English
       ka: ქართული
-      am: Հայերեն
+      hy: Հայերեն
       ru: Русский
       az: Azərbaycan
     buttons:
@@ -278,6 +342,7 @@ en:
       cancel: Cancel
       update: Update
       save: Save
+      save_and_next: "Save & Next"
       create: Create
       reset: Reset
       remove: Remove
@@ -303,13 +368,14 @@ en:
     common:
       app_name_not_trans: Chai Khana
       app_name: Chai Khana
-      app_intro: Build and Share;the Next Generation Story;Chai Khana allows anyone with text, pictures and/or videos to<br>combine this content into a creative story that can be published<br> and shared with the world
-      app_intro_meta: Build and Share the Next Generation Story! Chai Khana allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world
+      app_intro: Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.
+      app_intro_meta: Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.
       powered_by: Powered by
       powered_by_js: Jumpstart Georgia
       powered_by_end: ""
       embed_slogan: Build your story with Chai Khana
       added_on: "Added on: %{date}"
+      last_sign_in: "Logged in last: %{date}"
       admin: Admin
       sign_out: Sign Out    
       jumpstart: JumpStart Georgia
@@ -324,8 +390,8 @@ en:
       publish_date: Publish Date
       follow: Follow
       following: Following
-      follow_link_title: Click to receive notifications whenever this user publishes new stories
-      unfollow_link_title: Click to stop receiving notifications whenever this user publishes new stories
+      follow_link_title: Click to receive notifications whenever this author publishes new stories
+      unfollow_link_title: Click to stop receiving notifications whenever this author publishes new stories
       email: Email
       views: Views
       permalink: Permalink
@@ -340,10 +406,13 @@ en:
       partial_text: Embed a link to the story that has the same look as the story links on the home page of Chai Khana (image, title, author, etc)
       full: Full Story
       full_text: Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look. 
-      feed: Chai Khana Feed Channel
+      feed: Chai Khana Feeds
       home: Home
       required: Required
       nothing_selected: Nothing Selected
+      clone_asset: Use the original file?
+      embed: Embed Code
+      scroll_top: Scroll to the top
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
@@ -357,7 +426,9 @@ en:
       error_publish: "%{obj} wasn't published: %{err}"
       error_publish_missing_fields: "%{obj} can't be published until you provide a summary and thumbnail image."
       error_publish_missing_fields_link: Add the missing content.
-      error_publish_missing_content_section: At least one section required.
+      error_publish_missing_sections: At least one Section required before publishing.
+      error_publish_missing_content_section: All Text Sections must have content in it.
+      error_publish_missing_translations: "The story must be completely translated in %{lang} in order to be published."
       error_unpublish: "%{obj} wasn't unpublished: %{err}"
       error_clone: "%{obj} wasn't cloned."
       error_clone_notification: "Error occurred while cloning story: %{msg}"
@@ -372,6 +443,7 @@ en:
       nickname_url: 'Your URL will be:'
       story_duplicate: This story URL already exists. 
       story_url: 'Story URL will be:'
+      update_translations: "Don't forget to translate this new item!"
       invitation:
         accepted: "You have accepted the invitation to collaborate on '%{title}'"
         accepted_already: "You have already accepted the invitation to collaborate on '%{title}'"
@@ -381,7 +453,7 @@ en:
         content: Only one Item can be added to a Text section
         slideshow: Only one Item can be added to an Image Slideshow section
         embed_media: Only one Item can be added to an Embed Online Media section
-        youtube: Only one Item can be added to a Embed Youtube section
+        youtube: Only one Item can be added to a YouTube section
         general: Only one Item can be added to this type of section
       destroy_story:
         success: Story was successfully deleted.
@@ -401,14 +473,12 @@ en:
       notification:
         yes: You will be sent notifications.
         no: You will not be sent notifications.
-        new_story_all_success: You will recieve a notification whenever a story is added.
-        new_story_none_success: You will not receive any notifications when stories are added.
-        new_story_by_category_success: "You will receive a notification when a story is added to these categories: %{categories}."
+        new_theme_all_success: You will recieve a notification whenever a theme is added.
+        new_theme_none_success: You will not receive any notifications when themes are added.
+        new_story_by_type_success: "You will receive a notification when a story is added to these types: %{types}."
         story_comments_yes: You will be sent notifications when a comment is made to one of your stories.
         story_comments_no: You will not be sent notifications when a comment is made to one of your stories.
-        news_yes: You will be sent notifications when updates are made to Chai Khana.
-        news_no: You will not be sent notifications when updates are made to Chai Khana.
-        following_no: "You will no longer receive notifications about new stories from '%{nickname}'."
+        following_no: "You will no longer receive notifications about new stories from '%{name}'."
         language: You will be sent notifications in %{language}.
       fail_change_order: The item was not able to be moved
       nothing_selected: Please select a section/item to delete
@@ -429,20 +499,20 @@ en:
       description: Images in a horizontal slideshow
     embed_media: 
       name: Embed Online Media
-      description: youtube, vimeo, etc   
+      description: YouTube, Vimeo, etc   
     youtube: 
-      name: Embed Youtube
-      description: Fullscreen/common youtube video          
+      name: YouTube Video
+      description: YouTube video with ability to setting caption language
+    infographic: 
+      name: Infographic
+      description: Infographic or factoids with ability to add datasets and data sources
+  story_role:
+    editor: Editor
+    translator: Translator
   message_types:
     bug: Report a Bug
     feature: Request a Feature
     feedback: General Feedback
-  story_types:
-    story: Story - mixed story TODO
-    talk_show: Talkshow - talkshow story TODO
-    video: Video - video story TODO
-    photo: Photo - photo story TODO
-    infographic: Infographic - infographic story TODO
   filters:
     all: All
     matches: Matches
@@ -459,6 +529,8 @@ en:
       likes: Likes
     category_header: Category
     category_title: View stories that belong to a category
+    theme_header: Theme
+    theme_title: View stories that belong to a theme    
     language_header: Language
     language_title: View stories that are written in a particular language
     search: Find a Story
@@ -477,6 +549,11 @@ en:
       hintText: Search for an existing user or enter the email address for a new user
       noResultsText: "No matches found. Press 'Enter' to add this email address to the list of invited collaborators."
   layouts:
+    application:
+      copyright: Copyright
+      copyright_text: Copyright of these reports belongs to the Chai-Khana NGO. Any republishing of materials is not allowed without the prior consent of Chai-Khana.
+      disclaimer: Disclaimer
+      disclaimer_text: "This publication has been produced with the assistance of MYMEDIA, a DANIDA funded project. The content of this publication is the sole responsibility of the author/contractor/implementing partner/international organisation and can in no way be taken to reflect the official opinion of MYMEDIA / DANIDA. "
     unsupported_browser:
       title: Unsupported Browser
       video: Your browser does not support this video.
@@ -494,9 +571,15 @@ en:
     reviewer:
       copy: Copy To Clipboard...
       copied: Copied!
+    storybuilder:
+      source: Source
+      target: Target
+      copy_paste: Copy from source
   shared:
     grid:
       no_stories: Oh no - no stories could be found!
+    story_nav_modals:
+      copied: Copied!
   admin:
     index:
       title: Administration Section
@@ -510,58 +593,19 @@ en:
         title: New User
       show:
         title: User Details
+    themes:
+      form:
+        header_features: Features
+        header_add_story: Select Story to be Feature
+        header_current_features: Featured Stories In the Order They Will Appear
+        no_stories: No stories have been assigned to this theme yet.
+        no_features: No stories have been selected to be features.
   root:
-    index:
-      title: Chai Khana - build and share the next generation story
-      about_header: What is it?
-      about_text: Chai Khana allows anyone with text, pictures and/or videos to combine this content into a creative story that can be published and shared with the world.  %{demo_link} to see what is possible then %{start_link}!
-      demo_link: View the demo
-      start_link: build and share your stories
-      news_header: Latest News
-      all_news: more...
-    news:
-      title: Chai Khana News
-      no_news: No news is good news!
-      more_link: Continue
-    news_show:
-      title: "Chai Khana News: %{title}"
-      view_all: View All News
-    feedback:
-      title: Chai Khana Feedback
-      message_sent: Your message has been sent! Thank you for contacting us.
-      send: Send
-      name: Name
-      email: Email Address
-      message: Message
-    todo_list:
-      title: "Chai Khana's To-Do List"
-      summary: Chai Khana is in its infancy and has much growing to do. Gathered here is a list of tasks that we are working on or plan to working on soon.
-      last_update: "Last Updated On"
-      header_current: Tasks Currently Working On
-      header_short_term: Short Term Tasks
-      header_long_term: Long Term Tasks
-      header_completed: Completed Tasks
-      completed_text: To view the completed tasks, please visit the %{link}.
-      news_link: News section
-      header_missing: Is Something Missing?
-      missing_text: Is there a feature missing from these lists that you would like added?  Do you feel that we should re-prioritize our list?  If so, please let us know by using the %{link}.
-      feedback_link: Feedback section
     about:
       title: About Chai Khana
-      intro: "The platform that allows anyone to turn text, audio tracks, pictures and/or videos into a creative web-story that can be published and shared with the world."   
-      p1: "Chai Khana enables anyone to build mixed-media stories without needing to know how to code. What sets Chai Khana apart from other similar services is that you have complete control over your content. You can publish it on Chai Khana, or your can download the story and host it where you want."
-      p2: "Each story is a sequence of media sections in the order of your choosing. You choose which order and which type of media you want each section to be. Choose from text/html, full screen images/videos, image slideshows, and embeddable online media. You can accompany each chapter with a soundtrack of your choosing. What you do with that is up to you!"
-      p3: "To ensure that your content is yours, we have made the entire platform open source. This means if you do not want to use JumpStart Georgia's live version of Chai Khana, you can install the Chai Khana application on a server of your choice. In this way, you or your organization are not locked into dependency on yet another 3rd-party service hosting your content."
-      p4: "JumpStart Georgia is building Chai Khana for the benefit of improving the ease with which civil society organizations, journalists, activists, and storytellers the world over can tell stories that are engaging and increasingly visceral, changing how audiences can experience stories on the web." 
-      help: "If you or your organization would like to help us improve Chai Khana through funding, development, or design, please don't hesitate to contact us!" 
-      contact:   
-        subject: Chai Khana Contact
-        address1: '#5 Shevchenko St, Apt 2'
-        address2: 'Tbilisi Georgia 0108'
     embed:
       home_link: Built on Chai Khana
   stories:
-    index:
     new:
       title: Story Settings Form
     edit:
@@ -572,15 +616,17 @@ en:
         permalink: URL to the story
         author: Author(s) of the article
         media_author: "Author(s) of photos and/or videos"
+        translation_author: "Author(s) that translated the story into this language"
       hint:
         title: Story title will appear at the top of your story
         permalink: The default URL is the title of the story, but you can change it if desired
-        author: Author names will appear below the story title
+        author: Select the author(s) of the story to allow the story to appear on their webpage.
         media_author:  "Author names will appear below the Story Author names"
+        translation_author:  "Author names will appear below the Photo and Video Author names"
         published: Published stories are available for the world to view
         publish_home_page: "If checked, your published story will appear on the site's homepage"
         template: Choose template to apply styling to story
-        thumbnail: Image that is used to show the story on the home page when the story is published (jpg and png only; 3MB file size limit)
+        thumbnail: Image that is used to show the story on the home page when the story is published (jpg and png only; 4MB file size limit)
         editor: Person that created the story record in this website
         editors: Select people that you want to give access to edit the story
         about: Short summary of story that will be used on the home page and when you story is shared
@@ -589,17 +635,25 @@ en:
         tag_list: "Enter text to find existing tags.  If your tag does not exist yet, press 'Enter' to add the new tag to the list."
         story_type: Select the type of your story.
         theme: Select the theme(s) your story belongs to.
+        in_theme_slider: "If checked, this story will appear in the slider at the top of the theme page."
     collaborators:
       title: "Collaborators for '%{title}'"
-      owner_header: Story Owner
+      owner_header: Story Author
       collaborators_header: Story Collaborators
       explanation: A story collaborator is someone that has access to edit this story.
-      current_header: Current Collaborators
+      editors_header: Editors
+      editor_explanation: An Editor has access to add/edit the story and translate the story into any language. An Editor can also add collaborators and publish the story.
+      translators_header: Translators
+      translator_explanation: "A Translator has access to translate the story into a specific language(s). A Translator does not have the ability to edit the original story, add collaborators or publish the story."
       remove_title: 'Remove %{name}'
       not_accepted_title: '%{name} has not accepted the invitation yet'
       add_header: Add Collaborators
       add_explanation: For the users you enter below, an email will be sent inviting them to be a collaborator on this story.
-      search_label: Enter names or email addresses of the people you want to invite
+      editor_label: Enter the names or email addresses of the editors
+      language_label: Select the translation language(s)
+      translator_label: Enter the name or email address of the translator
+      translator_add: Add Another Translator
+      translator_remove: Remove Translator
       message: Add Message to Notification (optional)
       submit: Send Collaboration Invitation
     media:
@@ -620,10 +674,10 @@ en:
         media_type: "For videos, an image is necessary because videos are not loaded on mobile devices."
         caption: "Caption text will appear on top of the image/video. If this is the first item in the story, the caption text is hidden."
         source: "Source of the image/video, appears in the bottom-right corner"
-        image: "Only jpg format allowed; 3MB file size limit"
+        image: "Only jpg format allowed; 4MB file size limit"
         video: "Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receive a notification when the processing is complete, typically within a few minutes."
         caption_align: "The Caption text will appear on top of the image/video (appears on the left by default) "
-        infobox_type: "Caption text and source styling methods floating and fixed. Floating will be predefined width and will move on scroll. Fixed will be at the bottom of screen with full width and transparent background"
+        infobox_type: "The Caption text can float on top of the image/video or can be fixed at the bottom of the image/video"
         video_loop: "If checked, the video will loop infinitly, otherwise the video will not loop"
     section:
       form_title: Section Form
@@ -655,11 +709,13 @@ en:
       form_title: Image Slideshow Form
       add_image: Add Image
       placeholder:
+        title: Slideshow Title
         caption: optional
       hint:
         title: This text only appears in the left sidebar, it will not show up in the story
         caption: Heading will appear at the top of the slideshow
-    asset_fields:
+        description: The description will appear below the slideshow
+    asset_file_fields:
       remove_image: Remove
       placeholder:
         caption: optional
@@ -667,7 +723,7 @@ en:
       hint:
         caption: Image Description will appear below the image
         source: Source will appear below the Image Description
-        asset: Only jpg and png format allowed; 3MB file size limit
+        asset: Only jpg and png format allowed; 4MB file size limit
       label:
         caption: Image Description
         source: Image Source
@@ -677,31 +733,74 @@ en:
       preview: Preview of Online Media
       error: The URL could not be processed. Please try again.
       placeholder:
+        title: Embed Online Media Title
         url: Url to online media
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
-        url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: Youtube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
+        url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
     youtube:
-      form_title: Youtube Embed Online Media Form
-      get_media: Get Youtube Online Media
-      preview: Preview of Online Media
+      form_title: YouTube Video Form
+      get_media: Get Youtube Video
+      preview: Preview of YouTube Video
       error: The URL could not be processed. Please try again.
+      generate_iframe:
+        missing_api_key: "value can't be generated due to missing API key."
+        error: "value can't be generated."
       placeholder:
-        url: Url to online media
+        title: YouTube Title
+        url: Url to YouTube video
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
-        url: "The following sites can be used for embeding online media: VIDEO: Youtube"
-        fullscreen: "Video can be view in a fullscreen mode"
-        loop: "Loop video or stop after first view"
-        cc: "Show subtitles"
-        info: "Show video information"
-        menu_lang: "Player language"
-        cc_lang: "Subtitle language"           
+        url: "Copy a YouTube URL and paste it here"
+        fullscreen: "If checked, the video will take up the entire screen"
+        loop: "If checked, the video will loop over and over"
+        info: "If checked, the title bar will be shown on top of the video"
+        cc: "If checked, the video subtitles will be shown by default"
+        menu_lang: "Language of the YouTube menu/controls"
+        cc_lang: "Language of the subtitles to show by default"           
+    infographic:
+      form_title: Infographic Form
+      add_datasource: Add Data Source
+      static: Static
+      dynamic: Dynamic
+      label:
+        dynamic_size: Infographic dimensions WidthxHeight
+      placeholder:
+        title: Title
+        caption: optional
+        dataset_url: optional
+        dynamic_url: Interactive Url
+        dynamic_width: 0
+        dynamic_height: 0        
+      hint:
+        title: This text only appears in the left sidebar, it will not show up in the story
+        caption: "Heading of infographic will appear above the infographic image. If this Infographic Section is first in the story, you should leave this blank and use the Story Title field."
+        description: "The description will appear below the infographic. If this Infographic Section is first in the story, the Story Summary will appear below the infographic image so if the Story Summary and Infographic Description are the same, you should leave this field blank."
+        image: Only jpg and png format allowed; 8MB file size limit
+        dataset_file: Please try to compress files to make for quicker download; 25MB file size limit
+        dataset_url: URL to Dataset
+        subtype: "Static infographics are images, Dynamic infographics require a url."        
+        dynamic_url: Url to web page with interactive infographic
+        dynamic_size: Leave 0 if you want width and height to be fullscreen or specify size in px
+    infographic_datasource_fields:
+      placeholder:
+        url: optional
+      hint:
+        name: Name of the data source
+        url: URL to the online data source
   storyteller:
     byline: By
     byline_media: "Photos and videos by "
+    byline_translator: "Translated by "
     source: "Source:"
     by: by
+    related_stories: Related Stories
+    view_all_stories_in: View all stories in
+    infographic:
+      source: Data Source
+      dataset: Related Items
+      download: Download File
+      online: View Data Online
   settings:
     index:
       title: Settings
@@ -718,9 +817,11 @@ en:
       decline_link: Decline
       header_date: Date Sent
       header_story: Story Title
+      header_role: Role
       header_from: Sent By
     notifications:
       title: Notifications
+      explain: You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.
       all_sub_title: All Notifications
       all_label: Do you want to recieve any notifications from Chai Khana?
       all_no: "No, do not send me any notifications."
@@ -729,26 +830,22 @@ en:
       story_comment_label: "Do you want to recieve notifications when a comment is made to one of your stories?"
       story_comment_no: "No, do not send me any notifications."
       story_comment_yes: "Yes, I want notifications sent to me."
-      new_stories_sub_title: New Story Notifications
-      new_stories_all: Notify me when any story is added.
-      new_stories_none: I do not want to receive notifications when a new story is added.
+      new_themes_sub_title: New Theme Notifications
+      new_themes_all: Notify me when any theme is added.
+      new_themes_none: I do not want to receive notifications when a new theme is added.
       new_stories_by_category: "Notify me when a story is added to:"
       language_sub_title: Notification Language
       language_label: In what language do you want to receive the notifications?
-      news_sub_title: Chai Khana Update Notifications
-      news_label: "Do you want to recieve notifications when updates are made to Chai Khana?"
-      news_no: "No, do not send me any notifications."
-      news_yes: "Yes, I want notifications sent to me."     
       following_sub_title: Chai Khana Users You Are Following
       following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image."
       following_not: "At this time, you are not following any users."
-      following_title1: "Click to unfollow '%{nickname}'"
-      following_title2: "Click to follow '%{nickname}'"     
+      following_title1: "Click to unfollow '%{name}'"
+      following_title2: "Click to follow '%{name}'"     
       submit: Save Settings
   imageuploader:
     missing: "An error occurred while processing your image. Please try again."
     invalid_type: "Invalid file type. Only .jpg or .png is allowed."
-    size_limit: "Image file size is limited to 5MB"
+    size_limit: "Image file size is limited to 4MB"
   devise:
     mailer:
       reset_password_instructions:

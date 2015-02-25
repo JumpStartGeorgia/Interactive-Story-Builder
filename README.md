@@ -43,6 +43,7 @@ You will need the following [Environment Variables](https://help.ubuntu.com/comm
 * STORY_BUILDER_BITLY_TOKEN_DEV - same as above, but for use in testing environments
 * STORY_BUILDER_ADDTHIS_PROFILEID - addthis.com profile ID ([get from here](https://www.addthis.com/settings/publisher)) to use the addthis share tools
 * STORY_BUILDER_ADDTHIS_PROFILEID_DEV - same as above, but for use in testing environments
+* STORY_BUILDER_YOUTUBE_API_KEY - YouTube API key ([get from here](https://console.developers.google.com/project)) is used to verify that the YouTube urls exist.
 * DETECT_LANGUAGE_API_KEY - [Language Detection API](http://detectlanguage.com/) key for determining the language a story is written in
 
 

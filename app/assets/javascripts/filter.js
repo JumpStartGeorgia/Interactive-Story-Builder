@@ -2,12 +2,17 @@ var sa = false; // flag for search box if it is active
 var f = { page : ''};     // filter values
 var pf = {};    // previous filter values
 var paging = false;
+var grid_wrapper = $(".grid-wrapper");
+var grid = grid_wrapper.find(".grid");
+
 function filter()    
 {    
-  if(paging && JSON.stringify(f) !== JSON.stringify(pf))
-  {  
+  if(JSON.stringify(f) !== JSON.stringify(pf))
+  { 
     var ftmp = {};   
+
     if(!paging) { f['page'] = ''; } 
+
     for (prop in f) 
     {
       var k = prop;
@@ -18,31 +23,43 @@ function filter()
         ftmp[k] = v;
       }
     } 
-    var grid = $(".grid-wrapper");
-    grid.append('<div class="loading"></div>');
+    if(!paging) grid.html("");
+    if(!grid_wrapper.find('.loading').length) grid_wrapper.append('<div class="loading"></div>');
+    if(!paging) grid_wrapper.find('.loading').addClass('space');
     $.ajax({       
       type: "POST",
       url: gon.filter_path,
       dataType: "json",
       data: ftmp
     }).done(function(data) { 
-      setTimeout(function(){        
-    
-      data = $(data.d); 
-      data.find('.grid .col').each(function(i,d){
+
+      setTimeout(function(){    
+      data = $(data.d);
       
-        setTimeout(function(){     
-        if(i == 0)   grid.find(".loading").remove();   
-          grid.find(".grid").append($(d).hide().fadeIn(2000));
-          //if(i%4==0) window.scrollTo(0,document.body.scrollHeight);
-          //window.scrollTo(0,document.body.scrollHeight);
-        },300*i);
-      });   
+      var len = data.find('.grid .col').length;
+
+      grid_wrapper.find(".loading").remove(); 
+
+      data.find('.grid .col').each(function(i,d)
+      {      
+        setTimeout(function() 
+        {
+          grid.append($(d).hide().fadeIn(2000)); 
+          if(i == len-1)
+          {
+            paging = false;
+          }
+        } ,300*i);
+      }); 
+      if(len == 0)
+      {  
+        grid.append(data.find('p').hide().fadeIn(2000)); 
+      }
+      grid_wrapper.find(".pagination-wrapper").html(data.find('.pagination-wrapper').html());
+      url_update();
       
 
-      grid.find(".pagination-wrapper").html(data.find('.pagination-wrapper').html());
-      url_update();
-      paging = false;
+
       },1000);
     });
   }  
@@ -53,7 +70,8 @@ function url_update() {
 
   for (prop in f) 
   {
-    if (!f.hasOwnProperty(prop)) {continue;}   
+    if (!f.hasOwnProperty(prop)) {continue;} 
+    if (prop  == 'page') { continue; }
     var k = prop;
     var v = f[prop];
     var re = new RegExp("([?&])" + k + "=.*?(&|#|$)(.*)", "gi");
@@ -86,21 +104,8 @@ function url_update() {
 
 
 $(document).ready(function() {  
-    
-  $('.filters').click(function(){$('#filter .nav').toggleClass('s h'); });
-  
-  //if(gon.page_filtered) { scrolldown(false,'.header'); }
 
-// add search phrase to filters
-  $('form#search-filter').submit(function(e){
-    e.preventDefault();
-    pf = JSON.parse(JSON.stringify(f));
-    f["q"] = $('form#search-filter input#q').val();
-    filter();    
-  });
-
-
-
+if(gon.page_filtered) { scrolldown(false,'header'); }
 
 // collect all default values for ajax filtering
   $('[data-filter-type]').each(function(v){
@@ -112,24 +117,6 @@ $(document).ready(function() {
       pf = JSON.parse(JSON.stringify(f));
 
       $(this).toggleClass('active');
-      var tmp = !($(this).attr('data-filtered-by') == "true");  
-      $(this).attr('data-filtered-by', tmp.toString());   
-      f[$(this).attr('data-filter-type')] = tmp.toString();
-      if (tmp){
-        $(this).attr('title', $(this).data('title-active'));
-      }else{
-        $(this).attr('title', $(this).data('title'));
-      }
-      e.preventDefault();
-      e.stopPropagation();
-
-      filter();
-  });
-// staff_pick via ajax
-    $('.afilter > a.staff_pick').click(function(e){
-      pf = JSON.parse(JSON.stringify(f));
-
-      $(this).toggleClass('active').find('i').toggleClass('i-staffpicked i-staffpick');
       var tmp = !($(this).attr('data-filtered-by') == "true");  
       $(this).attr('data-filtered-by', tmp.toString());   
       f[$(this).attr('data-filter-type')] = tmp.toString();
@@ -172,7 +159,6 @@ $(document).ready(function() {
       var f_type = par.attr('data-filter-type');      
       var f_value = $(this).attr('data-filter'); 
 
-      
 
       if(f_value == par.attr('data-filter-default')) 
       {
@@ -190,7 +176,6 @@ $(document).ready(function() {
       }
       e.preventDefault();
       e.stopPropagation();
-
       filter();         
   });
 
@@ -205,12 +190,11 @@ $(document).ready(function() {
 //      scrolldown(false,'.header');
 
   });
-  $(window).on('scroll',function(){
+ $(document).on('scroll DOMMouseScroll mousewheel', function() {
     var url = $('.pagination .next_page a').attr('href');
     if (url && url !='#' && $(window).scrollTop() >= $(document).height() - $(window).height() - 120)
     {
-      console.log('here');
-       var tmp = $('.pagination .next_page a').attr('data-filter');    
+      var tmp = $('.pagination .next_page a').attr('data-filter');    
       f["page"] = tmp == "1" ? "":tmp;
       if(!paging) 
       {
@@ -230,9 +214,7 @@ $(document).ready(function() {
 
 
 // for permalink copy 
-var client = new ZeroClipboard( document.getElementById("copy-button"), {
-  moviePath: "/javascripts/ZeroClipboard.swf"
-} );
+var client = new ZeroClipboard( document.getElementById("copy-button"));
 
 client.on( "load", function(client) {
   client.on( "complete", function(client, args) {

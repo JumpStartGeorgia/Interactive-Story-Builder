@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150115112119) do
+ActiveRecord::Schema.define(:version => 20150224135346) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -26,16 +26,40 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
     t.integer  "position"
     t.integer  "asset_subtype",                      :default => 0
     t.boolean  "processed",                          :default => false
+    t.integer  "asset_clone_id"
+    t.string   "avatar_id"
+    t.integer  "story_id"
   end
 
+  add_index "assets", ["asset_clone_id"], :name => "index_assets_on_asset_clone_id"
   add_index "assets", ["item_id", "asset_type"], :name => "index_assets_on_item_id_and_asset_type"
   add_index "assets", ["item_id", "position"], :name => "index_assets_on_item_id_and_position"
   add_index "assets", ["item_id"], :name => "index_assets_on_item_id"
   add_index "assets", ["processed"], :name => "index_assets_on_processed"
 
+  create_table "author_translations", :force => true do |t|
+    t.integer  "author_id"
+    t.string   "locale",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "name"
+    t.text     "about"
+    t.string   "permalink"
+  end
+
+  add_index "author_translations", ["author_id"], :name => "index_author_translations_on_author_id"
+  add_index "author_translations", ["locale"], :name => "index_author_translations_on_locale"
+  add_index "author_translations", ["name"], :name => "index_author_translations_on_name"
+  add_index "author_translations", ["permalink"], :name => "index_author_translations_on_permalink"
+
+  create_table "authors", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "categories", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.boolean  "has_published_stories", :default => false
   end
 
@@ -43,11 +67,11 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
 
   create_table "category_translations", :force => true do |t|
     t.integer  "category_id"
-    t.string   "locale"
+    t.string   "locale",      :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "name"
     t.string   "permalink"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   add_index "category_translations", ["category_id"], :name => "index_category_translations_on_category_id"
@@ -55,28 +79,55 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
   add_index "category_translations", ["name"], :name => "index_category_translations_on_name"
   add_index "category_translations", ["permalink"], :name => "index_category_translations_on_permalink"
 
+  create_table "content_translations", :force => true do |t|
+    t.integer  "content_id"
+    t.string   "locale",      :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "title"
+    t.string   "caption"
+    t.string   "sub_caption"
+    t.text     "text"
+  end
+
+  add_index "content_translations", ["content_id"], :name => "index_content_translations_on_content_id"
+  add_index "content_translations", ["locale"], :name => "index_content_translations_on_locale"
+
   create_table "contents", :force => true do |t|
     t.integer  "section_id"
-    t.string   "title"
-    t.string   "sub_caption"
-    t.text     "content"
+    t.string   "old_title"
+    t.string   "old_sub_caption"
+    t.text     "old_content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "caption"
+    t.string   "old_caption"
   end
 
   add_index "contents", ["section_id"], :name => "index_contents_on_section_id"
 
   create_table "embed_media", :force => true do |t|
     t.integer  "section_id"
-    t.string   "title"
-    t.string   "url"
-    t.text     "code"
+    t.string   "old_title"
+    t.string   "old_url"
+    t.text     "old_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "embed_media", ["section_id"], :name => "index_embed_media_on_section_id"
+
+  create_table "embed_medium_translations", :force => true do |t|
+    t.integer  "embed_medium_id"
+    t.string   "locale",          :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "title"
+    t.string   "url"
+    t.text     "code"
+  end
+
+  add_index "embed_medium_translations", ["embed_medium_id"], :name => "index_embed_medium_translations_on_embed_medium_id"
+  add_index "embed_medium_translations", ["locale"], :name => "index_embed_medium_translations_on_locale"
 
   create_table "impressions", :force => true do |t|
     t.string   "impressionable_type"
@@ -103,6 +154,45 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], :name => "impressionable_type_message_index", :length => {"impressionable_type"=>nil, "message"=>255, "impressionable_id"=>nil}
   add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
 
+  create_table "infographic_datasources", :force => true do |t|
+    t.integer  "infographic_translation_id"
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  add_index "infographic_datasources", ["infographic_translation_id"], :name => "index_infographic_datasources_on_infographic_translation_id"
+
+  create_table "infographic_translations", :force => true do |t|
+    t.integer  "infographic_id"
+    t.string   "locale",         :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "title"
+    t.string   "caption"
+    t.text     "description"
+    t.string   "dataset_url"
+    t.integer  "subtype"
+    t.string   "dynamic_url"
+    t.text     "dynamic_code"
+  end
+
+  add_index "infographic_translations", ["infographic_id"], :name => "index_infographic_translations_on_infographic_id"
+  add_index "infographic_translations", ["locale"], :name => "index_infographic_translations_on_locale"
+
+  create_table "infographics", :force => true do |t|
+    t.integer  "section_id"
+    t.date     "published_at"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "subtype"
+    t.integer  "dynamic_width",  :default => 0
+    t.integer  "dynamic_height", :default => 0
+  end
+
+  add_index "infographics", ["section_id"], :name => "index_infographics_on_section_id"
+
   create_table "invitations", :force => true do |t|
     t.integer  "from_user_id"
     t.integer  "story_id"
@@ -111,9 +201,11 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
     t.string   "key"
     t.datetime "sent_at"
     t.datetime "accepted_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.text     "message"
+    t.integer  "role",                :limit => 1, :default => 0
+    t.string   "translation_locales"
   end
 
   add_index "invitations", ["key"], :name => "index_invitations_on_key"
@@ -123,8 +215,8 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
   create_table "languages", :force => true do |t|
     t.string   "locale"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.boolean  "has_published_stories", :default => false
   end
 
@@ -135,21 +227,37 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
   create_table "media", :force => true do |t|
     t.integer  "section_id"
     t.integer  "media_type"
-    t.string   "title"
-    t.string   "caption",       :limit => 180
-    t.integer  "caption_align"
-    t.string   "source"
+    t.string   "old_title"
+    t.string   "old_caption",       :limit => 180
+    t.integer  "old_caption_align"
+    t.string   "old_source"
     t.string   "audio_path"
     t.string   "video_path"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "position"
-    t.boolean  "video_loop",                   :default => true
-    t.integer  "infobox_type",                 :default => 0
+    t.boolean  "video_loop",                       :default => true
+    t.integer  "old_infobox_type",                 :default => 0
   end
 
   add_index "media", ["section_id", "position"], :name => "index_media_on_section_id_and_position"
   add_index "media", ["section_id"], :name => "index_media_on_section_id"
+
+  create_table "medium_translations", :force => true do |t|
+    t.integer  "medium_id"
+    t.string   "locale",                     :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.string   "title"
+    t.string   "caption"
+    t.integer  "caption_align"
+    t.string   "source"
+    t.integer  "infobox_type"
+    t.integer  "media_type",    :limit => 1
+  end
+
+  add_index "medium_translations", ["locale"], :name => "index_medium_translations_on_locale"
+  add_index "medium_translations", ["medium_id"], :name => "index_medium_translations_on_medium_id"
 
   create_table "news", :force => true do |t|
     t.boolean  "is_published", :default => false
@@ -216,10 +324,21 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
 
   add_index "pages", ["name"], :name => "index_pages_on_name"
 
+  create_table "section_translations", :force => true do |t|
+    t.integer  "section_id"
+    t.string   "locale",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "title"
+  end
+
+  add_index "section_translations", ["locale"], :name => "index_section_translations_on_locale"
+  add_index "section_translations", ["section_id"], :name => "index_section_translations_on_section_id"
+
   create_table "sections", :force => true do |t|
     t.integer  "story_id"
     t.integer  "type_id"
-    t.string   "title"
+    t.string   "old_title"
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -229,41 +348,57 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
   add_index "sections", ["position"], :name => "index_sections_on_position"
   add_index "sections", ["story_id"], :name => "index_sections_on_story_id"
 
-  create_table "slideshows", :force => true do |t|
-    t.integer  "section_id"
+  create_table "slideshow_translations", :force => true do |t|
+    t.integer  "slideshow_id"
+    t.string   "locale",       :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "title"
     t.string   "caption"
+    t.text     "description"
+  end
+
+  add_index "slideshow_translations", ["locale"], :name => "index_slideshow_translations_on_locale"
+  add_index "slideshow_translations", ["slideshow_id"], :name => "index_slideshow_translations_on_slideshow_id"
+
+  create_table "slideshows", :force => true do |t|
+    t.integer  "section_id"
+    t.string   "old_title"
+    t.string   "old_caption"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "slideshows", ["section_id"], :name => "index_slideshows_on_section_id"
+
   create_table "stories", :force => true do |t|
-    t.string   "title"
+    t.string   "old_title"
     t.integer  "user_id"
-    t.string   "author"
+    t.string   "old_author"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "media_author"
-    t.boolean  "published",             :default => false
-    t.datetime "published_at"
+    t.string   "old_media_author"
+    t.boolean  "old_published",         :default => false
+    t.datetime "old_published_at"
     t.integer  "template_id",           :default => 1
     t.integer  "impressions_count",     :default => 0
     t.integer  "reviewer_key"
-    t.string   "permalink"
-    t.text     "about"
+    t.string   "old_permalink"
+    t.text     "old_about"
     t.boolean  "publish_home_page",     :default => true
     t.boolean  "staff_pick",            :default => false
-    t.string   "story_locale",          :default => "en"
-    t.string   "permalink_staging"
+    t.string   "story_locale"
     t.integer  "cached_votes_total",    :default => 0
     t.integer  "cached_votes_score",    :default => 0
     t.integer  "cached_votes_up",       :default => 0
     t.integer  "cached_votes_down",     :default => 0
     t.integer  "cached_weighted_score", :default => 0
     t.integer  "comments_count",        :default => 0
+    t.string   "old_permalink_staging"
     t.integer  "story_type_id"
+    t.boolean  "old_in_theme_slider"
   end
 
   add_index "stories", ["cached_votes_down"], :name => "index_stories_on_cached_votes_down"
@@ -272,29 +407,32 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
   add_index "stories", ["cached_votes_up"], :name => "index_stories_on_cached_votes_up"
   add_index "stories", ["cached_weighted_score"], :name => "index_stories_on_cached_weighted_score"
   add_index "stories", ["comments_count"], :name => "index_stories_on_comments_count"
-  add_index "stories", ["permalink"], :name => "index_stories_on_permalink"
+  add_index "stories", ["old_in_theme_slider"], :name => "index_stories_on_in_theme_slider"
+  add_index "stories", ["old_permalink"], :name => "index_stories_on_permalink"
+  add_index "stories", ["old_published"], :name => "index_stories_on_published"
+  add_index "stories", ["old_published_at"], :name => "index_stories_on_published_at"
   add_index "stories", ["publish_home_page", "staff_pick"], :name => "index_stories_on_publish_home_page_and_staff_pick"
-  add_index "stories", ["published"], :name => "index_stories_on_published"
-  add_index "stories", ["published_at"], :name => "index_stories_on_published_at"
   add_index "stories", ["reviewer_key"], :name => "index_stories_on_reviewer_key"
-  add_index "stories", ["story_locale"], :name => "index_stories_on_locale"
+  add_index "stories", ["story_locale"], :name => "index_stories_on_story_locale"
   add_index "stories", ["story_type_id"], :name => "index_stories_on_story_type_id"
   add_index "stories", ["template_id"], :name => "index_stories_on_template_id"
   add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
 
-  create_table "stories_users", :force => true do |t|
-    t.integer "story_id"
-    t.integer "user_id"
+  create_table "story_authors", :force => true do |t|
+    t.integer  "story_id"
+    t.integer  "author_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "stories_users", ["story_id"], :name => "index_stories_users_on_story_id"
-  add_index "stories_users", ["user_id"], :name => "index_stories_users_on_user_id"
+  add_index "story_authors", ["author_id"], :name => "index_story_authors_on_author_id"
+  add_index "story_authors", ["story_id"], :name => "index_story_authors_on_story_id"
 
   create_table "story_categories", :force => true do |t|
     t.integer  "story_id"
     t.integer  "category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "story_categories", ["category_id"], :name => "index_story_categories_on_category_id"
@@ -310,16 +448,46 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
   add_index "story_themes", ["story_id"], :name => "index_story_themes_on_story_id"
   add_index "story_themes", ["theme_id"], :name => "index_story_themes_on_theme_id"
 
-  create_table "story_translations", :force => true do |t|
+  create_table "story_translation_progresses", :force => true do |t|
     t.integer  "story_id"
-    t.string   "locale",        :null => false
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "shortened_url"
+    t.string   "locale"
+    t.integer  "items_completed", :default => 0
+    t.boolean  "is_story_locale", :default => false
+    t.boolean  "can_publish",     :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
+  add_index "story_translation_progresses", ["story_id", "can_publish"], :name => "index_story_translation_progresses_on_story_id_and_can_publish"
+  add_index "story_translation_progresses", ["story_id", "locale"], :name => "index_story_translation_progresses_on_story_id_and_locale"
+
+  create_table "story_translations", :force => true do |t|
+    t.integer  "story_id"
+    t.string   "locale",                                                       :null => false
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
+    t.string   "shortened_url"
+    t.string   "title"
+    t.string   "permalink"
+    t.string   "permalink_staging"
+    t.string   "author"
+    t.string   "media_author"
+    t.text     "about"
+    t.boolean  "published",                                 :default => false
+    t.datetime "published_at"
+    t.integer  "language_type",                :limit => 1, :default => 0
+    t.integer  "translation_percent_complete", :limit => 1, :default => 0
+    t.string   "translation_author"
+    t.integer  "impressions_count",                         :default => 0
+  end
+
+  add_index "story_translations", ["language_type"], :name => "index_story_translations_on_language_type"
   add_index "story_translations", ["locale"], :name => "index_story_translations_on_locale"
+  add_index "story_translations", ["permalink"], :name => "index_story_translations_on_permalink"
+  add_index "story_translations", ["published"], :name => "index_story_translations_on_published"
+  add_index "story_translations", ["published_at"], :name => "index_story_translations_on_published_at"
   add_index "story_translations", ["story_id"], :name => "index_story_translations_on_story_id"
+  add_index "story_translations", ["title"], :name => "index_story_translations_on_title"
 
   create_table "story_type_translations", :force => true do |t|
     t.integer  "story_type_id"
@@ -340,6 +508,20 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
   end
+
+  create_table "story_users", :force => true do |t|
+    t.integer  "story_id"
+    t.integer  "user_id"
+    t.integer  "role",                :limit => 1, :default => 0
+    t.string   "translation_locales"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "story_users", ["created_at"], :name => "index_story_users_on_created_at"
+  add_index "story_users", ["role"], :name => "index_story_users_on_role"
+  add_index "story_users", ["story_id"], :name => "index_stories_users_on_story_id"
+  add_index "story_users", ["user_id"], :name => "index_stories_users_on_user_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
@@ -373,6 +555,18 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
   end
 
   add_index "templates", ["title"], :name => "index_templates_on_title"
+
+  create_table "theme_features", :force => true do |t|
+    t.integer  "theme_id"
+    t.integer  "story_id"
+    t.integer  "position"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "theme_features", ["position"], :name => "index_theme_features_on_position"
+  add_index "theme_features", ["story_id", "position"], :name => "index_theme_features_on_story_id_and_position"
+  add_index "theme_features", ["theme_id", "position"], :name => "index_theme_features_on_theme_id_and_position"
 
   create_table "theme_translations", :force => true do |t|
     t.integer  "theme_id"
@@ -422,7 +616,7 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
     t.text     "about"
     t.string   "default_story_locale",   :default => "en"
     t.string   "permalink"
-    t.string   "avatar_file_name"
+    t.string   "old_avatar_file_name"
     t.string   "email_no_domain"
     t.boolean  "wants_notifications",    :default => true
     t.string   "notification_language",  :default => "en"
@@ -443,8 +637,8 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
     t.boolean  "vote_flag"
     t.string   "vote_scope"
     t.integer  "vote_weight"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   add_index "votes", ["votable_id", "votable_type", "vote_scope"], :name => "index_votes_on_votable_id_and_votable_type_and_vote_scope"
@@ -461,14 +655,16 @@ ActiveRecord::Schema.define(:version => 20150115112119) do
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
     t.boolean  "cc",         :default => true
+    t.string   "title"
+    t.string   "url"
   end
 
   add_index "youtube_translations", ["youtube_id", "locale"], :name => "index_youtube_langs_on_youtube_id_and_lang"
 
   create_table "youtubes", :force => true do |t|
     t.integer  "section_id"
-    t.string   "title"
-    t.string   "url"
+    t.string   "old_title"
+    t.string   "old_url"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.boolean  "fullscreen", :default => false

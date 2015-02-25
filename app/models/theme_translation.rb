@@ -5,6 +5,8 @@ class ThemeTranslation < ActiveRecord::Base
   attr_accessible :theme_id, :name, :edition, :description, :permalink, :locale
 
   validates :name, :edition, :presence => true
+  validates :permalink, :uniqueness => {:scope => :locale, :case_sensitive => false, :message => I18n.t('app.msgs.already_exists')}
+  validates :description, length: { maximum: 160 }
 
   # permalink is in format: name-edition
   def create_permalink   

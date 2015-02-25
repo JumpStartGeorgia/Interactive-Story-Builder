@@ -1,72 +1,164 @@
 <% original ||= false %>
-<% #tinymce_assets %>
-<% #tinymce %>
+<% @new ||= false %>
 <% readonly = {} %>
-<% if original && @trans %>
-  <% readonly = { readonly:true , disabled: true } %>
+<% tinyClass = "tinyEditor" %>
+<% if @trans %>
+  <% if original %>
+    <%= tinymce readonly:1 %>      
+    <% readonly = { readonly:true , disabled: true } %>
+  <% else %>
+    <%= tinymce editor_selector: 'tinyEditor2' %>
+    <% tinyClass = "tinyEditor2" %>   
+  <% end %>
+<% elsif params[:action] == 'new' || params[:action] == 'create' %>
+  <% content_for(:js) { %>
+    <%= tinymce %>
+  <% } %>
+<% else %>
+    <%= tinymce %>
 <% end %>
-<% locale = 'en' %>
-<% Globalize.with_locale(locale) do %>
-  <%= semantic_form_for(@story, :html => {:multipart => true, :id => "storyForm"}) do |f| %>
+<% isTO = @trans && original # if mode is translate and screen is original(first) %>
+<% form_class = @trans == true && original == false ? 'form-translation' : '' %>
+
+  <%= semantic_form_for(@item, { :html => {:multipart => true, :id => "storyForm", :class => "new #{form_class}"} }.merge( @new ? {} : {url: story_path(id: params[:id], :format => :js), remote: true }) ) do |f| %>
 
     <%= f.inputs do %>
-      <%= f.input :user_id , :as => :hidden %>
+      <% 
+        trans_record = @item.story_translations.select{|x| x.locale == @item.current_locale}.first
+        trans_record = @item.with_translation(@item.current_locale) if trans_record.blank? 
+      %>
+      <%= f.fields_for :story_translations, trans_record do |f_translation| %>
 
-      <%= f.input :title, { :required => !original, :input_html => { id: "storyTitle", :'data-title-was' => @story.title }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.title'), placeholder: t('.placeholder.title') })) %>
+        <%# need this hidden field so can test if user has access to edit the locale if user is translator %>
+        <%= hidden_field_tag :current_locale , @item.current_locale if !isTO %>
 
-      <%= f.input :permalink_staging, { :input_html => { id: "storyPermalinkStaging"  }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.permalink'), placeholder: t('.placeholder.permalink') }))  %>
+        <%#= f.input :user_id , :as => :hidden %>
 
-    <% if !@trans %>
-      <%= f.input :permalink, :as => :hidden, :input_html => { id: "storyPermalink"  }   %>
-      <div class="string control-group stringish" id="story_permalink">&nbsp;</div>
-    <% end %>
+        <%= f_translation.input :locale , :as => :hidden, :input_html => {id: 'storyHiddenLocale'} %>
 
-      <%= f.input :author, { :required => !original, :input_html => { id: "storyAuthor" }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.author'), placeholder: t('.placeholder.author') })) %>
-
-      <%= f.input :media_author, { :input_html => { id: "storyMediaAuthor"  }.merge(readonly) }.merge(( original ? {} : { hint: t('.hint.media_author'), placeholder: t('.placeholder.media_author') }))  %>
-
-      <%= f.input :about, { :as => :text, :input_html => {:class => "tinymce", :rows => 15}.merge(readonly)  }.merge(( original ? {} : { hint: t('.hint.about') }))  %>
-
-    <% if !@trans %>
-
-      <%= f.input :story_locale , :as => :select, :hint => t('.hint.locale'), :title => 'testing', :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "storyLocale", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "7"  } %>
-
-      <%= f.input :story_type_id, :as => :select, hint: t('.hint.story_type'),  :include_blank => false, collection: @story_types.map{|t|[t.name,t.id]} , :input_html => { :id => "storyType", :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7", :title => t('app.common.nothing_selected')  }   %> 
-
-        <%= f.input :themes, :as => :select, :hint => t('.hint.theme'), :collection => @themes.map{|x|[x.formatted_name, x.id]}, :multiple => true, :input_html => { :id => 'storyThemes', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7", :title => t('app.common.nothing_selected') } %>
-
-    <% end %>
-
-  <% # not used code  %>
-      <% if false %>
-    		<%= f.input :categories, :as => :select, :hint => t('.hint.categories'), :collection => @categories, :multiple => true, :input_html => { :id => 'storyCategories', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7", :title => t('app.common.nothing_selected') } %>
-
-        <%= f.input :tag_list, hint: t('.hint.tag_list'), :input_html => { id: "storyTagList", :data => { load: @story_tags}  } %>
-
-        <%= f.input :template_id, :as => :select, hint: t('.hint.template'),  :include_blank => false, collection: @templates.map{|t|["#{t.title} - #{t.description}",t.id]} , :input_html => { :id => "storyTemplate"  }   %> 
-      <% end %>
-  <% # not used code end %>
+        <%= f_translation.input :title, 
+        { 
+          :required => !isTO, :input_html => {}
+          .merge( !isTO ? { id: "storyTitle", :'data-title-was' => @item.title } : { id: nil })
+          .merge(readonly) 
+        }
+        .merge(( (isTO) ? {} : { hint: t('.hint.title'), placeholder: t('.placeholder.title') })) %>
 
 
-      <%= f.fields_for :asset, @story.asset do |as| %>
-        <%= as.input :asset_type, :as => :hidden %>
+        <%= f_translation.input :permalink_staging, { :input_html => { id: (!isTO ? "storyPermalinkStaging" : nil)  }
+        .merge(readonly) }
+        .merge(( isTO ? {} : { hint: t('.hint.permalink'), placeholder: t('.placeholder.permalink') }))  %>
 
-        <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.story.thumbnail') %></label>
-        <% if @story.asset_exists? %>
-           <a class='btn btn-default preview' id="story-thumbnail-preview" data-modalos-id="modalos-preview" data-type="image"  data-image-path='<%= "#{@story.asset.asset.url(:thumbnail)}" %>'><%=  t('app.buttons.preview_image') %></a>           
-        <% end %>  
-        <% if !original %>
-          <%= as.input :asset, :as => :file , hint: t('.hint.thumbnail') , :input_html => { :id => "storyThumbnail", accept:".jpg,.jpeg,.png" }, label: false  %> 
+        <%= f_translation.input :permalink, :as => :hidden, :input_html => { id: (!isTO ? "storyPermalink" : nil)  }   %>
+        <div class="string form-group stringish story_permalink" <%= !isTO ? 'id=story_permalink' : ''%>>&nbsp;</div>
+
+        <% if !@trans %>
+          <%= f.input :authors, :as => :select, :hint => t('.hint.author'), :required => true, :collection => @authors.map{|x|[x.name, x.id]}, :multiple => true, :input_html => { :id => 'storyAuthors', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "5", :title => t('app.common.nothing_selected') } %>
+        <% end %>
+
+        <%= f_translation.input :media_author, { :input_html => { id: (!isTO ? "storyMediaAuthor" : nil) }.merge(readonly) }.merge(( isTO ? {} : { hint: t('.hint.media_author'), placeholder: t('.placeholder.media_author') }))  %>
+        
+        <%= f_translation.input :translation_author, { :input_html => { id: (!isTO ? "storyTranslationAuthor" : nil)  }.merge(readonly) }.merge(( isTO ? {} : { hint: t('.hint.translation_author'), placeholder: t('.placeholder.translation_author') }))  %>
+
+        <%= f_translation.input :about, { :as => :text, :input_html => {id: tinyClass , :class => tinyClass, :rows => 15}.merge(readonly) }.merge(( isTO ? {} : { hint: t('.hint.about') }))  %>
+
+        <% if !@trans %>
+
+          <% @item.story_locale = @item.current_locale if @item.story_locale.blank? %>
+          <%= f.input :story_locale , :as => :select, :hint => t('.hint.locale'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "storyLocale", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "5"  } %>
+
+          <%= f.input :story_type_id, :as => :select, hint: t('.hint.story_type'),  :include_blank => false, collection: @story_types.map{|t|[t.name,t.id]} , :input_html => { :id => "storyType", :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "5", :title => t('app.common.nothing_selected')  }   %> 
+
+          <%= f.input :themes, :as => :select, :hint => t('.hint.theme'), :collection => @themes.map{|x|[x.formatted_name, x.id]}, :multiple => true, :input_html => { :id => 'storyThemes', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "5", :title => t('app.common.nothing_selected') } %>
+
+        <% end %>
+
+        <% # not used code  %>
+        <% if false %>
+      		<%= f.input :categories, :as => :select, :hint => t('.hint.categories'), :collection => @categories, :multiple => true, :input_html => { :id => 'storyCategories', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "7", :title => t('app.common.nothing_selected') } %>
+
+          <%= f.input :tag_list, hint: t('.hint.tag_list'), :input_html => { id: "storyTagList", :data => { load: @story_tags}  } %>
+
+          <%= f.input :template_id, :as => :select, hint: t('.hint.template'),  :include_blank => false, collection: @templates.map{|t|["#{t.title} - #{t.description}",t.id]} , :input_html => { :id => "storyTemplate"  }   %> 
+        <% end %>
+        <% # not used code end %>
+
+
+        <%
+          asset_record = trans_record.asset
+          if asset_record.blank?
+            asset_record = trans_record.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
+          end
+        %>
+
+        <%= f_translation.fields_for :asset, asset_record do |f_asset| %>
+          <%= f_asset.input :asset_type, :as => :hidden %>
+
+          <label class=" control-label" for="modalImage"><%= t('activerecord.attributes.story.thumbnail') %></label>
+          <% if !isTO %>
+            <% if !original %>
+              <% 
+                orig = @item.with_translation(@from)
+                orig_asset_id = orig.asset.id if orig.present? && orig.asset.present?                  
+              %>
+
+              <% if orig_asset_id.present? && orig.asset.file.exists? %>
+                <div class="boolean input optional checkbox" id="asset_clone_thumbnail">
+                  <input name="clone_asset" type="hidden" value="0">
+                  <label class="  control-label" for="clone_asset">
+                    <input id="clone_asset" name="clone_asset" type="checkbox" value="1" <%= asset_record.asset_clone_id.present? ? 'checked=checked' : '' %>><%= t('app.common.clone_asset') %>
+                    <div class="help-inline" original-title="<%= t('helpers.hints.clone_asset') %>">
+                      <div>?</div>
+                    </div>
+                  </label>
+                </div>
+
+                <% if asset_record.asset_clone_id.blank? && asset_record.file.exists? %>
+                  <% 
+                    asset_class = isTO ? 'original-asset' : 'translated-asset'
+                  %>
+                   <a class='btn btn-default preview <%= asset_class %>' id="story-thumbnail-preview" data-modalos-id="modalos-preview" data-type="image"  data-image-path='<%= "#{asset_record.file.url(:thumbnail)}" %>'><%=  t('app.buttons.preview_image') %></a>           
+                <% end %>  
+
+                <div id="item-asset-clone">
+                  <%= f_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id} %>
+                </div>
+                <% style = asset_record.asset_clone_id.present? ? 'display:none;' : '' %>
+                <div id="item-asset" style="<%= style %>">
+                  <%= f_asset.input :asset, :as => :file , hint: t('.hint.thumbnail') , :input_html => { :id => "storyThumbnail", accept:".jpg,.jpeg,.png" }, label: false  %> 
+                </div>
+              <% end %>
+            <% else %>
+              <% if asset_record.file.exists? %>
+                <% 
+                  asset_class = isTO ? 'original-asset' : 'translated-asset'
+                %>
+                 <a class='btn btn-default preview <%= asset_class %>' id="story-thumbnail-preview" data-modalos-id="modalos-preview" data-type="image"  data-image-path='<%= "#{asset_record.file.url(:thumbnail)}" %>'><%=  t('app.buttons.preview_image') %></a>           
+              <% end %>  
+              <%= f_asset.input :asset, :as => :file , hint: t('.hint.thumbnail') , :input_html => { :id => "storyThumbnail", accept:".jpg,.jpeg,.png" }, label: false  %> 
+            <% end %>
+          <% else %>
+            <% if asset_record.file.exists? %>
+              <% 
+                asset_class = isTO ? 'original-asset' : 'translated-asset'
+              %>
+               <a class='btn btn-default preview <%= asset_class %>' id="story-thumbnail-preview" data-modalos-id="modalos-preview" data-type="image"  data-image-path='<%= "#{asset_record.file.url(:thumbnail)}" %>'><%=  t('app.buttons.preview_image') %></a>           
+            <% end %>  
+          <% end %> 
         <% end %> 
-      <% end %> 
+
+        
+      <% end %>
     <% end %>
-    <% if !(@trans && original) %>
+    <% if !isTO %>
       <div class="pull-right spacer">
-        <%= f.submit nil, :class => 'btn btn-default' %>
-        <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          
+        <%= f.submit t('app.buttons.save'), :class => 'btn btn-default' %>
+        <% if !@new %>
+          <%= f.submit t('app.buttons.save_and_next'), :class => 'btn btn-default', :name => "commit_and_next" %>        
+          <%= f.submit t('helpers.links.next'), :class => 'btn btn-default', :type => :button, :onclick => 'select_next();' %>
+        <% end %> 
+        <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>               
       </div> 
     <% end %>
   <% end %>
-<% end %>
-
 

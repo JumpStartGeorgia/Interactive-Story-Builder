@@ -13,7 +13,7 @@ module RecreateDeletedImages
           puts "@@@@@@ media id #{media.id} (story #{media.section.story_id}) is missing image"
           
           # see if poster exists
-          image_file = "#{Rails.root}/public#{media.video.asset.url(:poster, false)}"
+          image_file = "#{Rails.root}/public#{media.video.file.url(:poster, false)}"
           puts "@@@@@@@@ checking for existing post at: #{image_file}"
           if File.exists?(image_file)
             puts "@@@@@@@@ file exists, saving!"

@@ -84,7 +84,7 @@
         <% if @story.present? && @story.sections.present? %>                          
                   
            <li>
-            <% markers = @story.sections.select{|t| (t.ok? && t.has_marker? == true) } %>      
+            <% markers = @story.sections.select{|t| (t.has_marker? == true && t.ok?) } %>      
             <% if markers.length > 1 %>    
               <div class="navigation-sections">     
                <% markers.each_with_index do |s,s_i| %>
@@ -93,7 +93,7 @@
               </div>
             <% end %>
           </li>  
-          <li><a href="#" class="navigation-volume"><div class="navigation-icon"></div></a></li>              
+          <li><a href="#" class="navigation-volume"></a></li>              
         <% end %>                                  
       </ul>
     </div>
@@ -108,18 +108,21 @@
   <div class="title" lang="<%= @story.story_locale %>"><%= @story.title %></div>
   <div class="text" lang="<%= @story.story_locale %>"><%= @story.about.html_safe  if @story.about.present? %> </div>
   <div class="profile-data">
-    <div class="logo">
-       <%= link_to image_tag(@story.user.avatar_url, :class=>"avatar"), "#" , 
-         :class => "avatar", :"data-toggle"=>"dropdown" %>   
-    </div>   
-    <div class="nickname">
-      <%= link_to @story.user.nickname, author_path(@story.user.permalink), :title => @story.user.nickname %>      
-    </div> 
-     
-    <% if !user_signed_in? || current_user.id != @story.user_id  %>    
+    <% 
+      author = @story.authors.first 
+      if author.present?
+    %>
+      <div class="logo">
+         <%= link_to image_tag(author.avatar_url, :class=>"avatar"), "#" , 
+           :class => "avatar", :"data-toggle"=>"dropdown" %>   
+      </div>   
+      <div class="nickname">
+        <%= link_to author.name, author_path(author.permalink) %>      
+      </div> 
+       
       <div class="follow">
         <%= render partial: 'layouts/follow_link', 
-            locals: {:user_id => @story.user_id, :is_story_page => true, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
+            locals: {:user_id => author.id, :is_story_page => true, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
       </div>  
     <% end %> 
     <div class="stats"> 
@@ -146,8 +149,9 @@
     </div>
   <% end %>
   <div class="languages">
-    <span><%= I18n.t('helpers.links.languages') %>:</span>      
-    <%= link_to @story.language.name, root_path(:language => @story.language.locale), :class=>"lang" %> 
+    <span><%= I18n.t('helpers.links.languages') %>:</span>   
+    <% index = @languages.index{|x| x.locale == @story.story_locale}   %>
+    <%= link_to @languages[index].name, root_path(:language => @story.story_locale), :class=>"lang" %> 
   </div>      
 </div>
 <div id="modalos-comments" style="display:none;">

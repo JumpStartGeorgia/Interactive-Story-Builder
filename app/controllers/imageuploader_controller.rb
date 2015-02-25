@@ -3,7 +3,7 @@ class ImageuploaderController < ApplicationController
 
   def create
   uploaded_io = params[:file]    
-  if params[:file].present? && (params[:file].size/1024/1024) <= 5 
+  if params[:file].present? && (params[:file].size/1024/1024) <= 4
     file_name = StoriesHelper.transliterate_path(uploaded_io.original_filename)
     if ['.jpg','.png'].index(File.extname(file_name)).present?       
         story_path = "public/system/places/images/#{params['id']}"

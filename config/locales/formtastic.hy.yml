@@ -1,0 +1,12 @@
+# encoding: utf-8
+
+hy:
+  formtastic:
+    :yes: այո
+    :no: ոչ
+    create: "կազմել %{model} "
+    update: "պահել %{model} "
+    submit: "պահել %{model} "
+    cancel: "վերացնել %{model}"
+    reset: "բեռնել %{model} "
+    required: անհրաժեշտ

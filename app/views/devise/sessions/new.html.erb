@@ -30,7 +30,7 @@
   	<%= f.error_messages %>
     <%= f.input :email, :as => :email, :input_html => { :size => 35, :class => "login-username" }, :placeholder => t('activerecord.attributes.user.email') , label: false %>
     <%= f.input :password, :input_html => { :size => 35, :class => "login-password" }, :placeholder => t('activerecord.attributes.user.password'), label: false %>
-    <div class="control-group submit-row">
+    <div class="form-group submit-row">
 	    <% if devise_mapping.rememberable? -%>		    
 			    <label class="checkbox remember-me">
 				    <%= f.check_box :remember_me  %> <%= model_class.human_attribute_name(:remember_me) %>
@@ -43,7 +43,7 @@
     
   <% end %>
 
-  <div class="control-group">
+  <div class="form-group">
 	  <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
 		  <%= link_to t('helpers.links.forgot_password'), new_password_path(resource_name), :class => 'forgot-link modalForgotPassword', :"data-modalos-id"=>"modalos-forgot-password", :"data-modalos-class"=>"modalos-forgot-password" %>
 	  <% end -%>

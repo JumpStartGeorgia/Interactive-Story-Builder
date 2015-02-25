@@ -9,8 +9,8 @@ class Admin::UsersController < ApplicationController
   # GET /admin/users
   # GET /admin/users.json
   def index
-    @css.push("dataTables/jquery.dataTables.bootstrap.css")
-    @js.push("dataTables/jquery.dataTables.js", "dataTables/jquery.dataTables.bootstrap.js", "search.js")
+    @css.push("dataTables/bootstrap/3/jquery.dataTables.bootstrap.css")
+    @js.push("dataTables/jquery.dataTables.js", "dataTables/bootstrap/3/jquery.dataTables.bootstrap.js", "search.js")
 
     respond_to do |format|
       format.html # index.html.erb

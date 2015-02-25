@@ -1,0 +1,53 @@
+<%
+  is_infographic ||= false
+%>
+ <div class='info-top'>
+  <div class='js-row'>
+    <div class="share">
+      <div class="addthis_native_toolbox"></div> 
+       <%= link_to '#', :'data-modalos-id' => "modalos-embed", :title => t('app.common.embed', locale: @story.current_locale), :class => "embed modalEmbed" do %>
+
+         <% end %> 
+      </div>
+      <div class="views" title=""><%= t('app.common.views', locale: @story.current_locale) %>:&nbsp;<span><%= @story.impressions_count %></span></div>  
+      <div class="r">  
+      <%  
+       locales = @is_preview ? @story.story_locales : @story.published_locales
+       cur_locale = @story.current_locale 
+       cur_lang = @languages.select{ |x| x.locale == cur_locale }.first
+       locales-=[cur_locale]
+      %>
+       <div class='translations'>
+         <div><%= t('helpers.links.languages', locale: @story.current_locale) %>:&nbsp;</div>
+         <div class="dropdown">
+           <button class='btn btn-default dropdown-toggle<%= locales.size > 0 ? "" : " disabled" %>' type="button" id="translationsMenu" data-toggle="dropdown" aria-expanded="true">
+             <%= cur_lang.present? ? cur_lang.name : cur_locale %>
+               <span class="caret"></span>                               
+           </button>
+           <% if locales.size > 0 %>
+             <ul class="dropdown-menu" role="menu" aria-labelledby="translationsMenu">
+               <%  locales.each do |t| 
+                     @story.current_locale = t
+                     l = @languages.select{|x| x.locale == t}.first
+                     path = @is_preview ? preview_story_path(id: @story, sl: t) : storyteller_show_path(id: @story.permalink,sl: t)
+                     if l.present?
+               %>
+                 <li role="presentation"><a role="menuitem" tabindex="-1" href="<%= path %> "><%= l.name %></a></li>
+                 <% end %>
+               <% end %>
+             </ul>
+           <% end %>
+         </div>
+       </div>
+      <% 
+       @story.current_locale = cur_locale
+      %>
+      <a href="#" class="navigation-volume"></a>
+    </div>
+  </div>
+  <div class='js-row'>
+    <% if @story.story_type_id != 1 && @story.about.present? && !is_infographic %>
+      <div class='descr'><%= @story.about.html_safe %></div>
+    <% end %>
+  </div>
+</div>

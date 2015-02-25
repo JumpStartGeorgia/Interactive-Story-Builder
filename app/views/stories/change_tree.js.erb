@@ -1,8 +1,23 @@
+<%= remotipart_response do %>
+  <% if remotipart_submitted? 
+      msg = ""
+      msg_type = ""
+      [:success, :notice, :error, :alert].each do |type|         
+          msg = flash[type] unless flash[type].blank?
+          msg_type = type.to_s unless flash[type].blank?                    
+    end     
+     %>    
+     <% if !msg.empty? %>
+      popuper('<%= msg %>' , '<%= msg_type %>');
+   <% end %>   
+  <% end %>
+<% end %>
 <% tools = 
   "<div class='tools'><button type='button' class='btn btn-sort btn-up' title='#{ t('app.buttons.up') }'> <i class='glyphicon glyphicon-arrow-up' ></i> </button>" + 
   "<button type='button' class='btn btn-sort btn-down' title='#{ t('app.buttons.down') }'> <i class='glyphicon glyphicon-arrow-down' ></i></button>" +
   "<button type='button' class='btn  btn-danger btn-remove' title='#{ t('app.buttons.delete_item') }' ><i class='glyphicon glyphicon-remove'></i></button></div>" 
   add_item = "<button type='button' class='btn btn-create' title='#{ t('app.buttons.add_item') }'><i class='glyphicon glyphicon-film' ></i>#{ t('app.buttons.add_item') }</button>"
+  @select_next ||= false
 %>
 
 change_tree({
@@ -11,5 +26,6 @@ change_tree({
    'title':'<%= @item.title %>',
    'icon':'<%= @item.get_icon %>',
    'tools':"<%= tools.html_safe %>",
-   'add_item':"<%= add_item.html_safe %>"
+   'add_item':"<%= add_item.html_safe %>",
+   'select_next':<%= @select_next %>
 });

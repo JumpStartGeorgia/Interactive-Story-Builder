@@ -68,22 +68,28 @@ class ApplicationController < ActionController::Base
   
 	def preload_global_variables
     @story_types = StoryType.sorted
-    @published_themes = Theme.published.sorted
-     @languages = LANGUAGES # its an array that is initialized at rails app start Language.app_locale_sorted 
-  #   @languages_published = @languages.select{|x| x.has_published_stories == true}
+    @themes_published = Theme.published.sorted
+    @languages = Language.app_locale_sorted #LANGUAGES # its an array that is initialized at rails app start Language.app_locale_sorted 
+    @languages_published = @languages.select{|x| x.has_published_stories == true}
 		# @categories = Category.sorted
   #   @categories_published = @categories.select{|x| x.has_published_stories == true}
     @face_id = Rails.env.production? ? ENV['STORY_BUILDER_FACEBOOK_APP_ID'] : ENV['DEV_FACEBOOK_APP_ID']        
     # for loading extra css/js files    
 		@css = []
 		@js = []
+
+    # variable to tell globalize which locale to use
+    # - should be updated with correct locale after story is loaded
+    @story_current_locale = I18n.locale
     
     # have to insert devise styles/js here since no controllers exist
     if params[:controller].present? && params[:controller].start_with?('devise/')
       @css.push("navbar.css")
-#      @css.push('devise.css',"navbar.css")
 #      @js.push('nickname.js')
     end
+
+    # reset globalize story_locale
+    Globalize.story_locale = Globalize.locale
 	end
   
 
@@ -113,6 +119,7 @@ class ApplicationController < ActionController::Base
 		else
 		  gon.datatable_i18n_url = ""
 		end
+     gon.dev = Rails.env.development?
 	end
 
 
@@ -127,7 +134,11 @@ class ApplicationController < ActionController::Base
 
   ## process the filter requests
   def process_filter_querystring(story_objects)    
-    gon.page_filtered = params[:staff_pick].present? || params[:sort].present? || params[:category].present? || params[:tag].present? || params[:language].present? || params[:q].present? || params[:following].present?
+    gon.page_filtered = params[:sort].present? || 
+                        params[:theme].present? ||
+                        params[:language].present? ||
+                        params[:q].present? ||
+                        params[:following].present?
     
     # not published (only available when users editing their stories)
     if params[:not_published].present?
@@ -136,18 +147,7 @@ class ApplicationController < ActionController::Base
   		@story_filter_not_published = false
     end
     story_objects = story_objects.is_not_published if @story_filter_not_published
-
-    # staff pick
-    if params[:staff_pick].present?
-      @story_filter_staff_pick = params[:staff_pick].to_bool
-    #elsif params[:sort].present? || params[:category].present? || params[:tag].present? || params[:language].present? || params[:q].present?
-     # @story_filter_staff_pick = false
-    else
-#  		@story_filter_staff_pick = controller_action?('root','index')
-  		@story_filter_staff_pick = false
-    end
-    story_objects = story_objects.is_staff_pick if @story_filter_staff_pick
-
+ 
     # sort
     @story_filter_sort_recent = true
     @story_filter_sort_permalink =  ""
@@ -169,50 +169,88 @@ class ApplicationController < ActionController::Base
       story_objects = story_objects.recent
 			@story_filter_sort = I18n.t("filters.sort.recent")
     end
-    
-    # category
-    @story_filter_category_all = true
-    @story_filter_category_permalink =  ""
-    index = params[:category].present? ? @categories_published.index{|x| x.permalink.downcase == params[:category].downcase} : nil
+        
+    # type
+    @story_filter_type_all = true
+    @story_filter_type_permalink =  ""
+    index = params[:type].present? ? @story_types.index{|x| x.permalink.downcase == params[:type].downcase} : nil
     if index.present?
-      story_objects = story_objects.by_category(@categories_published[index].id)    
-  		@story_filter_category = @categories_published[index].name
-      @story_filter_category_permalink =  @categories_published[index].permalink
-      @story_filter_category_all = false
+      story_objects = story_objects.by_type(@story_types[index].id)    
+      @story_filter_type = @story_types[index].name
+      @story_filter_type_permalink =  @story_types[index].permalink
+      @story_filter_type_all = false
     else
-  		@story_filter_category = I18n.t("filters.all")
+      @story_filter_type = I18n.t("filters.all")
     end
+
+
+    # theme
+    @story_filter_theme_all = true
+    @story_filter_theme_permalink =  ""
+    index = params[:theme].present? ? @themes_published.index{|x| x.permalink.downcase == params[:theme].downcase} : nil
+    if index.present?
+      story_objects = story_objects.by_theme(@themes_published[index].id)    
+      @story_filter_theme = @themes_published[index].name
+      @story_filter_theme_permalink =  @themes_published[index].permalink
+      @story_filter_theme_all = false
+    else
+      @story_filter_theme = I18n.t("filters.all")
+    end
+
+   # staff pick
+    #if params[:staff_pick].present?
+    #  @story_filter_staff_pick = params[:staff_pick].to_bool
+    #elsif params[:sort].present? || params[:category].present? || params[:tag].present? || params[:language].present? || params[:q].present?
+     # @story_filter_staff_pick = false
+    #else
+#     @story_filter_staff_pick = controller_action?('root','index')
+    # @story_filter_staff_pick = false
+    #end
+    #story_objects = story_objects.is_staff_pick if @story_filter_staff_pick
+
+    # category
+    # @story_filter_category_all = true
+    # @story_filter_category_permalink =  ""
+    # index = params[:category].present? ? @categories_published.index{|x| x.permalink.downcase == params[:category].downcase} : nil
+    # if index.present?
+    #   story_objects = story_objects.by_category(@categories_published[index].id)    
+  		# @story_filter_category = @categories_published[index].name
+    #   @story_filter_category_permalink =  @categories_published[index].permalink
+    #   @story_filter_category_all = false
+    # else
+  		# @story_filter_category = I18n.t("filters.all")
+    # end
     
     #tags
-    if params[:tag].present?
-      story_objects = story_objects.tagged_with(params[:tag])
-  		@story_filter_tag = params[:tag].titlecase
-    else
-  		@story_filter_tag = I18n.t("filters.all")
-    end    
+    #if params[:tag].present?
+    #  story_objects = story_objects.tagged_with(params[:tag])
+  	#	@story_filter_tag = params[:tag].titlecase
+    #else
+  	#	@story_filter_tag = I18n.t("filters.all")
+    #end    
     
     # language
-    @story_filter_language_permalink =  ""
-    index = params[:language].present? ? @languages_published.index{|x| x.locale.downcase == params[:language].downcase} : nil
+    #@story_filter_language_permalink =  ""
+    #index = params[:language].present? ? @languages_published.index{|x| x.locale.downcase == params[:language].downcase} : nil
 #    if index.nil? && user_signed_in? && current_user.default_story_locale.present?
 #      index = @languages_published.index{|x| x.locale.downcase == current_user.default_story_locale}
 #    end
-    @story_filter_language_all = true
-    if index.present?
-      story_objects = story_objects.by_language(@languages_published[index].locale)    
-  		@story_filter_language = @languages_published[index].name
-      @story_filter_language_permalink = @languages_published[index].locale
-      @story_filter_language_all = false
-    else
-  		@story_filter_language = I18n.t("filters.all")
-    end
+    #@story_filter_language_all = true
+    #if index.present?
+    #  story_objects = story_objects.by_language(@languages_published[index].locale)    
+  	#	@story_filter_language = @languages_published[index].name
+    #  @story_filter_language_permalink = @languages_published[index].locale
+    #  @story_filter_language_all = false
+    #else
+  	#	@story_filter_language = I18n.t("filters.all")
+    #end
     
     # following users
     @story_filter_show_following = user_signed_in? && controller_action?('root','index')
     if user_signed_in?
-      @following_users = current_user.following_users
-      if @following_users.present? && params[:following].present? && params[:following].to_bool == true
-        story_objects = story_objects.by_authors(@following_users.map{|x| x.id}.uniq)
+      @following_authors = current_user.following_authors
+      if @following_authors.present? && params[:following].present? && params[:following].to_bool == true
+        story_objects = story_objects.by_authors(@following_authors.map{|x| x.id}.uniq)
         @story_filter_following = true
       else 
         @story_filter_following = false

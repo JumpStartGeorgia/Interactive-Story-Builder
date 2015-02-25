@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="initial-scale=1,width=device-width,height=device-height,user-scalable=no">       
-    <% title = "#{@story.title}" + (@export ? "" : (" | #{@story.author} | #{t('app.common.app_name_not_trans')}").html_safe) %>
+    <% title = "#{@story.title}" + (@export ? "" : (" | #{@story.story_author_names} | #{t('app.common.app_name_not_trans')}").html_safe) %>
     <title><%= title %></title>    
     <%= csrf_meta_tags if !@export %>
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -17,7 +17,7 @@
     <meta property="og:type" content="non_profit" />
     <meta property="og:url" content="<%= current_url if !@export %>" />
 <% if @story && @story.id && @story.asset_exists? %>
-    <meta property="og:image" content="<%= @export ? "media/thumbnail/#{@story.asset.asset_file_name}" : full_url(@story.asset.asset.url(:thumbnail, false)) %>" />
+    <meta property="og:image" content="<%= @export ? "media/thumbnail/#{@story.asset.file_file_name}" : full_url(@story.asset.file.url(:slider, false)) %>" />
 <% else %>
     <meta property="og:image" content="<%= full_url('/assets/fb-img.jpg') %>" />
 <% end %>

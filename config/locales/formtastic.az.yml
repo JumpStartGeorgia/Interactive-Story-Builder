@@ -4,10 +4,9 @@ az:
   formtastic:
     :yes: Bəli
     :no: Xeyr
-    cancel: "Ləğv etmək %{model}"
     create: "Yaratmaq %{model}"
-    required: Lazımlı
-    reset: "Yenidən başlatmaq %{model}"
-    submit: "Saxlamaq %{model}"
     update: "Saxlamaq %{model}"
-
+    submit: "Saxlamaq %{model}"
+    cancel: "Ləğv etmək %{model}"
+    reset: "Yenidən başlatmaq %{model}"
+    required: Lazımlı

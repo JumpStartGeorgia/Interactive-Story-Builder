@@ -1,5 +1,7 @@
 BootstrapStarter::Application.routes.draw do
 
+
+
 	#--------------------------------
 	# all resources should be within the scope block below
 	#--------------------------------
@@ -11,13 +13,18 @@ BootstrapStarter::Application.routes.draw do
 											 :controllers => {:omniauth_callbacks => "omniauth_callbacks"}
 
 		namespace :admin do
+		  resources :authors
       resources :pages
 			resources :users
       resources :news
       resources :languages
       resources :categories
 		  resources :story_types
-		  resources :themes
+		  resources :themes do
+			  member do
+				  get :preview
+			  end
+		  end
 		end
 
 		#get 'tinymce_assets' ,to: 'tinymceassets#index'
@@ -42,15 +49,18 @@ BootstrapStarter::Application.routes.draw do
 
 	        get 'get_data'
 
-	        put 'content', to: 'stories#save_content'
-	        post 'content', to: 'stories#new_content'
+	        get 'translation_progress'
+
+	        put 'content', to: 'stories#save_item'
+	        post 'content', to: 'stories#new_item'
 
 	        delete 'remove', to: 'stories#destroy_tree_item'
 
-	        put 'media', to: 'stories#save_media'
-	        post 'media', to: 'stories#new_media'				
+	        put 'media', to: 'stories#save_item'
+	        post 'media', to: 'stories#new_item'				
 
-
+	        put 'infographic', to: 'stories#save_item'
+	        post 'infographic', to: 'stories#new_item'				
 
 	        put 'section', to: 'stories#save_section'
 	        post 'section', to: 'stories#new_section'	
@@ -64,15 +74,15 @@ BootstrapStarter::Application.routes.draw do
 	        get 'clone', to: 'stories#clone'    
 	        get 'export', to: 'stories#export' 		
 
-	        put 'slideshow', to: 'stories#save_slideshow'
-	        post 'slideshow', to: 'stories#new_slideshow'
+	        put 'slideshow', to: 'stories#save_item'
+	        post 'slideshow', to: 'stories#new_item'
 
 
-	        put 'embed_media', to: 'stories#save_embed_media'
-	        post 'embed_media', to: 'stories#new_embed_media'				
+	        put 'embed_media', to: 'stories#save_item'
+	        post 'embed_media', to: 'stories#new_item'				
 
-	        put 'youtube', to: 'stories#save_youtube'
-	        post 'youtube', to: 'stories#new_youtube'
+	        put 'youtube', to: 'stories#save_item'
+	        post 'youtube', to: 'stories#new_item'
 
 	        get 'get_embed_code', to: 'stories#get_embed_code'
 			end			
@@ -106,12 +116,12 @@ BootstrapStarter::Application.routes.draw do
 
 
     # published story url/actions
-    match ":id" => "storyteller#index", as: 'storyteller_show'
-		match ":id/staff_pick" => "storyteller#staff_pick", as: 'storyteller_staff_pick', :defaults => { :format => 'json' }
-		match ":id/staff_unpick" => "storyteller#staff_unpick", as: 'storyteller_staff_unpick', :defaults => { :format => 'json' }
-		match ":id/like" => "storyteller#like", as: 'storyteller_like', :defaults => { :format => 'json' }
-		match ":id/unlike" => "storyteller#unlike", as: 'storyteller_unlike', :defaults => { :format => 'json' }
-		match ":id/record_comment" => "storyteller#record_comment", as: 'storyteller_record_comment', :defaults => { :format => 'json' }
+      match ":id(/:sl)" => "storyteller#index", as: 'storyteller_show'
+		#match ":id/staff_pick" => "storyteller#staff_pick", as: 'storyteller_staff_pick', :defaults => { :format => 'json' }
+		#match ":id/staff_unpick" => "storyteller#staff_unpick", as: 'storyteller_staff_unpick', :defaults => { :format => 'json' }
+		#match ":id/like" => "storyteller#like", as: 'storyteller_like', :defaults => { :format => 'json' }
+		#match ":id/unlike" => "storyteller#unlike", as: 'storyteller_unlike', :defaults => { :format => 'json' }
+		#match ":id/record_comment" => "storyteller#record_comment", as: 'storyteller_record_comment', :defaults => { :format => 'json' }
 
 		root :to => 'root#index'
 	  match "*path", :to => redirect("/#{I18n.default_locale}") # handles /en/fake/path/whatever

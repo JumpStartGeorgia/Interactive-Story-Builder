@@ -19,7 +19,6 @@
 /*---------------------------
  Extend and Execute
 ----------------------------*/
-	var curModalos = null;
     $.fn.modalos = function(options) {
         
         var defaults = {  
@@ -33,176 +32,127 @@
 		    before_close: null, 
 		    after_close: null,
 		    topOffset: 60,
+		    leftOffset: 30,
 		    margins: 40,
 		    paddings: 20,
 		    fullscreen: false,
 		    aspectratio: false,
 		    width:'962',
 		    height: 'auto',
+		    klass: '',
+		    dragscroll: false
 		    //621px'
     	}; 
     	
         //Extend dem' options
         var options = $.extend({}, defaults, options); 
-	
+         console.log(options);
         return this.each(function() {
-        
 /*---------------------------
  Global Variables
 ----------------------------*/
 
         	var modal = $(this),
         		wrapper = $('.modalos-wrapper'), 
-          		bg = $('.modalos-bg'), 
+          		//bg = $('.modalos-bg'), 
           		keeper = $('.modalos-keeper'), 
           		locked = false,
-          		header_height = 15
+          		header_height = 15,
+          		content = null,
+          		box = null;
           	 				
 /*---------------------------
  Create Modal Wrapper and Bg if not exists
 ----------------------------*/
-			if(wrapper.length == 0) {
+			//if(wrapper.length == 0) {
 				wrapper = $("<div class='modalos-wrapper'> \
-	      								<div class='m-header'> \
-	      									<div class='m-close'> \
-	      										<img src='/assets/svg/close.svg'> \
-	      									</div> \
-	      								</div> \
-      									<div class='m-content'>	\
-	      								</div> \
-								</div>").appendTo('body');			
-			}	
-			if(bg.length == 0) {
-				bg = $('<div class="modalos-bg" />').appendTo('body');
-			}
-			if(keeper.length == 0) {
-				keeper = $('<div class="modalos-keeper"/>').appendTo('body');
-			}	 	    
-     		wrapper.find('.m-content').css("padding",options.paddings);
+										<div class='m-box'> \
+											<div class='m-close'></div> \
+      									<div class='m-content'></div> \
+      								</div> \
+								</div>").appendTo('body');
+				if(options.dragscroll) {
+					wrapper.dragScroll({});
+				}						
+			//}	
+			wrapper.removeClass().addClass('modalos-wrapper ' + options.klass);
+			//if(bg.length == 0) {
+		//		bg = $('<div class="modalos-bg" />').appendTo('body');
+		//	}
+     		content = wrapper.find('.m-content').css("padding",options.paddings);
+     		box = wrapper.find('.m-box');
+
 /*---------------------------
  Open & Close Animations
 ----------------------------*/
 			//Entrance Animations
 			modal.bind('modalos:open', function () {
 				var opened = false;
-				if(curModalos!=null)
-				{
-					keeper.append(curModalos);
-					opened = true;
-				}				
-				curModalos = modal;
-				//console.log("modalos:open");
-				//console.log(options.topOffset);
-			    if (options.before_open) options.before_open(this);
+			
+			   if (options.before_open) options.before_open(this);
 
-			  	bg.unbind('click.modalEvent');
-				$('.m-close').unbind('click.modalEvent');
+			  	wrapper.off('click');
+				$('.m-close').off('click');
 
 				if(!locked) {
 					lock();
-				 	lock_scroll();
 					render();				
-				     modal.detach();
-				     var content =  $(wrapper).find('.m-content');
+				   modal.detach();
 
-				     if(options.contentscroll)
-				     	content.css("overflow-x","hidden").css("overflow-y","auto");
-				     else content.css("overflow","hidden");
-
+			    	wrapper.css({'overflow-x':'auto','overflow-y':'scroll'});	 
 					content.html($(modal).css("display","block"));
-			 
-					// if(options.animation == "fadeAndPop") {
-
-					// 	modal.css({'top': $(document).scrollTop()-topOffset, 'opacity' : 0, 'display' : 'block'});
-					// 	modalBG.fadeIn(options.animationspeed/2);
-					// 	modal.delay(options.animationspeed/2).animate({
-					// 		"top": $(document).scrollTop()+topMeasure + 'px',
-					// 		"opacity" : 1
-					// 	}, options.animationspeed,unlockModal());			
-					// }
+			 				
 					if(options.animation == "fade" && !opened) {
-
-		         	 	wrapper.css({'opacity' : 0, 'display' : 'block'});						
-						bg.fadeIn(options.animationspeed/2);
-						wrapper.delay(options.animationspeed/2).animate({
-							"opacity" : 1
-						}, options.animationspeed,unlock());				
+						wrapper.fadeIn(options.animationspeed,unlock());
 					} 
-					else { //(options.animation == "none") 
-					 	wrapper.css("display","block");
-			         	bg.css("display","block");		    						
+					else 
+					{
+					 	wrapper.show();
 						unlock();				
 					}
 				}
-				modal.unbind('modalos:open');
+				modal.off('modalos:open');
 				if (options.after_open) options.after_open();
 			}); 	
 
 			//Closing Animation
 			modal.bind('modalos:close', function () {
+					$('body').css('overflow','initial');
+					wrapper.css('overflow','hidden');
 
-				//console.log('modalos:close');
 				if (options.before_close) options.before_close(this);
-				keeper.append(modal);
-				curModalos = null;
 			  if(!locked) {
 					lock();
-					unlock_scroll();
-
-					// if(options.animation == "fadeAndPop") {
-					// 	//modalBG.delay(options.animationspeed).fadeOut(options.animationspeed);
-					// 	modal.animate({
-					// 		"top":  $(document).scrollTop()-topOffset + 'px',
-					// 		"opacity" : 0
-					// 	}, options.animationspeed/2, function() {
-					// 		modal.css({'top':topMeasure, 'opacity' : 1, 'display' : 'none'});
-					// 		unlock();
-					// 	});					
-					// }  	
 					if(options.animation == "fade") {    
-						bg.delay(options.animationspeed).fadeOut(options.animationspeed);
-						wrapper.animate({
-							"opacity" : 0
-						}, options.animationspeed, function() {
-							wrapper.css({'opacity' : 1, 'display' : 'none'});
-							unlock();
-						});					
+						wrapper.fadeOut(options.animationspeed,unlock());
 					}  	
 					if(options.animation == "none") {
-						wrapper.css({'display' : 'none'});
-						bg.css({'display' : 'none'});	
+						wrapper.hide();
 					}			
 				}
-				
 
 				modal.unbind('modalos:resize');
 				modal.unbind('modalos:close');
+				wrapper.remove();
+
 			});     
 
-   			modal.bind('modalos:resize', function () {	
-   				render();
-		      // 	 $(wrapper).height($(window).height() - options.topOffset - options.margins);
-		    	 // $(wrapper).width($(window).width() - options.margins);
-			     // $(wrapper).css("top",options.margins/2 + options.topOffset);
-			     // $(wrapper).css("left",options.margins/2);		         
-
-				 //modal.css({'left': ($(window).width()-modal.outerWidth(true))/2 + 'px'});						
+			modal.bind('modalos:resize', function () {	
+				render();		  
 			});     
 /*---------------------------
  Open and add Closing Listeners
 ----------------------------*/
         	//Open Modal Immediately
     		modal.trigger('modalos:open');
-			//console.log("listeners");
-			//Close Modal Listeners
-			var closeButton = $('.m-close').bind('click.modalEvent', function () {
+			var closeButton = $('.m-close').on('click', function () {
 			  modal.trigger('modalos:close')
 			});
 			
 			if(options.closeonbackgroundclick) {
-				bg.css({"cursor":"pointer"})
-				bg.bind('click.modalEvent', function () {
-				  modal.trigger('modalos:close')
+				wrapper.css({"cursor":"pointer"}).on('click', function (e) {
+					if(e.target == e.currentTarget)
+				  		modal.trigger('modalos:close');
 				});
 			}
 			$('body').keyup(function(e) {
@@ -217,16 +167,16 @@
  Animations Locks
 ----------------------------*/
 			function unlock() { 
-				locked = false;				
+				locked = false;	
 			}
 			function lock() {
 				locked = true;				
 			}
 			function lock_scroll() {
-				if(options.lockscroll) $('body').css("overflow","hidden");				
+				//if(options.lockscroll) $('body').css("overflow","hidden");				
 			}
 			function unlock_scroll() {
-				if(options.lockscroll) $('body').css("overflow","visible");			
+				//if(options.lockscroll) $('body').css("overflow","visible");			
 			}
 			function render()
 			{				
@@ -235,57 +185,86 @@
 			      	 
 	      	 if(options.fullscreen)
 		    	 {
-		    	 	$(wrapper).height(h - options.topOffset - options.margins);
-		    	 	$(wrapper).find('.m-content').css("max-height",h - options.topOffset - options.margins - header_height).removeClass("fluid");
+		    	 	$(box).height(h - options.topOffset - options.margins);
+		    	 	$(box).find('.m-content').css("max-height",h - options.topOffset - options.margins - header_height).removeClass("fluid");
 		    	 	if(options.aspectratio)
 		    	 	{		    	 		
-    	 				$(wrapper).width(aspect_ratio_width(h,w,$(wrapper).height())); 
-    	 				$(wrapper).css("left", (w - $(wrapper).width())/2);	
+    	 				$(box).width(aspect_ratio_width(h,w,$(box).height())); 
+    	 				$(box).css("left", (w - $(box).width())/2);	
 		    	 	}
 	    	 		else 
     	 			{
-    	 				$(wrapper).width(w - options.margins); 
-				     	$(wrapper).css("left",options.margins/2);	
+    	 				$(box).width(w - options.margins); 
+				     	$(box).css("left",options.margins/2);	
 			     	}
 
-	 		        $(wrapper).css("top",options.margins/2 + options.topOffset);				    	
+	 		        $(box).css("top",options.margins/2 + options.topOffset);				    	
 	    	 	 }
 		    	 else
 		    	 {		  
-    	 		 	var fill = options.width > w ? true : false;  
-		    	 	
-		    	 	$(wrapper).find('.m-content').css("max-height", fill ? h : h - options.topOffset - options.margins - header_height).addClass("fluid");
-		    	 	if(fill) 
-	    	 		{	    		    	 		
-	    	 			$(wrapper).width(w).height(h);
-	    	 		}
-			    	else 
+    	 		 	var wOut = options.width > w ? true : false;  
+    	 		 	var hOut = options.height > h ? true : false;  
+		    	 		    	 
+			    	if(!wOut) 
 		    		{		    			    	 		
-		    			// console.log(options)
-		    			$(wrapper).width(options.width-options.margins);
-		    			if(options.height + options.topOffset > h)
-			    	 	{
-		    	 			$(wrapper).height(h - options.topOffset - options.margins);
-			    	 	}
-			    	 	else
-			    	 			$(wrapper).height(options.height);
-
+		    			$(box).width(options.width+options.margins);
+		    			if(options.height + options.topOffset > h) $(box).height(h - options.topOffset - options.margins);
+			    	 	else $(box).height(options.height);
 		    		}
-		    	
-		    	 	$(wrapper).css("top",fill ? 0 : ((h- options.height)/2 > options.topOffset ? (h- options.height)/2 : options.topOffset));
-			     	$(wrapper).css("left",fill ? 0 : (w - options.width)/2);		 
+		    	 	$(box).css("top", hOut ? options.topOffset : ((h- options.height)/2 > options.topOffset ? (h- options.height)/2 : options.topOffset));
+			     	$(box).css("left",wOut ? options.leftOffset : ((w- options.width)/2 > options.leftOffset ? (w- options.width)/2 : options.leftOffset));
+			     	$('body').css('overflow','hidden');	 
 		    	 }
 			}
 			function aspect_ratio_width(oh,ow,h)
 			{
 				return Math.ceil(ow*h/oh);
 			}
-				
-			
-        	});//each call			
+     	});//each call			
 
     }
 })(jQuery);
-        
+      
 
+
+
+/* 
+	DraggScroll is a JQuery extension for scrolling by clicking and dragging from within a container.
+	Author: James Climer (http://climers.com)
+	Released under the Apache V2 License: http://www.apache.org/licenses/LICENSE-2.0.html
+	Requires JQuery: http://jquery.com	
+	Get latest version from: https://github.com/jaclimer/JQuery-DraggScroll
+	
+    options: Currently not used
+*/
+(function ($) {
+    $.fn.dragScroll = function (options) {
+        /* Mouse dragg scroll */
+        var x, y, top, left, down;
+        var t = $(this);
+
+        t.attr("onselectstart", "return false;");   // Disable text selection in IE8
+
+        t.mousedown(function (e) {
+            e.preventDefault();
+            down = true;
+            x = e.pageX;
+            y = e.pageY;
+            top = $(this).scrollTop();
+            left = $(this).scrollLeft();
+        });
+        t.mouseleave(function (e) {
+            down = false;
+        });
+        $("body").mousemove(function (e) {
+            if (down) {
+                var newX = e.pageX;
+                var newY = e.pageY;
+                t.scrollTop(top - newY + y);
+                t.scrollLeft(left - newX + x);
+            }
+        });
+        $("body").mouseup(function (e) { down = false; });
+    };
+})(jQuery);
 

@@ -9,23 +9,32 @@ Paperclip.interpolates('item_id') do |attachment, style|
   attachment.instance.item_id
 end
 Paperclip.interpolates('story_id') do |attachment, style|
-  attachment.instance.section.story_id
+  attachment.instance.story_id
 end
-Paperclip.interpolates('storyid_from_parent') do |attachment, style|
-  attachment.instance.section.story_id
+Paperclip.interpolates('avatar_id') do |attachment, style|
+  attachment.instance.avatar_id
 end
-Paperclip.interpolates('media_image_story_id') do |attachment, style|
-  attachment.instance.image.section.story_id
-end
-Paperclip.interpolates('media_video_story_id') do |attachment, style|
-  attachment.instance.video.section.story_id
-end
-Paperclip.interpolates('slideshow_image_story_id') do |attachment, style|
-  attachment.instance.slideshow.section.story_id
-end
-Paperclip.interpolates('user_avatar_file_name') do |attachment, style|
-  attachment.instance.user.avatar_file_name
-end
+# Paperclip.interpolates('thumbnail_story_id') do |attachment, style|
+#   attachment.instance.story_translation.story_id
+# end
+# Paperclip.interpolates('audio_story_id') do |attachment, style|
+#   attachment.instance.section_translation.section.story_id
+# end
+# Paperclip.interpolates('media_image_story_id') do |attachment, style|
+#   attachment.instance.image.medium.section.story_id
+# end
+# Paperclip.interpolates('media_video_story_id') do |attachment, style|
+#   attachment.instance.video.medium.section.story_id
+# end
+# Paperclip.interpolates('slideshow_image_story_id') do |attachment, style|
+#   attachment.instance.slideshow_translation.slideshow.section.story_id
+# end
+# Paperclip.interpolates('user_avatar_file_name') do |attachment, style|
+#   attachment.instance.user.avatar_file_name
+# end
+# Paperclip.interpolates('author_avatar_file_name') do |attachment, style|
+#   attachment.instance.author.avatar_file_name
+# end
 
 
 

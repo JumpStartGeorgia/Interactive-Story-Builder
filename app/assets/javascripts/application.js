@@ -13,8 +13,9 @@
 //= require jquery.remotipart
 //= require jquery.ui.core
 //= require jquery.ui.effect
+//= require jquery.ui.sortable
+////= require jquery.ui.draggable
 //= require twitter/bootstrap
-
 // window.onload =  function() 
 // {
 //   document.getElementById('search-input').blur();
@@ -111,14 +112,13 @@ $(".navbar-collapse").swipe(function( direction, offset ) {
     $('.navbar-toggle').trigger('click');
 });
 
-  $('.navbar-story .navbar-brand').width($('.navbar-story .navbar-toggle').is(':visible') ? $(window).width() - 103 : 'auto');
+  // $('.navbar-story .navbar-brand').width($('.navbar-story .navbar-toggle').is(':visible') ? $(window).width() - 103 : 'auto');
 
 
-$(window).resize(function() {   
-    $('.navbar-story .navbar-brand').width($('.navbar-story .navbar-toggle').is(':visible') ? $(window).width() - 103 : 'auto');
-});
+// $(window).resize(function() {   
+//     $('.navbar-story .navbar-brand').width($('.navbar-story .navbar-toggle').is(':visible') ? $(window).width() - 103 : 'auto');
+// });
 
-    console.log("selectpicker");
   // fancy select boxes with search capability
   if ($('.selectpicker').length > 0){
 
@@ -181,7 +181,7 @@ $(window).resize(function() {
         },
         error: function (data)
         {     
-             console.log(data)           ;
+             //console.log(data)           ;
           $(t).parent().find('.alert').remove();  
           $(t + ' form').before('<div class="alert alert-danger fade in"><a href="#" data-dismiss="alert" class="close">×</a> ' + data.responseText + '</div>');          
           $(t + ' :input:visible:enabled:first').focus();
@@ -191,9 +191,48 @@ $(window).resize(function() {
     return false;
   });   
 
+$.fn.carousel.defaults = { interval: 5000, pause: 'hover' };
+$('.carousel').carousel();
 
-  $('.carousel').carousel({interval:20000});
+//---------------------------------------------dev stuff-------------------------------------------------
+if(gon.dev)
+{
+  var firstResize = true;
+  $(window).resize(function(){
+    var t = null; 
+    if(firstResize)
+    {
+      t = $("<div class='js-dev-windows-size h'></div>");
+      $('body').append(t);  
+      t.css({"position":"fixed","right":"0px","bottom":"0px", "background-color":"#fff","color":"#000","padding":"6px 10px","font-size":"14px","font-family":"monospace"});
+      firstResize = false;
+    }
+    t = $(document).find('.js-dev-windows-size');
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    t.html(w+"px / "+h+ "px");
+    if(t.hasClass('h'))
+    {
+      t.toggleClass('h').fadeIn(1000).delay(5000).fadeOut(1000,function(){ t.toggleClass('h'); });
+    }
+  });
+}
+
+// tip
+ $(document).on('mouseenter','[data-tip]', function(){
+  var tip = $('.tip');
+  var t = $(this);
+    var content = tip.find('.content').html(t.attr('data-tip'));
+    var h = tip.height();
+    var w = tip.width();
+    tip.css({'top':t.offset().top - h + 20,'left':t.offset().left-w/2+t.width()/2 }).show();
+  });
+  $(document).on('mouseleave','[data-tip]', function(){
+    $('.tip').hide();
+  }); 
+
 });
+
 
 
 $(document).ajaxComplete(function(event, request) {

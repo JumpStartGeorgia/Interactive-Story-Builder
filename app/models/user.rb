@@ -21,20 +21,20 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role, 
                   :provider, :uid, :nickname, :avatar,
-                  :about, :default_story_locale, :permalink, :local_avatar_attributes, :avatar_file_name, :email_no_domain,
-                  :wants_notification, :notification_language
+                  :about, :default_story_locale, :permalink, :local_avatar_attributes, :email_no_domain,
+                  :wants_notification, :notification_language#, :avatar_file_name
                   
   attr_accessor :send_notification
 
-  has_permalink :create_permalink, true
+#  has_permalink :create_permalink, true
 
   validates :role, :presence => true
 
-  ROLES = {:user => 0, :author => 10, :coordinator => 50, :user_manager => 70, :site_admin => 80, :admin => 99}
+  ROLES = {:user => 0, :coordinator => 50, :user_manager => 70, :site_admin => 80, :admin => 99}
 
   before_create :create_email_no_domain
-  before_save :check_nickname_changed  
-	before_save :generate_avatar_file_name
+#  before_save :check_nickname_changed  
+#	before_save :generate_avatar_file_name
   before_save :set_notification_language
 
   # email_no_domain is used in the search for collaborators 
@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
 
   # if the nickname changes, then the permalink must also change
   def check_nickname_changed
-    logger.debug "************** checking nickname changed"
+    #logger.debug "************** checking nickname changed"
     
     # if this is a create (id does not exist) make sure the nickname is unique
     fix_nickname_duplication if self.id.blank?
@@ -54,9 +54,9 @@ class User < ActiveRecord::Base
     # if nickname changed text, not just case, create new permalink
     new_nickname = ActionController::Base.helpers.strip_links(self.nickname)
     nickname_was = self.nickname_was.present? ? self.nickname_was.downcase.strip : nil
-    logger.debug "************** nickname was: #{self.nickname_was}; nickname now: #{new_nickname}"
+    #logger.debug "************** nickname was: #{self.nickname_was}; nickname now: #{new_nickname}"
     if nickname_was != new_nickname.downcase.strip
-      logger.debug "************** nickname changed, creating new permalink"
+      #logger.debug "************** nickname changed, creating new permalink"
       # make sure there are no tags in the nickname
       self.nickname = new_nickname
       self.generate_permalink! 
@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
   
   # if this nickname already exists, add a # to the end to make it unique
   def fix_nickname_duplication 
-    logger.debug "************** fix_nickname_duplication "
+    #logger.debug "************** fix_nickname_duplication "
     # if the nickname does not exist, populate with the first part of the email
     if read_attribute(:nickname).blank?
       self.nickname = self.email.split('@')[0]
@@ -86,7 +86,7 @@ class User < ActiveRecord::Base
       end         
       self.nickname = "#{self.nickname}-#{number+1}"
     end  
-    logger.debug "************** fix_nickname_duplication nickname now: #{self.nickname} "
+    #logger.debug "************** fix_nickname_duplication nickname now: #{self.nickname} "
   end
 
   def create_permalink   
@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
   
   # see if the user has a local avatar saved
   def local_avatar_exists?
-    self.local_avatar.present? && self.local_avatar.asset.exists?
+    self.local_avatar.present? && self.local_avatar.file.exists?
   end
 
   # get the url to the avatar
@@ -123,21 +123,21 @@ class User < ActiveRecord::Base
         self.avatar
       end
     elsif local_avatar_exists?
-      self.local_avatar.asset.url(style)
+      self.local_avatar.file.url(style)
     else
-      Asset.new(:asset_type => Asset::TYPE[:user_avatar]).asset.url(style)
+      Asset.new(:asset_type => Asset::TYPE[:user_avatar]).file.url(style)
     end
   end
 
 
-  # create a random string for this user that will 
-  # be used for the filename for the avatar
-  def generate_avatar_file_name
-    if self.avatar_file_name.blank?
-      self.avatar_file_name = SecureRandom.urlsafe_base64
-    end
-    return true
-  end
+  # # create a random string for this user that will 
+  # # be used for the filename for the avatar
+  # def generate_avatar_file_name
+  #   if self.avatar_file_name.blank?
+  #     self.avatar_file_name = SecureRandom.urlsafe_base64
+  #   end
+  #   return true
+  # end
 
 
   def self.no_admins
@@ -213,16 +213,26 @@ class User < ActiveRecord::Base
     return x.present? ? x.notification_language.to_sym : I18n.default_locale
   end
   
-  # get list of users a user this user is following
-  def following_users
+  # get list of authors this user is following
+  def following_authors
     following = []
     # get notifications
     notifications = Notification.where(:user_id => self.id, :notification_type => Notification::TYPES[:published_story_by_author])
     if notifications.present?
       # get user object for each user following
-      following = User.where(:id => notifications.map{|x| x.identifier}.uniq)
+      following = Author.where(:id => notifications.map{|x| x.identifier}.uniq)
     end
     
     return following
+  end
+
+  # get all users in the provided role
+  def self.with_role(role)
+    where(:role => role).order('nickname, email')
+  end
+
+  # get all users that have at least this provided role
+  def self.with_at_least_role(role)
+    where('role >= :role', role: role)
   end
 end
