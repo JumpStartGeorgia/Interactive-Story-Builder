@@ -95,6 +95,8 @@ ru:
         infobox_type: "Расположение титров"
         summary: "Конспект"
         source: "Источник"
+        image_name: "Изображение"
+        video_name: "Видео"
         image: *asset
         video: *asset
       medium_translations: *medium_translation
@@ -102,9 +104,8 @@ ru:
         title: "Заглавок"
         caption: "Название"
         description: "Описание"
-        asset_files: Image(s)        
-        asset: *asset
-        assets: *asset
+        asset_files_name: Image(s)        
+        asset_files: *asset
       slideshow_translations: *slideshow_translation        
       message:
         name: Name
@@ -137,6 +138,7 @@ ru:
         caption: Heading
         description: Description
         dataset_url: Online Dataset
+        image_name: Image
         image: *asset     
         dataset_file: *asset
       infographic_translations: *infographic_translation        

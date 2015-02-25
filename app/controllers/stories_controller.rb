@@ -346,10 +346,12 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
       @item = Content.new(params[:content])   
       @type = :content
     elsif params[:medium].present?
+      # copy the media type into the translation records
+      params[:medium][:medium_translations_attributes]['0'][:media_type] = params[:medium][:media_type]
+
       @item = Medium.new(params[:medium])   
       @type = :media
-      #Rails.logger.debug "######### image valid: #{@item.image.valid?}; image validations: #{@item.image.errors.full_messages.to_sentence}" if @item.image.present?
-      #Rails.logger.debug "######### video valid: #{@item.video.valid?}; video validations: #{@item.video.errors.full_messages.to_sentence}" if @item.video.present?
+
     elsif params[:slideshow].present?
       @item = Slideshow.new(params[:slideshow]) 
       @type = :slideshow   
@@ -421,8 +423,10 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
     elsif params[:medium].present?
       klass = Medium
       type = :medium
-      #Rails.logger.debug "######### image valid: #{@item.image.valid?}; image validations: #{@item.image.errors.full_messages.to_sentence}" if @item.image.present?
-      #Rails.logger.debug "######### video valid: #{@item.video.valid?}; video validations: #{@item.video.errors.full_messages.to_sentence}" if @item.video.present?
+
+      # copy the media type into the translation records
+      params[:medium][:medium_translations_attributes]['0'][:media_type] = params[:medium][:media_type]
+
     elsif params[:slideshow].present?
       klass = Slideshow
       type = :slideshow
@@ -432,6 +436,7 @@ logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; perma
     elsif params[:youtube].present?  
       klass = Youtube
       type = :youtube
+
       # copy the loop/info data into the translation records;  so the get code method can use these values
       params[:youtube][:youtube_translations_attributes]['0'][:loop] = params[:youtube][:loop]
       params[:youtube][:youtube_translations_attributes]['0'][:info] = params[:youtube][:info]

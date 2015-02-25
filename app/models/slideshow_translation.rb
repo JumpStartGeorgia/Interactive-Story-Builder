@@ -21,9 +21,10 @@ class SlideshowTranslation < ActiveRecord::Base
   validate :check_asset_files_existence
 
   def check_asset_files_existence   
-    if self.asset_files.select{|x| !x._destroy}.length <= 0
-      errors.add(:asset_files, I18n.t('activerecord.errors.messages.not_provided'))
+    if self.asset_files.blank? || self.asset_files.select{|x| !x._destroy}.length <= 0
+      errors.add(:asset_files_name, I18n.t('activerecord.errors.messages.not_provided'))
     end
+    return true
   end
 
   #################################

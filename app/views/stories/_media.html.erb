@@ -54,10 +54,6 @@
           </div>
         <% end %>
 
-        <%= (f_translation.input :media_type , :as => :hidden, :input_html => {
-            :value => trans_record.media_type.present? ? trans_record.media_type : @item.media_type,
-            :class => 'translation-media-type'}) if !isTO %>
-
         <%
           image_asset_record = trans_record.image
           if image_asset_record.blank?

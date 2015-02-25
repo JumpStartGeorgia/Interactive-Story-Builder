@@ -87,8 +87,6 @@ $(document).ready(function() {
     form.find('input#mediaImage, input#mediaVideo').wrap('<form>').parent('form').trigger('reset');
     form.find('input#mediaImage, input#mediaVideo').unwrap();
 
-    // when the media type is changed, update the translation media type to match
-    form.find('input.translation-type').val($(this).val());
 	});
 
   // when infographic type changes, show the correct file fields

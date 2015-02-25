@@ -95,6 +95,8 @@ en:
         infobox_type: Caption Position
         summary: Summary
         source: Source
+        image_name: Image
+        video_name: Video
         image: *asset
         video: *asset
       medium_translations: *medium_translation
@@ -102,10 +104,10 @@ en:
         title: Title
         caption: Heading
         description: Description
-        asset_files: Image(s)
-        asset: *asset
-        assets: *asset
+        asset_files_name: Image(s)
+        asset_files: *asset
       slideshow_translations: *slideshow_translation
+      asset_files: *asset
       message:
         name: Name
         email: Email Address
@@ -137,6 +139,7 @@ en:
         caption: Heading
         description: Description
         dataset_url: Online Dataset
+        image_name: Image
         image: *asset     
         dataset_file: *asset
       infographic_translations: *infographic_translation

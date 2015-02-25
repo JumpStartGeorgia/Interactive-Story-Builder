@@ -95,6 +95,8 @@ ka:
         infobox_type: "წარწერის მდებარეობა"
         summary: "მოკლე შინაარსი"
         source: "წყარო"
+        image_name: "სურათი"
+        video_name: "ვიდეო"
         image: *asset
         video: *asset
       medium_translations: *medium_translation
@@ -102,9 +104,8 @@ ka:
         title: "სათაური"
         caption: "ფოტოს წარწერა"
         description: "აღწერა"
-        asset_files: Image(s)        
-        asset: *asset
-        assets: *asset        
+        asset_files_name: Image(s)        
+        asset_files: *asset
       slideshow_translations: *slideshow_translation        
       message:
         name: "სახელი"
@@ -137,6 +138,7 @@ ka:
         caption: Heading
         description: Description
         dataset_url: Online Dataset
+        image_name: Image
         image: *asset     
         dataset_file: *asset
       infographic_translations: *infographic_translation        

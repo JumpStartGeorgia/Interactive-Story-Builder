@@ -28,27 +28,18 @@ class InfographicTranslation < ActiveRecord::Base
   #################################
   ## Validations
   validates :title, :presence => true, length: { maximum: 255}    
-  validates :image, presence: true, if: :static_type? 
+  # validates :image, presence: true, if: :static_type? 
   validates :dataset_url, :format => {:with => URI::regexp(['http','https']), :message => I18n.t('errors.messages.invalid_format_url') }, :if => "!dataset_url.blank?"
   validates :dynamic_url, presence: true, :format => {:with => URI::regexp(['http','https']), :message => I18n.t('errors.messages.invalid_format_url') }, if: :dynamic_type? 
   validate :generate_iframe
+  validate :check_asset_existence
 
-  #################################
-  # settings to clone story
-  amoeba do
-    enable
-    clone [:image, :dataset_file]
+  def check_asset_existence   
+    if static_type? && self.image.blank?
+      errors.add(:image_name, I18n.t('activerecord.errors.messages.not_provided'))
+    end
   end
 
-  #################################
-
-  def image_exists?
-    self.image.present? && self.image.file.exists?
-  end  
-
-  def dataset_file_exists?
-    self.dataset_file.present? && self.dataset_file.file.exists?
-  end  
   def generate_iframe
     # if width or heights do not have values, default value to 0
     self.width ||= "0"
@@ -75,6 +66,24 @@ class InfographicTranslation < ActiveRecord::Base
       return true
     end
   end
+
+  #################################
+  # settings to clone story
+  amoeba do
+    enable
+    clone [:image, :dataset_file, :infographic_datasources]
+  end
+
+  #################################
+
+  def image_exists?
+    self.image.present? && self.image.file.exists?
+  end  
+
+  def dataset_file_exists?
+    self.dataset_file.present? && self.dataset_file.file.exists?
+  end  
+
 private
   def static_type?    
     self.subtype == Infographic::TYPE[:static]

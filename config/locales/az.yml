@@ -95,6 +95,8 @@ az:
         infobox_type: "Şəkilaltı İmzanın Yeri"
         summary: Xülasə
         source: Mənbə
+        image_name: "Şəkil"
+        video_name: Video
         image: *asset
         video: *asset
       medium_translations: *medium_translation
@@ -102,9 +104,8 @@ az:
         title: Sərlövhə
         caption: Başlıq
         description: Təsvir
-        asset_files: Image(s)        
-        asset: *asset
-        assets: *asset        
+        asset_files_name: Image(s)        
+        asset_files: *asset
       slideshow_translations: *slideshow_translation        
       message:
         name: Name
@@ -137,6 +138,7 @@ az:
         caption: Heading
         description: Description
         dataset_url: Online Dataset
+        image_name: Image
         image: *asset     
         dataset_file: *asset
       infographic_translations: *infographic_translation        

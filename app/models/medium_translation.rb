@@ -24,9 +24,19 @@ class MediumTranslation < ActiveRecord::Base
   ## Validations
   validates :title, :presence => true, length: { maximum: 255}  
   validates :caption, length: { maximum: 2000 }  
+  validate :check_asset_existence
+  # validates :image, presence: true, if: :image_type?
+  # validates :video, presence: true, if: :video_type?
 
-  validates :image, presence: true, if: :image_type?
-  validates :video, presence: true, if: :video_type?
+  def check_asset_existence   
+    if image_type? && self.image.blank?
+      errors.add(:image_name, I18n.t('activerecord.errors.messages.not_provided'))
+    elsif video_type? && self.video.blank?
+      errors.add(:video_name, I18n.t('activerecord.errors.messages.not_provided'))
+    end
+
+    return true
+  end
 
   #################################
   ## Callbacks
