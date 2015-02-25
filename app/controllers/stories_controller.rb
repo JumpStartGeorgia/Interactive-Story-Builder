@@ -164,7 +164,7 @@ class StoriesController < ApplicationController
 
     @story = Story.find_by_reviewer_key(params[:id])
     if @story.present?
-      if @story.published?
+      if @story.published
         Rails.logger.debug("--------------------------------------------------- storyteller_show_path")
         redirect_to storyteller_show_path(@story.permalink)     
       else
