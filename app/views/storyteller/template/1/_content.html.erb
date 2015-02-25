@@ -285,7 +285,7 @@
                     <div class="bg"></div>
                   </div>
                 <% elsif item.subtype == Infographic::TYPE[:dynamic] %>
-                  <div class="content<%= item.dynamic_width == 0 ? ' wide' : '' %>">
+                  <div class="content<%= item.dynamic_width.blank? ? ' wide' : '' %>">
                     <%= item.dynamic_code.html_safe %>
                   </div>
                 <% end %>

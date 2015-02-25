@@ -41,9 +41,6 @@ class InfographicTranslation < ActiveRecord::Base
   end
 
   def generate_iframe
-    # if width or heights do not have values, default value to 0
-    self.width ||= "0"
-    self.height ||= "0"
     if dynamic_type? 
       ok = false
       html = ''
@@ -51,7 +48,7 @@ class InfographicTranslation < ActiveRecord::Base
       if u.present?
 
         uri = URI.parse(u)
-        html =  '<iframe '+(self.width!="0" ? ' width="'+self.width.to_s+'"': '')+(self.height!="0" ? ' height ="'+self.height.to_s+'"': '') + ' src="'+self.dynamic_url+'" frameborder="0" allowfullscreen class="infographic' + (self.height=="0" ? ' height': '') +'" sandbox="allow-scripts allow-same-origin"></iframe>' 
+        html =  '<iframe '+(self.width.present? ? ' width="'+self.width.to_s+'"': '')+(self.height.present? ? ' height ="'+self.height.to_s+'"': '') + ' src="'+self.dynamic_url+'" frameborder="0" allowfullscreen class="infographic' + (self.height.blank? ? ' height': '') +'" sandbox="allow-scripts allow-same-origin"></iframe>' 
         ok = true
       end   
 

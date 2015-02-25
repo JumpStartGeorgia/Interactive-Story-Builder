@@ -107,7 +107,6 @@ en:
         asset_files_name: Image(s)
         asset_files: *asset
       slideshow_translations: *slideshow_translation
-      asset_files: *asset
       message:
         name: Name
         email: Email Address
@@ -115,7 +114,7 @@ en:
         message_type: Feedback Type
       embed_medium_translation: &embed_medium_translation
         title: Title
-        url: Url to Online Media
+        url: URL to Online Media
       embed_medium_translations: *embed_medium_translation
       youtube:
         fullscreen: Fullscreen
@@ -123,7 +122,7 @@ en:
         info: Show Video Title Bar
       youtube_translation: &youtube_translation
         title: Title
-        url: Url to YouTube Video
+        url: URL to YouTube Video
         menu_lang: Player Language
         cc: Show Caption/Subtitle
         cc_lang: Subtitle Language
@@ -134,6 +133,8 @@ en:
         dataset_file: Related File
         datasources: Data Sources
         subtype: Infographic Type
+        dynamic_width: Width
+        dynamic_height: Height
       infographic_translation: &infographic_translation
         title: Title
         caption: Heading
@@ -142,6 +143,7 @@ en:
         image_name: Image
         image: *asset     
         dataset_file: *asset
+        dynamic_url: Dynamic URL
       infographic_translations: *infographic_translation
       infographic_datasource:
         name: Data Source Name
@@ -735,7 +737,7 @@ en:
       error: The URL could not be processed. Please try again.
       placeholder:
         title: Embed Online Media Title
-        url: Url to online media
+        url: URL to online media
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
         url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
@@ -749,7 +751,7 @@ en:
         error: "value can't be generated."
       placeholder:
         title: YouTube Title
-        url: Url to YouTube video
+        url: URL to YouTube video
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
         url: "Copy a YouTube URL and paste it here"
@@ -765,14 +767,14 @@ en:
       static: Static
       dynamic: Dynamic
       label:
-        dynamic_size: Infographic dimensions WidthxHeight
+        dynamic_size: Infographic Dimensions in Width x Height
       placeholder:
         title: Title
         caption: optional
         dataset_url: optional
-        dynamic_url: Interactive Url
-        dynamic_width: 0
-        dynamic_height: 0        
+        dynamic_url: Interactive URL
+        dynamic_width: width
+        dynamic_height: height     
       hint:
         title: This text only appears in the left sidebar, it will not show up in the story
         caption: "Heading of infographic will appear above the infographic image. If this Infographic Section is first in the story, you should leave this blank and use the Story Title field."
@@ -780,9 +782,9 @@ en:
         image: Only jpg and png format allowed; 8MB file size limit
         dataset_file: Please try to compress files to make for quicker download; 25MB file size limit
         dataset_url: URL to Dataset
-        subtype: "Static infographics are images, Dynamic infographics require a url."        
-        dynamic_url: Url to web page with interactive infographic
-        dynamic_size: Leave 0 if you want width and height to be fullscreen or specify size in px
+        subtype: "Static infographics are images, Dynamic infographics require a URL."        
+        dynamic_url: URL to web page with interactive infographic
+        dynamic_size: Use these fields to indicate the space you want to reserve for showing this infographic. Leave the fields empty if you want the infographic to be fullscreen. The minimum value is 200.
     infographic_datasource_fields:
       placeholder:
         url: optional

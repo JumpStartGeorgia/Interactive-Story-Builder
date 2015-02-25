@@ -152,7 +152,7 @@
               { 
                 :as => :number,
                 :label => false,
-                :input_html => { id: (!@isTO ?  "infographicDynamicWidth" : nil), class: 'number', min:0, max:9999, step:10, maxlength:4 }      
+                :input_html => { id: (!@isTO ?  "infographicDynamicWidth" : nil), class: 'number', min:200, max:10000, step:10, maxlength:4 }      
                 .merge(@readonly) 
               }
               .merge(( (@isTO) ? {} : { placeholder: t('.placeholder.dynamic_width') })) %>
@@ -161,7 +161,7 @@
               { 
                 :as => :number,
                 :label => false,                
-                :input_html => { id: (!@isTO ?  "infographicDynamicHeight" : nil), class: 'number', min:0, max:9999, step:10, maxlength:4 }      
+                :input_html => { id: (!@isTO ?  "infographicDynamicHeight" : nil), class: 'number', min:200, max:10000, step:10, maxlength:4 }      
                 .merge(@readonly) 
               }
               .merge(( (@isTO) ? {} : { placeholder: t('.placeholder.dynamic_height') })) %>

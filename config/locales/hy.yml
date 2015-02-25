@@ -114,7 +114,7 @@ hy:
         message_type: Feedback Type
       embed_medium_translation: &embed_medium_translation
         title: "Վերնագիր"
-        url: "Առցանց Media-ի Url "
+        url: "Առցանց Media-ի URL "
       embed_medium_translations: *embed_medium_translation        
       youtube:
         fullscreen: "Ամբողջ էկրանով"
@@ -122,7 +122,7 @@ hy:
         info: "Ցույց տալ վիդեոյի վերնագրի վահանակը"
       youtube_translation: &youtube_translation
         title: "Վերնագիր"
-        url: YouTube վիդեոյի Url-ը
+        url: YouTube վիդեոյի URL-ը
         menu_lang: "Խաղարկչի (փլեերի) լեզուն"
         cc: "Ցույց տալ ենթագրերը"
         cc_lang: "Ենթագրերի լեզուն"
@@ -133,6 +133,8 @@ hy:
         dataset_file: Dataset File
         datasources: Data Sources
         subtype: Infographic Type        
+        dynamic_width: Width
+        dynamic_height: Height
       infographic_translation: &infographic_translation
         title: Title
         caption: Heading
@@ -141,6 +143,7 @@ hy:
         image_name: Image
         image: *asset     
         dataset_file: *asset
+        dynamic_url: Dynamic URL
       infographic_translations: *infographic_translation        
       infographic_datasource:
         name: Data Source Name
@@ -764,14 +767,14 @@ hy:
       static: Static
       dynamic: Dynamic
       label:
-        dynamic_size: Infographic dimensions WidthxHeight      
+        dynamic_size: Infographic Dimensions in Width x Height
       placeholder:
         title: Title
         caption: optional
         dataset_url: optional
-        dynamic_url: Interactive Url
-        dynamic_width: 0
-        dynamic_height: 0            
+        dynamic_url: Interactive URL
+        dynamic_width: width
+        dynamic_height: height     
       hint:
         title: This text only appears in the left sidebar, it will not show up in the story
         caption: "Heading of infographic will appear above the infographic image. If this Infographic Section is first in the story, you should leave this blank and use the Story Title field."
@@ -779,9 +782,9 @@ hy:
         image: Only jpg and png format allowed; 8MB file size limit
         dataset_file: Please try to compress files to make for quicker download; 25MB file size limit
         dataset_url: URL to Dataset
-        subtype: "Static infographics are images, Dynamic infographics require a url."
-        dynamic_url: Url to web page with interactive infographic
-        dynamic_size: Leave 0 if you want width and height to be fullscreen or specify size in px       
+        subtype: "Static infographics are images, Dynamic infographics require a URL."
+        dynamic_url: URL to web page with interactive infographic
+        dynamic_size: Use these fields to indicate the space you want to reserve for showing this infographic. Leave the fields empty if you want the infographic to be fullscreen. The minimum value is 200.
     infographic_datasource_fields:
       placeholder:
         url: optional
