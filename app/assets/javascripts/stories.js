@@ -70,27 +70,41 @@ $(document).ready(function() {
       getObject('select', tmpType, tmpId, tmpSubId);
 
 		//getStory(section_id,item_id);
-		if($( "#slideshowAssets" ).length > 0 )
-		 $( "#slideshowAssets" ).sortable({ items: "> div" });
+		if($( "#slideshowAssetFiles" ).length > 0 )
+		 $( "#slideshowAssetFiles" ).sortable({ items: "> div" });
 	    return false;
 	});
 
   // when media type changes, show the correct file fields
 	$('.story-viewer').on('change','input[name="medium[media_type]"]:radio',function(){
-		if($(this).val()==1) {
-		  $('#mediaImageBox').show();
-		  $('#mediaVideoBox').hide();
-	  }else {
-		  $('#mediaImageBox').hide();
-	    $('#mediaVideoBox').show();
-    }
+
+    var b = $(this).val()==1;
+    var form = $('form.medium');
+    form.find('#mediaImageBox').toggle(b);
+    form.find('#mediaVideoBox').toggle(!b);
+
     // make sure the file fields are reset when the option changes
-    $('form.medium input#mediaImage, form.medium input#mediaVideo').wrap('<form>').parent('form').trigger('reset');
-    $('form.medium input#mediaImage, form.medium input#mediaVideo').unwrap();
+    form.find('input#mediaImage, input#mediaVideo').wrap('<form>').parent('form').trigger('reset');
+    form.find('input#mediaImage, input#mediaVideo').unwrap();
 
     // when the media type is changed, update the translation media type to match
-    $('form.medium input.translation-media-type').val($(this).val());
+    form.find('input.translation-type').val($(this).val());
 	});
+
+  // when infographic type changes, show the correct file fields
+  $('.story-viewer').on('change','input[name="infographic[subtype]"]:radio',function(){
+    var b = $(this).val()==1;
+    var form = $('form.infographic');
+    form.find('#infographicStaticBox').toggle(b);
+    form.find('#infographicDynamicBox').toggle(!b);
+
+    // make sure the file fields are reset when the option changes    
+    form.find('input#infographicStatic, input#infographicDynamic').wrap('<form>').parent('form').trigger('reset');
+    form.find('input#infographicStatic, input#infographicDynamic').unwrap();
+    // when the infographic type is changed, update the translation infographic type to match
+    form.find('input.translation-subtype').val($(this).val());
+  });
+
 
   $('.builder-wrapper .workplace').on('click', '.story-page1 #btnOlly, .story-page2 #btnOlly', function(){
     ths = $('#embedMediaUrl');
@@ -232,7 +246,13 @@ $(document).ready(function() {
         };
         if(type == 'image')
         {
-    	 	output = "<img src='" +  $(this).data('image-path') + "' style='width:640px;'/>";
+    	 	 output = "<img src='" +  $(this).data('image-path') + "' style='width:640px;'/>";
+         opts = {
+            paddings : 20,
+            width:640,
+            contentscroll:false
+
+          };
         }
         else if(type == 'video')
         {
@@ -244,7 +264,7 @@ $(document).ready(function() {
             topOffset: $(v).position().top + $(v).height() + 30,                   
             paddings :20,
             contentscroll:false,
-            width:722,
+            width:640,
             before_close:function(t)
             {
                $(t).find('video').each(function(){ this.pause(); })
@@ -252,7 +272,7 @@ $(document).ready(function() {
             }
          };
         }
-        else if(type == 'text')
+      else if(type == 'text')
     	{
     		output = $("#contentArticle").val();
     	}
@@ -268,10 +288,12 @@ $(document).ready(function() {
 	        	fullscreen:true,
 	        	aspectratio:true,
 	        	paddings :0,
-	        	contentscroll:false
+	        	contentscroll:false,
+            klass:'story'
     		};
     	}
-    	if(opts===null) opts = opts_def;    	
+    	if(opts===null) opts = opts_def;   
+       console.log(opts); 	
       $(output).modalos(opts);
 
 		return true;	
@@ -407,8 +429,8 @@ $(document).ready(function() {
 
 	});
   $('.story-viewer').on("click",'.btn-remove-slideshow', function() {
-    $(this).prev("input[type=hidden]").val("1");
-    $(this).closest(".fields").hide();
+    var t = $(this).closest(".fields").hide();
+    t.find("input[type=hidden].destroy-asset").val("1");
   });
 
    $('.builder-wrapper .sidebar .story-tree').on('click','.tools .btn-remove',function()		
@@ -784,8 +806,8 @@ function getObject(method, type, id, sub_id, which)
 function add_fields(link, association, content) {
   	var new_id = new Date().getTime();
   	var regexp = new RegExp("new_" + association, "g")
-    if (association == 'assets'){
-      $('#slideshowAssets').append(content.replace(regexp, new_id));
+    if (association == 'asset_files'){
+      $('#slideshowAssetFiles').append(content.replace(regexp, new_id));
     }else if (association == 'infographic_datasources'){
       $('#infographicDataSources').append(content.replace(regexp, new_id));
     }

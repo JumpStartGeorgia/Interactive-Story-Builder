@@ -2,7 +2,7 @@
 <%- model_class_trans = AuthorTranslation -%>
 <% title t '.title', :default => model_class.model_name.human.pluralize %>
 
-<div class="form-actions">
+<div>
   <%= link_to t('.new', :default => t("helpers.links.new")),
               new_admin_author_path,
               :class => 'btn btn-primary' %>
@@ -23,7 +23,7 @@
     <% @authors.each do |author| %>
       <tr>
         <td>
-          <a href="#" id='btnPreview' class='preview btn btn-default btn-mini' 
+          <a href="#" id='btnPreview' class='preview btn btn-default btn-xs' 
               title="<%= t('helpers.links.story_menu.link.preview') %>"
               data-link='<%= author_path(author.permalink) %>'
               data-modalos-id='modalos-preview' data-type='story'>
@@ -37,12 +37,12 @@
         <td><%= simple_format_no_tags(author.about, {}, {sanitize: false}) %></td>
         <td>
           <%= link_to t('app.buttons.edit'),
-                      edit_admin_author_path(author), :class => 'btn btn-mini btn-default' %>
+                      edit_admin_author_path(author), :class => 'btn btn-xs btn-default' %>
           <%= link_to t('app.buttons.delete'),
                       admin_author_path(author),
                       :method => :delete,
                       :data => { :confirm => I18n.t("helpers.links.confirm") },
-                      :class => 'btn btn-mini btn-danger' %>
+                      :class => 'btn btn-xs btn-danger' %>
         </td>
       </tr>
     <% end %>

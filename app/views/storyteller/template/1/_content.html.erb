@@ -224,9 +224,9 @@
                         <h3><%= section.slideshow.caption %></h3>                      
                       <% end %>
                                 
-                  <!--[if lte IE 8]><img src="<%= section.slideshow.assets[0].file.url(:medium) %>" style="width:100%;"><![endif]-->
+                  <!--[if lte IE 8]><img src="<%= section.slideshow.asset_files[0].file.url(:medium) %>" style="width:100%;"><![endif]-->
                   <div class="slideshow-captions">
-                      <% section.slideshow.assets.each_with_index do |t,t_i| %>    
+                      <% section.slideshow.asset_files.each_with_index do |t,t_i| %>    
                           <div class="slideshow-caption" data-slug="<%= t.asset_file_name_formatted %>">
                             <%= t.caption.html_safe %>
                             <% if t.source.present? %> 
@@ -270,7 +270,7 @@
                 </div>
                <%= render partial: "storyteller/template/#{@template}/content_infotop" %>
               <% end %>
-            <% elsif section.infographic? %>    
+            <% elsif section.infographic? %>              
               <% item = section.infographic %>       
               <div class="section infographic">
                 <% if section.has_marker? %><a class="navigation-marker" id="<%= s_i + 1 %>"></a><% end %> 
@@ -278,19 +278,19 @@
                 <% if item.caption.present? %>
                   <div class="caption"><%= item.caption %></div>
                 <% end %>
-                  <div class="content" data-original='<%= section.infographic.image.file.url %>'>
-                    <%
-                      alt = section.infographic.alt_text.present? ? section.infographic.alt_text : isFirst ? @story.about : ''
-                    %>
-                    <img src="<%= section.infographic.image.file.url(:poster) %>" alt="<%= strip_tags_nbsp(alt) %>">
+                <% if item.subtype == Infographic::TYPE[:static] %> 
+                  <div class="content" data-original='<%= item.image.file.url %>'>
+                    <% alt = item.alt_text.present? ? item.alt_text : isFirst ? @story.about : '' %>
+                    <img src="<%= item.image.file.url(:poster) %>" alt="<%= strip_tags_nbsp(alt) %>">
                     <div class="bg"></div>
                   </div>
-                  <% if isFirst %>
-                    <div class='js-row'>
-                      <% if @story.story_type_id != 1 && @story.about.present? %>
-                        <div class='description'><%= strip_tags_nbsp(@story.about).html_safe %></div>
-                      <% end %>
-                    </div>
+                <% elsif item.subtype == Infographic::TYPE[:dynamic] %>
+                  <div class="content<%= item.dynamic_width == 0 ? ' wide' : '' %>">
+                    <%= item.dynamic_code.html_safe %>
+                  </div>
+                <% end %>
+                  <% if isFirst && @story.story_type_id != 1 && @story.about.present? %>
+                    <div class='description'><%= @story.about.html_safe %></div>
                   <% end %>
                   <div class="description"><%= item.description.html_safe %></div>
                   <% if !item.datasources.empty? %>
@@ -352,8 +352,8 @@
                     output<< item
                   end
                 elsif s.slideshow?
-                  subLength = s.slideshow.assets.length   
-                  s.slideshow.assets.each_with_index do |t,t_i| 
+                  subLength = s.slideshow.asset_files.length   
+                  s.slideshow.asset_files.each_with_index do |t,t_i| 
                     item = {}
 
                     item[:type] = "slideshow"
@@ -699,6 +699,7 @@
           }
 
           function resized() {
+
             fixHeight = innerWidth / fixRatio;
             fixTop = Math.round((innerHeight - fixHeight) / 2);
             fadeTop = Math.max(200, fixTop);
@@ -711,6 +712,8 @@
                   : d.last ? rect.bottom >= fixTop + fixHeight
                   : true;
             }).style("top","0px");
+            // append height for infographic if height class present
+            d3.selectAll(".infographic iframe.height").attr("height", innerHeight);
           }
 
           function fixscrolled(d) {

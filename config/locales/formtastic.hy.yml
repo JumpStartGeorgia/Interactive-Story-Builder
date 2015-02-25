@@ -4,10 +4,9 @@ hy:
   formtastic:
     :yes: այո
     :no: ոչ
-    cancel: "վերացնել %{model}"
     create: "կազմել %{model} "
-    required: անհրաժեշտ
-    reset: "բեռնել %{model} "
-    submit: "պահել %{model} "
     update: "պահել %{model} "
-
+    submit: "պահել %{model} "
+    cancel: "վերացնել %{model}"
+    reset: "բեռնել %{model} "
+    required: անհրաժեշտ

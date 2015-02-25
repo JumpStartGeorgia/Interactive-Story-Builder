@@ -1,22 +1,36 @@
 class Infographic < ActiveRecord::Base
   include TranslationOverride
 
-  translates :title, :caption, :description, :dataset_url
+  translates :title, :caption, :description, :dataset_url, :dynamic_url, :dynamic_code
 
   belongs_to :section
   has_many :infographic_translations, :dependent => :destroy
   accepts_nested_attributes_for :infographic_translations
 
+  TYPE = {static: 1, dynamic: 2}
 
   #################################
   ## Validations
   validates :section_id, :presence => true
+  validates :subtype, :presence => true, :inclusion => { :in => TYPE.values }  
+  validates :dynamic_width, numericality: { greater_than_or_equal_to: 0, allow_nil: false }, if: :dynamic_type? 
+  validates :dynamic_height, numericality: { greater_than_or_equal_to: 0, allow_nil: false },  if: :dynamic_type?
+
 
   #################################
   ## Callbacks
 
   before_destroy :trigger_translation_observer, prepend: true
+  before_validation :trigger_translation_validation, prepend: true
 
+  # need this so if loop or info flags change the code will be updated in translation
+  def trigger_translation_validation
+    if self.dynamic_width_changed? || self.dynamic_height_changed?
+      self.infographic_translations.each do |trans|
+        trans.dynamic_code_will_change!
+      end
+    end
+  end
   def trigger_translation_observer
     self.infographic_translations.each do |trans|
       trans.is_progress_increment = false
@@ -29,6 +43,10 @@ class Infographic < ActiveRecord::Base
     enable
     clone [:infographic_translations]
   end
+
+
+
+
 
   ##############################
   ## shortcut methods to get to asset objects in translation
@@ -115,5 +133,12 @@ class Infographic < ActiveRecord::Base
     end
 
     return alt
+  end
+
+  def static_type?    
+    self.subtype == Infographic::TYPE[:static]
+  end
+  def dynamic_type?    
+    self.subtype == Infographic::TYPE[:dynamic]
   end
 end

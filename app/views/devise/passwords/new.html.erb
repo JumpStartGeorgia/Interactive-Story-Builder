@@ -31,12 +31,12 @@
   	<%= f.error_messages %>
   	<%= f.input :email, :as => :email, :input_html => { :size => 35 , :class => "login-username" }, :placeholder => t('activerecord.attributes.user.email') , label: false  %>
 
-	  <div class="control-group submit-row">
+	  <div class="form-group submit-row">
 		  <%= f.submit t('helpers.links.password_reset'), :class => 'btn btn-default pass-reset' %>
 	  </div>
   <% end %>
 
-  <div class="control-group">
+  <div class="form-group">
 	  <%- if controller_name != 'sessions' %>
 		  <%= link_to t('helpers.links.sign_in'), new_session_path(resource_name), :class => 'sign-in-link modalSignIn' , :"data-modalos-id"=>"modalos-sign-in", :"data-modalos-class"=>"sign-in-window" %>
 	  <% end -%>

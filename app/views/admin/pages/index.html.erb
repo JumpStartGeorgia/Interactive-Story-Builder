@@ -2,7 +2,7 @@
 <%- model_class_trans = PageTranslation -%>
 <% title t '.title', :default => model_class.model_name.human.pluralize %>
 
-<div class="form-actions">
+<div>
   <%= link_to t('.new', :default => t("helpers.links.new")),
               new_admin_page_path,
               :class => 'btn btn-primary' %>
@@ -25,12 +25,12 @@
         <td><%= page.title %></td>
         <td>
           <%= link_to t('app.buttons.edit'),
-                      edit_admin_page_path(page), :class => 'btn btn-mini btn-default' %>
+                      edit_admin_page_path(page), :class => 'btn btn-xs btn-default' %>
           <%= link_to t('app.buttons.delete'),
                       admin_page_path(page),
                       :method => :delete,
                       :data => { :confirm => I18n.t("helpers.links.confirm") },
-                      :class => 'btn btn-mini btn-danger' %>
+                      :class => 'btn btn-xs btn-danger' %>
         </td>
       </tr>
     <% end %>

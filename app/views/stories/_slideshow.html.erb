@@ -50,54 +50,53 @@
         <% end %>
          
 
-        <div id="slideshowAssets" class="clear">
+        <div id="slideshowAssetFiles" class="clear">
           <% if !@isTO %>
             <% if !original %>
               <% 
                 orig = @item.with_translation(@from)
-                orig_assets = nil
-                orig_assets = orig.assets if orig.present? && orig.assets.present?
-
-                if orig_assets.present? && orig_assets.length != trans_record.assets.length
-                  # if there are no trans assets, build the amount needed to match the original
-                  if trans_record.assets.length == 0
-                    (0..orig_assets.length-1).each do |i|
-                      trans_record.assets.build(:asset_type => Asset::TYPE[:slideshow_image])
+                orig_asset_files = nil
+                orig_asset_files = orig.asset_files if orig.present? && orig.asset_files.present?
+                if orig_asset_files.present? && orig_asset_files.length != trans_record.asset_files.length
+                  # if there are no trans asset_files, build the amount needed to match the original
+                  if trans_record.asset_files.length == 0
+                    (0..orig_asset_files.length-1).each do |i|
+                      trans_record.asset_files.build(:asset_type => Asset::TYPE[:slideshow_image])
                     end
                   else
                     # go through each orig and see if item with same position exists in trans
                     # if not, create it
-                    orig_assets.each_with_index do |orig_asset, i|
-                      if trans_record.assets[i].blank? || trans_record.assets[i].position != orig_asset.position
-                        trans_record.assets.insert(i, Asset.new(:asset_type => Asset::TYPE[:slideshow_image]))
+                    orig_asset_files.each_with_index do |orig_asset, i|
+                      if trans_record.asset_files[i].blank? || trans_record.asset_files[i].position != orig_asset.position
+                        trans_record.asset_files.insert(i, Asset.new(:asset_type => Asset::TYPE[:slideshow_image]))
                       end
                     end
                   end
                 end
               %>
 
-              <% trans_record.assets.each_with_index do |asset_record, i| %>  
+              <% trans_record.asset_files.each_with_index do |asset_record, i| %>  
                  <div class="fields clear">
-                    <%= f_translation.fields_for :assets, asset_record do |f_asset| %>
-                      <%= render :partial => 'asset_fields', :locals => {:f => f_asset, :asset_record => asset_record, original: original, orig_asset_id: orig_assets[i].id } %>
+                    <%= f_translation.fields_for :asset_files, asset_record do |f_asset| %>
+                      <%= render :partial => 'asset_file_fields', :locals => {:f => f_asset, :asset_record => asset_record, original: original, orig_asset_id: orig_asset_files[i].id } %>
                     <% end %> 
                   </div>
               <% end %> 
             <% else %>
-              <% trans_record.assets.each_with_index do |asset_record, i| %>  
+              <% trans_record.asset_files.each_with_index do |asset_record, i| %>  
                  <div class="fields clear">
-                    <%= f_translation.fields_for :assets, asset_record do |f_asset| %>
-                      <%= render :partial => 'asset_fields', :locals => {:f => f_asset, :asset_record => asset_record } %>
+                    <%= f_translation.fields_for :asset_files, asset_record do |f_asset| %>
+                      <%= render :partial => 'asset_file_fields', :locals => {:f => f_asset, :asset_record => asset_record } %>
                     <% end %> 
                   </div>
               <% end %> 
 
             <% end %>
           <% else %>
-            <% trans_record.assets.each_with_index do |asset_record, i| %>  
+            <% trans_record.asset_files.each_with_index do |asset_record, i| %>  
                <div class="fields clear">
-                  <%= f_translation.fields_for :assets, asset_record do |f_asset| %>
-                    <%= render :partial => 'asset_fields', :locals => {:f => f_asset, :asset_record => asset_record } %>
+                  <%= f_translation.fields_for :asset_files, asset_record do |f_asset| %>
+                    <%= render :partial => 'asset_file_fields', :locals => {:f => f_asset, :asset_record => asset_record } %>
                   <% end %> 
                 </div>
             <% end %> 
@@ -107,7 +106,7 @@
 
         <% if !@trans %>
           <div class="add_imgage_button">
-            <%= link_to_add_fields t('.add_image'), f_translation, :assets %>
+            <%= link_to_add_fields t('.add_image'), f_translation, :asset_files %>
           </div>
         <% end %>
         <%= (f.input :section_id, :as => :hidden , :input_html => { :id => "slideshowSection" }) if !@isTO %>

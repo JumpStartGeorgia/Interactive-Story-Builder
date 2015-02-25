@@ -1,7 +1,7 @@
 <%- model_class = User -%>
 <% title t '.title', :default => model_class.model_name.human.pluralize %>
 
-<div class="form-actions">
+<div>
   <%= link_to t('helpers.links.new'),
               new_admin_user_path,
               :class => 'btn btn-primary' %>

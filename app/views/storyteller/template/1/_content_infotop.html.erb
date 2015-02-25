@@ -47,7 +47,7 @@
   </div>
   <div class='js-row'>
     <% if @story.story_type_id != 1 && @story.about.present? && !is_infographic %>
-      <div class='descr'><%= strip_tags_nbsp(@story.about).html_safe %></div>
+      <div class='descr'><%= @story.about.html_safe %></div>
     <% end %>
   </div>
 </div>

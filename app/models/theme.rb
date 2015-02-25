@@ -49,7 +49,6 @@ class Theme < ActiveRecord::Base
     with_translations(I18n.locale).where(:is_published => true, :show_home_page => true).first
   end
 
-
   #################################
   # name (edition)
   def formatted_name
@@ -60,4 +59,7 @@ class Theme < ActiveRecord::Base
   def published_item_count
     Theme.select('distinct stories.id').joins(:stories => :story_translations).where('story_translations.published = 1 and themes.id = ?', self.id).count
   end  
+
+
+
 end

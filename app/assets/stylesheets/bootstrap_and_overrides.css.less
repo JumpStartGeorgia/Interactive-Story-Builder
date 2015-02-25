@@ -342,13 +342,13 @@ height: 600px;
 
     &.arrow-left
     {
-      background:transparent url('/assets/svg/chaikhana/arrow_left.svg') no-repeat;  
+      background:transparent url('/assets/svg/arrow_left.svg') no-repeat;  
       background-size:25px 45px;
 
     }
     &.arrow-right
     {
-      background:transparent url('/assets/svg/chaikhana/arrow_right.svg') no-repeat;  
+      background:transparent url('/assets/svg/arrow_right.svg') no-repeat;  
       background-size:25px 45px;
     }
 
@@ -616,5 +616,25 @@ height: 600px;
   h1
   {
     border-bottom: 1px solid rgb(238, 238, 238);
+  }
+}
+#infographicStaticBox,
+#infographicDynamicBox 
+{
+  padding-left:3em;
+}
+#infographicDynamicBox 
+{  
+  .form-group.number 
+  {
+    display:inline-block;
+    width:15%;     
+  }
+  .x,.px
+  {
+    display:inline-block;
+    font-family: monospace;
+    font-size: 14px;
+    padding:0px 10px;
   }
 }

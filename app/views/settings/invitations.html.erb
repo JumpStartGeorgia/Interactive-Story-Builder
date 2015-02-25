@@ -36,10 +36,10 @@
             <%= image_tag invitation.from_user.avatar_url(:'50x50'), :title => invitation.from_user.nickname, :alt => invitation.from_user.nickname %>
           </td>
           <td>
-            <%= link_to t('.accept_link'), settings_accept_invitation_url(:key => invitation.key), :class => 'btn btn-mini btn-default' %>
+            <%= link_to t('.accept_link'), settings_accept_invitation_url(:key => invitation.key), :class => 'btn btn-xs btn-default' %>
             <%= link_to t('.decline_link'), settings_decline_invitation_url(:key => invitation.key),
                       :data => { :confirm => I18n.t("helpers.links.confirm") },
-                      :class => 'btn btn-mini btn-danger'
+                      :class => 'btn btn-xs btn-danger'
              %>
           </td>
         </tr>

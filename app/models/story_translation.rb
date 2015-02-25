@@ -89,13 +89,18 @@ class StoryTranslation < ActiveRecord::Base
     enable
 
     # update the title
-    append :title => " (Clone)"
-
+    customize(lambda { |original_post,new_post|
+      if original_post.title.length > 92
+        new_post.title = original_post.title[0..91] 
+      end
+      new_post.title += " (Clone)"
+    })
     # reset some fields
     nullify :published
     nullify :published_at
     nullify :permalink
     nullify :permalink_staging
+    nullify :shortened_url
 
   end
 

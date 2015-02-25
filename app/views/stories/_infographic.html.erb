@@ -45,6 +45,40 @@
 
       <%= f_translation.input :description, { :as => :text, :input_html => {id: tinyClass , :class => tinyClass, :rows => 15}.merge(@readonly) }.merge(( @isTO ? {} : { hint: t('.hint.description') }))  %>      
        
+        <% if !@trans %>
+          <div class="radio_buttons input required form-group radio-indent radio-hide-button" id="infographic_subtype_input">
+            <label class="  control-label" for="infographic_subtype">
+              <%= model_class.human_attribute_name(:subtype) %>
+              <abbr title="<%= t('app.common.required') %>">*</abbr>
+              <div class="help-inline" title="<%= t('.hint.subtype')%>">
+                <div>?</div>
+              </div>
+            </label>
+            <% types = [[t('.static'), Infographic::TYPE[:static], 'glyphicon-picture'], [t('.dynamic'), Infographic::TYPE[:dynamic], 'glyphicon-film']] %>
+            <div class="radio-container">
+              <% types.each do |type| %>
+                <div class="radio">
+                  <% checked = (type[1] == Infographic::TYPE[:static] && @item.subtype.nil?) || type[1] == @item.subtype ? 'checked=checked' : '' %>
+                  <input <%= checked %> id="infographic_subtype_<%= type[1] %>" name="infographic[subtype]" type="radio" value="<%= type[1] %>" <%= (@item.id.present?) ? "disabled" : "" %>>
+                  <label class="choice<%= @item.id.present? ? ' disabled' : '' %>" for="infographic_subtype_<%= type[1] %>">
+                    <span class="glyphicon <%= type[2] %>"></span>
+                    <%= type[0] %>
+                  </label>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+        <%= (f_translation.input :subtype , :as => :hidden, :input_html => {
+            :value => trans_record.subtype.present? ? trans_record.subtype : @item.subtype,
+            :class => 'translation-subtype'}) if !@isTO %>
+
+
+
+
+
+
         <%
           image_asset_record = trans_record.image
           if image_asset_record.blank?
@@ -56,7 +90,7 @@
           <% 
             asset_class = @isTO ? 'original-image-asset' : 'translated-image-asset'
           %>
-          <div id='infographicImageBox' class="clear">
+          <div id='infographicStaticBox' class="input" <%= @item.subtype == Infographic::TYPE[:dynamic]  ? "style=display:none;" : "" %> >
             <label class=" control-label" for="infographic-image-preview"><%= t('activerecord.attributes.infographic.image') %></label>
             <% if !@isTO %>
               <% if !original %>
@@ -69,6 +103,8 @@
                     </div>
                   </label>
                 </div>
+
+
 
                 <% if image_asset_record.asset_clone_id.blank? && image_asset_record.file.exists? %>
                   <a class='btn btn-default preview preview-translated <%= asset_class %>' id="infographic-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url}" %>'><%= t('app.buttons.preview_image') %></a>
@@ -97,7 +133,49 @@
               <a class='btn btn-default preview preview-translated <%= asset_class %>' id="infographic-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url}" %>'><%= t('app.buttons.preview_image') %></a>
             <% end %>    
           </div>
+
+
+
+
+
+          <div id='infographicDynamicBox' class='input' <%=  @item.subtype == Infographic::TYPE[:static]  ? "style=display:none;" : "" %> >
+            <%= f_translation.input :dynamic_url, 
+            { 
+              :as => :url,
+              :input_html => { id: (!@isTO ?  "infographicDynamicUrl" : nil) }      
+              .merge(@readonly) 
+            }
+            .merge(( (@isTO) ? {} : { hint: t('.hint.dynamic_url'), placeholder: t('.placeholder.dynamic_url') })) %>
+            <% if !@trans %>
+              <label class="control-label"><%= t('.label.dynamic_size') %><div class="help-inline" original-title="<%= t('.hint.dynamic_size')%>"><div>?</div></div></label>
+              <%= f.input :dynamic_width, 
+              { 
+                :as => :number,
+                :label => false,
+                :input_html => { id: (!@isTO ?  "infographicDynamicWidth" : nil), class: 'number', min:0, max:9999, step:10, maxlength:4 }      
+                .merge(@readonly) 
+              }
+              .merge(( (@isTO) ? {} : { placeholder: t('.placeholder.dynamic_width') })) %>
+              <div class='x'>x</div>
+              <%= f.input :dynamic_height, 
+              { 
+                :as => :number,
+                :label => false,                
+                :input_html => { id: (!@isTO ?  "infographicDynamicHeight" : nil), class: 'number', min:0, max:9999, step:10, maxlength:4 }      
+                .merge(@readonly) 
+              }
+              .merge(( (@isTO) ? {} : { placeholder: t('.placeholder.dynamic_height') })) %>
+              <div class='px'>px</div>
+            <% end %>
+          </div>
         <% end %> 
+
+
+
+
+
+
+
 
         <%= f_translation.input :dataset_url, 
         { 
@@ -129,6 +207,7 @@
                   orig = @item.with_translation(@from)
                   orig_datasource_id = orig.dataset_file.id if orig.present? && orig.dataset_file.present?                  
                 %>
+
                 <% if orig_datasource_id.present? %>
                   <div class="boolean input optional checkbox" id="asset_clone_thumbnail">
                     <input name="clone_dataset_asset" type="hidden" value="0">

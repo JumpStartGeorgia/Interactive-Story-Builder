@@ -239,11 +239,12 @@ class Asset < ActiveRecord::Base
   # settings to clone story
   amoeba do
     enable
-
+    nullify :story_id
     # indicate that this is amoeba running so videos are not re-processed
     customize(lambda { |original_asset,new_asset|
       new_asset.is_amoeba = true
     })
+
   end
 
   #################################
@@ -274,6 +275,20 @@ class Asset < ActiveRecord::Base
       f = x.asset if x.present?
     else
       f = self.asset
+    end
+    return f
+  end
+
+  # use file_file_name to get the asset file name
+  # if this record is cloning another, then user the clone asset
+  # else use the asset in this record
+  def file_file_name
+    f = nil
+    if self.asset_clone_id.present?
+      x = self.asset_clone
+      f = x.asset_file_name if x.present?
+    else
+      f = self.asset_file_name
     end
     return f
   end

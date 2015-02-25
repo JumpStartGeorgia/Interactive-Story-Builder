@@ -59,7 +59,7 @@
       %>
       <button type="button" data-id="<%= asset_id %>" class="btn btn-sort btn-up-slideshow <%= cls %>" title="<%= t('app.buttons.up') %>"> <i class="glyphicon glyphicon-arrow-up" ></i> </button>
       <button type="button" data-id="<%= asset_id %>" class="btn btn-sort btn-down-slideshow <%= cls %>" title="<%= t('app.buttons.down') %>"><i class="glyphicon glyphicon-arrow-down" ></i></button>
-      <%= f.input :_destroy, :as => :hidden %>
+      <%= f.input :_destroy, :as => :hidden, :input_html => { class: 'destroy-asset' } %>
       <button type='button' class='btn btn-danger btn-remove-slideshow' title="<%= t('app.buttons.delete') %>" ><i class='glyphicon glyphicon-remove'></i></button>
     </div>
   <% end %>
