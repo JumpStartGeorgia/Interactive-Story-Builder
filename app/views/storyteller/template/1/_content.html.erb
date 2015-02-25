@@ -284,7 +284,7 @@
                     <img src="<%= item.image.file.url(:poster) %>" alt="<%= strip_tags_nbsp(alt) %>">
                     <div class="bg"></div>
                   </div>
-                <% else %>
+                <% elsif item.subtype == Infographic::TYPE[:dynamic] %>
                   <div class="content<%= item.dynamic_width == 0 ? ' wide' : '' %>">
                     <%= item.dynamic_code.html_safe %>
                   </div>

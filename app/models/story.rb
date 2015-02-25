@@ -422,10 +422,9 @@ class Story < ActiveRecord::Base
       end
 
       # section audio
-
       puts "$$$$$$$$$ clone successful - copying audio"
-      new_audio = clone.sections.map{|x| x.section_translations }.flatten.select{|x| x.asset.present? && x.asset.file.exists?}.map{|x| x.asset }
-      self.sections.select{|x| x.asset.present? && x.asset.file.exists?}.map{|x| x.section_translations }.flatten.map{|x| x.asset }.each do |audio|
+      new_audio = clone.sections.map{|x| x.section_translations }.flatten.select{|x| x.asset.present? && x.asset.asset.exists?}.map{|x| x.asset }
+      self.sections.map{|x| x.section_translations }.flatten.select{|x| x.asset.present? && x.asset.asset.exists?}.map{|x| x.asset }.each do |audio|
         # find matching record
         record = new_audio.select{|x| x.asset_file_name == audio.asset_file_name && 
                                       x.asset_content_type == audio.asset_content_type && 
