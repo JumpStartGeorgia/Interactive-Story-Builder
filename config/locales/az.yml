@@ -568,9 +568,6 @@ az:
       sign_out: "Çıx"
       js_link_title: JumpStart Georgia - Biz məlumatı daha yaxşı paylaşırıq!
       js_link_text: xxx tərəfindən hazırlanıb
-    reviewer:
-      copy: Mübadilə Buferinə Köçür...
-      copied: Köçürüldü!
     storybuilder:
       source: Mənbə
       target: Hədəf
@@ -579,6 +576,7 @@ az:
     grid:
       no_stories: Təəssüf ki, heç bir hekayə tapılmadı!
     story_nav_modals:
+      copy: Mübadilə Buferinə Köçür...
       copied: Köçürüldü
   admin:
     index:

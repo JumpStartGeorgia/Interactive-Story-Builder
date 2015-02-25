@@ -568,9 +568,6 @@ en:
       sign_out: Sign Out
       js_link_title: JumpStart Georgia - We communicate data better!
       js_link_text: Built by
-    reviewer:
-      copy: Copy To Clipboard...
-      copied: Copied!
     storybuilder:
       source: Source
       target: Target
@@ -579,6 +576,7 @@ en:
     grid:
       no_stories: Oh no - no stories could be found!
     story_nav_modals:
+      copy: Copy To Clipboard...
       copied: Copied!
   admin:
     index:

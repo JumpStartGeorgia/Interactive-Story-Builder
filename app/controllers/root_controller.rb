@@ -1,7 +1,7 @@
 class RootController < ApplicationController    
   def index   
     
-    @js.push("zeroclipboard.min.js","filter.js")
+    @js.push("filter.js")
     @css.push("navbar.css", "filter.css", "grid.css","root.css")    
     p = (request.xhr? ? params[:page] : 1)
     @stories = process_filter_querystring(Story.is_published.in_published_theme.paginate(:page => p, :per_page => per_page))
@@ -21,7 +21,7 @@ class RootController < ApplicationController
     @author = Author.find_by_permalink(params[:user_id])
 
     if @author.present?
-      @js.push("zeroclipboard.min.js", "filter.js","stories.js","follow.js")
+      @js.push("filter.js","stories.js","follow.js")
       @css.push("navbar.css", "filter.css", "grid.css", "stories.css", "author.css")
       @stories = process_filter_querystring(Story.by_authors(@author.id).in_published_theme.paginate(:page => params[:page], :per_page => per_page))      
       @editable = (user_signed_in? && current_user.id == @author.id)
@@ -84,7 +84,7 @@ class RootController < ApplicationController
   end
 
   def theme
-    @js.push("zeroclipboard.min.js","filter.js")
+    @js.push("filter.js")
     @css.push("navbar.css", "filter.css", "grid.css","root.css")    
     @theme = Theme.published.find_by_permalink(params[:id])
     @stories = process_filter_querystring(Story.is_published.in_published_theme.by_theme(@theme.id).paginate(:page => params[:page], :per_page => per_page))      

@@ -568,9 +568,6 @@ ru:
       sign_out: "Выйти"
       js_link_title: JumpStart Georgia - Мы связываем данные лучше!
       js_link_text: "Создано"
-    reviewer:
-      copy: "Копировать в буфер обмена ..."
-      copied: "Скопировано!"
     storybuilder:
       source: Источник
       target: Цель
@@ -579,6 +576,7 @@ ru:
     grid:
       no_stories: "О, нет - истории не могут быть найдены!"
     story_nav_modals:
+      copy: "Копировать в буфер обмена ..."
       copied: Скопировано
   admin:
     index:

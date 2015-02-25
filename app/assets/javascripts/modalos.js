@@ -46,7 +46,7 @@
     	
         //Extend dem' options
         var options = $.extend({}, defaults, options); 
-         console.log(options);
+         // console.log(options);
         return this.each(function() {
 /*---------------------------
  Global Variables

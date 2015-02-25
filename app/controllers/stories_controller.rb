@@ -20,7 +20,7 @@ class StoriesController < ApplicationController
   # GET /stories.json
   def index    
     @css.push("navbar.css", "filter.css", "grid.css","author.css")
-    @js.push("zeroclipboard.min.js","filter.js","stories.js") 
+    @js.push("filter.js","stories.js") 
     @stories =  process_filter_querystring(Story.editable_stories(current_user.id).paginate(:page => params[:page], :per_page => per_page))           
     @editable = (user_signed_in?)   
     respond_to do |format|
@@ -980,7 +980,7 @@ private
 
   def asset_filter
     @css.push("stories.css", "embed.css", "modalos.css", "bootstrap-select.min.css", "token-input-facebook.css","navbar.css", "filter.css", "tipsy.css")
-    @js.push("stories.js", "modalos.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js", "zeroclipboard.min.js", "filter.js", "jquery.tipsy.js")
+    @js.push("zeroclipboard.min.js", "stories.js", "modalos.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js", "filter.js", "jquery.tipsy.js")
   end 
   
   # process the ids for editor collaboration invitations

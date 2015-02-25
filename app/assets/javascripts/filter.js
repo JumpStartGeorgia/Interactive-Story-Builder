@@ -213,12 +213,3 @@ if(gon.page_filtered) { scrolldown(false,'header'); }
 });
 
 
-// for permalink copy 
-var client = new ZeroClipboard( document.getElementById("copy-button"));
-
-client.on( "load", function(client) {
-  client.on( "complete", function(client, args) {
-    // `this` is the element that was clicked
-    document.getElementById('copied').style.display = 'block';
-  });
-});

@@ -568,9 +568,6 @@ ka:
       sign_out: "გასვლა"
       js_link_title: "ჯამპსტარტ ჯორჯია - ჩვენ გაწვდით ინფორმაციას უკეთ!"
       js_link_text: "შექმნილია"
-    reviewer:
-      copy: "კოპირება"
-      copied: "დაკოპირებულია!"
     storybuilder:
       source: წყარო
       target: მიზანი
@@ -579,6 +576,7 @@ ka:
     grid:
       no_stories: "სამწუხაროდ არ მოიძებნა არცერთი ამბავი!"
     story_nav_modals:
+      copy: "კოპირება"
       copied: დაკოპირებულია!
   admin:
     index:

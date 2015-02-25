@@ -20,7 +20,7 @@ class Admin::ThemesController < ApplicationController
   end
 
   def preview
-    @js.push("zeroclipboard.min.js","filter.js")
+    @js.push("filter.js")
     @css.push("navbar.css", "filter.css", "grid.css","root.css")    
     @theme = Theme.find_by_id(params[:id])
     @stories = process_filter_querystring(Story.is_published.by_theme(@theme.id).paginate(:page => params[:page], :per_page => per_page))      

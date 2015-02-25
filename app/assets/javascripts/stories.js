@@ -181,7 +181,8 @@ $(document).ready(function() {
     ml = ml.replace('[url]', $(this).data('reviewer-key')).replace('[url]', $(this).data('reviewer-key')); 
     var v = $('.navbar-storybuilder'); 
     $(ml).modalos({
-    	topOffset: $(v).position().top + $(v).height() + 30       	        	        	      
+    	topOffset: $(v).position().top + $(v).height() + 30,
+      width: 640       	        	        	      
     });
 
 		return true;	
@@ -1026,3 +1027,14 @@ function update_translation_progress(progress, to_locale, percent, is_published)
     }
   }
 }
+
+
+// for permalink copy 
+var client = new ZeroClipboard( document.getElementById("copy-button"));
+
+client.on( "load", function(client) {
+  client.on( "complete", function(client, args) {
+    console.log( "complete!" );
+    document.getElementById('copied').style.display = 'block';
+  });
+});

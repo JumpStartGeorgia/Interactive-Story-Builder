@@ -568,9 +568,6 @@ hy:
       sign_out: "Դուրս գալ"
       js_link_title: JumpStart Georgia - Ավելի լավ ենք համադրում տվյալները
       js_link_text: "Ստեղծվել է"
-    reviewer:
-      copy: "Պատճենել սեղմատախտակում (clipboard)"
-      copied: "Պատճենված է!"
     storybuilder:
       source: Աղբյուր
       target: Թիրախ
@@ -579,6 +576,7 @@ hy:
     grid:
       no_stories: "Օ ոչ՛ ... նյութեր չգտնվեցին"
     story_nav_modals:
+      copy: "Պատճենել սեղմատախտակում (clipboard)"
       copied: Պատճենված է
   admin:
     index:
