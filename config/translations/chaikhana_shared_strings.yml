@@ -4,7 +4,8 @@
 - - en.activerecord.models.medium
   - en.section_types.media.name
 - - en.activerecord.models.content
-  - en.activerecord.attributes.content.content
+  - en.activerecord.attributes.content_translation.content
+  - en.activerecord.attributes.content_translations.content
   - en.section_types.content.name
 - - en.activerecord.models.message
   - en.activerecord.attributes.message.message
@@ -19,6 +20,55 @@
   - en.filters.category_header
 - - en.activerecord.models.theme
   - en.filters.theme_header
+- - en.activerecord.models.asset
+  - en.activerecord.attributes.asset.asset_file_name
+  - en.activerecord.attributes.avatar.asset_file_name
+  - en.activerecord.attributes.story_translation.asset.asset_file_name
+  - en.activerecord.attributes.story_translations.asset.asset_file_name
+  - en.activerecord.attributes.section_translation.asset.asset_file_name
+  - en.activerecord.attributes.section_translations.asset.asset_file_name
+  - en.activerecord.attributes.medium_translation.image.asset_file_name
+  - en.activerecord.attributes.medium_translation.video.asset_file_name
+  - en.activerecord.attributes.medium_translations.image.asset_file_name
+  - en.activerecord.attributes.medium_translations.video.asset_file_name
+  - en.activerecord.attributes.slideshow_translation.asset_files.asset_file_name
+  - en.activerecord.attributes.slideshow_translations.asset_files.asset_file_name
+  - en.activerecord.attributes.infographic_translation.image.asset_file_name
+  - en.activerecord.attributes.infographic_translation.dataset_file.asset_file_name
+  - en.activerecord.attributes.infographic_translations.image.asset_file_name
+  - en.activerecord.attributes.infographic_translations.dataset_file.asset_file_name
+- - en.activerecord.attributes.asset.asset_content_type
+  - en.activerecord.attributes.avatar.asset_content_type
+  - en.activerecord.attributes.story_translation.asset.asset_content_type
+  - en.activerecord.attributes.story_translations.asset.asset_content_type
+  - en.activerecord.attributes.section_translation.asset.asset_content_type
+  - en.activerecord.attributes.section_translations.asset.asset_content_type
+  - en.activerecord.attributes.medium_translation.image.asset_content_type
+  - en.activerecord.attributes.medium_translation.video.asset_content_type
+  - en.activerecord.attributes.medium_translations.image.asset_content_type
+  - en.activerecord.attributes.medium_translations.video.asset_content_type
+  - en.activerecord.attributes.slideshow_translation.asset_files.asset_content_type
+  - en.activerecord.attributes.slideshow_translations.asset_files.asset_content_type
+  - en.activerecord.attributes.infographic_translation.image.asset_content_type
+  - en.activerecord.attributes.infographic_translation.dataset_file.asset_content_type
+  - en.activerecord.attributes.infographic_translations.image.asset_content_type
+  - en.activerecord.attributes.infographic_translations.dataset_file.asset_content_type
+- - en.activerecord.attributes.asset.asset_file_size
+  - en.activerecord.attributes.avatar.asset_file_size
+  - en.activerecord.attributes.story_translation.asset.asset_file_size
+  - en.activerecord.attributes.story_translations.asset.asset_file_size
+  - en.activerecord.attributes.section_translation.asset.asset_file_size
+  - en.activerecord.attributes.section_translations.asset.asset_file_size
+  - en.activerecord.attributes.medium_translation.image.asset_file_size
+  - en.activerecord.attributes.medium_translation.video.asset_file_size
+  - en.activerecord.attributes.medium_translations.image.asset_file_size
+  - en.activerecord.attributes.medium_translations.video.asset_file_size
+  - en.activerecord.attributes.slideshow_translation.asset_files.asset_file_size
+  - en.activerecord.attributes.slideshow_translations.asset_files.asset_file_size
+  - en.activerecord.attributes.infographic_translation.image.asset_file_size
+  - en.activerecord.attributes.infographic_translation.dataset_file.asset_file_size
+  - en.activerecord.attributes.infographic_translations.image.asset_file_size
+  - en.activerecord.attributes.infographic_translations.dataset_file.asset_file_size
 - - en.activerecord.attributes.user.email
   - en.activerecord.attributes.message.email
 - - en.activerecord.attributes.user.role
@@ -27,14 +77,20 @@
 - - en.activerecord.attributes.user.local_avatar
   - en.activerecord.attributes.author.avatar
 - - en.activerecord.attributes.author_translation.name
+  - en.activerecord.attributes.author_translations.name
   - en.activerecord.attributes.message.name
   - en.activerecord.attributes.category_translation.name
+  - en.activerecord.attributes.category_translations.name
   - en.activerecord.attributes.theme_translation.name
+  - en.activerecord.attributes.theme_translations.name
   - en.activerecord.attributes.story_type_translation.name
+  - en.activerecord.attributes.story_type_translations.name
 - - en.activerecord.attributes.author_translation.about
+  - en.activerecord.attributes.author_translations.about
   - en.helpers.links.about
   - en.app.common.about_story
 - - en.activerecord.attributes.author_translation.permalink
+  - en.activerecord.attributes.author_translations.permalink
   - en.app.common.permalink
 - - en.activerecord.attributes.story.user_id
   - en.stories.collaborators.owner_header
@@ -45,34 +101,110 @@
 - - en.activerecord.attributes.story.story_type
   - en.activerecord.attributes.section.type_id
 - - en.activerecord.attributes.story_translation.title
+  - en.activerecord.attributes.story_translations.title
   - en.mailer.notification.story_collaboration.story_title
   - en.settings.invitations.header_story
+- - en.activerecord.attributes.story_translation.author
+  - en.activerecord.attributes.story_translations.author
+- - en.activerecord.attributes.story_translation.media_author
+  - en.activerecord.attributes.story_translations.media_author
+- - en.activerecord.attributes.story_translation.translation_author
+  - en.activerecord.attributes.story_translations.translation_author
 - - en.activerecord.attributes.story_translation.published
+  - en.activerecord.attributes.story_translations.published
   - en.activerecord.attributes.theme.is_published
+- - en.activerecord.attributes.story_translation.published_at
+  - en.activerecord.attributes.story_translations.published_at
+- - en.activerecord.attributes.story_translation.about
+  - en.activerecord.attributes.story_translations.about
 - - en.activerecord.attributes.story_translation.permalink
   - en.activerecord.attributes.story_translation.permalink_staging
+  - en.activerecord.attributes.story_translations.permalink
+  - en.activerecord.attributes.story_translations.permalink_staging
 - - en.activerecord.attributes.section.sort_order
   - en.activerecord.attributes.story_type.sort_order
 - - en.activerecord.attributes.section_translation.title
-  - en.activerecord.attributes.content.title
+  - en.activerecord.attributes.section_translations.title
+  - en.activerecord.attributes.content_translation.title
+  - en.activerecord.attributes.content_translations.title
   - en.activerecord.attributes.medium_translation.title
+  - en.activerecord.attributes.medium_translations.title
   - en.activerecord.attributes.slideshow_translation.title
+  - en.activerecord.attributes.slideshow_translations.title
   - en.activerecord.attributes.embed_medium_translation.title
+  - en.activerecord.attributes.embed_medium_translations.title
   - en.activerecord.attributes.youtube_translation.title
-- - en.activerecord.attributes.content.caption
+  - en.activerecord.attributes.youtube_translations.title
+  - en.activerecord.attributes.infographic_translation.title
+  - en.activerecord.attributes.infographic_translations.title
+  - en.stories.infographic.placeholder.title
+- - en.activerecord.attributes.section_translation.audio
+  - en.activerecord.attributes.section_translations.audio
+- - en.activerecord.attributes.section_translation.delete_audio
+  - en.activerecord.attributes.section_translations.delete_audio
+- - en.activerecord.attributes.content_translation.caption
+  - en.activerecord.attributes.content_translations.caption
   - en.activerecord.attributes.slideshow_translation.caption
+  - en.activerecord.attributes.slideshow_translations.caption
+  - en.activerecord.attributes.infographic_translation.caption
+  - en.activerecord.attributes.infographic_translations.caption
+- - en.activerecord.attributes.content_translation.sub_caption
+  - en.activerecord.attributes.content_translations.sub_caption
 - - en.activerecord.attributes.medium.image
-  - en.activerecord.attributes.medium_translation.image
+  - en.activerecord.attributes.medium_translation.image_name
+  - en.activerecord.attributes.medium_translations.image_name
+  - en.activerecord.attributes.infographic_translation.image_name
+  - en.activerecord.attributes.infographic_translations.image_name
   - en.stories.media.image
 - - en.activerecord.attributes.medium.video
-  - en.activerecord.attributes.medium_translation.video
+  - en.activerecord.attributes.medium_translation.video_name
+  - en.activerecord.attributes.medium_translations.video_name
   - en.stories.media.video
+- - en.activerecord.attributes.medium_translation.caption
+  - en.activerecord.attributes.medium_translations.caption
+- - en.activerecord.attributes.medium_translation.caption_align
+  - en.activerecord.attributes.medium_translations.caption_align
+- - en.activerecord.attributes.medium_translation.infobox_type
+  - en.activerecord.attributes.medium_translations.infobox_type
+- - en.activerecord.attributes.medium_translation.summary
+  - en.activerecord.attributes.medium_translations.summary
 - - en.activerecord.attributes.medium_translation.source
+  - en.activerecord.attributes.medium_translations.source
   - en.layouts.storybuilder.source
 - - en.activerecord.attributes.slideshow_translation.description
+  - en.activerecord.attributes.slideshow_translations.description
+  - en.activerecord.attributes.infographic_translation.description
+  - en.activerecord.attributes.infographic_translations.description
   - en.activerecord.attributes.theme_translation.description
+  - en.activerecord.attributes.theme_translations.description
+- - en.activerecord.attributes.slideshow_translation.asset_files_name
+  - en.activerecord.attributes.slideshow_translations.asset_files_name
+- - en.activerecord.attributes.embed_medium_translation.url
+  - en.activerecord.attributes.embed_medium_translations.url
+- - en.activerecord.attributes.youtube_translation.url
+  - en.activerecord.attributes.youtube_translations.url
+- - en.activerecord.attributes.youtube_translation.menu_lang
+  - en.activerecord.attributes.youtube_translations.menu_lang
+- - en.activerecord.attributes.youtube_translation.cc
+  - en.activerecord.attributes.youtube_translations.cc
+- - en.activerecord.attributes.youtube_translation.cc_lang
+  - en.activerecord.attributes.youtube_translations.cc_lang
+- - en.activerecord.attributes.infographic.published_at
+  - en.activerecord.attributes.theme.published_at
+- - en.activerecord.attributes.infographic_translation.dataset_url
+  - en.activerecord.attributes.infographic_translations.dataset_url
+- - en.activerecord.attributes.infographic_translation.dynamic_url
+  - en.activerecord.attributes.infographic_translations.dynamic_url
+- - en.activerecord.attributes.page_translation.title
+  - en.activerecord.attributes.page_translations.title
+- - en.activerecord.attributes.page_translation.content
+  - en.activerecord.attributes.page_translations.content
+- - en.activerecord.attributes.theme_translation.edition
+  - en.activerecord.attributes.theme_translations.edition
 - - en.activerecord.attributes.theme_translation.permalink
+  - en.activerecord.attributes.theme_translations.permalink
   - en.activerecord.attributes.story_type_translation.permalink
+  - en.activerecord.attributes.story_type_translations.permalink
 - - en.helpers.links.admin
   - en.app.buttons.admin
 - - en.helpers.links.edit
@@ -105,6 +237,8 @@
 - - en.helpers.links.likes
   - en.app.common.likes
   - en.filters.sort.likes
+- - en.helpers.links.download
+  - en.helpers.links.story_menu.link.export
 - - en.helpers.links.story_menu.link.preview
   - en.app.buttons.preview
 - - en.helpers.links.story_menu.link.publish
@@ -121,7 +255,7 @@
   - en.app.common.staff_pick
   - en.filters.staff_pick
 - - en.app.buttons.remove
-  - en.stories.asset_fields.remove_image
+  - en.stories.asset_file_fields.remove_image
 - - en.app.common.app_name_not_trans
   - en.app.common.app_name
 - - en.app.common.app_intro
@@ -136,8 +270,6 @@
   - en.filters.following
 - - en.app.common.views
   - en.filters.sort.reads
-- - en.layouts.reviewer.copied
-  - en.shared.story_nav_modals.copied
 - - en.stories.new.title
   - en.stories.edit.title
 - - en.stories.media.hint.title
@@ -145,11 +277,15 @@
   - en.stories.slideshow.hint.title
   - en.stories.embed_media.hint.title
   - en.stories.youtube.hint.title
+  - en.stories.infographic.hint.title
 - - en.stories.content.placeholder.caption
   - en.stories.content.placeholder.sub_caption
   - en.stories.slideshow.placeholder.caption
-  - en.stories.asset_fields.placeholder.caption
-  - en.stories.asset_fields.placeholder.source
+  - en.stories.asset_file_fields.placeholder.caption
+  - en.stories.asset_file_fields.placeholder.source
+  - en.stories.infographic.placeholder.caption
+  - en.stories.infographic.placeholder.dataset_url
+  - en.stories.infographic_datasource_fields.placeholder.url
 - - en.stories.embed_media.error
   - en.stories.youtube.error
 - - en.settings.index.submit

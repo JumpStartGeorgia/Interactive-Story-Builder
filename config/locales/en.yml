@@ -38,7 +38,7 @@ en:
         created_at: Date Created
         current_sign_in_at: Date Last Logged In
       author:
-        name: Avatar
+        avatar: Avatar
       author_translation: &author_translation
         name: Name
         about: About
