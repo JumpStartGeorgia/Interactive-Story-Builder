@@ -132,6 +132,14 @@
                   <% end %> 
                   <div class="video infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %>" <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>
                     <div class="video-container infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %>">
+                      <% 
+                        logger.debug "$$$$$$$$$$$$$$$$$$$$$$$$$$"
+                        logger.debug "m.id = #{m.id}; type = #{m.media_type}"
+                        logger.debug " image = #{m.media_type == Medium::TYPE[:image]}"
+                        logger.debug " video and ! processed = #{m.media_type == Medium::TYPE[:video] && !m.is_processed?}"
+                        logger.debug " video and processed = #{m.media_type == Medium::TYPE[:video] && m.is_processed?}"
+                      %>
+
                       <% if m.media_type == Medium::TYPE[:image] %>     
                           <% if !@export %> 
                             <img src="<%= m.image.file.url(:fullscreen) %>">

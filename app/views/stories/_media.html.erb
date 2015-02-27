@@ -29,7 +29,11 @@
         }
         .merge(( (isTO) ? {} : { hint: t('.hint.title'), placeholder: t('.placeholder.title') })) %>
 
-        <% if !@trans %>
+        <% if @trans %>
+          <%# need this hidden field so can properly set value in translation model %>
+          <%= f.input :media_type, :as => :hidden %>
+          
+        <% else %>
           <div class="radio_buttons input required form-group radio-indent radio-hide-button" id="medium_media_type_input">
             <label class="  control-label" for="medium_media_type">
               <%= model_class.human_attribute_name(:media_type) %>

@@ -175,8 +175,8 @@ class Section < ActiveRecord::Base
       return self.youtube.present? && self.youtube.code.present?
     elsif infographic?
       return self.infographic.present? && 
-            (self.infographic.static_type? && self.infographic.image.present?) ||
-            (self.infographic.dynamic_type? && self.infographic.dynamic_url.present?)
+            ((self.infographic.static_type? && self.infographic.image.present?) ||
+            (self.infographic.dynamic_type? && self.infographic.dynamic_url.present?))
     end
   end
 end

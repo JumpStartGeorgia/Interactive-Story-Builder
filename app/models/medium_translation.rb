@@ -105,14 +105,16 @@ class MediumTranslation < ActiveRecord::Base
   end  
 
   def is_processed?
-    puts "====== trans is processed"
+    logger.debug "====== medium trans is_processed?"
+    logger.debug "- media type - #{self.media_type}"
     if video_type?
-      puts "- video"
-      video_exists? && self.video.is_processed?
+      logger.debug "- video"
+      return video_exists? && self.video.is_processed?
     elsif image_type?
-      puts "- image"
-      image_exists? && self.image.is_processed?
+      logger.debug "- image"
+      return image_exists? && self.image.is_processed?
     end
+    return false
   end
 
 private
