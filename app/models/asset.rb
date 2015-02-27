@@ -297,7 +297,7 @@ class Asset < ActiveRecord::Base
   # else use this record
   def is_processed?
     logger.debug "@@@@ clone id #{self.asset_clone_id.present?}; clone processed = #{self.asset_clone.processed}; self processed = #{self.processed}"
-    self.asset_clone_id.present? ? self.asset_clone.processed : self.processed
+    self.asset_clone_id.present? && self.asset_clone.present? ? self.asset_clone.processed : self.processed
   end
   
   # get the processed url of a video
