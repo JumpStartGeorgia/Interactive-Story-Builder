@@ -296,7 +296,6 @@ class Asset < ActiveRecord::Base
   # if this record is cloning another, then user the clone 
   # else use this record
   def is_processed?
-    logger.debug "@@@@ clone id #{self.asset_clone_id.present?}; clone processed = #{self.asset_clone.processed}; self processed = #{self.processed}"
     self.asset_clone_id.present? && self.asset_clone.present? ? self.asset_clone.processed : self.processed
   end
   
