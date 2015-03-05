@@ -245,9 +245,11 @@
               console.log('- start!')
               if (event.target.hasAlreadyPlayed == undefined){
                 var locale = event.target.d.d.playerVars.cc_lang_pref;
-                console.log('- first time, lang pref = ');
+                var load_policy = event.target.d.d.playerVars.cc_load_policy;
+                console.log('- first time');
                 console.log(locale);
-                if (locale != undefined){
+                console.log(load_policy);
+                if (locale != undefined && load_policy == 1){
                   console.log('lang pref exists!');
                   // use the language code that is in the playerVars
                   // taken from: https://code.google.com/p/gdata-issues/issues/detail?id=444
