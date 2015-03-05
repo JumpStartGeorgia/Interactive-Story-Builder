@@ -128,10 +128,10 @@
   			  I18n.locale = "<%= I18n.locale %>";
   		  </script>
       <% else %>
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-          <script src="js/bootstrap.min.js"></script>          
-          <script src="js/modalos.js"></script>   
-          <script src="js/page.js"></script>   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>          
+        <script src="js/modalos.js"></script>   
+        <script src="js/page.js"></script>   
       <% end %>
       <div id="fb-root"></div>
       <script>
@@ -167,6 +167,110 @@
         //    //    return false;
         //    // });
         // });
+
+        <% if @story.sections.index{|t| t.youtube? && t.youtube.present? }.present? %>
+          var tag = document.createElement('script');
+          tag.src = "https://www.youtube.com/iframe_api";
+          var firstScriptTag = document.getElementsByTagName('script')[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+          var youtubePlayers= [];
+          function onYouTubePlayerAPIReady() {  
+            console.log('onYouTubePlayerAPIReady');
+            var youtubeContainers = d3.selectAll(".section .container div[data-yid]");
+         
+            if(youtubeContainers[0].length == youtube.length)
+            {
+              youtube.forEach(function(d,i){
+                  if(d.videoId == youtubeContainers[0][i].dataset.yid)
+                  {
+                    console.log('call blah here');
+                    youtubePlayers.push(new YT.Player(
+                        youtubeContainers[0][i],
+                        {
+                          videoId: d.videoId,
+                          width: d.width,
+                          height: d.height,
+                          playerVars:{
+                            showinfo: d.info,
+                            loop: d.loop,
+                            cc_load_policy: d.cc_load_policy,
+                            hl: d.hl,
+                            cc_lang_pref: d.cc_lang_pref,
+                            rel: d.rel
+                          },                   
+                          events: {
+
+                            'onReady': onPlayerReady,
+                            'onStateChange': onPlayerStateChange
+                          }
+                        }
+                    ));
+                  }              
+              });
+            }
+
+
+            // create the global player from the specific iframe (#video)
+            //var elem = document.getElementsByClassName('embed-youtube')[0];
+            //console.log(elem);
+            // player = new YT.Player('youtube', {
+            //   videoId:'slJLz-zqGSE',
+            //   height: '390',
+            //   width: '640',
+            //   playerVars: {
+            //     showinfo: 0,
+            //     cc_load_policy: 1,
+            //     cc_lang_pref: 'ru',
+            //      hl:'ru',
+            //      rel:0
+            //   },
+              
+             
+            //   //showinfo=0&cc_load_policy=1&hl=en&cc_lang_pref=en
+            //   events: {
+
+            //     // call this function when player is ready to use
+            //     'onReady': onPlayerReady,
+            //     'onStateChange': onPlayerStateChange
+            //   }
+            // });
+          }
+          function onPlayerStateChange(event) {
+            console.log('onPlayerStateChange',event);
+
+            // event.data = 1 -> start
+            // event.data = 2 -> pause
+            if (event.data == 1){
+              if (event.target.hasAlreadyPlayed == undefined){
+                // use the language code that is in the playerVars
+                event.target.setOption("captions", "track", {"languageCode": event.target.d.d.playerVars.cc_lang_pref});
+                event.target.hasAlreadyPlayed = true;
+              }
+            }
+
+          }
+          function onPlayerReady(event) {
+            console.log('onPlayerReady',event);
+            
+            //event.target.playVideo();
+            //event.target.setOption("captions", "track", {"languageCode": sl});
+            // bind events
+            // var playButton = document.getElementById("play-button");
+            // playButton.addEventListener("click", function() {
+            //   player.playVideo();
+            // });
+            
+            // var pauseButton = document.getElementById("pause-button");
+            // pauseButton.addEventListener("click", function() {
+            //   player.pauseVideo();
+            // });
+            
+          }
+
+
+        <% end %>
+
       </script>  
 
       <%

@@ -260,11 +260,14 @@
                 </div>                         
               </div>
             <% elsif section.youtube? %>           
-              <div class="section embed<%= section.youtube.fullscreen ? ' fullscreen' : '' %>">
+              <div class="section youtube embed<%= section.youtube.fullscreen ? ' fullscreen' : '' %>">
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %> 
-                <div class="embed-container"><%= section.youtube.code.html_safe %></div>                         
+                <!-- <div class="embed-container"><%= section.youtube.code.html_safe %></div>                          -->
+                <div class="container">
+                  <div data-yid="<%= section.youtube.url.last(11) %>"></div>
+                </div>                         
               </div>
               <% if isFirst && section.youtube.fullscreen %>
                 <div class='info'>
@@ -340,14 +343,13 @@
 
           <%  
               output = []
+              youtube = []
               secLength = @story.sections.length        
               @story.sections.select{|t| t.ok? }.sort_by{|v| v.position}.each_with_index do |s,s_i|
+                item = {}
                 if s.media?
                   subLength = s.media.length   
                   s.media.each_with_index do |t,t_i| 
-                    
-                    item = {}
-
                     item[:type] = "media"
                     item[:file] = "mobile_1024/#{t.image.asset_file_name_formatted}"
                     item[:section] = s_i+1
@@ -363,7 +365,6 @@
                   subLength = s.slideshow.asset_files.length   
                   s.slideshow.asset_files.each_with_index do |t,t_i| 
                     item = {}
-
                     item[:type] = "slideshow"
                     item[:file] = "mobile_1024/#{t.asset_file_name_formatted}"
                     item[:section] = s_i+1
@@ -374,11 +375,24 @@
                     end
                     output<< item
                   end
+                elsif s.youtube?
+                  item[:type] = "youtube"
+                  item[:videoId] = s.youtube.url.last(11)
+                  item[:width] = 640
+                  item[:height] = 360
+                  item[:loop] = s.youtube.loop ? 1 : 0
+                  item[:info] = s.youtube.info ? 1 : 0
+                  item[:cc_load_policy] = s.youtube.cc ? 1 : 0
+                  item[:hl] = s.youtube.menu_lang
+                  item[:cc_lang_pref] = s.youtube.cc_lang
+                  item[:rel] = 0
+                  youtube<< item
                 end              
               end
           %>
 
            var mobileImages = <%=output.to_json.html_safe %>;
+           var youtube = <%=youtube.to_json.html_safe %>;
 
       </script>
 
