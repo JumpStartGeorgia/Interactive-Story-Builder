@@ -128,10 +128,10 @@
   			  I18n.locale = "<%= I18n.locale %>";
   		  </script>
       <% else %>
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-          <script src="js/bootstrap.min.js"></script>          
-          <script src="js/modalos.js"></script>   
-          <script src="js/page.js"></script>   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>          
+        <script src="js/modalos.js"></script>   
+        <script src="js/page.js"></script>   
       <% end %>
       <div id="fb-root"></div>
       <script>
@@ -168,7 +168,7 @@
         //    // });
         // });
 
-        <% if @story.sections.select{|t| t.youtube? && t.youtube.present? }.length > 0 %>
+        <% if @story.sections.index{|t| t.youtube? && t.youtube.present? }.present? %>
           var tag = document.createElement('script');
           tag.src = "https://www.youtube.com/iframe_api";
           var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -238,10 +238,23 @@
           }
           function onPlayerStateChange(event) {
             console.log('onPlayerStateChange',event);
+
+            // event.data = 1 -> start
+            // event.data = 2 -> pause
+            if (event.data == 1){
+              if (event.target.hasAlreadyPlayed == undefined){
+                // use the language code that is in the playerVars
+                event.target.setOption("captions", "track", {"languageCode": event.target.d.d.playerVars.cc_lang_pref});
+                event.target.hasAlreadyPlayed = true;
+              }
+            }
+
           }
           function onPlayerReady(event) {
             console.log('onPlayerReady',event);
-            //player.setOption("captions", "track", {"languageCode": sl});
+            
+            //event.target.playVideo();
+            //event.target.setOption("captions", "track", {"languageCode": sl});
             // bind events
             // var playButton = document.getElementById("play-button");
             // playButton.addEventListener("click", function() {
