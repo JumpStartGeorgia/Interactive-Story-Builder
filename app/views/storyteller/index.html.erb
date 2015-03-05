@@ -242,9 +242,20 @@
             // event.data = 1 -> start
             // event.data = 2 -> pause
             if (event.data == 1){
+              console.log('- start!')
               if (event.target.hasAlreadyPlayed == undefined){
-                // use the language code that is in the playerVars
-                event.target.setOption("captions", "track", {"languageCode": event.target.d.d.playerVars.cc_lang_pref});
+                var locale = event.target.d.d.playerVars.cc_lang_pref;
+                console.log('- first time, lang pref = ');
+                console.log(locale);
+                if (locale != undefined){
+                  console.log('lang pref exists!');
+                  // use the language code that is in the playerVars
+                  // taken from: https://code.google.com/p/gdata-issues/issues/detail?id=444
+                  event.target.loadModule("captions");  //Works for html5 ignored by AS3
+                  event.target.setOption("captions", "track", {"languageCode": locale});  //Works for html5 ignored by AS3
+                  event.target.loadModule("cc");  //Works for AS3 ignored by html5
+                  event.target.setOption("cc", "track", {"languageCode": locale});  //Works for AS3 ignored by html5
+                }
                 event.target.hasAlreadyPlayed = true;
               }
             }
