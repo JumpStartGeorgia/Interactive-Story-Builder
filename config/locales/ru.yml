@@ -800,10 +800,10 @@ ru:
     related_stories: Также по теме
     view_all_stories_in: Просмотреть все материалы в
     infographic:
-      source: Data Source
-      dataset: Dataset
-      download: Download File
-      online: View Data Online    
+      source: Источник данных
+      dataset: Related Items
+      download: Скачать файл
+      online: Просмотр данных онлайн    
   settings:
     index:
       title: "Настройки"

@@ -800,10 +800,10 @@ az:
     related_stories: Buna aid xəbərlərə bax
     view_all_stories_in: Bütün hekayələrə bax
     infographic:
-      source: Data Source
-      dataset: Dataset
-      download: Download File
-      online: View Data Online    
+      source: Məlumat mənbəyi
+      dataset: Related Items
+      download: Faylı yüklə
+      online: Məlumatı Online Bax
   settings:
     index:
       title: Parametrlər

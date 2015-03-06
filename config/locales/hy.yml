@@ -800,10 +800,10 @@ hy:
     related_stories: Առնչվող նյութեր
     view_all_stories_in: Դիտել բոլոր նյութերը
     infographic:
-      source: Data Source
-      dataset: Dataset
-      download: Download File
-      online: View Data Onlinew    
+      source: Տվյալների աղբյուր
+      dataset: Առնչվող կետեր
+      download: Ներբեռնել ֆայլը
+      online: Դիտել տվյալներն առցանց    
   settings:
     index:
       title: "Կարգավորումներ"

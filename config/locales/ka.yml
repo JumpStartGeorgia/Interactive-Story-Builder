@@ -800,10 +800,10 @@ ka:
     related_stories: მსგავსი ამბები
     view_all_stories_in: ყველა ამბის ნახვა
     infographic:
-      source: Data Source
-      dataset: Dataset
-      download: Download File
-      online: View Data Online    
+      source: მონაცემთა წყარო
+      dataset: მასალები ამ თემაზე
+      download: ჩამოტვირთვა
+      online: მონაცემთა ნახვა ონლაინ
   settings:
     index:
       title: "პარამეტრები"
