@@ -176,7 +176,7 @@
 
           var youtubePlayers= [];
           function onYouTubePlayerAPIReady() {  
-            console.log('onYouTubePlayerAPIReady');
+            // console.log('onYouTubePlayerAPIReady');
             var youtubeContainers = d3.selectAll(".section .container div[data-yid]");
          
             if(youtubeContainers[0].length == youtube.length)
@@ -184,7 +184,7 @@
               youtube.forEach(function(d,i){
                   if(d.videoId == youtubeContainers[0][i].dataset.yid)
                   {
-                    console.log('call blah here');
+                    // console.log('call blah here');
                     youtubePlayers.push(new YT.Player(
                         youtubeContainers[0][i],
                         {
@@ -237,20 +237,20 @@
             // });
           }
           function onPlayerStateChange(event) {
-            console.log('onPlayerStateChange',event);
+            // console.log('onPlayerStateChange',event);
 
             // event.data = 1 -> start
             // event.data = 2 -> pause
             if (event.data == 1){
-              console.log('- start!')
+              // console.log('- start!')
               if (event.target.hasAlreadyPlayed == undefined){
                 var locale = event.target.d.d.playerVars.cc_lang_pref;
                 var load_policy = event.target.d.d.playerVars.cc_load_policy;
-                console.log('- first time');
-                console.log(locale);
-                console.log(load_policy);
+                // console.log('- first time');
+                // console.log(locale);
+                // console.log(load_policy);
                 if (locale != undefined && load_policy == 1){
-                  console.log('lang pref exists!');
+                  // console.log('lang pref exists!');
                   // use the language code that is in the playerVars
                   // taken from: https://code.google.com/p/gdata-issues/issues/detail?id=444
                   event.target.loadModule("captions");  //Works for html5 ignored by AS3
@@ -264,7 +264,7 @@
 
           }
           function onPlayerReady(event) {
-            console.log('onPlayerReady',event);
+            // console.log('onPlayerReady',event);
             
             //event.target.playVideo();
             //event.target.setOption("captions", "track", {"languageCode": sl});
