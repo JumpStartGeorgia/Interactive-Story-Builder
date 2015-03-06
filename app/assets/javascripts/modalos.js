@@ -99,7 +99,9 @@
 					render();				
 				   modal.detach();
 
-			    	wrapper.css({'overflow-x':'auto','overflow-y':'scroll'});	 
+			    if (!options.fullscreen){
+            wrapper.css({'overflow-x':'auto','overflow-y':'scroll'});  
+          }
 					content.html($(modal).css("display","block"));
 			 				
 					if(options.animation == "fade" && !opened) {
@@ -213,8 +215,9 @@
 		    		}
 		    	 	$(box).css("top", hOut ? options.topOffset : ((h- options.height)/2 > options.topOffset ? (h- options.height)/2 : options.topOffset));
 			     	$(box).css("left",wOut ? options.leftOffset : ((w- options.width)/2 > options.leftOffset ? (w- options.width)/2 : options.leftOffset));
-			     	$('body').css('overflow','hidden');	 
 		    	 }
+
+          $('body').css('overflow','hidden');  
 			}
 			function aspect_ratio_width(oh,ow,h)
 			{

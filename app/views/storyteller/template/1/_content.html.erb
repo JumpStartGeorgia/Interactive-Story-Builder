@@ -289,17 +289,27 @@
                 <% if item.caption.present? %>
                   <div class="caption"><%= item.caption %></div>
                 <% end %>
-                <% if item.subtype == Infographic::TYPE[:static] %> 
-                  <div class="content" data-original='<%= item.image.file.url %>'>
+                <% if item.static_type? %> 
+                  <div class="content infographic" data-original='<%= item.image.file.url %>'>
                     <% alt = item.alt_text.present? ? item.alt_text : isFirst ? @story.about : '' %>
                     <img src="<%= item.image.file.url(:poster) %>" alt="<%= strip_tags_nbsp(alt) %>">
                     <div class="bg"></div>
                   </div>
-                <% elsif item.subtype == Infographic::TYPE[:dynamic] %>
-                  <div class="content<%= item.dynamic_width.blank? ? ' wide' : '' %>">
-                    <%= item.dynamic_code.html_safe %>
+                <% elsif item.dynamic_type? && item.popup_render? %>
+                  <div class="content interactive">
+                    <% alt = item.alt_text.present? ? item.alt_text : isFirst ? @story.about : '' %>
+                    <% image = item.image.present? && item.image.file.exists? ? item.image : Asset.new(asset_type: Asset::TYPE[:infographic]) %>
+                    <img src="<%= image.file.url(:poster) %>" alt="<%= strip_tags_nbsp(alt) %>">
+                    <div class="bg"></div>
+                    <div class="interactive-iframe-popup" style="display:none;">
+                      <%= item.dynamic_code.html_safe %>
+                    </div>
                   </div>
-                <% end %>
+                 <% elsif item.dynamic_type? %>
+                    <div class="content<%= item.dynamic_width.blank? ? ' wide' : '' %>">
+                      <%= item.dynamic_code.html_safe %>
+                    </div>
+                  <% end %>
                   <% if isFirst && @story.story_type_id != 1 && @story.about.present? %>
                     <div class='description'><%= @story.about.html_safe %></div>
                   <% end %>
@@ -735,7 +745,9 @@
                   : true;
             }).style("top","0px");
             // append height for infographic if height class present
+            // if this is a popup interactive, reduce the height more so iframe window is contained within screen
             d3.selectAll(".infographic iframe.height").attr("height", innerHeight);
+            d3.selectAll(".infographic .interactive-iframe-popup iframe.height").attr("height", innerHeight-80);
           }
 
           function fixscrolled(d) {

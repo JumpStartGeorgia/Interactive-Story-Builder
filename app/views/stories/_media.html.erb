@@ -108,6 +108,7 @@
             <% else %>
               <div style="height: 35px;">&nbsp;</div>
               <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url(:mobile_640)}" %>'><%= t('app.buttons.preview_image') %></a>
+              <div style="height: 28px;">&nbsp;</div>
             <% end %>    
           </div>
         <% end %> 
@@ -182,6 +183,7 @@
               <% if video_asset_record.file.exists? && preview %>
                 <div style="height: 35px;">&nbsp;</div>
                 <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ video_asset_record.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
+                <div style="height: 28px;">&nbsp;</div>
               <% else %>
                 <div style="height: 66px;">&nbsp;</div>
               <% end %>

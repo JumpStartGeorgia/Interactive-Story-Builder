@@ -135,6 +135,7 @@ hy:
         subtype: Infographic Type        
         dynamic_width: Width
         dynamic_height: Height
+        dynamic_render: Show Infographic in Story or in Popup
       infographic_translation: &infographic_translation
         title: Title
         caption: Heading
@@ -766,6 +767,8 @@ hy:
       add_datasource: Add Data Source
       static: Static
       dynamic: Dynamic
+      inline: In Story
+      popup: Popup
       label:
         dynamic_size: Infographic Dimensions in Width x Height
       placeholder:
@@ -785,6 +788,7 @@ hy:
         subtype: "Static infographics are images, Dynamic infographics require a URL."
         dynamic_url: URL to web page with interactive infographic
         dynamic_size: Use these fields to indicate the space you want to reserve for showing this infographic. Leave the fields empty if you want the infographic to be fullscreen. The minimum value is 200.
+        dynamic_render: The infographic can be rendered in the story or in a popup that appears after the user clicks on the infogaphic image in the story. Use the popup option if the infogaphic takes up the full screen or is very long.
     infographic_datasource_fields:
       placeholder:
         url: optional

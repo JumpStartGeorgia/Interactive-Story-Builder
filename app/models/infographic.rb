@@ -8,6 +8,7 @@ class Infographic < ActiveRecord::Base
   accepts_nested_attributes_for :infographic_translations
 
   TYPE = {static: 1, dynamic: 2}
+  DYNAMIC_RENDER = {inline: 1, popup: 2}
 
   #################################
   ## Validations
@@ -136,9 +137,16 @@ class Infographic < ActiveRecord::Base
   end
 
   def static_type?    
-    self.subtype == Infographic::TYPE[:static]
+    self.subtype == TYPE[:static]
   end
   def dynamic_type?    
-    self.subtype == Infographic::TYPE[:dynamic]
+    self.subtype == TYPE[:dynamic]
+  end
+
+  def inline_render?
+    self.dynamic_render == DYNAMIC_RENDER[:inline]
+  end
+  def popup_render?
+    self.dynamic_render == DYNAMIC_RENDER[:popup]
   end
 end

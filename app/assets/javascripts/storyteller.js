@@ -97,7 +97,7 @@ $(document).ready(function(){
       });
     }
 
-      $('.section.infographic .container .content').click(function(){
+      $('.section.infographic .container .content.infographic').click(function(){
         var t = $(this);
         //var ml =  $('<div id="modalos-infographic"></div>');
         var image =  $('<img>',
@@ -117,6 +117,11 @@ $(document).ready(function(){
             "src":t.attr('data-original')
         });
        
+      });
+
+
+      $('.section.infographic .container .content.interactive').click(function(){
+        $($(this).find('.interactive-iframe-popup').html()).modalos({topOffset: 50, leftOffset: 0, fullscreen: true, paddings:0, margins:30, klass:'interactive', dragscroll:true });
       });
 
 

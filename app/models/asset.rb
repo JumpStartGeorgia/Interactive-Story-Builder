@@ -159,8 +159,8 @@ class Asset < ActiveRecord::Base
                   },
                   :convert_options => {
                     :poster => "-gravity north -crop 730x730+0+0"
-                  }
-
+                  },
+                  :default_url => "/assets/missing/infographic/missing.jpg"
           }  
 
         when  TYPE[:infographic_dataset]        

@@ -45,6 +45,10 @@
 
       <%= f_translation.input :description, { :as => :text, :input_html => {id: tinyClass , :class => tinyClass, :rows => 15}.merge(@readonly) }.merge(( @isTO ? {} : { hint: t('.hint.description') }))  %>      
        
+        <% if @isTO %>
+          <div style="height: 8px;">&nbsp;</div>
+        <% end %>
+
         <% if !@trans %>
           <div class="radio_buttons input required form-group radio-indent radio-hide-button" id="infographic_subtype_input">
             <label class="  control-label" for="infographic_subtype">
@@ -77,6 +81,62 @@
 
 
 
+          <div id='infographicDynamicBox' class='input' <%=  @item.static_type?  ? "style=display:none;" : "" %> >
+            <%= f_translation.input :dynamic_url, 
+            { 
+              :as => :url,
+              :input_html => { id: (!@isTO ?  "infographicDynamicUrl" : nil) }      
+              .merge(@readonly) 
+            }
+            .merge(( (@isTO) ? {} : { hint: t('.hint.dynamic_url'), placeholder: t('.placeholder.dynamic_url') })) %>
+
+            <% if !@trans %>
+              <div class="radio_buttons input required form-group radio-indent radio-hide-button" id="infographic_dynamic_render_input">
+                <label class="  control-label" for="infographic_dynamic_render">
+                  <%= model_class.human_attribute_name(:dynamic_render) %>
+                  <abbr title="<%= t('app.common.required') %>">*</abbr>
+                  <div class="help-inline" title="<%= t('.hint.dynamic_render')%>">
+                    <div>?</div>
+                  </div>
+                </label>
+                <% types = [[t('.inline'), Infographic::DYNAMIC_RENDER[:inline], 'glyphicon-align-center'], [t('.popup'), Infographic::DYNAMIC_RENDER[:popup], 'glyphicon-new-window']] %>
+                <div class="radio-container">
+                  <% types.each do |type| %>
+                    <div class="radio">
+                      <% checked = type[1] == @item.dynamic_render ? 'checked=checked' : '' %>
+                      <input <%= checked %> id="infographic_dynamic_render_<%= type[1] %>" name="infographic[dynamic_render]" type="radio" value="<%= type[1] %>" <%= (@item.id.present?) ? "disabled" : "" %>>
+                      <label class="choice<%= @item.id.present? ? ' disabled' : '' %>" for="infographic_dynamic_render_<%= type[1] %>">
+                        <span class="glyphicon <%= type[2] %>"></span>
+                        <%= type[0] %>
+                      </label>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+
+              <div id="dynamic-size">
+                <label class="control-label"><%= t('.label.dynamic_size') %><div class="help-inline" original-title="<%= t('.hint.dynamic_size')%>"><div>?</div></div></label>
+                <%= f.input :dynamic_width, 
+                { 
+                  :as => :number,
+                  :label => false,
+                  :input_html => { id: (!@isTO ?  "infographicDynamicWidth" : nil), class: 'number', min:200, max:10000, step:10, maxlength:4 }      
+                  .merge(@readonly) 
+                }
+                .merge(( (@isTO) ? {} : { placeholder: t('.placeholder.dynamic_width') })) %>
+                <div class='x'>x</div>
+                <%= f.input :dynamic_height, 
+                { 
+                  :as => :number,
+                  :label => false,                
+                  :input_html => { id: (!@isTO ?  "infographicDynamicHeight" : nil), class: 'number', min:200, max:10000, step:10, maxlength:4 }      
+                  .merge(@readonly) 
+                }
+                .merge(( (@isTO) ? {} : { placeholder: t('.placeholder.dynamic_height') })) %>
+                <div class='px'>px</div>
+              </div>
+            <% end %>
+          </div>
 
 
         <%
@@ -90,7 +150,7 @@
           <% 
             asset_class = @isTO ? 'original-image-asset' : 'translated-image-asset'
           %>
-          <div id='infographicStaticBox' class="input" <%= @item.subtype == Infographic::TYPE[:dynamic]  ? "style=display:none;" : "" %> >
+          <div id='infographicStaticBox' class="input" <%= @item.dynamic_type? && @item.inline_render?  ? "style=display:none;" : "" %> >
             <label class=" control-label" for="infographic-image-preview"><%= t('activerecord.attributes.infographic.image') %></label>
             <% if !@isTO %>
               <% if !original %>
@@ -131,42 +191,8 @@
             <% else %>
               <div style="height: 35px;">&nbsp;</div>
               <a class='btn btn-default preview preview-translated <%= asset_class %>' id="infographic-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url}" %>'><%= t('app.buttons.preview_image') %></a>
+              <div style="height: 28px;">&nbsp;</div>
             <% end %>    
-          </div>
-
-
-
-
-
-          <div id='infographicDynamicBox' class='input' <%=  @item.subtype == Infographic::TYPE[:static]  ? "style=display:none;" : "" %> >
-            <%= f_translation.input :dynamic_url, 
-            { 
-              :as => :url,
-              :input_html => { id: (!@isTO ?  "infographicDynamicUrl" : nil) }      
-              .merge(@readonly) 
-            }
-            .merge(( (@isTO) ? {} : { hint: t('.hint.dynamic_url'), placeholder: t('.placeholder.dynamic_url') })) %>
-            <% if !@trans %>
-              <label class="control-label"><%= t('.label.dynamic_size') %><div class="help-inline" original-title="<%= t('.hint.dynamic_size')%>"><div>?</div></div></label>
-              <%= f.input :dynamic_width, 
-              { 
-                :as => :number,
-                :label => false,
-                :input_html => { id: (!@isTO ?  "infographicDynamicWidth" : nil), class: 'number', min:200, max:10000, step:10, maxlength:4 }      
-                .merge(@readonly) 
-              }
-              .merge(( (@isTO) ? {} : { placeholder: t('.placeholder.dynamic_width') })) %>
-              <div class='x'>x</div>
-              <%= f.input :dynamic_height, 
-              { 
-                :as => :number,
-                :label => false,                
-                :input_html => { id: (!@isTO ?  "infographicDynamicHeight" : nil), class: 'number', min:200, max:10000, step:10, maxlength:4 }      
-                .merge(@readonly) 
-              }
-              .merge(( (@isTO) ? {} : { placeholder: t('.placeholder.dynamic_height') })) %>
-              <div class='px'>px</div>
-            <% end %>
           </div>
         <% end %> 
 

@@ -90,9 +90,10 @@ $(document).ready(function() {
 
 	});
 
-  // when infographic type changes, show the correct file fields
+  // when infographic type changes, show the correct fields
   $('.story-viewer').on('change','input[name="infographic[subtype]"]:radio',function(){
-    var b = $(this).val()==1;
+    // 1 = static, 2 = dynamic
+    var b = $(this).val()==1; 
     var form = $('form.infographic');
     form.find('#infographicStaticBox').toggle(b);
     form.find('#infographicDynamicBox').toggle(!b);
@@ -100,8 +101,35 @@ $(document).ready(function() {
     // make sure the file fields are reset when the option changes    
     form.find('input#infographicStatic, input#infographicDynamic').wrap('<form>').parent('form').trigger('reset');
     form.find('input#infographicStatic, input#infographicDynamic').unwrap();
+    // if render inline, show size block, else show image
+    if (b){
+      $('input#infographicDynamicUrl').val('');      
+    } else{
+      if (form.find('input[name="infographic[dynamic_render]"]:checked').val() == '1'){
+        form.find('#dynamic-size').toggle(!b);
+      }else if (form.find('input[name="infographic[dynamic_render]"]:checked').val() == '2'){
+        form.find('#infographicStaticBox').toggle(!b);
+        form.find('#dynamic-size').toggle(b);
+      }
+    }
+
     // when the infographic type is changed, update the translation infographic type to match
     form.find('input.translation-subtype').val($(this).val());
+  });
+
+  // when infographic dynamic render changes, show the correct fields
+  $('.story-viewer').on('change','input[name="infographic[dynamic_render]"]:radio',function(){
+    // 1 = inline, 2 = popup
+    var b = $(this).val()==1;
+    var form = $('form.infographic');
+    form.find('#dynamic-size').toggle(b);
+    form.find('#infographicStaticBox').toggle(!b);
+
+    // reset the size fields if this is popup
+    if (!b){
+      $('input#infographicDynamicWidth').val('');
+      $('input#infographicDynamicHeight').val('');
+    }
   });
 
 
