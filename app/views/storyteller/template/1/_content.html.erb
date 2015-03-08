@@ -314,7 +314,7 @@
                     <div class='description'><%= @story.about.html_safe %></div>
                   <% end %>
                   <div class="description"><%= item.description.html_safe %></div>
-                  <% if !item.datasources.empty? %>
+                  <% if item.datasources.present? %>
                     <div class="sources">
                       <div class="title"><%= t('storyteller.infographic.source', locale: @story.current_locale) %>:&nbsp;</div>
                       <% section.infographic.datasources.each do |t| %>
