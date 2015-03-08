@@ -1012,6 +1012,7 @@ function get_translation_progress(to_locale){
 
 // update the language switchers with the latest progress status for the provided locale
 function update_translation_progress(progress, to_locale, percent, is_published){
+  console.log('update translation progress');
   if ($('.toolbar select#translateTo').length > 0){
     var optionTo = $('.toolbar select#translateTo option[value="' + to_locale + '"]');
     var pickerTo = $('.toolbar select#translateTo + .bootstrap-select');
@@ -1043,7 +1044,8 @@ function update_translation_progress(progress, to_locale, percent, is_published)
       $(publishTo).attr('data-percent', percent);
       
       // if to is 100% or story is already published, then turn on publish button
-      if (percent == '100%' || is_published == 'true'){
+      console.log('percent = ' + percent + '; parseint = ' + parseInt(percent));
+      if (parseInt(percent) >= 100 || is_published == 'true'){
         $(publishTo).toggleClass('btn-publish-disabled btn-publish').removeClass('hide');
       }else{
         $(publishTo).toggleClass('btn-publish btn-publish-disabled ').addClass('hide');

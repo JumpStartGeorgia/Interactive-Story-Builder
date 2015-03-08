@@ -149,7 +149,7 @@
                 link_text = trans_story.published ? t('helpers.links.story_menu.link.unpublish') : t('helpers.links.story_menu.link.publish') 
                 progress_from = progress.select{|x| x.locale == @story.story_locale}.first
                 progress_to = progress.select{|x| x.locale == @to}.first
-                btn_class = (trans_story.published || (progress_from.present? && progress_to.present? && progress_from.items_completed == progress_to.items_completed)) ? '' : 'hide'
+                btn_class = (trans_story.published || (progress_from.present? && progress_to.present? && progress_from.items_completed <= progress_to.items_completed)) ? '' : 'hide'
 
               %>
               <%= link_to '#', title: link_text + ' - ' + title, class: "btnPublish btn #{btn_class} btn-publish" + (trans_story.published ? '' : '-disabled'), :'data-link' => publish_story_path(@story), :'data-sl' => true, 
