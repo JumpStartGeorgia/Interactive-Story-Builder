@@ -79,7 +79,7 @@ class StoryTranslationProgress < ActiveRecord::Base
         can_publish = true
       else
         record = records.select{|x| x.locale == locale.to_s}.first
-        can_publish = record.present? && record.items_completed == primary.items_completed
+        can_publish = record.present? && record.items_completed >= primary.items_completed
       end
     end
 
