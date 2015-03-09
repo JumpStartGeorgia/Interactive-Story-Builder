@@ -7,7 +7,7 @@ class ThemeTranslation < ActiveRecord::Base
   validates :name, :edition, :presence => true
   validates :permalink, :uniqueness => {:scope => :locale, :case_sensitive => false, :message => I18n.t('app.msgs.already_exists')}
   validates :description, length: { maximum: 160 }
-
+  validates_uniqueness_of :theme_id, scope: [:locale]
   # permalink is in format: name-edition
   def create_permalink   
     "#{self.name.latinize.to_ascii}-#{self.edition.latinize.to_ascii}".gsub(/[^0-9A-Za-z|_\- ]/,'')

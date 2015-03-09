@@ -4,7 +4,7 @@ class PageTranslation < ActiveRecord::Base
   attr_accessible :page_id, :title, :content, :locale
 
   validates :title, :presence => true
-
+  validates_uniqueness_of :page_id, scope: [:locale]
   def required_data_provided?
     provided = false
     

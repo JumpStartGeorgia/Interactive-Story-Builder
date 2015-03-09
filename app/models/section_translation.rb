@@ -14,7 +14,7 @@ class SectionTranslation < ActiveRecord::Base
   #################################
   ## Validations
   validates :title, :presence => true, length: { maximum: 255}  
-
+  validates_uniqueness_of :section_id, scope: [:locale]
   #################################
   ## Callbacks
   before_save :check_delete_audio

@@ -10,7 +10,7 @@ class NewsTranslation < ActiveRecord::Base
   before_save :check_title
 
   validates :title, :content, :presence => true
-    
+  validates_uniqueness_of :news_id, scope: [:locale]    
     
   def required_data_provided?
     provided = false

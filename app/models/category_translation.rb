@@ -5,7 +5,7 @@ class CategoryTranslation < ActiveRecord::Base
   attr_accessible :category_id, :name, :locale
 
   validates :name, :presence => true
-
+  validates_uniqueness_of :category_id, scope: [:locale]
   def required_data_provided?
     provided = false
     

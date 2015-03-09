@@ -225,7 +225,7 @@ if(gon.dev)
     var content = tip.find('.content').html(t.attr('data-tip'));
     var h = tip.height();
     var w = tip.width();
-    tip.css({'top':t.offset().top - h + 20,'left':t.offset().left-w/2+t.width()/2 }).show();
+    tip.css({'top':t.offset().top - h - 10,'left':t.offset().left-w/2+t.width()/2 }).show();
   });
   $(document).on('mouseleave','[data-tip]', function(){
     $('.tip').hide();

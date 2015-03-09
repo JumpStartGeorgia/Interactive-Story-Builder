@@ -6,7 +6,7 @@ class AuthorTranslation < ActiveRecord::Base
 
   validates :name, :presence => true
   validates :permalink, :uniqueness => {:scope => :locale, :case_sensitive => false, :message => I18n.t('app.msgs.already_exists')}
-
+  validates_uniqueness_of :author_id, scope: [:locale]
   def required_data_provided?
     provided = false
     

@@ -25,6 +25,7 @@ class MediumTranslation < ActiveRecord::Base
   validates :title, :presence => true, length: { maximum: 255}  
   validates :caption, length: { maximum: 2000 }  
   validate :check_asset_existence
+  validates_uniqueness_of :medium_id, scope: [:locale]
   # validates :image, presence: true, if: :image_type?
   # validates :video, presence: true, if: :video_type?
 

@@ -19,7 +19,7 @@ class SlideshowTranslation < ActiveRecord::Base
   validates :title, :presence => true, length: { maximum: 255}  
 
   validate :check_asset_files_existence
-
+  validates_uniqueness_of :slideshow_id, scope: [:locale]
   def check_asset_files_existence   
     if self.asset_files.blank? || self.asset_files.select{|x| !x._destroy}.length <= 0
       errors.add(:asset_files_name, I18n.t('activerecord.errors.messages.not_provided'))

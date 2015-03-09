@@ -5,7 +5,7 @@ class StoryTypeTranslation < ActiveRecord::Base
   attr_accessible :story_type_id, :name, :permalink, :locale
 
   validates :name, :presence => true
-
+  validates_uniqueness_of :story_type_id, scope: [:locale]
   # permalink is name
   def create_permalink   
     self.name.latinize.to_ascii.gsub(/[^0-9A-Za-z|_\- ]/,'')

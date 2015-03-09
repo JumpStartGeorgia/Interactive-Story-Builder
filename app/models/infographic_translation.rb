@@ -33,7 +33,7 @@ class InfographicTranslation < ActiveRecord::Base
   validates :dynamic_url, presence: true, :format => {:with => URI::regexp(['http','https']), :message => I18n.t('errors.messages.invalid_format_url') }, if: :dynamic_type? 
   validate :generate_iframe
   validate :check_asset_existence
-
+  validates_uniqueness_of :infographic_id, scope: [:locale]
   def check_asset_existence   
     if static_type? && self.image.blank?
       errors.add(:image_name, I18n.t('activerecord.errors.messages.not_provided'))

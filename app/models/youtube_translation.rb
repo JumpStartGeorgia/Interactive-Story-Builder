@@ -11,7 +11,7 @@ class YoutubeTranslation < ActiveRecord::Base
   validates :url, :presence => true
   validates :url, :format => {:with => URI::regexp(['http','https']), :message => I18n.t('errors.messages.invalid_format_url') }, :if => "!url.blank?"
   validate :generate_iframe
-
+  validates_uniqueness_of :youtube_id, scope: [:locale]
   #################################
   # settings to clone story
   amoeba do

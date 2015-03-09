@@ -11,7 +11,7 @@ class ContentTranslation < ActiveRecord::Base
   validates :caption, length: { maximum: 255}   
   validates :sub_caption, length: { maximum: 255}   
   validates :text, :presence => true   
-
+  validates_uniqueness_of :content_id, scope: [:locale]
   #################################
   # settings to clone story
   amoeba do
