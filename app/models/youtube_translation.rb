@@ -24,8 +24,6 @@ class YoutubeTranslation < ActiveRecord::Base
 #  before_validation :generate_iframe
   def generate_iframe
     id = ''
-    html = ''
-    ok = false
     u = self.url 
     api_key = ENV['STORY_BUILDER_YOUTUBE_API_KEY']
     if api_key.nil?
@@ -46,29 +44,15 @@ class YoutubeTranslation < ActiveRecord::Base
         source = "https://www.googleapis.com/youtube/v3/videos?key=#{api_key}&part=id&id=#{id}"
         result = JSON.parse(Net::HTTP.get_response(URI.parse(source)).body)
 
-        pars = (self.loop.to_s.to_bool ? 'loop=1' : '') + (self.info.to_s.to_bool == false ? '&showinfo=0' : '') +
-          (self.cc ? '&cc_load_policy=' + (self.cc ? '1' : '0') : '') + 
-          (Language.select{|x| x.locale == self.menu_lang}.length > 0 ? '&hl=' + self.menu_lang : '') + 
-          (Language.select{|x| x.locale == self.cc_lang}.length > 0 ? '&cc_lang_pref=' + self.cc_lang : '') + 
-          ('&rel=0')
-        pars.slice!(0) if pars[0]=='&'
-
         if result['items'].present?
-          html =  '<iframe width="640" height="360" src="http://www.youtube.com/embed/' + 
-                id + '?' + pars + '" frameborder="0" allowfullscreen class="embed-video embed-youtube"></iframe>' 
-          ok = true
+           self.code = id
+           return true
         end
       end
     end   
 
-    if ok       
-      self.code = html
-    else
      self.errors.add(:code, I18n.t('stories.youtube.generate_iframe.error'))       
      return false
-    end
-
-    return true
   end
 
 end
