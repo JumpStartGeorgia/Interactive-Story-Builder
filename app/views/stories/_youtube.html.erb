@@ -46,19 +46,20 @@
           <%= f_translation.input :locale, :as => :hidden %>
         </div>
       <% if !isTO %>
-        <button id="btnGetEmbed" type="button" class="btn btn-info btn-xs" style="padding: 2px 6px"><%= t('.get_media') %></button>
+        <button id="btnGetEmbed" type="button" class="btn btn-default" style="padding: 6px 10px"><%= t('.preview') %></button>
       <% else %>
         <div class='dummy24'></div>
       <% end %>
 
         <div id="youtubePreview">
-          <h3><%= t('.preview') %></h3>
+         <!--  <h3><%= t('.preview') %></h3> -->
           <div class="alert alert-danger" id="youtubeError">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <%= t('.error') %>
           </div>
           <div<%= !isTO ? " id=youtubeResult" : "" %>>
-            <%= @item.code.html_safe if @item.code.present? %>
+            <% #@item.code.html_safe if @item.code.present? %>
+            <div class='youtubePlayer' data-yid="<%= @item.url.last(11) %>"></div>
           </div>
         </div>
 
