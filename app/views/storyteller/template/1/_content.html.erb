@@ -47,17 +47,11 @@
                   <% dataVideo = '' %>
                   <% if m.media_type == Medium::TYPE[:video] && m.is_processed? %>                
                     <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name_formatted,'.*')}'".html_safe %>
+                  <% elsif m.media_type == Medium::TYPE[:image] %>
+                    <% dataVideo = "data-image='#{File.basename(m.image.asset_file_name_formatted)}'".html_safe %>
                   <% end %> 
-                  <div class="video infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %>" <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>
+                  <div class="video infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %>" <%= dataVideo.html_safe %>  <%= m.media_type == Medium::TYPE[:video] && m.video_loop ? "data-videoloop" : "" %>>
                     <div class="video-container infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %>">
-                      <% 
-                        logger.debug "$$$$$$$$$$$$$$$$$$$$$$$$$$"
-                        logger.debug "m.id = #{m.id}; type = #{m.media_type}"
-                        logger.debug " image = #{m.media_type == Medium::TYPE[:image]}"
-                        logger.debug " video and ! processed = #{m.media_type == Medium::TYPE[:video] && !m.is_processed?}"
-                        logger.debug " video and processed = #{m.media_type == Medium::TYPE[:video] && m.is_processed?}"
-                      %>
-
                       <% if m.media_type == Medium::TYPE[:image] %>     
                           <% if !@export %> 
                             <img src="<%= m.image.file.url(:fullscreen) %>">
@@ -76,18 +70,14 @@
                             <% else %>
                               <!--[if lte IE 8]><img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>"><![endif]-->
                             <% end %>                                             
-                      <% end %>  
-                      
+                      <% end %>                        
                       <% if m.caption.present? || m.source.present? %> 
-                        <% if m.infobox_type == Medium::INFOBOX_TYPE[:floating] %>
-                          
+                        <% if m.infobox_type == Medium::INFOBOX_TYPE[:floating] %>                          
                           <% if m.source.present? %>
                             <div class="video-source"><%= m.source %></div>                       
                           <% end %>   
-
                         <% elsif m.infobox_type == Medium::INFOBOX_TYPE[:fixed] %>
                           <div class='infobox'>
-
                             <% if m.caption.present? && !(isFirst && m_i == 0) %>                                    
                               <div class='video-caption video-caption--<%= "#{alignment.key(m.caption_align)}" %> <%= m.caption.length > 160 ? 
                               "video-caption--long" : "" %>'>
@@ -96,7 +86,6 @@
                                 </div>
                               </div>
                             <% end %>   
-
                             <% if m.source.present? %>
                                <div class="video-source"><%= m.source %></div>                       
                             <% end %>
@@ -104,8 +93,6 @@
                           <div class='space'></div> 
                         <% end %>    
                       <% end %>    
-
-
                     </div>     
 
                     <% if isFirst && m_i == 0  %>   

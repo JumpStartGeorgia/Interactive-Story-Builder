@@ -9,14 +9,14 @@
 
   // if device is portable we are adding ios class to html tag
   // so new classes with .ios .someclass path are used instead of basic ones
-  if (isMobile()) { document.documentElement.className = document.documentElement.className + " ios";}
+  if (isMobile()) { document.documentElement.className = document.documentElement.className + " ios mob";}
 
   // array of functions added throught page which should be called at the end of page parsing with "await"  
   // function which is called at the bottom of the page
   (function() {      
     var defers = [];
     defer = function(f) { defers.push(f); };
-    await = function() { defers.forEach(function(f,s) {  console.log(f,s); f();}); };
+    await = function() { defers.forEach(function(f,s) { f();}); };
   })();
 
   //collecting navigation sections and it's markers
@@ -68,15 +68,15 @@
         if s.media?
           subLength = s.media.length   
           s.media.each_with_index do |t,t_i| 
+            item = {}
             item[:type] = "media"
             item[:file] = "mobile_1024/#{t.image.asset_file_name_formatted}"
             item[:section] = s_i+1
             item[:slide] = t_i+1
-            item[:align] = "#{alignment.key(t.caption_align)}"
+            item[:align] = "#{alignment.key(t.caption_align)}"            
             if secLength == t_i+1
               item[:hideRule] = true
             end
-
             output<< item
           end
         elsif s.slideshow?
@@ -111,193 +111,95 @@
 
   var mobileImages = <%=output.to_json.html_safe %>;
   var youtube = <%=youtube.to_json.html_safe %>;
-
+  console.log(mobileImages);
 /*********************************************************************************************
                                        mobile
 **********************************************************************************************/    
-  
-  function mobileReorient() {
+  if (isMobile())
+  {    
+    mobileReorient();
+    defer(function() {
+      /* Only do if we're on iPad, iPhone or Android -- TG */
+      if (!isMobile()) return false;
 
-    var height = window.innerHeight - 40;
+      var _image_assets = '<%= !@export ? "/system/places/images/#{@story.id}/mobile_1024/" : "media/images/mobile_1024/" %>';
+      var _slideshow_assets = '<%= !@export ? "/system/places/slideshow/#{@story.id}/" : "media/slideshow/" %>';
+      var _video_assets = '<%= !@export ? "/system/places/video/#{@story.id}/processed/" : "media/video/processed/" %>';
+      var _poster_assets = '<%= !@export ? "/system/places/video/#{@story.id}/poster/" : "media/video/poster/" %>';
 
-    if (height > (720*.59) && window.innerWidth < 768) height = (720*.59);
-
-    var firstVideo = document.querySelector(".video-sequence");
-    if(firstVideo !== null && firstVideo.length)
-    {
-      firstVideo.querySelector(".video:first-of-type .video-container")[0].style.height = height + "px";
-      firstVideo.querySelector(".video:first-of-type .video-headline")[0].style.height = height + "px";
-    }
-    
-  }
-
-  (function() {
-
-    if (isMobile()) mobileReorient();
-
-  })();
+       if (isPhone()) { _image_assets = _image_assets.replace("mobile_1024", "mobile_640"); }
 
 
-  defer(function() {
+      d3.select(window)
+        .on("resize", mobileReorient)
+        .on("scroll", function() {
+            d3.select(".navigation")
+              .classed("navigation-solid", window.scrollY > 350)
+        }); 
 
-  /* Only do if we're on iPad, iPhone or Android -- TG */
-  if (!isMobile()) return false;
+      d3.select(".video-sequence:first-of-type").classed("ios-loaded", true);
 
-
-
-  <% if !@export %>                           
-      var _mobile_assets =  "/system/places/images/<%= @story.id %>/";
-      var _slideshow_assets = "/system/places/slideshow/<%= @story.id %>/";
-    <% else %>
-      var _mobile_assets =  "media/images/";
-      var _slideshow_assets = "media/slideshow/";
-  <% end %>        
-  
-
-  d3.select(window)
-    .on("resize", mobileReorient)
-    .on("scroll", function() {
-        d3.select(".navigation")
-          .classed("navigation-solid", window.scrollY > 350)
-    }); 
-
- d3.select(".video-sequence:first-of-type").classed("ios-loaded", true);
-
-  setTimeout(function() {
-
-    mobileImages.forEach(function(image) {
-
-      /* if device is phone then replace values with phone inner values */
-      if (isPhone() && image.phone) {
-        for (var i in image.phone) {
-          image[i] = image.phone[i];
-        }
-      }
-
-  /* if device is phone then change path from 1024 to 640 */
-      if (isPhone()) {
-        if (image.file) image.file = image.file.replace("mobile_1024", "mobile_640");
-      }
-
-      /* on section missing stop here current loop */
-      if (!image.section) return false;
-
-  /* create path to image with fixed path and file name */        
-    if(image.type == "media")
-    {
-      image.url = _mobile_assets + image.file;
-    }
-    else if(image.type == "slideshow")
-    { 
-      image.url = _slideshow_assets + image.file; 
-    }
+      setTimeout(function() {
 
 
-  
-      var container;
-  /*  if slide number exicts 
-    find container
-    if type not (map && hide) change html to img tag with url
-    if type not (hide) 
-      if type map caption from file options without # (caption-)
-      else caption- with first word of file options
-    slide assign
-  */
-      if (image.slide) {
-        if(image.type == "media")
+        var video = d3.selectAll(".section.video-sequence .video")
+          .datum(function() { return { video: this.getAttribute("data-video"), image: this.getAttribute("data-image"), }; });
+           
+        var video_tag = video.select(".video-container").html("").filter(function(d) { return d.video; })
+          .append("video")
+          .attr("preload", "none")
+          .attr("poster", function(d) { return  _poster_assets + d.video + ".jpg"; })
+          .property("loop", false)
+          .property("controls", true)
+          .text("Your browser does not support this video.");
+
+        video_tag.append("source")
+          .attr("src", function(d) { return _video_assets + d.video + ".mp4"; })
+          .attr("type", "video/mp4");
+
+
+        var video_tag = video.select(".video-container").filter(function(d) { return d.image; })
+          .append("img")
+          .attr("src", function(d) { return  _image_assets + d.image; });
+
+
+        mobileImages.forEach(function(image) 
         {
-          container = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-container")
+          if (!image.section) return false; // on section missing stop here current loop
+          if (isPhone()) { if (image.file) image.file = image.file.replace("mobile_1024", "mobile_640"); } // if device is phone then change path from 1024 to 640
 
-          if (image.type != "map" && image.type != "hide") {
-
-
-            container.html("").append("img")
-              .attr("src", image.url);
-
-          }
-
-          if (image.type != "hide") {
-
-            var css;
-
-
-            if (image.type == "map") css = "caption-" + image.file.replace("#","");
-            else css = "caption-" + image.file.match(/\/([\w-]+)/)[1];
-
-              d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
-                .classed(css, true)
-
-          }
-
-
-          var slide = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ")");
-        }
-        else if( image.type == "slideshow")
-        {
-          container = d3.select(".section:nth-child(" + image.section + ") .slideshow-wrapper");
-          if(container.select(".slideshow-images").empty())
+          if (image.slide) 
           {
-              var temp = container.append("div").attr("class","slideshow-container");
-              temp.append("div").attr("class", "slideshow-images");
+            if(image.type == "slideshow")
+            {
+              image.url = _slideshow_assets + image.file; 
+              var container = d3.select(".section:nth-child(" + image.section + ") .slideshow-wrapper");
+               console.log(container);
+              if(container.select(".slideshow-images").empty())
+              {
+                  var temp = container.append("div").attr("class","slideshow-container");
+                  temp.append("div").attr("class", "slideshow-images");
+              }
+              container.select(".slideshow-container .slideshow-images").append("img").attr({"src": image.url,"class":"slideshow-image"});
+            }
           }
-          var tempImages =  d3.select(".section:nth-child(" + image.section + ") .slideshow-wrapper .slideshow-container .slideshow-images");
-          caption = container.select(".slideshow-captions .slideshow-caption:nth-of-type(" + image.slide + ")");             
-          tempImages.append("img").attr("src", image.url).attr("class","slideshow-image");
-        }
+        })
+      }, 200);
+      console.log("mobile defer");
+    });
+    function mobileReorient() {
+      console.log("mobileReorient");
+      var height = window.innerHeight - 40;
+      if (height > (720*.59) && window.innerWidth < 768) height = (720*.59);
+
+      var firstVideo = document.querySelector(".video-sequence");
+      if(firstVideo !== null && firstVideo.length)
+      {
+        firstVideo.querySelector(".video:first-of-type .video-container")[0].style.height = height + "px";
+        firstVideo.querySelector(".video:first-of-type .video-headline")[0].style.height = height + "px";
       }
-  
-  /* aligning by options */
-      if (image.align && image.type == "media") d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
-        .classed(image.align.split(" ").map(function(dir) {
-              return "align-" + dir
-            }).join(" "), true)
-
-  
-      if (!image.hideRule && slide) slide.append("div")
-          .attr("class", "video-rule")
-
-
-      /* if phone and map then replace tag */
-      if (image.target == "map") {
-
-        container = d3.select(".section:nth-child(" + image.section + ") .map")
-
-        var source = d3.select(".map-source").html();
-
-        if (isPhone()) container.html("<div class='map-source'>" + source + "</div>")
-
-      }
-
-
-  /* map-hide class it type hide */
-      if (image.type == "media" && image.type == "hide") slide.classed("map-hide", true)
-
-      if (image.type == "media" && image.type == "map") {
-
-        container.html( container.html() + d3.select(image.file).text() )
-      }
-
-
-  /* add custom caption if specified */
-      if (image.type == "media" && image.mobileCaption) {
-        d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption").html(image.mobileCaption);
-      }
-
-
-      /* add src to image tag and if has diptych use it */
-      if (image.type == "image") d3.select(".section:nth-child(" + image.section + ") .image:nth-child(" + image.slide + ") img")
-          .attr("src", function(d) { return image.url; })
-
-      if (image.type == "diptych") d3.select(".section:nth-child(" + image.section + ") .image:nth-child(" + image.slide + ") img:nth-child(" + image.image + ")")
-          .attr("src", function(d) { return image.url; })
-
-    })
-
-  }, 200)
-
-
-  });
-
+    }
+  }
 /*********************************************************************************************
                                        desktop
 **********************************************************************************************/    
@@ -415,15 +317,13 @@
         .style("margin-top", function(d) { return -d.sequence.length * 1.4 / 2 + "em"; })
         .text(function(d, i) { return d3.range(d.sequence.length).map(function(j) { return i === j ? "●" : "○"; }).join("\n"); });
 
-    var muteButton = d3.select(".navigation-volume")
-        .on("click", muted);
+    var muteButton = d3.select(".navigation-volume").on("click", muted);
 
     d3.select(window)
         .on("load.video", loaded)
         .on("resize.video", resized);
 
-    d3.select("video")
-        .attr("preload", "auto");
+    d3.select("video").attr("preload", "auto");
 
     resized();
 

@@ -558,21 +558,15 @@
       right: 10px;
     }
 
-    .ios .video-caption {
-      position:static;
-      /*bottom: 0%;
-      top: 65px;
-      width: 260px;
-
-      left: 50px;*/
+    .mob .video-caption {
+      position:static !important;
+      width:100% !important;
+      margin:0px !important;      
+      padding:10px 10px 20px !important;
     }
-
-    .ios .video-rule {
-      position: absolute;
-      bottom: 0px;
-      border-top: 1px solid #333;
-      left: 35%;
-      right: 35%;
+    .mob .video-container video,
+    .mob .video-container img {
+      position: static !important;
     }
 
     /* INTRO SLIDE */
@@ -683,13 +677,12 @@
       padding-right: 0px;
     }
 
-    .ios .video-container {
-      padding-top: 0px;
-      padding-bottom: 20px;
+    .mob .video-container {
+      padding:0px 0px 20px !important;
     }
 
     .ios .video-caption {
-      position: static;
+/*      position: static;
       float: left;
       padding-top: 0px;
       margin-top: 0px;
@@ -700,7 +693,7 @@
       padding-bottom: 30px;
 
       font-size: 16px;
-      line-height: 28px;
+      line-height: 28px;*/
     }
 
     .ios .video-source {
@@ -716,10 +709,6 @@
       display: block;
       bottom: 25px;
       right: 5px;
-    }
-
-    .ios .video-rule {
-      display: none;
     }
 
     /* INTRO SLIDE */
