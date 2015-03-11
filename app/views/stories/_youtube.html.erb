@@ -20,13 +20,13 @@
         
          <%= f_translation.input :title, 
         { 
-          :input_html => { id: (!isTO ?  "youtubeTitle" : nil) }      
+          :required => !isTO, :input_html => { id: (!isTO ?  "youtubeTitle" : nil) }      
           .merge(readonly) 
         }
         .merge(( (isTO) ? {} : { hint: t('.hint.title'), placeholder: t('.placeholder.title') })) %>
 
         <%= f_translation.input :url, { :as => :url,
-          :input_html => { id: (!isTO ? "youtubeUrl" : nil) }      
+          :required => !isTO, :input_html => { id: "youtubeUrl" }      
           .merge(readonly) 
         }
         .merge(( (isTO) ? {} : { hint: t('.hint.url'), placeholder: t('.placeholder.url') })) %>
@@ -39,21 +39,28 @@
           <% end %>
 
             <%= f_translation.input :cc, { :as => :boolean,
-            :input_html => { id: (!isTO ? "youtubeCC" : nil), class: "end-line one-line" }      
+            :input_html => { id: "youtubeCC", class: "end-line one-line" }      
             .merge(readonly) 
           }
           .merge(( (isTO) ? {} : { hint: t('.hint.cc') })) %>
 
         </div>
         <div class='one-line'>  
-          <%= f_translation.input :menu_lang , :as => :select, :hint => t('.hint.menu_lang'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "youtubePlayerLang", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "7"  } %>
+          <%= f_translation.input :menu_lang , { :as => :select, :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false,
+          :input_html => { id: "youtubePlayerLang", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "7" }      
+          .merge(readonly) 
+          }.merge(( (isTO) ? {} : { hint: t('.hint.menu_lang') })) %>
 
-          <%= f_translation.input :cc_lang , :as => :select, :hint => t('.hint.cc_lang'), :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false, :input_html => { :id => "youtubeCCLang", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "7"  } %>
+          <%= f_translation.input :cc_lang , { :as => :select, :collection =>  @languages.map{|x| [x.name, x.locale]}, :include_blank => false,
+            :input_html => { id: "youtubeCCLang", :class => "selectpicker", :'data-live-search' => "true", :'data-size' => "7" }      
+            .merge(readonly) 
+          }.merge(( (isTO) ? {} : { hint: t('.hint.cc_lang') })) %>
+
           <%= f_translation.input :locale, :as => :hidden %>
         </div>
       
-        <div class='one-line'>  
-          <div><button id="btnGetEmbed" type="button" class="btn btn-default" style="padding: 6px 10px"><%= t('.preview') %></button></div>
+        <div class='one-line'>               
+          <div><a class='btn btn-default preview preview-translated' id="youtube-preview" data-type="youtube" <%= @trans ? "data-loop=#{@item.loop ? 1 : 0} data-showinfo=#{@item.info ? 1 : 0}" : "" %>><%= t('.preview') %></a></div>
           <div class="alert alert-danger" id="youtubeError">
               <button type="button" class="close" data-dismiss="alert">&times;</button>
               <%= t('.error') %>

@@ -46,7 +46,7 @@
           :input_html => { id: (!isTO ?  "contentCaption" : nil) }.merge(readonly) 
         }.merge(( (isTO) ? {} : { hint: t('.hint.sub_caption'), placeholder: t('.placeholder.sub_caption') })) %>
 
-      <%= f_translation.input :text, { :as => :text, :input_html => {id: tinyClass , :class => tinyClass, :rows => 15}.merge(readonly) }.merge(( isTO ? {} : { hint: t('.hint.content') }))  %>      
+      <%= f_translation.input :text, { :as => :text, :required => !isTO, :input_html => {id: tinyClass , :class => tinyClass, :rows => 15}.merge(readonly) }.merge(( isTO ? {} : { hint: t('.hint.content') }))  %>      
        
       <% if !isTO %>
         <%= f.input :section_id, :as => :hidden , :input_html => { :id => "contentSection" } %>

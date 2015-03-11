@@ -144,12 +144,6 @@ $(document).ready(function() {
       ollyFail();
      }
    });
-   $('.builder-wrapper .workplace').on('click', '.story-page1 #btnGetEmbed, .story-page2 #btnGetEmbed', function(e){
-      previewYoutubeVideo($(this).parent('.story-viewer'));
-      e.preventDefault();  
-      return true;   
-   });
-
   // when review menu item clicked, open modal 
   // and push in review key and story title
   $(document).on('click', '#btnReviewer', function(e){
@@ -222,19 +216,16 @@ $(document).ready(function() {
         var opts_def = 
         {
          topOffset: $(v).position().top + $(v).height() + 30,                   
-         paddings :20,
          contentscroll:false,         
-         width:722
+         width:640,
+         margins:0,
+         paddings:0,
+         klass: 'close-outside'
         };
+
         if(type == 'image')
         {
-          output = "<img src='" +  $(this).data('image-path') + "' style='width:640px;'/>";
-         opts = {
-            paddings : 20,
-            width:640,
-            contentscroll:false
-
-          };
+          output = "<img src='" +  $(this).data('image-path') + "' style='width:640px;'/>";         
         }
         else if(type == 'video')
         {
@@ -243,10 +234,6 @@ $(document).ready(function() {
                      "<source src='"+$(this).data('video-path')+ "' type='"+$(this).data('video-type')+"'>" +
                      "</video>";
          opts = {
-            topOffset: $(v).position().top + $(v).height() + 30,                   
-            paddings :20,
-            contentscroll:false,
-            width:640,
             before_close:function(t)
             {
                $(t).find('video').each(function(){ this.pause(); })
@@ -254,9 +241,15 @@ $(document).ready(function() {
             }
          };
         }
-      else if(type == 'text')
+      else if(type == 'infographic')
       {
-         output = $("#contentArticle").val();
+        output = "<img src='" +  $(this).data('image-path') + "' style='width:640px;'/>";
+        opts = { dragscroll: true };
+      }
+      else if(type == 'youtube')
+      {
+        previewYoutubeVideo($(this).parents('.viewer'),$(this).attr('data-loop'),$(this).attr('data-showinfo'));
+        return true;  
       }
       else if(type=='story')
       {
@@ -266,18 +259,12 @@ $(document).ready(function() {
 
          output = "<iframe height='100%' width='100%' src='"+$(this).data('link') + "?n=n"+ sl + "'></iframe>";
          opts = {
-            topOffset: $(v).position().top + $(v).height(),
             fullscreen:true,
             aspectratio:true,
-            paddings :0,
-            contentscroll:false,
-            klass:'story'
+            klass:'close-outside story'
          };
       }
-      if(opts===null) opts = opts_def;   
-       console.log(opts);  
-      $(output).modalos(opts);
-
+      $(output).modalos($.extend({}, opts_def, opts));
       return true;   
   });
 
@@ -1010,9 +997,10 @@ function update_translation_progress(progress, to_locale, percent, is_published)
     }
   }
 }
-function previewYoutubeVideo(url)
+function previewYoutubeVideo(t,loop,showinfo) // context
 {
-  $('#youtubeError').hide();     
+  var url = t.find('#youtubeUrl').val();
+  t.find('#youtubeError').hide();     
   var id;
   if(url.length == 11) id = url;
   else
@@ -1031,29 +1019,45 @@ function previewYoutubeVideo(url)
          if(d.hasOwnProperty("items") && d.items.length > 0)
          {
               var playerVars = {};
-              if($('#youtubeLoop').is(':checked')) playerVars['loop'] = 1; // def 0
-              if(!$('#youtubeInfo').is(':checked')) playerVars['showinfo'] = 0; //def 1,  will not display information like the video title and uploader before the video starts playing.
-              playerVars['cc_load_policy'] = ($('#youtubeCC').is(':checked') ? 1 : 0); //def 1,  will not display information like the video title and uploader before the video starts playing.
-              playerVars['hl'] = $('#youtubePlayerLang').val();
-              playerVars['cc_lang_pref'] = $('#youtubeCCLang').val();
+              if(typeof loop !== 'undefined') 
+              {
+                 playerVars['loop'] = loop;
+              }
+              else
+              {
+                if(t.find('#youtubeLoop').is(':checked')) playerVars['loop'] = 1; // def 0
+              }
+              if(typeof showinfo !== 'undefined') 
+              {
+                 playerVars['showinfo'] = showinfo;
+              }
+              else
+              {
+                if(!t.find('#youtubeInfo').is(':checked')) playerVars['showinfo'] = 0; //def 1,  will not display information like the video title and uploader before the video starts playing.
+              }              
+              playerVars['cc_load_policy'] = (t.find('#youtubeCC').is(':checked') ? 1 : 0); //def 1,  will not display information like the video title and uploader before the video starts playing.
+              playerVars['hl'] = t.find('#youtubePlayerLang').val();
+              playerVars['cc_lang_pref'] = t.find('#youtubeCCLang').val();
               playerVars['rel'] = 0;
               var v = $('.navbar-storybuilder');
               $("<div class='youtubePlayer'></div>").modalos({
                 topOffset: $(v).position().top + $(v).height() + 30,
                 width: 640,
-                klass: 'youtube'                             
+                klass: 'close-outside',
+                paddings:0,
+                margins:0                    
               });   
               loadYoutubeVideo($('.modalos-wrapper .youtubePlayer').get(0),id,640,360,playerVars);
          }
          else 
          {
-            $('#youtubeUrl').focus();
-            $('#youtubeError').css('display','inline-block');
+            t.find('#youtubeUrl').focus();
+            t.find('#youtubeError').css('display','inline-block');
          }
       },
       error: function(d){
-        $('#youtubeUrl').focus();
-        $('#youtubeError').css('display','inline-block');
+        t.find('#youtubeUrl').focus();
+        t.find('#youtubeError').css('display','inline-block');
       }
     });
   }
@@ -1095,7 +1099,6 @@ function youtubeApi()
 {
   if (typeof(YT) === 'undefined' || typeof(YT.Player) === 'undefined') 
   {
-     console.log("youtubeApi");
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
