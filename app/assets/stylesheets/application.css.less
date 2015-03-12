@@ -954,11 +954,12 @@ i.v{visibility:visible;}
   }
   
 }
+
 .footer
 {
   background-color:#1d1d1d;
   min-height:70px;
-  padding:0px 10%;
+  padding:0px 5px;
   // position: absolute;
   // bottom: 0px;
   width: 100%;
@@ -1018,7 +1019,24 @@ i.v{visibility:visible;}
     }    
   }
 }
-
+@media only screen and (max-width : 1034px) 
+{ 
+  .footer .center > div
+  {
+    display:none;
+  }
+  .footer .center > div:first-child
+  {
+    display:initial;
+  }
+}
+@media only screen and (min-width : 1280px) 
+{ 
+  .footer
+  {
+    padding:0px 10%;
+  }
+}
 
 .tip
 {

@@ -132,27 +132,26 @@
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>               
-                <div class="slideshow-wrapper">
+                <div class="wrapper">
                       <% if section.slideshow.caption.present? %>
-                        <h3><%= section.slideshow.caption %></h3>                      
+                        <div class="headline"><%= section.slideshow.caption %></div>                      
                       <% end %>
-                                
-                  <!--[if lte IE 8]><img src="<%= section.slideshow.asset_files[0].file.url(:medium) %>" style="width:100%;"><![endif]-->
-                  <div class="slideshow-captions">
-                      <% section.slideshow.asset_files.each_with_index do |t,t_i| %>    
-                          <div class="slideshow-caption" data-slug="<%= t.asset_file_name_formatted %>">
-                            <%= t.caption.html_safe %>
-                            <% if t.source.present? %> 
-                              <div class="source"><%= "#{t('storyteller.source')}" %> <%= auto_link(t.source) %></div>
-                            <% end %>
-                          </div>
+                      <% if section.slideshow.description.present? %>
+                        <div class="description">
+                          <%= section.slideshow.description.html_safe %>   
+                        </div>
+                      <% end %>
+                  <div class="container">
+                    <!--[if lte IE 8]><img src="<%= section.slideshow.asset_files[0].file.url(:medium) %>" style="width:100%;"><![endif]-->
+                    <% section.slideshow.asset_files.each_with_index do |t,t_i| %> 
+                          <div class="item" data-image="<%= t.asset_file_name_formatted %>" 
+                                             data-caption="<%= t.caption.html_safe %>" 
+                                          <% if t.source.present? %> 
+                                            data-source='<%= auto_link(t.source) %>' 
+                                            data-source-label='<%= "#{t('storyteller.source')}" %>'
+                                          <% end %>></div>
                     <% end %>
-                  </div>
-                  <% if section.slideshow.description.present? %>
-                    <div class="slideshow-description column">
-                      <%= section.slideshow.description.html_safe %>   
-                    </div>
-                  <% end %>
+                  </div>                
                 </div>
               </div> 
             <% elsif section.embed_media? %>         

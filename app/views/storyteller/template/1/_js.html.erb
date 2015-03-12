@@ -111,7 +111,7 @@
 
   var mobileImages = <%=output.to_json.html_safe %>;
   var youtube = <%=youtube.to_json.html_safe %>;
-  console.log(mobileImages);
+  //console.log(mobileImages);
 /*********************************************************************************************
                                        mobile
 **********************************************************************************************/    
@@ -123,7 +123,7 @@
       if (!isMobile()) return false;
 
       var _image_assets = '<%= !@export ? "/system/places/images/#{@story.id}/mobile_1024/" : "media/images/mobile_1024/" %>';
-      var _slideshow_assets = '<%= !@export ? "/system/places/slideshow/#{@story.id}/" : "media/slideshow/" %>';
+      var _slideshow_assets = '<%= !@export ? "/system/places/slideshow/#{@story.id}/mobile_1024/" : "media/slideshow/mobile_1024/" %>';
       var _video_assets = '<%= !@export ? "/system/places/video/#{@story.id}/processed/" : "media/video/processed/" %>';
       var _poster_assets = '<%= !@export ? "/system/places/video/#{@story.id}/poster/" : "media/video/poster/" %>';
 
@@ -163,32 +163,60 @@
           .attr("src", function(d) { return  _image_assets + d.image; });
 
 
-        mobileImages.forEach(function(image) 
-        {
-          if (!image.section) return false; // on section missing stop here current loop
-          if (isPhone()) { if (image.file) image.file = image.file.replace("mobile_1024", "mobile_640"); } // if device is phone then change path from 1024 to 640
 
-          if (image.slide) 
-          {
-            if(image.type == "slideshow")
-            {
-              image.url = _slideshow_assets + image.file; 
-              var container = d3.select(".section:nth-child(" + image.section + ") .slideshow-wrapper");
-               console.log(container);
-              if(container.select(".slideshow-images").empty())
-              {
-                  var temp = container.append("div").attr("class","slideshow-container");
-                  temp.append("div").attr("class", "slideshow-images");
-              }
-              container.select(".slideshow-container .slideshow-images").append("img").attr({"src": image.url,"class":"slideshow-image"});
-            }
-          }
-        })
+    // <% if !@export %>                           
+    //     var assets = "/system/places/slideshow/<%= @story.id %>/slideshow/";
+    //   <% else %>
+    //     var assets = "media/slideshow/slideshow/";              
+    //   <% end %> 
+
+
+
+      
+
+    d3.selectAll(".slideshow").each(function() {
+      var container = d3.select(this).select(".wrapper .container");
+
+      var items = container.selectAll(".item")
+                    .datum(function() { return                                                                       { 
+                        image: this.getAttribute("data-image"),
+                        caption: this.getAttribute("data-caption"), 
+                        source: this.getAttribute("data-source"), 
+                        source_label: this.getAttribute("data-source-label")
+                      }; 
+                    });
+
+      var images = items.append("div").attr("class", "slide").append("img").attr("src",function(d) { return _slideshow_assets + d.image; });
+      items.append("div").attr("class", "caption").text(function(d) { return d.caption; });
+      items.append("div").attr("class", "source").html(function(d) { return "<span>" + d.source_label + "</span>&nbsp;" + d.source; });
+
+
+      });
+
+        // mobileImages.forEach(function(image) 
+        // {
+        //   if (!image.section) return false; // on section missing stop here current loop
+        //   if (isPhone()) { if (image.file) image.file = image.file.replace("mobile_1024", "mobile_640"); } // if device is phone then change path from 1024 to 640
+
+        //   if (image.slide) 
+        //   {
+        //     if(image.type == "slideshow")
+        //     {
+        //       image.url = _slideshow_assets + image.file; 
+        //       var container = d3.select(".section:nth-child(" + image.section + ") .slideshow-wrapper");
+        //        console.log(container);
+        //       if(container.select(".slideshow-images").empty())
+        //       {
+        //           var temp = container.append("div").attr("class","slideshow-container");
+        //           temp.append("div").attr("class", "slideshow-images");
+        //       }
+        //       container.select(".slideshow-container .slideshow-images").append("img").attr({"src": image.url,"class":"slideshow-image"});
+        //     }
+        //   }
+        // })
       }, 200);
-      console.log("mobile defer");
     });
     function mobileReorient() {
-      console.log("mobileReorient");
       var height = window.innerHeight - 40;
       if (height > (720*.59) && window.innerWidth < 768) height = (720*.59);
 
@@ -530,7 +558,7 @@ defer(function() {
       var caption = slideshow.select(".slideshow-captions").selectAll(".slideshow-caption")
           .datum(function() {
             return {
-              slug: this.getAttribute("data-slug")
+              image: this.getAttribute("data-image")
             };
           })
           .classed("slideshow-caption--active", function(d, i) { return i === currentIndex; });
@@ -549,7 +577,7 @@ defer(function() {
 
       image.filter(function(d, i) { return i === currentIndex; })
           .classed("slideshow-image--active", true)
-          .attr("src", function(d) { return assets + d.slug; })
+          .attr("src", function(d) { return assets + d.image; })
           .each(moveToFront);
 
       container.append("div")
@@ -569,16 +597,16 @@ defer(function() {
         .enter().append("img")
           .attr("class", function(d, i) { return "slideshow-thumb" + (i === currentIndex ? " slideshow-thumb--active" : ""); })
       <% if !@export %>    
-          .attr("src", function(d) { return "/system/places/slideshow/<%= @story.id %>/thumbnail/" + d.slug; })
+          .attr("src", function(d) { return "/system/places/slideshow/<%= @story.id %>/thumbnail/" + d.image; })
       <% else %>
-          .attr("src", function(d) { return "media/slideshow/thumbnail/" + d.slug; })
+          .attr("src", function(d) { return "media/slideshow/thumbnail/" + d.image; })
       <% end %>
 
           .on("click", function(d, i) { stopPlay(); show(i); });
 
       function firststatechanged() {
         if (d3.event.state) {
-          image.attr("src", function(d, i) { return assets + d.slug; });
+          image.attr("src", function(d, i) { return assets + d.image; });
           watch.on("statechange.first", null);
         }
       }
