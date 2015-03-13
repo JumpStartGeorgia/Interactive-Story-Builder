@@ -327,7 +327,7 @@ class Asset < ActiveRecord::Base
       end
     else
       case self.asset_type
-        when TYPE[:section_audio], TYPE[:media_image], TYPE[:media_video], TYPE[:slideshow_image]
+        when TYPE[:section_audio], TYPE[:media_image], TYPE[:media_video], TYPE[:slideshow_image], TYPE[:infographic], TYPE[:infographic_dataset]
           "#{self.id}__#{self.asset_file_name}"
         else
           self.asset_file_name

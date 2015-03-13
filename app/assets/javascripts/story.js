@@ -465,6 +465,7 @@ if (!isMobile())
         .selectAll(".thumb")
           .data(images)
         .enter().append("img")
+          .classed("thumb",true)
           .classed("active", function(d, i) { return (i === currentIndex); })
           .attr("src",function(d) { return tpath + d.image; })      
           .on("click", function(d, i) { stopPlay(); show(i); });

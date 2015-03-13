@@ -3,12 +3,11 @@
 %>
  <div class='info-top'>
   <div class='js-row'>
-  <% !@export %>
+  <% if !@export %>
     <div class="share">
       <div class="addthis_native_toolbox"></div> 
        <%= link_to '#', :'data-modalos-id' => "modalos-embed", :title => t('app.common.embed', locale: @story.current_locale), :class => "embed modalEmbed" do %>
-
-         <% end %> 
+       <% end %> 
     </div>
     <div class="views" title=""><%= t('app.common.views', locale: @story.current_locale) %>:&nbsp;<span><%= @story.impressions_count %></span></div>  
   <% end %>
@@ -31,7 +30,11 @@
                <%  locales.each do |t| 
                      @story.current_locale = t
                      l = @languages.select{|x| x.locale == t}.first
-                     path = @is_preview ? preview_story_path(id: @story, sl: t) : storyteller_show_path(id: @story.permalink,sl: t)
+                     if !@export 
+                      path = @is_preview ? preview_story_path(id: @story, sl: t) : storyteller_show_path(id: @story.permalink,sl: t)
+                    else 
+                      path = t + ".html"
+                    end
                      if l.present?
                %>
                  <li role="presentation"><a role="menuitem" tabindex="-1" href="<%= path %> "><%= l.name %></a></li>

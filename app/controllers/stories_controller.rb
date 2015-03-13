@@ -708,7 +708,13 @@ end
       end
       @export = true
 
-      File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/index', :layout => false) }  
+       locales = @story.published_locales
+       locales.each do |t|
+          @story.current_locale = t
+          Globalize.story_locale = t
+          File.open("#{path}/"+ t +".html", "w"){|f| f << render_to_string('storyteller/index', :layout => false) } 
+       end    
+
       send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :filename=>"#{filename}.tar.gz"
       
     rescue Exception => e      
