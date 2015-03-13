@@ -492,6 +492,7 @@ en:
       nothing_selected: Please select a section/item to delete
       fail_delete: The section/item could not be deleted
       confirm_delete: Are you sure you want to delete this section/item?
+      confirm_publish: Are you sure you want to publish story?
       video_processed: Your video is processed
       video_not_processed: Your video is being processed
       not_found_for_update: The record to update could not be found in the database.

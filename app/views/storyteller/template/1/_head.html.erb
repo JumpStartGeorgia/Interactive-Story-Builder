@@ -1,4 +1,3 @@
-    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="initial-scale=1,width=device-width,height=device-height,user-scalable=no">       
@@ -32,8 +31,8 @@
     <link href="css/bootstrap-theme.min.css" media="all" rel="stylesheet" type="text/css">
     <link href="css/storyteller.css" media="all" rel="stylesheet" type="text/css">
     <link href="css/modalos.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/story.css" media="all" rel="stylesheet" type="text/css">
 <% else %>
-    <%= stylesheet_link_tag  *(@css.present? ? ["application",@css].flatten : ["application"]), :media => "all" %>
+    <%= stylesheet_link_tag  *(@css.present? ? ["application", "story", @css].flatten : ["application", "story"]), :media => "all" %>
     <%= favicon_link_tag '/favicon.ico', :rel => 'shortcut icon' %>           
 <% end %>
-<%= render partial: "storyteller/template/#{@template}/styles"%>

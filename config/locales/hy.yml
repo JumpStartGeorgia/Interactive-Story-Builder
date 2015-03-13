@@ -491,6 +491,7 @@ hy:
       nothing_selected: "Խնդրում ենք նշել ջնջելու ենթակա բաժինը/օբյեկտը"
       fail_delete: "Բաժինը/օբյեկտը ջնջել չհաջողվեց"
       confirm_delete: "Վստա՞հ եք, որ ցանկանում եք ջնջել բաժինը/օբյեկտը"
+      confirm_publish: Are you sure you want to publish story?
       video_processed: "Ձեր վիդեոն մշակվեց"
       video_not_processed: "Ձեր վիդեոն մշակման փուլում է"
       not_found_for_update: "Պահոցում թարմացվող գրանցումը հայտնաբերել չհաջողցեց"

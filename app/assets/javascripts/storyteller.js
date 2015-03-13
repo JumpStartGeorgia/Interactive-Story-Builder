@@ -11,59 +11,6 @@ function story_new_comment_callback(url){
   //   $('#comments-count').html(d.count);
   // });
 }
-
-$(document).ready(function() {
-
-    // staff pick
-    // $('a.staff-pick').click(function(e){
-    //   var ths = this;
-  		// e.preventDefault();		
-	   //  $.ajax
-	   //  ({
-		  //   url: $(this).data('href'),
-    //     dataType: 'json'
-	   //  }).done(function(d) { 
-    //     if ($(ths).hasClass('hide')){
-    //       $('a.staff-pick').addClass('hide');
-    //       $(ths).removeClass('hide');
-    //     }else {
-    //       $('a.staff-pick').addClass('hide');
-    //       $('a.staff-pick').each(function(e){
-    //         if (this != ths){
-    //           $(this).removeClass('hide');
-    //         }
-    //       });        
-    //     }
-	   //  });
-    // });
-
-
-    // // like
-    // $('a.like-story').click(function(e){
-    //   var ths = this;
-  		// e.preventDefault();		
-	   //  $.ajax
-	   //  ({
-		  //   url: $(this).data('href'),
-    //     dataType: 'json'
-	   //  }).done(function(d) { 
-    //     if ($(ths).hasClass('hide')){
-    //       $('a.like-story').addClass('hide');
-    //       $(ths).removeClass('hide');
-    //     }else {
-    //       $('a.like-story').addClass('hide');
-    //       $('a.like-story').each(function(e){
-    //         if (this != ths){
-    //           $(this).removeClass('hide');
-    //         }
-    //       });        
-    //     }
-	   //  });
-    // });
-});
-
-
-
 $(document).ready(function(){
     if($(".navbar-storybuilder").length != 0)
     {

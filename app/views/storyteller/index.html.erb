@@ -13,13 +13,14 @@
     <meta name="google" content="notranslate" />
   </head>
   <body>     
-    <%= render partial: "storyteller/template/#{@template}/nav"%>
+    <% if !@export %>
+      <%= render partial: "layouts/storybuilder_nav" if !@no_nav %>    
+    <% end %>    
     <div id='storyTeller'> 
       <%= render partial: "storyteller/template/#{@template}/content"%>   
     </div>   
-    <%= render partial: "storyteller/template/#{@template}/footer"%> 
+  <% if !@export %>
     <div class="info-bottom">
-      <!-- <div class='scroll-top' title="<%= t('app.common.scroll_top', locale: @story.current_locale) %>"></div> -->
       <div class="info-row">
         <div class="l">
           <div class='authors'>       
@@ -120,63 +121,87 @@
       </div>
     </div>
     <div class="tip"><div class="content"></div><div class="pointer"></div></div> 
-       
-      <% if !@export %>
-        <%= javascript_include_tag  *(@js.present? ? ["application", @js].flatten : ["application"]), :media => "all" %>      
-  		  <script type="text/javascript">
-  			  I18n.defaultLocale = "<%= I18n.default_locale %>";
-  			  I18n.locale = "<%= I18n.locale %>";
-  		  </script>
-      <% else %>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>          
-        <script src="js/modalos.js"></script>   
-        <script src="js/page.js"></script>   
-      <% end %>
-      <div id="fb-root"></div>
-      <script>
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=<%= @face_id %>&version=v2.0";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+  <% end %>
+      <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js" charset="utf-8"></script>
+      <script> 
+/*********************************************************************************************
+                                       data
+**********************************************************************************************/    
+        var path = 
+        {
+          <% if !@export %> // normal
+            fullscreen:
+            {
+              desktop:
+              { 
+                video: "/system/places/video/<%= @story.id %>/processed/",
+                poster: "/system/places/video/<%= @story.id %>/poster/",
+                image: "/system/places/images/<%= @story.id %>/fullscreen/",
+                audio: "/system/places/audio/<%= @story.id %>/"
+              },
+              other:
+              { image: "/system/places/images/<%= @story.id %>/mobile_1024/" }
+            },
+            slideshow:
+            {
+              desktop:{ 
+                image: "/system/places/slideshow/<%= @story.id %>/slideshow/",
+                thumb: "/system/places/slideshow/<%= @story.id %>/thumbnail/"
+              },
+              other: { image: "/system/places/slideshow/<%= @story.id %>/mobile_1024/"}
+            }
+          <% else %> // exported
+            fullscreen:
+            {
+              desktop:
+              { 
+                video: "media/video/processed/",
+                poster: "media/video/poster/",
+                image: "media/images/fullscreen/",
+                audio: "media/audio/"
+              },
+              other:
+              { image: "images/slideshow/mobile_1024/" }
+            },
+            slideshow:
+            {
+              desktop:{ 
+                image: "media/slideshow/slideshow/",
+                thumb: "media/slideshow/thumbnail/"
+              },
+              other: { image: "media/slideshow/mobile_1024/" }
+            }          
+          <% end %> 
+        };     
 
-        <% if Rails.env.production? %>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-          ga('create', 'UA-12801815-39', 'auto');
-          ga('send', 'pageview');
-        <% end %> 
+       <% if @story.sections.index{|t| t.youtube? && t.youtube.present? }.present? %>
 
+         <%  youtube = []
+              @story.sections.select{|t| t.ok? }.sort_by{|v| v.position}.each_with_index do |s,s_i|
+                item = {}             
+                if s.youtube?
+                  item[:type] = "youtube"
+                  item[:videoId] = s.youtube.url.last(11)
+                  item[:width] = 640
+                  item[:height] = 360
+                  item[:loop] = s.youtube.loop ? 1 : 0
+                  item[:info] = s.youtube.info ? 1 : 0
+                  item[:cc_load_policy] = s.youtube.cc ? 1 : 0
+                  item[:hl] = s.youtube.menu_lang
+                  item[:cc_lang_pref] = s.youtube.cc_lang
+                  item[:rel] = 0
+                  youtube<< item
+                end              
+              end 
+          %>
+          var youtube = <%=youtube.to_json.html_safe %>;
 
-        // $(document).ready(function(){
-        //    // $(window).scroll(function(){
-        //    //    if ($(this).scrollTop() > 100) {
-        //    //       $('div.to-top').fadeIn();
-        //    //    } else {
-        //    //       $('div.to-top').fadeOut();
-        //    //    }
-        //    // });
-           
-        //    // $('div.scroll-top').click(function(){
-        //    //    $('html, body').animate({scrollTop : 0},800);
-        //    //    return false;
-        //    // });
-        // });
-
-        <% if @story.sections.index{|t| t.youtube? && t.youtube.present? }.present? %>
           var tag = document.createElement('script');
           tag.src = "https://www.youtube.com/iframe_api";
           var firstScriptTag = document.getElementsByTagName('script')[0];
           firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
           var youtubePlayers= [];
           function onYouTubePlayerAPIReady() {  
-            // console.log('onYouTubePlayerAPIReady');
             var youtubeContainers = d3.selectAll(".section .container div[data-yid]");
          
             if(youtubeContainers[0].length == youtube.length)
@@ -184,7 +209,6 @@
               youtube.forEach(function(d,i){
                   if(d.videoId == youtubeContainers[0][i].dataset.yid)
                   {
-                    // console.log('call blah here');
                     youtubePlayers.push(new YT.Player(
                         youtubeContainers[0][i],
                         {
@@ -199,14 +223,12 @@
                             cc_lang_pref: d.cc_lang_pref,
                             rel: d.rel
                           },                   
-                          events: {
-                            'onStateChange': onPlayerStateChange
-                          }
+                          events: { 'onStateChange': onPlayerStateChange }
                         }
                     ));
                   }              
               });
-            }  
+            }
           }
           function onPlayerStateChange(event) {
             if (event.data == 1){
@@ -224,21 +246,54 @@
             }
           }
         <% end %>
+      </script>
 
-      </script>  
+    
+    <% if !@export %>
+      <%= javascript_include_tag  *(@js.present? ? ["application", "story", @js].flatten : ["application", "story"]), :media => "all" %>      
+    <% else %>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>          
+      <script src="js/modalos.js"></script>   
+      <script src="js/story.js"></script>   
+      <script src="js/page.js"></script>   
+    <% end %>
 
-      <%
-        addthis_id = Rails.env.production? ? ENV['STORY_BUILDER_ADDTHIS_PROFILEID'] : 'ra-51d1537d4a09d85f'
-        if addthis_id.present?
-      %>
-        <script type="text/javascript">
-        var addthis_share = { url: '<%= @short_url %>' }
-        </script>
+    <% if !@export %>
+      <div id="fb-root"></div>
+      <script>
+        I18n.defaultLocale = "<%= I18n.default_locale %>";
+        I18n.locale = "<%= I18n.locale %>";
+
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=<%= @face_id %>&version=v2.0";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        <% if Rails.env.production? %>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-12801815-39', 'auto');
+          ga('send', 'pageview');
+        <% end %> 
+
+        <%
+          addthis_id = Rails.env.production? ? ENV['STORY_BUILDER_ADDTHIS_PROFILEID'] : 'ra-51d1537d4a09d85f'
+          if addthis_id.present?
+        %>
+          var addthis_share = { url: '<%= @short_url %>' }
+        <% end %>
+      </script>
+      <% if addthis_id.present? %>
         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<%= addthis_id %>" async="async"></script>
-
       <% end %>
-  
-    <%= render partial: "storyteller/template/#{@template}/js"%>
+    <% end %> 
+
   </body>
 </html> 
 

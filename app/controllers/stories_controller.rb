@@ -698,9 +698,23 @@ end
         FileUtils.mkpath("#{mediaPath}/slideshow")
         FileUtils.cp_r "#{Rails.root}/public/system/places/slideshow/#{story_id}/.", "#{mediaPath}/slideshow"
       end
+      if File.directory?("#{Rails.root}/public/system/places/infographic/#{story_id}/.")
+        FileUtils.mkpath("#{mediaPath}/infographic")
+        FileUtils.cp_r "#{Rails.root}/public/system/places/infographic/#{story_id}/.", "#{mediaPath}/infographic"
+      end
+      if File.directory?("#{Rails.root}/public/system/places/infographic_dataset/#{story_id}/.")
+        FileUtils.mkpath("#{mediaPath}/infographic_dataset")
+        FileUtils.cp_r "#{Rails.root}/public/system/places/infographic_dataset/#{story_id}/.", "#{mediaPath}/infographic_dataset"
+      end
       @export = true
 
-      File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/index', :layout => false) }  
+       locales = @story.published_locales
+       locales.each do |t|
+          @story.current_locale = t
+          Globalize.story_locale = t
+          File.open("#{path}/"+ t +".html", "w"){|f| f << render_to_string('storyteller/index', :layout => false) } 
+       end    
+
       send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :filename=>"#{filename}.tar.gz"
       
     rescue Exception => e      
@@ -1146,6 +1160,7 @@ private
     #gon.nothing_selected = I18n.t('app.msgs.nothing_selected') was used on section or item removing , logic changed so doesn't need anymore
     gon.fail_delete = I18n.t('app.msgs.fail_delete')
     gon.confirm_delete = I18n.t('app.msgs.confirm_delete')
+    gon.confirm_publish = I18n.t('app.msgs.confirm_publish')
     gon.tokeninput_collaborator_hintText = I18n.t('tokeninput.collaborator.hintText')
     gon.tokeninput_collaborator_noResultsText = I18n.t('tokeninput.collaborator.noResultsText')
     gon.tag_search = story_tag_search_path
