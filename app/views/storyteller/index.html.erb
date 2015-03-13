@@ -200,59 +200,20 @@
                             rel: d.rel
                           },                   
                           events: {
-
-                            'onReady': onPlayerReady,
                             'onStateChange': onPlayerStateChange
                           }
                         }
                     ));
                   }              
               });
-            }
-
-
-            // create the global player from the specific iframe (#video)
-            //var elem = document.getElementsByClassName('embed-youtube')[0];
-            //console.log(elem);
-            // player = new YT.Player('youtube', {
-            //   videoId:'slJLz-zqGSE',
-            //   height: '390',
-            //   width: '640',
-            //   playerVars: {
-            //     showinfo: 0,
-            //     cc_load_policy: 1,
-            //     cc_lang_pref: 'ru',
-            //      hl:'ru',
-            //      rel:0
-            //   },
-              
-             
-            //   //showinfo=0&cc_load_policy=1&hl=en&cc_lang_pref=en
-            //   events: {
-
-            //     // call this function when player is ready to use
-            //     'onReady': onPlayerReady,
-            //     'onStateChange': onPlayerStateChange
-            //   }
-            // });
+            }  
           }
           function onPlayerStateChange(event) {
-            // console.log('onPlayerStateChange',event);
-
-            // event.data = 1 -> start
-            // event.data = 2 -> pause
             if (event.data == 1){
-              // console.log('- start!')
               if (event.target.hasAlreadyPlayed == undefined){
                 var locale = event.target.d.d.playerVars.cc_lang_pref;
                 var load_policy = event.target.d.d.playerVars.cc_load_policy;
-                // console.log('- first time');
-                // console.log(locale);
-                // console.log(load_policy);
                 if (locale != undefined && load_policy == 1){
-                  // console.log('lang pref exists!');
-                  // use the language code that is in the playerVars
-                  // taken from: https://code.google.com/p/gdata-issues/issues/detail?id=444
                   event.target.loadModule("captions");  //Works for html5 ignored by AS3
                   event.target.setOption("captions", "track", {"languageCode": locale});  //Works for html5 ignored by AS3
                   event.target.loadModule("cc");  //Works for AS3 ignored by html5
@@ -261,27 +222,7 @@
                 event.target.hasAlreadyPlayed = true;
               }
             }
-
           }
-          function onPlayerReady(event) {
-            // console.log('onPlayerReady',event);
-            
-            //event.target.playVideo();
-            //event.target.setOption("captions", "track", {"languageCode": sl});
-            // bind events
-            // var playButton = document.getElementById("play-button");
-            // playButton.addEventListener("click", function() {
-            //   player.playVideo();
-            // });
-            
-            // var pauseButton = document.getElementById("pause-button");
-            // pauseButton.addEventListener("click", function() {
-            //   player.pauseVideo();
-            // });
-            
-          }
-
-
         <% end %>
 
       </script>  

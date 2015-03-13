@@ -983,7 +983,7 @@ function update_translation_progress(progress, to_locale, percent, is_published)
       $(publishTo).attr('data-percent', percent);
       
       // if to is 100% or story is already published, then turn on publish button
-      console.log('percent = ' + percent + '; parseint = ' + parseInt(percent));
+      //console.log('percent = ' + percent + '; parseint = ' + parseInt(percent));
       if (parseInt(percent) >= 100 || is_published == 'true'){
         $(publishTo).toggleClass('btn-publish-disabled btn-publish').removeClass('hide');
       }else{
@@ -1046,7 +1046,7 @@ function previewYoutubeVideo(t,loop,showinfo) // context
                 klass: 'close-outside',
                 paddings:0,
                 margins:0                    
-              });   
+              });                 
               loadYoutubeVideo($('.modalos-wrapper .youtubePlayer').get(0),id,640,360,playerVars);
          }
          else 
@@ -1076,7 +1076,7 @@ function loadYoutubeVideo(element,videoId,width,height,playerVars)
       playerVars: playerVars,
       events:
       {
-        onStateChange: function()
+        onStateChange: function(event)
         {
           if (event.data == 1)
           {
