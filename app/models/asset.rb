@@ -123,7 +123,13 @@ class Asset < ActiveRecord::Base
                         :mobile_640 => {:geometry => "640x427"},
                         :mobile_1024 => {:geometry => "1024x623"},
                         :fullscreen => {:geometry => "1500>"}
-                }
+                },
+                :convert_options => 
+                { 
+                  :mobile_640 => '-quality 85',
+                  :mobile_1024 => '-quality 85',
+                  :fullscreen => '-quality 85'
+                },
           }  
 
         when  TYPE[:media_video]        
@@ -143,11 +149,16 @@ class Asset < ActiveRecord::Base
                     :mobile_1024 => {:geometry => "1024x623"}, 
                     :slideshow => {:geometry => "812x462"},                   
                     :thumbnail => {:geometry => "44x44^"},
-                    :thumbnail_preview => {:geometry => "160x160^"}
+                    :thumbnail_preview => {:geometry => "160x160^"},
+                    :fullscreen => {:geometry => "1500>"}
                   },
                   :convert_options => {
                     :thumbnail => "-gravity center -extent 44x44",
-                    :thumbnail_preview => "-gravity center -extent 160x160"
+                    :thumbnail_preview => "-gravity center -extent 160x160",
+                    :mobile_640 => '-quality 85',
+                    :mobile_1024 => '-quality 85',
+                    :slideshow => '-quality 85',
+                    :fullscreen => '-quality 85'
                   }
           }    
 
