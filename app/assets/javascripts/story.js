@@ -1,6 +1,4 @@
-<% alignment = { "left" => -1, "center" => 0, "right" => 1 }%>    
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js" charset="utf-8"></script>
-<script type="text/javascript" charset="utf-8">
+ 
 /*********************************************************************************************
                                        prepare
 **********************************************************************************************/  
@@ -56,62 +54,7 @@
   */
 
 
-/*********************************************************************************************
-                                       data
-**********************************************************************************************/    
-  <%  
-      output = []
-      youtube = []
-      secLength = @story.sections.length        
-      @story.sections.select{|t| t.ok? }.sort_by{|v| v.position}.each_with_index do |s,s_i|
-        item = {}
-        if s.media?
-          subLength = s.media.length   
-          s.media.each_with_index do |t,t_i| 
-            item = {}
-            item[:type] = "media"
-            item[:file] = "mobile_1024/#{t.image.asset_file_name_formatted}"
-            item[:section] = s_i+1
-            item[:slide] = t_i+1
-            item[:align] = "#{alignment.key(t.caption_align)}"            
-            if secLength == t_i+1
-              item[:hideRule] = true
-            end
-            output<< item
-          end
-        elsif s.slideshow?
-          subLength = s.slideshow.asset_files.length   
-          s.slideshow.asset_files.each_with_index do |t,t_i| 
-            item = {}
-            item[:type] = "slideshow"
-            item[:file] = "mobile_1024/#{t.asset_file_name_formatted}"
-            item[:section] = s_i+1
-            item[:slide] = t_i+1
-            
-            if secLength == t_i+1
-                item[:hideRule] = true
-            end
-            output<< item
-          end
-        elsif s.youtube?
-          item[:type] = "youtube"
-          item[:videoId] = s.youtube.url.last(11)
-          item[:width] = 640
-          item[:height] = 360
-          item[:loop] = s.youtube.loop ? 1 : 0
-          item[:info] = s.youtube.info ? 1 : 0
-          item[:cc_load_policy] = s.youtube.cc ? 1 : 0
-          item[:hl] = s.youtube.menu_lang
-          item[:cc_lang_pref] = s.youtube.cc_lang
-          item[:rel] = 0
-          youtube<< item
-        end              
-      end
-  %>
 
-  var mobileImages = <%=output.to_json.html_safe %>;
-  var youtube = <%=youtube.to_json.html_safe %>;
-  //console.log(mobileImages);
 /*********************************************************************************************
                                        mobile
 **********************************************************************************************/    
@@ -122,14 +65,14 @@
       /* Only do if we're on iPad, iPhone or Android -- TG */
       if (!isMobile()) return false;
 
-      var _image_assets = '<%= !@export ? "/system/places/images/#{@story.id}/mobile_1024/" : "media/images/mobile_1024/" %>';
-      var _slideshow_assets = '<%= !@export ? "/system/places/slideshow/#{@story.id}/mobile_1024/" : "media/slideshow/mobile_1024/" %>';
-      var _video_assets = '<%= !@export ? "/system/places/video/#{@story.id}/processed/" : "media/video/processed/" %>';
-      var _poster_assets = '<%= !@export ? "/system/places/video/#{@story.id}/poster/" : "media/video/poster/" %>';
+      var ipath = path.fullscreen.other.image;
+      var spath = path.slideshow.other.image;
+      var vpath = path.fullscreen.desktop.video;
+      var ppath = path.fullscreen.desktop.poster;
 
       if (isPhone()) { 
-        _image_assets = _image_assets.replace("mobile_1024", "mobile_640");
-        _slideshow_assets = _slideshow_assets.replace("mobile_1024", "mobile_640");
+        ipath = ipath.replace("mobile_1024", "mobile_640");
+        spath  = spath.replace("mobile_1024", "mobile_640");
       }
 
       d3.select(window)
@@ -149,19 +92,19 @@
         var video_tag = video.select(".video-container").html("").filter(function(d) { return d.video; })
           .append("video")
           .attr("preload", "none")
-          .attr("poster", function(d) { return  _poster_assets + d.video + ".jpg"; })
+          .attr("poster", function(d) { return  ppath + d.video + ".jpg"; })
           .property("loop", false)
           .property("controls", true)
           .text("Your browser does not support this video.");
 
         video_tag.append("source")
-          .attr("src", function(d) { return _video_assets + d.video + ".mp4"; })
+          .attr("src", function(d) { return vpath + d.video + ".mp4"; })
           .attr("type", "video/mp4");
 
 
         var video_tag = video.select(".video-container").filter(function(d) { return d.image; })
           .append("img")
-          .attr("src", function(d) { return  _image_assets + d.image; });
+          .attr("src", function(d) { return  ipath + d.image; });
 
         d3.selectAll(".slideshow").each(function() {
           var wrapper =  d3.select(this).select(".wrapper");
@@ -169,7 +112,7 @@
 
           captions.selectAll(".caption").each(function(){
             var t = this;
-            captions.insert("div", function() { return t; }).classed("image",true).append("img").attr("src",function(d) { return _slideshow_assets + t.getAttribute("data-image"); });
+            captions.insert("div", function() { return t; }).classed("image",true).append("img").attr("src",function(d) { return spath + t.getAttribute("data-image"); });
           });
           wrapper.insert(function(){ return wrapper.select('.description').remove()[0][0]; },".captions");
         });
@@ -197,18 +140,10 @@
     /* Just skip if we're on iPad, iPhone or Android -- TG */
     if (isMobile()) return false;
 
-      <% if !@export %>                           
-         var _video_assets = "/system/places/video/<%= @story.id %>/processed/",
-        _poster_assets = "/system/places/video/<%= @story.id %>/poster/",
-        _image_assets = "/system/places/images/<%= @story.id %>/fullscreen/",
-        _audio_assets = "/system/places/audio/<%= @story.id %>/";
-      <% else %>
-        var _video_assets = "media/video/processed/",
-            _poster_assets = "media/video/poster/",
-            _image_assets = "media/images/fullscreen/",
-            _audio_assets = "media/audio/";
-      <% end %> 
-   
+      var vpath = path.fullscreen.desktop.video;
+      var ppath = path.fullscreen.desktop.poster;
+      var apath = path.fullscreen.desktop.audio;
+
     var mute = false,
         muteVolume = "volume",
         fixRatio = 16 / 9,
@@ -233,7 +168,7 @@
           .on("statechange", sequencestatechanged));
 
     sequence.filter(function(d) { return d.audio; }).append("audio")
-        .attr("src", function(d) { return _audio_assets + d.audio + ".mp3"; })
+        .attr("src", function(d) { return apath + d.audio + ".mp3"; })
         .property("loop", true);
 
 
@@ -248,7 +183,7 @@
           .on("statechange", sequencestatechanged));
 
     section_content.filter(function(d) { return d.audio; }).append("audio")
-        .attr("src", function(d) { return _audio_assets + d.audio + ".mp3"; })
+        .attr("src", function(d) { return apath + d.audio + ".mp3"; })
         .property("loop", true);
     // content audio end
       
@@ -277,18 +212,14 @@
 
     var video = container.filter(function(d) { return d.video; }).append("video")
         .attr("preload", "none")
-        .attr("poster", function(d) { return  _poster_assets + d.video + ".jpg"; })
+        .attr("poster", function(d) { return  ppath + d.video + ".jpg"; })
         .property("loop", function(d) { return !d.animation; })
         .property("loop", function(d) { return d.loop; })
         .text("Your browser does not support this video.");
 
     video.append("source")
-        .attr("src", function(d) { return _video_assets + d.video + ".mp4"; })
+        .attr("src", function(d) { return vpath + d.video + ".mp4"; })
         .attr("type", "video/mp4");
-
-    // video.append("source")
-    //     .attr("src", function(d) { return _video_assets + d.video + ".webm"; })
-    //     .attr("type", "video/webm");
 
     if (!supportsViewportUnits()) sectionFixed.append("div")
         .style("height", fixHeight + "px");
@@ -487,9 +418,8 @@
 if (!isMobile())
 {
   defer(function() {
-
-    var assets = '<%= !@export ? "/system/places/slideshow/#{@story.id}/slideshow/" : "media/slideshow/slideshow/" %>';
-    var _slideshow_thumb = '<%= !@export ? "/system/places/slideshow/#{@story.id}/thumbnail/" : "media/slideshow/thumbnail/" %>';
+    var spath = path.slideshow.desktop.image;
+    var tpath = path.slideshow.desktop.thumb;
 
     d3.selectAll(".slideshow").each(function() {
       var currentIndex = 0,
@@ -520,7 +450,7 @@ if (!isMobile())
           .attr("class", "image");
       image.filter(function(d, i) { return i === currentIndex; })
           .classed("active", true)
-          .attr("src", function(d) { return assets + d.image; })
+          .attr("src", function(d) { return spath + d.image; })
           .each(moveToFront);
       container.append("div")
           .attr("class", "btn btn-next")
@@ -536,11 +466,11 @@ if (!isMobile())
           .data(images)
         .enter().append("img")
           .classed("active", function(d, i) { return (i === currentIndex); })
-          .attr("src",function(d) { return _slideshow_thumb + d.image; })      
+          .attr("src",function(d) { return tpath + d.image; })      
           .on("click", function(d, i) { stopPlay(); show(i); });
       function firststatechanged() {
         if (d3.event.state) {
-          image.attr("src", function(d, i) { return assets + d.image; });
+          image.attr("src", function(d, i) { return spath + d.image; });
           watch.on("statechange.first", null);
         }
       }
@@ -642,4 +572,3 @@ if (!isMobile())
   }
   await();       
 })();
-</script>

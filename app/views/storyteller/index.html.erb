@@ -22,7 +22,7 @@
 
     <div id='storyTeller'> 
       <%= render partial: "storyteller/template/#{@template}/content"%>   
-      <%= render partial: "storyteller/template/#{@template}/js"%>   
+      <% # render partial: "storyteller/template/#{@template}/js"%>   
     </div>   
     <% # render partial: "storyteller/template/#{@template}/footer"%> 
     <div class="info-bottom">
@@ -130,6 +130,81 @@
        
       <% if !@export %>
         <%= javascript_include_tag  *(@js.present? ? ["application", @js].flatten : ["application"]), :media => "all" %>      
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js" charset="utf-8"></script>
+        <script> 
+/*********************************************************************************************
+                                       data
+**********************************************************************************************/    
+        <%  
+            youtube = []
+            @story.sections.select{|t| t.ok? }.sort_by{|v| v.position}.each_with_index do |s,s_i|
+              item = {}             
+              if s.youtube?
+                item[:type] = "youtube"
+                item[:videoId] = s.youtube.url.last(11)
+                item[:width] = 640
+                item[:height] = 360
+                item[:loop] = s.youtube.loop ? 1 : 0
+                item[:info] = s.youtube.info ? 1 : 0
+                item[:cc_load_policy] = s.youtube.cc ? 1 : 0
+                item[:hl] = s.youtube.menu_lang
+                item[:cc_lang_pref] = s.youtube.cc_lang
+                item[:rel] = 0
+                youtube<< item
+              end              
+            end
+        %>
+        var youtube = <%=youtube.to_json.html_safe %>;
+
+        var path = 
+        {
+          <% if !@export %> // normal
+            fullscreen:
+            {
+              desktop:
+              { 
+                video: "/system/places/video/<%= @story.id %>/processed/",
+                poster: "/system/places/video/<%= @story.id %>/poster/",
+                image: "/system/places/images/<%= @story.id %>/fullscreen/",
+                audio: "/system/places/audio/<%= @story.id %>/"
+              },
+              other:
+              { image: "/system/places/images/<%= @story.id %>/mobile_1024/" }
+            },
+            slideshow:
+            {
+              desktop:{ 
+                image: "/system/places/slideshow/<%= @story.id %>/slideshow/",
+                thumb: "/system/places/slideshow/<%= @story.id %>/thumbnail/"
+              },
+              other: { image: "/system/places/slideshow/<%= @story.id %>/mobile_1024/"}
+            }
+          <% else %> // exported
+            fullscreen:
+            {
+              desktop:
+              { 
+                video: "media/video/processed/",
+                poster: "media/video/poster/",
+                image: "media/images/fullscreen/",
+                audio: "media/audio/"
+              },
+              other:
+              { image: "images/slideshow/mobile_1024/" }
+            },
+            slideshow:
+            {
+              desktop:{ 
+                image: "media/slideshow/slideshow/",
+                thumb: "media/slideshow/thumbnail/"
+              },
+              other: { image: "media/slideshow/mobile_1024/" }
+            }          
+          <% end %> 
+      };     
+
+        </script>
+        <%= javascript_include_tag  "story", :media => "all" %>      
   		  <script type="text/javascript">
   			  I18n.defaultLocale = "<%= I18n.default_locale %>";
   			  I18n.locale = "<%= I18n.locale %>";
@@ -164,7 +239,6 @@
           tag.src = "https://www.youtube.com/iframe_api";
           var firstScriptTag = document.getElementsByTagName('script')[0];
           firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
           var youtubePlayers= [];
           function onYouTubePlayerAPIReady() {  
             var youtubeContainers = d3.selectAll(".section .container div[data-yid]");

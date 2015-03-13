@@ -6,7 +6,6 @@
         <% secs = @story.sections.select{|t| t.ok? }.sort_by{|p| p.position} %> 
         <% @section_count = secs.count %> 
         <% secs.each_with_index do |section,s_i| %>
-
           <% if isFirst && !(section.media? || (section.youtube? && section.youtube.fullscreen)) %>
             <div class='info'>
               <div class='headline'><%= @story.title %></div>
@@ -19,7 +18,6 @@
             </div>
              <%= render partial: "storyteller/template/#{@template}/content_infotop", locals: {is_infographic: section.infographic?} %>
           <% end %>
-
           <%  dataAudio = ''
               if section.asset_exists?            
                 dataAudio = "data-audio='#{File.basename(section.asset.asset_file_name_formatted,'.mp3')}'".html_safe 
@@ -30,8 +28,12 @@
                 <% if section.has_marker? %>
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>                
-                <%= "<div class='column-caption'>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
-                <%= "<div class='column-sub-caption'>#{section.content.sub_caption}</div>".html_safe  if section.content.sub_caption.present? %>                       
+                <% if section.content.caption.present? %>
+                  <div class='column-caption'><%= section.content.caption.html_safe %></div>
+                <% end%>
+                <% if section.content.sub_caption.present? %>
+                  <div class='column-sub-caption'><%= section.content.sub_caption.html_safe %></div>
+                <% end%>                
                 <%= section.content.text.html_safe %>   
                 <% if section.content.text.html_safe.lines.count == 1 %>   
                   <p>&nbsp;</p>
@@ -94,7 +96,6 @@
                         <% end %>    
                       <% end %>    
                     </div>     
-
                     <% if isFirst && m_i == 0  %>   
                       <div class="video-headline">
                         <div class="headline"><%= @story.title %>
@@ -112,15 +113,12 @@
           </svg>
                       </div>  
                     <% end %>  
-
-
                     <% if m.infobox_type == Medium::INFOBOX_TYPE[:floating] && m.caption.present? && !(isFirst && m_i == 0) %>
                       <div class='video-caption video-caption--<%= "#{alignment.key(m.caption_align)}" %> <%= m.caption.length > 160 ? 
                       "video-caption--long" : "" %>'>
                         <%= m.caption  %>
                       </div>
                     <% end %>                                                            
-                 
                   </div>        
                 <% end %>                   
               </div>
@@ -167,7 +165,6 @@
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %> 
-                <!-- <div class="embed-container"><%= section.youtube.code.html_safe %></div>                          -->
                 <div class="container">
                   <div data-yid="<%= section.youtube.url.last(11) %>"></div>
                 </div>                         
@@ -187,7 +184,9 @@
             <% elsif section.infographic? %>              
               <% item = section.infographic %>       
               <div class="section infographic">
-                <% if section.has_marker? %><a class="navigation-marker" id="<%= s_i + 1 %>"></a><% end %> 
+                <% if section.has_marker? %>
+                  <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
+                <% end %> 
                 <div class="container" >
                 <% if item.caption.present? %>
                   <div class="caption"><%= item.caption %></div>
@@ -242,10 +241,8 @@
                   <% end %>
                 </div>                         
               </div>
-              
             <% end %>                               
             <% isFirst = false %>                    
         <% end %>   
-        
       </div>
     </div>
