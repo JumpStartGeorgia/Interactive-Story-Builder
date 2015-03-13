@@ -491,6 +491,7 @@ ka:
       nothing_selected: "გთხოვთ, აირჩიოთ სექცია/ერთეული წასაშლელად"
       fail_delete: "სექცია/ერთეული ვერ წაიშალა"
       confirm_delete: "დარწმუნებული ხართ, რომ გინდათ ამ სექციის/ერთეულის წაშლა?"
+      confirm_publish: Are you sure you want to publish story?
       video_processed: "თქვენი ვიდეო დამუშავებულია"
       video_not_processed: "თქვენი ვიდეო დამუშავების პროცესშია"
       not_found_for_update: "მასალა რედაქტირებისთვის არ მოიძებნა."

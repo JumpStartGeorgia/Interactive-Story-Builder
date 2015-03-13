@@ -3,13 +3,15 @@
 %>
  <div class='info-top'>
   <div class='js-row'>
+  <% !@export %>
     <div class="share">
       <div class="addthis_native_toolbox"></div> 
        <%= link_to '#', :'data-modalos-id' => "modalos-embed", :title => t('app.common.embed', locale: @story.current_locale), :class => "embed modalEmbed" do %>
 
          <% end %> 
-      </div>
-      <div class="views" title=""><%= t('app.common.views', locale: @story.current_locale) %>:&nbsp;<span><%= @story.impressions_count %></span></div>  
+    </div>
+    <div class="views" title=""><%= t('app.common.views', locale: @story.current_locale) %>:&nbsp;<span><%= @story.impressions_count %></span></div>  
+  <% end %>
       <div class="r">  
       <%  
        locales = @is_preview ? @story.story_locales : @story.published_locales

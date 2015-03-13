@@ -165,7 +165,7 @@ $(document).ready(function() {
 
   $(document).on('click', '.btnPublish', function(e){    
       e.preventDefault();     
-
+      if (!confirm(gon.confirm_publish)) return true;
       var a = $(this);     
     var url = $(this).data('link');
     if ($(this).data('sl')){

@@ -491,6 +491,7 @@ ru:
       nothing_selected: "Пожалуйста, выберите раздел/объект чтобы удалить "
       fail_delete: "Раздел/объект не может быть удален"
       confirm_delete: "Вы уверены, что хотите удалить этот раздел/объект?"
+      confirm_publish: Are you sure you want to publish story?
       video_processed: "Ваше видео обработано"
       video_not_processed: "Ваше видео в процессе обработки"
       not_found_for_update: "Запись для обновления не может быть найден в базе данных."

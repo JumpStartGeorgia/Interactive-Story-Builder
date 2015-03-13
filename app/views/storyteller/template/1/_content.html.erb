@@ -16,7 +16,7 @@
                       <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
               </div> 
             </div>
-             <%= render partial: "storyteller/template/#{@template}/content_infotop", locals: {is_infographic: section.infographic?} %>
+            <%= render partial: "storyteller/template/#{@template}/content_infotop", locals: {is_infographic: section.infographic?} %>
           <% end %>
           <%  dataAudio = ''
               if section.asset_exists?            
@@ -179,7 +179,7 @@
                           <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
                   </div> 
                 </div>
-               <%= render partial: "storyteller/template/#{@template}/content_infotop" %>
+                <%= render partial: "storyteller/template/#{@template}/content_infotop" %>
               <% end %>
             <% elsif section.infographic? %>              
               <% item = section.infographic %>       
@@ -192,9 +192,9 @@
                   <div class="caption"><%= item.caption %></div>
                 <% end %>
                 <% if item.static_type? %> 
-                  <div class="content infographic" data-original='<%= item.image.file.url %>'>
+                  <div class="content infographic" data-original='<%= !@export ? item.image.file.url : "media/infographic/original/#{item.image.asset_file_name_formatted}" %>'>
                     <% alt = item.alt_text.present? ? item.alt_text : isFirst ? @story.about : '' %>
-                    <img src="<%= item.image.file.url(:poster) %>" alt="<%= strip_tags_nbsp(alt) %>">
+                    <img src='<%= !@export ? item.image.file.url(:poster) : "media/infographic/poster/#{item.image.asset_file_name_formatted}" %>' alt="<%= strip_tags_nbsp(alt) %>">
                     <div class="bg"></div>
                   </div>
                 <% elsif item.dynamic_type? && item.popup_render? %>
