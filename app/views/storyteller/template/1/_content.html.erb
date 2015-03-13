@@ -201,7 +201,7 @@
                   <div class="content interactive">
                     <% alt = item.alt_text.present? ? item.alt_text : isFirst ? @story.about : '' %>
                     <% image = item.image.present? && item.image.file.exists? ? item.image : Asset.new(asset_type: Asset::TYPE[:infographic]) %>
-                    <img src="<%= image.file.url(:poster) %>" alt="<%= strip_tags_nbsp(alt) %>">
+                    <img src='<%= !@export ? image.file.url(:poster) : "media/infographic/poster/#{image.asset_file_name_formatted}" %>' alt="<%= strip_tags_nbsp(alt) %>">
                     <div class="bg"></div>
                     <div class="interactive-iframe-popup" style="display:none;">
                       <%= item.dynamic_code.html_safe %>
@@ -232,7 +232,7 @@
                     <div class="dataset">
                       <div class="title"><%= t('storyteller.infographic.dataset', locale: @story.current_locale) %>:&nbsp;</div>
                       <% if item.dataset_file_exists? %>
-                        <div class='file'><%= link_to t('storyteller.infographic.download', locale: @story.current_locale), full_url(item.dataset_file.file.url) %></div>
+                        <div class='file'><%= link_to t('storyteller.infographic.download', locale: @story.current_locale), (!@export ? full_url(item.dataset_file.file.url) : "media/infographic_dataset/#{item.dataset_file.asset_file_name_formatted}") %></div>
                       <% end %>
                       <% if item.dataset_url.present? %>
                         <div class='url'><%= link_to t('storyteller.infographic.online', locale: @story.current_locale), item.dataset_url, :target=>'blank' %></div>
