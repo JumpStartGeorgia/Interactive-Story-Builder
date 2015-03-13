@@ -1,9 +1,13 @@
 class AssignYoutubeCodeVideoId < ActiveRecord::Migration
   def up
-    YoutubeTranslation.all.each {|t| t.save! }
+    YoutubeTranslation.transaction do
+      YoutubeTranslation.all.each {|t| t.save! }
+    end
   end
 
   def down
-   YoutubeTranslation.all.each {|t| t.save! }
+    YoutubeTranslation.transaction do
+      YoutubeTranslation.all.each {|t| t.save! }
+    end
   end
 end
