@@ -67,8 +67,8 @@ module BootstrapStarter
     config.assets.paths << "#{Rails.root}/public/javascripts/"
 
     # in app/assets folder
-    config.assets.precompile += %w( collaborators.js filter.js follow.js modalos.js news.js nickname.js search.js settings.js stories.js storyteller.js themes.js )
-    config.assets.precompile += %w( author.css authors.css collaborators.css embed.css filter.css grid.css grid2.css modalos.css navbar.css navbar2.css news.css root.css settings.css stories.css storyteller.css themes.css todo.css )
+    config.assets.precompile += %w( collaborators.js filter.js follow.js modalos.js news.js nickname.js search.js settings.js story.js stories.js storyteller.js themes.js )
+    config.assets.precompile += %w( author.css authors.css collaborators.css embed.css filter.css grid.css grid2.css modalos.css navbar.css navbar2.css news.css root.css settings.css story.css stories.css storyteller.css themes.css todo.css )
     # in vendor/assets folder
     config.assets.precompile += %w( bootstrap-select.min.js jquery.tokeninput.js olly.js zeroclipboard.min.js jquery.tipsy.js )
     config.assets.precompile += %w( bootstrap-select.min.css jquery-ui-1.7.3.custom.css token-input-facebook.css tipsy.css)
