@@ -88,6 +88,11 @@ class Asset < ActiveRecord::Base
                 :'50x50' => {:geometry => "50x50#"},
                 :'40x40' => {:geometry => "40x40#"}
             },
+            :convert_options => { 
+              :'168x168' => '-quality 85',
+              :'50x50' => '-quality 85',
+              :'40x40' => '-quality 85'
+            },
             :default_url => "/assets/missing/user_avatar/:style/default_user.png"
           }
 
@@ -99,6 +104,11 @@ class Asset < ActiveRecord::Base
                 :'50x50' => {:geometry => "50x50#"},
                 :'40x40' => {:geometry => "40x40#"}
             },
+            :convert_options => { 
+              :'168x168' => '-quality 85',
+              :'50x50' => '-quality 85',
+              :'40x40' => '-quality 85'
+            },
             :default_url => "/assets/missing/author_avatar/:style/default_user.png"
           }
 
@@ -109,7 +119,10 @@ class Asset < ActiveRecord::Base
                 :thumbnail => {:geometry => "459x328#"},
                 :slider => {:geometry => "1500>"}
             },            
-            :convert_options => { :slider => '-quality 85' },
+            :convert_options => { 
+              :thumbnail => '-quality 85',
+              :slider => '-quality 85'
+            },
             :default_url => "/assets/missing/story_thumbnail/missing.jpg"
           }
 
@@ -118,18 +131,18 @@ class Asset < ActiveRecord::Base
 
         when  TYPE[:media_image]        
           opt = { 
-                  :url => "/system/places/images/:story_id/:style/:id__:basename.:extension",
-                  :styles => {
-                        :mobile_640 => {:geometry => "640x427"},
-                        :mobile_1024 => {:geometry => "1024x623"},
-                        :fullscreen => {:geometry => "1500>"}
-                },
-                :convert_options => 
-                { 
-                  :mobile_640 => '-quality 85',
-                  :mobile_1024 => '-quality 85',
-                  :fullscreen => '-quality 85'
-                },
+              :url => "/system/places/images/:story_id/:style/:id__:basename.:extension",
+              :styles => {
+                    :mobile_640 => {:geometry => "640x427"},
+                    :mobile_1024 => {:geometry => "1024x623"},
+                    :fullscreen => {:geometry => "1500>"}
+            },
+            :convert_options => 
+            { 
+              :mobile_640 => '-quality 85',
+              :mobile_1024 => '-quality 85',
+              :fullscreen => '-quality 85'
+            },
           }  
 
         when  TYPE[:media_video]        
@@ -143,23 +156,23 @@ class Asset < ActiveRecord::Base
 
          when  TYPE[:slideshow_image]        
           opt = {   
-                  :url => "/system/places/slideshow/:story_id/:style/:id__:basename.:extension" ,
-                  :styles => {                   
-                    :mobile_640 => {:geometry => "640x427"},
-                    :mobile_1024 => {:geometry => "1024x623"}, 
-                    :slideshow => {:geometry => "812x462"},                   
-                    :thumbnail => {:geometry => "44x44^"},
-                    :thumbnail_preview => {:geometry => "160x160^"},
-                    :fullscreen => {:geometry => "1500>"}
-                  },
-                  :convert_options => {
-                    :thumbnail => "-gravity center -extent 44x44",
-                    :thumbnail_preview => "-gravity center -extent 160x160",
-                    :mobile_640 => '-quality 85',
-                    :mobile_1024 => '-quality 85',
-                    :slideshow => '-quality 85',
-                    :fullscreen => '-quality 85'
-                  }
+            :url => "/system/places/slideshow/:story_id/:style/:id__:basename.:extension" ,
+            :styles => {                   
+              :mobile_640 => {:geometry => "640x427"},
+              :mobile_1024 => {:geometry => "1024x623"}, 
+              :slideshow => {:geometry => "812x462"},                   
+              :thumbnail => {:geometry => "44x44^"},
+              :thumbnail_preview => {:geometry => "160x160^"},
+              :fullscreen => {:geometry => "1500>"}
+            },
+            :convert_options => {
+              :mobile_640 => '-quality 85',
+              :mobile_1024 => '-quality 85',
+              :slideshow => '-quality 85',
+              :thumbnail => "-quality 85 -gravity center -extent 44x44",
+              :thumbnail_preview => "-quality 85 -gravity center -extent 160x160",
+              :fullscreen => '-quality 85'
+            }
           }    
 
         when  TYPE[:infographic]        
@@ -169,7 +182,7 @@ class Asset < ActiveRecord::Base
                     :poster => {:geometry => "730x>"},
                   },
                   :convert_options => {
-                    :poster => "-gravity north -crop 730x730+0+0"
+                    :poster => "-quality 85 -gravity north -crop 730x730+0+0"
                   },
                   :default_url => "/assets/missing/infographic/missing.jpg"
           }  
