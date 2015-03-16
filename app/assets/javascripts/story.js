@@ -106,12 +106,24 @@
           .append("img")
           .attr("src", function(d) { return  ipath + d.image; });
 
+        if(!String.prototype.trim)
+        {
+          String.prototype.trim = function(c) { 
+            var r = (!c) ? new RegExp('^\\s+|\\s+$', 'g') : new RegExp('^'+c+'+|'+c+'+$', 'g');
+            return this.replace(r, '');
+          };
+        }
+
         d3.selectAll(".slideshow").each(function() {
           var wrapper =  d3.select(this).select(".wrapper");
           var captions = wrapper.select('.captions');
 
           captions.selectAll(".caption").each(function(){
             var t = this;
+            if(d3.select(t).text().trim() == "")
+            {
+              d3.select(t).classed('empty',true);
+            }
             captions.insert("div", function() { return t; }).classed("image",true).append("img").attr("src",function(d) { return spath + t.getAttribute("data-image"); });
           });
           wrapper.insert(function(){ return wrapper.select('.description').remove()[0][0]; },".captions");

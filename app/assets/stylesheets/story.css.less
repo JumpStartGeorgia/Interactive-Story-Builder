@@ -1073,6 +1073,9 @@ body
     color: #666;
     width: 100%;
   }
+  .caption.empty {
+    display:none;
+  }
   .caption.active,
   .image.active {
     position: relative;
@@ -1181,17 +1184,21 @@ body
   color:#8c8c8c;
   font-size:1.2em;
   line-height:1.2em;
-  margin:0px;
+  margin:-1px;
   padding:5px 5px;
 }
 .mob .slideshow .wrapper .description
 {
   background-color:#1d1d1d;
   color:#8c8c8c;
-  font-size: 1em;
+  font-size: 1.063em;
   line-height: 1.063em;
-  margin: 0px;
-  padding: 5px 10px;
+  padding: 0px 10px 5px;
+  margin:-1px;
+}
+.mob .slideshow .wrapper .description > *
+{
+  margin:0px;
 }
 .mob .slideshow .wrapper .captions .image
 {

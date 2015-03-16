@@ -138,6 +138,7 @@
                       <div class="caption" data-image="<%= t.asset_file_name_formatted %>">
                           <%= t.caption.html_safe %>
                           <% if t.source.present? %> 
+                          
                             <div class="source">
                               <span><%= "#{t('storyteller.source')}" %></span>&nbsp;
                               <%= auto_link(t.source) %>
