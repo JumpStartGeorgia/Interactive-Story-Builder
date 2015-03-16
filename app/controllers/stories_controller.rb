@@ -660,7 +660,7 @@ end
       rootPath = "#{Rails.root}/tmp/stories";
       filename = StoriesHelper.transliterate(@story.title.downcase);      
       filename_ext = SecureRandom.hex(3)  
-      path =  "#{rootPath}/#{filename}_#{filename_ext}"  
+      path =  "#{rootPath}/#{filename}_#{filename_ext}/#{filename}"  
       mediaPath = "#{path}/media"
 
       FileUtils.mkpath(path)    
@@ -993,7 +993,7 @@ private
   end
 
   def generate_gzip(tar,name,ff)      
-      system("tar -czf #{tar}.tar.gz -C '#{Rails.root}/tmp/stories/#{name}' .")
+      system("tar -czf #{tar}.tar.gz -C '#{Rails.root}/tmp/stories/#{name}' #{ff}")
       return "#{tar}.tar.gz"
   end
 
