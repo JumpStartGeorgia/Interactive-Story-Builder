@@ -126,7 +126,7 @@
                   <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
                 <% end %>     
             <% elsif section.slideshow? %>             
-              <div class="section slideshow">
+              <div class="section slideshow" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %><a class="navigation-marker" id="<%= s_i + 1 %>"></a><% end %>
                 <div class="wrapper">
                   <% if section.slideshow.caption.present? %>
@@ -153,7 +153,7 @@
                 </div>
               </div> 
             <% elsif section.embed_media? %>         
-              <div class="section embed">
+              <div class="section embed" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %> 
@@ -162,7 +162,7 @@
                 </div>                         
               </div>
             <% elsif section.youtube? %>           
-              <div class="section youtube embed<%= section.youtube.fullscreen ? ' fullscreen' : '' %>">
+              <div class="section youtube embed<%= section.youtube.fullscreen ? ' fullscreen' : '' %>" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %> 
@@ -184,7 +184,7 @@
               <% end %>
             <% elsif section.infographic? %>              
               <% item = section.infographic %>       
-              <div class="section infographic">
+              <div class="section infographic" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                   <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %> 

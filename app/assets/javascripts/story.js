@@ -185,7 +185,17 @@
 
 
     // Add for content to have audio track
-    var section_content = d3.selectAll(".column")            
+    // var section_content = d3.selectAll(".column")            
+    //     .datum(function() {
+    //       return {
+    //         audio: this.getAttribute("data-audio")
+    //       };
+    //     }).call(d3.behavior.watch()
+    //       .on("scroll", sequencescrolled)
+    //       .on("statechange", sequencestatechanged));
+
+
+    var section_content = d3.selectAll(".section:not(.video-sequence)[data-audio]")            
         .datum(function() {
           return {
             audio: this.getAttribute("data-audio")
