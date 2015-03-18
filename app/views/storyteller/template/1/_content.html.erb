@@ -173,7 +173,7 @@
                 <% end %>        
               </div>
             <% elsif section.slideshow? %>  
-              <div class="section slideshow">
+              <div class="section slideshow" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %> 
@@ -200,7 +200,7 @@
                 </div>
               </div> 
             <% elsif section.embed_media? %>             
-              <div class="section embed">
+              <div class="section embed" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %> 
@@ -534,7 +534,7 @@
 
 
           // Add for content to have audio track
-          var section_content = d3.selectAll(".column")            
+          var section_content = d3.selectAll(".section:not(.video-sequence)[data-audio]")      
               .datum(function() {
                 return {
                   audio: this.getAttribute("data-audio")
