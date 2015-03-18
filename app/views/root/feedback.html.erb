@@ -16,7 +16,7 @@
 			              :collection => @message_types, :required => true, :include_blank => false %>
 			  <%= f.input :name, :label => t("activerecord.attributes.message.name") %>
 			  <%= f.input :email, :as => :email, :required => true, :label => t("activerecord.attributes.message.email") %>
-			  <%= f.input :message, :required => true, :as => :text, :input_html => {:rows => 6}, :label => t("activerecord.attributes.message.message") %>
+			  <%= f.input :message, :required => true, :as => :text, :input_html => {:rows => 6}, :label => t("activerecord.attributes.message.message"), hint: t('.message_hint') %>
 		  <% end %>
 
     	<div>

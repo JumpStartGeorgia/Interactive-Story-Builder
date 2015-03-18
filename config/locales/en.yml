@@ -490,6 +490,7 @@ en:
       name: Name
       email: Email Address
       message: Message
+      message_hint: 500 characters or less
     todo_list:
       title: "StoryBuilder's To-Do List"
       summary: StoryBuilder is in its infancy and has much growing to do. Gathered here is a list of tasks that we are working on or plan to working on soon.
