@@ -117,4 +117,4 @@ User Settings Features:
 * can assign users to edit your story
 
 ## License
-TBD
+You read the [license here](./LICENSE.md).
