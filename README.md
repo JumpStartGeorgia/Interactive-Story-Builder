@@ -1,4 +1,4 @@
-# JumpStart Georgia's StoryBuilder
+# JumpStart Georgia's StoryBuilder used for [Chai Khana's site](http://chai-khana.org).
 
 ## Summary
 StoryBuilder is a web application that allows users to build mixed-media stories that can then be shared with the world. You can try StoryBuilder out for yourself [here](http://storybuilder.jumpstart.ge/en).
@@ -46,76 +46,3 @@ You will need the following [Environment Variables](https://help.ubuntu.com/comm
 * STORY_BUILDER_YOUTUBE_API_KEY - YouTube API key ([get from here](https://console.developers.google.com/project)) is used to verify that the YouTube urls exist.
 * DETECT_LANGUAGE_API_KEY - [Language Detection API](http://detectlanguage.com/) key for determining the language a story is written in
 
-
-## To Do List
-### Short Term Tasks
-* create a more wizard like process for building the story
-* add ability to drag and drop section for re-arranging
-* users can create groups and have their own page to show their published works
-* add ability to create one story in multiple languages
-* ability to log in with something other than facebook
-
-### Long Term Tasks
-* add ability to include interactive maps
-* add ability to include charts
-* add ability to include data tables
-* store the media on Amazon S3 cloud or something similar
-* have multiple themes to select from
-* be able to edit colors, fonts, etc
-* select from different transitions between sections
-
-
-## Version History
-### 1.0
-We did so much work on this release that bumping the version to 1.0 felt appropriate. Most of the focus was spent on the experience of finding and reading stories. Some time was spent on the form for building the stories, but a complete overhaul of the story building system is needed and will be the focus of our next major release.
-
-Here is a list of the new features.
-
-General Features:
-* applied much nicer theme to the site
-* added notification system to alert you when new stories are published, your story is selected as a staff pick, comments are made, etc
-* allow users to follow other users and receive notifications when new stories are published
-* added RSS feed of all published stories
-
-Story Building Features:
-* can customize url to story
-* can write summary of story (this is used on home page and when sharing in facebook)
-* added ability to indicate what language your story is in (allows users to filter on home page)
-* added categories to stories
-* added tags to stories
-* added ability to include online media (embed youtube, vimeo, soundcloud, etc)
-* can invite other users to be a collaborator on your story
-
-Story Features:
-* can search, filter and sort published stories on home page
-* added story read counter
-* added share links
-* added comments
-* added like button
-* can embed stories in two formats: a pretty link or the full story
-* using bit.ly to create short URLs to published stories
-
-User Settings Features:
-* can load an avatar for yourself
-* can customize url to user page
-* can write summary about self and this appears on your user page
-* can indicate the default language for your stories
-* can indicate which notifications you wish to receive
-* each user has their own page to show their published works
-
-### 0.4
-* added horizontal image gallery section
-* added help text to forms
-* translated site completely into Georgian
-* moved all media files (images, videos, audio) into one table
-* started process for having multiple templates - right now only one template exists
-
-### 0.3
-* create a more appealing landing page
-* applied user authorization
-* ability to clone a story so it can be used as the start of a new story
-* ability to export a story so it can be hosted on any website
-* can assign users to edit your story
-
-## License
-TBD
