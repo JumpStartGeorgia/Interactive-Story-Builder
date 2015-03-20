@@ -1,6 +1,6 @@
-Line #,Key,en Version,ru Translation
-1,ru.activerecord.models.user,User,пользователь
-2,ru.activerecord.models.story,Story,история
+Line #,st,en Version,ru Translation
+1,ru.activerecord.models.user,User,Пользователь
+2,ru.activerecord.models.story,Story,История
 3,ru.activerecord.models.section,Section,Раздел
 4,ru.activerecord.models.medium,Full-Screen Media Slideshow,Медиа слайд-шоу во весь экран
 5,ru.activerecord.models.content,Text,Текст
@@ -14,621 +14,695 @@ Line #,Key,en Version,ru Translation
 13,ru.activerecord.models.theme,Theme,Тема
 14,ru.activerecord.models.story_type,Story Type,Тип истории
 15,ru.activerecord.models.author,Author,Автор
-16,ru.activerecord.attributes.user.email,Email Address,Адрес электронной почты
-17,ru.activerecord.attributes.user.password,Password,Пароль
-18,ru.activerecord.attributes.user.password_confirmation,Password Confirmation,Подтвердите Пароль
-19,ru.activerecord.attributes.user.role,Role,Роль
-20,ru.activerecord.attributes.user.remember_me,Remember Me,Запомнить меня
-21,ru.activerecord.attributes.user.default_story_locale,Default Language for Your Stories,Язык по умолчанию для историей
-22,ru.activerecord.attributes.user.about,Summary of You,Коротко о себе
-23,ru.activerecord.attributes.user.local_avatar,Avatar,Аватар
-24,ru.activerecord.attributes.user.nickname,Nickname,Никнейм
-25,ru.activerecord.attributes.user.sign_in_count,Number of Times Logged In,Number of Times Logged In
-26,ru.activerecord.attributes.user.created_at,Date Created,Дата создания
-27,ru.activerecord.attributes.user.current_sign_in_at,Date Last Logged In,Дата последнего посещения на сайт
-28,ru.activerecord.attributes.author.avatar,Avatar,Аватар
-29,ru.activerecord.attributes.author_translation.name,Name,Имя
-30,ru.activerecord.attributes.author_translation.about,About,Про нас
-31,ru.activerecord.attributes.author_translation.permalink,Permalink,Постоянная ссылка
-32,ru.activerecord.attributes.story.user_id,Story Author,Автор истории
-33,ru.activerecord.attributes.story.user_ids,Editors,Редакторы
-34,ru.activerecord.attributes.story.publish_home_page,"Once published, make your story visible on the homepage?",Сделать Вашу историю видимой на странице после публикации?
-35,ru.activerecord.attributes.story.template_id,Template,Шаблон
-36,ru.activerecord.attributes.story.thumbnail,Thumbnail,Эскиз (тамбнейл)
-37,ru.activerecord.attributes.story.story_locale,Story Language,Язык истории
-38,ru.activerecord.attributes.story.tag_list,Tags,Тег
-39,ru.activerecord.attributes.story.categories,Categories,Категории
-40,ru.activerecord.attributes.story.story_type,Type,Тип
-41,ru.activerecord.attributes.story.in_theme_slider,Show Story in Theme Slider,Показать историю в тематическом слайдере
-42,ru.activerecord.attributes.story_translation.title,Story Title,Название истории
-43,ru.activerecord.attributes.story_translation.author,Author(s),Автор(ы)
-44,ru.activerecord.attributes.story_translation.media_author,Photo and Video Author(s),Автор(ы) видео и фото
-45,ru.activerecord.attributes.story_translation.translation_author,Translation Author(s),Автор(ы) перевода
-46,ru.activerecord.attributes.story_translation.published,Publish?,Публиковать?
-47,ru.activerecord.attributes.story_translation.published_at,Was Published,Опубликована
-48,ru.activerecord.attributes.story_translation.about,Story Summary,Конспект историй
-49,ru.activerecord.attributes.story_translation.permalink,Story URL,URL Истории
-50,ru.activerecord.attributes.story_translation.permalink_staging,Story URL,URL Истории
-51,ru.activerecord.attributes.section.has_marker,Navigation Shortcut,Навигационная ссылка
-52,ru.activerecord.attributes.section.type_id,Type,Тип
-53,ru.activerecord.attributes.section.sort_order,Sort Order,Порядок Сортировки
-54,ru.activerecord.attributes.section_translation.title,Title,Название
-55,ru.activerecord.attributes.section_translation.audio,Audio Track,Аудиофайл
-56,ru.activerecord.attributes.section_translation.delete_audio,Delete the Audio Track?,Удалить аудиофайл?
-57,ru.activerecord.attributes.content.title,Title,Название
-58,ru.activerecord.attributes.content.caption,Heading,Заглавок
-59,ru.activerecord.attributes.content.sub_caption,Subheading,Подзаглавок
-60,ru.activerecord.attributes.content.content,Text,Текс
-61,ru.activerecord.attributes.medium.media_type,Media Type,Тип медии
-62,ru.activerecord.attributes.medium.image,Image,Изображение
-63,ru.activerecord.attributes.medium.video,Video,Видео
-64,ru.activerecord.attributes.medium.video_loop,Loop Video,Переигрывать видео
-65,ru.activerecord.attributes.medium_translation.title,Title,Название
-66,ru.activerecord.attributes.medium_translation.caption,Caption,Титры
-67,ru.activerecord.attributes.medium_translation.caption_align,Caption Alignment,Выровнивание титров
-68,ru.activerecord.attributes.medium_translation.infobox_type,Caption Position,Расположение титров
-69,ru.activerecord.attributes.medium_translation.summary,Summary,Конспект
-70,ru.activerecord.attributes.medium_translation.source,Source,Источник
-71,ru.activerecord.attributes.medium_translation.image,Image,Изображение
-72,ru.activerecord.attributes.medium_translation.video,Video,Видео
-73,ru.activerecord.attributes.slideshow.title,Title,Заглавок
-74,ru.activerecord.attributes.slideshow.caption,Heading,Название
-75,ru.activerecord.attributes.message.name,Name,Name
-76,ru.activerecord.attributes.message.email,Email Address,Email Address
-77,ru.activerecord.attributes.message.message,Message,Message
-78,ru.activerecord.attributes.message.message_type,Feedback Type,Feedback Type
-79,ru.activerecord.attributes.embed_medium_translation.title,Title,Заглавок
-80,ru.activerecord.attributes.embed_medium_translation.url,Url to Online Media,Url к онлайн медии
-81,ru.activerecord.attributes.youtube.fullscreen,Fullscreen,Во весь экран
-82,ru.activerecord.attributes.youtube.loop,Loop,Переигровка
-83,ru.activerecord.attributes.youtube.info,Show Video Title Bar,Показать заглавок видео
-84,ru.activerecord.attributes.youtube_translation.title,Title,Заглавок
-85,ru.activerecord.attributes.youtube_translation.url,Url to YouTube Video,Ссылка на YouTube
-86,ru.activerecord.attributes.youtube_translation.menu_lang,Player Language,Язык плеера
-87,ru.activerecord.attributes.youtube_translation.cc,Show Caption/Subtitle,Показать субтитры
-88,ru.activerecord.attributes.youtube_translation.cc_lang,Subtitle Language,Язык субтитров
-89,ru.activerecord.attributes.language.locale,Locale,О локали.
-90,ru.activerecord.attributes.language.name,Language Name,Язык
-91,ru.activerecord.attributes.category_translation.name,Name,Имя
-92,ru.activerecord.attributes.page.name,Unique name for content (do not change!),Уникальное название для контента (не изменять!)
-93,ru.activerecord.attributes.page_translation.title,Title to show above content,"Назвнаие, которое будет показываться над контентом"
-94,ru.activerecord.attributes.page_translation.content,Content,Контент
-95,ru.activerecord.attributes.theme.is_published,Publish?,Публиковать?
-96,ru.activerecord.attributes.theme.published_at,Date Published,Дата опубликования
-97,ru.activerecord.attributes.theme.show_home_page,Show this theme on the home page?,Показать тему на главной странице
-98,ru.activerecord.attributes.theme.published_item_count,Number of Published Items,Number of Published Items
-99,ru.activerecord.attributes.theme_translation.name,Name,Имя
-100,ru.activerecord.attributes.theme_translation.edition,Edition,Выпуск
-101,ru.activerecord.attributes.theme_translation.description,Description,Описание
-102,ru.activerecord.attributes.theme_translation.permalink,URL,URL (Единый указатель ресурсов)
-103,ru.activerecord.attributes.story_type.sort_order,Sort Order,Порядок Сортировки
-104,ru.activerecord.attributes.story_type_translation.name,Name,Название
-105,ru.activerecord.attributes.story_type_translation.permalink,URL,URL (Единый указатель ресурсов)
-106,ru.activerecord.errors.messages.required_field,is a required field.,Поле обязательно для заполнения
-107,ru.activerecord.errors.messages.already_exists,already exists in the database.,В базе данных уже существует.
-108,ru.activerecord.errors.messages.story_authors,must have at least one person selected.,Должны выбрать по крайней мере одного человека.
-109,ru.activerecord.errors.messages.publish_theme,The theme cannot be published until at least one published item has been assigned to the theme.,The theme cannot be published until at least one published item has been assigned to the theme.
-110,ru.mailer.closing,"Sincerely,",С уважением
-111,ru.mailer.signature,The Chai Khana Team,Команда Чайхана
-112,ru.mailer.unsubscribe,Click here to change your notification settings,Нажмите здесь чтобы изменить настройки уведомлений.
-113,ru.mailer.contact.contact_form.subject,Chai Khana Contact Form,Форма обратной связи с Чай-Хана.
-114,ru.mailer.notification.new_user.subject,Welcome to Chai Khana!,Добро пожаловать в Чай-Хана
-115,ru.mailer.notification.new_user.message,"Thank you for becoming a member of Chai Khana. We look forward to exploring the stories you build!
+16,ru.activerecord.models.asset,File,Файл
+17,ru.activerecord.attributes.asset.asset_file_name,File,Файл
+18,ru.activerecord.attributes.asset.asset_content_type,File Content Type,Тип содержимого файла 
+19,ru.activerecord.attributes.asset.asset_file_size,File Size,Размер файла
+23,ru.activerecord.attributes.user.email,Email Address,Адрес электронной почты
+24,ru.activerecord.attributes.user.password,Password,Пароль
+25,ru.activerecord.attributes.user.password_confirmation,Password Confirmation,Подтвердите Пароль
+26,ru.activerecord.attributes.user.role,Role,Роль
+27,ru.activerecord.attributes.user.remember_me,Remember Me,Запомнить меня
+28,ru.activerecord.attributes.user.default_story_locale,Default Language for Your Stories,Язык историй по умолчанию
+29,ru.activerecord.attributes.user.about,Summary of You,Коротко о себе
+30,ru.activerecord.attributes.user.local_avatar,Avatar,Аватар
+31,ru.activerecord.attributes.user.nickname,Nickname,Логин
+32,ru.activerecord.attributes.user.sign_in_count,Number of Times Logged In,количество посещений на сайте
+33,ru.activerecord.attributes.user.created_at,Date Created,Дата создания
+34,ru.activerecord.attributes.user.current_sign_in_at,Date Last Logged In,Дата последнего посещения
+35,ru.activerecord.attributes.author.avatar,Avatar,Аватар
+36,ru.activerecord.attributes.author_translation.name,Name,Имя
+37,ru.activerecord.attributes.author_translation.about,About,Про нас
+38,ru.activerecord.attributes.author_translation.permalink,Permalink,Постоянная ссылка
+42,ru.activerecord.attributes.story.user_id,Story Author,Автор истории
+43,ru.activerecord.attributes.story.user_ids,Editors,Редакторы
+44,ru.activerecord.attributes.story.publish_home_page,"Once published, make your story visible on the homepage?",Сделать Вашу историю видимой на странице после публикации?
+45,ru.activerecord.attributes.story.template_id,Template,Шаблон
+46,ru.activerecord.attributes.story.thumbnail,Thumbnail,Эскиз (Thumbnail)
+47,ru.activerecord.attributes.story.story_locale,Story Language,Язык истории
+48,ru.activerecord.attributes.story.tag_list,Tags,Теги
+49,ru.activerecord.attributes.story.categories,Categories,Категории
+50,ru.activerecord.attributes.story.story_type,Type,Тип
+51,ru.activerecord.attributes.story.in_theme_slider,Show Story in Theme Slider,Показать историю в тематическом слайдере
+52,ru.activerecord.attributes.story_translation.title,Story Title,Название истории
+53,ru.activerecord.attributes.story_translation.author,Author(s),Автор(ы)
+54,ru.activerecord.attributes.story_translation.media_author,Photo and Video Author(s),Автор(ы) видео и фото
+55,ru.activerecord.attributes.story_translation.translation_author,Translation Author(s),Автор(ы) перевода
+56,ru.activerecord.attributes.story_translation.published,Publish?,Публиковать?
+57,ru.activerecord.attributes.story_translation.published_at,Was Published,Опубликована
+58,ru.activerecord.attributes.story_translation.about,Story Summary,Аннотация к истории
+59,ru.activerecord.attributes.story_translation.permalink,Story URL,URL Истории
+60,ru.activerecord.attributes.story_translation.permalink_staging,Story URL,URL Истории
+76,ru.activerecord.attributes.section.has_marker,Navigation Shortcut,Навигационная ссылка
+77,ru.activerecord.attributes.section.type_id,Type,Тип
+78,ru.activerecord.attributes.section.sort_order,Sort Order,Порядок Сортировки
+79,ru.activerecord.attributes.section_translation.title,Title,Название
+80,ru.activerecord.attributes.section_translation.audio,Audio Track,Аудиофайл
+81,ru.activerecord.attributes.section_translation.delete_audio,Delete the Audio Track?,Удалить аудиофайл?
+91,ru.activerecord.attributes.content_translation.title,Title,Название
+92,ru.activerecord.attributes.content_translation.caption,Heading,Заголовок
+93,ru.activerecord.attributes.content_translation.sub_caption,Subheading,Подзаголовок
+94,ru.activerecord.attributes.content_translation.content,Text,Текст
+99,ru.activerecord.attributes.medium.media_type,Media Type,Тип медии
+100,ru.activerecord.attributes.medium.image,Image,Изображение
+101,ru.activerecord.attributes.medium.video,Video,Видео
+102,ru.activerecord.attributes.medium.video_loop,Loop Video,Переигрывать видео
+103,ru.activerecord.attributes.medium_translation.title,Title,Название
+104,ru.activerecord.attributes.medium_translation.caption,Caption,Описание
+105,ru.activerecord.attributes.medium_translation.caption_align,Caption Alignment,Выравнивание описания
+106,ru.activerecord.attributes.medium_translation.infobox_type,Caption Position,Расположение описания
+107,ru.activerecord.attributes.medium_translation.summary,Summary,Аннотация к истории
+108,ru.activerecord.attributes.medium_translation.source,Source,Источник
+109,ru.activerecord.attributes.medium_translation.image_name,Image,Изображение
+110,ru.activerecord.attributes.medium_translation.video_name,Video,Видео
+131,ru.activerecord.attributes.slideshow_translation.title,Title,Заглавок
+132,ru.activerecord.attributes.slideshow_translation.caption,Heading,Название
+133,ru.activerecord.attributes.slideshow_translation.description,Description,Описание
+134,ru.activerecord.attributes.slideshow_translation.asset_files_name,Image(s),Image(s)
+145,ru.activerecord.attributes.message.name,Name,Имя
+146,ru.activerecord.attributes.message.email,Email Address,Адрес электронной почты
+147,ru.activerecord.attributes.message.message,Message,Письмо
+148,ru.activerecord.attributes.message.message_type,Feedback Type,Тип отзыва
+149,ru.activerecord.attributes.embed_medium_translation.title,Title,Заглавок
+150,ru.activerecord.attributes.embed_medium_translation.url,Url to Online Media,Url к онлайн медии
+153,ru.activerecord.attributes.youtube.fullscreen,Fullscreen,Во весь экран
+154,ru.activerecord.attributes.youtube.loop,Loop,Переигровка
+155,ru.activerecord.attributes.youtube.info,Show Video Title Bar,Показать заглавок видео
+156,ru.activerecord.attributes.youtube_translation.title,Title,Заглавок
+157,ru.activerecord.attributes.youtube_translation.url,Url to YouTube Video,Ссылка на YouTube
+158,ru.activerecord.attributes.youtube_translation.menu_lang,Player Language,Язык плеера
+159,ru.activerecord.attributes.youtube_translation.cc,Show Caption/Subtitle,Показать субтитры
+160,ru.activerecord.attributes.youtube_translation.cc_lang,Subtitle Language,Язык субтитров
+161,ru.activerecord.attributes.youtube_translation.code,Youtube Video Id,Youtube Video Id
+168,ru.activerecord.attributes.infographic.published_at,Date Published,Дата публикации
+169,ru.activerecord.attributes.infographic.image,Infographic Image,Изображения инфографики 
+170,ru.activerecord.attributes.infographic.dataset_file,Related File,Набор данных файла
+171,ru.activerecord.attributes.infographic.datasources,Data Sources,Источники данных
+172,ru.activerecord.attributes.infographic.subtype,Infographic Type,Тип инфографики
+173,ru.activerecord.attributes.infographic.dynamic_width,Width,Ширина
+174,ru.activerecord.attributes.infographic.dynamic_height,Height,Высота
+175,ru.activerecord.attributes.infographic.dynamic_render,Show Infographic in Story or in Popup,Show Infographic in Story or in Popup
+176,ru.activerecord.attributes.infographic_translation.title,Title,Заголовок
+177,ru.activerecord.attributes.infographic_translation.caption,Heading,Рубрика
+178,ru.activerecord.attributes.infographic_translation.description,Description,Описание
+179,ru.activerecord.attributes.infographic_translation.dataset_url,Online Dataset,Набор данных файла онлайн
+180,ru.activerecord.attributes.infographic_translation.image_name,Image,Фото
+187,ru.activerecord.attributes.infographic_translation.dynamic_url,Dynamic URL,Динамичный URL
+200,ru.activerecord.attributes.infographic_datasource.name,Data Source Name,Название источника данных
+201,ru.activerecord.attributes.infographic_datasource.url,Data Source URL,URL источника данных
+202,ru.activerecord.attributes.language.locale,Locale,О локали.
+203,ru.activerecord.attributes.language.name,Language Name,Язык
+204,ru.activerecord.attributes.category_translation.name,Name,Имя
+206,ru.activerecord.attributes.page.name,Unique name for content (do not change!),Уникальное название для контента (не изменять!)
+207,ru.activerecord.attributes.page_translation.title,Title to show above content,"Назвнаие, которое будет показываться над контентом"
+208,ru.activerecord.attributes.page_translation.content,Content,Контент
+211,ru.activerecord.attributes.theme.is_published,Publish?,Публиковать?
+212,ru.activerecord.attributes.theme.published_at,Date Published,Дата опубликования
+213,ru.activerecord.attributes.theme.show_home_page,Show this theme on the home page?,Показать тему на главной странице
+214,ru.activerecord.attributes.theme.published_item_count,Number of Published Items,Количество опубликованных объектов
+215,ru.activerecord.attributes.theme.featured_stories,Featured Stories,Featured Stories
+216,ru.activerecord.attributes.theme_translation.name,Name,Имя
+217,ru.activerecord.attributes.theme_translation.edition,Edition,Выпуск
+218,ru.activerecord.attributes.theme_translation.description,Description,Описание
+219,ru.activerecord.attributes.theme_translation.permalink,URL,URL 
+224,ru.activerecord.attributes.story_type.sort_order,Sort Order,Порядок Сортировки
+225,ru.activerecord.attributes.story_type_translation.name,Name,Название
+226,ru.activerecord.attributes.story_type_translation.permalink,URL,URL 
+229,ru.activerecord.errors.messages.required_field,is a required field.,Поле обязательно для заполнения
+230,ru.activerecord.errors.messages.already_exists,already exists in the database.,В базе данных уже существует.
+231,ru.activerecord.errors.messages.story_authors,must have at least one person selected.,Должны выбрать по крайней мере одного человека.
+232,ru.activerecord.errors.messages.publish_theme,The theme cannot be published until at least one published item has been assigned to the theme.,Тема не может быть опубликованна если хотя бы одна деталь не будет добавлена.
+233,ru.activerecord.errors.messages.not_provided,must be provided.,must be provided.
+234,ru.mailer.closing,"Sincerely,",С уважением
+235,ru.mailer.signature,The Chai Khana Team,Команда Чайхана
+236,ru.mailer.unsubscribe,Click here to change your notification settings,Нажмите здесь чтобы изменить настройки уведомлений.
+237,ru.mailer.contact.contact_form.subject,Chai Khana Contact Form,Форма обратной связи с Чайхана
+238,ru.mailer.notification.new_user.subject,Welcome to Chai Khana!,Добро пожаловать в Чайхана!
+239,ru.mailer.notification.new_user.message,"Thank you for becoming a member of Chai Khana. We look forward to exploring the stories you build!
 
 When you have a chance, please visit your settings page so you can update your avatar, nickname, personal URL, and a summary about yourself: [settings_link].
 
-You can manage when you would like to receive email notifications from Chai Khana by going to the notifications page: [notifications_link]. ","Спасибо что стали участником Чай-Ханы. Мы с нетерпением ждем Ваших историей.
+You can manage when you would like to receive email notifications from Chai Khana by going to the notifications page: [notifications_link].","Спасибо что стали участником Чайханы. Мы с нетерпением ждем Ваших историей!
 
 Пожалуйста посетите страницу настроек, когда у Вас будет время. Там Вы сможете изменить свой аватар, никнейм, личный URL, и написать коротко о себе: [settings_link].
 
-Вы можете настроить получения оповещений от Чай-Ханы на электронную почту посетив соответствующую страницу: [notifications_link]."
-116,ru.mailer.notification.published_theme.subject,New themes have been published on Chai Khana!,New themes have been published on Chai Khana!
-117,ru.mailer.notification.published_theme.message,The following themes you have expressed interest in were recently published:,The following themes you have expressed interest in were recently published:
-118,ru.mailer.notification.published_story.subject,New stories have been published on Chai Khana!,На Чай-Хане были опубликованы новые истории!
-119,ru.mailer.notification.published_story.message,The following stories you have expressed interest in were recently published:,"Истории которыми Вы интересовались, были недавно опубликованы."
-120,ru.mailer.notification.story_comment.subject,Someone has posted a comment on your story on Chai Khana!,Кто то оставил комментарию на Вашей истории в Чай-Хане.
-121,ru.mailer.notification.story_comment.message,The following stories have recently received a comment:,Следующие истории недавно получили комментарий:
-122,ru.mailer.notification.story_comment.comment,1 Comment,1 Комментарий
-123,ru.mailer.notification.story_comment.comments,%{num} Comments,%{num} Комментарии
-124,ru.mailer.notification.story_collaboration.subject,You have been invited to collaborate on a story on Chai Khana!,Вы были приглашены на сотрудничество над историей на Чай-Хане!
-125,ru.mailer.notification.story_collaboration.message,"You have received the following invitations to collaborate on stories with other people on Chai Khana. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part.","Вы получили следующие приглашения к сотрудничеству над историей с другими участниками Чайханы. Если вы хотите принять приглашение, просто нажмите на ссылку ""принять приглашение"". Если вы хотите отказаться от этого приглашения, никаких действий не требуется с вашей стороны."
-126,ru.mailer.notification.story_collaboration.from,From,От
-127,ru.mailer.notification.story_collaboration.role,Role,Уровень
-128,ru.mailer.notification.story_collaboration.story_title,Story Title,Заглавок истории
-129,ru.mailer.notification.story_collaboration.msg,Message,Письмо
-130,ru.mailer.notification.story_collaboration.accept_link,Accept the Invitation,Принять приглашение
-131,ru.mailer.notification.story_collaboration.all_invitations,View all of your Chai Khana collaboration invitations.,Просмотреть все приглашения на сотрудничество в Чайхане.
-132,ru.mailer.notification.processed_videos.subject,Your videos on Chai Khana have been processed!,Ваши видео на чайхане были обработаны!
-133,ru.mailer.notification.processed_videos.message,The following stories of yours have videos that have completed processing:,"В ваших следующих рассказах есть видеоматериалы, обработка которых была завершена."
-134,ru.mailer.notification.processed_videos.story_title,Story:,История:
-135,ru.mailer.notification.processed_videos.status,Video Processing Status: %{processed} of %{total} completed,Состояание обработвки видеоматериала: %{processed} от %{total} завершена.
-136,ru.mailer.notification.processed_videos.processed,Videos Processed:,Видеоматериал обработан.
-137,ru.mailer.notification.processed_videos.not_processed,Videos Still Processing:,Видеоматериал находится в процессе обработки.
-138,ru.mailer.notification.processed_videos.none_processed,No vidoes have been processed.,Видеоматериалы пока не обработаны.
-139,ru.mailer.notification.processed_videos.none_processing,All videos have been processed!,Все видеоматериалы обработаны.
-140,ru.mailer.notification.processed_video_errors.subject,Videos on Chai Khana have processing errors!,Появилась ощибка при обработке видеоматериала на Чайхане.
-141,ru.mailer.notification.processed_video_errors.message,The following videos had errors while being processed:,В процессе обработки у следующих видеоматериалов появились ошибки.
-142,ru.mailer.notification.processed_video_errors.story_id,Story ID,ID Истории
-143,ru.mailer.notification.processed_video_errors.asset_id,Asset ID,ID Файла
-144,ru.mailer.notification.processed_video_errors.path,URL of Video,URL Видео
-145,ru.helpers.actions,Actions,Действия.
-146,ru.helpers.links.admin,Admin Section,Раздел Админа.
-147,ru.helpers.links.edit,Edit,Редактировать.
-148,ru.helpers.links.confirm,Are you sure?,Вы уверенны?
-149,ru.helpers.links.destroy,Delete,Удалить!
-150,ru.helpers.links.new,New,Новый
-151,ru.helpers.links.list,View All,Посмотреть все
-152,ru.helpers.links.back,View All,Посмотреть все
-153,ru.helpers.links.cancel,Cancel,Отменить
-154,ru.helpers.links.reset,Reset,Сброс
-155,ru.helpers.links.view,View,Посмотреть
-156,ru.helpers.links.sign_in_facebook,Sign in with Facebook,Войти через Facebook
-157,ru.helpers.links.edit_story,Edit Story Settings,Изменить настройки истории.
-158,ru.helpers.links.delete_story,Delete Story,Удалить историю.
-159,ru.helpers.links.admin_story,Edit Content,Редактировать контент.
-160,ru.helpers.links.publish_story,Publish Story,Опубликовать историю.
-161,ru.helpers.links.forgot_password,Forgot Password?,Забыли пароль?
-162,ru.helpers.links.change_password,Change Your Password,Изменить Вашу пароль
-163,ru.helpers.links.change_password2,Change Password,Изменить пароль.
-164,ru.helpers.links.password_reset,Reset Password,Восстановить пароль.
-165,ru.helpers.links.sign_in2,Sign In,Войти
-166,ru.helpers.links.sign_in,Already have an account?,Уже зарегистрированы?
-167,ru.helpers.links.sign_up2,Sign Up,Создать акаунт
-168,ru.helpers.links.sign_up_question,Not a member yet?,Еще не участник?
-169,ru.helpers.links.sign_up,Register now,Зарегистрироваться сейчас
-170,ru.helpers.links.sign_up_title,Join Chai Khana,Присоединиться к Чайхане
-171,ru.helpers.links.sign_out,Sign Out,Выйти
-172,ru.helpers.links.sign_in_provider,Sign in with %{provider},Войти через %{provider}
-173,ru.helpers.links.sign_up_provider,Sign up with %{provider},Зарегистрироваться через %{provider}
-174,ru.helpers.links.sign_in_local_or_provider,or log in with your email and password,или войти через эл.почту и пароль
-175,ru.helpers.links.reset_or_sign_in,sign in with facebook or reset your password,войти через Facebook или восстановить пороль.
-176,ru.helpers.links.add_story,Add Story,Добавить историю
-177,ru.helpers.links.users,Users,Пользователи
-178,ru.helpers.links.authors,Authors,Авторы
-179,ru.helpers.links.feedback,Feedback,Отзывы
-180,ru.helpers.links.about,About,О Чайхане
-181,ru.helpers.links.rss,RSS,RSS
-182,ru.helpers.links.themes,Themes,Темы
-183,ru.helpers.links.story_types,Types,Типы
-184,ru.helpers.links.languages,Languages,Языки
-185,ru.helpers.links.follow,Follow,Подписаться
-186,ru.helpers.links.facebook,Facebook,Facebook
-187,ru.helpers.links.twitter,Twitter,Twitter
-188,ru.helpers.links.youtube,YouTube,YouTube
-189,ru.helpers.links.subscribe,Subscribe,Подписаться
-190,ru.helpers.links.user_settings,Settings,Настройки
-191,ru.helpers.links.like,Like,Нравится
-192,ru.helpers.links.likes,Likes,"Отметки ""Нравится"""
-193,ru.helpers.links.comments,Comment on this story,Комментарий
-194,ru.helpers.links.views,%{num} views,%{num} просмотров
-195,ru.helpers.links.tags,Tags,Теги
-196,ru.helpers.links.menu,Menu,Меню
-197,ru.helpers.links.pages,Edit Text on Site,Редактировать текст на сайте
-198,ru.helpers.links.next,Next,Следующий
-199,ru.helpers.links.feed,Feed,Лента новостей
-200,ru.helpers.links.story_menu.link.story,Story,История
-201,ru.helpers.links.story_menu.link.story_settings,Story Settings,Настройки историй
-202,ru.helpers.links.story_menu.link.collaborators,Collaborators,Сотрудники
-203,ru.helpers.links.story_menu.link.preview,Preview,Предварительный просмотр
-204,ru.helpers.links.story_menu.link.publish,Publish,Опубликовать
-205,ru.helpers.links.story_menu.link.unpublish,Unpublish,Отменить опубликование
-206,ru.helpers.links.story_menu.link.review,Private URL,Личный URL
-207,ru.helpers.links.story_menu.link.clone,Clone,Клон
-208,ru.helpers.links.story_menu.link.export,Download,Загрузить
-209,ru.helpers.links.story_menu.link.delete_story,Delete,Удалить
-210,ru.helpers.links.story_menu.link.translations,Translations,Переводы
-211,ru.helpers.links.story_menu.title.story,Edit your story,Редактировать Вашу историю
-212,ru.helpers.links.story_menu.title.story_settings,"Edit story title, authors, URL, summary, thumbnail, language, tags and/or categories, content etc.","Редактировать заглавок истроии, авторов, URL, конскпект, эскиз (тамбнейл), язык, теги и/или категории, контент, итд"
-213,ru.helpers.links.story_menu.title.collaborators,Manage which users have access to edit your story,Настроить доступ других ползывателей к редактированию Вашей истории
-214,ru.helpers.links.story_menu.title.preview,See how your story looks,Посмотреть как выглядит Ваша история
-215,ru.helpers.links.story_menu.title.publish,Make your story viewable to the world,Сделать Вашу историю видимой во всем мире
-216,ru.helpers.links.story_menu.title.unpublish,Make your story NOT viewable to the world,Сделать Вашу историю НЕ видимой во всем мире
-217,ru.helpers.links.story_menu.title.review,URL to share this story before publishing,URL для обмена до публикации
-218,ru.helpers.links.story_menu.title.clone,Copy this story into a new story,Скопировать это историю в новую историю
-219,ru.helpers.links.story_menu.title.export,Download the complete story,Загрузить историю полностью
-220,ru.helpers.links.story_menu.title.delete_story,Deleting a story cannot be undone,Удаление истории не возможно отменить
-221,ru.helpers.links.story_menu.title.translations,Translate your story into other languages,Перевести Вашу историю на другие языки
-222,ru.helpers.titles.new,New %{model},Новый %{model}
-223,ru.helpers.titles.edit,Edit %{model},Редактировать %{model}
-224,ru.helpers.titles.story_list,My Stories,Мои истории
-225,ru.helpers.hints.nickname,"Your nickname is used in the URL to your published stories (e.g., nickname/story-title)","Ваш ник используется в URL ваших опубликованных историей (например, ник / история-название)"
-226,ru.helpers.hints.local_avatar,Image that is shown in the header bar and on your user page (png and jpg only).,"Изображение, которое будет отображаться в строке заголовка и на вашу страницу пользователя (только png и jpg )."
-227,ru.helpers.hints.avatar,Image that is shown on the Author's page (png and jpg only).,Изображение на странице автора (только .png и .jpg)
-228,ru.helpers.hints.like,Like this story,Нравится эта история
-229,ru.helpers.hints.unlike,Unlike this story,"Отменить ""Нравится эта история"""
-230,ru.helpers.hints.staff_pick,Select as Staff Pick,"Отметить как ""Выбор Редакции"""
-231,ru.helpers.hints.staff_unpick,Unselect as Staff Pick,"Отменить ""Выбор Редакции"""
-232,ru.helpers.hints.is_staff_pick,Staff Pick,Выбор Редакции
-233,ru.helpers.hints.clone_asset,"If checked, the file to the left will be used for this translation","Если отметить, то файл, который находиться на левой стороне, будет выбран для этого перевода"
-234,ru.app.language.en,English,English
-235,ru.app.language.ka,ქართული,ქართული
-236,ru.app.language.hy,Հայերեն,Հայերեն
-237,ru.app.language.ru,Русский,Русский
-238,ru.app.language.az,Azərbaycan,Azərbaycan
-239,ru.app.buttons.back,View All,Посмотреть все
-240,ru.app.buttons.list,View All,Посмотреть все
-241,ru.app.buttons.admin,Admin Section,Раздел Админа.
-242,ru.app.buttons.delete,Delete,Удалить
-243,ru.app.buttons.edit,Edit,Редактировать
-244,ru.app.buttons.show,Show,Показать
-245,ru.app.buttons.cancel,Cancel,Отменить
-246,ru.app.buttons.update,Update,Обновить
-247,ru.app.buttons.save,Save,Сохранить
-248,ru.app.buttons.save_and_next,Save & Next,Сохранить и перейти к следующему
-249,ru.app.buttons.create,Create,Создать
-250,ru.app.buttons.reset,Reset,Сброс
-251,ru.app.buttons.remove,Remove,Удалить
-252,ru.app.buttons.confirm,Are you sure?,Вы уверенны?
-253,ru.app.buttons.new,New,Новый
-254,ru.app.buttons.add_section,Add Section,Добавить раздел
-255,ru.app.buttons.add_item,Add Item into Section,Добавить пункт к разделу
-256,ru.app.buttons.up,Move Selected Section/Item Up,Переместить выбранный раздел / элемент вверх
-257,ru.app.buttons.down,Move Selected Section/Item Down,Переместить выбранный раздел / элемент вниз
-258,ru.app.buttons.delete_item,Delete Selected Section/Item,Удалить выбранный раздел / элемент
-259,ru.app.buttons.preview,Preview,Предварительный просмотр
-260,ru.app.buttons.preview_image,Preview Image,Предварительный просмотр изображений
-261,ru.app.buttons.preview_video,Preview Video,Предварительный просмотр видео
-262,ru.app.buttons.preview_audio,Listen To Audio,Послушать аудио
-263,ru.app.buttons.publish,Publish,Опубликовать
-264,ru.app.buttons.unpublish,Unpublish,Отменить опубликование
-265,ru.app.buttons.clone,Copy this story into a new story,Скопировать это историю в новую историю
-266,ru.app.buttons.export,Download the complete story,Загрузить историю полностью
-267,ru.app.buttons.scroll,Scroll,Прокрутить
-268,ru.app.buttons.reviewer_key,Get URL to share this story before publishing,Получить URL истории для обмена до публикации
-269,ru.app.buttons.reviewer_key_published,Your story is published so there is no need to share this non-published URL,"Ваша история уже опубликована, и Вам птедтворительный URL уже не нужен"
-270,ru.app.buttons.explore,Explore,Просматривать
-271,ru.app.common.app_name_not_trans,Chai Khana,Чайхана
-272,ru.app.common.app_name,Chai Khana,Чайхана
-273,ru.app.common.app_intro,Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.,"Чайхана является неправительственной организацией, которая обеспечивает трансграничные журналистские тренинги и онлайн-публикации для  мультимедийных материалов оповещающих о проблемах южнокавказского региона."
-274,ru.app.common.app_intro_meta,Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.,"Чайхана является неправительственной организацией, которая обеспечивает трансграничные журналистские тренинги и онлайн-публикации для  мультимедийных материалов оповещающих о проблемах южнокавказского региона."
-275,ru.app.common.powered_by,Powered by,При поддержке
-276,ru.app.common.powered_by_js,Jumpstart Georgia,Jumpstart Georgia
-277,ru.app.common.powered_by_end,,
-278,ru.app.common.embed_slogan,Build your story with Chai Khana,Создайте свой историю в Чайхане
-279,ru.app.common.added_on,Added on: %{date},Добавлено: %{date}
-280,ru.app.common.last_sign_in,Logged in last: %{date},Последний визит на сайт: %{date}
-281,ru.app.common.admin,Admin,Админ
-282,ru.app.common.sign_out,Sign Out,Выйти
-283,ru.app.common.jumpstart,JumpStart Georgia,JumpStart Georgia
-284,ru.app.common.js_link_title,JumpStart Georgia - We communicate data better!,JumpStart Georgia - Мы связываем данные лучше!
-285,ru.app.common.js_link_text,Built by,Создан
-286,ru.app.common.search,Search for Story ...,Поиск историей...
-287,ru.app.common.build,Build Story,Создайте историю
-288,ru.app.common.explore,Explore Stories,Просматриваете истории
-289,ru.app.common.about_story,About,О нас
-290,ru.app.common.likes,Likes,"Отметки ""Нравится"""
-291,ru.app.common.comments,Comments,Коментарии
-292,ru.app.common.publish_date,Publish Date,Дата публикации
-293,ru.app.common.follow,Follow,Подписаться
-294,ru.app.common.following,Following,Подписчики
-295,ru.app.common.follow_link_title,Click to receive notifications whenever this author publishes new stories,Нажмите чтобы получать оповещения при новой публикации этого пользывателя
-296,ru.app.common.unfollow_link_title,Click to stop receiving notifications whenever this author publishes new stories,Нажмите чтобы больше не получать оповещения при новой публикации этого пользывателя
-297,ru.app.common.email,Email,Электронная почта
-298,ru.app.common.views,Views,Просмотров
-299,ru.app.common.permalink,Permalink,Пермалинк
-300,ru.app.common.shortened_url,Short URL,Короткий URL
-301,ru.app.common.share_story,Share this story,Поделтиься
-302,ru.app.common.share_facebook,Share on Facebook,Поделиться на Facebook
-303,ru.app.common.share_twitter,Share on Twitter,Поделиться на Twitter
-304,ru.app.common.share,Share,Поделиться
-305,ru.app.common.staff_pick,Staff Pick,Выбор Редакции
-306,ru.app.common.wide,wide,Широкий обзор
-307,ru.app.common.partial,Link to Story,Ссылка к истории
-308,ru.app.common.partial_text,"Embed a link to the story that has the same look as the story links on the home page of Chai Khana (image, title, author, etc)","Вставить ссылку к истории, что имеет тот же вид, как и на главной странице Чайхана (изображение, название, автора и т.д.)"
-309,ru.app.common.full,Full Story,Полная история
-310,ru.app.common.full_text,Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look.,"Вставить полную историю на другом веб-сайте. Мы предлагаем Вам сделать ширину как можно больше, чтобы получить наилучший вид."
-311,ru.app.common.feed,Chai Khana Feeds,Лента новостей Чайхана
-312,ru.app.common.home,Home,Главная
-313,ru.app.common.required,Required,Обязательно
-314,ru.app.common.nothing_selected,Nothing Selected,Нет отмеченных
-315,ru.app.common.clone_asset,Use the original file?,Использывать оригинал?
-316,ru.app.common.embed,Embed Code,Embed Code
-317,ru.app.common.scroll_top,Scroll to the top,Scroll to the top
-318,ru.app.msgs.does_not_exist,You tried to access a page that does not exist.,"Вы пытались получить доступ к странице, которая не существует."
-319,ru.app.msgs.not_authorized,You are not authorized to view that page.,Вы не авторизованы для просмотра этой страницы
-320,ru.app.msgs.success_created,%{obj} was successfully created.,Создание %{obj} прошло удачно 
-321,ru.app.msgs.success_updated,%{obj} was successfully updated.,Обновление %{obj} прошло удачно
-322,ru.app.msgs.success_publish,%{obj} was successfully published.,Опубликование %{obj} прошло удачно
-323,ru.app.msgs.success_unpublish,%{obj} was successfully unpublished.,Публикация %{obj} была удачно отменена
-324,ru.app.msgs.success_clone,%{obj} was successfully cloned to %{to}.,Клонирование %{obj}  в %{to} прошло удачно
-325,ru.app.msgs.error_created,%{obj} wasn't created: %{err},Создание %{obj} не осуществлен: %{err}
-326,ru.app.msgs.error_updated,%{obj} wasn't updated: %{err},Обновление %{obj} не осуществлен: %{err}
-327,ru.app.msgs.error_publish,%{obj} wasn't published: %{err},Опубликование %{obj} не осуществлен: %{err}
-328,ru.app.msgs.error_publish_missing_fields,%{obj} can't be published until you provide a summary and thumbnail image.,"Не возможно опубликовать %{obj}, пока Вы не предоставите конспект и уменьшенное изображение (тамбнейл)."
-329,ru.app.msgs.error_publish_missing_fields_link,Add the missing content.,Добавить отсутствующее содержание.
-330,ru.app.msgs.error_publish_missing_sections,At least one Section required before publishing.,At least one Section required before publishing.
-331,ru.app.msgs.error_publish_missing_content_section,All Text Sections must have content in it.,Требуеться по крайней мере одна секция
-332,ru.app.msgs.error_publish_missing_translations,The story must be completely translated in %{lang} in order to be published.,The story must be completely translated in %{lang} in order to be published.
-333,ru.app.msgs.error_unpublish,%{obj} wasn't unpublished: %{err},Отмена публикации %{obj} не произошла: %{err}
-334,ru.app.msgs.error_clone,%{obj} wasn't cloned.,%{obj} клонирование не произошло.
-335,ru.app.msgs.error_clone_notification,Error occurred while cloning story: %{msg},Ошибка при клонировании истории: %{msg}
-336,ru.app.msgs.error_export,Story can't be downloaded.,Загрузка историй не возможна
-337,ru.app.msgs.error_get_data,The selected item could not be found,Выбранный объект не может быть найден
-338,ru.app.msgs.select_section,Please select a Section first in order to add an Item,"Пожалуйста, первую очередь  выберите раздел, чтобы добавить объект "
-339,ru.app.msgs.staff_pick,The story has been selected as a Staff Pick,"История была выбрана в как ""Выбор Редакции"""
-340,ru.app.msgs.staff_unpick,The story has been unselected as a Staff Pick,"Статус истории ""Выбор Редакции"" был отменен"
-341,ru.app.msgs.success_settings,Your settings were successfully updated.,Ваши настройки были удачно обновлены.
-342,ru.app.msgs.success_remove_avatar,Your Facebook avatar is now being used.,В данное  время используеться Ваш аватар страницы Facebook 
-343,ru.app.msgs.nickname_duplicate,This user URL already exists.,Такой пользывательский URL уже существует
-344,ru.app.msgs.nickname_url,Your URL will be:,Ваш URL будет:
-345,ru.app.msgs.story_duplicate,This story URL already exists.,Такой URL истроии уже существует
-346,ru.app.msgs.story_url,Story URL will be:,URL Вашей истории будет:
-347,ru.app.msgs.invitation.accepted,You have accepted the invitation to collaborate on '%{title}',Вы приняли приглашение на сотрудничество на  '%{title}'
-348,ru.app.msgs.invitation.accepted_already,You have already accepted the invitation to collaborate on '%{title}',Вы уже приняли приглашение на сотрудничество на '%{title}'
-349,ru.app.msgs.invitation.bad,"Sorry, your invitation could not be found or the story has been deleted.","К сожалению, Ваше приглашение не может быть найден или история была удалена."
-350,ru.app.msgs.invitation.declined,Your invitation was declined,Ваше приглашение было отклонено
-351,ru.app.msgs.one_section.content,Only one Item can be added to a Text section,К разделу текста может быть добавлен только один объект
-352,ru.app.msgs.one_section.slideshow,Only one Item can be added to an Image Slideshow section,К разделу слайдшоу может быть добавлен только один объект
-353,ru.app.msgs.one_section.embed_media,Only one Item can be added to an Embed Online Media section,К разделу встроенной онлайн медии может быть добавлен только один объект
-354,ru.app.msgs.one_section.youtube,Only one Item can be added to a YouTube section,К разделу YouTube может быть добавлен только один объект
-355,ru.app.msgs.one_section.general,Only one Item can be added to this type of section,К такому разделу может быть добавлен только один объект
-356,ru.app.msgs.destroy_story.success,Story was successfully deleted.,История была удачно удалена
-357,ru.app.msgs.destroy_story.error,Error occurred while deleting the story: %{err},При удалении истории произошла ошибка: %{err}
-358,ru.app.msgs.destroy_item.success,Item was successfully deleted.,Объект %{obj} был удачно удален
-359,ru.app.msgs.destroy_item.error,Error occurred while deleting the item: %{err},При удалении  объекта произошла ошибка: %{err}
-360,ru.app.msgs.destroy_item.error_not_found,Item could not be found to delete.,Объект не был найден и удален. 
-361,ru.app.msgs.embed_code,Copy and paste this embed code into your web page,Скопируйте и вставьте этот встроенный код в веб-страницу
-362,ru.app.msgs.collaborators.success_remove,%{name} was removed as a collaborator,%{name} был удален из сотрудников
-363,ru.app.msgs.collaborators.user_not_found,User to remove as a collaborator could not be found,Пользыватель не найден для удаления
-364,ru.app.msgs.collaborators.no_permission,You do not have permission to remove this collaborator,У Вас нет права удалить этого сотрудника
-365,ru.app.msgs.collaborators.success_invitations,Invitations were sent!,Приглашения были отправлены
-366,ru.app.msgs.collaborators.error_invitations_all,No invitations were sent due to the following erros: %{msg},Приглашения не были отправлены из за ошибок: %{msg}
-367,ru.app.msgs.collaborators.error_invitations_some,"Some invitations were sent, but some were not due to the following erros: %{msg}",Часть приглашенией не была отправлена из за ошибок: %{msg}
-368,ru.app.msgs.notification.true,You will be sent notifications.,Вам будут отправлены оповешения.
-369,ru.app.msgs.notification.false,You will not be sent notifications.,Вам не будут отправлены оповешения.
-370,ru.app.msgs.notification.new_theme_all_success,You will recieve a notification whenever a theme is added.,You will recieve a notification whenever a theme is added.
-371,ru.app.msgs.notification.new_theme_none_success,You will not receive any notifications when themes are added.,You will not receive any notifications when themes are added.
-372,ru.app.msgs.notification.new_story_by_type_success,You will receive a notification when a story is added to these types: %{types}.,You will receive a notification when a story is added to these types: %{types}.
-373,ru.app.msgs.notification.story_comments_yes,You will be sent notifications when a comment is made to one of your stories.,Вы получите оповешения при коментарии на Ваших историях
-374,ru.app.msgs.notification.story_comments_no,You will not be sent notifications when a comment is made to one of your stories.,Вы не получите оповешения при коментарии на Ваших историях
-375,ru.app.msgs.notification.following_no,You will no longer receive notifications about new stories from '%{name}'.,Вы больше не получите оповешения про новые истории от  '%{nickname}'.
-376,ru.app.msgs.notification.language,You will be sent notifications in %{language}.,Вы получите оповешения на %{language}.
-377,ru.app.msgs.fail_change_order,The item was not able to be moved,Объект не может быть перемещен
-378,ru.app.msgs.nothing_selected,Please select a section/item to delete,"Пожалуйста, выберите раздел/объект чтобы удалить "
-379,ru.app.msgs.fail_delete,The section/item could not be deleted,Раздел/объект не может быть удален
-380,ru.app.msgs.confirm_delete,Are you sure you want to delete this section/item?,"Вы уверены, что хотите удалить этот раздел/объект?"
-381,ru.app.msgs.video_processed,Your video is processed,Ваше видео обработано
-382,ru.app.msgs.video_not_processed,Your video is being processed,Ваше видео в процессе обработки
-383,ru.app.msgs.not_found_for_update,The record to update could not be found in the database.,Запись для обновления не может быть найден в базе данных.
-384,ru.section_types.content.name,Text,Текст
-385,ru.section_types.content.description,"Can include html, css styling and images","Может включать HTML, CSS стиль и образы"
-386,ru.section_types.media.name,Full-Screen Media Slideshow,Медиа слайд-шоу во весь экран
-387,ru.section_types.media.description,Images and/or videos as a full-screen vertical slideshow,Посмотреть изображения и/или видео на вертикальном слайд-шоу во весь экран
-388,ru.section_types.slideshow.name,Image Slideshow,Слайд-шоу изображенеи
-389,ru.section_types.slideshow.description,Images in a horizontal slideshow,Изображения на горизонтальный слайд-шоу
-390,ru.section_types.embed_media.name,Embed Online Media,Добавить на страницу Онлайн Медиа
-391,ru.section_types.embed_media.description,"YouTube, Vimeo, etc","YouTube, Vimeo, итд"
-392,ru.section_types.youtube.name,YouTube Video,YouTube видео
-393,ru.section_types.youtube.description,YouTube video with ability to setting caption language,"YouTube видео, с переключаемыми субтитрами "
-394,ru.story_role.editor,Editor,Редактор
-395,ru.story_role.translator,Translator,Переводчик
-396,ru.message_types.bug,Report a Bug,Сообщить об ошибках
-397,ru.message_types.feature,Request a Feature,Запросить о новых функциях
-398,ru.message_types.feedback,General Feedback,Поделитесь своим мнением о нас
-399,ru.filters.all,All,Все
-400,ru.filters.matches,Matches,Похожее
-401,ru.filters.staff_pick,Staff Pick,Выбор Редакции
-402,ru.filters.staff_pick_title,View stories that have been selected as Staff Picks,"Посмотреть истории отмеченные как ""Выбор Редакции"""
-403,ru.filters.staff_pick_title_active,Remove Staff Pick filter,"Удалить фильтр ""Выбор редакции"""
-404,ru.filters.sort_header,Sorted By,Группировать по
-405,ru.filters.sort_title,Indicate how the stories should be sorted,Укажите признак группирования
-406,ru.filters.filters,Filters,Фильтры
-407,ru.filters.all_stories,All Stories,Все истории
-408,ru.filters.sort.recent,Recent,Последние
-409,ru.filters.sort.reads,Views,Просмотры
-410,ru.filters.sort.likes,Likes,"Отметки ""Нравится"""
-411,ru.filters.category_header,Category,Категория
-412,ru.filters.category_title,View stories that belong to a category,Прoсмотривать истории которые относятся к категории
-413,ru.filters.theme_header,Theme,Тема
-414,ru.filters.theme_title,View stories that belong to a theme,Просмотривать истории по теме
-415,ru.filters.language_header,Language,Язык
-416,ru.filters.language_title,View stories that are written in a particular language,Просмотривать истории созданные на определенным языке
-417,ru.filters.search,Find a Story,Найти историю
-418,ru.filters.following,Following,Подпосчики
-419,ru.filters.following_title,View stories of users that you are following,Просмотривать истории пользывателей к которым Вы подписаны
-420,ru.filters.following_title_active,Remove Following filter,"Удалить фильтр ""Мои подписки"""
-421,ru.filters.not_published,Not Published,Не опубликованные
-422,ru.filters.not_published_title,View stories that are not published,Просмотривать неопубликованнуе истории
-423,ru.filters.not_published_title_active,Show all stories,Показать все истории
-424,ru.tokeninput.searchingText,Searching...,ведется поиск...
-425,ru.tokeninput.tag.hintText,Search for an existing tag or enter a new tag,Поиск существующих тегов для создания новых
-426,ru.tokeninput.tag.noResultsText,No matches found. Press 'Enter' to save this new tag.,"Совпадений не найдено. Нажмите ""Enter"", чтобы сохранить этот новый тег."
-427,ru.tokeninput.collaborator.hintText,Search for an existing user or enter the email address for a new user,Поиск для существующего пользователя или введите адрес электронной почты для нового пользователя
-428,ru.tokeninput.collaborator.noResultsText,No matches found. Press 'Enter' to add this email address to the list of invited collaborators.,"Совпадений не найдено. Нажмите ""Enter"", чтобы добавить этот адрес электронной почты в список приглашенных сотрудников."
-429,ru.layouts.unsupported_browser.title,Unsupported Browser,Браузер не поддерживается
-430,ru.layouts.unsupported_browser.video,Your browser does not support this video.,Ваш браузер не поддерживает этого видео.
-431,ru.layouts.unsupported_browser.p1,We are sorry to report that your browser is out of date and will not properly render the content from this website.,К сожалению Ваш браузер устарел и не будет должным образом воспроизводить контент с этого сайта
-432,ru.layouts.unsupported_browser.p2,"On the bright side, there are several free browsers that you can download that are compatible with this site.","Но есть несколько бесплатных браузеров, которые можно загрузить, и которые совместимы с этого сайта"
-433,ru.layouts.unsupported_browser.chrome,Chrome,Chrome
-434,ru.layouts.unsupported_browser.firefox,Firefox,Firefox
-435,ru.layouts.unsupported_browser.ie,Internet Explorer (Windows only),Internet Explorer (только Windows)
-436,ru.layouts.unsupported_browser.opera,Opera,Opera
-437,ru.layouts.unsupported_browser.Safari,Safari,Safari
-438,ru.layouts.unsupported_browser.admin,Admin,Админ
-439,ru.layouts.unsupported_browser.sign_out,Sign Out,Выйти
-440,ru.layouts.unsupported_browser.js_link_title,JumpStart Georgia - We communicate data better!,JumpStart Georgia - Мы связываем данные лучше!
-441,ru.layouts.unsupported_browser.js_link_text,Built by,Создано
-442,ru.layouts.reviewer.copy,Copy To Clipboard...,Копировать в буфер обмена ...
-443,ru.layouts.reviewer.copied,Copied!,Скопировано!
-444,ru.layouts.storybuilder.source,Source,Source
-445,ru.layouts.storybuilder.target,Target,Target
-446,ru.shared.grid.no_stories,Oh no - no stories could be found!,"О, нет - истории не могут быть найдены!"
-447,ru.shared.story_nav_modals.copied,Copied!,Copied!
-448,ru.admin.index.title,Administration Section,Раздел одминистрации
-449,ru.admin.index.users,Users,Пользыватели
-450,ru.admin.users.edit.title,Editing User,Редактирующи пользователь
-451,ru.admin.users.index.title,Users,Пользыватели
-452,ru.admin.users.new.title,New User,Новый пользыватель
-453,ru.admin.users.show.title,User Details,Данные и пользывателе
-454,ru.root.about.title,About Chai Khana,О Чайхане
-455,ru.root.embed.home_link,Built on Chai Khana,Создан на Чайхане
-456,ru.stories.new.title,Story Settings Form,Форма параметров истории
-457,ru.stories.edit.title,Story Settings Form,Форма параметров истории
-458,ru.stories.form.placeholder.title,Title of Story,Заглавок истории
-459,ru.stories.form.placeholder.permalink,URL to the story,URL к истории
-460,ru.stories.form.placeholder.author,Author(s) of the article,Автор(ы) статьи
-461,ru.stories.form.placeholder.media_author,Author(s) of photos and/or videos,Автор(ы) фото/видео
-462,ru.stories.form.placeholder.translation_author,Author(s) that translated the story into this language,Автор(ы) переводной историй на этот язык
-463,ru.stories.form.hint.title,Story title will appear at the top of your story,Заглавок будет виден над вашей историей
-464,ru.stories.form.hint.permalink,"The default URL is the title of the story, but you can change it if desired","URL по умолчанию будет название рассказа, но при желании вы можете изменить его"
-465,ru.stories.form.hint.author,Select the author(s) of the story to allow the story to appear on their webpage.,"Выберите автора (ов) истории, чтобы история могля  появиться и на их странице"
-466,ru.stories.form.hint.media_author,Author names will appear below the Story Author names,Имена соавторов появятся под именем автора истории
-467,ru.stories.form.hint.translation_author,Author names will appear below the Photo and Video Author names,Имена соавторов появятся под именем автора фото/видео
-468,ru.stories.form.hint.published,Published stories are available for the world to view,Опубликованные истории доступны для всего мира
-469,ru.stories.form.hint.publish_home_page,"If checked, your published story will appear on the site's homepage","Если отметить, то Ваша история будет на главной странице сайта"
-470,ru.stories.form.hint.template,Choose template to apply styling to story,Выберите шаблон для стиля истории
-471,ru.stories.form.hint.thumbnail,Image that is used to show the story on the home page when the story is published (jpg and png only; 4MB file size limit),"Изображение, которое используется, чтобы показать историю на главной странице после опубликования (JPG и PNG только, ограничение на размер файла 4MB )"
-472,ru.stories.form.hint.editor,Person that created the story record in this website,Человек который создал эту запись на сайте
-473,ru.stories.form.hint.editors,Select people that you want to give access to edit the story,"Выберите людей, которым Вы хотите давать доступ на редактирования истории"
-474,ru.stories.form.hint.about,Short summary of story that will be used on the home page and when you story is shared,"Краткое содержание (конспект) истории, которое будет использоваться на главной странице после опубликования"
-475,ru.stories.form.hint.locale,Select the language of your story. Allows users to filter stories by a language.,Выберите язык вашей истории - это позволит пользователям фильтровать истории по языку
-476,ru.stories.form.hint.categories,Select the category(s) your story belongs to.  Allows users to filter stories by a category.,Выберите категории для вашей истории - это позволит пользователям фильтровать истории по категориям
-477,ru.stories.form.hint.tag_list,"Enter text to find existing tags.  If your tag does not exist yet, press 'Enter' to add the new tag to the list.","Введите текст, чтобы найти существующие теги. Если ваш тег пока не существует, нажмите ""Enter"", чтобы добавить новый тег в список."
-478,ru.stories.form.hint.story_type,Select the type of your story.,Выберите тип вашей истории.
-479,ru.stories.form.hint.theme,Select the theme(s) your story belongs to.,Выберите тему (ы) Вашей истории
-480,ru.stories.form.hint.in_theme_slider,"If checked, this story will appear in the slider at the top of the theme page.","При выборе этого, история появится в верхней ползунке тем."
-481,ru.stories.collaborators.title,Collaborators for '%{title}',Сотрудники '%{title}'
-482,ru.stories.collaborators.owner_header,Story Author,Автор истории
-483,ru.stories.collaborators.collaborators_header,Story Collaborators,Сотрудники истории
-484,ru.stories.collaborators.explanation,A story collaborator is someone that has access to edit this story.,У сотрудников есть доступ на редактирование истории
-485,ru.stories.collaborators.editors_header,Editors,Редакторы
-486,ru.stories.collaborators.editor_explanation,An Editor has access to add/edit the story and translate the story into any language. An Editor can also add collaborators and publish the story.,"У редакторов есть доступ на добавление/редактирование истории, на перевод в другой язык, на приглашение сотрудников и на опубликование."
-487,ru.stories.collaborators.translators_header,Translators,Переводчики
-488,ru.stories.collaborators.translator_explanation,"A Translator has access to translate the story into a specific language(s). A Translator does not have the ability to edit the original story, add collaborators or publish the story.","У переводчиков есть доступ на осуществления перевода текста на другой язык. У переводчиков нету доступа на редактирование оригинальной истории, добавления сотрудников или на опукование."
-489,ru.stories.collaborators.remove_title,Remove %{name},Удалить %{name}
-490,ru.stories.collaborators.not_accepted_title,%{name} has not accepted the invitation yet,%{name} еще не принял/а Ваше приглашение
-491,ru.stories.collaborators.add_header,Add Collaborators,Добавить сотрудника
-492,ru.stories.collaborators.add_explanation,"For the users you enter below, an email will be sent inviting them to be a collaborator on this story.","Введенным пользывателям будет отправлено электронное письмо, с приглашеним на сотрудничество на эту историю"
-493,ru.stories.collaborators.editor_label,Enter the names or email addresses of the editors,Введите имена или адреса электронных почт редакторов
-494,ru.stories.collaborators.language_label,Select the translation language(s),Выберите языд(и) для перевода
-495,ru.stories.collaborators.translator_label,Enter the name or email address of the translator,Введите имя или электронный адрес переводчика
-496,ru.stories.collaborators.translator_add,Add Another Translator,Добавить другого переводчика
-497,ru.stories.collaborators.translator_remove,Remove Translator,Удалить переводчика
-498,ru.stories.collaborators.message,Add Message to Notification (optional),Добавить сообшение к оповешению
-499,ru.stories.collaborators.submit,Send Collaboration Invitation,Отправить приглашения на сотрудничество
-500,ru.stories.media.form_title,Full-Screen Media Slideshow Form,Форма для медиа слайд-шоу на весь экран
-501,ru.stories.media.left,Left,Левый
-502,ru.stories.media.center,Center,Центр
-503,ru.stories.media.right,Right,Правый
-504,ru.stories.media.image,Image,Изображение
-505,ru.stories.media.video,Video,Видео
-506,ru.stories.media.floating,Floating,Плавающий
-507,ru.stories.media.fixed,Fixed,Фиксированный
-508,ru.stories.media.placeholder.title,Media title,Заглавок медии
-509,ru.stories.media.placeholder.caption,Caption text,Текст титров
-510,ru.stories.media.placeholder.source,Source of the image/video,Источник изображения / видео
-511,ru.stories.media.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Этот текст появляется только на левой боковой панели, он не будет отображаться в истории"
-512,ru.stories.media.hint.media_type,"For videos, an image is necessary because videos are not loaded on mobile devices.","Для видео, изображения, необходимо потому, что видео не загружен на мобильных устройствах"
-513,ru.stories.media.hint.caption,"Caption text will appear on top of the image/video. If this is the first item in the story, the caption text is hidden.","Текст титров появится на верхней части изображения / видео. Если это первыйо бьект в истории, то текст титров будет скрыта"
-514,ru.stories.media.hint.source,"Source of the image/video, appears in the bottom-right corner","Источник изображения / видео, появится в нижнем правом углу"
-515,ru.stories.media.hint.image,Only jpg format allowed; 4MB file size limit,Разрешен только формат JPG: ограничение на размер файла - 4 Мб 
-516,ru.stories.media.hint.video,"Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receive a notification when the processing is complete, typically within a few minutes.","Принимаются только форматы МP4, MOV, WebM, OGV, FLV, AVI и WMV; 25 MB - предельный размер файлов. После загружения видео должно быть обработанно, прежде чем станет доступным для просмотра. Вы получите уведомление, когда обработка завершится (как правило, в течение нескольких минут)."
-517,ru.stories.media.hint.caption_align,The Caption text will appear on top of the image/video (appears on the left by default) ,Текст титров появится в верхней части изображения / видео (по умолчанию - на левой стороне) 
-518,ru.stories.media.hint.infobox_type,The Caption text can float on top of the image/video or can be fixed at the bottom of the image/video,Текст титров может плавать в верхней части изображения / видео или фиксированна на нижней части изображения / видео
-519,ru.stories.media.hint.video_loop,"If checked, the video will loop infinitly, otherwise the video will not loop","При выборе этого видео будет бесконечно переигрываться, иначе видео не будет переигрываться"
-520,ru.stories.section.form_title,Section Form,Форма раздела
-521,ru.stories.section.yes,Yes,Да
-522,ru.stories.section.no,No,Нет
-523,ru.stories.section.placeholder.title,Section title,Заглавок раздела
-524,ru.stories.section.hint.title,"This text appears in the left sidebar and, if Navigation Shortcut is selected, will appear as the title text for the shortcut","Этот текст появляется в левой боковой панели и, если отмечена Навигационная ссылка, то текст будет отображаться в качестве заголовки ярлыка"
-525,ru.stories.section.hint.type,Selecting this type determines what kind of information you can add into this section,"При выборе этого типа определяет, какого рода информацией Вы можете добавить в этот раздел"
-526,ru.stories.section.hint.has_marker,"If checked, there will be a navigation shortcut link to go to this section","При выборе этого будет навигационная ссылка, чтобы перейти к этому разделу"
-527,ru.stories.section.hint.audio,Background audio to play while this section is in view (mp3 format only; 10mb file size limit),"Фоновый аудиофайл, для проигрывания во время просмотра этого (формат - только MP3; предел размера файла - 10 МБ )"
-528,ru.stories.section.hint.delete_audio,"If checked, the Audio Track will be deleted",При выборе этого аудиофайл будет удален
-529,ru.stories.content.form_title,Text Form,Форма текста
-530,ru.stories.content.placeholder.title,Text title,Заглавок текста
-531,ru.stories.content.placeholder.caption,optional,необязательно
-532,ru.stories.content.placeholder.sub_caption,optional,необязательно
-533,ru.stories.content.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Этот текст появляется только в левой боковой панели, он не будет отображаться в истории"
-534,ru.stories.content.hint.caption,Heading of text will appear at the top of the section,Заголовок текста появится в верхней части раздела
-535,ru.stories.content.hint.sub_caption,Subheading of text will appear below the Heading,Подзаголовок текста появится под заголовком
-536,ru.stories.content.hint.content,"Text can include html, css styling and images","Текст может включать в себя HTML, CSS стиль и образы"
-537,ru.stories.reviewer_key.title,Private URL,Личный URL
-538,ru.stories.reviewer_key.desc,"You can copy and share the following URL with whomever you want to review '%{title}' before it is published. These people will have the ability to read your story, but not edit it.","Вы можете копировать и распространять следующий URL, с кем вы хотите просмотреть '% {title}', до опубликации. Эти люди будут иметь возможность только читать историю, но не редактировать его."
-539,ru.stories.slideshow.form_title,Image Slideshow Form,Форма для слайд-шоу изображенеи
-540,ru.stories.slideshow.add_image,Add Image,Добавить изображение
-541,ru.stories.slideshow.placeholder.title,Slideshow Title,Заглавок слайд-шоу
-542,ru.stories.slideshow.placeholder.caption,optional,необязательно
-543,ru.stories.slideshow.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Этот текст появляется только в левой боковой панели, он не будет отображаться в истории"
-544,ru.stories.slideshow.hint.caption,Heading will appear at the top of the slideshow,Заголовок появится в верхней части спайдшоу
-545,ru.stories.asset_fields.remove_image,Remove,Удалить
-546,ru.stories.asset_fields.placeholder.caption,optional,необязательно
-547,ru.stories.asset_fields.placeholder.source,optional,необязательно
-548,ru.stories.asset_fields.hint.caption,Image Description will appear below the image,Описание изображения будет отображаться под картиной
-549,ru.stories.asset_fields.hint.source,Source will appear below the Image Description,Источник появится под описанием изображения
-550,ru.stories.asset_fields.hint.asset,Only jpg and png format allowed; 4MB file size limit,"Только форматы JPG и PNG, ограничение на размер файла 4MB"
-551,ru.stories.asset_fields.label.caption,Image Description,Описание изображения
-552,ru.stories.asset_fields.label.source,Image Source,Источник изображения
-553,ru.stories.embed_media.form_title,Embed Online Media Form,Форма встроенного онлайн медиа контента
-554,ru.stories.embed_media.get_media,Get Online Media,Получить медиа контент
-555,ru.stories.embed_media.preview,Preview of Online Media,Предтварительный просмотр контента
-556,ru.stories.embed_media.error,The URL could not be processed. Please try again.,"URL не может быть обработан. Пожалуйста, попробуйте еще раз."
-557,ru.stories.embed_media.placeholder.title,Embed Online Media Title,Заглавок встроенного контента
-558,ru.stories.embed_media.placeholder.url,Url to online media,URL к медиа контенту
-559,ru.stories.embed_media.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Этот текст появляется только в левой боковой панели, он не будет отображаться в истории"
-560,ru.stories.embed_media.hint.url,"The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED","Дла встроенного медиа контента могут быть использованы следующие сайты Аудио: Soundcloud, Spotify; Видео: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
-561,ru.stories.youtube.form_title,YouTube Video Form,Форма для видео из YouTube
-562,ru.stories.youtube.get_media,Get Youtube Video,Получить видео из YouTube
-563,ru.stories.youtube.preview,Preview of YouTube Video,Предтварительный просмотр видео из YouTube
-564,ru.stories.youtube.error,The URL could not be processed. Please try again.,"URL не может быть обработан. Пожалуйста, попробуйте еще раз."
-565,ru.stories.youtube.placeholder.title,YouTube Title,Заглавок видео из YouTube
-566,ru.stories.youtube.placeholder.url,Url to YouTube video,URL к видео на YouTube
-567,ru.stories.youtube.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Этот текст появляется только в левой боковой панели, он не будет отображаться в истории"
-568,ru.stories.youtube.hint.url,Copy a YouTube URL and paste it here,Скопируйте URL-адрес YouTube и вставить его здесь
-569,ru.stories.youtube.hint.fullscreen,"If checked, the video will take up the entire screen",При выборе этого видео будет занимать весь экран
-570,ru.stories.youtube.hint.loop,"If checked, the video will loop over and over",При выборе этого видео будет бесконечно переигрываться
-571,ru.stories.youtube.hint.info,"If checked, the title bar will be shown on top of the video",При выборе этого в заглвoка будет показан на верхней части видео
-572,ru.stories.youtube.hint.cc,"If checked, the video subtitles will be shown by default",При выборе этого субтитры будут отображаться по умолчанию
-573,ru.stories.youtube.hint.menu_lang,Language of the YouTube menu/controls,Язык YouTube меню / управления
-574,ru.stories.youtube.hint.cc_lang,Language of the subtitles to show by default,Язык субтитров - показать по умолчанию
-575,ru.storyteller.byline,By,Oт
-576,ru.storyteller.byline_media,Photos and videos by ,Фото и видео от
-577,ru.storyteller.byline_translator,Translated by ,Переводчик
-578,ru.storyteller.source,Source:,Источник
-579,ru.storyteller.by,by,От
-580,ru.storyteller.related_stories,Related Stories,Related Stories
-581,ru.storyteller.view_all_stories_in,View all stories in,View all stories in
-582,ru.settings.index.title,Settings,Настройки
-583,ru.settings.index.facebook_avatar,This is your avatar from Facebook.,Это ваш аватар из Facebook.
-584,ru.settings.index.use_facebook_avatar,Use Facebook Avatar,Используйте аватар Facebook
-585,ru.settings.index.hint.about,Short summary about yourself.  This will be shown with the stories that you publish.,Коротко о себе - это будет показано с Вашими историями
-586,ru.settings.index.hint.default_story_locale,Select the language you want to use by default when creating a new story.,"Выберите язык, который вы хотите использовать по умолчанию при создании новой истории."
-587,ru.settings.index.submit,Save Settings,Сохранить настройки
-588,ru.settings.invitations.title,Collaboration Invitations,Приглашения на сотрудничество
-589,ru.settings.invitations.no_invitations,At this time you have no invitations waiting for you.,На данный момент у вас нет приглашенией
-590,ru.settings.invitations.accept_link,Accept,Принимать
-591,ru.settings.invitations.decline_link,Decline,Отклонить
-592,ru.settings.invitations.header_date,Date Sent,Дата отправки
-593,ru.settings.invitations.header_story,Story Title,Заглавок истории
-594,ru.settings.invitations.header_role,Role,Роль
-595,ru.settings.invitations.header_from,Sent By,Отправлено от
-596,ru.settings.notifications.title,Notifications,Уведомления
-597,ru.settings.notifications.explain,You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.,You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.
-598,ru.settings.notifications.all_sub_title,All Notifications,Все Уведомления
-599,ru.settings.notifications.all_label,Do you want to recieve any notifications from Chai Khana?,Вы хотите получить какие-либо уведомления от Чай Хана?
-600,ru.settings.notifications.all_no,"No, do not send me any notifications.","Нет, не присылайте мне никаких уведомленией"
-601,ru.settings.notifications.all_yes,"Yes, I want notifications sent to me.","Да, я хочу уведомлений."
-602,ru.settings.notifications.story_comment_sub_title,New Story Comment Notifications,Уведомления о новых комментариях
-603,ru.settings.notifications.story_comment_label,Do you want to recieve notifications when a comment is made to one of your stories?,"Вы хотите получить уведомление, коментировают одного из ваших рассказов?"
-604,ru.settings.notifications.story_comment_no,"No, do not send me any notifications.","Нет, не присылайте мне уведомления вообще."
-605,ru.settings.notifications.story_comment_yes,"Yes, I want notifications sent to me.","Да, я хочу уведомлений."
-606,ru.settings.notifications.new_themes_sub_title,New Theme Notifications,New Theme Notifications
-607,ru.settings.notifications.new_themes_all,Notify me when any theme is added.,Notify me when any theme is added.
-608,ru.settings.notifications.new_themes_none,I do not want to receive notifications when a new theme is added.,I do not want to receive notifications when a new theme is added.
-609,ru.settings.notifications.new_stories_by_category,Notify me when a story is added to:,"Сообщите мне, когда добавлена история в "
-610,ru.settings.notifications.language_sub_title,Notification Language,Язык Уведомленией
-611,ru.settings.notifications.language_label,In what language do you want to receive the notifications?,На каком языке вы хотите получать уведомления?
-612,ru.settings.notifications.following_sub_title,Chai Khana Users You Are Following,"Пользыватели Чайханы, которым вы подписаны. Люди вы следуете"
-613,ru.settings.notifications.following_label,"You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image.","Вы будете получать уведомления, когда пользователь к комы Вы подписаны публикует историю. Чтобы не получать уведомления от пользователя, отпишитесь от них, нажав на их изображения."
-614,ru.settings.notifications.following_not,"At this time, you are not following any users.",На данный момент вы не следуете никого.
-615,ru.settings.notifications.following_title1,Click to unfollow '%{name}',Нажмите что бы отписаться от '%{nickname}'
-616,ru.settings.notifications.following_title2,Click to follow '%{name}',Нажмите что бы подписаться к '%{nickname}'
-617,ru.settings.notifications.submit,Save Settings,Сохранить настройки
-618,ru.imageuploader.missing,An error occurred while processing your image. Please try again.,"Произошла ошибка при обработке изображения. Пожалуйста, попробуйте еще раз."
-619,ru.imageuploader.invalid_type,Invalid file type. Only .jpg or .png is allowed.,Неверный тип файла -допускается только .jpg или .png 
-620,ru.imageuploader.size_limit,Image file size is limited to 4MB,Максимум размер файла 4МB
-621,ru.devise.mailer.reset_password_instructions.title,Hello %{nickname}!,Привет %{nickname}!
-622,ru.devise.mailer.reset_password_instructions.p1,"Someone has requested a link to change your password on Chai Khana, and you can do this through the link below.","Кто-то просил ссылку, чтобы изменить пароль на Чайхане, и вы можете сделать это через ссылку ниже."
-623,ru.devise.mailer.reset_password_instructions.link_title,Change my password,Изменение пароля
-624,ru.devise.mailer.reset_password_instructions.p2,"If you didn't request this, please ignore this email.","Если вы не запрашивали это, не обращайте внимания на это сообщение."
-625,ru.devise.mailer.reset_password_instructions.p3,Your password won't change until you access the link above and create a new one.,"Ваш пароль не будет меняться до тех пор, пока Вы не поидете по ссылке выше и не создадите новый."
+Вы можете настроить получения оповещений от Чайханы на электронную почту посетив соответствующую страницу: [notifications_link]."
+240,ru.mailer.notification.published_theme.subject,New themes have been published on Chai Khana!,На Чайхане были опубликованы новые темы!
+241,ru.mailer.notification.published_theme.message,The following themes you have expressed interest in were recently published:,"Следующие темы, которыми вы интересовались, были недавно опубликованы"
+242,ru.mailer.notification.published_story.subject,New stories have been published on Chai Khana!,На Чайхане были опубликованы новые истории!
+243,ru.mailer.notification.published_story.message,The following stories you have expressed interest in were recently published:,"Истории которыми Вы интересовались, были недавно опубликованы."
+244,ru.mailer.notification.story_comment.subject,Someone has posted a comment on your story on Chai Khana!,Кто то оставил комментарию на Вашей истории в Чайхане!
+245,ru.mailer.notification.story_comment.message,The following stories have recently received a comment:,Следующие истории недавно получили комментарий:
+246,ru.mailer.notification.story_comment.comment,1 Comment,1 Комментарий
+247,ru.mailer.notification.story_comment.comments,%{num} Comments,%{num} Комментарии
+248,ru.mailer.notification.story_collaboration.subject,You have been invited to collaborate on a story on Chai Khana!,Вы были приглашены на сотрудничество над историей на Чайхане!
+249,ru.mailer.notification.story_collaboration.message,"You have received the following invitations to collaborate on stories with other people on Chai Khana. If you would like to accept the invitation, simply click the 'Accept the Invitation' link. If you want to decline this invitation, no action is needed on your part.","Вы получили следующие приглашения к сотрудничеству над историей с другими участниками Чайханы. Если вы хотите принять приглашение, просто нажмите на ссылку ""принять приглашение"". Если вы хотите отказаться от этого приглашения, никаких действий не требуется с вашей стороны."
+250,ru.mailer.notification.story_collaboration.from,From,От
+251,ru.mailer.notification.story_collaboration.role,Role,Роль
+252,ru.mailer.notification.story_collaboration.story_title,Story Title,Заглавок истории
+253,ru.mailer.notification.story_collaboration.msg,Message,Письмо
+254,ru.mailer.notification.story_collaboration.accept_link,Accept the Invitation,Принять приглашение
+255,ru.mailer.notification.story_collaboration.all_invitations,View all of your Chai Khana collaboration invitations.,Просмотреть все приглашения на сотрудничество в Чайхане.
+256,ru.mailer.notification.processed_videos.subject,Your videos on Chai Khana have been processed!,Ваши видео на Чайхане были обработаны!
+257,ru.mailer.notification.processed_videos.message,The following stories of yours have videos that have completed processing:,"В ваших историях следующих есть видеоматериалы, обработка которых была завершена."
+258,ru.mailer.notification.processed_videos.story_title,Story:,История:
+259,ru.mailer.notification.processed_videos.status,Video Processing Status: %{processed} of %{total} completed,Состояание обработвки видеоматериала: %{processed} от %{total} завершена.
+260,ru.mailer.notification.processed_videos.processed,Videos Processed:,Видеоматериал обработан.
+261,ru.mailer.notification.processed_videos.not_processed,Videos Still Processing:,Видеоматериал находится в процессе обработки.
+262,ru.mailer.notification.processed_videos.none_processed,No vidoes have been processed.,Видеоматериалы пока не обработаны.
+263,ru.mailer.notification.processed_videos.none_processing,All videos have been processed!,Все видеоматериалы обработаны!
+264,ru.mailer.notification.processed_video_errors.subject,Videos on Chai Khana have processing errors!,Появилась ощибка при обработке видеоматериала на Чайхане!
+265,ru.mailer.notification.processed_video_errors.message,The following videos had errors while being processed:,В процессе обработки у следующих видеоматериалов появились ошибки.
+266,ru.mailer.notification.processed_video_errors.story_id,Story ID,ID Истории
+267,ru.mailer.notification.processed_video_errors.asset_id,Asset ID,ID Файла
+268,ru.mailer.notification.processed_video_errors.path,URL of Video,URL Видео
+269,ru.helpers.actions,Actions,Действия.
+270,ru.helpers.links.admin,Admin Section,Раздел Админа.
+271,ru.helpers.links.edit,Edit,Редактировать.
+272,ru.helpers.links.confirm,Are you sure?,Вы уверенны?
+273,ru.helpers.links.destroy,Delete,Удалить
+274,ru.helpers.links.new,New,Новый
+275,ru.helpers.links.list,View All,Посмотреть все
+276,ru.helpers.links.back,View All,Посмотреть все
+277,ru.helpers.links.cancel,Cancel,Отменить
+278,ru.helpers.links.reset,Reset,Сброс
+279,ru.helpers.links.view,View,Посмотреть
+280,ru.helpers.links.sign_in_facebook,Sign in with Facebook,Войти через Facebook
+281,ru.helpers.links.edit_story,Edit Story Settings,Изменить настройки истории.
+282,ru.helpers.links.delete_story,Delete Story,Удалить историю.
+283,ru.helpers.links.admin_story,Edit Content,Редактировать контент.
+284,ru.helpers.links.publish_story,Publish Story,Опубликовать историю.
+285,ru.helpers.links.forgot_password,Forgot Password?,Забыли пароль?
+286,ru.helpers.links.change_password,Change Your Password,Изменить Вашу пароль
+287,ru.helpers.links.change_password2,Change Password,Изменить пароль.
+288,ru.helpers.links.password_reset,Reset Password,Восстановить пароль.
+289,ru.helpers.links.sign_in2,Sign In,Войти
+290,ru.helpers.links.sign_in,Already have an account?,Уже зарегистрированы?
+291,ru.helpers.links.sign_up2,Sign Up,Стать участником
+292,ru.helpers.links.sign_up_question,Not a member yet?,Еще не участник?
+293,ru.helpers.links.sign_up,Register now,Зарегистрироваться сейчас
+294,ru.helpers.links.sign_up_title,Join Chai Khana,Присоединиться к Чайхане
+295,ru.helpers.links.sign_out,Sign Out,Выйти
+296,ru.helpers.links.sign_in_provider,Sign in with %{provider},Войти через %{provider}
+297,ru.helpers.links.sign_up_provider,Sign up with %{provider},Зарегистрироваться через %{provider}
+298,ru.helpers.links.sign_in_local_or_provider,or log in with your email and password,или войти через эл.почту и пароль
+299,ru.helpers.links.reset_or_sign_in,sign in with facebook or reset your password,войти через Facebook или восстановить пороль.
+300,ru.helpers.links.add_story,Add Story,Добавить историю
+301,ru.helpers.links.users,Users,Пользователи
+302,ru.helpers.links.authors,Authors,Авторы
+303,ru.helpers.links.feedback,Feedback,Отзывы
+304,ru.helpers.links.about,About,О Чайхане
+305,ru.helpers.links.rss,RSS,RSS
+306,ru.helpers.links.themes,Themes,Темы
+307,ru.helpers.links.story_types,Types,Типы
+308,ru.helpers.links.languages,Languages,Языки
+309,ru.helpers.links.follow,Follow,Следовать
+310,ru.helpers.links.facebook,Facebook,Facebook
+311,ru.helpers.links.twitter,Twitter,Twitter
+312,ru.helpers.links.youtube,YouTube,YouTube
+313,ru.helpers.links.subscribe,Subscribe,Получать обновления
+314,ru.helpers.links.user_settings,Settings,Настройки
+315,ru.helpers.links.like,Like,Нравится
+316,ru.helpers.links.likes,Likes,"Отметки ""Нравится"""
+317,ru.helpers.links.comments,Comment on this story,Комментарий
+318,ru.helpers.links.views,%{num} views,%{num} просмотров
+319,ru.helpers.links.tags,Tags,Теги
+320,ru.helpers.links.menu,Menu,Меню
+321,ru.helpers.links.pages,Edit Text on Site,Редактировать текст на сайте
+322,ru.helpers.links.next,Next,Следующий
+323,ru.helpers.links.feed,Feed,Лента новостей
+324,ru.helpers.links.download,Download,Download
+325,ru.helpers.links.previous,Previous,Previous
+326,ru.helpers.links.story_menu.link.story,Story,История
+327,ru.helpers.links.story_menu.link.story_settings,Story Settings,Настройки историй
+328,ru.helpers.links.story_menu.link.collaborators,Collaborators,Сотрудники
+329,ru.helpers.links.story_menu.link.preview,Preview,Предварительный просмотр
+330,ru.helpers.links.story_menu.link.publish,Publish,Опубликовать
+331,ru.helpers.links.story_menu.link.unpublish,Unpublish,Отменить опубликование
+332,ru.helpers.links.story_menu.link.review,Private URL,Личный URL
+333,ru.helpers.links.story_menu.link.clone,Clone,Клонировать
+334,ru.helpers.links.story_menu.link.export,Download,Загрузить
+335,ru.helpers.links.story_menu.link.delete_story,Delete,Удалить
+336,ru.helpers.links.story_menu.link.translations,Translations,Переводы
+337,ru.helpers.links.story_menu.title.story,Edit your story,Редактировать Вашу историю
+338,ru.helpers.links.story_menu.title.story_settings,"Edit story title, authors, URL, summary, thumbnail, language, tags and/or categories, content etc.","Редактировать заглавок истроии, авторов, URL, аннотацию, эскиз (тамбнейл), язык, теги и/или категории, контент, итд"
+339,ru.helpers.links.story_menu.title.collaborators,Manage which users have access to edit your story,"Установить, какие ползыватели имеют доступ к редактированию Вашей истории"
+340,ru.helpers.links.story_menu.title.preview,See how your story looks,Посмотреть как выглядит Ваша история
+341,ru.helpers.links.story_menu.title.publish,Make your story viewable to the world,Сделать Вашу историю видимой во всем мире
+342,ru.helpers.links.story_menu.title.unpublish,Make your story NOT viewable to the world,Сделать Вашу историю НЕ видимой во всем мире
+343,ru.helpers.links.story_menu.title.review,URL to share this story before publishing,URL для обмена до публикации
+344,ru.helpers.links.story_menu.title.clone,Copy this story into a new story,Скопировать эту историю в новую историю
+345,ru.helpers.links.story_menu.title.export,Download the complete story,Загрузить историю полностью
+346,ru.helpers.links.story_menu.title.delete_story,Deleting a story cannot be undone,Удаление истории не возможно отменить
+347,ru.helpers.links.story_menu.title.translations,Translate your story into other languages,Перевести Вашу историю на другие языки
+348,ru.helpers.titles.new,New %{model},Новый %{model}
+349,ru.helpers.titles.edit,Edit %{model},Редактировать %{model}
+350,ru.helpers.titles.story_list,My Stories,Мои истории
+351,ru.helpers.hints.nickname,"Your nickname is used in the URL to your published stories (e.g., nickname/story-title)","Ваш логин используется в URL ваших опубликованных историей (например, ник / история-название)"
+352,ru.helpers.hints.local_avatar,Image that is shown in the header bar and on your user page (png and jpg only).,Фото которое будет отображаться в строке заголовка и на вашу страницу пользователя (только png и jpg ).
+353,ru.helpers.hints.avatar,Image that is shown on the Author's page (png and jpg only).,Фото на странице автора (только .png и .jpg)
+354,ru.helpers.hints.like,Like this story,Нравится эта история
+355,ru.helpers.hints.unlike,Unlike this story,"Отменить ""Нравится эта история"""
+356,ru.helpers.hints.staff_pick,Select as Staff Pick,Отметить как Избранная история
+357,ru.helpers.hints.staff_unpick,Unselect as Staff Pick,Отменить статус Избранная история
+358,ru.helpers.hints.is_staff_pick,Staff Pick,Избранная история
+359,ru.helpers.hints.clone_asset,"If checked, the file to the left will be used for this translation","Если отметить, то файл, который находиться на левой стороне, будет выбран для этого перевода"
+360,ru.app.language.en,English,English
+361,ru.app.language.ka,ქართული,ქართული
+362,ru.app.language.hy,Հայերեն,Հայերեն
+363,ru.app.language.ru,Русский,Русский
+364,ru.app.language.az,Azərbaycan,Azərbaycan
+365,ru.app.buttons.back,View All,Посмотреть все
+366,ru.app.buttons.list,View All,Посмотреть все
+367,ru.app.buttons.admin,Admin Section,Раздел Админа.
+368,ru.app.buttons.delete,Delete,Удалить
+369,ru.app.buttons.edit,Edit,Редактировать
+370,ru.app.buttons.show,Show,Показать
+371,ru.app.buttons.cancel,Cancel,Отменить
+372,ru.app.buttons.update,Update,Обновить
+373,ru.app.buttons.save,Save,Сохранить
+374,ru.app.buttons.save_and_next,Save & Next,Сохранить и перейти к следующему
+375,ru.app.buttons.create,Create,Создать
+376,ru.app.buttons.reset,Reset,Сброс
+377,ru.app.buttons.remove,Remove,Удалить
+378,ru.app.buttons.confirm,Are you sure?,Вы уверенны?
+379,ru.app.buttons.new,New,Новый
+380,ru.app.buttons.add_section,Add Section,Добавить раздел
+381,ru.app.buttons.add_item,Add Item into Section,Добавить пункт к разделу
+382,ru.app.buttons.up,Move Selected Section/Item Up,Переместить выбранный раздел/элемент вверх
+383,ru.app.buttons.down,Move Selected Section/Item Down,Переместить выбранный раздел/элемент вниз
+384,ru.app.buttons.delete_item,Delete Selected Section/Item,Удалить выбранный раздел/элемент
+385,ru.app.buttons.preview,Preview,Предварительный просмотр
+386,ru.app.buttons.preview_image,Preview Image,Предварительный просмотр изображений
+387,ru.app.buttons.preview_video,Preview Video,Предварительный просмотр видео
+388,ru.app.buttons.preview_audio,Listen To Audio,Послушать аудио
+389,ru.app.buttons.publish,Publish,Опубликовать
+390,ru.app.buttons.unpublish,Unpublish,Отменить опубликование
+391,ru.app.buttons.clone,Copy this story into a new story,Скопировать эту историю в новую историю
+392,ru.app.buttons.export,Download the complete story,Загрузить историю полностью
+393,ru.app.buttons.scroll,Scroll,Прокрутить
+394,ru.app.buttons.reviewer_key,Get URL to share this story before publishing,Получить URL истории для обмена до публикации
+395,ru.app.buttons.reviewer_key_published,Your story is published so there is no need to share this non-published URL,"Ваша история уже опубликована, и Вам птедтворительный URL уже не нужен"
+396,ru.app.buttons.explore,Explore,Просматривать
+397,ru.app.buttons.processing,Processing...,Processing...
+398,ru.app.common.app_name_not_trans,Chai Khana,Чайхана
+399,ru.app.common.app_name,Chai Khana,Чайхана
+400,ru.app.common.app_intro,Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.,"Чайхана является неправительственной организацией, которая обеспечивает трансграничные журналистские тренинги и онлайн-публикации для мультимедийных материалов оповещающих о проблемах южнокавказского региона."
+401,ru.app.common.app_intro_meta,Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.,"Чайхана является неправительственной организацией, которая обеспечивает трансграничные журналистские тренинги и онлайн-публикации для мультимедийных материалов оповещающих о проблемах южнокавказского региона."
+402,ru.app.common.powered_by,Powered by,При поддержке
+403,ru.app.common.powered_by_js,Jumpstart Georgia,Jumpstart Georgia
+404,ru.app.common.powered_by_end,,
+405,ru.app.common.embed_slogan,Build your story with Chai Khana,Создайте свою историю в Чайхане
+406,ru.app.common.added_on,Added on: %{date},Добавлено: %{date}
+407,ru.app.common.last_sign_in,Logged in last: %{date},Последний визит на сайт: %{date}
+408,ru.app.common.admin,Admin,Админ
+409,ru.app.common.sign_out,Sign Out,Выйти
+410,ru.app.common.jumpstart,JumpStart Georgia,JumpStart Georgia
+411,ru.app.common.js_link_title,JumpStart Georgia - We communicate data better!,JumpStart Georgia - Мы связываем данные лучше!
+412,ru.app.common.js_link_text,Built by,Создан
+413,ru.app.common.search,Search for Story ...,Поиск историей...
+414,ru.app.common.build,Build Story,Создайте историю
+415,ru.app.common.explore,Explore Stories,Просматриваете истории
+416,ru.app.common.about_story,About,О нас
+417,ru.app.common.likes,Likes,"Отметки ""Нравится"""
+418,ru.app.common.comments,Comments,Коментарии
+419,ru.app.common.publish_date,Publish Date,Дата публикации
+420,ru.app.common.follow,Follow,Подписаться
+421,ru.app.common.following,Following,Подписчики
+422,ru.app.common.follow_link_title,Click to receive notifications whenever this author publishes new stories,Нажмите чтобы получать оповещения при новой публикации этого пользывателя
+423,ru.app.common.unfollow_link_title,Click to stop receiving notifications whenever this author publishes new stories,Нажмите чтобы больше не получать оповещения при новой публикации этого пользывателя
+424,ru.app.common.email,Email,Электронная почта
+425,ru.app.common.views,Views,Просмотры
+426,ru.app.common.permalink,Permalink,Пермалинк
+427,ru.app.common.shortened_url,Short URL,Короткий URL
+428,ru.app.common.share_story,Share this story,Поделиться
+429,ru.app.common.share_facebook,Share on Facebook,Поделиться на Facebook
+430,ru.app.common.share_twitter,Share on Twitter,Поделиться на Twitter
+431,ru.app.common.share,Share,Поделиться
+432,ru.app.common.staff_pick,Staff Pick,Избранная история
+433,ru.app.common.wide,wide,ширина
+434,ru.app.common.partial,Link to Story,Ссылка к истории
+435,ru.app.common.partial_text,"Embed a link to the story that has the same look as the story links on the home page of Chai Khana (image, title, author, etc)","Вставить ссылку к истории, что имеет тот же вид, как и на главной странице Чайхана (изображение, название, автора и т.д.)"
+436,ru.app.common.full,Full Story,Полная история
+437,ru.app.common.full_text,Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look.,"Вставить полную историю на другом веб-сайте. Мы предлагаем Вам сделать ширину как можно больше, чтобы получить наилучший вид."
+438,ru.app.common.feed,Chai Khana Feeds,Лента новостей Чайхана
+439,ru.app.common.home,Home,Главная
+440,ru.app.common.required,Required,Обязательно
+441,ru.app.common.nothing_selected,Nothing Selected,Нет отмеченных
+442,ru.app.common.clone_asset,Use the original file?,Использывать оригинал?
+443,ru.app.common.embed,Embed Code,Вставить код
+444,ru.app.common.scroll_top,Scroll to the top,Прокрутить вверх
+445,ru.app.msgs.does_not_exist,You tried to access a page that does not exist.,"Вы пытались получить доступ к странице, которая не существует."
+446,ru.app.msgs.not_authorized,You are not authorized to view that page.,Вы не авторизованы для просмотра этой страницы
+447,ru.app.msgs.success_created,%{obj} was successfully created.,Создание %{obj} прошло удачно
+448,ru.app.msgs.success_updated,%{obj} was successfully updated.,Обновление %{obj} прошло удачно
+449,ru.app.msgs.success_publish,%{obj} was successfully published.,Опубликование %{obj} прошло удачно
+450,ru.app.msgs.success_unpublish,%{obj} was successfully unpublished.,Публикация %{obj} была удачно отменена.
+451,ru.app.msgs.success_clone,%{obj} was successfully cloned to %{to}.,Клонирование %{obj} в %{to} прошло удачно.
+452,ru.app.msgs.error_created,%{obj} wasn't created: %{err},Создание %{obj} не осуществлен: %{err}
+453,ru.app.msgs.error_updated,%{obj} wasn't updated: %{err},Обновление %{obj} не осуществлен: %{err}
+454,ru.app.msgs.error_publish,%{obj} wasn't published: %{err},Опубликование %{obj} не осуществлен: %{err}
+455,ru.app.msgs.error_publish_missing_fields,%{obj} can't be published until you provide a summary and thumbnail image.,"Не возможно опубликовать %{obj}, пока Вы не предоставите аннотацию и тамбнейл."
+456,ru.app.msgs.error_publish_missing_fields_link,Add the missing content.,Добавить отсутствующее содержание.
+457,ru.app.msgs.error_publish_missing_sections,At least one Section required before publishing.,По меньшей мере нужна одна секция обязателена перед публикацией.
+458,ru.app.msgs.error_publish_missing_content_section,All Text Sections must have content in it.,Требуеться по крайней мере одна секция
+459,ru.app.msgs.error_publish_missing_translations,The story must be completely translated in %{lang} in order to be published.,"История должна быть полностью переведена на %{lang} язык, чтобы быть опубликованным"
+460,ru.app.msgs.error_unpublish,%{obj} wasn't unpublished: %{err},Отмена публикации %{obj} не произошла: %{err}
+461,ru.app.msgs.error_clone,%{obj} wasn't cloned.,%{obj} клонирование не произошло.
+462,ru.app.msgs.error_clone_notification,Error occurred while cloning story: %{msg},Ошибка при клонировании истории: %{msg}
+463,ru.app.msgs.error_export,Story can't be downloaded.,Загрузка историй не возможна
+464,ru.app.msgs.error_get_data,The selected item could not be found,Выбранный объект не может быть найден
+465,ru.app.msgs.select_section,Please select a Section first in order to add an Item,"Пожалуйста, первую очередь выберите раздел, чтобы добавить объект"
+466,ru.app.msgs.staff_pick,The story has been selected as a Staff Pick,История была выбрана в как Избранная история
+467,ru.app.msgs.staff_unpick,The story has been unselected as a Staff Pick,Статус истории Избранная история был отменен
+468,ru.app.msgs.success_settings,Your settings were successfully updated.,Ваши настройки были удачно обновлены.
+469,ru.app.msgs.success_remove_avatar,Your Facebook avatar is now being used.,В данное время используеться Ваш аватар страницы Facebook
+470,ru.app.msgs.nickname_duplicate,This user URL already exists.,Такой пользывательский URL уже существует
+471,ru.app.msgs.nickname_url,Your URL will be:,Ваш URL будет:
+472,ru.app.msgs.story_duplicate,This story URL already exists.,Такой URL истроии уже существует
+473,ru.app.msgs.story_url,Story URL will be:,URL Вашей истории будет:
+474,ru.app.msgs.update_translations,Don't forget to translate this new item!,Don't forget to translate this new item!
+475,ru.app.msgs.invitation.accepted,You have accepted the invitation to collaborate on '%{title}',Вы приняли приглашение на сотрудничество на '%{title}'
+476,ru.app.msgs.invitation.accepted_already,You have already accepted the invitation to collaborate on '%{title}',Вы уже приняли приглашение на сотрудничество на '%{title}'
+477,ru.app.msgs.invitation.bad,"Sorry, your invitation could not be found or the story has been deleted.","К сожалению, Ваше приглашение не может быть найден или история была удалена."
+478,ru.app.msgs.invitation.declined,Your invitation was declined,Ваше приглашение было отклонено
+479,ru.app.msgs.one_section.content,Only one Item can be added to a Text section,К разделу текста может быть добавлен только один объект
+480,ru.app.msgs.one_section.slideshow,Only one Item can be added to an Image Slideshow section,К разделу слайдшоу может быть добавлен только один объект
+481,ru.app.msgs.one_section.embed_media,Only one Item can be added to an Embed Online Media section,К разделу встроенной онлайн медии может быть добавлен только один объект
+482,ru.app.msgs.one_section.youtube,Only one Item can be added to a YouTube section,К разделу YouTube может быть добавлен только один объект
+483,ru.app.msgs.one_section.general,Only one Item can be added to this type of section,К такому разделу может быть добавлен только один объект
+484,ru.app.msgs.destroy_story.success,Story was successfully deleted.,История была удачно удалена
+485,ru.app.msgs.destroy_story.error,Error occurred while deleting the story: %{err},При удалении истории произошла ошибка: %{err}
+486,ru.app.msgs.destroy_item.success,Item was successfully deleted.,Объект %{obj} был удачно удален
+487,ru.app.msgs.destroy_item.error,Error occurred while deleting the item: %{err},При удалении объекта произошла ошибка: %{err}
+488,ru.app.msgs.destroy_item.error_not_found,Item could not be found to delete.,Объект не был найден и удален.
+489,ru.app.msgs.embed_code,Copy and paste this embed code into your web page,Скопируйте и вставьте этот встроенный код в веб-страницу
+490,ru.app.msgs.collaborators.success_remove,%{name} was removed as a collaborator,%{name} был удален из сотрудников
+491,ru.app.msgs.collaborators.user_not_found,User to remove as a collaborator could not be found,Пользыватель не найден для удаления
+492,ru.app.msgs.collaborators.no_permission,You do not have permission to remove this collaborator,У Вас нет права удалить этого сотрудника
+493,ru.app.msgs.collaborators.success_invitations,Invitations were sent!,Приглашения были отправлены!
+494,ru.app.msgs.collaborators.error_invitations_all,No invitations were sent due to the following erros: %{msg},Приглашения не были отправлены из за ошибок: %{msg}
+495,ru.app.msgs.collaborators.error_invitations_some,"Some invitations were sent, but some were not due to the following erros: %{msg}",Часть приглашенией не была отправлена из за ошибок: %{msg}
+496,ru.app.msgs.notification.true,You will be sent notifications.,Вам будут отправлены оповешения.
+497,ru.app.msgs.notification.false,You will not be sent notifications.,Вам не будут отправлены оповешения.
+498,ru.app.msgs.notification.new_theme_all_success,You will recieve a notification whenever a theme is added.,"Когда тема будет добавлена, вы получите уведомление."
+499,ru.app.msgs.notification.new_theme_none_success,You will not receive any notifications when themes are added.,"Когда темы будут добавлены, вы не получите никаких уведомлений."
+500,ru.app.msgs.notification.new_story_by_type_success,You will receive a notification when a story is added to these types: %{types}.,"Вы получите оповещение, когда к следующим типам будет добавлена новая история: %{types}."
+501,ru.app.msgs.notification.story_comments_yes,You will be sent notifications when a comment is made to one of your stories.,Вы получите оповешения при коментарии на Ваших историях
+502,ru.app.msgs.notification.story_comments_no,You will not be sent notifications when a comment is made to one of your stories.,Вы не получите оповешения при коментарии на Ваших историях
+503,ru.app.msgs.notification.following_no,You will no longer receive notifications about new stories from '%{name}'.,Вы больше не получите оповешения про новые истории от '%{nickname}'.
+504,ru.app.msgs.notification.language,You will be sent notifications in %{language}.,Язык Ваших оповещений будет %{language}.
+505,ru.app.msgs.fail_change_order,The item was not able to be moved,Объект не может быть перемещен
+506,ru.app.msgs.nothing_selected,Please select a section/item to delete,"Пожалуйста, выберите раздел/объект чтобы удалить"
+507,ru.app.msgs.fail_delete,The section/item could not be deleted,Раздел/объект не может быть удален
+508,ru.app.msgs.confirm_delete,Are you sure you want to delete this section/item?,"Вы уверены, что хотите удалить этот раздел/объект?"
+509,ru.app.msgs.confirm_publish,Are you sure you want to publish story?,Are you sure you want to publish story?
+510,ru.app.msgs.video_processed,Your video is processed,Ваше видео обработано
+511,ru.app.msgs.video_not_processed,Your video is being processed,Ваше видео в процессе обработки
+512,ru.app.msgs.not_found_for_update,The record to update could not be found in the database.,Запись для обновления не может быть найден в базе данных.
+513,ru.section_types.content.name,Text,Текст
+514,ru.section_types.content.description,"Can include html, css styling and images","Может включать HTML, CSS стиль и образы"
+515,ru.section_types.media.name,Full-Screen Media Slideshow,Медиа слайд-шоу во весь экран
+516,ru.section_types.media.description,Images and/or videos as a full-screen vertical slideshow,Посмотреть изображения и/или видео на вертикальном слайд-шоу во весь экран
+517,ru.section_types.slideshow.name,Image Slideshow,Слайд-шоу изображений
+518,ru.section_types.slideshow.description,Images in a horizontal slideshow,Изображения на горизонтальный слайд-шоу
+519,ru.section_types.embed_media.name,Embed Online Media,Встройть в страницу Онлайн Медиа
+520,ru.section_types.embed_media.description,"YouTube, Vimeo, etc","YouTube, Vimeo, итд"
+521,ru.section_types.youtube.name,YouTube Video,YouTube видео
+522,ru.section_types.youtube.description,YouTube video with ability to setting caption language,"YouTube видео, с переключаемыми субтитрами"
+523,ru.section_types.infographic.name,Infographic,Инфографика
+524,ru.section_types.infographic.description,"Infographic, interactive, or factoids with ability to add datasets and data sources","Инфографики, интерактивных, или фактоиды, с возможностью добавления наборов и источников данных"
+525,ru.story_role.editor,Editor,Редактор
+526,ru.story_role.translator,Translator,Переводчик
+527,ru.message_types.bug,Report a Bug,Сообщить об ошибках
+528,ru.message_types.feature,Request a Feature,Запросить о новых функциях
+529,ru.message_types.feedback,General Feedback,Поделитесь своим мнением о нас
+530,ru.filters.all,All,Все
+531,ru.filters.matches,Matches,Похожие историй
+532,ru.filters.staff_pick,Staff Pick,Избранные историй
+533,ru.filters.staff_pick_title,View stories that have been selected as Staff Picks,Посмотреть Избранные историй
+534,ru.filters.staff_pick_title_active,Remove Staff Pick filter,"Удалить фильтр ""Избранные историй"""
+535,ru.filters.sort_header,Sorted By,Группировать по
+536,ru.filters.sort_title,Indicate how the stories should be sorted,Укажите признак группирования
+537,ru.filters.filters,Filters,Фильтры
+538,ru.filters.all_stories,All Stories,Все истории
+539,ru.filters.sort.recent,Recent,Последние
+540,ru.filters.sort.reads,Views,Просмотры
+541,ru.filters.sort.likes,Likes,"Отметки ""Нравится"""
+542,ru.filters.category_header,Category,Категория
+543,ru.filters.category_title,View stories that belong to a category,Прoсмотривать истории которые относятся к категории
+544,ru.filters.theme_header,Theme,Тема
+545,ru.filters.theme_title,View stories that belong to a theme,Просмотривать истории по теме
+546,ru.filters.language_header,Language,Язык
+547,ru.filters.language_title,View stories that are written in a particular language,Просмотривать истории созданные на определеннoм языке
+548,ru.filters.search,Find a Story,Найти историю
+549,ru.filters.following,Following,Подпосчики
+550,ru.filters.following_title,View stories of users that you are following,"Просмотривать истории от пользывателей, к которым Вы подписаны"
+551,ru.filters.following_title_active,Remove Following filter,"Удалить фильтр ""Мои подписки"""
+552,ru.filters.not_published,Not Published,Не опубликованные
+553,ru.filters.not_published_title,View stories that are not published,Просмотривать неопубликованнуе истории
+554,ru.filters.not_published_title_active,Show all stories,Показать все истории
+555,ru.tokeninput.searchingText,Searching...,ведется поиск...
+556,ru.tokeninput.tag.hintText,Search for an existing tag or enter a new tag,Поиск существующих тегов для создания новых
+557,ru.tokeninput.tag.noResultsText,No matches found. Press 'Enter' to save this new tag.,"Совпадений не найдено. Нажмите ""Enter"", чтобы сохранить этот новый тег."
+558,ru.tokeninput.collaborator.hintText,Search for an existing user or enter the email address for a new user,Поиск для существующего пользователя или введите адрес электронной почты для нового пользователя
+559,ru.tokeninput.collaborator.noResultsText,No matches found. Press 'Enter' to add this email address to the list of invited collaborators.,"Совпадений не найдено. Нажмите ""Enter"", чтобы добавить этот адрес электронной почты в список приглашенных сотрудников."
+560,ru.layouts.application.copyright,Copyright,Авторское право
+561,ru.layouts.application.copyright_text,Copyright of these reports belongs to the Chai-Khana NGO. Any republishing of materials is not allowed without the prior consent of Chai-Khana.,Авторское право этих материалов принадлежит Чайхана НПО. Любая повторная публикация материалов не допускается без предварительного согласия с Чайхана.
+562,ru.layouts.application.disclaimer,Disclaimer,Отказ от ответственности
+563,ru.layouts.application.disclaimer_text,"This publication has been produced with the assistance of MYMEDIA, a DANIDA funded project. The content of this publication is the sole responsibility of the author/contractor/implementing partner/international organisation and can in no way be taken to reflect the official opinion of MYMEDIA / DANIDA.","Этот сайт был подготовлен при содействии проекта Mymedia, финансируемый DANIDA. Содержание данной публикации является предметом ответственности автора / сотрудника / исполнителя / партнера международной организации и никоим образом не отражает официальное мнение Mymedia / DANIDA."
+564,ru.layouts.unsupported_browser.title,Unsupported Browser,Браузер не поддерживается
+565,ru.layouts.unsupported_browser.video,Your browser does not support this video.,Ваш браузер не поддерживает этого видео.
+566,ru.layouts.unsupported_browser.p1,We are sorry to report that your browser is out of date and will not properly render the content from this website.,К сожалению Ваш браузер устарел и не будет должным образом воспроизводить контент с этого сайта
+567,ru.layouts.unsupported_browser.p2,"On the bright side, there are several free browsers that you can download that are compatible with this site.","Но есть несколько бесплатных браузеров, которые можно загрузить, и которые совместимы с этого сайта"
+568,ru.layouts.unsupported_browser.chrome,Chrome,Chrome
+569,ru.layouts.unsupported_browser.firefox,Firefox,Firefox
+570,ru.layouts.unsupported_browser.ie,Internet Explorer (Windows only),Internet Explorer (только Windows)
+571,ru.layouts.unsupported_browser.opera,Opera,Opera
+572,ru.layouts.unsupported_browser.Safari,Safari,Safari
+573,ru.layouts.unsupported_browser.admin,Admin,Админ
+574,ru.layouts.unsupported_browser.sign_out,Sign Out,Выйти
+575,ru.layouts.unsupported_browser.js_link_title,JumpStart Georgia - We communicate data better!,JumpStart Georgia - Мы связываем данные лучше!
+576,ru.layouts.unsupported_browser.js_link_text,Built by,Создано
+577,ru.layouts.storybuilder.source,Source,Источник
+578,ru.layouts.storybuilder.target,Target,Цель
+579,ru.layouts.storybuilder.copy_paste,Copy from source,Скопировать из источника
+580,ru.shared.grid.no_stories,Oh no - no stories could be found!,"О, нет - истории не могут быть найдены!"
+581,ru.shared.story_nav_modals.copy,Copy To Clipboard...,Копировать в буфер обмена ...
+582,ru.shared.story_nav_modals.copied,Copied!,Скопировано!
+583,ru.admin.index.title,Administration Section,Раздел одминистрации
+584,ru.admin.index.users,Users,Пользыватели
+585,ru.admin.users.edit.title,Editing User,Редактирующи пользователь
+586,ru.admin.users.index.title,Users,Пользыватели
+587,ru.admin.users.new.title,New User,Новый пользыватель
+588,ru.admin.users.show.title,User Details,Данные и пользывателе
+589,ru.admin.themes.form.header_features,Features,Features
+590,ru.admin.themes.form.header_add_story,Select Story to be Feature,Select Story to be Feature
+591,ru.admin.themes.form.header_current_features,Featured Stories In the Order They Will Appear,Featured Stories In the Order They Will Appear
+592,ru.admin.themes.form.no_stories,No stories have been assigned to this theme yet.,No stories have been assigned to this theme yet.
+593,ru.admin.themes.form.no_features,No stories have been selected to be features.,No stories have been selected to be features.
+594,ru.root.about.title,About Chai Khana,О Чайхане
+595,ru.root.embed.home_link,Built on Chai Khana,Создан на Чайхане
+596,ru.stories.new.title,Story Settings Form,Форма параметров истории
+597,ru.stories.edit.title,Story Settings Form,Форма параметров истории
+598,ru.stories.form.placeholder.title,Title of Story,Заглавок истории
+599,ru.stories.form.placeholder.permalink,URL to the story,URL к истории
+600,ru.stories.form.placeholder.author,Author(s) of the article,Автор(ы) статьи
+601,ru.stories.form.placeholder.media_author,Author(s) of photos and/or videos,Автор(ы) фото/видео
+602,ru.stories.form.placeholder.translation_author,Author(s) that translated the story into this language,Автор(ы) переводной историй на этот язык
+603,ru.stories.form.hint.title,Story title will appear at the top of your story,Заглавок будет виден над вашей историей
+604,ru.stories.form.hint.permalink,"The default URL is the title of the story, but you can change it if desired","URL по умолчанию будет название рассказа, но при желании вы можете изменить его"
+605,ru.stories.form.hint.author,Select the author(s) of the story to allow the story to appear on their webpage.,"Выберите автора (ов) истории, чтобы история могля появиться и на их странице"
+606,ru.stories.form.hint.media_author,Author names will appear below the Story Author names,Имена соавторов появятся под именем автора истории
+607,ru.stories.form.hint.translation_author,Author names will appear below the Photo and Video Author names,Имена соавторов появятся под именем автора фото/видео
+608,ru.stories.form.hint.published,Published stories are available for the world to view,Опубликованные истории доступны для всего мира
+609,ru.stories.form.hint.publish_home_page,"If checked, your published story will appear on the site's homepage","Если отметить, то Ваша история будет на главной странице сайта"
+610,ru.stories.form.hint.template,Choose template to apply styling to story,Выберите шаблон для стиля истории
+611,ru.stories.form.hint.thumbnail,Image that is used to show the story on the home page when the story is published (jpg and png only; 4MB file size limit),"Изображение, которое используется, чтобы показать историю на главной странице после опубликования (JPG и PNG только, ограничение на размер файла 4MB)"
+612,ru.stories.form.hint.editor,Person that created the story record in this website,Человек который создал эту запись на сайте
+613,ru.stories.form.hint.editors,Select people that you want to give access to edit the story,"Выберите людей, которым Вы хотите давать доступ на редактирования истории"
+614,ru.stories.form.hint.about,Short summary of story that will be used on the home page and when you story is shared,"Краткое содержание (конспект) истории, которое будет использоваться на главной странице после опубликования"
+615,ru.stories.form.hint.locale,Select the language of your story. Allows users to filter stories by a language.,Выберите язык вашей истории - это позволит пользователям фильтровать истории по языку
+616,ru.stories.form.hint.categories,Select the category(s) your story belongs to. Allows users to filter stories by a category.,Выберите категории для вашей истории - это позволит пользователям фильтровать истории по категориям
+617,ru.stories.form.hint.tag_list,"Enter text to find existing tags. If your tag does not exist yet, press 'Enter' to add the new tag to the list.","Введите текст, чтобы найти существующие теги. Если ваш тег пока не существует, нажмите ""Enter"", чтобы добавить новый тег в список."
+618,ru.stories.form.hint.story_type,Select the type of your story.,Выберите тип вашей истории.
+619,ru.stories.form.hint.theme,Select the theme(s) your story belongs to.,Выберите тему(ы) Вашей истории
+620,ru.stories.form.hint.in_theme_slider,"If checked, this story will appear in the slider at the top of the theme page.","При выборе этого, история появится в верхней ползунке тем."
+621,ru.stories.collaborators.title,Collaborators for '%{title}',Сотрудники '%{title}'
+622,ru.stories.collaborators.owner_header,Story Author,Автор истории
+623,ru.stories.collaborators.collaborators_header,Story Collaborators,Сотрудники истории
+624,ru.stories.collaborators.explanation,A story collaborator is someone that has access to edit this story.,У сотрудников есть доступ на редактирование истории
+625,ru.stories.collaborators.editors_header,Editors,Редакторы
+626,ru.stories.collaborators.editor_explanation,An Editor has access to add/edit the story and translate the story into any language. An Editor can also add collaborators and publish the story.,"У редакторов есть доступ на добавление/редактирование истории, на перевод в другой язык, на приглашение сотрудников и на опубликование."
+627,ru.stories.collaborators.translators_header,Translators,Переводчики
+628,ru.stories.collaborators.translator_explanation,"A Translator has access to translate the story into a specific language(s). A Translator does not have the ability to edit the original story, add collaborators or publish the story.","У переводчиков есть доступ на осуществления перевода текста на другой язык. У переводчиков нету доступа на редактирование оригинальной истории, добавления сотрудников или на опукование."
+629,ru.stories.collaborators.remove_title,Remove %{name},Удалить %{name}
+630,ru.stories.collaborators.not_accepted_title,%{name} has not accepted the invitation yet,%{name} еще не принял/а Ваше приглашение
+631,ru.stories.collaborators.add_header,Add Collaborators,Добавить сотрудника
+632,ru.stories.collaborators.add_explanation,"For the users you enter below, an email will be sent inviting them to be a collaborator on this story.","Введенным пользывателям будет отправлено электронное письмо, с приглашеним на сотрудничество на эту историю"
+633,ru.stories.collaborators.editor_label,Enter the names or email addresses of the editors,Введите имена или адреса электронных почт редакторов
+634,ru.stories.collaborators.language_label,Select the translation language(s),Выберите язык(и) для перевода
+635,ru.stories.collaborators.translator_label,Enter the name or email address of the translator,Введите имя или электронный адрес переводчика
+636,ru.stories.collaborators.translator_add,Add Another Translator,Добавить другого переводчика
+637,ru.stories.collaborators.translator_remove,Remove Translator,Удалить переводчика
+638,ru.stories.collaborators.message,Add Message to Notification (optional),Добавить сообшение к оповешению
+639,ru.stories.collaborators.submit,Send Collaboration Invitation,Отправить приглашения на сотрудничество
+640,ru.stories.media.form_title,Full-Screen Media Slideshow Form,Форма для медиа слайд-шоу на весь экран
+641,ru.stories.media.left,Left,Левый
+642,ru.stories.media.center,Center,Центр
+643,ru.stories.media.right,Right,Правый
+644,ru.stories.media.image,Image,Изображение
+645,ru.stories.media.video,Video,Видео
+646,ru.stories.media.floating,Floating,Плавающий
+647,ru.stories.media.fixed,Fixed,Фиксированный
+648,ru.stories.media.placeholder.title,Media title,Заглавок медии
+649,ru.stories.media.placeholder.caption,Caption text,Текст титров
+650,ru.stories.media.placeholder.source,Source of the image/video,Источник изображения / видео
+651,ru.stories.media.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Этот текст появляется только на левой боковой панели, он не будет отображаться в истории"
+652,ru.stories.media.hint.media_type,"For videos, an image is necessary because videos are not loaded on mobile devices.","Для видео, изображения, необходимо потому, что видео не загружен на мобильных устройствах"
+653,ru.stories.media.hint.caption,"Caption text will appear on top of the image/video. If this is the first item in the story, the caption text is hidden.","Текст титров появится на верхней части изображения / видео. Если это первыйо бьект в истории, то текст титров будет скрыта"
+654,ru.stories.media.hint.source,"Source of the image/video, appears in the bottom-right corner","Источник изображения/видео, появится в нижнем правом углу"
+655,ru.stories.media.hint.image,Only jpg format allowed; 4MB file size limit,Разрешен только формат JPG: ограничение на размер файла - 4 Мб
+656,ru.stories.media.hint.video,"Only mp4, mov, webm, ogv, flv, avi and wmv formats accepted; 25MB file size limit. After videos are uploaded they must be processed before they are available for viewing. You will receive a notification when the processing is complete, typically within a few minutes.","Принимаются только форматы МP4, MOV, WebM, OGV, FLV, AVI и WMV; 2 5MB - предельный размер файлов. После загружения видео должно быть обработанно, прежде чем станет доступным для просмотра. Вы получите уведомление, когда обработка завершится (как правило, в течение нескольких минут)."
+657,ru.stories.media.hint.caption_align,The Caption text will appear on top of the image/video (appears on the left by default),Текст титров появится в верхней части изображения / видео (по умолчанию - на левой стороне)
+658,ru.stories.media.hint.infobox_type,The Caption text can float on top of the image/video or can be fixed at the bottom of the image/video,Текст титров может плавать в верхней части изображения / видео или фиксированна на нижней части изображения / видео
+659,ru.stories.media.hint.video_loop,"If checked, the video will loop infinitly, otherwise the video will not loop","При выборе этого видео будет бесконечно переигрываться, иначе видео не будет переигрываться"
+660,ru.stories.section.form_title,Section Form,Форма раздела
+661,ru.stories.section.yes,Yes,Да
+662,ru.stories.section.no,No,Нет
+663,ru.stories.section.placeholder.title,Section title,Заглавок раздела
+664,ru.stories.section.hint.title,"This text appears in the left sidebar and, if Navigation Shortcut is selected, will appear as the title text for the shortcut","Этот текст появляется в левой боковой панели и, если отмечена Навигационная ссылка, то текст будет отображаться в качестве заголовки ярлыка"
+665,ru.stories.section.hint.type,Selecting this type determines what kind of information you can add into this section,"При выборе этого типа определяет, какого рода информацией Вы можете добавить в этот раздел"
+666,ru.stories.section.hint.has_marker,"If checked, there will be a navigation shortcut link to go to this section","При выборе этого будет навигационная ссылка, чтобы перейти к этому разделу"
+667,ru.stories.section.hint.audio,Background audio to play while this section is in view (mp3 format only; 10mb file size limit),"Фоновый аудиофайл, для проигрывания во время просмотра этой сейции (формат - только MP3; предел размера файла - 10 МБ )"
+668,ru.stories.section.hint.delete_audio,"If checked, the Audio Track will be deleted",При выборе этого аудиофайл будет удален
+669,ru.stories.content.form_title,Text Form,Форма текста
+670,ru.stories.content.placeholder.title,Text title,Заглавок текста
+671,ru.stories.content.placeholder.caption,optional,необязательно
+672,ru.stories.content.placeholder.sub_caption,optional,необязательно
+673,ru.stories.content.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Этот текст появляется только в левой боковой панели, он не будет отображаться в истории"
+674,ru.stories.content.hint.caption,Heading of text will appear at the top of the section,Заголовок текста появится в верхней части раздела
+675,ru.stories.content.hint.sub_caption,Subheading of text will appear below the Heading,Подзаголовок текста появится под заголовком
+676,ru.stories.content.hint.content,"Text can include html, css styling and images","Текст может включать в себя HTML, CSS стиль и образы"
+677,ru.stories.reviewer_key.title,Private URL,Личный URL
+678,ru.stories.reviewer_key.desc,"You can copy and share the following URL with whomever you want to review '%{title}' before it is published. These people will have the ability to read your story, but not edit it.","Вы можете копировать и распространять следующий URL, с кем вы хотите просмотреть историю '% {title}' до опубликации. Эти люди будут иметь возможность только читать историю, но не редактировать его."
+679,ru.stories.slideshow.form_title,Image Slideshow Form,Форма для слайд-шоу изображенеи
+680,ru.stories.slideshow.add_image,Add Image,Добавить изображение
+681,ru.stories.slideshow.placeholder.title,Slideshow Title,Заглавок слайд-шоу
+682,ru.stories.slideshow.placeholder.caption,optional,необязательно
+683,ru.stories.slideshow.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Этот текст появляется только в левой боковой панели, он не будет отображаться в истории"
+684,ru.stories.slideshow.hint.caption,Heading will appear at the top of the slideshow,Заголовок появится в верхней части спайдшоу
+685,ru.stories.slideshow.hint.description,The description will appear below the slideshow,Описание появится под слайдом
+686,ru.stories.asset_file_fields.remove_image,Remove,Удалить
+687,ru.stories.asset_file_fields.placeholder.caption,optional,необязательно
+688,ru.stories.asset_file_fields.placeholder.source,optional,необязательно
+689,ru.stories.asset_file_fields.hint.caption,Image Description will appear below the image,Описание изображения будет отображаться под картиной
+690,ru.stories.asset_file_fields.hint.source,Source will appear below the Image Description,Источник появится под описанием изображения
+691,ru.stories.asset_file_fields.hint.asset,Only jpg and png format allowed; 4MB file size limit,"Только форматы JPG и PNG, ограничение на размер файла 4MB"
+692,ru.stories.asset_file_fields.label.caption,Image Description,Описание изображения
+693,ru.stories.asset_file_fields.label.source,Image Source,Источник изображения
+694,ru.stories.embed_media.form_title,Embed Online Media Form,Форма встроенного онлайн медиа контента
+695,ru.stories.embed_media.get_media,Get Online Media,Получить медиа контент
+696,ru.stories.embed_media.preview,Preview of Online Media,Предтварительный просмотр контента
+697,ru.stories.embed_media.error,The URL could not be processed. Please try again.,"URL не может быть обработан. Пожалуйста, попробуйте еще раз."
+698,ru.stories.embed_media.placeholder.title,Embed Online Media Title,Заглавок встроенного контента
+699,ru.stories.embed_media.placeholder.url,Url to online media,URL к медиа контенту
+700,ru.stories.embed_media.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Этот текст появляется только в левой боковой панели, он не будет отображаться в истории"
+701,ru.stories.embed_media.hint.url,"The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED","Дла встроенного медиа контента могут быть использованы следующие сайты: Аудио: Soundcloud, Spotify; Видео: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
+702,ru.stories.youtube.form_title,YouTube Video Form,Форма для видео из YouTube
+703,ru.stories.youtube.get_media,Get Youtube Video,Получить видео из YouTube
+704,ru.stories.youtube.preview,Preview of YouTube Video,Предтварительный просмотр видео из YouTube
+705,ru.stories.youtube.error,The URL could not be processed. Please try again.,"URL не может быть обработан. Пожалуйста, попробуйте еще раз."
+706,ru.stories.youtube.generate_iframe.missing_api_key,value can't be generated due to missing API key.,value can't be generated due to missing API key.
+707,ru.stories.youtube.generate_iframe.error,is not valid.,is not valid.
+708,ru.stories.youtube.placeholder.title,YouTube Title,Заглавок видео из YouTube
+709,ru.stories.youtube.placeholder.url,Url to YouTube video,URL к видео на YouTube
+710,ru.stories.youtube.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Этот текст появляется только в левой боковой панели, он не будет отображаться в истории"
+711,ru.stories.youtube.hint.url,Copy a YouTube URL and paste it here,Скопируйте URL-адрес YouTube и вставить его здесь
+712,ru.stories.youtube.hint.fullscreen,"If checked, the video will take up the entire screen",При выборе этого видео будет занимать весь экран
+713,ru.stories.youtube.hint.loop,"If checked, the video will loop over and over",При выборе этого видео будет бесконечно переигрываться
+714,ru.stories.youtube.hint.info,"If checked, the title bar will be shown on top of the video",При выборе этого в заглвoк будет показан на верхней части видео
+715,ru.stories.youtube.hint.cc,"If checked, the video subtitles will be shown by default",При выборе этого субтитры будут отображаться по умолчанию
+716,ru.stories.youtube.hint.menu_lang,Language of the YouTube menu/controls,Язык YouTube меню/управления
+717,ru.stories.youtube.hint.cc_lang,Language of the subtitles to show by default,Язык субтитров - показать по умолчанию
+718,ru.stories.infographic.form_title,Infographic Form,Форма инфографики
+719,ru.stories.infographic.add_datasource,Add Data Source,Добавить источник данных
+720,ru.stories.infographic.static,Static,Статичный
+721,ru.stories.infographic.dynamic,Dynamic,Активный
+722,ru.stories.infographic.inline,In Story,In Story
+723,ru.stories.infographic.popup,Popup,Popup
+724,ru.stories.infographic.label.dynamic_size,Infographic Dimensions in Width x Height,Размеры инфографики: ширина х высота
+725,ru.stories.infographic.placeholder.title,Title,Название
+726,ru.stories.infographic.placeholder.caption,optional,опционально
+727,ru.stories.infographic.placeholder.dataset_url,optional,опционально
+728,ru.stories.infographic.placeholder.dynamic_url,Interactive URL,Интерактивный URL
+729,ru.stories.infographic.placeholder.dynamic_width,width,ширина
+730,ru.stories.infographic.placeholder.dynamic_height,height,высота
+731,ru.stories.infographic.hint.title,"This text only appears in the left sidebar, it will not show up in the story","Этот текст появляется только на левой боковой панели, он не будет отображаться в истории"
+732,ru.stories.infographic.hint.caption,"Heading of infographic will appear above the infographic image. If this Infographic Section is first in the story, you should leave this blank and use the Story Title field.","Заголовок инфографики появится над изображением инфографики. Если этот раздел инфографики является первым в истории, вы должны оставить это поле пустым, и использовать поле ""заглавок истории""."
+733,ru.stories.infographic.hint.description,"The description will appear below the infographic. If this Infographic Section is first in the story, the Story Summary will appear below the infographic image so if the Story Summary and Infographic Description are the same, you should leave this field blank.","Описание появится под инфографикой. Если этот раздел инфографики является первым в истории, конспект появится под изображения инфографики, так что если конспект и описание новой инфографики сходятся со старой, вы должны оставить это поле пустым."
+734,ru.stories.infographic.hint.image,Only jpg and png format allowed; 8MB file size limit,Разрешен только формат JPG и PNG. максимум размер файла 8MB
+735,ru.stories.infographic.hint.dataset_file,Please try to compress files to make for quicker download; 25MB file size limit,"Пожалуйста, попробуйте сжимать файлы, для более быстрого скачивания; 25 MB ограничение на размер файла"
+736,ru.stories.infographic.hint.dataset_url,URL to Dataset,URL для набора данных
+737,ru.stories.infographic.hint.subtype,"Static infographics are images, Dynamic infographics require a URL.","Статические инфографики это изображения, Динамические инфографика требуют URL."
+738,ru.stories.infographic.hint.dynamic_url,URL to web page with interactive infographic,URL к веб-странице с интерактивной инфографикой
+739,ru.stories.infographic.hint.dynamic_size,Use these fields to indicate the space you want to reserve for showing this infographic. Leave the fields empty if you want the infographic to be fullscreen. The minimum value is 200.,"Используйте эти поля, чтобы зарезервировать площадь, для показа этой инфографики. Оставьте поля пустыми, если вы хотите инфографики быть полноэкранный.Минимальное значение 200."
+740,ru.stories.infographic.hint.dynamic_render,The infographic can be rendered in the story or in a popup that appears after the user clicks on the infogaphic image in the story. Use the popup option if the infogaphic takes up the full screen or is very long.,The infographic can be rendered in the story or in a popup that appears after the user clicks on the infogaphic image in the story. Use the popup option if the infogaphic takes up the full screen or is very long.
+741,ru.stories.infographic_datasource_fields.placeholder.url,optional,опционально
+742,ru.stories.infographic_datasource_fields.hint.name,Name of the data source,Название источника данных
+743,ru.stories.infographic_datasource_fields.hint.url,URL to the online data source,URL для онлайн источника данных
+744,ru.storyteller.byline,By,Oт
+745,ru.storyteller.byline_media,Photos and videos by,Фото и видео от
+746,ru.storyteller.byline_translator,Translated by,Переводчик
+747,ru.storyteller.source,Source:,Источник
+748,ru.storyteller.by,by,От
+749,ru.storyteller.related_stories,Related Stories,Также по теме
+750,ru.storyteller.view_all_stories_in,View all stories in,Просмотреть все истории в
+751,ru.storyteller.infographic.source,Data Source,Data Source
+752,ru.storyteller.infographic.dataset,Related Items,Related Items
+753,ru.storyteller.infographic.download,Download File,Download File
+754,ru.storyteller.infographic.online,View Data Online,View Data Online
+755,ru.settings.index.title,Settings,Настройки
+756,ru.settings.index.facebook_avatar,This is your avatar from Facebook.,Это ваш аватар из Facebook.
+757,ru.settings.index.use_facebook_avatar,Use Facebook Avatar,Используйте аватар Facebook
+758,ru.settings.index.hint.about,Short summary about yourself. This will be shown with the stories that you publish.,Коротко о себе - это будет показано с Вашими историями
+759,ru.settings.index.hint.default_story_locale,Select the language you want to use by default when creating a new story.,"Выберите язык, который вы хотите использовать по умолчанию при создании новой истории."
+760,ru.settings.index.submit,Save Settings,Сохранить настройки
+761,ru.settings.invitations.title,Collaboration Invitations,Приглашения на сотрудничество
+762,ru.settings.invitations.no_invitations,At this time you have no invitations waiting for you.,На данный момент у вас нет приглашенией
+763,ru.settings.invitations.accept_link,Accept,Принимать
+764,ru.settings.invitations.decline_link,Decline,Отклонить
+765,ru.settings.invitations.header_date,Date Sent,Дата отправки
+766,ru.settings.invitations.header_story,Story Title,Заглавок истории
+767,ru.settings.invitations.header_role,Role,Роль
+768,ru.settings.invitations.header_from,Sent By,Отправлено от
+769,ru.settings.notifications.title,Notifications,Уведомления
+770,ru.settings.notifications.explain,You can receive email notifications whenever new stories are published on Chai Khana! Simply sign in to subscribe.,"Как только новые материалы будут опубликованы на сайте Чайхана, вы сможете получать уведомления по электронной почте! Просто зарегистрировайтесь, чтобы получать обновления."
+771,ru.settings.notifications.all_sub_title,All Notifications,Все Уведомления
+772,ru.settings.notifications.all_label,Do you want to recieve any notifications from Chai Khana?,Вы хотите получить какие-либо уведомления от Чай Хана?
+773,ru.settings.notifications.all_no,"No, do not send me any notifications.","Нет, не присылайте мне никаких уведомленией"
+774,ru.settings.notifications.all_yes,"Yes, I want notifications sent to me.","Да, я хочу уведомлений."
+775,ru.settings.notifications.story_comment_sub_title,New Story Comment Notifications,Уведомления о новых комментариях
+776,ru.settings.notifications.story_comment_label,Do you want to recieve notifications when a comment is made to one of your stories?,"Вы хотите получить уведомление, при коментарий к одному из ваших историей?"
+777,ru.settings.notifications.story_comment_no,"No, do not send me any notifications.","Нет, не присылайте мне уведомления."
+778,ru.settings.notifications.story_comment_yes,"Yes, I want notifications sent to me.","Да, я хочу уведомлений."
+779,ru.settings.notifications.new_themes_sub_title,New Theme Notifications,Уведомление о новых темах
+780,ru.settings.notifications.new_themes_all,Notify me when any theme is added.,Уведомляйте меня когда будет добавлена новая тема.
+781,ru.settings.notifications.new_themes_none,I do not want to receive notifications when a new theme is added.,Я не хочу получать никаких уведомлений о новых добавленных темах.
+782,ru.settings.notifications.new_stories_by_category,Notify me when a story is added to:,"Сообщите мне, когда добавлена история в:"
+783,ru.settings.notifications.language_sub_title,Notification Language,Язык Уведомленией
+784,ru.settings.notifications.language_label,In what language do you want to receive the notifications?,На каком языке вы хотите получать уведомления?
+785,ru.settings.notifications.following_sub_title,Chai Khana Users You Are Following,"Пользыватели Чайханы, которым вы подписаны."
+786,ru.settings.notifications.following_label,"You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image.","Вы будете получать уведомления, когда пользователь к комы Вы подписаны публикует историю. Чтобы не получать уведомления от пользователя, отпишитесь от них, нажав на их изображения."
+787,ru.settings.notifications.following_not,"At this time, you are not following any users.",На данный момент вы не следуете никого.
+788,ru.settings.notifications.following_title1,Click to unfollow '%{name}',Нажмите что бы отписаться от '%{nickname}'
+789,ru.settings.notifications.following_title2,Click to follow '%{name}',Нажмите что бы подписаться к '%{nickname}'
+790,ru.settings.notifications.submit,Save Settings,Сохранить настройки
+791,ru.imageuploader.missing,An error occurred while processing your image. Please try again.,"Произошла ошибка при обработке изображения. Пожалуйста, попробуйте еще раз."
+792,ru.imageuploader.invalid_type,Invalid file type. Only .jpg or .png is allowed.,Неверный тип файла -допускается только .jpg или .png
+793,ru.imageuploader.size_limit,Image file size is limited to 4MB,Максимум размер файла 4МB
+794,ru.devise.mailer.reset_password_instructions.title,Hello %{nickname}!,Привет %{nickname}!
+795,ru.devise.mailer.reset_password_instructions.p1,"Someone has requested a link to change your password on Chai Khana, and you can do this through the link below.","Кто-то просил ссылку, чтобы изменить пароль на Чайхане, и вы можете сделать это через ссылку ниже."
+796,ru.devise.mailer.reset_password_instructions.link_title,Change my password,Изменить мой пароль
+797,ru.devise.mailer.reset_password_instructions.p2,"If you didn't request this, please ignore this email.","Если вы не запрашивали это, не обращайте внимания на это сообщение."
+798,ru.devise.mailer.reset_password_instructions.p3,Your password won't change until you access the link above and create a new one.,"Ваш пароль не будет меняться до тех пор, пока Вы не поидете по ссылке выше и не создадите новый."

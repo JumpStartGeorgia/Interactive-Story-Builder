@@ -23,7 +23,7 @@ ka:
         asset_file_name: File
         asset_content_type: File Content Type
         asset_file_size: File Size
-      avatar: *asset
+      avatar: *asset    
       user:
         email: "ელ. ფოსტა"
         password: "პაროლი"
@@ -43,7 +43,7 @@ ka:
         name: "სახელი"
         about: "შესახებ"
         permalink: "მუდმივი ბმული"
-      author_translations: *author_translation
+      author_translations: *author_translation        
       story:
         user_id: "ამბის ავტორი"
         user_ids: "ამბის რედაქტორები"
@@ -55,18 +55,18 @@ ka:
         categories: "კატეგორიები"
         story_type: "ტიპი"
         in_theme_slider: "ამბის სლაიდერში ჩვენება"
-      story_translation: &story_translation
+      story_translation: &story_translation      
         title: "ამბის სათაური"
         author: "ავტორ(ებ)ი"
         media_author: "ფოტოსა და ვიდეოს ავტორ(ებ)ი"
         translation_author: "თარგმნის ავტორი"
-        published: "გამოვაქვეყნოთ?"
+        published: "გამოქვეყნება"
         published_at: "გამოქვეყნებულია"
         about: "ამბის მოკლე შინაარსი"
         permalink: "ამბის ბმული"
         permalink_staging: "ამბის ბმული"
-        asset: *asset
-      story_translations: *story_translation      
+        asset: *asset        
+      story_translations: *story_translation        
       section:
         has_marker: "სექციის გამოყოფა"
         type_id: "ტიპი"
@@ -75,14 +75,14 @@ ka:
         title: "სათაური"
         audio: "აუდიო ფაილი"
         delete_audio: "აუდიო ფაილის წაშლა?"
-        asset: *asset
+        asset: *asset        
       section_translations:  *section_translation
       content_translation: &content_translation
         title: "სათაური"
         caption: "ტექსტის სათაური"
         sub_caption: "ტექსტის ქვესათაური"
         content: "ტექსტი"
-      content_translations: *content_translation
+      content_translations: *content_translation        
       medium:
         media_type: "მედია ტიპი"
         image: "სურათი"
@@ -104,9 +104,9 @@ ka:
         title: "სათაური"
         caption: "ფოტოს წარწერა"
         description: "აღწერა"
-        asset_files_name: Image(s)
+        asset_files_name: Image(s)        
         asset_files: *asset
-      slideshow_translations: *slideshow_translation
+      slideshow_translations: *slideshow_translation        
       message:
         name: "სახელი"
         email: "ელ. ფოსტის მისამართი"
@@ -115,23 +115,22 @@ ka:
       embed_medium_translation: &embed_medium_translation
         title: "სათაური"
         url: "ონლაინ აუდიოს/ვიდეოს ბმული"
-      embed_medium_translations: *embed_medium_translation
+      embed_medium_translations: *embed_medium_translation        
       youtube:
         fullscreen: "მთელ ეკრანზე გაშლილი"
         loop: "გამეორება"
         info: "ვიდეოს სათაურის ჩვენება"
       youtube_translation: &youtube_translation
         title: "სათაური"
-        url: YouTube ვიდეოს Url-ი
+        url: YouTube ვიდეოს URL-ი
         menu_lang: "პლეერის პარამეტრების ენა"
         cc: "წარწერის/სუბტიტრების ჩვენება"
         cc_lang: "სუბტიტრების ენა"
-        code: Youtube Video Id
-      youtube_translations: *youtube_translation
+      youtube_translations: *youtube_translation        
       infographic:
         published_at: Date Published
         image: Infographic Image
-        dataset_file: Related File
+        dataset_file: Dataset File
         datasources: Data Sources
         subtype: Infographic Type
         dynamic_width: Width
@@ -146,7 +145,7 @@ ka:
         image: *asset     
         dataset_file: *asset
         dynamic_url: Dynamic URL
-      infographic_translations: *infographic_translation
+      infographic_translations: *infographic_translation        
       infographic_datasource:
         name: Data Source Name
         url: Data Source URL
@@ -155,38 +154,38 @@ ka:
         name: "ენა"
       category_translation: &category_translation
         name: "სახელი"
-      category_translations: *category_translation
+      category_translations: *category_translation        
       page:
         name: "კონტენტის უნიკალური სახელი (არ შეცვალოთ!)"
       page_translation: &page_translation
         title: "სათაური, რომელიც გამოჩნდება კონტენტის ზემოთ"
         content: "კონტენტი"
-      page_translations: *page_translation
+      page_translations: *page_translation        
       theme:
         is_published: "გამოვაქვეყნოთ?"
         published_at: "გამოქვეყნების თარიღი"
         show_home_page: "ვაჩვენოთ ეს თემა მთავარ გვერდზე?"
-        published_item_count: "გამოქვეყნებულ ამბავთა რაოდენობა"
+        published_item_count: გამოქვეყნებულ ამბავთა რაოდენობა
         featured_stories: Featured Stories
       theme_translation: &theme_translation
         name: "სათაური"
         edition: "გამოცემა"
         description: "აღწერა"
         permalink: URL-ი
-      theme_translations: *theme_translation
+      theme_translations: *theme_translation        
       story_type:
         sort_order: "დალაგება"
       story_type_translation: &story_type_translation
         name: "სათაური"
         permalink: URL-ი
-      story_type_translations: *story_type_translation      
+      story_type_translations: *story_type_translation        
     errors:
       messages:
         required_field: "სავალდებულო ველი"
         already_exists: "უკვე არსებობს მონაცემთა ბაზაში"
         story_authors: "საჭიროა ერთი ადამიანის ონიშვნა მაინც."
-        publish_theme: "თემის გამოქვეყნება შეუძლებელია, თუ ამ თემას ერთი ამბავი მაინც არ აქვს მისადაგებული."
-        not_provided: must be provided.
+        publish_theme: თემის გამოქვეყნება შეუძლებელია, თუ ამ თემას ერთი ამბავი მაინც არ აქვს მისადაგებული.
+        not_provided: 'must be provided.'        
   mailer:
     closing: "პატივისცემით,"
     signature: "“ჩაი ხანას” გუნდი"
@@ -197,12 +196,12 @@ ka:
     notification:
       new_user:
         subject: "კეთილი იყოს თქვენი მობრძანება “სთორიბილდერზე!”"
-        message: "გმადლობთ, რომ გახდით “ჩაი ხანას” წევრი. ჩვენ გვსურს, გავიგოთ უფრო მეტი თქვენი ამბების შესახებ! როცა დრო გექნებათ, გთხოვთ, ეწვიოთ პარამეტრების გვერდს, რათა შეიყვანოთ ინფორმაცია თქვენ შესახებ, შეცვალოთ პროფილის სურათი, სახელი და პირადი ბმულიი: [settings_link]. თქვენ შეიგიძლიათ განსაზღვროთ, როდის გსურთ “Chai Khanaდან” შეტყობინებების მიღება, ამისათვის ეწვიეთ შეტყობინებების გვერდს: [notifications_link]."
+        message: "გმადლობთ, რომ გახდით “ჩაი ხანას” წევრი. ჩვენ გვსურს, გავიგოთ უფრო მეტი თქვენი ამბების შესახებ!\n\nროცა დრო გექნებათ, გთხოვთ, ეწვიოთ პარამეტრების გვერდს, რათა შეიყვანოთ ინფორმაცია თქვენ შესახებ, შეცვალოთ პროფილის სურათი, სახელი და პირადი ბმულიი: [settings_link].\n\nთქვენ შეიგიძლიათ განსაზღვროთ, როდის გსურთ “Chai Khanaდან” შეტყობინებების მიღება, ამისათვის ეწვიეთ შეტყობინებების გვერდს: [notifications_link]."
       published_theme:
-        subject: '"ჩაი ხანას" ვებგვერდზე დაემატა ახალი თემა!'
-        message: "თემები, რომლითაც თქვენ დაინტერესდით, უკვე გამოქვეყნებულია:"
+        subject: New themes have been published on Chai Khana!
+        message: 'The following themes you have expressed interest in were recently published:'
       published_story:
-        subject: "“ჩაი ხანაზე” გამოქვეყნდა ახალი ამბავი!"
+        subject: "“სთორიბილდერზე” გამოქვეყნდა ახალი ამბავი!"
         message: "ამბები, რომლითაც თქვენ დაინტერესდით, უკვე გამოქვეყნებულია:"
       story_comment:
         subject: "ვიღაცამ დატოვა კომენტარი “სთორიბილდერზე” თქვენ მიერ გამოქვეყნებულ ამბავზე!"
@@ -270,7 +269,7 @@ ka:
       users: "მომხმარებლები"
       authors: "ავტორი"
       feedback: "მოგვწერე"
-      about: "ჩვენ შესახებ"
+      about: 'ჩვენ შესახებ'
       rss: RSS-ი
       themes: "თემა"
       story_types: "ტიპი"
@@ -288,10 +287,11 @@ ka:
       tags: "თეგი"
       menu: "მენიუ"
       pages: "საიტზე ტექსტის რედაქტირება"
-      next: "შემდეგი"
-      feed: "სიახლეების ველი"
+      next: "შემდეგი "
+      feed: "ველი"
       download: Download
       previous: Previous
+      next: Next
       story_menu:
         link:
           story: "ამბავი"
@@ -371,12 +371,12 @@ ka:
       reviewer_key: "მიიღეთ URL, რათა გააზიაროთ ამბავი მის გამოქვეყნებამდე"
       reviewer_key_published: "თქვენი ამბავი გამოქვეყნებულია, აღარაა საჭირო ამ ბმულის გამოყენება"
       explore: "დაათვალიერე"
-      processing: Processing...
+      processing: Processing      
     common:
       app_name_not_trans: '"ჩაი ხანა"'
       app_name: "“ჩაი ხანა”"
-      app_intro: '"ჩაი ხანა" არის არასამთავრობო ორგანიზაცია, რომელიც ინტერნეტ გამოცემითა და ტრენინგებით უზრუნველყოფს სამხრეთ კავკასიის რეგიონულში პრობლემური საკითხების გაშუქებას.'
-      app_intro_meta: '"ჩაი ხანა" არის არასამთავრობო ორგანიზაცია, რომელიც ინტერნეტ გამოცემითა და ტრენინგებით უზრუნველყოფს სამხრეთ კავკასიის რეგიონულში პრობლემური საკითხების გაშუქებას.'
+      app_intro: '"ჩაი ხანა" არის არასამთავრობო ორგანიზაცია, რომელიც ინტერნეტ გამოცემითა და ტრენინგებით უზრუნველყოფს სამხრეთ კავკასიის რეგიონულში  პრობლემური საკითხების გაშუქებას.'
+      app_intro_meta: '"ჩაი ხანა" არის არასამთავრობო ორგანიზაცია, რომელიც ინტერნეტ გამოცემითა და ტრენინგებით უზრუნველყოფს სამხრეთ კავკასიის რეგიონულში  პრობლემური საკითხების გაშუქებას.'
       powered_by: "შექმნილია"
       powered_by_js: "“ჯამპსტარტ ჯორჯიას”"
       powered_by_end: "მიერ"
@@ -391,7 +391,7 @@ ka:
       search: "ამბის მოძებნა"
       build: "ამბის შექმნა"
       explore: "ამბების დათვალიერება"
-      about_story: "ჩვენ შესახებ"
+      about_story: "შესახებ"
       likes: "მოწონება"
       comments: "კომენტარები"
       publish_date: "გამოქვეყნების თარიღი"
@@ -413,13 +413,13 @@ ka:
       partial_text: "გამოიყენე ისეთი ჩასასმელი ბმული, რომელსაც აქვს იგივე სახე, რაც ამბებს “Chai Khanaს” საწყის გვერდზე (ფოტო, სათაური, ავტორი, თარიღი, და ა.შ.)"
       full: "სრული ამბავი"
       full_text: "გადაიტანე ამბის სრული ვერსია სხვა საიტზე. ჩვენ გირჩევთ, გამოიყენოთ მაქსიმალური სიგანე, რათა მიიღოთ უკეთესი გამოსახულება."
-      feed: '"ჩაი ხანას" სიახლეების ველი'
+      feed: '"ჩაი ხანას" სიახლეების ზოლი'
       home: "მთავარი"
       required: "სავალდებულო"
       nothing_selected: "არ არის არჩეული"
       clone_asset: "გამოვიყენოთ საწყისი ფაილის?"
-      embed: "კოდის ჩასმა"
-      scroll_top: "მაღლა ასვლა"
+      embed: კოდის ჩასმა
+      scroll_top: მაღლა ასვლა
     msgs:
       does_not_exist: "თქვენ ცდილობთ ისეთი გვერდის ნახვას, რომელიც არ არსებობს."
       not_authorized: "თქვენ არ გაქვთ ამ გვერდის ნახვის უფლება."
@@ -433,9 +433,9 @@ ka:
       error_publish: "%{obj} არ გამოქვეყნებულა: %{err}"
       error_publish_missing_fields: "%{obj} ვერ გამოქვეყნებული, სანამ არ დაამატებთ მოკლე შინაარსს და ფოტოს."
       error_publish_missing_fields_link: "დაამატეთ გამოტოვებული კონტენტი."
-      error_publish_missing_sections: "ერთი სექცია მაინც არის საჭირო სანამ გამოაქვეყნებთ."
+      error_publish_missing_sections: ერთი სექცია მაინც არის საჭირო სანამ გამოაქვეყნებთ.
       error_publish_missing_content_section: "ამბის გამოქვეყნებისთვის აუცილებელია სულ მცირე ერთი სექცია."
-      error_publish_missing_translations: "ამბავი უნდა იყოს სრულად ნათარბმნი %{lang} ენაზე სანამ გამოაქვეყნებთ."
+      error_publish_missing_translations: ამბავი უნდა იყოს სრულად ნათარბმნი %{lang} ენაზე სანამ გამოაქვეყნებთ.
       error_unpublish: "%{obj} გამოქვეყნება გაუქმებულია: %{err}"
       error_clone: "%{obj} კლონირება ვერ გაკეთდა."
       error_clone_notification: "დაფიქსირდა შეცდომა შემდეგი ამბის კლონირების დროს: %{msg}"
@@ -450,7 +450,7 @@ ka:
       nickname_url: "თქვენი მომხმარებლის ბმული იქნება:"
       story_duplicate: "ამ ამბის ბმული უკვე არსებობს."
       story_url: "ამ ამბის ბმული იქნება:"
-      update_translations: Don't forget to translate this new item!
+      update_translations: "Don't forget to translate this new item!"
       invitation:
         accepted: "თქვენ დათანხმდით თანაავტორობის მოწვევას შემდეგ ამბავზე: '%{title}'"
         accepted_already: "თქვენ უკვე დათანხმდით თანაავტორობის მოწვევას შემდეგ ამბავზე: '%{title}'"
@@ -480,13 +480,13 @@ ka:
       notification:
         true: "თქვენ მიიღებთ შეტყობინებებს."
         false: "თქვენ არ მიიღებთ შეტყობინებებს."
-        new_theme_all_success: "თქვენ მიიღებთ შეტყობინებას, როცა თემა იქნება დამატებული."
-        new_theme_none_success: "თქვენ არ მიიღებთ შეტყობინებას, როცა თემა იქნება დამატებული."
-        new_story_by_type_success: "თქვენ მიიღებთ შეტყობინებას, როცა ახალი ამბავი დაემატება შემდებ ტიპებს: %{types}."
+        new_theme_all_success: თქვენ მიიღებთ შეტყობინებას, როცა თემა იქნება დამატებული.
+        new_theme_none_success: თქვენ არ მიიღებთ შეტყობინებას, როცა თემა იქნება დამატებული.
+        new_story_by_type_success: 'თქვენ მიიღებთ შეტყობინებას, როცა ახალი ამბავი დაემატება შემდებ ტიპებს: %{types}.'
         story_comments_yes: "თქვენ მიიღებთ შეტყობინებას, როდესაც თქვენს ამბავზე გააკეთებენ კომენტარს."
         story_comments_no: "თქვენ არ მიიღებთ შეტყობინებას, როდესაც თქვენს ამბავზე დატოვებენ კომენტარს."
         following_no: "თქვენ აღარ მიიღებთ შეტყობინებებს '%{nickname}ის' ახალი ისტორიების შესახებ."
-        language: "თქვენ მიიღებთ შეტყობინებას %{language} ენაზე."
+        language: "თქვენ მიიღებთ შეტყობინებას %{language}."
       fail_change_order: "ერთეულის ადგილი ვერ შეიცვალა"
       nothing_selected: "გთხოვთ, აირჩიოთ სექცია/ერთეული წასაშლელად"
       fail_delete: "სექცია/ერთეული ვერ წაიშალა"
@@ -506,12 +506,12 @@ ka:
       name: "ფოტო სლაიდშოუ"
       description: "ფოტოები ჰორიზონტალურ სლაიდშოუში"
     embed_media:
-      name: "ონლაინ აუდიო/ვიდეო ჩასმა"
+      name: "ონლაინ აუდიო/ვიდეო"
       description: YouTube, Vimeo, და ა.შ.
     youtube:
       name: YouTube Video
       description: YouTube-ის ვედეო წარწერის დამატების შესაძლებლობით
-    infographic:
+    infographic: 
       name: Infographic
       description: Infographic, interactive, or factoids with ability to add datasets and data sources
   story_role:
@@ -558,10 +558,10 @@ ka:
       noResultsText: "მსგავსება არ მოიძებნა. დააჭირეთ 'შეყვანას', რომ დაამატოთ ეს ელ. ფოსტის მისამართი თანაავტორთა სიაში."
   layouts:
     application:
-      copyright: "საავტორო უფლება"
+      copyright: საავტორო უფლება
       copyright_text: ამ მასალაზე საავტორო უფლებას ფლობს არასამთავრობო ორგანიზაცია "ჩაი ხანა". მისი ხელახალი გამოქვეყნება "ჩაი ხანასთან" შეთანხმების გარეშე არ შეიძლება.
-      disclaimer: "განაცხადი"
-      disclaimer_text: "ეს ვებგვერდი მომზადდა DANIDA-ას ფონდის მიერ დაფინანსებულ პროექტ MYMEDIA-ს დახმარებით. პუბლიკაციის შინაარსზე პასუხისმგებლობას იღებს ავტორი/კონტრაქტორი/განმახორციებელი პარტნიორი/პარტნიორი საერთაშორისო ორგანიზაცია და არანაირად არ ასახავს MYMEDIA/DANIDA-ს ოფიციალურ აზრის."
+      disclaimer: განაცხადი
+      disclaimer_text: "ეს ვებგვერდი მომზადდა DANIDA-ას ფონდის მიერ დაფინანსებულ პროექტ MYMEDIA-ს დახმარებით. პუბლიკაციის შინაარსზე პასუხისმგებლობას იღებს ავტორი/კონტრაქტორი/განმახორციებელი პარტნიორი/პარტნიორი საერთაშორისო ორგანიზაცია და არანაირად არ ასახავს  MYMEDIA/DANIDA-ს ოფიციალურ აზრის."
     unsupported_browser:
       title: "არასათანადო ბრაუზერი"
       video: "თქვენ ბრაუზერს ვიდეოს მხარდაჭერა არ აქვს"
@@ -577,15 +577,15 @@ ka:
       js_link_title: "ჯამპსტარტ ჯორჯია - ჩვენ გაწვდით ინფორმაციას უკეთ!"
       js_link_text: "შექმნილია"
     storybuilder:
-      source: "წყარო"
-      target: "მიზანი"
-      copy_paste: "წყაროდან დაკოპირება"
+      source: წყარო
+      target: მიზანი
+      copy_paste: წყაროდან დაკოპირება      
   shared:
     grid:
       no_stories: "სამწუხაროდ არ მოიძებნა არცერთი ამბავი!"
     story_nav_modals:
       copy: "კოპირება"
-      copied: "დაკოპირებულია!"
+      copied: დაკოპირებულია!
   admin:
     index:
       title: "ადმინისტრატორის განყოფილება"
@@ -720,7 +720,7 @@ ka:
       hint:
         title: "ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში"
         caption: "წარწერა გამოჩნდება სლაიდშოუს ზედა ნაწილში"
-        description: "არღწერა გამოჩნდება სლაიდშოუს ქვემოთ"
+        description: არღწერა გამოჩნდება სლაიდშოუს ქვემოთ
     asset_file_fields:
       remove_image: "წაშლა"
       placeholder:
@@ -750,11 +750,11 @@ ka:
       preview: YouTube ვიდეოს წინასწარი ნახვა
       error: URL-ი ვერ დამუშავდა. გთხოვთ სცადოთ ხელახლა.
       generate_iframe:
-        missing_api_key: value can't be generated due to missing API key.
-        error: is not valid.
+        missing_api_key: "value can't be generated due to missing API key."
+        error: "value can't be generated."
       placeholder:
         title: YouTube სათაური
-        url: YouTube ვიდეოს Url
+        url: YouTube ვიდეოს URL
       hint:
         title: "ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში"
         url: "დააკოპირეთ YouTube URL-ი და ჩასვით აქ"
@@ -768,7 +768,7 @@ ka:
       form_title: Infographic Form
       add_datasource: Add Data Source
       static: Static
-      dynamic: Dynamic
+      dynamic: Dynamic  
       inline: In Story
       popup: Popup
       label:
@@ -779,15 +779,15 @@ ka:
         dataset_url: optional
         dynamic_url: Interactive URL
         dynamic_width: width
-        dynamic_height: height
+        dynamic_height: height     
       hint:
         title: This text only appears in the left sidebar, it will not show up in the story
-        caption: Heading of infographic will appear above the infographic image. If this Infographic Section is first in the story, you should leave this blank and use the Story Title field.
-        description: The description will appear below the infographic. If this Infographic Section is first in the story, the Story Summary will appear below the infographic image so if the Story Summary and Infographic Description are the same, you should leave this field blank.
+        caption: "Heading of infographic will appear above the infographic image. If this Infographic Section is first in the story, you should leave this blank and use the Story Title field."
+        description: "The description will appear below the infographic. If this Infographic Section is first in the story, the Story Summary will appear below the infographic image so if the Story Summary and Infographic Description are the same, you should leave this field blank."
         image: Only jpg and png format allowed; 8MB file size limit
         dataset_file: Please try to compress files to make for quicker download; 25MB file size limit
         dataset_url: URL to Dataset
-        subtype: Static infographics are images, Dynamic infographics require a URL.
+        subtype: "Static infographics are images, Dynamic infographics require a URL."
         dynamic_url: URL to web page with interactive infographic
         dynamic_size: Use these fields to indicate the space you want to reserve for showing this infographic. Leave the fields empty if you want the infographic to be fullscreen. The minimum value is 200.
         dynamic_render: The infographic can be rendered in the story or in a popup that appears after the user clicks on the infogaphic image in the story. Use the popup option if the infogaphic takes up the full screen or is very long.
@@ -803,13 +803,13 @@ ka:
     byline_translator: "თარგმნა"
     source: "წყარო:"
     by: 
-    related_stories: "მსგავსი ამბები"
-    view_all_stories_in: "ყველა ამბის ნახვა"
+    related_stories: მსგავსი ამბები
+    view_all_stories_in: ყველა ამბის ნახვა
     infographic:
-      source: "მონაცემთა წყარო"
-      dataset: "მასალები ამ თემაზე"
-      download: "ჩამოტვირთვა"
-      online: "მონაცემთა ნახვა ონლაინ"
+      source: მონაცემთა წყარო
+      dataset: მასალები ამ თემაზე
+      download: ჩამოტვირთვა
+      online: მონაცემთა ნახვა ონლაინ
   settings:
     index:
       title: "პარამეტრები"
@@ -839,9 +839,9 @@ ka:
       story_comment_label: "გსურთ მიიღოთ შეტყობინებები, როდესაც თქვენს ამბავზე დააკომენტარებენ?"
       story_comment_no: "არა, არ გამომიგზავნოთ შეტყობინებები."
       story_comment_yes: "დიახ, მსურს შეტყობინებების მიღება."
-      new_themes_sub_title: "ახალი თემის შეტყობინება"
-      new_themes_all: "შემატყობინეთ, როცა ახალი თემა იქნება დამატებული."
-      new_themes_none: "არ მსურს მივიღო შეტყობინებები, როცა ახალი თემა იქნება დამატებული."
+      new_themes_sub_title: ახალი თემის შეტყობინება
+      new_themes_all: შემატყობინეთ, როცა ახალი თემა იქნება დამატებული.
+      new_themes_none: არ მსურს მივიღო შეტყობინებები, როცა ახალი თემა იქნება დამატებული.
       new_stories_by_category: "შემატყობინეთ, როდესაც ახალი ამბავი დაემატება შემდეგ კატეგორიას:"
       language_sub_title: "შეტყობინების ენა"
       language_label: "რა ენაზე გსურთ შეტყობინებების მიღება?"

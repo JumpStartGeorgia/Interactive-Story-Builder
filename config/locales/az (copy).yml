@@ -17,13 +17,13 @@ az:
       theme: Mövzu
       story_type: Hekayə Növü
       author: Müəllif
-      asset: fayl
+      asset: File      
     attributes:
       asset: &asset
-        asset_file_name: fayl
-        asset_content_type: məzmun faylın növü
-        asset_file_size: Faylın ölçüləri
-      avatar: *asset
+        asset_file_name: File
+        asset_content_type: File Content Type
+        asset_file_size: File Size
+      avatar: *asset    
       user:
         email: E-poçt ünvanı
         password: Parol
@@ -43,9 +43,9 @@ az:
         name: Ad
         about: Haqqında
         permalink: Daimi Keçid
-      author_translations: *author_translation
+      author_translations: *author_translation        
       story:
-        user_id: Hekayənin Müəllifi
+        user_id: 'Hekayənin Müəllifi '
         user_ids: Redaktorlar
         publish_home_page: Dərc edildikdən sonra hekayən ana səhifədə göstərilsin mi?
         template_id: "Şablon"
@@ -54,7 +54,7 @@ az:
         tag_list: Nişanlar
         categories: Kateqoriyalar
         story_type: Növ
-        in_theme_slider: Hekayəni Mövzu Slaydlarında Göstər
+        in_theme_slider: 'Hekayəni Mövzu Slaydlarında Göstər '
       story_translation: &story_translation
         title: Hekayənin Sərlövhəsi
         author: Müəllif(lər)
@@ -65,8 +65,8 @@ az:
         about: Hekayənin Xülasəsi
         permalink: Hekayənin URL-ı
         permalink_staging: Hekayənin URL-ı
-        asset: *asset
-      story_translations: *story_translation      
+        asset: *asset        
+      story_translations: *story_translation        
       section:
         has_marker: Naviqasiya Qısayolu
         type_id: Növ ("Yaz" if you mean the verb "to type")
@@ -75,14 +75,14 @@ az:
         title: Sərlövhə
         audio: Audio Cığırı
         delete_audio: Audio Cığırını Sil?
-        asset: *asset
-      section_translations:  *section_translation
+        asset: *asset        
+      section_translations:  *section_translation        
       content_translation: &content_translation
         title: Sərlövhə
         caption: Başlıq
         sub_caption: Alt-başlıq
         content: Mətn
-      content_translations: *content_translation
+      content_translations: *content_translation        
       medium:
         media_type: Media Növü
         image: "Şəkil"
@@ -104,9 +104,9 @@ az:
         title: Sərlövhə
         caption: Başlıq
         description: Təsvir
-        asset_files_name: Image(s)
+        asset_files_name: Image(s)        
         asset_files: *asset
-      slideshow_translations: *slideshow_translation
+      slideshow_translations: *slideshow_translation        
       message:
         name: Name
         email: Email Address
@@ -115,7 +115,7 @@ az:
       embed_medium_translation: &embed_medium_translation
         title: Alt-başlıq
         url: Onlayn Mediaya URL
-      embed_medium_translations: *embed_medium_translation
+      embed_medium_translations: *embed_medium_translation        
       youtube:
         fullscreen: Tam ekran
         loop: Dövr
@@ -126,42 +126,41 @@ az:
         menu_lang: Pleyerin Dili
         cc: "Şəkilaltı İmzanı/Sərlövhəni Göstər"
         cc_lang: Alt-başlığın dili
-        code: Youtube Video Id
-      youtube_translations: *youtube_translation
+      youtube_translations: *youtube_translation        
       infographic:
-        published_at: Yayınlanma tarixi
-        image: infografikin Görüntüsü
-        dataset_file: Məlumat toplusu faylı
-        datasources: Məlumat mənbələri
-        subtype: "İnfografik növü"
-        dynamic_width: en
-        dynamic_height: hündürlük
+        published_at: Date Published
+        image: Infographic Image
+        dataset_file: Dataset File
+        datasources: Data Sources
+        subtype: Infographic Type        
+        dynamic_width: Width
+        dynamic_height: Height
         dynamic_render: Show Infographic in Story or in Popup
       infographic_translation: &infographic_translation
-        title: başlıq
-        caption: Rubrika
-        description: təsvir
-        dataset_url: Online Məlumat toplusu
-        image_name: "Şəkil"
+        title: Title
+        caption: Heading
+        description: Description
+        dataset_url: Online Dataset
+        image_name: Image
         image: *asset     
         dataset_file: *asset
-        dynamic_url: Fəal URL
-      infographic_translations: *infographic_translation
+        dynamic_url: Dynamic URL
+      infographic_translations: *infographic_translation        
       infographic_datasource:
-        name: Məlumat mənbənin adı
-        url: URL məlumatın mənbəsi
+        name: Data Source Name
+        url: Data Source URL
       language:
         locale: Dil
         name: Dilin Adı
       category_translation: &category_translation
         name: Ad
-      category_translations: *category_translation
+      category_translations: *category_translation        
       page:
         name: Məzmunun Xüsusi adı (bunu dəyişmə!)
       page_translation: &page_translation
         title: Məzmunun üstündə göstəriləcək sərlövhə
         content: Məzmun
-      page_translations: *page_translation
+      page_translations: *page_translation        
       theme:
         is_published: Dərc et?
         published_at: Dərc Edilmə Tarixi
@@ -173,23 +172,23 @@ az:
         edition: Buraxılış
         description: Təsvir
         permalink: URL
-      theme_translations: *theme_translation
+      theme_translations: *theme_translation        
       story_type:
         sort_order: Sıralama Qaydası
       story_type_translation: &story_type_translation
         name: Ad
         permalink: URL
-      story_type_translations: *story_type_translation      
+      story_type_translations: *story_type_translation        
     errors:
       messages:
         required_field: tələb edilən sahədir.
         already_exists: verilənlər bazası artıq mövcuddur.
         story_authors: "ən azı bir şəxs seçilməlidir."
-        publish_theme: Dərc olunan maddə təyin edilməmiş qədər mövzu dərc edilə bilməz.
-        not_provided: must be provided.
+        publish_theme: Dərc olunan maddə təyin edilməmiş qədər  mövzu dərc edilə bilməz.
+        not_provided: 'must be provided.'        
   mailer:
     closing: Hörmətlə,
-    signature: "Çayxana Komandası "
+    signature: "Çayxana Komandası (Chai Khana also acceptable)"
     unsubscribe: Bildiriş parametrlərini dəyişmək üçün buraya basın
     contact:
       contact_form:
@@ -197,10 +196,10 @@ az:
     notification:
       new_user:
         subject: "Çayxanaya Xoş Gəlmisiniz!"
-        message: "Çayxananın üzvü olduğunuz üçün təşəkkür edirik. Sizin yaradacağınız hekayələri səbirsizliklə gözləyirik! Lütfən, imkanınız olanda parametrlər səhifənizə daxil olun ki, avatarınızı, ləqəbinizi, şəxsi URL-ınızı, və özünüz barədə xülasəni yenilədə biləsiniz: [settings_link]. Bildiriş səhifəsinə gedərək, Çayxanadan aldığınız bildirişlərin vaxtını müəyyənləşdirə bilərsiniz: [notifications_link]."
+        message: "Çayxananın üzvü olduğunuz üçün təşəkkür edirik. Sizin yaradacağınız hekayələri səbirsizliklə gözləyirik!\n\nLütfən, imkanınız olanda parametrlər səhifənizə daxil olun ki, avatarınızı, ləqəbinizi, şəxsi URL-ınızı, və özünüz barədə xülasəni yenilədə biləsiniz: [settings_link].\n\nBildiriş səhifəsinə gedərək, Çayxanadan aldığınız bildirişlərin vaxtını müəyyənləşdirə bilərsiniz: [notifications_link]."
       published_theme:
-        subject: Yeni mövzular Chai Khana da dərc edilmişdir!
-        message: Sizə marağlı olan aşağıdakı mövzular bu yaxınlarda nəşr olundu
+        subject: New themes have been published on Chai Khana!
+        message: 'The following themes you have expressed interest in were recently published:'
       published_story:
         subject: "Çayxanada yeni hekəyələr dərc edilib!"
         message: 'Maraq göstərdiyiniz növbəti hekayələr təzəlikcə dərc edilib:'
@@ -211,7 +210,7 @@ az:
         comments: "%{num} Şərhlər"
       story_collaboration:
         subject: "Çayxanada bir hekayə üzrə əməkdaşlığa dəvət edilmisiniz!"
-        message: Çayxanada başqaları ilə hekayələr üzrə əməkdaşlığa növbəti dəvətləri almısınız. Dəvəti qəbul etmək istəyirsinizsə, sadəcə "Dəvəti qəbul et" keçidinə basın. Əgər dəvəti qəbul etmək istəmirsinizsə, başqa heç bir hərəkət etməyiniz lazım deyil.
+        message: 'Çayxanada başqaları ilə hekayələr üzrə əməkdaşlığa növbəti dəvətləri almısınız. Dəvəti qəbul etmək istəyirsinizsə, sadəcə "Dəvəti qəbul et" keçidinə basın. Əgər dəvəti qəbul etmək istəmirsinizsə, başqa heç bir hərəkət etməyiniz lazım deyil. '
         from: Kimdən
         role: Rol
         story_title: Hekayı Sərlövhəsi
@@ -292,6 +291,7 @@ az:
       feed: Xəbər Lenti
       download: Download
       previous: Previous
+      next: Next
       story_menu:
         link:
           story: Hekayə
@@ -311,7 +311,7 @@ az:
           collaborators: Sənin hekayəni redaktə etməyə icazəsi olan istifadəçiləri idarə et
           preview: Hekayənin görünüşünə bax
           publish: Goy dünya hekayəni görsün
-          unpublish: Dünyanı hekayəni görməyə qoyma
+          unpublish: 'Dünyanı hekayəni görməyə qoyma '
           review: Hekayəni dərc etdikdən öncə paylaşılma URL-ı
           clone: Bu hekayəni yeni hekayəyə köçür
           export: Tam hekayəni endir
@@ -334,9 +334,9 @@ az:
   app:
     language:
       en: English
-      ka: "ქართული"
-      hy: "Հայերեն"
-      ru: "Русский"
+      ka: ქართული
+      hy: Հայերեն
+      ru: Русский
       az: Azərbaycan
     buttons:
       back: Hamısına Bax
@@ -371,7 +371,7 @@ az:
       reviewer_key: Hekayəni dərc etmədən öncə paylaşmaq üçün URL-ı al
       reviewer_key_published: Sənin hekayən artıq dərc edilibdir, beləcə bu dərc edilməmiş URL-ı paylaşmağa ehtiyac yoxdur
       explore: Araşdır
-      processing: Processing...
+      processing: Processing      
     common:
       app_name_not_trans: "Çayxana"
       app_name: "Çayxana"
@@ -397,7 +397,7 @@ az:
       publish_date: Dərc Edilmə Tarixi
       follow: "İzlə"
       following: "İzləyirəm"
-      follow_link_title: Bu istifadəçi yeni hekayələr paylaşanda bildiriş almaq üçün bas
+      follow_link_title: 'Bu istifadəçi yeni hekayələr paylaşanda bildiriş almaq üçün bas '
       unfollow_link_title: Bu istifadəçi yeni hekayələr paylaşanda bildirişləri dayandırmaq üçün bas
       email: E-poçt
       views: Baxışlar
@@ -450,7 +450,7 @@ az:
       nickname_url: 'Sizin URL-ınız:'
       story_duplicate: Bu hekayənin URL-ı artıq mövcuddur.
       story_url: 'Hekayənin URL-ı:'
-      update_translations: Don't forget to translate this new item!
+      update_translations: "Don't forget to translate this new item!"
       invitation:
         accepted: "Sən '%{title}' üzrə əməkdaşlıq dəvətini qəbul etmisən"
         accepted_already: "Sən '%{title}' üzrə əməkdaşlıq dəvətini artıq qəbul etmisən"
@@ -482,7 +482,7 @@ az:
         false: Sizə bildirişlər göndərilməyəcək.
         new_theme_all_success: Mövzu əlavə olunanda siz bildiriş alacaqsınız.
         new_theme_none_success: Bu mövzular əlavə olunanda siz bildiriş ala bilməyəcəksiniz.
-        new_story_by_type_success: Material növlərə əlavə olunanda siz bildiriş alacaqsınız %{types}.
+        new_story_by_type_success: 'Material növlərə  əlavə olunanda siz bildiriş alacaqsınız  %{types}.'
         story_comments_yes: Hər hansısa hekayənizə şərh yazılanda sizə bildiriş göndəriləcək.
         story_comments_no: Hər hansısa hekayənizə şərh yazılanda sizə bildiriş göndərilməyəcək.
         following_no: "Artıq '%{nickname}' -dən yeni hekayələr barədə sizə bildirişlər göndərilməyəcək."
@@ -511,8 +511,8 @@ az:
     youtube:
       name: YouTube Videosu
       description: "Şəkilaltı imza dilinin dəyişmə qabiliyyəti olan YouTube videosu"
-    infographic:
-      name: "İnfografik"
+    infographic: 
+      name: Infographic
       description: Infographic, interactive, or factoids with ability to add datasets and data sources
   story_role:
     editor: Redaktor
@@ -529,7 +529,7 @@ az:
     staff_pick_title_active: Redaksiya Heyətinin Seçimi filtrini aradan qaldır
     sort_header: xxx - Qaydası ilə Sırala
     sort_title: Hekayələrin sıralama qaydasını göstər
-    filters: Filtrlər
+    filters: 'Filtrlər '
     all_stories: Bütün hekayələr
     sort:
       recent: Son hekayələr
@@ -559,9 +559,9 @@ az:
   layouts:
     application:
       copyright: Müəllif Hüquqları
-      copyright_text: Bu materialların Müəllif Hüquqları Chai-Khana QHT-ya məxsusdur. Chai-Khana-nın əvvəlcədən razılığı olmadan materialların yayınmasında yol verilmir.
+      copyright_text: Bu materialların Müəllif Hüquqları  Chai-Khana QHT-ya məxsusdur. Chai-Khana-nın əvvəlcədən razılığı olmadan materialların yayınmasında yol verilmir.
       disclaimer: Məsuliyyətdən imtina
-      disclaimer_text: Bu sayt MYMEDIA, DANIDA tərəfindən maliyyə yardımı ilə hazırlanmışdır. Saytın məzmunu müəllif/ işə götürən/ tərəfdaş/ beynaxalq təşkilatı məsuliyyəti daşıyır və MyMedia/ Danida rəsmi mövqeyini əks etdirmir.
+      disclaimer_text: "Bu sayt MYMEDIA, DANIDA tərəfindən maliyyə yardımı ilə hazırlanmışdır. Saytın məzmunu  müəllif/ işə götürən/ tərəfdaş/ beynaxalq təşkilatı məsuliyyəti daşıyır və  MyMedia/ Danida rəsmi mövqeyini əks etdirmir. "
     unsupported_browser:
       title: Dəstəklənməyən brauzer
       video: Sizin brauzeriniz bu videonu dəstəkləmir.
@@ -627,10 +627,10 @@ az:
         title: Hekayə sərlövhəsi hekayənin üstündə göstəriləcək
         permalink: Defolt URL hekayənin sərlövhəsidir, amma arzunuz varsa bunu dəyişə bilərsiniz
         author: Hekayənin müəllifini (müəlliflərini) seç ki, hekayə onun (onların) səhifəsində göstərilsin
-        media_author: Müəlliflərin adları hekayə müəlliflərinin adlarının altında göstəriləcək
-        translation_author: Müəlliflərin adları Şəkil və Video müəlliflərinin adlarının altında göstəriləcək
+        media_author: 'Müəlliflərin adları hekayə müəlliflərinin adlarının altında göstəriləcək '
+        translation_author: 'Müəlliflərin adları Şəkil və Video müəlliflərinin adlarının altında göstəriləcək '
         published: Dərc edilən hekayələrə bütün dünya baxa bilər
-        publish_home_page: Seçilibsə, sizin hekayəniz saytın ana səhifəsində göstəriləcək
+        publish_home_page: 'Seçilibsə, sizin hekayəniz saytın ana səhifəsində göstəriləcək '
         template: Stili hekayədə istifadə etmək üçün şablonu seç
         thumbnail: Hekayə dərc ediləndə onu ana səhifədə göstərən şəkil (yalnız jpg və ya png; fayl böyüklüyü 4MB-a məhduddur)
         editor: Hekayənin qeydini bu saytda yaradan şəxs
@@ -646,15 +646,15 @@ az:
       title: "%{title}' Əməkdaşları"
       owner_header: Hekayə müəllifi
       collaborators_header: Hekayə əməkdaşları
-      explanation: Hekayə əməkdaşı, hekayəni redakte etməyə icazəsi olan şəxsdir.
+      explanation: 'Hekayə əməkdaşı, hekayəni redakte etməyə icazəsi olan şəxsdir. '
       editors_header: Redaktorlar
-      editor_explanation: Redaktorun hekayəyə əlavə/ dəyişiklik və ya tərcümə etməyə icazəsi var. Redaktor həm əməkdaşlar əlavə edə bilər həm də hekayəni dərc edə bilər.
+      editor_explanation: 'Redaktorun hekayəyə əlavə/ dəyişiklik və ya tərcümə etməyə icazəsi var. Redaktor həm əməkdaşlar əlavə edə bilər həm də hekayəni dərc edə bilər. '
       translators_header: Tərcüməçilər
       translator_explanation: Tərcüməçinin hekayəni xüsusi bir dillərə tərcümə etməyə icazəsi var. Təcüməçinin orijinal hekayəni redaktə etməyə, əməkdaşlar əlavə etməyə və hekayəni dərc etməyə icazəsi yoxdur.
       remove_title: "%{name} kənarlaşdır"
       not_accepted_title: "%{name} dəvəti hələ qəbul etməyib"
       add_header: "Əməkdaşları əlavə et"
-      add_explanation: Aşağıda daxil etdiyiniz istifadəçilərə, bu hekayədə əməkdaş olmaları üçün dəvət elektron poçtu göndəriləcək.
+      add_explanation: 'Aşağıda daxil etdiyiniz istifadəçilərə, bu hekayədə əməkdaş olmaları üçün dəvət elektron poçtu göndəriləcək. '
       editor_label: Redaktorların adlarını və ya e-poçtlarını daxil edin
       language_label: Tərcümə dillərini seçin
       translator_label: Tərcüməçinin adını və ya e-poçtunu daxil edin
@@ -676,7 +676,7 @@ az:
         caption: "Şəkilaltı imzanın mətni"
         source: "Şəkilin/videonun mənbəyi"
       hint:
-        title: Bu mətn hekayədə yox, yalnız sol paneldə göstəriləcək.
+        title: 'Bu mətn hekayədə yox, yalnız sol paneldə göstəriləcək. '
         media_type: Videolar üçün şəkil lazımdır, çünki videolar mobil cihazlarda yüklənmir.
         caption: "Şəkilaltı imzanın mətni şəkilin/videonun üstündə göstəriləcək. Əgər bu hekayədə ilkin materialdırsa şəkilaltı imzanın mətni qizlənəcək."
         source: "Şəkilin/videonun mənbəyi sağ alt küncdə göstəriləcək."
@@ -692,7 +692,7 @@ az:
       placeholder:
         title: Bölmə Sərlövhəsi
       hint:
-        title: Bu mətn sol paneldə göstəriləcək, və əgər naviqasiya qisayolu seçilibsə, qisayol keçidin sərlövhəsi olacaq.
+        title: 'Bu mətn sol paneldə göstəriləcək, və əgər naviqasiya qisayolu seçilibsə, qisayol keçidin sərlövhəsi olacaq. '
         type: Bu növü seçməyiniz, bölməyə nə cür məlumatın daxil ediləcəyini müəyyənləşdirir.
         has_marker: Seçilibsə, naviqasıyada bu bölməyə qisayol keçidi olacaq.
         audio: Arxa planın audiosu bu bölmə izlənəndə çalacaq (yalnız mp3 fayl növü; böyüklüyü 10mb-a məhduddur)
@@ -750,8 +750,8 @@ az:
       preview: YouTube Videosunun sinaq baxışı
       error: URL-ı emal etmək mümkün olmadı. Lütfən bir daha cəhd edin.
       generate_iframe:
-        missing_api_key: value can't be generated due to missing API key.
-        error: is not valid.
+        missing_api_key: "value can't be generated due to missing API key."
+        error: "value can't be generated."      
       placeholder:
         title: YouTube Sərlövhəsi
         url: YouTube video URL-ı
@@ -765,29 +765,29 @@ az:
         menu_lang: YouTube menyu/kontrollarının ilkin dili.
         cc_lang: Göstərilən subtitrların defolt dili.
     infographic:
-      form_title: "İnfografikin forması"
-      add_datasource: Məlumat mənbəsini əlavə etmək
-      static: Statik
-      dynamic: Fəal
+      form_title: Infographic Form
+      add_datasource: Add Data Source
+      static: Static
+      dynamic: Dynamic
       inline: In Story
       popup: Popup
       label:
-        dynamic_size: Infografikin ölçüləri en x hündürlük
+        dynamic_size: Infographic Dimensions in Width x Height
       placeholder:
-        title: başlıq
-        caption: könüllü
-        dataset_url: könüllü
-        dynamic_url: "İnteraktiv URL"
-        dynamic_width: en
-        dynamic_height: hündürlük
+        title: Title
+        caption: optional
+        dataset_url: optional
+        dynamic_url: Interactive URL
+        dynamic_width: width
+        dynamic_height: height     
       hint:
-        title: Bu mətn hekayə də yox, yalnız sol panel də görünür
-        caption: 'infoqrafikin şəkili infoqrafikin yuxarısın da görünür. Əgər infoqrafikin bölməsi hekayə də birincidir, siz onu boş buraxıb Story Title bölməsini istifadə etməlisiz. '
-        description: The description will appear below the infographic. If this Infographic Section is first in the story, the Story Summary will appear below the infographic image so if the Story Summary and Infographic Description are the same, you should leave this field blank.
+        title: This text only appears in the left sidebar, it will not show up in the story
+        caption: "Heading of infographic will appear above the infographic image. If this Infographic Section is first in the story, you should leave this blank and use the Story Title field."
+        description: "The description will appear below the infographic. If this Infographic Section is first in the story, the Story Summary will appear below the infographic image so if the Story Summary and Infographic Description are the same, you should leave this field blank."
         image: Only jpg and png format allowed; 8MB file size limit
         dataset_file: Please try to compress files to make for quicker download; 25MB file size limit
         dataset_url: URL to Dataset
-        subtype: Static infographics are images, Dynamic infographics require a URL.
+        subtype: "Static infographics are images, Dynamic infographics require a URL."        
         dynamic_url: URL to web page with interactive infographic
         dynamic_size: Use these fields to indicate the space you want to reserve for showing this infographic. Leave the fields empty if you want the infographic to be fullscreen. The minimum value is 200.
         dynamic_render: The infographic can be rendered in the story or in a popup that appears after the user clicks on the infogaphic image in the story. Use the popup option if the infogaphic takes up the full screen or is very long.
@@ -806,10 +806,10 @@ az:
     related_stories: Buna aid xəbərlərə bax
     view_all_stories_in: Bütün hekayələrə bax
     infographic:
-      source: Data Source
-      dataset: Related Items
-      download: Download File
-      online: View Data Online
+      source: Məlumat mənbəyi
+      dataset: əlaqəli materiallar
+      download: Faylı yüklə
+      online: Məlumatı Online Bax
   settings:
     index:
       title: Parametrlər
@@ -836,12 +836,12 @@ az:
       all_no: Xeyir, bildirişlərin mənə göndərilməsini istəmirəm.
       all_yes: Bəli, bildirişlərin mənə göndərilməsini istəyirəm.
       story_comment_sub_title: Yeni Hekayə Şərh Bildirişləri
-      story_comment_label: Hekayələrinizdən birinə şərh yazılanda bildiriş almaq istəyirsinizmi?
+      story_comment_label: 'Hekayələrinizdən birinə şərh yazılanda bildiriş almaq istəyirsinizmi? '
       story_comment_no: Xeyir, bildirişlərin mənə göndərilməsini istəmirəm.
       story_comment_yes: Bəli, bildirişlərin mənə göndərilməsini istəyirəm.
       new_themes_sub_title: Yeni mövzunun bildirişi
       new_themes_all: Yeni mövzu əlavə olunanda bildirin..
-      new_themes_none: Yeni hekayələr dərc olunanda mən bildiriş almaq istəmirəm.
+      new_themes_none: Yeni hekayələr dərc olunanda mən bildiriş almaq istəmirəm. .
       new_stories_by_category: ": hekayə daxil ediləndə məni bildirin"
       language_sub_title: Bildiriş dili
       language_label: Bildirişləri hansı dildə almaq istəyirsiniz?

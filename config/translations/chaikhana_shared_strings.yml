@@ -189,6 +189,8 @@
   - en.activerecord.attributes.youtube_translations.cc
 - - en.activerecord.attributes.youtube_translation.cc_lang
   - en.activerecord.attributes.youtube_translations.cc_lang
+- - en.activerecord.attributes.youtube_translation.code
+  - en.activerecord.attributes.youtube_translations.code
 - - en.activerecord.attributes.infographic.published_at
   - en.activerecord.attributes.theme.published_at
 - - en.activerecord.attributes.infographic_translation.dataset_url
@@ -241,6 +243,7 @@
   - en.helpers.links.story_menu.link.export
 - - en.helpers.links.story_menu.link.preview
   - en.app.buttons.preview
+  - en.stories.youtube.preview
 - - en.helpers.links.story_menu.link.publish
   - en.app.buttons.publish
 - - en.helpers.links.story_menu.link.unpublish
