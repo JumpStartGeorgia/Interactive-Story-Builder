@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150314033858) do
+ActiveRecord::Schema.define(:version => 20150320065345) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -95,21 +95,14 @@ ActiveRecord::Schema.define(:version => 20150314033858) do
 
   create_table "contents", :force => true do |t|
     t.integer  "section_id"
-    t.string   "old_title"
-    t.string   "old_sub_caption"
-    t.text     "old_content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "old_caption"
   end
 
   add_index "contents", ["section_id"], :name => "index_contents_on_section_id"
 
   create_table "embed_media", :force => true do |t|
     t.integer  "section_id"
-    t.string   "old_title"
-    t.string   "old_url"
-    t.text     "old_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -228,17 +221,12 @@ ActiveRecord::Schema.define(:version => 20150314033858) do
   create_table "media", :force => true do |t|
     t.integer  "section_id"
     t.integer  "media_type"
-    t.string   "old_title"
-    t.string   "old_caption",       :limit => 180
-    t.integer  "old_caption_align"
-    t.string   "old_source"
     t.string   "audio_path"
     t.string   "video_path"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "position"
-    t.boolean  "video_loop",                       :default => true
-    t.integer  "old_infobox_type",                 :default => 0
+    t.boolean  "video_loop", :default => true
   end
 
   add_index "media", ["section_id", "position"], :name => "index_media_on_section_id_and_position"
@@ -339,7 +327,6 @@ ActiveRecord::Schema.define(:version => 20150314033858) do
   create_table "sections", :force => true do |t|
     t.integer  "story_id"
     t.integer  "type_id"
-    t.string   "old_title"
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -364,8 +351,6 @@ ActiveRecord::Schema.define(:version => 20150314033858) do
 
   create_table "slideshows", :force => true do |t|
     t.integer  "section_id"
-    t.string   "old_title"
-    t.string   "old_caption"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -373,21 +358,14 @@ ActiveRecord::Schema.define(:version => 20150314033858) do
   add_index "slideshows", ["section_id"], :name => "index_slideshows_on_section_id"
 
   create_table "stories", :force => true do |t|
-    t.string   "old_title"
     t.integer  "user_id"
-    t.string   "old_author"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "old_media_author"
-    t.boolean  "old_published",         :default => false
-    t.datetime "old_published_at"
     t.integer  "template_id",           :default => 1
     t.integer  "impressions_count",     :default => 0
     t.integer  "reviewer_key"
-    t.string   "old_permalink"
-    t.text     "old_about"
     t.boolean  "publish_home_page",     :default => true
     t.boolean  "staff_pick",            :default => false
     t.string   "story_locale"
@@ -397,9 +375,7 @@ ActiveRecord::Schema.define(:version => 20150314033858) do
     t.integer  "cached_votes_down",     :default => 0
     t.integer  "cached_weighted_score", :default => 0
     t.integer  "comments_count",        :default => 0
-    t.string   "old_permalink_staging"
     t.integer  "story_type_id"
-    t.boolean  "old_in_theme_slider"
   end
 
   add_index "stories", ["cached_votes_down"], :name => "index_stories_on_cached_votes_down"
@@ -408,10 +384,6 @@ ActiveRecord::Schema.define(:version => 20150314033858) do
   add_index "stories", ["cached_votes_up"], :name => "index_stories_on_cached_votes_up"
   add_index "stories", ["cached_weighted_score"], :name => "index_stories_on_cached_weighted_score"
   add_index "stories", ["comments_count"], :name => "index_stories_on_comments_count"
-  add_index "stories", ["old_in_theme_slider"], :name => "index_stories_on_in_theme_slider"
-  add_index "stories", ["old_permalink"], :name => "index_stories_on_permalink"
-  add_index "stories", ["old_published"], :name => "index_stories_on_published"
-  add_index "stories", ["old_published_at"], :name => "index_stories_on_published_at"
   add_index "stories", ["publish_home_page", "staff_pick"], :name => "index_stories_on_publish_home_page_and_staff_pick"
   add_index "stories", ["reviewer_key"], :name => "index_stories_on_reviewer_key"
   add_index "stories", ["story_locale"], :name => "index_stories_on_story_locale"
@@ -617,7 +589,6 @@ ActiveRecord::Schema.define(:version => 20150314033858) do
     t.text     "about"
     t.string   "default_story_locale",   :default => "en"
     t.string   "permalink"
-    t.string   "old_avatar_file_name"
     t.string   "email_no_domain"
     t.boolean  "wants_notifications",    :default => true
     t.string   "notification_language",  :default => "en"
@@ -664,8 +635,6 @@ ActiveRecord::Schema.define(:version => 20150314033858) do
 
   create_table "youtubes", :force => true do |t|
     t.integer  "section_id"
-    t.string   "old_title"
-    t.string   "old_url"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.boolean  "fullscreen", :default => false
