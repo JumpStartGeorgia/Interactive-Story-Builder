@@ -88,5 +88,9 @@ module BootstrapStarter
     config.middleware.insert 0, HandleInvalidPercentEncoding
     config.middleware.insert 0, Rack::UTF8Sanitizer    
 
+    # from: https://robots.thoughtbot.com/content-compression-with-rack-deflater
+    # compress all html/json responses
+    config.middleware.use Rack::Deflater
+
   end
 end
