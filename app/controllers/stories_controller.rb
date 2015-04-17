@@ -894,8 +894,8 @@ private
       inv.message = msg if msg.present?
 
       if !inv.save
-        Rails.logger.debug "========= message error = #{message.errors.full_messages}"
-          error_msg = message.errors.full_messages
+        Rails.logger.debug "========= message error = #{inv.errors.full_messages}"
+          error_msg = inv.errors.full_messages
       end
     end
     
