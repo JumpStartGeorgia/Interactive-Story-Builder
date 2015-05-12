@@ -192,8 +192,8 @@ class StoriesController < ApplicationController
       # if param exists use that
       # else check if translation exists for current app locale
       if params[:sl].present?
-        @story.current_locale = params[:sl] 
-        Globalize.story_locale = params[:sl] 
+        @story.current_locale = params[:sl].strip 
+        Globalize.story_locale = params[:sl].strip 
       else
         @story.use_app_locale_if_translation_exists
       end
@@ -593,7 +593,7 @@ logger.debug "@@@@@@@@@@@@@ d height = #{params[:infographic][:dynamic_height]};
   def publish
 
     @item = Story.find_by_id(params[:id])
-    @item.current_locale = params[:sl].present? ? params[:sl] : @item.story_locale
+    @item.current_locale = params[:sl].present? ? params[:sl].strip : @item.story_locale
     publishing = !@item.published
     pub_title = ''
     error = false
@@ -601,8 +601,8 @@ logger.debug "@@@@@@@@@@@@@ d height = #{params[:infographic][:dynamic_height]};
 logger.debug "$$$$$$$$$$$4 story locale = #{@item.story_locale}; current locale = #{@item.current_locale}"      
       if publishing
         # if story language passed in, make sure that language has been completely translated
-        if params[:sl].present? && !StoryTranslationProgress.can_publish?(@item.id, params[:sl])
-           lang = @languages.select{|x| x.locale == params[:sl]}.first
+        if params[:sl].present? && !StoryTranslationProgress.can_publish?(@item.id, params[:sl].strip)
+           lang = @languages.select{|x| x.locale == params[:sl].strip}.first
            format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_translations', lang: lang.name)} }          
            error = true
 
@@ -767,7 +767,7 @@ end
     if params[:text].present?
       permalink_staging = params[:text]
       permalink_temp = permalink_normalize(permalink_staging)
-      locale = params[:sl].present? ? params[:sl] : I18n.locale
+      locale = params[:sl].present? ? params[:sl].strip : I18n.locale
       story = StoryTranslation.select('permalink, permalink_staging').where(:story_id => params[:id], :locale => locale).first
       # if the story could not be found, use an empty story
       logger.debug "*********** new staging = #{permalink_staging}; story = #{story.inspect}"
@@ -932,7 +932,7 @@ end
   # get the translation progress for a story and locale
   def translation_progress
     id = params[:id]
-    locale = params[:sl]
+    locale = params[:sl].strip
     @story = Story.find_by_id(id) 
 
     respond_to do |format|
