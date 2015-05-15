@@ -321,10 +321,12 @@ class Story < ActiveRecord::Base
     joins(:authors).where('authors.id in (?)', ids)
 	end
 	
+  # get related stories that are published and in the same language
   def random_related_stories(number_to_return=3)
     themes_ids = self.themes.published.pluck(:id)
-    story_ids = StoryTheme.where(:theme_id => themes_ids).pluck(:story_id).uniq.shuffle[0..number_to_return]
-    Story.where(:id => story_ids)
+    story_ids = StoryTheme.where(:theme_id => themes_ids).pluck(:story_id).uniq
+    published_story_ids = StoryTranslation.where(locale: self.current_locale, published: true, story_id: story_ids).pluck(:story_id).uniq.shuffle[0..number_to_return]
+    Story.where(:id => published_story_ids)
   end
 	# get all of the unique story locales for published stories
 	def self.all_published_locales
