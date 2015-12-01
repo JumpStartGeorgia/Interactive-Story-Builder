@@ -7,6 +7,8 @@
 		<%= f.input :password_confirmation, :input_html => {:size => 35}  %>
 		<% if current_user.role?(User::ROLES[:admin]) %>
 			<%= f.input :role, :as => :select, :collection => User::ROLES.map{|key,value| [key.to_s.humanize, value.to_s]}  %>
+    <% elsif current_user.role?(User::ROLES[:site_admin]) %>
+	      <%= f.input :role, :as => :select, :collection => User::ROLES.except(:admin).map{|key,value| [key.to_s.humanize, value.to_s]}  %>
 		<% else %>
 			<%= f.hidden_field :role , :input_html => {:value => User::ROLES[:user]} %>
 		<% end %>
