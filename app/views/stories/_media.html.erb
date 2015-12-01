@@ -53,6 +53,9 @@
                     <%= type[0] %>
                   </label>
                 </div>
+                <% if @item.id.present? # the above radion buttons are disabled and so no value is returned so need this to force value in form submit %>
+                  <%= f.input :media_type, :as => :hidden %>
+                <% end %>
               <% end %>
             </div>
           </div>
