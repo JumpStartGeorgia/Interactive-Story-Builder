@@ -90,7 +90,7 @@
           .datum(function() { return { video: this.getAttribute("data-video"), image: this.getAttribute("data-image"), }; });
            
         var video_tag = video.select(".video-container").html("").filter(function(d) { return d.video; })
-          .append("video")
+          .insert("video", ":first-child")
           .attr("preload", "none")
           .attr("poster", function(d) { return  ppath + d.video + ".jpg"; })
           .property("loop", false)
@@ -232,7 +232,7 @@
 
     var container = section.select(".video-container");
 
-    var video = container.filter(function(d) { return d.video; }).append("video")
+    var video = container.filter(function(d) { return d.video; }).insert("video", ":first-child")
         .attr("preload", "none")
         .attr("poster", function(d) { return  ppath + d.video + ".jpg"; })
         .property("loop", function(d) { return !d.animation; })
