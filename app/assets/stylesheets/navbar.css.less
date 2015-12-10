@@ -259,6 +259,12 @@ header
       {
         &, &:focus, &:hover { width: 100%; }
       }
+      @media (max-width: 1050px) {
+        &{
+          width: 200px;
+          min-width: inherit;
+        }
+      }
     }   
   }
   &.navbar-visible
