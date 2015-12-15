@@ -149,7 +149,7 @@ class Asset < ActiveRecord::Base
     t.validates_attachment :asset, {  :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}  
   end
   with_options :if => "self.asset_type == TYPE[:section_audio]" do |t|      
-    t.validates_attachment :asset, {   :presence => true, :content_type => { :content_type => ["audio/mp3"] }, :size => { :in => 0..10.megabytes }}  
+    t.validates_attachment :asset, {   :presence => true, :content_type => { :content_type => ["audio/mp3", "audio/mpeg"] }, :size => { :in => 0..10.megabytes }}  
   end
   with_options :if => "self.asset_type == TYPE[:media_image]" do |t|      
     t.validates_attachment :asset, { :presence => true, :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}  
