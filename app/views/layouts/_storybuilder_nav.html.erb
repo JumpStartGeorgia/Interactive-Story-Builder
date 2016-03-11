@@ -44,17 +44,19 @@
           <% end %>
                       
           <ul class="dropdown-menu">
-            <li>              
-              <%= link_to stories_path do %>         
-                <i class="s i-mystories"></i>
-                <span><%= t('helpers.titles.story_list') %></span>
-              <% end %>
-            </li>  
-            <li class="set-build">
-              <%= link_to new_story_path do %>         
-              <i class="s i-build"></i><span><%= t('app.common.build') %></span>
-              <% end %>              
-            </li>              
+            <% if current_user.role? User::ROLES[:coordinator] %>
+              <li>              
+                <%= link_to stories_path do %>         
+                  <i class="s i-mystories"></i>
+                  <span><%= t('helpers.titles.story_list') %></span>
+                <% end %>
+              </li>  
+              <li class="set-build">
+                <%= link_to new_story_path do %>         
+                <i class="s i-build"></i><span><%= t('app.common.build') %></span>
+                <% end %>              
+              </li>              
+            <% end %>                
             <li>
               <%= link_to settings_path do %>         
                <i class="s i-settings"></i><span><%= t('helpers.links.user_settings') %></span>
@@ -83,7 +85,7 @@
             <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= t('helpers.links.follow') %><i class="caret"></i></a>                  
             <ul class="dropdown-menu">
               <li class="facebook"><a href='https://www.facebook.com/pages/Chai-Khana/660466760721696' target="_blank"><%= t('helpers.links.facebook') %></a></li>
-              <li class="twitter"><a href='https://twitter.com/ChaiKhanaNGO' target="_blank"><%= t('helpers.links.twitter') %></a></li>
+              <li class="twitter"><a href='https://twitter.com/Chaikhanaorg' target="_blank"><%= t('helpers.links.twitter') %></a></li>
               <li class="youtube"><a href='https://www.youtube.com/channel/UC72lV7C7NipgBE280lhaR0Q' target="_blank"><%= t('helpers.links.youtube') %></a></li>
               <li class="feed">
                 <%= link_to t('helpers.links.feed'), feed_path, :rel=>"alternate", :type=>"application/feed+xml" %>
