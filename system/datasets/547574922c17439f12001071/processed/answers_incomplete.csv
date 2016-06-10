@@ -1,0 +1,2057 @@
+SMP_wave,1,First wave
+SMP_wave,2,Second wave
+SMP_wave,3,Focus group
+Region,1, aWara 
+Region,2, guria 
+Region,3, imereTi 
+Region,4, kaxeTi 
+Region,5, mcxeTa-mTianeTi 
+Region,6, qvemo qarTli 
+Region,7," raWa,svaneTi "
+Region,8, samcxe-javaxeTi 
+Region,9," samegrelo, z.svaneTi "
+Region,10, Sida qarTli 
+Region,11, Tbilisi 
+Urban_Rural,1,City
+Urban_Rural,2,village
+Urban_Rural,3,Capital
+EROVNEBA,1, Georgian 
+EROVNEBA,2, Armenian 
+EROVNEBA,3, Azerbaijanian 
+EROVNEBA,4, Other 
+erovneba_rec,1,Geo
+erovneba_rec,2,Other
+A4,1, It is not problematic 
+A4,2, It is insignificant problem  
+A4,3, More or less problematic 
+A4,4, It is a serious problem 
+A4,5, Dont know 
+B4,1, It is not problematic 
+B4,2, It is insignificant problem  
+B4,3, More or less problematic 
+B4,4, It is a serious problem 
+B4,5, Dont know 
+C3,1, It is not problematic 
+C3,2, It is insignificant problem  
+C3,3, More or less problematic 
+C3,4, It is a serious problem 
+C3,5, Dont know 
+D4,1, It is not problematic 
+D4,2, It is insignificant problem  
+D4,3, More or less problematic 
+D4,4, It is a serious problem 
+D4,5, Dont know 
+D5.2,1, Parents 
+D5.2,2, Other members of a family 
+D5.2,3, Family acquaintances and/or friends  
+D5.2,4, Strangers  
+D5.2,5, A person with psychological problems 
+D5.2,6, Immoral Person 
+D5.2,7, Illitarate person 
+D5.3,1, Parents 
+D5.3,2, Other members of a family 
+D5.3,3, Family acquaintances and/or friends  
+D5.3,4, Strangers  
+D5.3,5, A person with psychological problems 
+D5.3,6, Immoral Person 
+D5.3,7, Illitarate person 
+D5.4,1, Parents 
+D5.4,2, Other members of a family 
+D5.4,3, Family acquaintances and/or friends  
+D5.4,4, Strangers  
+D5.4,5, A person with psychological problems 
+D5.4,6, Immoral Person 
+D5.4,7, Illitarate person 
+E6,1," Yes, permanently "
+E6,2," Yes, sometimes  "
+E6,3," Yes, but I can recall only 1 or 2 cases "
+E6,4," No, never "
+E25,1, Totally disagree 
+E25,2, Disagree 
+E25,3, Neither agree nor disagree  
+E25,4, Agree 
+E25,5, Totally agree 
+E26,1, Totally disagree 
+E26,2, Disagree 
+E26,3, Neither agree nor disagree  
+E26,4, Agree 
+E26,5, Totally agree 
+G1.1,1, No one  
+G1.1,2, Neighbors/society members  
+G1.1,3, Parent or other family members/friends of family  
+G1.1,4," School, kindergarten staff member      "
+G1.1,5," Social services, social workers  "
+G1.1,6, Police  
+G1.1,7, Healthcare specialists 
+G1.1,8, Church/religious organizations    
+G1.1,9, Public Defender/ombudsman   
+G1.2,1, No one  
+G1.2,2, Neighbors/society members  
+G1.2,3, Parent or other family members/friends of family  
+G1.2,4," School, kindergarten staff member      "
+G1.2,5," Social services, social workers  "
+G1.2,6, Police  
+G1.2,7, Healthcare specialists 
+G1.2,8, Church/religious organizations    
+G1.2,9, Public Defender/ombudsman   
+G1.3,1, No one  
+G1.3,2, Neighbors/society members  
+G1.3,3, Parent or other family members/friends of family  
+G1.3,4," School, kindergarten staff member      "
+G1.3,5," Social services, social workers  "
+G1.3,6, Police  
+G1.3,7, Healthcare specialists 
+G1.3,8, Church/religious organizations    
+G1.3,9, Public Defender/ombudsman   
+G1.4,1, No one  
+G1.4,2, Neighbors/society members  
+G1.4,3, Parent or other family members/friends of family  
+G1.4,4," School, kindergarten staff member      "
+G1.4,5," Social services, social workers  "
+G1.4,6, Police  
+G1.4,7, Healthcare specialists 
+G1.4,8, Church/religious organizations    
+G1.4,9, Public Defender/ombudsman   
+G1.5,1, No one  
+G1.5,2, Neighbors/society members  
+G1.5,3, Parent or other family members/friends of family  
+G1.5,4," School, kindergarten staff member      "
+G1.5,5," Social services, social workers  "
+G1.5,6, Police  
+G1.5,7, Healthcare specialists 
+G1.5,8, Church/religious organizations    
+G1.5,9, Public Defender/ombudsman   
+G1.6,1, No one  
+G1.6,2, Neighbors/society members  
+G1.6,3, Parent or other family members/friends of family  
+G1.6,4," School, kindergarten staff member      "
+G1.6,5," Social services, social workers  "
+G1.6,6, Police  
+G1.6,7, Healthcare specialists 
+G1.6,8, Church/religious organizations    
+G1.6,9, Public Defender/ombudsman   
+G1.7,1, No one  
+G1.7,2, Neighbors/society members  
+G1.7,3, Parent or other family members/friends of family  
+G1.7,4," School, kindergarten staff member      "
+G1.7,5," Social services, social workers  "
+G1.7,6, Police  
+G1.7,7, Healthcare specialists 
+G1.7,8, Church/religious organizations    
+G1.7,9, Public Defender/ombudsman   
+G1.8,1, No one  
+G1.8,2, Neighbors/society members  
+G1.8,3, Parent or other family members/friends of family  
+G1.8,4," School, kindergarten staff member      "
+G1.8,5," Social services, social workers  "
+G1.8,6, Police  
+G1.8,7, Healthcare specialists 
+G1.8,8, Church/religious organizations    
+G1.8,9, Public Defender/ombudsman   
+G2.2,1, No one  
+G2.2,2, Neighbors/society members  
+G2.2,3, Parent or other family members/friends of family  
+G2.2,4," School, kindergarten staff member      "
+G2.2,5," Social services, social workers  "
+G2.2,6, Police  
+G2.2,7, Healthcare specialists 
+G2.2,8, Church/religious organizations    
+G2.2,9, Public Defender/ombudsman   
+G2.3,1, No one  
+G2.3,2, Neighbors/society members  
+G2.3,3, Parent or other family members/friends of family  
+G2.3,4," School, kindergarten staff member      "
+G2.3,5," Social services, social workers  "
+G2.3,6, Police  
+G2.3,7, Healthcare specialists 
+G2.3,8, Church/religious organizations    
+G2.3,9, Public Defender/ombudsman   
+G2.4,1, No one  
+G2.4,2, Neighbors/society members  
+G2.4,3, Parent or other family members/friends of family  
+G2.4,4," School, kindergarten staff member      "
+G2.4,5," Social services, social workers  "
+G2.4,6, Police  
+G2.4,7, Healthcare specialists 
+G2.4,8, Church/religious organizations    
+G2.4,9, Public Defender/ombudsman   
+G2.5,1, No one  
+G2.5,2, Neighbors/society members  
+G2.5,3, Parent or other family members/friends of family  
+G2.5,4," School, kindergarten staff member      "
+G2.5,5," Social services, social workers  "
+G2.5,6, Police  
+G2.5,7, Healthcare specialists 
+G2.5,8, Church/religious organizations    
+G2.5,9, Public Defender/ombudsman   
+G2.6,1, No one  
+G2.6,2, Neighbors/society members  
+G2.6,3, Parent or other family members/friends of family  
+G2.6,4," School, kindergarten staff member      "
+G2.6,5," Social services, social workers  "
+G2.6,6, Police  
+G2.6,7, Healthcare specialists 
+G2.6,8, Church/religious organizations    
+G2.6,9, Public Defender/ombudsman   
+G2.7,1, No one  
+G2.7,2, Neighbors/society members  
+G2.7,3, Parent or other family members/friends of family  
+G2.7,4," School, kindergarten staff member      "
+G2.7,5," Social services, social workers  "
+G2.7,6, Police  
+G2.7,7, Healthcare specialists 
+G2.7,8, Church/religious organizations    
+G2.7,9, Public Defender/ombudsman   
+G2.8,1, No one  
+G2.8,2, Neighbors/society members  
+G2.8,3, Parent or other family members/friends of family  
+G2.8,4," School, kindergarten staff member      "
+G2.8,5," Social services, social workers  "
+G2.8,6, Police  
+G2.8,7, Healthcare specialists 
+G2.8,8, Church/religious organizations    
+G2.8,9, Public Defender/ombudsman   
+G3.1,1, No one  
+G3.1,2, Neighbors/society members  
+G3.1,3, Parent or other family members/friends of family  
+G3.1,4," School, kindergarten staff member      "
+G3.1,5," Social services, social workers  "
+G3.1,6, Police  
+G3.1,7, Healthcare specialists 
+G3.1,8, Church/religious organizations    
+G3.1,9, Public Defender/ombudsman   
+G3.2,1, No one  
+G3.2,2, Neighbors/society members  
+G3.2,3, Parent or other family members/friends of family  
+G3.2,4," School, kindergarten staff member      "
+G3.2,5," Social services, social workers  "
+G3.2,6, Police  
+G3.2,7, Healthcare specialists 
+G3.2,8, Church/religious organizations    
+G3.2,9, Public Defender/ombudsman   
+G3.3,1, No one  
+G3.3,2, Neighbors/society members  
+G3.3,3, Parent or other family members/friends of family  
+G3.3,4," School, kindergarten staff member      "
+G3.3,5," Social services, social workers  "
+G3.3,6, Police  
+G3.3,7, Healthcare specialists 
+G3.3,8, Church/religious organizations    
+G3.3,9, Public Defender/ombudsman   
+G3.4,1, No one  
+G3.4,2, Neighbors/society members  
+G3.4,3, Parent or other family members/friends of family  
+G3.4,4," School, kindergarten staff member      "
+G3.4,5," Social services, social workers  "
+G3.4,6, Police  
+G3.4,7, Healthcare specialists 
+G3.4,8, Church/religious organizations    
+G3.4,9, Public Defender/ombudsman   
+G3.5,1, No one  
+G3.5,2, Neighbors/society members  
+G3.5,3, Parent or other family members/friends of family  
+G3.5,4," School, kindergarten staff member      "
+G3.5,5," Social services, social workers  "
+G3.5,6, Police  
+G3.5,7, Healthcare specialists 
+G3.5,8, Church/religious organizations    
+G3.5,9, Public Defender/ombudsman   
+G3.6,1, No one  
+G3.6,2, Neighbors/society members  
+G3.6,3, Parent or other family members/friends of family  
+G3.6,4," School, kindergarten staff member      "
+G3.6,5," Social services, social workers  "
+G3.6,6, Police  
+G3.6,7, Healthcare specialists 
+G3.6,8, Church/religious organizations    
+G3.6,9, Public Defender/ombudsman   
+G3.7,1, No one  
+G3.7,2, Neighbors/society members  
+G3.7,3, Parent or other family members/friends of family  
+G3.7,4," School, kindergarten staff member      "
+G3.7,5," Social services, social workers  "
+G3.7,6, Police  
+G3.7,7, Healthcare specialists 
+G3.7,8, Church/religious organizations    
+G3.7,9, Public Defender/ombudsman   
+G3.8,1, No one  
+G3.8,2, Neighbors/society members  
+G3.8,3, Parent or other family members/friends of family  
+G3.8,4," School, kindergarten staff member      "
+G3.8,5," Social services, social workers  "
+G3.8,6, Police  
+G3.8,7, Healthcare specialists 
+G3.8,8, Church/religious organizations    
+G3.8,9, Public Defender/ombudsman   
+G4.1,1, No one  
+G4.1,2, Neighbors/society members  
+G4.1,3, Parent or other family members/friends of family  
+G4.1,4," School, kindergarten staff member      "
+G4.1,5," Social services, social workers  "
+G4.1,6, Police  
+G4.1,7, Healthcare specialists 
+G4.1,8, Church/religious organizations    
+G4.1,9, Public Defender/ombudsman   
+G4.2,1, No one  
+G4.2,2, Neighbors/society members  
+G4.2,3, Parent or other family members/friends of family  
+G4.2,4," School, kindergarten staff member      "
+G4.2,5," Social services, social workers  "
+G4.2,6, Police  
+G4.2,7, Healthcare specialists 
+G4.2,8, Church/religious organizations    
+G4.2,9, Public Defender/ombudsman   
+G4.3,1, No one  
+G4.3,2, Neighbors/society members  
+G4.3,3, Parent or other family members/friends of family  
+G4.3,4," School, kindergarten staff member      "
+G4.3,5," Social services, social workers  "
+G4.3,6, Police  
+G4.3,7, Healthcare specialists 
+G4.3,8, Church/religious organizations    
+G4.3,9, Public Defender/ombudsman   
+G4.4,1, No one  
+G4.4,2, Neighbors/society members  
+G4.4,3, Parent or other family members/friends of family  
+G4.4,4," School, kindergarten staff member      "
+G4.4,5," Social services, social workers  "
+G4.4,6, Police  
+G4.4,7, Healthcare specialists 
+G4.4,8, Church/religious organizations    
+G4.4,9, Public Defender/ombudsman   
+G4.5,1, No one  
+G4.5,2, Neighbors/society members  
+G4.5,3, Parent or other family members/friends of family  
+G4.5,4," School, kindergarten staff member      "
+G4.5,5," Social services, social workers  "
+G4.5,6, Police  
+G4.5,7, Healthcare specialists 
+G4.5,8, Church/religious organizations    
+G4.5,9, Public Defender/ombudsman   
+G4.6,1, No one  
+G4.6,2, Neighbors/society members  
+G4.6,3, Parent or other family members/friends of family  
+G4.6,4," School, kindergarten staff member      "
+G4.6,5," Social services, social workers  "
+G4.6,6, Police  
+G4.6,7, Healthcare specialists 
+G4.6,8, Church/religious organizations    
+G4.6,9, Public Defender/ombudsman   
+G4.7,1, No one  
+G4.7,2, Neighbors/society members  
+G4.7,3, Parent or other family members/friends of family  
+G4.7,4," School, kindergarten staff member      "
+G4.7,5," Social services, social workers  "
+G4.7,6, Police  
+G4.7,7, Healthcare specialists 
+G4.7,8, Church/religious organizations    
+G4.7,9, Public Defender/ombudsman   
+G4.8,1, No one  
+G4.8,2, Neighbors/society members  
+G4.8,3, Parent or other family members/friends of family  
+G4.8,4," School, kindergarten staff member      "
+G4.8,5," Social services, social workers  "
+G4.8,6, Police  
+G4.8,7, Healthcare specialists 
+G4.8,8, Church/religious organizations    
+G4.8,9, Public Defender/ombudsman   
+G5.1,1, No one  
+G5.1,2, Neighbors/society members  
+G5.1,3, Parent or other family members/friends of family  
+G5.1,4," School, kindergarten staff member      "
+G5.1,5," Social services, social workers  "
+G5.1,6, Police  
+G5.1,7, Healthcare specialists 
+G5.1,8, Church/religious organizations    
+G5.1,9, Public Defender/ombudsman   
+G5.2,1, No one  
+G5.2,2, Neighbors/society members  
+G5.2,3, Parent or other family members/friends of family  
+G5.2,4," School, kindergarten staff member      "
+G5.2,5," Social services, social workers  "
+G5.2,6, Police  
+G5.2,7, Healthcare specialists 
+G5.2,8, Church/religious organizations    
+G5.2,9, Public Defender/ombudsman   
+G5.3,1, No one  
+G5.3,2, Neighbors/society members  
+G5.3,3, Parent or other family members/friends of family  
+G5.3,4," School, kindergarten staff member      "
+G5.3,5," Social services, social workers  "
+G5.3,6, Police  
+G5.3,7, Healthcare specialists 
+G5.3,8, Church/religious organizations    
+G5.3,9, Public Defender/ombudsman   
+G5.4,1, No one  
+G5.4,2, Neighbors/society members  
+G5.4,3, Parent or other family members/friends of family  
+G5.4,4," School, kindergarten staff member      "
+G5.4,5," Social services, social workers  "
+G5.4,6, Police  
+G5.4,7, Healthcare specialists 
+G5.4,8, Church/religious organizations    
+G5.4,9, Public Defender/ombudsman   
+G5.5,1, No one  
+G5.5,2, Neighbors/society members  
+G5.5,3, Parent or other family members/friends of family  
+G5.5,4," School, kindergarten staff member      "
+G5.5,5," Social services, social workers  "
+G5.5,6, Police  
+G5.5,7, Healthcare specialists 
+G5.5,8, Church/religious organizations    
+G5.5,9, Public Defender/ombudsman   
+G5.6,1, No one  
+G5.6,2, Neighbors/society members  
+G5.6,3, Parent or other family members/friends of family  
+G5.6,4," School, kindergarten staff member      "
+G5.6,5," Social services, social workers  "
+G5.6,6, Police  
+G5.6,7, Healthcare specialists 
+G5.6,8, Church/religious organizations    
+G5.6,9, Public Defender/ombudsman   
+G5.7,1, No one  
+G5.7,2, Neighbors/society members  
+G5.7,3, Parent or other family members/friends of family  
+G5.7,4," School, kindergarten staff member      "
+G5.7,5," Social services, social workers  "
+G5.7,6, Police  
+G5.7,7, Healthcare specialists 
+G5.7,8, Church/religious organizations    
+G5.7,9, Public Defender/ombudsman   
+G5.8,1, No one  
+G5.8,2, Neighbors/society members  
+G5.8,3, Parent or other family members/friends of family  
+G5.8,4," School, kindergarten staff member      "
+G5.8,5," Social services, social workers  "
+G5.8,6, Police  
+G5.8,7, Healthcare specialists 
+G5.8,8, Church/religious organizations    
+G5.8,9, Public Defender/ombudsman   
+G6.2,1, No one  
+G6.2,2, Neighbors/society members  
+G6.2,3, Parent or other family members/friends of family  
+G6.2,4," School, kindergarten staff member      "
+G6.2,5," Social services, social workers  "
+G6.2,6, Police  
+G6.2,7, Healthcare specialists 
+G6.2,8, Church/religious organizations    
+G6.2,9, Public Defender/ombudsman   
+G6.3,1, No one  
+G6.3,2, Neighbors/society members  
+G6.3,3, Parent or other family members/friends of family  
+G6.3,4," School, kindergarten staff member      "
+G6.3,5," Social services, social workers  "
+G6.3,6, Police  
+G6.3,7, Healthcare specialists 
+G6.3,8, Church/religious organizations    
+G6.3,9, Public Defender/ombudsman   
+G6.4,1, No one  
+G6.4,2, Neighbors/society members  
+G6.4,3, Parent or other family members/friends of family  
+G6.4,4," School, kindergarten staff member      "
+G6.4,5," Social services, social workers  "
+G6.4,6, Police  
+G6.4,7, Healthcare specialists 
+G6.4,8, Church/religious organizations    
+G6.4,9, Public Defender/ombudsman   
+G6.5,1, No one  
+G6.5,2, Neighbors/society members  
+G6.5,3, Parent or other family members/friends of family  
+G6.5,4," School, kindergarten staff member      "
+G6.5,5," Social services, social workers  "
+G6.5,6, Police  
+G6.5,7, Healthcare specialists 
+G6.5,8, Church/religious organizations    
+G6.5,9, Public Defender/ombudsman   
+G6.6,1, No one  
+G6.6,2, Neighbors/society members  
+G6.6,3, Parent or other family members/friends of family  
+G6.6,4," School, kindergarten staff member      "
+G6.6,5," Social services, social workers  "
+G6.6,6, Police  
+G6.6,7, Healthcare specialists 
+G6.6,8, Church/religious organizations    
+G6.6,9, Public Defender/ombudsman   
+G6.7,1, No one  
+G6.7,2, Neighbors/society members  
+G6.7,3, Parent or other family members/friends of family  
+G6.7,4," School, kindergarten staff member      "
+G6.7,5," Social services, social workers  "
+G6.7,6, Police  
+G6.7,7, Healthcare specialists 
+G6.7,8, Church/religious organizations    
+G6.7,9, Public Defender/ombudsman   
+G6.8,1, No one  
+G6.8,2, Neighbors/society members  
+G6.8,3, Parent or other family members/friends of family  
+G6.8,4," School, kindergarten staff member      "
+G6.8,5," Social services, social workers  "
+G6.8,6, Police  
+G6.8,7, Healthcare specialists 
+G6.8,8, Church/religious organizations    
+G6.8,9, Public Defender/ombudsman   
+G7.2,1, No one  
+G7.2,2, Neighbors/society members  
+G7.2,3, Parent or other family members/friends of family  
+G7.2,4," School, kindergarten staff member      "
+G7.2,5," Social services, social workers  "
+G7.2,6, Police  
+G7.2,7, Healthcare specialists 
+G7.2,8, Church/religious organizations    
+G7.2,9, Public Defender/ombudsman   
+G7.3,1, No one  
+G7.3,2, Neighbors/society members  
+G7.3,3, Parent or other family members/friends of family  
+G7.3,4," School, kindergarten staff member      "
+G7.3,5," Social services, social workers  "
+G7.3,6, Police  
+G7.3,7, Healthcare specialists 
+G7.3,8, Church/religious organizations    
+G7.3,9, Public Defender/ombudsman   
+G7.4,1, No one  
+G7.4,2, Neighbors/society members  
+G7.4,3, Parent or other family members/friends of family  
+G7.4,4," School, kindergarten staff member      "
+G7.4,5," Social services, social workers  "
+G7.4,6, Police  
+G7.4,7, Healthcare specialists 
+G7.4,8, Church/religious organizations    
+G7.4,9, Public Defender/ombudsman   
+G7.5,1, No one  
+G7.5,2, Neighbors/society members  
+G7.5,3, Parent or other family members/friends of family  
+G7.5,4," School, kindergarten staff member      "
+G7.5,5," Social services, social workers  "
+G7.5,6, Police  
+G7.5,7, Healthcare specialists 
+G7.5,8, Church/religious organizations    
+G7.5,9, Public Defender/ombudsman   
+G7.6,1, No one  
+G7.6,2, Neighbors/society members  
+G7.6,3, Parent or other family members/friends of family  
+G7.6,4," School, kindergarten staff member      "
+G7.6,5," Social services, social workers  "
+G7.6,6, Police  
+G7.6,7, Healthcare specialists 
+G7.6,8, Church/religious organizations    
+G7.6,9, Public Defender/ombudsman   
+G7.7,1, No one  
+G7.7,2, Neighbors/society members  
+G7.7,3, Parent or other family members/friends of family  
+G7.7,4," School, kindergarten staff member      "
+G7.7,5," Social services, social workers  "
+G7.7,6, Police  
+G7.7,7, Healthcare specialists 
+G7.7,8, Church/religious organizations    
+G7.7,9, Public Defender/ombudsman   
+G7.8,1, No one  
+G7.8,2, Neighbors/society members  
+G7.8,3, Parent or other family members/friends of family  
+G7.8,4," School, kindergarten staff member      "
+G7.8,5," Social services, social workers  "
+G7.8,6, Police  
+G7.8,7, Healthcare specialists 
+G7.8,8, Church/religious organizations    
+G7.8,9, Public Defender/ombudsman   
+G8.2,1, No one  
+G8.2,2, Neighbors/society members  
+G8.2,3, Parent or other family members/friends of family  
+G8.2,4," School, kindergarten staff member      "
+G8.2,5," Social services, social workers  "
+G8.2,6, Police  
+G8.2,7, Healthcare specialists 
+G8.2,8, Church/religious organizations    
+G8.2,9, Public Defender/ombudsman   
+G8.3,1, No one  
+G8.3,2, Neighbors/society members  
+G8.3,3, Parent or other family members/friends of family  
+G8.3,4," School, kindergarten staff member      "
+G8.3,5," Social services, social workers  "
+G8.3,6, Police  
+G8.3,7, Healthcare specialists 
+G8.3,8, Church/religious organizations    
+G8.3,9, Public Defender/ombudsman   
+G8.4,1, No one  
+G8.4,2, Neighbors/society members  
+G8.4,3, Parent or other family members/friends of family  
+G8.4,4," School, kindergarten staff member      "
+G8.4,5," Social services, social workers  "
+G8.4,6, Police  
+G8.4,7, Healthcare specialists 
+G8.4,8, Church/religious organizations    
+G8.4,9, Public Defender/ombudsman   
+G8.5,1, No one  
+G8.5,2, Neighbors/society members  
+G8.5,3, Parent or other family members/friends of family  
+G8.5,4," School, kindergarten staff member      "
+G8.5,5," Social services, social workers  "
+G8.5,6, Police  
+G8.5,7, Healthcare specialists 
+G8.5,8, Church/religious organizations    
+G8.5,9, Public Defender/ombudsman   
+G8.6,1, No one  
+G8.6,2, Neighbors/society members  
+G8.6,3, Parent or other family members/friends of family  
+G8.6,4," School, kindergarten staff member      "
+G8.6,5," Social services, social workers  "
+G8.6,6, Police  
+G8.6,7, Healthcare specialists 
+G8.6,8, Church/religious organizations    
+G8.6,9, Public Defender/ombudsman   
+G8.7,1, No one  
+G8.7,2, Neighbors/society members  
+G8.7,3, Parent or other family members/friends of family  
+G8.7,4," School, kindergarten staff member      "
+G8.7,5," Social services, social workers  "
+G8.7,6, Police  
+G8.7,7, Healthcare specialists 
+G8.7,8, Church/religious organizations    
+G8.7,9, Public Defender/ombudsman   
+G8.8,1, No one  
+G8.8,2, Neighbors/society members  
+G8.8,3, Parent or other family members/friends of family  
+G8.8,4," School, kindergarten staff member      "
+G8.8,5," Social services, social workers  "
+G8.8,6, Police  
+G8.8,7, Healthcare specialists 
+G8.8,8, Church/religious organizations    
+G8.8,9, Public Defender/ombudsman   
+G9.2,1, No one  
+G9.2,2, Neighbors/society members  
+G9.2,3, Parent or other family members/friends of family  
+G9.2,4," School, kindergarten staff member      "
+G9.2,5," Social services, social workers  "
+G9.2,6, Police  
+G9.2,7, Healthcare specialists 
+G9.2,8, Church/religious organizations    
+G9.2,9, Public Defender/ombudsman   
+G9.3,1, No one  
+G9.3,2, Neighbors/society members  
+G9.3,3, Parent or other family members/friends of family  
+G9.3,4," School, kindergarten staff member      "
+G9.3,5," Social services, social workers  "
+G9.3,6, Police  
+G9.3,7, Healthcare specialists 
+G9.3,8, Church/religious organizations    
+G9.3,9, Public Defender/ombudsman   
+G9.4,1, No one  
+G9.4,2, Neighbors/society members  
+G9.4,3, Parent or other family members/friends of family  
+G9.4,4," School, kindergarten staff member      "
+G9.4,5," Social services, social workers  "
+G9.4,6, Police  
+G9.4,7, Healthcare specialists 
+G9.4,8, Church/religious organizations    
+G9.4,9, Public Defender/ombudsman   
+G9.5,1, No one  
+G9.5,2, Neighbors/society members  
+G9.5,3, Parent or other family members/friends of family  
+G9.5,4," School, kindergarten staff member      "
+G9.5,5," Social services, social workers  "
+G9.5,6, Police  
+G9.5,7, Healthcare specialists 
+G9.5,8, Church/religious organizations    
+G9.5,9, Public Defender/ombudsman   
+G9.6,1, No one  
+G9.6,2, Neighbors/society members  
+G9.6,3, Parent or other family members/friends of family  
+G9.6,4," School, kindergarten staff member      "
+G9.6,5," Social services, social workers  "
+G9.6,6, Police  
+G9.6,7, Healthcare specialists 
+G9.6,8, Church/religious organizations    
+G9.6,9, Public Defender/ombudsman   
+G9.7,1, No one  
+G9.7,2, Neighbors/society members  
+G9.7,3, Parent or other family members/friends of family  
+G9.7,4," School, kindergarten staff member      "
+G9.7,5," Social services, social workers  "
+G9.7,6, Police  
+G9.7,7, Healthcare specialists 
+G9.7,8, Church/religious organizations    
+G9.7,9, Public Defender/ombudsman   
+G9.8,1, No one  
+G9.8,2, Neighbors/society members  
+G9.8,3, Parent or other family members/friends of family  
+G9.8,4," School, kindergarten staff member      "
+G9.8,5," Social services, social workers  "
+G9.8,6, Police  
+G9.8,7, Healthcare specialists 
+G9.8,8, Church/religious organizations    
+G9.8,9, Public Defender/ombudsman   
+G10.2,1, No one  
+G10.2,2, Neighbors/society members  
+G10.2,3, Parent or other family members/friends of family  
+G10.2,4," School, kindergarten staff member      "
+G10.2,5," Social services, social workers  "
+G10.2,6, Police  
+G10.2,7, Healthcare specialists 
+G10.2,8, Church/religious organizations    
+G10.2,9, Public Defender/ombudsman   
+G10.3,1, No one  
+G10.3,2, Neighbors/society members  
+G10.3,3, Parent or other family members/friends of family  
+G10.3,4," School, kindergarten staff member      "
+G10.3,5," Social services, social workers  "
+G10.3,6, Police  
+G10.3,7, Healthcare specialists 
+G10.3,8, Church/religious organizations    
+G10.3,9, Public Defender/ombudsman   
+G10.4,1, No one  
+G10.4,2, Neighbors/society members  
+G10.4,3, Parent or other family members/friends of family  
+G10.4,4," School, kindergarten staff member      "
+G10.4,5," Social services, social workers  "
+G10.4,6, Police  
+G10.4,7, Healthcare specialists 
+G10.4,8, Church/religious organizations    
+G10.4,9, Public Defender/ombudsman   
+G10.5,1, No one  
+G10.5,2, Neighbors/society members  
+G10.5,3, Parent or other family members/friends of family  
+G10.5,4," School, kindergarten staff member      "
+G10.5,5," Social services, social workers  "
+G10.5,6, Police  
+G10.5,7, Healthcare specialists 
+G10.5,8, Church/religious organizations    
+G10.5,9, Public Defender/ombudsman   
+G10.6,1, No one  
+G10.6,2, Neighbors/society members  
+G10.6,3, Parent or other family members/friends of family  
+G10.6,4," School, kindergarten staff member      "
+G10.6,5," Social services, social workers  "
+G10.6,6, Police  
+G10.6,7, Healthcare specialists 
+G10.6,8, Church/religious organizations    
+G10.6,9, Public Defender/ombudsman   
+G10.7,1, No one  
+G10.7,2, Neighbors/society members  
+G10.7,3, Parent or other family members/friends of family  
+G10.7,4," School, kindergarten staff member      "
+G10.7,5," Social services, social workers  "
+G10.7,6, Police  
+G10.7,7, Healthcare specialists 
+G10.7,8, Church/religious organizations    
+G10.7,9, Public Defender/ombudsman   
+G10.8,1, No one  
+G10.8,2, Neighbors/society members  
+G10.8,3, Parent or other family members/friends of family  
+G10.8,4," School, kindergarten staff member      "
+G10.8,5," Social services, social workers  "
+G10.8,6, Police  
+G10.8,7, Healthcare specialists 
+G10.8,8, Church/religious organizations    
+G10.8,9, Public Defender/ombudsman   
+G11.2,1, No one  
+G11.2,2, Neighbors/society members  
+G11.2,3, Parent or other family members/friends of family  
+G11.2,4," School, kindergarten staff member      "
+G11.2,5," Social services, social workers  "
+G11.2,6, Police  
+G11.2,7, Healthcare specialists 
+G11.2,8, Church/religious organizations    
+G11.2,9, Public Defender/ombudsman   
+G11.3,1, No one  
+G11.3,2, Neighbors/society members  
+G11.3,3, Parent or other family members/friends of family  
+G11.3,4," School, kindergarten staff member      "
+G11.3,5," Social services, social workers  "
+G11.3,6, Police  
+G11.3,7, Healthcare specialists 
+G11.3,8, Church/religious organizations    
+G11.3,9, Public Defender/ombudsman   
+G11.4,1, No one  
+G11.4,2, Neighbors/society members  
+G11.4,3, Parent or other family members/friends of family  
+G11.4,4," School, kindergarten staff member      "
+G11.4,5," Social services, social workers  "
+G11.4,6, Police  
+G11.4,7, Healthcare specialists 
+G11.4,8, Church/religious organizations    
+G11.4,9, Public Defender/ombudsman   
+G11.5,1, No one  
+G11.5,2, Neighbors/society members  
+G11.5,3, Parent or other family members/friends of family  
+G11.5,4," School, kindergarten staff member      "
+G11.5,5," Social services, social workers  "
+G11.5,6, Police  
+G11.5,7, Healthcare specialists 
+G11.5,8, Church/religious organizations    
+G11.5,9, Public Defender/ombudsman   
+G11.6,1, No one  
+G11.6,2, Neighbors/society members  
+G11.6,3, Parent or other family members/friends of family  
+G11.6,4," School, kindergarten staff member      "
+G11.6,5," Social services, social workers  "
+G11.6,6, Police  
+G11.6,7, Healthcare specialists 
+G11.6,8, Church/religious organizations    
+G11.6,9, Public Defender/ombudsman   
+G11.7,1, No one  
+G11.7,2, Neighbors/society members  
+G11.7,3, Parent or other family members/friends of family  
+G11.7,4," School, kindergarten staff member      "
+G11.7,5," Social services, social workers  "
+G11.7,6, Police  
+G11.7,7, Healthcare specialists 
+G11.7,8, Church/religious organizations    
+G11.7,9, Public Defender/ombudsman   
+G11.8,1, No one  
+G11.8,2, Neighbors/society members  
+G11.8,3, Parent or other family members/friends of family  
+G11.8,4," School, kindergarten staff member      "
+G11.8,5," Social services, social workers  "
+G11.8,6, Police  
+G11.8,7, Healthcare specialists 
+G11.8,8, Church/religious organizations    
+G11.8,9, Public Defender/ombudsman   
+G12.2,1, No one  
+G12.2,2, Neighbors/society members  
+G12.2,3, Parent or other family members/friends of family  
+G12.2,4," School, kindergarten staff member      "
+G12.2,5," Social services, social workers  "
+G12.2,6, Police  
+G12.2,7, Healthcare specialists 
+G12.2,8, Church/religious organizations    
+G12.2,9, Public Defender/ombudsman   
+G12.3,1, No one  
+G12.3,2, Neighbors/society members  
+G12.3,3, Parent or other family members/friends of family  
+G12.3,4," School, kindergarten staff member      "
+G12.3,5," Social services, social workers  "
+G12.3,6, Police  
+G12.3,7, Healthcare specialists 
+G12.3,8, Church/religious organizations    
+G12.3,9, Public Defender/ombudsman   
+G12.4,1, No one  
+G12.4,2, Neighbors/society members  
+G12.4,3, Parent or other family members/friends of family  
+G12.4,4," School, kindergarten staff member      "
+G12.4,5," Social services, social workers  "
+G12.4,6, Police  
+G12.4,7, Healthcare specialists 
+G12.4,8, Church/religious organizations    
+G12.4,9, Public Defender/ombudsman   
+G12.5,1, No one  
+G12.5,2, Neighbors/society members  
+G12.5,3, Parent or other family members/friends of family  
+G12.5,4," School, kindergarten staff member      "
+G12.5,5," Social services, social workers  "
+G12.5,6, Police  
+G12.5,7, Healthcare specialists 
+G12.5,8, Church/religious organizations    
+G12.5,9, Public Defender/ombudsman   
+G12.6,1, No one  
+G12.6,2, Neighbors/society members  
+G12.6,3, Parent or other family members/friends of family  
+G12.6,4," School, kindergarten staff member      "
+G12.6,5," Social services, social workers  "
+G12.6,6, Police  
+G12.6,7, Healthcare specialists 
+G12.6,8, Church/religious organizations    
+G12.6,9, Public Defender/ombudsman   
+G12.7,1, No one  
+G12.7,2, Neighbors/society members  
+G12.7,3, Parent or other family members/friends of family  
+G12.7,4," School, kindergarten staff member      "
+G12.7,5," Social services, social workers  "
+G12.7,6, Police  
+G12.7,7, Healthcare specialists 
+G12.7,8, Church/religious organizations    
+G12.7,9, Public Defender/ombudsman   
+G12.8,1, No one  
+G12.8,2, Neighbors/society members  
+G12.8,3, Parent or other family members/friends of family  
+G12.8,4," School, kindergarten staff member      "
+G12.8,5," Social services, social workers  "
+G12.8,6, Police  
+G12.8,7, Healthcare specialists 
+G12.8,8, Church/religious organizations    
+G12.8,9, Public Defender/ombudsman   
+G13.1,1, No one  
+G13.1,2, Neighbors/society members  
+G13.1,3, Parent or other family members/friends of family  
+G13.1,4," School, kindergarten staff member      "
+G13.1,5," Social services, social workers  "
+G13.1,6, Police  
+G13.1,7, Healthcare specialists 
+G13.1,8, Church/religious organizations    
+G13.1,9, Public Defender/ombudsman   
+G13.2,1, No one  
+G13.2,2, Neighbors/society members  
+G13.2,3, Parent or other family members/friends of family  
+G13.2,4," School, kindergarten staff member      "
+G13.2,5," Social services, social workers  "
+G13.2,6, Police  
+G13.2,7, Healthcare specialists 
+G13.2,8, Church/religious organizations    
+G13.2,9, Public Defender/ombudsman   
+G13.3,1, No one  
+G13.3,2, Neighbors/society members  
+G13.3,3, Parent or other family members/friends of family  
+G13.3,4," School, kindergarten staff member      "
+G13.3,5," Social services, social workers  "
+G13.3,6, Police  
+G13.3,7, Healthcare specialists 
+G13.3,8, Church/religious organizations    
+G13.3,9, Public Defender/ombudsman   
+G13.4,1, No one  
+G13.4,2, Neighbors/society members  
+G13.4,3, Parent or other family members/friends of family  
+G13.4,4," School, kindergarten staff member      "
+G13.4,5," Social services, social workers  "
+G13.4,6, Police  
+G13.4,7, Healthcare specialists 
+G13.4,8, Church/religious organizations    
+G13.4,9, Public Defender/ombudsman   
+G13.5,1, No one  
+G13.5,2, Neighbors/society members  
+G13.5,3, Parent or other family members/friends of family  
+G13.5,4," School, kindergarten staff member      "
+G13.5,5," Social services, social workers  "
+G13.5,6, Police  
+G13.5,7, Healthcare specialists 
+G13.5,8, Church/religious organizations    
+G13.5,9, Public Defender/ombudsman   
+G13.6,1, No one  
+G13.6,2, Neighbors/society members  
+G13.6,3, Parent or other family members/friends of family  
+G13.6,4," School, kindergarten staff member      "
+G13.6,5," Social services, social workers  "
+G13.6,6, Police  
+G13.6,7, Healthcare specialists 
+G13.6,8, Church/religious organizations    
+G13.6,9, Public Defender/ombudsman   
+G13.7,1, No one  
+G13.7,2, Neighbors/society members  
+G13.7,3, Parent or other family members/friends of family  
+G13.7,4," School, kindergarten staff member      "
+G13.7,5," Social services, social workers  "
+G13.7,6, Police  
+G13.7,7, Healthcare specialists 
+G13.7,8, Church/religious organizations    
+G13.7,9, Public Defender/ombudsman   
+G13.8,1, No one  
+G13.8,2, Neighbors/society members  
+G13.8,3, Parent or other family members/friends of family  
+G13.8,4," School, kindergarten staff member      "
+G13.8,5," Social services, social workers  "
+G13.8,6, Police  
+G13.8,7, Healthcare specialists 
+G13.8,8, Church/religious organizations    
+G13.8,9, Public Defender/ombudsman   
+G14.1,1, No one  
+G14.1,2, Neighbors/society members  
+G14.1,3, Parent or other family members/friends of family  
+G14.1,4," School, kindergarten staff member      "
+G14.1,5," Social services, social workers  "
+G14.1,6, Police  
+G14.1,7, Healthcare specialists 
+G14.1,8, Church/religious organizations    
+G14.1,9, Public Defender/ombudsman   
+G14.2,1, No one  
+G14.2,2, Neighbors/society members  
+G14.2,3, Parent or other family members/friends of family  
+G14.2,4," School, kindergarten staff member      "
+G14.2,5," Social services, social workers  "
+G14.2,6, Police  
+G14.2,7, Healthcare specialists 
+G14.2,8, Church/religious organizations    
+G14.2,9, Public Defender/ombudsman   
+G14.3,1, No one  
+G14.3,2, Neighbors/society members  
+G14.3,3, Parent or other family members/friends of family  
+G14.3,4," School, kindergarten staff member      "
+G14.3,5," Social services, social workers  "
+G14.3,6, Police  
+G14.3,7, Healthcare specialists 
+G14.3,8, Church/religious organizations    
+G14.3,9, Public Defender/ombudsman   
+G14.4,1, No one  
+G14.4,2, Neighbors/society members  
+G14.4,3, Parent or other family members/friends of family  
+G14.4,4," School, kindergarten staff member      "
+G14.4,5," Social services, social workers  "
+G14.4,6, Police  
+G14.4,7, Healthcare specialists 
+G14.4,8, Church/religious organizations    
+G14.4,9, Public Defender/ombudsman   
+G14.5,1, No one  
+G14.5,2, Neighbors/society members  
+G14.5,3, Parent or other family members/friends of family  
+G14.5,4," School, kindergarten staff member      "
+G14.5,5," Social services, social workers  "
+G14.5,6, Police  
+G14.5,7, Healthcare specialists 
+G14.5,8, Church/religious organizations    
+G14.5,9, Public Defender/ombudsman   
+G14.6,1, No one  
+G14.6,2, Neighbors/society members  
+G14.6,3, Parent or other family members/friends of family  
+G14.6,4," School, kindergarten staff member      "
+G14.6,5," Social services, social workers  "
+G14.6,6, Police  
+G14.6,7, Healthcare specialists 
+G14.6,8, Church/religious organizations    
+G14.6,9, Public Defender/ombudsman   
+G14.7,1, No one  
+G14.7,2, Neighbors/society members  
+G14.7,3, Parent or other family members/friends of family  
+G14.7,4," School, kindergarten staff member      "
+G14.7,5," Social services, social workers  "
+G14.7,6, Police  
+G14.7,7, Healthcare specialists 
+G14.7,8, Church/religious organizations    
+G14.7,9, Public Defender/ombudsman   
+G14.8,1, No one  
+G14.8,2, Neighbors/society members  
+G14.8,3, Parent or other family members/friends of family  
+G14.8,4," School, kindergarten staff member      "
+G14.8,5," Social services, social workers  "
+G14.8,6, Police  
+G14.8,7, Healthcare specialists 
+G14.8,8, Church/religious organizations    
+G14.8,9, Public Defender/ombudsman   
+G15.2,1, No one  
+G15.2,2, Neighbors/society members  
+G15.2,3, Parent or other family members/friends of family  
+G15.2,4," School, kindergarten staff member      "
+G15.2,5," Social services, social workers  "
+G15.2,6, Police  
+G15.2,7, Healthcare specialists 
+G15.2,8, Church/religious organizations    
+G15.2,9, Public Defender/ombudsman   
+G15.3,1, No one  
+G15.3,2, Neighbors/society members  
+G15.3,3, Parent or other family members/friends of family  
+G15.3,4," School, kindergarten staff member      "
+G15.3,5," Social services, social workers  "
+G15.3,6, Police  
+G15.3,7, Healthcare specialists 
+G15.3,8, Church/religious organizations    
+G15.3,9, Public Defender/ombudsman   
+G15.4,1, No one  
+G15.4,2, Neighbors/society members  
+G15.4,3, Parent or other family members/friends of family  
+G15.4,4," School, kindergarten staff member      "
+G15.4,5," Social services, social workers  "
+G15.4,6, Police  
+G15.4,7, Healthcare specialists 
+G15.4,8, Church/religious organizations    
+G15.4,9, Public Defender/ombudsman   
+G15.5,1, No one  
+G15.5,2, Neighbors/society members  
+G15.5,3, Parent or other family members/friends of family  
+G15.5,4," School, kindergarten staff member      "
+G15.5,5," Social services, social workers  "
+G15.5,6, Police  
+G15.5,7, Healthcare specialists 
+G15.5,8, Church/religious organizations    
+G15.5,9, Public Defender/ombudsman   
+G15.6,1, No one  
+G15.6,2, Neighbors/society members  
+G15.6,3, Parent or other family members/friends of family  
+G15.6,4," School, kindergarten staff member      "
+G15.6,5," Social services, social workers  "
+G15.6,6, Police  
+G15.6,7, Healthcare specialists 
+G15.6,8, Church/religious organizations    
+G15.6,9, Public Defender/ombudsman   
+G15.7,1, No one  
+G15.7,2, Neighbors/society members  
+G15.7,3, Parent or other family members/friends of family  
+G15.7,4," School, kindergarten staff member      "
+G15.7,5," Social services, social workers  "
+G15.7,6, Police  
+G15.7,7, Healthcare specialists 
+G15.7,8, Church/religious organizations    
+G15.7,9, Public Defender/ombudsman   
+G15.8,1, No one  
+G15.8,2, Neighbors/society members  
+G15.8,3, Parent or other family members/friends of family  
+G15.8,4," School, kindergarten staff member      "
+G15.8,5," Social services, social workers  "
+G15.8,6, Police  
+G15.8,7, Healthcare specialists 
+G15.8,8, Church/religious organizations    
+G15.8,9, Public Defender/ombudsman   
+G16.1,1, No one  
+G16.1,2, Neighbors/society members  
+G16.1,3, Parent or other family members/friends of family  
+G16.1,4," School, kindergarten staff member      "
+G16.1,5," Social services, social workers  "
+G16.1,6, Police  
+G16.1,7, Healthcare specialists 
+G16.1,8, Church/religious organizations    
+G16.1,9, Public Defender/ombudsman   
+G16.2,1, No one  
+G16.2,2, Neighbors/society members  
+G16.2,3, Parent or other family members/friends of family  
+G16.2,4," School, kindergarten staff member      "
+G16.2,5," Social services, social workers  "
+G16.2,6, Police  
+G16.2,7, Healthcare specialists 
+G16.2,8, Church/religious organizations    
+G16.2,9, Public Defender/ombudsman   
+G16.3,1, No one  
+G16.3,2, Neighbors/society members  
+G16.3,3, Parent or other family members/friends of family  
+G16.3,4," School, kindergarten staff member      "
+G16.3,5," Social services, social workers  "
+G16.3,6, Police  
+G16.3,7, Healthcare specialists 
+G16.3,8, Church/religious organizations    
+G16.3,9, Public Defender/ombudsman   
+G16.4,1, No one  
+G16.4,2, Neighbors/society members  
+G16.4,3, Parent or other family members/friends of family  
+G16.4,4," School, kindergarten staff member      "
+G16.4,5," Social services, social workers  "
+G16.4,6, Police  
+G16.4,7, Healthcare specialists 
+G16.4,8, Church/religious organizations    
+G16.4,9, Public Defender/ombudsman   
+G16.5,1, No one  
+G16.5,2, Neighbors/society members  
+G16.5,3, Parent or other family members/friends of family  
+G16.5,4," School, kindergarten staff member      "
+G16.5,5," Social services, social workers  "
+G16.5,6, Police  
+G16.5,7, Healthcare specialists 
+G16.5,8, Church/religious organizations    
+G16.5,9, Public Defender/ombudsman   
+G16.6,1, No one  
+G16.6,2, Neighbors/society members  
+G16.6,3, Parent or other family members/friends of family  
+G16.6,4," School, kindergarten staff member      "
+G16.6,5," Social services, social workers  "
+G16.6,6, Police  
+G16.6,7, Healthcare specialists 
+G16.6,8, Church/religious organizations    
+G16.6,9, Public Defender/ombudsman   
+G16.7,1, No one  
+G16.7,2, Neighbors/society members  
+G16.7,3, Parent or other family members/friends of family  
+G16.7,4," School, kindergarten staff member      "
+G16.7,5," Social services, social workers  "
+G16.7,6, Police  
+G16.7,7, Healthcare specialists 
+G16.7,8, Church/religious organizations    
+G16.7,9, Public Defender/ombudsman   
+G16.8,1, No one  
+G16.8,2, Neighbors/society members  
+G16.8,3, Parent or other family members/friends of family  
+G16.8,4," School, kindergarten staff member      "
+G16.8,5," Social services, social workers  "
+G16.8,6, Police  
+G16.8,7, Healthcare specialists 
+G16.8,8, Church/religious organizations    
+G16.8,9, Public Defender/ombudsman   
+G18.2,1, Be judged by court 
+G18.2,2, Take medical care course  
+G18.2,3, Be deprived or have limited parental rights   
+G18.2,4, The reason should be investigated/ It depends on specific case 
+G18.2,5, Extreme punishment/hanging/death penalty/burn alive/execution/torture/imprisonment/castration 
+G18.2,6, Relatives should discuss the issue with him/her 
+G18.2,7, A warning should be given from the appropriate authorities 
+G18.3,1, Be judged by court 
+G18.3,2, Take medical care course  
+G18.3,3, Be deprived or have limited parental rights   
+G18.3,4, The reason should be investigated/ It depends on specific case 
+G18.3,5, Extreme punishment/hanging/death penalty/burn alive/execution/torture/imprisonment/castration 
+G18.3,6, Relatives should discuss the issue with him/her 
+G18.3,7, A warning should be given from the appropriate authorities 
+G18.4,1, Be judged by court 
+G18.4,2, Take medical care course  
+G18.4,3, Be deprived or have limited parental rights   
+G18.4,4, The reason should be investigated/ It depends on specific case 
+G18.4,5, Extreme punishment/hanging/death penalty/burn alive/execution/torture/imprisonment/castration 
+G18.4,6, Relatives should discuss the issue with him/her 
+G18.4,7, A warning should be given from the appropriate authorities 
+G19.1,1, Be judged by court 
+G19.1,2, Take medical care course  
+G19.1,3, Be deprived or have limited parental rights   
+G19.1,4, The child should be assisted by community 
+G19.1,5, The reason should be investigated 
+G19.1,6, Severe penalty/Execution/Torture to death 
+G19.1,7, A warning should be given from the appropriate authorities 
+G19.1,8, Relatives should discuss the issue with him/her  
+G19.1,9, It's parent's prerogative/ No one should interfere 
+G19.2,1, Be judged by court 
+G19.2,2, Take medical care course  
+G19.2,3, Be deprived or have limited parental rights   
+G19.2,4, The child should be assisted by community 
+G19.2,5, The reason should be investigated 
+G19.2,6, Severe penalty/Execution/Torture to death 
+G19.2,7, A warning should be given from the appropriate authorities 
+G19.2,8, Relatives should discuss the issue with him/her  
+G19.2,9, It's parent's prerogative/ No one should interfere 
+G19.3,1, Be judged by court 
+G19.3,2, Take medical care course  
+G19.3,3, Be deprived or have limited parental rights   
+G19.3,4, The child should be assisted by community 
+G19.3,5, The reason should be investigated 
+G19.3,6, Severe penalty/Execution/Torture to death 
+G19.3,7, A warning should be given from the appropriate authorities 
+G19.3,8, Relatives should discuss the issue with him/her  
+G19.3,9, It's parent's prerogative/ No one should interfere 
+G19.4,1, Be judged by court 
+G19.4,2, Take medical care course  
+G19.4,3, Be deprived or have limited parental rights   
+G19.4,4, The child should be assisted by community 
+G19.4,5, The reason should be investigated 
+G19.4,6, Severe penalty/Execution/Torture to death 
+G19.4,7, A warning should be given from the appropriate authorities 
+G19.4,8, Relatives should discuss the issue with him/her  
+G19.4,9, It's parent's prerogative/ No one should interfere 
+G20.2,1, Be judged by court 
+G20.2,2, Take medical care course  
+G20.2,3, Be deprived or have limited parental rights   
+G20.2,4, The child should be assisted by community 
+G20.2,5, The reason should be investigated 
+G20.2,6, A warning should be given from the appropriate authorities 
+G20.2,7, Severe penalty/Execution/Torture to death 
+G20.2,8, It's family member's prerogative/ No one should interfere 
+G20.2,9, Society should admonish him/her / It must be discussed by society 
+G20.3,1, Be judged by court 
+G20.3,2, Take medical care course  
+G20.3,3, Be deprived or have limited parental rights   
+G20.3,4, The child should be assisted by community 
+G20.3,5, The reason should be investigated 
+G20.3,6, A warning should be given from the appropriate authorities 
+G20.3,7, Severe penalty/Execution/Torture to death 
+G20.3,8, It's family member's prerogative/ No one should interfere 
+G20.3,9, Society should admonish him/her / It must be discussed by society 
+G20.4,1, Be judged by court 
+G20.4,2, Take medical care course  
+G20.4,3, Be deprived or have limited parental rights   
+G20.4,4, The child should be assisted by community 
+G20.4,5, The reason should be investigated 
+G20.4,6, A warning should be given from the appropriate authorities 
+G20.4,7, Severe penalty/Execution/Torture to death 
+G20.4,8, It's family member's prerogative/ No one should interfere 
+G20.4,9, Society should admonish him/her / It must be discussed by society 
+G21.2,1, Be judged by court 
+G21.2,2, Take medical care course  
+G21.2,3, Be deprived or have limited parental rights   
+G21.2,4, The reason should be investigated 
+G21.2,5, Society should be involved 
+G21.2,6, A warning should be given from the appropriate authorities 
+G21.2,7, Severe penalty/Execution/Torture to death 
+G21.2,8, Relatives should have a conversation with offender 
+G21.3,1, Be judged by court 
+G21.3,2, Take medical care course  
+G21.3,3, Be deprived or have limited parental rights   
+G21.3,4, The reason should be investigated 
+G21.3,5, Society should be involved 
+G21.3,6, A warning should be given from the appropriate authorities 
+G21.3,7, Severe penalty/Execution/Torture to death 
+G21.3,8, Relatives should have a conversation with offender 
+G21.4,1, Be judged by court 
+G21.4,2, Take medical care course  
+G21.4,3, Be deprived or have limited parental rights   
+G21.4,4, The reason should be investigated 
+G21.4,5, Society should be involved 
+G21.4,6, A warning should be given from the appropriate authorities 
+G21.4,7, Severe penalty/Execution/Torture to death 
+G21.4,8, Relatives should have a conversation with offender 
+G22.2,1, Be judged by court 
+G22.2,2, Take medical care course  
+G22.2,3, Be deprived or have limited parental rights   
+G22.2,4, Society should be involved 
+G22.2,5, A warning should be given from the appropriate authorities 
+G22.2,6, Severe penalty/Execution/Torture to death 
+G22.2,7, Church should be involved 
+G22.2,8, Relatives should have a conversation with offender/ Family members should be involved 
+G22.2,9, The reason should be investigated 
+G22.3,1, Be judged by court 
+G22.3,2, Take medical care course  
+G22.3,3, Be deprived or have limited parental rights   
+G22.3,4, Society should be involved 
+G22.3,5, A warning should be given from the appropriate authorities 
+G22.3,6, Severe penalty/Execution/Torture to death 
+G22.3,7, Church should be involved 
+G22.3,8, Relatives should have a conversation with offender/ Family members should be involved 
+G22.3,9, The reason should be investigated 
+G22.4,1, Be judged by court 
+G22.4,2, Take medical care course  
+G22.4,3, Be deprived or have limited parental rights   
+G22.4,4, Society should be involved 
+G22.4,5, A warning should be given from the appropriate authorities 
+G22.4,6, Severe penalty/Execution/Torture to death 
+G22.4,7, Church should be involved 
+G22.4,8, Relatives should have a conversation with offender/ Family members should be involved 
+G22.4,9, The reason should be investigated 
+G23,1, Yes 
+G23,2, No 
+G24.2,1, Neglect from family  
+G24.2,2, Psychological violence from family  
+G24.2,3, Physical violence from family  
+G24.2,4, Sexual abuse from family   
+G24.3,1, Neglect from family  
+G24.3,2, Psychological violence from family  
+G24.3,3, Physical violence from family  
+G24.3,4, Sexual abuse from family   
+G24.4,1, Neglect from family  
+G24.4,2, Psychological violence from family  
+G24.4,3, Physical violence from family  
+G24.4,4, Sexual abuse from family   
+G26.1,1, I will not do anything  
+G26.1,2, I will talk to childs parents  
+G26.1,3, I will inform school teacher/administration about the concrete occasion 
+G26.1,4, I will inform church society about the concrete occasion 
+G26.1,5, I will inform social services/social workers about the concrete occasion 
+G26.1,6, I will inform doctor about the concrete occasion  
+G26.1,7, I will inform police about the concrete occasion  
+G26.1,8, I will inform Public Defender/ombudsman about the concrete occasion  
+G26.1,9, I will inform court about the concrete occasion  
+G26.1,10, I will sooth the child / To ease the situation 
+G26.1,11, I will report the child's relatives about it 
+G26.1,12, I will deal with him/her personally / I will protect the child / I will save the child 
+G26.1,13," I will ascertain the situation, before acting "
+G26.1,14, I will report about it to self-government/government/local government 
+G26.1,15, I will report about it to television and press 
+G26.1,16, I will report about it to NGO 
+G26.2,1, I will not do anything  
+G26.2,2, I will talk to childs parents  
+G26.2,3, I will inform school teacher/administration about the concrete occasion 
+G26.2,4, I will inform church society about the concrete occasion 
+G26.2,5, I will inform social services/social workers about the concrete occasion 
+G26.2,6, I will inform doctor about the concrete occasion  
+G26.2,7, I will inform police about the concrete occasion  
+G26.2,8, I will inform Public Defender/ombudsman about the concrete occasion  
+G26.2,9, I will inform court about the concrete occasion  
+G26.2,10, I will sooth the child / To ease the situation 
+G26.2,11, I will report the child's relatives about it 
+G26.2,12, I will deal with him/her personally / I will protect the child / I will save the child 
+G26.2,13," I will ascertain the situation, before acting "
+G26.2,14, I will report about it to self-government/government/local government 
+G26.2,15, I will report about it to television and press 
+G26.2,16, I will report about it to NGO 
+G26.3,1, I will not do anything  
+G26.3,2, I will talk to childs parents  
+G26.3,3, I will inform school teacher/administration about the concrete occasion 
+G26.3,4, I will inform church society about the concrete occasion 
+G26.3,5, I will inform social services/social workers about the concrete occasion 
+G26.3,6, I will inform doctor about the concrete occasion  
+G26.3,7, I will inform police about the concrete occasion  
+G26.3,8, I will inform Public Defender/ombudsman about the concrete occasion  
+G26.3,9, I will inform court about the concrete occasion  
+G26.3,10, I will sooth the child / To ease the situation 
+G26.3,11, I will report the child's relatives about it 
+G26.3,12, I will deal with him/her personally / I will protect the child / I will save the child 
+G26.3,13," I will ascertain the situation, before acting "
+G26.3,14, I will report about it to self-government/government/local government 
+G26.3,15, I will report about it to television and press 
+G26.3,16, I will report about it to NGO 
+G26.4,1, I will not do anything  
+G26.4,2, I will talk to childs parents  
+G26.4,3, I will inform school teacher/administration about the concrete occasion 
+G26.4,4, I will inform church society about the concrete occasion 
+G26.4,5, I will inform social services/social workers about the concrete occasion 
+G26.4,6, I will inform doctor about the concrete occasion  
+G26.4,7, I will inform police about the concrete occasion  
+G26.4,8, I will inform Public Defender/ombudsman about the concrete occasion  
+G26.4,9, I will inform court about the concrete occasion  
+G26.4,10, I will sooth the child / To ease the situation 
+G26.4,11, I will report the child's relatives about it 
+G26.4,12, I will deal with him/her personally / I will protect the child / I will save the child 
+G26.4,13," I will ascertain the situation, before acting "
+G26.4,14, I will report about it to self-government/government/local government 
+G26.4,15, I will report about it to television and press 
+G26.4,16, I will report about it to NGO 
+G26.5,1, I will not do anything  
+G26.5,2, I will talk to childs parents  
+G26.5,3, I will inform school teacher/administration about the concrete occasion 
+G26.5,4, I will inform church society about the concrete occasion 
+G26.5,5, I will inform social services/social workers about the concrete occasion 
+G26.5,6, I will inform doctor about the concrete occasion  
+G26.5,7, I will inform police about the concrete occasion  
+G26.5,8, I will inform Public Defender/ombudsman about the concrete occasion  
+G26.5,9, I will inform court about the concrete occasion  
+G26.5,10, I will sooth the child / To ease the situation 
+G26.5,11, I will report the child's relatives about it 
+G26.5,12, I will deal with him/her personally / I will protect the child / I will save the child 
+G26.5,13," I will ascertain the situation, before acting "
+G26.5,14, I will report about it to self-government/government/local government 
+G26.5,15, I will report about it to television and press 
+G26.5,16, I will report about it to NGO 
+G26.6,1, I will not do anything  
+G26.6,2, I will talk to childs parents  
+G26.6,3, I will inform school teacher/administration about the concrete occasion 
+G26.6,4, I will inform church society about the concrete occasion 
+G26.6,5, I will inform social services/social workers about the concrete occasion 
+G26.6,6, I will inform doctor about the concrete occasion  
+G26.6,7, I will inform police about the concrete occasion  
+G26.6,8, I will inform Public Defender/ombudsman about the concrete occasion  
+G26.6,9, I will inform court about the concrete occasion  
+G26.6,10, I will sooth the child / To ease the situation 
+G26.6,11, I will report the child's relatives about it 
+G26.6,12, I will deal with him/her personally / I will protect the child / I will save the child 
+G26.6,13," I will ascertain the situation, before acting "
+G26.6,14, I will report about it to self-government/government/local government 
+G26.6,15, I will report about it to television and press 
+G26.6,16, I will report about it to NGO 
+G26.7,1, I will not do anything  
+G26.7,2, I will talk to childs parents  
+G26.7,3, I will inform school teacher/administration about the concrete occasion 
+G26.7,4, I will inform church society about the concrete occasion 
+G26.7,5, I will inform social services/social workers about the concrete occasion 
+G26.7,6, I will inform doctor about the concrete occasion  
+G26.7,7, I will inform police about the concrete occasion  
+G26.7,8, I will inform Public Defender/ombudsman about the concrete occasion  
+G26.7,9, I will inform court about the concrete occasion  
+G26.7,10, I will sooth the child / To ease the situation 
+G26.7,11, I will report the child's relatives about it 
+G26.7,12, I will deal with him/her personally / I will protect the child / I will save the child 
+G26.7,13," I will ascertain the situation, before acting "
+G26.7,14, I will report about it to self-government/government/local government 
+G26.7,15, I will report about it to television and press 
+G26.7,16, I will report about it to NGO 
+G26.8,1, I will not do anything  
+G26.8,2, I will talk to childs parents  
+G26.8,3, I will inform school teacher/administration about the concrete occasion 
+G26.8,4, I will inform church society about the concrete occasion 
+G26.8,5, I will inform social services/social workers about the concrete occasion 
+G26.8,6, I will inform doctor about the concrete occasion  
+G26.8,7, I will inform police about the concrete occasion  
+G26.8,8, I will inform Public Defender/ombudsman about the concrete occasion  
+G26.8,9, I will inform court about the concrete occasion  
+G26.8,10, I will sooth the child / To ease the situation 
+G26.8,11, I will report the child's relatives about it 
+G26.8,12, I will deal with him/her personally / I will protect the child / I will save the child 
+G26.8,13," I will ascertain the situation, before acting "
+G26.8,14, I will report about it to self-government/government/local government 
+G26.8,15, I will report about it to television and press 
+G26.8,16, I will report about it to NGO 
+G33.1,1, Television  
+G33.1,2, Radio 
+G33.1,3, Newspapers/magazines  
+G33.1,4, Telephone (hot line)  
+G33.1,5, Short text message  
+G33.1,6, Informative leaflets (handed at home)  
+G33.1,7, Informative posters at hospitals and schools  
+G33.1,8, By means of Public Defender/ombudsmans office 
+G33.1,9, Informative posters in public transport  
+G33.1,10, Family doctor/polyclinic doctor  
+G33.1,11, Police/district inspector  
+G33.1,12, Teachers 
+G33.1,13," Resource officers, other school staff  "
+G33.1,14, Personnel of social services  
+G33.1,15, Representatives of local municipalities  
+G33.1,16, Church where I go frequently  
+G33.1,17, Special meetings organized by qualified officials at our working or living place  
+G33.1,18, E-Mail 
+G33.1,19, Internet 
+G33.1,20, From society 
+G33.1,21, Village administration 
+G33.1,22, In the form of trainings 
+G33.1,23, Does not require information 
+G33.1,24, Family members 
+G33.2,1, Television  
+G33.2,2, Radio 
+G33.2,3, Newspapers/magazines  
+G33.2,4, Telephone (hot line)  
+G33.2,5, Short text message  
+G33.2,6, Informative leaflets (handed at home)  
+G33.2,7, Informative posters at hospitals and schools  
+G33.2,8, By means of Public Defender/ombudsmans office 
+G33.2,9, Informative posters in public transport  
+G33.2,10, Family doctor/polyclinic doctor  
+G33.2,11, Police/district inspector  
+G33.2,12, Teachers 
+G33.2,13," Resource officers, other school staff  "
+G33.2,14, Personnel of social services  
+G33.2,15, Representatives of local municipalities  
+G33.2,16, Church where I go frequently  
+G33.2,17, Special meetings organized by qualified officials at our working or living place  
+G33.2,18, E-Mail 
+G33.2,19, Internet 
+G33.2,20, From society 
+G33.2,21, Village administration 
+G33.2,22, In the form of trainings 
+G33.2,23, Does not require information 
+G33.2,24, Family members 
+G33.3,1, Television  
+G33.3,2, Radio 
+G33.3,3, Newspapers/magazines  
+G33.3,4, Telephone (hot line)  
+G33.3,5, Short text message  
+G33.3,6, Informative leaflets (handed at home)  
+G33.3,7, Informative posters at hospitals and schools  
+G33.3,8, By means of Public Defender/ombudsmans office 
+G33.3,9, Informative posters in public transport  
+G33.3,10, Family doctor/polyclinic doctor  
+G33.3,11, Police/district inspector  
+G33.3,12, Teachers 
+G33.3,13," Resource officers, other school staff  "
+G33.3,14, Personnel of social services  
+G33.3,15, Representatives of local municipalities  
+G33.3,16, Church where I go frequently  
+G33.3,17, Special meetings organized by qualified officials at our working or living place  
+G33.3,18, E-Mail 
+G33.3,19, Internet 
+G33.3,20, From society 
+G33.3,21, Village administration 
+G33.3,22, In the form of trainings 
+G33.3,23, Does not require information 
+G33.3,24, Family members 
+H2,1, Yes 
+H2,2, No 
+H4,1, Yes 
+H4,2, Maybe 
+H4,3, No 
+H4,4, I dont know 
+H5,1, Yes 
+H5,2, Maybe 
+H5,3, No 
+H5,4, I dont know 
+H6,1, Yes 
+H6,2, Maybe 
+H6,3, No 
+H6,4, I dont know 
+H8,1, Yes 
+H8,2, Maybe 
+H8,3, No 
+H8,4, I dont know 
+H9,1, Yes 
+H9,2, Maybe 
+H9,3, No 
+H9,4, I dont know 
+H10,1, Yes 
+H10,2, Maybe 
+H10,3, No 
+H10,4, I dont know 
+H11,1, Yes 
+H11,2, Maybe 
+H11,3, No 
+H11,4, I dont know 
+H12,1, Yes 
+H12,2, Maybe 
+H12,3, No 
+H12,4, I dont know 
+H13,1, Yes 
+H13,2, Maybe 
+H13,3, No 
+H13,4, I dont know 
+H14,1, Yes 
+H14,2, Maybe 
+H14,3, No 
+H14,4, I dont know 
+H15,1, Yes 
+H15,2, Maybe 
+H15,3, No 
+H15,4, I dont know 
+H16,1, Yes 
+H16,2, Maybe 
+H16,3, No 
+H16,4, I dont know 
+H17,1, Yes 
+H17,2, Maybe 
+H17,3, No 
+H17,4, I dont know 
+I1,1, Female 
+I1,2, Male 
+I2.2,1, 18-24 
+I2.2,2, 25-34 
+I2.2,3, 35-44 
+I2.2,4, 45-54 
+I2.2,5, 55-64 
+I2.2,6, 65 and above 
+I6.1,1, Female 
+I6.1,2, Male 
+I6.2,1, Female 
+I6.2,2, Male 
+I6.3,1, Female 
+I6.3,2, Male 
+I6.4,1, Female 
+I6.4,2, Male 
+I6.5,1, Female 
+I6.5,2, Male 
+I6.6,1, Female 
+I6.6,2, Male 
+I6.7,1, Female 
+I6.7,2, Male 
+I6.8,1, Female 
+I6.8,2, Male 
+I6.9,1, Female 
+I6.9,2, Male 
+I8.1,1, Yes 
+I8.1,2, No 
+I8.1,3, I dont know
+I8.2,1, Yes 
+I8.2,2, No 
+I8.2,3, I dont know
+I8.3,1, Yes 
+I8.3,2, No 
+I8.3,3, I dont know
+I8.4,1, Yes 
+I8.4,2, No 
+I8.4,3, I dont know
+I8.5,1, Yes 
+I8.5,2, No 
+I8.5,3, I dont know
+I8.6,1, Yes 
+I8.6,2, No 
+I8.6,3, I dont know
+I8.7,1, Yes 
+I8.7,2, No 
+I8.7,3, I dont know
+I8.8,1, Yes 
+I8.8,2, No 
+I8.8,3, I dont know
+I8.9,1, Yes 
+I8.9,2, No 
+I8.9,3, I dont know
+I9.1,1," Yes, kindergarten "
+I9.1,2,"Yes, primary school"
+I9.1,3,No
+I9.1,4, I dont know
+I9.2,1," Yes, kindergarten "
+I9.2,2,"Yes, primary school"
+I9.2,3,No
+I9.2,4, I dont know
+I9.3,1," Yes, kindergarten "
+I9.3,2,"Yes, primary school"
+I9.3,3,No
+I9.3,4, I dont know
+I9.4,1," Yes, kindergarten "
+I9.4,2,"Yes, primary school"
+I9.4,3,No
+I9.4,4, I dont know
+I9.5,1," Yes, kindergarten "
+I9.5,2,"Yes, primary school"
+I9.5,3,No
+I9.5,4, I dont know
+I9.6,1," Yes, kindergarten "
+I9.6,2,"Yes, primary school"
+I9.6,3,No
+I9.6,4, I dont know
+I9.7,1," Yes, kindergarten "
+I9.7,2,"Yes, primary school"
+I9.7,3,No
+I9.7,4, I dont know
+I9.8,1," Yes, kindergarten "
+I9.8,2,"Yes, primary school"
+I9.8,3,No
+I9.8,4, I dont know
+I9.9,1," Yes, kindergarten "
+I9.9,2,"Yes, primary school"
+I9.9,3,No
+I9.9,4, I dont know
+I10.1,1, It is good in general for a childs development 
+I10.1,2, To prepare him/her better for school 
+I10.1,3, As I know schools will not enroll a child if he/she has not attended a preschool 
+I10.1,4, None of the family members has the time to take care of the child during weekdays 
+I10.1,5, Child is well fed at preschool 
+I10.1,6," Child has better access to toys, books etc. than at home "
+I10.1,7, More opportunities to socialize with other children 
+I10.2,1, It is good in general for a childs development 
+I10.2,2, To prepare him/her better for school 
+I10.2,3, As I know schools will not enroll a child if he/she has not attended a preschool 
+I10.2,4, None of the family members has the time to take care of the child during weekdays 
+I10.2,5, Child is well fed at preschool 
+I10.2,6," Child has better access to toys, books etc. than at home "
+I10.2,7, More opportunities to socialize with other children 
+I10.3,1, It is good in general for a childs development 
+I10.3,2, To prepare him/her better for school 
+I10.3,3, As I know schools will not enroll a child if he/she has not attended a preschool 
+I10.3,4, None of the family members has the time to take care of the child during weekdays 
+I10.3,5, Child is well fed at preschool 
+I10.3,6," Child has better access to toys, books etc. than at home "
+I10.3,7, More opportunities to socialize with other children 
+I10.4,1, It is good in general for a childs development 
+I10.4,2, To prepare him/her better for school 
+I10.4,3, As I know schools will not enroll a child if he/she has not attended a preschool 
+I10.4,4, None of the family members has the time to take care of the child during weekdays 
+I10.4,5, Child is well fed at preschool 
+I10.4,6," Child has better access to toys, books etc. than at home "
+I10.4,7, More opportunities to socialize with other children 
+I10.5,1, It is good in general for a childs development 
+I10.5,2, To prepare him/her better for school 
+I10.5,3, As I know schools will not enroll a child if he/she has not attended a preschool 
+I10.5,4, None of the family members has the time to take care of the child during weekdays 
+I10.5,5, Child is well fed at preschool 
+I10.5,6," Child has better access to toys, books etc. than at home "
+I10.5,7, More opportunities to socialize with other children 
+I10.6,1, It is good in general for a childs development 
+I10.6,2, To prepare him/her better for school 
+I10.6,3, As I know schools will not enroll a child if he/she has not attended a preschool 
+I10.6,4, None of the family members has the time to take care of the child during weekdays 
+I10.6,5, Child is well fed at preschool 
+I10.6,6," Child has better access to toys, books etc. than at home "
+I10.6,7, More opportunities to socialize with other children 
+I10.7,1, It is good in general for a childs development 
+I10.7,2, To prepare him/her better for school 
+I10.7,3, As I know schools will not enroll a child if he/she has not attended a preschool 
+I10.7,4, None of the family members has the time to take care of the child during weekdays 
+I10.7,5, Child is well fed at preschool 
+I10.7,6," Child has better access to toys, books etc. than at home "
+I10.7,7, More opportunities to socialize with other children 
+I10.8,1, It is good in general for a childs development 
+I10.8,2, To prepare him/her better for school 
+I10.8,3, As I know schools will not enroll a child if he/she has not attended a preschool 
+I10.8,4, None of the family members has the time to take care of the child during weekdays 
+I10.8,5, Child is well fed at preschool 
+I10.8,6," Child has better access to toys, books etc. than at home "
+I10.8,7, More opportunities to socialize with other children 
+I10.9,1, It is good in general for a childs development 
+I10.9,2, To prepare him/her better for school 
+I10.9,3, As I know schools will not enroll a child if he/she has not attended a preschool 
+I10.9,4, None of the family members has the time to take care of the child during weekdays 
+I10.9,5, Child is well fed at preschool 
+I10.9,6," Child has better access to toys, books etc. than at home "
+I10.9,7, More opportunities to socialize with other children 
+I11.1,1, The child will not learn much 
+I11.1,2, The child is taken care at home 
+I11.1,3, A person from another household takes care of the child/children 
+I11.1,4," Not satisfied with quality - Low level of services (poor conditions, inadequate personnel) "
+I11.1,5, Poor treatment of children 
+I11.1,6, The child is too young 
+I11.1,7, There is no pre-school or school nearby 
+I11.1,8, The facility is too far/no organized transport for children 
+I11.1,9, Overcrowded facility 
+I11.1,10, There were no places / Waitlisted 
+I11.1,11, Cannot afford the fee - Costly services 
+I11.1,12," Cannot afford other expenses (transport, clothes, food) too high "
+I11.1,13, No birth certificate 
+I11.1,14, Higher risk of getting infectious diseases 
+I11.1,15, The Child does ot want togo to Kindergarten 
+I11.1,16, Due to Sickness of the Child 
+I11.1,17, Due to disability of the Child 
+I11.1,18, Due to Family Conditions 
+I11.2,1, The child will not learn much 
+I11.2,2, The child is taken care at home 
+I11.2,3, A person from another household takes care of the child/children 
+I11.2,4," Not satisfied with quality - Low level of services (poor conditions, inadequate personnel) "
+I11.2,5, Poor treatment of children 
+I11.2,6, The child is too young 
+I11.2,7, There is no pre-school or school nearby 
+I11.2,8, The facility is too far/no organized transport for children 
+I11.2,9, Overcrowded facility 
+I11.2,10, There were no places / Waitlisted 
+I11.2,11, Cannot afford the fee - Costly services 
+I11.2,12," Cannot afford other expenses (transport, clothes, food) too high "
+I11.2,13, No birth certificate 
+I11.2,14, Higher risk of getting infectious diseases 
+I11.2,15, The Child does ot want togo to Kindergarten 
+I11.2,16, Due to Sickness of the Child 
+I11.2,17, Due to disability of the Child 
+I11.2,18, Due to Family Conditions 
+I11.3,1, The child will not learn much 
+I11.3,2, The child is taken care at home 
+I11.3,3, A person from another household takes care of the child/children 
+I11.3,4," Not satisfied with quality - Low level of services (poor conditions, inadequate personnel) "
+I11.3,5, Poor treatment of children 
+I11.3,6, The child is too young 
+I11.3,7, There is no pre-school or school nearby 
+I11.3,8, The facility is too far/no organized transport for children 
+I11.3,9, Overcrowded facility 
+I11.3,10, There were no places / Waitlisted 
+I11.3,11, Cannot afford the fee - Costly services 
+I11.3,12," Cannot afford other expenses (transport, clothes, food) too high "
+I11.3,13, No birth certificate 
+I11.3,14, Higher risk of getting infectious diseases 
+I11.3,15, The Child does ot want togo to Kindergarten 
+I11.3,16, Due to Sickness of the Child 
+I11.3,17, Due to disability of the Child 
+I11.3,18, Due to Family Conditions 
+I11.4,1, The child will not learn much 
+I11.4,2, The child is taken care at home 
+I11.4,3, A person from another household takes care of the child/children 
+I11.4,4," Not satisfied with quality - Low level of services (poor conditions, inadequate personnel) "
+I11.4,5, Poor treatment of children 
+I11.4,6, The child is too young 
+I11.4,7, There is no pre-school or school nearby 
+I11.4,8, The facility is too far/no organized transport for children 
+I11.4,9, Overcrowded facility 
+I11.4,10, There were no places / Waitlisted 
+I11.4,11, Cannot afford the fee - Costly services 
+I11.4,12," Cannot afford other expenses (transport, clothes, food) too high "
+I11.4,13, No birth certificate 
+I11.4,14, Higher risk of getting infectious diseases 
+I11.4,15, The Child does ot want togo to Kindergarten 
+I11.4,16, Due to Sickness of the Child 
+I11.4,17, Due to disability of the Child 
+I11.4,18, Due to Family Conditions 
+I11.5,1, The child will not learn much 
+I11.5,2, The child is taken care at home 
+I11.5,3, A person from another household takes care of the child/children 
+I11.5,4," Not satisfied with quality - Low level of services (poor conditions, inadequate personnel) "
+I11.5,5, Poor treatment of children 
+I11.5,6, The child is too young 
+I11.5,7, There is no pre-school or school nearby 
+I11.5,8, The facility is too far/no organized transport for children 
+I11.5,9, Overcrowded facility 
+I11.5,10, There were no places / Waitlisted 
+I11.5,11, Cannot afford the fee - Costly services 
+I11.5,12," Cannot afford other expenses (transport, clothes, food) too high "
+I11.5,13, No birth certificate 
+I11.5,14, Higher risk of getting infectious diseases 
+I11.5,15, The Child does ot want togo to Kindergarten 
+I11.5,16, Due to Sickness of the Child 
+I11.5,17, Due to disability of the Child 
+I11.5,18, Due to Family Conditions 
+I11.6,1, The child will not learn much 
+I11.6,2, The child is taken care at home 
+I11.6,3, A person from another household takes care of the child/children 
+I11.6,4," Not satisfied with quality - Low level of services (poor conditions, inadequate personnel) "
+I11.6,5, Poor treatment of children 
+I11.6,6, The child is too young 
+I11.6,7, There is no pre-school or school nearby 
+I11.6,8, The facility is too far/no organized transport for children 
+I11.6,9, Overcrowded facility 
+I11.6,10, There were no places / Waitlisted 
+I11.6,11, Cannot afford the fee - Costly services 
+I11.6,12," Cannot afford other expenses (transport, clothes, food) too high "
+I11.6,13, No birth certificate 
+I11.6,14, Higher risk of getting infectious diseases 
+I11.6,15, The Child does ot want togo to Kindergarten 
+I11.6,16, Due to Sickness of the Child 
+I11.6,17, Due to disability of the Child 
+I11.6,18, Due to Family Conditions 
+I11.7,1, The child will not learn much 
+I11.7,2, The child is taken care at home 
+I11.7,3, A person from another household takes care of the child/children 
+I11.7,4," Not satisfied with quality - Low level of services (poor conditions, inadequate personnel) "
+I11.7,5, Poor treatment of children 
+I11.7,6, The child is too young 
+I11.7,7, There is no pre-school or school nearby 
+I11.7,8, The facility is too far/no organized transport for children 
+I11.7,9, Overcrowded facility 
+I11.7,10, There were no places / Waitlisted 
+I11.7,11, Cannot afford the fee - Costly services 
+I11.7,12," Cannot afford other expenses (transport, clothes, food) too high "
+I11.7,13, No birth certificate 
+I11.7,14, Higher risk of getting infectious diseases 
+I11.7,15, The Child does ot want togo to Kindergarten 
+I11.7,16, Due to Sickness of the Child 
+I11.7,17, Due to disability of the Child 
+I11.7,18, Due to Family Conditions 
+I11.8,1, The child will not learn much 
+I11.8,2, The child is taken care at home 
+I11.8,3, A person from another household takes care of the child/children 
+I11.8,4," Not satisfied with quality - Low level of services (poor conditions, inadequate personnel) "
+I11.8,5, Poor treatment of children 
+I11.8,6, The child is too young 
+I11.8,7, There is no pre-school or school nearby 
+I11.8,8, The facility is too far/no organized transport for children 
+I11.8,9, Overcrowded facility 
+I11.8,10, There were no places / Waitlisted 
+I11.8,11, Cannot afford the fee - Costly services 
+I11.8,12," Cannot afford other expenses (transport, clothes, food) too high "
+I11.8,13, No birth certificate 
+I11.8,14, Higher risk of getting infectious diseases 
+I11.8,15, The Child does ot want togo to Kindergarten 
+I11.8,16, Due to Sickness of the Child 
+I11.8,17, Due to disability of the Child 
+I11.8,18, Due to Family Conditions 
+I11.9,1, The child will not learn much 
+I11.9,2, The child is taken care at home 
+I11.9,3, A person from another household takes care of the child/children 
+I11.9,4," Not satisfied with quality - Low level of services (poor conditions, inadequate personnel) "
+I11.9,5, Poor treatment of children 
+I11.9,6, The child is too young 
+I11.9,7, There is no pre-school or school nearby 
+I11.9,8, The facility is too far/no organized transport for children 
+I11.9,9, Overcrowded facility 
+I11.9,10, There were no places / Waitlisted 
+I11.9,11, Cannot afford the fee - Costly services 
+I11.9,12," Cannot afford other expenses (transport, clothes, food) too high "
+I11.9,13, No birth certificate 
+I11.9,14, Higher risk of getting infectious diseases 
+I11.9,15, The Child does ot want togo to Kindergarten 
+I11.9,16, Due to Sickness of the Child 
+I11.9,17, Due to disability of the Child 
+I11.9,18, Due to Family Conditions 
+I18,1, Georgian 
+I18,2, Russian  
+I18,3, Azeri 
+I18,4, Armenian 
+I18,5, Ossetian 
+I18,6, Yezidis 
+I18,7, Greek 
+I18,8, Kists 
+I18,9, Jewish 
+I18,10, Abkhazian 
+I18,11, Ukrainian 
+I18,12, Kazakhstanian 
+I18,13, Kurdish 
+I18,14, Belarus 
+I18,15, Leki 
+I18,16, Polish 
+I18,17, Moldavian 
+I18,18, Asyrian 
+I18,19, Turkish 
+I23.1,1, No 
+I23.1,2, Age pension 
+I23.1,3, Disability Pension  
+I23.1,4, Survivor pension   
+I23.1,5, Pension for war veterans  
+I23.1,6, IDP Allowance  
+I23.1,7, State medical insurance (<70000 points)  
+I23.1,8, Social benefit for families with many children 
+I23.1,9," Social benefit for orphans, having lost both parents  "
+I23.1,10, Social benefit for children with disabilities  
+I23.1,11, Social benefit for single pensioners  
+I23.1,12, Social benefit for vulnerable families(AKA- subsidiary benefit)  (<57000 points) 
+I23.1,13," Vouchers for social services (for instance: voucher for medical aid center, voucher for early intervention, voucher for"
+I23.1,14, Utilities Subsidies  
+I23.1,15, Municipal social benefit  
+I23.1,16, Benefit for prevention/reintegration  
+I23.1,17, Repression Pension 
+I23.1,18, Military Pension 
+I23.1,19, Ex policemen Pension 
+I23.1,20, Hormonization Program of Healthcare Ministry    
+I23.1,21, Unemployment Support 
+I23.1,22, Handicap Insurance 
+I23.1,23, Teachers Insurance 
+I23.1,24, Pension Fund/Employment Pension 
+I23.1,25, Pension of Singles 
+I23.2,1, No 
+I23.2,2, Age pension 
+I23.2,3, Disability Pension  
+I23.2,4, Survivor pension   
+I23.2,5, Pension for war veterans  
+I23.2,6, IDP Allowance  
+I23.2,7, State medical insurance (<70000 points)  
+I23.2,8, Social benefit for families with many children 
+I23.2,9," Social benefit for orphans, having lost both parents  "
+I23.2,10, Social benefit for children with disabilities  
+I23.2,11, Social benefit for single pensioners  
+I23.2,12, Social benefit for vulnerable families(AKA- subsidiary benefit)  (<57000 points) 
+I23.2,13," Vouchers for social services (for instance: voucher for medical aid center, voucher for early intervention, voucher for"
+I23.2,14, Utilities Subsidies  
+I23.2,15, Municipal social benefit  
+I23.2,16, Benefit for prevention/reintegration  
+I23.2,17, Repression Pension 
+I23.2,18, Military Pension 
+I23.2,19, Ex policemen Pension 
+I23.2,20, Hormonization Program of Healthcare Ministry    
+I23.2,21, Unemployment Support 
+I23.2,22, Handicap Insurance 
+I23.2,23, Teachers Insurance 
+I23.2,24, Pension Fund/Employment Pension 
+I23.2,25, Pension of Singles 
+I23.3,1, No 
+I23.3,2, Age pension 
+I23.3,3, Disability Pension  
+I23.3,4, Survivor pension   
+I23.3,5, Pension for war veterans  
+I23.3,6, IDP Allowance  
+I23.3,7, State medical insurance (<70000 points)  
+I23.3,8, Social benefit for families with many children 
+I23.3,9," Social benefit for orphans, having lost both parents  "
+I23.3,10, Social benefit for children with disabilities  
+I23.3,11, Social benefit for single pensioners  
+I23.3,12, Social benefit for vulnerable families(AKA- subsidiary benefit)  (<57000 points) 
+I23.3,13," Vouchers for social services (for instance: voucher for medical aid center, voucher for early intervention, voucher for"
+I23.3,14, Utilities Subsidies  
+I23.3,15, Municipal social benefit  
+I23.3,16, Benefit for prevention/reintegration  
+I23.3,17, Repression Pension 
+I23.3,18, Military Pension 
+I23.3,19, Ex policemen Pension 
+I23.3,20, Hormonization Program of Healthcare Ministry    
+I23.3,21, Unemployment Support 
+I23.3,22, Handicap Insurance 
+I23.3,23, Teachers Insurance 
+I23.3,24, Pension Fund/Employment Pension 
+I23.3,25, Pension of Singles 
+I23.4,1, No 
+I23.4,2, Age pension 
+I23.4,3, Disability Pension  
+I23.4,4, Survivor pension   
+I23.4,5, Pension for war veterans  
+I23.4,6, IDP Allowance  
+I23.4,7, State medical insurance (<70000 points)  
+I23.4,8, Social benefit for families with many children 
+I23.4,9," Social benefit for orphans, having lost both parents  "
+I23.4,10, Social benefit for children with disabilities  
+I23.4,11, Social benefit for single pensioners  
+I23.4,12, Social benefit for vulnerable families(AKA- subsidiary benefit)  (<57000 points) 
+I23.4,13," Vouchers for social services (for instance: voucher for medical aid center, voucher for early intervention, voucher for"
+I23.4,14, Utilities Subsidies  
+I23.4,15, Municipal social benefit  
+I23.4,16, Benefit for prevention/reintegration  
+I23.4,17, Repression Pension 
+I23.4,18, Military Pension 
+I23.4,19, Ex policemen Pension 
+I23.4,20, Hormonization Program of Healthcare Ministry    
+I23.4,21, Unemployment Support 
+I23.4,22, Handicap Insurance 
+I23.4,23, Teachers Insurance 
+I23.4,24, Pension Fund/Employment Pension 
+I23.4,25, Pension of Singles 
+I23.5,1, No 
+I23.5,2, Age pension 
+I23.5,3, Disability Pension  
+I23.5,4, Survivor pension   
+I23.5,5, Pension for war veterans  
+I23.5,6, IDP Allowance  
+I23.5,7, State medical insurance (<70000 points)  
+I23.5,8, Social benefit for families with many children 
+I23.5,9," Social benefit for orphans, having lost both parents  "
+I23.5,10, Social benefit for children with disabilities  
+I23.5,11, Social benefit for single pensioners  
+I23.5,12, Social benefit for vulnerable families(AKA- subsidiary benefit)  (<57000 points) 
+I23.5,13," Vouchers for social services (for instance: voucher for medical aid center, voucher for early intervention, voucher for"
+I23.5,14, Utilities Subsidies  
+I23.5,15, Municipal social benefit  
+I23.5,16, Benefit for prevention/reintegration  
+I23.5,17, Repression Pension 
+I23.5,18, Military Pension 
+I23.5,19, Ex policemen Pension 
+I23.5,20, Hormonization Program of Healthcare Ministry    
+I23.5,21, Unemployment Support 
+I23.5,22, Handicap Insurance 
+I23.5,23, Teachers Insurance 
+I23.5,24, Pension Fund/Employment Pension 
+I23.5,25, Pension of Singles 
+I25_Rec,1,Low Income
+I25_Rec,2,Medium Income
+I25_Rec,3,high Income
+I25_Rec,4,Refused to Answer
+I25_Rec,5,D/K
+strata_for_weight,1, Region=Adjara and Nationality=Georgian and Sex=Female 
+strata_for_weight,2, Region=Guria and Nationality=Georgian and Sex=Female 
+strata_for_weight,3, Region=Imereti and Nationality=Georgian and Sex=Female 
+strata_for_weight,4, Region=Kakheti and Nationality=Georgian and Sex=Female 
+strata_for_weight,5, Region=Mtskheta-Mtianeti and Nationality=Georgian and Sex=Female 
+strata_for_weight,6, Region=Kvemo Kartli and Nationality=Georgian and Sex=Female 
+strata_for_weight,7, Region=Racha-Lechkhumi and Kvemo Svaneti and Nationality=Georgian and Sex=Female 
+strata_for_weight,8, Region=Samtskhe-Javakheti and Nationality=Georgian and Sex=Female 
+strata_for_weight,9, Region=Samegrelo-Zemo Svaneti and Nationality=Georgian and Sex=Female 
+strata_for_weight,10, Region=Shida Kartli and Nationality=Georgian and Sex=Female 
+strata_for_weight,11, Region=Tbilisi and Nationality=Georgian and Sex=Male 
+strata_for_weight,12, Region=Adjara and Nationality=Georgian and Sex=Male 
+strata_for_weight,13, Region=Guria and Nationality=Georgian and Sex=Male 
+strata_for_weight,14, Region=Imereti and Nationality=Georgian and Sex=Male 
+strata_for_weight,15, Region=Kakheti and Nationality=Georgian and Sex=Male 
+strata_for_weight,16, Region=Mtskheta-Mtianeti and Nationality=Georgian and Sex=Male 
+strata_for_weight,17, Region=Kvemo Kartli and Nationality=Georgian and Sex=Male 
+strata_for_weight,18, Region=Racha-Lechkhumi and Kvemo Svaneti and Nationality=Georgian and Sex=Male 
+strata_for_weight,19, Region=Samtskhe-Javakheti and Nationality=Georgian and Sex=Male 
+strata_for_weight,20, Region=Samegrelo-Zemo Svaneti and Nationality=Georgian and Sex=Male 
+strata_for_weight,21, Region=Shida Kartli and Nationality=Georgian and Sex=Male 
+strata_for_weight,22, Region=Tbilisi and Nationality=Georgian and Sex=Male 
+strata_for_weight,23, Region=Adjara and Nationality=other and Sex=Female 
+strata_for_weight,24, Region=Guria and Nationality=other and Sex=Female 
+strata_for_weight,25, Region=Imereti and Nationality=other and Sex=Female 
+strata_for_weight,26, Region=Kakheti and Nationality=other and Sex=Female 
+strata_for_weight,27, Region=Mtskheta-Mtianeti and Nationality=other and Sex=Female 
+strata_for_weight,28, Region=Kvemo Kartli and Nationality=other and Sex=Female 
+strata_for_weight,29, Region=Racha-Lechkhumi and Kvemo Svaneti and Nationality=other and Sex=Female 
+strata_for_weight,30, Region=Samtskhe-Javakheti and Nationality=other and Sex=Female 
+strata_for_weight,31, Region=Samegrelo-Zemo Svaneti and Nationality=other and Sex=Female 
+strata_for_weight,32, Region=Shida Kartli and Nationality=other and Sex=Female 
+strata_for_weight,33, Region=Tbilisi and Nationality=other and Sex=Male 
+strata_for_weight,34, Region=Adjara and Nationality=other and Sex=Male 
+strata_for_weight,35, Region=Guria and Nationality=other and Sex=Male 
+strata_for_weight,36, (Region=Imereti and Nationality=other and Sex=Male) or (Region=Racha-Lechkhumi and Kvemo Svaneti and Nationality=other 
+strata_for_weight,37, Region=Kakheti and Nationality=other and Sex=Male 
+strata_for_weight,38, Region=Mtskheta-Mtianeti and Nationality=other and Sex=Male 
+strata_for_weight,39, Region=Kvemo Kartli and Nationality=other and Sex=Male 
+strata_for_weight,40, Region=Samtskhe-Javakheti and Nationality=other and Sex=Male 
+strata_for_weight,41, Region=Shida Kartli and Nationality=other and Sex=Male 
+strata_for_weight,42, Region=Tbilisi and Nationality=other and Sex=Male 

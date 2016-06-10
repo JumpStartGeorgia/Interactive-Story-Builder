@@ -1,0 +1,103 @@
+HomeBuildedDate,1,After 2000
+HomeBuildedDate,2,1995 -1999
+HomeBuildedDate,3,1990-1994
+HomeBuildedDate,4,1980-1989
+HomeBuildedDate,5,1960-1979
+HomeBuildedDate,6,1950-1959
+HomeBuildedDate,7,1940-1949
+HomeBuildedDate,8,1930-1939
+HomeBuildedDate,9,1920-1929
+HomeBuildedDate,10,Before 1920
+HomeBuildedDate,11,Dont know
+OwnerOfHome,1,Belongs to the household
+OwnerOfHome,2,Rented
+OwnerOfHome,3,Mortgaged
+OwnerOfHome,4,Used without payment
+OwnerOfHome,5,Dont know
+Walls,1,"Brick,  block, stone"
+Walls,2,Wood
+Walls,3,Concrete slabs
+Walls,4,"Ground, mud, adobe"
+Walls,5,Other
+Walls,6,Mixed
+Walls,7,Dont know
+Floor,1,"Stone, brick, concrete"
+Floor,2,Wood
+Floor,3,Parquet
+Floor,4,Laminate
+Floor,5,Ground
+Floor,6,Other
+Floor,7,Dont know
+Ceiling,1,Tin
+Ceiling,2,Schist/tile
+Ceiling,3,Concrete
+Ceiling,4,Wood
+Ceiling,5,Metal tile
+Ceiling,6,Other
+Ceiling,7,Dont know
+Kitchen,1,Belongs to the household only
+Kitchen,2,Shared
+Kitchen,3,Doesn't have
+Cellar,1,Belongs to the household only
+Cellar,2,Shared
+Cellar,3,Doesn't have
+Bath,1,Belongs to the household only
+Bath,2,Shared
+Bath,3,Doesn't have
+Garage,1,Belongs to the household only
+Garage,2,Shared
+Garage,3,Doesn't have
+WaterSource,1,The water supply system installed in the dwelling
+WaterSource,2,The water system tap in the yard or vicinity
+WaterSource,3,The well in the yard or vicinity
+WaterSource,4,Natural spring in the yard or vicinity
+WaterSource,5,"River, lake, spring, channel"
+WaterSource,6,Bought water
+WaterSource,7,Other
+TypeOfToilet,1,Own flush toilet connected to the sewerage system
+TypeOfToilet,2,Shared flush toilet connected to the sewerage system
+TypeOfToilet,3,"Flush latrine not connected to the sewerage system (connected to the river, channel, ravine, etc.)"
+TypeOfToilet,4,Pit latrine periodically cleaned or finally filled up and buried
+TypeOfToilet,5,Other
+UsedLandYesNo,1,Yes
+UsedLandYesNo,2,No
+S_Q1,1,Good  no limitations on spending money
+S_Q1,2,Middle  we satisfy our daily material needs easily
+S_Q1,3,Satisfactory  we more or less manage to satisfy our daily needs
+S_Q1,4,Bad  our income (harvest) is only enough for food
+S_Q1,5,Very bad  our income (harvest) is not enough even for food
+S_Q2,1,Rich
+S_Q2,2,Well-off
+S_Q2,3,Middle
+S_Q2,4,Poor
+S_Q2,5,Extremely poor
+S_Q2a,1,Yes
+S_Q2a,2,No
+S_Q2b,1,Yes
+S_Q2b,2,No
+S_Q2c,1,Our family doesn't require social assistance
+S_Q2c,2,I don't know where to apply
+S_Q2c,3,I don't hope to get the assistance
+S_Q2c,4,I cant do it myself and there is nobody to whom I can address for help
+S_Q2c,5,I consider it being humiliating for family
+S_Q2c,6,Other
+S_Q2c,7,Its difficult to answer
+S_Q4,1,Has worsened very much
+S_Q4,2,Has slightly worsened
+S_Q4,3,Has not changed
+S_Q4,4,Has slightly improved
+S_Q4,5,Has improved very much
+S_Q5,1,Will be worsened very much
+S_Q5,2,Will be worsened slightly
+S_Q5,3,Won't be changed
+S_Q5,4,Will be improved slightly
+S_Q5,5,Will be improved very much
+S_Q5,6,Dont  know
+S_Q6,1,It is well-repaired
+S_Q6,2,It doesn't need any repairing at this stage
+S_Q6,3,It needs cosmetic repairing
+S_Q6,4,It needs overall repairing
+S_Q6,5,"If it is not immediately repaired, it will be ruined"
+S_Q9,1,"Yes, permanently"
+S_Q9,2,"Yes, periodically"
+S_Q9,3,No

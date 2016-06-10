@@ -1,0 +1,3463 @@
+COUNTRY,1,Armenia
+COUNTRY,2,Azerbaijan
+COUNTRY,3,Georgia
+RESPONSE,0,Non-response
+RESPONSE,1,Response
+STRATUM,1,Capital
+STRATUM,2,Urban
+STRATUM,3,Rural
+RESPSEX,-7,Legal skip
+RESPSEX,-5,No such member
+RESPSEX,-3,Interviewer error
+RESPSEX,1,Male
+RESPSEX,2,Female
+RESPAGE,-7,Legal skip
+RESPAGE,-5,No such member
+RESPAGE,-3,Interviewer error
+ACTPBLM,-9,Break off
+ACTPBLM,-7,Legal skip
+ACTPBLM,-5,Not applicable
+ACTPBLM,-3,Interviewer error
+ACTPBLM,-2,Refuse to answer
+ACTPBLM,-1,Don't know
+ACTPBLM,0,No
+ACTPBLM,1,Yes
+ACTMEDIA,-9,Break off
+ACTMEDIA,-7,Legal skip
+ACTMEDIA,-5,Not applicable
+ACTMEDIA,-3,Interviewer error
+ACTMEDIA,-2,Refuse to answer
+ACTMEDIA,-1,Don't know
+ACTMEDIA,0,No
+ACTMEDIA,1,Yes
+ACTINTNT,-9,Break off
+ACTINTNT,-7,Legal skip
+ACTINTNT,-5,Not applicable
+ACTINTNT,-3,Interviewer error
+ACTINTNT,-2,Refuse to answer
+ACTINTNT,-1,Don't know
+ACTINTNT,0,No
+ACTINTNT,1,Yes
+ACTREST,-9,Break off
+ACTREST,-7,Legal skip
+ACTREST,-5,Not applicable
+ACTREST,-3,Interviewer error
+ACTREST,-2,Refuse to answer
+ACTREST,-1,Don't know
+ACTREST,0,No
+ACTREST,1,Yes
+ACTCHAR,-9,Break off
+ACTCHAR,-7,Legal skip
+ACTCHAR,-5,Not applicable
+ACTCHAR,-3,Interviewer error
+ACTCHAR,-2,Refuse to answer
+ACTCHAR,-1,Don't know
+ACTCHAR,0,No
+ACTCHAR,1,Yes
+ACTVLNT,-9,Break off
+ACTVLNT,-7,Legal skip
+ACTVLNT,-5,Not applicable
+ACTVLNT,-3,Interviewer error
+ACTVLNT,-2,Refuse to answer
+ACTVLNT,-1,Don't know
+ACTVLNT,0,No
+ACTVLNT,1,Yes
+ACTDNCH,-9,Break off
+ACTDNCH,-7,Legal skip
+ACTDNCH,-5,Not applicable
+ACTDNCH,-3,Interviewer error
+ACTDNCH,-2,Refuse to answer
+ACTDNCH,-1,Don't know
+ACTDNCH,0,No
+ACTDNCH,1,Yes
+ACTTHEA,-9,Break off
+ACTTHEA,-7,Legal skip
+ACTTHEA,-5,Not applicable
+ACTTHEA,-3,Interviewer error
+ACTTHEA,-2,Refuse to answer
+ACTTHEA,-1,Don't know
+ACTTHEA,0,No
+ACTTHEA,1,Yes
+ACTRESDT,-9,Break off
+ACTRESDT,-7,Legal skip
+ACTRESDT,-5,Not applicable
+ACTRESDT,-3,Interviewer error
+ACTRESDT,-2,Refuse to answer
+ACTRESDT,-1,Don't know
+ACTRESDT,0,No
+ACTRESDT,1,Yes
+ACTCHORE,-9,Break off
+ACTCHORE,-7,Legal skip
+ACTCHORE,-5,Not applicable
+ACTCHORE,-3,Interviewer error
+ACTCHORE,-2,Refuse to answer
+ACTCHORE,-1,Don't know
+ACTCHORE,0,No
+ACTCHORE,1,Yes
+ACTCLEAN,-9,Break off
+ACTCLEAN,-7,Legal skip
+ACTCLEAN,-5,Not applicable
+ACTCLEAN,-3,Interviewer error
+ACTCLEAN,-2,Refuse to answer
+ACTCLEAN,-1,Don't know
+ACTCLEAN,0,No
+ACTCLEAN,1,Yes
+ACTSPET,-9,Break off
+ACTSPET,-7,Legal skip
+ACTSPET,-5,Not applicable
+ACTSPET,-3,Interviewer error
+ACTSPET,-2,Refuse to answer
+ACTSPET,-1,Don't know
+ACTSPET,0,No
+ACTSPET,1,Yes
+RATEHAP,-9,Break off
+RATEHAP,-7,Legal skip
+RATEHAP,-3,Interviewer error
+RATEHAP,-2,Refuse to answer
+RATEHAP,-1,Don't know
+RATEHAP,1,Extremely unhappy
+RATEHAP,10,Extremely happy
+GALLTRU,-9,Break off
+GALLTRU,-7,Legal skip
+GALLTRU,-3,Interviewer error
+GALLTRU,-2,Refuse to answer
+GALLTRU,-1,Don't know
+GALLTRU,1,You can't be too careful
+GALLTRU,10,Most people can be trusted
+HLTHRAT,-9,Break off
+HLTHRAT,-7,Legal skip
+HLTHRAT,-3,Interviewer error
+HLTHRAT,-2,Refuse to answer
+HLTHRAT,-1,Don't know
+HLTHRAT,1,Very poor
+HLTHRAT,2,Poor
+HLTHRAT,3,Fair
+HLTHRAT,4,Good
+HLTHRAT,5,Very good
+NUMCIGW,-9,Break off
+NUMCIGW,-7,Legal skip
+NUMCIGW,-5,Less than one cigarette per week
+NUMCIGW,-3,Interviewer error
+NUMCIGW,-2,Refuse to answer
+NUMCIGW,-1,Don't know
+REGEXCER,-9,Break off
+REGEXCER,-7,Legal skip
+REGEXCER,-3,Interviewer error
+REGEXCER,-2,Refuse to answer
+REGEXCER,-1,Don't know
+REGEXCER,0,No
+REGEXCER,1,Yes
+DISCPRPR,-9,Break off
+DISCPRPR,-7,Legal skip
+DISCPRPR,-3,Interviewer error
+DISCPRPR,-2,Refuse to answer
+DISCPRPR,-1,Don't know
+DISCPRPR,1,Never
+DISCPRPR,10,Always
+BUSINUSA,-9,Break off
+BUSINUSA,-7,Legal skip
+BUSINUSA,-5,Not asked
+BUSINUSA,-3,Interviewer error
+BUSINUSA,-2,Refuse to answer
+BUSINUSA,-1,Don't know
+BUSINUSA,0,Disapprove
+BUSINUSA,1,Approve
+BUSINARM,-9,Break off
+BUSINARM,-7,Legal skip
+BUSINARM,-5,Not asked
+BUSINARM,-3,Interviewer error
+BUSINARM,-2,Refuse to answer
+BUSINARM,-1,Don't know
+BUSINARM,0,Disapprove
+BUSINARM,1,Approve
+BUSINAZE,-9,Break off
+BUSINAZE,-7,Legal skip
+BUSINAZE,-5,Not asked
+BUSINAZE,-3,Interviewer error
+BUSINAZE,-2,Refuse to answer
+BUSINAZE,-1,Don't know
+BUSINAZE,0,Disapprove
+BUSINAZE,1,Approve
+BUSINEUR,-9,Break off
+BUSINEUR,-7,Legal skip
+BUSINEUR,-5,Not asked
+BUSINEUR,-3,Interviewer error
+BUSINEUR,-2,Refuse to answer
+BUSINEUR,-1,Don't know
+BUSINEUR,0,Disapprove
+BUSINEUR,1,Approve
+BUSINGEO,-9,Break off
+BUSINGEO,-7,Legal skip
+BUSINGEO,-5,Not asked
+BUSINGEO,-3,Interviewer error
+BUSINGEO,-2,Refuse to answer
+BUSINGEO,-1,Don't know
+BUSINGEO,0,Disapprove
+BUSINGEO,1,Approve
+BUSINIRA,-9,Break off
+BUSINIRA,-7,Legal skip
+BUSINIRA,-5,Not asked
+BUSINIRA,-3,Interviewer error
+BUSINIRA,-2,Refuse to answer
+BUSINIRA,-1,Don't know
+BUSINIRA,0,Disapprove
+BUSINIRA,1,Approve
+BUSINJEW,-9,Break off
+BUSINJEW,-7,Legal skip
+BUSINJEW,-5,Not asked
+BUSINJEW,-3,Interviewer error
+BUSINJEW,-2,Refuse to answer
+BUSINJEW,-1,Don't know
+BUSINJEW,0,Disapprove
+BUSINJEW,1,Approve
+BUSINKUR,-9,Break off
+BUSINKUR,-7,Legal skip
+BUSINKUR,-5,Not asked
+BUSINKUR,-3,Interviewer error
+BUSINKUR,-2,Refuse to answer
+BUSINKUR,-1,Don't know
+BUSINKUR,0,Disapprove
+BUSINKUR,1,Approve
+BUSINRUS,-9,Break off
+BUSINRUS,-7,Legal skip
+BUSINRUS,-5,Not asked
+BUSINRUS,-3,Interviewer error
+BUSINRUS,-2,Refuse to answer
+BUSINRUS,-1,Don't know
+BUSINRUS,0,Disapprove
+BUSINRUS,1,Approve
+BUSINTUR,-9,Break off
+BUSINTUR,-7,Legal skip
+BUSINTUR,-5,Not asked
+BUSINTUR,-3,Interviewer error
+BUSINTUR,-2,Refuse to answer
+BUSINTUR,-1,Don't know
+BUSINTUR,0,Disapprove
+BUSINTUR,1,Approve
+BUSINABK,-9,Break off
+BUSINABK,-7,Legal skip
+BUSINABK,-5,Not asked
+BUSINABK,-3,Interviewer error
+BUSINABK,-2,Refuse to answer
+BUSINABK,-1,Don't know
+BUSINABK,0,Disapprove
+BUSINABK,1,Approve
+BUSINOSS,-9,Break off
+BUSINOSS,-7,Legal skip
+BUSINOSS,-5,Not asked
+BUSINOSS,-3,Interviewer error
+BUSINOSS,-2,Refuse to answer
+BUSINOSS,-1,Don't know
+BUSINOSS,0,Disapprove
+BUSINOSS,1,Approve
+BUSINARG,-9,Break off
+BUSINARG,-7,Legal skip
+BUSINARG,-5,Not asked
+BUSINARG,-3,Interviewer error
+BUSINARG,-2,Refuse to answer
+BUSINARG,-1,Don't know
+BUSINARG,0,Disapprove
+BUSINARG,1,Approve
+BUSINAZG,-9,Break off
+BUSINAZG,-7,Legal skip
+BUSINAZG,-5,Not asked
+BUSINAZG,-3,Interviewer error
+BUSINAZG,-2,Refuse to answer
+BUSINAZG,-1,Don't know
+BUSINAZG,0,Disapprove
+BUSINAZG,1,Approve
+BUSINMOL,-9,Break off
+BUSINMOL,-7,Legal skip
+BUSINMOL,-5,Not asked
+BUSINMOL,-3,Interviewer error
+BUSINMOL,-2,Refuse to answer
+BUSINMOL,-1,Don't know
+BUSINMOL,0,Disapprove
+BUSINMOL,1,Approve
+MARWUSA,-9,Break off
+MARWUSA,-7,Legal skip
+MARWUSA,-5,Not asked
+MARWUSA,-3,Interviewer error
+MARWUSA,-2,Refuse to answer
+MARWUSA,-1,Don't know
+MARWUSA,0,Disapprove
+MARWUSA,1,Approve
+MARWARM,-9,Break off
+MARWARM,-7,Legal skip
+MARWARM,-5,Not asked
+MARWARM,-3,Interviewer error
+MARWARM,-2,Refuse to answer
+MARWARM,-1,Don't know
+MARWARM,0,Disapprove
+MARWARM,1,Approve
+MARWAZE,-9,Break off
+MARWAZE,-7,Legal skip
+MARWAZE,-5,Not asked
+MARWAZE,-3,Interviewer error
+MARWAZE,-2,Refuse to answer
+MARWAZE,-1,Don't know
+MARWAZE,0,Disapprove
+MARWAZE,1,Approve
+MARWEUR,-9,Break off
+MARWEUR,-7,Legal skip
+MARWEUR,-5,Not asked
+MARWEUR,-3,Interviewer error
+MARWEUR,-2,Refuse to answer
+MARWEUR,-1,Don't know
+MARWEUR,0,Disapprove
+MARWEUR,1,Approve
+MARWGEO,-9,Break off
+MARWGEO,-7,Legal skip
+MARWGEO,-5,Not asked
+MARWGEO,-3,Interviewer error
+MARWGEO,-2,Refuse to answer
+MARWGEO,-1,Don't know
+MARWGEO,0,Disapprove
+MARWGEO,1,Approve
+MARWIRA,-9,Break off
+MARWIRA,-7,Legal skip
+MARWIRA,-5,Not asked
+MARWIRA,-3,Interviewer error
+MARWIRA,-2,Refuse to answer
+MARWIRA,-1,Don't know
+MARWIRA,0,Disapprove
+MARWIRA,1,Approve
+MARWJEW,-9,Break off
+MARWJEW,-7,Legal skip
+MARWJEW,-5,Not asked
+MARWJEW,-3,Interviewer error
+MARWJEW,-2,Refuse to answer
+MARWJEW,-1,Don't know
+MARWJEW,0,Disapprove
+MARWJEW,1,Approve
+MARWKUR,-9,Break off
+MARWKUR,-7,Legal skip
+MARWKUR,-5,Not asked
+MARWKUR,-3,Interviewer error
+MARWKUR,-2,Refuse to answer
+MARWKUR,-1,Don't know
+MARWKUR,0,Disapprove
+MARWKUR,1,Approve
+MARWRUS,-9,Break off
+MARWRUS,-7,Legal skip
+MARWRUS,-5,Not asked
+MARWRUS,-3,Interviewer error
+MARWRUS,-2,Refuse to answer
+MARWRUS,-1,Don't know
+MARWRUS,0,Disapprove
+MARWRUS,1,Approve
+MARWTUR,-9,Break off
+MARWTUR,-7,Legal skip
+MARWTUR,-5,Not asked
+MARWTUR,-3,Interviewer error
+MARWTUR,-2,Refuse to answer
+MARWTUR,-1,Don't know
+MARWTUR,0,Disapprove
+MARWTUR,1,Approve
+MARWABK,-9,Break off
+MARWABK,-7,Legal skip
+MARWABK,-5,Not asked
+MARWABK,-3,Interviewer error
+MARWABK,-2,Refuse to answer
+MARWABK,-1,Don't know
+MARWABK,0,Disapprove
+MARWABK,1,Approve
+MARWOSS,-9,Break off
+MARWOSS,-7,Legal skip
+MARWOSS,-5,Not asked
+MARWOSS,-3,Interviewer error
+MARWOSS,-2,Refuse to answer
+MARWOSS,-1,Don't know
+MARWOSS,0,Disapprove
+MARWOSS,1,Approve
+MARWARG,-9,Break off
+MARWARG,-7,Legal skip
+MARWARG,-5,Not asked
+MARWARG,-3,Interviewer error
+MARWARG,-2,Refuse to answer
+MARWARG,-1,Don't know
+MARWARG,0,Disapprove
+MARWARG,1,Approve
+MARWAZG,-9,Break off
+MARWAZG,-7,Legal skip
+MARWAZG,-5,Not asked
+MARWAZG,-3,Interviewer error
+MARWAZG,-2,Refuse to answer
+MARWAZG,-1,Don't know
+MARWAZG,0,Disapprove
+MARWAZG,1,Approve
+MARWMOL,-9,Break off
+MARWMOL,-7,Legal skip
+MARWMOL,-5,Not asked
+MARWMOL,-3,Interviewer error
+MARWMOL,-2,Refuse to answer
+MARWMOL,-1,Don't know
+MARWMOL,0,Disapprove
+MARWMOL,1,Approve
+FAMCLAB,-9,Break off
+FAMCLAB,-7,Legal skip
+FAMCLAB,-3,Interviewer error
+FAMCLAB,-2,Refuse to answer
+FAMCLAB,-1,Don't know
+FAMCLAB,0,No
+FAMCLAB,1,Yes
+CLFRDAB,-9,Break off
+CLFRDAB,-7,Legal skip
+CLFRDAB,-3,Interviewer error
+CLFRDAB,-2,Refuse to answer
+CLFRDAB,-1,Don't know
+CLFRDAB,0,No
+CLFRDAB,1,Yes
+FATEINLF,-9,Break off
+FATEINLF,-7,Legal skip
+FATEINLF,-3,Interviewer error
+FATEINLF,-2,Refuse to answer
+FATEINLF,-1,Don't know
+FATEINLF,1,Everything in life is determined by fate
+FATEINLF,10,People shape their fate themselves
+LIFESAT,-9,Break off
+LIFESAT,-7,Legal skip
+LIFESAT,-3,Interviewer error
+LIFESAT,-2,Refuse to answer
+LIFESAT,-1,Don't know
+LIFESAT,1,Not satisfied at all
+LIFESAT,10,Completely satisfied
+EXPREPN,-9,Break off
+EXPREPN,-7,Legal skip
+EXPREPN,-3,Interviewer error
+EXPREPN,-2,Refuse to answer
+EXPREPN,-1,Don't know
+EXPREPN,1,Not at all likely
+EXPREPN,10,Very likely
+EXPILL,-9,Break off
+EXPILL,-7,Legal skip
+EXPILL,-3,Interviewer error
+EXPILL,-2,Refuse to answer
+EXPILL,-1,Don't know
+EXPILL,1,Not at all likely
+EXPILL,10,Very likely
+EXPMON,-9,Break off
+EXPMON,-7,Legal skip
+EXPMON,-3,Interviewer error
+EXPMON,-2,Refuse to answer
+EXPMON,-1,Don't know
+EXPMON,1,Not at all likely
+EXPMON,10,Very likely
+JUSDVRS,-9,Break off
+JUSDVRS,-7,Legal skip
+JUSDVRS,-3,Interviewer error
+JUSDVRS,-2,Refuse to answer
+JUSDVRS,-1,Don't know
+JUSDVRS,1,Can never be justified
+JUSDVRS,10,Can always be justified
+JUSABOR,-9,Break off
+JUSABOR,-7,Legal skip
+JUSABOR,-3,Interviewer error
+JUSABOR,-2,Refuse to answer
+JUSABOR,-1,Don't know
+JUSABOR,1,Can never be justified
+JUSABOR,10,Can always be justified
+JUSSPOUS,-9,Break off
+JUSSPOUS,-7,Legal skip
+JUSSPOUS,-3,Interviewer error
+JUSSPOUS,-2,Refuse to answer
+JUSSPOUS,-1,Don't know
+JUSSPOUS,1,Can never be justified
+JUSSPOUS,10,Can always be justified
+TRUGOCH,-9,Break off
+TRUGOCH,-7,Legal skip
+TRUGOCH,-5,Not asked
+TRUGOCH,-3,Interviewer error
+TRUGOCH,-2,Refuse to answer
+TRUGOCH,-1,Don't know
+TRUGOCH,1,Do not trust at all
+TRUGOCH,10,Completely trust
+EMPLSIT,-9,Break off
+EMPLSIT,-7,Legal skip
+EMPLSIT,-3,Interviewer error
+EMPLSIT,-2,Refuse to answer
+EMPLSIT,-1,Don't know
+EMPLSIT,1,Retired not working
+EMPLSIT,2,Student not working
+EMPLSIT,3,Housewife not working
+EMPLSIT,4,Unemployed
+EMPLSIT,5,Have a job (employee)
+EMPLSIT,6,Self-employed
+EMPLSIT,7,Disabled
+EMPLSIT,8,Other
+UNEMYRS,-9,Break off
+UNEMYRS,-7,Legal skip
+UNEMYRS,-5,Never had a job
+UNEMYRS,-3,Interviewer error
+UNEMYRS,-2,Refuse to answer
+UNEMYRS,-1,Don't know
+INTSTJOB,-9,Break off
+INTSTJOB,-7,Legal skip
+INTSTJOB,-3,Interviewer error
+INTSTJOB,-2,Refuse to answer
+INTSTJOB,-1,Don't know
+INTSTJOB,0,No
+INTSTJOB,1,Yes
+LOOKJOB,-9,Break off
+LOOKJOB,-7,Legal skip
+LOOKJOB,-3,Interviewer error
+LOOKJOB,-2,Refuse to answer
+LOOKJOB,-1,Don't know
+LOOKJOB,0,No
+LOOKJOB,1,Yes
+JOBSTART,-9,Break off
+JOBSTART,-7,Legal skip
+JOBSTART,-3,Interviewer error
+JOBSTART,-2,Refuse to answer
+JOBSTART,-1,Don't know
+JOBSTART,0,No
+JOBSTART,1,Yes
+WORKTYP,-9,Break off
+WORKTYP,-7,Legal skip
+WORKTYP,-3,Interviewer error
+WORKTYP,-2,Refuse to answer
+WORKTYP,-1,Don't know
+WORKTYP,1,Own business without employees
+WORKTYP,2,Own business with employees
+WORKTYP,3,Employee in a small family business
+WORKTYP,4,Employee in a medium/big private organization
+WORKTYP,5,Employee in a state organization
+WORKTYP,6,Employee in a foreign organization/business
+WORKTYP,7,Employee in a local/international NGO
+WORKTYP,8,Other
+WORKYRS,-9,Break off
+WORKYRS,-7,Legal skip
+WORKYRS,-3,Interviewer error
+WORKYRS,-2,Refuse to answer
+WORKYRS,-1,Don't know
+WORKSEC,-9,Break off
+WORKSEC,-7,Legal skip
+WORKSEC,-3,Interviewer error
+WORKSEC,-2,Refuse to answer
+WORKSEC,-1,Don't know
+WORKSEC,1,"Agriculture, hunting, forestry"
+WORKSEC,2,Fishing
+WORKSEC,3,"Mining, quarrying"
+WORKSEC,4,Manufacturing
+WORKSEC,5,"Electricity, gas, water supply"
+WORKSEC,6,Construction
+WORKSEC,7,"Trade, repair of vehicles/goods"
+WORKSEC,8,"Hotels, restaurants, cafes"
+WORKSEC,9,"Transport, storage, communication"
+WORKSEC,10,Financial intermediation/Banking
+WORKSEC,11,"Real estate, property renting"
+WORKSEC,12,"Government, public administration, defense"
+WORKSEC,13,Education
+WORKSEC,14,"Healthcare, social work"
+WORKSEC,15,Civil society/NGO
+WORKSEC,16,Mass media
+WORKSEC,17,Other
+JOBDESC,-9,Break off
+JOBDESC,-7,Legal skip
+JOBDESC,-3,Interviewer error
+JOBDESC,-2,Refuse to answer
+JOBDESC,-1,Don't know
+JOBDESC,1,Manager
+JOBDESC,2,Professional
+JOBDESC,3,Technician / Associate professional
+JOBDESC,4,Clerical support worker
+JOBDESC,5,Service / sales worker
+JOBDESC,6,Skilled agricultural / forestry / fishery worker
+JOBDESC,7,Craft and related trades worker
+JOBDESC,8,Plant and machine operator / assembler
+JOBDESC,9,Elementary occupation
+JOBDESC,10,Armed forces occupation
+JOBDESC,11,Other
+JOBSATFN,-9,Break off
+JOBSATFN,-7,Legal skip
+JOBSATFN,-3,Interviewer error
+JOBSATFN,-2,Refuse to answer
+JOBSATFN,-1,Don't know
+JOBSATFN,1,Very dissatisfied
+JOBSATFN,2,Somewhat dissatisfied
+JOBSATFN,3,In the middle
+JOBSATFN,4,Somewhat satisfied
+JOBSATFN,5,Very satisfied
+WORKVAL,-9,Break off
+WORKVAL,-7,Legal skip
+WORKVAL,-3,Interviewer error
+WORKVAL,-2,Refuse to answer
+WORKVAL,-1,Don't know
+WORKVAL,1,Completely disagree
+WORKVAL,2,Somewhat disagree
+WORKVAL,3,Somewhat agree
+WORKVAL,4,Completely agree
+FAIRCOM,-9,Break off
+FAIRCOM,-7,Legal skip
+FAIRCOM,-3,Interviewer error
+FAIRCOM,-2,Refuse to answer
+FAIRCOM,-1,Don't know
+FAIRCOM,1,Completely disagree
+FAIRCOM,2,Somewhat disagree
+FAIRCOM,3,Somewhat agree
+FAIRCOM,4,Completely agree
+JBNEEDED,-9,Break off
+JBNEEDED,-7,Legal skip
+JBNEEDED,-3,Interviewer error
+JBNEEDED,-2,Refuse to answer
+JBNEEDED,-1,Don't know
+JBNEEDED,1,Completely disagree
+JBNEEDED,2,Somewhat disagree
+JBNEEDED,3,Somewhat agree
+JBNEEDED,4,Completely agree
+PERSINC,-9,Break off
+PERSINC,-7,Legal skip
+PERSINC,-3,Interviewer error
+PERSINC,-2,Refuse to answer
+PERSINC,-1,Don't know
+PERSINC,1,More than USD 1200
+PERSINC,2,USD 801 <96> 1200
+PERSINC,3,USD 401 <96> 800
+PERSINC,4,USD 251 <96> 400
+PERSINC,5,USD 101 <96> 250
+PERSINC,6,USD 51<96> 100
+PERSINC,7,Up to USD 50
+PERSINC,8,0
+SAVPERS,-9,Break off
+SAVPERS,-7,Legal skip
+SAVPERS,-3,Interviewer error
+SAVPERS,-2,Refuse to answer
+SAVPERS,-1,Don't know
+SAVPERS,0,No
+SAVPERS,1,Yes
+DEBTPERS,-9,Break off
+DEBTPERS,-7,Legal skip
+DEBTPERS,-3,Interviewer error
+DEBTPERS,-2,Refuse to answer
+DEBTPERS,-1,Don't know
+DEBTPERS,0,No
+DEBTPERS,1,Yes
+OWEMON,-9,Break off
+OWEMON,-7,Legal skip
+OWEMON,-3,Interviewer error
+OWEMON,-2,Refuse to answer
+OWEMON,-1,Don't know
+OWEMON,0,No
+OWEMON,1,Yes
+BANKACC,-9,Break off
+BANKACC,-7,Legal skip
+BANKACC,-3,Interviewer error
+BANKACC,-2,Refuse to answer
+BANKACC,-1,Don't know
+BANKACC,0,No
+BANKACC,1,Yes
+NEWHHJOB,-9,Break off
+NEWHHJOB,-7,Legal skip
+NEWHHJOB,-3,Interviewer error
+NEWHHJOB,-2,Refuse to answer
+NEWHHJOB,-1,Don't know
+NEWHHJOB,0,No
+NEWHHJOB,1,Yes
+JOBLOST,-9,Break off
+JOBLOST,-7,Legal skip
+JOBLOST,-3,Interviewer error
+JOBLOST,-2,Refuse to answer
+JOBLOST,-1,Don't know
+JOBLOST,0,No
+JOBLOST,1,Yes
+WORKRLT,-9,Break off
+WORKRLT,-7,Legal skip
+WORKRLT,-5,Not applicable
+WORKRLT,-3,Interviewer error
+WORKRLT,-2,Refuse to answer
+WORKRLT,-1,Don't know
+WORKRLT,1,Yes I did unpaid work
+WORKRLT,2,Yes I did paid work
+WORKRLT,3,"No, I did not do any such work"
+GETJOBF,-9,Break off
+GETJOBF,-7,Legal skip
+GETJOBF,-3,Interviewer error
+GETJOBF,-2,Refuse to answer
+GETJOBF,-1,Don't know
+GETJOBF,1,Age
+GETJOBF,2,Appearance
+GETJOBF,3,Connections
+GETJOBF,4,Education
+GETJOBF,5,Hard work
+GETJOBF,6,Luck
+GETJOBF,7,Talent
+GETJOBF,8,Professional abilities work experience
+GETJOBF,9,Doing favors for the <91>right' people
+GETJOBF,10,Other
+POLDIRN,-9,Break off
+POLDIRN,-7,Legal skip
+POLDIRN,-3,Interviewer error
+POLDIRN,-2,Refuse to answer
+POLDIRN,-1,Don't know
+POLDIRN,1,Politics is definitely going in the wrong direction
+POLDIRN,2,Politics is going mainly in the wrong direction
+POLDIRN,3,Politics does not change at all
+POLDIRN,4,Politics is going mainly in the right direction
+POLDIRN,5,Politics is definitely going in the right direction
+QUALINF,-9,Break off
+QUALINF,-7,Legal skip
+QUALINF,-3,Interviewer error
+QUALINF,-2,Refuse to answer
+QUALINF,-1,Don't know
+QUALINF,1,Very poorly
+QUALINF,2,Quite poorly
+QUALINF,3,In the middle
+QUALINF,4,Quite well
+QUALINF,5,Very well
+ROTCODE,-9,Break off
+ROTCODE,-7,Legal skip
+ROTCODE,-3,Interviewer error
+TRUHLTH,-9,Break off
+TRUHLTH,-7,Legal skip
+TRUHLTH,-5,Not asked
+TRUHLTH,-3,Interviewer error
+TRUHLTH,-2,Refuse to answer
+TRUHLTH,-1,Don't know
+TRUHLTH,1,Fully distrust
+TRUHLTH,2,Somewhat distrust
+TRUHLTH,3,Neither trust not distrust
+TRUHLTH,4,Somewhat trust
+TRUHLTH,5,Fully trust
+TRUBANK,-9,Break off
+TRUBANK,-7,Legal skip
+TRUBANK,-5,Not asked
+TRUBANK,-3,Interviewer error
+TRUBANK,-2,Refuse to answer
+TRUBANK,-1,Don't know
+TRUBANK,1,Fully distrust
+TRUBANK,2,Somewhat distrust
+TRUBANK,3,Neither trust not distrust
+TRUBANK,4,Somewhat trust
+TRUBANK,5,Fully trust
+TRUEDUC,-9,Break off
+TRUEDUC,-7,Legal skip
+TRUEDUC,-5,Not asked
+TRUEDUC,-3,Interviewer error
+TRUEDUC,-2,Refuse to answer
+TRUEDUC,-1,Don't know
+TRUEDUC,1,Fully distrust
+TRUEDUC,2,Somewhat distrust
+TRUEDUC,3,Neither trust not distrust
+TRUEDUC,4,Somewhat trust
+TRUEDUC,5,Fully trust
+TRUSADC,-9,Break off
+TRUSADC,-7,Legal skip
+TRUSADC,-5,Not asked
+TRUSADC,-3,Interviewer error
+TRUSADC,-2,Refuse to answer
+TRUSADC,-1,Don't know
+TRUSADC,1,Fully distrust
+TRUSADC,2,Somewhat distrust
+TRUSADC,3,Neither trust not distrust
+TRUSADC,4,Somewhat trust
+TRUSADC,5,Fully trust
+TRUARMY,-9,Break off
+TRUARMY,-7,Legal skip
+TRUARMY,-5,Not asked
+TRUARMY,-3,Interviewer error
+TRUARMY,-2,Refuse to answer
+TRUARMY,-1,Don't know
+TRUARMY,1,Fully distrust
+TRUARMY,2,Somewhat distrust
+TRUARMY,3,Neither trust not distrust
+TRUARMY,4,Somewhat trust
+TRUARMY,5,Fully trust
+TRUCRTS,-9,Break off
+TRUCRTS,-7,Legal skip
+TRUCRTS,-5,Not asked
+TRUCRTS,-3,Interviewer error
+TRUCRTS,-2,Refuse to answer
+TRUCRTS,-1,Don't know
+TRUCRTS,1,Fully distrust
+TRUCRTS,2,Somewhat distrust
+TRUCRTS,3,Neither trust not distrust
+TRUCRTS,4,Somewhat trust
+TRUCRTS,5,Fully trust
+TRUNGOS,-9,Break off
+TRUNGOS,-7,Legal skip
+TRUNGOS,-5,Not asked
+TRUNGOS,-3,Interviewer error
+TRUNGOS,-2,Refuse to answer
+TRUNGOS,-1,Don't know
+TRUNGOS,1,Fully distrust
+TRUNGOS,2,Somewhat distrust
+TRUNGOS,3,Neither trust not distrust
+TRUNGOS,4,Somewhat trust
+TRUNGOS,5,Fully trust
+TRUPARL,-9,Break off
+TRUPARL,-7,Legal skip
+TRUPARL,-5,Not asked
+TRUPARL,-3,Interviewer error
+TRUPARL,-2,Refuse to answer
+TRUPARL,-1,Don't know
+TRUPARL,1,Fully distrust
+TRUPARL,2,Somewhat distrust
+TRUPARL,3,Neither trust not distrust
+TRUPARL,4,Somewhat trust
+TRUPARL,5,Fully trust
+TRUEXEC,-9,Break off
+TRUEXEC,-7,Legal skip
+TRUEXEC,-5,Not asked
+TRUEXEC,-3,Interviewer error
+TRUEXEC,-2,Refuse to answer
+TRUEXEC,-1,Don't know
+TRUEXEC,1,Fully distrust
+TRUEXEC,2,Somewhat distrust
+TRUEXEC,3,Neither trust not distrust
+TRUEXEC,4,Somewhat trust
+TRUEXEC,5,Fully trust
+TRUPRES,-9,Break off
+TRUPRES,-7,Legal skip
+TRUPRES,-5,Not asked
+TRUPRES,-3,Interviewer error
+TRUPRES,-2,Refuse to answer
+TRUPRES,-1,Don't know
+TRUPRES,1,Fully distrust
+TRUPRES,2,Somewhat distrust
+TRUPRES,3,Neither trust not distrust
+TRUPRES,4,Somewhat trust
+TRUPRES,5,Fully trust
+TRUPOLI,-9,Break off
+TRUPOLI,-7,Legal skip
+TRUPOLI,-5,Not asked
+TRUPOLI,-3,Interviewer error
+TRUPOLI,-2,Refuse to answer
+TRUPOLI,-1,Don't know
+TRUPOLI,1,Fully distrust
+TRUPOLI,2,Somewhat distrust
+TRUPOLI,3,Neither trust not distrust
+TRUPOLI,4,Somewhat trust
+TRUPOLI,5,Fully trust
+TRUPPS,-9,Break off
+TRUPPS,-7,Legal skip
+TRUPPS,-5,Not asked
+TRUPPS,-3,Interviewer error
+TRUPPS,-2,Refuse to answer
+TRUPPS,-1,Don't know
+TRUPPS,1,Fully distrust
+TRUPPS,2,Somewhat distrust
+TRUPPS,3,Neither trust not distrust
+TRUPPS,4,Somewhat trust
+TRUPPS,5,Fully trust
+TRUMEDI,-9,Break off
+TRUMEDI,-7,Legal skip
+TRUMEDI,-5,Not asked
+TRUMEDI,-3,Interviewer error
+TRUMEDI,-2,Refuse to answer
+TRUMEDI,-1,Don't know
+TRUMEDI,1,Fully distrust
+TRUMEDI,2,Somewhat distrust
+TRUMEDI,3,Neither trust not distrust
+TRUMEDI,4,Somewhat trust
+TRUMEDI,5,Fully trust
+TRULOCG,-9,Break off
+TRULOCG,-7,Legal skip
+TRULOCG,-5,Not asked
+TRULOCG,-3,Interviewer error
+TRULOCG,-2,Refuse to answer
+TRULOCG,-1,Don't know
+TRULOCG,1,Fully distrust
+TRULOCG,2,Somewhat distrust
+TRULOCG,3,Neither trust not distrust
+TRULOCG,4,Somewhat trust
+TRULOCG,5,Fully trust
+TRURELI,-9,Break off
+TRURELI,-7,Legal skip
+TRURELI,-5,Not asked
+TRURELI,-3,Interviewer error
+TRURELI,-2,Refuse to answer
+TRURELI,-1,Don't know
+TRURELI,1,Fully distrust
+TRURELI,2,Somewhat distrust
+TRURELI,3,Neither trust not distrust
+TRURELI,4,Somewhat trust
+TRURELI,5,Fully trust
+TRUOMB,-9,Break off
+TRUOMB,-7,Legal skip
+TRUOMB,-5,Not asked
+TRUOMB,-3,Interviewer error
+TRUOMB,-2,Refuse to answer
+TRUOMB,-1,Don't know
+TRUOMB,1,Fully distrust
+TRUOMB,2,Somewhat distrust
+TRUOMB,3,Neither trust not distrust
+TRUOMB,4,Somewhat trust
+TRUOMB,5,Fully trust
+TRUSTEU,-9,Break off
+TRUSTEU,-7,Legal skip
+TRUSTEU,-5,Not asked
+TRUSTEU,-3,Interviewer error
+TRUSTEU,-2,Refuse to answer
+TRUSTEU,-1,Don't know
+TRUSTEU,1,Fully distrust
+TRUSTEU,2,Somewhat distrust
+TRUSTEU,3,Neither trust not distrust
+TRUSTEU,4,Somewhat trust
+TRUSTEU,5,Fully trust
+TRUSTUN,-9,Break off
+TRUSTUN,-7,Legal skip
+TRUSTUN,-5,Not asked
+TRUSTUN,-3,Interviewer error
+TRUSTUN,-2,Refuse to answer
+TRUSTUN,-1,Don't know
+TRUSTUN,1,Fully distrust
+TRUSTUN,2,Somewhat distrust
+TRUSTUN,3,Neither trust not distrust
+TRUSTUN,4,Somewhat trust
+TRUSTUN,5,Fully trust
+IMPISS1,-9,Break off
+IMPISS1,-7,Legal skip
+IMPISS1,-3,Interviewer error
+IMPISS1,-2,Refuse to answer
+IMPISS1,-1,Don't know
+IMPISS1,1,Unaffordability of healthcare
+IMPISS1,2,Corruption
+IMPISS1,3,Unfairness of courts
+IMPISS1,4,Unfairness of elections
+IMPISS1,5,Violation of human rights
+IMPISS1,6,Unemployment
+IMPISS1,7,Not having NATO membership
+IMPISS1,8,Lack of peace in the country
+IMPISS1,9,Low pensions
+IMPISS1,10,Political instability in the country
+IMPISS1,11,Poverty
+IMPISS1,12,Violation of property rights
+IMPISS1,13,Low quality of education
+IMPISS1,14,Unaffordability of professional or higher education
+IMPISS1,15,Problematic relations with Russia
+IMPISS1,16,Rising prices / Inflation
+IMPISS1,17,Unsolved territorial conflicts
+IMPISS1,18,Low wages
+IMPISS1,19,Religious intolerance
+IMPISS1,20,Gender inequality
+IMPISS1,21,Emigration
+IMPISS1,22,Other
+IMPISS2,-9,Break off
+IMPISS2,-7,Legal skip
+IMPISS2,-5,Not applicable / Nothing else important
+IMPISS2,-3,Interviewer error
+IMPISS2,-2,Refuse to answer
+IMPISS2,-1,Don't know
+IMPISS2,1,Unaffordability of healthcare
+IMPISS2,2,Corruption
+IMPISS2,3,Unfairness of courts
+IMPISS2,4,Unfairness of elections
+IMPISS2,5,Violation of human rights
+IMPISS2,6,Unemployment
+IMPISS2,7,Not having NATO membership
+IMPISS2,8,Lack of peace in the country
+IMPISS2,9,Low pensions
+IMPISS2,10,Political instability in the country
+IMPISS2,11,Poverty
+IMPISS2,12,Violation of property rights
+IMPISS2,13,Low quality of education
+IMPISS2,14,Unaffordability of professional or higher education
+IMPISS2,15,Problematic relations with Russia
+IMPISS2,16,Rising prices / Inflation
+IMPISS2,17,Unsolved territorial conflicts
+IMPISS2,18,Low wages
+IMPISS2,19,Religious intolerance
+IMPISS2,20,Gender inequality
+IMPISS2,21,Emigration
+IMPISS2,22,Other
+DISCPOL,-9,Break off
+DISCPOL,-7,Legal skip
+DISCPOL,-3,Interviewer error
+DISCPOL,-2,Refuse to answer
+DISCPOL,-1,Don't know
+DISCPOL,1,Never
+DISCPOL,10,Always
+FAIRTRT,-9,Break off
+FAIRTRT,-7,Legal skip
+FAIRTRT,-3,Interviewer error
+FAIRTRT,-2,Refuse to answer
+FAIRTRT,-1,Don't know
+FAIRTRT,1,Completely disagree
+FAIRTRT,2,Somewhat disagree
+FAIRTRT,3,Somewhat agree
+FAIRTRT,4,Completely agree
+FREESPK,-9,Break off
+FREESPK,-7,Legal skip
+FREESPK,-3,Interviewer error
+FREESPK,-2,Refuse to answer
+FREESPK,-1,Don't know
+FREESPK,0,No
+FREESPK,1,Yes
+GOVTROL,-9,Break off
+GOVTROL,-7,Legal skip
+GOVTROL,-3,Interviewer error
+GOVTROL,-2,Refuse to answer
+GOVTROL,-1,Don't know
+GOVTROL,1,Agree very strongly with Statement 1
+GOVTROL,2,Agree with Statement 1
+GOVTROL,3,Agree with Statement 2
+GOVTROL,4,Agree very strongly with Statement 2
+GOVTROL,5,Agree with neither
+OWNRSHP,-9,Break off
+OWNRSHP,-7,Legal skip
+OWNRSHP,-3,Interviewer error
+OWNRSHP,-2,Refuse to answer
+OWNRSHP,-1,Don't know
+OWNRSHP,1,Private ownership of business should be increased
+OWNRSHP,10,Government ownership of business should be increased
+OBJCOUR,-9,Break off
+OBJCOUR,-7,Legal skip
+OBJCOUR,-3,Interviewer error
+OBJCOUR,-2,Refuse to answer
+OBJCOUR,-1,Don't know
+OBJCOUR,1,Agree very strongly with Statement 1
+OBJCOUR,2,Agree with Statement 1
+OBJCOUR,3,Agree with Statement 2
+OBJCOUR,4,Agree very strongly with Statement 2
+OBJCOUR,5,Agree with neither
+PROTEST,-9,Break off
+PROTEST,-7,Legal skip
+PROTEST,-3,Interviewer error
+PROTEST,-2,Refuse to answer
+PROTEST,-1,Don't know
+PROTEST,1,Agree very strongly with Statement 1
+PROTEST,2,Agree with Statement 1
+PROTEST,3,Agree with Statement 2
+PROTEST,4,Agree very strongly with Statement 2
+PROTEST,5,Agree with neither
+VOTPRCP,-9,Break off
+VOTPRCP,-7,Legal skip
+VOTPRCP,-3,Interviewer error
+VOTPRCP,-2,Refuse to answer
+VOTPRCP,-1,Don't know
+VOTPRCP,1,Certainly not participate
+VOTPRCP,2,Most probably not participate
+VOTPRCP,3,Most probably participate
+VOTPRCP,4,Certainly participate
+VOTLELE,-9,Break off
+VOTLELE,-7,Legal skip
+VOTLELE,-3,Interviewer error
+VOTLELE,-2,Refuse to answer
+VOTLELE,-1,Don't know
+VOTLELE,0,No
+VOTLELE,1,Yes
+ELCOND,-9,Break off
+ELCOND,-7,Legal skip
+ELCOND,-3,Interviewer error
+ELCOND,-2,Refuse to answer
+ELCOND,-1,Don't know
+ELCOND,1,Not at all fairly
+ELCOND,2,To some extent fairly
+ELCOND,3,Completely fairly
+ICITLAW,-9,Break off
+ICITLAW,-7,Legal skip
+ICITLAW,-3,Interviewer error
+ICITLAW,-2,Refuse to answer
+ICITLAW,-1,Don't know
+ICITLAW,1,Not important at all
+ICITLAW,10,Extremely important
+ICITGOV,-9,Break off
+ICITGOV,-7,Legal skip
+ICITGOV,-3,Interviewer error
+ICITGOV,-2,Refuse to answer
+ICITGOV,-1,Don't know
+ICITGOV,1,Not important at all
+ICITGOV,10,Extremely important
+ICITVOTE,-9,Break off
+ICITVOTE,-7,Legal skip
+ICITVOTE,-3,Interviewer error
+ICITVOTE,-2,Refuse to answer
+ICITVOTE,-1,Don't know
+ICITVOTE,1,Not important at all
+ICITVOTE,10,Extremely important
+ICITTRAD,-9,Break off
+ICITTRAD,-7,Legal skip
+ICITTRAD,-3,Interviewer error
+ICITTRAD,-2,Refuse to answer
+ICITTRAD,-1,Don't know
+ICITTRAD,1,Not important at all
+ICITTRAD,10,Extremely important
+IMPGCVW,-9,Break off
+IMPGCVW,-7,Legal skip
+IMPGCVW,-3,Interviewer error
+IMPGCVW,-2,Refuse to answer
+IMPGCVW,-1,Don't know
+IMPGCVW,1,Not important at all
+IMPGCVW,10,Extremely important
+ICITHELP,-9,Break off
+ICITHELP,-7,Legal skip
+ICITHELP,-3,Interviewer error
+ICITHELP,-2,Refuse to answer
+ICITHELP,-1,Don't know
+ICITHELP,1,Not important at all
+ICITHELP,10,Extremely important
+ICITOPP,-9,Break off
+ICITOPP,-7,Legal skip
+ICITOPP,-3,Interviewer error
+ICITOPP,-2,Refuse to answer
+ICITOPP,-1,Don't know
+ICITOPP,1,Not important at all
+ICITOPP,10,Extremely important
+CNTRDEM,-9,Break off
+CNTRDEM,-7,Legal skip
+CNTRDEM,-3,Interviewer error
+CNTRDEM,-2,Refuse to answer
+CNTRDEM,-1,Don't know
+CNTRDEM,1,Not a democracy
+CNTRDEM,2,A democracy but with major problems
+CNTRDEM,3,A democracy but with minor problems
+CNTRDEM,4,A full democracy
+ATTDEM,-9,Break off
+ATTDEM,-7,Legal skip
+ATTDEM,-3,Interviewer error
+ATTDEM,-2,Refuse to answer
+ATTDEM,-1,Don't know
+ATTDEM,1,Democracy is preferable to any other kind of government
+ATTDEM,2,In some circumstances a non-democratic can be preferred
+ATTDEM,3,For someone like me it doesn't matter
+NATOSUPP,-9,Break off
+NATOSUPP,-7,Legal skip
+NATOSUPP,-3,Interviewer error
+NATOSUPP,-2,Refuse to answer
+NATOSUPP,-1,Don't know
+NATOSUPP,1,Don't support at all
+NATOSUPP,2,Rather not support
+NATOSUPP,3,Equally support and don't support
+NATOSUPP,4,Rather support
+NATOSUPP,5,Fully support
+EUSUPP,-9,Break off
+EUSUPP,-7,Legal skip
+EUSUPP,-3,Interviewer error
+EUSUPP,-2,Refuse to answer
+EUSUPP,-1,Don't know
+EUSUPP,1,Don't support at all
+EUSUPP,2,Rather not support
+EUSUPP,3,Equally support and don't support
+EUSUPP,4,Rather support
+EUSUPP,5,Fully support
+EECSUPP,-9,Break off
+EECSUPP,-7,Legal skip
+EECSUPP,-5,Not asked
+EECSUPP,-3,Interviewer error
+EECSUPP,-2,Refuse to answer
+EECSUPP,-1,Don't know
+EECSUPP,1,Don't support at all
+EECSUPP,2,Rather not support
+EECSUPP,3,Equally support and don't support
+EECSUPP,4,Rather support
+EECSUPP,5,Fully support
+MAINFRN,-9,Break-off
+MAINFRN,-5,No one
+MAINFRN,-3,Interviewer error
+MAINFRN,-2,Refuse to answer
+MAINFRN,-1,Don't know
+MAINFRN,1,Armenia
+MAINFRN,2,Azerbaijan
+MAINFRN,3,Georgia
+MAINFRN,4,Belarus
+MAINFRN,5,Estonia
+MAINFRN,6,Kazakhstan
+MAINFRN,7,Latvia
+MAINFRN,8,Lithuania
+MAINFRN,9,Moldova
+MAINFRN,10,China
+MAINFRN,11,Czech Republic
+MAINFRN,12,Ukraine
+MAINFRN,13,Russia
+MAINFRN,14,Uzbekistan
+MAINFRN,15,Belgium
+MAINFRN,16,France
+MAINFRN,17,Germany
+MAINFRN,18,Great Britain
+MAINFRN,19,Greece
+MAINFRN,20,Iran
+MAINFRN,21,Israel
+MAINFRN,22,Italy
+MAINFRN,23,Japan
+MAINFRN,24,Pakistan
+MAINFRN,25,Poland
+MAINFRN,26,Serbia
+MAINFRN,27,Spain
+MAINFRN,28,The Netherlands
+MAINFRN,29,Turkey
+MAINFRN,30,USA
+MAINFRN,31,Venezuella
+MAINFRN,32,Abkhazia
+MAINFRN,33,Chechnya
+MAINFRN,34,Mountainous Karabakh
+MAINFRN,35,Northern Cyprus
+MAINFRN,36,Ossetia
+MAINFRN,37,Europe
+MAINFRN,38,European Union
+MAINFRN,39,All Muslim Countries
+MAINFRN,40,NATO
+MAINFRN,41,Western Countries
+MAINFRN,42,Other
+MAINFRN,43,Baltic countries
+MAINFRN,95,Ourselves
+MAINFRN,96,Everyone
+MAINFRN,97,Ourselves
+MAINFRN,98,All Countries
+MAINFRN,99,Other
+MAINENEM,-9,Break-off
+MAINENEM,-5,No one
+MAINENEM,-3,Interviewer error
+MAINENEM,-2,Refuse to answer
+MAINENEM,-1,Don't know
+MAINENEM,1,Armenia
+MAINENEM,2,Azerbaijan
+MAINENEM,3,Georgia
+MAINENEM,4,Belarus
+MAINENEM,5,Estonia
+MAINENEM,6,Kazakhstan
+MAINENEM,7,Latvia
+MAINENEM,8,Lithuania
+MAINENEM,9,Moldova
+MAINENEM,10,China
+MAINENEM,11,Czech Republic
+MAINENEM,12,Ukraine
+MAINENEM,13,Russia
+MAINENEM,14,Uzbekistan
+MAINENEM,15,Belgium
+MAINENEM,16,France
+MAINENEM,17,Germany
+MAINENEM,18,Great Britain
+MAINENEM,19,Greece
+MAINENEM,20,Iran
+MAINENEM,21,Israel
+MAINENEM,22,Italy
+MAINENEM,23,Japan
+MAINENEM,24,Pakistan
+MAINENEM,25,Poland
+MAINENEM,26,Serbia
+MAINENEM,27,Spain
+MAINENEM,28,The Netherlands
+MAINENEM,29,Turkey
+MAINENEM,30,USA
+MAINENEM,31,Venezuella
+MAINENEM,32,Abkhazia
+MAINENEM,33,Chechnya
+MAINENEM,34,Mountainous Karabakh
+MAINENEM,35,Northern Cyprus
+MAINENEM,36,Ossetia
+MAINENEM,37,Europe
+MAINENEM,38,European Union
+MAINENEM,39,All Muslim Countries
+MAINENEM,40,NATO
+MAINENEM,41,Western Countries
+MAINENEM,42,Other
+MAINENEM,43,Baltic countries
+MAINENEM,95,Ourselves
+MAINENEM,96,Everyone
+MAINENEM,97,Ourselves
+MAINENEM,98,All Countries
+MAINENEM,99,Other
+ETHNIC,-9,Break off
+ETHNIC,-7,Legal skip
+ETHNIC,-3,Interviewer error
+ETHNIC,-2,Refuse to answer
+ETHNIC,-1,Don't know
+ETHNIC,1,Armenian
+ETHNIC,2,Azerbaijani
+ETHNIC,3,Georgian
+ETHNIC,4,Other Caucasian
+ETHNIC,5,Russian
+ETHNIC,6,Yezid or Kurd
+ETHNIC,7,Other ethnicity
+PROUDETH,-9,Break off
+PROUDETH,-7,Legal skip
+PROUDETH,-3,Interviewer error
+PROUDETH,-2,Refuse to answer
+PROUDETH,-1,Don't know
+PROUDETH,1,Not proud at all
+PROUDETH,10,Very proud
+EDUYRS,-9,Break off
+EDUYRS,-7,Legal skip
+EDUYRS,-3,Interviewer error
+EDUYRS,-2,Refuse to answer
+EDUYRS,-1,Don't know
+RESPEDU,-9,Break off
+RESPEDU,-7,Legal skip
+RESPEDU,-3,Interviewer error
+RESPEDU,-2,Refuse to answer
+RESPEDU,-1,Don't know
+RESPEDU,1,No primary education
+RESPEDU,2,Primary education (either complete or incomplete)
+RESPEDU,3,Incomplete secondary education
+RESPEDU,4,Completed secondary education
+RESPEDU,5,Secondary technical education
+RESPEDU,6,Incomplete higher education
+RESPEDU,7,"Completed higher education (BA, MA, or Specialist degree)"
+RESPEDU,8,Post-graduate degree
+RFAEDUC,-9,Break off
+RFAEDUC,-7,Legal skip
+RFAEDUC,-3,Interviewer error
+RFAEDUC,-2,Refuse to answer
+RFAEDUC,-1,Don't know
+RFAEDUC,1,No primary education
+RFAEDUC,2,Primary education (either complete or incomplete)
+RFAEDUC,3,Incomplete secondary education
+RFAEDUC,4,Completed secondary education
+RFAEDUC,5,Secondary technical education
+RFAEDUC,6,Incomplete higher education
+RFAEDUC,7,"Completed higher education (BA, MA, or Specialist degree)"
+RFAEDUC,8,Post-graduate degree
+RMOEDUC,-9,Break off
+RMOEDUC,-7,Legal skip
+RMOEDUC,-3,Interviewer error
+RMOEDUC,-2,Refuse to answer
+RMOEDUC,-1,Don't know
+RMOEDUC,1,No primary education
+RMOEDUC,2,Primary education (either complete or incomplete)
+RMOEDUC,3,Incomplete secondary education
+RMOEDUC,4,Completed secondary education
+RMOEDUC,5,Secondary technical education
+RMOEDUC,6,Incomplete higher education
+RMOEDUC,7,"Completed higher education (BA, MA, or Specialist degree)"
+RMOEDUC,8,Post-graduate degree
+KNOWRUS,-9,Break off
+KNOWRUS,-7,Legal skip
+KNOWRUS,-3,Interviewer error
+KNOWRUS,-2,Refuse to answer
+KNOWRUS,-1,Don't know
+KNOWRUS,1,No basic knowledge
+KNOWRUS,2,Beginner
+KNOWRUS,3,Intermediate
+KNOWRUS,4,Advanced
+KNOWENG,-9,Break off
+KNOWENG,-7,Legal skip
+KNOWENG,-3,Interviewer error
+KNOWENG,-2,Refuse to answer
+KNOWENG,-1,Don't know
+KNOWENG,1,No basic knowledge
+KNOWENG,2,Beginner
+KNOWENG,3,Intermediate
+KNOWENG,4,Advanced
+KNOWOTH,-9,Break off
+KNOWOTH,-7,Legal skip
+KNOWOTH,-3,Interviewer error
+KNOWOTH,-2,Refuse to answer
+KNOWOTH,-1,Don't know
+KNOWOTH,1,No basic knowledge
+KNOWOTH,2,Beginner
+KNOWOTH,3,Intermediate
+KNOWOTH,4,Advanced
+COMPABL,-9,Break off
+COMPABL,-7,Legal skip
+COMPABL,-3,Interviewer error
+COMPABL,-2,Refuse to answer
+COMPABL,-1,Don't know
+COMPABL,1,No basic knowledge
+COMPABL,2,Beginner
+COMPABL,3,Intermediate
+COMPABL,4,Advanced
+FLMANDSC,-9,Break off
+FLMANDSC,-7,Legal skip
+FLMANDSC,-3,Interviewer error
+FLMANDSC,-2,Refuse to answer
+FLMANDSC,-1,Don't know
+FLMANDSC,1,No foreign language should be mandatory
+FLMANDSC,2,English
+FLMANDSC,3,Russian
+FLMANDSC,4,Other foreign language
+UNIVADM,-9,Break off
+UNIVADM,-7,Legal skip
+UNIVADM,-3,Interviewer error
+UNIVADM,-2,Refuse to answer
+UNIVADM,-1,Don't know
+UNIVADM,1,Unified admissions managed by a centralized body and based on standardized exams
+UNIVADM,2,Admission managed by universities based on standardized exams
+UNIVADM,3,Universities managing both exams and admission
+UNIVADM,4,Other
+FRQINTR,-9,Break off
+FRQINTR,-7,Legal skip
+FRQINTR,-3,Interviewer error
+FRQINTR,-2,Refuse to answer
+FRQINTR,-1,Don't know
+FRQINTR,1,Every day
+FRQINTR,2,At least once a week
+FRQINTR,3,At least once a month
+FRQINTR,4,Less often
+FRQINTR,5,Never
+FRQINTR,6,I don't know what the Internet is
+NOINTWHY,-9,Break off
+NOINTWHY,-7,Legal skip
+NOINTWHY,-3,Interviewer error
+NOINTWHY,-2,Refuse to answer
+NOINTWHY,-1,Don't know
+NOINTWHY,1,I don't have a phone line or modem or way to connect
+NOINTWHY,2,I don't know how to use it
+NOINTWHY,3,I'm not interested in / I don't want to use the Internet
+NOINTWHY,4,I don't have access to computer
+NOINTWHY,5,I'm concerned using the Internet would threaten my privacy
+NOINTWHY,6,The Internet is too expensive
+NOINTWHY,7,Connection is too slow in my settlement
+NOINTWHY,8,I don't have time
+NOINTWHY,9,The Internet is distasteful or immoral
+NOINTWHY,10,I don't need the Internet
+NOINTWHY,11,There is no access to the Internet in my settlement
+NOINTWHY,12,I'm not allowed to use it
+NOINTWHY,13,Other
+INTACEM,-9,Break off
+INTACEM,-7,Legal skip
+INTACEM,-3,Interviewer error
+INTACEM,-2,Refuse to answer
+INTACEM,-1,Don't know
+INTACEM,0,Not mentioned
+INTACEM,1,Mentioned
+INTASCNA,-9,Break off
+INTASCNA,-7,Legal skip
+INTASCNA,-3,Interviewer error
+INTASCNA,-2,Refuse to answer
+INTASCNA,-1,Don't know
+INTASCNA,0,Not mentioned
+INTASCNA,1,Mentioned
+INTASKY,-9,Break off
+INTASKY,-7,Legal skip
+INTASKY,-3,Interviewer error
+INTASKY,-2,Refuse to answer
+INTASKY,-1,Don't know
+INTASKY,0,Not mentioned
+INTASKY,1,Mentioned
+INTAIMSG,-9,Break off
+INTAIMSG,-7,Legal skip
+INTAIMSG,-3,Interviewer error
+INTAIMSG,-2,Refuse to answer
+INTAIMSG,-1,Don't know
+INTAIMSG,0,Not mentioned
+INTAIMSG,1,Mentioned
+INTACFD,-9,Break off
+INTACFD,-7,Legal skip
+INTACFD,-3,Interviewer error
+INTACFD,-2,Refuse to answer
+INTACFD,-1,Don't know
+INTACFD,0,Not mentioned
+INTACFD,1,Mentioned
+INTACBL,-9,Break off
+INTACBL,-7,Legal skip
+INTACBL,-3,Interviewer error
+INTACBL,-2,Refuse to answer
+INTACBL,-1,Don't know
+INTACBL,0,Not mentioned
+INTACBL,1,Mentioned
+INTACIN,-9,Break off
+INTACIN,-7,Legal skip
+INTACIN,-3,Interviewer error
+INTACIN,-2,Refuse to answer
+INTACIN,-1,Don't know
+INTACIN,0,Not mentioned
+INTACIN,1,Mentioned
+INTACSH,-9,Break off
+INTACSH,-7,Legal skip
+INTACSH,-3,Interviewer error
+INTACSH,-2,Refuse to answer
+INTACSH,-1,Don't know
+INTACSH,0,Not mentioned
+INTACSH,1,Mentioned
+INTACNW,-9,Break off
+INTACNW,-7,Legal skip
+INTACNW,-3,Interviewer error
+INTACNW,-2,Refuse to answer
+INTACNW,-1,Don't know
+INTACNW,0,Not mentioned
+INTACNW,1,Mentioned
+INTACEN,-9,Break off
+INTACEN,-7,Legal skip
+INTACEN,-3,Interviewer error
+INTACEN,-2,Refuse to answer
+INTACEN,-1,Don't know
+INTACEN,0,Not mentioned
+INTACEN,1,Mentioned
+INTACGM,-9,Break off
+INTACGM,-7,Legal skip
+INTACGM,-3,Interviewer error
+INTACGM,-2,Refuse to answer
+INTACGM,-1,Don't know
+INTACGM,0,Not mentioned
+INTACGM,1,Mentioned
+INTACDW,-9,Break off
+INTACDW,-7,Legal skip
+INTACDW,-3,Interviewer error
+INTACDW,-2,Refuse to answer
+INTACDW,-1,Don't know
+INTACDW,0,Not mentioned
+INTACDW,1,Mentioned
+INTACOT,-9,Break off
+INTACOT,-7,Legal skip
+INTACOT,-3,Interviewer error
+INTACOT,-2,Refuse to answer
+INTACOT,-1,Don't know
+INTACOT,0,Not mentioned
+INTACOT,1,Mentioned
+USEFBWK,-9,Break off
+USEFBWK,-7,Legal skip
+USEFBWK,-3,Interviewer error
+USEFBWK,-2,Refuse to answer
+USEFBWK,-1,Don't know
+USEFBWK,0,No
+USEFBWK,1,Yes
+NUMFBFR,-9,Break off
+NUMFBFR,-7,Legal skip
+NUMFBFR,-3,Interviewer error
+NUMFBFR,-2,Refuse to answer
+NUMFBFR,-1,Don't know
+NUMFBFR,1,Less than 50
+NUMFBFR,2,51 <96> 100
+NUMFBFR,3,101 <96> 250
+NUMFBFR,4,251 <96> 500
+NUMFBFR,5,501 <96> 1000
+NUMFBFR,6,More than 1000
+FBACTVT,-9,Break off
+FBACTVT,-7,Legal skip
+FBACTVT,-3,Interviewer error
+FBACTVT,-2,Refuse to answer
+FBACTVT,-1,Don't know
+FBACTVT,1,Reading or viewing newsfeed
+FBACTVT,2,Posting/sharing information/news/personal observations/photo
+FBACTVT,3,Commenting other people's posts / photos
+FBACTVT,4,Chatting
+FBACTVT,5,"Creating Facebook groups / events, sending invitations"
+FBACTVT,6,Other
+FBOPNEXP,-9,Break off
+FBOPNEXP,-7,Legal skip
+FBOPNEXP,-5,Not applicable - Do not express opinions
+FBOPNEXP,-3,Interviewer error
+FBOPNEXP,-2,Refuse to answer
+FBOPNEXP,-1,Don't know
+FBOPNEXP,0,Hard
+FBOPNEXP,1,Easy
+IDEALNCH,-9,Break off
+IDEALNCH,-7,Legal skip
+IDEALNCH,-5,Whatever number the God will give us
+IDEALNCH,-3,Interviewer error
+IDEALNCH,-2,Refuse to answer
+IDEALNCH,-1,Don't know
+RELGNEW,-9,Break off
+RELGNEW,-7,Legal skip
+RELGNEW,-5,None
+RELGNEW,-3,Interviewer error
+RELGNEW,-2,Refuse to answer
+RELGNEW,-1,Don't know
+RELGNEW,1,Armenian Apostolic Church
+RELGNEW,2,Roman Catholic Church
+RELGNEW,3,Orthodox Church
+RELGNEW,4,Protestant Church
+RELGNEW,5,Other Christian Church or group
+RELGNEW,6,Sunni Islam
+RELGNEW,7,Shia Islam
+RELGNEW,8,Islam
+RELGNEW,9,Judaism
+RELGNEW,10,Other
+RELIMP,-9,Break off
+RELIMP,-7,Legal skip
+RELIMP,-3,Interviewer error
+RELIMP,-2,Refuse to answer
+RELIMP,-1,Don't know
+RELIMP,1,Not at all important
+RELIMP,2,Not very important
+RELIMP,3,Rather important
+RELIMP,4,Very important
+RELSERV,-9,Break off
+RELSERV,-7,Legal skip
+RELSERV,-3,Interviewer error
+RELSERV,-2,Refuse to answer
+RELSERV,-1,Don't know
+RELSERV,1,Every day
+RELSERV,2,More than once a week
+RELSERV,3,Once a week
+RELSERV,4,At least once a month
+RELSERV,5,Only on special holidays
+RELSERV,6,Less often
+RELSERV,7,Never
+RELFAST,-9,Break off
+RELFAST,-7,Legal skip
+RELFAST,-5,Fasting is not required in my religion
+RELFAST,-3,Interviewer error
+RELFAST,-2,Refuse to answer
+RELFAST,-1,Don't know
+RELFAST,1,Always fast
+RELFAST,2,Often fast
+RELFAST,3,Sometimes fast
+RELFAST,4,Rarely fast
+RELFAST,5,Never fast
+RLGIOUS,-9,Break off
+RLGIOUS,-7,Legal skip
+RLGIOUS,-3,Interviewer error
+RLGIOUS,-2,Refuse to answer
+RLGIOUS,-1,Don't know
+RLGIOUS,1,Not at all religious
+RLGIOUS,10,Very religious
+MIGSHRT,-9,Break off
+MIGSHRT,-7,Legal skip
+MIGSHRT,-3,Interviewer error
+MIGSHRT,-2,Refuse to answer
+MIGSHRT,-1,Don't know
+MIGSHRT,0,No
+MIGSHRT,1,Yes
+EMIGRAT,-9,Break off
+EMIGRAT,-7,Legal skip
+EMIGRAT,-3,Interviewer error
+EMIGRAT,-2,Refuse to answer
+EMIGRAT,-1,Don't know
+EMIGRAT,0,No
+EMIGRAT,1,Yes
+PAYBRIB,-9,Break off
+PAYBRIB,-7,Legal skip
+PAYBRIB,-3,Interviewer error
+PAYBRIB,-2,Refuse to answer
+PAYBRIB,-1,Don't know
+PAYBRIB,0,No
+PAYBRIB,1,Yes
+HH2RELR,-9,Break off
+HH2RELR,-7,Legal skip
+HH2RELR,-5,No such member in the HH
+HH2RELR,-3,Interviewer error
+HH2RELR,-2,Refuse to answer
+HH2RELR,-1,Don't know
+HH2RELR,1,Respondent
+HH2RELR,2,Spouse
+HH2RELR,3,Son/Daughter
+HH2RELR,4,Mother/Father/Mother in law/Father in law
+HH2RELR,5,Sister/Brother
+HH2RELR,6,Grandmother/Grandfather
+HH2RELR,7,Son in law/Daughter in law
+HH2RELR,8,Grandchild
+HH2RELR,9,Other person related to the head of HH
+HH2RELR,10,Other person not related to the head of HH
+HH3RELR,-9,Break off
+HH3RELR,-7,Legal skip
+HH3RELR,-5,No such member in the HH
+HH3RELR,-3,Interviewer error
+HH3RELR,-2,Refuse to answer
+HH3RELR,-1,Don't know
+HH3RELR,1,Respondent
+HH3RELR,2,Spouse
+HH3RELR,3,Son/Daughter
+HH3RELR,4,Mother/Father/Mother in law/Father in law
+HH3RELR,5,Sister/Brother
+HH3RELR,6,Grandmother/Grandfather
+HH3RELR,7,Son in law/Daughter in law
+HH3RELR,8,Grandchild
+HH3RELR,9,Other person related to the head of HH
+HH3RELR,10,Other person not related to the head of HH
+HH4RELR,-9,Break off
+HH4RELR,-7,Legal skip
+HH4RELR,-5,No such member in the HH
+HH4RELR,-3,Interviewer error
+HH4RELR,-2,Refuse to answer
+HH4RELR,-1,Don't know
+HH4RELR,1,Respondent
+HH4RELR,2,Spouse
+HH4RELR,3,Son/Daughter
+HH4RELR,4,Mother/Father/Mother in law/Father in law
+HH4RELR,5,Sister/Brother
+HH4RELR,6,Grandmother/Grandfather
+HH4RELR,7,Son in law/Daughter in law
+HH4RELR,8,Grandchild
+HH4RELR,9,Other person related to the head of HH
+HH4RELR,10,Other person not related to the head of HH
+HH5RELR,-9,Break off
+HH5RELR,-7,Legal skip
+HH5RELR,-5,No such member in the HH
+HH5RELR,-3,Interviewer error
+HH5RELR,-2,Refuse to answer
+HH5RELR,-1,Don't know
+HH5RELR,1,Respondent
+HH5RELR,2,Spouse
+HH5RELR,3,Son/Daughter
+HH5RELR,4,Mother/Father/Mother in law/Father in law
+HH5RELR,5,Sister/Brother
+HH5RELR,6,Grandmother/Grandfather
+HH5RELR,7,Son in law/Daughter in law
+HH5RELR,8,Grandchild
+HH5RELR,9,Other person related to the head of HH
+HH5RELR,10,Other person not related to the head of HH
+HH6RELR,-9,Break off
+HH6RELR,-7,Legal skip
+HH6RELR,-5,No such member in the HH
+HH6RELR,-3,Interviewer error
+HH6RELR,-2,Refuse to answer
+HH6RELR,-1,Don't know
+HH6RELR,1,Respondent
+HH6RELR,2,Spouse
+HH6RELR,3,Son/Daughter
+HH6RELR,4,Mother/Father/Mother in law/Father in law
+HH6RELR,5,Sister/Brother
+HH6RELR,6,Grandmother/Grandfather
+HH6RELR,7,Son in law/Daughter in law
+HH6RELR,8,Grandchild
+HH6RELR,9,Other person related to the head of HH
+HH6RELR,10,Other person not related to the head of HH
+HH7RELR,-9,Break off
+HH7RELR,-7,Legal skip
+HH7RELR,-5,No such member in the HH
+HH7RELR,-3,Interviewer error
+HH7RELR,-2,Refuse to answer
+HH7RELR,-1,Don't know
+HH7RELR,1,Respondent
+HH7RELR,2,Spouse
+HH7RELR,3,Son/Daughter
+HH7RELR,4,Mother/Father/Mother in law/Father in law
+HH7RELR,5,Sister/Brother
+HH7RELR,6,Grandmother/Grandfather
+HH7RELR,7,Son in law/Daughter in law
+HH7RELR,8,Grandchild
+HH7RELR,9,Other person related to the head of HH
+HH7RELR,10,Other person not related to the head of HH
+HH8RELR,-9,Break off
+HH8RELR,-7,Legal skip
+HH8RELR,-5,No such member in the HH
+HH8RELR,-3,Interviewer error
+HH8RELR,-2,Refuse to answer
+HH8RELR,-1,Don't know
+HH8RELR,1,Respondent
+HH8RELR,2,Spouse
+HH8RELR,3,Son/Daughter
+HH8RELR,4,Mother/Father/Mother in law/Father in law
+HH8RELR,5,Sister/Brother
+HH8RELR,6,Grandmother/Grandfather
+HH8RELR,7,Son in law/Daughter in law
+HH8RELR,8,Grandchild
+HH8RELR,9,Other person related to the head of HH
+HH8RELR,10,Other person not related to the head of HH
+HH9RELR,-9,Break off
+HH9RELR,-7,Legal skip
+HH9RELR,-5,No such member in the HH
+HH9RELR,-3,Interviewer error
+HH9RELR,-2,Refuse to answer
+HH9RELR,-1,Don't know
+HH9RELR,1,Respondent
+HH9RELR,2,Spouse
+HH9RELR,3,Son/Daughter
+HH9RELR,4,Mother/Father/Mother in law/Father in law
+HH9RELR,5,Sister/Brother
+HH9RELR,6,Grandmother/Grandfather
+HH9RELR,7,Son in law/Daughter in law
+HH9RELR,8,Grandchild
+HH9RELR,9,Other person related to the head of HH
+HH9RELR,10,Other person not related to the head of HH
+HH10RELR,-9,Break off
+HH10RELR,-7,Legal skip
+HH10RELR,-5,No such member in the HH
+HH10RELR,-3,Interviewer error
+HH10RELR,-2,Refuse to answer
+HH10RELR,-1,Don't know
+HH10RELR,1,Respondent
+HH10RELR,2,Spouse
+HH10RELR,3,Son/Daughter
+HH10RELR,4,Mother/Father/Mother in law/Father in law
+HH10RELR,5,Sister/Brother
+HH10RELR,6,Grandmother/Grandfather
+HH10RELR,7,Son in law/Daughter in law
+HH10RELR,8,Grandchild
+HH10RELR,9,Other person related to the head of HH
+HH10RELR,10,Other person not related to the head of HH
+HH11RELR,-9,Break off
+HH11RELR,-7,Legal skip
+HH11RELR,-5,No such member in the HH
+HH11RELR,-3,Interviewer error
+HH11RELR,-2,Refuse to answer
+HH11RELR,-1,Don't know
+HH11RELR,1,Respondent
+HH11RELR,2,Spouse
+HH11RELR,3,Son/Daughter
+HH11RELR,4,Mother/Father/Mother in law/Father in law
+HH11RELR,5,Sister/Brother
+HH11RELR,6,Grandmother/Grandfather
+HH11RELR,7,Son in law/Daughter in law
+HH11RELR,8,Grandchild
+HH11RELR,9,Other person related to the head of HH
+HH11RELR,10,Other person not related to the head of HH
+HH12RELR,-9,Break off
+HH12RELR,-7,Legal skip
+HH12RELR,-5,No such member in the HH
+HH12RELR,-3,Interviewer error
+HH12RELR,-2,Refuse to answer
+HH12RELR,-1,Don't know
+HH12RELR,1,Respondent
+HH12RELR,2,Spouse
+HH12RELR,3,Son/Daughter
+HH12RELR,4,Mother/Father/Mother in law/Father in law
+HH12RELR,5,Sister/Brother
+HH12RELR,6,Grandmother/Grandfather
+HH12RELR,7,Son in law/Daughter in law
+HH12RELR,8,Grandchild
+HH12RELR,9,Other person related to the head of HH
+HH12RELR,10,Other person not related to the head of HH
+HH13RELR,-9,Break off
+HH13RELR,-7,Legal skip
+HH13RELR,-5,No such member in the HH
+HH13RELR,-3,Interviewer error
+HH13RELR,-2,Refuse to answer
+HH13RELR,-1,Don't know
+HH13RELR,1,Respondent
+HH13RELR,2,Spouse
+HH13RELR,3,Son/Daughter
+HH13RELR,4,Mother/Father/Mother in law/Father in law
+HH13RELR,5,Sister/Brother
+HH13RELR,6,Grandmother/Grandfather
+HH13RELR,7,Son in law/Daughter in law
+HH13RELR,8,Grandchild
+HH13RELR,9,Other person related to the head of HH
+HH13RELR,10,Other person not related to the head of HH
+HHM2SEX,-9,Break off
+HHM2SEX,-7,Legal skip
+HHM2SEX,-5,No such member in the HH
+HHM2SEX,-3,Interviewer error
+HHM2SEX,-2,Refuse to answer
+HHM2SEX,-1,Don't know
+HHM2SEX,1,Male
+HHM2SEX,2,Female
+HHM3SEX,-9,Break off
+HHM3SEX,-7,Legal skip
+HHM3SEX,-5,No such member in the HH
+HHM3SEX,-3,Interviewer error
+HHM3SEX,-2,Refuse to answer
+HHM3SEX,-1,Don't know
+HHM3SEX,1,Male
+HHM3SEX,2,Female
+HHM4SEX,-9,Break off
+HHM4SEX,-7,Legal skip
+HHM4SEX,-5,No such member in the HH
+HHM4SEX,-3,Interviewer error
+HHM4SEX,-2,Refuse to answer
+HHM4SEX,-1,Don't know
+HHM4SEX,1,Male
+HHM4SEX,2,Female
+HHM5SEX,-9,Break off
+HHM5SEX,-7,Legal skip
+HHM5SEX,-5,No such member in the HH
+HHM5SEX,-3,Interviewer error
+HHM5SEX,-2,Refuse to answer
+HHM5SEX,-1,Don't know
+HHM5SEX,1,Male
+HHM5SEX,2,Female
+HHM6SEX,-9,Break off
+HHM6SEX,-7,Legal skip
+HHM6SEX,-5,No such member in the HH
+HHM6SEX,-3,Interviewer error
+HHM6SEX,-2,Refuse to answer
+HHM6SEX,-1,Don't know
+HHM6SEX,1,Male
+HHM6SEX,2,Female
+HHM7SEX,-9,Break off
+HHM7SEX,-7,Legal skip
+HHM7SEX,-5,No such member in the HH
+HHM7SEX,-3,Interviewer error
+HHM7SEX,-2,Refuse to answer
+HHM7SEX,-1,Don't know
+HHM7SEX,1,Male
+HHM7SEX,2,Female
+HHM8SEX,-9,Break off
+HHM8SEX,-7,Legal skip
+HHM8SEX,-5,No such member in the HH
+HHM8SEX,-3,Interviewer error
+HHM8SEX,-2,Refuse to answer
+HHM8SEX,-1,Don't know
+HHM8SEX,1,Male
+HHM8SEX,2,Female
+HHM9SEX,-9,Break off
+HHM9SEX,-7,Legal skip
+HHM9SEX,-5,No such member in the HH
+HHM9SEX,-3,Interviewer error
+HHM9SEX,-2,Refuse to answer
+HHM9SEX,-1,Don't know
+HHM9SEX,1,Male
+HHM9SEX,2,Female
+HHM10SEX,-9,Break off
+HHM10SEX,-7,Legal skip
+HHM10SEX,-5,No such member in the HH
+HHM10SEX,-3,Interviewer error
+HHM10SEX,-2,Refuse to answer
+HHM10SEX,-1,Don't know
+HHM10SEX,1,Male
+HHM10SEX,2,Female
+HHM11SEX,-9,Break off
+HHM11SEX,-7,Legal skip
+HHM11SEX,-5,No such member in the HH
+HHM11SEX,-3,Interviewer error
+HHM11SEX,-2,Refuse to answer
+HHM11SEX,-1,Don't know
+HHM11SEX,1,Male
+HHM11SEX,2,Female
+HHM12SEX,-9,Break off
+HHM12SEX,-7,Legal skip
+HHM12SEX,-5,No such member in the HH
+HHM12SEX,-3,Interviewer error
+HHM12SEX,-2,Refuse to answer
+HHM12SEX,-1,Don't know
+HHM12SEX,1,Male
+HHM12SEX,2,Female
+HHM13SEX,-9,Break off
+HHM13SEX,-7,Legal skip
+HHM13SEX,-5,No such member in the HH
+HHM13SEX,-3,Interviewer error
+HHM13SEX,-2,Refuse to answer
+HHM13SEX,-1,Don't know
+HHM13SEX,1,Male
+HHM13SEX,2,Female
+RESPDOB,-9,Break off
+RESPDOB,-7,Legal skip
+RESPDOB,-5,No such member in the HH
+RESPDOB,-3,Interviewer error
+RESPDOB,-2,Refuse to answer
+RESPDOB,-1,Don't know
+RESPDOB,1,1900-1909
+RESPDOB,2,1910-1919
+RESPDOB,3,1920-1929
+RESPDOB,4,1930-1939
+RESPDOB,5,1940-1949
+RESPDOB,6,1950-1959
+RESPDOB,7,1960-1969
+RESPDOB,8,1970-1979
+RESPDOB,9,1980-1989
+RESPDOB,10,1990-1999
+RESPDOB,11,2000-2009
+RESPDOB,12,2010-present
+HHM2DOB,-9,Break off
+HHM2DOB,-7,Legal skip
+HHM2DOB,-5,No such member in the HH
+HHM2DOB,-3,Interviewer error
+HHM2DOB,-2,Refuse to answer
+HHM2DOB,-1,Don't know
+HHM2DOB,1,1900-1909
+HHM2DOB,2,1910-1919
+HHM2DOB,3,1920-1929
+HHM2DOB,4,1930-1939
+HHM2DOB,5,1940-1949
+HHM2DOB,6,1950-1959
+HHM2DOB,7,1960-1969
+HHM2DOB,8,1970-1979
+HHM2DOB,9,1980-1989
+HHM2DOB,10,1990-1999
+HHM2DOB,11,2000-2009
+HHM2DOB,12,2010-present
+HHM3DOB,-9,Break off
+HHM3DOB,-7,Legal skip
+HHM3DOB,-5,No such member in the HH
+HHM3DOB,-3,Interviewer error
+HHM3DOB,-2,Refuse to answer
+HHM3DOB,-1,Don't know
+HHM3DOB,1,1900-1909
+HHM3DOB,2,1910-1919
+HHM3DOB,3,1920-1929
+HHM3DOB,4,1930-1939
+HHM3DOB,5,1940-1949
+HHM3DOB,6,1950-1959
+HHM3DOB,7,1960-1969
+HHM3DOB,8,1970-1979
+HHM3DOB,9,1980-1989
+HHM3DOB,10,1990-1999
+HHM3DOB,11,2000-2009
+HHM3DOB,12,2010-present
+HHM4DOB,-9,Break off
+HHM4DOB,-7,Legal skip
+HHM4DOB,-5,No such member in the HH
+HHM4DOB,-3,Interviewer error
+HHM4DOB,-2,Refuse to answer
+HHM4DOB,-1,Don't know
+HHM4DOB,1,1900-1909
+HHM4DOB,2,1910-1919
+HHM4DOB,3,1920-1929
+HHM4DOB,4,1930-1939
+HHM4DOB,5,1940-1949
+HHM4DOB,6,1950-1959
+HHM4DOB,7,1960-1969
+HHM4DOB,8,1970-1979
+HHM4DOB,9,1980-1989
+HHM4DOB,10,1990-1999
+HHM4DOB,11,2000-2009
+HHM4DOB,12,2010-present
+HHM5DOB,-9,Break off
+HHM5DOB,-7,Legal skip
+HHM5DOB,-5,No such member in the HH
+HHM5DOB,-3,Interviewer error
+HHM5DOB,-2,Refuse to answer
+HHM5DOB,-1,Don't know
+HHM5DOB,1,1900-1909
+HHM5DOB,2,1910-1919
+HHM5DOB,3,1920-1929
+HHM5DOB,4,1930-1939
+HHM5DOB,5,1940-1949
+HHM5DOB,6,1950-1959
+HHM5DOB,7,1960-1969
+HHM5DOB,8,1970-1979
+HHM5DOB,9,1980-1989
+HHM5DOB,10,1990-1999
+HHM5DOB,11,2000-2009
+HHM5DOB,12,2010-present
+HHM6DOB,-9,Break off
+HHM6DOB,-7,Legal skip
+HHM6DOB,-5,No such member in the HH
+HHM6DOB,-3,Interviewer error
+HHM6DOB,-2,Refuse to answer
+HHM6DOB,-1,Don't know
+HHM6DOB,1,1900-1909
+HHM6DOB,2,1910-1919
+HHM6DOB,3,1920-1929
+HHM6DOB,4,1930-1939
+HHM6DOB,5,1940-1949
+HHM6DOB,6,1950-1959
+HHM6DOB,7,1960-1969
+HHM6DOB,8,1970-1979
+HHM6DOB,9,1980-1989
+HHM6DOB,10,1990-1999
+HHM6DOB,11,2000-2009
+HHM6DOB,12,2010-present
+HHM7DOB,-9,Break off
+HHM7DOB,-7,Legal skip
+HHM7DOB,-5,No such member in the HH
+HHM7DOB,-3,Interviewer error
+HHM7DOB,-2,Refuse to answer
+HHM7DOB,-1,Don't know
+HHM7DOB,1,1900-1909
+HHM7DOB,2,1910-1919
+HHM7DOB,3,1920-1929
+HHM7DOB,4,1930-1939
+HHM7DOB,5,1940-1949
+HHM7DOB,6,1950-1959
+HHM7DOB,7,1960-1969
+HHM7DOB,8,1970-1979
+HHM7DOB,9,1980-1989
+HHM7DOB,10,1990-1999
+HHM7DOB,11,2000-2009
+HHM7DOB,12,2010-present
+HHM8DOB,-9,Break off
+HHM8DOB,-7,Legal skip
+HHM8DOB,-5,No such member in the HH
+HHM8DOB,-3,Interviewer error
+HHM8DOB,-2,Refuse to answer
+HHM8DOB,-1,Don't know
+HHM8DOB,1,1900-1909
+HHM8DOB,2,1910-1919
+HHM8DOB,3,1920-1929
+HHM8DOB,4,1930-1939
+HHM8DOB,5,1940-1949
+HHM8DOB,6,1950-1959
+HHM8DOB,7,1960-1969
+HHM8DOB,8,1970-1979
+HHM8DOB,9,1980-1989
+HHM8DOB,10,1990-1999
+HHM8DOB,11,2000-2009
+HHM8DOB,12,2010-present
+HHM9DOB,-9,Break off
+HHM9DOB,-7,Legal skip
+HHM9DOB,-5,No such member in the HH
+HHM9DOB,-3,Interviewer error
+HHM9DOB,-2,Refuse to answer
+HHM9DOB,-1,Don't know
+HHM9DOB,1,1900-1909
+HHM9DOB,2,1910-1919
+HHM9DOB,3,1920-1929
+HHM9DOB,4,1930-1939
+HHM9DOB,5,1940-1949
+HHM9DOB,6,1950-1959
+HHM9DOB,7,1960-1969
+HHM9DOB,8,1970-1979
+HHM9DOB,9,1980-1989
+HHM9DOB,10,1990-1999
+HHM9DOB,11,2000-2009
+HHM9DOB,12,2010-present
+HHM10DOB,-9,Break off
+HHM10DOB,-7,Legal skip
+HHM10DOB,-5,No such member in the HH
+HHM10DOB,-3,Interviewer error
+HHM10DOB,-2,Refuse to answer
+HHM10DOB,-1,Don't know
+HHM10DOB,1,1900-1909
+HHM10DOB,2,1910-1919
+HHM10DOB,3,1920-1929
+HHM10DOB,4,1930-1939
+HHM10DOB,5,1940-1949
+HHM10DOB,6,1950-1959
+HHM10DOB,7,1960-1969
+HHM10DOB,8,1970-1979
+HHM10DOB,9,1980-1989
+HHM10DOB,10,1990-1999
+HHM10DOB,11,2000-2009
+HHM10DOB,12,2010-present
+HHM11DOB,-9,Break off
+HHM11DOB,-7,Legal skip
+HHM11DOB,-5,No such member in the HH
+HHM11DOB,-3,Interviewer error
+HHM11DOB,-2,Refuse to answer
+HHM11DOB,-1,Don't know
+HHM11DOB,1,1900-1909
+HHM11DOB,2,1910-1919
+HHM11DOB,3,1920-1929
+HHM11DOB,4,1930-1939
+HHM11DOB,5,1940-1949
+HHM11DOB,6,1950-1959
+HHM11DOB,7,1960-1969
+HHM11DOB,8,1970-1979
+HHM11DOB,9,1980-1989
+HHM11DOB,10,1990-1999
+HHM11DOB,11,2000-2009
+HHM11DOB,12,2010-present
+HHM12DOB,-9,Break off
+HHM12DOB,-7,Legal skip
+HHM12DOB,-5,No such member in the HH
+HHM12DOB,-3,Interviewer error
+HHM12DOB,-2,Refuse to answer
+HHM12DOB,-1,Don't know
+HHM12DOB,1,1900-1909
+HHM12DOB,2,1910-1919
+HHM12DOB,3,1920-1929
+HHM12DOB,4,1930-1939
+HHM12DOB,5,1940-1949
+HHM12DOB,6,1950-1959
+HHM12DOB,7,1960-1969
+HHM12DOB,8,1970-1979
+HHM12DOB,9,1980-1989
+HHM12DOB,10,1990-1999
+HHM12DOB,11,2000-2009
+HHM12DOB,12,2010-present
+HHM13DOB,-9,Break off
+HHM13DOB,-7,Legal skip
+HHM13DOB,-5,No such member in the HH
+HHM13DOB,-3,Interviewer error
+HHM13DOB,-2,Refuse to answer
+HHM13DOB,-1,Don't know
+HHM13DOB,1,1900-1909
+HHM13DOB,2,1910-1919
+HHM13DOB,3,1920-1929
+HHM13DOB,4,1930-1939
+HHM13DOB,5,1940-1949
+HHM13DOB,6,1950-1959
+HHM13DOB,7,1960-1969
+HHM13DOB,8,1970-1979
+HHM13DOB,9,1980-1989
+HHM13DOB,10,1990-1999
+HHM13DOB,11,2000-2009
+HHM13DOB,12,2010-present
+RESPPOB,-9,Break off
+RESPPOB,-7,Legal skip
+RESPPOB,-5,No such member in the HH
+RESPPOB,-3,Interviewer error
+RESPPOB,-2,Refuse to answer
+RESPPOB,-1,Don't know
+RESPPOB,1,In this settlement where the interview is now conducted
+RESPPOB,2,In another settlement but in the same region of the country
+RESPPOB,3,In a settlement in another region of the country
+RESPPOB,4,Outside the country but inside the Former Soviet Union
+RESPPOB,5,Outside the Former Soviet Union
+HHM2POB,-9,Break off
+HHM2POB,-7,Legal skip
+HHM2POB,-5,No such member in the HH
+HHM2POB,-3,Interviewer error
+HHM2POB,-2,Refuse to answer
+HHM2POB,-1,Don't know
+HHM2POB,1,In this settlement where the interview is now conducted
+HHM2POB,2,In another settlement but in the same region of the country
+HHM2POB,3,In a settlement in another region of the country
+HHM2POB,4,Outside the country but inside the Former Soviet Union
+HHM2POB,5,Outside the Former Soviet Union
+HHM3POB,-9,Break off
+HHM3POB,-7,Legal skip
+HHM3POB,-5,No such member in the HH
+HHM3POB,-3,Interviewer error
+HHM3POB,-2,Refuse to answer
+HHM3POB,-1,Don't know
+HHM3POB,1,In this settlement where the interview is now conducted
+HHM3POB,2,In another settlement but in the same region of the country
+HHM3POB,3,In a settlement in another region of the country
+HHM3POB,4,Outside the country but inside the Former Soviet Union
+HHM3POB,5,Outside the Former Soviet Union
+HHM4POB,-9,Break off
+HHM4POB,-7,Legal skip
+HHM4POB,-5,No such member in the HH
+HHM4POB,-3,Interviewer error
+HHM4POB,-2,Refuse to answer
+HHM4POB,-1,Don't know
+HHM4POB,1,In this settlement where the interview is now conducted
+HHM4POB,2,In another settlement but in the same region of the country
+HHM4POB,3,In a settlement in another region of the country
+HHM4POB,4,Outside the country but inside the Former Soviet Union
+HHM4POB,5,Outside the Former Soviet Union
+HHM5POB,-9,Break off
+HHM5POB,-7,Legal skip
+HHM5POB,-5,No such member in the HH
+HHM5POB,-3,Interviewer error
+HHM5POB,-2,Refuse to answer
+HHM5POB,-1,Don't know
+HHM5POB,1,In this settlement where the interview is now conducted
+HHM5POB,2,In another settlement but in the same region of the country
+HHM5POB,3,In a settlement in another region of the country
+HHM5POB,4,Outside the country but inside the Former Soviet Union
+HHM5POB,5,Outside the Former Soviet Union
+HHM6POB,-9,Break off
+HHM6POB,-7,Legal skip
+HHM6POB,-5,No such member in the HH
+HHM6POB,-3,Interviewer error
+HHM6POB,-2,Refuse to answer
+HHM6POB,-1,Don't know
+HHM6POB,1,In this settlement where the interview is now conducted
+HHM6POB,2,In another settlement but in the same region of the country
+HHM6POB,3,In a settlement in another region of the country
+HHM6POB,4,Outside the country but inside the Former Soviet Union
+HHM6POB,5,Outside the Former Soviet Union
+HHM7POB,-9,Break off
+HHM7POB,-7,Legal skip
+HHM7POB,-5,No such member in the HH
+HHM7POB,-3,Interviewer error
+HHM7POB,-2,Refuse to answer
+HHM7POB,-1,Don't know
+HHM7POB,1,In this settlement where the interview is now conducted
+HHM7POB,2,In another settlement but in the same region of the country
+HHM7POB,3,In a settlement in another region of the country
+HHM7POB,4,Outside the country but inside the Former Soviet Union
+HHM7POB,5,Outside the Former Soviet Union
+HHM8POB,-9,Break off
+HHM8POB,-7,Legal skip
+HHM8POB,-5,No such member in the HH
+HHM8POB,-3,Interviewer error
+HHM8POB,-2,Refuse to answer
+HHM8POB,-1,Don't know
+HHM8POB,1,In this settlement where the interview is now conducted
+HHM8POB,2,In another settlement but in the same region of the country
+HHM8POB,3,In a settlement in another region of the country
+HHM8POB,4,Outside the country but inside the Former Soviet Union
+HHM8POB,5,Outside the Former Soviet Union
+HHM9POB,-9,Break off
+HHM9POB,-7,Legal skip
+HHM9POB,-5,No such member in the HH
+HHM9POB,-3,Interviewer error
+HHM9POB,-2,Refuse to answer
+HHM9POB,-1,Don't know
+HHM9POB,1,In this settlement where the interview is now conducted
+HHM9POB,2,In another settlement but in the same region of the country
+HHM9POB,3,In a settlement in another region of the country
+HHM9POB,4,Outside the country but inside the Former Soviet Union
+HHM9POB,5,Outside the Former Soviet Union
+HHM10POB,-9,Break off
+HHM10POB,-7,Legal skip
+HHM10POB,-5,No such member in the HH
+HHM10POB,-3,Interviewer error
+HHM10POB,-2,Refuse to answer
+HHM10POB,-1,Don't know
+HHM10POB,1,In this settlement where the interview is now conducted
+HHM10POB,2,In another settlement but in the same region of the country
+HHM10POB,3,In a settlement in another region of the country
+HHM10POB,4,Outside the country but inside the Former Soviet Union
+HHM10POB,5,Outside the Former Soviet Union
+HHM11POB,-9,Break off
+HHM11POB,-7,Legal skip
+HHM11POB,-5,No such member in the HH
+HHM11POB,-3,Interviewer error
+HHM11POB,-2,Refuse to answer
+HHM11POB,-1,Don't know
+HHM11POB,1,In this settlement where the interview is now conducted
+HHM11POB,2,In another settlement but in the same region of the country
+HHM11POB,3,In a settlement in another region of the country
+HHM11POB,4,Outside the country but inside the Former Soviet Union
+HHM11POB,5,Outside the Former Soviet Union
+HHM12POB,-9,Break off
+HHM12POB,-7,Legal skip
+HHM12POB,-5,No such member in the HH
+HHM12POB,-3,Interviewer error
+HHM12POB,-2,Refuse to answer
+HHM12POB,-1,Don't know
+HHM12POB,1,In this settlement where the interview is now conducted
+HHM12POB,2,In another settlement but in the same region of the country
+HHM12POB,3,In a settlement in another region of the country
+HHM12POB,4,Outside the country but inside the Former Soviet Union
+HHM12POB,5,Outside the Former Soviet Union
+HHM13POB,-9,Break off
+HHM13POB,-7,Legal skip
+HHM13POB,-5,No such member in the HH
+HHM13POB,-3,Interviewer error
+HHM13POB,-2,Refuse to answer
+HHM13POB,-1,Don't know
+HHM13POB,1,In this settlement where the interview is now conducted
+HHM13POB,2,In another settlement but in the same region of the country
+HHM13POB,3,In a settlement in another region of the country
+HHM13POB,4,Outside the country but inside the Former Soviet Union
+HHM13POB,5,Outside the Former Soviet Union
+RESEMPL,-9,Break off
+RESEMPL,-7,Legal skip
+RESEMPL,-5,No such member in the HH
+RESEMPL,-3,Interviewer error
+RESEMPL,-2,Refuse to answer
+RESEMPL,-1,Don't know
+RESEMPL,0,No
+RESEMPL,1,Yes
+HHM2EMP,-9,Break off
+HHM2EMP,-7,Legal skip
+HHM2EMP,-5,No such member in the HH
+HHM2EMP,-3,Interviewer error
+HHM2EMP,-2,Refuse to answer
+HHM2EMP,-1,Don't know
+HHM2EMP,0,No
+HHM2EMP,1,Yes
+HHM3EMP,-9,Break off
+HHM3EMP,-7,Legal skip
+HHM3EMP,-5,No such member in the HH
+HHM3EMP,-3,Interviewer error
+HHM3EMP,-2,Refuse to answer
+HHM3EMP,-1,Don't know
+HHM3EMP,0,No
+HHM3EMP,1,Yes
+HHM4EMP,-9,Break off
+HHM4EMP,-7,Legal skip
+HHM4EMP,-5,No such member in the HH
+HHM4EMP,-3,Interviewer error
+HHM4EMP,-2,Refuse to answer
+HHM4EMP,-1,Don't know
+HHM4EMP,0,No
+HHM4EMP,1,Yes
+HHM5EMP,-9,Break off
+HHM5EMP,-7,Legal skip
+HHM5EMP,-5,No such member in the HH
+HHM5EMP,-3,Interviewer error
+HHM5EMP,-2,Refuse to answer
+HHM5EMP,-1,Don't know
+HHM5EMP,0,No
+HHM5EMP,1,Yes
+HHM6EMP,-9,Break off
+HHM6EMP,-7,Legal skip
+HHM6EMP,-5,No such member in the HH
+HHM6EMP,-3,Interviewer error
+HHM6EMP,-2,Refuse to answer
+HHM6EMP,-1,Don't know
+HHM6EMP,0,No
+HHM6EMP,1,Yes
+HHM7EMP,-9,Break off
+HHM7EMP,-7,Legal skip
+HHM7EMP,-5,No such member in the HH
+HHM7EMP,-3,Interviewer error
+HHM7EMP,-2,Refuse to answer
+HHM7EMP,-1,Don't know
+HHM7EMP,0,No
+HHM7EMP,1,Yes
+HHM8EMP,-9,Break off
+HHM8EMP,-7,Legal skip
+HHM8EMP,-5,No such member in the HH
+HHM8EMP,-3,Interviewer error
+HHM8EMP,-2,Refuse to answer
+HHM8EMP,-1,Don't know
+HHM8EMP,0,No
+HHM8EMP,1,Yes
+HHM9EMP,-9,Break off
+HHM9EMP,-7,Legal skip
+HHM9EMP,-5,No such member in the HH
+HHM9EMP,-3,Interviewer error
+HHM9EMP,-2,Refuse to answer
+HHM9EMP,-1,Don't know
+HHM9EMP,0,No
+HHM9EMP,1,Yes
+HHM10EMP,-9,Break off
+HHM10EMP,-7,Legal skip
+HHM10EMP,-5,No such member in the HH
+HHM10EMP,-3,Interviewer error
+HHM10EMP,-2,Refuse to answer
+HHM10EMP,-1,Don't know
+HHM10EMP,0,No
+HHM10EMP,1,Yes
+HHM11EMP,-9,Break off
+HHM11EMP,-7,Legal skip
+HHM11EMP,-5,No such member in the HH
+HHM11EMP,-3,Interviewer error
+HHM11EMP,-2,Refuse to answer
+HHM11EMP,-1,Don't know
+HHM11EMP,0,No
+HHM11EMP,1,Yes
+HHM12EMP,-9,Break off
+HHM12EMP,-7,Legal skip
+HHM12EMP,-5,No such member in the HH
+HHM12EMP,-3,Interviewer error
+HHM12EMP,-2,Refuse to answer
+HHM12EMP,-1,Don't know
+HHM12EMP,0,No
+HHM12EMP,1,Yes
+HHM13EMP,-9,Break off
+HHM13EMP,-7,Legal skip
+HHM13EMP,-5,No such member in the HH
+HHM13EMP,-3,Interviewer error
+HHM13EMP,-2,Refuse to answer
+HHM13EMP,-1,Don't know
+HHM13EMP,0,No
+HHM13EMP,1,Yes
+RESPMAR,-9,Break off
+RESPMAR,-7,Legal skip
+RESPMAR,-5,No such member in the HH
+RESPMAR,-3,Interviewer error
+RESPMAR,-2,Refuse to answer
+RESPMAR,-1,Don't know
+RESPMAR,1,Never married
+RESPMAR,2,Married: official state marriage only no religious ceremony
+RESPMAR,3,Married: religious ceremony only not registered with state
+RESPMAR,4,Married: both state marriage and religious ceremony
+RESPMAR,5,Cohabiting without civil or religious marriage
+RESPMAR,6,Divorced
+RESPMAR,7,Separated
+RESPMAR,8,Widow/Widower
+HHM2MAR,-9,Break off
+HHM2MAR,-7,Legal skip
+HHM2MAR,-5,No such member in the HH
+HHM2MAR,-3,Interviewer error
+HHM2MAR,-2,Refuse to answer
+HHM2MAR,-1,Don't know
+HHM2MAR,1,Never married
+HHM2MAR,2,Married: official state marriage only no religious ceremony
+HHM2MAR,3,Married: religious ceremony only not registered with state
+HHM2MAR,4,Married: both state marriage and religious ceremony
+HHM2MAR,5,Cohabiting without civil or religious marriage
+HHM2MAR,6,Divorced
+HHM2MAR,7,Separated
+HHM2MAR,8,Widow/Widower
+HHM3MAR,-9,Break off
+HHM3MAR,-7,Legal skip
+HHM3MAR,-5,No such member in the HH
+HHM3MAR,-3,Interviewer error
+HHM3MAR,-2,Refuse to answer
+HHM3MAR,-1,Don't know
+HHM3MAR,1,Never married
+HHM3MAR,2,Married: official state marriage only no religious ceremony
+HHM3MAR,3,Married: religious ceremony only not registered with state
+HHM3MAR,4,Married: both state marriage and religious ceremony
+HHM3MAR,5,Cohabiting without civil or religious marriage
+HHM3MAR,6,Divorced
+HHM3MAR,7,Separated
+HHM3MAR,8,Widow/Widower
+HHM4MAR,-9,Break off
+HHM4MAR,-7,Legal skip
+HHM4MAR,-5,No such member in the HH
+HHM4MAR,-3,Interviewer error
+HHM4MAR,-2,Refuse to answer
+HHM4MAR,-1,Don't know
+HHM4MAR,1,Never married
+HHM4MAR,2,Married: official state marriage only no religious ceremony
+HHM4MAR,3,Married: religious ceremony only not registered with state
+HHM4MAR,4,Married: both state marriage and religious ceremony
+HHM4MAR,5,Cohabiting without civil or religious marriage
+HHM4MAR,6,Divorced
+HHM4MAR,7,Separated
+HHM4MAR,8,Widow/Widower
+HHM5MAR,-9,Break off
+HHM5MAR,-7,Legal skip
+HHM5MAR,-5,No such member in the HH
+HHM5MAR,-3,Interviewer error
+HHM5MAR,-2,Refuse to answer
+HHM5MAR,-1,Don't know
+HHM5MAR,1,Never married
+HHM5MAR,2,Married: official state marriage only no religious ceremony
+HHM5MAR,3,Married: religious ceremony only not registered with state
+HHM5MAR,4,Married: both state marriage and religious ceremony
+HHM5MAR,5,Cohabiting without civil or religious marriage
+HHM5MAR,6,Divorced
+HHM5MAR,7,Separated
+HHM5MAR,8,Widow/Widower
+HHM6MAR,-9,Break off
+HHM6MAR,-7,Legal skip
+HHM6MAR,-5,No such member in the HH
+HHM6MAR,-3,Interviewer error
+HHM6MAR,-2,Refuse to answer
+HHM6MAR,-1,Don't know
+HHM6MAR,1,Never married
+HHM6MAR,2,Married: official state marriage only no religious ceremony
+HHM6MAR,3,Married: religious ceremony only not registered with state
+HHM6MAR,4,Married: both state marriage and religious ceremony
+HHM6MAR,5,Cohabiting without civil or religious marriage
+HHM6MAR,6,Divorced
+HHM6MAR,7,Separated
+HHM6MAR,8,Widow/Widower
+HHM7MAR,-9,Break off
+HHM7MAR,-7,Legal skip
+HHM7MAR,-5,No such member in the HH
+HHM7MAR,-3,Interviewer error
+HHM7MAR,-2,Refuse to answer
+HHM7MAR,-1,Don't know
+HHM7MAR,1,Never married
+HHM7MAR,2,Married: official state marriage only no religious ceremony
+HHM7MAR,3,Married: religious ceremony only not registered with state
+HHM7MAR,4,Married: both state marriage and religious ceremony
+HHM7MAR,5,Cohabiting without civil or religious marriage
+HHM7MAR,6,Divorced
+HHM7MAR,7,Separated
+HHM7MAR,8,Widow/Widower
+HHM8MAR,-9,Break off
+HHM8MAR,-7,Legal skip
+HHM8MAR,-5,No such member in the HH
+HHM8MAR,-3,Interviewer error
+HHM8MAR,-2,Refuse to answer
+HHM8MAR,-1,Don't know
+HHM8MAR,1,Never married
+HHM8MAR,2,Married: official state marriage only no religious ceremony
+HHM8MAR,3,Married: religious ceremony only not registered with state
+HHM8MAR,4,Married: both state marriage and religious ceremony
+HHM8MAR,5,Cohabiting without civil or religious marriage
+HHM8MAR,6,Divorced
+HHM8MAR,7,Separated
+HHM8MAR,8,Widow/Widower
+HHM9MAR,-9,Break off
+HHM9MAR,-7,Legal skip
+HHM9MAR,-5,No such member in the HH
+HHM9MAR,-3,Interviewer error
+HHM9MAR,-2,Refuse to answer
+HHM9MAR,-1,Don't know
+HHM9MAR,1,Never married
+HHM9MAR,2,Married: official state marriage only no religious ceremony
+HHM9MAR,3,Married: religious ceremony only not registered with state
+HHM9MAR,4,Married: both state marriage and religious ceremony
+HHM9MAR,5,Cohabiting without civil or religious marriage
+HHM9MAR,6,Divorced
+HHM9MAR,7,Separated
+HHM9MAR,8,Widow/Widower
+HHM10MAR,-9,Break off
+HHM10MAR,-7,Legal skip
+HHM10MAR,-5,No such member in the HH
+HHM10MAR,-3,Interviewer error
+HHM10MAR,-2,Refuse to answer
+HHM10MAR,-1,Don't know
+HHM10MAR,1,Never married
+HHM10MAR,2,Married: official state marriage only no religious ceremony
+HHM10MAR,3,Married: religious ceremony only not registered with state
+HHM10MAR,4,Married: both state marriage and religious ceremony
+HHM10MAR,5,Cohabiting without civil or religious marriage
+HHM10MAR,6,Divorced
+HHM10MAR,7,Separated
+HHM10MAR,8,Widow/Widower
+HHM11MAR,-9,Break off
+HHM11MAR,-7,Legal skip
+HHM11MAR,-5,No such member in the HH
+HHM11MAR,-3,Interviewer error
+HHM11MAR,-2,Refuse to answer
+HHM11MAR,-1,Don't know
+HHM11MAR,1,Never married
+HHM11MAR,2,Married: official state marriage only no religious ceremony
+HHM11MAR,3,Married: religious ceremony only not registered with state
+HHM11MAR,4,Married: both state marriage and religious ceremony
+HHM11MAR,5,Cohabiting without civil or religious marriage
+HHM11MAR,6,Divorced
+HHM11MAR,7,Separated
+HHM11MAR,8,Widow/Widower
+HHM12MAR,-9,Break off
+HHM12MAR,-7,Legal skip
+HHM12MAR,-5,No such member in the HH
+HHM12MAR,-3,Interviewer error
+HHM12MAR,-2,Refuse to answer
+HHM12MAR,-1,Don't know
+HHM12MAR,1,Never married
+HHM12MAR,2,Married: official state marriage only no religious ceremony
+HHM12MAR,3,Married: religious ceremony only not registered with state
+HHM12MAR,4,Married: both state marriage and religious ceremony
+HHM12MAR,5,Cohabiting without civil or religious marriage
+HHM12MAR,6,Divorced
+HHM12MAR,7,Separated
+HHM12MAR,8,Widow/Widower
+HHM13MAR,-9,Break off
+HHM13MAR,-7,Legal skip
+HHM13MAR,-5,No such member in the HH
+HHM13MAR,-3,Interviewer error
+HHM13MAR,-2,Refuse to answer
+HHM13MAR,-1,Don't know
+HHM13MAR,1,Never married
+HHM13MAR,2,Married: official state marriage only no religious ceremony
+HHM13MAR,3,Married: religious ceremony only not registered with state
+HHM13MAR,4,Married: both state marriage and religious ceremony
+HHM13MAR,5,Cohabiting without civil or religious marriage
+HHM13MAR,6,Divorced
+HHM13MAR,7,Separated
+HHM13MAR,8,Widow/Widower
+HELPA,-9,Break off
+HELPA,-7,Legal skip
+HELPA,-3,Interviewer error
+HELPA,0,No
+HELPA,1,Yes
+ECONSTN,-9,Break off
+ECONSTN,-7,Legal skip
+ECONSTN,-3,Interviewer error
+ECONSTN,-2,Refuse to answer
+ECONSTN,-1,Don't know
+ECONSTN,1,Not enough money for food
+ECONSTN,2,Enough money for food only but not for clothes
+ECONSTN,3,Enough money for food & clothes but not for expensive durable
+ECONSTN,4,Enough money for  some durables fridge etc.
+ECONSTN,5,Enough money for everything needed
+OWNCOTV,-9,Break off
+OWNCOTV,-7,Legal skip
+OWNCOTV,-3,Interviewer error
+OWNCOTV,-2,Refuse to answer
+OWNCOTV,-1,Don't know
+OWNCOTV,0,No
+OWNCOTV,1,Yes
+OWNDIGC,-9,Break off
+OWNDIGC,-7,Legal skip
+OWNDIGC,-3,Interviewer error
+OWNDIGC,-2,Refuse to answer
+OWNDIGC,-1,Don't know
+OWNDIGC,0,No
+OWNDIGC,1,Yes
+OWNWASH,-9,Break off
+OWNWASH,-7,Legal skip
+OWNWASH,-3,Interviewer error
+OWNWASH,-2,Refuse to answer
+OWNWASH,-1,Don't know
+OWNWASH,0,No
+OWNWASH,1,Yes
+OWNFRDG,-9,Break off
+OWNFRDG,-7,Legal skip
+OWNFRDG,-3,Interviewer error
+OWNFRDG,-2,Refuse to answer
+OWNFRDG,-1,Don't know
+OWNFRDG,0,No
+OWNFRDG,1,Yes
+OWNAIRC,-9,Break off
+OWNAIRC,-7,Legal skip
+OWNAIRC,-3,Interviewer error
+OWNAIRC,-2,Refuse to answer
+OWNAIRC,-1,Don't know
+OWNAIRC,0,No
+OWNAIRC,1,Yes
+OWNCARS,-9,Break off
+OWNCARS,-7,Legal skip
+OWNCARS,-3,Interviewer error
+OWNCARS,-2,Refuse to answer
+OWNCARS,-1,Don't know
+OWNCARS,0,No
+OWNCARS,1,Yes
+OWNLNDP,-9,Break off
+OWNLNDP,-7,Legal skip
+OWNLNDP,-3,Interviewer error
+OWNLNDP,-2,Refuse to answer
+OWNLNDP,-1,Don't know
+OWNLNDP,0,No
+OWNLNDP,1,Yes
+OWNCELL,-9,Break off
+OWNCELL,-7,Legal skip
+OWNCELL,-3,Interviewer error
+OWNCELL,-2,Refuse to answer
+OWNCELL,-1,Don't know
+OWNCELL,0,No
+OWNCELL,1,Yes
+CELLINT,-9,Break off
+CELLINT,-7,Legal skip
+CELLINT,-3,Interviewer error
+CELLINT,-2,Refuse to answer
+CELLINT,-1,Don't know
+CELLINT,0,No
+CELLINT,1,Yes
+OWNCOMP,-9,Break off
+OWNCOMP,-7,Legal skip
+OWNCOMP,-3,Interviewer error
+OWNCOMP,-2,Refuse to answer
+OWNCOMP,-1,Don't know
+OWNCOMP,0,No
+OWNCOMP,1,Yes
+WEBHOME,-9,Break off
+WEBHOME,-7,Legal skip
+WEBHOME,-3,Interviewer error
+WEBHOME,-2,Refuse to answer
+WEBHOME,-1,Don't know
+WEBHOME,0,No
+WEBHOME,1,Yes
+NUMCOTV,-9,Break off
+NUMCOTV,-7,Legal skip
+NUMCOTV,-3,Interviewer error
+NUMCOTV,-2,Refuse to answer
+NUMCOTV,-1,Don't know
+NUMDIGC,-9,Break off
+NUMDIGC,-7,Legal skip
+NUMDIGC,-3,Interviewer error
+NUMDIGC,-2,Refuse to answer
+NUMDIGC,-1,Don't know
+NUMWASH,-9,Break off
+NUMWASH,-7,Legal skip
+NUMWASH,-3,Interviewer error
+NUMWASH,-2,Refuse to answer
+NUMWASH,-1,Don't know
+NUMFRDG,-9,Break off
+NUMFRDG,-7,Legal skip
+NUMFRDG,-3,Interviewer error
+NUMFRDG,-2,Refuse to answer
+NUMFRDG,-1,Don't know
+NUMAIRC,-9,Break off
+NUMAIRC,-7,Legal skip
+NUMAIRC,-3,Interviewer error
+NUMAIRC,-2,Refuse to answer
+NUMAIRC,-1,Don't know
+NUMCARS,-9,Break off
+NUMCARS,-7,Legal skip
+NUMCARS,-3,Interviewer error
+NUMCARS,-2,Refuse to answer
+NUMCARS,-1,Don't know
+NUMCELL,-9,Break off
+NUMCELL,-7,Legal skip
+NUMCELL,-3,Interviewer error
+NUMCELL,-2,Refuse to answer
+NUMCELL,-1,Don't know
+NUMCOMP,-9,Break off
+NUMCOMP,-7,Legal skip
+NUMCOMP,-3,Interviewer error
+NUMCOMP,-2,Refuse to answer
+NUMCOMP,-1,Don't know
+YRPCOTV,-9,Break off
+YRPCOTV,-7,Legal skip
+YRPCOTV,-5,Not purchased
+YRPCOTV,-3,Interviewer error
+YRPCOTV,-2,Refuse to answer
+YRPCOTV,-1,Don't know
+YRPCOTV,1,Before 1960
+YRPCOTV,2,1960-1969
+YRPCOTV,3,1970-1979
+YRPCOTV,4,1980-1989
+YRPCOTV,5,1990-1999
+YRPCOTV,6,2000-2009
+YRPCOTV,7,2010-present
+YRPDIGC,-9,Break off
+YRPDIGC,-7,Legal skip
+YRPDIGC,-5,Not purchased
+YRPDIGC,-3,Interviewer error
+YRPDIGC,-2,Refuse to answer
+YRPDIGC,-1,Don't know
+YRPDIGC,1,Before 1960
+YRPDIGC,2,1960-1969
+YRPDIGC,3,1970-1979
+YRPDIGC,4,1980-1989
+YRPDIGC,5,1990-1999
+YRPDIGC,6,2000-2009
+YRPDIGC,7,2010-present
+YRPWASH,-9,Break off
+YRPWASH,-7,Legal skip
+YRPWASH,-5,Not purchased
+YRPWASH,-3,Interviewer error
+YRPWASH,-2,Refuse to answer
+YRPWASH,-1,Don't know
+YRPWASH,1,Before 1960
+YRPWASH,2,1960-1969
+YRPWASH,3,1970-1979
+YRPWASH,4,1980-1989
+YRPWASH,5,1990-1999
+YRPWASH,6,2000-2009
+YRPWASH,7,2010-present
+YRPFRDG,-9,Break off
+YRPFRDG,-7,Legal skip
+YRPFRDG,-5,Not purchased
+YRPFRDG,-3,Interviewer error
+YRPFRDG,-2,Refuse to answer
+YRPFRDG,-1,Don't know
+YRPFRDG,1,Before 1960
+YRPFRDG,2,1960-1969
+YRPFRDG,3,1970-1979
+YRPFRDG,4,1980-1989
+YRPFRDG,5,1990-1999
+YRPFRDG,6,2000-2009
+YRPFRDG,7,2010-present
+YRPAIRC,-9,Break off
+YRPAIRC,-7,Legal skip
+YRPAIRC,-5,Not purchased
+YRPAIRC,-3,Interviewer error
+YRPAIRC,-2,Refuse to answer
+YRPAIRC,-1,Don't know
+YRPAIRC,1,Before 1960
+YRPAIRC,2,1960-1969
+YRPAIRC,3,1970-1979
+YRPAIRC,4,1980-1989
+YRPAIRC,5,1990-1999
+YRPAIRC,6,2000-2009
+YRPAIRC,7,2010-present
+YRPCARS,-9,Break off
+YRPCARS,-7,Legal skip
+YRPCARS,-5,Not purchased
+YRPCARS,-3,Interviewer error
+YRPCARS,-2,Refuse to answer
+YRPCARS,-1,Don't know
+YRPCARS,1,Before 1960
+YRPCARS,2,1960-1969
+YRPCARS,3,1970-1979
+YRPCARS,4,1980-1989
+YRPCARS,5,1990-1999
+YRPCARS,6,2000-2009
+YRPCARS,7,2010-present
+YRPCELL,-9,Break off
+YRPCELL,-7,Legal skip
+YRPCELL,-5,Not purchased
+YRPCELL,-3,Interviewer error
+YRPCELL,-2,Refuse to answer
+YRPCELL,-1,Don't know
+YRPCELL,1,Before 1960
+YRPCELL,2,1960-1969
+YRPCELL,3,1970-1979
+YRPCELL,4,1980-1989
+YRPCELL,5,1990-1999
+YRPCELL,6,2000-2009
+YRPCELL,7,2010-present
+PHINTYR,-9,Break off
+PHINTYR,-7,Legal skip
+PHINTYR,-5,Not purchased
+PHINTYR,-3,Interviewer error
+PHINTYR,-2,Refuse to answer
+PHINTYR,-1,Don't know
+PHINTYR,1,Before 1960
+PHINTYR,2,1960-1969
+PHINTYR,3,1970-1979
+PHINTYR,4,1980-1989
+PHINTYR,5,1990-1999
+PHINTYR,6,2000-2009
+PHINTYR,7,2010-present
+YRPCOMP,-9,Break off
+YRPCOMP,-7,Legal skip
+YRPCOMP,-5,Not purchased
+YRPCOMP,-3,Interviewer error
+YRPCOMP,-2,Refuse to answer
+YRPCOMP,-1,Don't know
+YRPCOMP,1,Before 1960
+YRPCOMP,2,1960-1969
+YRPCOMP,3,1970-1979
+YRPCOMP,4,1980-1989
+YRPCOMP,5,1990-1999
+YRPCOMP,6,2000-2009
+YRPCOMP,7,2010-present
+YRWEBHO,-9,Break off
+YRWEBHO,-7,Legal skip
+YRWEBHO,-5,Not purchased
+YRWEBHO,-3,Interviewer error
+YRWEBHO,-2,Refuse to answer
+YRWEBHO,-1,Don't know
+YRWEBHO,1,Before 1960
+YRWEBHO,2,1960-1969
+YRWEBHO,3,1970-1979
+YRWEBHO,4,1980-1989
+YRWEBHO,5,1990-1999
+YRWEBHO,6,2000-2009
+YRWEBHO,7,2010-present
+LIMBRED,-9,Break off
+LIMBRED,-7,Legal skip
+LIMBRED,-5,Not applicable
+LIMBRED,-3,Interviewer error
+LIMBRED,-2,Refuse to answer
+LIMBRED,-1,Don't know
+LIMBRED,0,No
+LIMBRED,1,Yes
+LIMMILK,-9,Break off
+LIMMILK,-7,Legal skip
+LIMMILK,-5,Not applicable
+LIMMILK,-3,Interviewer error
+LIMMILK,-2,Refuse to answer
+LIMMILK,-1,Don't know
+LIMMILK,0,No
+LIMMILK,1,Yes
+LIMPOUL,-9,Break off
+LIMPOUL,-7,Legal skip
+LIMPOUL,-5,Not applicable
+LIMPOUL,-3,Interviewer error
+LIMPOUL,-2,Refuse to answer
+LIMPOUL,-1,Don't know
+LIMPOUL,0,No
+LIMPOUL,1,Yes
+LIMBEEF,-9,Break off
+LIMBEEF,-7,Legal skip
+LIMBEEF,-5,Not applicable
+LIMBEEF,-3,Interviewer error
+LIMBEEF,-2,Refuse to answer
+LIMBEEF,-1,Don't know
+LIMBEEF,0,No
+LIMBEEF,1,Yes
+LIMPORK,-9,Break off
+LIMPORK,-7,Legal skip
+LIMPORK,-5,Not applicable
+LIMPORK,-3,Interviewer error
+LIMPORK,-2,Refuse to answer
+LIMPORK,-1,Don't know
+LIMPORK,0,No
+LIMPORK,1,Yes
+LIMFISH,-9,Break off
+LIMFISH,-7,Legal skip
+LIMFISH,-5,Not applicable
+LIMFISH,-3,Interviewer error
+LIMFISH,-2,Refuse to answer
+LIMFISH,-1,Don't know
+LIMFISH,0,No
+LIMFISH,1,Yes
+LIMVEGS,-9,Break off
+LIMVEGS,-7,Legal skip
+LIMVEGS,-5,Not applicable
+LIMVEGS,-3,Interviewer error
+LIMVEGS,-2,Refuse to answer
+LIMVEGS,-1,Don't know
+LIMVEGS,0,No
+LIMVEGS,1,Yes
+LIMPOTA,-9,Break off
+LIMPOTA,-7,Legal skip
+LIMPOTA,-5,Not applicable
+LIMPOTA,-3,Interviewer error
+LIMPOTA,-2,Refuse to answer
+LIMPOTA,-1,Don't know
+LIMPOTA,0,No
+LIMPOTA,1,Yes
+LIMSWEE,-9,Break off
+LIMSWEE,-7,Legal skip
+LIMSWEE,-5,Not applicable
+LIMSWEE,-3,Interviewer error
+LIMSWEE,-2,Refuse to answer
+LIMSWEE,-1,Don't know
+LIMSWEE,0,No
+LIMSWEE,1,Yes
+LIMELEC,-9,Break off
+LIMELEC,-7,Legal skip
+LIMELEC,-5,Not applicable
+LIMELEC,-3,Interviewer error
+LIMELEC,-2,Refuse to answer
+LIMELEC,-1,Don't know
+LIMELEC,0,No
+LIMELEC,1,Yes
+LIMGASS,-9,Break off
+LIMGASS,-7,Legal skip
+LIMGASS,-5,Not applicable
+LIMGASS,-3,Interviewer error
+LIMGASS,-2,Refuse to answer
+LIMGASS,-1,Don't know
+LIMGASS,0,No
+LIMGASS,1,Yes
+LIMTRAN,-9,Break off
+LIMTRAN,-7,Legal skip
+LIMTRAN,-5,Not applicable
+LIMTRAN,-3,Interviewer error
+LIMTRAN,-2,Refuse to answer
+LIMTRAN,-1,Don't know
+LIMTRAN,0,No
+LIMTRAN,1,Yes
+NOMONFD,-9,Break off
+NOMONFD,-7,Legal skip
+NOMONFD,-3,Interviewer error
+NOMONFD,-2,Refuse to answer
+NOMONFD,-1,Don't know
+NOMONFD,1,Every day
+NOMONFD,2,Every week
+NOMONFD,3,Every month
+NOMONFD,4,Less often
+NOMONFD,5,Never
+INCSOUCO,-9,Break off
+INCSOUCO,-7,Legal skip
+INCSOUCO,-3,Interviewer error
+INCSOUCO,-2,Refuse to answer
+INCSOUCO,-1,Don't know
+INCSOUCO,0,No
+INCSOUCO,1,Yes
+INCSOUAB,-9,Break off
+INCSOUAB,-7,Legal skip
+INCSOUAB,-3,Interviewer error
+INCSOUAB,-2,Refuse to answer
+INCSOUAB,-1,Don't know
+INCSOUAB,0,No
+INCSOUAB,1,Yes
+INCSOUAG,-9,Break off
+INCSOUAG,-7,Legal skip
+INCSOUAG,-3,Interviewer error
+INCSOUAG,-2,Refuse to answer
+INCSOUAG,-1,Don't know
+INCSOUAG,0,No
+INCSOUAG,1,Yes
+INCSOUSL,-9,Break off
+INCSOUSL,-7,Legal skip
+INCSOUSL,-3,Interviewer error
+INCSOUSL,-2,Refuse to answer
+INCSOUSL,-1,Don't know
+INCSOUSL,0,No
+INCSOUSL,1,Yes
+INCSOUGO,-9,Break off
+INCSOUGO,-7,Legal skip
+INCSOUGO,-3,Interviewer error
+INCSOUGO,-2,Refuse to answer
+INCSOUGO,-1,Don't know
+INCSOUGO,0,No
+INCSOUGO,1,Yes
+INCSOURE,-9,Break off
+INCSOURE,-7,Legal skip
+INCSOURE,-3,Interviewer error
+INCSOURE,-2,Refuse to answer
+INCSOURE,-1,Don't know
+INCSOURE,0,No
+INCSOURE,1,Yes
+INCSOUPR,-9,Break off
+INCSOUPR,-7,Legal skip
+INCSOUPR,-3,Interviewer error
+INCSOUPR,-2,Refuse to answer
+INCSOUPR,-1,Don't know
+INCSOUPR,0,No
+INCSOUPR,1,Yes
+INCSOUIN,-9,Break off
+INCSOUIN,-7,Legal skip
+INCSOUIN,-3,Interviewer error
+INCSOUIN,-2,Refuse to answer
+INCSOUIN,-1,Don't know
+INCSOUIN,0,No
+INCSOUIN,1,Yes
+INCSOUOT,-9,Break off
+INCSOUOT,-7,Legal skip
+INCSOUOT,-3,Interviewer error
+INCSOUOT,-2,Refuse to answer
+INCSOUOT,-1,Don't know
+INCSOUOT,0,No
+INCSOUOT,1,Yes
+MONYTOT,-9,Break off
+MONYTOT,-7,Legal skip
+MONYTOT,-3,Interviewer error
+MONYTOT,-2,Refuse to answer
+MONYTOT,-1,Don't know
+MONYTOT,1,More than USD 1200
+MONYTOT,2,USD 801 <96> 1200
+MONYTOT,3,USD 401 <96> 800
+MONYTOT,4,USD 251 <96> 400
+MONYTOT,5,USD 101 <96> 250
+MONYTOT,6,USD 51<96> 100
+MONYTOT,7,Up to USD 50
+MONYTOT,8,0
+SPENDMO,-9,Break off
+SPENDMO,-7,Legal skip
+SPENDMO,-3,Interviewer error
+SPENDMO,-2,Refuse to answer
+SPENDMO,-1,Don't know
+SPENDMO,1,More than USD 1200
+SPENDMO,2,USD 801 <96> 1200
+SPENDMO,3,USD 401 <96> 800
+SPENDMO,4,USD 251 <96> 400
+SPENDMO,5,USD 101 <96> 250
+SPENDMO,6,USD 51<96> 100
+SPENDMO,7,Up to USD 50
+SPENDMO,8,0
+FOODDBT,-9,Break off
+FOODDBT,-7,Legal skip
+FOODDBT,-3,Interviewer error
+FOODDBT,-2,Refuse to answer
+FOODDBT,-1,Don't know
+FOODDBT,1,Each week
+FOODDBT,2,Each month
+FOODDBT,3,Every other month
+FOODDBT,4,Less frequently
+FOODDBT,5,Never
+UTILDBT,-9,Break off
+UTILDBT,-7,Legal skip
+UTILDBT,-3,Interviewer error
+UTILDBT,-2,Refuse to answer
+UTILDBT,-1,Don't know
+UTILDBT,1,Each week
+UTILDBT,2,Each month
+UTILDBT,3,Every other month
+UTILDBT,4,Less frequently
+UTILDBT,5,Never
+CURRUNG,-9,Break off
+CURRUNG,-7,Legal skip
+CURRUNG,-3,Interviewer error
+CURRUNG,-2,Refuse to answer
+CURRUNG,-1,Don't know
+CURRUNG,1,Lowest
+CURRUNG,10,Highest
+FUTRUNG,-9,Break off
+FUTRUNG,-7,Legal skip
+FUTRUNG,-3,Interviewer error
+FUTRUNG,-2,Refuse to answer
+FUTRUNG,-1,Don't know
+FUTRUNG,1,Lowest
+FUTRUNG,10,Highest
+RELCOND,-9,Break off
+RELCOND,-7,Legal skip
+RELCOND,-3,Interviewer error
+RELCOND,-2,Refuse to answer
+RELCOND,-1,Don't know
+RELCOND,1,Very poor
+RELCOND,2,Poor
+RELCOND,3,Fair
+RELCOND,4,Good
+RELCOND,5,Very good
+MININCR,-9,Break off
+MININCR,-7,Legal skip
+MININCR,-3,Interviewer error
+MININCR,-2,Refuse to answer
+MININCR,-1,Don't know
+MININCR,1,More than USD 1200
+MININCR,2,USD 801 <96> 1200
+MININCR,3,USD 401 <96> 800
+MININCR,4,USD 251 <96> 400
+MININCR,5,USD 101 <96> 250
+MININCR,6,USD 51<96> 100
+MININCR,7,Up to USD 50
+MININCR,8,0
+CHLDFIN,-9,Break off
+CHLDFIN,-7,Legal skip
+CHLDFIN,-5,Not applicable <96> No children
+CHLDFIN,-3,Interviewer error
+CHLDFIN,-2,Refuse to answer
+CHLDFIN,-1,Don't know
+CHLDFIN,1,Worse off
+CHLDFIN,2,The same
+CHLDFIN,3,Better off
+WHYCHBO,-9,Break off
+WHYCHBO,-7,Legal skip
+WHYCHBO,-3,Interviewer error
+WHYCHBO,-2,Refuse to answer
+WHYCHBO,-1,Don't know
+WHYCHBO,1,Luck
+WHYCHBO,2,Education
+WHYCHBO,3,Inheritance
+WHYCHBO,4,Connections
+WHYCHBO,5,Marriage to a right person
+WHYCHBO,6,God's blessing
+WHYCHBO,7,Talent
+WHYCHBO,8,Self-confidence
+WHYCHBO,9,Ability to work hard
+WHYCHBO,10,Motivation
+WHYCHBO,11,Political environment in the country
+WHYCHBO,12,Economic situation in the country
+WHYCHBO,13,The prospects of joining the EU
+WHYCHBO,14,Other
+HELPC,-9,Break off
+HELPC,-7,Legal skip
+HELPC,-3,Interviewer error
+HELPC,0,No
+HELPC,1,Yes
+KNOWNK,-9,Break off
+KNOWNK,-7,Legal skip
+KNOWNK,-5,Not asked
+KNOWNK,-3,Interviewer error
+KNOWNK,-2,Refuse to answer
+KNOWNK,-1,Don't know
+KNOWNK,0,No
+KNOWNK,1,Yes
+NK4_1,-9,Break off
+NK4_1,-7,Legal skip
+NK4_1,-3,Interviewer error
+NK4_1,-2,Refuse to answer
+NK4_1,-1,Don't know
+NK4_1,1,Very unlikely
+NK4_1,2,Rather unlikely
+NK4_1,3,Rather likely
+NK4_1,4,Very likely
+NK4_2,-9,Break off
+NK4_2,-7,Legal skip
+NK4_2,-3,Interviewer error
+NK4_2,-2,Refuse to answer
+NK4_2,-1,Don't know
+NK4_2,1,Very unlikely
+NK4_2,2,Rather unlikely
+NK4_2,3,Rather likely
+NK4_2,4,Very likely
+NK5AZ_1,-9,Break off
+NK5AZ_1,-7,Legal skip
+NK5AZ_1,-6,Not asked
+NK5AZ_1,-5,Indifferent
+NK5AZ_1,-3,Interviewer error
+NK5AZ_1,-2,Refuse to answer
+NK5AZ_1,-1,Don't know
+NK5AZ_1,1,Never accept
+NK5AZ_1,2,Accept under certain circumstances
+NK5AZ_1,3,Definitely favor
+NK5AZ_2,-9,Break off
+NK5AZ_2,-7,Legal skip
+NK5AZ_2,-6,Not asked
+NK5AZ_2,-5,Indifferent
+NK5AZ_2,-3,Interviewer error
+NK5AZ_2,-2,Refuse to answer
+NK5AZ_2,-1,Don't know
+NK5AZ_2,1,Never accept
+NK5AZ_2,2,Accept under certain circumstances
+NK5AZ_2,3,Definitely favor
+NK5AZ_3,-9,Break off
+NK5AZ_3,-7,Legal skip
+NK5AZ_3,-6,Not asked
+NK5AZ_3,-5,Indifferent
+NK5AZ_3,-3,Interviewer error
+NK5AZ_3,-2,Refuse to answer
+NK5AZ_3,-1,Don't know
+NK5AZ_3,1,Never accept
+NK5AZ_3,2,Accept under certain circumstances
+NK5AZ_3,3,Definitely favor
+NK5AZ_4,-9,Break off
+NK5AZ_4,-7,Legal skip
+NK5AZ_4,-6,Not asked
+NK5AZ_4,-5,Indifferent
+NK5AZ_4,-3,Interviewer error
+NK5AZ_4,-2,Refuse to answer
+NK5AZ_4,-1,Don't know
+NK5AZ_4,1,Never accept
+NK5AZ_4,2,Accept under certain circumstances
+NK5AZ_4,3,Definitely favor
+NK5AZ_5,-9,Break off
+NK5AZ_5,-7,Legal skip
+NK5AZ_5,-6,Not asked
+NK5AZ_5,-5,Indifferent
+NK5AZ_5,-3,Interviewer error
+NK5AZ_5,-2,Refuse to answer
+NK5AZ_5,-1,Don't know
+NK5AZ_5,1,Never accept
+NK5AZ_5,2,Accept under certain circumstances
+NK5AZ_5,3,Definitely favor
+NK5AR_1,-9,Break off
+NK5AR_1,-7,Legal skip
+NK5AR_1,-6,Not asked
+NK5AR_1,-5,Indifferent
+NK5AR_1,-3,Interviewer error
+NK5AR_1,-2,Refuse to answer
+NK5AR_1,-1,Don't know
+NK5AR_1,1,Never accept
+NK5AR_1,2,Accept under certain circumstances
+NK5AR_1,3,Definitely favor
+NK5AR_2,-9,Break off
+NK5AR_2,-7,Legal skip
+NK5AR_2,-6,Not asked
+NK5AR_2,-5,Indifferent
+NK5AR_2,-3,Interviewer error
+NK5AR_2,-2,Refuse to answer
+NK5AR_2,-1,Don't know
+NK5AR_2,1,Never accept
+NK5AR_2,2,Accept under certain circumstances
+NK5AR_2,3,Definitely favor
+NK5AR_3,-9,Break off
+NK5AR_3,-7,Legal skip
+NK5AR_3,-6,Not asked
+NK5AR_3,-5,Indifferent
+NK5AR_3,-3,Interviewer error
+NK5AR_3,-2,Refuse to answer
+NK5AR_3,-1,Don't know
+NK5AR_3,1,Never accept
+NK5AR_3,2,Accept under certain circumstances
+NK5AR_3,3,Definitely favor
+NK5AR_4,-9,Break off
+NK5AR_4,-7,Legal skip
+NK5AR_4,-6,Not asked
+NK5AR_4,-5,Indifferent
+NK5AR_4,-3,Interviewer error
+NK5AR_4,-2,Refuse to answer
+NK5AR_4,-1,Don't know
+NK5AR_4,1,Never accept
+NK5AR_4,2,Accept under certain circumstances
+NK5AR_4,3,Definitely favor
+NK5AR_5,-9,Break off
+NK5AR_5,-7,Legal skip
+NK5AR_5,-6,Not asked
+NK5AR_5,-5,Indifferent
+NK5AR_5,-3,Interviewer error
+NK5AR_5,-2,Refuse to answer
+NK5AR_5,-1,Don't know
+NK5AR_5,1,Never accept
+NK5AR_5,2,Accept under certain circumstances
+NK5AR_5,3,Definitely favor
+KNOWAB,-9,Break-off
+KNOWAB,-5,Not asked
+KNOWAB,-3,Interviewer error
+KNOWAB,-2,Refuse to answer
+KNOWAB,-1,Don't know
+KNOWAB,0,No
+KNOWAB,1,Yes
+RESABKH,-9,Break off
+RESABKH,-7,Legal skip
+RESABKH,-3,Interviewer error
+RESABKH,-2,Refuse to answer
+RESABKH,-1,Don't know
+RESABKH,1,It has already been resolved
+RESABKH,2,Within the next year
+RESABKH,3,In 2<96>5 years
+RESABKH,5,In 6<96>10 years
+RESABKH,6,In more than 10 years
+RESABKH,7,Never
+RC6_1,-9,Break off
+RC6_1,-7,Legal skip
+RC6_1,-5,Indifferent
+RC6_1,-3,Interviewer error
+RC6_1,-2,Refuse to answer
+RC6_1,-1,Don't know
+RC6_1,1,Never accept
+RC6_1,2,Accept under certain circumstances
+RC6_1,3,Definitely favor
+RC6_2,-9,Break off
+RC6_2,-7,Legal skip
+RC6_2,-5,Indifferent
+RC6_2,-3,Interviewer error
+RC6_2,-2,Refuse to answer
+RC6_2,-1,Don't know
+RC6_2,1,Never accept
+RC6_2,2,Accept under certain circumstances
+RC6_2,3,Definitely favor
+RC6_3,-9,Break off
+RC6_3,-7,Legal skip
+RC6_3,-5,Indifferent
+RC6_3,-3,Interviewer error
+RC6_3,-2,Refuse to answer
+RC6_3,-1,Don't know
+RC6_3,1,Never accept
+RC6_3,2,Accept under certain circumstances
+RC6_3,3,Definitely favor
+RC6_4,-9,Break off
+RC6_4,-7,Legal skip
+RC6_4,-5,Indifferent
+RC6_4,-3,Interviewer error
+RC6_4,-2,Refuse to answer
+RC6_4,-1,Don't know
+RC6_4,1,Never accept
+RC6_4,2,Accept under certain circumstances
+RC6_4,3,Definitely favor
+RC6_5,-9,Break off
+RC6_5,-7,Legal skip
+RC6_5,-5,Indifferent
+RC6_5,-3,Interviewer error
+RC6_5,-2,Refuse to answer
+RC6_5,-1,Don't know
+RC6_5,1,Never accept
+RC6_5,2,Accept under certain circumstances
+RC6_5,3,Definitely favor
+LISTENO,-7,Legal skip
+LISTENO,-3,Interviewer error
+LISTENO,1,"Yes, during the entire interview"
+LISTENO,2,"Yes, most of the time"
+LISTENO,3,"Yes, when answering sections 6 and/or 7"
+LISTENO,4,"Yes, for less than half of the interview"
+LISTENO,5,"Yes, for only a few questions"
+LISTENO,6,No
+FRQDIST,-7,Legal skip
+FRQDIST,-3,Interviewer error
+FRQDIST,1,Never
+FRQDIST,2,For a few questions (less than 10)
+FRQDIST,3,For some questions (between 10 and 20)
+FRQDIST,4,For many questions (but less than half)
+FRQDIST,5,"Throughout most, or entire interview"
+FRQKNOW,-7,Legal skip
+FRQKNOW,-3,Interviewer error
+FRQKNOW,1,Never
+FRQKNOW,2,For a few questions (less than 10)
+FRQKNOW,3,For some questions (between 10 and 20)
+FRQKNOW,4,For many questions (but less than half)
+FRQKNOW,5,"Throughout most, or entire interview"
+FRQRLCT,-7,Legal skip
+FRQRLCT,-3,Interviewer error
+FRQRLCT,1,Never
+FRQRLCT,2,For a few questions (less than 10)
+FRQRLCT,3,For some questions (between 10 and 20)
+FRQRLCT,4,For many questions (but less than half)
+FRQRLCT,5,"Throughout most, or entire interview"
+FRQSHCD,-7,Legal skip
+FRQSHCD,-3,Interviewer error
+FRQSHCD,1,Never
+FRQSHCD,2,For a few show cards (less than 10)
+FRQSHCD,3,For some show cards (approximately 25%)
+FRQSHCD,4,For many show cards (but less than half)
+FRQSHCD,5,"For most, or all show cards"
+RESPINL,-7,Legal skip
+RESPINL,-3,Interviewer error
+RESPINL,1,Not at all intelligent
+RESPINL,2,Not very intelligent
+RESPINL,3,Average
+RESPINL,4,Intelligent
+RESPINL,5,Very intelligent
+RESPSINC,-7,Legal skip
+RESPSINC,-3,Interviewer error
+RESPSINC,1,Not at all sincere
+RESPSINC,10,Completely sincere
+RESPTIR,-7,Legal skip
+RESPTIR,-3,Interviewer error
+RESPTIR,1,Very tired
+RESPTIR,10,Not tired at all
+INTCOMP,-7,Legal skip
+INTCOMP,-3,Interviewer error
+INTCOMP,1,Yes
+INTCOMP,2,No
+INTNUM,-7,Legal skip
+INTNUM,-5,Not asked
+INTNUM,-3,Interviewer error
+SUBSTRATUM,1,Capital
+SUBSTRATUM,2,North-East Rural
+SUBSTRATUM,3,North-West Rural
+SUBSTRATUM,4,South-East Rural
+SUBSTRATUM,5,South-West Rural
+SUBSTRATUM,6,North-East Urban
+SUBSTRATUM,7,North-West Urban
+SUBSTRATUM,8,South-East Urban
+SUBSTRATUM,9,South-West Urban
+INTLANG,-7,Legal skip
+INTLANG,-3,Interviewer error
+INTLANG,-2,Refuse to answer
+INTLANG,-1,Don't know
+INTLANG,1,Armenian
+INTLANG,2,Azeri
+INTLANG,3,Georgian
+INTLANG,4,Other language
+NONRESRES,-3,Interviewer error
+NONRESRES,1,Completed interview
+NONRESRES,2,Interview conducted but less than 50% of questions validly answered
+NONRESRES,3,Interview interrupted by the respondent
+NONRESRES,4,Interview interrupted by the respondent's household member(s)
+NONRESRES,5,Interview interrupted by authorities
+NONRESRES,6,Could not arranged day and time for interview
+NONRESRES,7,Respondent unable to complete interview in applicable language
+NONRESRES,8,Respondent not capable to be interviewed for reasons other than language
+NONRESRES,9,Respondent refused to be interviewed
+NONRESRES,10,Respondent not home and won't return during the fieldwork
+NONRESRES,11,Household/who opened door refused
+NONRESRES,12,Who opened the door didn't speak any available language
+NONRESRES,13,No adult available
+NONRESRES,14,Nobody home
+NONRESRES,15,Dwelling inaccessable
+NONRESRES,16,Fieldwork was interrupted by the authorities
+C1R,-7,Legal skip
+C1R,-3,Interviewer error
+C1R,1,Completed interview
+C1R,2,Interview interrupted by respondent
+C1R,3,Interview interrupted by respondent's household member(s)
+C1R,4,Interview interrupted by authorities
+C1R,5,Arranged day and time for interview
+C1R,6,Respondent unable to complete interview in applicable language
+C1R,7,Respondent not capable to be interviewed for reasons other than language
+C1R,8,Respondent refused to be interviewed
+C1R,9,Respondent not home and won't return during the fieldwork
+C1R,10,Household/who opened door refused
+C1R,11,Who opened the door didn't speak any available language
+C1R,12,No adult available
+C1R,13,Nobody home
+C1R,14,Dwelling inaccessable
+C1R,15,Fieldwork was interrupted by the authorities
+C1DATE,-7,Legal skip
+C1DATE,-3,Interviewer error
+C1TIME,-7,Legal skip
+C1TIME,-3,Interviewer error
+C2R,-7,Legal skip
+C2R,-3,Interviewer error
+C2R,1,Completed interview
+C2R,2,Interview interrupted by respondent
+C2R,3,Interview interrupted by respondent's household member(s)
+C2R,4,Interview interrupted by authorities
+C2R,5,Arranged day and time for interview
+C2R,6,Respondent unable to complete interview in applicable language
+C2R,7,Respondent not capable to be interviewed for reasons other than language
+C2R,8,Respondent refused to be interviewed
+C2R,9,Respondent not home and won't return during the fieldwork
+C2R,10,Household/who opened door refused
+C2R,11,Who opened the door didn't speak any available language
+C2R,12,No adult available
+C2R,13,Nobody home
+C2R,14,Dwelling inaccessable
+C2R,15,Fieldwork was interrupted by the authorities
+C2DATE,-7,Legal skip
+C2DATE,-3,Interviewer error
+C2TIME,-7,Legal skip
+C2TIME,-3,Interviewer error
+C3R,-7,Legal skip
+C3R,-3,Interviewer error
+C3R,1,Completed interview
+C3R,2,Interview interrupted by respondent
+C3R,3,Interview interrupted by respondent's household member(s)
+C3R,4,Interview interrupted by authorities
+C3R,5,Arranged day and time for interview
+C3R,6,Respondent unable to complete interview in applicable language
+C3R,7,Respondent not capable to be interviewed for reasons other than language
+C3R,8,Respondent refused to be interviewed
+C3R,9,Respondent not home and won't return during the fieldwork
+C3R,10,Household/who opened door refused
+C3R,11,Who opened the door didn't speak any available language
+C3R,12,No adult available
+C3R,13,Nobody home
+C3R,14,Dwelling inaccessable
+C3R,15,Fieldwork was interrupted by the authorities
+C3DATE,-7,Legal skip
+C3DATE,-3,Interviewer error
+C3TIME,-7,Legal skip
+C3TIME,-3,Interviewer error
+INTDATE,-7,Legal skip
+INTDATE,-3,Interviewer error
+INTSTART,-7,Legal skip
+INTSTART,-3,Interviewer error
+INTEND,-7,Legal skip
+INTEND,-3,Interviewer error
+INTDUR,-7,Legal skip
+INTDUR,-3,Interviewer error
+V4,-7,Legal skip
+V4,-3,Interviewer error
+V4,-2,Refuse to answer
+V4,-1,Don't know
+V5,-7,Legal skip
+V5,-3,Interviewer error
+V5,-2,Refuse to answer
+V5,-1,Don't know

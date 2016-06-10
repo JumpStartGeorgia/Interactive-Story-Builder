@@ -1,0 +1,6017 @@
+regioni,1,Tbilisi
+regioni,2,Achara
+regioni,3,Guria
+regioni,4,"ImereTi, Racha"
+regioni,5,Kakheti
+regioni,6,Mtskheta-mtianeti
+regioni,7,Qvemo qartli
+regioni,8,Samtskhe-javakheti
+regioni,9,Samegrelo
+regioni,10,Sida qartli
+raioni,1,vake
+raioni,2,saburtalo
+raioni,3,mtatsminda
+raioni,4,krtsanisi
+raioni,5,didube
+raioni,6,chugureti
+raioni,7,isani
+raioni,8,samgori
+raioni,9,gldani
+raioni,10,nadzladevi
+raioni,11,Batumi
+raioni,12,qeda
+raioni,13,qobuleti
+raioni,14,shuakhevi
+raioni,15,khelvachauri
+raioni,16,khulo
+raioni,17,chokhatauri
+raioni,18,lanchkhuti
+raioni,19,ozurgeti
+raioni,20,ambrolauri
+raioni,21,bagdati
+raioni,22,tsageri
+raioni,23,lentekhi
+raioni,24,mestia
+raioni,25,oni
+raioni,26,qutaisi
+raioni,27,sachkhere
+raioni,28,samtredia
+raioni,29,terjola
+raioni,30,tkibuli
+raioni,31,vani
+raioni,32,chiatura
+raioni,33,tskaltubo
+raioni,34,kharagauli
+raioni,35,khoni
+raioni,36,zestaponi
+raioni,37,ahxmeta
+raioni,38,dedoplistskaro
+raioni,39,gurjaani
+raioni,40,lagodekhi
+raioni,41,sagarejo
+raioni,42,signagi
+raioni,43,telavi
+raioni,44,kvareli
+raioni,45,mtskheta
+raioni,46,dusheti
+raioni,47,tianeti
+raioni,48,kazbegi
+raioni,49,bolnisi
+raioni,50,dmanisi
+raioni,51,gardabani
+raioni,52,marneuli
+raioni,53,rustavi
+raioni,54,tetritskaro
+raioni,55,tsalka
+raioni,56,adigeni
+raioni,57,aspindza
+raioni,58,akhalcikhe
+raioni,59,akhalqalaqi
+raioni,60,bakuriani
+raioni,61,borjomi
+raioni,62,ninotsminda
+raioni,63,abasha
+raioni,64,chkhorotsku
+raioni,65,poti
+raioni,66,martvili
+raioni,67,senaki
+raioni,68,tsalenjikha
+raioni,69,khobi
+raioni,70,zugdidi
+raioni,71,gori
+raioni,72,kaspi
+raioni,73,qareli
+raioni,74,khashuri
+raioni,75,devliTa dasaxleba
+sakrebulo,1,"qeda,dandalo, jalabashvilebi"
+sakrebulo,2,"qobuleti, bobokvati"
+sakrebulo,3,"qobuleti, chaqvi"
+sakrebulo,4,"qobuleti,a dagva"
+sakrebulo,5,"qobuleti, kokhi"
+sakrebulo,6,"qobuleti, ochkhamuri"
+sakrebulo,7,"qobuleti, khala"
+sakrebulo,8,"qobuleti, khucubani"
+sakrebulo,9,"shuakhevi, khomleTi, buTurauli"
+sakrebulo,10,khelvachauri gonio
+sakrebulo,11,"khelvachauri, kakhaberi"
+sakrebulo,12,"khelvachauri, kvariaTi"
+sakrebulo,13,"khelvachauri, makho"
+sakrebulo,14,"khelvachauri, makhvilauri"
+sakrebulo,15,"khelvachauri, orTabaTumi"
+sakrebulo,16,"khelvachauri, sameba"
+sakrebulo,17,"khelvachauri, sharabiZeebi"
+sakrebulo,18,"khelvachauri, sarfi"
+sakrebulo,19,"khelvachauri, winsvla"
+sakrebulo,20,"khulo, dekanashvilebi"
+sakrebulo,21,"khulo, fushrukauli"
+sakrebulo,22,"khulo, mTisubani"
+sakrebulo,23,"chokhatauri,  bukiscikhe"
+sakrebulo,24,"chokhatauri, dablacikhe"
+sakrebulo,25,"chokhatauri, ganakhleba"
+sakrebulo,26,"chokhatauri, gogolesubani"
+sakrebulo,27,"chokhatauri, shua farckhma"
+sakrebulo,28,lanchkhuTi sufsa
+sakrebulo,29,"lanchkhuTi, gaguri"
+sakrebulo,30,"lanchkhuTi, nigoiTi"
+sakrebulo,31,"lanchkhuTi, qvemo shukhuTi"
+sakrebulo,32,"lanchkhuTi, shukhuTi"
+sakrebulo,33,"lanchkhuTi, Wkonagora"
+sakrebulo,34,"lanchkhuTi, zemo akeTi"
+sakrebulo,35,"ozurgeTi, dvabzu"
+sakrebulo,36,"ozurgeTi, likhauri, niaburi"
+sakrebulo,37,"ozurgeTi, qvemo natanebi"
+sakrebulo,38,"ozurgeTi, shroma"
+sakrebulo,39,"ozurgeTi, zeda bakhvi"
+sakrebulo,40,"ozurgeTi, zemo natanebi"
+sakrebulo,41,"ambrolauri, baji"
+sakrebulo,42,"ambrolauri, kachaeTi"
+sakrebulo,43,"ambrolauri, nikorwminda"
+sakrebulo,44,"ambrolauri, wesi"
+sakrebulo,45,"baRdaTi, dimi"
+sakrebulo,46,"baRdaTi, I obcha"
+sakrebulo,47,"baRdaTi, II ofcha"
+sakrebulo,48,"baRdaTi, tsitelkhevi"
+sakrebulo,49,"cageri, chkhuteli, doRurashi"
+sakrebulo,50,"cageri, okureshi"
+sakrebulo,51,"cageri,Rvarishi"
+sakrebulo,52,"sachkhere, argveTi, ckhami"
+sakrebulo,53,"sachkhere, sairkhe"
+sakrebulo,54,"sachkhere, sareki"
+sakrebulo,55,"sachkhere, Wala, perevi"
+sakrebulo,56,samtredia ianeTi
+sakrebulo,57,"samtredia, didi jikhaishi"
+sakrebulo,58,"samtredia, gomi"
+sakrebulo,59,"samtredia, Raniri"
+sakrebulo,60,Terjola rufoTi
+sakrebulo,61,"Terjola, bardubani"
+sakrebulo,62,"Terjola, qv. alisubani"
+sakrebulo,63,"Terjola, qv. simoneTi"
+sakrebulo,64,"Terjola, Tuzi"
+sakrebulo,65,"tkibuli,   jonia"
+sakrebulo,66,"tkibuli,  naboslevi"
+sakrebulo,67,"tkibuli, akhaldaba"
+sakrebulo,68,"tkibuli, gad.wkalwiTela"
+sakrebulo,69,"tkibuli, ivaneuli"
+sakrebulo,70,"tkibuli, mukhura"
+sakrebulo,71,"tkibuli, orpiri"
+sakrebulo,72,"tkibuli, khresili"
+sakrebulo,73,"tkibuli, zeda  Wkepi"
+sakrebulo,74,"vani, gora"
+sakrebulo,75,"vani, miqelefoni"
+sakrebulo,76,"vani, qv. gora"
+sakrebulo,77,"vani, sulori"
+sakrebulo,78,"vani, zeda. gora"
+sakrebulo,79,"WiaTura, bJinevi"
+sakrebulo,80,"WiaTura, nigozeTi, usakhelo"
+sakrebulo,81,"WiaTura, wkalshavi"
+sakrebulo,82,"WiaTura, khreiTi"
+sakrebulo,83,"wkaltubo, ckhunkari, kumisTavi"
+sakrebulo,84,"wyaltubo, farckhanakanebi"
+sakrebulo,85,"wkaltubo, jimastari"
+sakrebulo,86,"wkaltubo, mukhiani"
+sakrebulo,87,"wkaltubo, ofshkviTi"
+sakrebulo,88,"wkaltubo, qveda meskheTi"
+sakrebulo,89,"wkaltubo,gumaTi"
+sakrebulo,90,"kharagauli, sargveshi"
+sakrebulo,91,"kharagauli, wkalaforeTi"
+sakrebulo,92,"kharagauli, khunevi, gedsamania"
+sakrebulo,93,"khoni,qutiri, gvazauri"
+sakrebulo,94,"zestafoni, dilikauri"
+sakrebulo,95,"zestafoni, sazano"
+sakrebulo,96,"akhmeta, mataani"
+sakrebulo,97,"akhmeta, oJio"
+sakrebulo,98,"akhmeta, qistauri"
+sakrebulo,99,"akhmeta, qvemo alvani"
+sakrebulo,100,"akhmeta, zemo alvani"
+sakrebulo,101,"akhmeta, zemo khodasheni"
+sakrebulo,102,"d.wkaro, z.machkhaani,  mirzaani"
+sakrebulo,103,"dedofliswkaro,  jafariZe,"
+sakrebulo,104,"dedofliswkaro, arboshiki"
+sakrebulo,105,"dedofliswkaro, qv.qedi"
+sakrebulo,106,"gurjaani, akhasheni"
+sakrebulo,107,"gurjaani, chumlaki"
+sakrebulo,108,"gurjaani, kalauri"
+sakrebulo,109,"gurjaani, kardenakhi"
+sakrebulo,110,"gurjaani, shashiani"
+sakrebulo,111,"gurjaani, veliscikhe"
+sakrebulo,112,"lagodekhi, shroma"
+sakrebulo,113,"lagodekhi, zemo gurgeniani"
+sakrebulo,114,"sagarejo, bogdanovka"
+sakrebulo,115,"sagarejo, gombori"
+sakrebulo,116,"sagarejo, kakabeTi"
+sakrebulo,117,"sagarejo, lambalo"
+sakrebulo,118,"sagarejo, khashmi"
+sakrebulo,119,"siRnaRi, saqobo"
+sakrebulo,120,"siRnaRi, tibaani"
+sakrebulo,121,"siRnaRi, wnori"
+sakrebulo,122,"Telavi, akura"
+sakrebulo,123,"Telavi, gulgula"
+sakrebulo,124,"Telavi, kisiskhevi"
+sakrebulo,125,"Telavi, kurdRelauri"
+sakrebulo,126,"Telavi, lafankuri"
+sakrebulo,127,"Telavi, nafareuli"
+sakrebulo,128,"Telavi, nasamkhrali"
+sakrebulo,129,"Telavi, qvemo khodasheni, busheti"
+sakrebulo,130,"Telavi, vardisubani"
+sakrebulo,131,"kvareli, mTisZiri"
+sakrebulo,132,"kvareli, shilda"
+sakrebulo,133,"mckheTa, akhalsofeli"
+sakrebulo,134,"dusheTi, ananuri"
+sakrebulo,135,"dusheTi, JonqaZe"
+sakrebulo,136,"dusheTi, mlashe, mlashe"
+sakrebulo,137,"dusheTi,fasanauri"
+sakrebulo,138,"mckheTa, akhalubani"
+sakrebulo,139,"mckheTa, misaqcieli, natakhtari"
+sakrebulo,140,"mckheTa, mukhrani"
+sakrebulo,141,"mckheTa, nichbisi, qvemo nichbisi"
+sakrebulo,142,"mckheTa, qsani"
+sakrebulo,143,"mckheTa, saguramo"
+sakrebulo,144,"mckheTa, werovani"
+sakrebulo,145,"mckheTa, wilkani"
+sakrebulo,146,shankevani
+sakrebulo,147,"TianeTi, Jebota"
+sakrebulo,148,"TianeTi, sakdrioni"
+sakrebulo,149,"TianeTi, sioni"
+sakrebulo,150,"bolnisi, akaurTa"
+sakrebulo,151,"bolnisi, mushevani"
+sakrebulo,152,"bolnisi, nakhiduri, Wapala"
+sakrebulo,153,daba  kazreTi
+sakrebulo,154,"dmanisi, dagarakhlo"
+sakrebulo,155,"dmanisi, gomareTi"
+sakrebulo,156,"dmanisi, qvemo orozmani"
+sakrebulo,157,"dmanisi, kizilajlo"
+sakrebulo,158,"gardabani, aRTaqla, karaTaqla"
+sakrebulo,159,"gardabani, akhalsamgori"
+sakrebulo,160,"gardabani, gamarjveba"
+sakrebulo,161,"gardabani, kalinino, birliki"
+sakrebulo,162,"gardabani, kumisi"
+sakrebulo,163,"gardabani, lemshveniera, mzianeTi"
+sakrebulo,164,"gardabani, martkofi, martkofi"
+sakrebulo,165,"gardabani, nazarlo"
+sakrebulo,166,"gardabani, norio"
+sakrebulo,167,"marneuli, algeTi"
+sakrebulo,168,"marneuli, leJbadine"
+sakrebulo,169,"marneuli, qafanakhchi, qeshalo"
+sakrebulo,170,"marneuli, sadakhlo"
+sakrebulo,171,"marneuli, shulaveri, araflo"
+sakrebulo,172,"marneuli, khojorni, wopi"
+sakrebulo,173,"marneuli, kachaRani"
+sakrebulo,174,"marneuli, kizil_ajlo"
+sakrebulo,175,"marneuli, kulari"
+sakrebulo,176,"marneuli, zemo kulari"
+sakrebulo,177,"marneuli,qafanakhchi, qeshalo"
+sakrebulo,178,"TeTriwkaro, qosalari"
+sakrebulo,179,"TeTriwkaro, samshvilde"
+sakrebulo,180,"walka, burnasheTi"
+sakrebulo,181,"walka, kaburi"
+sakrebulo,182,"walka, kushchi"
+sakrebulo,183,"adigeni, arali"
+sakrebulo,184,"adigeni, mlashis zarzma"
+sakrebulo,185,"adigeni, ude"
+sakrebulo,186,"aspinZa, damala"
+sakrebulo,187,"aspinZa, oTa"
+sakrebulo,188,"aspinZa, Zveli"
+sakrebulo,189,"akhalcikhe, klde"
+sakrebulo,190,"akhalcikhe, patara pamaji"
+sakrebulo,191,"akhalcikhe, skhvilisi"
+sakrebulo,192,"akhalcikhe, wnisi"
+sakrebulo,193,"akhalq. azavreTi, lomarturckhi"
+sakrebulo,194,"akhalqalaqi, gomani"
+sakrebulo,195,"akhalqalaqi, kirovakani"
+sakrebulo,196,"akhalqalaqi, kumurdo"
+sakrebulo,197,"akhalqalaqi, suldi, bozali"
+sakrebulo,198,"akhalqalaqi, varevani"
+sakrebulo,199,"borjomi, kimoTesubani"
+sakrebulo,200,"borjomi, kvibisi"
+sakrebulo,201,"ninowminda, eshtia"
+sakrebulo,202,"ninowminda, ganZa, sagamo"
+sakrebulo,203,"abasha ,marani"
+sakrebulo,204,"chkhorowku, I WoRa"
+sakrebulo,205,"martvili, abedaTi"
+sakrebulo,206,"martvili, bomboTi"
+sakrebulo,207,"martvili, II namikolao"
+sakrebulo,208,"martvili, kurzu"
+sakrebulo,209,"martvili, lekhaindrao"
+sakrebulo,210,"martvili, vedidkari"
+sakrebulo,211,senaki II mokhashi
+sakrebulo,212,"senaki, I mokhashi"
+sakrebulo,213,"senaki, nosiri, saodishario"
+sakrebulo,214,"senaki, shua nosiri"
+sakrebulo,215,"khobi, akhali khibula"
+sakrebulo,216,"khobi, II gurifuli"
+sakrebulo,217,"khobi, qv. jaladidi, saWoWuo"
+sakrebulo,218,"khobi, Zveli khibula"
+sakrebulo,219,"zugdidi, akhalabasTumani"
+sakrebulo,220,"zugdidi, akhalsoflis jumi"
+sakrebulo,221,"zugdidi, caishi, chkhoushi"
+sakrebulo,222,"zugdidi, ingiri"
+sakrebulo,223,"zugdidi, korckheli, nacatu"
+sakrebulo,224,"zugdidi, Wkaduashi"
+sakrebulo,225,gori fukhaanT ubani
+sakrebulo,226,gori variani
+sakrebulo,227,"gori, bershueTi"
+sakrebulo,228,"gori, degeula"
+sakrebulo,229,"gori, didi ateni"
+sakrebulo,230,"gori, fukhaanT ubani"
+sakrebulo,231,"gori, karaleTi"
+sakrebulo,232,"gori, qemerti"
+sakrebulo,233,"gori, qurTa, kekhvi"
+sakrebulo,234,"gori, tirZnisi"
+sakrebulo,235,"gori, tkviavi"
+sakrebulo,236,"gori, variani"
+sakrebulo,237,"kaspi, chobalauri"
+sakrebulo,238,"kaspi, gomi"
+sakrebulo,239,"kaspi, okami"
+sakrebulo,240,"kaspi, khovle"
+sakrebulo,241,"kaspi, zemo khandaki"
+sakrebulo,242,qareli zemo khvedureTi
+sakrebulo,243,"qareli, bebnisi"
+sakrebulo,244,"qareli, dirbi"
+sakrebulo,245,"khashuri, akhalsheni"
+sakrebulo,246,"khashuri, didi flevi"
+sakrebulo,247,"khashuri, imedaanT kari"
+sakrebulo,248,"khashuri, nacargora"
+sakrebulo,249,"khashuri, nadarbazevi"
+sakrebulo,250,"khashuri, qemferi"
+sakrebulo,251,"khashuri, qvishkheTi"
+sakrebulo,252,"khashuri, surami"
+sakrebulo,253,"khashuri, wromi"
+sofeli,1,"qeda,dandalo, jalabaSvilebi"
+sofeli,2,"Suaxevi, xomleTi, buTurauli"
+sofeli,3,"lanCxuTi, nigoiTi, japana"
+sofeli,4,"lanCxuTi, nigoiTi, qviani"
+sofeli,5,"ozurgeTi, lixauri, niaburi"
+sofeli,6,"ozurgeTi, Sroma, xrialeTi"
+sofeli,7,"cageri, Cxuteli, doRuraSi"
+sofeli,8,"cageri,RvariSi,nasperi"
+sofeli,9,"cageri,RvariSi,sanorCi"
+sofeli,10,"saCxere, argveTi, cxami"
+sofeli,11,"saCxere, Wala, perevi"
+sofeli,12,"samtredia, gomi, mTisZiri"
+sofeli,13,"samtredia, gomi, qv. eweri"
+sofeli,14,"samtredia, Raniri, Wagani"
+sofeli,15,"tyibuli, orpiri, mandikori"
+sofeli,16,"tyibuli, orpiri, qv Wyebi"
+sofeli,17,"tyibuli, orpiri, Suyeri"
+sofeli,18,"xaragauli, wyalaforeTi"
+sofeli,19,"xaragauli, wyalaforeTi, xoni"
+sofeli,20,"xaragauli, wyalaforeTi,patara varZi"
+sofeli,21,"xaragauli, xunevi, gedsamania"
+sofeli,22,"xoni,qutiri, gvazauri"
+sofeli,23,"d.wyaro, z.maCxaani,  mirzaani"
+sofeli,24,"gurjaani, Cumlayi, yitaani"
+sofeli,25,"lagodexi, Sroma, kavSiri"
+sofeli,26,"Telavi, qvemo xodaSeni, buSeti"
+sofeli,27,"duSeTi, ananuri, bancurTkari"
+sofeli,28,"duSeTi, ananuri, fxundavi"
+sofeli,29,"duSeTi, ananuri, SalikaanTkari"
+sofeli,30,"duSeTi, ananuri, TandilaanTkari"
+sofeli,31,"duSeTi, ananuri, zotikaanTkari"
+sofeli,32,"duSeTi, JonqaZe, dudaurebi"
+sofeli,33,"duSeTi, JonqaZe, javaxianTkari"
+sofeli,34,"duSeTi, JonqaZe, qerana"
+sofeli,35,"duSeTi, JonqaZe, velTaurTkari"
+sofeli,36,"duSeTi, JonqaZe, veZaTxevi"
+sofeli,37,"duSeTi, mlaSe, pansionati"
+sofeli,38,"mcxeTa, misaqcieli, nataxtari"
+sofeli,39,"mcxeTa, muxrani, Zveli qanda"
+sofeli,40,"mcxeTa, niCbisi, qvemo niCbisi"
+sofeli,41,"mcxeTa, qsani, cixisZiri"
+sofeli,42,"mcxeTa, wilkani, ereda"
+sofeli,43,"mcxeTa, wilkani, Zalisi"
+sofeli,44,"mcxeTa,muxrani, Zveli qanda"
+sofeli,45,"TianeTi, Jebota, mamadaanebi"
+sofeli,46,"TianeTi, Jebota, TeTraxeva"
+sofeli,47,"TianeTi, Jebota, WurWelaurebi"
+sofeli,48,"TianeTi, sioni, badaani"
+sofeli,49,"TianeTi, sioni, orxevi"
+sofeli,50,"TianeTi, sioni, sajinibo"
+sofeli,51,"bolnisi, akaurTa, focxveriani"
+sofeli,52,"dmanisi, qvemo orozmani dalari"
+sofeli,53,"dmanisi, qvemo orozmani, vake"
+sofeli,54,"gardabani, aRTaqla, yaraTaqla"
+sofeli,55,"gardabani, kalinino, birliki"
+sofeli,56,"gardabani, lemSveniera, mzianeTi"
+sofeli,57,"gardabani, martyofi, martyofi"
+sofeli,58,"marneuli, qafanaxCi, qeSalo"
+sofeli,59,"marneuli, Sulaveri, araflo"
+sofeli,60,"marneuli, xojorni, wopi"
+sofeli,61,"marneuli,qafanaxCi, qeSalo"
+sofeli,62,"axalq. azavreTi, lomarturcxi"
+sofeli,63,"ninowminda, ganZa, sagamo"
+sofeli,64,"ninowminda,eStia, yaurma"
+sofeli,65,"martvili, kurzu, dRvana"
+sofeli,66,"martvili, lexaindravo, stefasdabali"
+sofeli,67,"martvili, vediTkari, leforCxua"
+sofeli,68,"martvili, vediTkari, muxurCa"
+sofeli,69,"senaki, nosiri, saodiSario"
+sofeli,70,"xobi, qv. jaladidi, saWoWuo"
+sofeli,71,"zugdidi, caiSi, CxouSi"
+sofeli,72,"zugdidi, korcxeli, nacatu"
+sofeli,73,"gori, qurTa, kexvi"
+sofeli,74,"qareli, bebnisi, leTeTi"
+sofeli,75,"xaSuri, qviSxeTi, bulbuliscixe"
+sofeli,76,"xaSuri, qviSxeTi, monasteri"
+sofeli,77,"xaSuri, qviSxeTi, rusaan Tubani"
+sofeli,78,diRomi
+sofeli,79,wyneTi
+sofeli,80,daba kojori
+sofeli,81,Sindisi
+sheivso,1,"Yes, completely"
+sheivso,2,"Yes, partially"
+sheivso,3,No
+a1_1,1,Household Head
+a1_1,2,Spouse of the Housheold Head
+a1_1,3,"Child and step child, or daughter/son- in-law of the Househo"
+a1_1,4,Parent or grandparent of the Household Head/his (her) spouse
+a1_1,5,Brother or sister of the Household Head/his (her) spouse
+a1_1,6,Grandchild of the Household Head/his (her) spouse
+a1_1,7,"Uncle or aunt, or nieces and nephews of the Household Head/h"
+a1_1,8,Other relative of the Household Head/his (her) spouse
+a1_1,9,Non-relative
+a1_2,1,Household Head
+a1_2,2,Spouse of the Housheold Head
+a1_2,3,"Child and step child, or daughter/son- in-law of the Househo"
+a1_2,4,Parent or grandparent of the Household Head/his (her) spouse
+a1_2,5,Brother or sister of the Household Head/his (her) spouse
+a1_2,6,Grandchild of the Household Head/his (her) spouse
+a1_2,7,"Uncle or aunt, or nieces and nephews of the Household Head/h"
+a1_2,8,Other relative of the Household Head/his (her) spouse
+a1_2,9,Non-relative
+a1_3,1,Household Head
+a1_3,2,Spouse of the Housheold Head
+a1_3,3,"Child and step child, or daughter/son- in-law of the Househo"
+a1_3,4,Parent or grandparent of the Household Head/his (her) spouse
+a1_3,5,Brother or sister of the Household Head/his (her) spouse
+a1_3,6,Grandchild of the Household Head/his (her) spouse
+a1_3,7,"Uncle or aunt, or nieces and nephews of the Household Head/h"
+a1_3,8,Other relative of the Household Head/his (her) spouse
+a1_3,9,Non-relative
+a1_4,1,Household Head
+a1_4,2,Spouse of the Housheold Head
+a1_4,3,"Child and step child, or daughter/son- in-law of the Househo"
+a1_4,4,Parent or grandparent of the Household Head/his (her) spouse
+a1_4,5,Brother or sister of the Household Head/his (her) spouse
+a1_4,6,Grandchild of the Household Head/his (her) spouse
+a1_4,7,"Uncle or aunt, or nieces and nephews of the Household Head/h"
+a1_4,8,Other relative of the Household Head/his (her) spouse
+a1_4,9,Non-relative
+a1_5,1,Household Head
+a1_5,2,Spouse of the Housheold Head
+a1_5,3,"Child and step child, or daughter/son- in-law of the Househo"
+a1_5,4,Parent or grandparent of the Household Head/his (her) spouse
+a1_5,5,Brother or sister of the Household Head/his (her) spouse
+a1_5,6,Grandchild of the Household Head/his (her) spouse
+a1_5,7,"Uncle or aunt, or nieces and nephews of the Household Head/h"
+a1_5,8,Other relative of the Household Head/his (her) spouse
+a1_5,9,Non-relative
+a1_6,1,Household Head
+a1_6,2,Spouse of the Housheold Head
+a1_6,3,"Child and step child, or daughter/son- in-law of the Househo"
+a1_6,4,Parent or grandparent of the Household Head/his (her) spouse
+a1_6,5,Brother or sister of the Household Head/his (her) spouse
+a1_6,6,Grandchild of the Household Head/his (her) spouse
+a1_6,7,"Uncle or aunt, or nieces and nephews of the Household Head/h"
+a1_6,8,Other relative of the Household Head/his (her) spouse
+a1_6,9,Non-relative
+a1_7,1,Household Head
+a1_7,2,Spouse of the Housheold Head
+a1_7,3,"Child and step child, or daughter/son- in-law of the Househo"
+a1_7,4,Parent or grandparent of the Household Head/his (her) spouse
+a1_7,5,Brother or sister of the Household Head/his (her) spouse
+a1_7,6,Grandchild of the Household Head/his (her) spouse
+a1_7,7,"Uncle or aunt, or nieces and nephews of the Household Head/h"
+a1_7,8,Other relative of the Household Head/his (her) spouse
+a1_7,9,Non-relative
+a1_8,1,Household Head
+a1_8,2,Spouse of the Housheold Head
+a1_8,3,"Child and step child, or daughter/son- in-law of the Househo"
+a1_8,4,Parent or grandparent of the Household Head/his (her) spouse
+a1_8,5,Brother or sister of the Household Head/his (her) spouse
+a1_8,6,Grandchild of the Household Head/his (her) spouse
+a1_8,7,"Uncle or aunt, or nieces and nephews of the Household Head/h"
+a1_8,8,Other relative of the Household Head/his (her) spouse
+a1_8,9,Non-relative
+a1_9,1,Household Head
+a1_9,2,Spouse of the Housheold Head
+a1_9,3,"Child and step child, or daughter/son- in-law of the Househo"
+a1_9,4,Parent or grandparent of the Household Head/his (her) spouse
+a1_9,5,Brother or sister of the Household Head/his (her) spouse
+a1_9,6,Grandchild of the Household Head/his (her) spouse
+a1_9,7,"Uncle or aunt, or nieces and nephews of the Household Head/h"
+a1_9,8,Other relative of the Household Head/his (her) spouse
+a1_9,9,Non-relative
+a1_10,1,Household Head
+a1_10,2,Spouse of the Housheold Head
+a1_10,3,"Child and step child, or daughter/son- in-law of the Househo"
+a1_10,4,Parent or grandparent of the Household Head/his (her) spouse
+a1_10,5,Brother or sister of the Household Head/his (her) spouse
+a1_10,6,Grandchild of the Household Head/his (her) spouse
+a1_10,7,"Uncle or aunt, or nieces and nephews of the Household Head/h"
+a1_10,8,Other relative of the Household Head/his (her) spouse
+a1_10,9,Non-relative
+a1_11,1,Household Head
+a1_11,2,Spouse of the Housheold Head
+a1_11,3,"Child and step child, or daughter/son- in-law of the Househo"
+a1_11,4,Parent or grandparent of the Household Head/his (her) spouse
+a1_11,5,Brother or sister of the Household Head/his (her) spouse
+a1_11,6,Grandchild of the Household Head/his (her) spouse
+a1_11,7,"Uncle or aunt, or nieces and nephews of the Household Head/h"
+a1_11,8,Other relative of the Household Head/his (her) spouse
+a1_11,9,Non-relative
+a1_12,1,Household Head
+a1_12,2,Spouse of the Housheold Head
+a1_12,3,"Child and step child, or daughter/son- in-law of the Househo"
+a1_12,4,Parent or grandparent of the Household Head/his (her) spouse
+a1_12,5,Brother or sister of the Household Head/his (her) spouse
+a1_12,6,Grandchild of the Household Head/his (her) spouse
+a1_12,7,"Uncle or aunt, or nieces and nephews of the Household Head/h"
+a1_12,8,Other relative of the Household Head/his (her) spouse
+a1_12,9,Non-relative
+a1_13,1,Household Head
+a1_13,2,Spouse of the Housheold Head
+a1_13,3,"Child and step child, or daughter/son- in-law of the Househo"
+a1_13,4,Parent or grandparent of the Household Head/his (her) spouse
+a1_13,5,Brother or sister of the Household Head/his (her) spouse
+a1_13,6,Grandchild of the Household Head/his (her) spouse
+a1_13,7,"Uncle or aunt, or nieces and nephews of the Household Head/h"
+a1_13,8,Other relative of the Household Head/his (her) spouse
+a1_13,9,Non-relative
+a1_14,1,Household Head
+a1_14,2,Spouse of the Housheold Head
+a1_14,3,"Child and step child, or daughter/son- in-law of the Househo"
+a1_14,4,Parent or grandparent of the Household Head/his (her) spouse
+a1_14,5,Brother or sister of the Household Head/his (her) spouse
+a1_14,6,Grandchild of the Household Head/his (her) spouse
+a1_14,7,"Uncle or aunt, or nieces and nephews of the Household Head/h"
+a1_14,8,Other relative of the Household Head/his (her) spouse
+a1_14,9,Non-relative
+a3_1,1,female
+a3_1,2,male
+a3_2,1,female
+a3_2,2,male
+a3_3,1,female
+a3_3,2,male
+a3_4,1,female
+a3_4,2,male
+a3_5,1,female
+a3_5,2,male
+a3_6,1,female
+a3_6,2,male
+a3_7,1,female
+a3_7,2,male
+a3_8,1,female
+a3_8,2,male
+a3_9,1,female
+a3_9,2,male
+a3_10,1,female
+a3_10,2,male
+a3_11,1,female
+a3_11,2,male
+a3_12,1,female
+a3_12,2,male
+a3_13,1,female
+a3_13,2,male
+a3_14,1,female
+a3_14,2,male
+a3_15,1,female
+a3_15,2,male
+a3_16,1,female
+a3_16,2,male
+a3_17,1,female
+a3_17,2,male
+a3_18,1,female
+a3_18,2,male
+a4_1,1,Married
+a4_1,2,Cohabitant
+a4_1,3,Single
+a4_1,4,Divorced
+a4_1,5,Separated
+a4_1,6,Widow/widower
+a4_1,7,Not of the marriage age
+a4_2,1,Married
+a4_2,2,Cohabitant
+a4_2,3,Single
+a4_2,4,Divorced
+a4_2,5,Separated
+a4_2,6,Widow/widower
+a4_2,7,Not of the marriage age
+a4_3,1,Married
+a4_3,2,Cohabitant
+a4_3,3,Single
+a4_3,4,Divorced
+a4_3,5,Separated
+a4_3,6,Widow/widower
+a4_3,7,Not of the marriage age
+a4_4,1,Married
+a4_4,2,Cohabitant
+a4_4,3,Single
+a4_4,4,Divorced
+a4_4,5,Separated
+a4_4,6,Widow/widower
+a4_4,7,Not of the marriage age
+a4_5,1,Married
+a4_5,2,Cohabitant
+a4_5,3,Single
+a4_5,4,Divorced
+a4_5,5,Separated
+a4_5,6,Widow/widower
+a4_5,7,Not of the marriage age
+a4_6,1,Married
+a4_6,2,Cohabitant
+a4_6,3,Single
+a4_6,4,Divorced
+a4_6,5,Separated
+a4_6,6,Widow/widower
+a4_6,7,Not of the marriage age
+a4_7,1,Married
+a4_7,2,Cohabitant
+a4_7,3,Single
+a4_7,4,Divorced
+a4_7,5,Separated
+a4_7,6,Widow/widower
+a4_7,7,Not of the marriage age
+a4_8,1,Married
+a4_8,2,Cohabitant
+a4_8,3,Single
+a4_8,4,Divorced
+a4_8,5,Separated
+a4_8,6,Widow/widower
+a4_8,7,Not of the marriage age
+a4_9,1,Married
+a4_9,2,Cohabitant
+a4_9,3,Single
+a4_9,4,Divorced
+a4_9,5,Separated
+a4_9,6,Widow/widower
+a4_9,7,Not of the marriage age
+a4_10,1,Married
+a4_10,2,Cohabitant
+a4_10,3,Single
+a4_10,4,Divorced
+a4_10,5,Separated
+a4_10,6,Widow/widower
+a4_10,7,Not of the marriage age
+a4_11,1,Married
+a4_11,2,Cohabitant
+a4_11,3,Single
+a4_11,4,Divorced
+a4_11,5,Separated
+a4_11,6,Widow/widower
+a4_11,7,Not of the marriage age
+a4_12,1,Married
+a4_12,2,Cohabitant
+a4_12,3,Single
+a4_12,4,Divorced
+a4_12,5,Separated
+a4_12,6,Widow/widower
+a4_12,7,Not of the marriage age
+a4_13,1,Married
+a4_13,2,Cohabitant
+a4_13,3,Single
+a4_13,4,Divorced
+a4_13,5,Separated
+a4_13,6,Widow/widower
+a4_13,7,Not of the marriage age
+a4_14,1,Married
+a4_14,2,Cohabitant
+a4_14,3,Single
+a4_14,4,Divorced
+a4_14,5,Separated
+a4_14,6,Widow/widower
+a4_14,7,Not of the marriage age
+a4_15,1,Married
+a4_15,2,Cohabitant
+a4_15,3,Single
+a4_15,4,Divorced
+a4_15,5,Separated
+a4_15,6,Widow/widower
+a4_15,7,Not of the marriage age
+a4_16,1,Married
+a4_16,2,Cohabitant
+a4_16,3,Single
+a4_16,4,Divorced
+a4_16,5,Separated
+a4_16,6,Widow/widower
+a4_16,7,Not of the marriage age
+a4_17,1,Married
+a4_17,2,Cohabitant
+a4_17,3,Single
+a4_17,4,Divorced
+a4_17,5,Separated
+a4_17,6,Widow/widower
+a4_17,7,Not of the marriage age
+a4_18,1,Married
+a4_18,2,Cohabitant
+a4_18,3,Single
+a4_18,4,Divorced
+a4_18,5,Separated
+a4_18,6,Widow/widower
+a4_18,7,Not of the marriage age
+a5_1,1,Christian Orthodox
+a5_1,2,Christian Catholic
+a5_1,3,Christian Gregorian
+a5_1,4,Jewish
+a5_1,5,Muslim
+a5_1,6,Atheist
+a5_1,7,Jehovah's Witness
+a5_1,8,Sun Worshipper
+a5_1,9,Baptist
+a5_1,10,Pentecostal
+a5_2,1,Christian Orthodox
+a5_2,2,Christian Catholic
+a5_2,3,Christian Gregorian
+a5_2,4,Jewish
+a5_2,5,Muslim
+a5_2,6,Atheist
+a5_2,7,Jehovah's Witness
+a5_2,8,Sun Worshipper
+a5_2,9,Baptist
+a5_2,10,Pentecostal
+a5_3,1,Christian Orthodox
+a5_3,2,Christian Catholic
+a5_3,3,Christian Gregorian
+a5_3,4,Jewish
+a5_3,5,Muslim
+a5_3,6,Atheist
+a5_3,7,Jehovah's Witness
+a5_3,8,Sun Worshipper
+a5_3,9,Baptist
+a5_3,10,Pentecostal
+a5_4,1,Christian Orthodox
+a5_4,2,Christian Catholic
+a5_4,3,Christian Gregorian
+a5_4,4,Jewish
+a5_4,5,Muslim
+a5_4,6,Atheist
+a5_4,7,Jehovah's Witness
+a5_4,8,Sun Worshipper
+a5_4,9,Baptist
+a5_4,10,Pentecostal
+a5_5,1,Christian Orthodox
+a5_5,2,Christian Catholic
+a5_5,3,Christian Gregorian
+a5_5,4,Jewish
+a5_5,5,Muslim
+a5_5,6,Atheist
+a5_5,7,Jehovah's Witness
+a5_5,8,Sun Worshipper
+a5_5,9,Baptist
+a5_5,10,Pentecostal
+a5_6,1,Christian Orthodox
+a5_6,2,Christian Catholic
+a5_6,3,Christian Gregorian
+a5_6,4,Jewish
+a5_6,5,Muslim
+a5_6,6,Atheist
+a5_6,7,Jehovah's Witness
+a5_6,8,Sun Worshipper
+a5_6,9,Baptist
+a5_6,10,Pentecostal
+a5_7,1,Christian Orthodox
+a5_7,2,Christian Catholic
+a5_7,3,Christian Gregorian
+a5_7,4,Jewish
+a5_7,5,Muslim
+a5_7,6,Atheist
+a5_7,7,Jehovah's Witness
+a5_7,8,Sun Worshipper
+a5_7,9,Baptist
+a5_7,10,Pentecostal
+a5_8,1,Christian Orthodox
+a5_8,2,Christian Catholic
+a5_8,3,Christian Gregorian
+a5_8,4,Jewish
+a5_8,5,Muslim
+a5_8,6,Atheist
+a5_8,7,Jehovah's Witness
+a5_8,8,Sun Worshipper
+a5_8,9,Baptist
+a5_8,10,Pentecostal
+a5_9,1,Christian Orthodox
+a5_9,2,Christian Catholic
+a5_9,3,Christian Gregorian
+a5_9,4,Jewish
+a5_9,5,Muslim
+a5_9,6,Atheist
+a5_9,7,Jehovah's Witness
+a5_9,8,Sun Worshipper
+a5_9,9,Baptist
+a5_9,10,Pentecostal
+a5_10,1,Christian Orthodox
+a5_10,2,Christian Catholic
+a5_10,3,Christian Gregorian
+a5_10,4,Jewish
+a5_10,5,Muslim
+a5_10,6,Atheist
+a5_10,7,Jehovah's Witness
+a5_10,8,Sun Worshipper
+a5_10,9,Baptist
+a5_10,10,Pentecostal
+a5_11,1,Christian Orthodox
+a5_11,2,Christian Catholic
+a5_11,3,Christian Gregorian
+a5_11,4,Jewish
+a5_11,5,Muslim
+a5_11,6,Atheist
+a5_11,7,Jehovah's Witness
+a5_11,8,Sun Worshipper
+a5_11,9,Baptist
+a5_11,10,Pentecostal
+a5_12,1,Christian Orthodox
+a5_12,2,Christian Catholic
+a5_12,3,Christian Gregorian
+a5_12,4,Jewish
+a5_12,5,Muslim
+a5_12,6,Atheist
+a5_12,7,Jehovah's Witness
+a5_12,8,Sun Worshipper
+a5_12,9,Baptist
+a5_12,10,Pentecostal
+a5_13,1,Christian Orthodox
+a5_13,2,Christian Catholic
+a5_13,3,Christian Gregorian
+a5_13,4,Jewish
+a5_13,5,Muslim
+a5_13,6,Atheist
+a5_13,7,Jehovah's Witness
+a5_13,8,Sun Worshipper
+a5_13,9,Baptist
+a5_13,10,Pentecostal
+a5_14,1,Christian Orthodox
+a5_14,2,Christian Catholic
+a5_14,3,Christian Gregorian
+a5_14,4,Jewish
+a5_14,5,Muslim
+a5_14,6,Atheist
+a5_14,7,Jehovah's Witness
+a5_14,8,Sun Worshipper
+a5_14,9,Baptist
+a5_14,10,Pentecostal
+a5_15,1,Christian Orthodox
+a5_15,2,Christian Catholic
+a5_15,3,Christian Gregorian
+a5_15,4,Jewish
+a5_15,5,Muslim
+a5_15,6,Atheist
+a5_15,7,Jehovah's Witness
+a5_15,8,Baptist
+a5_15,9,Sun Worshipper
+a5_15,10,Pentecostal
+a5_16,1,Christian Orthodox
+a5_16,2,Christian Catholic
+a5_16,3,Christian Gregorian
+a5_16,4,Jewish
+a5_16,5,Muslim
+a5_16,6,Atheist
+a5_16,7,Jehovah's Witness
+a5_16,8,Baptist
+a5_16,9,Sun Worshipper
+a5_16,10,Pentecostal
+a5_17,1,Christian Orthodox
+a5_17,2,Christian Catholic
+a5_17,3,Christian Gregorian
+a5_17,4,Jewish
+a5_17,5,Muslim
+a5_17,6,Atheist
+a5_17,7,Jehovah's Witness
+a5_17,8,Baptist
+a5_17,9,Sun Worshipper
+a5_17,10,Pentecostal
+a5_18,1,Christian Orthodox
+a5_18,2,Christian Catholic
+a5_18,3,Christian Gregorian
+a5_18,4,Jewish
+a5_18,5,Muslim
+a5_18,6,Atheist
+a5_18,7,Jehovah's Witness
+a5_18,8,Baptist
+a5_18,9,Sun Worshipper
+a5_18,10,Pentecostal
+a6_1,1,Georgian
+a6_1,2,Abkhaz
+a6_1,3,Ossetian
+a6_1,4,Russian
+a6_1,5,Azeri
+a6_1,6,Armenian
+a6_1,7,Jewish
+a6_1,8,Yezidi
+a6_1,9,Ukrainian
+a6_1,10,Greece
+a6_1,11,Polish
+a6_1,12,Assyrian
+a6_1,13,German
+a6_1,14,Belorussian
+a6_2,1,Georgian
+a6_2,2,Abkhaz
+a6_2,3,Ossetian
+a6_2,4,Russian
+a6_2,5,Azeri
+a6_2,6,Armenian
+a6_2,7,Jewish
+a6_2,8,Yezidi
+a6_2,9,Ukrainian
+a6_2,10,Greece
+a6_2,11,Polish
+a6_2,12,Assyrian
+a6_2,13,German
+a6_2,14,Belorussian
+a6_3,1,Georgian
+a6_3,2,Abkhaz
+a6_3,3,Ossetian
+a6_3,4,Russian
+a6_3,5,Azeri
+a6_3,6,Armenian
+a6_3,7,Jewish
+a6_3,8,Yezidi
+a6_3,9,Ukrainian
+a6_3,10,Greece
+a6_3,11,Polish
+a6_3,12,Assyrian
+a6_3,13,German
+a6_3,14,Belorussian
+a6_4,1,Georgian
+a6_4,2,Abkhaz
+a6_4,3,Ossetian
+a6_4,4,Russian
+a6_4,5,Azeri
+a6_4,6,Armenian
+a6_4,7,Jewish
+a6_4,8,Yezidi
+a6_4,9,Ukrainian
+a6_4,10,Greece
+a6_4,11,Polish
+a6_4,12,Assyrian
+a6_4,13,German
+a6_4,14,Belorussian
+a6_5,1,Georgian
+a6_5,2,Abkhaz
+a6_5,3,Ossetian
+a6_5,4,Russian
+a6_5,5,Azeri
+a6_5,6,Armenian
+a6_5,7,Jewish
+a6_5,8,Yezidi
+a6_5,9,Ukrainian
+a6_5,10,Greece
+a6_5,11,Polish
+a6_5,12,Assyrian
+a6_5,13,German
+a6_5,14,Belorussian
+a6_6,1,Georgian
+a6_6,2,Abkhaz
+a6_6,3,Ossetian
+a6_6,4,Russian
+a6_6,5,Azeri
+a6_6,6,Armenian
+a6_6,7,Jewish
+a6_6,8,Yezidi
+a6_6,9,Ukrainian
+a6_6,10,Greece
+a6_6,11,Polish
+a6_6,12,Assyrian
+a6_6,13,German
+a6_6,14,Belorussian
+a6_7,1,Georgian
+a6_7,2,Abkhaz
+a6_7,3,Ossetian
+a6_7,4,Russian
+a6_7,5,Azeri
+a6_7,6,Armenian
+a6_7,7,Jewish
+a6_7,8,Yezidi
+a6_7,9,Ukrainian
+a6_7,10,Greece
+a6_7,11,Polish
+a6_7,12,Assyrian
+a6_7,13,German
+a6_7,14,Belorussian
+a6_8,1,Georgian
+a6_8,2,Abkhaz
+a6_8,3,Ossetian
+a6_8,4,Russian
+a6_8,5,Azeri
+a6_8,6,Armenian
+a6_8,7,Jewish
+a6_8,8,Yezidi
+a6_8,9,Ukrainian
+a6_8,10,Greece
+a6_8,11,Polish
+a6_8,12,Assyrian
+a6_8,13,German
+a6_8,14,Belorussian
+a6_9,1,Georgian
+a6_9,2,Abkhaz
+a6_9,3,Ossetian
+a6_9,4,Russian
+a6_9,5,Azeri
+a6_9,6,Armenian
+a6_9,7,Jewish
+a6_9,8,Yezidi
+a6_9,9,Ukrainian
+a6_9,10,Greece
+a6_9,11,Polish
+a6_9,12,Assyrian
+a6_9,13,German
+a6_9,14,Belorussian
+a6_10,1,Georgian
+a6_10,2,Abkhaz
+a6_10,3,Ossetian
+a6_10,4,Russian
+a6_10,5,Azeri
+a6_10,6,Armenian
+a6_10,7,Jewish
+a6_10,8,Yezidi
+a6_10,9,Ukrainian
+a6_10,10,Greece
+a6_10,11,Polish
+a6_10,12,Assyrian
+a6_10,13,German
+a6_10,14,Belorussian
+a6_11,1,Georgian
+a6_11,2,Abkhaz
+a6_11,3,Ossetian
+a6_11,4,Russian
+a6_11,5,Azeri
+a6_11,6,Armenian
+a6_11,7,Jewish
+a6_11,8,Yezidi
+a6_11,9,Ukrainian
+a6_11,10,Greece
+a6_11,11,Polish
+a6_11,12,Assyrian
+a6_11,13,German
+a6_11,14,Belorussian
+a6_12,1,Georgian
+a6_12,2,Abkhaz
+a6_12,3,Ossetian
+a6_12,4,Russian
+a6_12,5,Azeri
+a6_12,6,Armenian
+a6_12,7,Jewish
+a6_12,8,Yezidi
+a6_12,9,Ukrainian
+a6_12,10,Greece
+a6_12,11,Polish
+a6_12,12,Assyrian
+a6_12,13,German
+a6_12,14,Belorussian
+a6_13,1,Georgian
+a6_13,2,Abkhaz
+a6_13,3,Ossetian
+a6_13,4,Russian
+a6_13,5,Azeri
+a6_13,6,Armenian
+a6_13,7,Jewish
+a6_13,8,Yezidi
+a6_13,9,Ukrainian
+a6_13,10,Greece
+a6_13,11,Polish
+a6_13,12,Assyrian
+a6_13,13,German
+a6_13,14,Belorussian
+a6_14,1,Georgian
+a6_14,2,Abkhaz
+a6_14,3,Ossetian
+a6_14,4,Russian
+a6_14,5,Azeri
+a6_14,6,Armenian
+a6_14,7,Jewish
+a6_14,8,Yezidi
+a6_14,9,Ukrainian
+a6_14,10,Greece
+a6_14,11,Polish
+a6_14,12,Assyrian
+a6_14,13,German
+a6_14,14,Belorussian
+a6_15,1,Georgian
+a6_15,2,Abkhaz
+a6_15,3,Ossetian
+a6_15,4,Russian
+a6_15,5,Azeri
+a6_15,6,Armenian
+a6_15,7,Jewish
+a6_15,8,Assyrian
+a6_15,9,Ukrainian
+a6_15,10,Greek
+a6_15,11,Moldavian
+a6_15,12,Bulgarian
+a6_15,13,Kist
+a6_15,14,Belarusian
+a6_15,15,Kurd
+a6_15,16,Tatar
+a6_16,1,Georgian
+a6_16,2,Abkhaz
+a6_16,3,Ossetian
+a6_16,4,Russian
+a6_16,5,Azeri
+a6_16,6,Armenian
+a6_16,7,Jewish
+a6_16,8,Assyrian
+a6_16,9,Ukrainian
+a6_16,10,Greek
+a6_16,11,Moldavian
+a6_16,12,Bulgarian
+a6_16,13,Kist
+a6_16,14,Belarusian
+a6_16,15,Kurd
+a6_16,16,Tatar
+a6_17,1,Georgian
+a6_17,2,Abkhaz
+a6_17,3,Ossetian
+a6_17,4,Russian
+a6_17,5,Azeri
+a6_17,6,Armenian
+a6_17,7,Jewish
+a6_17,8,Assyrian
+a6_17,9,Ukrainian
+a6_17,10,Greek
+a6_17,11,Moldavian
+a6_17,12,Bulgarian
+a6_17,13,Kist
+a6_17,14,Belarusian
+a6_17,15,Kurd
+a6_17,16,Tatar
+a6_18,1,Georgian
+a6_18,2,Abkhaz
+a6_18,3,Ossetian
+a6_18,4,Russian
+a6_18,5,Azeri
+a6_18,6,Armenian
+a6_18,7,Jewish
+a6_18,8,Assyrian
+a6_18,9,Ukrainian
+a6_18,10,Greek
+a6_18,11,Moldavian
+a6_18,12,Bulgarian
+a6_18,13,Kist
+a6_18,14,Belarusian
+a6_18,15,Kurd
+a6_18,16,Tatar
+a7_1,1,Yes
+a7_1,2,No
+a7_2,1,Yes
+a7_2,2,No
+a7_3,1,Yes
+a7_3,2,No
+a7_4,1,Yes
+a7_4,2,No
+a7_5,1,Yes
+a7_5,2,No
+a7_6,1,Yes
+a7_6,2,No
+a7_7,1,Yes
+a7_7,2,No
+a7_8,1,Yes
+a7_8,2,No
+a7_9,1,Yes
+a7_9,2,No
+a7_10,1,Yes
+a7_10,2,No
+a7_11,1,Yes
+a7_11,2,No
+a7_12,1,Yes
+a7_12,2,No
+a7_13,1,Yes
+a7_13,2,No
+a7_14,1,Yes
+a7_14,2,No
+a7_15,1,Yes
+a7_15,2,No
+a7_16,1,Yes
+a7_16,2,No
+a7_17,1,Yes
+a7_17,2,No
+a7_18,1,Yes
+a7_18,2,No
+a7_1_1,1,Yes
+a7_1_1,2,No
+a7_1_2,1,Yes
+a7_1_2,2,No
+a7_1_3,1,Yes
+a7_1_3,2,No
+a7_1_4,1,Yes
+a7_1_4,2,No
+a7_1_5,1,Yes
+a7_1_5,2,No
+a7_1_6,1,Yes
+a7_1_6,2,No
+a7_1_7,1,Yes
+a7_1_7,2,No
+a7_1_8,1,Yes
+a7_1_8,2,No
+a7_1_9,1,Yes
+a7_1_9,2,No
+a7_1_10,1,Yes
+a7_1_10,2,No
+a7_1_11,1,Yes
+a7_1_11,2,No
+a7_1_12,1,Yes
+a7_1_12,2,No
+a7_1_13,1,Yes
+a7_1_13,2,No
+a7_1_14,1,Yes
+a7_1_14,2,No
+a7_1_15,1,Yes
+a7_1_15,2,No
+a7_1_16,1,Yes
+a7_1_16,2,No
+a7_1_17,1,Yes
+a7_1_17,2,No
+a7_1_18,1,Yes
+a7_1_18,2,No
+a8_1,1,Yes
+a8_1,2,No
+a8_2,1,Yes
+a8_2,2,No
+a8_3,1,Yes
+a8_3,2,No
+a8_4,1,Yes
+a8_4,2,No
+a8_5,1,Yes
+a8_5,2,No
+a8_6,1,Yes
+a8_6,2,No
+a8_7,1,Yes
+a8_7,2,No
+a8_8,1,Yes
+a8_8,2,No
+a8_9,1,Yes
+a8_9,2,No
+a8_10,1,Yes
+a8_10,2,No
+a8_11,1,Yes
+a8_11,2,No
+a8_12,1,Yes
+a8_12,2,No
+a8_13,1,Yes
+a8_13,2,No
+a8_14,1,Yes
+a8_14,2,No
+a8_15,1,Yes
+a8_15,2,No
+a8_16,1,Yes
+a8_16,2,No
+a8_17,1,Yes
+a8_17,2,No
+a8_18,1,Yes
+a8_18,2,No
+a9_2_1,1,Insurance of vulnerable families
+a9_2_1,2, From cheap (5 GEL) insurance program
+a9_2_1,3,Self-financed insurance at a job
+a9_2_1,4, Employer-sponsored corporate insurance
+a9_2_1,5,Insurance from own resources
+a9_2_1,6,Other
+a9_2_1,7,Do not know
+a9_2_1,8,Refusal
+a9_2_2,1,Insurance of vulnerable families
+a9_2_2,2, From cheap (5 GEL) insurance program
+a9_2_2,3,Self-financed insurance at a job
+a9_2_2,4, Employer-sponsored corporate insurance
+a9_2_2,5,Insurance from own resources
+a9_2_2,6,Other
+a9_2_2,7,Do not know
+a9_2_2,8,Refusal
+a9_2_3,1,Insurance of vulnerable families
+a9_2_3,2, From cheap (5 GEL) insurance program
+a9_2_3,3,Self-financed insurance at a job
+a9_2_3,4, Employer-sponsored corporate insurance
+a9_2_3,5,Insurance from own resources
+a9_2_3,6,Other
+a9_2_3,7,Do not know
+a9_2_3,8,Refusal
+a9_2_4,1,Insurance of vulnerable families
+a9_2_4,2, From cheap (5 GEL) insurance program
+a9_2_4,3,Self-financed insurance at a job
+a9_2_4,4, Employer-sponsored corporate insurance
+a9_2_4,5,Insurance from own resources
+a9_2_4,6,Other
+a9_2_4,7,Do not know
+a9_2_4,8,Refusal
+a9_2_5,1,Insurance of vulnerable families
+a9_2_5,2, From cheap (5 GEL) insurance program
+a9_2_5,3,Self-financed insurance at a job
+a9_2_5,4, Employer-sponsored corporate insurance
+a9_2_5,5,Insurance from own resources
+a9_2_5,6,Other
+a9_2_5,7,Do not know
+a9_2_5,8,Refusal
+a9_2_6,1,Insurance of vulnerable families
+a9_2_6,2, From cheap (5 GEL) insurance program
+a9_2_6,3,Self-financed insurance at a job
+a9_2_6,4, Employer-sponsored corporate insurance
+a9_2_6,5,Insurance from own resources
+a9_2_6,6,Other
+a9_2_6,7,Do not know
+a9_2_6,8,Refusal
+a9_2_7,1,Insurance of vulnerable families
+a9_2_7,2, From cheap (5 GEL) insurance program
+a9_2_7,3,Self-financed insurance at a job
+a9_2_7,4, Employer-sponsored corporate insurance
+a9_2_7,5,Insurance from own resources
+a9_2_7,6,Other
+a9_2_7,7,Do not know
+a9_2_7,8,Refusal
+a9_2_8,1,Insurance of vulnerable families
+a9_2_8,2, From cheap (5 GEL) insurance program
+a9_2_8,3,Self-financed insurance at a job
+a9_2_8,4, Employer-sponsored corporate insurance
+a9_2_8,5,Insurance from own resources
+a9_2_8,6,Other
+a9_2_8,7,Do not know
+a9_2_8,8,Refusal
+a9_2_9,1,Insurance of vulnerable families
+a9_2_9,2, From cheap (5 GEL) insurance program
+a9_2_9,3,Self-financed insurance at a job
+a9_2_9,4, Employer-sponsored corporate insurance
+a9_2_9,5,Insurance from own resources
+a9_2_9,6,Other
+a9_2_9,7,Do not know
+a9_2_9,8,Refusal
+a9_2_10,1,Insurance of vulnerable families
+a9_2_10,2, From cheap (5 GEL) insurance program
+a9_2_10,3,Self-financed insurance at a job
+a9_2_10,4, Employer-sponsored corporate insurance
+a9_2_10,5,Insurance from own resources
+a9_2_10,6,Other
+a9_2_10,7,Do not know
+a9_2_10,8,Refusal
+a9_2_11,1,Insurance of vulnerable families
+a9_2_11,2, From cheap (5 GEL) insurance program
+a9_2_11,3,Self-financed insurance at a job
+a9_2_11,4, Employer-sponsored corporate insurance
+a9_2_11,5,Insurance from own resources
+a9_2_11,6,Other
+a9_2_11,7,Do not know
+a9_2_11,8,Refusal
+a9_2_12,1,Insurance of vulnerable families
+a9_2_12,2, From cheap (5 GEL) insurance program
+a9_2_12,3,Self-financed insurance at a job
+a9_2_12,4, Employer-sponsored corporate insurance
+a9_2_12,5,Insurance from own resources
+a9_2_12,6,Other
+a9_2_12,7,Do not know
+a9_2_12,8,Refusal
+a9_2_13,1,Insurance of vulnerable families
+a9_2_13,2, From cheap (5 GEL) insurance program
+a9_2_13,3,Self-financed insurance at a job
+a9_2_13,4, Employer-sponsored corporate insurance
+a9_2_13,5,Insurance from own resources
+a9_2_13,6,Other
+a9_2_13,7,Do not know
+a9_2_13,8,Refusal
+a9_2_14,1,Insurance of vulnerable families
+a9_2_14,2, From cheap (5 GEL) insurance program
+a9_2_14,3,Self-financed insurance at a job
+a9_2_14,4, Employer-sponsored corporate insurance
+a9_2_14,5,Insurance from own resources
+a9_2_14,6,Other
+a9_2_14,7,Do not know
+a9_2_14,8,Refusal
+a9_2_15,1,Insurance of vulnerable families
+a9_2_15,2, From cheap (5 GEL) insurance program
+a9_2_15,3,Self-financed insurance at a job
+a9_2_15,4, Employer-sponsored corporate insurance
+a9_2_15,5,Insurance from own resources
+a9_2_15,6,Other
+a9_2_15,7,Do not know
+a9_2_15,8,Refusal
+a9_2_16,1,Insurance of vulnerable families
+a9_2_16,2, From cheap (5 GEL) insurance program
+a9_2_16,3,Self-financed insurance at a job
+a9_2_16,4, Employer-sponsored corporate insurance
+a9_2_16,5,Insurance from own resources
+a9_2_16,6,Other
+a9_2_16,7,Do not know
+a9_2_16,8,Refusal
+a9_2_17,1,Insurance of vulnerable families
+a9_2_17,2, From cheap (5 GEL) insurance program
+a9_2_17,3,Self-financed insurance at a job
+a9_2_17,4, Employer-sponsored corporate insurance
+a9_2_17,5,Insurance from own resources
+a9_2_17,6,Other
+a9_2_17,7,Do not know
+a9_2_17,8,Refusal
+a9_2_18,1,Insurance of vulnerable families
+a9_2_18,2, From cheap (5 GEL) insurance program
+a9_2_18,3,Self-financed insurance at a job
+a9_2_18,4, Employer-sponsored corporate insurance
+a9_2_18,5,Insurance from own resources
+a9_2_18,6,Other
+a9_2_18,7,Do not know
+a9_2_18,8,Refusal
+a10_1,1,Illiterate
+a10_1,2,Incomplete secondary
+a10_1,3,School student
+a10_1,4,Secondary
+a10_1,5,Vocational
+a10_1,6,Incomplete higher (ceased higher education)
+a10_1,7,A student of higher education institution
+a10_1,8,Higher
+a10_2,1,Illiterate
+a10_2,2,Incomplete secondary
+a10_2,3,School student
+a10_2,4,Secondary
+a10_2,5,Vocational
+a10_2,6,Incomplete higher (ceased higher education)
+a10_2,7,A student of higher education institution
+a10_2,8,Higher
+a10_3,1,Illiterate
+a10_3,2,Incomplete secondary
+a10_3,3,School student
+a10_3,4,Secondary
+a10_3,5,Vocational
+a10_3,6,Incomplete higher (ceased higher education)
+a10_3,7,A student of higher education institution
+a10_3,8,Higher
+a10_4,1,Illiterate
+a10_4,2,Incomplete secondary
+a10_4,3,School student
+a10_4,4,Secondary
+a10_4,5,Vocational
+a10_4,6,Incomplete higher (ceased higher education)
+a10_4,7,A student of higher education institution
+a10_4,8,Higher
+a10_5,1,Illiterate
+a10_5,2,Incomplete secondary
+a10_5,3,School student
+a10_5,4,Secondary
+a10_5,5,Vocational
+a10_5,6,Incomplete higher (ceased higher education)
+a10_5,7,A student of higher education institution
+a10_5,8,Higher
+a10_6,1,Illiterate
+a10_6,2,Incomplete secondary
+a10_6,3,School student
+a10_6,4,Secondary
+a10_6,5,Vocational
+a10_6,6,Incomplete higher (ceased higher education)
+a10_6,7,A student of higher education institution
+a10_6,8,Higher
+a10_7,1,Illiterate
+a10_7,2,Incomplete secondary
+a10_7,3,School student
+a10_7,4,Secondary
+a10_7,5,Vocational
+a10_7,6,Incomplete higher (ceased higher education)
+a10_7,7,A student of higher education institution
+a10_7,8,Higher
+a10_8,1,Illiterate
+a10_8,2,Incomplete secondary
+a10_8,3,School student
+a10_8,4,Secondary
+a10_8,5,Vocational
+a10_8,6,Incomplete higher (ceased higher education)
+a10_8,7,A student of higher education institution
+a10_8,8,Higher
+a10_9,1,Illiterate
+a10_9,2,Incomplete secondary
+a10_9,3,School student
+a10_9,4,Secondary
+a10_9,5,Vocational
+a10_9,6,Incomplete higher (ceased higher education)
+a10_9,7,A student of higher education institution
+a10_9,8,Higher
+a10_10,1,Illiterate
+a10_10,2,Incomplete secondary
+a10_10,3,School student
+a10_10,4,Secondary
+a10_10,5,Vocational
+a10_10,6,Incomplete higher (ceased higher education)
+a10_10,7,A student of higher education institution
+a10_10,8,Higher
+a10_11,1,Illiterate
+a10_11,2,Incomplete secondary
+a10_11,3,School student
+a10_11,4,Secondary
+a10_11,5,Vocational
+a10_11,6,Incomplete higher (ceased higher education)
+a10_11,7,A student of higher education institution
+a10_11,8,Higher
+a10_12,1,Illiterate
+a10_12,2,Incomplete secondary
+a10_12,3,School student
+a10_12,4,Secondary
+a10_12,5,Vocational
+a10_12,6,Incomplete higher (ceased higher education)
+a10_12,7,A student of higher education institution
+a10_12,8,Higher
+a10_13,1,Illiterate
+a10_13,2,Incomplete secondary
+a10_13,3,School student
+a10_13,4,Secondary
+a10_13,5,Vocational
+a10_13,6,Incomplete higher (ceased higher education)
+a10_13,7,A student of higher education institution
+a10_13,8,Higher
+a10_14,1,Illiterate
+a10_14,2,Incomplete secondary
+a10_14,3,School student
+a10_14,4,Secondary
+a10_14,5,Vocational
+a10_14,6,Incomplete higher (ceased higher education)
+a10_14,7,A student of higher education institution
+a10_14,8,Higher
+a10_15,1,Illiterate
+a10_15,2,Incomplete secondary
+a10_15,3,School student
+a10_15,4,Secondary
+a10_15,5,Vocational
+a10_15,6,Incomplete higher (ceased higher education)
+a10_15,7,A student of higher education institution
+a10_15,8,Higher
+a10_16,1,Illiterate
+a10_16,2,Incomplete secondary
+a10_16,3,School student
+a10_16,4,Secondary
+a10_16,5,Vocational
+a10_16,6,Incomplete higher (ceased higher education)
+a10_16,7,A student of higher education institution
+a10_16,8,Higher
+a10_17,1,Illiterate
+a10_17,2,Incomplete secondary
+a10_17,3,School student
+a10_17,4,Secondary
+a10_17,5,Vocational
+a10_17,6,Incomplete higher (ceased higher education)
+a10_17,7,A student of higher education institution
+a10_17,8,Higher
+a10_18,1,Illiterate
+a10_18,2,Incomplete secondary
+a10_18,3,School student
+a10_18,4,Secondary
+a10_18,5,Vocational
+a10_18,6,Incomplete higher (ceased higher education)
+a10_18,7,A student of higher education institution
+a10_18,8,Higher
+a11_1,1,Yes
+a11_1,2,No
+a11_2,1,Yes
+a11_2,2,No
+a11_3,1,Yes
+a11_3,2,No
+a11_4,1,Yes
+a11_4,2,No
+a11_5,1,Yes
+a11_5,2,No
+a11_6,1,Yes
+a11_6,2,No
+a11_7,1,Yes
+a11_7,2,No
+a11_8,1,Yes
+a11_8,2,No
+a11_9,1,Yes
+a11_9,2,No
+a11_10,1,Yes
+a11_10,2,No
+a11_11,1,Yes
+a11_11,2,No
+a11_12,1,Yes
+a11_12,2,No
+a11_13,1,Yes
+a11_13,2,No
+a11_14,1,Yes
+a11_14,2,No
+a11_15,1,Yes
+a11_15,2,No
+a11_16,1,Yes
+a11_16,2,No
+a11_17,1,Yes
+a11_17,2,No
+a11_18,1,Yes
+a11_18,2,No
+a12_1,1,Worked in a private or public (budgetary) institution/organi
+a12_1,2," Worked on his/her own landplot/took care of own livestock,"
+a12_1,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_1,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_1,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_1,6,Worked individually
+a12_1,7,"Was engaged in individual professional activity (tutoring, p"
+a12_1,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_1,9,Produced hand-made things for selling
+a12_1,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_1,11,Begged
+a12_1,12,Was engaged in other activity
+a12_1,13,Was engaged in no activity for receiving an income during th
+a12_2,1,Worked in a private or public (budgetary) institution/organi
+a12_2,2," Worked on his/her own landplot/took care of own livestock,"
+a12_2,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_2,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_2,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_2,6,Worked individually
+a12_2,7,"Was engaged in individual professional activity (tutoring, p"
+a12_2,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_2,9,Produced hand-made things for selling
+a12_2,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_2,11,Begged
+a12_2,12,Was engaged in other activity
+a12_2,13,Was engaged in no activity for receiving an income during th
+a12_3,1,Worked in a private or public (budgetary) institution/organi
+a12_3,2," Worked on his/her own landplot/took care of own livestock,"
+a12_3,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_3,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_3,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_3,6,Worked individually
+a12_3,7,"Was engaged in individual professional activity (tutoring, p"
+a12_3,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_3,9,Produced hand-made things for selling
+a12_3,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_3,11,Begged
+a12_3,12,Was engaged in other activity
+a12_3,13,Was engaged in no activity for receiving an income during th
+a12_4,1,Worked in a private or public (budgetary) institution/organi
+a12_4,2," Worked on his/her own landplot/took care of own livestock,"
+a12_4,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_4,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_4,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_4,6,Worked individually
+a12_4,7,"Was engaged in individual professional activity (tutoring, p"
+a12_4,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_4,9,Produced hand-made things for selling
+a12_4,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_4,11,Begged
+a12_4,12,Was engaged in other activity
+a12_4,13,Was engaged in no activity for receiving an income during th
+a12_5,1,Worked in a private or public (budgetary) institution/organi
+a12_5,2," Worked on his/her own landplot/took care of own livestock,"
+a12_5,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_5,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_5,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_5,6,Worked individually
+a12_5,7,"Was engaged in individual professional activity (tutoring, p"
+a12_5,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_5,9,Produced hand-made things for selling
+a12_5,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_5,11,Begged
+a12_5,12,Was engaged in other activity
+a12_5,13,Was engaged in no activity for receiving an income during th
+a12_6,1,Worked in a private or public (budgetary) institution/organi
+a12_6,2," Worked on his/her own landplot/took care of own livestock,"
+a12_6,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_6,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_6,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_6,6,Worked individually
+a12_6,7,"Was engaged in individual professional activity (tutoring, p"
+a12_6,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_6,9,Produced hand-made things for selling
+a12_6,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_6,11,Begged
+a12_6,12,Was engaged in other activity
+a12_6,13,Was engaged in no activity for receiving an income during th
+a12_7,1,Worked in a private or public (budgetary) institution/organi
+a12_7,2," Worked on his/her own landplot/took care of own livestock,"
+a12_7,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_7,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_7,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_7,6,Worked individually
+a12_7,7,"Was engaged in individual professional activity (tutoring, p"
+a12_7,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_7,9,Produced hand-made things for selling
+a12_7,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_7,11,Begged
+a12_7,12,Was engaged in other activity
+a12_7,13,Was engaged in no activity for receiving an income during th
+a12_8,1,Worked in a private or public (budgetary) institution/organi
+a12_8,2," Worked on his/her own landplot/took care of own livestock,"
+a12_8,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_8,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_8,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_8,6,Worked individually
+a12_8,7,"Was engaged in individual professional activity (tutoring, p"
+a12_8,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_8,9,Produced hand-made things for selling
+a12_8,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_8,11,Begged
+a12_8,12,Was engaged in other activity
+a12_8,13,Was engaged in no activity for receiving an income during th
+a12_9,1,Worked in a private or public (budgetary) institution/organi
+a12_9,2," Worked on his/her own landplot/took care of own livestock,"
+a12_9,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_9,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_9,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_9,6,Worked individually
+a12_9,7,"Was engaged in individual professional activity (tutoring, p"
+a12_9,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_9,9,Produced hand-made things for selling
+a12_9,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_9,11,Begged
+a12_9,12,Was engaged in other activity
+a12_9,13,Was engaged in no activity for receiving an income during th
+a12_10,1,Worked in a private or public (budgetary) institution/organi
+a12_10,2," Worked on his/her own landplot/took care of own livestock,"
+a12_10,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_10,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_10,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_10,6,Worked individually
+a12_10,7,"Was engaged in individual professional activity (tutoring, p"
+a12_10,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_10,9,Produced hand-made things for selling
+a12_10,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_10,11,Begged
+a12_10,12,Was engaged in other activity
+a12_10,13,Was engaged in no activity for receiving an income during th
+a12_11,1,Worked in a private or public (budgetary) institution/organi
+a12_11,2," Worked on his/her own landplot/took care of own livestock,"
+a12_11,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_11,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_11,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_11,6,Worked individually
+a12_11,7,"Was engaged in individual professional activity (tutoring, p"
+a12_11,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_11,9,Produced hand-made things for selling
+a12_11,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_11,11,Begged
+a12_11,12,Was engaged in other activity
+a12_11,13,Was engaged in no activity for receiving an income during th
+a12_12,1,Worked in a private or public (budgetary) institution/organi
+a12_12,2," Worked on his/her own landplot/took care of own livestock,"
+a12_12,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_12,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_12,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_12,6,Worked individually
+a12_12,7,"Was engaged in individual professional activity (tutoring, p"
+a12_12,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_12,9,Produced hand-made things for selling
+a12_12,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_12,11,Begged
+a12_12,12,Was engaged in other activity
+a12_12,13,Was engaged in no activity for receiving an income during th
+a12_13,1,Worked in a private or public (budgetary) institution/organi
+a12_13,2," Worked on his/her own landplot/took care of own livestock,"
+a12_13,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_13,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_13,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_13,6,Worked individually
+a12_13,7,"Was engaged in individual professional activity (tutoring, p"
+a12_13,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_13,9,Produced hand-made things for selling
+a12_13,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_13,11,Begged
+a12_13,12,Was engaged in other activity
+a12_13,13,Was engaged in no activity for receiving an income during th
+a12_14,1,Worked in a private or public (budgetary) institution/organi
+a12_14,2," Worked on his/her own landplot/took care of own livestock,"
+a12_14,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_14,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_14,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_14,6,Worked individually
+a12_14,7,"Was engaged in individual professional activity (tutoring, p"
+a12_14,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_14,9,Produced hand-made things for selling
+a12_14,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_14,11,Begged
+a12_14,12,Was engaged in other activity
+a12_14,13,Was engaged in no activity for receiving an income during th
+a12_15,1,Worked in a private or public (budgetary) institution/organi
+a12_15,2," Worked on his/her own landplot/took care of own livestock,"
+a12_15,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_15,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_15,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_15,6,Worked individually
+a12_15,7,"Was engaged in individual professional activity (tutoring, p"
+a12_15,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_15,9,Produced hand-made things for selling
+a12_15,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_15,11,Begged
+a12_15,12,Was engaged in other activity
+a12_15,13,Was engaged in no activity for receiving an income during th
+a12_16,1,Worked in a private or public (budgetary) institution/organi
+a12_16,2," Worked on his/her own landplot/took care of own livestock,"
+a12_16,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_16,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_16,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_16,6,Worked individually
+a12_16,7,"Was engaged in individual professional activity (tutoring, p"
+a12_16,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_16,9,Produced hand-made things for selling
+a12_16,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_16,11,Begged
+a12_16,12,Was engaged in other activity
+a12_16,13,Was engaged in no activity for receiving an income during th
+a12_17,1,Worked in a private or public (budgetary) institution/organi
+a12_17,2," Worked on his/her own landplot/took care of own livestock,"
+a12_17,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_17,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_17,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_17,6,Worked individually
+a12_17,7,"Was engaged in individual professional activity (tutoring, p"
+a12_17,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_17,9,Produced hand-made things for selling
+a12_17,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_17,11,Begged
+a12_17,12,Was engaged in other activity
+a12_17,13,Was engaged in no activity for receiving an income during th
+a12_18,1,Worked in a private or public (budgetary) institution/organi
+a12_18,2," Worked on his/her own landplot/took care of own livestock,"
+a12_18,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a12_18,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a12_18,5,Had a temporary job with remuneration in kind (food/goods/bo
+a12_18,6,Worked individually
+a12_18,7,"Was engaged in individual professional activity (tutoring, p"
+a12_18,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a12_18,9,Produced hand-made things for selling
+a12_18,10,"Gathered scrap metal, bottles for changing them for money at"
+a12_18,11,Begged
+a12_18,12,Was engaged in other activity
+a12_18,13,Was engaged in no activity for receiving an income during th
+a13_1,1,Yes
+a13_1,2,No
+a13_2,1,Yes
+a13_2,2,No
+a13_3,1,Yes
+a13_3,2,No
+a13_4,1,Yes
+a13_4,2,No
+a13_5,1,Yes
+a13_5,2,No
+a13_6,1,Yes
+a13_6,2,No
+a13_7,1,Yes
+a13_7,2,No
+a13_8,1,Yes
+a13_8,2,No
+a13_9,1,Yes
+a13_9,2,No
+a13_10,1,Yes
+a13_10,2,No
+a13_11,1,Yes
+a13_11,2,No
+a13_12,1,Yes
+a13_12,2,No
+a13_13,1,Yes
+a13_13,2,No
+a13_14,1,Yes
+a13_14,2,No
+a13_15,1,Yes
+a13_15,2,No
+a13_16,1,Yes
+a13_16,2,No
+a13_17,1,Yes
+a13_17,2,No
+a13_18,1,Yes
+a13_18,2,No
+a14_5,1,Is a student
+a14_5,2,Is a housewife
+a14_5,3,Is a pensioner
+a14_5,4,Is a disabled person
+a14_5,5,Takes care of a household member
+a14_5,6,"Has a job, just does not work temporarily"
+a14_5,7,Does not want to work
+a14_5,8,Because of illness
+a14_5,9,"Has not tried, as would not be able to find a job anyway"
+a14_5,10,She is Pregnant
+a14_5,11,He is in the army
+a14_5,12,Dont know
+a14_6,1,Is a student
+a14_6,2,Is a housewife
+a14_6,3,Is a pensioner
+a14_6,4,Is a disabled person
+a14_6,5,Takes care of a household member
+a14_6,6,"Has a job, just does not work temporarily"
+a14_6,7,Does not want to work
+a14_6,8,Because of illness
+a14_6,9,"Has not tried, as would not be able to find a job anyway"
+a14_6,10,She is Pregnant
+a14_6,11,He is in the army
+a14_6,12,Dont know
+a14_7,1,Is a student
+a14_7,2,Is a housewife
+a14_7,3,Is a pensioner
+a14_7,4,Is a disabled person
+a14_7,5,Takes care of a household member
+a14_7,6,"Has a job, just does not work temporarily"
+a14_7,7,Does not want to work
+a14_7,8,Because of illness
+a14_7,9,"Has not tried, as would not be able to find a job anyway"
+a14_7,10,She is Pregnant
+a14_7,11,He is in the army
+a14_7,12,Dont know
+a14_8,1,Is a student
+a14_8,2,Is a housewife
+a14_8,3,Is a pensioner
+a14_8,4,Is a disabled person
+a14_8,5,Takes care of a household member
+a14_8,6,"Has a job, just does not work temporarily"
+a14_8,7,Does not want to work
+a14_8,8,Because of illness
+a14_8,9,"Has not tried, as would not be able to find a job anyway"
+a14_8,10,She is Pregnant
+a14_8,11,He is in the army
+a14_8,12,Dont know
+a14_9,1,Is a student
+a14_9,2,Is a housewife
+a14_9,3,Is a pensioner
+a14_9,4,Is a disabled person
+a14_9,5,Takes care of a household member
+a14_9,6,"Has a job, just does not work temporarily"
+a14_9,7,Does not want to work
+a14_9,8,Because of illness
+a14_9,9,"Has not tried, as would not be able to find a job anyway"
+a14_9,10,She is Pregnant
+a14_9,11,He is in the army
+a14_9,12,Dont know
+a14_10,1,Is a student
+a14_10,2,Is a housewife
+a14_10,3,Is a pensioner
+a14_10,4,Is a disabled person
+a14_10,5,Takes care of a household member
+a14_10,6,"Has a job, just does not work temporarily"
+a14_10,7,Does not want to work
+a14_10,8,Because of illness
+a14_10,9,"Has not tried, as would not be able to find a job anyway"
+a14_10,10,She is Pregnant
+a14_10,11,He is in the army
+a14_10,12,Dont know
+a14_11,1,Is a student
+a14_11,2,Is a housewife
+a14_11,3,Is a pensioner
+a14_11,4,Is a disabled person
+a14_11,5,Takes care of a household member
+a14_11,6,"Has a job, just does not work temporarily"
+a14_11,7,Does not want to work
+a14_11,8,Because of illness
+a14_11,9,"Has not tried, as would not be able to find a job anyway"
+a14_11,10,She is Pregnant
+a14_11,11,He is in the army
+a14_11,12,Dont know
+a14_12,1,Is a student
+a14_12,2,Is a housewife
+a14_12,3,Is a pensioner
+a14_12,4,Is a disabled person
+a14_12,5,Takes care of a household member
+a14_12,6,"Has a job, just does not work temporarily"
+a14_12,7,Does not want to work
+a14_12,8,Because of illness
+a14_12,9,"Has not tried, as would not be able to find a job anyway"
+a14_12,10,She is Pregnant
+a14_12,11,He is in the army
+a14_12,12,Dont know
+a14_13,1,Is a student
+a14_13,2,Is a housewife
+a14_13,3,Is a pensioner
+a14_13,4,Is a disabled person
+a14_13,5,Takes care of a household member
+a14_13,6,"Has a job, just does not work temporarily"
+a14_13,7,Does not want to work
+a14_13,8,Because of illness
+a14_13,9,"Has not tried, as would not be able to find a job anyway"
+a14_13,10,She is Pregnant
+a14_13,11,He is in the army
+a14_13,12,Dont know
+a14_14,1,Is a student
+a14_14,2,Is a housewife
+a14_14,3,Is a pensioner
+a14_14,4,Is a disabled person
+a14_14,5,Takes care of a household member
+a14_14,6,"Has a job, just does not work temporarily"
+a14_14,7,Does not want to work
+a14_14,8,Because of illness
+a14_14,9,"Has not tried, as would not be able to find a job anyway"
+a14_14,10,She is Pregnant
+a14_14,11,He is in the army
+a14_14,12,Dont know
+a14_15,1,Is a student
+a14_15,2,Is a housewife
+a14_15,3,Is a pensioner
+a14_15,4,Is a disabled person
+a14_15,5,Takes care of a household member
+a14_15,6,"Has a job, just does not work temporarily"
+a14_15,7,Does not want to work
+a14_15,8,Because of illness
+a14_15,9,"Has not tried, as would not be able to find a job anyway"
+a14_15,10,Sportsman
+a14_15,11,Under age
+a14_15,12,Dont know
+a14_15,13,Refusal
+a14_16,1,Is a student
+a14_16,2,Is a housewife
+a14_16,3,Is a pensioner
+a14_16,4,Is a disabled person
+a14_16,5,Takes care of a household member
+a14_16,6,"Has a job, just does not work temporarily"
+a14_16,7,Does not want to work
+a14_16,8,Because of illness
+a14_16,9,"Has not tried, as would not be able to find a job anyway"
+a14_16,10,Sportsman
+a14_16,11,Under age
+a14_16,12,Dont know
+a14_16,13,Refusal
+a14_17,1,Is a student
+a14_17,2,Is a housewife
+a14_17,3,Is a pensioner
+a14_17,4,Is a disabled person
+a14_17,5,Takes care of a household member
+a14_17,6,"Has a job, just does not work temporarily"
+a14_17,7,Does not want to work
+a14_17,8,Because of illness
+a14_17,9,"Has not tried, as would not be able to find a job anyway"
+a14_17,10,Sportsman
+a14_17,11,Under age
+a14_17,12,Dont know
+a14_17,13,Refusal
+a14_18,1,Is a student
+a14_18,2,Is a housewife
+a14_18,3,Is a pensioner
+a14_18,4,Is a disabled person
+a14_18,5,Takes care of a household member
+a14_18,6,"Has a job, just does not work temporarily"
+a14_18,7,Does not want to work
+a14_18,8,Because of illness
+a14_18,9,"Has not tried, as would not be able to find a job anyway"
+a14_18,10,Sportsman
+a14_18,11,Under age
+a14_18,12,Dont know
+a14_18,13,Refusal
+a15_1,1,Yes
+a15_1,2,No
+a15_2,1,Yes
+a15_2,2,No
+a15_3,1,Yes
+a15_3,2,No
+a15_4,1,Yes
+a15_4,2,No
+a15_5,1,Yes
+a15_5,2,No
+a15_6,1,Yes
+a15_6,2,No
+a15_7,1,Yes
+a15_7,2,No
+a15_8,1,Yes
+a15_8,2,No
+a15_9,1,Yes
+a15_9,2,No
+a15_10,1,Yes
+a15_10,2,No
+a15_11,1,Yes
+a15_11,2,No
+a15_12,1,Yes
+a15_12,2,No
+a15_13,1,Yes
+a15_13,2,No
+a15_14,1,Yes
+a15_14,2,No
+a15_15,1,Yes
+a15_15,2,No
+a15_16,1,Yes
+a15_16,2,No
+a15_17,1,Yes
+a15_17,2,No
+a15_18,1,Yes
+a15_18,2,No
+a16_1,1,Worked in a private or public (budgetary) institution/organi
+a16_1,2," Worked on his/her own landplot/took care of own livestock,"
+a16_1,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_1,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_1,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_1,6,Worked individually
+a16_1,7,"Was engaged in individual professional activity (tutoring, p"
+a16_1,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_1,9,Produced hand-made things for selling
+a16_1,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_1,11,Begged
+a16_1,12,Was engaged in other activity
+a16_1,13,Was engaged in no activity for receiving an income during th
+a16_2,1,Worked in a private or public (budgetary) institution/organi
+a16_2,2," Worked on his/her own landplot/took care of own livestock,"
+a16_2,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_2,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_2,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_2,6,Worked individually
+a16_2,7,"Was engaged in individual professional activity (tutoring, p"
+a16_2,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_2,9,Produced hand-made things for selling
+a16_2,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_2,11,Begged
+a16_2,12,Was engaged in other activity
+a16_2,13,Was engaged in no activity for receiving an income during th
+a16_3,1,Worked in a private or public (budgetary) institution/organi
+a16_3,2," Worked on his/her own landplot/took care of own livestock,"
+a16_3,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_3,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_3,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_3,6,Worked individually
+a16_3,7,"Was engaged in individual professional activity (tutoring, p"
+a16_3,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_3,9,Produced hand-made things for selling
+a16_3,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_3,11,Begged
+a16_3,12,Was engaged in other activity
+a16_3,13,Was engaged in no activity for receiving an income during th
+a16_4,1,Worked in a private or public (budgetary) institution/organi
+a16_4,2," Worked on his/her own landplot/took care of own livestock,"
+a16_4,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_4,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_4,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_4,6,Worked individually
+a16_4,7,"Was engaged in individual professional activity (tutoring, p"
+a16_4,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_4,9,Produced hand-made things for selling
+a16_4,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_4,11,Begged
+a16_4,12,Was engaged in other activity
+a16_4,13,Was engaged in no activity for receiving an income during th
+a16_5,1,Worked in a private or public (budgetary) institution/organi
+a16_5,2," Worked on his/her own landplot/took care of own livestock,"
+a16_5,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_5,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_5,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_5,6,Worked individually
+a16_5,7,"Was engaged in individual professional activity (tutoring, p"
+a16_5,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_5,9,Produced hand-made things for selling
+a16_5,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_5,11,Begged
+a16_5,12,Was engaged in other activity
+a16_5,13,Was engaged in no activity for receiving an income during th
+a16_6,1,Worked in a private or public (budgetary) institution/organi
+a16_6,2," Worked on his/her own landplot/took care of own livestock,"
+a16_6,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_6,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_6,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_6,6,Worked individually
+a16_6,7,"Was engaged in individual professional activity (tutoring, p"
+a16_6,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_6,9,Produced hand-made things for selling
+a16_6,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_6,11,Begged
+a16_6,12,Was engaged in other activity
+a16_6,13,Was engaged in no activity for receiving an income during th
+a16_7,1,Worked in a private or public (budgetary) institution/organi
+a16_7,2," Worked on his/her own landplot/took care of own livestock,"
+a16_7,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_7,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_7,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_7,6,Worked individually
+a16_7,7,"Was engaged in individual professional activity (tutoring, p"
+a16_7,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_7,9,Produced hand-made things for selling
+a16_7,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_7,11,Begged
+a16_7,12,Was engaged in other activity
+a16_7,13,Was engaged in no activity for receiving an income during th
+a16_8,1,Worked in a private or public (budgetary) institution/organi
+a16_8,2," Worked on his/her own landplot/took care of own livestock,"
+a16_8,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_8,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_8,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_8,6,Worked individually
+a16_8,7,"Was engaged in individual professional activity (tutoring, p"
+a16_8,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_8,9,Produced hand-made things for selling
+a16_8,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_8,11,Begged
+a16_8,12,Was engaged in other activity
+a16_8,13,Was engaged in no activity for receiving an income during th
+a16_9,1,Worked in a private or public (budgetary) institution/organi
+a16_9,2," Worked on his/her own landplot/took care of own livestock,"
+a16_9,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_9,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_9,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_9,6,Worked individually
+a16_9,7,"Was engaged in individual professional activity (tutoring, p"
+a16_9,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_9,9,Produced hand-made things for selling
+a16_9,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_9,11,Begged
+a16_9,12,Was engaged in other activity
+a16_9,13,Was engaged in no activity for receiving an income during th
+a16_10,1,Worked in a private or public (budgetary) institution/organi
+a16_10,2," Worked on his/her own landplot/took care of own livestock,"
+a16_10,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_10,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_10,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_10,6,Worked individually
+a16_10,7,"Was engaged in individual professional activity (tutoring, p"
+a16_10,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_10,9,Produced hand-made things for selling
+a16_10,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_10,11,Begged
+a16_10,12,Was engaged in other activity
+a16_10,13,Was engaged in no activity for receiving an income during th
+a16_11,1,Worked in a private or public (budgetary) institution/organi
+a16_11,2," Worked on his/her own landplot/took care of own livestock,"
+a16_11,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_11,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_11,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_11,6,Worked individually
+a16_11,7,"Was engaged in individual professional activity (tutoring, p"
+a16_11,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_11,9,Produced hand-made things for selling
+a16_11,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_11,11,Begged
+a16_11,12,Was engaged in other activity
+a16_11,13,Was engaged in no activity for receiving an income during th
+a16_12,1,Worked in a private or public (budgetary) institution/organi
+a16_12,2," Worked on his/her own landplot/took care of own livestock,"
+a16_12,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_12,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_12,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_12,6,Worked individually
+a16_12,7,"Was engaged in individual professional activity (tutoring, p"
+a16_12,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_12,9,Produced hand-made things for selling
+a16_12,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_12,11,Begged
+a16_12,12,Was engaged in other activity
+a16_12,13,Was engaged in no activity for receiving an income during th
+a16_13,1,Worked in a private or public (budgetary) institution/organi
+a16_13,2," Worked on his/her own landplot/took care of own livestock,"
+a16_13,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_13,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_13,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_13,6,Worked individually
+a16_13,7,"Was engaged in individual professional activity (tutoring, p"
+a16_13,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_13,9,Produced hand-made things for selling
+a16_13,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_13,11,Begged
+a16_13,12,Was engaged in other activity
+a16_13,13,Was engaged in no activity for receiving an income during th
+a16_14,1,Worked in a private or public (budgetary) institution/organi
+a16_14,2," Worked on his/her own landplot/took care of own livestock,"
+a16_14,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_14,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_14,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_14,6,Worked individually
+a16_14,7,"Was engaged in individual professional activity (tutoring, p"
+a16_14,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_14,9,Produced hand-made things for selling
+a16_14,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_14,11,Begged
+a16_14,12,Was engaged in other activity
+a16_14,13,Was engaged in no activity for receiving an income during th
+a16_15,1,Worked in a private or public (budgetary) institution/organi
+a16_15,2," Worked on his/her own landplot/took care of own livestock,"
+a16_15,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_15,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_15,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_15,6,Worked individually
+a16_15,7,"Was engaged in individual professional activity (tutoring, p"
+a16_15,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_15,9,Produced hand-made things for selling
+a16_15,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_15,11,Begged
+a16_15,12,Was engaged in other activity
+a16_15,13,Was engaged in no activity for receiving an income during th
+a16_16,1,Worked in a private or public (budgetary) institution/organi
+a16_16,2," Worked on his/her own landplot/took care of own livestock,"
+a16_16,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_16,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_16,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_16,6,Worked individually
+a16_16,7,"Was engaged in individual professional activity (tutoring, p"
+a16_16,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_16,9,Produced hand-made things for selling
+a16_16,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_16,11,Begged
+a16_16,12,Was engaged in other activity
+a16_16,13,Was engaged in no activity for receiving an income during th
+a16_17,1,Worked in a private or public (budgetary) institution/organi
+a16_17,2," Worked on his/her own landplot/took care of own livestock,"
+a16_17,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_17,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_17,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_17,6,Worked individually
+a16_17,7,"Was engaged in individual professional activity (tutoring, p"
+a16_17,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_17,9,Produced hand-made things for selling
+a16_17,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_17,11,Begged
+a16_17,12,Was engaged in other activity
+a16_17,13,Was engaged in no activity for receiving an income during th
+a16_18,1,Worked in a private or public (budgetary) institution/organi
+a16_18,2," Worked on his/her own landplot/took care of own livestock,"
+a16_18,3,"Had a temporary, non-agricultural job with remuneration (loa"
+a16_18,4,"Did agricultural work  (spading, hoeing, shepherding etc.) w"
+a16_18,5,Had a temporary job with remuneration in kind (food/goods/bo
+a16_18,6,Worked individually
+a16_18,7,"Was engaged in individual professional activity (tutoring, p"
+a16_18,8,"Hunted/fished, gathered mushrooms, berries, chestnuts and ot"
+a16_18,9,Produced hand-made things for selling
+a16_18,10,"Gathered scrap metal, bottles for changing them for money at"
+a16_18,11,Begged
+a16_18,12,Was engaged in other activity
+a16_18,13,Was engaged in no activity for receiving an income during th
+a17_1,1,Yes
+a17_1,2,No
+a17_2,1,Yes
+a17_2,2,No
+a17_3,1,Yes
+a17_3,2,No
+a17_4,1,Yes
+a17_4,2,No
+a17_5,1,Yes
+a17_5,2,No
+a17_6,1,Yes
+a17_6,2,No
+a17_7,1,Yes
+a17_7,2,No
+a17_8,1,Yes
+a17_8,2,No
+a17_9,1,Yes
+a17_9,2,No
+a17_10,1,Yes
+a17_10,2,No
+a17_11,1,Yes
+a17_11,2,No
+a17_12,1,Yes
+a17_12,2,No
+a17_13,1,Yes
+a17_13,2,No
+a17_14,1,Yes
+a17_14,2,No
+a17_15,1,Yes
+a17_15,2,No
+a17_16,1,Yes
+a17_16,2,No
+a17_17,1,Yes
+a17_17,2,No
+a17_18,1,Yes
+a17_18,2,No
+a18_1,1,Yes
+a18_1,2,No
+a18_2,1,Yes
+a18_2,2,No
+a18_3,1,Yes
+a18_3,2,No
+a18_4,1,Yes
+a18_4,2,No
+a18_5,1,Yes
+a18_5,2,No
+a18_6,1,Yes
+a18_6,2,No
+a18_7,1,Yes
+a18_7,2,No
+a18_8,1,Yes
+a18_8,2,No
+a18_9,1,Yes
+a18_9,2,No
+a18_10,1,Yes
+a18_10,2,No
+a18_11,1,Yes
+a18_11,2,No
+a18_12,1,Yes
+a18_12,2,No
+a18_13,1,Yes
+a18_13,2,No
+a18_14,1,Yes
+a18_14,2,No
+a18_15,1,Yes
+a18_15,2,No
+a18_16,1,Yes
+a18_16,2,No
+a18_17,1,Yes
+a18_17,2,No
+a18_18,1,Yes
+a18_18,2,No
+a19_1,1,Private kindergarden
+a19_1,2,State kindergarden
+a19_2,1,Private kindergarden
+a19_2,2,State kindergarden
+a19_3,1,Private kindergarden
+a19_3,2,State kindergarden
+a19_4,1,Private kindergarden
+a19_4,2,State kindergarden
+a19_5,1,Private kindergarden
+a19_5,2,State kindergarden
+a19_6,1,Private kindergarden
+a19_6,2,State kindergarden
+a19_7,1,Private kindergarden
+a19_7,2,State kindergarden
+a19_8,1,Private kindergarden
+a19_8,2,State kindergarden
+a19_9,1,Private kindergarden
+a19_9,2,State kindergarden
+a19_10,1,Private kindergarden
+a19_10,2,State kindergarden
+a19_11,1,Private kindergarden
+a19_11,2,State kindergarden
+a19_12,1,Private kindergarden
+a19_12,2,State kindergarden
+a19_13,1,Private kindergarden
+a19_13,2,State kindergarden
+a19_14,1,Private kindergarden
+a19_14,2,State kindergarden
+a19_15,1,Private kindergarden
+a19_15,2,State kindergarden
+a19_16,1,Private kindergarden
+a19_16,2,State kindergarden
+a19_17,1,Private kindergarden
+a19_17,2,State kindergarden
+a19_18,1,Private kindergarden
+a19_18,2,State kindergarden
+a20,1,Yes
+a20,2,No
+a21_1,1,Childcare institution
+a21_1,2,Foster Family
+a21_1,3,Other parent
+a21_1,4,Grandparents
+a21_1,5,Other relative
+a21_1,6,Lives separately
+a21_1,7,Dont know
+a21_2,1,Childcare institution
+a21_2,2,Foster Family
+a21_2,3,Other parent
+a21_2,4,Grandparents
+a21_2,5,Other relative
+a21_2,6,Lives separately
+a21_2,7,Dont know
+a21_3,1,Childcare institution
+a21_3,2,Foster Family
+a21_3,3,Other parent
+a21_3,4,Grandparents
+a21_3,5,Other relative
+a21_3,6,Lives separately
+a21_3,7,Dont know
+a22,1,Yes
+a22,2,No
+a23,1,Yes
+a23,2,No
+b0,1,Piped water (piped into dwelling)
+b0,2,Piped water (piped into compound yard or plot)
+b0,3,Piped water (piped to neighbour)
+b0,4,Piped water (public/Stand pipe)
+b0,5,"Tube well, Borehole"
+b0,6,Protected well
+b0,7,Unprotected well
+b0,8,Protected Spring
+b0,9,Unprotected spring
+b0,10,rain water collection
+b0,11,Tancker Tracker
+b0,12,Carts with small Tank/drum
+b0,13,Surface water/ river water
+b0,14,Bottled water
+b0,15,Neighbour's well/tap water
+b0,16,well outside the yard
+b0,17,We do not have the drinkable water
+b0,18,The neighbours are bringing
+b0,19,artesian well
+b0,20,Bore hole
+b0_2,1,Flushed toilet piped to sewer system
+b0_2,2,Flushed toilet piped to a septic tank
+b0_2,3,A flush/pour flush to pit latrine
+b0_2,4,A flush/pour flush to somewhere else
+b0_2,5,Flush to unknown place/not sure/DK where
+b0_2,6,A ventilated improved pit latrine
+b0_2,7,A pit latrine with slab
+b0_2,8,A pit latrine without slab
+b0_2,9,A composting toilet
+b0_2,10,Bucket
+b0_2,11,A hanging toilet or hanging latrine
+b0_2,12,No facilities or bush or field
+b0_2,13,Communal Toilet
+b3,1,Owned by the household/a household member
+b3,2,Rented by the household (rent is being paid)
+b3,3,Owned by the household as a mortgage for debt
+b3,4, Belongs to a relative/friend and the household lives there
+b3,5,The state/other organization has handed over the dwelling to
+b3,6,Household lives free of charge together with another househo
+b3,7,"Household lives in a dormitory, hotel or other building not"
+b3,8,Former poultry raising farm
+b3,9,"Does not have the living space, lives In the field  in tent"
+b3,10,Dont know
+b3,11,Refusal
+b4,1,A flat in a multi-flat building (inhabited by one household)
+b4,2,A flat in a multi-flat building (inhabited by several househ
+b4,3,A flat in an Italian yard with individual kitchen and bath
+b4,4,A flat in an Italian yard with common kitchen and/or bathr
+b4,5,A private house (belonging to one household)
+b4,6,A private house (belonging to several households)
+b4,7,A flat in a dormitory or hotel
+b4,8,A barrack type building/cabin
+b4,9,"Non-residential area (railway carriage, storehouse etc.)"
+b4,10,"A flat in a non-residential institution (hospital, kindergar"
+b4,11,The house is brought from the village and constructed again
+b5_1_1,1,Yes
+b5_1_1,2,No
+b5_1_1,3,Refusal
+b5_1_2,1,Yes
+b5_1_2,2,No
+b5_1_2,3,Refusal
+b5_1_3,1,Yes
+b5_1_3,2,No
+b5_1_3,3,Refusal
+b5_1_4,1,Yes
+b5_1_4,2,No
+b5_1_4,3,Refusal
+b5_1_5,1,Yes
+b5_1_5,2,No
+b5_1_5,3,Refusal
+b5_1_6,1,Yes
+b5_1_6,2,No
+b5_1_6,3,Refusal
+b5_1_7,1,Yes
+b5_1_7,2,No
+b5_1_7,3,Refusal
+b5_1_8,1,Yes
+b5_1_8,2,No
+b5_1_8,3,Refusal
+b5_2_1,1,Inside
+b5_2_1,2,Outside
+b5_2_1,3,Dont know
+b5_2_1,4,Refusal
+b5_2_2,1,Inside
+b5_2_2,2,Outside
+b5_2_2,3,Dont know
+b5_2_2,4,Refusal
+b5_2_7,1,Inside
+b5_2_7,2,Outside
+b5_2_7,3,Dont know
+b5_2_7,4,Refusal
+b5_2_8,1,Inside
+b5_2_8,2,Outside
+b5_2_8,3,Dont know
+b5_2_8,4,Refusal
+b5_3_1,1,Central
+b5_3_1,2,Individual
+b5_3_1,3,Dont know
+b5_3_1,4,Refusal
+b5_3_2,1,Central
+b5_3_2,2,Individual
+b5_3_2,3,Dont know
+b5_3_2,4,Refusal
+b5_3_3,1,Central
+b5_3_3,2,Individual
+b5_3_3,3,Dont know
+b5_3_3,4,Refusal
+b5_3_4,1,Central
+b5_3_4,2,Individual
+b5_3_4,3,Dont know
+b5_3_4,4,Refusal
+b5_3_5,1,Central
+b5_3_5,2,Individual
+b5_3_5,3,Dont know
+b5_3_5,4,Refusal
+b5_3_6,1,Central
+b5_3_6,2,Individual
+b5_3_6,3,Dont know
+b5_3_6,4,Refusal
+b5_3_7,1,Central
+b5_3_7,2,Individual
+b5_3_7,3,Dont know
+b5_3_7,4,Refusal
+b5_3_8,1,Central
+b5_3_8,2,Individual
+b5_3_8,3,Dont know
+b5_3_8,4,Refusal
+b5_4_1,1,24
+b5_4_1,2,12-24
+b5_4_1,3,6-12
+b5_4_1,4,Less than 6
+b5_4_1,5,Dont know
+b5_4_1,6,Refusal
+b5_4_2,1,24
+b5_4_2,2,12-24
+b5_4_2,3,6-12
+b5_4_2,4,Less than 6
+b5_4_2,5,Dont know
+b5_4_2,6,Refusal
+b5_4_3,1,24
+b5_4_3,2,12-24
+b5_4_3,3,6-12
+b5_4_3,4,Less than 6
+b5_4_3,5,Dont know
+b5_4_3,6,Refusal
+b5_4_4,1,24
+b5_4_4,2,12-24
+b5_4_4,3,6-12
+b5_4_4,4,Less than 6
+b5_4_4,5,Dont know
+b5_4_4,6,Refusal
+b5_4_5,1,24
+b5_4_5,2,12-24
+b5_4_5,3,6-12
+b5_4_5,4,Less than 6
+b5_4_5,5,Dont know
+b5_4_5,6,Refusal
+b5_4_6,1,24
+b5_4_6,2,12-24
+b5_4_6,3,6-12
+b5_4_6,4,Less than 6
+b5_4_6,5,Dont know
+b5_4_6,6,Refusal
+b5_4_7,1,24
+b5_4_7,2,12-24
+b5_4_7,3,6-12
+b5_4_7,4,Less than 6
+b5_4_7,5,Dont know
+b5_4_7,6,Refusal
+b5_4_8,1,24
+b5_4_8,2,12-24
+b5_4_8,3,6-12
+b5_4_8,4,Less than 6
+b5_4_8,5,Dont know
+b5_4_8,6,Refusal
+b5_5_1,1,Good
+b5_5_1,2,Average
+b5_5_1,3,Bad
+b5_5_1,4,Dont know
+b5_5_1,5,Refusal
+b5_5_2,1,Good
+b5_5_2,2,Average
+b5_5_2,3,Bad
+b5_5_2,4,Dont know
+b5_5_2,5,Refusal
+b5_5_3,1,Good
+b5_5_3,2,Average
+b5_5_3,3,Bad
+b5_5_3,4,Dont know
+b5_5_3,5,Refusal
+b5_5_4,1,Good
+b5_5_4,2,Average
+b5_5_4,3,Bad
+b5_5_4,4,Dont know
+b5_5_4,5,Refusal
+b5_5_5,1,Good
+b5_5_5,2,Average
+b5_5_5,3,Bad
+b5_5_5,4,Dont know
+b5_5_5,5,Refusal
+b5_5_6,1,Good
+b5_5_6,2,Average
+b5_5_6,3,Bad
+b5_5_6,4,Dont know
+b5_5_6,5,Refusal
+b5_5_7,1,Good
+b5_5_7,2,Average
+b5_5_7,3,Bad
+b5_5_7,4,Dont know
+b5_5_7,5,Refusal
+b5_5_8,1,Good
+b5_5_8,2,Average
+b5_5_8,3,Bad
+b5_5_8,4,Dont know
+b5_5_8,5,Refusal
+b6,1,All the dwelling was heated
+b6,2,"Only a part of the dwelling was heated, where we mainly live"
+b6,3,Only one room was heated
+b6,4,The dwelling practically was not heated
+b7_1_1,1,Central heating system
+b7_1_1,2,Common heating system (for several households)
+b7_1_1,3,Individual heating system
+b7_1_1,4,"Natural gas stove (Karma, Nicalaetc.)"
+b7_1_1,5,Electric heater
+b7_1_1,6,"Stove (burning firewood, coal, diesel oil, saw dust etc.)"
+b7_1_1,7,Fireplace
+b7_1_1,8,Open fire in the middle of the room
+b7_1_1,9,oil-store
+b7_1_1,10,gas-store
+b7_2_1,1,Central heating system
+b7_2_1,2,Common heating system (for several households)
+b7_2_1,3,Individual heating system
+b7_2_1,4,"Natural gas stove (Karma, Nicalaetc.)"
+b7_2_1,5,Electric heater
+b7_2_1,6,"Stove (burning firewood, coal, diesel oil, saw dust etc.)"
+b7_2_1,7,Fireplace
+b7_2_1,8,Open fire in the middle of the room
+b7_2_1,9,Nothing
+b7_2_1,10,gas-stove
+b7_2_2,1,Central heating system
+b7_2_2,2,Common heating system (for several households)
+b7_2_2,3,Individual heating system
+b7_2_2,4,"Natural gas stove (Karma, Nicalaetc.)"
+b7_2_2,5,Electric heater
+b7_2_2,6,"Stove (burning firewood, coal, diesel oil, saw dust etc.)"
+b7_2_2,7,Fireplace
+b7_2_2,8,Open fire in the middle of the room
+b7_2_2,9,Nothing
+b7_2_2,10,gas-stove
+b8_1,1,Is a problem
+b8_1,2,Is not a problem
+b8_2,1,Is a problem
+b8_2,2,Is not a problem
+b8_3,1,Is a problem
+b8_3,2,Is not a problem
+b8_4,1,Is a problem
+b8_4,2,Is not a problem
+b8_5,1,Is a problem
+b8_5,2,Is not a problem
+b8_6,1,Is a problem
+b8_6,2,Is not a problem
+b8_7,1,Is a problem
+b8_7,2,Is not a problem
+b8_8,1,Is a problem
+b8_8,2,Is not a problem
+b8_9,1,The flore is constructed by cement
+b8_9,2,During rain goes into the basement
+b8_9,3,Do not have a bathroom
+b8_9,4,The whole building is recognized as damadged
+b8_9,5,Second flore needs renovation
+b8_9,6,kedeli ingreva
+b9,1,Yes
+b9,2,No
+b10,1,We rent it out
+b10,2,Gave it as a mortgage for the debt
+b10,3,Use for our business
+b10,4,Relatives/friends live there without paying rent
+b10,5,We use it seasonally
+b10,6,"We cannot use it, its abandoned/closed"
+b10,7,It is on the territory not under the control of the authorit
+b10,8,It is not possible to live in
+b10,9,The family members  stay overnight there
+b10,10,The house is burned in the territory of Abkhazia
+b10,11,The house is situated in the vineyard
+b10,12,The relative is living in
+b10,13,is under construction
+b10,14,Refusal
+c2,1,Yes
+c2,2,No
+c4,1,"Yes, I cultivate my own land"
+c4,2,"Yes, I cultivate a rented land"
+c4,3,"Yes, I cultivate a land owned by others"
+c4,4,"Yes, I own agriclutural land cultivated by others"
+c4,5,"Yes, I own agriclutural land which is not cultivated"
+c4,6,"No, I dont own or cultivate any agricultiral land"
+e1_1,1,Yes
+e1_1,2,No
+e1_2,1,Yes
+e1_2,2,No
+e1_3,1,Yes
+e1_3,2,No
+e1_4,1,Yes
+e1_4,2,No
+e1_5,1,Yes
+e1_5,2,No
+e1_6,1,Yes
+e1_6,2,No
+e1_7,1,Yes
+e1_7,2,No
+e1_8,1,Yes
+e1_8,2,No
+e1_9,1,Yes
+e1_9,2,No
+e1_10,1,Yes
+e1_10,2,No
+e1_11,1,Yes
+e1_11,2,No
+e1_12,1,Yes
+e1_12,2,No
+e1_13,1,Yes
+e1_13,2,No
+e1_14,1,Yes
+e1_14,2,No
+e2_1_1,1,Private kindergarten
+e2_1_1,2,Public kindergarten
+e2_1_1,3,Private school
+e2_1_1,4,Public school
+e2_1_1,5,Vocational school
+e2_1_1,6,High School
+e2_1_1,7,Boarding school / daycare centre
+e2_1_1,8,Study group
+e2_1_1,9,Training courses
+e2_1_1,10,private teacher
+e2_1_1,11,Tutor
+e2_1_2,1,Private kindergarten
+e2_1_2,2,Public kindergarten
+e2_1_2,3,Private school
+e2_1_2,4,Public school
+e2_1_2,5,Vocational school
+e2_1_2,6,High School
+e2_1_2,7,Boarding school / daycare centre
+e2_1_2,8,Study group
+e2_1_2,9,Training courses
+e2_1_2,10,private teacher
+e2_1_2,11,Tutor
+e2_1_3,1,Private kindergarten
+e2_1_3,2,Public kindergarten
+e2_1_3,3,Private school
+e2_1_3,4,Public school
+e2_1_3,5,Vocational school
+e2_1_3,6,High School
+e2_1_3,7,Boarding school / daycare centre
+e2_1_3,8,Study group
+e2_1_3,9,Training courses
+e2_1_3,10,private teacher
+e2_1_3,11,Tutor
+e2_1_4,1,Private kindergarten
+e2_1_4,2,Public kindergarten
+e2_1_4,3,Private school
+e2_1_4,4,Public school
+e2_1_4,5,Vocational school
+e2_1_4,6,High School
+e2_1_4,7,Boarding school / daycare centre
+e2_1_4,8,Study group
+e2_1_4,9,Training courses
+e2_1_4,10,private teacher
+e2_1_4,11,Tutor
+e2_1_5,1,Private kindergarten
+e2_1_5,2,Public kindergarten
+e2_1_5,3,Private school
+e2_1_5,4,Public school
+e2_1_5,5,Vocational school
+e2_1_5,6,High School
+e2_1_5,7,Boarding school / daycare centre
+e2_1_5,8,Study group
+e2_1_5,9,Training courses
+e2_1_5,10,private teacher
+e2_1_5,11,Tutor
+e2_1_6,1,Private kindergarten
+e2_1_6,2,Public kindergarten
+e2_1_6,3,Private school
+e2_1_6,4,Public school
+e2_1_6,5,Vocational school
+e2_1_6,6,High School
+e2_1_6,7,Boarding school / daycare centre
+e2_1_6,8,Study group
+e2_1_6,9,Training courses
+e2_1_6,10,private teacher
+e2_1_6,11,Tutor
+e2_1_7,1,Private kindergarten
+e2_1_7,2,Public kindergarten
+e2_1_7,3,Private school
+e2_1_7,4,Public school
+e2_1_7,5,Vocational school
+e2_1_7,6,High School
+e2_1_7,7,Boarding school / daycare centre
+e2_1_7,8,Study group
+e2_1_7,9,Training courses
+e2_1_7,10,private teacher
+e2_1_7,11,Tutor
+e2_1_8,1,Private kindergarten
+e2_1_8,2,Public kindergarten
+e2_1_8,3,Private school
+e2_1_8,4,Public school
+e2_1_8,5,Vocational school
+e2_1_8,6,High School
+e2_1_8,7,Boarding school / daycare centre
+e2_1_8,8,Study group
+e2_1_8,9,Training courses
+e2_1_8,10,private teacher
+e2_1_8,11,Tutor
+e2_1_9,1,Private kindergarten
+e2_1_9,2,Public kindergarten
+e2_1_9,3,Private school
+e2_1_9,4,Public school
+e2_1_9,5,Vocational school
+e2_1_9,6,High School
+e2_1_9,7,Boarding school / daycare centre
+e2_1_9,8,Study group
+e2_1_9,9,Training courses
+e2_1_9,10,private teacher
+e2_1_9,11,Tutor
+e2_1_10,1,Private kindergarten
+e2_1_10,2,Public kindergarten
+e2_1_10,3,Private school
+e2_1_10,4,Public school
+e2_1_10,5,Vocational school
+e2_1_10,6,High School
+e2_1_10,7,Boarding school / daycare centre
+e2_1_10,8,Study group
+e2_1_10,9,Training courses
+e2_1_10,10,private teacher
+e2_1_10,11,Tutor
+e2_1_11,1,Private kindergarten
+e2_1_11,2,Public kindergarten
+e2_1_11,3,Private school
+e2_1_11,4,Public school
+e2_1_11,5,Vocational school
+e2_1_11,6,High School
+e2_1_11,7,Boarding school / daycare centre
+e2_1_11,8,Study group
+e2_1_11,9,Training courses
+e2_1_11,10,private teacher
+e2_1_11,11,Tutor
+e2_1_12,1,Private kindergarten
+e2_1_12,2,Public kindergarten
+e2_1_12,3,Private school
+e2_1_12,4,Public school
+e2_1_12,5,Vocational school
+e2_1_12,6,High School
+e2_1_12,7,Boarding school / daycare centre
+e2_1_12,8,Study group
+e2_1_12,9,Training courses
+e2_1_12,10,private teacher
+e2_1_12,11,Tutor
+e2_1_13,1,Private kindergarten
+e2_1_13,2,Public kindergarten
+e2_1_13,3,Private school
+e2_1_13,4,Public school
+e2_1_13,5,Vocational school
+e2_1_13,6,High School
+e2_1_13,7,Boarding school / daycare centre
+e2_1_13,8,Study group
+e2_1_13,9,Training courses
+e2_1_13,10,private teacher
+e2_1_13,11,Tutor
+e2_1_14,1,Private kindergarten
+e2_1_14,2,Public kindergarten
+e2_1_14,3,Private school
+e2_1_14,4,Public school
+e2_1_14,5,Vocational school
+e2_1_14,6,High School
+e2_1_14,7,Boarding school / daycare centre
+e2_1_14,8,Study group
+e2_1_14,9,Training courses
+e2_1_14,10,private teacher
+e2_1_14,11,Tutor
+e2_2_1,1,Private kindergarten
+e2_2_1,2,Public kindergarten
+e2_2_1,3,Private school
+e2_2_1,4,Public school
+e2_2_1,5,Vocational school
+e2_2_1,6,High School
+e2_2_1,7,Boarding school / daycare centre
+e2_2_1,8,Study group
+e2_2_1,9,Training courses
+e2_2_1,10,private teacher
+e2_2_1,11,Tutor
+e2_2_2,1,Private kindergarten
+e2_2_2,2,Public kindergarten
+e2_2_2,3,Private school
+e2_2_2,4,Public school
+e2_2_2,5,Vocational school
+e2_2_2,6,High School
+e2_2_2,7,Boarding school / daycare centre
+e2_2_2,8,Study group
+e2_2_2,9,Training courses
+e2_2_2,10,private teacher
+e2_2_2,11,Tutor
+e2_2_3,1,Private kindergarten
+e2_2_3,2,Public kindergarten
+e2_2_3,3,Private school
+e2_2_3,4,Public school
+e2_2_3,5,Vocational school
+e2_2_3,6,High School
+e2_2_3,7,Boarding school / daycare centre
+e2_2_3,8,Study group
+e2_2_3,9,Training courses
+e2_2_3,10,private teacher
+e2_2_3,11,Tutor
+e2_2_4,1,Private kindergarten
+e2_2_4,2,Public kindergarten
+e2_2_4,3,Private school
+e2_2_4,4,Public school
+e2_2_4,5,Vocational school
+e2_2_4,6,High School
+e2_2_4,7,Boarding school / daycare centre
+e2_2_4,8,Study group
+e2_2_4,9,Training courses
+e2_2_4,10,private teacher
+e2_2_4,11,Tutor
+e2_2_5,1,Private kindergarten
+e2_2_5,2,Public kindergarten
+e2_2_5,3,Private school
+e2_2_5,4,Public school
+e2_2_5,5,Vocational school
+e2_2_5,6,High School
+e2_2_5,7,Boarding school / daycare centre
+e2_2_5,8,Study group
+e2_2_5,9,Training courses
+e2_2_5,10,private teacher
+e2_2_5,11,Tutor
+e2_2_6,1,Private kindergarten
+e2_2_6,2,Public kindergarten
+e2_2_6,3,Private school
+e2_2_6,4,Public school
+e2_2_6,5,Vocational school
+e2_2_6,6,High School
+e2_2_6,7,Boarding school / daycare centre
+e2_2_6,8,Study group
+e2_2_6,9,Training courses
+e2_2_6,10,private teacher
+e2_2_6,11,Tutor
+e2_2_7,1,Private kindergarten
+e2_2_7,2,Public kindergarten
+e2_2_7,3,Private school
+e2_2_7,4,Public school
+e2_2_7,5,Vocational school
+e2_2_7,6,High School
+e2_2_7,7,Boarding school / daycare centre
+e2_2_7,8,Study group
+e2_2_7,9,Training courses
+e2_2_7,10,private teacher
+e2_2_7,11,Tutor
+e2_2_8,1,Private kindergarten
+e2_2_8,2,Public kindergarten
+e2_2_8,3,Private school
+e2_2_8,4,Public school
+e2_2_8,5,Vocational school
+e2_2_8,6,High School
+e2_2_8,7,Boarding school / daycare centre
+e2_2_8,8,Study group
+e2_2_8,9,Training courses
+e2_2_8,10,private teacher
+e2_2_8,11,Tutor
+e2_2_9,1,Private kindergarten
+e2_2_9,2,Public kindergarten
+e2_2_9,3,Private school
+e2_2_9,4,Public school
+e2_2_9,5,Vocational school
+e2_2_9,6,High School
+e2_2_9,7,Boarding school / daycare centre
+e2_2_9,8,Study group
+e2_2_9,9,Training courses
+e2_2_9,10,private teacher
+e2_2_9,11,Tutor
+e2_2_10,1,Private kindergarten
+e2_2_10,2,Public kindergarten
+e2_2_10,3,Private school
+e2_2_10,4,Public school
+e2_2_10,5,Vocational school
+e2_2_10,6,High School
+e2_2_10,7,Boarding school / daycare centre
+e2_2_10,8,Study group
+e2_2_10,9,Training courses
+e2_2_10,10,private teacher
+e2_2_10,11,Tutor
+e2_2_11,1,Private kindergarten
+e2_2_11,2,Public kindergarten
+e2_2_11,3,Private school
+e2_2_11,4,Public school
+e2_2_11,5,Vocational school
+e2_2_11,6,High School
+e2_2_11,7,Boarding school / daycare centre
+e2_2_11,8,Study group
+e2_2_11,9,Training courses
+e2_2_11,10,private teacher
+e2_2_11,11,Tutor
+e2_2_12,1,Private kindergarten
+e2_2_12,2,Public kindergarten
+e2_2_12,3,Private school
+e2_2_12,4,Public school
+e2_2_12,5,Vocational school
+e2_2_12,6,High School
+e2_2_12,7,Boarding school / daycare centre
+e2_2_12,8,Study group
+e2_2_12,9,Training courses
+e2_2_12,10,private teacher
+e2_2_12,11,Tutor
+e2_2_13,1,Private kindergarten
+e2_2_13,2,Public kindergarten
+e2_2_13,3,Private school
+e2_2_13,4,Public school
+e2_2_13,5,Vocational school
+e2_2_13,6,High School
+e2_2_13,7,Boarding school / daycare centre
+e2_2_13,8,Study group
+e2_2_13,9,Training courses
+e2_2_13,10,private teacher
+e2_2_13,11,Tutor
+e2_2_14,1,Private kindergarten
+e2_2_14,2,Public kindergarten
+e2_2_14,3,Private school
+e2_2_14,4,Public school
+e2_2_14,5,Vocational school
+e2_2_14,6,High School
+e2_2_14,7,Boarding school / daycare centre
+e2_2_14,8,Study group
+e2_2_14,9,Training courses
+e2_2_14,10,private teacher
+e2_2_14,11,Tutor
+e2_3_1,1,Private kindergarten
+e2_3_1,2,Public kindergarten
+e2_3_1,3,Private school
+e2_3_1,4,Public school
+e2_3_1,5,Vocational school
+e2_3_1,6,High School
+e2_3_1,7,Boarding school / daycare centre
+e2_3_1,8,Study group
+e2_3_1,9,Training courses
+e2_3_1,10,private teacher
+e2_3_1,11,Tutor
+e2_3_2,1,Private kindergarten
+e2_3_2,2,Public kindergarten
+e2_3_2,3,Private school
+e2_3_2,4,Public school
+e2_3_2,5,Vocational school
+e2_3_2,6,High School
+e2_3_2,7,Boarding school / daycare centre
+e2_3_2,8,Study group
+e2_3_2,9,Training courses
+e2_3_2,10,private teacher
+e2_3_2,11,Tutor
+e2_3_3,1,Private kindergarten
+e2_3_3,2,Public kindergarten
+e2_3_3,3,Private school
+e2_3_3,4,Public school
+e2_3_3,5,Vocational school
+e2_3_3,6,High School
+e2_3_3,7,Boarding school / daycare centre
+e2_3_3,8,Study group
+e2_3_3,9,Training courses
+e2_3_3,10,private teacher
+e2_3_3,11,Tutor
+e2_3_4,1,Private kindergarten
+e2_3_4,2,Public kindergarten
+e2_3_4,3,Private school
+e2_3_4,4,Public school
+e2_3_4,5,Vocational school
+e2_3_4,6,High School
+e2_3_4,7,Boarding school / daycare centre
+e2_3_4,8,Study group
+e2_3_4,9,Training courses
+e2_3_4,10,private teacher
+e2_3_4,11,Tutor
+e2_3_5,1,Private kindergarten
+e2_3_5,2,Public kindergarten
+e2_3_5,3,Private school
+e2_3_5,4,Public school
+e2_3_5,5,Vocational school
+e2_3_5,6,High School
+e2_3_5,7,Boarding school / daycare centre
+e2_3_5,8,Study group
+e2_3_5,9,Training courses
+e2_3_5,10,private teacher
+e2_3_5,11,Tutor
+e2_3_6,1,Private kindergarten
+e2_3_6,2,Public kindergarten
+e2_3_6,3,Private school
+e2_3_6,4,Public school
+e2_3_6,5,Vocational school
+e2_3_6,6,High School
+e2_3_6,7,Boarding school / daycare centre
+e2_3_6,8,Study group
+e2_3_6,9,Training courses
+e2_3_6,10,private teacher
+e2_3_6,11,Tutor
+e2_3_7,1,Private kindergarten
+e2_3_7,2,Public kindergarten
+e2_3_7,3,Private school
+e2_3_7,4,Public school
+e2_3_7,5,Vocational school
+e2_3_7,6,High School
+e2_3_7,7,Boarding school / daycare centre
+e2_3_7,8,Study group
+e2_3_7,9,Training courses
+e2_3_7,10,private teacher
+e2_3_7,11,Tutor
+e2_3_8,1,Private kindergarten
+e2_3_8,2,Public kindergarten
+e2_3_8,3,Private school
+e2_3_8,4,Public school
+e2_3_8,5,Vocational school
+e2_3_8,6,High School
+e2_3_8,7,Boarding school / daycare centre
+e2_3_8,8,Study group
+e2_3_8,9,Training courses
+e2_3_8,10,private teacher
+e2_3_8,11,Tutor
+e2_3_9,1,Private kindergarten
+e2_3_9,2,Public kindergarten
+e2_3_9,3,Private school
+e2_3_9,4,Public school
+e2_3_9,5,Vocational school
+e2_3_9,6,High School
+e2_3_9,7,Boarding school / daycare centre
+e2_3_9,8,Study group
+e2_3_9,9,Training courses
+e2_3_9,10,private teacher
+e2_3_9,11,Tutor
+e2_3_10,1,Private kindergarten
+e2_3_10,2,Public kindergarten
+e2_3_10,3,Private school
+e2_3_10,4,Public school
+e2_3_10,5,Vocational school
+e2_3_10,6,High School
+e2_3_10,7,Boarding school / daycare centre
+e2_3_10,8,Study group
+e2_3_10,9,Training courses
+e2_3_10,10,private teacher
+e2_3_10,11,Tutor
+e2_4_1,1,Private kindergarten
+e2_4_1,2,Public kindergarten
+e2_4_1,3,Private school
+e2_4_1,4,Public school
+e2_4_1,5,Vocational school
+e2_4_1,6,High School
+e2_4_1,7,Boarding school / daycare centre
+e2_4_1,8,Study group
+e2_4_1,9,Training courses
+e2_4_1,10,private teacher
+e2_4_1,11,Tutor
+e2_4_2,1,Private kindergarten
+e2_4_2,2,Public kindergarten
+e2_4_2,3,Private school
+e2_4_2,4,Public school
+e2_4_2,5,Vocational school
+e2_4_2,6,High School
+e2_4_2,7,Boarding school / daycare centre
+e2_4_2,8,Study group
+e2_4_2,9,Training courses
+e2_4_2,10,private teacher
+e2_4_2,11,Tutor
+e2_4_3,1,Private kindergarten
+e2_4_3,2,Public kindergarten
+e2_4_3,3,Private school
+e2_4_3,4,Public school
+e2_4_3,5,Vocational school
+e2_4_3,6,High School
+e2_4_3,7,Boarding school / daycare centre
+e2_4_3,8,Study group
+e2_4_3,9,Training courses
+e2_4_3,10,private teacher
+e2_4_3,11,Tutor
+e2_4_4,1,Private kindergarten
+e2_4_4,2,Public kindergarten
+e2_4_4,3,Private school
+e2_4_4,4,Public school
+e2_4_4,5,Vocational school
+e2_4_4,6,High School
+e2_4_4,7,Boarding school / daycare centre
+e2_4_4,8,Study group
+e2_4_4,9,Training courses
+e2_4_4,10,private teacher
+e2_4_4,11,Tutor
+e2_4_5,1,Private kindergarten
+e2_4_5,2,Public kindergarten
+e2_4_5,3,Private school
+e2_4_5,4,Public school
+e2_4_5,5,Vocational school
+e2_4_5,6,High School
+e2_4_5,7,Boarding school / daycare centre
+e2_4_5,8,Study group
+e2_4_5,9,Training courses
+e2_4_5,10,private teacher
+e2_4_5,11,Tutor
+e2_4_6,1,Private kindergarten
+e2_4_6,2,Public kindergarten
+e2_4_6,3,Private school
+e2_4_6,4,Public school
+e2_4_6,5,Vocational school
+e2_4_6,6,High School
+e2_4_6,7,Boarding school / daycare centre
+e2_4_6,8,Study group
+e2_4_6,9,Training courses
+e2_4_6,10,private teacher
+e2_4_6,11,Tutor
+e2_4_7,1,Private kindergarten
+e2_4_7,2,Public kindergarten
+e2_4_7,3,Private school
+e2_4_7,4,Public school
+e2_4_7,5,Vocational school
+e2_4_7,6,High School
+e2_4_7,7,Boarding school / daycare centre
+e2_4_7,8,Study group
+e2_4_7,9,Training courses
+e2_4_7,10,private teacher
+e2_4_7,11,Tutor
+e2_4_8,1,Private kindergarten
+e2_4_8,2,Public kindergarten
+e2_4_8,3,Private school
+e2_4_8,4,Public school
+e2_4_8,5,Vocational school
+e2_4_8,6,High School
+e2_4_8,7,Boarding school / daycare centre
+e2_4_8,8,Study group
+e2_4_8,9,Training courses
+e2_4_8,10,private teacher
+e2_4_8,11,Tutor
+e2_4_9,1,Private kindergarten
+e2_4_9,2,Public kindergarten
+e2_4_9,3,Private school
+e2_4_9,4,Public school
+e2_4_9,5,Vocational school
+e2_4_9,6,High School
+e2_4_9,7,Boarding school / daycare centre
+e2_4_9,8,Study group
+e2_4_9,9,Training courses
+e2_4_9,10,private teacher
+e2_4_9,11,Tutor
+e2_4_10,1,Private kindergarten
+e2_4_10,2,Public kindergarten
+e2_4_10,3,Private school
+e2_4_10,4,Public school
+e2_4_10,5,Vocational school
+e2_4_10,6,High School
+e2_4_10,7,Boarding school / daycare centre
+e2_4_10,8,Study group
+e2_4_10,9,Training courses
+e2_4_10,10,private teacher
+e2_4_10,11,Tutor
+e2_4_11,1,Private kindergarten
+e2_4_11,2,Public kindergarten
+e2_4_11,3,Private school
+e2_4_11,4,Public school
+e2_4_11,5,Vocational school
+e2_4_11,6,High School
+e2_4_11,7,Boarding school / daycare centre
+e2_4_11,8,Study group
+e2_4_11,9,Training courses
+e2_4_11,10,private teacher
+e2_4_11,11,Tutor
+e3_1_1,1,"The household,  fully"
+e3_1_1,2,"The household,  partially"
+e3_1_1,3,"The State, fully"
+e3_1_1,4,"Other organization, fully"
+e3_1_1,5,patriarchateis financing
+e3_1_1,6,Relative is financing
+e3_1_1,7,Dont know
+e3_1_2,1,"The household,  fully"
+e3_1_2,2,"The household,  partially"
+e3_1_2,3,"The State, fully"
+e3_1_2,4,"Other organization, fully"
+e3_1_2,5,patriarchateis financing
+e3_1_2,6,Relative is financing
+e3_1_2,7,Dont know
+e3_1_3,1,"The household,  fully"
+e3_1_3,2,"The household,  partially"
+e3_1_3,3,"The State, fully"
+e3_1_3,4,"Other organization, fully"
+e3_1_3,5,patriarchateis financing
+e3_1_3,6,Relative is financing
+e3_1_3,7,Dont know
+e3_1_4,1,"The household,  fully"
+e3_1_4,2,"The household,  partially"
+e3_1_4,3,"The State, fully"
+e3_1_4,4,"Other organization, fully"
+e3_1_4,5,patriarchateis financing
+e3_1_4,6,Relative is financing
+e3_1_4,7,Dont know
+e3_1_5,1,"The household,  fully"
+e3_1_5,2,"The household,  partially"
+e3_1_5,3,"The State, fully"
+e3_1_5,4,"Other organization, fully"
+e3_1_5,5,patriarchateis financing
+e3_1_5,6,Relative is financing
+e3_1_5,7,Dont know
+e3_1_6,1,"The household,  fully"
+e3_1_6,2,"The household,  partially"
+e3_1_6,3,"The State, fully"
+e3_1_6,4,"Other organization, fully"
+e3_1_6,5,patriarchateis financing
+e3_1_6,6,Relative is financing
+e3_1_6,7,Dont know
+e3_1_7,1,"The household,  fully"
+e3_1_7,2,"The household,  partially"
+e3_1_7,3,"The State, fully"
+e3_1_7,4,"Other organization, fully"
+e3_1_7,5,patriarchateis financing
+e3_1_7,6,Relative is financing
+e3_1_7,7,Dont know
+e3_1_8,1,"The household,  fully"
+e3_1_8,2,"The household,  partially"
+e3_1_8,3,"The State, fully"
+e3_1_8,4,"Other organization, fully"
+e3_1_8,5,patriarchateis financing
+e3_1_8,6,Relative is financing
+e3_1_8,7,Dont know
+e3_1_9,1,"The household,  fully"
+e3_1_9,2,"The household,  partially"
+e3_1_9,3,"The State, fully"
+e3_1_9,4,"Other organization, fully"
+e3_1_9,5,patriarchateis financing
+e3_1_9,6,Relative is financing
+e3_1_9,7,Dont know
+e3_1_10,1,"The household,  fully"
+e3_1_10,2,"The household,  partially"
+e3_1_10,3,"The State, fully"
+e3_1_10,4,"Other organization, fully"
+e3_1_10,5,patriarchateis financing
+e3_1_10,6,Relative is financing
+e3_1_10,7,Dont know
+e3_1_11,1,"The household,  fully"
+e3_1_11,2,"The household,  partially"
+e3_1_11,3,"The State, fully"
+e3_1_11,4,"Other organization, fully"
+e3_1_11,5,patriarchateis financing
+e3_1_11,6,Relative is financing
+e3_1_11,7,Dont know
+e3_1_12,1,"The household,  fully"
+e3_1_12,2,"The household,  partially"
+e3_1_12,3,"The State, fully"
+e3_1_12,4,"Other organization, fully"
+e3_1_12,5,patriarchateis financing
+e3_1_12,6,Relative is financing
+e3_1_12,7,Dont know
+e3_1_13,1,"The household,  fully"
+e3_1_13,2,"The household,  partially"
+e3_1_13,3,"The State, fully"
+e3_1_13,4,"Other organization, fully"
+e3_1_13,5,By a relative
+e3_1_13,6,Dont know
+e3_1_14,1,"The household,  fully"
+e3_1_14,2,"The household,  partially"
+e3_1_14,3,"The State, fully"
+e3_1_14,4,"Other organization, fully"
+e3_1_14,5,By a relative
+e3_1_14,6,Dont know
+e3_2_1,1,"The household,  fully"
+e3_2_1,2,"The household,  partially"
+e3_2_1,3,"The State, fully"
+e3_2_1,4,"Other organization, fully"
+e3_2_1,5,patriarchateis financing
+e3_2_1,6,Relative is financing
+e3_2_1,7,Dont know
+e3_2_2,1,"The household,  fully"
+e3_2_2,2,"The household,  partially"
+e3_2_2,3,"The State, fully"
+e3_2_2,4,"Other organization, fully"
+e3_2_2,5,patriarchateis financing
+e3_2_2,6,Relative is financing
+e3_2_2,7,Dont know
+e3_2_3,1,"The household,  fully"
+e3_2_3,2,"The household,  partially"
+e3_2_3,3,"The State, fully"
+e3_2_3,4,"Other organization, fully"
+e3_2_3,5,patriarchateis financing
+e3_2_3,6,Relative is financing
+e3_2_3,7,Dont know
+e3_2_4,1,"The household,  fully"
+e3_2_4,2,"The household,  partially"
+e3_2_4,3,"The State, fully"
+e3_2_4,4,"Other organization, fully"
+e3_2_4,5,patriarchateis financing
+e3_2_4,6,Relative is financing
+e3_2_4,7,Dont know
+e3_2_5,1,"The household,  fully"
+e3_2_5,2,"The household,  partially"
+e3_2_5,3,"The State, fully"
+e3_2_5,4,"Other organization, fully"
+e3_2_5,5,patriarchateis financing
+e3_2_5,6,Relative is financing
+e3_2_5,7,Dont know
+e3_2_6,1,"The household,  fully"
+e3_2_6,2,"The household,  partially"
+e3_2_6,3,"The State, fully"
+e3_2_6,4,"Other organization, fully"
+e3_2_6,5,patriarchateis financing
+e3_2_6,6,Relative is financing
+e3_2_6,7,Dont know
+e3_2_7,1,"The household,  fully"
+e3_2_7,2,"The household,  partially"
+e3_2_7,3,"The State, fully"
+e3_2_7,4,"Other organization, fully"
+e3_2_7,5,patriarchateis financing
+e3_2_7,6,Relative is financing
+e3_2_7,7,Dont know
+e3_2_8,1,"The household,  fully"
+e3_2_8,2,"The household,  partially"
+e3_2_8,3,"The State, fully"
+e3_2_8,4,"Other organization, fully"
+e3_2_8,5,patriarchateis financing
+e3_2_8,6,Relative is financing
+e3_2_8,7,Dont know
+e3_2_9,1,"The household,  fully"
+e3_2_9,2,"The household,  partially"
+e3_2_9,3,"The State, fully"
+e3_2_9,4,"Other organization, fully"
+e3_2_9,5,patriarchateis financing
+e3_2_9,6,Relative is financing
+e3_2_9,7,Dont know
+e3_2_10,1,"The household,  fully"
+e3_2_10,2,"The household,  partially"
+e3_2_10,3,"The State, fully"
+e3_2_10,4,"Other organization, fully"
+e3_2_10,5,patriarchateis financing
+e3_2_10,6,Relative is financing
+e3_2_10,7,Dont know
+e3_3_1,1,"The household,  fully"
+e3_3_1,2,"The household,  partially"
+e3_3_1,3,"The State, fully"
+e3_3_1,4,"Other organization, fully"
+e3_3_1,5,patriarchateis financing
+e3_3_1,6,Relative is financing
+e3_3_1,7,Dont know
+e3_3_2,1,"The household,  fully"
+e3_3_2,2,"The household,  partially"
+e3_3_2,3,"The State, fully"
+e3_3_2,4,"Other organization, fully"
+e3_3_2,5,patriarchateis financing
+e3_3_2,6,Relative is financing
+e3_3_2,7,Dont know
+e3_3_3,1,"The household,  fully"
+e3_3_3,2,"The household,  partially"
+e3_3_3,3,"The State, fully"
+e3_3_3,4,"Other organization, fully"
+e3_3_3,5,patriarchateis financing
+e3_3_3,6,Relative is financing
+e3_3_3,7,Dont know
+e3_3_4,1,"The household,  fully"
+e3_3_4,2,"The household,  partially"
+e3_3_4,3,"The State, fully"
+e3_3_4,4,"Other organization, fully"
+e3_3_4,5,patriarchateis financing
+e3_3_4,6,Relative is financing
+e3_3_4,7,Dont know
+e3_3_5,1,"The household,  fully"
+e3_3_5,2,"The household,  partially"
+e3_3_5,3,"The State, fully"
+e3_3_5,4,"Other organization, fully"
+e3_3_5,5,patriarchateis financing
+e3_3_5,6,Relative is financing
+e3_3_5,7,Dont know
+e3_3_6,1,"The household,  fully"
+e3_3_6,2,"The household,  partially"
+e3_3_6,3,"The State, fully"
+e3_3_6,4,"Other organization, fully"
+e3_3_6,5,patriarchateis financing
+e3_3_6,6,Relative is financing
+e3_3_6,7,Dont know
+e3_3_7,1,"The household,  fully"
+e3_3_7,2,"The household,  partially"
+e3_3_7,3,"The State, fully"
+e3_3_7,4,"Other organization, fully"
+e3_3_7,5,patriarchateis financing
+e3_3_7,6,Relative is financing
+e3_3_7,7,Dont know
+e3_3_8,1,"The household,  fully"
+e3_3_8,2,"The household,  partially"
+e3_3_8,3,"The State, fully"
+e3_3_8,4,"Other organization, fully"
+e3_3_8,5,patriarchateis financing
+e3_3_8,6,Relative is financing
+e3_3_8,7,Dont know
+e3_4_1,1,"The household,  fully"
+e3_4_1,2,"The household,  partially"
+e3_4_1,3,"The State, fully"
+e3_4_1,4,"Other organization, fully"
+e3_4_1,5,patriarchateis financing
+e3_4_1,6,Relative is financing
+e3_4_1,7,Dont know
+e3_4_2,1,"The household,  fully"
+e3_4_2,2,"The household,  partially"
+e3_4_2,3,"The State, fully"
+e3_4_2,4,"Other organization, fully"
+e3_4_2,5,patriarchateis financing
+e3_4_2,6,Relative is financing
+e3_4_2,7,Dont know
+e3_4_3,1,"The household,  fully"
+e3_4_3,2,"The household,  partially"
+e3_4_3,3,"The State, fully"
+e3_4_3,4,"Other organization, fully"
+e3_4_3,5,patriarchateis financing
+e3_4_3,6,Relative is financing
+e3_4_3,7,Dont know
+e3_4_4,1,"The household,  fully"
+e3_4_4,2,"The household,  partially"
+e3_4_4,3,"The State, fully"
+e3_4_4,4,"Other organization, fully"
+e3_4_4,5,patriarchateis financing
+e3_4_4,6,Relative is financing
+e3_4_4,7,Dont know
+e3_4_5,1,"The household,  fully"
+e3_4_5,2,"The household,  partially"
+e3_4_5,3,"The State, fully"
+e3_4_5,4,"Other organization, fully"
+e3_4_5,5,patriarchateis financing
+e3_4_5,6,Relative is financing
+e3_4_5,7,Dont know
+e3_4_6,1,"The household,  fully"
+e3_4_6,2,"The household,  partially"
+e3_4_6,3,"The State, fully"
+e3_4_6,4,"Other organization, fully"
+e3_4_6,5,patriarchateis financing
+e3_4_6,6,Relative is financing
+e3_4_6,7,Dont know
+e3_4_7,1,"The household,  fully"
+e3_4_7,2,"The household,  partially"
+e3_4_7,3,"The State, fully"
+e3_4_7,4,"Other organization, fully"
+e3_4_7,5,By a relative
+e3_4_7,6,Dont know
+e3_4_8,1,"The household,  fully"
+e3_4_8,2,"The household,  partially"
+e3_4_8,3,"The State, fully"
+e3_4_8,4,"Other organization, fully"
+e3_4_8,5,By a relative
+e3_4_8,6,Dont know
+e3_4_9,1,"The household,  fully"
+e3_4_9,2,"The household,  partially"
+e3_4_9,3,"The State, fully"
+e3_4_9,4,"Other organization, fully"
+e3_4_9,5,By a relative
+e3_4_9,6,Dont know
+e3_4_10,1,"The household,  fully"
+e3_4_10,2,"The household,  partially"
+e3_4_10,3,"The State, fully"
+e3_4_10,4,"Other organization, fully"
+e3_4_10,5,By a relative
+e3_4_10,6,Dont know
+e5_1_6,1,Walked
+e5_1_6,2,By bycicle
+e5_1_6,3,By mini bus
+e5_1_6,4,by subway
+e5_1_6,5,by bus
+e5_1_6,6,by private car
+e5_1_7,1,Walked
+e5_1_7,2,By bycicle
+e5_1_7,3,By mini bus
+e5_1_7,4,by subway
+e5_1_7,5,by bus
+e5_1_7,6,by private car
+e5_1_8,1,Walked
+e5_1_8,2,By bycicle
+e5_1_8,3,By mini bus
+e5_1_8,4,by subway
+e5_1_8,5,by bus
+e5_1_8,6,by private car
+e5_1_9,1,Walked
+e5_1_9,2,By bycicle
+e5_1_9,3,By mini bus
+e5_1_9,4,by subway
+e5_1_9,5,by bus
+e5_1_9,6,by private car
+e5_1_10,1,Walked
+e5_1_10,2,By bycicle
+e5_1_10,3,By mini bus
+e5_1_10,4,by subway
+e5_1_10,5,by bus
+e5_1_10,6,by private car
+e5_1_11,1,Walked
+e5_1_11,2,By bycicle
+e5_1_11,3,By mini bus
+e5_1_11,4,by subway
+e5_1_11,5,by bus
+e5_1_11,6,by private car
+e5_1_12,1,Walked
+e5_1_12,2,By bycicle
+e5_1_12,3,By mini bus
+e5_1_12,4,by subway
+e5_1_12,5,by bus
+e5_1_12,6,by private car
+e5_1_13,1,Walked
+e5_1_13,2,By bycicle
+e5_1_13,3,By transport
+e5_1_14,1,Walked
+e5_1_14,2,By bycicle
+e5_1_14,3,By transport
+e5_1_15,1,Walked
+e5_1_15,2,By bycicle
+e5_1_15,3,By transport
+e5_2_1,1,Walked
+e5_2_1,2,By bycicle
+e5_2_1,3,By mini bus
+e5_2_1,4,by subway
+e5_2_1,5,by bus
+e5_2_1,6,by private car
+e5_2_2,1,Walked
+e5_2_2,2,By bycicle
+e5_2_2,3,By mini bus
+e5_2_2,4,by subway
+e5_2_2,5,by bus
+e5_2_2,6,by private car
+e5_2_3,1,Walked
+e5_2_3,2,By bycicle
+e5_2_3,3,By mini bus
+e5_2_3,4,by subway
+e5_2_3,5,by bus
+e5_2_3,6,by private car
+e5_2_4,1,Walked
+e5_2_4,2,By bycicle
+e5_2_4,3,By mini bus
+e5_2_4,4,by subway
+e5_2_4,5,by bus
+e5_2_4,6,by private car
+e5_2_5,1,Walked
+e5_2_5,2,By bycicle
+e5_2_5,3,By mini bus
+e5_2_5,4,by subway
+e5_2_5,5,by bus
+e5_2_5,6,by private car
+e5_2_6,1,Walked
+e5_2_6,2,By bycicle
+e5_2_6,3,By mini bus
+e5_2_6,4,by subway
+e5_2_6,5,by bus
+e5_2_6,6,by private car
+e5_2_7,1,Walked
+e5_2_7,2,By bycicle
+e5_2_7,3,By mini bus
+e5_2_7,4,by subway
+e5_2_7,5,by bus
+e5_2_7,6,by private car
+e5_2_8,1,Walked
+e5_2_8,2,By bycicle
+e5_2_8,3,By mini bus
+e5_2_8,4,by subway
+e5_2_8,5,by bus
+e5_2_8,6,by private car
+e5_2_9,1,Walked
+e5_2_9,2,By bycicle
+e5_2_9,3,By mini bus
+e5_2_9,4,by subway
+e5_2_9,5,by bus
+e5_2_9,6,by private car
+e5_2_10,1,Walked
+e5_2_10,2,By bycicle
+e5_2_10,3,By transport
+e5_3_1,1,Walked
+e5_3_1,2,By bycicle
+e5_3_1,3,By mini bus
+e5_3_1,4,by subway
+e5_3_1,5,by bus
+e5_3_1,6,by private car
+e5_3_2,1,Walked
+e5_3_2,2,By bycicle
+e5_3_2,3,By mini bus
+e5_3_2,4,by subway
+e5_3_2,5,by bus
+e5_3_2,6,by private car
+e5_3_3,1,Walked
+e5_3_3,2,By bycicle
+e5_3_3,3,By mini bus
+e5_3_3,4,by subway
+e5_3_3,5,by bus
+e5_3_3,6,by private car
+e5_3_4,1,Walked
+e5_3_4,2,By bycicle
+e5_3_4,3,By mini bus
+e5_3_4,4,by subway
+e5_3_4,5,by bus
+e5_3_4,6,by private car
+e5_3_5,1,Walked
+e5_3_5,2,By bycicle
+e5_3_5,3,By mini bus
+e5_3_5,4,by subway
+e5_3_5,5,by bus
+e5_3_5,6,by private car
+e5_3_6,1,Walked
+e5_3_6,2,By bycicle
+e5_3_6,3,By mini bus
+e5_3_6,4,by subway
+e5_3_6,5,by bus
+e5_3_6,6,by private car
+e5_3_7,1,Walked
+e5_3_7,2,By bycicle
+e5_3_7,3,By mini bus
+e5_3_7,4,by subway
+e5_3_7,5,by bus
+e5_3_7,6,by private car
+e5_3_8,1,Walked
+e5_3_8,2,By bycicle
+e5_3_8,3,By transport
+e5_3_9,1,Walked
+e5_3_9,2,By bycicle
+e5_3_9,3,By transport
+e5_3_10,1,Walked
+e5_3_10,2,By bycicle
+e5_3_10,3,By transport
+e5_3_11,1,Walked
+e5_3_11,2,By bycicle
+e5_3_11,3,By transport
+e5_4_1,1,Walked
+e5_4_1,2,By bycicle
+e5_4_1,3,By mini bus
+e5_4_1,4,by subway
+e5_4_1,5,by bus
+e5_4_1,6,by private car
+e5_4_2,1,Walked
+e5_4_2,2,By bycicle
+e5_4_2,3,By mini bus
+e5_4_2,4,by subway
+e5_4_2,5,by bus
+e5_4_2,6,by private car
+e5_4_3,1,Walked
+e5_4_3,2,By bycicle
+e5_4_3,3,By mini bus
+e5_4_3,4,by subway
+e5_4_3,5,by bus
+e5_4_3,6,by private car
+e5_4_4,1,Walked
+e5_4_4,2,By bycicle
+e5_4_4,3,By mini bus
+e5_4_4,4,by subway
+e5_4_4,5,by bus
+e5_4_4,6,by private car
+e5_4_5,1,Walked
+e5_4_5,2,By bycicle
+e5_4_5,3,By mini bus
+e5_4_5,4,by subway
+e5_4_5,5,by bus
+e5_4_5,6,by private car
+e5_4_6,1,Walked
+e5_4_6,2,By bycicle
+e5_4_6,3,By mini bus
+e5_4_6,4,by subway
+e5_4_6,5,by bus
+e5_4_6,6,by private car
+e5_4_7,1,Walked
+e5_4_7,2,By bycicle
+e5_4_7,3,By transport
+e5_4_8,1,Walked
+e5_4_8,2,By bycicle
+e5_4_8,3,By transport
+e5_4_9,1,Walked
+e5_4_9,2,By bycicle
+e5_4_9,3,By transport
+e5_4_10,1,Walked
+e5_4_10,2,By bycicle
+e5_4_10,3,By transport
+e6_1_1,1,Private kindergarten
+e6_1_1,2,Public kindergarten
+e6_1_1,3,Private school
+e6_1_1,4,Public school
+e6_1_1,5,Vocational school
+e6_1_1,6,High School
+e6_1_1,7,Boarding school / daycare centre
+e6_1_1,8,Study group
+e6_1_1,9,Training courses
+e6_1_1,10,private teacher
+e6_1_1,11,Tutor
+e6_1_1,12, none
+e6_1_2,1,Private kindergarten
+e6_1_2,2,Public kindergarten
+e6_1_2,3,Private school
+e6_1_2,4,Public school
+e6_1_2,5,Vocational school
+e6_1_2,6,High School
+e6_1_2,7,Boarding school / daycare centre
+e6_1_2,8,Study group
+e6_1_2,9,Training courses
+e6_1_2,10,private teacher
+e6_1_2,11,Tutor
+e6_1_2,12, none
+e6_1_3,1,Private kindergarten
+e6_1_3,2,Public kindergarten
+e6_1_3,3,Private school
+e6_1_3,4,Public school
+e6_1_3,5,Vocational school
+e6_1_3,6,High School
+e6_1_3,7,Boarding school / daycare centre
+e6_1_3,8,Study group
+e6_1_3,9,Training courses
+e6_1_3,10,private teacher
+e6_1_3,11,Tutor
+e6_1_3,12, none
+e6_1_4,1,Private kindergarten
+e6_1_4,2,Public kindergarten
+e6_1_4,3,Private school
+e6_1_4,4,Public school
+e6_1_4,5,Vocational school
+e6_1_4,6,High School
+e6_1_4,7,Boarding school / daycare centre
+e6_1_4,8,Study group
+e6_1_4,9,Training courses
+e6_1_4,10,private teacher
+e6_1_4,11,Tutor
+e6_1_4,12, none
+e6_1_5,1,Private kindergarten
+e6_1_5,2,Public kindergarten
+e6_1_5,3,Private school
+e6_1_5,4,Public school
+e6_1_5,5,Vocational school
+e6_1_5,6,High School
+e6_1_5,7,Boarding school / daycare centre
+e6_1_5,8,Study group
+e6_1_5,9,Training courses
+e6_1_5,10,private teacher
+e6_1_5,11,Tutor
+e6_1_5,12, none
+e6_1_6,1,Private kindergarten
+e6_1_6,2,Public kindergarten
+e6_1_6,3,Private school
+e6_1_6,4,Public school
+e6_1_6,5,Vocational school
+e6_1_6,6,High School
+e6_1_6,7,Boarding school / daycare centre
+e6_1_6,8,Study group
+e6_1_6,9,Training courses
+e6_1_6,10,private teacher
+e6_1_6,11,Tutor
+e6_1_6,12, none
+e6_1_7,1,Private kindergarten
+e6_1_7,2,Public kindergarten
+e6_1_7,3,Private school
+e6_1_7,4,Public school
+e6_1_7,5,Vocational school
+e6_1_7,6,High School
+e6_1_7,7,Boarding school / daycare centre
+e6_1_7,8,Study group
+e6_1_7,9,Training courses
+e6_1_7,10,private teacher
+e6_1_7,11,Tutor
+e6_1_7,12, none
+e6_1_8,1,Private kindergarten
+e6_1_8,2,Public kindergarten
+e6_1_8,3,Private school
+e6_1_8,4,Public school
+e6_1_8,5,Vocational school
+e6_1_8,6,High School
+e6_1_8,7,Boarding school / daycare centre
+e6_1_8,8,Study group
+e6_1_8,9,Training courses
+e6_1_8,10,private teacher
+e6_1_8,11,Tutor
+e6_1_8,12, none
+e6_1_9,1,Private kindergarten
+e6_1_9,2,Public kindergarten
+e6_1_9,3,Private school
+e6_1_9,4,Public school
+e6_1_9,5,Vocational school
+e6_1_9,6,High School
+e6_1_9,7,Boarding school / daycare centre
+e6_1_9,8,Study group
+e6_1_9,9,Training courses
+e6_1_9,10,private teacher
+e6_1_9,11,Tutor
+e6_1_9,12, none
+e6_1_10,1,Private kindergarten
+e6_1_10,2,Public kindergarten
+e6_1_10,3,Private school
+e6_1_10,4,Public school
+e6_1_10,5,Vocational school
+e6_1_10,6,High School
+e6_1_10,7,Boarding school / daycare centre
+e6_1_10,8,Study group
+e6_1_10,9,Training courses
+e6_1_10,10,private teacher
+e6_1_10,11,Tutor
+e6_1_10,12, none
+e6_1_11,1,Private kindergarten
+e6_1_11,2,Public kindergarten
+e6_1_11,3,Private school
+e6_1_11,4,Public school
+e6_1_11,5,Vocational school
+e6_1_11,6,High School
+e6_1_11,7,Boarding school / daycare centre
+e6_1_11,8,Study group
+e6_1_11,9,Training courses
+e6_1_11,10,private teacher
+e6_1_11,11,Tutor
+e6_1_11,12, none
+e6_1_12,1,Private kindergarten
+e6_1_12,2,Public kindergarten
+e6_1_12,3,Private school
+e6_1_12,4,Public school
+e6_1_12,5,Vocational school
+e6_1_12,6,High School
+e6_1_12,7,Boarding school / daycare centre
+e6_1_12,8,Study group
+e6_1_12,9,Training courses
+e6_1_12,10,private teacher
+e6_1_12,11,Tutor
+e6_1_12,12, none
+e6_1_13,1,Private kindergarten
+e6_1_13,2,Public kindergarten
+e6_1_13,3,Private school
+e6_1_13,4,Public school
+e6_1_13,5,Vocational school
+e6_1_13,6,High School
+e6_1_13,7,Boarding school / daycare centre
+e6_1_13,8,Study group
+e6_1_13,9,Training courses
+e6_1_13,10,private teacher
+e6_1_13,11,Tutor
+e6_1_13,12, none
+e6_1_14,1,Private kindergarten
+e6_1_14,2,Public kindergarten
+e6_1_14,3,Private school
+e6_1_14,4,Public school
+e6_1_14,5,Vocational school
+e6_1_14,6,High School
+e6_1_14,7,Boarding school / daycare centre
+e6_1_14,8,Study group
+e6_1_14,9,Training courses
+e6_1_14,10,private teacher
+e6_1_14,11,Tutor
+e6_1_14,12, none
+e6_1_15,1,Private kindergarten
+e6_1_15,2,Public kindergarten
+e6_1_15,3,Private school
+e6_1_15,4,Public school
+e6_1_15,5,Vocational school
+e6_1_15,6,High School
+e6_1_15,7,Boarding school / daycare centre
+e6_1_15,8,Study group
+e6_1_15,9,Training courses
+e6_1_15,10,private teacher
+e6_1_15,11,Tutor
+e6_1_15,12, none
+e6_2_1,1,Private kindergarten
+e6_2_1,2,Public kindergarten
+e6_2_1,3,Private school
+e6_2_1,4,Public school
+e6_2_1,5,Vocational school
+e6_2_1,6,High School
+e6_2_1,7,Boarding school / daycare centre
+e6_2_1,8,Study group
+e6_2_1,9,Training courses
+e6_2_1,10,private teacher
+e6_2_1,11,Tutor
+e6_2_1,12, none
+e6_2_2,1,Private kindergarten
+e6_2_2,2,Public kindergarten
+e6_2_2,3,Private school
+e6_2_2,4,Public school
+e6_2_2,5,Vocational school
+e6_2_2,6,High School
+e6_2_2,7,Boarding school / daycare centre
+e6_2_2,8,Study group
+e6_2_2,9,Training courses
+e6_2_2,10,private teacher
+e6_2_2,11,Tutor
+e6_2_2,12, none
+e6_2_3,1,Private kindergarten
+e6_2_3,2,Public kindergarten
+e6_2_3,3,Private school
+e6_2_3,4,Public school
+e6_2_3,5,Vocational school
+e6_2_3,6,High School
+e6_2_3,7,Boarding school / daycare centre
+e6_2_3,8,Study group
+e6_2_3,9,Training courses
+e6_2_3,10,private teacher
+e6_2_3,11,Tutor
+e6_2_3,12, none
+e6_2_4,1,Private kindergarten
+e6_2_4,2,Public kindergarten
+e6_2_4,3,Private school
+e6_2_4,4,Public school
+e6_2_4,5,Vocational school
+e6_2_4,6,High School
+e6_2_4,7,Boarding school / daycare centre
+e6_2_4,8,Study group
+e6_2_4,9,Training courses
+e6_2_4,10,private teacher
+e6_2_4,11,Tutor
+e6_2_4,12, none
+e6_2_5,1,Private kindergarten
+e6_2_5,2,Public kindergarten
+e6_2_5,3,Private school
+e6_2_5,4,Public school
+e6_2_5,5,Vocational school
+e6_2_5,6,High School
+e6_2_5,7,Boarding school / daycare centre
+e6_2_5,8,Study group
+e6_2_5,9,Training courses
+e6_2_5,10,private teacher
+e6_2_5,11,Tutor
+e6_2_5,12, none
+e6_2_6,1,Private kindergarten
+e6_2_6,2,Public kindergarten
+e6_2_6,3,Private school
+e6_2_6,4,Public school
+e6_2_6,5,Vocational school
+e6_2_6,6,High School
+e6_2_6,7,Boarding school / daycare centre
+e6_2_6,8,Study group
+e6_2_6,9,Training courses
+e6_2_6,10,private teacher
+e6_2_6,11,Tutor
+e6_2_6,12, none
+e6_2_7,1,Private kindergarten
+e6_2_7,2,Public kindergarten
+e6_2_7,3,Private school
+e6_2_7,4,Public school
+e6_2_7,5,Vocational school
+e6_2_7,6,High School
+e6_2_7,7,Boarding school / daycare centre
+e6_2_7,8,Study group
+e6_2_7,9,Training courses
+e6_2_7,10,private teacher
+e6_2_7,11,Tutor
+e6_2_7,12, none
+e6_2_8,1,Private kindergarten
+e6_2_8,2,Public kindergarten
+e6_2_8,3,Private school
+e6_2_8,4,Public school
+e6_2_8,5,Vocational school
+e6_2_8,6,High School
+e6_2_8,7,Boarding school / daycare centre
+e6_2_8,8,Study group
+e6_2_8,9,Training courses
+e6_2_8,10,private teacher
+e6_2_8,11,Tutor
+e6_2_8,12, none
+e6_2_9,1,Private kindergarten
+e6_2_9,2,Public kindergarten
+e6_2_9,3,Private school
+e6_2_9,4,Public school
+e6_2_9,5,Vocational school
+e6_2_9,6,High School
+e6_2_9,7,Boarding school / daycare centre
+e6_2_9,8,Study group
+e6_2_9,9,Training courses
+e6_2_9,10,private teacher
+e6_2_9,11,Tutor
+e6_2_9,12, none
+e7_1_1,1,There is no appropriate institution nearby
+e7_1_1,2,Could not afford
+e7_1_1,3,Works
+e7_1_1,4,Not enough time
+e7_1_1,5,Is above the age-limit
+e7_1_1,6,Due to the health problems
+e7_1_2,1,There is no appropriate institution nearby
+e7_1_2,2,Could not afford
+e7_1_2,3,Works
+e7_1_2,4,Not enough time
+e7_1_2,5,Is above the age-limit
+e7_1_2,6,Due to the health problems
+e7_1_3,1,There is no appropriate institution nearby
+e7_1_3,2,Could not afford
+e7_1_3,3,Works
+e7_1_3,4,Not enough time
+e7_1_3,5,Is above the age-limit
+e7_1_3,6,Due to the health problems
+e7_1_4,1,There is no appropriate institution nearby
+e7_1_4,2,Could not afford
+e7_1_4,3,Works
+e7_1_4,4,Not enough time
+e7_1_4,5,Is above the age-limit
+e7_1_4,6,Due to the health problems
+e7_1_5,1,There is no appropriate institution nearby
+e7_1_5,2,Could not afford
+e7_1_5,3,Works
+e7_1_5,4,Not enough time
+e7_1_5,5,Is above the age-limit
+e7_1_5,6,Due to the health problems
+e7_1_6,1,There is no appropriate institution nearby
+e7_1_6,2,Could not afford
+e7_1_6,3,Works
+e7_1_6,4,Not enough time
+e7_1_6,5,Is above the age-limit
+e7_1_6,6,Due to the health problems
+e7_1_7,1,There is no appropriate institution nearby
+e7_1_7,2,Could not afford
+e7_1_7,3,Works
+e7_1_7,4,Not enough time
+e7_1_7,5,Is above the age-limit
+e7_1_7,6,Due to the health problems
+e7_1_8,1,There is no appropriate institution nearby
+e7_1_8,2,Could not afford
+e7_1_8,3,Works
+e7_1_8,4,Not enough time
+e7_1_8,5,Is above the age-limit
+e7_1_8,6,Due to the health problems
+e7_1_9,1,There is no appropriate institution nearby
+e7_1_9,2,Could not afford
+e7_1_9,3,Works
+e7_1_9,4,Not enough time
+e7_1_9,5,Is above the age-limit
+e7_1_9,6,Due to the health problems
+e7_1_10,1,There is no appropriate institution nearby
+e7_1_10,2,Could not afford
+e7_1_10,3,Works
+e7_1_10,4,Not enough time
+e7_1_10,5,Is above the age-limit
+e7_1_10,6,Due to the health problems
+e7_2_1,1,There is no appropriate institution nearby
+e7_2_1,2,Could not afford
+e7_2_1,3,Works
+e7_2_1,4,Not enough time
+e7_2_1,5,Is above the age-limit
+e7_2_1,6,Due to the health problems
+e7_2_2,1,There is no appropriate institution nearby
+e7_2_2,2,Could not afford
+e7_2_2,3,Works
+e7_2_2,4,Not enough time
+e7_2_2,5,Is above the age-limit
+e7_2_2,6,Due to the health problems
+e7_2_3,1,There is no appropriate institution nearby
+e7_2_3,2,Could not afford
+e7_2_3,3,Works
+e7_2_3,4,Not enough time
+e7_2_3,5,Is above the age-limit
+e7_2_3,6,Due to the health problems
+e7_2_4,1,There is no appropriate institution nearby
+e7_2_4,2,Could not afford
+e7_2_4,3,Works
+e7_2_4,4,Not enough time
+e7_2_4,5,Is above the age-limit
+e7_2_4,6,Due to the health problems
+e7_2_5,1,There is no appropriate institution nearby
+e7_2_5,2,Could not afford
+e7_2_5,3,Works
+e7_2_5,4,Not enough time
+e7_2_5,5,Is above the age-limit
+e7_2_5,6,Due to the health problems
+e7_2_6,1,There is no appropriate institution nearby
+e7_2_6,2,Could not afford
+e7_2_6,3,Works
+e7_2_6,4,Not enough time
+e7_2_6,5,Is above the age-limit
+e7_2_6,6,Due to the health problems
+e7_2_7,1,There is no appropriate institution nearby
+e7_2_7,2,Could not afford
+e7_2_7,3,Works
+e7_2_7,4,Not enough time
+e7_2_7,5,Is above the age-limit
+e7_2_7,6,Due to the health problems
+e7_2_8,1,There is no appropriate institution nearby
+e7_2_8,2,Could not afford
+e7_2_8,3,Works
+e7_2_8,4,Not enough time
+e7_2_8,5,Is above the age-limit
+e7_2_8,6,Due to the health problems
+e7_3_1,1,There is no appropriate institution nearby
+e7_3_1,2,Could not afford
+e7_3_1,3,Works
+e7_3_1,4,Not enough time
+e7_3_1,5,Is above the age-limit
+e7_3_1,6,Due to the health problems
+e7_3_2,1,There is no appropriate institution nearby
+e7_3_2,2,Could not afford
+e7_3_2,3,Works
+e7_3_2,4,Not enough time
+e7_3_2,5,Is above the age-limit
+e7_3_2,6,Due to the health problems
+e7_3_3,1,There is no appropriate institution nearby
+e7_3_3,2,Could not afford
+e7_3_3,3,Works
+e7_3_3,4,Not enough time
+e7_3_3,5,Is above the age-limit
+e7_3_3,6,Due to the health problems
+e7_3_4,1,There is no appropriate institution nearby
+e7_3_4,2,Could not afford
+e7_3_4,3,Works
+e7_3_4,4,Not enough time
+e7_3_4,5,Is above the age-limit
+e7_3_4,6,Due to the health problems
+f1_1_1,1,Very good
+f1_1_1,2,Good
+f1_1_1,3,"Nether good, nor bad"
+f1_1_1,4,Bad
+f1_1_1,5,Very bad
+f1_1_2,1,Very good
+f1_1_2,2,Good
+f1_1_2,3,"Nether good, nor bad"
+f1_1_2,4,Bad
+f1_1_2,5,Very bad
+f1_1_3,1,Very good
+f1_1_3,2,Good
+f1_1_3,3,"Nether good, nor bad"
+f1_1_3,4,Bad
+f1_1_3,5,Very bad
+f1_1_4,1,Very good
+f1_1_4,2,Good
+f1_1_4,3,"Nether good, nor bad"
+f1_1_4,4,Bad
+f1_1_4,5,Very bad
+f1_1_5,1,Very good
+f1_1_5,2,Good
+f1_1_5,3,"Nether good, nor bad"
+f1_1_5,4,Bad
+f1_1_5,5,Very bad
+f1_1_6,1,Very good
+f1_1_6,2,Good
+f1_1_6,3,"Nether good, nor bad"
+f1_1_6,4,Bad
+f1_1_6,5,Very bad
+f1_1_7,1,Very good
+f1_1_7,2,Good
+f1_1_7,3,"Nether good, nor bad"
+f1_1_7,4,Bad
+f1_1_7,5,Very bad
+f1_1_8,1,Very good
+f1_1_8,2,Good
+f1_1_8,3,"Nether good, nor bad"
+f1_1_8,4,Bad
+f1_1_8,5,Very bad
+f1_1_9,1,Very good
+f1_1_9,2,Good
+f1_1_9,3,"Nether good, nor bad"
+f1_1_9,4,Bad
+f1_1_9,5,Very bad
+f1_1_10,1,Very good
+f1_1_10,2,Good
+f1_1_10,3,"Nether good, nor bad"
+f1_1_10,4,Bad
+f1_1_10,5,Very bad
+f1_1_11,1,Very good
+f1_1_11,2,Good
+f1_1_11,3,"Nether good, nor bad"
+f1_1_11,4,Bad
+f1_1_11,5,Very bad
+f1_1_12,1,Very good
+f1_1_12,2,Good
+f1_1_12,3,"Nether good, nor bad"
+f1_1_12,4,Bad
+f1_1_12,5,Very bad
+f1_1_13,1,Very good
+f1_1_13,2,Good
+f1_1_13,3,"Nether good, nor bad"
+f1_1_13,4,Bad
+f1_1_13,5,Very bad
+f1_1_14,1,Very good
+f1_1_14,2,Good
+f1_1_14,3,"Nether good, nor bad"
+f1_1_14,4,Bad
+f1_1_14,5,Very bad
+f1_2_1,1,Yes
+f1_2_1,2,No
+f1_2_2,1,Yes
+f1_2_2,2,No
+f1_2_3,1,Yes
+f1_2_3,2,No
+f1_2_4,1,Yes
+f1_2_4,2,No
+f1_2_5,1,Yes
+f1_2_5,2,No
+f1_2_6,1,Yes
+f1_2_6,2,No
+f1_2_7,1,Yes
+f1_2_7,2,No
+f1_2_8,1,Yes
+f1_2_8,2,No
+f1_2_9,1,Yes
+f1_2_9,2,No
+f1_2_10,1,Yes
+f1_2_10,2,No
+f1_2_11,1,Yes
+f1_2_11,2,No
+f1_2_12,1,Yes
+f1_2_12,2,No
+f1_4_1,1,Family doctor
+f1_4_1,2,Pediatrician
+f1_4_1,3,Obstetrician/gynecologist
+f1_4_1,4,Therapeutics
+f1_4_1,5,Narrow Specialist
+f1_4_1,6,Private doctor
+f1_4_1,7,Dentist
+f1_4_1,8,Other
+f1_4_2,1,Family doctor
+f1_4_2,2,Pediatrician
+f1_4_2,3,Obstetrician/gynecologist
+f1_4_2,4,Therapeutics
+f1_4_2,5,Narrow Specialist
+f1_4_2,6,Private doctor
+f1_4_2,7,Dentist
+f1_4_2,8,Other
+f1_4_3,1,Family doctor
+f1_4_3,2,Pediatrician
+f1_4_3,3,Obstetrician/gynecologist
+f1_4_3,4,Therapeutics
+f1_4_3,5,Narrow Specialist
+f1_4_3,6,Private doctor
+f1_4_3,7,Dentist
+f1_4_3,8,Other
+f1_4_4,1,Family doctor
+f1_4_4,2,Pediatrician
+f1_4_4,3,Obstetrician/gynecologist
+f1_4_4,4,Therapeutics
+f1_4_4,5,Narrow Specialist
+f1_4_4,6,Private doctor
+f1_4_4,7,Dentist
+f1_4_4,8,Other
+f1_4_5,1,Family doctor
+f1_4_5,2,Pediatrician
+f1_4_5,3,Obstetrician/gynecologist
+f1_4_5,4,Therapeutics
+f1_4_5,5,Narrow Specialist
+f1_4_5,6,Private doctor
+f1_4_5,7,Dentist
+f1_4_5,8,Other
+f1_4_6,1,Family doctor
+f1_4_6,2,Pediatrician
+f1_4_6,3,Obstetrician/gynecologist
+f1_4_6,4,Therapeutics
+f1_4_6,5,Narrow Specialist
+f1_4_6,6,Private doctor
+f1_4_6,7,Dentist
+f1_4_6,8,Other
+f1_4_7,1,Family doctor
+f1_4_7,2,Pediatrician
+f1_4_7,3,Obstetrician/gynecologist
+f1_4_7,4,Therapeutics
+f1_4_7,5,Narrow Specialist
+f1_4_7,6,Private doctor
+f1_4_7,7,Dentist
+f1_4_7,8,Other
+f1_4_8,1,Family doctor
+f1_4_8,2,Pediatrician
+f1_4_8,3,Obstetrician/gynecologist
+f1_4_8,4,Therapeutics
+f1_4_8,5,Narrow Specialist
+f1_4_8,6,Private doctor
+f1_4_8,7,Dentist
+f1_4_8,8,Other
+f1_4_9,1,Family doctor
+f1_4_9,2,Pediatrician
+f1_4_9,3,Obstetrician/gynecologist
+f1_4_9,4,Therapeutics
+f1_4_9,5,Narrow Specialist
+f1_4_9,6,Private doctor
+f1_4_9,7,Dentist
+f1_4_9,8,Other
+f1_4_10,1,Family doctor
+f1_4_10,2,Pediatrician
+f1_4_10,3,Obstetrician/gynecologist
+f1_4_10,4,Therapeutics
+f1_4_10,5,Narrow Specialist
+f1_4_10,6,Private doctor
+f1_4_10,7,Dentist
+f1_4_10,8,Other
+f1_4_11,1,Family doctor
+f1_4_11,2,Pediatrician
+f1_4_11,3,Obstetrician/gynecologist
+f1_4_11,4,Therapeutics
+f1_4_11,5,Narrow Specialist
+f1_4_11,6,Private doctor
+f1_4_11,7,Dentist
+f1_4_11,8,Other
+f1_4_12,1,Family doctor
+f1_4_12,2,Pediatrician
+f1_4_12,3,Obstetrician/gynecologist
+f1_4_12,4,Therapeutics
+f1_4_12,5,Narrow Specialist
+f1_4_12,6,Private doctor
+f1_4_12,7,Dentist
+f1_4_12,8,Other
+f1_4_13,1,Family doctor
+f1_4_13,2,Pediatrician
+f1_4_13,3,Obstetrician/gynecologist
+f1_4_13,4,Therapeutics
+f1_4_13,5,Narrow Specialist
+f1_4_13,6,Private doctor
+f1_4_13,7,Dentist
+f1_4_13,8,Other
+f1_8_1,1,very satisfied
+f1_8_1,2,satisfied
+f1_8_1,3,Neither satisfied nor dissatisfied
+f1_8_1,4,Dissatisfied
+f1_8_1,5,Very dissatisfied
+f1_8_3,1,very satisfied
+f1_8_3,2,satisfied
+f1_8_3,3,Neither satisfied nor dissatisfied
+f1_8_3,4,Dissatisfied
+f1_8_3,5,Very dissatisfied
+f1_8_4,1,very satisfied
+f1_8_4,2,satisfied
+f1_8_4,3,Neither satisfied nor dissatisfied
+f1_8_4,4,Dissatisfied
+f1_8_4,5,Very dissatisfied
+f1_8_5,1,very satisfied
+f1_8_5,2,satisfied
+f1_8_5,3,Neither satisfied nor dissatisfied
+f1_8_5,4,Dissatisfied
+f1_8_5,5,Very dissatisfied
+f1_8_6,1,very satisfied
+f1_8_6,2,satisfied
+f1_8_6,3,Neither satisfied nor dissatisfied
+f1_8_6,4,Dissatisfied
+f1_8_6,5,Very dissatisfied
+f1_8_7,1,very satisfied
+f1_8_7,2,satisfied
+f1_8_7,3,Neither satisfied nor dissatisfied
+f1_8_7,4,Dissatisfied
+f1_8_7,5,Very dissatisfied
+f1_8_8,1,very satisfied
+f1_8_8,2,satisfied
+f1_8_8,3,Neither satisfied nor dissatisfied
+f1_8_8,4,Dissatisfied
+f1_8_8,5,Very dissatisfied
+f1_8_9,1,very satisfied
+f1_8_9,2,satisfied
+f1_8_9,3,Neither satisfied nor dissatisfied
+f1_8_9,4,Dissatisfied
+f1_8_9,5,Very dissatisfied
+f1_8_10,1,very satisfied
+f1_8_10,2,satisfied
+f1_8_10,3,Neither satisfied nor dissatisfied
+f1_8_10,4,Dissatisfied
+f1_8_10,5,Very dissatisfied
+f1_8_11,1,very satisfied
+f1_8_11,2,satisfied
+f1_8_11,3,Neither satisfied nor dissatisfied
+f1_8_11,4,Dissatisfied
+f1_8_11,5,Very dissatisfied
+f1_9_1,1,Yes
+f1_9_1,2,No
+f1_9_2,1,Yes
+f1_9_2,2,No
+f1_9_3,1,Yes
+f1_9_3,2,No
+f1_9_4,1,Yes
+f1_9_4,2,No
+f1_9_5,1,Yes
+f1_9_5,2,No
+f1_9_6,1,Yes
+f1_9_6,2,No
+f1_9_7,1,Yes
+f1_9_7,2,No
+f1_9_8,1,Yes
+f1_9_8,2,No
+f1_9_9,1,Yes
+f1_9_9,2,No
+f1_9_10,1,Yes
+f1_9_10,2,No
+f1_9_11,1,Yes
+f1_9_11,2,No
+f1_9_12,1,Yes
+f1_9_12,2,No
+f1_9_13,1,Yes
+f1_9_13,2,No
+f1_9_14,1,Yes
+f1_9_14,2,No
+f1_9_15,1,Yes
+f1_9_15,2,No
+f1_9_16,1,Yes
+f1_9_16,2,No
+f1_9_17,1,Yes
+f1_9_17,2,No
+f1_9_18,1,Yes
+f1_9_18,2,No
+f1_11_1,1,Yes
+f1_11_1,2,No
+f1_11_2,1,Yes
+f1_11_2,2,No
+f1_11_3,1,Yes
+f1_11_3,2,No
+f1_11_4,1,Yes
+f1_11_4,2,No
+f1_11_5,1,Yes
+f1_11_5,2,No
+f1_11_6,1,Yes
+f1_11_6,2,No
+f1_11_7,1,Yes
+f1_11_7,2,No
+f1_11_8,1,Yes
+f1_11_8,2,No
+f1_11_9,1,Yes
+f1_11_9,2,No
+f1_11_10,1,Yes
+f1_11_10,2,No
+f1_11_11,1,Yes
+f1_11_11,2,No
+f1_11_12,1,Yes
+f1_11_12,2,No
+f1_11_13,1,Yes
+f1_11_13,2,No
+f1_11_14,1,Yes
+f1_11_14,2,No
+f1_11_15,1,Yes
+f1_11_15,2,No
+f1_11_16,1,Yes
+f1_11_16,2,No
+f1_11_17,1,Yes
+f1_11_17,2,No
+f1_11_18,1,Yes
+f1_11_18,2,No
+f1_13_1,1,Policlinics
+f1_13_1,2,General hospital
+f1_13_1,3,Specialized hospital
+f1_13_1,4,Private hospital
+f1_13_1,5,Other
+f1_13_2,1,Policlinics
+f1_13_2,2,General hospital
+f1_13_2,3,Specialized hospital
+f1_13_2,4,Private hospital
+f1_13_2,5,Other
+f1_13_3,1,Policlinics
+f1_13_3,2,General hospital
+f1_13_3,3,Specialized hospital
+f1_13_3,4,Private hospital
+f1_13_3,5,Other
+f1_13_4,1,Policlinics
+f1_13_4,2,General hospital
+f1_13_4,3,Specialized hospital
+f1_13_4,4,Private hospital
+f1_13_4,5,Other
+f1_13_5,1,Policlinics
+f1_13_5,2,General hospital
+f1_13_5,3,Specialized hospital
+f1_13_5,4,Private hospital
+f1_13_5,5,Other
+f1_13_6,1,Policlinics
+f1_13_6,2,General hospital
+f1_13_6,3,Specialized hospital
+f1_13_6,4,Private hospital
+f1_13_6,5,Other
+f1_13_7,1,Policlinics
+f1_13_7,2,General hospital
+f1_13_7,3,Specialized hospital
+f1_13_7,4,Private hospital
+f1_13_7,5,Other
+f1_13_8,1,Policlinics
+f1_13_8,2,General hospital
+f1_13_8,3,Specialized hospital
+f1_13_8,4,Private hospital
+f1_13_8,5,Other
+f1_13_9,1,Policlinics
+f1_13_9,2,General hospital
+f1_13_9,3,Specialized hospital
+f1_13_9,4,Private hospital
+f1_13_9,5,Other
+f1_13_10,1,Policlinics
+f1_13_10,2,General hospital
+f1_13_10,3,Specialized hospital
+f1_13_10,4,Private hospital
+f1_13_10,5,Other
+f1_13_11,1,Policlinics
+f1_13_11,2,General hospital
+f1_13_11,3,Specialized hospital
+f1_13_11,4,Private hospital
+f1_13_11,5,Other
+f1_13_12,1,Policlinics
+f1_13_12,2,General hospital
+f1_13_12,3,Specialized hospital
+f1_13_12,4,Private hospital
+f1_13_12,5,Other
+f1_18_1,1,Very satisfied
+f1_18_1,2,Satisfied
+f1_18_1,3,Neither satisfied nor dissatisfied
+f1_18_1,4,Dissatisfied
+f1_18_1,5,Very dissatisfied
+f1_18_2,1,Very satisfied
+f1_18_2,2,Satisfied
+f1_18_2,3,Neither satisfied nor dissatisfied
+f1_18_2,4,Dissatisfied
+f1_18_2,5,Very dissatisfied
+f1_18_3,1,Very satisfied
+f1_18_3,2,Satisfied
+f1_18_3,3,Neither satisfied nor dissatisfied
+f1_18_3,4,Dissatisfied
+f1_18_3,5,Very dissatisfied
+f1_18_4,1,Very satisfied
+f1_18_4,2,Satisfied
+f1_18_4,3,Neither satisfied nor dissatisfied
+f1_18_4,4,Dissatisfied
+f1_18_4,5,Very dissatisfied
+f1_18_5,1,Very satisfied
+f1_18_5,2,Satisfied
+f1_18_5,3,Neither satisfied nor dissatisfied
+f1_18_5,4,Dissatisfied
+f1_18_5,5,Very dissatisfied
+f1_18_6,1,Very satisfied
+f1_18_6,2,Satisfied
+f1_18_6,3,Neither satisfied nor dissatisfied
+f1_18_6,4,Dissatisfied
+f1_18_6,5,Very dissatisfied
+f1_18_7,1,Very satisfied
+f1_18_7,2,Satisfied
+f1_18_7,3,Neither satisfied nor dissatisfied
+f1_18_7,4,Dissatisfied
+f1_18_7,5,Very dissatisfied
+f1_18_8,1,Very satisfied
+f1_18_8,2,Satisfied
+f1_18_8,3,Neither satisfied nor dissatisfied
+f1_18_8,4,Dissatisfied
+f1_18_8,5,Very dissatisfied
+f1_18_9,1,Very satisfied
+f1_18_9,2,Satisfied
+f1_18_9,3,Neither satisfied nor dissatisfied
+f1_18_9,4,Dissatisfied
+f1_18_9,5,Very dissatisfied
+f1_18_10,1,Very satisfied
+f1_18_10,2,Satisfied
+f1_18_10,3,Neither satisfied nor dissatisfied
+f1_18_10,4,Dissatisfied
+f1_18_10,5,Very dissatisfied
+f1_19_1,1,Yes
+f1_19_1,2,No
+f1_19_1,3,D/N
+f1_19_2,1,Yes
+f1_19_2,2,No
+f1_19_2,3,D/N
+f1_19_3,1,Yes
+f1_19_3,2,No
+f1_19_3,3,D/N
+f1_19_4,1,Yes
+f1_19_4,2,No
+f1_19_4,3,D/N
+f1_19_5,1,Yes
+f1_19_5,2,No
+f1_19_5,3,D/N
+f1_19_6,1,Yes
+f1_19_6,2,No
+f1_19_6,3,D/N
+f1_19_7,1,Yes
+f1_19_7,2,No
+f1_19_7,3,D/N
+f1_19_8,1,Yes
+f1_19_8,2,No
+f1_19_8,3,D/N
+f1_19_9,1,Yes
+f1_19_9,2,No
+f1_19_9,3,D/N
+f1_19_10,1,Yes
+f1_19_10,2,No
+f1_19_10,3,D/N
+f1_19_11,1,Yes
+f1_19_11,2,No
+f1_19_11,3,D/N
+f1_19_12,1,Yes
+f1_19_12,2,No
+f1_19_12,3,D/N
+f1_19_13,1,Yes
+f1_19_13,2,No
+f1_19_13,3,D/N
+f1_19_14,1,Yes
+f1_19_14,2,No
+f1_19_14,3,D/N
+f1_19_15,1,Yes
+f1_19_15,2,No
+f1_19_15,3,D/N
+f1_19_16,1,Yes
+f1_19_16,2,No
+f1_19_16,3,D/N
+f1_19_17,1,Yes
+f1_19_17,2,No
+f1_19_17,3,D/N
+f1_19_18,1,Yes
+f1_19_18,2,No
+f1_19_18,3,D/N
+f1_20_1,1,I did self-treatment at home
+f1_20_1,2,I could not afford to pay for treatment
+f1_20_1,3,The health facility is far
+f1_20_1,4,""""""
+f1_20_1,5,D/N
+f1_20_1,6,other
+f1_20_2,1,I did self-treatment at home
+f1_20_2,2,I could not afford to pay for treatment
+f1_20_2,3,The health facility is far
+f1_20_2,4,""""""
+f1_20_2,5,D/N
+f1_20_2,6,other
+f1_20_3,1,I did self-treatment at home
+f1_20_3,2,I could not afford to pay for treatment
+f1_20_3,3,The health facility is far
+f1_20_3,4,""""""
+f1_20_3,5,D/N
+f1_20_3,6,other
+f1_20_4,1,I did self-treatment at home
+f1_20_4,2,I could not afford to pay for treatment
+f1_20_4,3,The health facility is far
+f1_20_4,4,""""""
+f1_20_4,5,D/N
+f1_20_4,6,other
+f1_20_5,1,I did self-treatment at home
+f1_20_5,2,I could not afford to pay for treatment
+f1_20_5,3,The health facility is far
+f1_20_5,4,""""""
+f1_20_5,5,D/N
+f1_20_5,6,other
+f1_20_6,1,I did self-treatment at home
+f1_20_6,2,I could not afford to pay for treatment
+f1_20_6,3,The health facility is far
+f1_20_6,4,""""""
+f1_20_6,5,D/N
+f1_20_6,6,other
+f1_20_7,1,I did self-treatment at home
+f1_20_7,2,I could not afford to pay for treatment
+f1_20_7,3,The health facility is far
+f1_20_7,4,""""""
+f1_20_7,5,D/N
+f1_20_7,6,other
+f1_20_8,1,I did self-treatment at home
+f1_20_8,2,I could not afford to pay for treatment
+f1_20_8,3,The health facility is far
+f1_20_8,4,""""""
+f1_20_8,5,D/N
+f1_20_8,6,other
+f1_20_9,1,I did self-treatment at home
+f1_20_9,2,I could not afford to pay for treatment
+f1_20_9,3,The health facility is far
+f1_20_9,4,""""""
+f1_20_9,5,D/N
+f1_20_9,6,other
+f1_20_10,1,I did self-treatment at home
+f1_20_10,2,I could not afford to pay for treatment
+f1_20_10,3,The health facility is far
+f1_20_10,4,""""""
+f1_20_10,5,D/N
+f1_20_10,6,other
+f1_20_11,1,I did self-treatment at home
+f1_20_11,2,I could not afford to pay for treatment
+f1_20_11,3,The health facility is far
+f1_20_11,4,""""""
+f1_20_11,5,D/N
+f1_20_11,6,other
+f1_20_12,1,I did self-treatment at home
+f1_20_12,2,I could not afford to pay for treatment
+f1_20_12,3,The health facility is far
+f1_20_12,4,""""""
+f1_20_12,5,D/N
+f1_20_12,6,other
+f2_1,1,Household  budget
+f2_1,2,Medical insurance
+f2_1,3,Friends/relatives assistance
+f2_1,4,I couldn't have possibility to finance
+f2_1,5,Dont know
+f2_1,6,Refusal
+f2_2,1,Household  budget
+f2_2,2,Medical insurance
+f2_2,3,Friends/relatives assistance
+f2_2,4,I couldn't have possibility to finance
+f2_2,5,Dont know
+f2_2,6,Refusal
+f3_1,1,Household  budget
+f3_1,2,Medical insurance
+f3_1,3,Friends/relatives assistance
+f3_1,4,I couldn't have possibility to finance
+f3_1,5,Dont know
+f3_1,6,Refusal
+f3_2,1,Household  budget
+f3_2,2,Medical insurance
+f3_2,3,Friends/relatives assistance
+f3_2,4,I couldn't have possibility to finance
+f3_2,5,Dont know
+f3_2,6,Refusal
+f4,1,Yes
+f4,2,No
+f5_0_1_1,1,Yes
+f5_0_1_1,2,No
+f5_0_1_1,3,D/N
+f5_0_1_2,1,Yes
+f5_0_1_2,2,No
+f5_0_1_2,3,D/N
+f5_0_1_3,1,Yes
+f5_0_1_3,2,No
+f5_0_1_3,3,D/N
+f5_0_1_4,1,Yes
+f5_0_1_4,2,No
+f5_0_1_4,3,D/N
+f5_7_1,1,At maternity hospital
+f5_7_1,2,At home
+f5_7_1,3,Other
+f5_7_2,1,At maternity hospital
+f5_7_2,2,At home
+f5_7_2,3,Other
+f5_7_3,1,At maternity hospital
+f5_7_3,2,At home
+f5_7_3,3,Other
+f5_7_4,1,At maternity hospital
+f5_7_4,2,At home
+f5_7_4,3,Other
+f5_8_1,1,Lack of money
+f5_8_1,2,There is not one nearby
+f5_8_1,3,There was no time
+f5_8_1,4,Other
+f5_8_2,1,Lack of money
+f5_8_2,2,There is not one nearby
+f5_8_2,3,There was no time
+f5_8_2,4,Other
+f5_8_3,1,Lack of money
+f5_8_3,2,There is not one nearby
+f5_8_3,3,There was no time
+f5_8_3,4,Other
+f5_8_4,1,Lack of money
+f5_8_4,2,There is not one nearby
+f5_8_4,3,There was no time
+f5_8_4,4,Other
+f5_9_1,1,Exclusively
+f5_9_1,2,Partially
+f5_9_1,3,No
+f5_9_2,1,Exclusively
+f5_9_2,2,Partially
+f5_9_2,3,No
+f5_9_3,1,Exclusively
+f5_9_3,2,Partially
+f5_9_3,3,No
+f5_9_4,1,Exclusively
+f5_9_4,2,Partially
+f5_9_4,3,No
+f5_10_1,1,Yes
+f5_10_1,2,No
+f5_10_1,3,Dont know
+f5_10_2,1,Yes
+f5_10_2,2,No
+f5_10_2,3,Dont know
+f5_10_3,1,Yes
+f5_10_3,2,No
+f5_10_3,3,Dont know
+f5_10_4,1,Yes
+f5_10_4,2,No
+f5_10_4,3,Dont know
+f5_14_1,1,Yes
+f5_14_1,2,No
+f5_14_1,3,Dont know
+f5_14_2,1,Yes
+f5_14_2,2,No
+f5_14_2,3,Dont know
+f5_14_3,1,Yes
+f5_14_3,2,No
+f5_14_3,3,Dont know
+f5_14_4,1,Yes
+f5_14_4,2,No
+f5_14_4,3,Dont know
+f5_15_1,1,We had no problems with feeding the child
+f5_15_1,2,There were cases when the child was hungry because of the la
+f5_15_1,3,The child was often hungry because of the lack of food
+f5_15_1,4,Do not know
+f5_15_1,5,Refusal
+f5_15_2,1,We had no problems with feeding the child
+f5_15_2,2,There were cases when the child was hungry because of the la
+f5_15_2,3,The child was often hungry because of the lack of food
+f5_15_2,4,Do not know
+f5_15_2,5,Refusal
+f5_15_3,1,We had no problems with feeding the child
+f5_15_3,2,There were cases when the child was hungry because of the la
+f5_15_3,3,The child was often hungry because of the lack of food
+f5_15_3,4,Do not know
+f5_15_3,5,Refusal
+f5_15_4,1,We had no problems with feeding the child
+f5_15_4,2,There were cases when the child was hungry because of the la
+f5_15_4,3,The child was often hungry because of the lack of food
+f5_15_4,4,Do not know
+f5_15_4,5,Refusal
+f5_16_1,1,Yes
+f5_16_1,2,No
+f5_16_1,3,Dont know
+f5_16_2,1,Yes
+f5_16_2,2,No
+f5_16_2,3,Dont know
+f5_16_3,1,Yes
+f5_16_3,2,No
+f5_16_3,3,Dont know
+f5_16_4,1,Yes
+f5_16_4,2,No
+f5_16_4,3,Dont know
+f5_17_1,1,Lack of money
+f5_17_1,2,There is no pediatician nearby
+f5_17_1,3,Do not deem it necessary
+f5_17_1,4,Other
+f5_17_2,1,Lack of money
+f5_17_2,2,There is no pediatician nearby
+f5_17_2,3,Do not deem it necessary
+f5_17_2,4,Other
+f5_17_3,1,Lack of money
+f5_17_3,2,There is no pediatician nearby
+f5_17_3,3,Do not deem it necessary
+f5_17_3,4,Other
+f5_17_4,1,Lack of money
+f5_17_4,2,There is no pediatician nearby
+f5_17_4,3,Do not deem it necessary
+f5_17_4,4,Other
+f5_18_1,1,Receives all necessary vaccinations
+f5_18_1,2,Receives some vaccinations
+f5_18_1,3,"Does not receive, does not need it yet"
+f5_18_1,4,"Does not receive, there is no doctor nearby"
+f5_18_1,5,"Does not receive, I did not know it was needed"
+f5_18_2,1,Receives all necessary vaccinations
+f5_18_2,2,Receives some vaccinations
+f5_18_2,3,"Does not receive, does not need it yet"
+f5_18_2,4,"Does not receive, there is no doctor nearby"
+f5_18_2,5,"Does not receive, I did not know it was needed"
+f5_18_3,1,Receives all necessary vaccinations
+f5_18_3,2,Receives some vaccinations
+f5_18_3,3,"Does not receive, does not need it yet"
+f5_18_3,4,"Does not receive, there is no doctor nearby"
+f5_18_3,5,"Does not receive, I did not know it was needed"
+f5_18_4,1,Receives all necessary vaccinations
+f5_18_4,2,Receives some vaccinations
+f5_18_4,3,"Does not receive, does not need it yet"
+f5_18_4,4,"Does not receive, there is no doctor nearby"
+f5_18_4,5,"Does not receive, I did not know it was needed"
+f5_19_1_1,1,Yes
+f5_19_1_1,2,No
+f5_19_1_1,3,Dont know
+f5_19_1_2,1,Yes
+f5_19_1_2,2,No
+f5_19_1_2,3,Dont know
+f5_19_1_3,1,Yes
+f5_19_1_3,2,No
+f5_19_1_3,3,Dont know
+f5_19_1_4,1,Yes
+f5_19_1_4,2,No
+f5_19_1_4,3,Dont know
+f5_19_2_1,1,Yes
+f5_19_2_1,2,No
+f5_19_2_1,3,Dont know
+f5_19_2_2,1,Yes
+f5_19_2_2,2,No
+f5_19_2_2,3,Dont know
+f5_19_2_3,1,Yes
+f5_19_2_3,2,No
+f5_19_2_3,3,Dont know
+f5_19_2_4,1,Yes
+f5_19_2_4,2,No
+f5_19_2_4,3,Dont know
+f5_19_3_1,1,Yes
+f5_19_3_1,2,No
+f5_19_3_1,3,Dont know
+f5_19_3_2,1,Yes
+f5_19_3_2,2,No
+f5_19_3_2,3,Dont know
+f5_19_3_3,1,Yes
+f5_19_3_3,2,No
+f5_19_3_3,3,Dont know
+f5_19_3_4,1,Yes
+f5_19_3_4,2,No
+f5_19_3_4,3,Dont know
+f5_19_4_1,1,Yes
+f5_19_4_1,2,No
+f5_19_4_1,3,Dont know
+f5_19_4_2,1,Yes
+f5_19_4_2,2,No
+f5_19_4_2,3,Dont know
+f5_19_4_3,1,Yes
+f5_19_4_3,2,No
+f5_19_4_3,3,Dont know
+f5_19_4_4,1,Yes
+f5_19_4_4,2,No
+f5_19_4_4,3,Dont know
+f5_19_5_1,1,Yes
+f5_19_5_1,2,No
+f5_19_5_1,3,Dont know
+f5_19_5_2,1,Yes
+f5_19_5_2,2,No
+f5_19_5_2,3,Dont know
+f5_19_5_3,1,Yes
+f5_19_5_3,2,No
+f5_19_5_3,3,Dont know
+f5_19_5_4,1,Yes
+f5_19_5_4,2,No
+f5_19_5_4,3,Dont know
+f5_19_6_1,1,Yes
+f5_19_6_1,2,No
+f5_19_6_1,3,Dont know
+f5_19_6_2,1,Yes
+f5_19_6_2,2,No
+f5_19_6_2,3,Dont know
+f5_19_6_3,1,Yes
+f5_19_6_3,2,No
+f5_19_6_3,3,Dont know
+f5_19_6_4,1,Yes
+f5_19_6_4,2,No
+f5_19_6_4,3,Dont know
+f5_19_7_1,1,Yes
+f5_19_7_1,2,No
+f5_19_7_1,3,Dont know
+f5_19_7_2,1,Yes
+f5_19_7_2,2,No
+f5_19_7_2,3,Dont know
+f5_19_7_3,1,Yes
+f5_19_7_3,2,No
+f5_19_7_3,3,Dont know
+f5_19_7_4,1,Yes
+f5_19_7_4,2,No
+f5_19_7_4,3,Dont know
+f5_19_8_1,1,Yes
+f5_19_8_1,2,No
+f5_19_8_1,3,Dont know
+f5_19_8_2,1,Yes
+f5_19_8_2,2,No
+f5_19_8_2,3,Dont know
+f5_19_8_3,1,Yes
+f5_19_8_3,2,No
+f5_19_8_3,3,Dont know
+f5_19_8_4,1,Yes
+f5_19_8_4,2,No
+f5_19_8_4,3,Dont know
+g1,1,Yes
+g1,2,No
+g2,1,I have asked earlier and there is no more need in asking
+g2,2,I thought that my family does not need social assistance
+g2,3,Do not know whom to ask
+g2,4,Do not hope that I will be given assistance
+g2,5,I can not myself and have nobody who could help me to apply
+g2,6,Did not have the documents in order
+g2,7,Asking for assistance is above my familys dignity
+g2,8,Was getting the IDP assistance
+g2,9,Could not go
+g2,10,The social Assistance was terminated
+g2,11,Do not know
+g2,12,Refusal
+g3,1,Yes
+g3,2,No
+g4_1,1,Cash assistance
+g4_1,2,Health insurance
+g4_1,3,To provide me with a flat
+g4_1,4,Dwelling repair
+g4_1,5,Food assistance
+g4_1,6,To finance education
+g4_1,7,Firewood
+g4_1,8,School items
+g4_1,9,Do not know
+g4_1,10,Refusal
+g4_2,1,Cash assistance
+g4_2,2,Health insurance
+g4_2,3,To provide me with a flat
+g4_2,4,Dwelling repair
+g4_2,5,Food assistance
+g4_2,6,To finance education
+g4_2,7,Firewood
+g4_2,8,School items
+g4_2,9,Do not know
+g4_2,10,Refusal
+g4_3,1,Cash assistance
+g4_3,2,Health insurance
+g4_3,3,To provide me with a flat
+g4_3,4,Dwelling repair
+g4_3,5,Food assistance
+g4_3,6,To finance education
+g4_3,7,Firewood
+g4_3,8,School items
+g4_3,9,Do not know
+g4_3,10,Refusal
+g4_4,1,Cash assistance
+g4_4,2,Health insurance
+g4_4,3,To provide me with a flat
+g4_4,4,Dwelling repair
+g4_4,5,Food assistance
+g4_4,6,To finance education
+g4_4,7,Firewood
+g4_4,8,School items
+g4_4,9,Do not know
+g4_4,10,Refusal
+g5,1,Yes
+g5,2,"Yes, at least partly"
+g5,3,I do not hope but still I will try
+g5,4,Do not know
+g5,5,Refusal
+g6_1,1,I applied for registration in the united data-base of vulner
+g6_1,2,Local government
+g6_1,3,Central authirities
+g6_1,4,Ministry of IDP-s
+g6_1,5,Ombudsmans Office
+g6_1,6,Private organizations
+g6_1,7,An NGO
+g6_1,8,An international donor organization
+g6_1,9,Christian Democratic party
+g6_1,10,"Ministry of labour, health and social affaires of Georgia"
+g6_1,11,Do not know
+g6_1,12,Refusal
+g6_2,1,I applied for registration in the united data-base of vulner
+g6_2,2,Local government
+g6_2,3,Central authirities
+g6_2,4,Ministry of IDP-s
+g6_2,5,Ombudsmans Office
+g6_2,6,Private organizations
+g6_2,7,An NGO
+g6_2,8,An international donor organization
+g6_2,9,Christian Democratic party
+g6_2,10,"Ministry of labour, health and social affaires of Georgia"
+g6_2,11,Do not know
+g6_2,12,Refusal
+g6_3,1,I applied for registration in the united data-base of vulner
+g6_3,2,Local government
+g6_3,3,Central authirities
+g6_3,4,Ministry of IDP-s
+g6_3,5,Ombudsmans Office
+g6_3,6,Private organizations
+g6_3,7,An NGO
+g6_3,8,An international donor organization
+g6_3,9,Christian Democratic party
+g6_3,10,"Ministry of labour, health and social affaires of Georgia"
+g6_3,11,Do not know
+g6_3,12,Refusal
+g7_1,1,I wanted cash assistance
+g7_1,2,I wanted assistance in obtaining health ser-vices
+g7_1,3,Food assistance
+g7_1,4,I wanted benefits for financing education
+g7_1,5,I wanted benefits for transport and other payments
+g7_1,6,I wanted repair of dwelling
+g7_1,7,I wanted to have my own dwelling
+g7_1,8,Others received assistance and I also wanted
+g7_1,9,Single term financial assistance
+g7_1,10,Assistance for cultivating the fields
+g7_1,11,Asked for firewood
+g7_1,12,To stop the social assistance
+g7_1,13,Do not know
+g7_1,14,Refusal
+g7_2,1,I wanted cash assistance
+g7_2,2,I wanted assistance in obtaining health ser-vices
+g7_2,3,Food assistance
+g7_2,4,I wanted benefits for financing education
+g7_2,5,I wanted benefits for transport and other payments
+g7_2,6,I wanted repair of dwelling
+g7_2,7,I wanted to have my own dwelling
+g7_2,8,Others received assistance and I also wanted
+g7_2,9,Single term financial assistance
+g7_2,10,Assistance for cultivating the fields
+g7_2,11,Asked for firewood
+g7_2,12,To stop the social assistance
+g7_2,13,Do not know
+g7_2,14,Refusal
+g7_3,1,I wanted cash assistance
+g7_3,2,I wanted assistance in obtaining health ser-vices
+g7_3,3,Food assistance
+g7_3,4,I wanted benefits for financing education
+g7_3,5,I wanted benefits for transport and other payments
+g7_3,6,I wanted repair of dwelling
+g7_3,7,I wanted to have my own dwelling
+g7_3,8,Others received assistance and I also wanted
+g7_3,9,Single term financial assistance
+g7_3,10,Assistance for cultivating the fields
+g7_3,11,Asked for firewood
+g7_3,12,To stop the social assistance
+g7_3,13,Do not know
+g7_3,14,Refusal
+g7_4,1,I wanted cash assistance
+g7_4,2,I wanted assistance in obtaining health ser-vices
+g7_4,3,Food assistance
+g7_4,4,I wanted benefits for financing education
+g7_4,5,I wanted benefits for transport and other payments
+g7_4,6,I wanted repair of dwelling
+g7_4,7,I wanted to have my own dwelling
+g7_4,8,Others received assistance and I also wanted
+g7_4,9,Single term financial assistance
+g7_4,10,Assistance for cultivating the fields
+g7_4,11,Asked for firewood
+g7_4,12,To stop the social assistance
+g7_4,13,Do not know
+g7_4,14,Refusal
+g7_5,1,I wanted cash assistance
+g7_5,2,I wanted assistance in obtaining health ser-vices
+g7_5,3,Food assistance
+g7_5,4,I wanted benefits for financing education
+g7_5,5,I wanted benefits for transport and other payments
+g7_5,6,I wanted repair of dwelling
+g7_5,7,I wanted to have my own dwelling
+g7_5,8,Others received assistance and I also wanted
+g7_5,9,Single term financial assistance
+g7_5,10,Assistance for cultivating the fields
+g7_5,11,Asked for firewood
+g7_5,12,To stop the social assistance
+g7_5,13,Do not know
+g7_5,14,Refusal
+g8,1,Fully satisfied
+g8,2,Mainly satisfied
+g8,3,Partially satisfied
+g8,4,They are waiting for the reply
+g8,5,The assistance was terminated
+g8,6,Do not know
+g8,7,Refusal
+g9,1,Yes
+g9,2,No
+g9,3,Dont know
+g9,4,Refusal
+g10_1,1,Cash assistance from the program of vulnerable families
+g10_1,2,Health insurance from the program of vulnerable families
+g10_1,3,Various benefits from the program of vulnerable families
+g10_1,4,Social assistance to single pensioners
+g10_1,5,Social assistance to the blind
+g10_1,6,Social assistance to orphans having lost both parents
+g10_1,7,Social assistance to disabled children
+g10_1,8,Social assistance to multi-children single parents
+g10_1,9,Reintegration and prevention
+g10_1,10,Food assistance
+g10_1,11,Assistance with diesel oil
+g10_1,12,Assistance with clothes
+g10_1,13,Assistance with schoolbooks
+g10_1,14,Other non-cash assistance
+g10_1,15,Health insurance of Ivanishvili
+g10_1,16,IDP assistance
+g10_1,17,Assistance of veterans
+g10_1,18,Free diner
+g10_1,19,they got Monetary assistance twice
+g10_1,20,Do not know
+g10_1,21,Refusal
+g10_2,1,Cash assistance from the program of vulnerable families
+g10_2,2,Health insurance from the program of vulnerable families
+g10_2,3,Various benefits from the program of vulnerable families
+g10_2,4,Social assistance to single pensioners
+g10_2,5,Social assistance to the blind
+g10_2,6,Social assistance to orphans having lost both parents
+g10_2,7,Social assistance to disabled children
+g10_2,8,Social assistance to multi-children single parents
+g10_2,9,Reintegration and prevention
+g10_2,10,Food assistance
+g10_2,11,Assistance with diesel oil
+g10_2,12,Assistance with clothes
+g10_2,13,Assistance with schoolbooks
+g10_2,14,Other non-cash assistance
+g10_2,15,Health insurance of Ivanishvili
+g10_2,16,IDP assistance
+g10_2,17,Assistance of veterans
+g10_2,18,Free diner
+g10_2,19,they got Monetary assistance twice
+g10_2,20,Do not know
+g10_2,21,Refusal
+g10_3,1,Cash assistance from the program of vulnerable families
+g10_3,2,Health insurance from the program of vulnerable families
+g10_3,3,Various benefits from the program of vulnerable families
+g10_3,4,Social assistance to single pensioners
+g10_3,5,Social assistance to the blind
+g10_3,6,Social assistance to orphans having lost both parents
+g10_3,7,Social assistance to disabled children
+g10_3,8,Social assistance to multi-children single parents
+g10_3,9,Reintegration and prevention
+g10_3,10,Food assistance
+g10_3,11,Assistance with diesel oil
+g10_3,12,Assistance with clothes
+g10_3,13,Assistance with schoolbooks
+g10_3,14,Other non-cash assistance
+g10_3,15,Health insurance of Ivanishvili
+g10_3,16,IDP assistance
+g10_3,17,Assistance of veterans
+g10_3,18,Free diner
+g10_3,19,they got Monetary assistance twice
+g10_3,20,Do not know
+g10_3,21,Refusal
+g10_4,1,Cash assistance from the program of vulnerable families
+g10_4,2,Health insurance from the program of vulnerable families
+g10_4,3,Various benefits from the program of vulnerable families
+g10_4,4,Social assistance to single pensioners
+g10_4,5,Social assistance to the blind
+g10_4,6,Social assistance to orphans having lost both parents
+g10_4,7,Social assistance to disabled children
+g10_4,8,Social assistance to multi-children single parents
+g10_4,9,Reintegration and prevention
+g10_4,10,Food assistance
+g10_4,11,Assistance with diesel oil
+g10_4,12,Assistance with clothes
+g10_4,13,Assistance with schoolbooks
+g10_4,14,Other non-cash assistance
+g10_4,15,Health insurance of Ivanishvili
+g10_4,16,IDP assistance
+g10_4,17,Assistance of veterans
+g10_4,18,Free diner
+g10_4,19,they got Monetary assistance twice
+g10_4,20,Do not know
+g10_4,21,Refusal
+g10_5,1,Cash assistance from the program of vulnerable families
+g10_5,2,Health insurance from the program of vulnerable families
+g10_5,3,Various benefits from the program of vulnerable families
+g10_5,4,Social assistance to single pensioners
+g10_5,5,Social assistance to the blind
+g10_5,6,Social assistance to orphans having lost both parents
+g10_5,7,Social assistance to disabled children
+g10_5,8,Social assistance to multi-children single parents
+g10_5,9,Reintegration and prevention
+g10_5,10,Food assistance
+g10_5,11,Assistance with diesel oil
+g10_5,12,Assistance with clothes
+g10_5,13,Assistance with schoolbooks
+g10_5,14,Other non-cash assistance
+g10_5,15,Health insurance of Ivanishvili
+g10_5,16,IDP assistance
+g10_5,17,Assistance of veterans
+g10_5,18,Free diner
+g10_5,19,they got Monetary assistance twice
+g10_5,20,Do not know
+g10_5,21,Refusal
+g11,1,State
+g11,2,Local self-governance body
+g11,3,Local donor organizations
+g11,4,International donor organizations
+g11,5,private person
+g11,6,Do not know
+g11,7,Refusal
+g12,1,There was not much impact
+g12,2,This assistance is very important for our family
+g12,3,This assistance saved us
+g12,4,We did not used yet
+g12,5,Do not know
+g12,6,Refusal
+h1,1,We easily satisfy daily and other consumer needs
+h1,2,We manage to more or less successfully satisfy daily and oth
+h1,3,Our income (harvest) is enough only for food
+h1,4,We can not provide ourselves even with sufficient food
+h1,5,We feed ourselves so poorly that our health is under threat
+h1,6,Do not know
+h1,7,Refusal
+h2_1_1,1,Hunger/ malnutrition
+h2_1_1,2,Buying medicines
+h2_1_1,3,Unemployment of household members
+h2_1_1,4,Medical services
+h2_1_1,5,Buying school items
+h2_1_1,6,Housing conditions
+h2_1_1,7,Furniture
+h2_1_1,8,Buying clothes
+h2_1_1,9,"Leisure, entertainment"
+h2_1_1,10,Paying debt/bank loans
+h2_1_1,11,Paying utility charges
+h2_1_1,12,None of the listed
+h2_1_2,1,Hunger/ malnutrition
+h2_1_2,2,Buying medicines
+h2_1_2,3,Unemployment of household members
+h2_1_2,4,Medical services
+h2_1_2,5,Buying school items
+h2_1_2,6,Housing conditions
+h2_1_2,7,Furniture
+h2_1_2,8,Buying clothes
+h2_1_2,9,"Leisure, entertainment"
+h2_1_2,10,Paying debt/bank loans
+h2_1_2,11,Paying utility charges
+h2_1_2,12,None of the listed
+h2_1_3,1,Hunger/ malnutrition
+h2_1_3,2,Buying medicines
+h2_1_3,3,Unemployment of household members
+h2_1_3,4,Medical services
+h2_1_3,5,Buying school items
+h2_1_3,6,Housing conditions
+h2_1_3,7,Furniture
+h2_1_3,8,Buying clothes
+h2_1_3,9,"Leisure, entertainment"
+h2_1_3,10,Paying debt/bank loans
+h2_1_3,11,Paying utility charges
+h2_1_3,12,None of the listed
+h2_1_4,1,Hunger/ malnutrition
+h2_1_4,2,Buying medicines
+h2_1_4,3,Unemployment of household members
+h2_1_4,4,Medical services
+h2_1_4,5,Buying school items
+h2_1_4,6,Housing conditions
+h2_1_4,7,Furniture
+h2_1_4,8,Buying clothes
+h2_1_4,9,"Leisure, entertainment"
+h2_1_4,10,Paying debt/bank loans
+h2_1_4,11,Paying utility charges
+h2_1_4,12,None of the listed
+h2_1_5,1,Hunger/ malnutrition
+h2_1_5,2,Buying medicines
+h2_1_5,3,Unemployment of household members
+h2_1_5,4,Medical services
+h2_1_5,5,Buying school items
+h2_1_5,6,Housing conditions
+h2_1_5,7,Furniture
+h2_1_5,8,Buying clothes
+h2_1_5,9,"Leisure, entertainment"
+h2_1_5,10,Paying debt/bank loans
+h2_1_5,11,Paying utility charges
+h2_1_5,12,None of the listed
+h2_1_6,1,Hunger/ malnutrition
+h2_1_6,2,Buying medicines
+h2_1_6,3,Unemployment of household members
+h2_1_6,4,Medical services
+h2_1_6,5,Buying school items
+h2_1_6,6,Housing conditions
+h2_1_6,7,Furniture
+h2_1_6,8,Buying clothes
+h2_1_6,9,"Leisure, entertainment"
+h2_1_6,10,Paying debt/bank loans
+h2_1_6,11,Paying utility charges
+h2_1_6,12,None of the listed
+h2_1_7,1,Hunger/ malnutrition
+h2_1_7,2,Buying medicines
+h2_1_7,3,Unemployment of household members
+h2_1_7,4,Medical services
+h2_1_7,5,Buying school items
+h2_1_7,6,Housing conditions
+h2_1_7,7,Furniture
+h2_1_7,8,Buying clothes
+h2_1_7,9,"Leisure, entertainment"
+h2_1_7,10,Paying debt/bank loans
+h2_1_7,11,Paying utility charges
+h2_1_7,12,None of the listed
+h2_1_8,1,Hunger/ malnutrition
+h2_1_8,2,Buying medicines
+h2_1_8,3,Unemployment of household members
+h2_1_8,4,Medical services
+h2_1_8,5,Buying school items
+h2_1_8,6,Housing conditions
+h2_1_8,7,Furniture
+h2_1_8,8,Buying clothes
+h2_1_8,9,"Leisure, entertainment"
+h2_1_8,10,Paying debt/bank loans
+h2_1_8,11,Paying utility charges
+h2_1_8,12,None of the listed
+h2_1_9,1,Hunger/ malnutrition
+h2_1_9,2,Buying medicines
+h2_1_9,3,Unemployment of household members
+h2_1_9,4,Medical services
+h2_1_9,5,Buying school items
+h2_1_9,6,Housing conditions
+h2_1_9,7,Furniture
+h2_1_9,8,Buying clothes
+h2_1_9,9,"Leisure, entertainment"
+h2_1_9,10,Paying debt/bank loans
+h2_1_9,11,Paying utility charges
+h2_1_9,12,None of the listed
+h2_1_10,1,Hunger/ malnutrition
+h2_1_10,2,Buying medicines
+h2_1_10,3,Unemployment of household members
+h2_1_10,4,Medical services
+h2_1_10,5,Buying school items
+h2_1_10,6,Housing conditions
+h2_1_10,7,Furniture
+h2_1_10,8,Buying clothes
+h2_1_10,9,"Leisure, entertainment"
+h2_1_10,10,Paying debt/bank loans
+h2_1_10,11,Paying utility charges
+h2_1_10,12,None of the listed
+h2_1_11,1,Hunger/ malnutrition
+h2_1_11,2,Buying medicines
+h2_1_11,3,Unemployment of household members
+h2_1_11,4,Medical services
+h2_1_11,5,Buying school items
+h2_1_11,6,Housing conditions
+h2_1_11,7,Furniture
+h2_1_11,8,Buying clothes
+h2_1_11,9,"Leisure, entertainment"
+h2_1_11,10,Paying debt/bank loans
+h2_1_11,11,Paying utility charges
+h2_1_11,12,None of the listed
+H2_2,1,Hunger/ malnutrition
+H2_2,2,Buying medicines
+H2_2,3,Unemployment of household members
+H2_2,4,Medical services
+H2_2,5,Buying school items
+H2_2,6,Housing conditions
+H2_2,7,Furniture
+H2_2,8,Buying clothes
+H2_2,9,"Leisure, entertainment"
+H2_2,10,Paying debt/bank loans
+H2_2,11,Paying utility charges
+H2_2,12,None of the listed
+h3,1,Has become far more acute compared to last year
+h3,2,Has become slightly more acute compared to last year
+h3,3,The acuteness of the problem has not changed
+h3,4,Has become slightly less acute compared to last year
+h3,5,Has become far less acute compared to last year
+h3,6,Do not know
+h3,7,Refusal
+h4,1,Has significantly worsened
+h4,2,Has worsened
+h4,3,Has not changed essentially
+h4,4,Has improved
+h4,5,Has significantly improved
+h4,6,Do not know
+h4,7,Refusal
+h5_1,1,Loss of the bread-winner
+h5_1,2,Serious illness of a family member resulting in a sharp incr
+h5_1,3,Loss of job by household member(s)
+h5_1,4,Decrease of total income of household members
+h5_1,5,Price increase
+h5_1,6,Paying debt
+h5_1,7,Decrease/suspension of remittances from abroad
+h5_1,8,Decrease in quantities of agricultural products produced for
+h5_1,9,we were left withot the crop
+h5_1,10,The social Assistance was terminated
+h5_1,11,The social Assistance was terminated
+h5_1,12,Inprosonment of the family member (they sold the flat)
+h5_1,13,Death of the family member
+h5_1,14,Divorce
+h5_1,15,The expances for the private teacher
+h5_1,16,The wedding of the son and birth of the grandchild
+h5_1,17,The caw was stold
+h5_1,18,Do not know
+h5_1,19,Refusal
+h5_2,1,Loss of the bread-winner
+h5_2,2,Serious illness of a family member resulting in a sharp incr
+h5_2,3,Loss of job by household member(s)
+h5_2,4,Decrease of total income of household members
+h5_2,5,Price increase
+h5_2,6,Paying debt
+h5_2,7,Decrease/suspension of remittances from abroad
+h5_2,8,Decrease in quantities of agricultural products produced for
+h5_2,9,we were left withot the crop
+h5_2,10,The social Assistance was terminated
+h5_2,11,The social Assistance was terminated
+h5_2,12,Inprosonment of the family member (they sold the flat)
+h5_2,13,Death of the family member
+h5_2,14,Divorce
+h5_2,15,The expances for the private teacher
+h5_2,16,The wedding of the son and birth of the grandchild
+h5_2,17,The caw was stold
+h5_2,18,Do not know
+h5_2,19,Refusal
+h5_3,1,Loss of the bread-winner
+h5_3,2,Serious illness of a family member resulting in a sharp incr
+h5_3,3,Loss of job by household member(s)
+h5_3,4,Decrease of total income of household members
+h5_3,5,Price increase
+h5_3,6,Paying debt
+h5_3,7,Decrease/suspension of remittances from abroad
+h5_3,8,Decrease in quantities of agricultural products produced for
+h5_3,9,we were left withot the crop
+h5_3,10,The social Assistance was terminated
+h5_3,11,The social Assistance was terminated
+h5_3,12,Inprosonment of the family member (they sold the flat)
+h5_3,13,Death of the family member
+h5_3,14,Divorce
+h5_3,15,The expances for the private teacher
+h5_3,16,The wedding of the son and birth of the grandchild
+h5_3,17,The caw was stold
+h5_3,18,Do not know
+h5_3,19,Refusal
+h5_4,1,Loss of the bread-winner
+h5_4,2,Serious illness of a family member resulting in a sharp incr
+h5_4,3,Loss of job by household member(s)
+h5_4,4,Decrease of total income of household members
+h5_4,5,Price increase
+h5_4,6,Paying debt
+h5_4,7,Decrease/suspension of remittances from abroad
+h5_4,8,Decrease in quantities of agricultural products produced for
+h5_4,9,we were left withot the crop
+h5_4,10,The social Assistance was terminated
+h5_4,11,The social Assistance was terminated
+h5_4,12,Inprosonment of the family member (they sold the flat)
+h5_4,13,Death of the family member
+h5_4,14,Divorce
+h5_4,15,The expances for the private teacher
+h5_4,16,The wedding of the son and birth of the grandchild
+h5_4,17,The caw was stold
+h5_4,18,Do not know
+h5_4,19,Refusal
+h5_5,1,Loss of the bread-winner
+h5_5,2,Serious illness of a family member resulting in a sharp incr
+h5_5,3,Loss of job by household member(s)
+h5_5,4,Decrease of total income of household members
+h5_5,5,Price increase
+h5_5,6,Paying debt
+h5_5,7,Decrease/suspension of remittances from abroad
+h5_5,8,Decrease in quantities of agricultural products produced for
+h5_5,9,we were left withot the crop
+h5_5,10,The social Assistance was terminated
+h5_5,11,The social Assistance was terminated
+h5_5,12,Inprosonment of the family member (they sold the flat)
+h5_5,13,Death of the family member
+h5_5,14,Divorce
+h5_5,15,The expances for the private teacher
+h5_5,16,The wedding of the son and birth of the grandchild
+h5_5,17,The caw was stold
+h5_5,18,Do not know
+h5_5,19,Refusal
+h5_6,1,Loss of the bread-winner
+h5_6,2,Serious illness of a family member resulting in a sharp incr
+h5_6,3,Loss of job by household member(s)
+h5_6,4,Decrease of total income of household members
+h5_6,5,Price increase
+h5_6,6,Paying debt
+h5_6,7,Decrease/suspension of remittances from abroad
+h5_6,8,Decrease in quantities of agricultural products produced for
+h5_6,9,we were left withot the crop
+h5_6,10,The social Assistance was terminated
+h5_6,11,The social Assistance was terminated
+h5_6,12,Inprosonment of the family member (they sold the flat)
+h5_6,13,Death of the family member
+h5_6,14,Divorce
+h5_6,15,The expances for the private teacher
+h5_6,16,The wedding of the son and birth of the grandchild
+h5_6,17,The caw was stold
+h5_6,18,Do not know
+h5_6,19,Refusal
+h6_1,1,Assistance from a relative or a friend
+h6_1,2,Assistance from a non-relative or a non-friend
+h6_1,3,Borrowing from a relative or a friend
+h6_1,4,Borrowing from a non-relative or a non-friend
+h6_1,5,Borrowing from a bank or other financial institution
+h6_1,6,Dissaving
+h6_1,7,"Sale of property (land, house, livestock, car, etc.)"
+h6_1,8,Assistance from religious organizations
+h6_1,9,Assistance from another NGO (charity organization)
+h6_1,10,Social assistance to vulnerable households
+h6_1,11,Assistance from municipality
+h6_1,12,Other social assistance
+h6_1,13,Have had no additional livelihood source
+h6_1,14,The employment in foreign country
+h6_1,15,IDP assistant
+h6_1,16,The local administration gave monetary assistance
+h6_1,17,The son is supporting
+h6_1,18,Social Assistance (undifinde)
+h6_1,19,The operation of the child
+h6_1,20,Private farm
+h6_1,21,The sell of the items from home
+h6_1,22,lending money
+h6_1,23,Do not know
+h6_1,24,Refusal
+h6_2,1,Assistance from a relative or a friend
+h6_2,2,Assistance from a non-relative or a non-friend
+h6_2,3,Borrowing from a relative or a friend
+h6_2,4,Borrowing from a non-relative or a non-friend
+h6_2,5,Borrowing from a bank or other financial institution
+h6_2,6,Dissaving
+h6_2,7,"Sale of property (land, house, livestock, car, etc.)"
+h6_2,8,Assistance from religious organizations
+h6_2,9,Assistance from another NGO (charity organization)
+h6_2,10,Social assistance to vulnerable households
+h6_2,11,Assistance from municipality
+h6_2,12,Other social assistance
+h6_2,13,Have had no additional livelihood source
+h6_2,14,The employment in foreign country
+h6_2,15,IDP assistant
+h6_2,16,The local administration gave monetary assistance
+h6_2,17,The son is supporting
+h6_2,18,Social Assistance (undifinde)
+h6_2,19,The operation of the child
+h6_2,20,Private farm
+h6_2,21,The sell of the items from home
+h6_2,22,lending money
+h6_2,23,Do not know
+h6_2,24,Refusal
+h6_3,1,Assistance from a relative or a friend
+h6_3,2,Assistance from a non-relative or a non-friend
+h6_3,3,Borrowing from a relative or a friend
+h6_3,4,Borrowing from a non-relative or a non-friend
+h6_3,5,Borrowing from a bank or other financial institution
+h6_3,6,Dissaving
+h6_3,7,"Sale of property (land, house, livestock, car, etc.)"
+h6_3,8,Assistance from religious organizations
+h6_3,9,Assistance from another NGO (charity organization)
+h6_3,10,Social assistance to vulnerable households
+h6_3,11,Assistance from municipality
+h6_3,12,Other social assistance
+h6_3,13,Have had no additional livelihood source
+h6_3,14,The employment in foreign country
+h6_3,15,IDP assistant
+h6_3,16,The local administration gave monetary assistance
+h6_3,17,The son is supporting
+h6_3,18,Social Assistance (undifinde)
+h6_3,19,The operation of the child
+h6_3,20,Private farm
+h6_3,21,The sell of the items from home
+h6_3,22,lending money
+h6_3,23,Do not know
+h6_3,24,Refusal
+h6_4,1,Assistance from a relative or a friend
+h6_4,2,Assistance from a non-relative or a non-friend
+h6_4,3,Borrowing from a relative or a friend
+h6_4,4,Borrowing from a non-relative or a non-friend
+h6_4,5,Borrowing from a bank or other financial institution
+h6_4,6,Dissaving
+h6_4,7,"Sale of property (land, house, livestock, car, etc.)"
+h6_4,8,Assistance from religious organizations
+h6_4,9,Assistance from another NGO (charity organization)
+h6_4,10,Social assistance to vulnerable households
+h6_4,11,Assistance from municipality
+h6_4,12,Other social assistance
+h6_4,13,Have had no additional livelihood source
+h6_4,14,The employment in foreign country
+h6_4,15,IDP assistant
+h6_4,16,The local administration gave monetary assistance
+h6_4,17,The son is supporting
+h6_4,18,Social Assistance (undifinde)
+h6_4,19,The operation of the child
+h6_4,20,Private farm
+h6_4,21,The sell of the items from home
+h6_4,22,lending money
+h6_4,23,Do not know
+h6_4,24,Refusal
+h7_1,1,Reduced food consumption
+h7_1,2,Started consuming cheaper food
+h7_1,3,A household member went elsewhere for seasonal work
+h7_1,4,Produced more food for own consumption
+h7_1,5,Stopped buying some non-food items
+h7_1,6,Started buying cheaper non-food items
+h7_1,7,Started buying second-hand items
+h7_1,8,"Spend less on entertainment (cinema, theater, sports activit"
+h7_1,9,"Spend less on mass media (newspapers, internet etc.)"
+h7_1,10,Transferred children from private to public school
+h7_1,11,Transferred children to a cheaper private or public school
+h7_1,12,"Postponed the admission to school, college or kindergarten"
+h7_1,13,"Withdrew the child from school, college or kindergarten"
+h7_1,14,The child was taken to an institution
+h7_1,15,"A household member gave up courses of languages, computer, e"
+h7_1,16,Make greater use of public health care services
+h7_1,17,Cancelled health insurance
+h7_1,18,Cancelled vehicle or house  insurance
+h7_1,19,Make greater use of public transport or walk more
+h7_1,20,Reduced visits to doctor for regular checkups
+h7_1,21,The child stoped the university studies
+h7_1,22,Decreased communal payments
+h7_1,23,Did nothing special
+h7_1,24,Do not know
+h7_1,25,Refusal
+h7_2,1,Reduced food consumption
+h7_2,2,Started consuming cheaper food
+h7_2,3,A household member went elsewhere for seasonal work
+h7_2,4,Produced more food for own consumption
+h7_2,5,Stopped buying some non-food items
+h7_2,6,Started buying cheaper non-food items
+h7_2,7,Started buying second-hand items
+h7_2,8,"Spend less on entertainment (cinema, theater, sports activit"
+h7_2,9,"Spend less on mass media (newspapers, internet etc.)"
+h7_2,10,Transferred children from private to public school
+h7_2,11,Transferred children to a cheaper private or public school
+h7_2,12,"Postponed the admission to school, college or kindergarten"
+h7_2,13,"Withdrew the child from school, college or kindergarten"
+h7_2,14,The child was taken to an institution
+h7_2,15,"A household member gave up courses of languages, computer, e"
+h7_2,16,Make greater use of public health care services
+h7_2,17,Cancelled health insurance
+h7_2,18,Cancelled vehicle or house  insurance
+h7_2,19,Make greater use of public transport or walk more
+h7_2,20,Reduced visits to doctor for regular checkups
+h7_2,21,The child stoped the university studies
+h7_2,22,Decreased communal payments
+h7_2,23,Did nothing special
+h7_2,24,Do not know
+h7_2,25,Refusal
+h7_3,1,Reduced food consumption
+h7_3,2,Started consuming cheaper food
+h7_3,3,A household member went elsewhere for seasonal work
+h7_3,4,Produced more food for own consumption
+h7_3,5,Stopped buying some non-food items
+h7_3,6,Started buying cheaper non-food items
+h7_3,7,Started buying second-hand items
+h7_3,8,"Spend less on entertainment (cinema, theater, sports activit"
+h7_3,9,"Spend less on mass media (newspapers, internet etc.)"
+h7_3,10,Transferred children from private to public school
+h7_3,11,Transferred children to a cheaper private or public school
+h7_3,12,"Postponed the admission to school, college or kindergarten"
+h7_3,13,"Withdrew the child from school, college or kindergarten"
+h7_3,14,The child was taken to an institution
+h7_3,15,"A household member gave up courses of languages, computer, e"
+h7_3,16,Make greater use of public health care services
+h7_3,17,Cancelled health insurance
+h7_3,18,Cancelled vehicle or house  insurance
+h7_3,19,Make greater use of public transport or walk more
+h7_3,20,Reduced visits to doctor for regular checkups
+h7_3,21,The child stoped the university studies
+h7_3,22,Decreased communal payments
+h7_3,23,Did nothing special
+h7_3,24,Do not know
+h7_3,25,Refusal
+h7_4,1,Reduced food consumption
+h7_4,2,Started consuming cheaper food
+h7_4,3,A household member went elsewhere for seasonal work
+h7_4,4,Produced more food for own consumption
+h7_4,5,Stopped buying some non-food items
+h7_4,6,Started buying cheaper non-food items
+h7_4,7,Started buying second-hand items
+h7_4,8,"Spend less on entertainment (cinema, theater, sports activit"
+h7_4,9,"Spend less on mass media (newspapers, internet etc.)"
+h7_4,10,Transferred children from private to public school
+h7_4,11,Transferred children to a cheaper private or public school
+h7_4,12,"Postponed the admission to school, college or kindergarten"
+h7_4,13,"Withdrew the child from school, college or kindergarten"
+h7_4,14,The child was taken to an institution
+h7_4,15,"A household member gave up courses of languages, computer, e"
+h7_4,16,Make greater use of public health care services
+h7_4,17,Cancelled health insurance
+h7_4,18,Cancelled vehicle or house  insurance
+h7_4,19,Make greater use of public transport or walk more
+h7_4,20,Reduced visits to doctor for regular checkups
+h7_4,21,The child stoped the university studies
+h7_4,22,Decreased communal payments
+h7_4,23,Did nothing special
+h7_4,24,Do not know
+h7_4,25,Refusal
+h7_5,1,Reduced food consumption
+h7_5,2,Started consuming cheaper food
+h7_5,3,A household member went elsewhere for seasonal work
+h7_5,4,Produced more food for own consumption
+h7_5,5,Stopped buying some non-food items
+h7_5,6,Started buying cheaper non-food items
+h7_5,7,Started buying second-hand items
+h7_5,8,"Spend less on entertainment (cinema, theater, sports activit"
+h7_5,9,"Spend less on mass media (newspapers, internet etc.)"
+h7_5,10,Transferred children from private to public school
+h7_5,11,Transferred children to a cheaper private or public school
+h7_5,12,"Postponed the admission to school, college or kindergarten"
+h7_5,13,"Withdrew the child from school, college or kindergarten"
+h7_5,14,The child was taken to an institution
+h7_5,15,"A household member gave up courses of languages, computer, e"
+h7_5,16,Make greater use of public health care services
+h7_5,17,Cancelled health insurance
+h7_5,18,Cancelled vehicle or house  insurance
+h7_5,19,Make greater use of public transport or walk more
+h7_5,20,Reduced visits to doctor for regular checkups
+h7_5,21,The child stoped the university studies
+h7_5,22,Decreased communal payments
+h7_5,23,Did nothing special
+h7_5,24,Do not know
+h7_5,25,Refusal
+h7_6,1,Reduced food consumption
+h7_6,2,Started consuming cheaper food
+h7_6,3,A household member went elsewhere for seasonal work
+h7_6,4,Produced more food for own consumption
+h7_6,5,Stopped buying some non-food items
+h7_6,6,Started buying cheaper non-food items
+h7_6,7,Started buying second-hand items
+h7_6,8,"Spend less on entertainment (cinema, theater, sports activit"
+h7_6,9,"Spend less on mass media (newspapers, internet etc.)"
+h7_6,10,Transferred children from private to public school
+h7_6,11,Transferred children to a cheaper private or public school
+h7_6,12,"Postponed the admission to school, college or kindergarten"
+h7_6,13,"Withdrew the child from school, college or kindergarten"
+h7_6,14,The child was taken to an institution
+h7_6,15,"A household member gave up courses of languages, computer, e"
+h7_6,16,Make greater use of public health care services
+h7_6,17,Cancelled health insurance
+h7_6,18,Cancelled vehicle or house  insurance
+h7_6,19,Make greater use of public transport or walk more
+h7_6,20,Reduced visits to doctor for regular checkups
+h7_6,21,The child stoped the university studies
+h7_6,22,Decreased communal payments
+h7_6,23,Did nothing special
+h7_6,24,Do not know
+h7_6,25,Refusal
+h7_7,1,Reduced food consumption
+h7_7,2,Started consuming cheaper food
+h7_7,3,A household member went elsewhere for seasonal work
+h7_7,4,Produced more food for own consumption
+h7_7,5,Stopped buying some non-food items
+h7_7,6,Started buying cheaper non-food items
+h7_7,7,Started buying second-hand items
+h7_7,8,"Spend less on entertainment (cinema, theater, sports activit"
+h7_7,9,"Spend less on mass media (newspapers, internet etc.)"
+h7_7,10,Transferred children from private to public school
+h7_7,11,Transferred children to a cheaper private or public school
+h7_7,12,"Postponed the admission to school, college or kindergarten"
+h7_7,13,"Withdrew the child from school, college or kindergarten"
+h7_7,14,The child was taken to an institution
+h7_7,15,"A household member gave up courses of languages, computer, e"
+h7_7,16,Make greater use of public health care services
+h7_7,17,Cancelled health insurance
+h7_7,18,Cancelled vehicle or house  insurance
+h7_7,19,Make greater use of public transport or walk more
+h7_7,20,Reduced visits to doctor for regular checkups
+h7_7,21,The child stoped the university studies
+h7_7,22,Decreased communal payments
+h7_7,23,Did nothing special
+h7_7,24,Do not know
+h7_7,25,Refusal
+h8_1,1,Household member(s) gor employment
+h8_1,2,The salary of a household member(s) has increased
+h8_1,3,We started a private  business
+h8_1,4,Profit of the household business has increased
+h8_1,5,Pension has been appointed/increased
+h8_1,6,Remittances from relatives/friends from abroad
+h8_1,7,Assistance from relatives/friends in Georgia
+h8_1,8,Social assistance
+h8_1,9,The additional income
+h8_1,10,The surplus income from agriculture
+h8_1,11,Payment of debt
+h8_1,12,Do not know
+h8_1,13,Refusal
+h8_2,1,Household member(s) gor employment
+h8_2,2,The salary of a household member(s) has increased
+h8_2,3,We started a private  business
+h8_2,4,Profit of the household business has increased
+h8_2,5,Pension has been appointed/increased
+h8_2,6,Remittances from relatives/friends from abroad
+h8_2,7,Assistance from relatives/friends in Georgia
+h8_2,8,Social assistance
+h8_2,9,The additional income
+h8_2,10,The surplus income from agriculture
+h8_2,11,Payment of debt
+h8_2,12,Do not know
+h8_2,13,Refusal
+h8_3,1,Household member(s) gor employment
+h8_3,2,The salary of a household member(s) has increased
+h8_3,3,We started a private  business
+h8_3,4,Profit of the household business has increased
+h8_3,5,Pension has been appointed/increased
+h8_3,6,Remittances from relatives/friends from abroad
+h8_3,7,Assistance from relatives/friends in Georgia
+h8_3,8,Social assistance
+h8_3,9,The additional income
+h8_3,10,The surplus income from agriculture
+h8_3,11,Payment of debt
+h8_3,12,Do not know
+h8_3,13,Refusal
+h8_4,1,Household member(s) gor employment
+h8_4,2,The salary of a household member(s) has increased
+h8_4,3,We started a private  business
+h8_4,4,Profit of the household business has increased
+h8_4,5,Pension has been appointed/increased
+h8_4,6,Remittances from relatives/friends from abroad
+h8_4,7,Assistance from relatives/friends in Georgia
+h8_4,8,Social assistance
+h8_4,9,The additional income
+h8_4,10,The surplus income from agriculture
+h8_4,11,Payment of debt
+h8_4,12,Do not know
+h8_4,13,Refusal
+h9,1,Will significantly worsen
+h9,2,Will worsen
+h9,3,Will not change essentially
+h9,4,Will improve
+h9,5,Will significantly improve
+h9,6,Do not know
+h9,7,Refusal
+h10,1,The risk is very high
+h10,2,The risk is higher than medium
+h10,3,The risk is medium
+h10,4,The risk is lower than medium
+h10,5,Our household will not suffer from this problem during the n
+h10,6,Do not know
+h10,7,Refusal
+h11,1,Yes
+h11,2,No
+h12_1,1,A relative/a friend
+h12_1,2,A private person/money lender
+h12_1,3,Bank/ pawn-shop
+h12_1,4,A credit association (lottery)
+h12_1,5,Borrowed food from the shop
+h12_1,6,From the pharmacy
+h12_1,7,The flat is in mortgage
+h12_1,8,Do not know
+h12_1,9,Refusal
+h12_2,1,A relative/a friend
+h12_2,2,A private person/money lender
+h12_2,3,Bank/ pawn-shop
+h12_2,4,A credit association (lottery)
+h12_2,5,Borrowed food from the shop
+h12_2,6,From the pharmacy
+h12_2,7,The flat is in mortgage
+h12_2,8,Do not know
+h12_2,9,Refusal
+h12_3,1,A relative/a friend
+h12_3,2,A private person/money lender
+h12_3,3,Bank/ pawn-shop
+h12_3,4,A credit association (lottery)
+h12_3,5,Borrowed food from the shop
+h12_3,6,From the pharmacy
+h12_3,7,The flat is in mortgage
+h12_3,8,Do not know
+h12_3,9,Refusal
+h13,1,Completely
+h13,2,Partially
+h13,3,No
+h14,1,Yes
+h14,2,No
+h15,1,A relative/ friend
+h15,2,A private person/money lender
+h15,3,Bank/ pawn-shop
+h15,4,Shop
+h15,5,Neighbour
+h15,6,Do not know
+h15,7,Refusal
+h16,1,Insufficient income
+h16,2,"Non-existence of a collateral (property, valuables)"
+h16,3,Problems connected with previous borrowing
+h16,4,Shop
+h16,5,no money
+h16,6,Due to the age
+h16,7,They already had the loan and did not get the second one
+h16,8,Do not know
+h16,9,Refusal
+k3_1,1,More  or less correct
+k3_1,2,Underreported
+k3_1,3,Overreported
+k3_1,4,Difficult to assess
+k3_2,1,More  or less correct
+k3_2,2,Underreported
+k3_2,3,Overreported
+k3_2,4,Difficult to assess
+k3_3,1,More  or less correct
+k3_3,2,Underreported
+k3_3,3,Overreported
+k3_3,4,Difficult to assess
+k3_4,1,More  or less correct
+k3_4,2,Underreported
+k3_4,3,Overreported
+k3_4,4,Difficult to assess
+k3_5,1,More  or less correct
+k3_5,2,Underreported
+k3_5,3,Overreported
+k3_5,4,Difficult to assess
+ur,1,Urban
+ur,2,Rural
+mountain,1,Lowland
+mountain,2,Mountain

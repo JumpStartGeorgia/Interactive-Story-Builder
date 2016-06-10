@@ -1,0 +1,2873 @@
+diaryid,HHID,
+intcode,,
+regioni,Region,lbregioni
+raioni,District,lbraioni
+sakrebulo,Sakrebulo,lbsakrebulo
+sofeli,Village,lbsofeli
+weights,HH weight2013,
+panelcode,Codes for true panel,lbpanelcode
+weights_panel,HH weight2013 for true panel,
+cluster,cluster number,
+stratum,stratum number,
+ur,urban or rural,lbur
+mountain,mountain,lbmountain
+visit1day,,
+visit1month,,
+visit1starthour,,
+visit1startminute,,
+visit1endhour,,
+visit1endtminute,,
+visit2day,,
+visit2month,,
+visit2starthour,,
+visit2startminute,,
+visit2endhour,,
+visit2endtminute,,
+visit3day,,
+visit3month,,
+visit3starthour,,
+visit3startminute,,
+visit3endhour,,
+visit3endtminute,,
+visit4day,,
+visit4month,,
+visit4starthour,,
+visit4startminute,,
+visit4endhour,,
+visit4endtminute,,
+visitresult,,
+reason,,
+reason_o,,
+a0_1,Respondent #,
+a0_2,Respondent #,
+a0_3,Respondent #,
+a0_4,Respondent #,
+a0_5,Respondent #,
+a0_6,Respondent #,
+a0_7,Respondent #,
+a0_8,Respondent #,
+a0_9,Respondent #,
+a0_10,Respondent #,
+a0_11,Respondent #,
+a0_12,Respondent #,
+a0_13,Respondent #,
+a0_14,Respondent #,
+a0_15,Respondent #,
+a0_16,Respondent #,
+a1_1,Relationship to the Household Head,lba1
+a1_2,Relationship to the Household Head,lba1
+a1_3,Relationship to the Household Head,lba1
+a1_4,Relationship to the Household Head,lba1
+a1_5,Relationship to the Household Head,lba1
+a1_6,Relationship to the Household Head,lba1
+a1_7,Relationship to the Household Head,lba1
+a1_8,Relationship to the Household Head,lba1
+a1_9,Relationship to the Household Head,lba1
+a1_10,Relationship to the Household Head,lba1
+a1_11,Relationship to the Household Head,lba1
+a1_12,Relationship to the Household Head,lba1
+a1_13,Relationship to the Household Head,lba1
+a1_14,Relationship to the Household Head,lba1
+a1_15,Relationship to the Household Head,lba1
+a1_16,Relationship to the Household Head,lba1
+a2_1,Age,
+a2_2,Age,
+a2_3,Age,
+a2_4,Age,
+a2_5,Age,
+a2_6,Age,
+a2_7,Age,
+a2_8,Age,
+a2_9,Age,
+a2_10,Age,
+a2_11,Age,
+a2_12,Age,
+a2_13,Age,
+a2_14,Age,
+a2_15,Age,
+a2_16,Age,
+a3_1,Sex,lba3
+a3_2,Sex,lba3
+a3_3,Sex,lba3
+a3_4,Sex,lba3
+a3_5,Sex,lba3
+a3_6,Sex,lba3
+a3_7,Sex,lba3
+a3_8,Sex,lba3
+a3_9,Sex,lba3
+a3_10,Sex,lba3
+a3_11,Sex,lba3
+a3_12,Sex,lba3
+a3_13,Sex,lba3
+a3_14,Sex,lba3
+a3_15,Sex,lba3
+a3_16,Sex,lba3
+a4_1,Marital status,lba4
+a4_2,Marital status,lba4
+a4_3,Marital status,lba4
+a4_4,Marital status,lba4
+a4_5,Marital status,lba4
+a4_6,Marital status,lba4
+a4_7,Marital status,lba4
+a4_8,Marital status,lba4
+a4_9,Marital status,lba4
+a4_10,Marital status,lba4
+a4_11,Marital status,lba4
+a4_12,Marital status,lba4
+a4_13,Marital status,lba4
+a4_14,Marital status,lba4
+a4_15,Marital status,lba4
+a4_16,Marital status,lba4
+a5_1,Faith,lba5
+a5_2,Faith,lba5
+a5_3,Faith,lba5
+a5_4,Faith,lba5
+a5_5,Faith,lba5
+a5_6,Faith,lba5
+a5_7,Faith,lba5
+a5_8,Faith,lba5
+a5_9,Faith,lba5
+a5_10,Faith,lba5
+a5_11,Faith,lba5
+a5_12,Faith,lba5
+a5_13,Faith,lba5
+a5_14,Faith,lba5
+a5_15,Faith,lba5
+a5_16,Faith,lba5
+a5_o_1,Faith (text),
+a5_o_2,Faith (text),
+a5_o_3,Faith (text),
+a5_o_4,Faith (text),
+a5_o_5,Faith (text),
+a5_o_6,Faith (text),
+a5_o_7,Faith (text),
+a5_o_8,Faith (text),
+a5_o_9,Faith (text),
+a5_o_10,Faith (text),
+a5_o_11,Faith (text),
+a5_o_12,Faith (text),
+a5_o_13,Faith (text),
+a5_o_14,Faith (text),
+a5_o_15,Faith (text),
+a5_o_16,Faith (text),
+a6_1,Nationality,lba6
+a6_2,Nationality,lba6
+a6_3,Nationality,lba6
+a6_4,Nationality,lba6
+a6_5,Nationality,lba6
+a6_6,Nationality,lba6
+a6_7,Nationality,lba6
+a6_8,Nationality,lba6
+a6_9,Nationality,lba6
+a6_10,Nationality,lba6
+a6_11,Nationality,lba6
+a6_12,Nationality,lba6
+a6_13,Nationality,lba6
+a6_14,Nationality,lba6
+a6_15,Nationality,lba6
+a6_16,Nationality,lba6
+a6_o_1,Nationality (text),
+a6_o_2,Nationality (text),
+a6_o_3,Nationality (text),
+a6_o_4,Nationality (text),
+a6_o_5,Nationality (text),
+a6_o_6,Nationality (text),
+a6_o_7,Nationality (text),
+a6_o_8,Nationality (text),
+a6_o_9,Nationality (text),
+a6_o_10,Nationality (text),
+a6_o_11,Nationality (text),
+a6_o_12,Nationality (text),
+a6_o_13,Nationality (text),
+a6_o_14,Nationality (text),
+a6_o_15,Nationality (text),
+a6_o_16,Nationality (text),
+a7_1,Does he/she have birth certificate?,lbyesno
+a7_2,Does he/she have birth certificate?,lbyesno
+a7_3,Does he/she have birth certificate?,lbyesno
+a7_4,Does he/she have birth certificate?,lbyesno
+a7_5,Does he/she have birth certificate?,lbyesno
+a7_6,Does he/she have birth certificate?,lbyesno
+a7_7,Does he/she have birth certificate?,lbyesno
+a7_8,Does he/she have birth certificate?,lbyesno
+a7_9,Does he/she have birth certificate?,lbyesno
+a7_10,Does he/she have birth certificate?,lbyesno
+a7_11,Does he/she have birth certificate?,lbyesno
+a7_12,Does he/she have birth certificate?,lbyesno
+a7_13,Does he/she have birth certificate?,lbyesno
+a7_14,Does he/she have birth certificate?,lbyesno
+a7_15,Does he/she have birth certificate?,lbyesno
+a7_16,Does he/she have birth certificate?,lbyesno
+a7_1_1,Does he/she have ID Card?,lbyesno
+a7_1_2,Does he/she have ID Card?,lbyesno
+a7_1_3,Does he/she have ID Card?,lbyesno
+a7_1_4,Does he/she have ID Card?,lbyesno
+a7_1_5,Does he/she have ID Card?,lbyesno
+a7_1_6,Does he/she have ID Card?,lbyesno
+a7_1_7,Does he/she have ID Card?,lbyesno
+a7_1_8,Does he/she have ID Card?,lbyesno
+a7_1_9,Does he/she have ID Card?,lbyesno
+a7_1_10,Does he/she have ID Card?,lbyesno
+a7_1_11,Does he/she have ID Card?,lbyesno
+a7_1_12,Does he/she have ID Card?,lbyesno
+a7_1_13,Does he/she have ID Card?,lbyesno
+a7_1_14,Does he/she have ID Card?,lbyesno
+a7_1_15,Does he/she have ID Card?,lbyesno
+a7_1_16,Does he/she have ID Card?,lbyesno
+a8_1,Does he/she have health insurance?,lbyesno
+a8_2,Does he/she have health insurance?,lbyesno
+a8_3,Does he/she have health insurance?,lbyesno
+a8_4,Does he/she have health insurance?,lbyesno
+a8_5,Does he/she have health insurance?,lbyesno
+a8_6,Does he/she have health insurance?,lbyesno
+a8_7,Does he/she have health insurance?,lbyesno
+a8_8,Does he/she have health insurance?,lbyesno
+a8_9,Does he/she have health insurance?,lbyesno
+a8_10,Does he/she have health insurance?,lbyesno
+a8_11,Does he/she have health insurance?,lbyesno
+a8_12,Does he/she have health insurance?,lbyesno
+a8_13,Does he/she have health insurance?,lbyesno
+a8_14,Does he/she have health insurance?,lbyesno
+a8_15,Does he/she have health insurance?,lbyesno
+a8_16,Does he/she have health insurance?,lbyesno
+a9_1,What is the type of this insurance,lba9
+a9_2,What is the type of this insurance,lba9
+a9_3,What is the type of this insurance,lba9
+a9_4,What is the type of this insurance,lba9
+a9_5,What is the type of this insurance,lba9
+a9_6,What is the type of this insurance,lba9
+a9_7,What is the type of this insurance,lba9
+a9_8,What is the type of this insurance,lba9
+a9_9,What is the type of this insurance,lba9
+a9_10,What is the type of this insurance,lba9
+a9_11,What is the type of this insurance,lba9
+a9_12,What is the type of this insurance,lba9
+a9_13,What is the type of this insurance,lba9
+a9_14,What is the type of this insurance,lba9
+a9_15,What is the type of this insurance,lba9
+a9_16,What is the type of this insurance,lba9
+a9_o_1,What is the type of this insurance (text),
+a9_o_2,What is the type of this insurance (text),
+a9_o_3,What is the type of this insurance (text),
+a9_o_4,What is the type of this insurance (text),
+a9_o_5,What is the type of this insurance (text),
+a9_o_6,What is the type of this insurance (text),
+a9_o_7,What is the type of this insurance (text),
+a9_o_8,What is the type of this insurance (text),
+a9_o_9,What is the type of this insurance (text),
+a9_o_10,What is the type of this insurance (text),
+a9_o_11,What is the type of this insurance (text),
+a9_o_12,What is the type of this insurance (text),
+a9_o_13,What is the type of this insurance (text),
+a9_o_14,What is the type of this insurance (text),
+a9_o_15,What is the type of this insurance (text),
+a9_o_16,What is the type of this insurance (text),
+a9_2_1,What is the type of this insurance,lba9
+a9_2_2,What is the type of this insurance,lba9
+a9_2_3,What is the type of this insurance,lba9
+a9_2_4,What is the type of this insurance,lba9
+a9_2_5,What is the type of this insurance,lba9
+a9_2_6,What is the type of this insurance,lba9
+a9_2_7,What is the type of this insurance,lba9
+a9_2_8,What is the type of this insurance,lba9
+a9_2_9,What is the type of this insurance,lba9
+a9_2_10,What is the type of this insurance,lba9
+a9_2_11,What is the type of this insurance,lba9
+a9_2_12,What is the type of this insurance,lba9
+a9_2_13,What is the type of this insurance,lba9
+a9_2_14,What is the type of this insurance,lba9
+a9_2_15,What is the type of this insurance,lba9
+a9_2_16,What is the type of this insurance,lba9
+a9_2_o_1,What is the type of this insurance (text),
+a9_2_o_2,What is the type of this insurance (text),
+a9_2_o_3,What is the type of this insurance (text),
+a9_2_o_4,What is the type of this insurance (text),
+a9_2_o_5,What is the type of this insurance (text),
+a9_2_o_6,What is the type of this insurance (text),
+a9_2_o_7,What is the type of this insurance (text),
+a9_2_o_8,What is the type of this insurance (text),
+a9_2_o_9,What is the type of this insurance (text),
+a9_2_o_10,What is the type of this insurance (text),
+a9_2_o_11,What is the type of this insurance (text),
+a9_2_o_12,What is the type of this insurance (text),
+a9_2_o_13,What is the type of this insurance (text),
+a9_2_o_14,What is the type of this insurance (text),
+a9_2_o_15,What is the type of this insurance (text),
+a9_2_o_16,What is the type of this insurance (text),
+a10_1,Achieved education level,lba10
+a10_2,Achieved education level,lba10
+a10_3,Achieved education level,lba10
+a10_4,Achieved education level,lba10
+a10_5,Achieved education level,lba10
+a10_6,Achieved education level,lba10
+a10_7,Achieved education level,lba10
+a10_8,Achieved education level,lba10
+a10_9,Achieved education level,lba10
+a10_10,Achieved education level,lba10
+a10_11,Achieved education level,lba10
+a10_12,Achieved education level,lba10
+a10_13,Achieved education level,lba10
+a10_14,Achieved education level,lba10
+a10_15,Achieved education level,lba10
+a10_16,Achieved education level,lba10
+a11_1,"During last week was he/she engaged in any activity, even only for one hour?",lbyesno
+a11_2,"During last week was he/she engaged in any activity, even only for one hour?",lbyesno
+a11_3,"During last week was he/she engaged in any activity, even only for one hour?",lbyesno
+a11_4,"During last week was he/she engaged in any activity, even only for one hour?",lbyesno
+a11_5,"During last week was he/she engaged in any activity, even only for one hour?",lbyesno
+a11_6,"During last week was he/she engaged in any activity, even only for one hour?",lbyesno
+a11_7,"During last week was he/she engaged in any activity, even only for one hour?",lbyesno
+a11_8,"During last week was he/she engaged in any activity, even only for one hour?",lbyesno
+a11_9,"During last week was he/she engaged in any activity, even only for one hour?",lbyesno
+a11_10,"During last week was he/she engaged in any activity, even only for one hour?",lbyesno
+a11_11,"During last week was he/she engaged in any activity, even only for one hour?",lbyesno
+a11_12,"During last week was he/she engaged in any activity, even only for one hour?",lbyesno
+a11_13,"During last week was he/she engaged in any activity, even only for one hour?",lbyesno
+a11_14,"During last week was he/she engaged in any activity, even only for one hour?",lbyesno
+a11_15,"During last week was he/she engaged in any activity, even only for one hour?",lbyesno
+a11_16,"During last week was he/she engaged in any activity, even only for one hour?",lbyesno
+a12_1,What type of the job was it?,
+a12_2,What type of the job was it?,
+a12_3,What type of the job was it?,
+a12_4,What type of the job was it?,
+a12_5,What type of the job was it?,
+a12_6,What type of the job was it?,
+a12_7,What type of the job was it?,
+a12_8,What type of the job was it?,
+a12_9,What type of the job was it?,
+a12_10,What type of the job was it?,
+a12_11,What type of the job was it?,
+a12_12,What type of the job was it?,
+a12_13,What type of the job was it?,
+a12_14,What type of the job was it?,
+a12_15,What type of the job was it?,
+a12_16,What type of the job was it?,
+a13_1,Why was not he/she engaged in any activity?,lba13
+a13_2,Why was not he/she engaged in any activity?,lba13
+a13_3,Why was not he/she engaged in any activity?,lba13
+a13_4,Why was not he/she engaged in any activity?,lba13
+a13_5,Why was not he/she engaged in any activity?,lba13
+a13_6,Why was not he/she engaged in any activity?,lba13
+a13_7,Why was not he/she engaged in any activity?,lba13
+a13_8,Why was not he/she engaged in any activity?,lba13
+a13_9,Why was not he/she engaged in any activity?,lba13
+a13_10,Why was not he/she engaged in any activity?,lba13
+a13_11,Why was not he/she engaged in any activity?,lba13
+a13_12,Why was not he/she engaged in any activity?,lba13
+a13_13,Why was not he/she engaged in any activity?,lba13
+a13_14,Why was not he/she engaged in any activity?,lba13
+a13_15,Why was not he/she engaged in any activity?,lba13
+a13_16,Why was not he/she engaged in any activity?,lba13
+a13_o_1,Why was not he/she engaged in any activity? (text),
+a13_o_2,Why was not he/she engaged in any activity? (text),
+a13_o_3,Why was not he/she engaged in any activity? (text),
+a13_o_4,Why was not he/she engaged in any activity? (text),
+a13_o_5,Why was not he/she engaged in any activity? (text),
+a13_o_6,Why was not he/she engaged in any activity? (text),
+a13_o_7,Why was not he/she engaged in any activity? (text),
+a13_o_8,Why was not he/she engaged in any activity? (text),
+a13_o_9,Why was not he/she engaged in any activity? (text),
+a13_o_10,Why was not he/she engaged in any activity? (text),
+a13_o_11,Why was not he/she engaged in any activity? (text),
+a13_o_12,Why was not he/she engaged in any activity? (text),
+a13_o_13,Why was not he/she engaged in any activity? (text),
+a13_o_14,Why was not he/she engaged in any activity? (text),
+a13_o_15,Why was not he/she engaged in any activity? (text),
+a13_o_16,Why was not he/she engaged in any activity? (text),
+a14_1,Did he/she lose a job during last year?,lbyesno
+a14_2,Did he/she lose a job during last year?,lbyesno
+a14_3,Did he/she lose a job during last year?,lbyesno
+a14_4,Did he/she lose a job during last year?,lbyesno
+a14_5,Did he/she lose a job during last year?,lbyesno
+a14_6,Did he/she lose a job during last year?,lbyesno
+a14_7,Did he/she lose a job during last year?,lbyesno
+a14_8,Did he/she lose a job during last year?,lbyesno
+a14_9,Did he/she lose a job during last year?,lbyesno
+a14_10,Did he/she lose a job during last year?,lbyesno
+a14_11,Did he/she lose a job during last year?,lbyesno
+a14_12,Did he/she lose a job during last year?,lbyesno
+a14_13,Did he/she lose a job during last year?,lbyesno
+a14_14,Did he/she lose a job during last year?,lbyesno
+a14_15,Did he/she lose a job during last year?,lbyesno
+a14_16,Did he/she lose a job during last year?,lbyesno
+a15_1,What type of the job was it?,
+a15_2,What type of the job was it?,
+a15_3,What type of the job was it?,
+a15_4,What type of the job was it?,
+a15_5,What type of the job was it?,
+a15_6,What type of the job was it?,
+a15_7,What type of the job was it?,
+a15_8,What type of the job was it?,
+a15_9,What type of the job was it?,
+a15_10,What type of the job was it?,
+a15_11,What type of the job was it?,
+a15_12,What type of the job was it?,
+a15_13,What type of the job was it?,
+a15_14,What type of the job was it?,
+a15_15,What type of the job was it?,
+a15_16,What type of the job was it?,
+a16_1,Do you have IDP status,lbyesno
+a16_2,Do you have IDP status,lbyesno
+a16_3,Do you have IDP status,lbyesno
+a16_4,Do you have IDP status,lbyesno
+a16_5,Do you have IDP status,lbyesno
+a16_6,Do you have IDP status,lbyesno
+a16_7,Do you have IDP status,lbyesno
+a16_8,Do you have IDP status,lbyesno
+a16_9,Do you have IDP status,lbyesno
+a16_10,Do you have IDP status,lbyesno
+a16_11,Do you have IDP status,lbyesno
+a16_12,Do you have IDP status,lbyesno
+a16_13,Do you have IDP status,lbyesno
+a16_14,Do you have IDP status,lbyesno
+a16_15,Do you have IDP status,lbyesno
+a16_16,Do you have IDP status,lbyesno
+a17,Does any household member have a child(ren) below 18 that live outside the house,lbyesno
+a18code1,Where does the child live currently?,lba18
+a18code1_o,Where does the child live currently? (text),
+a18code2,Where does the child live currently?,lba18
+a18code3,Where does the child live currently?,lba18
+a18code4,Where does the child live currently?,lba18
+a19,Have you applied to be registered at the database of socially unprotected famili,lbyesno
+a20,During the past 12 months have you or your family members received assistance to,lbyesno
+a21,What is your family's ranking score right now?,lba21
+b0,What is the main source of drinking water for members of your household?,lbb0
+b0_o,What is the main source of drinking water for members of your household? (text),
+b01,"How long does it take to go to the water source, get water and come back, in min",
+b02,What kind of toilet facility does this household use?,lbb02
+b02_o,What kind of toilet facility does this household use? (text),
+b1,Number of rooms in the dwelling of the household,
+b2,The total area of the dwelling of the household,
+b3,What is the ownership type of the household's dwelling?,lbb3
+b3_o,What is the ownership type of the household's dwelling? (text),
+b4,What is the type of the dwelling?,lbb4
+b4_o,What is the type of the dwelling? (text),
+b5_1_1,Available or not  - Water supply,lbyesnorefusal
+b5_1_2,Available or not  - Hot water,lbyesnorefusal
+b5_1_3,Available or not  - Electricity,lbyesnorefusal
+b5_1_4,Available or not  - Gas supply,lbyesnorefusal
+b5_1_5,Available or not  - Sewerage,lbyesnorefusal
+b5_1_6,Available or not  - Waste disposal,lbyesnorefusal
+b5_1_7,Available or not  - Toilet,lbyesnorefusal
+b5_1_8,Available or not  - Bathroom,lbyesnorefusal
+b5_2_1,Is it inside or outside the house (flat)  - Water supply,lbb5_2
+b5_2_2,Is it inside or outside the house (flat)  - Hot water,lbb5_2
+b5_2_7,Is it inside or outside the house (flat)  - Toilet,lbb5_2
+b5_2_8,Is it inside or outside the house (flat)  - Bathroom,lbb5_2
+b5_3_1,Central (common) or individual - Water supply,lbb5_3
+b5_3_2,Central (common) or individual - Hot water,lbb5_3
+b5_3_3,Central (common) or individual - Electricity,lbb5_3
+b5_3_4,Central (common) or individual - Gas supply,lbb5_3
+b5_3_5,Central (common) or individual - Sewerage,lbb5_3
+b5_3_7,Central (common) or individual - Toilet,lbb5_3
+b5_3_8,Central (common) or individual - Bathroom,lbb5_3
+b5_4_1,How many hours per day is the facility available? - Water supply,lbb5_4
+b5_4_2,How many hours per day is the facility available? - Hot water,lbb5_4
+b5_4_3,How many hours per day is the facility available? - Electricity,lbb5_4
+b5_4_4,How many hours per day is the facility available? - Gas supply,lbb5_4
+b5_5_1,How would you evaluate the quality of performance? - Water supply,lbb5_5
+b5_5_2,How would you evaluate the quality of performance? - Hot water,lbb5_5
+b5_5_3,How would you evaluate the quality of performance? - Electricity,lbb5_5
+b5_5_4,How would you evaluate the quality of performance? - Gas supply,lbb5_5
+b5_5_5,How would you evaluate the quality of performance? - Sewerage,lbb5_5
+b5_5_6,How would you evaluate the quality of performance? - Waste disposal,lbb5_5
+b5_5_7,How would you evaluate the quality of performance? - Toilet,lbb5_5
+b5_5_8,How would you evaluate the quality of performance? - Bathroom,lbb5_5
+b6,To what extent did you manage to heat the dwelling during the past winter?,lbb6
+b7_1,Main heating means,lbb7_1
+b7_1_o,Main heating means (text),
+b7_2_1,Auxiliary heating means - Central heating system,lbyesno
+b7_2_2,Auxiliary heating means - Common heating system (for several households),lbyesno
+b7_2_3,Auxiliary heating means - Individual heating system,lbyesno
+b7_2_4,"Auxiliary heating means - Natural gas stove (\x84Karma"", ""Nicala""etc.)",lbyesno
+b7_2_5,Auxiliary heating means - Electric heater,lbyesno
+b7_2_6,"Auxiliary heating means - Stove (burning firewood, coal, diesel oil, saw dust et",lbyesno
+b7_2_7,Auxiliary heating means - Fireplace,lbyesno
+b7_2_8,Auxiliary heating means - Open fire in the middle of the room,lbyesno
+b7_2_77,Auxiliary heating means - Other,lbyesno
+b7_2_o,Auxiliary heating means - Other (text),
+b8_1,Problem - The roof is very damaged and water leaks through it,lbb8
+b8_2,Problem - The floor/walls are very damaged,lbb8
+b8_3,Problem - There is an  earth floor,lbb8
+b8_4,Problem - The dwelling is damp,lbb8
+b8_5,Problem - The windows are broken,lbb8
+b8_6,Problem - The light is insufficient,lbb8
+b8_7,"Problem - It is noisy (because of transport, an enterprise or neighbors)",lbb8
+b8_8,Problem - The dwelling is too small for our household,lbb8
+b8_77,Problem - Other,lbb8
+b8_77_o,Problem - Other (text),
+b9,Do you own other dwelling apart from this one?,lbyesno
+b10,How do you use that dwelling?,lbb10
+b10_o,How do you use that dwelling? (text),
+c1_1,"Automobile (of all types \x96 car, truck, bus etc.)",
+c1_2,"Tractor (of all types, combine harvester or sowing machine, mini tractor)",
+c1_3,Mobile phone,
+c1_4,Washing machine,
+c1_5,Black &White TV set,
+c1_6,Color TV set,
+c1_7,Refrigerator,
+c1_8,Gas stove,
+c1_9,Vacuum cleaner,
+c1_10,Iron,
+c1_11,Electric water heater (tank),
+c1_12,Gas water heater,
+c1_13,Individual system of heating and hot water,
+c1_14,Microwave oven,
+c1_15,Personal computer,
+c1_16,Internet,
+c1_17,Compact disk stereo cassette record player,
+c1_18,Video camera or digital photo camera,
+c1_19,Video record-player or DVD player,
+c1_20,Electric generator,
+c1_21,Satellite dish,
+c1_22,Air conditioner,
+c1_23,Piano or grand piano,
+c1_24,Toaster,
+c1_25,Dishwasher,
+c1_26,Kitchen unit,
+c2,Do you possess productive or workable livestock and or paultry?,lbyesno
+c3_1,"Cows, buffalos",
+c3_2,Calves,
+c3_3,"Horses, oxen",
+c3_4,Foals,
+c3_5,"Sheep, goats",
+c3_6,"Lambs, kids",
+c3_7,Rabbits,
+c3_8,Young rabbits,
+c3_9,All types of poultry,
+c3_10,Poults,
+c3_11,Pigs,
+c3_12,Piglets,
+c3_13,Asses and mules,
+c3_14,Foals,
+c3_15,Beehives,
+c4_1,I cultivate my own land,lbyesno
+c4_2,I cultivate a rented land,lbyesno
+c4_3,I cultivate a land owned by others,lbyesno
+c4_4,I own agriclutural land cultivated by others,lbyesno
+c4_5,I own agriclutural land which is not cultivated,lbyesno
+c4_6,I don't own or cultivate any agricultiral land,lbyesno
+c5_1_1,Vineyard - Own,
+c5_1_2,Orchard - Own,
+c5_1_3,"Wheat, sunflower - Own",
+c5_1_4,Maize - Own,
+c5_1_5,Potato - Own,
+c5_1_6,Hazelnut - Own,
+c5_1_7,"Citrus, kiwi, feijoa plantations - Own",
+c5_1_8,Tea plantation - Own,
+c5_1_9,"Haricot beans, soybeans - Own",
+c5_1_10,Vegetable garden - Own,
+c5_1_11,Greenhouse - Own,
+c5_1_12,Tobacco - Own,
+c5_1_13,Meadow for gathering hay - Own,
+c5_1_14,Pasture - Own,
+c5_1_15,Other crops - Own,
+c5_2_1,Vineyard - Rented,
+c5_2_2,Orchard - Rented,
+c5_2_3,"Wheat, sunflower - Rented",
+c5_2_4,Maize - Rented,
+c5_2_5,Potato - Rented,
+c5_2_6,Hazelnut - Rented,
+c5_2_7,"Citrus, kiwi, feijoa plantations - Rented",
+c5_2_8,Tea plantation - Rented,
+c5_2_9,"Haricot beans, soybeans - Rented",
+c5_2_10,Vegetable garden - Rented,
+c5_2_11,Greenhouse - Rented,
+c5_2_12,Tobacco - Rented,
+c5_2_13,Meadow for gathering hay - Rented,
+c5_2_14,Pasture - Rented,
+c5_2_15,Other crops - Rented,
+c5_3_1,Vineyard - Owned by others,
+c5_3_2,Orchard - Owned by others,
+c5_3_3,"Wheat, sunflower - Owned by others",
+c5_3_4,Maize - Owned by others,
+c5_3_5,Potato - Owned by others,
+c5_3_6,Hazelnut - Owned by others,
+c5_3_7,"Citrus, kiwi, feijoa plantations - Owned by others",
+c5_3_8,Tea plantation - Owned by others,
+c5_3_9,"Haricot beans, soybeans - Owned by others",
+c5_3_10,Vegetable garden - Owned by others,
+c5_3_11,Greenhouse - Owned by others,
+c5_3_12,Tobacco - Owned by others,
+c5_3_13,Meadow for gathering hay - Owned by others,
+c5_3_14,Pasture - Owned by others,
+c5_3_15,Other crops - Owned by others,
+d1_1_1,Salary (including all remuneration),
+d1_1_2,Salary (including all remuneration),
+d1_1_3,Salary (including all remuneration),
+d1_1_4,Salary (including all remuneration),
+d1_1_5,Salary (including all remuneration),
+d1_1_6,Salary (including all remuneration),
+d1_1_7,Salary (including all remuneration),
+d1_1_8,Salary (including all remuneration),
+d1_2_1,Income from private activities,
+d1_2_2,Income from private activities,
+d1_2_3,Income from private activities,
+d1_2_4,Income from private activities,
+d1_2_5,Income from private activities,
+d1_2_6,Income from private activities,
+d1_3_1,Old-age Pension (considering all kinds of supplements),
+d1_3_2,Old-age Pension (considering all kinds of supplements),
+d1_3_3,Old-age Pension (considering all kinds of supplements),
+d1_3_4,Old-age Pension (considering all kinds of supplements),
+d1_3_5,Old-age Pension (considering all kinds of supplements),
+d1_3_6,Old-age Pension (considering all kinds of supplements),
+d1_3_7,Old-age Pension (considering all kinds of supplements),
+d1_3_8,Old-age Pension (considering all kinds of supplements),
+d1_3_9,Old-age Pension (considering all kinds of supplements),
+d1_3_10,Old-age Pension (considering all kinds of supplements),
+d1_4_1,compensation/state academic scholarship,
+d1_4_2,compensation/state academic scholarship,
+d1_5_3,Aliment,
+d1_5_4,Aliment,
+d1_5_5,Aliment,
+d1_6_1,IDP allowence,
+d1_6_2,IDP allowence,
+d1_6_3,IDP allowence,
+d1_6_4,IDP allowence,
+d1_6_5,IDP allowence,
+d1_6_6,IDP allowence,
+d1_6_7,IDP allowence,
+d1_6_8,IDP allowence,
+d1_6_9,IDP allowence,
+d1_6_10,IDP allowence,
+d1_6_11,IDP allowence,
+d1_7_3,Social assitance to families with many children,
+d1_7_4,Social assitance to families with many children,
+d1_7_5,Social assitance to families with many children,
+d1_7_6,Social assitance to families with many children,
+d1_8_1,Social assitance to orphans,
+d1_8_2,Social assitance to orphans,
+d1_8_3,Social assitance to orphans,
+d1_8_4,Social assitance to orphans,
+d1_8_5,Social assitance to orphans,
+d1_8_6,Social assitance to orphans,
+d1_8_7,Social assitance to orphans,
+d1_10_1,Social assitance to single unemployed pensioners or households consisting of onl,
+d1_10_2,Social assitance to single unemployed pensioners or households consisting of onl,
+d1_10_3,Social assitance to single unemployed pensioners or households consisting of onl,
+d1_12_1,Social assitance to vulnerable families (so-called subsistence allowence TSA),
+d1_12_2,Social assitance to vulnerable families (so-called subsistence allowence TSA),
+d1_12_3,Social assitance to vulnerable families (so-called subsistence allowence TSA),
+d1_12_4,Social assitance to vulnerable families (so-called subsistence allowence TSA),
+d1_12_5,Social assitance to vulnerable families (so-called subsistence allowence TSA),
+d1_12_6,Social assitance to vulnerable families (so-called subsistence allowence TSA),
+d1_12_7,Social assitance to vulnerable families (so-called subsistence allowence TSA),
+d1_12_8,Social assitance to vulnerable families (so-called subsistence allowence TSA),
+d1_12_9,Social assitance to vulnerable families (so-called subsistence allowence TSA),
+d1_12_10,Social assitance to vulnerable families (so-called subsistence allowence TSA),
+d1_12_11,Social assitance to vulnerable families (so-called subsistence allowence TSA),
+d1_13_2,Prevention and reintegration allowence,
+d1_14_1,Other social assistance,
+d1_14_2,Other social assistance,
+d1_14_5,Other social assistance,
+d1_14_9,Other social assistance,
+d1_15_1,Other regular cash income,
+d1_15_2,Other regular cash income,
+d1_15_3,Other regular cash income,
+d1_15_4,Other regular cash income,
+d1_15_5,Other regular cash income,
+d1_15_6,Other regular cash income,
+d1_15_7,Other regular cash income,
+d1_15_8,Other regular cash income,
+d2_1,"From selling domestic animals or their products (milk, eggs, meat, cheese, butte",
+d2_2,From selling other agricultural products or goods processed from the latter (win,
+d2_3,"From renting out property (flat, summerhouse, car, etc.)",
+d2_4,"From selling property (flat, summerhouse, car, etc.)",
+d2_5,Cash assistance from children/grandchildren or parents living in Georgia,
+d2_6,Cash assistance from other relatives living in Georgia,
+d2_7,"Cash assistance from non-relatives living in Georgia (friend, neighbor, etc.)",
+d2_8,Cash assistance from children/grandchildren or parents living abroad,
+d2_9,Cash assistance from other relatives living abroad,
+d2_10,"Cash assistance from non-relatives living abroad (friend, neighbor etc.)",
+d2_11,"Total of other non-regular cash income (seasonal, one-time, etc.) of household m",
+e1_1,"Did he/she attend any educational institution, visited a tutor or a circle durin",lbyesno
+e1_2,"Did he/she attend any educational institution, visited a tutor or a circle durin",lbyesno
+e1_3,"Did he/she attend any educational institution, visited a tutor or a circle durin",lbyesno
+e1_4,"Did he/she attend any educational institution, visited a tutor or a circle durin",lbyesno
+e1_5,"Did he/she attend any educational institution, visited a tutor or a circle durin",lbyesno
+e1_6,"Did he/she attend any educational institution, visited a tutor or a circle durin",lbyesno
+e1_7,"Did he/she attend any educational institution, visited a tutor or a circle durin",lbyesno
+e1_8,"Did he/she attend any educational institution, visited a tutor or a circle durin",lbyesno
+e1_9,"Did he/she attend any educational institution, visited a tutor or a circle durin",lbyesno
+e1_10,"Did he/she attend any educational institution, visited a tutor or a circle durin",lbyesno
+e1_11,"Did he/she attend any educational institution, visited a tutor or a circle durin",lbyesno
+e1_12,"Did he/she attend any educational institution, visited a tutor or a circle durin",lbyesno
+e1_13,"Did he/she attend any educational institution, visited a tutor or a circle durin",lbyesno
+e1_14,"Did he/she attend any educational institution, visited a tutor or a circle durin",lbyesno
+e1_15,"Did he/she attend any educational institution, visited a tutor or a circle durin",lbyesno
+e1_16,"Did he/she attend any educational institution, visited a tutor or a circle durin",lbyesno
+e2_1_1,Which educational institution did he/she at-tend?,lbe2
+e2_1_2,Which educational institution did he/she at-tend?,lbe2
+e2_1_3,Which educational institution did he/she at-tend?,lbe2
+e2_1_4,Which educational institution did he/she at-tend?,lbe2
+e2_1_5,Which educational institution did he/she at-tend?,lbe2
+e2_1_6,Which educational institution did he/she at-tend?,lbe2
+e2_1_7,Which educational institution did he/she at-tend?,lbe2
+e2_1_8,Which educational institution did he/she at-tend?,lbe2
+e2_1_9,Which educational institution did he/she at-tend?,lbe2
+e2_1_10,Which educational institution did he/she at-tend?,lbe2
+e2_1_11,Which educational institution did he/she at-tend?,lbe2
+e2_1_12,Which educational institution did he/she at-tend?,lbe2
+e2_1_13,Which educational institution did he/she at-tend?,lbe2
+e2_1_14,Which educational institution did he/she at-tend?,lbe2
+e2_1_15,Which educational institution did he/she at-tend?,lbe2
+e2_1_16,Which educational institution did he/she at-tend?,lbe2
+e2_2_1,Which educational institution did he/she at-tend?,lbe2
+e2_2_2,Which educational institution did he/she at-tend?,lbe2
+e2_2_3,Which educational institution did he/she at-tend?,lbe2
+e2_2_4,Which educational institution did he/she at-tend?,lbe2
+e2_2_5,Which educational institution did he/she at-tend?,lbe2
+e2_2_6,Which educational institution did he/she at-tend?,lbe2
+e2_2_7,Which educational institution did he/she at-tend?,lbe2
+e2_2_8,Which educational institution did he/she at-tend?,lbe2
+e2_2_9,Which educational institution did he/she at-tend?,lbe2
+e2_2_10,Which educational institution did he/she at-tend?,lbe2
+e2_2_11,Which educational institution did he/she at-tend?,lbe2
+e2_2_12,Which educational institution did he/she at-tend?,lbe2
+e2_2_13,Which educational institution did he/she at-tend?,lbe2
+e2_2_14,Which educational institution did he/she at-tend?,lbe2
+e2_2_15,Which educational institution did he/she at-tend?,lbe2
+e2_2_16,Which educational institution did he/she at-tend?,lbe2
+e2_3_1,Which educational institution did he/she at-tend?,lbe2
+e2_3_2,Which educational institution did he/she at-tend?,lbe2
+e2_3_3,Which educational institution did he/she at-tend?,lbe2
+e2_3_4,Which educational institution did he/she at-tend?,lbe2
+e2_3_5,Which educational institution did he/she at-tend?,lbe2
+e2_3_6,Which educational institution did he/she at-tend?,lbe2
+e2_3_7,Which educational institution did he/she at-tend?,lbe2
+e2_3_8,Which educational institution did he/she at-tend?,lbe2
+e2_3_9,Which educational institution did he/she at-tend?,lbe2
+e2_3_10,Which educational institution did he/she at-tend?,lbe2
+e2_3_11,Which educational institution did he/she at-tend?,lbe2
+e2_3_12,Which educational institution did he/she at-tend?,lbe2
+e2_3_13,Which educational institution did he/she at-tend?,lbe2
+e2_3_14,Which educational institution did he/she at-tend?,lbe2
+e2_3_15,Which educational institution did he/she at-tend?,lbe2
+e2_3_16,Which educational institution did he/she at-tend?,lbe2
+e2_4_1,Which educational institution did he/she at-tend?,lbe2
+e2_4_2,Which educational institution did he/she at-tend?,lbe2
+e2_4_3,Which educational institution did he/she at-tend?,lbe2
+e2_4_4,Which educational institution did he/she at-tend?,lbe2
+e2_4_5,Which educational institution did he/she at-tend?,lbe2
+e2_4_6,Which educational institution did he/she at-tend?,lbe2
+e2_4_7,Which educational institution did he/she at-tend?,lbe2
+e2_4_8,Which educational institution did he/she at-tend?,lbe2
+e2_4_9,Which educational institution did he/she at-tend?,lbe2
+e2_4_10,Which educational institution did he/she at-tend?,lbe2
+e2_4_11,Which educational institution did he/she at-tend?,lbe2
+e2_4_12,Which educational institution did he/she at-tend?,lbe2
+e2_4_13,Which educational institution did he/she at-tend?,lbe2
+e2_4_14,Which educational institution did he/she at-tend?,lbe2
+e2_4_15,Which educational institution did he/she at-tend?,lbe2
+e2_4_16,Which educational institution did he/she at-tend?,lbe2
+e2_o_1,Which educational institution did he/she at-tend? (text),
+e2_o_2,Which educational institution did he/she at-tend? (text),
+e2_o_3,Which educational institution did he/she at-tend? (text),
+e2_o_4,Which educational institution did he/she at-tend? (text),
+e2_o_5,Which educational institution did he/she at-tend? (text),
+e2_o_6,Which educational institution did he/she at-tend? (text),
+e2_o_7,Which educational institution did he/she at-tend? (text),
+e2_o_8,Which educational institution did he/she at-tend? (text),
+e2_o_9,Which educational institution did he/she at-tend? (text),
+e2_o_10,Which educational institution did he/she at-tend? (text),
+e2_o_11,Which educational institution did he/she at-tend? (text),
+e2_o_12,Which educational institution did he/she at-tend? (text),
+e2_o_13,Which educational institution did he/she at-tend? (text),
+e2_o_14,Which educational institution did he/she at-tend? (text),
+e2_o_15,Which educational institution did he/she at-tend? (text),
+e2_o_16,Which educational institution did he/she at-tend? (text),
+e3_1_1,Who financed the education?,lbe3
+e3_1_2,Who financed the education?,lbe3
+e3_1_3,Who financed the education?,lbe3
+e3_1_4,Who financed the education?,lbe3
+e3_1_5,Who financed the education?,lbe3
+e3_1_6,Who financed the education?,lbe3
+e3_1_7,Who financed the education?,lbe3
+e3_1_8,Who financed the education?,lbe3
+e3_1_9,Who financed the education?,lbe3
+e3_1_10,Who financed the education?,lbe3
+e3_1_11,Who financed the education?,lbe3
+e3_1_12,Who financed the education?,lbe3
+e3_1_13,Who financed the education?,lbe3
+e3_1_14,Who financed the education?,lbe3
+e3_1_15,Who financed the education?,lbe3
+e3_1_16,Who financed the education?,lbe3
+e3_2_1,Who financed the education?,lbe3
+e3_2_2,Who financed the education?,lbe3
+e3_2_3,Who financed the education?,lbe3
+e3_2_4,Who financed the education?,lbe3
+e3_2_5,Who financed the education?,lbe3
+e3_2_6,Who financed the education?,lbe3
+e3_2_7,Who financed the education?,lbe3
+e3_2_8,Who financed the education?,lbe3
+e3_2_9,Who financed the education?,lbe3
+e3_2_10,Who financed the education?,lbe3
+e3_2_11,Who financed the education?,lbe3
+e3_2_12,Who financed the education?,lbe3
+e3_2_13,Who financed the education?,lbe3
+e3_2_14,Who financed the education?,lbe3
+e3_2_15,Who financed the education?,lbe3
+e3_2_16,Who financed the education?,lbe3
+e3_3_1,Who financed the education?,lbe3
+e3_3_2,Who financed the education?,lbe3
+e3_3_3,Who financed the education?,lbe3
+e3_3_4,Who financed the education?,lbe3
+e3_3_5,Who financed the education?,lbe3
+e3_3_6,Who financed the education?,lbe3
+e3_3_7,Who financed the education?,lbe3
+e3_3_8,Who financed the education?,lbe3
+e3_3_9,Who financed the education?,lbe3
+e3_3_10,Who financed the education?,lbe3
+e3_3_11,Who financed the education?,lbe3
+e3_3_12,Who financed the education?,lbe3
+e3_3_13,Who financed the education?,lbe3
+e3_3_14,Who financed the education?,lbe3
+e3_3_15,Who financed the education?,lbe3
+e3_3_16,Who financed the education?,lbe3
+e3_4_1,Who financed the education?,lbe3
+e3_4_2,Who financed the education?,lbe3
+e3_4_3,Who financed the education?,lbe3
+e3_4_4,Who financed the education?,lbe3
+e3_4_5,Who financed the education?,lbe3
+e3_4_6,Who financed the education?,lbe3
+e3_4_7,Who financed the education?,lbe3
+e3_4_8,Who financed the education?,lbe3
+e3_4_9,Who financed the education?,lbe3
+e3_4_10,Who financed the education?,lbe3
+e3_4_11,Who financed the education?,lbe3
+e3_4_12,Who financed the education?,lbe3
+e3_4_13,Who financed the education?,lbe3
+e3_4_14,Who financed the education?,lbe3
+e3_4_15,Who financed the education?,lbe3
+e3_4_16,Who financed the education?,lbe3
+e3_o_1,Who financed the education? (text),
+e3_o_2,Who financed the education? (text),
+e3_o_3,Who financed the education? (text),
+e3_o_4,Who financed the education? (text),
+e3_o_5,Who financed the education? (text),
+e3_o_6,Who financed the education? (text),
+e3_o_7,Who financed the education? (text),
+e3_o_8,Who financed the education? (text),
+e3_o_9,Who financed the education? (text),
+e3_o_10,Who financed the education? (text),
+e3_o_11,Who financed the education? (text),
+e3_o_12,Who financed the education? (text),
+e3_o_13,Who financed the education? (text),
+e3_o_14,Who financed the education? (text),
+e3_o_15,Who financed the education? (text),
+e3_o_16,Who financed the education? (text),
+e4_1_1,How did s/he get to the educational institution?,lbe4
+e4_1_2,How did s/he get to the educational institution?,lbe4
+e4_1_3,How did s/he get to the educational institution?,lbe4
+e4_1_4,How did s/he get to the educational institution?,lbe4
+e4_1_5,How did s/he get to the educational institution?,lbe4
+e4_1_6,How did s/he get to the educational institution?,lbe4
+e4_1_7,How did s/he get to the educational institution?,lbe4
+e4_1_8,How did s/he get to the educational institution?,lbe4
+e4_1_9,How did s/he get to the educational institution?,lbe4
+e4_1_10,How did s/he get to the educational institution?,lbe4
+e4_1_11,How did s/he get to the educational institution?,lbe4
+e4_1_12,How did s/he get to the educational institution?,lbe4
+e4_1_13,How did s/he get to the educational institution?,lbe4
+e4_1_14,How did s/he get to the educational institution?,lbe4
+e4_1_15,How did s/he get to the educational institution?,lbe4
+e4_1_16,How did s/he get to the educational institution?,lbe4
+e4_2_1,How did s/he get to the educational institution?,lbe4
+e4_2_2,How did s/he get to the educational institution?,lbe4
+e4_2_3,How did s/he get to the educational institution?,lbe4
+e4_2_4,How did s/he get to the educational institution?,lbe4
+e4_2_5,How did s/he get to the educational institution?,lbe4
+e4_2_6,How did s/he get to the educational institution?,lbe4
+e4_2_7,How did s/he get to the educational institution?,lbe4
+e4_2_8,How did s/he get to the educational institution?,lbe4
+e4_2_9,How did s/he get to the educational institution?,lbe4
+e4_2_10,How did s/he get to the educational institution?,lbe4
+e4_2_11,How did s/he get to the educational institution?,lbe4
+e4_2_12,How did s/he get to the educational institution?,lbe4
+e4_2_13,How did s/he get to the educational institution?,lbe4
+e4_2_14,How did s/he get to the educational institution?,lbe4
+e4_2_15,How did s/he get to the educational institution?,lbe4
+e4_2_16,How did s/he get to the educational institution?,lbe4
+e4_3_1,How did s/he get to the educational institution?,lbe4
+e4_3_2,How did s/he get to the educational institution?,lbe4
+e4_3_3,How did s/he get to the educational institution?,lbe4
+e4_3_4,How did s/he get to the educational institution?,lbe4
+e4_3_5,How did s/he get to the educational institution?,lbe4
+e4_3_6,How did s/he get to the educational institution?,lbe4
+e4_3_7,How did s/he get to the educational institution?,lbe4
+e4_3_8,How did s/he get to the educational institution?,lbe4
+e4_3_9,How did s/he get to the educational institution?,lbe4
+e4_3_10,How did s/he get to the educational institution?,lbe4
+e4_3_11,How did s/he get to the educational institution?,lbe4
+e4_3_12,How did s/he get to the educational institution?,lbe4
+e4_3_13,How did s/he get to the educational institution?,lbe4
+e4_3_14,How did s/he get to the educational institution?,lbe4
+e4_3_15,How did s/he get to the educational institution?,lbe4
+e4_3_16,How did s/he get to the educational institution?,lbe4
+e4_4_1,How did s/he get to the educational institution?,lbe4
+e4_4_2,How did s/he get to the educational institution?,lbe4
+e4_4_3,How did s/he get to the educational institution?,lbe4
+e4_4_4,How did s/he get to the educational institution?,lbe4
+e4_4_5,How did s/he get to the educational institution?,lbe4
+e4_4_6,How did s/he get to the educational institution?,lbe4
+e4_4_7,How did s/he get to the educational institution?,lbe4
+e4_4_8,How did s/he get to the educational institution?,lbe4
+e4_4_9,How did s/he get to the educational institution?,lbe4
+e4_4_10,How did s/he get to the educational institution?,lbe4
+e4_4_11,How did s/he get to the educational institution?,lbe4
+e4_4_12,How did s/he get to the educational institution?,lbe4
+e4_4_13,How did s/he get to the educational institution?,lbe4
+e4_4_14,How did s/he get to the educational institution?,lbe4
+e4_4_15,How did s/he get to the educational institution?,lbe4
+e4_4_16,How did s/he get to the educational institution?,lbe4
+e4_o_1,How did s/he get to the educational institution? (text),
+e4_o_2,How did s/he get to the educational institution? (text),
+e4_o_3,How did s/he get to the educational institution? (text),
+e4_o_4,How did s/he get to the educational institution? (text),
+e4_o_5,How did s/he get to the educational institution? (text),
+e4_o_6,How did s/he get to the educational institution? (text),
+e4_o_7,How did s/he get to the educational institution? (text),
+e4_o_8,How did s/he get to the educational institution? (text),
+e4_o_9,How did s/he get to the educational institution? (text),
+e4_o_10,How did s/he get to the educational institution? (text),
+e4_o_11,How did s/he get to the educational institution? (text),
+e4_o_12,How did s/he get to the educational institution? (text),
+e4_o_13,How did s/he get to the educational institution? (text),
+e4_o_14,How did s/he get to the educational institution? (text),
+e4_o_15,How did s/he get to the educational institution? (text),
+e4_o_16,How did s/he get to the educational institution? (text),
+e5_1_1,How long did it take to get to the educational insti-tution?,
+e5_1_2,How long did it take to get to the educational insti-tution?,
+e5_1_3,How long did it take to get to the educational insti-tution?,
+e5_1_4,How long did it take to get to the educational insti-tution?,
+e5_1_5,How long did it take to get to the educational insti-tution?,
+e5_1_6,How long did it take to get to the educational insti-tution?,
+e5_1_7,How long did it take to get to the educational insti-tution?,
+e5_1_8,How long did it take to get to the educational insti-tution?,
+e5_1_9,How long did it take to get to the educational insti-tution?,
+e5_1_10,How long did it take to get to the educational insti-tution?,
+e5_1_11,How long did it take to get to the educational insti-tution?,
+e5_1_12,How long did it take to get to the educational insti-tution?,
+e5_1_13,How long did it take to get to the educational insti-tution?,
+e5_1_14,How long did it take to get to the educational insti-tution?,
+e5_1_15,How long did it take to get to the educational insti-tution?,
+e5_1_16,How long did it take to get to the educational insti-tution?,
+e5_2_1,How long did it take to get to the educational insti-tution?,
+e5_2_2,How long did it take to get to the educational insti-tution?,
+e5_2_3,How long did it take to get to the educational insti-tution?,
+e5_2_4,How long did it take to get to the educational insti-tution?,
+e5_2_5,How long did it take to get to the educational insti-tution?,
+e5_2_6,How long did it take to get to the educational insti-tution?,
+e5_2_7,How long did it take to get to the educational insti-tution?,
+e5_2_8,How long did it take to get to the educational insti-tution?,
+e5_2_9,How long did it take to get to the educational insti-tution?,
+e5_2_10,How long did it take to get to the educational insti-tution?,
+e5_2_11,How long did it take to get to the educational insti-tution?,
+e5_2_12,How long did it take to get to the educational insti-tution?,
+e5_2_13,How long did it take to get to the educational insti-tution?,
+e5_2_14,How long did it take to get to the educational insti-tution?,
+e5_2_15,How long did it take to get to the educational insti-tution?,
+e5_2_16,How long did it take to get to the educational insti-tution?,
+e5_3_1,How long did it take to get to the educational insti-tution?,
+e5_3_2,How long did it take to get to the educational insti-tution?,
+e5_3_3,How long did it take to get to the educational insti-tution?,
+e5_3_4,How long did it take to get to the educational insti-tution?,
+e5_3_5,How long did it take to get to the educational insti-tution?,
+e5_3_6,How long did it take to get to the educational insti-tution?,
+e5_3_7,How long did it take to get to the educational insti-tution?,
+e5_3_8,How long did it take to get to the educational insti-tution?,
+e5_3_9,How long did it take to get to the educational insti-tution?,
+e5_3_10,How long did it take to get to the educational insti-tution?,
+e5_3_11,How long did it take to get to the educational insti-tution?,
+e5_3_12,How long did it take to get to the educational insti-tution?,
+e5_3_13,How long did it take to get to the educational insti-tution?,
+e5_3_14,How long did it take to get to the educational insti-tution?,
+e5_3_15,How long did it take to get to the educational insti-tution?,
+e5_3_16,How long did it take to get to the educational insti-tution?,
+e5_4_1,How long did it take to get to the educational insti-tution?,
+e5_4_2,How long did it take to get to the educational insti-tution?,
+e5_4_3,How long did it take to get to the educational insti-tution?,
+e5_4_4,How long did it take to get to the educational insti-tution?,
+e5_4_5,How long did it take to get to the educational insti-tution?,
+e5_4_6,How long did it take to get to the educational insti-tution?,
+e5_4_7,How long did it take to get to the educational insti-tution?,
+e5_4_8,How long did it take to get to the educational insti-tution?,
+e5_4_9,How long did it take to get to the educational insti-tution?,
+e5_4_10,How long did it take to get to the educational insti-tution?,
+e5_4_11,How long did it take to get to the educational insti-tution?,
+e5_4_12,How long did it take to get to the educational insti-tution?,
+e5_4_13,How long did it take to get to the educational insti-tution?,
+e5_4_14,How long did it take to get to the educational insti-tution?,
+e5_4_15,How long did it take to get to the educational insti-tution?,
+e5_4_16,How long did it take to get to the educational insti-tution?,
+e6_1_1,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_1_2,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_1_3,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_1_4,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_1_5,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_1_6,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_1_7,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_1_8,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_1_9,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_1_10,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_1_11,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_1_12,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_1_13,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_1_14,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_1_15,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_1_16,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_2_1,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_2_2,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_2_3,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_2_4,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_2_5,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_2_6,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_2_7,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_2_8,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_2_9,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_2_10,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_2_11,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_2_12,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_2_13,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_2_14,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_2_15,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_2_16,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_3_1,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_3_2,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_3_3,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_3_4,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_3_5,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_3_6,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_3_7,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_3_8,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_3_9,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_3_10,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_3_11,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_3_12,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_3_13,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_3_14,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_3_15,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_3_16,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_o_1,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_o_2,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_o_3,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_o_4,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_o_5,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_o_6,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_o_7,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_o_8,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_o_9,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_o_10,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_o_11,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_o_12,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_o_13,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_o_14,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_o_15,"Out of those listed in E2, which education institution would he/she like to atte",
+e6_o_16,"Out of those listed in E2, which education institution would he/she like to atte",
+e7_1_1,Why did not he/she attend?,lbe7
+e7_1_2,Why did not he/she attend?,lbe7
+e7_1_3,Why did not he/she attend?,lbe7
+e7_1_4,Why did not he/she attend?,lbe7
+e7_1_5,Why did not he/she attend?,lbe7
+e7_1_6,Why did not he/she attend?,lbe7
+e7_1_7,Why did not he/she attend?,lbe7
+e7_1_8,Why did not he/she attend?,lbe7
+e7_1_9,Why did not he/she attend?,lbe7
+e7_1_10,Why did not he/she attend?,lbe7
+e7_1_11,Why did not he/she attend?,lbe7
+e7_1_12,Why did not he/she attend?,lbe7
+e7_1_13,Why did not he/she attend?,lbe7
+e7_1_14,Why did not he/she attend?,lbe7
+e7_1_15,Why did not he/she attend?,lbe7
+e7_1_16,Why did not he/she attend?,lbe7
+e7_2_1,Why did not he/she attend?,lbe7
+e7_2_2,Why did not he/she attend?,lbe7
+e7_2_3,Why did not he/she attend?,lbe7
+e7_2_4,Why did not he/she attend?,lbe7
+e7_2_5,Why did not he/she attend?,lbe7
+e7_2_6,Why did not he/she attend?,lbe7
+e7_2_7,Why did not he/she attend?,lbe7
+e7_2_8,Why did not he/she attend?,lbe7
+e7_2_9,Why did not he/she attend?,lbe7
+e7_2_10,Why did not he/she attend?,lbe7
+e7_2_11,Why did not he/she attend?,lbe7
+e7_2_12,Why did not he/she attend?,lbe7
+e7_2_13,Why did not he/she attend?,lbe7
+e7_2_14,Why did not he/she attend?,lbe7
+e7_2_15,Why did not he/she attend?,lbe7
+e7_2_16,Why did not he/she attend?,lbe7
+e7_3_1,Why did not he/she attend?,lbe7
+e7_3_2,Why did not he/she attend?,lbe7
+e7_3_3,Why did not he/she attend?,lbe7
+e7_3_4,Why did not he/she attend?,lbe7
+e7_3_5,Why did not he/she attend?,lbe7
+e7_3_6,Why did not he/she attend?,lbe7
+e7_3_7,Why did not he/she attend?,lbe7
+e7_3_8,Why did not he/she attend?,lbe7
+e7_3_9,Why did not he/she attend?,lbe7
+e7_3_10,Why did not he/she attend?,lbe7
+e7_3_11,Why did not he/she attend?,lbe7
+e7_3_12,Why did not he/she attend?,lbe7
+e7_3_13,Why did not he/she attend?,lbe7
+e7_3_14,Why did not he/she attend?,lbe7
+e7_3_15,Why did not he/she attend?,lbe7
+e7_3_16,Why did not he/she attend?,lbe7
+e7_o_1,Why did not he/she attend? (text),
+e7_o_2,Why did not he/she attend? (text),
+e7_o_3,Why did not he/she attend? (text),
+e7_o_4,Why did not he/she attend? (text),
+e7_o_5,Why did not he/she attend? (text),
+e7_o_6,Why did not he/she attend? (text),
+e7_o_7,Why did not he/she attend? (text),
+e7_o_8,Why did not he/she attend? (text),
+e7_o_9,Why did not he/she attend? (text),
+e7_o_10,Why did not he/she attend? (text),
+e7_o_11,Why did not he/she attend? (text),
+e7_o_12,Why did not he/she attend? (text),
+e7_o_13,Why did not he/she attend? (text),
+e7_o_14,Why did not he/she attend? (text),
+e7_o_15,Why did not he/she attend? (text),
+e7_o_16,Why did not he/she attend? (text),
+e8_1,Education fee,
+e8_2,Education fee,
+e8_3,Education fee,
+e8_4,Education fee,
+e8_5,Education fee,
+e8_6,Education fee,
+e8_7,Education fee,
+e8_8,Education fee,
+e8_9,Education fee,
+e8_10,Education fee,
+e8_11,Education fee,
+e8_12,Education fee,
+e8_13,Education fee,
+e8_14,Education fee,
+e8_15,Education fee,
+e8_16,Education fee,
+e9_1,For books and manuals,
+e9_2,For books and manuals,
+e9_3,For books and manuals,
+e9_4,For books and manuals,
+e9_5,For books and manuals,
+e9_6,For books and manuals,
+e9_7,For books and manuals,
+e9_8,For books and manuals,
+e9_9,For books and manuals,
+e9_10,For books and manuals,
+e9_11,For books and manuals,
+e9_12,For books and manuals,
+e9_13,For books and manuals,
+e9_14,For books and manuals,
+e9_15,For books and manuals,
+e9_16,For books and manuals,
+e10_1,"For buying other school items (notebooks, sports uniform, etc.)",
+e10_2,"For buying other school items (notebooks, sports uniform, etc.)",
+e10_3,"For buying other school items (notebooks, sports uniform, etc.)",
+e10_4,"For buying other school items (notebooks, sports uniform, etc.)",
+e10_5,"For buying other school items (notebooks, sports uniform, etc.)",
+e10_6,"For buying other school items (notebooks, sports uniform, etc.)",
+e10_7,"For buying other school items (notebooks, sports uniform, etc.)",
+e10_8,"For buying other school items (notebooks, sports uniform, etc.)",
+e10_9,"For buying other school items (notebooks, sports uniform, etc.)",
+e10_10,"For buying other school items (notebooks, sports uniform, etc.)",
+e10_11,"For buying other school items (notebooks, sports uniform, etc.)",
+e10_12,"For buying other school items (notebooks, sports uniform, etc.)",
+e10_13,"For buying other school items (notebooks, sports uniform, etc.)",
+e10_14,"For buying other school items (notebooks, sports uniform, etc.)",
+e10_15,"For buying other school items (notebooks, sports uniform, etc.)",
+e10_16,"For buying other school items (notebooks, sports uniform, etc.)",
+e11_1,Tutor's fee,
+e11_2,Tutor's fee,
+e11_3,Tutor's fee,
+e11_4,Tutor's fee,
+e11_5,Tutor's fee,
+e11_6,Tutor's fee,
+e11_7,Tutor's fee,
+e11_8,Tutor's fee,
+e11_9,Tutor's fee,
+e11_10,Tutor's fee,
+e11_11,Tutor's fee,
+e11_12,Tutor's fee,
+e11_13,Tutor's fee,
+e11_14,Tutor's fee,
+e11_15,Tutor's fee,
+e11_16,Tutor's fee,
+e12_1,Transportation costs for attending the education in-stitution,
+e12_2,Transportation costs for attending the education in-stitution,
+e12_3,Transportation costs for attending the education in-stitution,
+e12_4,Transportation costs for attending the education in-stitution,
+e12_5,Transportation costs for attending the education in-stitution,
+e12_6,Transportation costs for attending the education in-stitution,
+e12_7,Transportation costs for attending the education in-stitution,
+e12_8,Transportation costs for attending the education in-stitution,
+e12_9,Transportation costs for attending the education in-stitution,
+e12_10,Transportation costs for attending the education in-stitution,
+e12_11,Transportation costs for attending the education in-stitution,
+e12_12,Transportation costs for attending the education in-stitution,
+e12_13,Transportation costs for attending the education in-stitution,
+e12_14,Transportation costs for attending the education in-stitution,
+e12_15,Transportation costs for attending the education in-stitution,
+e12_16,Transportation costs for attending the education in-stitution,
+e13_1,Other education-related costs,
+e13_2,Other education-related costs,
+e13_3,Other education-related costs,
+e13_4,Other education-related costs,
+e13_5,Other education-related costs,
+e13_6,Other education-related costs,
+e13_7,Other education-related costs,
+e13_8,Other education-related costs,
+e13_9,Other education-related costs,
+e13_10,Other education-related costs,
+e13_11,Other education-related costs,
+e13_12,Other education-related costs,
+e13_13,Other education-related costs,
+e13_14,Other education-related costs,
+e13_15,Other education-related costs,
+e13_16,Other education-related costs,
+e15_1,Year of birth,
+e15_2,Year of birth,
+e15_3,Year of birth,
+e15_4,Year of birth,
+e15_5,Year of birth,
+e15_6,Year of birth,
+e15_7,Year of birth,
+e15_8,Year of birth,
+e15_9,Year of birth,
+e15_10,Year of birth,
+e15_11,Year of birth,
+e15_12,Year of birth,
+e15_13,Year of birth,
+e15_14,Year of birth,
+e15_15,Year of birth,
+e15_16,Year of birth,
+e16_1,Month of birth,
+e16_2,Month of birth,
+e16_3,Month of birth,
+e16_4,Month of birth,
+e16_5,Month of birth,
+e16_6,Month of birth,
+e16_7,Month of birth,
+e16_8,Month of birth,
+e16_9,Month of birth,
+e16_10,Month of birth,
+e16_11,Month of birth,
+e16_12,Month of birth,
+e16_13,Month of birth,
+e16_14,Month of birth,
+e16_15,Month of birth,
+e16_16,Month of birth,
+e17_1,How old was at his / her last birthday?,
+e17_2,How old was at his / her last birthday?,
+e17_3,How old was at his / her last birthday?,
+e17_4,How old was at his / her last birthday?,
+e17_5,How old was at his / her last birthday?,
+e17_6,How old was at his / her last birthday?,
+e17_7,How old was at his / her last birthday?,
+e17_8,How old was at his / her last birthday?,
+e17_9,How old was at his / her last birthday?,
+e17_10,How old was at his / her last birthday?,
+e17_11,How old was at his / her last birthday?,
+e17_12,How old was at his / her last birthday?,
+e17_13,How old was at his / her last birthday?,
+e17_14,How old was at his / her last birthday?,
+e17_15,How old was at his / her last birthday?,
+e17_16,How old was at his / her last birthday?,
+e18_1,How many children's books or books with pictures do you have for?,
+e18_2,How many children's books or books with pictures do you have for?,
+e18_3,How many children's books or books with pictures do you have for?,
+e18_4,How many children's books or books with pictures do you have for?,
+e18_5,How many children's books or books with pictures do you have for?,
+e18_6,How many children's books or books with pictures do you have for?,
+e18_7,How many children's books or books with pictures do you have for?,
+e18_8,How many children's books or books with pictures do you have for?,
+e18_9,How many children's books or books with pictures do you have for?,
+e18_10,How many children's books or books with pictures do you have for?,
+e18_11,How many children's books or books with pictures do you have for?,
+e18_12,How many children's books or books with pictures do you have for?,
+e18_13,How many children's books or books with pictures do you have for?,
+e18_14,How many children's books or books with pictures do you have for?,
+e18_15,How many children's books or books with pictures do you have for?,
+e18_16,How many children's books or books with pictures do you have for?,
+e19_1_1,Alone for more than an hour,
+e19_1_2,Alone for more than an hour,
+e19_1_3,Alone for more than an hour,
+e19_1_4,Alone for more than an hour,
+e19_1_5,Alone for more than an hour,
+e19_1_6,Alone for more than an hour,
+e19_1_7,Alone for more than an hour,
+e19_1_8,Alone for more than an hour,
+e19_1_9,Alone for more than an hour,
+e19_1_10,Alone for more than an hour,
+e19_1_11,Alone for more than an hour,
+e19_1_12,Alone for more than an hour,
+e19_1_13,Alone for more than an hour,
+e19_1_14,Alone for more than an hour,
+e19_1_15,Alone for more than an hour,
+e19_1_16,Alone for more than an hour,
+e19_2_1,In a care of another child under 10 for more than an hour,
+e19_2_2,In a care of another child under 10 for more than an hour,
+e19_2_3,In a care of another child under 10 for more than an hour,
+e19_2_4,In a care of another child under 10 for more than an hour,
+e19_2_5,In a care of another child under 10 for more than an hour,
+e19_2_6,In a care of another child under 10 for more than an hour,
+e19_2_7,In a care of another child under 10 for more than an hour,
+e19_2_8,In a care of another child under 10 for more than an hour,
+e19_2_9,In a care of another child under 10 for more than an hour,
+e19_2_10,In a care of another child under 10 for more than an hour,
+e19_2_11,In a care of another child under 10 for more than an hour,
+e19_2_12,In a care of another child under 10 for more than an hour,
+e19_2_13,In a care of another child under 10 for more than an hour,
+e19_2_14,In a care of another child under 10 for more than an hour,
+e19_2_15,In a care of another child under 10 for more than an hour,
+e19_2_16,In a care of another child under 10 for more than an hour,
+e20_a_1_1,Read books to or looked at picture  books with,lbe20
+e20_a_1_2,Read books to or looked at picture  books with,lbe20
+e20_a_1_3,Read books to or looked at picture  books with,lbe20
+e20_a_1_4,Read books to or looked at picture  books with,lbe20
+e20_a_1_5,Read books to or looked at picture  books with,lbe20
+e20_a_1_6,Read books to or looked at picture  books with,lbe20
+e20_a_1_7,Read books to or looked at picture  books with,lbe20
+e20_a_1_8,Read books to or looked at picture  books with,lbe20
+e20_a_1_9,Read books to or looked at picture  books with,lbe20
+e20_a_1_10,Read books to or looked at picture  books with,lbe20
+e20_a_1_11,Read books to or looked at picture  books with,lbe20
+e20_a_1_12,Read books to or looked at picture  books with,lbe20
+e20_a_1_13,Read books to or looked at picture  books with,lbe20
+e20_a_1_14,Read books to or looked at picture  books with,lbe20
+e20_a_1_15,Read books to or looked at picture  books with,lbe20
+e20_a_1_16,Read books to or looked at picture  books with,lbe20
+e20_a_2_1,Read books to or looked at picture  books with,lbe20
+e20_a_2_2,Read books to or looked at picture  books with,lbe20
+e20_a_2_3,Read books to or looked at picture  books with,lbe20
+e20_a_2_4,Read books to or looked at picture  books with,lbe20
+e20_a_2_5,Read books to or looked at picture  books with,lbe20
+e20_a_2_6,Read books to or looked at picture  books with,lbe20
+e20_a_2_7,Read books to or looked at picture  books with,lbe20
+e20_a_2_8,Read books to or looked at picture  books with,lbe20
+e20_a_2_9,Read books to or looked at picture  books with,lbe20
+e20_a_2_10,Read books to or looked at picture  books with,lbe20
+e20_a_2_11,Read books to or looked at picture  books with,lbe20
+e20_a_2_12,Read books to or looked at picture  books with,lbe20
+e20_a_2_13,Read books to or looked at picture  books with,lbe20
+e20_a_2_14,Read books to or looked at picture  books with,lbe20
+e20_a_2_15,Read books to or looked at picture  books with,lbe20
+e20_a_2_16,Read books to or looked at picture  books with,lbe20
+e20_a_3_1,Read books to or looked at picture  books with,lbe20
+e20_a_3_2,Read books to or looked at picture  books with,lbe20
+e20_a_3_3,Read books to or looked at picture  books with,lbe20
+e20_a_3_4,Read books to or looked at picture  books with,lbe20
+e20_a_3_5,Read books to or looked at picture  books with,lbe20
+e20_a_3_6,Read books to or looked at picture  books with,lbe20
+e20_a_3_7,Read books to or looked at picture  books with,lbe20
+e20_a_3_8,Read books to or looked at picture  books with,lbe20
+e20_a_3_9,Read books to or looked at picture  books with,lbe20
+e20_a_3_10,Read books to or looked at picture  books with,lbe20
+e20_a_3_11,Read books to or looked at picture  books with,lbe20
+e20_a_3_12,Read books to or looked at picture  books with,lbe20
+e20_a_3_13,Read books to or looked at picture  books with,lbe20
+e20_a_3_14,Read books to or looked at picture  books with,lbe20
+e20_a_3_15,Read books to or looked at picture  books with,lbe20
+e20_a_3_16,Read books to or looked at picture  books with,lbe20
+e20_b_1_1,Told stories to,lbe20
+e20_b_1_2,Told stories to,lbe20
+e20_b_1_3,Told stories to,lbe20
+e20_b_1_4,Told stories to,lbe20
+e20_b_1_5,Told stories to,lbe20
+e20_b_1_6,Told stories to,lbe20
+e20_b_1_7,Told stories to,lbe20
+e20_b_1_8,Told stories to,lbe20
+e20_b_1_9,Told stories to,lbe20
+e20_b_1_10,Told stories to,lbe20
+e20_b_1_11,Told stories to,lbe20
+e20_b_1_12,Told stories to,lbe20
+e20_b_1_13,Told stories to,lbe20
+e20_b_1_14,Told stories to,lbe20
+e20_b_1_15,Told stories to,lbe20
+e20_b_1_16,Told stories to,lbe20
+e20_b_2_1,Told stories to,lbe20
+e20_b_2_2,Told stories to,lbe20
+e20_b_2_3,Told stories to,lbe20
+e20_b_2_4,Told stories to,lbe20
+e20_b_2_5,Told stories to,lbe20
+e20_b_2_6,Told stories to,lbe20
+e20_b_2_7,Told stories to,lbe20
+e20_b_2_8,Told stories to,lbe20
+e20_b_2_9,Told stories to,lbe20
+e20_b_2_10,Told stories to,lbe20
+e20_b_2_11,Told stories to,lbe20
+e20_b_2_12,Told stories to,lbe20
+e20_b_2_13,Told stories to,lbe20
+e20_b_2_14,Told stories to,lbe20
+e20_b_2_15,Told stories to,lbe20
+e20_b_2_16,Told stories to,lbe20
+e20_b_3_1,Told stories to,lbe20
+e20_b_3_2,Told stories to,lbe20
+e20_b_3_3,Told stories to,lbe20
+e20_b_3_4,Told stories to,lbe20
+e20_b_3_5,Told stories to,lbe20
+e20_b_3_6,Told stories to,lbe20
+e20_b_3_7,Told stories to,lbe20
+e20_b_3_8,Told stories to,lbe20
+e20_b_3_9,Told stories to,lbe20
+e20_b_3_10,Told stories to,lbe20
+e20_b_3_11,Told stories to,lbe20
+e20_b_3_12,Told stories to,lbe20
+e20_b_3_13,Told stories to,lbe20
+e20_b_3_14,Told stories to,lbe20
+e20_b_3_15,Told stories to,lbe20
+e20_b_3_16,Told stories to,lbe20
+e20_c_1_1,"Sang songs  to or with, including lullabies",lbe20
+e20_c_1_2,"Sang songs  to or with, including lullabies",lbe20
+e20_c_1_3,"Sang songs  to or with, including lullabies",lbe20
+e20_c_1_4,"Sang songs  to or with, including lullabies",lbe20
+e20_c_1_5,"Sang songs  to or with, including lullabies",lbe20
+e20_c_1_6,"Sang songs  to or with, including lullabies",lbe20
+e20_c_1_7,"Sang songs  to or with, including lullabies",lbe20
+e20_c_1_8,"Sang songs  to or with, including lullabies",lbe20
+e20_c_1_9,"Sang songs  to or with, including lullabies",lbe20
+e20_c_1_10,"Sang songs  to or with, including lullabies",lbe20
+e20_c_1_11,"Sang songs  to or with, including lullabies",lbe20
+e20_c_1_12,"Sang songs  to or with, including lullabies",lbe20
+e20_c_1_13,"Sang songs  to or with, including lullabies",lbe20
+e20_c_1_14,"Sang songs  to or with, including lullabies",lbe20
+e20_c_1_15,"Sang songs  to or with, including lullabies",lbe20
+e20_c_1_16,"Sang songs  to or with, including lullabies",lbe20
+e20_c_2_1,"Sang songs  to or with, including lullabies",lbe20
+e20_c_2_2,"Sang songs  to or with, including lullabies",lbe20
+e20_c_2_3,"Sang songs  to or with, including lullabies",lbe20
+e20_c_2_4,"Sang songs  to or with, including lullabies",lbe20
+e20_c_2_5,"Sang songs  to or with, including lullabies",lbe20
+e20_c_2_6,"Sang songs  to or with, including lullabies",lbe20
+e20_c_2_7,"Sang songs  to or with, including lullabies",lbe20
+e20_c_2_8,"Sang songs  to or with, including lullabies",lbe20
+wt_panel,,
+e20_c_2_9,"Sang songs  to or with, including lullabies",lbe20
+e20_c_2_10,"Sang songs  to or with, including lullabies",lbe20
+e20_c_2_11,"Sang songs  to or with, including lullabies",lbe20
+e20_c_2_12,"Sang songs  to or with, including lullabies",lbe20
+e20_c_2_13,"Sang songs  to or with, including lullabies",lbe20
+e20_c_2_14,"Sang songs  to or with, including lullabies",lbe20
+e20_c_2_15,"Sang songs  to or with, including lullabies",lbe20
+e20_c_2_16,"Sang songs  to or with, including lullabies",lbe20
+e20_c_3_1,"Sang songs  to or with, including lullabies",lbe20
+e20_c_3_2,"Sang songs  to or with, including lullabies",lbe20
+e20_c_3_3,"Sang songs  to or with, including lullabies",lbe20
+e20_c_3_4,"Sang songs  to or with, including lullabies",lbe20
+e20_c_3_5,"Sang songs  to or with, including lullabies",lbe20
+e20_c_3_6,"Sang songs  to or with, including lullabies",lbe20
+e20_c_3_7,"Sang songs  to or with, including lullabies",lbe20
+e20_c_3_8,"Sang songs  to or with, including lullabies",lbe20
+e20_c_3_9,"Sang songs  to or with, including lullabies",lbe20
+e20_c_3_10,"Sang songs  to or with, including lullabies",lbe20
+e20_c_3_11,"Sang songs  to or with, including lullabies",lbe20
+e20_c_3_12,"Sang songs  to or with, including lullabies",lbe20
+e20_c_3_13,"Sang songs  to or with, including lullabies",lbe20
+e20_c_3_14,"Sang songs  to or with, including lullabies",lbe20
+e20_c_3_15,"Sang songs  to or with, including lullabies",lbe20
+e20_c_3_16,"Sang songs  to or with, including lullabies",lbe20
+e20_d_1_1,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_1_2,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_1_3,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_1_4,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_1_5,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_1_6,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_1_7,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_1_8,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_1_9,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_1_10,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_1_11,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_1_12,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_1_13,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_1_14,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_1_15,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_1_16,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_2_1,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_2_2,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_2_3,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_2_4,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_2_5,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_2_6,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_2_7,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_2_8,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_2_9,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_2_10,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_2_11,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_2_12,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_2_13,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_2_14,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_2_15,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_2_16,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_3_1,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_3_2,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_3_3,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_3_4,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_3_5,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_3_6,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_3_7,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_3_8,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_3_9,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_3_10,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_3_11,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_3_12,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_3_13,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_3_14,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_3_15,"Took outside the home, compound, yard or enclosure",lbe20
+e20_d_3_16,"Took outside the home, compound, yard or enclosure",lbe20
+e20_e_1_1,Played with,lbe20
+e20_e_1_2,Played with,lbe20
+e20_e_1_3,Played with,lbe20
+e20_e_1_4,Played with,lbe20
+e20_e_1_5,Played with,lbe20
+e20_e_1_6,Played with,lbe20
+e20_e_1_7,Played with,lbe20
+e20_e_1_8,Played with,lbe20
+e20_e_1_9,Played with,lbe20
+e20_e_1_10,Played with,lbe20
+e20_e_1_11,Played with,lbe20
+e20_e_1_12,Played with,lbe20
+e20_e_1_13,Played with,lbe20
+e20_e_1_14,Played with,lbe20
+e20_e_1_15,Played with,lbe20
+e20_e_1_16,Played with,lbe20
+e20_e_2_1,Played with,lbe20
+e20_e_2_2,Played with,lbe20
+e20_e_2_3,Played with,lbe20
+e20_e_2_4,Played with,lbe20
+e20_e_2_5,Played with,lbe20
+e20_e_2_6,Played with,lbe20
+e20_e_2_7,Played with,lbe20
+e20_e_2_8,Played with,lbe20
+e20_e_2_9,Played with,lbe20
+e20_e_2_10,Played with,lbe20
+e20_e_2_11,Played with,lbe20
+e20_e_2_12,Played with,lbe20
+e20_e_2_13,Played with,lbe20
+e20_e_2_14,Played with,lbe20
+e20_e_2_15,Played with,lbe20
+e20_e_2_16,Played with,lbe20
+e20_e_3_1,Played with,lbe20
+e20_e_3_2,Played with,lbe20
+e20_e_3_3,Played with,lbe20
+e20_e_3_4,Played with,lbe20
+e20_e_3_5,Played with,lbe20
+e20_e_3_6,Played with,lbe20
+e20_e_3_7,Played with,lbe20
+e20_e_3_8,Played with,lbe20
+e20_e_3_9,Played with,lbe20
+e20_e_3_10,Played with,lbe20
+e20_e_3_11,Played with,lbe20
+e20_e_3_12,Played with,lbe20
+e20_e_3_13,Played with,lbe20
+e20_e_3_14,Played with,lbe20
+e20_e_3_15,Played with,lbe20
+e20_e_3_16,Played with,lbe20
+e20_f_1_1,"Named, counted, or drew things to or with",lbe20
+e20_f_1_2,"Named, counted, or drew things to or with",lbe20
+e20_f_1_3,"Named, counted, or drew things to or with",lbe20
+e20_f_1_4,"Named, counted, or drew things to or with",lbe20
+e20_f_1_5,"Named, counted, or drew things to or with",lbe20
+e20_f_1_6,"Named, counted, or drew things to or with",lbe20
+e20_f_1_7,"Named, counted, or drew things to or with",lbe20
+e20_f_1_8,"Named, counted, or drew things to or with",lbe20
+e20_f_1_9,"Named, counted, or drew things to or with",lbe20
+e20_f_1_10,"Named, counted, or drew things to or with",lbe20
+e20_f_1_11,"Named, counted, or drew things to or with",lbe20
+e20_f_1_12,"Named, counted, or drew things to or with",lbe20
+e20_f_1_13,"Named, counted, or drew things to or with",lbe20
+e20_f_1_14,"Named, counted, or drew things to or with",lbe20
+e20_f_1_15,"Named, counted, or drew things to or with",lbe20
+e20_f_1_16,"Named, counted, or drew things to or with",lbe20
+e20_f_2_1,"Named, counted, or drew things to or with",lbe20
+e20_f_2_2,"Named, counted, or drew things to or with",lbe20
+e20_f_2_3,"Named, counted, or drew things to or with",lbe20
+e20_f_2_4,"Named, counted, or drew things to or with",lbe20
+e20_f_2_5,"Named, counted, or drew things to or with",lbe20
+e20_f_2_6,"Named, counted, or drew things to or with",lbe20
+e20_f_2_7,"Named, counted, or drew things to or with",lbe20
+e20_f_2_8,"Named, counted, or drew things to or with",lbe20
+e20_f_2_9,"Named, counted, or drew things to or with",lbe20
+e20_f_2_10,"Named, counted, or drew things to or with",lbe20
+e20_f_2_11,"Named, counted, or drew things to or with",lbe20
+e20_f_2_12,"Named, counted, or drew things to or with",lbe20
+e20_f_2_13,"Named, counted, or drew things to or with",lbe20
+e20_f_2_14,"Named, counted, or drew things to or with",lbe20
+e20_f_2_15,"Named, counted, or drew things to or with",lbe20
+e20_f_2_16,"Named, counted, or drew things to or with",lbe20
+e20_f_3_1,"Named, counted, or drew things to or with",lbe20
+e20_f_3_2,"Named, counted, or drew things to or with",lbe20
+e20_f_3_3,"Named, counted, or drew things to or with",lbe20
+e20_f_3_4,"Named, counted, or drew things to or with",lbe20
+e20_f_3_5,"Named, counted, or drew things to or with",lbe20
+e20_f_3_6,"Named, counted, or drew things to or with",lbe20
+e20_f_3_7,"Named, counted, or drew things to or with",lbe20
+e20_f_3_8,"Named, counted, or drew things to or with",lbe20
+e20_f_3_9,"Named, counted, or drew things to or with",lbe20
+e20_f_3_10,"Named, counted, or drew things to or with",lbe20
+e20_f_3_11,"Named, counted, or drew things to or with",lbe20
+e20_f_3_12,"Named, counted, or drew things to or with",lbe20
+e20_f_3_13,"Named, counted, or drew things to or with",lbe20
+e20_f_3_14,"Named, counted, or drew things to or with",lbe20
+e20_f_3_15,"Named, counted, or drew things to or with",lbe20
+e20_f_3_16,"Named, counted, or drew things to or with",lbe20
+e21_1,Can identify at least ten letters of the alphabet?,lbyesnorefusal
+e21_2,Can identify at least ten letters of the alphabet?,lbyesnorefusal
+e21_3,Can identify at least ten letters of the alphabet?,lbyesnorefusal
+e21_4,Can identify at least ten letters of the alphabet?,lbyesnorefusal
+e21_5,Can identify at least ten letters of the alphabet?,lbyesnorefusal
+e21_6,Can identify at least ten letters of the alphabet?,lbyesnorefusal
+e21_7,Can identify at least ten letters of the alphabet?,lbyesnorefusal
+e21_8,Can identify at least ten letters of the alphabet?,lbyesnorefusal
+e21_9,Can identify at least ten letters of the alphabet?,lbyesnorefusal
+e21_10,Can identify at least ten letters of the alphabet?,lbyesnorefusal
+e21_11,Can identify at least ten letters of the alphabet?,lbyesnorefusal
+e21_12,Can identify at least ten letters of the alphabet?,lbyesnorefusal
+e21_13,Can identify at least ten letters of the alphabet?,lbyesnorefusal
+e21_14,Can identify at least ten letters of the alphabet?,lbyesnorefusal
+e21_15,Can identify at least ten letters of the alphabet?,lbyesnorefusal
+e21_16,Can identify at least ten letters of the alphabet?,lbyesnorefusal
+e22_1,"Can read at least four simple, regular words?",lbyesnorefusal
+e22_2,"Can read at least four simple, regular words?",lbyesnorefusal
+e22_3,"Can read at least four simple, regular words?",lbyesnorefusal
+e22_4,"Can read at least four simple, regular words?",lbyesnorefusal
+e22_5,"Can read at least four simple, regular words?",lbyesnorefusal
+e22_6,"Can read at least four simple, regular words?",lbyesnorefusal
+e22_7,"Can read at least four simple, regular words?",lbyesnorefusal
+e22_8,"Can read at least four simple, regular words?",lbyesnorefusal
+e22_9,"Can read at least four simple, regular words?",lbyesnorefusal
+e22_10,"Can read at least four simple, regular words?",lbyesnorefusal
+e22_11,"Can read at least four simple, regular words?",lbyesnorefusal
+e22_12,"Can read at least four simple, regular words?",lbyesnorefusal
+e22_13,"Can read at least four simple, regular words?",lbyesnorefusal
+e22_14,"Can read at least four simple, regular words?",lbyesnorefusal
+e22_15,"Can read at least four simple, regular words?",lbyesnorefusal
+e22_16,"Can read at least four simple, regular words?",lbyesnorefusal
+e23_1,Does know and can recognise numbers 1 to 10?,lbyesnorefusal
+e23_2,Does know and can recognise numbers 1 to 10?,lbyesnorefusal
+e23_3,Does know and can recognise numbers 1 to 10?,lbyesnorefusal
+e23_4,Does know and can recognise numbers 1 to 10?,lbyesnorefusal
+e23_5,Does know and can recognise numbers 1 to 10?,lbyesnorefusal
+e23_6,Does know and can recognise numbers 1 to 10?,lbyesnorefusal
+e23_7,Does know and can recognise numbers 1 to 10?,lbyesnorefusal
+e23_8,Does know and can recognise numbers 1 to 10?,lbyesnorefusal
+e23_9,Does know and can recognise numbers 1 to 10?,lbyesnorefusal
+e23_10,Does know and can recognise numbers 1 to 10?,lbyesnorefusal
+e23_11,Does know and can recognise numbers 1 to 10?,lbyesnorefusal
+e23_12,Does know and can recognise numbers 1 to 10?,lbyesnorefusal
+e23_13,Does know and can recognise numbers 1 to 10?,lbyesnorefusal
+e23_14,Does know and can recognise numbers 1 to 10?,lbyesnorefusal
+e23_15,Does know and can recognise numbers 1 to 10?,lbyesnorefusal
+e23_16,Does know and can recognise numbers 1 to 10?,lbyesnorefusal
+e24_1,"Can pick up a small object, for example a stone or a stick from the ground with",lbyesnorefusal
+e24_2,"Can pick up a small object, for example a stone or a stick from the ground with",lbyesnorefusal
+e24_3,"Can pick up a small object, for example a stone or a stick from the ground with",lbyesnorefusal
+e24_4,"Can pick up a small object, for example a stone or a stick from the ground with",lbyesnorefusal
+e24_5,"Can pick up a small object, for example a stone or a stick from the ground with",lbyesnorefusal
+e24_6,"Can pick up a small object, for example a stone or a stick from the ground with",lbyesnorefusal
+e24_7,"Can pick up a small object, for example a stone or a stick from the ground with",lbyesnorefusal
+e24_8,"Can pick up a small object, for example a stone or a stick from the ground with",lbyesnorefusal
+e24_9,"Can pick up a small object, for example a stone or a stick from the ground with",lbyesnorefusal
+e24_10,"Can pick up a small object, for example a stone or a stick from the ground with",lbyesnorefusal
+e24_11,"Can pick up a small object, for example a stone or a stick from the ground with",lbyesnorefusal
+e24_12,"Can pick up a small object, for example a stone or a stick from the ground with",lbyesnorefusal
+e24_13,"Can pick up a small object, for example a stone or a stick from the ground with",lbyesnorefusal
+e24_14,"Can pick up a small object, for example a stone or a stick from the ground with",lbyesnorefusal
+e24_15,"Can pick up a small object, for example a stone or a stick from the ground with",lbyesnorefusal
+e24_16,"Can pick up a small object, for example a stone or a stick from the ground with",lbyesnorefusal
+e25_1,Does get tired from playing?,lbyesnorefusal
+e25_2,Does get tired from playing?,lbyesnorefusal
+e25_3,Does get tired from playing?,lbyesnorefusal
+e25_4,Does get tired from playing?,lbyesnorefusal
+e25_5,Does get tired from playing?,lbyesnorefusal
+e25_6,Does get tired from playing?,lbyesnorefusal
+e25_7,Does get tired from playing?,lbyesnorefusal
+e25_8,Does get tired from playing?,lbyesnorefusal
+e25_9,Does get tired from playing?,lbyesnorefusal
+e25_10,Does get tired from playing?,lbyesnorefusal
+e25_11,Does get tired from playing?,lbyesnorefusal
+e25_12,Does get tired from playing?,lbyesnorefusal
+e25_13,Does get tired from playing?,lbyesnorefusal
+e25_14,Does get tired from playing?,lbyesnorefusal
+e25_15,Does get tired from playing?,lbyesnorefusal
+e25_16,Does get tired from playing?,lbyesnorefusal
+e26_1,Does follow simple instructions in order to do something correctly?,lbyesnorefusal
+e26_2,Does follow simple instructions in order to do something correctly?,lbyesnorefusal
+e26_3,Does follow simple instructions in order to do something correctly?,lbyesnorefusal
+e26_4,Does follow simple instructions in order to do something correctly?,lbyesnorefusal
+e26_5,Does follow simple instructions in order to do something correctly?,lbyesnorefusal
+e26_6,Does follow simple instructions in order to do something correctly?,lbyesnorefusal
+e26_7,Does follow simple instructions in order to do something correctly?,lbyesnorefusal
+e26_8,Does follow simple instructions in order to do something correctly?,lbyesnorefusal
+e26_9,Does follow simple instructions in order to do something correctly?,lbyesnorefusal
+e26_10,Does follow simple instructions in order to do something correctly?,lbyesnorefusal
+e26_11,Does follow simple instructions in order to do something correctly?,lbyesnorefusal
+e26_12,Does follow simple instructions in order to do something correctly?,lbyesnorefusal
+e26_13,Does follow simple instructions in order to do something correctly?,lbyesnorefusal
+e26_14,Does follow simple instructions in order to do something correctly?,lbyesnorefusal
+e26_15,Does follow simple instructions in order to do something correctly?,lbyesnorefusal
+e26_16,Does follow simple instructions in order to do something correctly?,lbyesnorefusal
+e27_1,"When you ask to do something, can (name) do it independently?",lbyesnorefusal
+e27_2,"When you ask to do something, can (name) do it independently?",lbyesnorefusal
+e27_3,"When you ask to do something, can (name) do it independently?",lbyesnorefusal
+e27_4,"When you ask to do something, can (name) do it independently?",lbyesnorefusal
+e27_5,"When you ask to do something, can (name) do it independently?",lbyesnorefusal
+e27_6,"When you ask to do something, can (name) do it independently?",lbyesnorefusal
+e27_7,"When you ask to do something, can (name) do it independently?",lbyesnorefusal
+e27_8,"When you ask to do something, can (name) do it independently?",lbyesnorefusal
+e27_9,"When you ask to do something, can (name) do it independently?",lbyesnorefusal
+e27_10,"When you ask to do something, can (name) do it independently?",lbyesnorefusal
+e27_11,"When you ask to do something, can (name) do it independently?",lbyesnorefusal
+e27_12,"When you ask to do something, can (name) do it independently?",lbyesnorefusal
+e27_13,"When you ask to do something, can (name) do it independently?",lbyesnorefusal
+e27_14,"When you ask to do something, can (name) do it independently?",lbyesnorefusal
+e27_15,"When you ask to do something, can (name) do it independently?",lbyesnorefusal
+e27_16,"When you ask to do something, can (name) do it independently?",lbyesnorefusal
+e28_1,Does get along well with  other children?,lbyesnorefusal
+e28_2,Does get along well with  other children?,lbyesnorefusal
+e28_3,Does get along well with  other children?,lbyesnorefusal
+e28_4,Does get along well with  other children?,lbyesnorefusal
+e28_5,Does get along well with  other children?,lbyesnorefusal
+e28_6,Does get along well with  other children?,lbyesnorefusal
+e28_7,Does get along well with  other children?,lbyesnorefusal
+e28_8,Does get along well with  other children?,lbyesnorefusal
+e28_9,Does get along well with  other children?,lbyesnorefusal
+e28_10,Does get along well with  other children?,lbyesnorefusal
+e28_11,Does get along well with  other children?,lbyesnorefusal
+e28_12,Does get along well with  other children?,lbyesnorefusal
+e28_13,Does get along well with  other children?,lbyesnorefusal
+e28_14,Does get along well with  other children?,lbyesnorefusal
+e28_15,Does get along well with  other children?,lbyesnorefusal
+e28_16,Does get along well with  other children?,lbyesnorefusal
+e29_1,Does hit or bite another child or adult?,lbyesnorefusal
+e29_2,Does hit or bite another child or adult?,lbyesnorefusal
+e29_3,Does hit or bite another child or adult?,lbyesnorefusal
+e29_4,Does hit or bite another child or adult?,lbyesnorefusal
+e29_5,Does hit or bite another child or adult?,lbyesnorefusal
+e29_6,Does hit or bite another child or adult?,lbyesnorefusal
+e29_7,Does hit or bite another child or adult?,lbyesnorefusal
+e29_8,Does hit or bite another child or adult?,lbyesnorefusal
+e29_9,Does hit or bite another child or adult?,lbyesnorefusal
+e29_10,Does hit or bite another child or adult?,lbyesnorefusal
+e29_11,Does hit or bite another child or adult?,lbyesnorefusal
+e29_12,Does hit or bite another child or adult?,lbyesnorefusal
+e29_13,Does hit or bite another child or adult?,lbyesnorefusal
+e29_14,Does hit or bite another child or adult?,lbyesnorefusal
+e29_15,Does hit or bite another child or adult?,lbyesnorefusal
+e29_16,Does hit or bite another child or adult?,lbyesnorefusal
+e30_1,Does easily get distructed?,lbyesnorefusal
+e30_2,Does easily get distructed?,lbyesnorefusal
+e30_3,Does easily get distructed?,lbyesnorefusal
+e30_4,Does easily get distructed?,lbyesnorefusal
+e30_5,Does easily get distructed?,lbyesnorefusal
+e30_6,Does easily get distructed?,lbyesnorefusal
+e30_7,Does easily get distructed?,lbyesnorefusal
+e30_8,Does easily get distructed?,lbyesnorefusal
+e30_9,Does easily get distructed?,lbyesnorefusal
+e30_10,Does easily get distructed?,lbyesnorefusal
+e30_11,Does easily get distructed?,lbyesnorefusal
+e30_12,Does easily get distructed?,lbyesnorefusal
+e30_13,Does easily get distructed?,lbyesnorefusal
+e30_14,Does easily get distructed?,lbyesnorefusal
+e30_15,Does easily get distructed?,lbyesnorefusal
+e30_16,Does easily get distructed?,lbyesnorefusal
+e31_1,Is engaged in some kind of organised learning or educational programme for child,lbyesno
+e31_2,Is engaged in some kind of organised learning or educational programme for child,lbyesno
+e31_3,Is engaged in some kind of organised learning or educational programme for child,lbyesno
+e31_4,Is engaged in some kind of organised learning or educational programme for child,lbyesno
+e31_5,Is engaged in some kind of organised learning or educational programme for child,lbyesno
+e31_6,Is engaged in some kind of organised learning or educational programme for child,lbyesno
+e31_7,Is engaged in some kind of organised learning or educational programme for child,lbyesno
+e31_8,Is engaged in some kind of organised learning or educational programme for child,lbyesno
+e31_9,Is engaged in some kind of organised learning or educational programme for child,lbyesno
+e31_10,Is engaged in some kind of organised learning or educational programme for child,lbyesno
+e31_11,Is engaged in some kind of organised learning or educational programme for child,lbyesno
+e31_12,Is engaged in some kind of organised learning or educational programme for child,lbyesno
+e31_13,Is engaged in some kind of organised learning or educational programme for child,lbyesno
+e31_14,Is engaged in some kind of organised learning or educational programme for child,lbyesno
+e31_15,Is engaged in some kind of organised learning or educational programme for child,lbyesno
+e31_16,Is engaged in some kind of organised learning or educational programme for child,lbyesno
+e32_1,"If is not engaged, what is the main reason for it?",lbe32
+e32_2,"If is not engaged, what is the main reason for it?",lbe32
+e32_3,"If is not engaged, what is the main reason for it?",lbe32
+e32_4,"If is not engaged, what is the main reason for it?",lbe32
+e32_5,"If is not engaged, what is the main reason for it?",lbe32
+e32_6,"If is not engaged, what is the main reason for it?",lbe32
+e32_7,"If is not engaged, what is the main reason for it?",lbe32
+e32_8,"If is not engaged, what is the main reason for it?",lbe32
+e32_9,"If is not engaged, what is the main reason for it?",lbe32
+e32_10,"If is not engaged, what is the main reason for it?",lbe32
+e32_11,"If is not engaged, what is the main reason for it?",lbe32
+e32_12,"If is not engaged, what is the main reason for it?",lbe32
+e32_13,"If is not engaged, what is the main reason for it?",lbe32
+e32_14,"If is not engaged, what is the main reason for it?",lbe32
+e32_15,"If is not engaged, what is the main reason for it?",lbe32
+e32_16,"If is not engaged, what is the main reason for it?",lbe32
+e32_o_1,"If is not engaged, what is the main reason for it? (text)",
+e32_o_2,"If is not engaged, what is the main reason for it? (text)",
+e32_o_3,"If is not engaged, what is the main reason for it? (text)",
+e32_o_4,"If is not engaged, what is the main reason for it? (text)",
+e32_o_5,"If is not engaged, what is the main reason for it? (text)",
+e32_o_6,"If is not engaged, what is the main reason for it? (text)",
+e32_o_7,"If is not engaged, what is the main reason for it? (text)",
+e32_o_8,"If is not engaged, what is the main reason for it? (text)",
+e32_o_9,"If is not engaged, what is the main reason for it? (text)",
+e32_o_10,"If is not engaged, what is the main reason for it? (text)",
+e32_o_11,"If is not engaged, what is the main reason for it? (text)",
+e32_o_12,"If is not engaged, what is the main reason for it? (text)",
+e32_o_13,"If is not engaged, what is the main reason for it? (text)",
+e32_o_14,"If is not engaged, what is the main reason for it? (text)",
+e32_o_15,"If is not engaged, what is the main reason for it? (text)",
+e32_o_16,"If is not engaged, what is the main reason for it? (text)",
+e33_1,"The institution where your child goes to, is it private or public?",lbe33
+e33_2,"The institution where your child goes to, is it private or public?",lbe33
+e33_3,"The institution where your child goes to, is it private or public?",lbe33
+e33_4,"The institution where your child goes to, is it private or public?",lbe33
+e33_5,"The institution where your child goes to, is it private or public?",lbe33
+e33_6,"The institution where your child goes to, is it private or public?",lbe33
+e33_7,"The institution where your child goes to, is it private or public?",lbe33
+e33_8,"The institution where your child goes to, is it private or public?",lbe33
+e33_9,"The institution where your child goes to, is it private or public?",lbe33
+e33_10,"The institution where your child goes to, is it private or public?",lbe33
+e33_11,"The institution where your child goes to, is it private or public?",lbe33
+e33_12,"The institution where your child goes to, is it private or public?",lbe33
+e33_13,"The institution where your child goes to, is it private or public?",lbe33
+e33_14,"The institution where your child goes to, is it private or public?",lbe33
+e33_15,"The institution where your child goes to, is it private or public?",lbe33
+e33_16,"The institution where your child goes to, is it private or public?",lbe33
+e34_1,Who is covering the kindergarten fee?,lbe34
+e34_2,Who is covering the kindergarten fee?,lbe34
+e34_3,Who is covering the kindergarten fee?,lbe34
+e34_4,Who is covering the kindergarten fee?,lbe34
+e34_5,Who is covering the kindergarten fee?,lbe34
+e34_6,Who is covering the kindergarten fee?,lbe34
+e34_7,Who is covering the kindergarten fee?,lbe34
+e34_8,Who is covering the kindergarten fee?,lbe34
+e34_9,Who is covering the kindergarten fee?,lbe34
+e34_10,Who is covering the kindergarten fee?,lbe34
+e34_11,Who is covering the kindergarten fee?,lbe34
+e34_12,Who is covering the kindergarten fee?,lbe34
+e34_13,Who is covering the kindergarten fee?,lbe34
+e34_14,Who is covering the kindergarten fee?,lbe34
+e34_15,Who is covering the kindergarten fee?,lbe34
+e34_16,Who is covering the kindergarten fee?,lbe34
+e35_1,"In general, how satisfied are you with the kindergarten where your child goes to",lbe35e41
+e35_2,"In general, how satisfied are you with the kindergarten where your child goes to",lbe35e41
+e35_3,"In general, how satisfied are you with the kindergarten where your child goes to",lbe35e41
+e35_4,"In general, how satisfied are you with the kindergarten where your child goes to",lbe35e41
+e35_5,"In general, how satisfied are you with the kindergarten where your child goes to",lbe35e41
+e35_6,"In general, how satisfied are you with the kindergarten where your child goes to",lbe35e41
+e35_7,"In general, how satisfied are you with the kindergarten where your child goes to",lbe35e41
+e35_8,"In general, how satisfied are you with the kindergarten where your child goes to",lbe35e41
+e35_9,"In general, how satisfied are you with the kindergarten where your child goes to",lbe35e41
+e35_10,"In general, how satisfied are you with the kindergarten where your child goes to",lbe35e41
+e35_11,"In general, how satisfied are you with the kindergarten where your child goes to",lbe35e41
+e35_12,"In general, how satisfied are you with the kindergarten where your child goes to",lbe35e41
+e35_13,"In general, how satisfied are you with the kindergarten where your child goes to",lbe35e41
+e35_14,"In general, how satisfied are you with the kindergarten where your child goes to",lbe35e41
+e35_15,"In general, how satisfied are you with the kindergarten where your child goes to",lbe35e41
+e35_16,"In general, how satisfied are you with the kindergarten where your child goes to",lbe35e41
+e36_1,Are you satisfied with the nutrition at the kindergarten?,lbe35e41
+e36_2,Are you satisfied with the nutrition at the kindergarten?,lbe35e41
+e36_3,Are you satisfied with the nutrition at the kindergarten?,lbe35e41
+e36_4,Are you satisfied with the nutrition at the kindergarten?,lbe35e41
+e36_5,Are you satisfied with the nutrition at the kindergarten?,lbe35e41
+e36_6,Are you satisfied with the nutrition at the kindergarten?,lbe35e41
+e36_7,Are you satisfied with the nutrition at the kindergarten?,lbe35e41
+e36_8,Are you satisfied with the nutrition at the kindergarten?,lbe35e41
+e36_9,Are you satisfied with the nutrition at the kindergarten?,lbe35e41
+e36_10,Are you satisfied with the nutrition at the kindergarten?,lbe35e41
+e36_11,Are you satisfied with the nutrition at the kindergarten?,lbe35e41
+e36_12,Are you satisfied with the nutrition at the kindergarten?,lbe35e41
+e36_13,Are you satisfied with the nutrition at the kindergarten?,lbe35e41
+e36_14,Are you satisfied with the nutrition at the kindergarten?,lbe35e41
+e36_15,Are you satisfied with the nutrition at the kindergarten?,lbe35e41
+e36_16,Are you satisfied with the nutrition at the kindergarten?,lbe35e41
+e37_1,Are you satisfied with the building of the kindergarten?,lbe35e41
+e37_2,Are you satisfied with the building of the kindergarten?,lbe35e41
+e37_3,Are you satisfied with the building of the kindergarten?,lbe35e41
+e37_4,Are you satisfied with the building of the kindergarten?,lbe35e41
+e37_5,Are you satisfied with the building of the kindergarten?,lbe35e41
+e37_6,Are you satisfied with the building of the kindergarten?,lbe35e41
+e37_7,Are you satisfied with the building of the kindergarten?,lbe35e41
+e37_8,Are you satisfied with the building of the kindergarten?,lbe35e41
+e37_9,Are you satisfied with the building of the kindergarten?,lbe35e41
+e37_10,Are you satisfied with the building of the kindergarten?,lbe35e41
+e37_11,Are you satisfied with the building of the kindergarten?,lbe35e41
+e37_12,Are you satisfied with the building of the kindergarten?,lbe35e41
+e37_13,Are you satisfied with the building of the kindergarten?,lbe35e41
+e37_14,Are you satisfied with the building of the kindergarten?,lbe35e41
+e37_15,Are you satisfied with the building of the kindergarten?,lbe35e41
+e37_16,Are you satisfied with the building of the kindergarten?,lbe35e41
+e38_1,Are you satisfied with the teachers at the kindergarten?,lbe35e41
+e38_2,Are you satisfied with the teachers at the kindergarten?,lbe35e41
+e38_3,Are you satisfied with the teachers at the kindergarten?,lbe35e41
+e38_4,Are you satisfied with the teachers at the kindergarten?,lbe35e41
+e38_5,Are you satisfied with the teachers at the kindergarten?,lbe35e41
+e38_6,Are you satisfied with the teachers at the kindergarten?,lbe35e41
+e38_7,Are you satisfied with the teachers at the kindergarten?,lbe35e41
+e38_8,Are you satisfied with the teachers at the kindergarten?,lbe35e41
+e38_9,Are you satisfied with the teachers at the kindergarten?,lbe35e41
+e38_10,Are you satisfied with the teachers at the kindergarten?,lbe35e41
+e38_11,Are you satisfied with the teachers at the kindergarten?,lbe35e41
+e38_12,Are you satisfied with the teachers at the kindergarten?,lbe35e41
+e38_13,Are you satisfied with the teachers at the kindergarten?,lbe35e41
+e38_14,Are you satisfied with the teachers at the kindergarten?,lbe35e41
+e38_15,Are you satisfied with the teachers at the kindergarten?,lbe35e41
+e38_16,Are you satisfied with the teachers at the kindergarten?,lbe35e41
+e39_1,Are you able to cover the fees of different circles/sections?,lbe35e41
+e39_2,Are you able to cover the fees of different circles/sections?,lbe35e41
+e39_3,Are you able to cover the fees of different circles/sections?,lbe35e41
+e39_4,Are you able to cover the fees of different circles/sections?,lbe35e41
+e39_5,Are you able to cover the fees of different circles/sections?,lbe35e41
+e39_6,Are you able to cover the fees of different circles/sections?,lbe35e41
+e39_7,Are you able to cover the fees of different circles/sections?,lbe35e41
+e39_8,Are you able to cover the fees of different circles/sections?,lbe35e41
+e39_9,Are you able to cover the fees of different circles/sections?,lbe35e41
+e39_10,Are you able to cover the fees of different circles/sections?,lbe35e41
+e39_11,Are you able to cover the fees of different circles/sections?,lbe35e41
+e39_12,Are you able to cover the fees of different circles/sections?,lbe35e41
+e39_13,Are you able to cover the fees of different circles/sections?,lbe35e41
+e39_14,Are you able to cover the fees of different circles/sections?,lbe35e41
+e39_15,Are you able to cover the fees of different circles/sections?,lbe35e41
+e39_16,Are you able to cover the fees of different circles/sections?,lbe35e41
+e40_1,"Are different unofficial fess (presents, other fees) a barrier for you from fina",lbe35e41
+e40_2,"Are different unofficial fess (presents, other fees) a barrier for you from fina",lbe35e41
+e40_3,"Are different unofficial fess (presents, other fees) a barrier for you from fina",lbe35e41
+e40_4,"Are different unofficial fess (presents, other fees) a barrier for you from fina",lbe35e41
+e40_5,"Are different unofficial fess (presents, other fees) a barrier for you from fina",lbe35e41
+e40_6,"Are different unofficial fess (presents, other fees) a barrier for you from fina",lbe35e41
+e40_7,"Are different unofficial fess (presents, other fees) a barrier for you from fina",lbe35e41
+e40_8,"Are different unofficial fess (presents, other fees) a barrier for you from fina",lbe35e41
+e40_9,"Are different unofficial fess (presents, other fees) a barrier for you from fina",lbe35e41
+e40_10,"Are different unofficial fess (presents, other fees) a barrier for you from fina",lbe35e41
+e40_11,"Are different unofficial fess (presents, other fees) a barrier for you from fina",lbe35e41
+e40_12,"Are different unofficial fess (presents, other fees) a barrier for you from fina",lbe35e41
+e40_13,"Are different unofficial fess (presents, other fees) a barrier for you from fina",lbe35e41
+e40_14,"Are different unofficial fess (presents, other fees) a barrier for you from fina",lbe35e41
+e40_15,"Are different unofficial fess (presents, other fees) a barrier for you from fina",lbe35e41
+e40_16,"Are different unofficial fess (presents, other fees) a barrier for you from fina",lbe35e41
+e41_1,Is kindergarten close to your house?,lbe35e41
+e41_2,Is kindergarten close to your house?,lbe35e41
+e41_3,Is kindergarten close to your house?,lbe35e41
+e41_4,Is kindergarten close to your house?,lbe35e41
+e41_5,Is kindergarten close to your house?,lbe35e41
+e41_6,Is kindergarten close to your house?,lbe35e41
+e41_7,Is kindergarten close to your house?,lbe35e41
+e41_8,Is kindergarten close to your house?,lbe35e41
+e41_9,Is kindergarten close to your house?,lbe35e41
+e41_10,Is kindergarten close to your house?,lbe35e41
+e41_11,Is kindergarten close to your house?,lbe35e41
+e41_12,Is kindergarten close to your house?,lbe35e41
+e41_13,Is kindergarten close to your house?,lbe35e41
+e41_14,Is kindergarten close to your house?,lbe35e41
+e41_15,Is kindergarten close to your house?,lbe35e41
+e41_16,Is kindergarten close to your house?,lbe35e41
+f1_1_1,How would you evaluate your state of health?,lbf1
+f1_1_2,How would you evaluate your state of health?,lbf1
+f1_1_3,How would you evaluate your state of health?,lbf1
+f1_1_4,How would you evaluate your state of health?,lbf1
+f1_1_5,How would you evaluate your state of health?,lbf1
+f1_1_6,How would you evaluate your state of health?,lbf1
+f1_1_7,How would you evaluate your state of health?,lbf1
+f1_1_8,How would you evaluate your state of health?,lbf1
+f1_1_9,How would you evaluate your state of health?,lbf1
+f1_1_10,How would you evaluate your state of health?,lbf1
+f1_1_11,How would you evaluate your state of health?,lbf1
+f1_1_12,How would you evaluate your state of health?,lbf1
+f1_1_13,How would you evaluate your state of health?,lbf1
+f1_1_14,How would you evaluate your state of health?,lbf1
+f1_1_15,How would you evaluate your state of health?,lbf1
+f1_1_16,How would you evaluate your state of health?,lbf1
+f1_2_1,"During the past 30 days, did you apply to any health care facility for outpatien",lbyesno
+f1_2_2,"During the past 30 days, did you apply to any health care facility for outpatien",lbyesno
+f1_2_3,"During the past 30 days, did you apply to any health care facility for outpatien",lbyesno
+f1_2_4,"During the past 30 days, did you apply to any health care facility for outpatien",lbyesno
+f1_2_5,"During the past 30 days, did you apply to any health care facility for outpatien",lbyesno
+f1_2_6,"During the past 30 days, did you apply to any health care facility for outpatien",lbyesno
+f1_2_7,"During the past 30 days, did you apply to any health care facility for outpatien",lbyesno
+f1_2_8,"During the past 30 days, did you apply to any health care facility for outpatien",lbyesno
+f1_2_9,"During the past 30 days, did you apply to any health care facility for outpatien",lbyesno
+f1_2_10,"During the past 30 days, did you apply to any health care facility for outpatien",lbyesno
+f1_2_11,"During the past 30 days, did you apply to any health care facility for outpatien",lbyesno
+f1_2_12,"During the past 30 days, did you apply to any health care facility for outpatien",lbyesno
+f1_2_13,"During the past 30 days, did you apply to any health care facility for outpatien",lbyesno
+f1_2_14,"During the past 30 days, did you apply to any health care facility for outpatien",lbyesno
+f1_2_15,"During the past 30 days, did you apply to any health care facility for outpatien",lbyesno
+f1_2_16,"During the past 30 days, did you apply to any health care facility for outpatien",lbyesno
+f1_3_1,"In total, how many outpatient visits did you make to a health facility during th",
+f1_3_2,"In total, how many outpatient visits did you make to a health facility during th",
+f1_3_3,"In total, how many outpatient visits did you make to a health facility during th",
+f1_3_4,"In total, how many outpatient visits did you make to a health facility during th",
+f1_3_5,"In total, how many outpatient visits did you make to a health facility during th",
+f1_3_6,"In total, how many outpatient visits did you make to a health facility during th",
+f1_3_7,"In total, how many outpatient visits did you make to a health facility during th",
+f1_3_8,"In total, how many outpatient visits did you make to a health facility during th",
+f1_3_9,"In total, how many outpatient visits did you make to a health facility during th",
+f1_3_10,"In total, how many outpatient visits did you make to a health facility during th",
+f1_3_11,"In total, how many outpatient visits did you make to a health facility during th",
+f1_3_12,"In total, how many outpatient visits did you make to a health facility during th",
+f1_3_13,"In total, how many outpatient visits did you make to a health facility during th",
+f1_3_14,"In total, how many outpatient visits did you make to a health facility during th",
+f1_3_15,"In total, how many outpatient visits did you make to a health facility during th",
+f1_3_16,"In total, how many outpatient visits did you make to a health facility during th",
+f1_4_1,To whom did you apply for medical assistance during your most recent visit for o,lbf4
+f1_4_2,To whom did you apply for medical assistance during your most recent visit for o,lbf4
+f1_4_3,To whom did you apply for medical assistance during your most recent visit for o,lbf4
+f1_4_4,To whom did you apply for medical assistance during your most recent visit for o,lbf4
+f1_4_5,To whom did you apply for medical assistance during your most recent visit for o,lbf4
+f1_4_6,To whom did you apply for medical assistance during your most recent visit for o,lbf4
+f1_4_7,To whom did you apply for medical assistance during your most recent visit for o,lbf4
+f1_4_8,To whom did you apply for medical assistance during your most recent visit for o,lbf4
+f1_4_9,To whom did you apply for medical assistance during your most recent visit for o,lbf4
+f1_4_10,To whom did you apply for medical assistance during your most recent visit for o,lbf4
+f1_4_11,To whom did you apply for medical assistance during your most recent visit for o,lbf4
+f1_4_12,To whom did you apply for medical assistance during your most recent visit for o,lbf4
+f1_4_13,To whom did you apply for medical assistance during your most recent visit for o,lbf4
+f1_4_14,To whom did you apply for medical assistance during your most recent visit for o,lbf4
+f1_4_15,To whom did you apply for medical assistance during your most recent visit for o,lbf4
+f1_4_16,To whom did you apply for medical assistance during your most recent visit for o,lbf4
+f1_4_o_1,To whom did you apply for medical assistance during your most recent visit for o,
+f1_4_o_2,To whom did you apply for medical assistance during your most recent visit for o,
+f1_4_o_3,To whom did you apply for medical assistance during your most recent visit for o,
+f1_4_o_4,To whom did you apply for medical assistance during your most recent visit for o,
+f1_4_o_5,To whom did you apply for medical assistance during your most recent visit for o,
+f1_4_o_6,To whom did you apply for medical assistance during your most recent visit for o,
+f1_4_o_7,To whom did you apply for medical assistance during your most recent visit for o,
+f1_4_o_8,To whom did you apply for medical assistance during your most recent visit for o,
+f1_4_o_9,To whom did you apply for medical assistance during your most recent visit for o,
+f1_4_o_10,To whom did you apply for medical assistance during your most recent visit for o,
+f1_4_o_11,To whom did you apply for medical assistance during your most recent visit for o,
+f1_4_o_12,To whom did you apply for medical assistance during your most recent visit for o,
+f1_4_o_13,To whom did you apply for medical assistance during your most recent visit for o,
+f1_4_o_14,To whom did you apply for medical assistance during your most recent visit for o,
+f1_4_o_15,To whom did you apply for medical assistance during your most recent visit for o,
+f1_4_o_16,To whom did you apply for medical assistance during your most recent visit for o,
+f1_5_1,How much did you pay in total for your medical consultation during your most re-,
+f1_5_2,How much did you pay in total for your medical consultation during your most re-,
+f1_5_3,How much did you pay in total for your medical consultation during your most re-,
+f1_5_4,How much did you pay in total for your medical consultation during your most re-,
+f1_5_5,How much did you pay in total for your medical consultation during your most re-,
+f1_5_6,How much did you pay in total for your medical consultation during your most re-,
+f1_5_7,How much did you pay in total for your medical consultation during your most re-,
+f1_5_8,How much did you pay in total for your medical consultation during your most re-,
+f1_5_9,How much did you pay in total for your medical consultation during your most re-,
+f1_5_10,How much did you pay in total for your medical consultation during your most re-,
+f1_5_11,How much did you pay in total for your medical consultation during your most re-,
+f1_5_12,How much did you pay in total for your medical consultation during your most re-,
+f1_5_13,How much did you pay in total for your medical consultation during your most re-,
+f1_5_14,How much did you pay in total for your medical consultation during your most re-,
+f1_5_15,How much did you pay in total for your medical consultation during your most re-,
+f1_5_16,How much did you pay in total for your medical consultation during your most re-,
+f1_6_1,"Did you make any gifts (food, etc.) or provide any services to a health professi",
+f1_6_2,"Did you make any gifts (food, etc.) or provide any services to a health professi",
+f1_6_3,"Did you make any gifts (food, etc.) or provide any services to a health professi",
+f1_6_4,"Did you make any gifts (food, etc.) or provide any services to a health professi",
+f1_6_5,"Did you make any gifts (food, etc.) or provide any services to a health professi",
+f1_6_6,"Did you make any gifts (food, etc.) or provide any services to a health professi",
+f1_6_7,"Did you make any gifts (food, etc.) or provide any services to a health professi",
+f1_6_8,"Did you make any gifts (food, etc.) or provide any services to a health professi",
+f1_6_9,"Did you make any gifts (food, etc.) or provide any services to a health professi",
+f1_6_10,"Did you make any gifts (food, etc.) or provide any services to a health professi",
+f1_6_11,"Did you make any gifts (food, etc.) or provide any services to a health professi",
+f1_6_12,"Did you make any gifts (food, etc.) or provide any services to a health professi",
+f1_6_13,"Did you make any gifts (food, etc.) or provide any services to a health professi",
+f1_6_14,"Did you make any gifts (food, etc.) or provide any services to a health professi",
+f1_6_15,"Did you make any gifts (food, etc.) or provide any services to a health professi",
+f1_6_16,"Did you make any gifts (food, etc.) or provide any services to a health professi",
+f1_7_1,"Did you have to make any other payments not already recorded, including payments",
+f1_7_2,"Did you have to make any other payments not already recorded, including payments",
+f1_7_3,"Did you have to make any other payments not already recorded, including payments",
+f1_7_4,"Did you have to make any other payments not already recorded, including payments",
+f1_7_5,"Did you have to make any other payments not already recorded, including payments",
+f1_7_6,"Did you have to make any other payments not already recorded, including payments",
+f1_7_7,"Did you have to make any other payments not already recorded, including payments",
+f1_7_8,"Did you have to make any other payments not already recorded, including payments",
+f1_7_9,"Did you have to make any other payments not already recorded, including payments",
+f1_7_10,"Did you have to make any other payments not already recorded, including payments",
+f1_7_11,"Did you have to make any other payments not already recorded, including payments",
+f1_7_12,"Did you have to make any other payments not already recorded, including payments",
+f1_7_13,"Did you have to make any other payments not already recorded, including payments",
+f1_7_14,"Did you have to make any other payments not already recorded, including payments",
+f1_7_15,"Did you have to make any other payments not already recorded, including payments",
+f1_7_16,"Did you have to make any other payments not already recorded, including payments",
+f1_8_1,What was your opinion of the service received during your last visit?,lbf8
+f1_8_2,What was your opinion of the service received during your last visit?,lbf8
+f1_8_3,What was your opinion of the service received during your last visit?,lbf8
+f1_8_4,What was your opinion of the service received during your last visit?,lbf8
+f1_8_5,What was your opinion of the service received during your last visit?,lbf8
+f1_8_6,What was your opinion of the service received during your last visit?,lbf8
+f1_8_7,What was your opinion of the service received during your last visit?,lbf8
+f1_8_8,What was your opinion of the service received during your last visit?,lbf8
+f1_8_9,What was your opinion of the service received during your last visit?,lbf8
+f1_8_10,What was your opinion of the service received during your last visit?,lbf8
+f1_8_11,What was your opinion of the service received during your last visit?,lbf8
+f1_8_12,What was your opinion of the service received during your last visit?,lbf8
+f1_8_13,What was your opinion of the service received during your last visit?,lbf8
+f1_8_14,What was your opinion of the service received during your last visit?,lbf8
+f1_8_15,What was your opinion of the service received during your last visit?,lbf8
+f1_8_16,What was your opinion of the service received during your last visit?,lbf8
+f1_9_1,"During the past 30 days, have you purchased any medicines at a pharmacy to treat",lbyesno
+f1_9_2,"During the past 30 days, have you purchased any medicines at a pharmacy to treat",lbyesno
+f1_9_3,"During the past 30 days, have you purchased any medicines at a pharmacy to treat",lbyesno
+f1_9_4,"During the past 30 days, have you purchased any medicines at a pharmacy to treat",lbyesno
+f1_9_5,"During the past 30 days, have you purchased any medicines at a pharmacy to treat",lbyesno
+f1_9_6,"During the past 30 days, have you purchased any medicines at a pharmacy to treat",lbyesno
+f1_9_7,"During the past 30 days, have you purchased any medicines at a pharmacy to treat",lbyesno
+f1_9_8,"During the past 30 days, have you purchased any medicines at a pharmacy to treat",lbyesno
+f1_9_9,"During the past 30 days, have you purchased any medicines at a pharmacy to treat",lbyesno
+f1_9_10,"During the past 30 days, have you purchased any medicines at a pharmacy to treat",lbyesno
+f1_9_11,"During the past 30 days, have you purchased any medicines at a pharmacy to treat",lbyesno
+f1_9_12,"During the past 30 days, have you purchased any medicines at a pharmacy to treat",lbyesno
+f1_9_13,"During the past 30 days, have you purchased any medicines at a pharmacy to treat",lbyesno
+f1_9_14,"During the past 30 days, have you purchased any medicines at a pharmacy to treat",lbyesno
+f1_9_15,"During the past 30 days, have you purchased any medicines at a pharmacy to treat",lbyesno
+f1_9_16,"During the past 30 days, have you purchased any medicines at a pharmacy to treat",lbyesno
+f1_10_1,How much did you pay in total for medicines purchased during the past 30 days?,
+f1_10_2,How much did you pay in total for medicines purchased during the past 30 days?,
+f1_10_3,How much did you pay in total for medicines purchased during the past 30 days?,
+f1_10_4,How much did you pay in total for medicines purchased during the past 30 days?,
+f1_10_5,How much did you pay in total for medicines purchased during the past 30 days?,
+f1_10_6,How much did you pay in total for medicines purchased during the past 30 days?,
+f1_10_7,How much did you pay in total for medicines purchased during the past 30 days?,
+f1_10_8,How much did you pay in total for medicines purchased during the past 30 days?,
+f1_10_9,How much did you pay in total for medicines purchased during the past 30 days?,
+f1_10_10,How much did you pay in total for medicines purchased during the past 30 days?,
+f1_10_11,How much did you pay in total for medicines purchased during the past 30 days?,
+f1_10_12,How much did you pay in total for medicines purchased during the past 30 days?,
+f1_10_13,How much did you pay in total for medicines purchased during the past 30 days?,
+f1_10_14,How much did you pay in total for medicines purchased during the past 30 days?,
+f1_10_15,How much did you pay in total for medicines purchased during the past 30 days?,
+f1_10_16,How much did you pay in total for medicines purchased during the past 30 days?,
+f1_11_1,"During the past 12 months, were you admitted to a health facility overnight to o",lbyesno
+f1_11_2,"During the past 12 months, were you admitted to a health facility overnight to o",lbyesno
+f1_11_3,"During the past 12 months, were you admitted to a health facility overnight to o",lbyesno
+f1_11_4,"During the past 12 months, were you admitted to a health facility overnight to o",lbyesno
+f1_11_5,"During the past 12 months, were you admitted to a health facility overnight to o",lbyesno
+f1_11_6,"During the past 12 months, were you admitted to a health facility overnight to o",lbyesno
+f1_11_7,"During the past 12 months, were you admitted to a health facility overnight to o",lbyesno
+f1_11_8,"During the past 12 months, were you admitted to a health facility overnight to o",lbyesno
+f1_11_9,"During the past 12 months, were you admitted to a health facility overnight to o",lbyesno
+f1_11_10,"During the past 12 months, were you admitted to a health facility overnight to o",lbyesno
+f1_11_11,"During the past 12 months, were you admitted to a health facility overnight to o",lbyesno
+f1_11_12,"During the past 12 months, were you admitted to a health facility overnight to o",lbyesno
+f1_11_13,"During the past 12 months, were you admitted to a health facility overnight to o",lbyesno
+f1_11_14,"During the past 12 months, were you admitted to a health facility overnight to o",lbyesno
+f1_11_15,"During the past 12 months, were you admitted to a health facility overnight to o",lbyesno
+f1_11_16,"During the past 12 months, were you admitted to a health facility overnight to o",lbyesno
+f1_12_1,"During the past 12 months, on how many separate occasions did you stay overnight",
+f1_12_2,"During the past 12 months, on how many separate occasions did you stay overnight",
+f1_12_3,"During the past 12 months, on how many separate occasions did you stay overnight",
+f1_12_4,"During the past 12 months, on how many separate occasions did you stay overnight",
+f1_12_5,"During the past 12 months, on how many separate occasions did you stay overnight",
+f1_12_6,"During the past 12 months, on how many separate occasions did you stay overnight",
+f1_12_7,"During the past 12 months, on how many separate occasions did you stay overnight",
+f1_12_8,"During the past 12 months, on how many separate occasions did you stay overnight",
+f1_12_9,"During the past 12 months, on how many separate occasions did you stay overnight",
+f1_12_10,"During the past 12 months, on how many separate occasions did you stay overnight",
+f1_12_11,"During the past 12 months, on how many separate occasions did you stay overnight",
+f1_12_12,"During the past 12 months, on how many separate occasions did you stay overnight",
+f1_12_13,"During the past 12 months, on how many separate occasions did you stay overnight",
+f1_12_14,"During the past 12 months, on how many separate occasions did you stay overnight",
+f1_12_15,"During the past 12 months, on how many separate occasions did you stay overnight",
+f1_12_16,"During the past 12 months, on how many separate occasions did you stay overnight",
+f1_13_1,"During your most recent inpatient admission, at what type of health care facilit",lbf13
+f1_13_2,"During your most recent inpatient admission, at what type of health care facilit",lbf13
+f1_13_3,"During your most recent inpatient admission, at what type of health care facilit",lbf13
+f1_13_4,"During your most recent inpatient admission, at what type of health care facilit",lbf13
+f1_13_5,"During your most recent inpatient admission, at what type of health care facilit",lbf13
+f1_13_6,"During your most recent inpatient admission, at what type of health care facilit",lbf13
+f1_13_7,"During your most recent inpatient admission, at what type of health care facilit",lbf13
+f1_13_8,"During your most recent inpatient admission, at what type of health care facilit",lbf13
+f1_13_9,"During your most recent inpatient admission, at what type of health care facilit",lbf13
+f1_13_10,"During your most recent inpatient admission, at what type of health care facilit",lbf13
+f1_13_11,"During your most recent inpatient admission, at what type of health care facilit",lbf13
+f1_13_12,"During your most recent inpatient admission, at what type of health care facilit",lbf13
+f1_13_13,"During your most recent inpatient admission, at what type of health care facilit",lbf13
+f1_13_14,"During your most recent inpatient admission, at what type of health care facilit",lbf13
+f1_13_15,"During your most recent inpatient admission, at what type of health care facilit",lbf13
+f1_13_16,"During your most recent inpatient admission, at what type of health care facilit",lbf13
+f1_13_o_1,"During your most recent inpatient admission, at what type of health care facilit",
+f1_13_o_2,"During your most recent inpatient admission, at what type of health care facilit",
+f1_13_o_3,"During your most recent inpatient admission, at what type of health care facilit",
+f1_13_o_4,"During your most recent inpatient admission, at what type of health care facilit",
+f1_13_o_5,"During your most recent inpatient admission, at what type of health care facilit",
+f1_13_o_6,"During your most recent inpatient admission, at what type of health care facilit",
+f1_13_o_7,"During your most recent inpatient admission, at what type of health care facilit",
+f1_13_o_8,"During your most recent inpatient admission, at what type of health care facilit",
+f1_13_o_9,"During your most recent inpatient admission, at what type of health care facilit",
+f1_13_o_10,"During your most recent inpatient admission, at what type of health care facilit",
+f1_13_o_11,"During your most recent inpatient admission, at what type of health care facilit",
+f1_13_o_12,"During your most recent inpatient admission, at what type of health care facilit",
+f1_13_o_13,"During your most recent inpatient admission, at what type of health care facilit",
+f1_13_o_14,"During your most recent inpatient admission, at what type of health care facilit",
+f1_13_o_15,"During your most recent inpatient admission, at what type of health care facilit",
+f1_13_o_16,"During your most recent inpatient admission, at what type of health care facilit",
+f1_14_1,How much did you pay to the hospital cashier for costs associated with your most,
+f1_14_2,How much did you pay to the hospital cashier for costs associated with your most,
+f1_14_3,How much did you pay to the hospital cashier for costs associated with your most,
+f1_14_4,How much did you pay to the hospital cashier for costs associated with your most,
+f1_14_5,How much did you pay to the hospital cashier for costs associated with your most,
+f1_14_6,How much did you pay to the hospital cashier for costs associated with your most,
+f1_14_7,How much did you pay to the hospital cashier for costs associated with your most,
+f1_14_8,How much did you pay to the hospital cashier for costs associated with your most,
+f1_14_9,How much did you pay to the hospital cashier for costs associated with your most,
+f1_14_10,How much did you pay to the hospital cashier for costs associated with your most,
+f1_14_11,How much did you pay to the hospital cashier for costs associated with your most,
+f1_14_12,How much did you pay to the hospital cashier for costs associated with your most,
+f1_14_13,How much did you pay to the hospital cashier for costs associated with your most,
+f1_14_14,How much did you pay to the hospital cashier for costs associated with your most,
+f1_14_15,How much did you pay to the hospital cashier for costs associated with your most,
+f1_14_16,How much did you pay to the hospital cashier for costs associated with your most,
+f1_15_1,How much did you pay to hospital staff for costs associated with your most recen,
+f1_15_2,How much did you pay to hospital staff for costs associated with your most recen,
+f1_15_3,How much did you pay to hospital staff for costs associated with your most recen,
+f1_15_4,How much did you pay to hospital staff for costs associated with your most recen,
+f1_15_5,How much did you pay to hospital staff for costs associated with your most recen,
+f1_15_6,How much did you pay to hospital staff for costs associated with your most recen,
+f1_15_7,How much did you pay to hospital staff for costs associated with your most recen,
+f1_15_8,How much did you pay to hospital staff for costs associated with your most recen,
+f1_15_9,How much did you pay to hospital staff for costs associated with your most recen,
+f1_15_10,How much did you pay to hospital staff for costs associated with your most recen,
+f1_15_11,How much did you pay to hospital staff for costs associated with your most recen,
+f1_15_12,How much did you pay to hospital staff for costs associated with your most recen,
+f1_15_13,How much did you pay to hospital staff for costs associated with your most recen,
+f1_15_14,How much did you pay to hospital staff for costs associated with your most recen,
+f1_15_15,How much did you pay to hospital staff for costs associated with your most recen,
+f1_15_16,How much did you pay to hospital staff for costs associated with your most recen,
+f1_16_1,"Did you make any gifts (food, etc.) or provide any services to staff, besides th",
+f1_16_2,"Did you make any gifts (food, etc.) or provide any services to staff, besides th",
+f1_16_3,"Did you make any gifts (food, etc.) or provide any services to staff, besides th",
+f1_16_4,"Did you make any gifts (food, etc.) or provide any services to staff, besides th",
+f1_16_5,"Did you make any gifts (food, etc.) or provide any services to staff, besides th",
+f1_16_6,"Did you make any gifts (food, etc.) or provide any services to staff, besides th",
+f1_16_7,"Did you make any gifts (food, etc.) or provide any services to staff, besides th",
+f1_16_8,"Did you make any gifts (food, etc.) or provide any services to staff, besides th",
+f1_16_9,"Did you make any gifts (food, etc.) or provide any services to staff, besides th",
+f1_16_10,"Did you make any gifts (food, etc.) or provide any services to staff, besides th",
+f1_16_11,"Did you make any gifts (food, etc.) or provide any services to staff, besides th",
+f1_16_12,"Did you make any gifts (food, etc.) or provide any services to staff, besides th",
+f1_16_13,"Did you make any gifts (food, etc.) or provide any services to staff, besides th",
+f1_16_14,"Did you make any gifts (food, etc.) or provide any services to staff, besides th",
+f1_16_15,"Did you make any gifts (food, etc.) or provide any services to staff, besides th",
+f1_16_16,"Did you make any gifts (food, etc.) or provide any services to staff, besides th",
+f1_17_1,"Did you have to make any other payments not already recorded, including payments",
+f1_17_2,"Did you have to make any other payments not already recorded, including payments",
+f1_17_3,"Did you have to make any other payments not already recorded, including payments",
+f1_17_4,"Did you have to make any other payments not already recorded, including payments",
+f1_17_5,"Did you have to make any other payments not already recorded, including payments",
+f1_17_6,"Did you have to make any other payments not already recorded, including payments",
+f1_17_7,"Did you have to make any other payments not already recorded, including payments",
+f1_17_8,"Did you have to make any other payments not already recorded, including payments",
+f1_17_9,"Did you have to make any other payments not already recorded, including payments",
+f1_17_10,"Did you have to make any other payments not already recorded, including payments",
+f1_17_11,"Did you have to make any other payments not already recorded, including payments",
+f1_17_12,"Did you have to make any other payments not already recorded, including payments",
+f1_17_13,"Did you have to make any other payments not already recorded, including payments",
+f1_17_14,"Did you have to make any other payments not already recorded, including payments",
+f1_17_15,"Did you have to make any other payments not already recorded, including payments",
+f1_17_16,"Did you have to make any other payments not already recorded, including payments",
+f1_18_1,What was your opinion of the service received during your last inpatient stay?,lbf8
+f1_18_2,What was your opinion of the service received during your last inpatient stay?,lbf8
+f1_18_3,What was your opinion of the service received during your last inpatient stay?,lbf8
+f1_18_4,What was your opinion of the service received during your last inpatient stay?,lbf8
+f1_18_5,What was your opinion of the service received during your last inpatient stay?,lbf8
+f1_18_6,What was your opinion of the service received during your last inpatient stay?,lbf8
+f1_18_7,What was your opinion of the service received during your last inpatient stay?,lbf8
+f1_18_8,What was your opinion of the service received during your last inpatient stay?,lbf8
+f1_18_9,What was your opinion of the service received during your last inpatient stay?,lbf8
+f1_18_10,What was your opinion of the service received during your last inpatient stay?,lbf8
+f1_18_11,What was your opinion of the service received during your last inpatient stay?,lbf8
+f1_18_12,What was your opinion of the service received during your last inpatient stay?,lbf8
+f1_18_13,What was your opinion of the service received during your last inpatient stay?,lbf8
+f1_18_14,What was your opinion of the service received during your last inpatient stay?,lbf8
+f1_18_15,What was your opinion of the service received during your last inpatient stay?,lbf8
+f1_18_16,What was your opinion of the service received during your last inpatient stay?,lbf8
+f1_19_1,Was there any time during the last 12 months when you think you should have re-c,lbyesno
+f1_19_2,Was there any time during the last 12 months when you think you should have re-c,lbyesno
+f1_19_3,Was there any time during the last 12 months when you think you should have re-c,lbyesno
+f1_19_4,Was there any time during the last 12 months when you think you should have re-c,lbyesno
+f1_19_5,Was there any time during the last 12 months when you think you should have re-c,lbyesno
+f1_19_6,Was there any time during the last 12 months when you think you should have re-c,lbyesno
+f1_19_7,Was there any time during the last 12 months when you think you should have re-c,lbyesno
+f1_19_8,Was there any time during the last 12 months when you think you should have re-c,lbyesno
+f1_19_9,Was there any time during the last 12 months when you think you should have re-c,lbyesno
+f1_19_10,Was there any time during the last 12 months when you think you should have re-c,lbyesno
+f1_19_11,Was there any time during the last 12 months when you think you should have re-c,lbyesno
+f1_19_12,Was there any time during the last 12 months when you think you should have re-c,lbyesno
+f1_19_13,Was there any time during the last 12 months when you think you should have re-c,lbyesno
+f1_19_14,Was there any time during the last 12 months when you think you should have re-c,lbyesno
+f1_19_15,Was there any time during the last 12 months when you think you should have re-c,lbyesno
+f1_19_16,Was there any time during the last 12 months when you think you should have re-c,lbyesno
+f1_20_1,What was the reason why you did not receive medical care?,lbf20
+f1_20_2,What was the reason why you did not receive medical care?,lbf20
+f1_20_3,What was the reason why you did not receive medical care?,lbf20
+f1_20_4,What was the reason why you did not receive medical care?,lbf20
+f1_20_5,What was the reason why you did not receive medical care?,lbf20
+f1_20_6,What was the reason why you did not receive medical care?,lbf20
+f1_20_7,What was the reason why you did not receive medical care?,lbf20
+f1_20_8,What was the reason why you did not receive medical care?,lbf20
+f1_20_9,What was the reason why you did not receive medical care?,lbf20
+f1_20_10,What was the reason why you did not receive medical care?,lbf20
+f1_20_11,What was the reason why you did not receive medical care?,lbf20
+f1_20_12,What was the reason why you did not receive medical care?,lbf20
+f1_20_13,What was the reason why you did not receive medical care?,lbf20
+f1_20_14,What was the reason why you did not receive medical care?,lbf20
+f1_20_15,What was the reason why you did not receive medical care?,lbf20
+f1_20_16,What was the reason why you did not receive medical care?,lbf20
+f1_20_o_1,What was the reason why you did not receive medical care? (text),
+f1_20_o_2,What was the reason why you did not receive medical care? (text),
+f1_20_o_3,What was the reason why you did not receive medical care? (text),
+f1_20_o_4,What was the reason why you did not receive medical care? (text),
+f1_20_o_5,What was the reason why you did not receive medical care? (text),
+f1_20_o_6,What was the reason why you did not receive medical care? (text),
+f1_20_o_7,What was the reason why you did not receive medical care? (text),
+f1_20_o_8,What was the reason why you did not receive medical care? (text),
+f1_20_o_9,What was the reason why you did not receive medical care? (text),
+f1_20_o_10,What was the reason why you did not receive medical care? (text),
+f1_20_o_11,What was the reason why you did not receive medical care? (text),
+f1_20_o_12,What was the reason why you did not receive medical care? (text),
+f1_20_o_13,What was the reason why you did not receive medical care? (text),
+f1_20_o_14,What was the reason why you did not receive medical care? (text),
+f1_20_o_15,What was the reason why you did not receive medical care? (text),
+f1_20_o_16,What was the reason why you did not receive medical care? (text),
+f2,What was the main source of funding for purchasing medical services?,lbf2f3
+f3,What was the main source of funding for purchasing medicines?,lbf2f3
+f4_1,Emergency medical assistance (including transportation costs),
+f4_2,Visits to doctor and medical procedures,
+f4_3,Surgical operation,
+f4_4,"Hospital services (bed, procedures, etc.)",
+f4_5,Maternity care fee (including doctor's services),
+f4_6,Women's consultations,
+f4_7,Regular checkup,
+f4_8,Purchasing medicines,
+f4_9,Medical insurance premiums,
+f4_10,Immunisation costs,
+f4_11,Fee of nurse or caregiver,
+f4_12,"Other costs (informal fees, etc.)",
+g1,Did you ask the state or any organization for social assistance during the last,lbyesno
+g2,Why did not you ask?,lbg2
+g2_o,Why did not you ask? (text),
+g3,Do you plan to ask the state or any organization for assistance?,lbyesno
+g4_1,What type of assistance will you ask for? - Cash assistance,lbyesno
+g4_2,What type of assistance will you ask for? - Health insurance,lbyesno
+g4_3,What type of assistance will you ask for? - To provide me with a flat,lbyesno
+g4_4,What type of assistance will you ask for? - Dwelling repair,lbyesno
+g4_5,What type of assistance will you ask for? - Food assistance,lbyesno
+g4_6,What type of assistance will you ask for? - To finance education,lbyesno
+g4_77,What type of assistance will you ask for? - Other,lbyesno
+g4_99,What type of assistance will you ask for? - Do not know,lbyesno
+g4_88,What type of assistance will you ask for? - Refusal,lbyesno
+g4_o,What type of assistance will you ask for? - Other (text),
+g5,Do you hope that your request will be satisfied?,lbg5
+g6_1,Whom did you ask for assistance? - I applied for registration in the united data,lbyesno
+g6_2,Whom did you ask for assistance? - Local government,lbyesno
+g6_3,Whom did you ask for assistance? - Central authirities,lbyesno
+g6_4,Whom did you ask for assistance? - Ministry of IDP-s,lbyesno
+g6_5,Whom did you ask for assistance? - Ombudsman's Office,lbyesno
+g6_6,Whom did you ask for assistance? - Private organizations,lbyesno
+g6_7,Whom did you ask for assistance? - An NGO,lbyesno
+g6_8,Whom did you ask for assistance? - An international donor organization,lbyesno
+g6_77,Whom did you ask for assistance? - Other,lbyesno
+g6_99,Whom did you ask for assistance? - Do not know,lbyesno
+g6_88,Whom did you ask for assistance? - Refusal,lbyesno
+g6_o,Whom did you ask for assistance? - Other (text),
+g7_1,What was the main content of your request? - I wanted cash assistance,lbyesno
+g7_2,What was the main content of your request? - I wanted assistance in obtaining he,lbyesno
+g7_3,What was the main content of your request? - Food assistance,lbyesno
+g7_4,What was the main content of your request? - I wanted benefits for financing edu,lbyesno
+g7_5,What was the main content of your request? - I wanted benefits for transport and,lbyesno
+g7_6,What was the main content of your request? - I wanted repair of dwelling,lbyesno
+g7_7,What was the main content of your request? - I wanted to have my own dwelling,lbyesno
+g7_8,What was the main content of your request? - Others received assistance and I al,lbyesno
+g7_77,What was the main content of your request? - Other,lbyesno
+g7_99,What was the main content of your request? - Do not know,lbyesno
+g7_88,What was the main content of your request? - Refusal,lbyesno
+g7_o,What was the main content of your request? - Other (text),
+g8,Was your request satisfied?,lbg8
+g8_o,Was your request satisfied? (text),
+g9,Did you or your family member receive any social assistance during the last one,lbg9
+g10_1,What types of social assistance do you or your family member receive now or rece,lbyesno
+g10_2,What types of social assistance do you or your family member receive now or rece,lbyesno
+g10_3,What types of social assistance do you or your family member receive now or rece,lbyesno
+g10_4,What types of social assistance do you or your family member receive now or rece,lbyesno
+g10_5,What types of social assistance do you or your family member receive now or rece,lbyesno
+g10_6,What types of social assistance do you or your family member receive now or rece,lbyesno
+g10_7,What types of social assistance do you or your family member receive now or rece,lbyesno
+g10_8,What types of social assistance do you or your family member receive now or rece,lbyesno
+g10_9,What types of social assistance do you or your family member receive now or rece,lbyesno
+g10_10,What types of social assistance do you or your family member receive now or rece,lbyesno
+g10_11,What types of social assistance do you or your family member receive now or rece,lbyesno
+g10_12,What types of social assistance do you or your family member receive now or rece,lbyesno
+g10_13,What types of social assistance do you or your family member receive now or rece,lbyesno
+g10_14,What types of social assistance do you or your family member receive now or rece,lbyesno
+g10_77,What types of social assistance do you or your family member receive now or rece,lbyesno
+g10_99,What types of social assistance do you or your family member receive now or rece,lbyesno
+g10_88,What types of social assistance do you or your family member receive now or rece,lbyesno
+g10_o,What types of social assistance do you or your family member receive now or rece,
+g11,Who did you receive the assistance from?,lbg11
+g11_o,Who did you receive the assistance from? (text),
+g12,How important the social assistance was for your family?,lbg12
+g12_o,How important the social assistance was for your family? (text),
+h1,"According to your income, which category of the listed below would you attribute",lbh1
+h2_1_1,Encircle all problems of the household - Hunger/malnutrition,lbyesno
+h2_1_2,Encircle all problems of the household - Buying medicines,lbyesno
+h2_1_3,Encircle all problems of the household - Unemployment of household members,lbyesno
+h2_1_4,Encircle all problems of the household - Medical services,lbyesno
+h2_1_5,Encircle all problems of the household - Buying school items,lbyesno
+h2_1_6,Encircle all problems of the household - Housing conditions,lbyesno
+h2_1_7,Encircle all problems of the household - Furniture,lbyesno
+h2_1_8,Encircle all problems of the household - Buying clothes,lbyesno
+h2_1_9,"Encircle all problems of the household - Leisure, entertainment",lbyesno
+h2_1_10,Encircle all problems of the household - Paying debt/bank loans,lbyesno
+h2_1_11,Encircle all problems of the household - Paying utility charges,lbyesno
+h2_1_12,Encircle all problems of the household - None of the listed,lbyesno
+h2_2,Encircle the main problem of the household,lbh2_2
+h3,"Please tell me, during the last 12 months how the acuteness of this problem has",lbh3
+h4,How has the economic situation of your household changed during the last 12 mont,lbh4
+h5_1,What was the main reason for worsening the economic situation of your household?,lbyesno
+h5_2,What was the main reason for worsening the economic situation of your household?,lbyesno
+h5_3,What was the main reason for worsening the economic situation of your household?,lbyesno
+h5_4,What was the main reason for worsening the economic situation of your household?,lbyesno
+h5_5,What was the main reason for worsening the economic situation of your household?,lbyesno
+h5_6,What was the main reason for worsening the economic situation of your household?,lbyesno
+h5_7,What was the main reason for worsening the economic situation of your household?,lbyesno
+h5_8,What was the main reason for worsening the economic situation of your household?,lbyesno
+h5_9,What was the main reason for worsening the economic situation of your household?,lbyesno
+h5_10,termination of social assistance,
+h5_11,loss of family member(s),
+h5_12,Birth of a child,
+h5_77,What was the main reason for worsening the economic situation of your household?,lbyesno
+h5_99,What was the main reason for worsening the economic situation of your household?,lbyesno
+h5_88,What was the main reason for worsening the economic situation of your household?,lbyesno
+h5_o,What was the main reason for worsening the economic situation of your household?,
+h6_1,"Upon worsening of the economic situation of your household, which of the below l",lbyesno
+h6_2,"Upon worsening of the economic situation of your household, which of the below l",lbyesno
+h6_3,"Upon worsening of the economic situation of your household, which of the below l",lbyesno
+h6_4,"Upon worsening of the economic situation of your household, which of the below l",lbyesno
+h6_5,"Upon worsening of the economic situation of your household, which of the below l",lbyesno
+h6_6,"Upon worsening of the economic situation of your household, which of the below l",lbyesno
+h6_7,"Upon worsening of the economic situation of your household, which of the below l",lbyesno
+h6_8,"Upon worsening of the economic situation of your household, which of the below l",lbyesno
+h6_9,"Upon worsening of the economic situation of your household, which of the below l",lbyesno
+h6_10,"Upon worsening of the economic situation of your household, which of the below l",lbyesno
+h6_11,"Upon worsening of the economic situation of your household, which of the below l",lbyesno
+h6_12,"Upon worsening of the economic situation of your household, which of the below l",lbyesno
+h6_13,"Upon worsening of the economic situation of your household, which of the below l",lbyesno
+h6_15,One-time compensation-voucher,
+h6_14,"Upon worsening of the economic situation of your household, which of the below l",lbyesno
+h6_99,"Upon worsening of the economic situation of your household, which of the below l",lbyesno
+h6_88,"Upon worsening of the economic situation of your household, which of the below l",lbyesno
+h6_o1,"Upon worsening of the economic situation of your household, which of the below l",
+h6_o2,"Upon worsening of the economic situation of your household, which of the below l",
+h7_1,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_2,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_3,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_4,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_5,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_6,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_7,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_8,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_9,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_10,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_11,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_12,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_13,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_14,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_15,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_16,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_17,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_18,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_19,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_20,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_66,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_77,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_99,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_88,What did you do to alleviate the impact of worsening economic situation on your,lbyesno
+h7_o,What did you do to alleviate the impact of worsening economic situation on your,
+h8_1,"In your opinion, what was the main reason of improving the economic situation of",lbyesno
+h8_2,"In your opinion, what was the main reason of improving the economic situation of",lbyesno
+h8_3,"In your opinion, what was the main reason of improving the economic situation of",lbyesno
+h8_4,"In your opinion, what was the main reason of improving the economic situation of",lbyesno
+h8_5,"In your opinion, what was the main reason of improving the economic situation of",lbyesno
+h8_6,"In your opinion, what was the main reason of improving the economic situation of",lbyesno
+h8_7,"In your opinion, what was the main reason of improving the economic situation of",lbyesno
+h8_8,"In your opinion, what was the main reason of improving the economic situation of",lbyesno
+h8_77,"In your opinion, what was the main reason of improving the economic situation of",lbyesno
+h8_99,"In your opinion, what was the main reason of improving the economic situation of",lbyesno
+h8_88,"In your opinion, what was the main reason of improving the economic situation of",lbyesno
+h8_o,"In your opinion, what was the main reason of improving the economic situation of",
+h9,"In your opinion, how will the economic situation of your household change during",lbh9
+h10,"In your opinion, how real is the risk that during the next 12 months your househ",lbh10
+h11,Did any member of your household borrow any amount of money/bank loan during the,lbyesno
+h12_1,Who did he/she borrow from? - A relative/a friend,lbyesno
+h12_2,Who did he/she borrow from? - A private person/money lender,lbyesno
+h12_3,Who did he/she borrow from? - Bank/ pawn-shop,lbyesno
+h12_4,Who did he/she borrow from? - A credit association (lottery),lbyesno
+h12_5,Who did he/she borrow from? - Borrowed food from the shop,lbyesno
+h12_6,Who did he/she borrow from? - Micro Finance Organization,lbyesno
+h12_77,Who did he/she borrow from? - Other,lbyesno
+h12_99,Who did he/she borrow from? - Do not know,lbyesno
+h12_88,Who did he/she borrow from? - Refusal,lbyesno
+h12_o,Who did he/she borrow from? - Other (text),
+h13,Did you pay back what you borrowed?,lbh13
+h14,Did any member of your household try without success to borrow some amount of mo,lbh14
+h15,Whom did he/she address for borrowing?,lbh15
+h15_o,Whom did he/she address for borrowing? (text),
+h16,What was the reason of refusal of lending?,lbh16
+h16_o,What was the reason of refusal of lending? (text),
+h17,What amount did you want to borrow?,
+j1_1,On purchasing an automobile or a tractor,
+j1_2,"On purchasing a motor-cycle, bicycle or other transportation means (wagon, wheel",
+j1_3,"On purchasing tyres, accumulator, other spare parts and supplies",
+j1_4,On purchasing fuel and lubricants for transportation means,
+j1_5,On renting garage and parking place,
+j1_6,On paying fines and other payments connected with transportation means,
+j1_7,On diagnostics and repair of transportation means,
+j1_8,Furniture,
+j1_9,"Household items (crockery, linen, etc.)",
+j1_10,"Electric appliances (TV set, refrigerator, iron, etc.)",
+j1_11,Clothes and shoes for children,
+j1_12,Clothes and shoes for adults,
+j1_13,"Expenditure on hygienic goods and cosmetics (soap, shampoo, perfume, cologne, et",
+j1_30,"On purchasing toys (cars, dolls, etc.)",
+j1_31,On purchasing sports equipment,
+j1_32,On gambling,
+j1_33,On hotel (sanatorium) services or renting a flat,
+j1_34,"Other expenditures on recreation and entertainment (books, etc.)",
+j1_35,On repair of house or other premises (including the cost of materials and suppli,
+j1_36,On remuneration of a workman for maintenance of the dwelling,
+j1_37,"On purchasing floor-polish, window-cleaner, bath-cleaner and other similar means",
+j1_38,"On hiring servant, maid, cook, etc.",
+j1_39,On repair of landline and mobile phones,
+j1_40,On repair of PC and its accessories,
+j1_41,"On purchasing and installing a meter (electricity, gas, water)",
+j1_42,On repair of furniture,
+j1_43,On repair and installation of household equipment (including costs of workman's,
+j1_44,On other repair,
+j1_45,"Rent of flat (except electricity, water and other utility charges)",
+j1_46,Water supply charges,
+j1_47,Phone charges,
+j1_48,Waste disposal and cleaning charges,
+j1_49,Elevator and other utility charges,
+j1_50,Liquid gas (in gas tanks),
+j1_51,"Kerosene, diesel oil (not for transportation means)",
+j1_52,Firewood,
+j1_53,Other fuel (not for transportation means),
+j1_54,Payment for long-distance and international phone calls,
+j1_55,Payment for mobile phone calls,
+j1_56,Payment for TV channels,
+j1_57,Payment for purchasing telephone set and phone number,
+j1_58,On purchasing mobile phones,
+j1_59,On purchasing PC and its accessories,
+j1_60,"Payment for internet services (DSL , ADSL)",
+j1_61,On other goods and services,
+j1_62,On textile purchased for household needs,
+j1_63,Other expenditure,
+j1_64,On hiring transportation means or purchasing fuel,
+j1_65,"On services of loaders, storage, packing, etc.",
+j1_68,On travel within the country by intercity transport,
+j1_69,On travel abroad by various transportation means,
+j1_70,"On food, hotel services and other expenditure during travel",
+j1_71,Food expenditure,
+j1_72,"On rite-related furnishings and appurtenances, on hiring a hall etc.",
+j1_73,"Other non-food expenditure: on musicians, personnel (cook, waiter) etc.",
+j1_74,Lump sum paid in connection of the rite,
+j1_75,Expenditure on gifts (own production must be evaluated in GEL),
+j1_76,Amount of gift money,
+j1_77,"Cereal crops (maize, wheat, etc.)",
+j1_78,"Grapes (for wine, vodka, grape juice etc.)",
+j1_79,Fats for canned food,
+j1_80,"Tomato, sour plum for sauces",
+j1_81,Fruit for compotes and jams,
+j1_82,"Vegetables (tomato, eggplant, pepper, carrot and others ) for canned lunch",
+j1_83,Meat for canning,
+j1_84,"Sugar and other food items, total",
+j1_841,Other food purchased for processing,
+j1_85,Money or parcel sent to relatives/friends abroad (assess the approximate value o,
+j1_87,"On financial and brokerage services (cash transfer, etc.)",
+j1_88,"On legal services (of a notary, lawyer, etc.)",
+j1_89,"On baths, barber/hairdresser and other services",
+j1_90,mortgage and consumer loans,
+j1_777,Other expenditure (specify),
+j2_1_1,Quantity - Wheat flour,
+j2_1_2,Quantity - Corn flour,
+j2_1_3,"Quantity - Beans, peas, etc.",
+j2_1_4,Quantity - Rice,
+j2_1_5,"Quantity - Buckwheat, semolina",
+j2_1_6,Quantity - Pasta,
+j2_1_7,Quantity - Bread (purchased),
+j2_1_8,Quantity - Poultry meat,
+j2_1_9,Quantity - Beef or pork,
+j2_1_91,Quantity - lamb or goat meat,
+j2_1_10,"Quantity - Bacon, ham, lard, etc.",
+j2_1_11,Quantity - Sausages,
+j2_1_12,Quantity - Animal fat,
+j2_1_13,Quantity - Fresh or frozen fish,
+j2_1_14,"Quantity - Salted, smoked fish",
+j2_1_15,Quantity - Caviar,
+j2_1_16,Quantity - Milk,
+j2_1_17,"Quantity - Milk powder, canned milk (condensed)",
+j2_1_18,Quantity - Cheese,
+j2_1_19,"Quantity - Kefir, yoghurt",
+j2_1_20,"Quantity - Sour cream, cottage cheese, curd",
+j2_1_21,Quantity - Eggs,
+j2_1_22,Quantity - Butter (including melted),
+j2_1_23,Quantity - Margarine and vegetable fats,
+j2_1_24,Quantity - Vegetable oils and other fats,
+j2_1_25,Quantity - Canned meat,
+j2_1_26,Quantity - Canned fish,
+j2_1_27,Quantity - Canned vegetables,
+j2_1_28,Quantity - Canned fruit,
+j2_1_29,Quantity - Sauces,
+j2_1_30,"Quantity - Mushrooms, canned mushrooms",
+j2_1_31,"Quantity - Melon, water-melon",
+j2_1_32,Quantity - Pumpkin,
+j2_1_33,Quantity - Potato,
+j2_1_34,"Quantity - Carrot, beet, cabbage",
+j2_1_35,"Quantity - Tomato, cucumber",
+j2_1_36,"Quantity - Green onion, greenery, radish",
+j2_1_37,Quantity - Onion,
+j2_1_38,Quantity - Garlic,
+j2_1_39,Quantity - Eggplant and marrow,
+j2_1_40,Quantity - Green beans,
+j2_1_41,Quantity - Other vegetables,
+j2_1_42,Quantity - Sugar,
+j2_1_43,Quantity - Honey,
+j2_1_44,Quantity - Churchkhela (Georgian delights),
+j2_1_45,Quantity - Jams,
+j2_1_46,"Quantity - Cakes, ice cream",
+j2_1_47,Quantity - Rolls or pies,
+j2_1_48,"Quantity - Chocolate, sweets",
+j2_1_49,Quantity - Kissel,
+j2_1_50,Quantity - Mayonnaise,
+j2_1_51,"Quantity - Tea, coffee",
+j2_1_52,Quantity - Other confectionery,
+j2_1_53,Quantity - Cigarettes,
+j2_1_54,"Quantity - Coca-cola, Fanta, lemonade, juices",
+j2_1_55,Quantity - Mineral water,
+j2_1_56,Quantity - Wine,
+j2_1_57,"Quantity - vodka, brandy, liqueur",
+j2_1_58,Quantity - Beer,
+j2_1_59,Quantity - Other beverages,
+j2_1_60,"Quantity - Apple, pear, peach, nectarine",
+j2_1_61,Quantity - Plums and prunes,
+j2_1_62,Quantity - Cherries,
+j2_1_63,"Quantity - Tangerine, orange, lemon",
+j2_1_64,Quantity - Persimmon,
+j2_1_65,"Quantity - Fig, pomegranate",
+j2_1_66,Quantity - Grape,
+j2_1_67,"Quantity - Banana, pineapple, etc.",
+j2_1_68,Quantity - Berries,
+j2_1_69,Quantity - Walnut (without shell),
+j2_1_70,Quantity - Hazelnut (without shell),
+j2_1_71,Quantity - Sunflower seeds,
+j2_1_72,Quantity - Hippi,
+j2_1_73,Quantity - Humana,
+j2_1_74,Quantity - Nani,
+j2_1_75,Quantity - Malish,
+j2_1_76,Quantity - Other baby food,
+j2_1_11921,Quantity - Salt,
+j2_1_11922,Quantity - Baking soda,
+j2_1_11941,Quantity - Yeast,
+j2_1_11945,Quantity - Other,
+j2_2_1,Value - Wheat flour,
+j2_2_2,Value - Corn flour,
+j2_2_3,"Value - Beans, peas, etc.",
+j2_2_4,Value - Rice,
+j2_2_5,"Value - Buckwheat, semolina",
+j2_2_6,Value - Pasta,
+j2_2_7,Value - Bread (purchased),
+j2_2_8,Value - Poultry meat,
+j2_2_9,Value - Beef or pork,
+j2_2_91,Value - lamb or goat meat,
+j2_2_10,"Value - Bacon, ham, lard, etc.",
+j2_2_11,Value - Sausages,
+j2_2_12,Value - Animal fat,
+j2_2_13,Value - Fresh or frozen fish,
+j2_2_14,"Value - Salted, smoked fish",
+j2_2_15,Value - Caviar,
+j2_2_16,Value - Milk,
+j2_2_17,"Value - Milk powder, canned milk (condensed)",
+j2_2_18,Value - Cheese,
+j2_2_19,"Value - Kefir, yoghurt",
+j2_2_20,"Value - Sour cream, cottage cheese, curd",
+j2_2_21,Value - Eggs,
+j2_2_22,Value - Butter (including melted),
+j2_2_23,Value - Margarine and vegetable fats,
+j2_2_24,Value - Vegetable oils and other fats,
+j2_2_25,Value - Canned meat,
+j2_2_26,Value - Canned fish,
+j2_2_27,Value - Canned vegetables,
+j2_2_28,Value - Canned fruit,
+j2_2_29,Value - Sauces,
+j2_2_30,"Value - Mushrooms, canned mushrooms",
+j2_2_31,"Value - Melon, water-melon",
+j2_2_32,Value - Pumpkin,
+j2_2_33,Value - Potato,
+j2_2_34,"Value - Carrot, beet, cabbage",
+j2_2_35,"Value - Tomato, cucumber",
+j2_2_36,"Value - Green onion, greenery, radish",
+j2_2_37,Value - Onion,
+j2_2_38,Value - Garlic,
+j2_2_39,Value - Eggplant and marrow,
+j2_2_40,Value - Green beans,
+j2_2_41,Value - Other vegetables,
+j2_2_42,Value - Sugar,
+j2_2_43,Value - Honey,
+j2_2_44,Value - Churchkhela (Georgian delights),
+j2_2_45,Value - Jams,
+j2_2_46,"Value - Cakes, ice cream",
+j2_2_47,Value - Rolls or pies,
+j2_2_48,"Value - Chocolate, sweets",
+j2_2_49,Value - Kissel,
+j2_2_50,Value - Mayonnaise,
+j2_2_51,"Value - Tea, coffee",
+j2_2_52,Value - Other confectionery,
+j2_2_53,Value - Cigarettes,
+j2_2_54,"Value - Coca-cola, Fanta, lemonade, juices",
+j2_2_55,Value - Mineral water,
+j2_2_56,Value - Wine,
+j2_2_57,"Value - vodka, brandy, liqueur",
+j2_2_58,Value - Beer,
+j2_2_59,Value - Other beverages,
+j2_2_60,"Value - Apple, pear, peach, nectarine",
+j2_2_61,Value - Plums and prunes,
+j2_2_62,Value - Cherries,
+j2_2_63,"Value - Tangerine, orange, lemon",
+j2_2_64,Value - Persimmon,
+j2_2_65,"Value - Fig, pomegranate",
+j2_2_66,Value - Grape,
+j2_2_67,"Value - Banana, pineapple, etc.",
+j2_2_68,Value - Berries,
+j2_2_69,Value - Walnut (without shell),
+j2_2_70,Value - Hazelnut (without shell),
+j2_2_71,Value - Sunflower seeds,
+j2_2_72,Value - Hippi,
+j2_2_73,Value - Humana,
+j2_2_74,Value - Nani,
+j2_2_75,Value - Malish,
+j2_2_76,Value - Other baby food,
+j2_2_11921,Value - Salt,
+j2_2_11922,Value - Baking soda,
+j2_2_11941,Value - Yeast,
+j2_2_11945,Value - Other,
+j3_1,Quantity - Wheat flour,
+j3_2,Quantity - Corn flour,
+j3_3,"Quantity - Beans, peas, etc.",
+j3_4,Quantity - Rice,
+j3_5,"Quantity - Buckwheat, semolina",
+j3_6,Quantity - Pasta,
+j3_7,Quantity - Bread (purchased),
+j3_8,Quantity - Poultry meat,
+j3_9,Quantity - Beef or pork,
+j3_91,Quantity - lamb or goat meat,
+j3_10,"Quantity - Bacon, ham, lard, etc.",
+j3_11,Quantity - Sausages,
+j3_12,Quantity - Animal fat,
+j3_13,Quantity - Fresh or frozen fish,
+j3_14,"Quantity - Salted, smoked fish",
+j3_15,Quantity - Caviar,
+j3_16,Quantity - Milk,
+j3_17,"Quantity - Milk powder, canned milk (condensed)",
+j3_18,Quantity - Cheese,
+j3_19,"Quantity - Kefir, yoghurt",
+j3_20,"Quantity - Sour cream, cottage cheese, curd",
+j3_21,Quantity - Eggs,
+j3_22,Quantity - Butter (including melted),
+j3_23,Quantity - Margarine and vegetable fats,
+j3_24,Quantity - Vegetable oils and other fats,
+j3_25,Quantity - Canned meat,
+j3_26,Quantity - Canned fish,
+j3_27,Quantity - Canned vegetables,
+j3_28,Quantity - Canned fruit,
+j3_29,Quantity - Sauces,
+j3_30,"Quantity - Mushrooms, canned mushrooms",
+j3_31,"Quantity - Melon, water-melon",
+j3_32,Quantity - Pumpkin,
+j3_33,Quantity - Potato,
+j3_34,"Quantity - Carrot, beet, cabbage",
+j3_35,"Quantity - Tomato, cucumber",
+j3_36,"Quantity - Green onion, greenery, radish",
+j3_37,Quantity - Onion,
+j3_38,Quantity - Garlic,
+j3_39,Quantity - Eggplant and marrow,
+j3_40,Quantity - Green beans,
+j3_41,Quantity - Other vegetables,
+j3_42,Quantity - Sugar,
+j3_43,Quantity - Honey,
+j3_44,Quantity - Churchkhela (Georgian delights),
+j3_45,Quantity - Jams,
+j3_46,"Quantity - Cakes, ice cream",
+j3_47,Quantity - Rolls or pies,
+j3_48,"Quantity - Chocolate, sweets",
+j3_49,Quantity - Kissel,
+j3_50,Quantity - Mayonnaise,
+j3_51,"Quantity - Tea, coffee",
+j3_52,Quantity - Other confectionery,
+j3_53,Quantity - Cigarettes,
+j3_54,"Quantity - Coca-cola, Fanta, lemonade, juices",
+j3_55,Quantity - Mineral water,
+j3_56,Quantity - Wine,
+j3_57,"Quantity - vodka, brandy, liqueur",
+j3_58,Quantity - Beer,
+j3_59,Quantity - Other beverages,
+j3_60,"Quantity - Apple, pear, peach, nectarine",
+j3_61,Quantity - Plums and prunes,
+j3_62,Quantity - Cherries,
+j3_63,"Quantity - Tangerine, orange, lemon",
+j3_64,Quantity - Persimmon,
+j3_65,"Quantity - Fig, pomegranate",
+j3_66,Quantity - Grape,
+j3_67,"Quantity - Banana, pineapple, etc.",
+j3_68,Quantity - Berries,
+j3_69,Quantity - Walnut (without shell),
+j3_70,Quantity - Hazelnut (without shell),
+j3_71,Quantity - Sunflower seeds,
+j3_72,Quantity - Hippi,
+j3_73,Quantity - Humana,
+j3_74,Quantity - Nani,
+j3_75,Quantity - Malish,
+j3_76,Quantity - Other baby food,
+j4_1,"Daily expenditure on eating out, in GEL",
+j4_2,"Daily expenditure on eating out, in GEL",
+j5_1,"Daily expenditure on non-food goods and services, in GEL",
+j5_2,"Daily expenditure on non-food goods and services, in GEL",
+j5_3,"Daily expenditure on non-food goods and services, in GEL",
+j5_4,"Daily expenditure on non-food goods and services, in GEL",
+j5_5,"Daily expenditure on non-food goods and services, in GEL",
+j5_6,"Daily expenditure on non-food goods and services, in GEL",
+j5_7,"Daily expenditure on non-food goods and services, in GEL",
+j5_8,"Daily expenditure on non-food goods and services, in GEL",
+j5_9,"Daily expenditure on non-food goods and services, in GEL",
+j6_1,how many household members had Breakfast/lunch/dinner at home?,
+j6_2,how many household members had Breakfast/lunch/dinner outside home?,
+j7,how many non-household members had Breakfast/lunch/dinner in the household,
+l1_1,L1 - Affordable and nutritious food,lbyesno
+l1_2,L1 - Support People who can't work,lbyesno
+l1_3,L1 - Access to clean water and sanitation,lbyesno
+l1_4,L1 - Freedom from discrimination and persecution,lbyesno
+l1_5,L1 - Better healthcare,lbyesno
+l1_6,L1 - Action taken on climate change,lbyesno
+l1_7,L1 - Reliable energy at home,lbyesno
+l1_8,L1 - Political freedoms,lbyesno
+l1_9,L1 - Phone and internet access,lbyesno
+l1_10,L1 - Equality between men and women,lbyesno
+l1_11,L1 - Better job opportunities,lbyesno
+l1_12,L1 - A honest and responsive government,lbyesno
+l1_13,L1 - Better transport and roads,lbyesno
+l1_14,"L1 - Protecting forests, rivers and oceans",lbyesno
+l1_15,L1 - Protection against crime and violence,lbyesno
+l1_16,L1 - A good education,lbyesno
+l1_17,L1 - Other,lbyesno
+l1_o,L1 - Other (text),
+l1_memberno,L1 Respodent,
+k1,General assessment of the state of the household's dwelling,lbk1
+k2,General assessment of economic situation of the household,lbk2
+k3_1,Assessment of reliability of information provided by the household - Regular inc,lbk3
+k3_2,Assessment of reliability of information provided by the household - Non-regular,lbk3
+k3_3,Assessment of reliability of information provided by the household - Annual expe,lbk3
+k3_4,Assessment of reliability of information provided by the household - Daily food,lbk3
+k3_5,Assessment of reliability of information provided by the household - Daily food,lbk3
+k3_6,Assessment of reliability of information provided by the household - Daily expen,lbk3
+k3_7,Assessment of reliability of information provided by the household - Number of p,lbk3
+k4,How easy was it to interview the household,lbk4

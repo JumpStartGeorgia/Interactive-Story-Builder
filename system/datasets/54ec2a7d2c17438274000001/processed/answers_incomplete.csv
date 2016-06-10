@@ -1,0 +1,2048 @@
+UrbanRural,1,qalaqi
+UrbanRural,2,sofeli
+RegNo,1,kaxeTi
+RegNo,2,Tbilisi
+RegNo,3,Sida qarTli
+RegNo,4,qvemo qarTli
+RegNo,5,samcxe - javaxeTi
+RegNo,6,aWara
+RegNo,7,guria
+RegNo,8,samegrelo
+RegNo,9,imereTi
+RegNo,10,mcxeTa - mTianeTi
+Res_C3,1,ufrosi
+Res_C3,2,meuRle
+Res_C3,3,Sinameurneobis ufrosis/misi meuRlis Svili
+Res_C3,4,"Sinameurneobis ufrosis/misi meuRlis rZali, siZe"
+Res_C3,5,"Sinameurneobis ufrosis/misi meuRlis deda, mama"
+Res_C3,6,"Sinameurneobis ufrosis/misi meuRlis bebia, babua"
+Res_C3,7,Sinameurneobis ufrosis/misi meuRlis da-Zma
+Res_C3,8,Sinameurneobis ufrosis/misi meuRlis SviliSvili
+Res_C3,9,"Sinameurneobis ufrosis/misi meuRlis biZa, deida, mamida an maTi Svilebi"
+Res_C3,10,Sinameurneobis ufrosis/misi meuRlis sxva naTesavi
+Res_C3,11,aranaTesavi
+Res_C4,1,qali
+Res_C4,2,mamakaci
+Res_C6,1,qarTveli
+Res_C6,2,azerbaijaneli
+Res_C6,3,afxazi
+Res_C6,4,berZeni
+Res_C6,5,osi
+Res_C6,6,rusi
+Res_C6,7,somexi
+Res_C6,8,ukraineli
+Res_C6,9,sxva
+Res_C6,10,uari pasuxze
+Res_C7,1,wera-kiTxvis ucodinari
+Res_C7,2,"ar aqvs dawyebiTi ganaTleba, magram SeuZlia wera-kiTxva"
+Res_C7,3,zogadi ganaTlebis dawyebiTi safexuri
+Res_C7,4,zogadi ganaTlebis sabazo safexuri
+Res_C7,5,sruli zogadi ganaTleba (saSualo skola)
+Res_C7,6,saxelobo ganaTlebis serTifikati (dawyebiTi profesiuli ganaTlebis diplomi)
+Res_C7,7,saSualo profesiuli (saSualo specialuri) ganaTlebis diplomi
+Res_C7,8,umaRlesi profesiuli ganaTlebis an masTan gaTanabrebuli umaRlesi saganmanaTleblo programis diplomi
+Res_C7,9,bakalavris an diplomirebuli medikosis/veterinaris an masTan gaTanabrebuli umaRlesi saganmanaTleblo programis diplomi
+Res_C7,10,magistris/rezidenturis kursdamTavrebulis an masTan gaTanabrebuli umaRlesi saganmanaTleblo programis diplomi
+Res_C7,11,doqtori an masTan gaTanabrebuli xarisxi
+Res_C8,1,daqorwinebuli
+Res_C8,2,araregistrirebul qorwinebaSi myofi
+Res_C8,3,dauqorwinebeli
+Res_C8,4,ganqorwinebuli
+Res_C8,5,qvrivi
+Res_C9,1,saswavleblad saqarTvelos sxva regionSi
+Res_C9,2,saswavleblad sazRvargareT
+Res_C9,3,samuSaod saqarTvelos sxva regionSi
+Res_C9,4,samuSaod sazRvargareT
+Res_C9,5,sxva
+Res_C10,1,"skolamdel dawesebulebaSi (baga-baRi, sabavSvo baRi)"
+Res_C10,2,skola
+Res_C10,3,"liceumi (profsaswavlebeli, profesiuli saganmanaTleblo dawesebuleba)"
+Res_C10,4,teqnikumi (koleji)
+Res_C10,5,"umaRlesi saganmanaTleblo dawesebuleba (bakalavriati, magistratura, doqtorantura)"
+Res_C10,6,araformaluri ganaTlebis mimwodebeli
+Res_C10,7,arc erT maTganSi ar dadis
+Res_C10,8,miWirs pasuxis gacema
+Res_C11_1,1,diax
+Res_C11_1,2,ara
+Res_C11_1,3,miWirs pasuxis gacema
+Res_C11_2,1,diax
+Res_C11_2,2,ara
+Res_C11_2,3,miWirs pasuxis gacema
+Q1,1,diax
+Q1,2,ara
+Q2_1,1,ara
+Q2_1,2,diax
+Q2_2,1,ara
+Q2_2,2,diax
+Q2_3,1,ara
+Q2_3,2,diax
+Q2_4,1,ara
+Q2_4,2,diax
+Q2_5,1,ara
+Q2_5,2,diax
+Q2_6,1,ara
+Q2_6,2,diax
+Q2_7,1,ara
+Q2_7,2,diax
+Q3_1,1,ara
+Q3_1,2,diax
+Q3_2,1,ara
+Q3_2,2,diax
+Q3_3,1,ara
+Q3_3,2,diax
+Q3_4,1,ara
+Q3_4,2,diax
+Q3_5,1,ara
+Q3_5,2,diax
+Q3_6,1,ara
+Q3_6,2,diax
+Q3_7,1,ara
+Q3_7,2,diax
+Q4_1,1,ara
+Q4_1,2,diax
+Q4_2,1,ara
+Q4_2,2,diax
+Q4_3,1,ara
+Q4_3,2,diax
+Q4_4,1,ara
+Q4_4,2,diax
+Q4_5,1,ara
+Q4_5,2,diax
+Q4_6,1,ara
+Q4_6,2,diax
+Q4_7,1,ara
+Q4_7,2,diax
+Q5_1,1,ara
+Q5_1,2,diax
+Q5_2,1,ara
+Q5_2,2,diax
+Q5_3,1,ara
+Q5_3,2,diax
+Q5_4,1,ara
+Q5_4,2,diax
+Q5_5,1,ara
+Q5_5,2,diax
+Q5_6,1,ara
+Q5_6,2,diax
+Q5_7,1,ara
+Q5_7,2,diax
+Q6,1,14 wlamde
+Q6,2,16 wlamde
+Q6,3,18 wlamde
+Q6,4,21 wlamde
+Q6,5,ar vici/miWirs pasuxis gacema
+Q7_1,1,ara
+Q7_1,2,diax
+Q7_2,1,ara
+Q7_2,2,diax
+Q7_3,1,ara
+Q7_3,2,diax
+Q7_4,1,ara
+Q7_4,2,diax
+Q7_5,1,ara
+Q7_5,2,diax
+Q7_6,1,ara
+Q7_6,2,diax
+Q7_7,1,ara
+Q7_7,2,diax
+Q8_R1,1,sruliad ar veTanxmebi
+Q8_R1,2,ufro ar veTanxmebi
+Q8_R1,3,neitraluri
+Q8_R1,4,ufro veTanxmebi
+Q8_R1,5,sruliad veTanxmebi
+Q8_R1,6,miWirs p. g./uari pasuxze
+Q8_R2,1,sruliad ar veTanxmebi
+Q8_R2,2,ufro ar veTanxmebi
+Q8_R2,3,neitraluri
+Q8_R2,4,ufro veTanxmebi
+Q8_R2,5,sruliad veTanxmebi
+Q8_R2,6,miWirs p. g./uari pasuxze
+Q8_R3,1,sruliad ar veTanxmebi
+Q8_R3,2,ufro ar veTanxmebi
+Q8_R3,3,neitraluri
+Q8_R3,4,ufro veTanxmebi
+Q8_R3,5,sruliad veTanxmebi
+Q8_R3,6,miWirs p. g./uari pasuxze
+Q8_R4,1,sruliad ar veTanxmebi
+Q8_R4,2,ufro ar veTanxmebi
+Q8_R4,3,neitraluri
+Q8_R4,4,ufro veTanxmebi
+Q8_R4,5,sruliad veTanxmebi
+Q8_R4,6,miWirs p. g./uari pasuxze
+Q8_R5,1,sruliad ar veTanxmebi
+Q8_R5,2,ufro ar veTanxmebi
+Q8_R5,3,neitraluri
+Q8_R5,4,ufro veTanxmebi
+Q8_R5,5,sruliad veTanxmebi
+Q8_R5,6,miWirs p. g./uari pasuxze
+Q8_R6,1,sruliad ar veTanxmebi
+Q8_R6,2,ufro ar veTanxmebi
+Q8_R6,3,neitraluri
+Q8_R6,4,ufro veTanxmebi
+Q8_R6,5,sruliad veTanxmebi
+Q8_R6,6,miWirs p. g./uari pasuxze
+Q8_R7,1,sruliad ar veTanxmebi
+Q8_R7,2,ufro ar veTanxmebi
+Q8_R7,3,neitraluri
+Q8_R7,4,ufro veTanxmebi
+Q8_R7,5,sruliad veTanxmebi
+Q8_R7,6,miWirs p. g./uari pasuxze
+Q8_R8,1,sruliad ar veTanxmebi
+Q8_R8,2,ufro ar veTanxmebi
+Q8_R8,3,neitraluri
+Q8_R8,4,ufro veTanxmebi
+Q8_R8,5,sruliad veTanxmebi
+Q8_R8,6,miWirs p. g./uari pasuxze
+Q8_R9,1,sruliad ar veTanxmebi
+Q8_R9,2,ufro ar veTanxmebi
+Q8_R9,3,neitraluri
+Q8_R9,4,ufro veTanxmebi
+Q8_R9,5,sruliad veTanxmebi
+Q8_R9,6,miWirs p. g./uari pasuxze
+Q8_R10,1,sruliad ar veTanxmebi
+Q8_R10,2,ufro ar veTanxmebi
+Q8_R10,3,neitraluri
+Q8_R10,4,ufro veTanxmebi
+Q8_R10,5,sruliad veTanxmebi
+Q8_R10,6,miWirs p. g./uari pasuxze
+Q8_R11,1,sruliad ar veTanxmebi
+Q8_R11,2,ufro ar veTanxmebi
+Q8_R11,3,neitraluri
+Q8_R11,4,ufro veTanxmebi
+Q8_R11,5,sruliad veTanxmebi
+Q8_R11,6,miWirs p. g./uari pasuxze
+Q8_R12,1,sruliad ar veTanxmebi
+Q8_R12,2,ufro ar veTanxmebi
+Q8_R12,3,neitraluri
+Q8_R12,4,ufro veTanxmebi
+Q8_R12,5,sruliad veTanxmebi
+Q8_R12,6,miWirs p. g./uari pasuxze
+Q8_R13,1,sruliad ar veTanxmebi
+Q8_R13,2,ufro ar veTanxmebi
+Q8_R13,3,neitraluri
+Q8_R13,4,ufro veTanxmebi
+Q8_R13,5,sruliad veTanxmebi
+Q8_R13,6,miWirs p. g./uari pasuxze
+Q9_1,1,ara
+Q9_1,2,diax
+Q9_2,1,ara
+Q9_2,2,diax
+Q9_3,1,ara
+Q9_3,2,diax
+Q9_4,1,ara
+Q9_4,2,diax
+Q9_5,1,ara
+Q9_5,2,diax
+Q9_6,1,ara
+Q9_6,2,diax
+Q9_7,1,ara
+Q9_7,2,diax
+Q10,1,diax
+Q10,2,ara
+Q10,3,ar vici/miWirs pasuxis gacema
+Q11,1,diax
+Q11,2,ara
+Q12,1,formalurad
+Q12,2,nawilobriv
+Q12,3,srulad
+Q13,1,diax
+Q13,2,ara
+Q14,1,diax
+Q14,2,"ara, Tumca viyavi srulwlovani"
+Q14,3,"ara, vinaidan ar viyavi 18 wlis"
+Q14,4,uari pasuxze
+Q15,1,"diax, saqarTveloSi"
+Q15,2,"diax, sazRvargareT"
+Q15,3,"diax, saqarTveloSic da sazRvargareTac"
+Q15,4,ara
+Q16_1,1,ara
+Q16_1,2,diax
+Q16_2,1,ara
+Q16_2,2,diax
+Q16_3,1,ara
+Q16_3,2,diax
+Q16_4,1,ara
+Q16_4,2,diax
+Q16_5,1,ara
+Q16_5,2,diax
+Q16_6,1,ara
+Q16_6,2,diax
+Q16_7,1,ara
+Q16_7,2,diax
+Q16_8,1,ara
+Q16_8,2,diax
+Q16_9,1,ara
+Q16_9,2,diax
+Q16_10,1,ara
+Q16_10,2,diax
+Q16_11,1,ara
+Q16_11,2,diax
+Q16_12,1,ara
+Q16_12,2,diax
+Q16_13,1,ara
+Q16_13,2,diax
+Q16_14,1,ara
+Q16_14,2,diax
+Q16_15,1,ara
+Q16_15,2,diax
+Q16_16,1,ara
+Q16_16,2,diax
+Q16_17,1,ara
+Q16_17,2,diax
+Q17_Code,1,antidiskriminacia
+Q17_Code,2,SezRuduli SesaZleblobebis mqone adamianebis daxmareba
+Q17_Code,3,kultura da xelovneba
+Q17_Code,4,umciresobebis integracia
+Q17_Code,5,bavSvebis da axalgazrdebis dasveneba
+Q17_Code,6,konfliqtis Semdgomi reabilitacia
+Q17_Code,7,soflis da regionebis ganviTareba
+Q17_Code,8,axalgazrduli politika
+Q17_Code,9,media da komunikacia/axalgazrdebis informireba
+Q17_Code,10,sporti
+Q17_Code,11,aqtivobebi bunebaSi
+Q17_Code,12,jandacva
+Q17_Code,13,garemos dacva
+Q17_Code,14,cxovelebis dacva
+Q17_Code,15,formaluri ganaTleba
+Q17_Code,16,araformaluri ganaTleba
+Q17_Code,17,sxva
+Q17,1,kviraSi ramdenjerme
+Q17,2,kviraSi erTxel
+Q17,3,TveSi 2-3-jer
+Q17,4,TveSi erTxel
+Q17,5,3 TveSi erTxel
+Q17,6,6 TveSi erTxel
+Q17,7,weliwadSi erTxel
+Q18,1,30 wuTze naklebi
+Q18,2,30 wuTidan 3 saaTamde
+Q18,3,3 saaTze meti
+Q19_1,1,ara
+Q19_1,2,diax
+Q19_2,1,ara
+Q19_2,2,diax
+Q19_3,1,ara
+Q19_3,2,diax
+Q19_4,1,ara
+Q19_4,2,diax
+Q19_5,1,ara
+Q19_5,2,diax
+Q19_6,1,ara
+Q19_6,2,diax
+Q19_7,1,ara
+Q19_7,2,diax
+Q19_8,1,ara
+Q19_8,2,diax
+Q19_9,1,ara
+Q19_9,2,diax
+Q20_1,1,ara
+Q20_1,2,diax
+Q20_2,1,ara
+Q20_2,2,diax
+Q20_3,1,ara
+Q20_3,2,diax
+Q20_4,1,ara
+Q20_4,2,diax
+Q20_5,1,ara
+Q20_5,2,diax
+Q20_6,1,ara
+Q20_6,2,diax
+Q20_7,1,ara
+Q20_7,2,diax
+Q20_8,1,ara
+Q20_8,2,diax
+Q21_R1,1,diax
+Q21_R1,2,ara
+Q21_R1,3,miWirs pasuxis gacema
+Q21_R2,1,diax
+Q21_R2,2,ara
+Q21_R2,3,miWirs pasuxis gacema
+Q21_R3,1,diax
+Q21_R3,2,ara
+Q21_R3,3,miWirs pasuxis gacema
+Q21_R4,1,diax
+Q21_R4,2,ara
+Q21_R4,3,miWirs pasuxis gacema
+Q22,1,diax
+Q22,2,ara
+Q23,1,diax
+Q23,2,ara
+Q24,1,diax
+Q24,2,ara
+Q25,1,diax
+Q25,2,ara
+Q26,1,diax
+Q26,2,ara
+Q27,1,diax
+Q27,2,ara
+Q28,1,diax
+Q28,2,ara
+Q30,1,"saxelmwifo sakuTrebis (organizacia/sawarmo, romelSic saxelmwifos wili naxevarze metia da yvela saxelmwifo dawesebuleba);"
+Q30,2,kerZo sakuTrebis (naxevarze meti wiliT);
+Q30,3,sxva
+Q30,4,ar vici
+Q31,1,werilobiTi an sityvieri SeTanxmebis safuZvelze gansazRvrul xelfasze (fuladi an naturiT) momuSave piri
+Q31,2,"sakuTar sawarmoSi momuSave mewarme, meurne (daqiravebuli muSakebiT)"
+Q31,3,"arasasoflo-sameurneo sferoSi kerZo (daqiravebuli muSaxelis gareSe) saqmianoba: saqonlis warmoeba, vaWroba, satransporto "
+Q31,4,sasoflo-sameurneo saqmianoba sakuTar meurneobaSi an ijariT aRebul miwaze an mecxoveleoba-mefrinveleobis saxiT (daqiraveb
+Q31,5,ojaxur sawarmoSi an axloblisTvis SromiT saqmianobaSi usasyidlod momuSave
+Q31,6,sxva
+Q32,1,10 saaTze naklebi
+Q32,2,10-dan 20 saaTamde
+Q32,3,20-dan 30 saaTamde
+Q32,4,30-dan 40 saaTamde
+Q32,5,40-dan 50 saaTamde
+Q32,6,50-dan 60 saaTamde
+Q32,7,60 saaTi da meti
+Q32,8,sxvadasxva periodSi (sezonSi) sxvadasxvaa
+Q33,1,"vecnobodi gancxadebebs presis, televiziis, internetis da sxva saSualebiT"
+Q33,2,movipovebdi informacias nacnobebis saSualebiT
+Q33,3,uSualod vukavSirdebodi administracias
+Q33,4,"vaqveynebdi gancxadebebs presis, televiziis, internetis da sxva saSualebiT"
+Q33,5,mivmarTe dasaqmebis samsaxurs
+Q33,6,sxva
+Q33,7,sakuTari saqmis wamowyebisaTvis mivmarTe Sesabamis organoebs nebarTvis misaRebad
+Q33,8,davamyare kavSirebi potenciur partniorebTan
+Q33,9,"vcade mimeRo saqmis dasawyebad sesxi, krediti"
+Q33,10,"veZebdi Senobas, nedleuls, mowyobilobebs, miwis nakveTs"
+Q33,11,sxva
+Q33,12,"ara, ar micdia"
+Q33_2,1,"vecnobodi gancxadebebs presis, televiziis, internetis da sxva saSualebiT"
+Q33_2,2,movipovebdi informacias nacnobebis saSualebiT
+Q33_2,3,uSualod vukavSirdebodi administracias
+Q33_2,4,"vaqveynebdi gancxadebebs presis, televiziis, internetis da sxva saSualebiT"
+Q33_2,5,mivmarTe dasaqmebis samsaxurs
+Q33_2,6,sxva
+Q33_2,7,sakuTari saqmis wamowyebisaTvis mivmarTe Sesabamis organoebs nebarTvis misaRebad
+Q33_2,8,davamyare kavSirebi potenciur partniorebTan
+Q33_2,9,"vcade mimeRo saqmis dasawyebad sesxi, krediti"
+Q33_2,10,"veZebdi Senobas, nedleuls, mowyobilobebs, miwis nakveTs"
+Q33_2,11,sxva
+Q33_2,12,"ara, ar micdia"
+Q34,1,uaxloesi ori kviris ganmavlobaSi viwyeb muSaobas
+Q34,2,veli pasuxs samuSaos an sakuTari saqmis dasawyebad
+Q34,3,"dasaqmebis samsaxurSi registrirebuli var, rogorc samuSaos maZiebeli"
+Q34,4,davkarge samuSaos Sovnis imedi
+Q34,5,viyavi avad
+Q34,6,ar msurs muSaoba
+Q34,7,var dRis formis swavlebis studenti (moswavle)
+Q34,8,maqvs SezRuduli SesaZleblobebi (var SSmp)
+Q34,9,var diasaxlisi
+Q34,10,sxva
+Q35,1,diax
+Q35,2,ara
+Q36,1,1 Tvemde
+Q36,2,1-dan 3 Tvemde
+Q36,3,3-dan 12 Tvemde
+Q36,4,1-dan 2 wlamde
+Q36,5,2-dan 3 wlamde
+Q36,6,3 welze meti
+Q36,7,saerTod ar mimuSavia
+Q37_1,1,ara
+Q37_1,2,diax
+Q37_2,1,ara
+Q37_2,2,diax
+Q37_3,1,ara
+Q37_3,2,diax
+Q37_4,1,ara
+Q37_4,2,diax
+Q37_5,1,ara
+Q37_5,2,diax
+Q37_6,1,ara
+Q37_6,2,diax
+Q38_1,1,ara
+Q38_1,2,diax
+Q38_2,1,ara
+Q38_2,2,diax
+Q38_3,1,ara
+Q38_3,2,diax
+Q38_4,1,ara
+Q38_4,2,diax
+Q38_5,1,ara
+Q38_5,2,diax
+Q38_6,1,ara
+Q38_6,2,diax
+Q39_1,1,ara
+Q39_1,2,diax
+Q39_2,1,ara
+Q39_2,2,diax
+Q39_3,1,ara
+Q39_3,2,diax
+Q39_4,1,ara
+Q39_4,2,diax
+Q39_5,1,ara
+Q39_5,2,diax
+Q40,1,diax
+Q40,2,ara
+Q41_1,1,ara
+Q41_1,2,diax
+Q41_2,1,ara
+Q41_2,2,diax
+Q41_3,1,ara
+Q41_3,2,diax
+Q41_4,1,ara
+Q41_4,2,diax
+Q41_5,1,ara
+Q41_5,2,diax
+Q41_6,1,ara
+Q41_6,2,diax
+Q42,1,diax
+Q42,2,ara
+Q43,1,diax
+Q43,2,ara
+Q44,1,eqimis viziti binaze
+Q44,2,soflis ambulatoria
+Q44,3,poliklinika
+Q44,4,dispanseri
+Q44,5,qalTa konsultacia
+Q44,6,zogadi profilis saavadmyofo
+Q44,7,samSobiaro saxli
+Q44,8,bavSvTa saavadmyofo
+Q44,9,tub. da infeqciur daavadebaTa saavadmyofo
+Q44,10,sxva specializirebuli saavadmyofoebi
+Q44,11,stomatologiuri klinika/kabineti
+Q44,12,diagnostikuri centri
+Q44,13,kerZo kabineti/specialistis saxli
+Q44,14,saswrafo daxmareba - gamoiyena mxolod es servisi
+Q44,15,sxva
+Q44,16,miWirs pasuxis gacema
+Q45,1,diax
+Q45,2,nawilobriv
+Q45,3,ara
+Q46,1,miviRe amomwuravi informacia
+Q46,2,informacia momawodes nawilobriv
+Q46,3,ar momawodes informacia Semdgomi momsaxurebis Sesaxeb
+Q46,4,ar iyo amis saWiroeba
+Q47,1,diax
+Q47,2,ara
+Q48_1,1,ara
+Q48_1,2,diax
+Q48_2,1,ara
+Q48_2,2,diax
+Q48_3,1,ara
+Q48_3,2,diax
+Q48_4,1,ara
+Q48_4,2,diax
+Q48_5,1,ara
+Q48_5,2,diax
+Q48_6,1,ara
+Q48_6,2,diax
+Q49,1,diax
+Q49,2,ara
+Q50_1,1,ara
+Q50_1,2,diax
+Q50_2,1,ara
+Q50_2,2,diax
+Q50_3,1,ara
+Q50_3,2,diax
+Q50_4,1,ara
+Q50_4,2,diax
+Q50_5,1,ara
+Q50_5,2,diax
+Q50_6,1,ara
+Q50_6,2,diax
+Q50_7,1,ara
+Q50_7,2,diax
+Q50_8,1,ara
+Q50_8,2,diax
+Q50_9,1,ara
+Q50_9,2,diax
+Q50_10,1,ara
+Q50_10,2,diax
+Q50_11,1,ara
+Q50_11,2,diax
+Q50_12,1,ara
+Q50_12,2,diax
+Q50_13,1,ara
+Q50_13,2,diax
+Q50_14,1,ara
+Q50_14,2,diax
+Q51,1,diax
+Q51,2,ara
+Q54,1,diax
+Q54,2,ara
+Q55,1,yoveldRe
+Q55,2,5-6 dRe kviraSi
+Q55,3,3-4 dRe kviraSi
+Q55,4,1-2 dRe kviraSi
+Q55,5,1-3 dRe TveSi
+Q55,6,TveSi erTxel an ufro iSviaTad
+Q57,1,diax
+Q57,2,ara
+Q58_1,1,ara
+Q58_1,2,diax
+Q58_2,1,ara
+Q58_2,2,diax
+Q58_3,1,ara
+Q58_3,2,diax
+Q58_4,1,ara
+Q58_4,2,diax
+Q58_5,1,ara
+Q58_5,2,diax
+Q58_6,1,ara
+Q58_6,2,diax
+Q58_7,1,ara
+Q58_7,2,diax
+Q58_8,1,ara
+Q58_8,2,diax
+Q59,1,diax
+Q59,2,ara
+Q59,3,ar vici
+Q60_1,1,ara
+Q60_1,2,diax
+Q60_2,1,ara
+Q60_2,2,diax
+Q60_3,1,ara
+Q60_3,2,diax
+Q60_4,1,ara
+Q60_4,2,diax
+Q60_5,1,ara
+Q60_5,2,diax
+Q60_6,1,ara
+Q60_6,2,diax
+Q61_1,1,ara
+Q61_1,2,diax
+Q61_2,1,ara
+Q61_2,2,diax
+Q61_3,1,ara
+Q61_3,2,diax
+Q61_4,1,ara
+Q61_4,2,diax
+Q61_5,1,ara
+Q61_5,2,diax
+Q62,1,diax
+Q62,2,ara
+Q62,3,ar vici
+Q63,1,diax
+Q63,2,ara
+Q63,3,miWirs pasuxis gacema
+Q64_1,1,ara
+Q64_1,2,diax
+Q64_2,1,ara
+Q64_2,2,diax
+Q64_3,1,ara
+Q64_3,2,diax
+Q64_4,1,ara
+Q64_4,2,diax
+Q64_5,1,ara
+Q64_5,2,diax
+Q64_6,1,ara
+Q64_6,2,diax
+Q64_7,1,ara
+Q64_7,2,diax
+Q64_8,1,ara
+Q64_8,2,diax
+Q64_9,1,ara
+Q64_9,2,diax
+Q64_10,1,ara
+Q64_10,2,diax
+Q64_11,1,ara
+Q64_11,2,diax
+Q64_12,1,ara
+Q64_12,2,diax
+Q65,1,diax
+Q65,2,ara
+Q66_1,1,ara
+Q66_1,2,diax
+Q66_2,1,ara
+Q66_2,2,diax
+Q66_3,1,ara
+Q66_3,2,diax
+Q66_4,1,ara
+Q66_4,2,diax
+Q66_5,1,ara
+Q66_5,2,diax
+Q66_6,1,ara
+Q66_6,2,diax
+Q66_7,1,ara
+Q66_7,2,diax
+Q66_8,1,ara
+Q66_8,2,diax
+Q66_9,1,ara
+Q66_9,2,diax
+Q66_10,1,ara
+Q66_10,2,diax
+Q66_11,1,ara
+Q66_11,2,diax
+Q66_12,1,ara
+Q66_12,2,diax
+Q67_1,1,ara
+Q67_1,2,diax
+Q67_2,1,ara
+Q67_2,2,diax
+Q67_3,1,ara
+Q67_3,2,diax
+Q67_4,1,ara
+Q67_4,2,diax
+Q67_5,1,ara
+Q67_5,2,diax
+Q67_6,1,ara
+Q67_6,2,diax
+Q67_7,1,ara
+Q67_7,2,diax
+Q67_8,1,ara
+Q67_8,2,diax
+Q68_1,1,ara
+Q68_1,2,diax
+Q68_2,1,ara
+Q68_2,2,diax
+Q68_3,1,ara
+Q68_3,2,diax
+Q68_4,1,ara
+Q68_4,2,diax
+Q68_5,1,ara
+Q68_5,2,diax
+Q68_6,1,ara
+Q68_6,2,diax
+Q68_7,1,ara
+Q68_7,2,diax
+Q68_8,1,ara
+Q68_8,2,diax
+Q69_1,1,ara
+Q69_1,2,diax
+Q69_2,1,ara
+Q69_2,2,diax
+Q69_3,1,ara
+Q69_3,2,diax
+Q69_4,1,ara
+Q69_4,2,diax
+Q69_5,1,ara
+Q69_5,2,diax
+Q69_6,1,ara
+Q69_6,2,diax
+Q69_7,1,ara
+Q69_7,2,diax
+Q69_8,1,ara
+Q69_8,2,diax
+Q69_9,1,ara
+Q69_9,2,diax
+Q69_10,1,ara
+Q69_10,2,diax
+Q69_11,1,ara
+Q69_11,2,diax
+Q69_12,1,ara
+Q69_12,2,diax
+Q69_13,1,ara
+Q69_13,2,diax
+Q69_14,1,ara
+Q69_14,2,diax
+Q69_15,1,ara
+Q69_15,2,diax
+Q70_C2_1,1,diax
+Q70_C2_1,2,ara
+Q70_C3_1_1,1,deda
+Q70_C3_1_1,2,mama
+Q70_C3_1_1,3,sxva naTesavi
+Q70_C3_1_1,4,meuRle/partniori
+Q70_C3_1_1,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_1_1,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_1_1,7,ginekologi/urologi
+Q70_C3_1_1,8,sxva eqimi an eqTani
+Q70_C3_1_1,9,maswavlebeli
+Q70_C3_1_1,10,samedicino literatura
+Q70_C3_1_1,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_1_1,12,"radio, televizia"
+Q70_C3_1_1,13,interneti
+Q70_C3_1_1,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_1_1,15,miWirs pasuxis gacema
+Q70_C3_2_1,1,deda
+Q70_C3_2_1,2,mama
+Q70_C3_2_1,3,sxva naTesavi
+Q70_C3_2_1,4,meuRle/partniori
+Q70_C3_2_1,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_2_1,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_2_1,7,ginekologi/urologi
+Q70_C3_2_1,8,sxva eqimi an eqTani
+Q70_C3_2_1,9,maswavlebeli
+Q70_C3_2_1,10,samedicino literatura
+Q70_C3_2_1,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_2_1,12,"radio, televizia"
+Q70_C3_2_1,13,interneti
+Q70_C3_2_1,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_2_1,15,miWirs pasuxis gacema
+Q70_C3_3_1,1,deda
+Q70_C3_3_1,2,mama
+Q70_C3_3_1,3,sxva naTesavi
+Q70_C3_3_1,4,meuRle/partniori
+Q70_C3_3_1,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_3_1,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_3_1,7,ginekologi/urologi
+Q70_C3_3_1,8,sxva eqimi an eqTani
+Q70_C3_3_1,9,maswavlebeli
+Q70_C3_3_1,10,samedicino literatura
+Q70_C3_3_1,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_3_1,12,"radio, televizia"
+Q70_C3_3_1,13,interneti
+Q70_C3_3_1,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_3_1,15,miWirs pasuxis gacema
+Q70_C3_4_1,1,deda
+Q70_C3_4_1,2,mama
+Q70_C3_4_1,3,sxva naTesavi
+Q70_C3_4_1,4,meuRle/partniori
+Q70_C3_4_1,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_4_1,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_4_1,7,ginekologi/urologi
+Q70_C3_4_1,8,sxva eqimi an eqTani
+Q70_C3_4_1,9,maswavlebeli
+Q70_C3_4_1,10,samedicino literatura
+Q70_C3_4_1,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_4_1,12,"radio, televizia"
+Q70_C3_4_1,13,interneti
+Q70_C3_4_1,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_4_1,15,miWirs pasuxis gacema
+Q70_C3_5_1,1,deda
+Q70_C3_5_1,2,mama
+Q70_C3_5_1,3,sxva naTesavi
+Q70_C3_5_1,4,meuRle/partniori
+Q70_C3_5_1,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_5_1,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_5_1,7,ginekologi/urologi
+Q70_C3_5_1,8,sxva eqimi an eqTani
+Q70_C3_5_1,9,maswavlebeli
+Q70_C3_5_1,10,samedicino literatura
+Q70_C3_5_1,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_5_1,12,"radio, televizia"
+Q70_C3_5_1,13,interneti
+Q70_C3_5_1,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_5_1,15,miWirs pasuxis gacema
+Q70_C3_6_1,1,deda
+Q70_C3_6_1,2,mama
+Q70_C3_6_1,3,sxva naTesavi
+Q70_C3_6_1,4,meuRle/partniori
+Q70_C3_6_1,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_6_1,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_6_1,7,ginekologi/urologi
+Q70_C3_6_1,8,sxva eqimi an eqTani
+Q70_C3_6_1,9,maswavlebeli
+Q70_C3_6_1,10,samedicino literatura
+Q70_C3_6_1,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_6_1,12,"radio, televizia"
+Q70_C3_6_1,13,interneti
+Q70_C3_6_1,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_6_1,15,miWirs pasuxis gacema
+Q70_C4_1,1,diax
+Q70_C4_1,2,ara
+Q70_C5_1,1,diax
+Q70_C5_1,2,ara
+Q70_C6_1,1,diax
+Q70_C6_1,2,ara
+Q70_C6_1,3,uari pasuxze
+Q70_C2_2,1,diax
+Q70_C2_2,2,ara
+Q70_C3_1_2,1,deda
+Q70_C3_1_2,2,mama
+Q70_C3_1_2,3,sxva naTesavi
+Q70_C3_1_2,4,meuRle/partniori
+Q70_C3_1_2,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_1_2,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_1_2,7,ginekologi/urologi
+Q70_C3_1_2,8,sxva eqimi an eqTani
+Q70_C3_1_2,9,maswavlebeli
+Q70_C3_1_2,10,samedicino literatura
+Q70_C3_1_2,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_1_2,12,"radio, televizia"
+Q70_C3_1_2,13,interneti
+Q70_C3_1_2,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_1_2,15,miWirs pasuxis gacema
+Q70_C3_2_2,1,deda
+Q70_C3_2_2,2,mama
+Q70_C3_2_2,3,sxva naTesavi
+Q70_C3_2_2,4,meuRle/partniori
+Q70_C3_2_2,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_2_2,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_2_2,7,ginekologi/urologi
+Q70_C3_2_2,8,sxva eqimi an eqTani
+Q70_C3_2_2,9,maswavlebeli
+Q70_C3_2_2,10,samedicino literatura
+Q70_C3_2_2,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_2_2,12,"radio, televizia"
+Q70_C3_2_2,13,interneti
+Q70_C3_2_2,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_2_2,15,miWirs pasuxis gacema
+Q70_C3_3_2,1,deda
+Q70_C3_3_2,2,mama
+Q70_C3_3_2,3,sxva naTesavi
+Q70_C3_3_2,4,meuRle/partniori
+Q70_C3_3_2,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_3_2,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_3_2,7,ginekologi/urologi
+Q70_C3_3_2,8,sxva eqimi an eqTani
+Q70_C3_3_2,9,maswavlebeli
+Q70_C3_3_2,10,samedicino literatura
+Q70_C3_3_2,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_3_2,12,"radio, televizia"
+Q70_C3_3_2,13,interneti
+Q70_C3_3_2,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_3_2,15,miWirs pasuxis gacema
+Q70_C3_4_2,1,deda
+Q70_C3_4_2,2,mama
+Q70_C3_4_2,3,sxva naTesavi
+Q70_C3_4_2,4,meuRle/partniori
+Q70_C3_4_2,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_4_2,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_4_2,7,ginekologi/urologi
+Q70_C3_4_2,8,sxva eqimi an eqTani
+Q70_C3_4_2,9,maswavlebeli
+Q70_C3_4_2,10,samedicino literatura
+Q70_C3_4_2,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_4_2,12,"radio, televizia"
+Q70_C3_4_2,13,interneti
+Q70_C3_4_2,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_4_2,15,miWirs pasuxis gacema
+Q70_C3_5_2,1,deda
+Q70_C3_5_2,2,mama
+Q70_C3_5_2,3,sxva naTesavi
+Q70_C3_5_2,4,meuRle/partniori
+Q70_C3_5_2,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_5_2,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_5_2,7,ginekologi/urologi
+Q70_C3_5_2,8,sxva eqimi an eqTani
+Q70_C3_5_2,9,maswavlebeli
+Q70_C3_5_2,10,samedicino literatura
+Q70_C3_5_2,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_5_2,12,"radio, televizia"
+Q70_C3_5_2,13,interneti
+Q70_C3_5_2,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_5_2,15,miWirs pasuxis gacema
+Q70_C3_6_2,1,deda
+Q70_C3_6_2,2,mama
+Q70_C3_6_2,3,sxva naTesavi
+Q70_C3_6_2,4,meuRle/partniori
+Q70_C3_6_2,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_6_2,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_6_2,7,ginekologi/urologi
+Q70_C3_6_2,8,sxva eqimi an eqTani
+Q70_C3_6_2,9,maswavlebeli
+Q70_C3_6_2,10,samedicino literatura
+Q70_C3_6_2,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_6_2,12,"radio, televizia"
+Q70_C3_6_2,13,interneti
+Q70_C3_6_2,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_6_2,15,miWirs pasuxis gacema
+Q70_C4_2,1,diax
+Q70_C4_2,2,ara
+Q70_C5_2,1,diax
+Q70_C5_2,2,ara
+Q70_C6_2,1,diax
+Q70_C6_2,2,ara
+Q70_C6_2,3,uari pasuxze
+Q70_C2_3,1,diax
+Q70_C2_3,2,ara
+Q70_C3_1_3,1,deda
+Q70_C3_1_3,2,mama
+Q70_C3_1_3,3,sxva naTesavi
+Q70_C3_1_3,4,meuRle/partniori
+Q70_C3_1_3,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_1_3,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_1_3,7,ginekologi/urologi
+Q70_C3_1_3,8,sxva eqimi an eqTani
+Q70_C3_1_3,9,maswavlebeli
+Q70_C3_1_3,10,samedicino literatura
+Q70_C3_1_3,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_1_3,12,"radio, televizia"
+Q70_C3_1_3,13,interneti
+Q70_C3_1_3,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_1_3,15,miWirs pasuxis gacema
+Q70_C3_2_3,1,deda
+Q70_C3_2_3,2,mama
+Q70_C3_2_3,3,sxva naTesavi
+Q70_C3_2_3,4,meuRle/partniori
+Q70_C3_2_3,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_2_3,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_2_3,7,ginekologi/urologi
+Q70_C3_2_3,8,sxva eqimi an eqTani
+Q70_C3_2_3,9,maswavlebeli
+Q70_C3_2_3,10,samedicino literatura
+Q70_C3_2_3,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_2_3,12,"radio, televizia"
+Q70_C3_2_3,13,interneti
+Q70_C3_2_3,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_2_3,15,miWirs pasuxis gacema
+Q70_C3_3_3,1,deda
+Q70_C3_3_3,2,mama
+Q70_C3_3_3,3,sxva naTesavi
+Q70_C3_3_3,4,meuRle/partniori
+Q70_C3_3_3,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_3_3,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_3_3,7,ginekologi/urologi
+Q70_C3_3_3,8,sxva eqimi an eqTani
+Q70_C3_3_3,9,maswavlebeli
+Q70_C3_3_3,10,samedicino literatura
+Q70_C3_3_3,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_3_3,12,"radio, televizia"
+Q70_C3_3_3,13,interneti
+Q70_C3_3_3,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_3_3,15,miWirs pasuxis gacema
+Q70_C3_4_3,1,deda
+Q70_C3_4_3,2,mama
+Q70_C3_4_3,3,sxva naTesavi
+Q70_C3_4_3,4,meuRle/partniori
+Q70_C3_4_3,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_4_3,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_4_3,7,ginekologi/urologi
+Q70_C3_4_3,8,sxva eqimi an eqTani
+Q70_C3_4_3,9,maswavlebeli
+Q70_C3_4_3,10,samedicino literatura
+Q70_C3_4_3,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_4_3,12,"radio, televizia"
+Q70_C3_4_3,13,interneti
+Q70_C3_4_3,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_4_3,15,miWirs pasuxis gacema
+Q70_C3_5_3,1,deda
+Q70_C3_5_3,2,mama
+Q70_C3_5_3,3,sxva naTesavi
+Q70_C3_5_3,4,meuRle/partniori
+Q70_C3_5_3,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_5_3,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_5_3,7,ginekologi/urologi
+Q70_C3_5_3,8,sxva eqimi an eqTani
+Q70_C3_5_3,9,maswavlebeli
+Q70_C3_5_3,10,samedicino literatura
+Q70_C3_5_3,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_5_3,12,"radio, televizia"
+Q70_C3_5_3,13,interneti
+Q70_C3_5_3,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_5_3,15,miWirs pasuxis gacema
+Q70_C3_6_3,1,deda
+Q70_C3_6_3,2,mama
+Q70_C3_6_3,3,sxva naTesavi
+Q70_C3_6_3,4,meuRle/partniori
+Q70_C3_6_3,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_6_3,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_6_3,7,ginekologi/urologi
+Q70_C3_6_3,8,sxva eqimi an eqTani
+Q70_C3_6_3,9,maswavlebeli
+Q70_C3_6_3,10,samedicino literatura
+Q70_C3_6_3,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_6_3,12,"radio, televizia"
+Q70_C3_6_3,13,interneti
+Q70_C3_6_3,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_6_3,15,miWirs pasuxis gacema
+Q70_C4_3,1,diax
+Q70_C4_3,2,ara
+Q70_C5_3,1,diax
+Q70_C5_3,2,ara
+Q70_C6_3,1,diax
+Q70_C6_3,2,ara
+Q70_C6_3,3,uari pasuxze
+Q70_C2_4,1,diax
+Q70_C2_4,2,ara
+Q70_C3_1_4,1,deda
+Q70_C3_1_4,2,mama
+Q70_C3_1_4,3,sxva naTesavi
+Q70_C3_1_4,4,meuRle/partniori
+Q70_C3_1_4,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_1_4,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_1_4,7,ginekologi/urologi
+Q70_C3_1_4,8,sxva eqimi an eqTani
+Q70_C3_1_4,9,maswavlebeli
+Q70_C3_1_4,10,samedicino literatura
+Q70_C3_1_4,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_1_4,12,"radio, televizia"
+Q70_C3_1_4,13,interneti
+Q70_C3_1_4,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_1_4,15,miWirs pasuxis gacema
+Q70_C3_2_4,1,deda
+Q70_C3_2_4,2,mama
+Q70_C3_2_4,3,sxva naTesavi
+Q70_C3_2_4,4,meuRle/partniori
+Q70_C3_2_4,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_2_4,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_2_4,7,ginekologi/urologi
+Q70_C3_2_4,8,sxva eqimi an eqTani
+Q70_C3_2_4,9,maswavlebeli
+Q70_C3_2_4,10,samedicino literatura
+Q70_C3_2_4,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_2_4,12,"radio, televizia"
+Q70_C3_2_4,13,interneti
+Q70_C3_2_4,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_2_4,15,miWirs pasuxis gacema
+Q70_C3_3_4,1,deda
+Q70_C3_3_4,2,mama
+Q70_C3_3_4,3,sxva naTesavi
+Q70_C3_3_4,4,meuRle/partniori
+Q70_C3_3_4,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_3_4,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_3_4,7,ginekologi/urologi
+Q70_C3_3_4,8,sxva eqimi an eqTani
+Q70_C3_3_4,9,maswavlebeli
+Q70_C3_3_4,10,samedicino literatura
+Q70_C3_3_4,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_3_4,12,"radio, televizia"
+Q70_C3_3_4,13,interneti
+Q70_C3_3_4,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_3_4,15,miWirs pasuxis gacema
+Q70_C3_4_4,1,deda
+Q70_C3_4_4,2,mama
+Q70_C3_4_4,3,sxva naTesavi
+Q70_C3_4_4,4,meuRle/partniori
+Q70_C3_4_4,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_4_4,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_4_4,7,ginekologi/urologi
+Q70_C3_4_4,8,sxva eqimi an eqTani
+Q70_C3_4_4,9,maswavlebeli
+Q70_C3_4_4,10,samedicino literatura
+Q70_C3_4_4,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_4_4,12,"radio, televizia"
+Q70_C3_4_4,13,interneti
+Q70_C3_4_4,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_4_4,15,miWirs pasuxis gacema
+Q70_C3_5_4,1,deda
+Q70_C3_5_4,2,mama
+Q70_C3_5_4,3,sxva naTesavi
+Q70_C3_5_4,4,meuRle/partniori
+Q70_C3_5_4,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_5_4,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_5_4,7,ginekologi/urologi
+Q70_C3_5_4,8,sxva eqimi an eqTani
+Q70_C3_5_4,9,maswavlebeli
+Q70_C3_5_4,10,samedicino literatura
+Q70_C3_5_4,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_5_4,12,"radio, televizia"
+Q70_C3_5_4,13,interneti
+Q70_C3_5_4,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_5_4,15,miWirs pasuxis gacema
+Q70_C3_6_4,1,deda
+Q70_C3_6_4,2,mama
+Q70_C3_6_4,3,sxva naTesavi
+Q70_C3_6_4,4,meuRle/partniori
+Q70_C3_6_4,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_6_4,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_6_4,7,ginekologi/urologi
+Q70_C3_6_4,8,sxva eqimi an eqTani
+Q70_C3_6_4,9,maswavlebeli
+Q70_C3_6_4,10,samedicino literatura
+Q70_C3_6_4,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_6_4,12,"radio, televizia"
+Q70_C3_6_4,13,interneti
+Q70_C3_6_4,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_6_4,15,miWirs pasuxis gacema
+Q70_C4_4,1,diax
+Q70_C4_4,2,ara
+Q70_C5_4,1,diax
+Q70_C5_4,2,ara
+Q70_C6_4,1,diax
+Q70_C6_4,2,ara
+Q70_C6_4,3,uari pasuxze
+Q70_C2_5,1,diax
+Q70_C2_5,2,ara
+Q70_C3_1_5,1,deda
+Q70_C3_1_5,2,mama
+Q70_C3_1_5,3,sxva naTesavi
+Q70_C3_1_5,4,meuRle/partniori
+Q70_C3_1_5,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_1_5,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_1_5,7,ginekologi/urologi
+Q70_C3_1_5,8,sxva eqimi an eqTani
+Q70_C3_1_5,9,maswavlebeli
+Q70_C3_1_5,10,samedicino literatura
+Q70_C3_1_5,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_1_5,12,"radio, televizia"
+Q70_C3_1_5,13,interneti
+Q70_C3_1_5,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_1_5,15,miWirs pasuxis gacema
+Q70_C3_2_5,1,deda
+Q70_C3_2_5,2,mama
+Q70_C3_2_5,3,sxva naTesavi
+Q70_C3_2_5,4,meuRle/partniori
+Q70_C3_2_5,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_2_5,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_2_5,7,ginekologi/urologi
+Q70_C3_2_5,8,sxva eqimi an eqTani
+Q70_C3_2_5,9,maswavlebeli
+Q70_C3_2_5,10,samedicino literatura
+Q70_C3_2_5,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_2_5,12,"radio, televizia"
+Q70_C3_2_5,13,interneti
+Q70_C3_2_5,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_2_5,15,miWirs pasuxis gacema
+Q70_C3_3_5,1,deda
+Q70_C3_3_5,2,mama
+Q70_C3_3_5,3,sxva naTesavi
+Q70_C3_3_5,4,meuRle/partniori
+Q70_C3_3_5,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_3_5,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_3_5,7,ginekologi/urologi
+Q70_C3_3_5,8,sxva eqimi an eqTani
+Q70_C3_3_5,9,maswavlebeli
+Q70_C3_3_5,10,samedicino literatura
+Q70_C3_3_5,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_3_5,12,"radio, televizia"
+Q70_C3_3_5,13,interneti
+Q70_C3_3_5,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_3_5,15,miWirs pasuxis gacema
+Q70_C3_4_5,1,deda
+Q70_C3_4_5,2,mama
+Q70_C3_4_5,3,sxva naTesavi
+Q70_C3_4_5,4,meuRle/partniori
+Q70_C3_4_5,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_4_5,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_4_5,7,ginekologi/urologi
+Q70_C3_4_5,8,sxva eqimi an eqTani
+Q70_C3_4_5,9,maswavlebeli
+Q70_C3_4_5,10,samedicino literatura
+Q70_C3_4_5,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_4_5,12,"radio, televizia"
+Q70_C3_4_5,13,interneti
+Q70_C3_4_5,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_4_5,15,miWirs pasuxis gacema
+Q70_C3_5_5,1,deda
+Q70_C3_5_5,2,mama
+Q70_C3_5_5,3,sxva naTesavi
+Q70_C3_5_5,4,meuRle/partniori
+Q70_C3_5_5,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_5_5,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_5_5,7,ginekologi/urologi
+Q70_C3_5_5,8,sxva eqimi an eqTani
+Q70_C3_5_5,9,maswavlebeli
+Q70_C3_5_5,10,samedicino literatura
+Q70_C3_5_5,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_5_5,12,"radio, televizia"
+Q70_C3_5_5,13,interneti
+Q70_C3_5_5,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_5_5,15,miWirs pasuxis gacema
+Q70_C3_6_5,1,deda
+Q70_C3_6_5,2,mama
+Q70_C3_6_5,3,sxva naTesavi
+Q70_C3_6_5,4,meuRle/partniori
+Q70_C3_6_5,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_6_5,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_6_5,7,ginekologi/urologi
+Q70_C3_6_5,8,sxva eqimi an eqTani
+Q70_C3_6_5,9,maswavlebeli
+Q70_C3_6_5,10,samedicino literatura
+Q70_C3_6_5,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_6_5,12,"radio, televizia"
+Q70_C3_6_5,13,interneti
+Q70_C3_6_5,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_6_5,15,miWirs pasuxis gacema
+Q70_C4_5,1,diax
+Q70_C4_5,2,ara
+Q70_C5_5,1,diax
+Q70_C5_5,2,ara
+Q70_C6_5,1,diax
+Q70_C6_5,2,ara
+Q70_C6_5,3,uari pasuxze
+Q70_C2_6,1,diax
+Q70_C2_6,2,ara
+Q70_C3_1_6,1,deda
+Q70_C3_1_6,2,mama
+Q70_C3_1_6,3,sxva naTesavi
+Q70_C3_1_6,4,meuRle/partniori
+Q70_C3_1_6,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_1_6,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_1_6,7,ginekologi/urologi
+Q70_C3_1_6,8,sxva eqimi an eqTani
+Q70_C3_1_6,9,maswavlebeli
+Q70_C3_1_6,10,samedicino literatura
+Q70_C3_1_6,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_1_6,12,"radio, televizia"
+Q70_C3_1_6,13,interneti
+Q70_C3_1_6,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_1_6,15,miWirs pasuxis gacema
+Q70_C3_2_6,1,deda
+Q70_C3_2_6,2,mama
+Q70_C3_2_6,3,sxva naTesavi
+Q70_C3_2_6,4,meuRle/partniori
+Q70_C3_2_6,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_2_6,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_2_6,7,ginekologi/urologi
+Q70_C3_2_6,8,sxva eqimi an eqTani
+Q70_C3_2_6,9,maswavlebeli
+Q70_C3_2_6,10,samedicino literatura
+Q70_C3_2_6,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_2_6,12,"radio, televizia"
+Q70_C3_2_6,13,interneti
+Q70_C3_2_6,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_2_6,15,miWirs pasuxis gacema
+Q70_C3_3_6,1,deda
+Q70_C3_3_6,2,mama
+Q70_C3_3_6,3,sxva naTesavi
+Q70_C3_3_6,4,meuRle/partniori
+Q70_C3_3_6,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_3_6,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_3_6,7,ginekologi/urologi
+Q70_C3_3_6,8,sxva eqimi an eqTani
+Q70_C3_3_6,9,maswavlebeli
+Q70_C3_3_6,10,samedicino literatura
+Q70_C3_3_6,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_3_6,12,"radio, televizia"
+Q70_C3_3_6,13,interneti
+Q70_C3_3_6,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_3_6,15,miWirs pasuxis gacema
+Q70_C3_4_6,1,deda
+Q70_C3_4_6,2,mama
+Q70_C3_4_6,3,sxva naTesavi
+Q70_C3_4_6,4,meuRle/partniori
+Q70_C3_4_6,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_4_6,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_4_6,7,ginekologi/urologi
+Q70_C3_4_6,8,sxva eqimi an eqTani
+Q70_C3_4_6,9,maswavlebeli
+Q70_C3_4_6,10,samedicino literatura
+Q70_C3_4_6,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_4_6,12,"radio, televizia"
+Q70_C3_4_6,13,interneti
+Q70_C3_4_6,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_4_6,15,miWirs pasuxis gacema
+Q70_C3_5_6,1,deda
+Q70_C3_5_6,2,mama
+Q70_C3_5_6,3,sxva naTesavi
+Q70_C3_5_6,4,meuRle/partniori
+Q70_C3_5_6,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_5_6,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_5_6,7,ginekologi/urologi
+Q70_C3_5_6,8,sxva eqimi an eqTani
+Q70_C3_5_6,9,maswavlebeli
+Q70_C3_5_6,10,samedicino literatura
+Q70_C3_5_6,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_5_6,12,"radio, televizia"
+Q70_C3_5_6,13,interneti
+Q70_C3_5_6,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_5_6,15,miWirs pasuxis gacema
+Q70_C3_6_6,1,deda
+Q70_C3_6_6,2,mama
+Q70_C3_6_6,3,sxva naTesavi
+Q70_C3_6_6,4,meuRle/partniori
+Q70_C3_6_6,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_6_6,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_6_6,7,ginekologi/urologi
+Q70_C3_6_6,8,sxva eqimi an eqTani
+Q70_C3_6_6,9,maswavlebeli
+Q70_C3_6_6,10,samedicino literatura
+Q70_C3_6_6,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_6_6,12,"radio, televizia"
+Q70_C3_6_6,13,interneti
+Q70_C3_6_6,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_6_6,15,miWirs pasuxis gacema
+Q70_C4_6,1,diax
+Q70_C4_6,2,ara
+Q70_C5_6,1,diax
+Q70_C5_6,2,ara
+Q70_C6_6,1,diax
+Q70_C6_6,2,ara
+Q70_C6_6,3,uari pasuxze
+Q70_C2_7,1,diax
+Q70_C2_7,2,ara
+Q70_C3_1_7,1,deda
+Q70_C3_1_7,2,mama
+Q70_C3_1_7,3,sxva naTesavi
+Q70_C3_1_7,4,meuRle/partniori
+Q70_C3_1_7,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_1_7,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_1_7,7,ginekologi/urologi
+Q70_C3_1_7,8,sxva eqimi an eqTani
+Q70_C3_1_7,9,maswavlebeli
+Q70_C3_1_7,10,samedicino literatura
+Q70_C3_1_7,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_1_7,12,"radio, televizia"
+Q70_C3_1_7,13,interneti
+Q70_C3_1_7,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_1_7,15,miWirs pasuxis gacema
+Q70_C3_2_7,1,deda
+Q70_C3_2_7,2,mama
+Q70_C3_2_7,3,sxva naTesavi
+Q70_C3_2_7,4,meuRle/partniori
+Q70_C3_2_7,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_2_7,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_2_7,7,ginekologi/urologi
+Q70_C3_2_7,8,sxva eqimi an eqTani
+Q70_C3_2_7,9,maswavlebeli
+Q70_C3_2_7,10,samedicino literatura
+Q70_C3_2_7,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_2_7,12,"radio, televizia"
+Q70_C3_2_7,13,interneti
+Q70_C3_2_7,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_2_7,15,miWirs pasuxis gacema
+Q70_C3_3_7,1,deda
+Q70_C3_3_7,2,mama
+Q70_C3_3_7,3,sxva naTesavi
+Q70_C3_3_7,4,meuRle/partniori
+Q70_C3_3_7,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_3_7,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_3_7,7,ginekologi/urologi
+Q70_C3_3_7,8,sxva eqimi an eqTani
+Q70_C3_3_7,9,maswavlebeli
+Q70_C3_3_7,10,samedicino literatura
+Q70_C3_3_7,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_3_7,12,"radio, televizia"
+Q70_C3_3_7,13,interneti
+Q70_C3_3_7,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_3_7,15,miWirs pasuxis gacema
+Q70_C3_4_7,1,deda
+Q70_C3_4_7,2,mama
+Q70_C3_4_7,3,sxva naTesavi
+Q70_C3_4_7,4,meuRle/partniori
+Q70_C3_4_7,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_4_7,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_4_7,7,ginekologi/urologi
+Q70_C3_4_7,8,sxva eqimi an eqTani
+Q70_C3_4_7,9,maswavlebeli
+Q70_C3_4_7,10,samedicino literatura
+Q70_C3_4_7,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_4_7,12,"radio, televizia"
+Q70_C3_4_7,13,interneti
+Q70_C3_4_7,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_4_7,15,miWirs pasuxis gacema
+Q70_C3_5_7,1,deda
+Q70_C3_5_7,2,mama
+Q70_C3_5_7,3,sxva naTesavi
+Q70_C3_5_7,4,meuRle/partniori
+Q70_C3_5_7,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_5_7,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_5_7,7,ginekologi/urologi
+Q70_C3_5_7,8,sxva eqimi an eqTani
+Q70_C3_5_7,9,maswavlebeli
+Q70_C3_5_7,10,samedicino literatura
+Q70_C3_5_7,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_5_7,12,"radio, televizia"
+Q70_C3_5_7,13,interneti
+Q70_C3_5_7,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_5_7,15,miWirs pasuxis gacema
+Q70_C3_6_7,1,deda
+Q70_C3_6_7,2,mama
+Q70_C3_6_7,3,sxva naTesavi
+Q70_C3_6_7,4,meuRle/partniori
+Q70_C3_6_7,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_6_7,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_6_7,7,ginekologi/urologi
+Q70_C3_6_7,8,sxva eqimi an eqTani
+Q70_C3_6_7,9,maswavlebeli
+Q70_C3_6_7,10,samedicino literatura
+Q70_C3_6_7,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_6_7,12,"radio, televizia"
+Q70_C3_6_7,13,interneti
+Q70_C3_6_7,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_6_7,15,miWirs pasuxis gacema
+Q70_C4_7,1,diax
+Q70_C4_7,2,ara
+Q70_C5_7,1,diax
+Q70_C5_7,2,ara
+Q70_C6_7,1,diax
+Q70_C6_7,2,ara
+Q70_C6_7,3,uari pasuxze
+Q70_C2_8,1,diax
+Q70_C2_8,2,ara
+Q70_C3_1_8,1,deda
+Q70_C3_1_8,2,mama
+Q70_C3_1_8,3,sxva naTesavi
+Q70_C3_1_8,4,meuRle/partniori
+Q70_C3_1_8,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_1_8,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_1_8,7,ginekologi/urologi
+Q70_C3_1_8,8,sxva eqimi an eqTani
+Q70_C3_1_8,9,maswavlebeli
+Q70_C3_1_8,10,samedicino literatura
+Q70_C3_1_8,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_1_8,12,"radio, televizia"
+Q70_C3_1_8,13,interneti
+Q70_C3_1_8,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_1_8,15,miWirs pasuxis gacema
+Q70_C3_2_8,1,deda
+Q70_C3_2_8,2,mama
+Q70_C3_2_8,3,sxva naTesavi
+Q70_C3_2_8,4,meuRle/partniori
+Q70_C3_2_8,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_2_8,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_2_8,7,ginekologi/urologi
+Q70_C3_2_8,8,sxva eqimi an eqTani
+Q70_C3_2_8,9,maswavlebeli
+Q70_C3_2_8,10,samedicino literatura
+Q70_C3_2_8,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_2_8,12,"radio, televizia"
+Q70_C3_2_8,13,interneti
+Q70_C3_2_8,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_2_8,15,miWirs pasuxis gacema
+Q70_C3_3_8,1,deda
+Q70_C3_3_8,2,mama
+Q70_C3_3_8,3,sxva naTesavi
+Q70_C3_3_8,4,meuRle/partniori
+Q70_C3_3_8,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_3_8,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_3_8,7,ginekologi/urologi
+Q70_C3_3_8,8,sxva eqimi an eqTani
+Q70_C3_3_8,9,maswavlebeli
+Q70_C3_3_8,10,samedicino literatura
+Q70_C3_3_8,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_3_8,12,"radio, televizia"
+Q70_C3_3_8,13,interneti
+Q70_C3_3_8,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_3_8,15,miWirs pasuxis gacema
+Q70_C3_4_8,1,deda
+Q70_C3_4_8,2,mama
+Q70_C3_4_8,3,sxva naTesavi
+Q70_C3_4_8,4,meuRle/partniori
+Q70_C3_4_8,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_4_8,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_4_8,7,ginekologi/urologi
+Q70_C3_4_8,8,sxva eqimi an eqTani
+Q70_C3_4_8,9,maswavlebeli
+Q70_C3_4_8,10,samedicino literatura
+Q70_C3_4_8,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_4_8,12,"radio, televizia"
+Q70_C3_4_8,13,interneti
+Q70_C3_4_8,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_4_8,15,miWirs pasuxis gacema
+Q70_C3_5_8,1,deda
+Q70_C3_5_8,2,mama
+Q70_C3_5_8,3,sxva naTesavi
+Q70_C3_5_8,4,meuRle/partniori
+Q70_C3_5_8,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_5_8,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_5_8,7,ginekologi/urologi
+Q70_C3_5_8,8,sxva eqimi an eqTani
+Q70_C3_5_8,9,maswavlebeli
+Q70_C3_5_8,10,samedicino literatura
+Q70_C3_5_8,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_5_8,12,"radio, televizia"
+Q70_C3_5_8,13,interneti
+Q70_C3_5_8,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_5_8,15,miWirs pasuxis gacema
+Q70_C3_6_8,1,deda
+Q70_C3_6_8,2,mama
+Q70_C3_6_8,3,sxva naTesavi
+Q70_C3_6_8,4,meuRle/partniori
+Q70_C3_6_8,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_6_8,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_6_8,7,ginekologi/urologi
+Q70_C3_6_8,8,sxva eqimi an eqTani
+Q70_C3_6_8,9,maswavlebeli
+Q70_C3_6_8,10,samedicino literatura
+Q70_C3_6_8,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_6_8,12,"radio, televizia"
+Q70_C3_6_8,13,interneti
+Q70_C3_6_8,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_6_8,15,miWirs pasuxis gacema
+Q70_C4_8,1,diax
+Q70_C4_8,2,ara
+Q70_C5_8,1,diax
+Q70_C5_8,2,ara
+Q70_C6_8,1,diax
+Q70_C6_8,2,ara
+Q70_C6_8,3,uari pasuxze
+Q70_C2_9,1,diax
+Q70_C2_9,2,ara
+Q70_C3_1_9,1,deda
+Q70_C3_1_9,2,mama
+Q70_C3_1_9,3,sxva naTesavi
+Q70_C3_1_9,4,meuRle/partniori
+Q70_C3_1_9,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_1_9,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_1_9,7,ginekologi/urologi
+Q70_C3_1_9,8,sxva eqimi an eqTani
+Q70_C3_1_9,9,maswavlebeli
+Q70_C3_1_9,10,samedicino literatura
+Q70_C3_1_9,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_1_9,12,"radio, televizia"
+Q70_C3_1_9,13,interneti
+Q70_C3_1_9,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_1_9,15,miWirs pasuxis gacema
+Q70_C3_2_9,1,deda
+Q70_C3_2_9,2,mama
+Q70_C3_2_9,3,sxva naTesavi
+Q70_C3_2_9,4,meuRle/partniori
+Q70_C3_2_9,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_2_9,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_2_9,7,ginekologi/urologi
+Q70_C3_2_9,8,sxva eqimi an eqTani
+Q70_C3_2_9,9,maswavlebeli
+Q70_C3_2_9,10,samedicino literatura
+Q70_C3_2_9,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_2_9,12,"radio, televizia"
+Q70_C3_2_9,13,interneti
+Q70_C3_2_9,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_2_9,15,miWirs pasuxis gacema
+Q70_C3_3_9,1,deda
+Q70_C3_3_9,2,mama
+Q70_C3_3_9,3,sxva naTesavi
+Q70_C3_3_9,4,meuRle/partniori
+Q70_C3_3_9,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_3_9,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_3_9,7,ginekologi/urologi
+Q70_C3_3_9,8,sxva eqimi an eqTani
+Q70_C3_3_9,9,maswavlebeli
+Q70_C3_3_9,10,samedicino literatura
+Q70_C3_3_9,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_3_9,12,"radio, televizia"
+Q70_C3_3_9,13,interneti
+Q70_C3_3_9,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_3_9,15,miWirs pasuxis gacema
+Q70_C3_4_9,1,deda
+Q70_C3_4_9,2,mama
+Q70_C3_4_9,3,sxva naTesavi
+Q70_C3_4_9,4,meuRle/partniori
+Q70_C3_4_9,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_4_9,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_4_9,7,ginekologi/urologi
+Q70_C3_4_9,8,sxva eqimi an eqTani
+Q70_C3_4_9,9,maswavlebeli
+Q70_C3_4_9,10,samedicino literatura
+Q70_C3_4_9,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_4_9,12,"radio, televizia"
+Q70_C3_4_9,13,interneti
+Q70_C3_4_9,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_4_9,15,miWirs pasuxis gacema
+Q70_C3_5_9,1,deda
+Q70_C3_5_9,2,mama
+Q70_C3_5_9,3,sxva naTesavi
+Q70_C3_5_9,4,meuRle/partniori
+Q70_C3_5_9,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_5_9,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_5_9,7,ginekologi/urologi
+Q70_C3_5_9,8,sxva eqimi an eqTani
+Q70_C3_5_9,9,maswavlebeli
+Q70_C3_5_9,10,samedicino literatura
+Q70_C3_5_9,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_5_9,12,"radio, televizia"
+Q70_C3_5_9,13,interneti
+Q70_C3_5_9,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_5_9,15,miWirs pasuxis gacema
+Q70_C3_6_9,1,deda
+Q70_C3_6_9,2,mama
+Q70_C3_6_9,3,sxva naTesavi
+Q70_C3_6_9,4,meuRle/partniori
+Q70_C3_6_9,5,"megobrebi, kolegebi, klaselebi"
+Q70_C3_6_9,6,ojaxis dagegmvis dawesebuleba
+Q70_C3_6_9,7,ginekologi/urologi
+Q70_C3_6_9,8,sxva eqimi an eqTani
+Q70_C3_6_9,9,maswavlebeli
+Q70_C3_6_9,10,samedicino literatura
+Q70_C3_6_9,11,"gazeTebi, broSurebi, Jurnalebi"
+Q70_C3_6_9,12,"radio, televizia"
+Q70_C3_6_9,13,interneti
+Q70_C3_6_9,14,sxva (CawereT Sesabamis grafaSi)
+Q70_C3_6_9,15,miWirs pasuxis gacema
+Q70_C4_9,1,diax
+Q70_C4_9,2,ara
+Q70_C5_9,1,diax
+Q70_C5_9,2,ara
+Q70_C6_9,1,diax
+Q70_C6_9,2,ara
+Q70_C6_9,3,uari pasuxze
+Q71,1,diax
+Q71,2,ara
+Q71,3,ar vici
+Q72,1,diax
+Q72,2,ara
+Q74,1,erTi cocxladSobili bavSvi
+Q74,2,cocxladSobili tyupebi
+Q74,3,tyupebi cocxal da mkvdradSobili
+Q74,4,erTi mkvdradSobili bavSvi
+Q74,5,mkvdradSobili tyupebi
+Q74,6,TviTneburi aborti (muclis moSla)
+Q74,7,miniaborti
+Q74,8,xelovnuri aborti
+Q74,9,xelovnuri mSobiaroba
+Q74,10,saSvilosnosgare orsuloba
+Q75,1,ar iyo arasasurveli orsuloba
+Q75,2,ar vicodi rogor amecilebina Tavidan orsuloba
+Q75,3,CvenTan ar aris miRebuli Casaxvis sawinaaRmdego saSualebebis gamoyeneba
+Q75,4,partniors ar undoda gamoeyenebina prezervativi
+Q75,5,"sakiTxisadmi araseriozuli damokidebuleba (icis prevenciuli zomebis Sesaxeb, magram ar iyenebs)"
+Q75,6,sxva mizezi
+Q76_R1,1,sruliad ar veTanxmebi
+Q76_R1,2,ufro ar veTanxmebi
+Q76_R1,3,neitraluri
+Q76_R1,4,ufro veTanxmebi
+Q76_R1,5,sruliad veTanxmebi
+Q76_R1,6,miWirs p. g./uari pasuxze
+Q76_R2,1,sruliad ar veTanxmebi
+Q76_R2,2,ufro ar veTanxmebi
+Q76_R2,3,neitraluri
+Q76_R2,4,ufro veTanxmebi
+Q76_R2,5,sruliad veTanxmebi
+Q76_R2,6,miWirs p. g./uari pasuxze
+Q76_R3,1,sruliad ar veTanxmebi
+Q76_R3,2,ufro ar veTanxmebi
+Q76_R3,3,neitraluri
+Q76_R3,4,ufro veTanxmebi
+Q76_R3,5,sruliad veTanxmebi
+Q76_R3,6,miWirs p. g./uari pasuxze
+Q76_R4,1,sruliad ar veTanxmebi
+Q76_R4,2,ufro ar veTanxmebi
+Q76_R4,3,neitraluri
+Q76_R4,4,ufro veTanxmebi
+Q76_R4,5,sruliad veTanxmebi
+Q76_R4,6,miWirs p. g./uari pasuxze
+Q76_R5,1,sruliad ar veTanxmebi
+Q76_R5,2,ufro ar veTanxmebi
+Q76_R5,3,neitraluri
+Q76_R5,4,ufro veTanxmebi
+Q76_R5,5,sruliad veTanxmebi
+Q76_R5,6,miWirs p. g./uari pasuxze
+Q76_R6,1,sruliad ar veTanxmebi
+Q76_R6,2,ufro ar veTanxmebi
+Q76_R6,3,neitraluri
+Q76_R6,4,ufro veTanxmebi
+Q76_R6,5,sruliad veTanxmebi
+Q76_R6,6,miWirs p. g./uari pasuxze
+Q76_R7,1,sruliad ar veTanxmebi
+Q76_R7,2,ufro ar veTanxmebi
+Q76_R7,3,neitraluri
+Q76_R7,4,ufro veTanxmebi
+Q76_R7,5,sruliad veTanxmebi
+Q76_R7,6,miWirs p. g./uari pasuxze
+Q76_R8,1,sruliad ar veTanxmebi
+Q76_R8,2,ufro ar veTanxmebi
+Q76_R8,3,neitraluri
+Q76_R8,4,ufro veTanxmebi
+Q76_R8,5,sruliad veTanxmebi
+Q76_R8,6,miWirs p. g./uari pasuxze
+Q76_R9,1,sruliad ar veTanxmebi
+Q76_R9,2,ufro ar veTanxmebi
+Q76_R9,3,neitraluri
+Q76_R9,4,ufro veTanxmebi
+Q76_R9,5,sruliad veTanxmebi
+Q76_R9,6,miWirs p. g./uari pasuxze
+Q76_R10,1,sruliad ar veTanxmebi
+Q76_R10,2,ufro ar veTanxmebi
+Q76_R10,3,neitraluri
+Q76_R10,4,ufro veTanxmebi
+Q76_R10,5,sruliad veTanxmebi
+Q76_R10,6,miWirs p. g./uari pasuxze
+Q77_1,1,ara
+Q77_1,2,diax
+Q77_2,1,ara
+Q77_2,2,diax
+Q77_3,1,ara
+Q77_3,2,diax
+Q77_4,1,ara
+Q77_4,2,diax
+Q77_5,1,ara
+Q77_5,2,diax
+Q77_6,1,ara
+Q77_6,2,diax
+Q77_7,1,ara
+Q77_7,2,diax
+Q77_8,1,ara
+Q77_8,2,diax
+Q77_9,1,ara
+Q77_9,2,diax
+Q77_10,1,ara
+Q77_10,2,diax
+Q78_R1,1,diax
+Q78_R1,2,nawilobriv
+Q78_R1,3,ara
+Q78_R1,4,miWirs pasuxis gacema
+Q78_R2,1,diax
+Q78_R2,2,nawilobriv
+Q78_R2,3,ara
+Q78_R2,4,miWirs pasuxis gacema
+Q78_R3,1,diax
+Q78_R3,2,nawilobriv
+Q78_R3,3,ara
+Q78_R3,4,miWirs pasuxis gacema
+Q78_R4,1,diax
+Q78_R4,2,nawilobriv
+Q78_R4,3,ara
+Q78_R4,4,miWirs pasuxis gacema
+Q78_R5,1,diax
+Q78_R5,2,nawilobriv
+Q78_R5,3,ara
+Q78_R5,4,miWirs pasuxis gacema
+Q79,1,mniSvnelovnad Semcirda
+Q79,2,Semcirda
+Q79,3,ar Secvlila
+Q79,4,gaizarda
+Q79,5,mniSvnelovnad gaizarda
+Q79,6,ar vici/miWirs pasuxis gacema
+Q80_R1,1,diax
+Q80_R1,2,ara
+Q80_R1,3,ar var darwmunebuli/miWirs pasuxis gacema
+Q80_R1,4,uari pasuxze
+Q80_R2,1,diax
+Q80_R2,2,ara
+Q80_R2,3,ar var darwmunebuli/miWirs pasuxis gacema
+Q80_R2,4,uari pasuxze
+Q80_R3,1,diax
+Q80_R3,2,ara
+Q80_R3,3,ar var darwmunebuli/miWirs pasuxis gacema
+Q80_R3,4,uari pasuxze
+Q80_R4,1,diax
+Q80_R4,2,ara
+Q80_R4,3,ar var darwmunebuli/miWirs pasuxis gacema
+Q80_R4,4,uari pasuxze
+Q80_R5,1,diax
+Q80_R5,2,ara
+Q80_R5,3,ar var darwmunebuli/miWirs pasuxis gacema
+Q80_R5,4,uari pasuxze
+Q81_R1,1,sruliad ar veTanxmebi
+Q81_R1,2,ufro ar veTanxmebi
+Q81_R1,3,neitraluri
+Q81_R1,4,ufro veTanxmebi
+Q81_R1,5,sruliad veTanxmebi
+Q81_R1,6,miWirs p. g./uari pasuxze
+Q81_R2,1,sruliad ar veTanxmebi
+Q81_R2,2,ufro ar veTanxmebi
+Q81_R2,3,neitraluri
+Q81_R2,4,ufro veTanxmebi
+Q81_R2,5,sruliad veTanxmebi
+Q81_R2,6,miWirs p. g./uari pasuxze
+Q81_R3,1,sruliad ar veTanxmebi
+Q81_R3,2,ufro ar veTanxmebi
+Q81_R3,3,neitraluri
+Q81_R3,4,ufro veTanxmebi
+Q81_R3,5,sruliad veTanxmebi
+Q81_R3,6,miWirs p. g./uari pasuxze
+Q81_R4,1,sruliad ar veTanxmebi
+Q81_R4,2,ufro ar veTanxmebi
+Q81_R4,3,neitraluri
+Q81_R4,4,ufro veTanxmebi
+Q81_R4,5,sruliad veTanxmebi
+Q81_R4,6,miWirs p. g./uari pasuxze
+Q81_R5,1,sruliad ar veTanxmebi
+Q81_R5,2,ufro ar veTanxmebi
+Q81_R5,3,neitraluri
+Q81_R5,4,ufro veTanxmebi
+Q81_R5,5,sruliad veTanxmebi
+Q81_R5,6,miWirs p. g./uari pasuxze
+Q81_R6,1,sruliad ar veTanxmebi
+Q81_R6,2,ufro ar veTanxmebi
+Q81_R6,3,neitraluri
+Q81_R6,4,ufro veTanxmebi
+Q81_R6,5,sruliad veTanxmebi
+Q81_R6,6,miWirs p. g./uari pasuxze
+Q81_R7,1,sruliad ar veTanxmebi
+Q81_R7,2,ufro ar veTanxmebi
+Q81_R7,3,neitraluri
+Q81_R7,4,ufro veTanxmebi
+Q81_R7,5,sruliad veTanxmebi
+Q81_R7,6,miWirs p. g./uari pasuxze
+Q81_R8,1,sruliad ar veTanxmebi
+Q81_R8,2,ufro ar veTanxmebi
+Q81_R8,3,neitraluri
+Q81_R8,4,ufro veTanxmebi
+Q81_R8,5,sruliad veTanxmebi
+Q81_R8,6,miWirs p. g./uari pasuxze
+Q81_R9,1,sruliad ar veTanxmebi
+Q81_R9,2,ufro ar veTanxmebi
+Q81_R9,3,neitraluri
+Q81_R9,4,ufro veTanxmebi
+Q81_R9,5,sruliad veTanxmebi
+Q81_R9,6,miWirs p. g./uari pasuxze
+Q81_R10,1,sruliad ar veTanxmebi
+Q81_R10,2,ufro ar veTanxmebi
+Q81_R10,3,neitraluri
+Q81_R10,4,ufro veTanxmebi
+Q81_R10,5,sruliad veTanxmebi
+Q81_R10,6,miWirs p. g./uari pasuxze
+Q81_R11,1,sruliad ar veTanxmebi
+Q81_R11,2,ufro ar veTanxmebi
+Q81_R11,3,neitraluri
+Q81_R11,4,ufro veTanxmebi
+Q81_R11,5,sruliad veTanxmebi
+Q81_R11,6,miWirs p. g./uari pasuxze
+Q81_R12,1,sruliad ar veTanxmebi
+Q81_R12,2,ufro ar veTanxmebi
+Q81_R12,3,neitraluri
+Q81_R12,4,ufro veTanxmebi
+Q81_R12,5,sruliad veTanxmebi
+Q81_R12,6,miWirs p. g./uari pasuxze
+Q81_R13,1,sruliad ar veTanxmebi
+Q81_R13,2,ufro ar veTanxmebi
+Q81_R13,3,neitraluri
+Q81_R13,4,ufro veTanxmebi
+Q81_R13,5,sruliad veTanxmebi
+Q81_R13,6,miWirs p. g./uari pasuxze
+Q81_R14,1,sruliad ar veTanxmebi
+Q81_R14,2,ufro ar veTanxmebi
+Q81_R14,3,neitraluri
+Q81_R14,4,ufro veTanxmebi
+Q81_R14,5,sruliad veTanxmebi
+Q81_R14,6,miWirs p. g./uari pasuxze
+Q82,1,diax
+Q82,2,ara
+Q83,1,kviraSi 2-dan 3 saaTamde
+Q83,2,kviraSi 3-dan 5 saaTamde
+Q83,3,kviraSi 5 saaTi da meti
+Q84,1,kviraSi 1 varjiSi
+Q84,2,kviraSi 2-3 varjiSi
+Q84,3,kviraSi 4 da meti varjiSi
+Q85_1,1,ara
+Q85_1,2,diax
+Q85_2,1,ara
+Q85_2,2,diax
+Q85_3,1,ara
+Q85_3,2,diax
+Q85_4,1,ara
+Q85_4,2,diax
+Q85_5,1,ara
+Q85_5,2,diax
+Q85_6,1,ara
+Q85_6,2,diax
+Q85_7,1,ara
+Q85_7,2,diax
+Q86,1,diax
+Q86,2,ara
+Q87_1,1,ara
+Q87_1,2,diax
+Q87_2,1,ara
+Q87_2,2,diax
+Q87_3,1,ara
+Q87_3,2,diax
+Q87_4,1,ara
+Q87_4,2,diax
+Q87_5,1,ara
+Q87_5,2,diax
+Q87_6,1,ara
+Q87_6,2,diax
+Q87_7,1,ara
+Q87_7,2,diax
+Q87_8,1,ara
+Q87_8,2,diax
+Q87_9,1,ara
+Q87_9,2,diax
+Q87_10,1,ara
+Q87_10,2,diax
+Q87_11,1,ara
+Q87_11,2,diax
+Q87_12,1,ara
+Q87_12,2,diax
+Q87_13,1,ara
+Q87_13,2,diax
+Q87_14,1,ara
+Q87_14,2,diax
+Q87_15,1,ara
+Q87_15,2,diax
+Q87_16,1,ara
+Q87_16,2,diax
+Q87_17,1,ara
+Q87_17,2,diax
+Q87_18,1,ara
+Q87_18,2,diax
+Q87_19,1,ara
+Q87_19,2,diax
+Q87_20,1,ara
+Q87_20,2,diax
+Q87_21,1,ara
+Q87_21,2,diax
+Q87_22,1,ara
+Q87_22,2,diax
+Q87_23,1,ara
+Q87_23,2,diax
+Q87_24,1,ara
+Q87_24,2,diax
+Q87_25,1,ara
+Q87_25,2,diax
+Q87_26,1,ara
+Q87_26,2,diax
+Q87_27,1,ara
+Q87_27,2,diax
+Q87_28,1,ara
+Q87_28,2,diax
+Q87_29,1,ara
+Q87_29,2,diax
+Q87_30,1,ara
+Q87_30,2,diax
+Q87_31,1,ara
+Q87_31,2,diax
+Q87_32,1,ara
+Q87_32,2,diax
+Q87_33,1,ara
+Q87_33,2,diax
+Q87_34,1,ara
+Q87_34,2,diax
+Q87_35,1,ara
+Q87_35,2,diax
+Q87_36,1,ara
+Q87_36,2,diax
+Q87_37,1,ara
+Q87_37,2,diax
+Q88_1,1,ara
+Q88_1,2,diax
+Q88_2,1,ara
+Q88_2,2,diax
+Q88_3,1,ara
+Q88_3,2,diax
+Q88_4,1,ara
+Q88_4,2,diax
+Q88_5,1,ara
+Q88_5,2,diax
+Q88_6,1,ara
+Q88_6,2,diax
+Q88_7,1,ara
+Q88_7,2,diax
+Q88_8,1,ara
+Q88_8,2,diax
+Q88_9,1,ara
+Q88_9,2,diax
+Q89,1,diax
+Q89,2,ara
+Q91_1,1,ara
+Q91_1,2,diax
+Q91_2,1,ara
+Q91_2,2,diax
+Q91_3,1,ara
+Q91_3,2,diax
+Q91_4,1,ara
+Q91_4,2,diax
+Q91_5,1,ara
+Q91_5,2,diax
+Q91_6,1,ara
+Q91_6,2,diax
+Q91_7,1,ara
+Q91_7,2,diax
+Q91_8,1,ara
+Q91_8,2,diax
+Q91_9,1,ara
+Q91_9,2,diax
+Q91_10,1,ara
+Q91_10,2,diax
+Q91_11,1,ara
+Q91_11,2,diax
+Q91_12,1,ara
+Q91_12,2,diax
+Q92,1,diax
+Q92,2,ara
+Q93,1,diax
+Q93,2,ara
+Q93,3,ar maxsovs/miWirs pasuxis gacema
+Q94_1,1,ara
+Q94_1,2,diax
+Q94_2,1,ara
+Q94_2,2,diax
+Q94_3,1,ara
+Q94_3,2,diax
+Q94_4,1,ara
+Q94_4,2,diax
+Q94_5,1,ara
+Q94_5,2,diax
+Q94_6,1,ara
+Q94_6,2,diax
+Q96_1,1,ara
+Q96_1,2,diax
+Q96_2,1,ara
+Q96_2,2,diax
+Q96_3,1,ara
+Q96_3,2,diax
+Q96_4,1,ara
+Q96_4,2,diax
+Q96_5,1,ara
+Q96_5,2,diax
+Q96_6,1,ara
+Q96_6,2,diax
+Q96_7,1,ara
+Q96_7,2,diax
+Q96_8,1,ara
+Q96_8,2,diax
+Q96_9,1,ara
+Q96_9,2,diax
+Q96_10,1,ara
+Q96_10,2,diax
+Q96_11,1,ara
+Q96_11,2,diax
+Q96_12,1,ara
+Q96_12,2,diax
+Q96_13,1,ara
+Q96_13,2,diax
+Q96_14,1,ara
+Q96_14,2,diax
+Q96_15,1,ara
+Q96_15,2,diax
+Q96_16,1,ara
+Q96_16,2,diax
+Q96_17,1,ara
+Q96_17,2,diax
+Q97,1,informacia sandoa
+Q97,2,informacia metnaklebad sandoa
+Q97,3,informacia naklebad sandoa
+Q97,4,informacia sando ar aris

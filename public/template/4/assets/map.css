@@ -1,0 +1,43 @@
+.road {
+  stroke-dasharray: 3242;
+  stroke-dashoffset: 3242;
+  stroke-width: 5px;
+  stroke: #d42f33;
+}
+g[data-point] text,
+g[data-point] text tspan  {
+  fill:#7f7f7f;
+}
+g[data-point]:hover,
+.finish:hover {
+  cursor:pointer;
+}
+g[data-point]:hover > path {
+  fill:#262626;
+}
+g[data-point]:hover text,
+g[data-point]:hover text tspan {
+  fill:#000;
+}
+g[data-point]:hover .start circle {
+  stroke:#262626;
+}
+.finish:hover circle {
+  stroke:#262626;
+}
+/*svg .point:hover {
+
+}
+  svg .point +
+svg g[data-point] text:hover {
+  fill:#000;
+}
+g[data-point] .point {
+  fill:#fff;
+  stroke:#d42f33;
+  cursor:pointer;
+}
+g.hover text {
+  fill:#000;
+}
+*/

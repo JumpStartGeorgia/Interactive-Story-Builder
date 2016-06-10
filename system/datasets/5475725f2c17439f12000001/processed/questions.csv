@@ -1,0 +1,371 @@
+COUNTRY,Country code,country
+ID,Case ID,
+RESPONSE,Response status,res
+STRATUM,Stratum,stratum
+RESPSEX,Respondent's sex,sex
+RESPAGE,Respondent's age,age
+ACTPBLM,Activities during last 6 months:  Attended a public meeting,q1
+ACTMEDIA,"Activities during last 6 months:  Written a letter/called a newspaper, TV/radio",q1
+ACTINTNT,Activities during last 6 months:  Made a comment in the Internet,q1
+ACTREST,Activities during last 6 months:  Went to a restaurant,q1
+ACTCHAR,Activities during last 6 months:  Made a contribution to a charity,q1
+ACTVLNT,Activities during last 6 months:  Volunteered without compensation,q1
+ACTDNCH,Activities during last 6 months:  Donated money to a church / mosque,q1
+ACTTHEA,Activities during last 6 months:  Went to a theatre / cinema,q1
+ACTRESDT,Activities during last 6 months:  Helped someone to resolve a dispute,q1
+ACTCHORE,Activities during last 6 months:  Helped a neighbor/friend with HH chores,q1
+ACTCLEAN,Activities during last 6 months:  Cleaned/helped to clean public space,q1
+ACTSPET,"Activities during last 6 months:  Signed a petition, including online petitions",q1
+RATEHAP,How happy would you say you are?,n1
+GALLTRU,Most people can be trusted?,n2
+HLTHRAT,How would you rate your health?,n3
+NUMCIGW,How many cigarettes do you smoke per week?,n4
+REGEXCER,"Are you currently exercising on a regular basis, for at least 2 hours per week?",n5
+DISCPRPR,Frequency of discussing private problems with close relatives and friends,n6
+BUSINUSA,Approval of doing business with Americans,n7
+BUSINARM,Approval of doing business with Armenians,n7
+BUSINAZE,Approval of doing business with Azerbaijanis,n7
+BUSINEUR,Approval of doing business with Europeans,n7
+BUSINGEO,Approval of doing business with Georgians,n7
+BUSINIRA,Approval of doing business with Iranians,n7
+BUSINJEW,Approval of doing business with Jews,n7
+BUSINKUR,"Approval of doing business with Kurds, Yezidis",n7
+BUSINRUS,Approval of doing business with Russians,n7
+BUSINTUR,Approval of doing business with Turks,n7
+BUSINABK,Approval of doing business with Abkhazians,n7
+BUSINOSS,Approval of doing business with Ossetians,n7
+BUSINARG,Approval of doing business with Armenians living in Georgia,n7
+BUSINAZG,Approval of doing business with Azerbaijanis living in Georgia,n7
+BUSINMOL,Approval of doing business with Molokans,n7
+MARWUSA,Approval of women marrying  Americans,n8
+MARWARM,Approval of women marrying  Armenians,n8
+MARWAZE,Approval of women marrying  Azerbaijanis,n8
+MARWEUR,Approval of women marrying  Europeans,n8
+MARWGEO,Approval of women marrying  Georgians,n8
+MARWIRA,Approval of women marrying  Iranians,n8
+MARWJEW,Approval of women marrying  Jews,n8
+MARWKUR,"Approval of women marrying  Kurds, Yezidis",n8
+MARWRUS,Approval of women marrying  Russians,n8
+MARWTUR,Approval of women marrying  Turks,n8
+MARWABK,Approval of women marrying  Abkhazians,n8
+MARWOSS,Approval of women marrying  Ossetians,n8
+MARWARG,Approval of women marrying  Armenians living in Georgia,n8
+MARWAZG,Approval of women marrying  Azerbaijanis living in Georgia,n8
+MARWMOL,Approval of women marrying Molokans,n8
+FAMCLAB,Have family member or close relative currently living abroad?,n9
+CLFRDAB,Have any close friends currently living abroad?,n10
+FATEINLF,Perception of fatalism,n11
+LIFESAT,Overall life satisfaction,n12
+EXPREPN,Expectation: Close people will help repair apartment/house,n13
+EXPILL,Expectation: Close people take care when ill,n13
+EXPMON,Expectation: Close people lend money for a month for usual expenses,n13
+JUSDVRS,Justification: Getting a divorce,n14
+JUSABOR,Justification: Having an abortion,n14
+JUSSPOUS,Justification: Cheating on one's spouse,n14
+TRUGOCH,Level of trust in Georgian Orthodox church,n15
+EMPLSIT,Primary activity or situation,j1
+UNEMYRS,Year since unemployed,j2
+INTSTJOB,Interested in a job?,j3
+LOOKJOB,Looking for a job during the past 4 weeks,j4
+JOBSTART,Able to start working within the next 14 days,j5
+WORKTYP,Status and type of primary workplace,j6
+WORKYRS,Year from which employed at primary workplace,j7
+WORKSEC,Primary employment sector,j8
+JOBDESC,Which of the following best describes the job you do?,j9
+JOBSATFN,Overall job satisfaction,j10
+WORKVAL,I feel valued at work,j11
+FAIRCOM,I am fairly compensated,j11
+JBNEEDED,I am doing something that many people need,j11
+PERSINC,Personal income last month,j12
+SAVPERS,Do you have any personal savings?,j13
+DEBTPERS,Do you have any personal debts?,j14
+OWEMON,Does anybody owe you money?,j15
+BANKACC,Do you have a bank account or a bank card?,j16
+NEWHHJOB,Anyone in the HH started a new job in the last 12 months?,j17
+JOBLOST,Anyone in the HH lost job in the last 12 month?,j18
+WORKRLT,Done work for your family's or close relatives' business?,j19
+GETJOBF,The most important factor for getting a good job,j20
+POLDIRN,Direction in which the country's domestic politics are going,p1
+QUALINF,How well journalists in your country inform the population,p2
+ROTCODE,Rotation code,p3rt
+TRUHLTH,Trust - Healthcare system,p3
+TRUBANK,Trust - Banks,p3
+TRUEDUC,Trust - Educational system,p3
+TRUSADC,Trust - State Students Admisstions Committee,p3
+TRUARMY,Trust - Army,p3
+TRUCRTS,Trust - Court system,p3
+TRUNGOS,Trust - NGOs,p3
+TRUPARL,Trust - Parliament,p3
+TRUEXEC,Trust - Executive government,p3
+TRUPRES,Trust - President,p3
+TRUPOLI,Trust - Police,p3
+TRUPPS,Trust - Political parties,p3
+TRUMEDI,Trust - Media,p3
+TRULOCG,Trust - Local government,p3
+TRURELI,Trust - Religious institutions respondent belongs to,p3
+TRUOMB,Trust - Ombudsman,p3
+TRUSTEU,Trust - EU,p3
+TRUSTUN,Trust - UN,p3
+IMPISS1,Most important issue facing the country,p4
+IMPISS2,Second most important issue facing the country,p5
+DISCPOL,How often do you discuss politics/current events with friends/close relatives?,p6
+FAIRTRT,People are treated fairly by the government,p7
+FREESPK,People have the right to openly say what they think,p8
+GOVTROL,Government should be like a parent VS Government should be like an employee,p9
+OWNRSHP,Private ownership of business VS Government ownership of business,p10
+OBJCOUR,Court system favors some citizens VS treats all equally,p11
+PROTEST,People should VS People should not participate in protest actions,p12
+VOTPRCP,Would you participate in presidential elections next Sunday?,p13
+VOTLELE,Did you vote in the last national elections?,p14
+ELCOND,Fairness of the most recent national elections,p15
+ICITLAW,Important for a good citizen - always obey laws,p16
+ICITGOV,Important for a good citizen - support the government on every occasion,p16
+ICITVOTE,Important for a good citizen - vote in elections,p16
+ICITTRAD,Important for a good citizen - follow traditions,p16
+IMPGCVW,Important for a good citizen - do volunteer work,p16
+ICITHELP,Important for a good citizen - support people who are worse off,p16
+ICITOPP,Important for a good citizen - be critical towards the government,p16
+CNTRDEM,How much of a democracy is country today?,p17
+ATTDEM,Attitude towards democracy,p18
+NATOSUPP,Support of country's membership in NATO,p19
+EUSUPP,Support of country's membership in EU,p20
+EECSUPP,Support of country's membership in Eurasian Economic Community,p21
+MAINFRN,Main friend of the country,p22p23
+MAINENEM,Main enemy of the country,p22p23
+ETHNIC,Respondent's ethnicity,d1
+PROUDETH,How proud or how not proud are you to be part of this ethnic group?,d2
+EDUYRS,Years of formal education you completed,d3
+RESPEDU,Highest level of education you have achieved,d4
+RFAEDUC,Highest level of education your father has achieved,d5
+RMOEDUC,Highest level of education your mother has achieved,d6
+KNOWRUS,Knowledge of Russian,d7
+KNOWENG,Knowledge of English,d7
+KNOWOTH,Knowledge of other foreign language,d7
+COMPABL,Knowledge of computer,d7
+FLMANDSC,Which foreign language should be mandatory at schools?,d8
+UNIVADM,What is the best way to organize admissions to the universities in your country?,d9
+FRQINTR,Frequency of internet usage,d10
+NOINTWHY,Main reason for not using internet,d11
+INTACEM,Most frequent internet activities - Receive / send emails,d12
+INTASCNA,Most frequent internet activities - Use social networking sites,d12
+INTASKY,Most frequent internet activities - Use Skype,d12
+INTAIMSG,Most frequent internet activities - Use instant messenger (EXCEPT Skype),d12
+INTACFD,Most frequent internet activities - Engage in forum discussions,d12
+INTACBL,Most frequent internet activities - Write / read other's blogs,d12
+INTACIN,Most frequent internet activities - Search for information,d12
+INTACSH,Most frequent internet activities - Shop,d12
+INTACNW,Most frequent internet activities - Read / listen to / watch the news,d12
+INTACEN,Most frequent internet activities - Download / Listen/watch music/videos,d12
+INTACGM,Most frequent internet activities - Play online games,d12
+INTACDW,Most frequent internet activities - Visit dating websites,d12
+INTACOT,Most frequent internet activities - Other,d12
+USEFBWK,Do you use Facebook at least once a week?,d13
+NUMFBFR,How many friends do you currently have on Facebook?,d14
+FBACTVT,"What do you do most frequently, when you are actually on Facebook?",d15
+FBOPNEXP,Find it easy / hard to express your opinion on Facebook?,d16
+IDEALNCH,Ideal number of children per family,d17
+RELGNEW,Respondent's religion,d18
+RELIMP,How important is religion in your daily life?,d19
+RELSERV,Frequency of attending religious services,d20
+RELFAST,Frequency of fasting when required by religious tradition,d21
+RLGIOUS,How religious would you say you are?,d22
+MIGSHRT,Interest in temporary emigration,d23
+EMIGRAT,Interest in permanent emigration,d24
+PAYBRIB,Paid a bribe during the last 12 months,d25
+HH2RELR,2nd member - relationship to the respondent,a2
+HH3RELR,3rd member - relationship to the respondent,a2
+HH4RELR,4th member - relationship to the respondent,a2
+HH5RELR,5th member - relationship to the respondent,a2
+HH6RELR,6th member - relationship to the respondent,a2
+HH7RELR,7th member - relationship to the respondent,a2
+HH8RELR,8th member - relationship to the respondent,a2
+HH9RELR,9th member - relationship to the respondent,a2
+HH10RELR,10th member - relationship to the respondent,a2
+HH11RELR,11th member - relationship to the respondent,a2
+HH12RELR,12th member - relationship to the respondent,a2
+HH13RELR,13th member - relationship to the respondent,a2
+HHM2SEX,2nd member - gender,a3
+HHM3SEX,3rd member - gender,a3
+HHM4SEX,4th member - gender,a3
+HHM5SEX,5th member - gender,a3
+HHM6SEX,6th member - gender,a3
+HHM7SEX,7th member - gender,a3
+HHM8SEX,8th member - gender,a3
+HHM9SEX,9th member - gender,a3
+HHM10SEX,10th member - gender,a3
+HHM11SEX,11th member - gender,a3
+HHM12SEX,12th member - gender,a3
+HHM13SEX,13th member - gender,a3
+RESPDOB,Respondent - year of birth,a4
+HHM2DOB,2nd member - year of birth,a4
+HHM3DOB,3rd member - year of birth,a4
+HHM4DOB,4th member - year of birth,a4
+HHM5DOB,5th member - year of birth,a4
+HHM6DOB,6th member - year of birth,a4
+HHM7DOB,7th member - year of birth,a4
+HHM8DOB,8th member - year of birth,a4
+HHM9DOB,9th member - year of birth,a4
+HHM10DOB,10th member - year of birth,a4
+HHM11DOB,11th member - year of birth,a4
+HHM12DOB,12th member - year of birth,a4
+HHM13DOB,13th member - year of birth,a4
+RESPPOB,Respondent - place of birth,a5
+HHM2POB,2nd member - place of birth,a5
+HHM3POB,3rd member - place of birth,a5
+HHM4POB,4th member - place of birth,a5
+HHM5POB,5th member - place of birth,a5
+HHM6POB,6th member - place of birth,a5
+HHM7POB,7th member - place of birth,a5
+HHM8POB,8th member - place of birth,a5
+HHM9POB,9th member - place of birth,a5
+HHM10POB,10th member - place of birth,a5
+HHM11POB,11th member - place of birth,a5
+HHM12POB,12th member - place of birth,a5
+HHM13POB,13th member - place of birth,a5
+RESEMPL,Respondent - employed?,a6
+HHM2EMP,2nd member - employed?,a6
+HHM3EMP,3rd member - employed?,a6
+HHM4EMP,4th member - employed?,a6
+HHM5EMP,5th member - employed?,a6
+HHM6EMP,6th member - employed?,a6
+HHM7EMP,7th member - employed?,a6
+HHM8EMP,8th member - employed?,a6
+HHM9EMP,9th member - employed?,a6
+HHM10EMP,10th member - employed?,a6
+HHM11EMP,11th member - employed?,a6
+HHM12EMP,12th member - employed?,a6
+HHM13EMP,13th member - employed?,a6
+RESPMAR,Respondent - marital status,a7
+HHM2MAR,2nd member - marital status,a7
+HHM3MAR,3rd member - marital status,a7
+HHM4MAR,4th member - marital status,a7
+HHM5MAR,5th member - marital status,a7
+HHM6MAR,6th member - marital status,a7
+HHM7MAR,7th member - marital status,a7
+HHM8MAR,8th member - marital status,a7
+HHM9MAR,9th member - marital status,a7
+HHM10MAR,10th member - marital status,a7
+HHM11MAR,11th member - marital status,a7
+HHM12MAR,12th member - marital status,a7
+HHM13MAR,13th member - marital status,a7
+HELPA,Respondent asked for help when answering on HH passport,help
+ECONSTN,HH economic situation,c1
+OWNCOTV,HH owns - Color television,c2a
+OWNDIGC,HH owns - Digital photo camera,c2a
+OWNWASH,HH owns - Automatic washing machine,c2a
+OWNFRDG,HH owns - Refrigerator,c2a
+OWNAIRC,HH owns - Air conditioner,c2a
+OWNCARS,HH owns - Car,c2a
+OWNLNDP,HH owns - Land line phone,c2a
+OWNCELL,HH owns - Cell phone,c2a
+CELLINT,HH owns - Activated Internet access from cell phone,c2a
+OWNCOMP,HH owns - Personal computer,c2a
+WEBHOME,HH has internet access,c2a
+NUMCOTV,Number of color TVs owned,c2b
+NUMDIGC,Number of digital photo cameras owned,c2b
+NUMWASH,Number of washing machines owned,c2b
+NUMFRDG,Number of refrigerators owned,c2b
+NUMAIRC,Number of conditioners owned,c2b
+NUMCARS,Number of cars owned,c2b
+NUMCELL,Number of cell phones owned,c2b
+NUMCOMP,Number of personal computers owned,c2b
+YRPCOTV,Year of latest model purchased - Color TV,c2c
+YRPDIGC,Year of latest model purchased - Digital photo camera,c2c
+YRPWASH,Year of latest model purchased - Automatic washing machine,c2c
+YRPFRDG,Year of latest model purchased - Refrigerator,c2c
+YRPAIRC,Year of latest model purchased - Air conditioner,c2c
+YRPCARS,Year of latest model purchased - Car,c2c
+YRPCELL,Year of latest model purchased - Cell phone,c2c
+PHINTYR,Year since cell phone internet access available,c2c
+YRPCOMP,Year of latest model purchased - Personal computer,c2c
+YRWEBHO,Year since internet access available,c2c
+LIMBRED,"Does HH limit consumption of bread, pasta?",c3
+LIMMILK,"Does HH limit consumption of butter, milk?",c3
+LIMPOUL,Does HH limit consumption of poultry / Chicken meat?,c3
+LIMBEEF,Does HH limit consumption of beef?,c3
+LIMPORK,Does HH limit consumption of pork?,c3
+LIMFISH,Does HH limit consumption of fish?,c3
+LIMVEGS,"Does HH limit consumption of fruit, vegetables?",c3
+LIMPOTA,Does HH limit consumption of potatoes?,c3
+LIMSWEE,Does HH limit consumption of sweets and chocolates?,c3
+LIMELEC,Does HH limit consumption of electricity?,c3
+LIMGASS,Does HH limit consumption of gas?,c3
+LIMTRAN,Does HH limit consumption of transportation?,c3
+NOMONFD,Not enough money to buy food for past 12 months,c4
+INCSOUCO,Sources of HH income: Money from relatives living in the country,c5
+INCSOUAB,Sources of HH income: Money from relatives living abroad,c5
+INCSOUAG,Sources of HH income: Sales of agricultural products,c5
+INCSOUSL,Sources of HH income: Salaries,c5
+INCSOUGO,Sources of HH income: Pensions and government benefits,c5
+INCSOURE,Sources of HH income: Rent collected,c5
+INCSOUPR,Sources of HH income: Sold property,c5
+INCSOUIN,Sources of HH income: Interest/Investment returns,c5
+INCSOUOT,Sources of HH income: Other source,c5
+MONYTOT,HH monetary income last month,c6
+SPENDMO,HH spending last month,c7
+FOODDBT,Frequency of borrowing money for food,c8
+UTILDBT,Frequency of borrowing money for utilities,c9
+CURRUNG,Current perceived economic rung,c10
+FUTRUNG,Perceived economic rung in 5 years,c11
+RELCOND,Perceived relative economic condition,c12
+MININCR,Minimal monthly income for normal life,c13
+CHLDFIN,Perceived financial situation of children,c14
+WHYCHBO,Which of the following will contribute to your children being better off?,c15
+HELPC,Respondent asked for help when answering questions in C section,help
+KNOWNK,Have you heard about the conflict in NK?,rc1
+NK4_1,How likely to find a solution by peaceful negotiation?,rc2
+NK4_2,How likely to find a solution by force?,rc2
+NK5AZ_1,Favor/not accept - Have NK in Azerbaijan without autonomy,rc3
+NK5AZ_2,Favor/not accept - Have NK with a high degree of autonomy within Azerbaijan,rc3
+NK5AZ_3,Favor/not accept - Create a special administrative region governed jointly,rc3
+NK5AZ_4,Favor/not accept - Have NK as an independent country,rc3
+NK5AZ_5,Favor/not accept - Have NK as a formal part of Armenia,rc3
+NK5AR_1,Have NK as a formal part of Armenia,rc3
+NK5AR_2,Have NK as an independent country,rc3
+NK5AR_3,Favor/not accept - Create a special administrative region governed jointly,rc3
+NK5AR_4,Have NK with a high degree of autonomy within Azerbaijan,rc3
+NK5AR_5,Have NK in Azerbaijan without autonomy,rc3
+KNOWAB,Have you heard about conflict in Abkhazia?,rc4
+RESABKH,When do you think the conflict in Abkhazia will be resolved?,rc5
+RC6_1,"Favor/not accept - Have Abkhazia as a formal part of Georgia, without autonomy",rc6
+RC6_2,Favor/not accept - Have Abkhazia with a high degree of autonomy within Georgia,rc6
+RC6_3,Favor/not accept - Establish a confederation state between Georgia and Abkhazia,rc6
+RC6_4,Favor/not accept - Have Abkhazia as an independent country,rc6
+RC6_5,Favor/not accept - Have Abkhazia as a formal part of Russia,rc6
+LISTENO,Did anybody else listen to the interview?,w1
+FRQDIST,Frequency of respondent being distracted,w2
+FRQKNOW,Lack of knowledge about questions asked,w3
+FRQRLCT,Frequency of respondent being reluctant to answer questions,w4
+FRQSHCD,Frequency of respondent being reluctant to use the show cards,w5
+RESPINL,Respondent's level of intelligence,w6
+RESPSINC,Level of sincerity of the respondent,w7
+RESPTIR,How tired was respondent at the end of the interview?,w8
+INTCOMP,Has the interview been completed?,w9
+LASTQUE,Last question answered by the respondent,
+INTNUM,Number of people present during the interview,w11
+SUBSTRATUM,Substratum,substratum
+PSU,Cluster,
+INTLANG,Interview language,l1
+INTID,Interviewer code,intid
+NONRESRES,Non-response reasons,nonresres
+C1R,1st contact result,contact
+C1DATE,1st contact date,date
+C1TIME,1st contact time,date
+C2R,2nd contact result,contact
+C2DATE,2nd contact date,date
+C2TIME,2nd contact time,date
+C3R,3rd contact result,contact
+C3DATE,3rd contact date,date
+C3TIME,3rd contact time,date
+INTDATE,Interview date,date
+INTSTART,Interview start time,date
+INTEND,Interview end time,date
+INTDUR,Interview duration,date
+V4,Number of all household members,v4
+V5,Number of adult household members,v4
+npsuss,Total number of PSUs per sub-stratum,
+nhhpsu,Total number of households per PSU,
+nadhh,Total number of adults per household,
+hhwt,Weight for household-level questions,
+operator,Operator,operator
+indwt,Weight for individual-level questions,

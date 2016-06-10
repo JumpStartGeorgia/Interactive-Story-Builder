@@ -1,0 +1,743 @@
+Q1,1,Before1970
+Q1,2,1970-1979
+Q1,3,1980-1989
+Q1,4,1990-1994
+Q1,5,1995-1999
+Q1,6,2000-2004
+Q1,7,2005-2009
+Q1,8,2010 Later
+Q2,1,Non-commercial Legal Entity
+Q2,2,Other
+Q4,1,"Yes, it is allowed to being/take children at any time"
+Q4,2,It is allowed to being/take children at any time but only as an exeption
+Q4,3,"No, parents should bring/take children at an exact time"
+Q5,1,Preschool education union/agency
+Q5,2,Local council (Gamgeoba)
+Q5,3,Local parliament (Sakrebulo)
+Q5,4,Mayor office of self-governed city
+Q5,5,Other
+Q6_R1_1,0,No
+Q6_R1_1,1,Yes
+Q6_R1_2,0,No
+Q6_R1_2,1,Yes
+Q6_R1_3,0,No
+Q6_R1_3,1,Yes
+Q6_R1_4,0,No
+Q6_R1_4,1,Yes
+Q6_R2_1,0,No
+Q6_R2_1,1,Yes
+Q6_R2_2,0,No
+Q6_R2_2,1,Yes
+Q6_R2_3,0,No
+Q6_R2_3,1,Yes
+Q6_R2_4,0,No
+Q6_R2_4,1,Yes
+Q6_R3_1,0,No
+Q6_R3_1,1,Yes
+Q6_R3_2,0,No
+Q6_R3_2,1,Yes
+Q6_R3_3,0,No
+Q6_R3_3,1,Yes
+Q6_R3_4,0,No
+Q6_R3_4,1,Yes
+Q6_R4_1,0,No
+Q6_R4_1,1,Yes
+Q6_R4_2,0,No
+Q6_R4_2,1,Yes
+Q6_R4_3,0,No
+Q6_R4_3,1,Yes
+Q6_R4_4,0,No
+Q6_R4_4,1,Yes
+Q6_R5_1,0,No
+Q6_R5_1,1,Yes
+Q6_R5_2,0,No
+Q6_R5_2,1,Yes
+Q6_R5_3,0,No
+Q6_R5_3,1,Yes
+Q6_R5_4,0,No
+Q6_R5_4,1,Yes
+Q7_1,0,No
+Q7_1,1,Yes
+Q7_2,0,No
+Q7_2,1,Yes
+Q7_3,0,No
+Q7_3,1,Yes
+Q7_4,0,No
+Q7_4,1,Yes
+Q7_5,0,No
+Q7_5,1,Yes
+Q8,1,Yes
+Q8,2,No
+Q8,3,I dont know
+Q9,1,Yes
+Q9,2,No
+Q10_R1_1,0,No
+Q10_R1_1,1,Yes
+Q10_R1_2,0,No
+Q10_R1_2,1,Yes
+Q10_R1_3,0,No
+Q10_R1_3,1,Yes
+Q10_R2_1,0,No
+Q10_R2_1,1,Yes
+Q10_R2_2,0,No
+Q10_R2_2,1,Yes
+Q10_R2_3,0,No
+Q10_R2_3,1,Yes
+Q10_R3_1,0,No
+Q10_R3_1,1,Yes
+Q10_R3_2,0,No
+Q10_R3_2,1,Yes
+Q10_R3_3,0,No
+Q10_R3_3,1,Yes
+Q10_R4_1,0,No
+Q10_R4_1,1,Yes
+Q10_R4_2,0,No
+Q10_R4_2,1,Yes
+Q10_R4_3,0,No
+Q10_R4_3,1,Yes
+Q10_R5_1,0,No
+Q10_R5_1,1,Yes
+Q10_R5_2,0,No
+Q10_R5_2,1,Yes
+Q10_R5_3,0,No
+Q10_R5_3,1,Yes
+Q10_R6_1,0,No
+Q10_R6_1,1,Yes
+Q10_R6_2,0,No
+Q10_R6_2,1,Yes
+Q10_R6_3,0,No
+Q10_R6_3,1,Yes
+Q10_R7_1,0,No
+Q10_R7_1,1,Yes
+Q10_R7_2,0,No
+Q10_R7_2,1,Yes
+Q10_R7_3,0,No
+Q10_R7_3,1,Yes
+Q11,1,Yes
+Q11,2,No
+Q12_1,0,No
+Q12_1,1,Yes
+Q12_2,0,No
+Q12_2,1,Yes
+Q12_3,0,No
+Q12_3,1,Yes
+Q12_4,0,No
+Q12_4,1,Yes
+Q12_5,0,No
+Q12_5,1,Yes
+Q12_6,0,No
+Q12_6,1,Yes
+Q12_7,0,No
+Q12_7,1,Yes
+Q12_8,0,No
+Q12_8,1,Yes
+Q12_9,0,No
+Q12_9,1,Yes
+Q15,1,Yes
+Q15,2,No
+Q24,1,Yes
+Q24,2,No
+Q25,1,Kindergarten
+Q25,2,Preschool education management unit
+Q25,3,Other
+Q26,1,Yes
+Q26,2,No
+Q28_R1,1,Are familiar and use
+Q28_R1,2,Are familiar but do not use
+Q28_R1,3,Are not familiar
+Q28_R2,1,Are familiar and use
+Q28_R2,2,Are familiar but do not use
+Q28_R2,3,Are not familiar
+Q28_R3,1,Are familiar and use
+Q28_R3,2,Are familiar but do not use
+Q28_R3,3,Are not familiar
+Q28_R4,1,Are familiar and use
+Q28_R4,2,Are familiar but do not use
+Q28_R4,3,Are not familiar
+Q28_R5,1,Are familiar and use
+Q28_R5,2,Are familiar but do not use
+Q28_R5,3,Are not familiar
+Q29_1,0,No
+Q29_1,1,Yes
+Q29_2,0,No
+Q29_2,1,Yes
+Q29_3,0,No
+Q29_3,1,Yes
+Q29_4,0,No
+Q29_4,1,Yes
+Q29_5,0,No
+Q29_5,1,Yes
+Q29_6,0,No
+Q29_6,1,Yes
+Q29_7,0,No
+Q29_7,1,Yes
+Q30,1,Yes (there are such children in the kindergarten)
+Q30,2,Yes (but there are no such children in the kindergarten)
+Q30,3,No (but there are such children in the kindergarten)
+Q30,4,No (there are no such children in the kindergarten)
+Q31_1,0,No
+Q31_1,1,Yes
+Q31_2,0,No
+Q31_2,1,Yes
+Q31_3,0,No
+Q31_3,1,Yes
+Q31_4,0,No
+Q31_4,1,Yes
+Q31_5,0,No
+Q31_5,1,Yes
+Q31_6,0,No
+Q31_6,1,Yes
+Q31_7,0,No
+Q31_7,1,Yes
+Q32,1,Once a month or more frequently
+Q32,2,Once every 2 months
+Q32,3,Once every 3 months
+Q32,4,Once every 6 months or more rarely
+Q32,5,Do not meet at all
+Q33,1,Yes
+Q33,2,No
+Q34,1,Yes
+Q34,2,No
+Q35_R1,1,Not sufficient
+Q35_R1,2,Less sufficient
+Q35_R1,3,More or less sufficient
+Q35_R1,4,More sufficient
+Q35_R1,5,Fully sufficient
+Q35_R2,1,Not sufficient
+Q35_R2,2,Less sufficient
+Q35_R2,3,More or less sufficient
+Q35_R2,4,More sufficient
+Q35_R2,5,Fully sufficient
+Q35_R3,1,Not sufficient
+Q35_R3,2,Less sufficient
+Q35_R3,3,More or less sufficient
+Q35_R3,4,More sufficient
+Q35_R3,5,Fully sufficient
+Q35_R4,1,Not sufficient
+Q35_R4,2,Less sufficient
+Q35_R4,3,More or less sufficient
+Q35_R4,4,More sufficient
+Q35_R4,5,Fully sufficient
+Q35_R5,1,Not sufficient
+Q35_R5,2,Less sufficient
+Q35_R5,3,More or less sufficient
+Q35_R5,4,More sufficient
+Q35_R5,5,Fully sufficient
+Q35_R6,1,Not sufficient
+Q35_R6,2,Less sufficient
+Q35_R6,3,More or less sufficient
+Q35_R6,4,More sufficient
+Q35_R6,5,Fully sufficient
+Q35_R7,1,Not sufficient
+Q35_R7,2,Less sufficient
+Q35_R7,3,More or less sufficient
+Q35_R7,4,More sufficient
+Q35_R7,5,Fully sufficient
+Q35_R8,1,Not sufficient
+Q35_R8,2,Less sufficient
+Q35_R8,3,More or less sufficient
+Q35_R8,4,More sufficient
+Q35_R8,5,Fully sufficient
+Q35_R9,1,Not sufficient
+Q35_R9,2,Less sufficient
+Q35_R9,3,More or less sufficient
+Q35_R9,4,More sufficient
+Q35_R9,5,Fully sufficient
+Q35_R10,1,Not sufficient
+Q35_R10,2,Less sufficient
+Q35_R10,3,More or less sufficient
+Q35_R10,4,More sufficient
+Q35_R10,5,Fully sufficient
+Q35_R11,1,Not sufficient
+Q35_R11,2,Less sufficient
+Q35_R11,3,More or less sufficient
+Q35_R11,4,More sufficient
+Q35_R11,5,Fully sufficient
+Q35_R12,1,Not sufficient
+Q35_R12,2,Less sufficient
+Q35_R12,3,More or less sufficient
+Q35_R12,4,More sufficient
+Q35_R12,5,Fully sufficient
+Q35_R13,1,Not sufficient
+Q35_R13,2,Less sufficient
+Q35_R13,3,More or less sufficient
+Q35_R13,4,More sufficient
+Q35_R13,5,Fully sufficient
+Q35_R14,1,Not sufficient
+Q35_R14,2,Less sufficient
+Q35_R14,3,More or less sufficient
+Q35_R14,4,More sufficient
+Q35_R14,5,Fully sufficient
+Q35_R15,1,Not sufficient
+Q35_R15,2,Less sufficient
+Q35_R15,3,More or less sufficient
+Q35_R15,4,More sufficient
+Q35_R15,5,Fully sufficient
+Q35_R16,1,Not sufficient
+Q35_R16,2,Less sufficient
+Q35_R16,3,More or less sufficient
+Q35_R16,4,More sufficient
+Q35_R16,5,Fully sufficient
+Q35_R17,1,Not sufficient
+Q35_R17,2,Less sufficient
+Q35_R17,3,More or less sufficient
+Q35_R17,4,More sufficient
+Q35_R17,5,Fully sufficient
+Q35_R18,1,Not sufficient
+Q35_R18,2,Less sufficient
+Q35_R18,3,More or less sufficient
+Q35_R18,4,More sufficient
+Q35_R18,5,Fully sufficient
+Q35_R19,1,Not sufficient
+Q35_R19,2,Less sufficient
+Q35_R19,3,More or less sufficient
+Q35_R19,4,More sufficient
+Q35_R19,5,Fully sufficient
+Q35_R20,1,Not sufficient
+Q35_R20,2,Less sufficient
+Q35_R20,3,More or less sufficient
+Q35_R20,4,More sufficient
+Q35_R20,5,Fully sufficient
+Q35_R21,1,Not sufficient
+Q35_R21,2,Less sufficient
+Q35_R21,3,More or less sufficient
+Q35_R21,4,More sufficient
+Q35_R21,5,Fully sufficient
+Q35_R22,1,Not sufficient
+Q35_R22,2,Less sufficient
+Q35_R22,3,More or less sufficient
+Q35_R22,4,More sufficient
+Q35_R22,5,Fully sufficient
+Q35_R23,1,Not sufficient
+Q35_R23,2,Less sufficient
+Q35_R23,3,More or less sufficient
+Q35_R23,4,More sufficient
+Q35_R23,5,Fully sufficient
+Q35_R24,1,Not sufficient
+Q35_R24,2,Less sufficient
+Q35_R24,3,More or less sufficient
+Q35_R24,4,More sufficient
+Q35_R24,5,Fully sufficient
+Q35_R25,1,Not sufficient
+Q35_R25,2,Less sufficient
+Q35_R25,3,More or less sufficient
+Q35_R25,4,More sufficient
+Q35_R25,5,Fully sufficient
+Q35_R26,1,Not sufficient
+Q35_R26,2,Less sufficient
+Q35_R26,3,More or less sufficient
+Q35_R26,4,More sufficient
+Q35_R26,5,Fully sufficient
+Q35_R27,1,Not sufficient
+Q35_R27,2,Less sufficient
+Q35_R27,3,More or less sufficient
+Q35_R27,4,More sufficient
+Q35_R27,5,Fully sufficient
+Q35_R28,1,Not sufficient
+Q35_R28,2,Less sufficient
+Q35_R28,3,More or less sufficient
+Q35_R28,4,More sufficient
+Q35_R28,5,Fully sufficient
+Q36,1,"Yes, for all groups"
+Q36,2,Partially
+Q36,3,No
+Q39,1,"Yes, outdoor"
+Q39,2,"Yes, indoor"
+Q39,3,No
+Q40_1,0,No
+Q40_1,1,Yes
+Q40_2,0,No
+Q40_2,1,Yes
+Q40_3,0,No
+Q40_3,1,Yes
+Q40_4,0,No
+Q40_4,1,Yes
+Q40_5,0,No
+Q40_5,1,Yes
+Q40_6,0,No
+Q40_6,1,Yes
+Q41,1,Yes
+Q41,2,No
+Q42_R1,1,Everyday
+Q42_R1,2,34 times a week
+Q42_R1,3,12 times a week
+Q42_R1,4,less than 12 times a week
+Q42_R2,1,Everyday
+Q42_R2,2,34 times a week
+Q42_R2,3,12 times a week
+Q42_R2,4,less than 12 times a week
+Q42_R3,1,Everyday
+Q42_R3,2,34 times a week
+Q42_R3,3,12 times a week
+Q42_R3,4,less than 12 times a week
+Q43,1,We put them to sleep without any problems
+Q43,2,We have problem because of the lack of space/beds
+Q43,3,We have problem in winter because of the low temperature in the sleeping facilities
+Q43,4,We have problem because of other reasons
+Q43,5,There are no children who need afternoon nap
+Q44,1,"Yes, 3 times a day"
+Q44,2,"Yes, 2 times a day"
+Q44,3,"Yes, 1 time per day"
+Q44,4,No
+Q45_R1,1,everyday
+Q45_R1,2,2-3 time a week
+Q45_R1,3,Once in a week
+Q45_R1,4,2 time a month
+Q45_R1,5,Once in a month
+Q45_R1,6,Never
+Q45_R2,1,everyday
+Q45_R2,2,2-3 time a week
+Q45_R2,3,Once in a week
+Q45_R2,4,2 time a month
+Q45_R2,5,Once in a month
+Q45_R2,6,Never
+Q45_R3,1,everyday
+Q45_R3,2,2-3 time a week
+Q45_R3,3,Once in a week
+Q45_R3,4,2 time a month
+Q45_R3,5,Once in a month
+Q45_R3,6,Never
+Q45_R4,1,everyday
+Q45_R4,2,2-3 time a week
+Q45_R4,3,Once in a week
+Q45_R4,4,2 time a month
+Q45_R4,5,Once in a month
+Q45_R4,6,Never
+Q45_R5,1,everyday
+Q45_R5,2,2-3 time a week
+Q45_R5,3,Once in a week
+Q45_R5,4,2 time a month
+Q45_R5,5,Once in a month
+Q45_R5,6,Never
+Q45_R6,1,everyday
+Q45_R6,2,2-3 time a week
+Q45_R6,3,Once in a week
+Q45_R6,4,2 time a month
+Q45_R6,5,Once in a month
+Q45_R6,6,Never
+Q45_R7,1,everyday
+Q45_R7,2,2-3 time a week
+Q45_R7,3,Once in a week
+Q45_R7,4,2 time a month
+Q45_R7,5,Once in a month
+Q45_R7,6,Never
+Q45_R8,1,everyday
+Q45_R8,2,2-3 time a week
+Q45_R8,3,Once in a week
+Q45_R8,4,2 time a month
+Q45_R8,5,Once in a month
+Q45_R8,6,Never
+Q45_R9,1,everyday
+Q45_R9,2,2-3 time a week
+Q45_R9,3,Once in a week
+Q45_R9,4,2 time a month
+Q45_R9,5,Once in a month
+Q45_R9,6,Never
+Q45_R10,1,everyday
+Q45_R10,2,2-3 time a week
+Q45_R10,3,Once in a week
+Q45_R10,4,2 time a month
+Q45_R10,5,Once in a month
+Q45_R10,6,Never
+Q45_R11,1,everyday
+Q45_R11,2,2-3 time a week
+Q45_R11,3,Once in a week
+Q45_R11,4,2 time a month
+Q45_R11,5,Once in a month
+Q45_R11,6,Never
+Q45_R12,1,everyday
+Q45_R12,2,2-3 time a week
+Q45_R12,3,Once in a week
+Q45_R12,4,2 time a month
+Q45_R12,5,Once in a month
+Q45_R12,6,Never
+Q45_R13,1,everyday
+Q45_R13,2,2-3 time a week
+Q45_R13,3,Once in a week
+Q45_R13,4,2 time a month
+Q45_R13,5,Once in a month
+Q45_R13,6,Never
+Q45_R14,1,everyday
+Q45_R14,2,2-3 time a week
+Q45_R14,3,Once in a week
+Q45_R14,4,2 time a month
+Q45_R14,5,Once in a month
+Q45_R14,6,Never
+Q45_R15,1,everyday
+Q45_R15,2,2-3 time a week
+Q45_R15,3,Once in a week
+Q45_R15,4,2 time a month
+Q45_R15,5,Once in a month
+Q45_R15,6,Never
+Q45_R16,1,everyday
+Q45_R16,2,2-3 time a week
+Q45_R16,3,Once in a week
+Q45_R16,4,2 time a month
+Q45_R16,5,Once in a month
+Q45_R16,6,Never
+Q45_R17,1,everyday
+Q45_R17,2,2-3 time a week
+Q45_R17,3,Once in a week
+Q45_R17,4,2 time a month
+Q45_R17,5,Once in a month
+Q45_R17,6,Never
+Q45_R18,1,everyday
+Q45_R18,2,2-3 time a week
+Q45_R18,3,Once in a week
+Q45_R18,4,2 time a month
+Q45_R18,5,Once in a month
+Q45_R18,6,Never
+Q46,1,Yes
+Q46,2,No
+Q47,1,Usually teachers and/or assistants feed children
+Q47,2,Usually children eat on their own
+Q48,1,Before 1970
+Q48,2,1970-1979
+Q48,3,1980-1989
+Q48,4,1990-1994
+Q48,5,1995-1999
+Q48,6,2000-2004
+Q48,7,2005-2009
+Q48,8,2010 or later
+Q51,1,Very good
+Q51,2,Good
+Q51,3,Satisfactory
+Q51,4,"Bad, needs major renovation"
+Q51,5,"Very bad, condemned"
+Q52_R1,0,Don't have
+Q52_R1,1,Very good
+Q52_R1,2,Good
+Q52_R1,3,Medium
+Q52_R1,4,Bad
+Q52_R1,5,Very bad/needs renovation
+Q52_R2,0,Don't have
+Q52_R2,1,Very good
+Q52_R2,2,Good
+Q52_R2,3,Medium
+Q52_R2,4,Bad
+Q52_R2,5,Very bad/needs renovation
+Q52_R3,0,Don't have
+Q52_R3,1,Very good
+Q52_R3,2,Good
+Q52_R3,3,Medium
+Q52_R3,4,Bad
+Q52_R3,5,Very bad/needs renovation
+Q52_R4,0,Don't have
+Q52_R4,1,Very good
+Q52_R4,2,Good
+Q52_R4,3,Medium
+Q52_R4,4,Bad
+Q52_R4,5,Very bad/needs renovation
+Q52_R5,0,Don't have
+Q52_R5,1,Very good
+Q52_R5,2,Good
+Q52_R5,3,Medium
+Q52_R5,4,Bad
+Q52_R5,5,Very bad/needs renovation
+Q52_R6,0,Don't have
+Q52_R6,1,Very good
+Q52_R6,2,Good
+Q52_R6,3,Medium
+Q52_R6,4,Bad
+Q52_R6,5,Very bad/needs renovation
+Q52_R7,0,Don't have
+Q52_R7,1,Very good
+Q52_R7,2,Good
+Q52_R7,3,Medium
+Q52_R7,4,Bad
+Q52_R7,5,Very bad/needs renovation
+Q53,1,Central system (with radiators in rooms)
+Q53,2,Individual system (with heaters in each room)
+Q53,3,"Heating with natural fuel (wood, oil, etc)"
+Q53,4,Other
+Q54,1,Yes
+Q54,2,No
+Q56,1,The water supply system installed in the building
+Q56,2,The water system tap in the yard or in the vicinity
+Q56,3,The well in the yard or in the vicinity
+Q56,4,Natural spring in the yard or in the vicinity
+Q56,5,"A river, lake, spring, channel"
+Q56,6,Bought water
+Q56,7,Other
+Q57,1,Yes
+Q57,2,No
+Q58,1,Inside the Kindergarten
+Q58,2,Outside the Kindergarten
+Q60,1,Lavatory pan
+Q60,2,Latrine
+Q60,3,Other
+Q61,1,Flush toilet piped to sewer system
+Q61,2,"Flush toilet (into the river, channel, ravine, etc.) without sewerage system;"
+Q61,3,"A toilet on a pit, periodically cleaned"
+Q61,4,Other
+Q62,1,Yes
+Q62,2,No
+Q63,1,Yes inside the Kindergarten
+Q63,2,Yes outside the Kindergarten
+Q63,3,No
+Q64,1,Yes
+Q64,2,Partially
+Q64,3,No
+Q65,1,Yes
+Q65,2,No
+Q66_1,0,No
+Q66_1,1,Yes
+Q66_2,0,No
+Q66_2,1,Yes
+Q66_3,0,No
+Q66_3,1,Yes
+Q66_4,0,No
+Q66_4,1,Yes
+Q67,1,Yes
+Q67,2,Partially
+Q67,3,No
+Q68_R1,1,Several times a day
+Q68_R1,2,Once a day
+Q68_R1,3,Several times a week
+Q68_R1,4,Once a week
+Q68_R1,5,When necessary
+Q68_R1,6,Do not clean
+Q68_R2,1,Several times a day
+Q68_R2,2,Once a day
+Q68_R2,3,Several times a week
+Q68_R2,4,Once a week
+Q68_R2,5,When necessary
+Q68_R2,6,Do not clean
+Q68_R3,1,Several times a day
+Q68_R3,2,Once a day
+Q68_R3,3,Several times a week
+Q68_R3,4,Once a week
+Q68_R3,5,When necessary
+Q68_R3,6,Do not clean
+Q68_R4,1,Several times a day
+Q68_R4,2,Once a day
+Q68_R4,3,Several times a week
+Q68_R4,4,Once a week
+Q68_R4,5,When necessary
+Q68_R4,6,Do not clean
+Q68_R5,1,Several times a day
+Q68_R5,2,Once a day
+Q68_R5,3,Several times a week
+Q68_R5,4,Once a week
+Q68_R5,5,When necessary
+Q68_R5,6,Do not clean
+Q68_R6,1,Several times a day
+Q68_R6,2,Once a day
+Q68_R6,3,Several times a week
+Q68_R6,4,Once a week
+Q68_R6,5,When necessary
+Q68_R6,6,Do not clean
+Q69_R1,1,Several times a day
+Q69_R1,2,Once a day
+Q69_R1,3,Several times a week
+Q69_R1,4,Once a week
+Q69_R1,5,When necessary
+Q69_R1,6,Do not clean
+Q69_R2,1,Several times a day
+Q69_R2,2,Once a day
+Q69_R2,3,Several times a week
+Q69_R2,4,Once a week
+Q69_R2,5,When necessary
+Q69_R2,6,Do not clean
+Q69_R3,1,Several times a day
+Q69_R3,2,Once a day
+Q69_R3,3,Several times a week
+Q69_R3,4,Once a week
+Q69_R3,5,When necessary
+Q69_R3,6,Do not clean
+Q69_R4,1,Several times a day
+Q69_R4,2,Once a day
+Q69_R4,3,Several times a week
+Q69_R4,4,Once a week
+Q69_R4,5,When necessary
+Q69_R4,6,Do not clean
+Q69_R5,1,Several times a day
+Q69_R5,2,Once a day
+Q69_R5,3,Several times a week
+Q69_R5,4,Once a week
+Q69_R5,5,When necessary
+Q69_R5,6,Do not clean
+Q70_R1,1,Several times a day
+Q70_R1,2,Once a day
+Q70_R1,3,Several times a week
+Q70_R1,4,Once a week
+Q70_R1,5,When necessary
+Q70_R1,6,Do not clean
+Q70_R2,1,Several times a day
+Q70_R2,2,Once a day
+Q70_R2,3,Several times a week
+Q70_R2,4,Once a week
+Q70_R2,5,When necessary
+Q70_R2,6,Do not clean
+Q70_R3,1,Several times a day
+Q70_R3,2,Once a day
+Q70_R3,3,Several times a week
+Q70_R3,4,Once a week
+Q70_R3,5,When necessary
+Q70_R3,6,Do not clean
+Q70_R4,1,Several times a day
+Q70_R4,2,Once a day
+Q70_R4,3,Several times a week
+Q70_R4,4,Once a week
+Q70_R4,5,When necessary
+Q70_R4,6,Do not clean
+Q70_R5,1,Several times a day
+Q70_R5,2,Once a day
+Q70_R5,3,Several times a week
+Q70_R5,4,Once a week
+Q70_R5,5,When necessary
+Q70_R5,6,Do not clean
+Q71,1,Yes
+Q71,2,No
+Q72,1,Preschool education management unit
+Q72,2,Kindergarten
+Q72,3,Other public body
+Q72,4,Other
+Q72,5,Dont know
+Q73_R1,1,Yes
+Q73_R1,2,No
+Q73_R2,1,Yes
+Q73_R2,2,No
+Q73_R3,1,Yes
+Q73_R3,2,No
+Q74_R1,1,Yes
+Q74_R1,2,No
+Q74_R2,1,Yes
+Q74_R2,2,No
+Q74_R3,1,Yes
+Q74_R3,2,No
+Q75,1,Once every 3 months or more frequently
+Q75,2,Once every 6 months
+Q75,3,More rarely
+Q75,4,We have never conducted one
+Q76_1,0,No
+Q76_1,1,Yes
+Q76_2,0,No
+Q76_2,1,Yes
+Q76_3,0,No
+Q76_3,1,Yes
+Q76_4,0,No
+Q76_4,1,Yes
+Q76_5,0,No
+Q76_5,1,Yes
+Q76_6,0,No
+Q76_6,1,Yes
+Q76_7,0,No
+Q76_7,1,Yes
+Q76_8,0,No
+Q76_8,1,Yes
+Q76_9,0,No
+Q76_9,1,Yes
+Q76_10,0,No
+Q76_10,1,Yes
+Q76_11,0,No
+Q76_11,1,Yes
+Q76_12,0,No
+Q76_12,1,Yes
+Q76_13,0,No
+Q76_13,1,Yes
+Q77,1,Once a month or more frequently
+Q77,2,Once every 3 months
+Q77,3,2 times a year
+Q77,4,Once a year
+Q77,5,More rarely

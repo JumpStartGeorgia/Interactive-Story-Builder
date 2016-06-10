@@ -33,10 +33,10 @@ BootstrapStarter::Application.configure do
 	config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
-  config.middleware.use ExceptionNotifier,
-    :email_prefix => "[Story Builder Dev App Error (#{Rails.env})] ",
-    :sender_address => ENV['STORY_BUILDER_FROM_EMAIL'],
-    :exception_recipients => ENV['STORY_BUILDER_ERROR_TO_EMAIL']
-    
+  # config.middleware.use ExceptionNotifier,
+  #   :email_prefix => "[Story Builder Dev App Error (#{Rails.env})] ",
+  #   :sender_address => ENV['STORY_BUILDER_FROM_EMAIL'],
+  #   :exception_recipients => ENV['STORY_BUILDER_ERROR_TO_EMAIL']
+
   Paperclip.options[:command_path] = "/usr/local/bin/"
 end

@@ -1,0 +1,338 @@
+<!-- /*global  d3 */
+/*eslint camelcase: 0, no-underscore-dangle: 0, no-unused-vars: 0*/
+function ready (fn) {
+  if (document.readyState != "loading"){
+    fn();
+  } else {
+    document.addEventListener("DOMContentLoaded", fn);
+  }
+}
+function addClass (el, className){
+  el.classList ? el.classList.add(className) : el.className += ' ' + className;
+}
+function removeClass (el, className) {
+  if (el.classList) {
+    el.classList.remove(className);
+  }
+  else {
+    el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+  }
+}
+function toggleClass (el, className) {
+  if (el.classList) {
+    el.classList.toggle(className);
+  } else {
+    var classes = el.className.split(" ");
+    var existingIndex = classes.indexOf(className);
+
+    if (existingIndex >= 0)
+      classes.splice(existingIndex, 1);
+    else
+      classes.push(className);
+
+    el.className = classes.join(" ");
+  }
+}
+function css (el, key, value) {
+  el.style[key] = value;
+}
+function isNumeric(val) { return Number(parseFloat(val))==val; }
+var dummy_scroll = false;
+function scrollTo(element, to, duration) {
+  dummy_scroll = true;
+   // console.log( to, duration);
+  if (duration < 0) return;
+  var difference = to - element.scrollTop;
+  var perTick = difference / duration * 2;
+  if(isNaN(perTick)) { dummy_scroll = false;  console.log("here");return; }
+  setTimeout(function () {
+      element.scrollTop = element.scrollTop + perTick;
+      scrollTo(element, to, duration - 2);
+  }, 10);
+}
+function wrap(text, width) {
+  text.each(function() {
+    var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = 1.1, // ems
+        y = text.attr("y"),
+        dy = parseFloat(text.attr("dy")),
+        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+    while (word = words.pop()) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+      }
+    }
+  });
+}
+// function whichTransitionEvent(){
+//   var t,
+//       el = document.createElement("fakeelement");
+
+//   var transitions = {
+//     "transition"      : "transitionend",
+//     "OTransition"     : "oTransitionEnd",
+//     "MozTransition"   : "transitionend",
+//     "WebkitTransition": "webkitTransitionEnd"
+//   }
+
+//   for (t in transitions){
+//     if (el.style[t] !== undefined){
+//       return transitions[t];
+//     }
+//   }
+// }
+
+// var transitionEvent = whichTransitionEvent();
+
+
+var gl;
+
+ready(function () {
+  try {
+    var nav = document.getElementsByTagName("nav")[0],
+      navbar_toggle = nav.getElementsByClassName("navbar-toggle")[0],
+      navbar_nav = nav.getElementsByClassName("navbar-collapse")[0];
+      // ,
+      // main = document.getElementsByTagName("main")[0];
+
+    document.addEventListener("click", function () {
+      removeClass(navbar_toggle, "active");
+      removeClass(navbar_nav, "active");
+    });
+
+    navbar_toggle.addEventListener("click", function (event) {
+      toggleClass(navbar_toggle, "active");
+      toggleClass(navbar_nav, "active");
+      event.stopPropagation();
+    });
+
+    navbar_nav.addEventListener("click", function (event) {
+      if(event.target.tagName === "A")
+      {
+        removeClass(navbar_toggle, "active");
+        removeClass(navbar_nav, "active");
+      }
+      event.stopPropagation();
+    });
+
+
+    var track = {
+      point: {
+        coordinates: [0, 86, 106, 289, 109, 255, 396, 146, 78, 85, 90, 138, 158, 116, 116, 165, 334, 363, 130, 83],
+        lengths: [],
+        scrolls: [],
+        labels: [
+          "Absheron Grandstand (tickets $590)",
+          "JW Marriott Absheron Baku",
+          "Government House",
+          "Mari Vanna Restaurant",
+          "Sahil Garden",
+          "Sabayil Precinct Police Station №39",
+          "Azerbaijan State Puppet Theater",
+          "Icheri Sheher Fortress Wall",
+          "Icheri Sheher Grandstand (tickets $420)",
+          "Nizami Garden",
+          "Municipal Authority",
+          "School № 34",
+          "Philharmonic Grandstand (tickets $290)",
+          "Heydar Aliyev Foundation",
+          "Azneft Grandstand (tickets $420)",
+          "Maiden Tower Grandstand (tickets $290)",
+          "Sahil Grandstand (tickets $350)",
+          "Park Bulvar Mall",
+          "Baku Veterans' Club"
+        ],
+        count: 0
+      },
+      path: {
+        index: 0,
+        offset: 0,
+        length: 0
+      },
+      el: {
+        svg: undefined,
+        road: undefined,
+        article: undefined
+      },
+      init: function () {
+        var t = this, obj = document.getElementById("track");
+
+        obj.addEventListener("load", function (){
+          console.log("loaded");
+          t.el.svg = obj.contentDocument;
+          t.el.road = t.el.svg.getElementsByClassName("track-road")[0];
+          t.labels();
+          t.bind();
+        }, false);
+
+        t.el.article = document.getElementsByClassName("article")[0];
+
+        t.point.count = t.point.coordinates.length - 1;
+         console.log(t.point.count);
+        for(var i = 0; i < t.point.count; ++i) {
+
+          var div = document.createElement("div");
+          addClass(div, "section");
+          div.setAttribute('data-point', i+1);
+          div.innerText = (i + 1) + " - " + lorem[Math.floor(Math.random() * (1 - 0 + 1)) + 0];
+          t.el.article.appendChild(div);
+
+          t.point.scrolls.push(div.offsetTop);
+
+          t.point.lengths.push( t.point.coordinates[i] + (i > 0 ? t.point.lengths[i-1] : 0));
+        }
+         console.log("here",t.point.lengths);
+        t.path.length = t.point.coordinates.reduce(function (a, b) { return a + b; });
+        return this;
+      },
+      next: function () { var t = this; t.go_to(t.path.index+1); },
+      prev: function () { var t = this; t.go_to(t.path.index-1); },
+      go_to: function (index) {
+        // console.log("go_to", index);
+        var t = this, tmp = 0, i;
+        if(!isNumeric(index) || typeof index === undefined) { index = t.path.index + 1; }
+
+        if(index < 0) { index = 0; }
+        else if(index > t.point.count - 1) { index = t.point.count - 1; }
+
+         // console.log(index, t);
+        if(t.path.index !== index) {
+          if(index > t.path.index) {
+            for(i = t.path.index+1; i <= index; ++i) {
+              tmp += t.point.coordinates[i];
+              // console.log(i, "forward" );
+            }
+          } // moving forward
+          else {
+            for(i = t.path.index; i > index; --i) {
+              tmp += t.point.coordinates[i];
+            }
+            tmp*=-1;
+          }
+          t.animate(t.path.offset, tmp);
+          t.path.offset += tmp;
+          t.path.index = index;
+        }
+
+      },
+      animate: function (start, addition) {
+        var t = this;
+
+        t.el.road.style.transition = t.el.road.style.WebkitTransition = 'none';
+        setTimeout(function () {
+          css(t.el.road, "strokeDashoffset", t.path.length - (start + addition) + "px");
+          t.el.road.style.transition = t.el.road.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
+        }, 0);
+      },
+      bind: function () {
+        var t = this,
+          svg = d3.select(t.el.svg),
+          list = svg.selectAll(".point"), tmp, pnt;
+
+        list.forEach(function (d, i){
+          d3.select(d)
+            .on("click", function (event) {
+              pnt = +this.getAttribute("data-point");
+              tmp = pnt-1;
+              t.go_to(tmp === 0 ? t.point.count-1 : tmp);
+              var el = t.el.article.querySelector(".section[data-point='" + pnt + "']");
+              scrollTo(t.el.article, el.offsetTop, 100);
+              event.stopPropagation();
+            })
+            .on("mouseover", function () {
+              d3.select(this.parentNode).classed("hover", true);
+            })
+            .on("mouseout", function () {
+              d3.select(this.parentNode).classed("hover", false);
+            });
+        });
+
+        t.el.article.addEventListener("scroll", function (event) {
+          if(!dummy_scroll) {
+            console.log("native scroll");
+            var top = event.target.scrollTop;
+            t.point.scrolls.forEach(function (d, i){
+              if(top > d) {
+                t.go_to(i);
+                return;
+              }
+            });
+          }
+        });
+      },
+      labels: function () {
+        var t =this, tmp, svg = d3.select(t.el.svg), pnt;
+
+
+        svg.selectAll("g[data-point]")
+          .data(t.point.coordinates.slice(0, t.point.coordinates.length-1))
+          .append("text")
+            .attr("x", function (d, i) { return t.el.road.getPointAtLength(t.point.lengths[i]).x + 10; })
+            .attr("y", function (d, i) { return t.el.road.getPointAtLength(t.point.lengths[i]).y; })
+            .text(function(d, i) {
+              return t.point.labels[i];
+            })
+            //.call(wrap, 200)
+            .on("click", function () {
+
+                pnt = +this.parentNode.getAttribute("data-point");
+                tmp = pnt-1;
+                t.go_to(tmp === 0 ? t.point.count-1 : tmp);
+                var el = t.el.article.querySelector(".section[data-point='" + pnt + "']");
+                scrollTo(t.el.article, el.offsetTop, 100);
+
+                event.stopPropagation();
+
+            })
+            .on("mouseover", function () { d3.select(this.parentNode).classed("hover", true); })
+            .on("mouseout", function () { d3.select(this.parentNode).classed("hover", false); });
+      }
+
+    };
+    track.init();
+    gl = track;
+
+  }
+  catch(e) {
+    console.log("Error", e);
+  }
+});
+
+var lorem = ["Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, ses est Lorem ipsum dolor sit amet."] ;
+// var path = document.querySelector('.squiggle-animated path');
+// var length = path.getTotalLength();
+// // Clear any previous transition
+// path.style.transition = path.style.WebkitTransition =
+//   'none';
+// // Set up the starting positions
+// path.style.strokeDasharray = length + ' ' + length;
+// path.style.strokeDashoffset = length;
+// // Trigger a layout so styles are calculated & the browser
+// // picks up the starting position before animating
+// path.getBoundingClientRect();
+// // Define our transition
+// path.style.transition = path.style.WebkitTransition =
+//   'stroke-dashoffset 2s ease-in-out';
+// // Go!
+// path.style.strokeDashoffset = '0';
+
+
+// $(".button").click(function(){
+//   $(this).addClass("animate");
+//   $(this).one(transitionEvent,
+//               function(event) {
+//     // Do something when the transition ends
+//   });
+// });
+
+ -->

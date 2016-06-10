@@ -1,0 +1,40 @@
+DATA LIST FILE= "/home/xtraktr-staging/Xtraktr-Staging/releases/20141121140917/public/system/datasets/547572172c17431c7f000001/processed/data.csv"  free (",")
+/ UID HomeBuildedDate OwnerOfHome Walls Floor Ceiling LivingS WholeS Kitchen Cellar Bath Garage WaterSource TypeOfToilet HowManyRooms HowManyBedRooms SellingPrice Rent UsedLandYesNo NumberOfPices WholeLand S_Q1 S_Q2 S_Q2a S_Q2b S_Q2c S_Q3 S_Q4 S_Q5 S_Q6 S_Q7 S_Q8 S_Q9  .
+
+VARIABLE LABELS
+UID "UID" 
+ HomeBuildedDate "HomeBuildedDate" 
+ OwnerOfHome "OwnerOfHome" 
+ Walls "Walls" 
+ Floor "Floor" 
+ Ceiling "Ceiling" 
+ LivingS "LivingS" 
+ WholeS "WholeS" 
+ Kitchen "Kitchen" 
+ Cellar "Cellar" 
+ Bath "Bath" 
+ Garage "Garage" 
+ WaterSource "WaterSource" 
+ TypeOfToilet "TypeOfToilet" 
+ HowManyRooms "HowManyRooms" 
+ HowManyBedRooms "HowManyBedRooms" 
+ SellingPrice "SellingPrice" 
+ Rent "Rent" 
+ UsedLandYesNo "UsedLandYesNo" 
+ NumberOfPices "NumberOfPices" 
+ WholeLand "WholeLand" 
+ S_Q1 "S_Q1" 
+ S_Q2 "S_Q2" 
+ S_Q2a "S_Q2a" 
+ S_Q2b "S_Q2b" 
+ S_Q2c "S_Q2c" 
+ S_Q3 "S_Q3" 
+ S_Q4 "S_Q4" 
+ S_Q5 "S_Q5" 
+ S_Q6 "S_Q6" 
+ S_Q7 "S_Q7" 
+ S_Q8 "S_Q8" 
+ S_Q9 "S_Q9" 
+ .
+
+EXECUTE.
