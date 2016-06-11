@@ -56,7 +56,7 @@
   }
 
   .section.column {
-    margin:23px auto;
+    /*margin:23px auto;*/
   }
   .section:after {
     content: "";
@@ -1109,7 +1109,7 @@
   }
 
   .navigation-marker {
-    position: absolute;
+/*    position: absolute;*/
     margin-top: -42px;
   }
 
@@ -1601,19 +1601,19 @@
   font:12px opensans-b;
   color:#fff;
 }
-.section.finish-line {
+.section.separator {
   width:100%;
   height:15px;
   background:transparent url(<%= (@export ? "" : "/template/#{@template}/")  + 'assets/pattern.svg'%>) repeat top;
 }
 
 .subarticle {
-  width:100%;
-  overflow-y:auto;
+  /*width:100%;*/
+  /*overflow-y:auto;*/
   /*position:relative;*/
 }
 .subarticle .map-container{
-  position:absolute;
+  position:fixed;
   top:0px;
   min-width:450px;
   height:100%;
@@ -1622,11 +1622,12 @@
 
 .subarticle .stories {
   margin-left:450px;
-  width:100%;
+  /*width:100%;*/
 }
 .subarticle .stories .section.column{
-  margin:24px 0;
-  width:100%;
+  margin:24px auto;
+  padding:0;
+ /* width:100%;*/
 }
 .prestory {
 /*  position:absolute;
