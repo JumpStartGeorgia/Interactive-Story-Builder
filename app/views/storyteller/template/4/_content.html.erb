@@ -18,6 +18,7 @@
           document.documentElement.className = document.documentElement.className + " ios";
         }  </script>
 
+        var w, h, scrollHeight;
 
       <!--[if lte IE 8]><style type="text/css">
       .video-container video,
@@ -62,19 +63,20 @@
                 length: 0,
                 orig_length: 3243
               },
+              svg_overlay: undefined,
               el: {
                 svg: undefined,
                 road: undefined,
                 article: undefined
               },
               init: function (callback) {
-                var t = this, obj = d3.select("#track");
                 console.log("init track");
+                var t = this, obj = d3.select("#track")
+                  obj_overlay = d3.select("#track_overlay"), cnt = 0;
 
-
-                obj.on("load", function (){
-                  console.log("object loaded");
+                function callback_onload() {
                   t.el.svg = obj.node().contentDocument;
+                  t.svg_overlay = d3.select(obj_overlay.node().contentDocument.documentElement);
                   t.el.road = t.el.svg.getElementsByClassName("road")[0];
                   t.el.article = document.getElementsByClassName("article")[0];
                   t.path.length =  t.el.road.getTotalLength();
@@ -89,9 +91,12 @@
                   t.labels();
                   t.bind();
                   callback();
-                }, false);
-
+                }
+                obj_overlay.on("load", function(){ if(++cnt === 2) { callback_onload(); } }, false);
+                obj_overlay.property("data", " <%= (@export ? "" : "/template/#{@template}/")  + 'assets/map_overlay.svg'%>");
+                obj.on("load", function (){ if(++cnt === 2) { callback_onload(); } }, false);
                 obj.property("data", " <%= (@export ? "" : "/template/#{@template}/")  + 'assets/map.svg'%>");
+
                 return this;
               },
               next: function () { var t = this; t.go_to(t.path.index+1); },
@@ -148,6 +153,9 @@
                 svg.selectAll("g[data-point]")
                   .datum(function () { return +d3.select(this).attr("data-point")-1; })
                   .on("click", clicked);
+               t.svg_overlay.selectAll("g[data-point]")
+                  .datum(function () { return +d3.select(this).attr("data-point")-1; })
+                  .on("click", clicked);
 
                 road.on("transitionend", transEnd)
                   .on("webkitTransitionEnd", transEnd)
@@ -159,7 +167,41 @@
                 d3.selectAll(".stories .section .column-caption").each(function(d) {
                   t.point.labels.push(this.textContent);
                 });
-                svg.selectAll("g[data-point] text").text(function(d, i) { return t.point.labels[i]; }).call(wrap, 2);;
+                svg.selectAll("g[data-point] text").text(function(d, i) { return t.point.labels[i]; }).call(wrap, 2);
+
+                t.svg_overlay.selectAll("g[data-point]")
+                  .attr("data-title", function(d, i) { return t.point.labels[i]; })
+                  .on('mouseover', function() {
+                    var point = d3.select(this);
+                    if(point.attr("data-title")) {
+                      var bbox = this.getBBox(),
+                      g = point.append("g").classed("tip", true),
+                      rect = g.append("rect"),
+                      text = g.append("text").text(point.attr("data-title")).call(wrap, 2),
+                      textBbox = text.node().getBBox(),
+                      space = 5, padding = [8,10,8,10];
+                       // console.log(bbox);
+                       // console.log("hereblah");
+                      // text.selectAll("tspan").attr("x", null)
+                       console.log(bbox.y, space, padding[0], padding[2], textBbox.height, bbox.y - (space + padding[2] + textBbox.height), bbox.y - (space + padding[2] + textBbox.height +  padding[0]), textBbox.height + padding[0] + padding[2]);
+                      text.attr({ "x": bbox.x + bbox.width/2 - textBbox.width / 2, "y": bbox.y - (space + padding[2] + textBbox.height) + 10  });
+                      text.selectAll("tspan").attr({"x": bbox.x + bbox.width/2 - textBbox.width / 2 });
+                      rect.attr({"x": bbox.x + bbox.width / 2 - textBbox.width / 2 - padding[3], "y": bbox.y - (space + padding[2] + textBbox.height +  padding[0]), "width": textBbox.width + padding[1] + padding[3], "height": textBbox.height + padding[0] + padding[2], "rx": "3", "rg": "3" });
+                    // var text = d3.select("text");
+                    // var bbox = text.node().getBBox();
+                    // var padding = 2;
+                    // var rect = t.svg_overlay.insert("rect", "text")
+                    //     .attr("x", bbox.x - padding)
+                    //     .attr("y", bbox.y - padding)
+                    //     .attr("width", bbox.width + (padding*2))
+                    //     .attr("height", bbox.height + (padding*2))
+                    //     .style("fill", "red");
+                    }
+                  })
+                  .on('mouseout', function() {
+                    var point = d3.select(this);
+                    point.select(".tip").remove();
+                  });
               }},
             anchor = d3.selectAll(".navigation-section").on("click", clicked),
             marker = d3.selectAll(".navigation-marker"),
@@ -199,47 +241,44 @@
               // }
             });
           }
-
-         // function transitionEnd() {
-         //    var el = document.createElement('bootstrap')
-
-         //    var transEndEventNames = {
-         //      'WebkitTransition' : 'webkitTransitionEnd',
-         //      'MozTransition'    : 'transitionend',
-         //      'OTransition'      : 'oTransitionEnd otransitionend',
-         //      'transition'       : 'transitionend'
-         //    }
-
-         //    for (var name in transEndEventNames) {
-         //      if (el.style[name] !== undefined) {
-         //        return { end: transEndEventNames[name] }
-         //      }
-         //    }
-
-         //    return false // explicit for ie8 (  ._.)
-         //  }
-
-
-
+          // var tip = d3.select("#tip");
+          // function show_tooltip(d,i) {
+          //   // tip.classed("visible", true);
+          //   // tip.style({ top: d3.event.y + "px", left: d3.event.clientX + "px" });
+          //    // console.log(this,d,i,d3.event);
+          // }
+          // function hide_tooltip(d,i) {
+          //   // tip.classed("visible", false);
+          //   //  console.log(this,d,i,d3.event);
+          // }
           var skip = false, scrollDir = 1, scrollYPrev = 0;
           function scrolled() {
-             console.log(scrollY);
             scrollDir = scrollY > scrollYPrev ? 1 : 0;
-             // console.log(this, d3.event);
-              console.log(scrollY);
-            var j = Math.max(0, Math.min(markerOffsets.length - 1, d3.bisectLeft( scrollDir ? markerOffsets : markerOffsetsBack , scrollY) - (scrollY === innerHeight ? 0 : 1)));
-            // look at document height and compare to scrollY
-            if(!skip)
-            {
-              track.go_to(j);
-            }
-           // console.log("scrolled", j);
+            var j = Math.max(0, Math.min(markerOffsets.length - 1, d3.bisectLeft( scrollDir ? markerOffsets : markerOffsetsBack , scrollY) - (scrollY === scrollHeight - h ? 0 : 1)));
+            if(!skip) { track.go_to(j); }
             anchor.classed("navigation-section--active", function(d, i) { return i === j; });
             scrollYPrev = scrollY;
+            d3.select(".embed-container iframe[src*='://www.youtube.com']").each(function(){
+              var ifr = d3.select(this), src = ifr.attr("data-src");
+              if(!src) {
+                ifr.attr("data-src", this.src);
+                src = this.src;
+              }
+              if(scrollY > this.parentNode.parentNode.offsetTop - h && scrollY < this.parentNode.parentNode.offsetTop + this.clientHeight/2) {
+                if(src === this.src) { this.src = src + "?autoplay=1&rel=0&modestbranding=1"; }
+              }
+              else if(src !== this.src) {
+                this.src = ifr.attr("data-src");
+              }
+            });
+
           }
 
 
           function resized() {
+            w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
             var ar = [];
             markerOffsets = marker.datum(function(d, i) {
              // tmp = window.innerHeight * 0.30; //- this.parentNode.clientHeight;
@@ -251,13 +290,11 @@
             scrolled();
           }
           function clicked(d, i) {
-             // console.log(d,i);
+             console.log("clicked");
             var ind = isNumeric(d) ? d : i;
-             // console.log("clicked", d,i, ind);
             d3.event.preventDefault();
             d3.transition().duration(750).tween("scroll", function() {
               var offset = d3.interpolateNumber(scrollY, markerOffsets[ind]);
-
               skip = true;
               return function(t) { scrollTo(0, offset(t)); };
             }).each("end", function() { console.log("end of tween"); skip = false;  scrolled(); }); //if (!--n) callback.apply(this, arguments);
@@ -265,8 +302,6 @@
 
 
           track.init(function() {
-            // d3.select(".navigation-headline").on("click", clicked);
-
             d3.select(window)
                 .on("resize.navigation", resized)
                 .on("load.navigation", resized)
@@ -274,6 +309,8 @@
 
             resized();
           });
+          var abstract = d3.select(".abstract");
+          d3.select(".abstract-toggle").on("click", function() { abstract.classed("active", !abstract.classed("active")); });
         });
       </script>
 
@@ -282,78 +319,47 @@
       <div class="article">
         <%
           secs = @story.sections.select{|t| t.ok? }.sort_by{|p| p.position}
-
-      columnSectionCount = 0
-        isFirst = true
-        [0,1].each{|s_i|
-          section = secs[s_i]
-          dataAudio = section.asset_exists? ? "data-audio='#{File.basename(section.asset.asset_file_name_formatted,'.mp3')}'".html_safe : ''
+          columnSectionCount = 0
+          section = secs[0]
         %>
-            <% if section.media? %>
-              <div class="section video-sequence" <%= dataAudio.html_safe %>>
-                <% if section.has_marker? %>
-                   <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
-                <% end %>
-                <% section.media.each_with_index do |m,m_i| %>
-                  <% dataVideo = '' %>
-                  <% if m.media_type == Medium::TYPE[:video] && m.is_processed? %>
-                    <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name_formatted,'.*')}'".html_safe %>
-                  <% end %>
-                  <div class="video"  <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>
-                    <div class="video-container">
-                      <% if m.media_type == Medium::TYPE[:image] %>
-                          <% if !@export %>
-                            <img src="<%= m.image.asset.url(:fullscreen) %>">
-                          <% else %>
-                            <img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>">
-                          <% end %>
-                      <% elsif m.media_type == Medium::TYPE[:video] && !m.is_processed?  %>
-                          <% if !@export %>
-                            <%= image_tag "png/video_being_processed_#{I18n.locale}.png" %>
-                          <% else %>
-                            <img src="assets/png/video_being_processed_#{I18n.locale}.png">
-                          <% end %>
-                      <% elsif m.media_type == Medium::TYPE[:video] && m.is_processed?  %>
-                            <% if !@export %>
-                              <!--[if lte IE 8]><img src="<%= m.image.asset.url(:fullscreen) %>"><![endif]-->
-                            <% else %>
-                              <!--[if lte IE 8]><img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>"><![endif]-->
-                            <% end %>
+        <% if section.media? %>
+          <div class="section video-sequence">
+            <% section.media.each_with_index do |m,m_i| %>
+              <div class="video">
+                <div class="video-container">
+                  <% if m.media_type == Medium::TYPE[:image] %>
+                      <% if !@export %>
+                        <img src="<%= m.image.asset.url(:fullscreen) %>">
+                      <% else %>
+                        <img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>">
                       <% end %>
+                  <% end %>
+                </div>
+                  <div class="video-headline">
+                    <div class="headline">
+                      <div class="headline-title"><%= m.title %><span><%= m.caption %></span></div>
+                      <div class="headline-explore-prompt"><%= m.source %></div>
+                      <div class="headline-publisher"><span><%= t('storyteller.byline') %>&nbsp;</span><%= @story.author %></div>
+                      <div class="headline-author"><%= @story.media_author.html_safe %></div>
                     </div>
-
-                    <% if isFirst && m_i == 0  %>
-                      <div class="video-headline">
-                        <div class="headline">
-                          <div class="headline-title"><%= m.title %><span><%= m.caption %></span></div>
-                          <div class="headline-explore-prompt"><%= m.source %></div>
-                          <div class="headline-publisher"><span><%= t('storyteller.byline') %>&nbsp;</span><%= @story.author %></div>
-                          <div class="headline-author"><%= @story.media_author.html_safe %></div>
-                        </div>
-                        <% columnSectionCount+=1 %>
-                      </div>
-                    <% else %>
-                      <div class="premap"></div>
-                      <div class="prestory">
-                      <%= secs[2].content.content.html_safe %>
-           <!--                <div class="corner-text-wrapper">
-                              <div class="corner-text">
-                                <span></span>
-                              </div>
-                          </div> -->
-                      </div>
-                    <% end %>
                   </div>
-                <% end %>
               </div>
             <% end %>
-            <% if isFirst %>
-              <div class="section separator"></div>
-            <% end %>
-            <% isFirst = false %>
-        <% } %>
+          </div>
+        <% end %>
 
+        <div class="section separator"></div>
+        <div class="section video-sequence">
+          <div class="video" data-videoloop="">
+            <div class="video-container always_visible">
+              <object id="track_overlay" type="image/svg+xml"></object>
+              <div class="abstract"><div class="abstract-text"><%= secs[2].content.content.html_safe %></div><div class="abstract-toggle"></div></div>
+            </div>
+          </div>
+        </div>
 
+          <% isFirst = false %>
+          <% columnSectionCount = 2 %>
           <div class="subarticle">
             <div class="map-container">
               <object id="track" type="image/svg+xml"></object>
@@ -377,8 +383,8 @@
                       <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.author %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
                       </div>
                     <% end %>
-                    <%= "<div class='column-caption'>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
-                    <%= "<div class='column-sub-caption'>#{section.content.sub_caption}</div>".html_safe  if section.content.sub_caption.present? %>
+                    <%= "<div class='column-caption'><div class='point'></div>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
+                    <div class='column-sub-caption'><%= "#{section.content.sub_caption}".html_safe  if section.content.sub_caption.present? %>&nbsp;</div>
                     <%= section.content.content.html_safe %>
                     <% if section.content.content.html_safe.lines.count == 1 %>
                       <p>&nbsp;</p>
@@ -484,6 +490,7 @@
             <% end %>
             <div class="section finish">
               <a class="navigation-marker" id="<%= secs.length%>"></a>
+              <div class="fb-comments" data-href="http://jumpstart.ge" data-numposts="2"></div>
             </div>
           </div>
         </div>
@@ -1195,7 +1202,6 @@
       *  D3 library
       ********************************************************* -->
     	<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>
-
     <script>
 
       (function() {
@@ -1250,7 +1256,7 @@
             eY = d3.select(".subarticle").node().offsetTop;
 
           d3.select(".map-container")
-            .style("top", (wY < eY - 110 ? eY - wY : 110) + "px");
+            .style("top", (wY < eY - 52 ? eY - wY : 52) + "px");
         }
 
         function watch_scrolledStatic() {
@@ -1283,4 +1289,16 @@
         await();
          console.log("here");
     })();</script>
+    <div id="fb-root"></div>
+    <script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=282184988613640";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    window.fbAsyncInit = function() { window.resizeBy(0,0); };
+    </script>
+
     <!--<![endif]-->

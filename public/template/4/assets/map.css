@@ -41,6 +41,13 @@ g[data-point].active .start path {
   fill:#1E1E1E;
   /*stroke:#262626;*/
 }
+.tip rect {
+  fill:#fff;
+}
+.tip text {
+  font:12px OpenSans;
+  fill: #000;
+}
 /*svg .point:hover {
 
 }
