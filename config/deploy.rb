@@ -94,12 +94,12 @@ namespace :deploy do
       end
       if changed_asset_count > 0 || force_compile
         logger.info "#{changed_asset_count} assets have changed; force_compile = #{force_compile}. Pre-compiling locally and pushing to shared/assets folder on server"
-        run_locally("rake assets:clean RAILS_ENV=#{rails_env} && rake assets:precompile RAILS_ENV=#{rails_env} ")
+        run_locally("bundle exec rake assets:clean RAILS_ENV=#{rails_env} && bundle exec rake assets:precompile RAILS_ENV=#{rails_env} ")
         run_locally "cd public && tar -jcf assets.tar.bz2 assets"
         top.upload "public/assets.tar.bz2", "#{shared_path}", :via => :scp
         run "cd #{shared_path} && tar -jxf assets.tar.bz2 && rm assets.tar.bz2"
         run_locally "rm public/assets.tar.bz2"
-        run_locally("rake assets:clean RAILS_ENV=#{rails_env}")
+        run_locally("bundle exec rake assets:clean RAILS_ENV=#{rails_env}")
       else
         logger.info "#{changed_asset_count} assets have changed. Skipping asset pre-compilation"
       end
