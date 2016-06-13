@@ -29,6 +29,13 @@
   }
   @font-face
   {
+    font-family: 'merriweather-l';
+    font-style: normal;
+    font-weight: normal;
+    src: url(<%= (@export ? "" : "/template/#{@template}/")  + 'assets/fonts/Merriweather-Light.ttf'%>);
+  }
+  @font-face
+  {
     font-family: 'merriweather-b';
     font-style: normal;
     font-weight: normal;
@@ -84,7 +91,7 @@
   .column {
     margin-left: auto;
     margin-right: auto;
-    max-width: 580px;
+    /*max-width: 580px;*/
   }
 
   .column em{
@@ -107,19 +114,6 @@
 
   .column a{
     text-decoration: underline;
-  }
-  .column p,.column p span
-  {
-    font-family: opensans-r !important;
-    color: #5A5A5A;
-    line-height: 24px !important;
-    font-size: 16px !important;
-    letter-spacing:normal !important;
-  }
-  .column p:lang(ka),.column p span:lang(ka)
-  {
-    font-family: 'dejavusans-r' !important;
-    -webkit-font-smoothing: antialiased;
   }
   .column blockquote {
     padding: 0 0 0 15px;
@@ -1567,6 +1561,9 @@
   {
     text-align:left;
     margin-top:23px;
+    padding:0 25px;
+    font:14px/21px merriweather-l;
+    color: #383a2d;
   }
 
   /************************* meydan story start *************************/
@@ -1671,8 +1668,8 @@
     }
     .subarticle .navigation-container {
       display:block;
-      max-width:530px;
-      margin:0px auto 36px;
+      /*max-width:530px;*/
+      margin:0 0 36px;
     }
     .subarticle .navigation-label {
       position:relative;
@@ -1707,7 +1704,7 @@
     }
 
     .column p, .column p span {
-      font:14px/21px merriweather;
+      font:14px/21px merriweather-l;
       color: #383a2d;
     }
     .column p:not(:first-of-type), .column p:not(:last-of-type) {
