@@ -1,3 +1,26 @@
+<%
+def parse_video_url(url)
+    @url = url
+
+    youtube_formats = [
+        %r(https?://youtu\.be/(.+)),
+        %r(https?://www\.youtube\.com/watch\?v=(.*?)(&|#|$)),
+        %r(https?://www\.youtube\.com/embed/(.*?)(\?|$)),
+        %r(https?://www\.youtube\.com/v/(.*?)(#|\?|$)),
+        %r(https?://www\.youtube\.com/user/.*?#\w/\w/\w/\w/(.+)\b)
+      ]
+
+    @url.strip!
+
+    if @url.include? "youtu"
+      youtube_formats.find { |format| @url =~ format } and $1
+      @results = {provider: "youtube", id: $1}
+      @results
+    else
+      return nil # There should probably be some error message here
+    end
+end
+%>
 <!--   <defs><link href="map.css" type="text/css" rel="stylesheet"
           xmlns="http://www.w3.org/1999/xhtml"/>
     </defs> -->
@@ -70,7 +93,6 @@
                 article: undefined
               },
               init: function (callback) {
-                console.log("init track");
                 var t = this, obj = d3.select("#track")
                   obj_overlay = d3.select("#track_overlay"), cnt = 0;
 
@@ -164,7 +186,7 @@
               },
               labels: function () {
                 var t = this, svg = d3.select(t.el.svg);
-                d3.selectAll(".stories .section .column-caption").each(function(d) {
+                d3.selectAll(".stories .section .navigation-marker .navigation-label").each(function() {
                   t.point.labels.push(this.textContent);
                 });
                 svg.selectAll("g[data-point] text").text(function(d, i) { return t.point.labels[i]; }).call(wrap, 2);
@@ -258,20 +280,6 @@
             if(!skip) { track.go_to(j); }
             anchor.classed("navigation-section--active", function(d, i) { return i === j; });
             scrollYPrev = scrollY;
-            d3.select(".embed-container iframe[src*='://www.youtube.com']").each(function(){
-              var ifr = d3.select(this), src = ifr.attr("data-src");
-              if(!src) {
-                ifr.attr("data-src", this.src);
-                src = this.src;
-              }
-              if(scrollY > this.parentNode.parentNode.offsetTop - h && scrollY < this.parentNode.parentNode.offsetTop + this.clientHeight/2) {
-                if(src === this.src) { this.src = src + "?autoplay=1&rel=0&modestbranding=1"; }
-              }
-              else if(src !== this.src) {
-                this.src = ifr.attr("data-src");
-              }
-            });
-
           }
 
 
@@ -371,20 +379,13 @@
                   if section.asset_exists?
                     dataAudio = "data-audio='#{File.basename(section.asset.asset_file_name_formatted,'.mp3')}'".html_safe
                   end
+                  marker = section.has_marker? ? "<a class='navigation-marker' id='#{s_i + 1 - 3}'></a><div class='navigation-container'><div class='navigation-label'><div class='point'></div>#{section.title}#{'&nbsp;'*10}</div></div>" : ""
+
                %>
                 <% if section.content? %>
                   <div class="section column" <%= dataAudio.html_safe %>>
-                    <% if section.has_marker? %>
-                       <a class="navigation-marker" id="<%= s_i + 1 - 3 %>"></a>
-                    <% end %>
-                    <% if columnSectionCount == 0 %>
-                      <div class='headline<%= s_i == 0 ? " margin130": ""%>'><%= @story.title %></div>
-                      <div class="byline byline--first" style="margin-bottom:24px;">
-                      <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.author %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
-                      </div>
-                    <% end %>
-                    <%= "<div class='column-caption'><div class='point'></div>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
-                    <div class='column-sub-caption'><%= "#{section.content.sub_caption}".html_safe  if section.content.sub_caption.present? %>&nbsp;</div>
+                    <%= marker.html_safe %>
+                    <div class='column-caption'><%= "#{section.content.sub_caption}".html_safe  if section.content.sub_caption.present? %></div>
                     <%= section.content.content.html_safe %>
                     <% if section.content.content.html_safe.lines.count == 1 %>
                       <p>&nbsp;</p>
@@ -393,9 +394,7 @@
                   <% columnSectionCount+=1 %>
                 <% elsif section.media? %>
                   <div class="section video-sequence" <%= dataAudio.html_safe %>>
-                    <% if section.has_marker? %>
-                       <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
-                    <% end %>
+                    <%= marker.html_safe %>
                     <% section.media.each_with_index do |m,m_i| %>
                       <% dataVideo = '' %>
                       <% if m.media_type == Medium::TYPE[:video] && m.is_processed? %>
@@ -448,9 +447,7 @@
                   </div>
                 <% elsif section.slideshow? %>
                   <div class="section slideshow" <%= dataAudio.html_safe %>>
-                    <% if section.has_marker? %>
-                           <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
-                    <% end %>
+                    <%= marker.html_safe %>
                     <% if s_i == 0 %>
                       <div class='slideshow-headline'><%= @story.title %></div>
                       <% columnSectionCount+=1 %>
@@ -459,7 +456,6 @@
                           <% if section.slideshow.caption.present? %>
                             <h3><%= section.slideshow.caption %></h3>
                           <% end %>
-
                       <!--[if lte IE 8]><img src="<%= section.slideshow.assets[0].asset.url(:medium) %>" style="width:100%;"><![endif]-->
                       <div class="slideshow-captions">
                           <% section.slideshow.assets.each_with_index do |t,t_i| %>
@@ -475,14 +471,11 @@
                   </div>
                 <% elsif section.embed_media? %>
                   <div class="section embed" <%= dataAudio.html_safe %>>
-                    <% if section.has_marker? %>
-                           <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
-                    <% end %>
-                     <div class="embed-caption">
-                      <%= section.embed_medium.title.html_safe %>
-                    </div>
+                    <%= marker.html_safe %>
+                    <div class="embed-caption"><%= section.embed_medium.title.html_safe %></div>
                     <div class="embed-container">
-                      <%= section.embed_medium.code.html_safe %>
+                      <% youtubeId = parse_video_url(section.embed_medium.url)[:id] %>
+                      <div id="player_<%= youtubeId %>" class="youtube" data-yid="<%= youtubeId %>"></div>
                     </div>
                   </div>
                 <% end %>
@@ -496,18 +489,6 @@
         </div>
       </div>
     </div>
-        <!--
-          <div class="image image--diptych">
-            <img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/696/island-pag-asa.jpg">
-            <img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/696/kids.jpg">
-            <div class="caption">About 120 people live at any one time on Pag-asa, including civilians.</div>
-          </div>
-           <div class="image">
-            <img src="http://i1.nyt.com/newsgraphics/2013/10/24/south-china-sea-videos/assets/696/chinese-coast-guards.jpg">
-            <div class="caption">Chinese Coast Guard cutters patrol within sight of the Sierra Madre.</div>
-          </div>
-         -->
-
       <!-- ****************************************************
       *  data hash for mobile devices , they use different images
       ********************************************************* -->
@@ -569,7 +550,7 @@
           if(firstVideo !== null && firstVideo.length)
           {
             firstVideo.querySelector(".video:first-of-type .video-container")[0].style.height = height + "px";
-            firstVideo.querySelector(".video:first-of-type .video-headline")[0].style.height = height + "px";
+            //firstVideo.querySelector(".video:first-of-type .video-headline")[0].style.height = height + "px";
           }
 
         }
@@ -602,7 +583,6 @@
         d3.select(window)
           .on("resize", mobileReorient)
           .on("scroll", function() {
-             console.log("here");
               d3.select(".navigation")
                 .classed("navigation-solid", window.scrollY > 350)
           });
@@ -677,18 +657,12 @@
                 container = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-container")
 
                 if (image.type != "map" && image.type != "hide") {
-
-
                   container.html("").append("img")
                     .attr("src", image.url);
-
                 }
 
                 if (image.type != "hide") {
-
                   var css;
-
-
                   if (image.type == "map") css = "caption-" + image.file.replace("#","");
                   else css = "caption-" + image.file.match(/\/([\w-]+)/)[1];
 
@@ -696,8 +670,6 @@
                       .classed(css, true)
 
                 }
-
-
                 var slide = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ")");
               }
               else if( image.type == "slideshow")
@@ -911,14 +883,14 @@
             fixTop = Math.round((innerHeight - fixHeight) / 2);
             fadeTop = Math.max(200, fixTop);
             fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight);
-            d3.select(".video-sequence:first-child").style("margin-top", fixTop + "px");
+            // d3.select(".video-sequence:first-child").style("margin-top", fixTop + "px");
             //d3.select(".video-sequence .video").style("height", fixHeight + "px");
-            containerFixed.style("height", fixHeight + "px").filter(function(d) {
-              var rect = this.parentNode.getBoundingClientRect();
-              return d.first ? rect.top < fixTop
-                  : d.last ? rect.bottom >= fixTop + fixHeight
-                  : true;
-            }).style("top", fixTop + "px");
+            // containerFixed.style("height", fixHeight + "px").filter(function(d) {
+            //   var rect = this.parentNode.getBoundingClientRect();
+            //   return d.first ? rect.top < fixTop
+            //       : d.last ? rect.bottom >= fixTop + fixHeight
+            //       : true;
+            // }).style("top", fixTop + "px");
           }
 
           function fixscrolled(d) {
@@ -931,7 +903,6 @@
                   .style("position", fixed ? "fixed" : "absolute")
                   .style("top", fixed ? fixTop + "px" : null);
             }
-
             var section = d3.select(this),
                 container = section.select(".video-container"),
                 videoNode = this.querySelector(".video-container video"),
@@ -944,18 +915,20 @@
                   : Math.max(0, Math.min(1, 1 - (opacityTop - fixTop) / (fixHeight / 5))); // this video is partially opaque
 
             if (d.first) {
-              if (videoNode) {
-                volume = d3.event.rect.top < fixTop + fadeTop ? Math.max(0, Math.min(1, 1 - (d3.event.rect.top - fixTop) / fadeTop)) : 0;
-                var play = d3.event.rect.top <= fixTop + fadeTop;
-                if (videoNode.paused) {
-                  if (play && (!d.animation || (videoNode.currentTime < videoNode.duration && volume > .8))) {
-                    videoNode.play();
+              if(false) {
+                if (videoNode) {
+                  volume = d3.event.rect.top < fixTop + fadeTop ? Math.max(0, Math.min(1, 1 - (d3.event.rect.top - fixTop) / fadeTop)) : 0;
+                  var play = d3.event.rect.top <= fixTop + fadeTop;
+                  if (videoNode.paused) {
+                    if (play && (!d.animation || (videoNode.currentTime < videoNode.duration && volume > .8))) {
+                      videoNode.play();
+                    }
+                  } else if (!play) {
+                    videoNode.pause();
                   }
-                } else if (!play) {
-                  videoNode.pause();
                 }
+                container.style("opacity", opacityTop >= fixTop - fixHeight ? 1 : 0);
               }
-              container.style("opacity", opacityTop >= fixTop - fixHeight ? 1 : 0);
             } else {
               container.style("opacity", opacity);
               if (videoNode) {
@@ -1287,17 +1260,50 @@
         }
 
         await();
-         console.log("here");
     })();</script>
     <div id="fb-root"></div>
     <script>
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=282184988613640";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      var youtubePlayers= {};
+      function onYouTubeIframeAPIReady() {
+        var youtube_watch = d3.behavior.watch()
+          .on("statechange", function() {
+            var pl = youtubePlayers[d3.select(this).select("iframe").attr("data-yid")];
+            if(pl && typeof pl.playVideo === "function") {
+              if(d3.event.state) { pl.playVideo(); }
+              else { pl.pauseVideo(); }
+            }
+          });
+
+        d3.selectAll(".section .youtube[data-yid]").each(function(d,i){
+          var id = this.id, yid = this.dataset.yid;
+          d3.select(this.parentNode).call(youtube_watch);
+          youtubePlayers[yid] = new YT.Player(
+              id,
+              {
+                videoId: yid,
+                playerVars:{ showinfo: 1, loop: 1, autoplay: 0, rel: 0}
+                //,
+                // events: {
+                //   'onReady': onPlayerReady,
+                //   'onStateChange': onPlayerStateChange
+                // }
+              }
+          );
+        });
+      }
+
+    // (function(d, s, id) {
+    //   var js, fjs = d.getElementsByTagName(s)[0];
+    //   if (d.getElementById(id)) return;
+    //   js = d.createElement(s); js.id = id;
+    //   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=282184988613640"; // 1376263699277894 meydan
+    //   fjs.parentNode.insertBefore(js, fjs);
+    // }(document, 'script', 'facebook-jssdk'));
     window.fbAsyncInit = function() { window.resizeBy(0,0); };
     </script>
 

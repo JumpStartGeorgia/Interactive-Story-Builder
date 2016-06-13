@@ -1115,7 +1115,7 @@
 
   .navigation-marker {
 /*    position: absolute;*/
-    margin-top: -42px;
+    /*margin-top: -42px;*/
   }
 
 /*  .navigation-volume,*/
@@ -1669,16 +1669,20 @@
     .abstract.active .abstract-toggle {
       background:transparent url(<%= (@export ? "" : "/template/#{@template}/")  + 'assets/abstract_close.svg'%>);
     }
-
-    .subarticle .column-caption {
+    .subarticle .navigation-container {
+      display:block;
+      max-width:530px;
+      margin:0px auto 36px;
+    }
+    .subarticle .navigation-label {
       position:relative;
-      display:inline;
+      display:inline-block;
       font:16px opensans-sb;
       color:#212121;
       border-bottom:1px solid #212121;
-      padding:0 10% 8px 0;
+      padding:0 0 8px 0;
     }
-    .subarticle .column-caption:after {
+    .subarticle .navigation-label:after {
       position:absolute;
       left:0px;
       bottom:-2px;
@@ -1688,19 +1692,20 @@
       width: 60px;
       height:3px;
     }
-
-    .subarticle  .column-sub-caption {
-      font:22px merriweather-b;
-      color:#212121;
-      padding:36px 0 24px;
-    }
-    .subarticle .column-caption .point {
+    .subarticle .navigation-label .point {
       background:transparent url(<%= (@export ? "" : "/template/#{@template}/")  + 'assets/point.svg'%>) no-repeat;
       width:12px;
       height:15px;
       display:inline-block;
       margin:0 10px 0 -20px;
     }
+
+    .subarticle .column-caption {
+      font:22px merriweather-b;
+      color:#212121;
+      padding:0 0 24px;
+    }
+
     .column p, .column p span {
       font:14px/21px merriweather;
       color: #383a2d;
