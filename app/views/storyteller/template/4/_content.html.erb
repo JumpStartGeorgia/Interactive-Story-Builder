@@ -186,7 +186,7 @@ end
               },
               labels: function () {
                 var t = this, svg = d3.select(t.el.svg);
-                d3.selectAll(".stories .section .navigation-marker .navigation-label").each(function() {
+                d3.selectAll(".stories .section .navigation-label").each(function() {
                   t.point.labels.push(this.textContent);
                 });
                 svg.selectAll("g[data-point] text").text(function(d, i) { return t.point.labels[i]; }).call(wrap, 2);
@@ -202,22 +202,9 @@ end
                       text = g.append("text").text(point.attr("data-title")).call(wrap, 2),
                       textBbox = text.node().getBBox(),
                       space = 5, padding = [8,10,8,10];
-                       // console.log(bbox);
-                       // console.log("hereblah");
-                      // text.selectAll("tspan").attr("x", null)
-                       console.log(bbox.y, space, padding[0], padding[2], textBbox.height, bbox.y - (space + padding[2] + textBbox.height), bbox.y - (space + padding[2] + textBbox.height +  padding[0]), textBbox.height + padding[0] + padding[2]);
                       text.attr({ "x": bbox.x + bbox.width/2 - textBbox.width / 2, "y": bbox.y - (space + padding[2] + textBbox.height) + 10  });
                       text.selectAll("tspan").attr({"x": bbox.x + bbox.width/2 - textBbox.width / 2 });
                       rect.attr({"x": bbox.x + bbox.width / 2 - textBbox.width / 2 - padding[3], "y": bbox.y - (space + padding[2] + textBbox.height +  padding[0]), "width": textBbox.width + padding[1] + padding[3], "height": textBbox.height + padding[0] + padding[2], "rx": "3", "rg": "3" });
-                    // var text = d3.select("text");
-                    // var bbox = text.node().getBBox();
-                    // var padding = 2;
-                    // var rect = t.svg_overlay.insert("rect", "text")
-                    //     .attr("x", bbox.x - padding)
-                    //     .attr("y", bbox.y - padding)
-                    //     .attr("width", bbox.width + (padding*2))
-                    //     .attr("height", bbox.height + (padding*2))
-                    //     .style("fill", "red");
                     }
                   })
                   .on('mouseout', function() {
