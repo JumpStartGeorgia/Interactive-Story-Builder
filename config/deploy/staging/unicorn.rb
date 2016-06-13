@@ -14,5 +14,5 @@ stdout_path "#{root}/log/unicorn.log"
 
 listen "/tmp/#{sock_name}.sock"
 listen port_num, :tcp_nopush => true
-worker_processes 2
+worker_processes 1
 timeout tout
