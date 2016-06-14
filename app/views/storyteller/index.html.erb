@@ -1,34 +1,34 @@
-<% 
-  @template = @story.template.id 
+<%
+  @template = @story.template.id
   @export ||= false
-  @no_nav ||= false  
+  @no_nav ||= false
 %>
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
-  <head>    
+  <head>
     <%= render partial: "storyteller/template/#{@template}/head"%>
-	  <%= include_gon if !@export %>    
+	  <%= include_gon if !@export %>
     <meta name="google" content="notranslate" />
   </head>
-  <body>     
+  <body>
     <%= render partial: "storyteller/template/#{@template}/nav"%>
-    <div id='storyTeller'> 
-      <%= render partial: "storyteller/template/#{@template}/content"%>   
-    </div>   
-    <%= render partial: "storyteller/template/#{@template}/footer"%>   
+    <div id='storyTeller'>
+      <%= render partial: "storyteller/template/#{@template}/content"%>
+    </div>
+    <%= render partial: "storyteller/template/#{@template}/footer"%>
 
-
+    <% if @story.template.id != 4 %>
       <% if !@export %>
-        <%= javascript_include_tag  *(@js.present? ? ["application", @js].flatten : ["application"]), :media => "all" %>      
+        <%= javascript_include_tag  *(@js.present? ? ["application", @js].flatten : ["application"]), :media => "all" %>
   		  <script type="text/javascript">
   			  I18n.defaultLocale = "<%= I18n.default_locale %>";
   			  I18n.locale = "<%= I18n.locale %>";
   		  </script>
       <% else %>
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-          <script src="js/bootstrap.min.js"></script>          
-          <script src="js/modalos.js"></script>   
-          <script src="js/page.js"></script>   
+          <script src="js/bootstrap.min.js"></script>
+          <script src="js/modalos.js"></script>
+          <script src="js/page.js"></script>
       <% end %>
       <% if Rails.env.production? %>
         <script>
@@ -39,7 +39,8 @@
           ga('create', 'UA-12801815-33', 'jumpstart.ge');
           ga('send', 'pageview');
         </script>
-    <% end %>    
+      <% end %>
+    <% end %>
     <%= render partial: "storyteller/template/#{@template}/js"%>
   </body>
-</html> 
+</html>

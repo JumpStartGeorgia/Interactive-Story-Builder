@@ -21,7 +21,7 @@ en:
         password_confirmation: Password Confirmation
         role: Role
         remember_me: Remember Me
-        default_story_locale: Default Language for Your Stories 
+        default_story_locale: Default Language for Your Stories
         about: Summary of You
         local_avatar: Avatar
         nickname: Nickname
@@ -30,7 +30,7 @@ en:
         user_id: Story Editor
         user_ids: Editors
         author: Author(s)
-        media_author: Photo and Video Author(s)  
+        media_author: Photo and Video Author(s)
         published: Publish?
         published_at: Was Published
         publish_home_page: Once published, make your story visible on the homepage?
@@ -50,8 +50,8 @@ en:
         type_id: Type
         sort_order: Sort Order
         delete_audio: Delete the Audio Track?
-      content:        
-        title: Title          
+      content:
+        title: Title
         caption: Heading
         sub_caption: Subheading
         content: Text
@@ -94,7 +94,7 @@ en:
     errors:
       messages:
         required_field: "is a required field."
-        already_exists: 'already exists in the database.'              
+        already_exists: 'already exists in the database.'
   mailer:
     closing: "Sincerely,"
     signature: The StoryBuilder Team
@@ -191,8 +191,8 @@ en:
       categories: Categories
       staff_pick: Staff Pick
       user_settings: Settings
-      like: Like   
-      likes: Likes      
+      like: Like
+      likes: Likes
       comments: Comment on this story
       views: "%{num} views"
       tags: Tags
@@ -226,7 +226,7 @@ en:
       edit: "Edit %{model}"
       story_list: My Stories
     hints:
-      nickname: Your nickname is used in the URL to your published stories (e.g., nickname/story-title)        
+      nickname: Your nickname is used in the URL to your published stories (e.g., nickname/story-title)
       local_avatar: Image that is shown in the header bar and on your user page (png and jpg only).
       like: Like this story
       unlike: Unlike this story
@@ -280,13 +280,13 @@ en:
       embed_slogan: Build your story with StoryBuilder
       added_on: "Added on: %{date}"
       admin: Admin
-      sign_out: Sign Out    
+      sign_out: Sign Out
       jumpstart: JumpStart Georgia
-      js_link_title: JumpStart Georgia - We communicate data better!
+      js_link_title: JumpStart Georgia - Informing Communities with Data and Design!
       js_link_text: Built by
       search: Search for Story ...
       build: Build Story
-      explore: Explore Stories      
+      explore: Explore Stories
       about_story: About
       likes: Likes
       comments: Comments
@@ -308,7 +308,7 @@ en:
       partial: Link to Story
       partial_text: Embed a link to the story that has the same look as the story links on the home page of StoryBuilder (image, title, author, etc)
       full: Full Story
-      full_text: Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look. 
+      full_text: Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look.
       feed: StoryBuilder Feed Channel
       home: Home
       required: Required
@@ -320,7 +320,7 @@ en:
       success_updated: "%{obj} was successfully updated."
       success_publish: "%{obj} was successfully published."
       success_unpublish: "%{obj} was successfully unpublished."
-      success_clone: "%{obj} was successfully cloned to %{to}."      
+      success_clone: "%{obj} was successfully cloned to %{to}."
       error_created: "%{obj} wasn't created: %{err}"
       error_updated: "%{obj} wasn't updated: %{err}"
       error_publish: "%{obj} wasn't published: %{err}"
@@ -337,9 +337,9 @@ en:
       staff_unpick: The story has been unselected as a Staff Pick
       success_settings: Your settings were successfully updated.
       success_remove_avatar: Your Facebook avatar is now being used.
-      nickname_duplicate: This user URL already exists. 
+      nickname_duplicate: This user URL already exists.
       nickname_url: 'Your URL will be:'
-      story_duplicate: This story URL already exists. 
+      story_duplicate: This story URL already exists.
       story_url: 'Story URL will be:'
       invitation:
         accepted: "You have accepted the invitation to collaborate on '%{title}'"
@@ -394,9 +394,9 @@ en:
     slideshow:
       name: Image Slideshow
       description: Images in a horizontal slideshow
-    embed_media: 
+    embed_media:
       name: Embed Online Media
-      description: youtube, vimeo, etc      
+      description: youtube, vimeo, etc
   message_types:
     bug: Report a Bug
     feature: Request a Feature
@@ -407,7 +407,7 @@ en:
     staff_pick: Staff Pick
     staff_pick_title: View stories that have been selected as Staff Picks
     staff_pick_title_active: Remove Staff Pick filter
-    sort_header: Sorted By    
+    sort_header: Sorted By
     sort_title: Indicate how the stories should be sorted
     filters: Filters
     sort:
@@ -506,13 +506,13 @@ en:
       feedback_link: Feedback section
     about:
       title: About StoryBuilder
-      intro: "The platform that allows anyone to turn text, audio tracks, pictures and/or videos into a creative web-story that can be published and shared with the world."   
+      intro: "The platform that allows anyone to turn text, audio tracks, pictures and/or videos into a creative web-story that can be published and shared with the world."
       p1: "StoryBuilder enables anyone to build mixed-media stories without needing to know how to code. What sets StoryBuilder apart from other similar services is that you have complete control over your content. You can publish it on StoryBuilder, or your can download the story and host it where you want."
       p2: "Each story is a sequence of media sections in the order of your choosing. You choose which order and which type of media you want each section to be. Choose from text/html, full screen images/videos, image slideshows, and embeddable online media. You can accompany each chapter with a soundtrack of your choosing. What you do with that is up to you!"
       p3: "To ensure that your content is yours, we have made the entire platform open source. This means if you do not want to use JumpStart Georgia's live version of StoryBuilder, you can install the StoryBuilder application on a server of your choice. In this way, you or your organization are not locked into dependency on yet another 3rd-party service hosting your content."
-      p4: "JumpStart Georgia is building StoryBuilder for the benefit of improving the ease with which civil society organizations, journalists, activists, and storytellers the world over can tell stories that are engaging and increasingly visceral, changing how audiences can experience stories on the web." 
-      help: "If you or your organization would like to help us improve StoryBuilder through funding, development, or design, please don't hesitate to contact us!" 
-      contact:   
+      p4: "JumpStart Georgia is building StoryBuilder for the benefit of improving the ease with which civil society organizations, journalists, activists, and storytellers the world over can tell stories that are engaging and increasingly visceral, changing how audiences can experience stories on the web."
+      help: "If you or your organization would like to help us improve StoryBuilder through funding, development, or design, please don't hesitate to contact us!"
+      contact:
         subject: StoryBuilder Contact
         address1: '#5 Shevchenko St, Apt 2'
         address2: 'Tbilisi Georgia 0108'
@@ -645,9 +645,9 @@ en:
       facebook_avatar: This is your avatar from Facebook.
       use_facebook_avatar: Use Facebook Avatar
       hint:
-        about: Short summary about yourself.  This will be shown with the stories that you publish. 
+        about: Short summary about yourself.  This will be shown with the stories that you publish.
         default_story_locale: Select the language you want to use by default when creating a new story.
-      submit: Save Settings      
+      submit: Save Settings
     invitations:
       title: Collaboration Invitations
       no_invitations: At this time you have no invitations waiting for you.
@@ -675,12 +675,12 @@ en:
       news_sub_title: StoryBuilder Update Notifications
       news_label: "Do you want to recieve notifications when updates are made to StoryBuilder?"
       news_no: "No, do not send me any notifications."
-      news_yes: "Yes, I want notifications sent to me."     
+      news_yes: "Yes, I want notifications sent to me."
       following_sub_title: StoryBuilder Users You Are Following
       following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image."
       following_not: "At this time, you are not following any users."
       following_title1: "Click to unfollow '%{nickname}'"
-      following_title2: "Click to follow '%{nickname}'"     
+      following_title2: "Click to follow '%{nickname}'"
       submit: Save Settings
   imageuploader:
     missing: "An error occurred while processing your image. Please try again."

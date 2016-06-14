@@ -51,7 +51,6 @@
       margin: 0;
       padding: 0;
     }
-    #storyTeller { top:41px; }
     a {
       /*color: #004276;*/
       text-decoration: none;
@@ -235,10 +234,6 @@
       width: 120%;
     }
 
-    .video-sequence:first-child {
-      margin-top: 40px;
-    }
-
     .video-sequence .video {
       min-height: 56.25vw;
     }
@@ -363,10 +358,6 @@
 
       .ios .video-sequence {
         background-color: #000;
-      }
-
-      .ios .video-sequence:first-child {
-        margin-top: 0px;
       }
 
       /* VIDEO SLIDE */
@@ -940,10 +931,10 @@
     {
       background-color:#000;
       text-align:center;
-      margin:10px 0px 23px 0px;
       width:100%;
       height:100%;
       position: relative;
+      margin:0;
       padding-bottom: 56.25%;
       padding-top: 30px;
       height: 0;
@@ -1081,9 +1072,12 @@
     .navigation-label .point {
       display:inline-block;
       background:transparent url(<%= (@export ? "" : "/template/#{@template}/")  + 'assets/point.svg'%>) no-repeat;
-      width:12px;
-      height:15px;
-      margin:0 10px 0 -20px;
+      background-size:24px 20px;
+      width:24px;
+      height:20px;
+      margin:0 0 0 -24px;
+      position:relative;
+      top:5px;
     }
     .column p:not(:first-of-type),
     .column p:not(:last-of-type)
@@ -1094,7 +1088,7 @@
       padding:0 0 24px;
     }
 
-    .column p, .column p span {
+    .column p, .column p span, .column a {
       font:14px/21px merriweather-l !important;
       color: #383a2d;
     }
@@ -1165,5 +1159,26 @@
       .column p:not(:last-of-type)
       { margin-bottom:26px }
     }
-
+    .powered-by
+    {
+      font:14px opensans;
+      color:#333;
+      text-align: right;
+      background-color:transparent;
+      margin: 20px 27px 20px 0;
+      float:right;
+    }
+    .powered-by a { color:#333; }
+    .powered-by a:hover,.powered-by a:focus
+    {
+      text-decoration:underline;
+      color:#000;
+    }
+    .fb_iframe_widget {
+      margin-top:20px;
+    }
 </style>
+<!--[if lte IE 8]><style type="text/css">
+  .video-container video,
+  .video-container img { position: static; }
+</style><![endif]-->
