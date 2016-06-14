@@ -865,7 +865,7 @@
               : 1));
 
           // bug for column background change deny #if(){ data }
-          if(!d3.select(this).classed("column"))
+          if(!d3.select(this).classed("column") && !d3.select(this.parentNode).classed("article"))
           {
             d3.select("body").style("background", fade(opacity));
           }
