@@ -1,315 +1,280 @@
-<%
-def parse_video_url(url)
-    @url = url
+<%-
+  def parse_video_url(url)
+      youtube_formats = [
+          %r(https?://youtu\.be/(.+)),
+          %r(https?://www\.youtube\.com/watch\?v=(.*?)(&|#|$)),
+          %r(https?://www\.youtube\.com/embed/(.*?)(\?|$)),
+          %r(https?://www\.youtube\.com/v/(.*?)(#|\?|$)),
+          %r(https?://www\.youtube\.com/user/.*?#\w/\w/\w/\w/(.+)\b)
+        ]
 
-    youtube_formats = [
-        %r(https?://youtu\.be/(.+)),
-        %r(https?://www\.youtube\.com/watch\?v=(.*?)(&|#|$)),
-        %r(https?://www\.youtube\.com/embed/(.*?)(\?|$)),
-        %r(https?://www\.youtube\.com/v/(.*?)(#|\?|$)),
-        %r(https?://www\.youtube\.com/user/.*?#\w/\w/\w/\w/(.+)\b)
-      ]
+      url.strip!
 
-    @url.strip!
-
-    if @url.include? "youtu"
-      youtube_formats.find { |format| @url =~ format } and $1
-      @results = {provider: "youtube", id: $1}
-      @results
-    else
-      return nil # There should probably be some error message here
-    end
-end
+      if url.include? "youtu"
+        youtube_formats.find { |format| url =~ format } and $1
+        {provider: "youtube", id: $1}
+      else
+        return nil
+      end
+  end
 %>
-<!--   <defs><link href="map.css" type="text/css" rel="stylesheet"
-          xmlns="http://www.w3.org/1999/xhtml"/>
-    </defs> -->
-      <!-- ****************************************************
-      *  if device is portable we are adding ios class to html tag
-      *  so new classes with .ios .someclass path are used instead of basic ones
-      ********************************************************* -->
-      <script>
-        var isMobile = function() {
-          return /iPad|iPod|iPhone|Android/.test(navigator.userAgent) || document.location.hash == "#ipad";
-        }
+    <script> // inits
+      var isMobile = function() { return /iPad|iPod|iPhone|Android/.test(navigator.userAgent) || document.location.hash == "#ipad"; },
+        isPhone = function() { return isMobile() && window.innerWidth < 768; }, w, h, scrollHeight;
+      if (isMobile()) { document.documentElement.className = document.documentElement.className + " ios"; }
 
-        var isPhone = function() {
-          return isMobile() && window.innerWidth < 768;
-        }
-        if (isMobile()) {
+      (function() {
+        var defers = [];
+        defer = function(f) { defers.push(f); };
+        await = function() { defers.forEach(function(f,s) { f();}); };
+      })();
+    </script>
 
-          document.documentElement.className = document.documentElement.className + " ios";
-        }  </script>
-
-        var w, h, scrollHeight;
-
-      <!--[if lte IE 8]><style type="text/css">
+    <!--[if lte IE 8]><style type="text/css">
       .video-container video,
-      .video-container img
-      {
-        position: static;
-      }
-      </style><![endif]-->
+      .video-container img { position: static; }
+    </style><![endif]-->
+
+    <script> // navigation
+      defer(function() {
+
+        var track = {
+            point: {
+              coordinates: [],
+              coordinates_orig: [0, 86, 106, 289, 109, 255, 396, 146, 78, 85, 90, 138, 158, 116, 116, 165, 334, 363, 130, 83],
+              labels: [],
+              count: 0
+            },
+            path: {
+              index: 0,
+              offset: 0,
+              length: 0,
+              orig_length: 3243
+            },
+            svg_overlay: undefined,
+            el: {
+              svg: undefined,
+              road: undefined,
+              article: undefined
+            },
+            init: function (callback) {
+              var t = this, obj = d3.select("#track")
+                obj_overlay = d3.select("#track_overlay"), cnt = 0;
+
+              function callback_onload() {
+                t.el.svg = obj.node().contentDocument;
+                t.svg_overlay = d3.select(obj_overlay.node().contentDocument.documentElement);
+                t.el.road = t.el.svg.getElementsByClassName("road")[0];
+                t.el.article = document.getElementsByClassName("article")[0];
+                t.path.length =  t.el.road.getTotalLength();
+                d3.select(t.el.road).style({ "stroke-dasharray": t.path.length + "px", "stroke-dashoffset": t.path.length + "px" });
 
 
-      <!-- ****************************************************
-      *  array of functions added throught page which should be called at the end of page parsing with "await"
-      *  function which is called at the bottom of the page
-      ********************************************************* -->
-      <script>
-
-        (function() {
-          var defers = [];
-          defer = function(f) { defers.push(f); };
-          await = function() { defers.forEach(function(f,s) { f();}); };
-
-        })();</script>
-
-
-      <!-- ****************************************************
-      *  collecting navigation sections and it's markers
-      *  binding click events on anchors and navigation section on resize and scroll
-      ********************************************************* -->
-      <script>
-        defer(function() {
-
-          var track = {
-              point: {
-                coordinates: [],
-                coordinates_orig: [0, 86, 106, 289, 109, 255, 396, 146, 78, 85, 90, 138, 158, 116, 116, 165, 334, 363, 130, 83],
-                labels: [],
-                count: 0
-              },
-              path: {
-                index: 0,
-                offset: 0,
-                length: 0,
-                orig_length: 3243
-              },
-              svg_overlay: undefined,
-              el: {
-                svg: undefined,
-                road: undefined,
-                article: undefined
-              },
-              init: function (callback) {
-                var t = this, obj = d3.select("#track")
-                  obj_overlay = d3.select("#track_overlay"), cnt = 0;
-
-                function callback_onload() {
-                  t.el.svg = obj.node().contentDocument;
-                  t.svg_overlay = d3.select(obj_overlay.node().contentDocument.documentElement);
-                  t.el.road = t.el.svg.getElementsByClassName("road")[0];
-                  t.el.article = document.getElementsByClassName("article")[0];
-                  t.path.length =  t.el.road.getTotalLength();
-                  d3.select(t.el.road).style({ "stroke-dasharray": t.path.length + "px", "stroke-dashoffset": t.path.length + "px" });
-
-
-                  if(t.path.length !== t.path.orig_length) {
-                    var rt = t.path.length/t.path.orig_length;
-                    t.point.coordinates_orig.forEach(function(d, i){ t.point.coordinates.push(d * rt); });
-                  }
-                  t.point.count = t.point.coordinates.length - 1;
-                  t.labels();
-                  t.bind();
-                  callback();
+                if(t.path.length !== t.path.orig_length) {
+                  var rt = t.path.length/t.path.orig_length;
+                  t.point.coordinates_orig.forEach(function(d, i){ t.point.coordinates.push(d * rt); });
                 }
-                obj_overlay.on("load", function(){ if(++cnt === 2) { callback_onload(); } }, false);
-                obj_overlay.property("data", " <%= (@export ? "" : "/template/#{@template}/")  + 'assets/map_overlay.svg'%>");
-                obj.on("load", function (){ if(++cnt === 2) { callback_onload(); } }, false);
-                obj.property("data", " <%= (@export ? "" : "/template/#{@template}/")  + 'assets/map.svg'%>");
+                t.point.count = t.point.coordinates.length - 1;
+                t.labels();
+                t.bind();
+                callback();
+              }
+              obj_overlay.on("load", function(){ if(++cnt === 2) { callback_onload(); } }, false);
+              obj_overlay.property("data", " <%= (@export ? "" : "/template/#{@template}/")  + 'assets/map_overlay.svg'%>");
+              obj.on("load", function (){ if(++cnt === 2) { callback_onload(); } }, false);
+              obj.property("data", " <%= (@export ? "" : "/template/#{@template}/")  + 'assets/map.svg'%>");
 
-                return this;
-              },
-              next: function () { var t = this; t.go_to(t.path.index+1); },
-              prev: function () { var t = this; t.go_to(t.path.index-1); },
-              go_to: function (index) {
-                // console.log("go_to", index);
-                var t = this, tmp = 0, i;
-                if(!isNumeric(index) || typeof index === undefined) { index = t.path.index + 1; }
-                // console.log("go_to", index);
+              return this;
+            },
+            next: function () { var t = this; t.go_to(t.path.index+1); },
+            prev: function () { var t = this; t.go_to(t.path.index-1); },
+            go_to: function (index) {
+              // console.log("go_to", index);
+              var t = this, tmp = 0, i;
+              if(!isNumeric(index) || typeof index === undefined) { index = t.path.index + 1; }
+              // console.log("go_to", index);
 
-                if(index < 0) { index = 0; }
-                else if(index > t.point.count) { index = t.point.count; }
-                // console.log("go_to", index, t.point.count);
+              if(index < 0) { index = 0; }
+              else if(index > t.point.count) { index = t.point.count; }
+              // console.log("go_to", index, t.point.count);
 
-                if(t.path.index !== index) {
-                  if(index > t.path.index) {
-                    for(i = t.path.index+1; i <= index; ++i) {
-                      tmp += t.point.coordinates[i];
-                      // console.log(i, "forward" );
-                    }
-                  } // moving forward
-                  else {
-                    for(i = t.path.index; i > index; --i) {
-                      tmp += t.point.coordinates[i];
-                    }
-                    tmp*=-1;
+              if(t.path.index !== index) {
+                if(index > t.path.index) {
+                  for(i = t.path.index+1; i <= index; ++i) {
+                    tmp += t.point.coordinates[i];
+                    // console.log(i, "forward" );
                   }
-                   // console.log(t.path.offset, tmp, t.path.length);
-                  t.path.offset += tmp;
-                  t.animate(t.path.offset);
-                  t.path.index = index;
+                } // moving forward
+                else {
+                  for(i = t.path.index; i > index; --i) {
+                    tmp += t.point.coordinates[i];
+                  }
+                  tmp*=-1;
                 }
+                 // console.log(t.path.offset, tmp, t.path.length);
+                t.path.offset += tmp;
+                t.animate(t.path.offset);
+                t.path.index = index;
+              }
 
-              },
-              animate: function (to) {
-                var t = this, road = d3.select(t.el.road), svg = d3.select(t.el.svg);
-                svg.selectAll("g[data-point]").classed("active", false);
-                road.style({ "transition": "none", "-webkit-transition" : "none"});
-                setTimeout(function () {
-                  road.style("stroke-dashoffset", t.path.length - to + "px");
-                  road.style({ "transition": "stroke-dashoffset 2s ease-in-out", "-webkit-transition" : "stroke-dashoffset 2s ease-in-out"});
+            },
+            animate: function (to) {
+              var t = this, road = d3.select(t.el.road), svg = d3.select(t.el.svg);
+              svg.selectAll("g[data-point]").classed("active", false);
+              road.style({ "transition": "none", "-webkit-transition" : "none"});
+              setTimeout(function () {
+                road.style("stroke-dashoffset", t.path.length - to + "px");
+                road.style({ "transition": "stroke-dashoffset 2s ease-in-out", "-webkit-transition" : "stroke-dashoffset 2s ease-in-out"});
 
-                }, 0);
-              },
-              bind: function () {
-                var t = this,
-                  road = d3.select(t.el.road),
-                  svg = d3.select(t.el.svg),
-                  transEnd = function() {
-                    svg.select((t.path.index === t.point.count ? ".finish" : "g[data-point='" + (t.path.index+1) + "']"))
-                      .classed("active", true);
-                  };
+              }, 0);
+            },
+            bind: function () {
+              var t = this,
+                road = d3.select(t.el.road),
+                svg = d3.select(t.el.svg),
+                transEnd = function() {
+                  svg.select((t.path.index === t.point.count ? ".finish" : "g[data-point='" + (t.path.index+1) + "']"))
+                    .classed("active", true);
+                };
 
-                svg.selectAll("g[data-point]")
-                  .datum(function () { return +d3.select(this).attr("data-point")-1; })
-                  .on("click", clicked);
-               t.svg_overlay.selectAll("g[data-point]")
-                  .datum(function () { return +d3.select(this).attr("data-point")-1; })
-                  .on("click", clicked);
+              svg.selectAll("g[data-point]")
+                .datum(function () { return +d3.select(this).attr("data-point")-1; })
+                .on("click", clicked);
+             t.svg_overlay.selectAll("g[data-point]")
+                .datum(function () { return +d3.select(this).attr("data-point")-1; })
+                .on("click", clicked);
 
-                road.on("transitionend", transEnd)
-                  .on("webkitTransitionEnd", transEnd)
-                  .on("oTransitionEnd", transEnd)
-                  .on("MSTransitionEnd", transEnd);
-              },
-              labels: function () {
-                var t = this, svg = d3.select(t.el.svg);
-                d3.selectAll(".stories .section .navigation-label").each(function() {
-                  t.point.labels.push(this.textContent);
+              road.on("transitionend", transEnd)
+                .on("webkitTransitionEnd", transEnd)
+                .on("oTransitionEnd", transEnd)
+                .on("MSTransitionEnd", transEnd);
+            },
+            labels: function () {
+              var t = this, svg = d3.select(t.el.svg);
+              d3.selectAll(".stories .section .navigation-label").each(function() {
+                t.point.labels.push(this.textContent);
+              });
+              svg.selectAll("g[data-point] text").text(function(d, i) { return t.point.labels[i]; }).call(wrap, 2);
+
+              t.svg_overlay.selectAll("g[data-point]")
+                .attr("data-title", function(d, i) { return t.point.labels[i]; })
+                .on('mouseover', function() {
+                  var point = d3.select(this);
+                  if(point.attr("data-title")) {
+                    var bbox = this.getBBox(),
+                    g = point.append("g").classed("tip", true),
+                    rect = g.append("rect"),
+                    text = g.append("text").text(point.attr("data-title")).call(wrap, 2),
+                    textBbox = text.node().getBBox(),
+                    space = 5, padding = [8,10,8,10];
+                    text.attr({ "x": bbox.x + bbox.width/2 - textBbox.width / 2, "y": bbox.y - (space + padding[2] + textBbox.height) + 10  });
+                    text.selectAll("tspan").attr({"x": bbox.x + bbox.width/2 - textBbox.width / 2 });
+                    rect.attr({"x": bbox.x + bbox.width / 2 - textBbox.width / 2 - padding[3], "y": bbox.y - (space + padding[2] + textBbox.height +  padding[0]), "width": textBbox.width + padding[1] + padding[3], "height": textBbox.height + padding[0] + padding[2], "rx": "3", "rg": "3" });
+                  }
+                })
+                .on('mouseout', function() {
+                  var point = d3.select(this);
+                  point.select(".tip").remove();
                 });
-                svg.selectAll("g[data-point] text").text(function(d, i) { return t.point.labels[i]; }).call(wrap, 2);
+            }},
+          anchor = d3.selectAll(".navigation-section").on("click", clicked),
+          marker = d3.selectAll(".navigation-marker"),
+          markerOffsets,
+          markerOffsetsBack = [];
 
-                t.svg_overlay.selectAll("g[data-point]")
-                  .attr("data-title", function(d, i) { return t.point.labels[i]; })
-                  .on('mouseover', function() {
-                    var point = d3.select(this);
-                    if(point.attr("data-title")) {
-                      var bbox = this.getBBox(),
-                      g = point.append("g").classed("tip", true),
-                      rect = g.append("rect"),
-                      text = g.append("text").text(point.attr("data-title")).call(wrap, 2),
-                      textBbox = text.node().getBBox(),
-                      space = 5, padding = [8,10,8,10];
-                      text.attr({ "x": bbox.x + bbox.width/2 - textBbox.width / 2, "y": bbox.y - (space + padding[2] + textBbox.height) + 10  });
-                      text.selectAll("tspan").attr({"x": bbox.x + bbox.width/2 - textBbox.width / 2 });
-                      rect.attr({"x": bbox.x + bbox.width / 2 - textBbox.width / 2 - padding[3], "y": bbox.y - (space + padding[2] + textBbox.height +  padding[0]), "width": textBbox.width + padding[1] + padding[3], "height": textBbox.height + padding[0] + padding[2], "rx": "3", "rg": "3" });
-                    }
-                  })
-                  .on('mouseout', function() {
-                    var point = d3.select(this);
-                    point.select(".tip").remove();
-                  });
-              }},
-            anchor = d3.selectAll(".navigation-section").on("click", clicked),
-            marker = d3.selectAll(".navigation-marker"),
-            markerOffsets,
-            markerOffsetsBack = [];
+        function isNumeric(val) { return Number(parseFloat(val))==val; }
 
-          function isNumeric(val) { return Number(parseFloat(val))==val; }
-
-          function wrap(text, width) {
-            text.each(function() {
-              // if(d3.select(this).attr("data-multiline")) {
-                var text = d3.select(this),
-                    words = text.text().split(/\s+/),
-                    word,
-                    line = [],
-                    lineNumber = 1,
-                    lineHeight = 15, // ems
-                    y = text.attr("y");
-                  if(words.length <= 3) {
-                    text.text(words.join(" "));
-                  }
-                  else {
-                    words = words.reverse();
-                    var tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", 0 + "px");
-                    while (word = words.pop()) {
-                      line.push(word);
+        function wrap(text, width) {
+          text.each(function() {
+            // if(d3.select(this).attr("data-multiline")) {
+              var text = d3.select(this),
+                  words = text.text().split(/\s+/),
+                  word,
+                  line = [],
+                  lineNumber = 1,
+                  lineHeight = 15, // ems
+                  y = text.attr("y");
+                if(words.length <= 3) {
+                  text.text(words.join(" "));
+                }
+                else {
+                  words = words.reverse();
+                  var tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", 0 + "px");
+                  while (word = words.pop()) {
+                    line.push(word);
+                    tspan.text(line.join(" "));
+                    if (line.length-1 == width) { //tspan.node().getComputedTextLength() > width
+                      line.pop();
                       tspan.text(line.join(" "));
-                      if (line.length-1 == width) { //tspan.node().getComputedTextLength() > width
-                        line.pop();
-                        tspan.text(line.join(" "));
-                        line = [word];
-                        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", lineHeight + "px").text(word);
-                      }
+                      line = [word];
+                      tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", lineHeight + "px").text(word);
                     }
                   }
+                }
 
-              // }
-            });
-          }
-          // var tip = d3.select("#tip");
-          // function show_tooltip(d,i) {
-          //   // tip.classed("visible", true);
-          //   // tip.style({ top: d3.event.y + "px", left: d3.event.clientX + "px" });
-          //    // console.log(this,d,i,d3.event);
-          // }
-          // function hide_tooltip(d,i) {
-          //   // tip.classed("visible", false);
-          //   //  console.log(this,d,i,d3.event);
-          // }
-          var skip = false, scrollDir = 1, scrollYPrev = 0;
-          function scrolled() {
-            scrollDir = scrollY > scrollYPrev ? 1 : 0;
-            var j = Math.max(0, Math.min(markerOffsets.length - 1, d3.bisectLeft( scrollDir ? markerOffsets : markerOffsetsBack , scrollY) - (scrollY === scrollHeight - h ? 0 : 1)));
-            if(!skip) { track.go_to(j); }
-            anchor.classed("navigation-section--active", function(d, i) { return i === j; });
-            scrollYPrev = scrollY;
-          }
-
-
-          function resized() {
-            w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-            h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-            scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-            var ar = [];
-            markerOffsets = marker.datum(function(d, i) {
-             // tmp = window.innerHeight * 0.30; //- this.parentNode.clientHeight;
-              // if(tmp2 < 0) tmp2 = 0;
-
-              ar.push(this.offsetTop - (window.innerHeight * 0.60));
-              return this.offsetTop - window.innerHeight * 0.30; }).data();
-            markerOffsetsBack = ar;
-            scrolled();
-          }
-          function clicked(d, i) {
-             console.log("clicked");
-            var ind = isNumeric(d) ? d : i;
-            d3.event.preventDefault();
-            d3.transition().duration(750).tween("scroll", function() {
-              var offset = d3.interpolateNumber(scrollY, markerOffsets[ind]);
-              skip = true;
-              return function(t) { scrollTo(0, offset(t)); };
-            }).each("end", function() { console.log("end of tween"); skip = false;  scrolled(); }); //if (!--n) callback.apply(this, arguments);
-          }
-
-
-          track.init(function() {
-            d3.select(window)
-                .on("resize.navigation", resized)
-                .on("load.navigation", resized)
-                .on("scroll.navigation", scrolled);
-
-            resized();
+            // }
           });
-          var abstract = d3.select(".abstract");
-          d3.select(".abstract-toggle").on("click", function() { abstract.classed("active", !abstract.classed("active")); });
-        });
-      </script>
+        }
+        // var tip = d3.select("#tip");
+        // function show_tooltip(d,i) {
+        //   // tip.classed("visible", true);
+        //   // tip.style({ top: d3.event.y + "px", left: d3.event.clientX + "px" });
+        //    // console.log(this,d,i,d3.event);
+        // }
+        // function hide_tooltip(d,i) {
+        //   // tip.classed("visible", false);
+        //   //  console.log(this,d,i,d3.event);
+        // }
+        var skip = false, scrollDir = 1, scrollYPrev = 0;
+        function scrolled() {
+          scrollDir = scrollY > scrollYPrev ? 1 : 0;
+          var j = Math.max(0, Math.min(markerOffsets.length - 1, d3.bisectLeft( scrollDir ? markerOffsets : markerOffsetsBack , scrollY) - (scrollY === scrollHeight - h ? 0 : 1)));
+          if(!skip) { track.go_to(j); }
+          anchor.classed("navigation-section--active", function(d, i) { return i === j; });
+          scrollYPrev = scrollY;
+        }
 
-     <% alignment = { "left" => -1, "center" => 0, "right" => 1 }%>
+
+        function resized() {
+          w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+          h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+          scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+          var ar = [];
+          markerOffsets = marker.datum(function(d, i) {
+           // tmp = window.innerHeight * 0.30; //- this.parentNode.clientHeight;
+            // if(tmp2 < 0) tmp2 = 0;
+
+            ar.push(this.offsetTop - (window.innerHeight * 0.60));
+            return this.offsetTop - window.innerHeight * 0.30; }).data();
+          markerOffsetsBack = ar;
+          scrolled();
+        }
+        function clicked(d, i) {
+           console.log("clicked");
+          var ind = isNumeric(d) ? d : i;
+          d3.event.preventDefault();
+          d3.transition().duration(750).tween("scroll", function() {
+            var offset = d3.interpolateNumber(scrollY, markerOffsets[ind]);
+            skip = true;
+            return function(t) { scrollTo(0, offset(t)); };
+          }).each("end", function() { console.log("end of tween"); skip = false;  scrolled(); }); //if (!--n) callback.apply(this, arguments);
+        }
+
+
+        track.init(function() {
+          d3.select(window)
+              .on("resize.navigation", resized)
+              .on("load.navigation", resized)
+              .on("scroll.navigation", scrolled);
+
+          resized();
+        });
+        var abstract = d3.select(".abstract");
+        d3.select(".abstract-toggle").on("click", function() { abstract.classed("active", !abstract.classed("active")); });
+      });
+    </script>
+
+    <% alignment = { "left" => -1, "center" => 0, "right" => 1 }%>
     <div class="main">
       <div class="article">
         <%
@@ -412,17 +377,6 @@ end
                              <div class="video-source"><%= m.source %></div>
                           <% end %>
                         </div>
-
-                        <% if isFirst && m_i == 0  %>
-                          <div class="video-headline">
-                            <div class="headline"><%= @story.title %>
-                              <div class="byline byline--first" style="margin-bottom:24px;">
-                                <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.author %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
-                              </div>
-                            </div>
-                            <% columnSectionCount+=1 %>
-                          </div>
-                        <% end %>
                         <% if m.caption.present? && !(isFirst && m_i == 0) %>
                           <div class='video-caption video-caption--<%= "#{alignment.key(m.caption_align)}" %> <%= m.caption.length > 160 ?
                           "video-caption--long" : "" %>'>
@@ -470,134 +424,94 @@ end
             <% end %>
             <div class="section finish">
               <a class="navigation-marker" id="<%= secs.length%>"></a>
-              <div class="fb-comments" data-href="http://jumpstart.ge" data-numposts="2"></div>
+                <%- if @export %><div class="fb-comments" data-href="http://jumpstart.ge" data-numposts="2"></div><%- end %>
+
             </div>
           </div>
         </div>
       </div>
     </div>
-      <!-- ****************************************************
-      *  data hash for mobile devices , they use different images
-      ********************************************************* -->
-      <script>
+    <%- if @export %><div id="fb-root"></div><%- end %>
 
-          <%
-              output = []
-              secLength = @story.sections.length
-              @story.sections.select{|t| t.ok? }.sort_by{|v| v.position}.each_with_index do |s,s_i|
-                if s.media?
-                  subLength = s.media.length
-                  s.media.each_with_index do |t,t_i|
+    <script> // device
+      <%-
+          # data hash for mobile devices , they use different images
+          output = []
+          secLength = @story.sections.length
+          @story.sections.select{|t| t.ok? }.sort_by{|v| v.position}.each_with_index do |s,s_i|
+            if s.media?
+              subLength = s.media.length
+              s.media.each_with_index do |t,t_i|
 
-                    item = {}
+                item = {}
 
-                    item[:type] = "media"
-                    item[:file] = "mobile_1024/#{t.image.asset_file_name_formatted}"
-                    item[:section] = s_i+1
-                    item[:slide] = t_i+1
-                    item[:align] = "#{alignment.key(t.caption_align)}"
-                    if secLength == t_i+1
-                      item[:hideRule] = true
-                    end
-
-                    output<< item
-                  end
-                elsif s.slideshow?
-                  subLength = s.slideshow.assets.length
-                  s.slideshow.assets.each_with_index do |t,t_i|
-                    item = {}
-
-                    item[:type] = "slideshow"
-                    item[:file] = "mobile_1024/#{t.asset_file_name_formatted}"
-                    item[:section] = s_i+1
-                    item[:slide] = t_i+1
-
-                    if secLength == t_i+1
-                        item[:hideRule] = true
-                    end
-                    output<< item
-                  end
+                item[:type] = "media"
+                item[:file] = "mobile_1024/#{t.image.asset_file_name_formatted}"
+                item[:section] = s_i+1
+                item[:slide] = t_i+1
+                item[:align] = "#{alignment.key(t.caption_align)}"
+                if secLength == t_i+1
+                  item[:hideRule] = true
                 end
+
+                output<< item
               end
-          %>
+            elsif s.slideshow?
+              subLength = s.slideshow.assets.length
+              s.slideshow.assets.each_with_index do |t,t_i|
+                item = {}
 
-           var mobileImages = <%=output.to_json.html_safe %>;
+                item[:type] = "slideshow"
+                item[:file] = "mobile_1024/#{t.asset_file_name_formatted}"
+                item[:section] = s_i+1
+                item[:slide] = t_i+1
 
-      </script>
+                if secLength == t_i+1
+                    item[:hideRule] = true
+                end
+                output<< item
+              end
+            end
+          end
+      %>
 
-      <script>
+      var mobileImages = <%=output.to_json.html_safe %>;
 
-        function mobileReorient() {
+      function mobileReorient() {
+        var height = window.innerHeight - 40,
+          firstVideo = document.querySelector(".video-sequence");
+        if (height > (720*.59) && window.innerWidth < 768) height = (720*.59);
 
-          var height = window.innerHeight - 40;
-
-          if (height > (720*.59) && window.innerWidth < 768) height = (720*.59);
-
-          var firstVideo = document.querySelector(".video-sequence");
-          if(firstVideo !== null && firstVideo.length)
-          {
-            firstVideo.querySelector(".video:first-of-type .video-container")[0].style.height = height + "px";
-            //firstVideo.querySelector(".video:first-of-type .video-headline")[0].style.height = height + "px";
-          }
-
+        if(firstVideo !== null && firstVideo.length)
+        {
+          firstVideo.querySelector(".video:first-of-type .video-container")[0].style.height = height + "px";
+          //firstVideo.querySelector(".video:first-of-type .video-headline")[0].style.height = height + "px";
         }
+      }
 
-        (function() {
+      (function() { if (isMobile()) mobileReorient(); })();
 
-          if (isMobile()) mobileReorient();
-
-        })();
-
-
-        defer(function() {
+      defer(function() {
 
         /* Only do if we're on iPad, iPhone or Android -- TG */
         if (!isMobile()) return false;
 
-
-
-        <% if !@export %>
+        <%- if !@export %>
             var _mobile_assets =  "/system/places/images/<%= @story.id %>/";
             var _slideshow_assets = "/system/places/slideshow/<%= @story.id %>/";
-          <% else %>
+          <%- else %>
             var _mobile_assets =  "media/images/";
             var _slideshow_assets = "media/slideshow/";
-        <% end %>
-
-
-
+        <%- end %>
 
         d3.select(window)
           .on("resize", mobileReorient)
           .on("scroll", function() {
-              d3.select(".navigation")
-                .classed("navigation-solid", window.scrollY > 350)
+              // d3.select(".navigation")
+              //   .classed("navigation-solid", window.scrollY > 350)
           });
+        d3.select(".video-sequence:first-of-type").classed("ios-loaded", true);
 
-    /*
-      remove br from headlines
-      add ios-loaded class to first video-sequence
-      remove br from byline style
-      we don't need this it's for map sequence
-
-    */
-      //  d3.select(".headline").html( d3.select(".headline").html().replace("<br>", " <br>") )
-
-       d3.select(".video-sequence:first-of-type").classed("ios-loaded", true);
-
-       //d3.select(".column .byline").html( d3.select(".column .byline").html().replace("<br>", " <br>") )
-
-        //d3.select(".section:nth-child(7)").classed("map-sequence", true);
-
-
-    /*
-      scripts work with two devices phones and other devices like pads
-      so it would 2 devices in the future phone and pad
-
-      with small delay loop through hash
-
-      if device is phone then replace values with phone inner values
-    */
         setTimeout(function() {
 
           mobileImages.forEach(function(image) {
@@ -617,8 +531,8 @@ end
             /* on section missing stop here current loop */
             if (!image.section) return false;
 
-        /* create path to image with fixed path and file name */
-          if(image.type == "media")
+
+          if(image.type == "media")  /* create path to image with fixed path and file name */
           {
             image.url = _mobile_assets + image.file;
           }
@@ -627,53 +541,44 @@ end
             image.url = _slideshow_assets + image.file;
           }
 
+          var container;
 
+          if (image.slide) {
+            if(image.type == "media")
+            {
+              container = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-container")
 
-            var container;
-        /*  if slide number exicts
-          find container
-          if type not (map && hide) change html to img tag with url
-          if type not (hide)
-            if type map caption from file options without # (caption-)
-            else caption- with first word of file options
-          slide assign
-        */
-            if (image.slide) {
-              if(image.type == "media")
-              {
-                container = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-container")
-
-                if (image.type != "map" && image.type != "hide") {
-                  container.html("").append("img")
-                    .attr("src", image.url);
-                }
-
-                if (image.type != "hide") {
-                  var css;
-                  if (image.type == "map") css = "caption-" + image.file.replace("#","");
-                  else css = "caption-" + image.file.match(/\/([\w-]+)/)[1];
-
-                    d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
-                      .classed(css, true)
-
-                }
-                var slide = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ")");
+              if (image.type != "map" && image.type != "hide") {
+                container.html("").append("img")
+                  .attr("src", image.url);
               }
-              else if( image.type == "slideshow")
-              {
-                container = d3.select(".section:nth-child(" + image.section + ") .slideshow-wrapper");
-                if(container.select(".slideshow-images").empty())
-                {
-                    var temp = container.append("div").attr("class","slideshow-container");
-                    temp.append("div").attr("class", "slideshow-images");
-                }
-                var tempImages =  d3.select(".section:nth-child(" + image.section + ") .slideshow-wrapper .slideshow-container .slideshow-images");
-                caption = container.select(".slideshow-captions .slideshow-caption:nth-of-type(" + image.slide + ")");
-                tempImages.append("img").attr("src", image.url).attr("class","slideshow-image");
+
+              if (image.type != "hide") {
+                var css;
+                if (image.type == "map") css = "caption-" + image.file.replace("#","");
+                else css = "caption-" + image.file.match(/\/([\w-]+)/)[1];
+
+                  d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
+                    .classed(css, true)
+
               }
+              var slide = d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ")");
             }
+            else if( image.type == "slideshow")
+            {
+              container = d3.select(".section:nth-child(" + image.section + ") .slideshow-wrapper");
+              if(container.select(".slideshow-images").empty())
+              {
+                  var temp = container.append("div").attr("class","slideshow-container");
+                  temp.append("div").attr("class", "slideshow-images");
+              }
+              var tempImages =  d3.select(".section:nth-child(" + image.section + ") .slideshow-wrapper .slideshow-container .slideshow-images");
+              caption = container.select(".slideshow-captions .slideshow-caption:nth-of-type(" + image.slide + ")");
+              tempImages.append("img").attr("src", image.url).attr("class","slideshow-image");
+            }
+          }
 
-        /* aligning by options */
+          /* aligning by options */
             if (image.align && image.type == "media") d3.select(".section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
               .classed(image.align.split(" ").map(function(dir) {
                     return "align-" + dir
@@ -682,27 +587,6 @@ end
 
             if (!image.hideRule && slide) slide.append("div")
                 .attr("class", "video-rule")
-
-
-            /* if phone and map then replace tag */
-            if (image.target == "map") {
-
-              container = d3.select(".section:nth-child(" + image.section + ") .map")
-
-              var source = d3.select(".map-source").html();
-
-              if (isPhone()) container.html("<div class='map-source'>" + source + "</div>")
-
-            }
-
-
-        /* map-hide class it type hide */
-            if (image.type == "media" && image.type == "hide") slide.classed("map-hide", true)
-
-            if (image.type == "media" && image.type == "map") {
-
-              container.html( container.html() + d3.select(image.file).text() )
-            }
 
 
         /* add custom caption if specified */
@@ -723,221 +607,188 @@ end
         }, 200)
 
 
-        });</script>
+      });
+    </script>
+    <script> // desktop video/images
+      defer(function() { /* this scripts included when device is not mobile */
 
-      <script>
-     /* this scripts included when device is not mobile */
-          defer(function() {
+        /* Just skip if we're on iPad, iPhone or Android -- TG */
+        if (isMobile()) return false;
 
-          /* Just skip if we're on iPad, iPhone or Android -- TG */
-          if (isMobile()) return false;
+          <% if !@export %>
+             var _video_assets = "/system/places/video/<%= @story.id %>/processed/",
+            _poster_assets = "/system/places/video/<%= @story.id %>/poster/",
+            _image_assets = "/system/places/images/<%= @story.id %>/fullscreen/",
+            _audio_assets = "/system/places/audio/<%= @story.id %>/";
+          <% else %>
+            var _video_assets = "media/video/processed/",
+                _poster_assets = "media/video/poster/",
+                _image_assets = "media/images/fullscreen/",
+                _audio_assets = "media/audio/";
+          <% end %>
 
-            <% if !@export %>
-               var _video_assets = "/system/places/video/<%= @story.id %>/processed/",
-              _poster_assets = "/system/places/video/<%= @story.id %>/poster/",
-              _image_assets = "/system/places/images/<%= @story.id %>/fullscreen/",
-              _audio_assets = "/system/places/audio/<%= @story.id %>/";
-            <% else %>
-              var _video_assets = "media/video/processed/",
-                  _poster_assets = "media/video/poster/",
-                  _image_assets = "media/images/fullscreen/",
-                  _audio_assets = "media/audio/";
-            <% end %>
+        var mute = false,
+            muteVolume = "volume",
+            fixRatio = 16 / 9,
+            fixHeight = innerWidth / fixRatio,
+            fixTop = Math.round((innerHeight - fixHeight) / 2),
+            fadeTop = Math.max(200, fixTop),
+            fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight),
+            fade = d3.interpolateRgb("#000", "#fff");
 
-          var mute = false,
-              muteVolume = "volume",
-              fixRatio = 16 / 9,
-              fixHeight = innerWidth / fixRatio,
-              fixTop = Math.round((innerHeight - fixHeight) / 2),
-              fadeTop = Math.max(200, fixTop),
-              fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight),
-              fade = d3.interpolateRgb("#000", "#fff");
+       // var headline = d3.select(".navigation-headline");
+        var scrollprompt = d3.select('.scroll-prompt');
+        var sequence = d3.selectAll(".video-sequence")
+            .datum(function() {
+              return {
+                first: !this.previousElementSibling,
+                audio: this.getAttribute("data-audio"),
+                length: this.querySelectorAll(".video").length
+              };
+            })
+            .call(d3.behavior.watch()
+              .on("scroll", sequencescrolled)
+              .on("statechange", sequencestatechanged));
 
-         // var headline = d3.select(".navigation-headline");
-          var scrollprompt = d3.select('.scroll-prompt');
-          var sequence = d3.selectAll(".video-sequence")
-              .datum(function() {
-                return {
-                  first: !this.previousElementSibling,
-                  audio: this.getAttribute("data-audio"),
-                  length: this.querySelectorAll(".video").length
-                };
-              })
-              .call(d3.behavior.watch()
-                .on("scroll", sequencescrolled)
-                .on("statechange", sequencestatechanged));
-
-          sequence.filter(function(d) { return d.audio; }).append("audio")
-              .attr("src", function(d) { return _audio_assets + d.audio + ".mp3"; })
-              .property("loop", true);
-
-
-          // Add for content to have audio track
-          var section_content = d3.selectAll(".section:not(.video-sequence)[data-audio]")
-              .datum(function() {
-                return {
-                  audio: this.getAttribute("data-audio")
-                };
-              }).call(d3.behavior.watch()
-                .on("scroll", sequencescrolled)
-                .on("statechange", sequencestatechanged));
-
-          section_content.filter(function(d) { return d.audio; }).append("audio")
-              .attr("src", function(d) { return _audio_assets + d.audio + ".mp3"; })
-              .property("loop", true);
-          // content audio end
+        sequence.filter(function(d) { return d.audio; }).append("audio")
+            .attr("src", function(d) { return _audio_assets + d.audio + ".mp3"; })
+            .property("loop", true);
 
 
+        // Add for content to have audio track
+        var section_content = d3.selectAll(".section:not(.video-sequence)[data-audio]")
+            .datum(function() {
+              return {
+                audio: this.getAttribute("data-audio")
+              };
+            }).call(d3.behavior.watch()
+              .on("scroll", sequencescrolled)
+              .on("statechange", sequencestatechanged));
 
-          var section = d3.selectAll(".video")
-              .datum(function() {
-                var previous = this.previousElementSibling,
-                    next = this.nextElementSibling;
-                return {
-                  video: this.getAttribute("data-video"),
-                  animation: this.hasAttribute("data-animation"),
-                  loop: this.hasAttribute("data-videoloop"),
-                  first: !previous || !d3.select(previous).classed("video"),
-                  last: !next || !d3.select(next).classed("video")
-                };
-              });
+        section_content.filter(function(d) { return d.audio; }).append("audio")
+            .attr("src", function(d) { return _audio_assets + d.audio + ".mp3"; })
+            .property("loop", true);
+        // content audio end
 
-          var sectionFixed = sequence.selectAll(".video")
-              .each(function(d) { d.sequence = this.parentNode.__data__; })
-              .call(d3.behavior.watch()
-                .on("scroll", fixscrolled)
-                .on("statechange", fixstatechanged));
 
-          var container = section.select(".video-container");
 
-          var video = container.filter(function(d) { return d.video; }).append("video")
-              .attr("preload", "none")
-              .attr("poster", function(d) { return  _poster_assets + d.video + ".jpg"; })
-              .property("loop", function(d) { return !d.animation; })
-              .property("loop", function(d) { return d.loop; })
-              .text("Your browser does not support this video.");
+        var section = d3.selectAll(".video")
+            .datum(function() {
+              var previous = this.previousElementSibling,
+                  next = this.nextElementSibling;
+              return {
+                video: this.getAttribute("data-video"),
+                animation: this.hasAttribute("data-animation"),
+                loop: this.hasAttribute("data-videoloop"),
+                first: !previous || !d3.select(previous).classed("video"),
+                last: !next || !d3.select(next).classed("video")
+              };
+            });
 
-          video.append("source")
-              .attr("src", function(d) { return _video_assets + d.video + ".mp4"; })
-              .attr("type", "video/mp4");
+        var sectionFixed = sequence.selectAll(".video")
+            .each(function(d) { d.sequence = this.parentNode.__data__; })
+            .call(d3.behavior.watch()
+              .on("scroll", fixscrolled)
+              .on("statechange", fixstatechanged));
 
-          // video.append("source")
-          //     .attr("src", function(d) { return _video_assets + d.video + ".webm"; })
-          //     .attr("type", "video/webm");
+        var container = section.select(".video-container");
 
-          if (!supportsViewportUnits()) sectionFixed.append("div")
-              .style("height", fixHeight + "px");
+        var video = container.filter(function(d) { return d.video; }).append("video")
+            .attr("preload", "none")
+            .attr("poster", function(d) { return  _poster_assets + d.video + ".jpg"; })
+            .property("loop", function(d) { return !d.animation; })
+            .property("loop", function(d) { return d.loop; })
+            .text("Your browser does not support this video.");
 
-          var containerFixed = sectionFixed.select(".video-container")
-              .style("z-index", function(d) { return d.first || d.last ? 1 : 2; })
-              .style("position", function(d) { return d.first || d.last ? "absolute" : "fixed"; })
-              .style("top", function(d) { return d.first || d.last ? null : fixTop + "px"; })
-              .style("display", function(d) { return d.first || d.last ? null : "none"; });
+        video.append("source")
+            .attr("src", function(d) { return _video_assets + d.video + ".mp4"; })
+            .attr("type", "video/mp4");
 
-          containerFixed.select(function(d, i) { return d.sequence.length > 1 ? this : null; }).append("div")
-              .attr("class", "video-sequence-indicator")
-              .style("margin-top", function(d) { return -d.sequence.length * 1.4 / 2 + "em"; })
-              .text(function(d, i) { return d3.range(d.sequence.length).map(function(j) { return i === j ? "●" : "○"; }).join("\n"); });
+        // video.append("source")
+        //     .attr("src", function(d) { return _video_assets + d.video + ".webm"; })
+        //     .attr("type", "video/webm");
 
-          var muteButton = d3.select(".navigation-volume")
-              .on("click", muted);
+        if (!supportsViewportUnits()) sectionFixed.append("div")
+            .style("height", fixHeight + "px");
 
-          d3.select(window)
-              .on("load.video", loaded)
-              .on("resize.video", resized);
+        var containerFixed = sectionFixed.select(".video-container")
+            .style("z-index", function(d) { return d.first || d.last ? 1 : 2; })
+            .style("position", function(d) { return d.first || d.last ? "absolute" : "fixed"; })
+            .style("top", function(d) { return d.first || d.last ? null : fixTop + "px"; })
+            .style("display", function(d) { return d.first || d.last ? null : "none"; });
 
-          d3.select("video")
-              .attr("preload", "auto");
+        containerFixed.select(function(d, i) { return d.sequence.length > 1 ? this : null; }).append("div")
+            .attr("class", "video-sequence-indicator")
+            .style("margin-top", function(d) { return -d.sequence.length * 1.4 / 2 + "em"; })
+            .text(function(d, i) { return d3.range(d.sequence.length).map(function(j) { return i === j ? "●" : "○"; }).join("\n"); });
 
-          resized();
+        var muteButton = d3.select(".navigation-volume")
+            .on("click", muted);
 
-          function loaded() {
-            video.attr("preload", function(d) { return d.first ? "auto" : "none"; });
+        d3.select(window)
+            .on("load.video", loaded)
+            .on("resize.video", resized);
+
+        d3.select("video")
+            .attr("preload", "auto");
+
+        resized();
+
+        function loaded() {
+          video.attr("preload", function(d) { return d.first ? "auto" : "none"; });
+        }
+
+        function muted() {
+          mute = !mute;
+          muteVolume = mute ? "_volume" : "volume";
+          muteButton.classed("navigation-volume--muted", mute);
+          d3.event.preventDefault();
+          d3.selectAll("audio,video").interrupt().property("volume", mute
+              ? function() { this._volume = this.volume; return 0; }
+              : function() { return this._volume; });
+        }
+
+        function resized() {
+          fixHeight = innerWidth / fixRatio;
+          fixTop = Math.round((innerHeight - fixHeight) / 2);
+          fadeTop = Math.max(200, fixTop);
+          fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight);
+          // d3.select(".video-sequence:first-child").style("margin-top", fixTop + "px");
+          //d3.select(".video-sequence .video").style("height", fixHeight + "px");
+          // containerFixed.style("height", fixHeight + "px").filter(function(d) {
+          //   var rect = this.parentNode.getBoundingClientRect();
+          //   return d.first ? rect.top < fixTop
+          //       : d.last ? rect.bottom >= fixTop + fixHeight
+          //       : true;
+          // }).style("top", fixTop + "px");
+        }
+
+        function fixscrolled(d) {
+          if (d.first || d.last) {
+            //!(d.first && d.last) && () for bug when media section has only one media
+            var fixed = !(d.first && d.last) && ((d.first && d3.event.rect.top < fixTop)
+                || (d.last && d3.event.rect.bottom >= fixTop + fixHeight));
+            d3.select(this.querySelector(".video-container"))
+                .style("z-index", fixed ? 2 : 1)
+                .style("position", fixed ? "fixed" : "absolute")
+                .style("top", fixed ? fixTop + "px" : null);
           }
+          var section = d3.select(this),
+              container = section.select(".video-container"),
+              videoNode = this.querySelector(".video-container video"),
+              volume = 1;
 
-          function muted() {
-            mute = !mute;
-            muteVolume = mute ? "_volume" : "volume";
-            muteButton.classed("navigation-volume--muted", mute);
-            d3.event.preventDefault();
-            d3.selectAll("audio,video").interrupt().property("volume", mute
-                ? function() { this._volume = this.volume; return 0; }
-                : function() { return this._volume; });
-          }
+          var opacityTop = d3.event.rect.top - fixHeight / 4,
+              opacity = opacityTop > fixTop + fixHeight * 4 / 5 ? 0 // previous video fully opaque
+                : !d.last && opacityTop < fixTop - fixHeight ? 0 // next video fully covers this video
+                : opacityTop < fixTop ? 1 // this video is fully opaque, but may be covered by next video
+                : Math.max(0, Math.min(1, 1 - (opacityTop - fixTop) / (fixHeight / 5))); // this video is partially opaque
 
-          function resized() {
-            fixHeight = innerWidth / fixRatio;
-            fixTop = Math.round((innerHeight - fixHeight) / 2);
-            fadeTop = Math.max(200, fixTop);
-            fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight);
-            // d3.select(".video-sequence:first-child").style("margin-top", fixTop + "px");
-            //d3.select(".video-sequence .video").style("height", fixHeight + "px");
-            // containerFixed.style("height", fixHeight + "px").filter(function(d) {
-            //   var rect = this.parentNode.getBoundingClientRect();
-            //   return d.first ? rect.top < fixTop
-            //       : d.last ? rect.bottom >= fixTop + fixHeight
-            //       : true;
-            // }).style("top", fixTop + "px");
-          }
-
-          function fixscrolled(d) {
-            if (d.first || d.last) {
-              //!(d.first && d.last) && () for bug when media section has only one media
-              var fixed = !(d.first && d.last) && ((d.first && d3.event.rect.top < fixTop)
-                  || (d.last && d3.event.rect.bottom >= fixTop + fixHeight));
-              d3.select(this.querySelector(".video-container"))
-                  .style("z-index", fixed ? 2 : 1)
-                  .style("position", fixed ? "fixed" : "absolute")
-                  .style("top", fixed ? fixTop + "px" : null);
-            }
-            var section = d3.select(this),
-                container = section.select(".video-container"),
-                videoNode = this.querySelector(".video-container video"),
-                volume = 1;
-
-            var opacityTop = d3.event.rect.top - fixHeight / 4,
-                opacity = opacityTop > fixTop + fixHeight * 4 / 5 ? 0 // previous video fully opaque
-                  : !d.last && opacityTop < fixTop - fixHeight ? 0 // next video fully covers this video
-                  : opacityTop < fixTop ? 1 // this video is fully opaque, but may be covered by next video
-                  : Math.max(0, Math.min(1, 1 - (opacityTop - fixTop) / (fixHeight / 5))); // this video is partially opaque
-
-            if (d.first) {
-              if(false) {
-                if (videoNode) {
-                  volume = d3.event.rect.top < fixTop + fadeTop ? Math.max(0, Math.min(1, 1 - (d3.event.rect.top - fixTop) / fadeTop)) : 0;
-                  var play = d3.event.rect.top <= fixTop + fadeTop;
-                  if (videoNode.paused) {
-                    if (play && (!d.animation || (videoNode.currentTime < videoNode.duration && volume > .8))) {
-                      videoNode.play();
-                    }
-                  } else if (!play) {
-                    videoNode.pause();
-                  }
-                }
-                container.style("opacity", opacityTop >= fixTop - fixHeight ? 1 : 0);
-              }
-            } else {
-              container.style("opacity", opacity);
+          if (d.first) {
+            if(false) {
               if (videoNode) {
-                if (videoNode.paused) {
-                  if (opacity) {
-                   if (!d.animation || (videoNode.currentTime < videoNode.duration && opacity > .8)) {
-                      videoNode.play();
-                    }
-                  } else if (videoNode.currentTime) {
-                    videoNode.currentTime = 0;
-                  }
-                } else if (!opacity) {
-                  videoNode.pause();
-                  if (videoNode.currentTime) videoNode.currentTime = 0;
-                }
-              }
-            }
-
-            if (d.last) {
-              if (videoNode) {
-                volume = d3.event.rect.bottom < fadeBottom ? Math.max(0, Math.min(1, 1 - (fadeBottom - d3.event.rect.bottom) / fadeTop)) : 1;
-                var play = d3.event.rect.bottom >= fadeBottom - fadeTop;
+                volume = d3.event.rect.top < fixTop + fadeTop ? Math.max(0, Math.min(1, 1 - (d3.event.rect.top - fixTop) / fadeTop)) : 0;
+                var play = d3.event.rect.top <= fixTop + fadeTop;
                 if (videoNode.paused) {
                   if (play && (!d.animation || (videoNode.currentTime < videoNode.duration && volume > .8))) {
                     videoNode.play();
@@ -946,224 +797,247 @@ end
                   videoNode.pause();
                 }
               }
+              container.style("opacity", opacityTop >= fixTop - fixHeight ? 1 : 0);
             }
-
-            section.select(".video-caption").style("opacity", opacityTop > fixTop ? (d.first ? 1 : Math.max(0, 1 - (opacityTop - fixTop) / (fixHeight / 5))) // fade in from bottom
-                : opacityTop > fixTop - fixHeight * 4 / 5 ? 1 // this video is fully opaque and not covered
-                : d.last ? 1 : Math.max(0, (opacityTop - fixTop + fixHeight * 4 / 5) / (fixHeight / 5) + 1)); // fade out to top
-
+          } else {
+            container.style("opacity", opacity);
             if (videoNode) {
-              videoNode[muteVolume] = volume = volume !== 1 ? volume // special-case volume for first and last fade
-                  : opacityTop < fixTop - fixHeight ? 0 // video is fully covered by next video
-                  : opacityTop < fixTop - fixHeight / 2 ? Math.max(0, Math.min(1, (opacityTop - fixTop + fixHeight) / (fixHeight / 2)))
-                  : opacity;
-              if (d.first && d.sequence.first) scrollprompt.style("opacity",  volume == 1 ? 1 : (volume-0.7) > 0 ? (volume-0.7) : 0 );
-              //if (d.first && d.sequence.first) headline.style("opacity", 1 - volume);
-            }
-          }
-
-          function fixstatechanged(d) {
-            d3.select(this.querySelector(".video-container"))
-                .style("display", d3.event.state ? null : "none")
-              .select("video")
-                .each(function() {
-                  if (!d3.event.state) {
-                    if (!this.paused) this.pause();
-                    if (this.currentTime) this.currentTime = 0;
+              if (videoNode.paused) {
+                if (opacity) {
+                 if (!d.animation || (videoNode.currentTime < videoNode.duration && opacity > .8)) {
+                    videoNode.play();
                   }
-                });
-                if (d.first && d.sequence.first && !d3.event.state) scrollprompt.style("opacity", 1);
-            //if (d.first && d.sequence.first && !d3.event.state) headline.style("opacity", null);
-          }
-
-          function sequencescrolled() {
-            var opacity = Math.max(0, Math.min(1, d3.event.rect.bottom < fadeBottom ? (fadeBottom - d3.event.rect.bottom) / fadeTop
-                : d3.event.rect.top < fixTop + fadeTop ? (d3.event.rect.top - fixTop) / fadeTop
-                : 1));
-
-            // bug for column background change deny #if(){ data }
-            if(!d3.select(this).classed("column"))
-            {
-              d3.select("body").style("background", fade(opacity));
-            }
-            d3.select(this).select("audio").property(muteVolume, 1 - opacity);
-          }
-
-          function sequencestatechanged() {
-            var sequence = d3.select(this),
-                audio = sequence.select("audio");
-            if (d3.event.state) {
-              sequence.selectAll("video").each(function() { this.preload = "auto";});
-              audio.each(function() { this.play();  });
-            } else {
-              d3.select("body").style("background", null);
-              audio.each(function() { this.pause(); });
-            }
-          }
-
-          function supportsViewportUnits() {
-            var element = d3.select("body").append("div").style("width", "50vw"),
-                expected = innerWidth / 2,
-                actual = parseFloat(element.style("width"));
-            element.remove();
-            return Math.abs(expected - actual) <= 1;
-          }
-
-          });</script>
-          <script>defer(function() {
-
-          if (isMobile()) return false;
-
-
-
-          <% if !@export %>
-              var assets = "/system/places/slideshow/<%= @story.id %>/slideshow/";
-            <% else %>
-              var assets = "media/slideshow/slideshow/";
-            <% end %>
-
-          /*" + (innerWidth * (window.devicePixelRatio || 1) * .7 > 900 ? "large" : "medium") + "*/
-
-
-
-          d3.selectAll(".slideshow").each(function() {
-            var currentIndex = 0,
-                playInterval;
-
-            var watch = d3.behavior.watch()
-                .on("statechange.first", firststatechanged)
-                .on("statechange", statechanged);
-
-            var slideshow = d3.select(this).select(".slideshow-wrapper")
-                .on("mouseover", stopPlay)
-                .on("mouseout", stopPlay)
-                .call(watch);
-
-            var caption = slideshow.select(".slideshow-captions").selectAll(".slideshow-caption")
-                .datum(function() {
-                  return {
-                    slug: this.getAttribute("data-slug")
-                  };
-                })
-                .classed("slideshow-caption--active", function(d, i) { return i === currentIndex; });
-
-            var images = caption.data();
-
-            var container = slideshow.insert("div", ".slideshow-captions")
-                .attr("class", "slideshow-container");
-
-            var image = container.append("div")
-                .attr("class", "slideshow-images")
-              .selectAll(".slideshow-image")
-                .data(images)
-              .enter().append("img")
-                .attr("class", "slideshow-image");
-
-            image.filter(function(d, i) { return i === currentIndex; })
-                .classed("slideshow-image--active", true)
-                .attr("src", function(d) { return assets + d.slug; })
-                .each(moveToFront);
-
-            container.append("div")
-                .attr("class", "slideshow-button slideshow-button--next")
-                .on("click", function() { stopPlay(); showNext(); })
-               .html("<svg class='slideshow-button-arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M3,1.008L20.742,9.045L3,17.083L6,8.917Z'></path></svg>");
-
-            container.append("div")
-                .attr("class", "slideshow-button slideshow-button--previous")
-                .on("click", function() { stopPlay(); showPrevious(); })
-              .html("<svg class='slideshow-button-arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M18.742,0.758L1,8.795L18.742,16.833L15.742,8.667Z'></path></svg>");
-
-            var thumb = container.insert("div", ".slideshow-captions")
-                .attr("class", "slideshow-thumbs")
-              .selectAll(".slideshow-thumb")
-                .data(images)
-              .enter().append("img")
-                .attr("class", function(d, i) { return "slideshow-thumb" + (i === currentIndex ? " slideshow-thumb--active" : ""); })
-            <% if !@export %>
-                .attr("src", function(d) { return "/system/places/slideshow/<%= @story.id %>/thumbnail/" + d.slug; })
-            <% else %>
-                .attr("src", function(d) { return "media/slideshow/thumbnail/" + d.slug; })
-            <% end %>
-
-                .on("click", function(d, i) { stopPlay(); show(i); });
-
-            function firststatechanged() {
-              if (d3.event.state) {
-                image.attr("src", function(d, i) { return assets + d.slug; });
-                watch.on("statechange.first", null);
+                } else if (videoNode.currentTime) {
+                  videoNode.currentTime = 0;
+                }
+              } else if (!opacity) {
+                videoNode.pause();
+                if (videoNode.currentTime) videoNode.currentTime = 0;
               }
             }
-
-            function statechanged() {
-              if (d3.event.state) startPlay();
-              else stopPlay();
-            }
-
-            function startPlay() {
-              if (!playInterval) playInterval = setInterval(showNext, 7000);
-            }
-
-            function stopPlay() {
-              if (playInterval) playInterval = clearInterval(playInterval);
-            }
-
-            function show(index) {
-              var oldImage = d3.select(image[0][currentIndex]),
-                  oldCaption = d3.select(caption[0][currentIndex]),
-                  oldThumb = d3.select(thumb[0][currentIndex]),
-                  newImage = d3.select(image[0][index]),
-                  newCaption = d3.select(caption[0][index]),
-                  newThumb = d3.select(thumb[0][index]);
-
-              oldImage
-                  .classed("slideshow-image--active", false);
-
-              oldCaption
-                  .classed("slideshow-caption--active", false);
-
-              oldThumb
-                  .classed("slideshow-thumb--active", false);
-
-              newImage
-                  .classed("slideshow-image--active", true)
-                  .style("opacity", 0)
-                  .each(moveToFront);
-
-              newCaption
-                  .classed("slideshow-caption--active", true);
-
-              newThumb
-                  .classed("slideshow-thumb--active", true);
-
-              currentIndex = index;
-
-              d3.timer(function() {
-                newImage.style("opacity", null);
-              }, 20);
-            }
-
-            function showNext() {
-              show((currentIndex + 1) % images.length);
-            }
-
-            function showPrevious() {
-              show((currentIndex ? currentIndex : images.length) - 1);
-            }
-          });
-
-          function moveToFront() {
-            this.parentNode.appendChild(this);
           }
 
-          });</script>
-    <!--[if gt IE 8]><!-->
-      <!-- ****************************************************
-      *  D3 library
-      ********************************************************* -->
-    	<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>
-    <script>
+          if (d.last) {
+            if (videoNode) {
+              volume = d3.event.rect.bottom < fadeBottom ? Math.max(0, Math.min(1, 1 - (fadeBottom - d3.event.rect.bottom) / fadeTop)) : 1;
+              var play = d3.event.rect.bottom >= fadeBottom - fadeTop;
+              if (videoNode.paused) {
+                if (play && (!d.animation || (videoNode.currentTime < videoNode.duration && volume > .8))) {
+                  videoNode.play();
+                }
+              } else if (!play) {
+                videoNode.pause();
+              }
+            }
+          }
 
+          section.select(".video-caption").style("opacity", opacityTop > fixTop ? (d.first ? 1 : Math.max(0, 1 - (opacityTop - fixTop) / (fixHeight / 5))) // fade in from bottom
+              : opacityTop > fixTop - fixHeight * 4 / 5 ? 1 // this video is fully opaque and not covered
+              : d.last ? 1 : Math.max(0, (opacityTop - fixTop + fixHeight * 4 / 5) / (fixHeight / 5) + 1)); // fade out to top
+
+          if (videoNode) {
+            videoNode[muteVolume] = volume = volume !== 1 ? volume // special-case volume for first and last fade
+                : opacityTop < fixTop - fixHeight ? 0 // video is fully covered by next video
+                : opacityTop < fixTop - fixHeight / 2 ? Math.max(0, Math.min(1, (opacityTop - fixTop + fixHeight) / (fixHeight / 2)))
+                : opacity;
+            if (d.first && d.sequence.first) scrollprompt.style("opacity",  volume == 1 ? 1 : (volume-0.7) > 0 ? (volume-0.7) : 0 );
+            //if (d.first && d.sequence.first) headline.style("opacity", 1 - volume);
+          }
+        }
+
+        function fixstatechanged(d) {
+          d3.select(this.querySelector(".video-container"))
+              .style("display", d3.event.state ? null : "none")
+            .select("video")
+              .each(function() {
+                if (!d3.event.state) {
+                  if (!this.paused) this.pause();
+                  if (this.currentTime) this.currentTime = 0;
+                }
+              });
+              if (d.first && d.sequence.first && !d3.event.state) scrollprompt.style("opacity", 1);
+          //if (d.first && d.sequence.first && !d3.event.state) headline.style("opacity", null);
+        }
+
+        function sequencescrolled() {
+          var opacity = Math.max(0, Math.min(1, d3.event.rect.bottom < fadeBottom ? (fadeBottom - d3.event.rect.bottom) / fadeTop
+              : d3.event.rect.top < fixTop + fadeTop ? (d3.event.rect.top - fixTop) / fadeTop
+              : 1));
+
+          // bug for column background change deny #if(){ data }
+          if(!d3.select(this).classed("column"))
+          {
+            d3.select("body").style("background", fade(opacity));
+          }
+          d3.select(this).select("audio").property(muteVolume, 1 - opacity);
+        }
+
+        function sequencestatechanged() {
+          var sequence = d3.select(this),
+              audio = sequence.select("audio");
+          if (d3.event.state) {
+            sequence.selectAll("video").each(function() { this.preload = "auto";});
+            audio.each(function() { this.play();  });
+          } else {
+            d3.select("body").style("background", null);
+            audio.each(function() { this.pause(); });
+          }
+        }
+
+        function supportsViewportUnits() {
+          var element = d3.select("body").append("div").style("width", "50vw"),
+              expected = innerWidth / 2,
+              actual = parseFloat(element.style("width"));
+          element.remove();
+          return Math.abs(expected - actual) <= 1;
+        }
+
+        });
+    </script>
+    <script> // desktop slideshow
+      defer(function() {
+        if (isMobile()) return false;
+
+        <% if !@export %>
+            var assets = "/system/places/slideshow/<%= @story.id %>/slideshow/";
+          <% else %>
+            var assets = "media/slideshow/slideshow/";
+          <% end %>
+
+        d3.selectAll(".slideshow").each(function() {
+          var currentIndex = 0,
+              playInterval;
+
+          var watch = d3.behavior.watch()
+              .on("statechange.first", firststatechanged)
+              .on("statechange", statechanged);
+
+          var slideshow = d3.select(this).select(".slideshow-wrapper")
+              .on("mouseover", stopPlay)
+              .on("mouseout", stopPlay)
+              .call(watch);
+
+          var caption = slideshow.select(".slideshow-captions").selectAll(".slideshow-caption")
+              .datum(function() {
+                return {
+                  slug: this.getAttribute("data-slug")
+                };
+              })
+              .classed("slideshow-caption--active", function(d, i) { return i === currentIndex; });
+
+          var images = caption.data();
+
+          var container = slideshow.insert("div", ".slideshow-captions")
+              .attr("class", "slideshow-container");
+
+          var image = container.append("div")
+              .attr("class", "slideshow-images")
+            .selectAll(".slideshow-image")
+              .data(images)
+            .enter().append("img")
+              .attr("class", "slideshow-image");
+
+          image.filter(function(d, i) { return i === currentIndex; })
+              .classed("slideshow-image--active", true)
+              .attr("src", function(d) { return assets + d.slug; })
+              .each(moveToFront);
+
+          container.append("div")
+              .attr("class", "slideshow-button slideshow-button--next")
+              .on("click", function() { stopPlay(); showNext(); })
+             .html("<svg class='slideshow-button-arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M3,1.008L20.742,9.045L3,17.083L6,8.917Z'></path></svg>");
+
+          container.append("div")
+              .attr("class", "slideshow-button slideshow-button--previous")
+              .on("click", function() { stopPlay(); showPrevious(); })
+            .html("<svg class='slideshow-button-arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M18.742,0.758L1,8.795L18.742,16.833L15.742,8.667Z'></path></svg>");
+
+          var thumb = container.insert("div", ".slideshow-captions")
+              .attr("class", "slideshow-thumbs")
+            .selectAll(".slideshow-thumb")
+              .data(images)
+            .enter().append("img")
+              .attr("class", function(d, i) { return "slideshow-thumb" + (i === currentIndex ? " slideshow-thumb--active" : ""); })
+          <% if !@export %>
+              .attr("src", function(d) { return "/system/places/slideshow/<%= @story.id %>/thumbnail/" + d.slug; })
+          <% else %>
+              .attr("src", function(d) { return "media/slideshow/thumbnail/" + d.slug; })
+          <% end %>
+
+              .on("click", function(d, i) { stopPlay(); show(i); });
+
+          function firststatechanged() {
+            if (d3.event.state) {
+              image.attr("src", function(d, i) { return assets + d.slug; });
+              watch.on("statechange.first", null);
+            }
+          }
+
+          function statechanged() {
+            if (d3.event.state) startPlay();
+            else stopPlay();
+          }
+
+          function startPlay() {
+            if (!playInterval) playInterval = setInterval(showNext, 7000);
+          }
+
+          function stopPlay() {
+            if (playInterval) playInterval = clearInterval(playInterval);
+          }
+
+          function show(index) {
+            var oldImage = d3.select(image[0][currentIndex]),
+                oldCaption = d3.select(caption[0][currentIndex]),
+                oldThumb = d3.select(thumb[0][currentIndex]),
+                newImage = d3.select(image[0][index]),
+                newCaption = d3.select(caption[0][index]),
+                newThumb = d3.select(thumb[0][index]);
+
+            oldImage
+                .classed("slideshow-image--active", false);
+
+            oldCaption
+                .classed("slideshow-caption--active", false);
+
+            oldThumb
+                .classed("slideshow-thumb--active", false);
+
+            newImage
+                .classed("slideshow-image--active", true)
+                .style("opacity", 0)
+                .each(moveToFront);
+
+            newCaption
+                .classed("slideshow-caption--active", true);
+
+            newThumb
+                .classed("slideshow-thumb--active", true);
+
+            currentIndex = index;
+
+            d3.timer(function() {
+              newImage.style("opacity", null);
+            }, 20);
+          }
+
+          function showNext() {
+            show((currentIndex + 1) % images.length);
+          }
+
+          function showPrevious() {
+            show((currentIndex ? currentIndex : images.length) - 1);
+          }
+        });
+
+        function moveToFront() {
+          this.parentNode.appendChild(this);
+        }
+
+        });
+    </script>
+  	<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>
+    <script> // watch behavior
       (function() {
 
         var watched = [];
@@ -1188,6 +1062,7 @@ end
         if (/iPhone|iPad|iPad|Android/.test(navigator.userAgent) || location.hash == "#ipad") {
           d3.select(window)
               .on("resize.watch", watch_scrolledStatic)
+              .on("scroll.watch", watch_scrolled)
               .on("DOMContentLoaded.watch", watch_scrolledStatic);
         } else {
           d3.select(window)
@@ -1248,8 +1123,7 @@ end
 
         await();
     })();</script>
-    <div id="fb-root"></div>
-    <script>
+    <script> // youtube
       var tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";
       var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -1283,15 +1157,14 @@ end
           );
         });
       }
-
-    // (function(d, s, id) {
-    //   var js, fjs = d.getElementsByTagName(s)[0];
-    //   if (d.getElementById(id)) return;
-    //   js = d.createElement(s); js.id = id;
-    //   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=282184988613640"; // 1376263699277894 meydan
-    //   fjs.parentNode.insertBefore(js, fjs);
-    // }(document, 'script', 'facebook-jssdk'));
-    window.fbAsyncInit = function() { window.resizeBy(0,0); };
+      <%- if @export %>
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=282184988613640"; // 1376263699277894 meydan
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        window.fbAsyncInit = function() { window.resizeBy(0,0); };
+      <%- end %>
     </script>
-
-    <!--<![endif]-->
