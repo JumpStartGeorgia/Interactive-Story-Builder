@@ -45,7 +45,7 @@ g[data-point].active .start path {
   fill:#fff;
 }
 g[data-point] .tip text,
-g[data-point] text tspan {
+g[data-point] .tip text tspan {
   font:14px OpenSans;
   fill: #000;
 }
