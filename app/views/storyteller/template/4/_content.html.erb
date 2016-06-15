@@ -58,7 +58,7 @@
           <div class="video" data-videoloop="">
             <div class="video-container always_visible">
               <object id="track_overlay" type="image/svg+xml"></object>
-              <div class="abstract"><div class="abstract-text"><%= secs[2].content.content.html_safe %></div><div class="abstract-toggle"></div></div>
+              <div class="abstract"><div class="abstract-text"><%= secs[2].content.content.html_safe %></div></div>
             </div>
           </div>
         </div>
@@ -172,6 +172,19 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="sidebar">
+      <div class="sidebar-background"></div>
+      <div class="sidebar-content">
+        <div class="tabs">
+          <div class="tab active"><%= secs[2].content.sub_caption %></div><div class="tab"><%= secs[2].content.caption %></div>
+        </div>
+        <div class="tabs-content">
+          <div class="tab-content active map-points"><ul><li></li></ul></div>
+          <div class="tab-content"><%= secs[2].content.content.html_safe %></div>
+        </div>
+      </div>
+      <div class="sidebar-toggle"></div>
     </div>
     <%- if @export %><div id="fb-root"></div><%- end %>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>
@@ -301,12 +314,26 @@
                 .on("webkitTransitionEnd", transEnd)
                 .on("oTransitionEnd", transEnd)
                 .on("MSTransitionEnd", transEnd);
+
+                d3.selectAll(".sidebar-content .tabs .tab").on("click", function() {
+                  var t = d3.select(this), p = d3.select(this.parentNode), sidebar = d3.select(this.parentNode.parentNode),
+                    index = Array.prototype.indexOf.call(this.parentNode.children, this);
+                  sidebar.selectAll(".tabs-content .tab-content").classed("active", false).filter(function(d,i) { return i === index; }).classed("active", true);
+                  p.selectAll(".tab").classed("active", false);
+                  t.classed("active", true)
+
+                });
+                d3.selectAll(".sidebar-content .tabs-content .tab-content.map-points li a").datum(function() { return this.dataset.id; })
+                  .on("click", function(d,i) { sidebar_toggle(); clicked.call(this,d,i); });
             },
             labels: function () {
-              var t = this, svg = d3.select(t.el.svg);
-              d3.selectAll(".stories .section .navigation-label").each(function() {
+              var t = this, svg = d3.select(t.el.svg),
+                ul = d3.select(".sidebar .map-points ul"), lis = "";
+              d3.selectAll(".stories .section .navigation-label").each(function(d,i) {
                 t.point.labels.push(this.textContent);
+                lis +="<li><a href='#' data-id='" + i + "'>" + this.textContent + "</a></li>";
               });
+              ul.html(lis);
               svg.selectAll("g[data-point] text").text(function(d, i) { return t.point.labels[i]; }).call(wrap, 2);
 
               t.svg_overlay.selectAll("g[data-point]")
@@ -333,7 +360,9 @@
           anchor = d3.selectAll(".navigation-section").on("click", clicked),
           marker = d3.selectAll(".navigation-marker"),
           markerOffsets,
-          markerOffsetsBack = [];
+          markerOffsetsBack = [],
+          sidebar = d3.select(".sidebar"),
+          redraw_sidebar = false;
 
         function isNumeric(val) { return Number(parseFloat(val))==val; }
 
@@ -382,7 +411,10 @@
         function scrolled() {
           scrollDir = scrollY > scrollYPrev ? 1 : 0;
           var j = Math.max(0, Math.min(markerOffsets.length - 1, d3.bisectLeft( scrollDir ? markerOffsets : markerOffsetsBack , scrollY) - (scrollY === (document.documentElement.scrollHeight || document.body.scrollHeight) - h ? 0 : 1)));
-          if(!skip) { track.go_to(j); }
+          if(!skip) {
+            track.go_to(j);
+            d3.selectAll(".map-points a").classed("active", false).filter(function(d,i){ return i === j; }).classed("active", true);
+          }
           anchor.classed("navigation-section--active", function(d, i) { return i === j; });
           scrollYPrev = scrollY;
         }
@@ -401,6 +433,9 @@
             return this.offsetTop - window.innerHeight * 0.30; }).data();
           markerOffsetsBack = ar;
           scrolled();
+          if(redraw_sidebar) {
+            d3.select(".sidebar .tabs-content").style("height", function() { return window.innerHeight - this.offsetTop - 50 + "px"; });
+          }
         }
         function clicked(d, i) {
           var ind = isNumeric(d) ? d : i;
@@ -412,6 +447,11 @@
           }).each("end", function() { console.log("end of tween"); skip = false;  scrolled(); }); //if (!--n) callback.apply(this, arguments);
         }
 
+        function sidebar_toggle() {
+          redraw_sidebar = !sidebar.classed("active");
+          sidebar.classed("active", redraw_sidebar);
+          sidebar.select(".tabs-content").style("height", function() { return window.innerHeight - this.offsetTop - 50 + "px"; });
+        }
 
         track.init(function() {
           d3.select(window)
@@ -421,9 +461,10 @@
 
           resized();
         });
-        var abstract = d3.select(".abstract");
-        d3.select(".abstract-toggle").on("click", function() { abstract.classed("active", !abstract.classed("active")); });
+
+        d3.select(".sidebar-toggle").on("click", sidebar_toggle);
       });
+
       // device
       <%-
           # data hash for mobile devices , they use different images
