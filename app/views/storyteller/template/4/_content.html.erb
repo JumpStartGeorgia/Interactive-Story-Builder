@@ -745,7 +745,7 @@
           fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight);
           // d3.select(".video-sequence:first-child").style("margin-top", fixTop + "px");
           var imgWidth = d3.select(".stories").clientWidth;
-          d3.selectAll(".video-sequence .video .img").each(function(){ this.style.width = imgWidth + "px"; });
+          d3.selectAll(".video-sequence .video .img").each(function(){ d3.select(this).style("width", imgWidth + "px"); });
           //d3.select(".video-sequence .video").style("height", fixHeight + "px");
           // containerFixed.style("height", fixHeight + "px").filter(function(d) {
           //   var rect = this.parentNode.getBoundingClientRect();
