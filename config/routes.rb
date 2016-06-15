@@ -1,5 +1,9 @@
 BootstrapStarter::Application.routes.draw do
 
+  # Disallow robots access if not production environment
+  require 'robots_generator'
+  match '/robots.txt' => RobotsGenerator
+
 	#--------------------------------
 	# all resources should be within the scope block below
 	#--------------------------------
@@ -30,7 +34,7 @@ BootstrapStarter::Application.routes.draw do
 		match "stories/:id/remove_invitation" => "stories#remove_invitation", as: 'story_remove_invitation', :via => :post, :defaults => { :format => 'json' }
 		match "stories/index" => "stories#index", as: 'index', :via => :post, :defaults => { :format => 'json' }
 
-		resources :stories do	
+		resources :stories do
 
 			member do
         get 'preview'
@@ -46,30 +50,30 @@ BootstrapStarter::Application.routes.draw do
         delete 'tree', to: 'stories#destroy_tree_item'
 
         put 'media', to: 'stories#save_media'
-        post 'media', to: 'stories#new_media'				
+        post 'media', to: 'stories#new_media'
 
 
 
         put 'section', to: 'stories#save_section'
-        post 'section', to: 'stories#new_section'	
+        post 'section', to: 'stories#new_section'
         post 'up', to: 'stories#up'
-        post 'down', to: 'stories#down'	
+        post 'down', to: 'stories#down'
         post 'up_slideshow', to: 'stories#up_slideshow'
-        post 'down_slideshow', to: 'stories#down_slideshow'						
+        post 'down_slideshow', to: 'stories#down_slideshow'
 
-        get 'sections'    	
-        get 'publish', to: 'stories#publish'    		
-        get 'clone', to: 'stories#clone'    
-        get 'export', to: 'stories#export' 		
+        get 'sections'
+        get 'publish', to: 'stories#publish'
+        get 'clone', to: 'stories#clone'
+        get 'export', to: 'stories#export'
 
         put 'slideshow', to: 'stories#save_slideshow'
         post 'slideshow', to: 'stories#new_slideshow'
 
 
         put 'embed_media', to: 'stories#save_embed_media'
-        post 'embed_media', to: 'stories#new_embed_media'				
+        post 'embed_media', to: 'stories#new_embed_media'
 
-			end			
+			end
 
 		end
 		#match '/stories/:id/edit' => 'stories#get_story'
@@ -78,7 +82,7 @@ BootstrapStarter::Application.routes.draw do
 #		match "storyteller/:id/staff_pick" => "storyteller#staff_pick", as: 'storyteller_staff_pick'
 #		match "storyteller/:id/staff_unpick" => "storyteller#staff_unpick", as: 'storyteller_staff_unpick'
 
-		
+
     # user settings section
 		match "settings" => "settings#index", as: 'settings'
 		match "settings/notifications" => "settings#notifications", as: 'settings_notifications'
@@ -98,7 +102,7 @@ BootstrapStarter::Application.routes.draw do
 		match 'todo_list' => 'root#todo_list', :as => 'todo_list'
 		match "about" => "root#about", as: 'about'
 		match "author/:user_id" => "root#author", as: 'author'
-		match "embed/:story_id" => "root#embed", as: 'embed'		
+		match "embed/:story_id" => "root#embed", as: 'embed'
 		match "feed" => "root#feed", as: 'feed', :format => 'atom'
 
     # published story url/actions
