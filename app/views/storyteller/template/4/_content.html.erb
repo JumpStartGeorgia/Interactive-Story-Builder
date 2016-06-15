@@ -83,10 +83,7 @@
                   <div class="section column" <%= dataAudio.html_safe %>>
                     <%= marker.html_safe %>
                     <div class='column-caption'><%= "#{section.content.sub_caption}".html_safe  if section.content.sub_caption.present? %></div>
-                    <%= section.content.content.html_safe %>
-                    <% if section.content.content.html_safe.lines.count == 1 %>
-                      <p>&nbsp;</p>
-                    <% end %>
+                    <div class="text"><%= section.content.content.html_safe %></div>
                   </div>
                   <% columnSectionCount+=1 %>
                 <% elsif section.media? %>
@@ -101,9 +98,9 @@
                         <div class="video-container">
                           <% if m.media_type == Medium::TYPE[:image] %>
                               <% if !@export %>
-                                <img src="<%= m.image.asset.url(:fullscreen) %>">
+                                <div class="img" style="background-image:url(<%= m.image.asset.url(:fullscreen) %>)"></div>
                               <% else %>
-                                <img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>">
+                                <div class="img" style="background-image:url(media/images/fullscreen/<%= m.image.asset_file_name_formatted %>)"></div>
                               <% end %>
                           <% elsif m.media_type == Medium::TYPE[:video] && !m.is_processed?  %>
                               <% if !@export %>
@@ -747,12 +744,14 @@
           fadeTop = Math.max(200, fixTop);
           fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight);
           // d3.select(".video-sequence:first-child").style("margin-top", fixTop + "px");
+          var imgWidth = d3.select(".stories").clientWidth;
+          d3.selectAll(".video-sequence .video .img").each(function(){ this.style.width = imgWidth + "px"; });
           //d3.select(".video-sequence .video").style("height", fixHeight + "px");
           // containerFixed.style("height", fixHeight + "px").filter(function(d) {
           //   var rect = this.parentNode.getBoundingClientRect();
           //   return d.first ? rect.top < fixTop
           //       : d.last ? rect.bottom >= fixTop + fixHeight
-          //       : true;
+          //       : true;1
           // }).style("top", fixTop + "px");
         }
 

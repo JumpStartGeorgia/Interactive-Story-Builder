@@ -205,9 +205,13 @@
 
     .video-container video,
     .video-container img,
+    .video-container .img,
     .video-container object {
+      height:100%;
       width: 100%;
       position: absolute;
+      background-size: cover;
+      background-repeat:no-repeat;
     }
 
     .subarticle .video-caption {
@@ -379,7 +383,8 @@
         line-height: 0;
       }
 
-      .ios .video-container img {
+      .ios .video-container img,
+      .ios .video-container .img {
         position: static;
       }
 
@@ -952,7 +957,7 @@
     .embed-caption
     {
       text-align:left;
-      margin-top:23px;
+      margin:16px 0 23px;
       padding:0 40px;
       font:14px/21px merriweather-l;
       color: #383a2d;
@@ -993,8 +998,11 @@
     }
 
     .section.column {
+      margin:48px 0;
+    }
+    .section.column .text {
       padding:0 25px;
-      margin:48px auto;
+      max-width:1100px;
     }
     .section object { position:relative; }
     .section.separator {
@@ -1122,8 +1130,10 @@
     }
 
     @media (min-width: 1200px) {
-      .section.column {
+      .section.column .text {
         padding:0 40px;
+      }
+      .section.column {
       }
       .headline-title {
         font:36px merriweather-b;
