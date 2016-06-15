@@ -347,7 +347,7 @@
                     text = g.append("text").text(point.attr("data-title")).call(wrap, 2),
                     textBbox = text.node().getBBox(),
                     space = 5, padding = [8,10,8,10];
-                    text.attr({ "x": bbox.x + bbox.width/2 - textBbox.width / 2, "y": bbox.y - (space + padding[2] + textBbox.height) + 10  });
+                    text.attr({ "x": bbox.x + bbox.width/2 - textBbox.width / 2, "y": bbox.y - (space + padding[2] + textBbox.height) + 12  });
                     text.selectAll("tspan").attr({"x": bbox.x + bbox.width/2 - textBbox.width / 2 });
                     rect.attr({"x": bbox.x + bbox.width / 2 - textBbox.width / 2 - padding[3], "y": bbox.y - (space + padding[2] + textBbox.height +  padding[0]), "width": textBbox.width + padding[1] + padding[3], "height": textBbox.height + padding[0] + padding[2], "rx": "3", "rg": "3" });
                   }
