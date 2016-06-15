@@ -784,20 +784,11 @@
           fixTop = Math.round((innerHeight - fixHeight) / 2);
           fadeTop = Math.max(200, fixTop);
           fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight);
-           var imgWidth = d3.select(".stories").node().clientWidth - 55;
+           var imgWidth = d3.select(".stories").node().clientWidth - (innerWidth > 1200 ? 55 : 0);
           d3.selectAll(".stories .video-sequence .video img").each(function(){
             d3.select(this).style("width", imgWidth + "px");
             d3.select(this.parentNode).style("width", imgWidth + "px");
           });
-
-          // d3.select(".video-sequence:first-child").style("margin-top", fixTop + "px");
-          //d3.select(".video-sequence .video").style("height", fixHeight + "px");
-          // containerFixed.style("height", fixHeight + "px").filter(function(d) {
-          //   var rect = this.parentNode.getBoundingClientRect();
-          //   return d.first ? rect.top < fixTop
-          //       : d.last ? rect.bottom >= fixTop + fixHeight
-          //       : true;
-          // }).style("top", fixTop + "px");
         }
 
         function fixscrolled(d) {
