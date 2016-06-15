@@ -98,9 +98,9 @@
                         <div class="video-container">
                           <% if m.media_type == Medium::TYPE[:image] %>
                               <% if !@export %>
-                                <div class="img" style="background-image:url(<%= m.image.asset.url(:fullscreen) %>)"></div>
+                                <img src="<%= m.image.asset.url(:fullscreen) %>">
                               <% else %>
-                                <div class="img" style="background-image:url(media/images/fullscreen/<%= m.image.asset_file_name_formatted %>)"></div>
+                                <img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>">
                               <% end %>
                           <% elsif m.media_type == Medium::TYPE[:video] && !m.is_processed?  %>
                               <% if !@export %>
@@ -576,8 +576,8 @@
                   }).join(" "), true)
 
 
-            if (!image.hideRule && slide) slide.append("div")
-                .attr("class", "video-rule")
+            // if (!image.hideRule && slide) slide.append("div")
+            //     .attr("class", "video-rule")
 
 
         /* add custom caption if specified */
@@ -743,15 +743,19 @@
           fixTop = Math.round((innerHeight - fixHeight) / 2);
           fadeTop = Math.max(200, fixTop);
           fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight);
+           var imgWidth = d3.select(".stories").node().clientWidth - 55;
+          d3.selectAll(".stories .video-sequence .video img").each(function(){
+            d3.select(this).style("width", imgWidth + "px");
+            d3.select(this.parentNode).style("width", imgWidth + "px");
+          });
+
           // d3.select(".video-sequence:first-child").style("margin-top", fixTop + "px");
-          var imgWidth = d3.select(".stories").node().clientWidth;
-          d3.selectAll(".video-sequence .video .img").each(function(){ d3.select(this).style("width", imgWidth + "px"); });
           //d3.select(".video-sequence .video").style("height", fixHeight + "px");
           // containerFixed.style("height", fixHeight + "px").filter(function(d) {
           //   var rect = this.parentNode.getBoundingClientRect();
           //   return d.first ? rect.top < fixTop
           //       : d.last ? rect.bottom >= fixTop + fixHeight
-          //       : true;1
+          //       : true;
           // }).style("top", fixTop + "px");
         }
 

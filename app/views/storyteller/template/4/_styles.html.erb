@@ -138,22 +138,8 @@
       color: #004276;
       text-decoration: none;
     }
-    @media (max-width: 704px) {
-      .column {
-        margin: auto 5%;
-        max-width: 100%;
-      }
-    }
 
     @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-      .ios body {
-        font-size: 16px;
-        line-height: 26px;
-      }
-
-      .ios .column {
-        margin: auto 8%;
-      }
 
       .ios .subarticle .section {
         margin-top: 50px;
@@ -202,17 +188,17 @@
       position: relative;
       width: 100%;
     }
-
+    .subarticle .video-container video,
+    .subarticle .video-container img,
+    .subarticle .video-container object {
+      position: absolute;
+    }
     .video-container video,
     .video-container img,
-    .video-container .img,
     .video-container object {
       height:100%;
       width: 100%;
-      position: absolute;
-      background-size: cover;
-      background-position:center;
-      background-repeat:no-repeat;
+      display:block;
     }
 
     .subarticle .video-caption {
@@ -335,7 +321,9 @@
       .ios #preview-banner {
         display: none;
       }
-
+      .ios .headline {
+        margin:0;
+      }
       .ios .article {
         border-top: none;
       }
@@ -357,18 +345,19 @@
 
       /* SECTION + SEQUENCES */
 
+      .ios .subarticle .video-sequence .video {
+        background-color:#242424;
+      }
+
       .ios .subarticle .section {
         margin-top: 20px;
       }
 
-      .ios .video-sequence {
-        background-color: #000;
-      }
-
       /* VIDEO SLIDE */
-
       .ios .video {
         box-sizing: border-box;
+      }
+      .ios .subarticle .video {
         padding-right: 20px;
         padding-left: 20px;
       }
@@ -378,14 +367,13 @@
         overflow: visible;
       }
 
-      .ios .video-container {
-        padding: 60px 0;
+      .ios .subarticle .video-container {
+        padding: 20px 0;
         position: relative;
         line-height: 0;
       }
 
-      .ios .video-container img,
-      .ios .video-container .img {
+      .ios .subarticle .video-container img {
         position: static;
       }
 
@@ -400,40 +388,6 @@
         width: 260px;
 
         left: 50px;
-      }
-
-      .ios .video-rule {
-        position: absolute;
-        bottom: 0px;
-        border-top: 1px solid #333;
-        left: 35%;
-        right: 35%;
-      }
-
-      /* INTRO SLIDE */
-
-      .ios .video-sequence:first-child {
-        padding-top: 0;
-      }
-
-      .ios .video-sequence:first-child .video:first-of-type {
-        padding-left: 0;
-        padding-right: 0;
-      }
-
-      .ios .video-sequence:first-child .video:first-of-type .video-container:first-child {
-        padding-top: 0;
-/*        padding-bottom: 60px;*/
-        /*height: 360px;*/
-      }
-
-      /* HEADLINE AND INTRO */
-
-      .ios .video-sequence:first-child .video-caption--head {
-        width: 100%;
-        left: 0px;
-        top: 0px;
-        right: 0px;
       }
     }
 
@@ -454,10 +408,6 @@
         font-size: 28px;
       }
 
-      .ios .column .byline br:nth-of-type(1) {
-        /*display: none;*/
-      }
-
       .ios .image {
         width: 100%;
         margin-left: 0;
@@ -471,18 +421,18 @@
         margin-left: 0;
       }
 
-      .ios .video-sequence {
+      .ios .subarticle .video-sequence {
         padding-top: 30px;
       }
 
       /* VIDEO SLIDE */
 
-      .ios .video  {
+      .ios .subarticle .video  {
         padding-left: 0px;
         padding-right: 0px;
       }
 
-      .ios .video-container {
+      .ios .subarticle .video-container {
         padding-top: 0px;
         padding-bottom: 20px;
       }
@@ -959,7 +909,7 @@
     {
       text-align:left;
       margin:16px 0 23px;
-      padding:0 40px;
+      padding:0 25px;
       font:14px/21px merriweather-l;
       color: #383a2d;
     }
@@ -997,12 +947,19 @@
       font:12px opensans-b;
       color:#fff;
     }
-
+    .stories .section.video-sequence .navigation-container {
+      padding:0 25px;
+    }
+    .stories .section:first-of-type .navigation-container {
+      margin:0 0 24px;
+    }
+    .stories .section:not(:first-of-type) .navigation-container {
+      margin:24px 0;
+    }
     .section.column {
-      margin:48px 0;
+      padding:0 25px;
     }
     .section.column .text {
-      padding:0 25px;
       max-width:1100px;
     }
     .section object { position:relative; }
@@ -1057,8 +1014,6 @@
 
     .navigation-container {
       display:block;
-      /*max-width:530px;*/
-      margin:0 0 36px;
     }
     .navigation-label {
       position:relative;
@@ -1131,10 +1086,17 @@
     }
 
     @media (min-width: 1200px) {
-      .section.column .text {
-        padding:0 40px;
+      .stories .section:first-of-type .navigation-container {
+        margin:0 0 36px;
+      }
+      .stories .section:not(:first-of-type) .navigation-container {
+        margin:36px 0;
       }
       .section.column {
+        padding:0 55px 0 0;
+      }
+      .embed-caption {
+        padding:0;
       }
       .headline-title {
         font:36px merriweather-b;
@@ -1151,8 +1113,9 @@
       .headline-publisher {
         margin:0 auto 32px;
       }
+
       .subarticle .map-container{ left:0; }
-      .subarticle .stories { margin-left:450px; }
+      .subarticle .stories { margin-left:450px; padding: 0 0 0 55px; }
       .abstract {
         position:absolute;
         z-index:2;
