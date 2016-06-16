@@ -189,6 +189,13 @@
     <%- if @export %><div id="fb-root"></div><%- end %>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>
     <script>
+      // polyfill
+      if (!String.prototype.trim) {
+        String.prototype.trim = function () {
+          return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+        };
+      }
+
       // inits
       var isMobile = function() { return /iPad|iPod|iPhone|Android/.test(navigator.userAgent) || document.location.hash == "#ipad"; },
         isPhone = function() { return isMobile() && window.innerWidth < 768; }, w, h, scrollHeight;
@@ -328,10 +335,11 @@
             },
             labels: function () {
               var t = this, svg = d3.select(t.el.svg),
-                ul = d3.select(".sidebar .map-points ul"), lis = "";
+                ul = d3.select(".sidebar .map-points ul"), lis = "", tmp;
               d3.selectAll(".stories .section .navigation-label").each(function(d,i) {
-                t.point.labels.push(this.textContent);
-                lis +="<li><a href='#' data-id='" + i + "'>" + this.textContent + "</a></li>";
+                tmp = this.textContent.trim();
+                t.point.labels.push(tmp);
+                lis +="<li><a href='#' data-id='" + i + "'>" + tmp + "</a></li>";
               });
               ul.html(lis);
               svg.selectAll("g[data-point] text").text(function(d, i) { return t.point.labels[i]; }).call(wrap, 2);
@@ -444,7 +452,7 @@
             var offset = d3.interpolateNumber(scrollY, markerOffsets[ind]);
             skip = true;
             return function(t) { scrollTo(0, offset(t)); };
-          }).each("end", function() { console.log("end of tween"); skip = false;  scrolled(); }); //if (!--n) callback.apply(this, arguments);
+          }).each("end", function() { skip = false;  scrolled(); }); //if (!--n) callback.apply(this, arguments);
         }
 
         function sidebar_toggle() {
