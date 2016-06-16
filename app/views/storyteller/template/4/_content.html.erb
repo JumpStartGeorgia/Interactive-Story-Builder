@@ -44,7 +44,7 @@
                     <div class="headline">
                       <div class="headline-title"><%= m.title %><span><%= m.caption %></span></div>
                       <div class="headline-explore-prompt"><%= m.source %></div>
-                      <div class="headline-publisher"><span><%= t('storyteller.byline') %>&nbsp;</span><%= @story.author %></div>
+                      <div class="headline-publisher"><%= @story.author.html_safe %></div>
                       <div class="headline-author"><%= @story.media_author.html_safe %></div>
                     </div>
                   </div>
