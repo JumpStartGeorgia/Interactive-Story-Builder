@@ -1220,13 +1220,15 @@
         text-align:right;
         right:0;
         bottom:0;
-        padding: 120px 32px 40px 200px;
-        background:transparent url(<%= (@export ? "" : "/template/#{@template}/")  + 'assets/triangle.svg'%>) top/cover no-repeat padding-box;
+        background:transparent url(<%= (@export ? "" : "/template/#{@template}/")  + 'assets/triangle.svg'%>) top left/cover no-repeat padding-box;
         pointer-events:none;
         min-width:992px;
 
       }
-      .abstract-text { display:initial; }
+      .abstract-text {
+          display:initial;
+          padding: 120px 16px 21px 0;
+       }
       .abstract-toggle { display:none; }
       .column p:not(:first-of-type),
       .column p:not(:last-of-type)
