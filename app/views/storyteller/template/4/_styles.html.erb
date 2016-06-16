@@ -987,10 +987,6 @@
     .abstract {
       display:none;
     }
-    .abstract-text {
-      font:14px merriweather;
-      color:#212121;
-    }
     .sidebar-toggle {
       position:fixed;
       right:15px;
@@ -1163,9 +1159,6 @@
     }
 
     @media (min-width: 1200px) {
-      .abstract {
-        display:block;
-      }
       .sidebar-toggle {
         display:none;
       }
@@ -1200,6 +1193,7 @@
       .subarticle .map-container{ left:0; }
       .subarticle .stories { margin-left:450px; padding: 0 0 0 55px; }
       .abstract {
+        display:block;
         position:absolute;
         z-index:2;
         text-align:right;
@@ -1208,11 +1202,13 @@
         background:transparent url(<%= (@export ? "" : "/template/#{@template}/")  + 'assets/triangle.svg'%>) top left/cover no-repeat padding-box;
         pointer-events:none;
         min-width:992px;
-
+        min-height:350px;
       }
       .abstract-text {
-          display:initial;
-          padding: 120px 16px 21px 0;
+          display:block;
+          font:14px merriweather;
+          color:#212121;
+          padding: 150px 15px 0 0;
        }
       .abstract-toggle { display:none; }
       .column p:not(:first-of-type),
