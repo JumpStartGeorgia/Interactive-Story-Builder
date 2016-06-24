@@ -1,18 +1,18 @@
-class Story < ActiveRecord::Base	
+class Story < ActiveRecord::Base
 	translates :shortened_url
 
   # for likes
   acts_as_votable
-  
+
   # tagging system
   acts_as_taggable
-  
+
   # fields to search for in a story
   scoped_search :on => [:title, :author, :media_author]
   scoped_search :in => :content, :on => [:caption, :sub_caption, :content]
 
   # record public views
-  is_impressionable :counter_cache => true 
+  is_impressionable :counter_cache => true
   # create permalink to story
   has_permalink :create_permalink, true
 
@@ -25,8 +25,8 @@ class Story < ActiveRecord::Base
 	belongs_to :template
 	has_many :sections, :order => 'position', dependent: :destroy
 	has_and_belongs_to_many :users
-	has_one :asset,     
-	  :conditions => "asset_type = #{Asset::TYPE[:story_thumbnail]}", 	 
+	has_one :asset,
+	  :conditions => "asset_type = #{Asset::TYPE[:story_thumbnail]}",
 	  foreign_key: :item_id,
 	  dependent: :destroy
 	has_many :content, :through => :sections
@@ -36,14 +36,14 @@ class Story < ActiveRecord::Base
   attr_reader :tag_list_tokens
   attr_accessor :send_notification, :send_staff_pick_notification, :send_comment_notification
 #  attr_accessible :name, :tag_list_tokens
-  
+
 	validates :title, :presence => true, length: { maximum: 100 }
 	validates :author, :presence => true, length: { maximum: 255 }
 	validates :permalink, :presence => true
 #	validates :about, :presence => true
 	validates :template_id, :presence => true
 	validates :media_author, length: { maximum: 255 }
-	validates :story_locale, :presence => true 
+	validates :story_locale, :presence => true
 
   # if the title changes, make sure the permalink is updated
 #  before_save :check_title
@@ -52,7 +52,7 @@ class Story < ActiveRecord::Base
 	before_save :publish_date
 	before_save :generate_reviewer_key
 	before_save :shortened_url_generation
-	 
+
 	after_save :update_filter_counts
 
   scope :recent, order("stories.published_at desc, stories.title asc")
@@ -62,13 +62,14 @@ class Story < ActiveRecord::Base
 	scope :is_not_published, where(:published => false)
 	scope :is_published, where(:published => true)
 	scope :is_published_home_page, where(:published => true, :publish_home_page => true)
-  scope :is_staff_pick, where(:staff_pick => true)  
+  scope :is_staff_pick, where(:staff_pick => true)
   scope :stories_by_author, -> (user_id) {
     where(:user_id => user_id, :published => true).recent
   }
+  scope :is_not_deleted, where(:deleted => false)
 
   DEMO_ID = 2
-  
+
 
 	amoeba do
     enable
@@ -123,7 +124,7 @@ class Story < ActiveRecord::Base
 	end
 
   def self.can_edit?(story_id, user_id)
-    x = select('id').where(:id => story_id).editable_user(user_id)  
+    x = select('id').where(:id => story_id).editable_user(user_id)
     return x.present?
   end
 
@@ -137,11 +138,11 @@ class Story < ActiveRecord::Base
 		.where(stories: {id: story_id})
 		.first
 	end
-	
+
 	def self.demo
 	  fullsection(DEMO_ID)
 	end
-	
+
 	def self.by_language(locale)
 	  where(:story_locale => locale)
 	end
@@ -149,11 +150,11 @@ class Story < ActiveRecord::Base
 	def self.by_category(id)
 	  joins(:categories).where('categories.id = ?', id)
 	end
-	
+
 	def self.by_authors(user_ids)
     where(:user_id => user_ids)
 	end
-	
+
 	# get all of the unique story locales for published stories
 	def self.published_locales
 	  select('story_locale').is_published_home_page.map{|x| x.story_locale}.uniq.sort
@@ -186,10 +187,10 @@ class Story < ActiveRecord::Base
       if pending.present?
         already_exists_emails << pending.map{|x| x.to_email}
       end
-      
+
       already_exists_ids.flatten!
       already_exists_emails.flatten!
-      
+
       sql = ""
       if already_exists_ids.present? && already_exists_emails.present?
         sql = "!(id in (:ids) or email in (:emails)) and "
@@ -199,13 +200,13 @@ class Story < ActiveRecord::Base
         sql = "!(email in (:emails)) and "
       end
       sql << "(nickname like :search or email_no_domain like :search)"
-      users = User.where([sql, 
+      users = User.where([sql,
           :ids => already_exists_ids.uniq,
           :emails => already_exists_emails.uniq,
           :search => "%#{q}%"])
-          .limit(limit)          
+          .limit(limit)
       return users
-    end  
+    end
   end
 
 
@@ -215,19 +216,19 @@ class Story < ActiveRecord::Base
   end
 
   # if the story is being published, record the date
-	def publish_date		
+	def publish_date
 	  if self.published_changed? && self.published?
 	  	self.published_at = Time.now
   	elsif !self.published?
 	  	self.published_at = nil
-	  end    
-    return true 
+	  end
+    return true
 	end
 
 #  def check_title
 #    self.generate_permalink! if self.title_changed?
-#  end 
-  
+#  end
+
   def create_permalink
     if self.permalink_staging.present? && self.permalink_staging != self.permalink
       self.permalink_staging.dup
@@ -239,8 +240,8 @@ class Story < ActiveRecord::Base
   # if the story is published and the counts are not being updated
   # update the filter counts
   def update_filter_counts
-    if (self.published_changed? || self.published?) && 
-        !self.cached_votes_total_changed? && !self.impressions_count_changed? && 
+    if (self.published_changed? || self.published?) &&
+        !self.cached_votes_total_changed? && !self.impressions_count_changed? &&
         !self.comments_count_changed? && !self.staff_pick_changed?
 
       Category.update_published_stories_flags
@@ -266,12 +267,12 @@ class Story < ActiveRecord::Base
       Language.decrement_count(locale_was)
       Language.increment_count(locale)
     end
-=end    
+=end
   end
 
 	def asset_exists?
 		self.asset.present? && self.asset.asset.exists?
-	end  		
+	end
 
   # if the reviewer key does not exist, create it
   def generate_reviewer_key
@@ -288,7 +289,7 @@ class Story < ActiveRecord::Base
 	    self.thumbnail.instance_write(:file_name, "#{StoriesHelper.transliterate(filename)}.#{StoriesHelper.transliterate(extension)}")
 	  end
 	end
-	
+
   # use amoeba to clone the story and all of its records
   # after the clone is complete, copy all assets from the original story to the new story
   def clone_story
@@ -303,9 +304,9 @@ class Story < ActiveRecord::Base
 
       # story thumbnail
       puts "$$$$$$$$$ clone successful - copying thumbnail"
-      if self.asset.present? && self.asset.asset.exists? 
-        Dir.glob(self.asset.asset.path.gsub('/original/', '/*/')).each do |file|       
-          copy_asset file, file.gsub("/thumbnail/#{original_id}/", "/thumbnail/#{new_id}/") 
+      if self.asset.present? && self.asset.asset.exists?
+        Dir.glob(self.asset.asset.path.gsub('/original/', '/*/')).each do |file|
+          copy_asset file, file.gsub("/thumbnail/#{original_id}/", "/thumbnail/#{new_id}/")
         end
       end
 
@@ -314,14 +315,14 @@ class Story < ActiveRecord::Base
       new_audio = clone.sections.select{|x| x.asset.present? && x.asset.asset.exists?}.map{|x| x.asset}
       self.sections.select{|x| x.asset.present? && x.asset.asset.exists?}.map{|x| x.asset}.each do |audio|
         # find matching record
-        record = new_audio.select{|x| x.asset_file_name == audio.asset_file_name && 
-                                      x.asset_content_type == audio.asset_content_type && 
-                                      x.asset_file_size == audio.asset_file_size && 
+        record = new_audio.select{|x| x.asset_file_name == audio.asset_file_name &&
+                                      x.asset_content_type == audio.asset_content_type &&
+                                      x.asset_file_size == audio.asset_file_size &&
                                       x.asset_updated_at == audio.asset_updated_at}.first
         # copy the file if match found
         if record.present?
           copy_asset audio.asset.path, audio.asset.path.gsub("/audio/#{original_id}/", "/audio/#{new_id}/")
-                                                        .gsub("/#{audio.id}__", "/#{record.id}__") 
+                                                        .gsub("/#{audio.id}__", "/#{record.id}__")
         end
       end
 
@@ -330,15 +331,15 @@ class Story < ActiveRecord::Base
       new_ss = clone.sections.select{|x| x.slideshow?}.map{|x| x.slideshow.assets}.flatten.select{|x| x.asset.exists?}
       self.sections.select{|x| x.slideshow?}.map{|x| x.slideshow.assets}.flatten.select{|x| x.asset.exists?}.each do |img|
         # find matching record
-        record = new_ss.select{|x| x.asset_file_name == img.asset_file_name && 
-                                      x.asset_content_type == img.asset_content_type && 
-                                      x.asset_file_size == img.asset_file_size && 
+        record = new_ss.select{|x| x.asset_file_name == img.asset_file_name &&
+                                      x.asset_content_type == img.asset_content_type &&
+                                      x.asset_file_size == img.asset_file_size &&
                                       x.asset_updated_at == img.asset_updated_at}.first
         # copy the file if match found
         if record.present?
-          Dir.glob(img.asset.path.gsub('/original/', '/*/')).each do |file|       
-            copy_asset file, file.gsub("/slideshow/#{original_id}/", "/slideshow/#{new_id}/") 
-                                  .gsub("/#{img.id}__", "/#{record.id}__") 
+          Dir.glob(img.asset.path.gsub('/original/', '/*/')).each do |file|
+            copy_asset file, file.gsub("/slideshow/#{original_id}/", "/slideshow/#{new_id}/")
+                                  .gsub("/#{img.id}__", "/#{record.id}__")
           end
         end
       end
@@ -349,15 +350,15 @@ class Story < ActiveRecord::Base
       new_img = clone.sections.select{|x| x.media?}.map{|x| x.media}.flatten.select{|x| x.image_exists?}.map{|x| x.image}
       self.sections.select{|x| x.media?}.map{|x| x.media}.flatten.select{|x| x.image_exists?}.map{|x| x.image}.each do |img|
         # find matching record
-        record = new_img.select{|x| x.asset_file_name == img.asset_file_name && 
-                                      x.asset_content_type == img.asset_content_type && 
-                                      x.asset_file_size == img.asset_file_size && 
+        record = new_img.select{|x| x.asset_file_name == img.asset_file_name &&
+                                      x.asset_content_type == img.asset_content_type &&
+                                      x.asset_file_size == img.asset_file_size &&
                                       x.asset_updated_at == img.asset_updated_at}.first
         # copy the file if match found
         if record.present?
-          Dir.glob(img.asset.path.gsub('/original/', '/*/')).each do |file|       
-            copy_asset file, file.gsub("/images/#{original_id}/", "/images/#{new_id}/") 
-                                  .gsub("/#{img.id}__", "/#{record.id}__") 
+          Dir.glob(img.asset.path.gsub('/original/', '/*/')).each do |file|
+            copy_asset file, file.gsub("/images/#{original_id}/", "/images/#{new_id}/")
+                                  .gsub("/#{img.id}__", "/#{record.id}__")
           end
         end
       end
@@ -367,9 +368,9 @@ class Story < ActiveRecord::Base
       new_video = clone.sections.select{|x| x.media?}.map{|x| x.media}.flatten.select{|x| x.video_exists?}.map{|x| x.video}
       self.sections.select{|x| x.media?}.map{|x| x.media}.flatten.select{|x| x.video_exists?}.map{|x| x.video}.each do |video|
         # find matching record
-        record = new_video.select{|x| x.asset_file_name == video.asset_file_name && 
-                                      x.asset_content_type == video.asset_content_type && 
-                                      x.asset_file_size == video.asset_file_size && 
+        record = new_video.select{|x| x.asset_file_name == video.asset_file_name &&
+                                      x.asset_content_type == video.asset_content_type &&
+                                      x.asset_file_size == video.asset_file_size &&
                                       x.asset_updated_at == video.asset_updated_at}.first
         # copy the file if match found
         if record.present?
@@ -378,14 +379,14 @@ class Story < ActiveRecord::Base
           basename = File.basename(video.asset.path)
           name = File.basename(video.asset.path, ext)
 
-          Dir.glob(video.asset.path.gsub('/original/', '/*/').gsub(basename, "#{name}.*")).each do |file|       
-            copy_asset file, file.gsub("/video/#{original_id}/", "/video/#{new_id}/") 
-                                  .gsub("/#{video.id}__", "/#{record.id}__") 
+          Dir.glob(video.asset.path.gsub('/original/', '/*/').gsub(basename, "#{name}.*")).each do |file|
+            copy_asset file, file.gsub("/video/#{original_id}/", "/video/#{new_id}/")
+                                  .gsub("/#{video.id}__", "/#{record.id}__")
           end
 
           # get the poster folder too
-          copy_asset video.asset.path(:poster), video.asset.path(:poster).gsub("/video/#{original_id}/", "/video/#{new_id}/") 
-                                .gsub("/#{video.id}__", "/#{record.id}__") 
+          copy_asset video.asset.path(:poster), video.asset.path(:poster).gsub("/video/#{original_id}/", "/video/#{new_id}/")
+                                .gsub("/#{video.id}__", "/#{record.id}__")
 
         end
       end
@@ -411,28 +412,28 @@ class Story < ActiveRecord::Base
       self.asset
     end
   end
-  
+
   # when a comment occurs, update the count by 1
   def increment_comment_count
     self.comments_count += 1
     self.save
   end
-  
+
   # remove quotes from tags
   def tag_list_tokens=(tokens)
     self.tag_list = tokens.gsub("'", "")
-  end  
-  
-  
+  end
+
+
   # if the story was published or permalink changed and was published
-  # create a new shortened url 
+  # create a new shortened url
   def shortened_url_generation
 	  if (self.published_changed? && self.published?) || (self.permalink_changed? && self.published?)
       generate_shortened_url
-	  end     
+	  end
     return true
   end
-  
+
   # generate bit.ly shortened url
   def generate_shortened_url
     require 'open-uri'
@@ -459,20 +460,20 @@ class Story < ActiveRecord::Base
               puts "--> saving url"
               trans.shortened_url = json['data']['url']
             end
-          end      
+          end
         rescue
-        end    
+        end
       end
     end
   end
-  
-  
 
-  private 
+
+
+  private
 
   def copy_asset(original_path, new_path)
     # make sure new path directory structure exists
     FileUtils.mkdir_p(File.dirname(new_path))
     FileUtils.cp original_path, new_path
-  end  
+  end
 end

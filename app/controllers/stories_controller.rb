@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   before_filter :authenticate_user!, :except => [:review]
-  before_filter(:except => [:index, :new, :create, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|  
+  before_filter(:except => [:index, :new, :create, :check_permalink, :tag_search, :collaborator_search, :review]) do |controller_instance|
     controller_instance.send(:can_edit_story?, params[:id])
   end
   before_filter :asset_filter
@@ -9,15 +9,15 @@ class StoriesController < ApplicationController
 
   # GET /stories
   # GET /stories.json
-  def index    
+  def index
     @css.push("navbar.css", "filter.css", "grid.css","author.css")
-    @js.push("zeroclipboard.min.js","filter.js","stories.js") 
-    @stories =  process_filter_querystring(Story.editable_user(current_user.id).paginate(:page => params[:page], :per_page => per_page))           
+    @js.push("zeroclipboard.min.js","filter.js","stories.js")
+    @stories =  process_filter_querystring(Story.is_not_deleted.editable_user(current_user.id).paginate(:page => params[:page], :per_page => per_page))
     @editable = (user_signed_in?)
 
     respond_to do |format|
       format.html  #index.html.erb
-      format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}          
+      format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}
     end
   end
 
@@ -31,11 +31,11 @@ class StoriesController < ApplicationController
   # GET /stories/new
   # GET /stories/new.json
   def new
-    @story = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)     
-    @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])    
+    @story = Story.new(:user_id => current_user.id, :locale => current_user.default_story_locale)
+    @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
 #    @templates = Template.select_list
     @story_tags = []
-    
+
     respond_to do |format|
         format.html #new.html.er
         format.json { render json: @story }
@@ -44,10 +44,10 @@ class StoriesController < ApplicationController
 
   # GET /stories/1/edit
   def edit
-    @story = Story.find(params[:id])
+    @story = Story.is_not_deleted.find(params[:id])
     if !@story.asset_exists?
       @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
-    end 
+    end
 #    @templates = Template.select_list(@story.template_id)
     @story_tags = @story.tags.token_input_tags
   end
@@ -60,17 +60,17 @@ class StoriesController < ApplicationController
     respond_to do |format|
 
       if @story.save
-        flash_success_created(Story.model_name.human,@story.title)       
+        flash_success_created(Story.model_name.human,@story.title)
         format.html { redirect_to edit_story_path(@story) }
       #  format.json { render json: @story, status: :created, location: @story }
       else
-        if !@story.asset.present? 
+        if !@story.asset.present?
           @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
-        end      
-        @templates = Template.select_list(@story.template_id) 
+        end
+        @templates = Template.select_list(@story.template_id)
         @story_tags = @story.tags.token_input_tags
 
-        flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)     
+        flash[:error] = I18n.t('app.msgs.error_created', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)
         format.html { render action: "new" }
         #  format.json { render json: @story.errors, status: :unprocessable_entity }
         #  format.js {render action: "flash" , status: :ok }
@@ -81,30 +81,30 @@ class StoriesController < ApplicationController
   # PUT /stories/1
   # PUT /stories/1.json
   def update
-    @story = Story.find(params[:id])
-  
+    @story = Story.is_not_deleted.find(params[:id])
+
     respond_to do |format|
       if !@story.published && params[:story][:published]=="1"
         if !@story.about.present? || !@story.asset_exists?
-          flash[:error] = I18n.t('app.msgs.error_publish_missing_fields', :obj => @story.title)            
+          flash[:error] = I18n.t('app.msgs.error_publish_missing_fields', :obj => @story.title)
         elsif @story.sections.map{|t| t.content? && t.content.present? && t.content.content.present? }.count(true) == 0
-          flash[:error] = I18n.t('app.msgs.error_publish_missing_content_section')            
-        end                      
+          flash[:error] = I18n.t('app.msgs.error_publish_missing_content_section')
+        end
         format.html { render action: "edit" }
         format.js {render action: "flash" , status: :ok }
       else
         if @story.update_attributes(params[:story])
-          flash_success_updated(Story.model_name.human,@story.title)       
+          flash_success_updated(Story.model_name.human,@story.title)
           format.html { redirect_to  edit_story_path(@story) }
-          format.js { render action: "flash", status: :created }    
+          format.js { render action: "flash", status: :created }
         else
-          if !@story.asset.present? 
+          if !@story.asset.present?
             @story.build_asset(:asset_type => Asset::TYPE[:story_thumbnail])
-          end 
+          end
           @templates = Template.select_list(@story.template_id)
           @story_tags = @story.tags.token_input_tags
-          
-          flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)            
+
+          flash[:error] = I18n.t('app.msgs.error_updated', obj:Story.model_name.human, err:@story.errors.full_messages.to_sentence)
           format.html { render action: "edit" }
           format.js {render action: "flash" , status: :ok }
         end
@@ -116,36 +116,44 @@ class StoriesController < ApplicationController
   # DELETE /stories/1.json
   def destroy
     @story = Story.find(params[:id])
-    
-     @story.destroy
-     if @story.destroyed?             
+
+     # @story.destroy
+     # if @story.destroyed?
+     #      flash[:success] = I18n.t('app.msgs.destroy_story.success')
+     #  else
+     #      flash[:error] = I18n.t('app.msgs.destroy_story.error', :err => @story.errors.full_messages.to_sentence)
+     #  end
+
+     @story.deleted = true
+     @story.deleted_at = Time.now
+     if @story.save
           flash[:success] = I18n.t('app.msgs.destroy_story.success')
-      else  
+      else
           flash[:error] = I18n.t('app.msgs.destroy_story.error', :err => @story.errors.full_messages.to_sentence)
       end
-    
-   respond_to do |format|     
+
+   respond_to do |format|
       format.html { redirect_to stories_url }
-      format.json { head :ok }  
+      format.json { head :ok }
     end
   end
- 
-  def review    
-    @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css")
-    @js.push("storyteller.js","modalos.js")    
 
-    @story = Story.find_by_reviewer_key(params[:id])
+  def review
+    @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css")
+    @js.push("storyteller.js","modalos.js")
+
+    @story = Story.is_not_deleted.find_by_reviewer_key(params[:id])
     if @story.present?
       if @story.published?
-        redirect_to storyteller_show_path(@story.permalink)     
+        redirect_to storyteller_show_path(@story.permalink)
       else
-        respond_to do |format|     
+        respond_to do |format|
           format.html { render 'storyteller/index', layout: false }
         end
       end
     else
       redirect_to root_path, :notice => t('app.msgs.does_not_exist')
-    end  
+    end
   end
 
   def preview
@@ -154,14 +162,14 @@ class StoriesController < ApplicationController
 
     if params[:n] == 'n'
       @no_nav = true
-    end    
+    end
 
-  	@story = Story.fullsection(params[:id])      
+  	@story = Story.is_not_deleted.fullsection(params[:id])
 
-    respond_to do |format|  
-      #if(@story.present?)   
+    respond_to do |format|
+      #if(@story.present?)
         format.html { render 'storyteller/index', layout: false }
-      #else 
+      #else
 
       #end
     end
@@ -174,16 +182,16 @@ class StoriesController < ApplicationController
     if type == 's'
 
       if params[:command]!='n'
-        @item = Section.find_by_id(params[:section_id])    
-      else 
+        @item = Section.find_by_id(params[:section_id])
+      else
         @item = Section.new(story_id: params[:id], has_marker: 0)
-      end        
+      end
 #      @section_list = []
-#      Section::TYPE.each{|k,v| @section_list << ["#{I18n.t("section_types.#{k}.name")} - #{I18n.t("section_types.#{k}.description")}", v]} 
+#      Section::TYPE.each{|k,v| @section_list << ["#{I18n.t("section_types.#{k}.name")} - #{I18n.t("section_types.#{k}.description")}", v]}
 #      @section_list.sort_by!{|x| x[0]}
       if @item.present? && !@item.asset_exists?
           @item.build_asset(:asset_type => Asset::TYPE[:section_audio])
-      end   
+      end
       respond_to do |format|
         if @item.present?
           format.js { render :action => "get_section" }
@@ -197,7 +205,7 @@ class StoriesController < ApplicationController
 
       if params[:command]!='n'
         @item = Content.find_by_id(params[:item_id])
-      else 
+      else
         @item = Content.new(:section_id => params[:section_id], :content => '')
       end
       respond_to do |format|
@@ -210,18 +218,18 @@ class StoriesController < ApplicationController
       end
 
     elsif type == 'media'
-        if params[:command]!='n'    
-          @item = Medium.find_by_id(params[:item_id])   
-        else 
+        if params[:command]!='n'
+          @item = Medium.find_by_id(params[:item_id])
+        else
           @item = Medium.new(:section_id => params[:section_id], media_type: Medium::TYPE[:image])
         end
 
-        if @item.present? &&  !@item.image_exists? 
+        if @item.present? &&  !@item.image_exists?
           @item.build_image(:asset_type => Asset::TYPE[:media_image])
-        end   
+        end
         if @item.present? && !@item.video_exists?
           @item.build_video(:asset_type => Asset::TYPE[:media_video])
-        end      
+        end
 
         respond_to do |format|
            if @item.present?
@@ -233,30 +241,30 @@ class StoriesController < ApplicationController
         end
     elsif type == 'slideshow'
 
-        if params[:command]!='n'    
-          @item = Slideshow.find_by_id(params[:item_id])           
-        else 
+        if params[:command]!='n'
+          @item = Slideshow.find_by_id(params[:item_id])
+        else
           @item = Slideshow.new(:section_id => params[:section_id])
         end
-      
+
        if @item.present? && @item.assets.blank?
           @item.assets.build(:asset_type => Asset::TYPE[:slideshow_image])
-        end      
+        end
 
-     
+
         respond_to do |format|
           if @item.present?
               format.js {render :action => "get_slideshow" }
           else
             @get_data_error = I18n.t('app.msgs.error_get_data')
-            format.js          
+            format.js
           end
       end
     elsif type == 'embed_media'
 
-        if params[:command]!='n'    
-          @item = EmbedMedium.find_by_id(params[:item_id])   
-        else 
+        if params[:command]!='n'
+          @item = EmbedMedium.find_by_id(params[:item_id])
+        else
           @item = EmbedMedium.new(:section_id => params[:section_id])
         end
         respond_to do |format|
@@ -264,202 +272,202 @@ class StoriesController < ApplicationController
               format.js {render :action => "get_embed_media" }
           else
             @get_data_error = I18n.t('app.msgs.error_get_data')
-            format.js          
+            format.js
           end
         end
     end
   end
 
   def new_section
-    @item = Section.new(params[:section])  
+    @item = Section.new(params[:section])
 
      respond_to do |format|
-        if @item.save         
-          flash_success_created(Section.model_name.human,@item.title)                     
+        if @item.save
+          flash_success_created(Section.model_name.human,@item.title)
           format.js { render action: "change_tree", status: :created  }
-        else          
-          flash[:error] = u I18n.t('app.msgs.error_created', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                  
+        else
+          flash[:error] = u I18n.t('app.msgs.error_created', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)
           format.js {render action: "flash" , status: :ok }
         end
-      end    
+      end
   end
 
  def new_media
-    @item = Medium.new(params[:medium])    
+    @item = Medium.new(params[:medium])
 #Rails.logger.debug "######### image valid: #{@item.image.valid?}; image validations: #{@item.image.errors.full_messages.to_sentence}" if @item.image.present?
 #Rails.logger.debug "######### video valid: #{@item.video.valid?}; video validations: #{@item.video.errors.full_messages.to_sentence}" if @item.video.present?
     respond_to do |format|
-        if @item.save       
-          flash_success_created(Medium.model_name.human,@item.title)                     
-          format.js { render action: "change_sub_tree", status: :created }                    
-        else                    
-          flash[:error] = u I18n.t('app.msgs.error_created', obj:Medium.model_name.human, err:@item.errors.full_messages.to_sentence)                       
+        if @item.save
+          flash_success_created(Medium.model_name.human,@item.title)
+          format.js { render action: "change_sub_tree", status: :created }
+        else
+          flash[:error] = u I18n.t('app.msgs.error_created', obj:Medium.model_name.human, err:@item.errors.full_messages.to_sentence)
 #Rails.logger.debug "######### new_media save error: #{@item.errors.full_messages.to_sentence}"
           format.js {render action: "flash" , status: :ok }
         end
-      end    
+      end
   end
 
 
 
-    def new_content    
-     @item = Content.new(params[:content])   
+    def new_content
+     @item = Content.new(params[:content])
      respond_to do |format|
         if @item.save
-          flash_success_created(Content.model_name.human,@item.title)                     
+          flash_success_created(Content.model_name.human,@item.title)
           format.js { render action: "change_sub_tree", status: :created  }
         else
-          flash[:error] = u I18n.t('app.msgs.error_created', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)                  
+          flash[:error] = u I18n.t('app.msgs.error_created', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)
           format.js {render action: "flash" , status: :ok }
         end
-      end    
+      end
   end
-  
+
    def new_slideshow
-    @item = Slideshow.new(params[:slideshow])    
+    @item = Slideshow.new(params[:slideshow])
     respond_to do |format|
-        if @item.save       
-          flash_success_created(Slideshow.model_name.human,@item.title)                     
-          format.js { render action: "change_sub_tree", status: :created }                    
-        else                    
-          flash[:error] = u I18n.t('app.msgs.error_created', obj:Slideshow.model_name.human, err:@item.errors.full_messages.to_sentence)                       
+        if @item.save
+          flash_success_created(Slideshow.model_name.human,@item.title)
+          format.js { render action: "change_sub_tree", status: :created }
+        else
+          flash[:error] = u I18n.t('app.msgs.error_created', obj:Slideshow.model_name.human, err:@item.errors.full_messages.to_sentence)
           format.js {render action: "flash" , status: :ok }
         end
-      end    
+      end
   end
 
   def new_embed_media
-    @item = EmbedMedium.new(params[:embed_medium])       
+    @item = EmbedMedium.new(params[:embed_medium])
     respond_to do |format|
-        if @item.save       
-          flash_success_created(EmbedMedium.model_name.human,@item.title)                     
-          format.js { render action: "change_sub_tree", status: :created }                    
-        else                    
-          flash[:error] = u I18n.t('app.msgs.error_created', obj:EmbedMedium.model_name.human, err:@item.errors.full_messages.to_sentence)                       
+        if @item.save
+          flash_success_created(EmbedMedium.model_name.human,@item.title)
+          format.js { render action: "change_sub_tree", status: :created }
+        else
+          flash[:error] = u I18n.t('app.msgs.error_created', obj:EmbedMedium.model_name.human, err:@item.errors.full_messages.to_sentence)
           format.js {render action: "flash" , status: :ok }
         end
-      end    
+      end
   end
-  
 
 
-  def save_section      
-    @item = Section.find_by_id(params[:section][:id]) 
+
+  def save_section
+    @item = Section.find_by_id(params[:section][:id])
 #logger.debug "+++++++++++++ delete attribute = #{params[:section][:asset_attributes][:delete_asset]}"
     respond_to do |format|
       if @item.present?
         if @item.update_attributes(params[:section].except(:id))
-          flash_success_updated(Section.model_name.human,@item.title)       
-          format.js {render action: "build_tree", status: :created }                  
+          flash_success_updated(Section.model_name.human,@item.title)
+          format.js {render action: "build_tree", status: :created }
         else
-          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)                            
+          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)
           format.js {render action: "flash", status: :ok }
         end
       else
-        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
+        flash[:error] = u I18n.t('app.msgs.not_found_for_update')
         format.js {render action: "flash", status: :ok }
       end
-    end    
+    end
   end
-  def save_content      
-     @item = Content.find_by_id(params[:content][:id])  
+  def save_content
+     @item = Content.find_by_id(params[:content][:id])
      respond_to do |format|
       if @item.present?
-        if @item.update_attributes(params[:content].except(:id))          
-          flash_success_updated(Content.model_name.human,@item.title)           
-          format.js {render action: "build_tree", status: :created }                  
+        if @item.update_attributes(params[:content].except(:id))
+          flash_success_updated(Content.model_name.human,@item.title)
+          format.js {render action: "build_tree", status: :created }
         else
-          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)                                      
+          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Content.model_name.human, err:@item.errors.full_messages.to_sentence)
           format.js {render action: "flash" , status: :ok }
         end
       else
-        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
+        flash[:error] = u I18n.t('app.msgs.not_found_for_update')
         format.js {render action: "flash", status: :ok }
       end
-    end    
+    end
   end
  def save_media
     @item = Medium.find_by_id(params[:medium][:id])
     respond_to do |format|
       if @item.present?
-        if @item.update_attributes(params[:medium].except(:id))          
-          flash_success_updated(Medium.model_name.human,@item.title)           
-          format.js {render action: "build_tree", status: :created }          
-        else        
-          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Medium.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
+        if @item.update_attributes(params[:medium].except(:id))
+          flash_success_updated(Medium.model_name.human,@item.title)
+          format.js {render action: "build_tree", status: :created }
+        else
+          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Medium.model_name.human, err:@item.errors.full_messages.to_sentence)
           format.js {render action: "flash", status: :ok }
         end
       else
-        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
+        flash[:error] = u I18n.t('app.msgs.not_found_for_update')
         format.js {render action: "flash", status: :ok }
       end
-    end    
+    end
   end
   def save_slideshow
     @item = Slideshow.find_by_id(params[:slideshow][:id])
     respond_to do |format|
       if @item.present?
-        if @item.update_attributes(params[:slideshow].except(:id))          
-          flash_success_updated(Slideshow.model_name.human,@item.title)           
-          format.js {render action: "build_tree", status: :created }          
-        else        
-          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Slideshow.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
+        if @item.update_attributes(params[:slideshow].except(:id))
+          flash_success_updated(Slideshow.model_name.human,@item.title)
+          format.js {render action: "build_tree", status: :created }
+        else
+          flash[:error] = u I18n.t('app.msgs.error_updated', obj:Slideshow.model_name.human, err:@item.errors.full_messages.to_sentence)
           format.js {render action: "flash", status: :ok }
         end
       else
-        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
+        flash[:error] = u I18n.t('app.msgs.not_found_for_update')
         format.js {render action: "flash", status: :ok }
       end
-    end    
+    end
   end
   def save_embed_media
     @item = EmbedMedium.find_by_id(params[:embed_medium][:id])
     respond_to do |format|
       if @item.present?
-        if @item.update_attributes(params[:embed_medium])          
-          flash_success_updated(EmbedMedium.model_name.human,@item.title)           
-          format.js {render action: "build_tree", status: :created }          
-        else        
-          flash[:error] = u I18n.t('app.msgs.error_updated', obj:EmbedMedium.model_name.human, err:@item.errors.full_messages.to_sentence)                                        
+        if @item.update_attributes(params[:embed_medium])
+          flash_success_updated(EmbedMedium.model_name.human,@item.title)
+          format.js {render action: "build_tree", status: :created }
+        else
+          flash[:error] = u I18n.t('app.msgs.error_updated', obj:EmbedMedium.model_name.human, err:@item.errors.full_messages.to_sentence)
           format.js {render action: "flash", status: :ok }
         end
       else
-        flash[:error] = u I18n.t('app.msgs.not_found_for_update')                            
+        flash[:error] = u I18n.t('app.msgs.not_found_for_update')
         format.js {render action: "flash", status: :ok }
       end
-    end    
+    end
   end
-  
-  
-  def destroy_tree_item  
-    item = nil    
+
+
+  def destroy_tree_item
+    item = nil
     type = params[:type]
     if type == 's'
-      item = Section.find_by_id(params[:section_id])               
+      item = Section.find_by_id(params[:section_id])
     elsif type == 'content'
-      item =  Content.find_by_id(params[:item_id])      
+      item =  Content.find_by_id(params[:item_id])
     elsif type == 'media'
       item = Medium.find_by_id(params[:item_id])
     elsif type == 'slideshow'
-      item = Slideshow.find_by_id(params[:item_id])                 
+      item = Slideshow.find_by_id(params[:item_id])
     end
 
     item.destroy if item.present?
-    
+
     respond_to do |format|
       if !item.present?
           flash[:error] = I18n.t('app.msgs.destroy_item.error_not_found')
-          format.json { render json: nil , status: :created } 
-      elsif item.destroyed?   
+          format.json { render json: nil , status: :created }
+      elsif item.destroyed?
           flash[:success] = I18n.t('app.msgs.destroy_item.success')
-          format.json { render json: nil , status: :created } 
-      else  
+          format.json { render json: nil , status: :created }
+      else
           flash[:error] = I18n.t('app.msgs.destroy_item.error', :err => @item.errors.full_messages.to_sentence)
-          format.json {render json: nil, status: :ok }  
+          format.json {render json: nil, status: :ok }
       end
     end
   end
-  def up      
+  def up
     item = nil
     if params[:i] == '-1'
       item = Section.where(story_id: params[:id]).find_by_id(params[:s])
@@ -467,47 +475,47 @@ class StoriesController < ApplicationController
       item = Medium.where(section_id: params[:s]).find_by_id(params[:i])
     end
     if item.present?
-      item.move_higher 
-      render json: nil , status: :created    
+      item.move_higher
+      render json: nil , status: :created
     else
       render json: nil , status: :unprocessable_entity
     end
   end
-  def up_slideshow    
+  def up_slideshow
     item = Asset.find_by_id(params[:asset_id])
     if item.present?
-      item.move_higher 
-      render json: nil , status: :created    
+      item.move_higher
+      render json: nil , status: :created
     else
       render json: nil , status: :unprocessable_entity
     end
   end
-  def down_slideshow    
+  def down_slideshow
     item = Asset.find_by_id(params[:asset_id])
     if item.present?
-      item.move_lower 
-      render json: nil , status: :created    
+      item.move_lower
+      render json: nil , status: :created
     else
       render json: nil , status: :unprocessable_entity
     end
   end
-  def down  
+  def down
     item = nil
     if params[:i] == '-1'
       item = Section.where(story_id: params[:id]).find_by_id(params[:s])
     else
       item = Medium.where(section_id: params[:s]).find_by_id(params[:i])
-    end            
+    end
     if item.present?
-      item.move_lower 
-      render json: nil , status: :created    
+      item.move_lower
+      render json: nil , status: :created
     else
       render json: nil , status: :unprocessable_entity
     end
   end
 
   def sections
-      @story = Story.fullsection(params[:id])   
+      @story = Story.is_not_deleted.fullsection(params[:id])
 
       @js.push("modalos.js")
       @css.push("modalos.css")
@@ -521,33 +529,33 @@ class StoriesController < ApplicationController
 
   def publish
 
-    @item = Story.find_by_id(params[:id])
+    @item = Story.is_not_deleted.find_by_id(params[:id])
     publishing = !@item.published
     pub_title = ''
     error = false
-    respond_to do |format|    
-      
+    respond_to do |format|
+
       if publishing
-        if !(@item.about.present? && @item.asset_exists?)                 
+        if !(@item.about.present? && @item.asset_exists?)
                   view_context.log(@item.sections.map{|t| t.content? && t.content.present? && t.content.content.present? }.count(true) )
-           format.json {render json: { e:true, msg: (t('app.msgs.error_publish_missing_fields', :obj => @item.title) +  
-                " <a href='" +  edit_story_path(@item) + "'>" + t('app.msgs.error_publish_missing_fields_link') + "</a>")} }  
-           error = true       
-        elsif @item.sections.map{|t| t.content.present? && t.content.content.present? }.count(true) == 0          
-           format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_content_section')} }          
+           format.json {render json: { e:true, msg: (t('app.msgs.error_publish_missing_fields', :obj => @item.title) +
+                " <a href='" +  edit_story_path(@item) + "'>" + t('app.msgs.error_publish_missing_fields_link') + "</a>")} }
            error = true
-        end            
+        elsif @item.sections.map{|t| t.content.present? && t.content.content.present? }.count(true) == 0
+           format.json {render json: { e:true, msg: t('app.msgs.error_publish_missing_content_section')} }
+           error = true
+        end
       end
 
 
-      if !error 
-        if @item.update_attributes(published: publishing)     
-          flash[:success] =u I18n.t("app.msgs.success_#{publishing ? '' :'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")                   
-          pub_title = @item.published ? I18n.t("app.buttons.unpublish")  : I18n.t("app.buttons.publish")                    
+      if !error
+        if @item.update_attributes(published: publishing)
+          flash[:success] =u I18n.t("app.msgs.success_#{publishing ? '' :'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")
+          pub_title = @item.published ? I18n.t("app.buttons.unpublish")  : I18n.t("app.buttons.publish")
           format.json {render json: { title: pub_title }, status: :ok }
-        else          
-          format.json {render json: { e:true, msg: t("app.msgs.error#{publishing ? '' : 'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")}}     
-        end      
+        else
+          format.json {render json: { e:true, msg: t("app.msgs.error#{publishing ? '' : 'un'}publish", obj:"#{Story.model_name.human} \"#{@item.title}\"")}}
+        end
       end
       format.html { redirect_to stories_url }
   end
@@ -555,19 +563,19 @@ end
 
 
   def export
-    begin   
+    begin
       @css.clear()
       @js.clear()
-      @story = Story.fullsection(params[:id])  
+      @story = Story.is_not_deleted.fullsection(params[:id])
       rootPath = "#{Rails.root}/tmp/stories";
-      filename = StoriesHelper.transliterate(@story.title.downcase);      
-      filename_ext = SecureRandom.hex(3)  
-      path =  "#{rootPath}/#{filename}_#{filename_ext}"  
+      filename = StoriesHelper.transliterate(@story.title.downcase);
+      filename_ext = SecureRandom.hex(3)
+      path =  "#{rootPath}/#{filename}_#{filename_ext}"
       mediaPath = "#{path}/media"
 
-      FileUtils.mkpath(path)    
-      FileUtils.cp_r "#{Rails.root}/public/media/story/.", "#{path}"  
-      
+      FileUtils.mkpath(path)
+      FileUtils.cp_r "#{Rails.root}/public/media/story/.", "#{path}"
+
       story_id = params[:id]
       template_id = @story.template_id
 
@@ -581,16 +589,16 @@ end
           FileUtils.cp_r "#{Rails.root}/public/template/#{template_id}/css/", "#{path}/"
       end
       if File.directory?("#{Rails.root}/public/system/places/thumbnail/#{story_id}/thumbnail/.")
-          FileUtils.mkpath("#{mediaPath}/thumbnail")    
+          FileUtils.mkpath("#{mediaPath}/thumbnail")
           FileUtils.cp_r "#{Rails.root}/public/system/places/thumbnail/#{story_id}/thumbnail/.", "#{mediaPath}/thumbnail"
       end
       if File.directory?("#{Rails.root}/public/system/places/images/#{story_id}/.")
-          FileUtils.mkpath("#{mediaPath}/images")    
+          FileUtils.mkpath("#{mediaPath}/images")
           FileUtils.cp_r "#{Rails.root}/public/system/places/images/#{story_id}/.", "#{mediaPath}/images"
       end
       if File.directory?("#{Rails.root}/public/system/places/video/#{story_id}/.")
         FileUtils.mkpath("#{mediaPath}/video" )
-        FileUtils.cp_r "#{Rails.root}/public/system/places/video/#{story_id}/.", "#{mediaPath}/video"  
+        FileUtils.cp_r "#{Rails.root}/public/system/places/video/#{story_id}/.", "#{mediaPath}/video"
       end
       if File.directory?("#{Rails.root}/public/system/places/audio/#{story_id}/.")
         FileUtils.mkpath("#{mediaPath}/audio")
@@ -602,26 +610,26 @@ end
       end
       @export = true
 
-      File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/index', :layout => false) }  
+      File.open("#{path}/index.html", "w"){|f| f << render_to_string('storyteller/index', :layout => false) }
       send_file generate_gzip(path,"#{filename}_#{filename_ext}",filename), :type=>"application/x-gzip", :filename=>"#{filename}.tar.gz"
-      
-    rescue Exception => e      
-       flash[:error] =I18n.t("app.msgs.error_export")       
+
+    rescue Exception => e
+       flash[:error] =I18n.t("app.msgs.error_export")
        ExceptionNotifier::Notifier.exception_notification(request.env, e).deliver
        redirect_to stories_url
-    end   
+    end
   end
- 
+
   def clone
     had_error = false
     exception = nil
     begin
       Story.transaction do
-        @item = Story.find(params[:id])
+        @item = Story.is_not_deleted.find(params[:id])
         dup = @item.clone_story
 
         if dup.valid?
-          flash[:success] =I18n.t("app.msgs.success_clone", obj:"#{Story.model_name.human} \"#{@item.title}\"", to: "#{dup.title}")    
+          flash[:success] =I18n.t("app.msgs.success_clone", obj:"#{Story.model_name.human} \"#{@item.title}\"", to: "#{dup.title}")
         else
           raise I18n.t('app.msgs.error_clone_notification', msg: dup.errors.full_messages)
         end
@@ -630,7 +638,7 @@ end
       had_error = true
       exception = e
     end
-   
+
     # if error occurred send email notification
     if had_error
       ExceptionNotifier::Notifier
@@ -639,7 +647,7 @@ end
       flash[:error] =I18n.t("app.msgs.error_clone", obj:"#{Story.model_name.human} \"#{@item.title}\"")
     end
 
-    respond_to do |format| 
+    respond_to do |format|
       format.js {render json: nil, status: :ok }
       format.html { redirect_to stories_url }
     end
@@ -663,12 +671,12 @@ end
         story = Story.new(:permalink_staging => permalink_staging)
         story.generate_permalink
         output = {:permalink => story.permalink, :is_duplicate => story.is_duplicate_permalink?}
-        
+
       # if the permalink is the same, do nothing
       elsif story.permalink == permalink_temp
         logger.debug "*********** permalink same"
         output[:permalink] = story.permalink
-        
+
       # permalink is different, so create a new one
       else
         logger.debug "*********** permalink different"
@@ -678,11 +686,11 @@ end
         output = {:permalink => story.permalink, :is_duplicate => story.is_duplicate_permalink?}
       end
     end
-          
-    respond_to do |format|     
-      format.json { render json: output } 
+
+    respond_to do |format|
+      format.json { render json: output }
     end
-  end 
+  end
 
 
   # search for existing tags
@@ -693,27 +701,27 @@ end
       format.json { render json: tags }
     end
   end
-  
+
   def collaborators
-    @story = Story.find_by_id(params[:id])
+    @story = Story.is_not_deleted.find_by_id(params[:id])
 
     if @story.present?
       user_with_errors = []
       sending_invitations = false
       msgs = []
-      
+
       if params[:collaborator_ids].present? && request.post?
-        sending_invitations = true  
+        sending_invitations = true
 
         # split out the ids
         c_ids = params[:collaborator_ids].split(',')
-        
+
         # pull out the user ids for existing users (numbers)
         user_ids = c_ids.select{|x| x =~ /^[0-9]+$/ }
-        
+
         # pull out the email addresses for new users (not numbers)
         emails = c_ids.select{|x| x !~ /^[0-9]+$/ }.map{|x| x.gsub("'", '')}
-        
+
         logger.debug "__________ user_ids = #{user_ids}"
         logger.debug "__________ emails = #{emails}"
 
@@ -733,13 +741,13 @@ end
       		      user_with_errors << {id: user.id, name: user.nickname, img_url: user.avatar_url(:'50x50') }
       		      msgs << "'#{user.nickname}' - #{msg.join(', ')}"
               end
-            end  
+            end
           end
         end
-                   
+
         # send invitation for new users
         if emails.present?
-          emails.each do |email|          
+          emails.each do |email|
             Rails.logger.debug "_____________email = #{email}"
             msg = create_invitation(@story, nil, email, params[:message])
             Rails.logger.debug "-------------- msg = #{msg}"
@@ -753,12 +761,12 @@ end
   		      end
           end
         end
-      end 
+      end
 
       # if not all ids were processed for invitations
       # record them so they can be shown in the list again
       params[:collaborator_error_ids] = user_with_errors
-      
+
       if sending_invitations && user_with_errors.present?
         if user_with_errors.length == c_ids.length
           flash[:error] = t('app.msgs.collaborators.error_invitations_all', :msg => msgs.join('; '))
@@ -783,28 +791,28 @@ end
       redirect_to stories_path, :notice => t('app.msgs.does_not_exist')
     end
   end
-  
+
   def collaborator_search
     output = nil
-    story = Story.find_by_id(params[:id])
+    story = Story.is_not_deleted.find_by_id(params[:id])
     if story.present?
       users = story.user_collaboration_search(params[:q])
-      # format for token input js library [{id,name}, ...]    
+      # format for token input js library [{id,name}, ...]
       output = users.map{|x| {id: x.id, name: x.nickname, img_url: x.avatar_url(:'50x50') } }
-    end  
-    
+    end
+
     respond_to do |format|
       format.json { render json: output.to_json }
     end
   end
-  
+
   # remove a collaborator from a story
   # - must be story owner to remove
   def remove_collaborator
-    story = Story.find_by_id(params[:id])
+    story = Story.is_not_deleted.find_by_id(params[:id])
 		msg = ''
 		has_errors = false
-  
+
     if story.user_id == current_user.id
       user = User.find_by_id(params[:user_id])
       if user.present?
@@ -818,19 +826,19 @@ end
       msg = I18n.t('app.msgs.collaborators.no_permission')
   		has_errors = true
     end
-  
+
     respond_to do |format|
       format.json { render json: {msg: msg, success: !has_errors} }
     end
   end
-  
+
   # remove an invitation from a story
   # - must be story owner to remove
   def remove_invitation
-    story = Story.find_by_id(params[:id])
+    story = Story.is_not_deleted.find_by_id(params[:id])
 		msg = ''
 		has_errors = false
-  
+
     if story.user_id == current_user.id
       if params[:user_id].present?
         Invitation.delete_invitation(params[:id], params[:user_id])
@@ -843,13 +851,13 @@ end
       msg = I18n.t('app.msgs.collaborators.no_permission')
   		has_errors = true
     end
-  
+
     respond_to do |format|
       format.json { render json: {msg: msg, success: !has_errors} }
     end
   end
-  
-  
+
+
 private
 
   def can_edit_story?(story_id)
@@ -863,7 +871,7 @@ private
     flash[:success] = request.xhr? ? u(I18n.t('app.msgs.success_updated', obj:"#{obj} \"#{title}\"")) : I18n.t('app.msgs.success_updated', obj:"#{obj} \"#{title}\"")
   end
 
-  def generate_gzip(tar,name,ff)      
+  def generate_gzip(tar,name,ff)
       system("tar -czf #{tar}.tar.gz -C '#{Rails.root}/tmp/stories/#{name}' .")
       return "#{tar}.tar.gz"
   end
@@ -871,8 +879,8 @@ private
   def asset_filter
     @css.push("stories.css", "embed.css", "modalos.css", "bootstrap-select.min.css", "token-input-facebook.css","navbar.css", "filter.css", "tipsy.css")
     @js.push("stories.js", "modalos.js", "olly.js", "bootstrap-select.min.js", "jquery.tokeninput.js", "zeroclipboard.min.js", "filter.js", "jquery.tipsy.js")
-  end 
-  
+  end
+
   def create_invitation(story, user_id=nil, email=nil, msg=nil)
 		error_msg = nil
 
@@ -898,10 +906,10 @@ private
           error_msg = inv.errors.full_messages
       end
     end
-    
+
     return error_msg
   end
-  
+
   def set_form_gon
     gon.fail_change_order = I18n.t('app.msgs.fail_change_order')
     gon.nothing_selected = I18n.t('app.msgs.nothing_selected')
@@ -915,9 +923,9 @@ private
     gon.tokeninput_searchingText = I18n.t('tokeninput.searchingText')
   end
 
-  
+
   def set_settings_gon
     gon.collaborator_search = story_collaborator_search_path(params[:id])
   end
-end       
+end
 

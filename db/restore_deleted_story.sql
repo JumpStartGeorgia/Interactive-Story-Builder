@@ -1,18 +1,18 @@
 START TRANSACTION;
 
-######## 
+########
 # id of story to restore
-set @story_id = 327;
-######## 
+set @story_id = 2198;
+########
 
-######## 
+########
 # mysql does not work nicely with using variables for db names
 # - so do a replace all if need to change db name
 # live - story-builder
 # restore - story-builder-restore
-######## 
+########
 
-######## 
+########
 ## all tables that need to be looked at:
 #stories
 #story_translations
@@ -31,7 +31,7 @@ set @story_id = 327;
 #    assets (asset_type = 6 and item_id = slide show id)
 #  media
 #    assets (asset_type = 4 or 5 and item_id = media id)
-######## 
+########
 
 
 
@@ -75,7 +75,7 @@ select * from `story-builder-restore`.taggings where taggable_id = @story_id;
 insert ignore into `story-builder`.sections
 select * from `story-builder-restore`.sections where story_id = @story_id;
 
-# section audio 
+# section audio
 insert ignore into `story-builder`.assets
 select * from `story-builder-restore`.assets where asset_type = 2 and item_id in (select id from `story-builder-restore`.sections where story_id = @story_id);
 
