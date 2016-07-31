@@ -19,6 +19,7 @@ class Admin::PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
+    @css.push("about.css")
     @page = Page.find(params[:id])
 
     respond_to do |format|
@@ -103,7 +104,7 @@ class Admin::PagesController < ApplicationController
 protected
 
   def asset_filter
-    @css.push("navbar.css")   
-  end 
+    @css.push("navbar.css")
+  end
 
 end

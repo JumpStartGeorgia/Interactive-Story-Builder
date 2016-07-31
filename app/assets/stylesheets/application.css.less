@@ -2,105 +2,106 @@
  * This is a manifest file that'll automatically include all the stylesheets available in this directory
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
- 
- *= require formtastic 
+
+ *= require formtastic
  *= require formtastic-bootstrap
  *= require jquery.ui.core
- *= require jquery.ui.theme  
- *= require jquery.ui.dialog  
+ *= require jquery.ui.theme
+ *= require jquery.ui.dialog
  *= require bootstrap_and_overrides
  *= require modalos
  *= require tipsy
  *= require_self
 */
 
+
 @font-face {
-    font-family: "bandera-pro-l";    
-    src: url( '/assets/fonts/bandera-pro-l.otf') format("opentype");           
+    font-family: "bandera-pro-l";
+    src: url( '/assets/fonts/bandera-pro-l.otf') format("opentype");
     font-style: normal;
     font-weight: 200;
 }
 @font-face {
-    font-family: "bandera-pro";    
-    src: url( '/assets/fonts/bandera-pro.otf') format("opentype");           
+    font-family: "bandera-pro";
+    src: url( '/assets/fonts/bandera-pro.otf') format("opentype");
     font-style: normal;
     font-weight: 200;
 }
 @font-face {
-    font-family: "bandera-pro-m";    
-    src: url( '/assets/fonts/bandera-pro-m.otf') format("opentype");           
+    font-family: "bandera-pro-m";
+    src: url( '/assets/fonts/bandera-pro-m.otf') format("opentype");
     font-style: normal;
     font-weight: 200;
 }
 @font-face {
-    font-family: "bandera-pro-b";    
-    src: url( '/assets/fonts/bandera-pro-b.otf') format("opentype");           
+    font-family: "bandera-pro-b";
+    src: url( '/assets/fonts/bandera-pro-b.otf') format("opentype");
     font-style: normal;
     font-weight: 200;
 }
 @font-face {
-    font-family: "bandera-pro-h";    
-    src: url( '/assets/fonts/bandera-pro-h.otf') format("opentype");           
+    font-family: "bandera-pro-h";
+    src: url( '/assets/fonts/bandera-pro-h.otf') format("opentype");
     font-style: normal;
     font-weight: 200;
 }
 @font-face {
-    font-family: "bandera-pro-hi";    
-    src: url( '/assets/fonts/bandera-pro-hi.otf') format("opentype");           
+    font-family: "bandera-pro-hi";
+    src: url( '/assets/fonts/bandera-pro-hi.otf') format("opentype");
     font-style: normal;
     font-weight: 200;
 }
 @font-face {
-    font-family: "dejavusans-el";    
-    src: url( '/assets/fonts/dejavusans-el.ttf') format("truetype");           
+    font-family: "dejavusans-el";
+    src: url( '/assets/fonts/dejavusans-el.ttf') format("truetype");
     font-style: normal;
     font-weight: 200;
 }
 @font-face {
-    font-family: "dejavusans-r";    
-    src: url( '/assets/fonts/dejavusans-r.ttf') format("truetype");           
+    font-family: "dejavusans-r";
+    src: url( '/assets/fonts/dejavusans-r.ttf') format("truetype");
     font-style: normal;
     font-weight: 200;
 }
 @font-face {
-    font-family: "dejavusans";    
-    src: url( '/assets/fonts/dejavusans-r.ttf') format("truetype");           
+    font-family: "dejavusans";
+    src: url( '/assets/fonts/dejavusans-r.ttf') format("truetype");
     font-style: normal;
     font-weight: 200;
 }
 @font-face {
-    font-family: "dejavusans-b";    
-    src: url( '/assets/fonts/dejavusans-b.ttf') format("truetype");           
+    font-family: "dejavusans-b";
+    src: url( '/assets/fonts/dejavusans-b.ttf') format("truetype");
     font-style: normal;
     font-weight: 200;
 }
 @font-face {
-    font-family: "opensans-l";    
-    src: url( '/assets/fonts/opensans-light.ttf') format("truetype");           
+    font-family: "opensans-l";
+    src: url( '/assets/fonts/opensans-light.ttf') format("truetype");
     font-style: normal;
     font-weight: 200;
 }
 @font-face {
-    font-family: "opensans";    
-    src: url( '/assets/fonts/opensans-regular.ttf') format("truetype");           
+    font-family: "opensans";
+    src: url( '/assets/fonts/opensans-regular.ttf') format("truetype");
     font-style: normal;
     font-weight: 200;
 }
 @font-face {
-    font-family: "opensans-r";    
-    src: url( '/assets/fonts/opensans-regular.ttf') format("truetype");           
+    font-family: "opensans-r";
+    src: url( '/assets/fonts/opensans-regular.ttf') format("truetype");
     font-style: normal;
     font-weight: 200;
 }
 @font-face {
-    font-family: "opensans-b";    
-    src: url( '/assets/fonts/opensans-bold.ttf') format("truetype");           
+    font-family: "opensans-b";
+    src: url( '/assets/fonts/opensans-bold.ttf') format("truetype");
     font-style: normal;
     font-weight: 200;
 }
 @font-face {
-    font-family: "opensans-eb";    
-    src: url( '/assets/fonts/opensans-extrabold.ttf') format("truetype");           
+    font-family: "opensans-eb";
+    src: url( '/assets/fonts/opensans-extrabold.ttf') format("truetype");
     font-style: normal;
     font-weight: 200;
 }
@@ -118,7 +119,7 @@
 
 html,body{background:#F8F8F8;height:100%;min-height:100%;}
 *:focus {outline: 0 !important;}
-/* make bootstrap button link color stay white 
+/* make bootstrap button link color stay white
 a.btn, a.btn:visited {
 	color: #000 !important;
 }
@@ -242,10 +243,10 @@ div#form-ka, div#form-az {
     color: #B94A48;
 }
 
-/* Footer 
+/* Footer
 footer {
   clear:both;
-	margin-top: -50px;  negative value of footer height 
+	margin-top: -50px;  negative value of footer height
 	min-height: 50px !important;
 	background-color:#121212;
 	padding: 0 20px;
@@ -271,7 +272,7 @@ footer > div
 	height:50px;
 	line-height:50px;
 	vertical-align: middle;
- 
+
 }
 footer div
 { display:inline-block;}
@@ -279,7 +280,7 @@ footer div#left {
 	margin: 0 !important;
 	float: left;
 	width: 30%;
-	margin-top: 20px;  	
+	margin-top: 20px;
 }
 footer #middle {
    margin: 0;
@@ -377,9 +378,9 @@ footer, footer ul li, footer div#right ul li {
   width:21px;
   height:20px;
   font-size:16px;
-  font-style:normal;  
+  font-style:normal;
   vertical-align:middle;
-  display:inline-block; 
+  display:inline-block;
   cursor:default;
   padding:0px;
   border: 1px solid #9E9E9E;
@@ -398,9 +399,9 @@ footer, footer ul li, footer div#right ul li {
   width:21px;
   height:20px;
   font-size:16px;
-  font-style:normal;  
+  font-style:normal;
   vertical-align:middle;
-  display:inline-block; 
+  display:inline-block;
   cursor:default;
   padding:0px;
   border: 1px solid #b94a48;
@@ -419,9 +420,9 @@ select, input[type="file"] {
 
 }
 input[type=text]{
-	margin-bottom:0px;  
+	margin-bottom:0px;
 }
-.formtastic 
+.formtastic
 {
   .input
   {
@@ -446,23 +447,23 @@ input[type=text]{
       width:21px;
       height:20px;
       font-size:16px;
-      font-style:normal;  
+      font-style:normal;
       vertical-align:middle;
-      display:inline-block; 
+      display:inline-block;
       cursor:help;
       padding:0px;
       border: 1px solid #9E9E9E;
       margin-left:10px;
       padding:4px 0px 0px 6px;
     }
-  }  
-  .select select 
+  }
+  .select select
   {
     max-width: 72%;
   }
 }
 .fb-like
-{  
+{
   margin-right:8px;
 }
 .powered-by
@@ -473,18 +474,18 @@ input[type=text]{
   margin-top: 27px;
   // text-align: right;
   // margin-right: 27px;
-  
+
   // margin-bottom:15px;
   // padding-top: 6px;
   float:right;
   a
-  {    
+  {
     color: rgb(88, 88, 88);
     &:hover, &:focus, &:active
     {
-      text-decoration:none;  
-      cursor:pointer;  
-      color: rgb(88, 88, 88);  
+      text-decoration:none;
+      cursor:pointer;
+      color: rgb(88, 88, 88);
     }
   }
   &:lang(en)
@@ -495,30 +496,30 @@ input[type=text]{
 /* storybuilder image */
 i.s
 {
-    background-color: transparent;   
+    background-color: transparent;
     background-repeat: no-repeat;
     display: inline-block;
     vertical-align: middle;
-    width:27px; 
-    height:27px;  
+    width:27px;
+    height:27px;
 }
 
 i.xs
 {
-    background-color: transparent;   
+    background-color: transparent;
     background-repeat: no-repeat;
     display: inline-block;
     vertical-align: middle;
-    width:16px; 
-    height:17px; 
+    width:16px;
+    height:17px;
 }
 i.h{visibility:hidden;}
 i.v{visibility:visible;}
 .disabled { opacity:0.5 !important; }
 .i-search-w   { background: url('/assets/svg/search_w.svg'); }
 .i-search-b   { background: url('/assets/svg/search_b.svg'); }
-.i-likes      { background: url('/assets/svg/likes.svg') 0px -2px; }  
-.i-liked      { background: url('/assets/svg/liked.svg') 0px -2px; }  
+.i-likes      { background: url('/assets/svg/likes.svg') 0px -2px; }
+.i-liked      { background: url('/assets/svg/liked.svg') 0px -2px; }
 .i-staffpick  { background: url('/assets/svg/staffpick.svg') 0px -3px; }
 .i-staffpicked{ background: url('/assets/svg/staffpick_a.svg') 0px -3px; }
 .i-follow-w   { background: url('/assets/svg/check_w.svg'); }
@@ -578,7 +579,7 @@ i.v{visibility:visible;}
 /* for bootstrap select min */
 .bootstrap-select.btn-group .btn .filter-option{
   padding: 4px 14px;
-} 
+}
 
 /* login popup */
 #login-form .submit-row label
@@ -600,7 +601,7 @@ i.v{visibility:visible;}
     &:lang(en)
     {
       font-family: 'opensans-l';
-      
+
     }
   }
   .providers
@@ -612,12 +613,12 @@ i.v{visibility:visible;}
       display:inline-block;
       font-family: 'dejavusans-el';
       font-size:1.2em;
-      color:#fff;      
-      background: #26acfa;      
+      color:#fff;
+      background: #26acfa;
       border:1px solid #fff;
       -webkit-border-radius: 133px;
       -moz-border-radius: 133px;
-      border-radius: 133px;      
+      border-radius: 133px;
       height:57px;
       padding: 0px 20px 0px 15px;
       text-decoration: none;
@@ -646,17 +647,17 @@ i.v{visibility:visible;}
       display:inline-block;
       font-family: 'dejavusans-el';
       font-size:14px;
-      color:#959595;     
-      text-align:center;  
+      color:#959595;
+      text-align:center;
       font-style:italic;
-      width:100%; 
-      margin-bottom:25px; 
+      width:100%;
+      margin-bottom:25px;
       &:lang(en)
       {
-        font-family: 'opensans-l';        
-      }         
+        font-family: 'opensans-l';
+      }
   }
-  .formtastic 
+  .formtastic
   {
     .input
     {
@@ -673,54 +674,54 @@ i.v{visibility:visible;}
     display:inline-block;
     font-family: 'dejavusans-el';
     font-size:16px !important;
-    color:#c5c5c5;            
+    color:#c5c5c5;
     border:1px solid #d9d9d9;
     -webkit-border-radius: 133px !important;
     -moz-border-radius: 133px !important;
-    border-radius: 133px !important;              
-    text-decoration: none;    
+    border-radius: 133px !important;
+    text-decoration: none;
     height:27px;
     &:lang(en)
     {
       font-family: 'opensans-l';
-    }  
-  }  
+    }
+  }
   .login-password,.login-password-confirmation
   {
     display:inline-block;
     font-family: 'dejavusans-el';
     font-size:16px !important;
-    color:#c5c5c5;            
+    color:#c5c5c5;
     border:1px solid #d9d9d9;
     -webkit-border-radius: 133px !important;
     -moz-border-radius: 133px !important;
-    border-radius: 133px !important;              
-    text-decoration: none;    
+    border-radius: 133px !important;
+    text-decoration: none;
     height:27px;
     &:lang(en)
     {
       font-family: 'opensans-l';
-    } 
+    }
   }
   .submit-row
   {
-    margin-bottom:30px !important; 
+    margin-bottom:30px !important;
      max-width: 260px !important;
   }
   .remember-me
   {
     font-family: 'dejavusans-el';
     font-size:16px !important;
-    color:#8d8d8d; 
-    display:inline-block; 
-    float:left;  
+    color:#8d8d8d;
+    display:inline-block;
+    float:left;
     &:lang(en)
     {
       font-family: 'opensans-l';
-    }     
+    }
   }
-  .sign-in   
-  {    
+  .sign-in
+  {
     float:right !important;
   }
   .sign-in,.pass-reset,.sign-up
@@ -729,12 +730,12 @@ i.v{visibility:visible;}
     font-family: 'dejavusans-el';
     font-size:16px !important;
     background-color:#c7c7c7;
-    color:#fff;            
+    color:#fff;
     border:1px solid #d9d9d9;
     -webkit-border-radius: 133px !important;
     -moz-border-radius: 133px !important;
-    border-radius: 133px !important;              
-    text-decoration: none;        
+    border-radius: 133px !important;
+    text-decoration: none;
 
     height:27px !important;
     -webkit-transition:all .15s ease-out;
@@ -744,11 +745,11 @@ i.v{visibility:visible;}
     &:lang(en)
     {
       font-family: 'opensans-b';
-    } 
+    }
   }
   .sign-in:hover,.password-reset:hover
   {
-    background-color:#333;        
+    background-color:#333;
     -webkit-transition:all .10s ease-out;
     -moz-transition:all .10s ease-out;
     -ms-transition:all .10s ease-out;
@@ -758,41 +759,41 @@ i.v{visibility:visible;}
   {
     display:block;
     font-family: 'dejavusans-el';
-    font-size:14px !important;    
-    color:#888;      
-    text-decoration:underline; 
-    text-align:center !important;    
+    font-size:14px !important;
+    color:#888;
+    text-decoration:underline;
+    text-align:center !important;
     margin-bottom:5px;
     &:lang(en)
     {
       font-family: 'opensans-b';
-    }      
+    }
   }
   .sign-up-box,.forgot-box
   {
    text-align:center;
    margin-top: 10px;
   }
-  .sign-up-box .sign-up-link 
+  .sign-up-box .sign-up-link
   {
      display:inline-block;
     font-family: 'dejavusans-el';
-    font-size:14px !important;    
-    color:#26acfa; 
+    font-size:14px !important;
+    color:#26acfa;
     &:lang(en)
     {
       font-family: 'opensans-b';
-    }                 
+    }
   }
   .sign-up-box span, .sign-in-link
-  {    
+  {
     font-family: 'dejavusans-el';
-    font-size:14px !important;    
-    color:#888;  
+    font-size:14px !important;
+    color:#888;
     &:lang(en)
     {
       font-family: 'opensans-l';
-    }         
+    }
   }
 }
 #news_items,#todo
@@ -801,12 +802,12 @@ i.v{visibility:visible;}
 }
 
 .separator-ver
-{      
+{
   height:26px !important;
   margin: 22px 20px 0px 20px;
   float:left;
   border-left: 1px solid rgba(255, 255, 255, 0.32);
-  border-right:0px solid #fff;    
+  border-right:0px solid #fff;
 }
 .separator-hor
 {
@@ -818,9 +819,9 @@ i.v{visibility:visible;}
 {
   height:20px !important;
   margin: 10px 20px 0px 20px;
-  float:left;      
-  border-right:1px solid #a8a1a1;      
-}  
+  float:left;
+  border-right:1px solid #a8a1a1;
+}
 
 
 // .form-actions {
@@ -861,7 +862,7 @@ i.v{visibility:visible;}
   margin: 100px auto;
   -webkit-animation: rotateplane 1.2s infinite ease-in-out;
   animation: rotateplane 1.2s infinite ease-in-out;
-  &.space 
+  &.space
   {
     position:relative;
     top:151px;
@@ -875,13 +876,13 @@ i.v{visibility:visible;}
 }
 
 @keyframes rotateplane {
-  0% { 
+  0% {
     transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
-  } 50% { 
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+  } 50% {
     transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
-  } 100% { 
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+  } 100% {
     transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
   }
@@ -896,17 +897,17 @@ i.v{visibility:visible;}
     text-align: left;
     margin: 0px auto;
     font-family: 'dejavusans-el';
-    font-size:14px !important;    
-    color:#888;  
+    font-size:14px !important;
+    color:#888;
     &:lang(en)
     {
       font-family: 'opensans-l';
-    } 
-    li 
+    }
+    li
     {
       width:100%;
       border-bottom:1px solid #eaeaea;
-      a 
+      a
       {
         width:100%;
         padding:6px 10px;
@@ -925,18 +926,18 @@ i.v{visibility:visible;}
 {
    padding:0px 10%;
   font-family: 'dejavusans-b';
-  font-size:16px !important;  
+  font-size:16px !important;
   &:lang(en)
   {
     font-family: 'opensans-b';
   }
-}   
+}
 .page-about
 {
   padding:0px 10%;
- 
+
   font-family: 'dejavusans';
-  font-size:14px !important;  
+  font-size:14px !important;
   line-height: 23px;
   &:lang(en)
   {
@@ -945,14 +946,14 @@ i.v{visibility:visible;}
   h2
   {
     font-family: 'dejavusans-b';
-    font-size:16px;  
+    font-size:16px;
     line-height: 23px;
     &:lang(en)
     {
       font-family: 'opensans-b';
     }
   }
-  
+
 }
 
 .footer
@@ -970,19 +971,19 @@ i.v{visibility:visible;}
   }
   .logo
   {
-    width:212px;    
+    width:212px;
     float:left;
     padding-top:14px;
     img
     {
-      width:212px; 
+      width:212px;
     }
   }
   .slogo-bottom
   {
     float:left;
     display:none;
-    
+
   }
   .slogo-bottom img
   {
@@ -992,8 +993,8 @@ i.v{visibility:visible;}
   .center
   {
     font-family: 'dejavusans';
-    font-size:15px; 
-    color:#585858; 
+    font-size:15px;
+    color:#585858;
     text-align:center;
     height: 100%;
     display: table;
@@ -1004,8 +1005,8 @@ i.v{visibility:visible;}
     {
       font-family: 'opensans';
     }
-    >div 
-    {      
+    >div
+    {
       display: table-cell;
       vertical-align:middle;
       padding:0px 6px;
@@ -1017,8 +1018,8 @@ i.v{visibility:visible;}
     a
     {
       font-family: 'dejavusans';
-      font-size:15px; 
-      color:#585858; 
+      font-size:15px;
+      color:#585858;
       &:lang(en)
       {
         font-family: 'opensans';
@@ -1027,11 +1028,11 @@ i.v{visibility:visible;}
       {
         cursor:pointer;
       }
-    }    
+    }
   }
 }
-@media only screen and (max-width : 1034px) 
-{ 
+@media only screen and (max-width : 1034px)
+{
   .footer .center > div
   {
     display:none;
@@ -1049,8 +1050,8 @@ i.v{visibility:visible;}
     display:inline-block;
   }
 }
-@media only screen and (min-width : 1280px) 
-{ 
+@media only screen and (min-width : 1280px)
+{
   .footer
   {
     padding:0px 10%;
@@ -1064,10 +1065,10 @@ i.v{visibility:visible;}
   .content
   {
     font-family: 'dejavusans';
-    font-size:13px; 
-    color:#888; 
+    font-size:13px;
+    color:#888;
     background-color:#323232;
-    padding: 6px 10px;    
+    padding: 6px 10px;
     max-width: 400px;
     line-height: 18px;
     &:lang(en)
@@ -1077,8 +1078,8 @@ i.v{visibility:visible;}
   }
   .pointer
   {
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     border-top: 10px solid #323232;

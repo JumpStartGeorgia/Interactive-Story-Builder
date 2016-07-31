@@ -26,18 +26,18 @@ module BootstrapStarter
 
 
     # Activate observers that should always be running.
-    config.active_record.observers = :user_observer, :story_observer, :news_observer, :invitation_observer, 
+    config.active_record.observers = :user_observer, :story_observer, :news_observer, :invitation_observer,
                                     :asset_observer, :story_translation_observer, :section_translation_observer,
-                                    :content_translation_observer, :embed_medium_translation_observer, 
-                                    :medium_translation_observer, :slideshow_translation_observer, 
+                                    :content_translation_observer, :embed_medium_translation_observer,
+                                    :medium_translation_observer, :slideshow_translation_observer,
                                     :youtube_translation_observer, :theme_observer
-    
+
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Tbilisi'
-    
+
     config.i18n.enforce_available_locales = true
-    
+
     config.i18n.available_locales = [:en, :ka, :hy, :az, :ru]
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
@@ -68,7 +68,7 @@ module BootstrapStarter
 
     # in app/assets folder
     config.assets.precompile += %w( collaborators.js filter.js follow.js modalos.js news.js nickname.js search.js settings.js story.js stories.js storyteller.js themes.js )
-    config.assets.precompile += %w( author.css authors.css collaborators.css embed.css filter.css grid.css grid2.css modalos.css navbar.css navbar2.css news.css root.css settings.css story.css stories.css storyteller.css themes.css todo.css )
+    config.assets.precompile += %w( about.css author.css authors.css collaborators.css embed.css filter.css grid.css grid2.css modalos.css navbar.css navbar2.css news.css root.css settings.css story.css stories.css storyteller.css themes.css todo.css )
     # in vendor/assets folder
     config.assets.precompile += %w( bootstrap-select.min.js jquery.tokeninput.js olly.js zeroclipboard.min.js jquery.tipsy.js )
     config.assets.precompile += %w( bootstrap-select.min.css jquery-ui-1.7.3.custom.css token-input-facebook.css tipsy.css)
@@ -76,8 +76,8 @@ module BootstrapStarter
     config.assets.precompile += %w( dataTables/bootstrap/3/jquery.dataTables.bootstrap.css )
     config.assets.precompile += %w( dataTables/jquery.dataTables.js dataTables/bootstrap/3/jquery.dataTables.bootstrap.js jquery.ui.datepicker.js )
 
-    config.assets.precompile += %w( jquery.ui.datepicker.js )    
-    config.assets.precompile += %w( jquery.ui.datepicker.css )    
+    config.assets.precompile += %w( jquery.ui.datepicker.js )
+    config.assets.precompile += %w( jquery.ui.datepicker.css )
 
 
     # from: http://stackoverflow.com/a/24727310
@@ -86,7 +86,7 @@ module BootstrapStarter
     # - invalid %-encoding
     require "#{Rails.root}/app/middleware/handle_invalid_percent_encoding.rb"
     config.middleware.insert 0, HandleInvalidPercentEncoding
-    config.middleware.insert 0, Rack::UTF8Sanitizer    
+    config.middleware.insert 0, Rack::UTF8Sanitizer
 
     # from: https://robots.thoughtbot.com/content-compression-with-rack-deflater
     # compress all html/json responses
