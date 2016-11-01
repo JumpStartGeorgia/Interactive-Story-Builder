@@ -1,29 +1,34 @@
 <%
-  story.use_app_locale_if_translation_exists
-  title = ""   
-  if story.about.present?     
+  if params[:sl].present?
+    story.current_locale = params[:sl].strip
+    Globalize.story_locale = params[:sl].strip
+  else
+    story.use_app_locale_if_translation_exists
+  end
+  title = ""
+  if story.about.present?
     title = truncate(strip_tags_nbsp(story.about), length: 160, separator: ' ')
-  end    
+  end
   path = @editable && !story.published ? preview_story_path(story) : storyteller_show_path(story.permalink)
-%>   
-            
-  <div class="story-thumbnail">    
+%>
+
+  <div class="story-thumbnail">
      <%= link_to path do %>
-        <%= image_tag story.show_asset.file.url(:thumbnail) %>              
+        <%= image_tag story.show_asset.file.url(:thumbnail) %>
         <div class="story-link">
           <div class='type story_type_<%= story.story_type_id %>' title='<%= get_story_type_name(story.story_type_id) %>'></div>
           <span title="<%= story.title %>"><%= story.title %></span>
-       </div>   
+       </div>
       <% end %>
 
     <% if @editable %>
-      <div class="story-edit">                   
+      <div class="story-edit">
         <div class="story-edit-menu">
         <ul class="nav">
         <li class="dropdown dropdown-hover">
-         <button type="button"  class="btn dropdown-toggle" data-toggle="dropdown"> 
+         <button type="button"  class="btn dropdown-toggle" data-toggle="dropdown">
           <i class="glyphicon glyphicon-pencil" ></i>
-        </button>                   
+        </button>
           <ul class="dropdown-menu">
             <% user_role = story.user_role(current_user.id) %>
             <% if user_role.present? && user_role.role == Story::ROLE[:translator] %>
@@ -54,20 +59,20 @@
                   <i class="glyphicon glyphicon-eye-open" ></i><%= t('helpers.links.story_menu.link.preview') %>
                 </a>
               </li>
-              <% if !story.published %> 
+              <% if !story.published %>
                 <li>
                    <a href="#" id='btnReviewer' title="<%= t('helpers.links.story_menu.title.review') %>" data-modalos-id='modalos-reviewer'
                       data-reviewer-key='<%= review_url(story.reviewer_key) %>'
                       data-title='<%= story.title %>'>
                     <i class="glyphicon glyphicon-share" ></i><%= t('helpers.links.story_menu.link.review') %>
-                  </a>                                                
+                  </a>
                 </li>
               <% end %>
-              <li>               
+              <li>
                 <%
-                  title = story.published ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish') 
-                  link_text = story.published ? t('helpers.links.story_menu.link.unpublish') : t('helpers.links.story_menu.link.publish') 
-                %>             
+                  title = story.published ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish')
+                  link_text = story.published ? t('helpers.links.story_menu.link.unpublish') : t('helpers.links.story_menu.link.publish')
+                %>
                 <a href="#" id='btnPublish' title='<%= title %>'
                     <%= 'class="disabled"' if !story.published %> data-link='<%= publish_story_path(story) %>'>
                   <i class="glyphicon glyphicon-globe" ></i><span><%= link_text %></span>
@@ -76,13 +81,13 @@
               <li>
                 <%= link_to clone_story_path(story) ,  title: t('helpers.links.story_menu.title.clone') do %>
                   <i class="glyphicon glyphicon-camera"></i><%=t('helpers.links.story_menu.link.clone')%>
-                <% end %> 
-              </li>                        
-              <li>  
+                <% end %>
+              </li>
+              <li>
                 <%= link_to export_story_path(story) ,  title: t('helpers.links.story_menu.title.export') do %>
                   <i class="glyphicon glyphicon-download"></i><%=t('helpers.links.story_menu.link.export')%>
                 <% end %>
-              </li>                        
+              </li>
               <li>
                 <%= link_to story, title: t('helpers.links.story_menu.title.delete_story'), confirm: t("helpers.links.confirm"), method: :delete do %>
                   <i class="glyphicon glyphicon-remove"></i><%=t('helpers.links.story_menu.link.delete_story')%>
@@ -93,28 +98,28 @@
           </li>
           </ul>
         </div>
-      </div> 
+      </div>
       <div class='story-message'></div>
     <% end %>
-    
+
   </div>
-  <div class='story-info'>                               
+  <div class='story-info'>
     <div class="story-caption">
       <% truncate_length = story.current_locale == 'ka' ? 130 : 150 %>
-      <% 
-        about = strip_tags_nbsp(story.about) if story.about.present? 
+      <%
+        about = strip_tags_nbsp(story.about) if story.about.present?
         if about.present?
       %>
-          <%= link_to truncate(about, length: truncate_length, separator: ' ').html_safe, 
+          <%= link_to truncate(about, length: truncate_length, separator: ' ').html_safe,
               path, :title => about.html_safe, :lang => story.story_locale %>
       <% end %>
     </div>
-    <div class="story-misc"> 
-      <div class="views" title="<%= t('app.common.views') %>"><%= t('app.common.views') %>: <%= story.impressions_count %></div>  
+    <div class="story-misc">
+      <div class="views" title="<%= t('app.common.views') %>"><%= t('app.common.views') %>: <%= story.impressions_count %></div>
       <div class="sep"></div>
       <div class="publish-date" title="<%= t('app.common.publish_date') %>">
         <%= l(story.published_at,:format => :publish) if story.published_at.present? %>
-      </div>  
-    </div> 
+      </div>
+    </div>
   </div>
 

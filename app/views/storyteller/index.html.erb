@@ -1,31 +1,31 @@
-<% 
-  @template = @story.template_id.present? ? @story.template_id : 1 
+<%
+  @template = @story.template_id.present? ? @story.template_id : 1
   @export ||= false
-  @no_nav ||= false  
+  @no_nav ||= false
   @short_url = @story.shortened_url.present? ? @story.shortened_url : storyteller_show_url(@story.permalink)
   @section_count = 0
 %>
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
-  <head>    
+  <head>
     <%= render partial: "storyteller/template/#{@template}/head"%>
-	  <%= include_gon if !@export %>    
+	  <%= include_gon if !@export %>
     <meta name="google" content="notranslate" />
   </head>
-  <body>     
+  <body>
     <% if !@export %>
-      <%= render partial: "layouts/storybuilder_nav" if !@no_nav %>    
-    <% end %>    
-    <div id='storyTeller'> 
-      <%= render partial: "storyteller/template/#{@template}/content"%>   
-    </div>   
+      <%= render partial: "layouts/storybuilder_nav" if !@no_nav %>
+    <% end %>
+    <div id='storyTeller'>
+      <%= render partial: "storyteller/template/#{@template}/content"%>
+    </div>
   <% if !@export %>
     <div class="info-bottom">
       <div class="info-row">
         <div class="l">
-          <div class='authors'>       
+          <div class='authors'>
               <% @story.authors.each{|t| %>
-                <div class='author js-u-dib'>  
+                <div class='author js-u-dib'>
                   <div class='avatar'>
                     <%= link_to image_tag(t.avatar_url, :class=>"avatar"), "#" , :class => "avatar", :"data-toggle"=>"dropdown" %>
                   </div>
@@ -34,18 +34,18 @@
                   </div>
                   <div class="follow">
                     <%= render partial: 'layouts/follow_link', locals: {:locale => @story.current_locale, :user_id => t.id, :is_story_page => true, :page_to_return_to => storyteller_show_path(:id => @story.permalink, :process_follow => true)} %>
-                  </div>  
+                  </div>
                 </div>
               <% } %>
           </div>
         </div>
-     
+
         <% if @section_count != 1 %>
           <div class="r">
               <div class='share'>
-                     <div class="addthis_native_toolbox"></div> 
+                     <div class="addthis_native_toolbox"></div>
                       <%= link_to '#',   :'data-modalos-id' => "modalos-embed", :title => t('app.common.embed', locale: @story.current_locale), :class => "embed modalEmbed" do %>
-                      <% end %> 
+                      <% end %>
               </div>
           </div>
         <% end %>
@@ -64,44 +64,44 @@
           </div>
         </div>
       <% end %>
-    </div>  
+    </div>
 
 
   <% if !@stories.blank? %>
     <div class="related-stories">
       <div class="grid-wrapper">
-        <div class="grid col-4">      
-          <% @stories.each_with_index do |story,s_i| %>       
-            <div class="col n-3" lang="<%= story.story_locale %>">  
-              <%= render partial: "shared/grid_item" , locals:{:story=>story} %> 
-            </div>  
+        <div class="grid col-4">
+          <% @stories.each_with_index do |story,s_i| %>
+            <div class="col n-3" lang="<%= story.story_locale %>">
+              <%= render partial: "shared/grid_item" , locals:{:story=>story} %>
+            </div>
           <% end %>
-        </div> 
+        </div>
       </div>
     </div>
   <% end %>
   <div class="footer story">
-       <%= link_to(image_tag("svg/slogo.svg",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name_not_trans')) , root_path(:locale => I18n.locale), title: t('app.common.app_name'), :class=>"slogo-bottom") %>  
-      <%= link_to(image_tag("svg/logo.svg",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name_not_trans')) , root_path(:locale => I18n.locale), title: t('app.common.app_name'), :class=>"logo") %>  
+       <%= link_to(image_tag("svg/slogo.svg",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name_not_trans')) , root_path(:locale => I18n.locale), title: t('app.common.app_name'), :class=>"slogo-bottom") %>
+      <%= link_to(image_tag("svg/logo.svg",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name_not_trans')) , root_path(:locale => I18n.locale), title: t('app.common.app_name'), :class=>"logo") %>
       <div class="powered-by">
         <%= t("app.common.powered_by") %>&nbsp;&nbsp;<a href="http://www.jumpstart.ge" target="_blank" title="<%= t("app.common.js_link_title") %>"><%= t("app.common.powered_by_js") %></a><%= t("app.common.powered_by_end") %>
-      </div> 
+      </div>
       <div class="center">
         <div><%= link_to t('helpers.links.about'), about_path %></div>
         <div>|</div>
         <div class='copy' data-tip="<%= t('layouts.application.copyright_text') %>">&copy; <%= t('layouts.application.copyright') %></div>
         <div>|</div>
          <div data-tip="<%= t('layouts.application.disclaimer_text') %>"><%= t('layouts.application.disclaimer') %></div>
-      </div>        
+      </div>
   </div>
 
-    <div id="modalos-embed" style="display:none;" class="embed-window">  
+    <div id="modalos-embed" style="display:none;" class="embed-window">
       <div class="title"><%= "#{t('app.common.share_story')}" %></div>
       <div class="permalink"><%= "#{t('app.common.permalink')}" %>:</div>
       <div class="permalink-link"><%= link_to storyteller_show_url(@story.permalink), storyteller_show_url(@story.permalink) %></div>
       <div class="shortened-url"><%= "#{t('app.common.shortened_url')}" %>:</div>
       <div class="shortened-url-link"><%= link_to @story.shortened_url, @story.shortened_url if @story.shortened_url.present? %></div>
-     
+
       <div class="embed">
         <div class="embed-icon"><i class="s i-embed"></i></div>
         <div class="embed-text"><%= "#{t('app.msgs.embed_code')}" %>:</div>
@@ -116,25 +116,25 @@
               <span>px <%= "#{t('app.common.wide')}" %></span>
             </div>
           </div>
-       
+
 
         </div>
       </div>
     </div>
-    <div class="tip"><div class="content"></div><div class="pointer"></div></div> 
+    <div class="tip"><div class="content"></div><div class="pointer"></div></div>
   <% end %>
       <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js" charset="utf-8"></script>
-      <script> 
+      <script>
 /*********************************************************************************************
                                        data
-**********************************************************************************************/    
-        var path = 
+**********************************************************************************************/
+        var path =
         {
           <% if !@export %> // normal
             fullscreen:
             {
               desktop:
-              { 
+              {
                 video: "/system/places/video/<%= @story.id %>/processed/",
                 poster: "/system/places/video/<%= @story.id %>/poster/",
                 image: "/system/places/images/<%= @story.id %>/fullscreen/",
@@ -145,7 +145,7 @@
             },
             slideshow:
             {
-              desktop:{ 
+              desktop:{
                 image: "/system/places/slideshow/<%= @story.id %>/slideshow/",
                 thumb: "/system/places/slideshow/<%= @story.id %>/thumbnail/"
               },
@@ -155,7 +155,7 @@
             fullscreen:
             {
               desktop:
-              { 
+              {
                 video: "media/video/processed/",
                 poster: "media/video/poster/",
                 image: "media/images/fullscreen/",
@@ -166,20 +166,20 @@
             },
             slideshow:
             {
-              desktop:{ 
+              desktop:{
                 image: "media/slideshow/slideshow/",
                 thumb: "media/slideshow/thumbnail/"
               },
               other: { image: "media/slideshow/mobile_1024/" }
-            }          
-          <% end %> 
-        };     
+            }
+          <% end %>
+        };
 
        <% if @story.sections.index{|t| t.youtube? && t.youtube.present? }.present? %>
 
          <%  youtube = []
               @story.sections.select{|t| t.ok? }.sort_by{|v| v.position}.each_with_index do |s,s_i|
-                item = {}             
+                item = {}
                 if s.youtube?
                   item[:type] = "youtube"
                   item[:videoId] = s.youtube.url.last(11)
@@ -192,8 +192,8 @@
                   item[:cc_lang_pref] = s.youtube.cc_lang
                   item[:rel] = 0
                   youtube<< item
-                end              
-              end 
+                end
+              end
           %>
           var youtube = <%=youtube.to_json.html_safe %>;
 
@@ -202,9 +202,9 @@
           var firstScriptTag = document.getElementsByTagName('script')[0];
           firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
           var youtubePlayers= [];
-          function onYouTubePlayerAPIReady() {  
+          function onYouTubePlayerAPIReady() {
             var youtubeContainers = d3.selectAll(".section .container div[data-yid]");
-         
+
             if(youtubeContainers[0].length == youtube.length)
             {
               youtube.forEach(function(d,i){
@@ -223,11 +223,11 @@
                             hl: d.hl,
                             cc_lang_pref: d.cc_lang_pref,
                             rel: d.rel
-                          },                   
+                          },
                           events: { 'onStateChange': onPlayerStateChange }
                         }
                     ));
-                  }              
+                  }
               });
             }
           }
@@ -249,15 +249,15 @@
         <% end %>
       </script>
 
-    
+
     <% if !@export %>
-      <%= javascript_include_tag  *(@js.present? ? ["application", "story", @js].flatten : ["application", "story"]), :media => "all" %>      
+      <%= javascript_include_tag  *(@js.present? ? ["application", "story", @js].flatten : ["application", "story"]), :media => "all" %>
     <% else %>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-      <script src="js/bootstrap.min.js"></script>          
-      <script src="js/modalos.js"></script>   
-      <script src="js/story.js"></script>   
-      <script src="js/page.js"></script>   
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/modalos.js"></script>
+      <script src="js/story.js"></script>
+      <script src="js/page.js"></script>
     <% end %>
 
     <% if !@export %>
@@ -281,7 +281,7 @@
           })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
           ga('create', 'UA-12801815-39', 'auto');
           ga('send', 'pageview');
-        <% end %> 
+        <% end %>
 
         <%
           addthis_id = Rails.env.production? ? ENV['STORY_BUILDER_ADDTHIS_PROFILEID'] : 'ra-51d1537d4a09d85f'
@@ -293,9 +293,9 @@
       <% if addthis_id.present? %>
         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<%= addthis_id %>" async="async"></script>
       <% end %>
-    <% end %> 
+    <% end %>
 
   </body>
-</html> 
+</html>
 
 

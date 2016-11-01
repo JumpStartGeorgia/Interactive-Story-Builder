@@ -1,10 +1,10 @@
     <% alignment = { "left" => -1, "center" => 0, "right" => 1 }%>
     <div class="main">
-      <div class="article"> 
+      <div class="article">
         <% columnSectionCount = 0 %>
-        <% isFirst = true %>  
-        <% secs = @story.sections.select{|t| t.ok? }.sort_by{|p| p.position} %> 
-        <% @section_count = secs.count %> 
+        <% isFirst = true %>
+        <% secs = @story.sections.select{|t| t.ok? }.sort_by{|p| p.position} %>
+        <% @section_count = secs.count %>
         <% secs.each_with_index do |section,s_i| %>
           <% if isFirst && !(section.media? || (section.youtube? && section.youtube.fullscreen)) %>
             <div class='info'>
@@ -14,131 +14,131 @@
                       <span class="author">&nbsp;<%= @story.story_author_names %></span>
                       <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
                       <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
-              </div> 
+              </div>
             </div>
             <%= render partial: "storyteller/template/#{@template}/content_infotop", locals: {is_infographic: section.infographic?} %>
           <% end %>
           <%  dataAudio = ''
-              if section.asset_exists?            
-                dataAudio = "data-audio='#{File.basename(section.asset.asset_file_name_formatted,'.mp3')}'".html_safe 
+              if section.asset_exists?
+                dataAudio = "data-audio='#{File.basename(section.asset.asset_file_name_formatted,'.mp3')}'".html_safe
               end
-           %>            
+           %>
             <% if section.content? %>
-              <div class="section column" <%= dataAudio.html_safe %>>    
+              <div class="section column" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
-                <% end %>                
+                <% end %>
                 <% if section.content.caption.present? %>
                   <div class='column-caption'><%= section.content.caption.html_safe %></div>
                 <% end%>
                 <% if section.content.sub_caption.present? %>
                   <div class='column-sub-caption'><%= section.content.sub_caption.html_safe %></div>
-                <% end%>                
-                <%= section.content.text.html_safe %>   
-                <% if section.content.text.html_safe.lines.count == 1 %>   
+                <% end%>
+                <%= section.content.text.html_safe %>
+                <% if section.content.text.html_safe.lines.count == 1 %>
                   <p>&nbsp;</p>
                 <% end %>
-              </div>   
-              <% columnSectionCount+=1 %>   
+              </div>
+              <% columnSectionCount+=1 %>
             <% elsif section.media? %>
               <div class="section video-sequence" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
-                <% section.media.each_with_index do |m,m_i| %>                
+                <% section.media.each_with_index do |m,m_i| %>
                   <% dataVideo = '' %>
-                  <% if m.media_type == Medium::TYPE[:video] && m.is_processed? %>                
+                  <% if m.media_type == Medium::TYPE[:video] && m.is_processed? %>
                     <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name_formatted,'.*')}'".html_safe %>
                   <% elsif m.media_type == Medium::TYPE[:image] %>
                     <% dataVideo = "data-image='#{File.basename(m.image.asset_file_name_formatted)}'".html_safe %>
-                  <% end %> 
+                  <% end %>
                   <div class="video infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %>" <%= dataVideo.html_safe %>  <%= m.media_type == Medium::TYPE[:video] && m.video_loop ? "data-videoloop" : "" %>>
                     <div class="video-container infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %>">
-                      <% if m.media_type == Medium::TYPE[:image] %>     
-                          <% if !@export %> 
+                      <% if m.media_type == Medium::TYPE[:image] %>
+                          <% if !@export %>
                             <img src="<%= m.image.file.url(:fullscreen) %>">
                           <% else %>
                             <img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>">
                           <% end %>
-                      <% elsif m.media_type == Medium::TYPE[:video] && !m.is_processed?  %>                    
-                          <% if !@export %> 
+                      <% elsif m.media_type == Medium::TYPE[:video] && !m.is_processed?  %>
+                          <% if !@export %>
                             <%= image_tag "png/video_being_processed_#{I18n.locale}.png" %>
                           <% else %>
                             <img src="assets/png/video_being_processed_#{I18n.locale}.png">
                           <% end %>
-                      <% elsif m.media_type == Medium::TYPE[:video] && m.is_processed?  %>                    
-                            <% if !@export %>                           
+                      <% elsif m.media_type == Medium::TYPE[:video] && m.is_processed?  %>
+                            <% if !@export %>
                               <!--[if lte IE 8]><img src="<%= m.image.file.url(:fullscreen) %>"><![endif]-->
                             <% else %>
                               <!--[if lte IE 8]><img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>"><![endif]-->
-                            <% end %>                                             
-                      <% end %>                        
-                      <% if m.caption.present? || m.source.present? %> 
-                        <% if m.infobox_type == Medium::INFOBOX_TYPE[:floating] %>                          
+                            <% end %>
+                      <% end %>
+                      <% if m.caption.present? || m.source.present? %>
+                        <% if m.infobox_type == Medium::INFOBOX_TYPE[:floating] %>
                           <% if m.source.present? %>
-                            <div class="video-source"><%= m.source %></div>                       
-                          <% end %>   
+                            <div class="video-source"><%= m.source %></div>
+                          <% end %>
                         <% elsif m.infobox_type == Medium::INFOBOX_TYPE[:fixed] %>
                           <div class='infobox'>
-                            <% if m.caption.present? && !(isFirst && m_i == 0) %>                                    
-                              <div class='video-caption video-caption--<%= "#{alignment.key(m.caption_align)}" %> <%= m.caption.length > 160 ? 
+                            <% if m.caption.present? && !(isFirst && m_i == 0) %>
+                              <div class='video-caption video-caption--<%= "#{alignment.key(m.caption_align)}" %> <%= m.caption.length > 160 ?
                               "video-caption--long" : "" %>'>
                                 <div class="caption" style="min-height: 60px;width: 100%;">
                                   <%= m.caption  %>
                                 </div>
                               </div>
-                            <% end %>   
+                            <% end %>
                             <% if m.source.present? %>
-                               <div class="video-source"><%= m.source %></div>                       
+                               <div class="video-source"><%= m.source %></div>
                             <% end %>
                           </div>
-                          <div class='space'></div> 
-                        <% end %>    
-                      <% end %>    
-                    </div>     
-                    <% if isFirst && m_i == 0  %>   
+                          <div class='space'></div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <% if isFirst && m_i == 0  %>
                       <div class="video-headline">
                         <div class="headline"><%= @story.title %>
                           <div class="byline">
                             <span class="caption"><%= t('storyteller.byline', locale: @story.current_locale) %></span><span class="author">&nbsp;<%= @story.story_author_names %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
                              <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
-                          </div>         
+                          </div>
                         </div>
-                      </div> 
+                      </div>
                       <div class="scroll-prompt">
                        <svg  x="0px" y="0px" width="18.03px" height="18.042px" viewBox="7.516 6.5 18.03 18.042" enable-background="new 7.516 6.5 18.03 18.042"
              xml:space="preserve">
           <polygon points="16.531,22.763 8.52,14.963 7.695,15.766 16.531,24.367 25.367,15.766 24.544,14.963 "/>
           <polygon points="25.367,7.477 24.544,6.674 16.531,14.475 8.52,6.674 7.695,7.477 16.531,16.079 "/>
           </svg>
-                      </div>  
-                    <% end %>  
+                      </div>
+                    <% end %>
                     <% if m.infobox_type == Medium::INFOBOX_TYPE[:floating] && m.caption.present? && !(isFirst && m_i == 0) %>
-                      <div class='video-caption video-caption--<%= "#{alignment.key(m.caption_align)}" %> <%= m.caption.length > 160 ? 
+                      <div class='video-caption video-caption--<%= "#{alignment.key(m.caption_align)}" %> <%= m.caption.length > 160 ?
                       "video-caption--long" : "" %>'>
                         <%= m.caption  %>
                       </div>
-                    <% end %>                                                            
-                  </div>        
-                <% end %>                   
+                    <% end %>
+                  </div>
+                <% end %>
               </div>
               <% if isFirst %>
                   <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
-                <% end %>     
-            <% elsif section.slideshow? %>             
+                <% end %>
+            <% elsif section.slideshow? %>
               <div class="section slideshow" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %><a class="navigation-marker" id="<%= s_i + 1 %>"></a><% end %>
                 <div class="wrapper">
                   <% if section.slideshow.caption.present? %>
-                    <div class="headline"><%= section.slideshow.caption %></div>                      
-                  <% end %>                  
+                    <div class="headline"><%= section.slideshow.caption %></div>
+                  <% end %>
                   <!--[if lte IE 8]><img src="<%= section.slideshow.asset_files[0].file.url(:medium) %>" style="width:100%;"><![endif]-->
                   <div class="captions">
-                    <% section.slideshow.asset_files.each_with_index do |t,t_i| %> 
+                    <% section.slideshow.asset_files.each_with_index do |t,t_i| %>
                       <div class="caption" data-image="<%= t.asset_file_name_formatted %>">
                           <%= t.caption.html_safe %>
-                          <% if t.source.present? %> 
-                          
+                          <% if t.source.present? %>
+
                             <div class="source">
                               <span><%= "#{t('storyteller.source')}" %></span>&nbsp;
                               <%= auto_link(t.source) %>
@@ -149,26 +149,26 @@
                   </div>
                   <% if section.slideshow.description.present? %>
                     <div class="description"><%= section.slideshow.description.html_safe %></div>
-                  <% end %>                
+                  <% end %>
                 </div>
-              </div> 
-            <% elsif section.embed_media? %>         
+              </div>
+            <% elsif section.embed_media? %>
               <div class="section embed" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
-                <% end %> 
+                <% end %>
                 <div class="embed-container">
-                  <%= section.embed_medium.code.html_safe %>             
-                </div>                         
+                  <%= section.embed_medium.code.html_safe %>
+                </div>
               </div>
-            <% elsif section.youtube? %>           
+            <% elsif section.youtube? %>
               <div class="section youtube embed<%= section.youtube.fullscreen ? ' fullscreen' : '' %>" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
-                <% end %> 
+                <% end %>
                 <div class="container">
                   <div data-yid="<%= section.youtube.url.last(11) %>"></div>
-                </div>                         
+                </div>
               </div>
               <% if isFirst && section.youtube.fullscreen %>
                 <div class='info'>
@@ -178,21 +178,21 @@
                           <span class="author">&nbsp;<%= @story.story_author_names %></span>
                           <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
                           <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
-                  </div> 
+                  </div>
                 </div>
                 <%= render partial: "storyteller/template/#{@template}/content_infotop" %>
               <% end %>
-            <% elsif section.infographic? %>              
-              <% item = section.infographic %>       
+            <% elsif section.infographic? %>
+              <% item = section.infographic %>
               <div class="section infographic" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                   <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
-                <% end %> 
+                <% end %>
                 <div class="container" >
                 <% if item.caption.present? %>
                   <div class="caption"><%= item.caption %></div>
                 <% end %>
-                <% if item.static_type? %> 
+                <% if item.static_type? %>
                   <div class="content infographic" data-original='<%= !@export ? item.image.file.url : "media/infographic/original/#{item.image.asset_file_name_formatted}" %>'>
                     <% alt = item.alt_text.present? ? item.alt_text : isFirst ? @story.about : '' %>
                     <img src='<%= !@export ? item.image.file.url(:poster) : "media/infographic/poster/#{item.image.asset_file_name_formatted}" %>' alt="<%= strip_tags_nbsp(alt) %>">
@@ -227,8 +227,8 @@
                        <div class='source'><%= t.name %></div>
                      <% end %>
                       <% end %>
-                    </div>                    
-                  <% end %>        
+                    </div>
+                  <% end %>
                   <% if item.dataset_url.present? || item.dataset_file_exists? %>
                     <div class="dataset">
                       <div class="title"><%= t('storyteller.infographic.dataset', locale: @story.current_locale) %>:&nbsp;</div>
@@ -240,10 +240,10 @@
                       <% end %>
                     </div>
                   <% end %>
-                </div>                         
+                </div>
               </div>
-            <% end %>                               
-            <% isFirst = false %>                    
-        <% end %>   
+            <% end %>
+            <% isFirst = false %>
+        <% end %>
       </div>
     </div>
