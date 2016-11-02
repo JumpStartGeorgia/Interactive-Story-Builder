@@ -121,6 +121,8 @@ GEM
     ffi (1.9.3)
     formtastic (2.2.1)
       actionpack (>= 3.0)
+    friendly_id (4.0.10.1)
+      activerecord (>= 3.0, < 4.0)
     globalize (3.1.0)
       activemodel (>= 3.1.0, < 4.0.0)
       activerecord (>= 3.1.0, < 4.0.0)
@@ -129,7 +131,6 @@ GEM
       json
     haml (4.0.5)
       tilt
-    has_permalink (0.1.6)
     hashie (2.1.1)
     highline (1.6.21)
     hike (1.2.3)
@@ -320,9 +321,9 @@ DEPENDENCIES
   exception_notification (~> 2.5.2)
   formtastic (~> 2.2.1)
   formtastic-bootstrap!
+  friendly_id (~> 4.0.10)
   globalize (~> 3.1.0)
   gon (~> 5.0.4)
-  has_permalink (~> 0.1.4)
   i18n-js (~> 2.1.2)
   impressionist (= 1.4.1)
   jquery-datatables-rails (~> 3.1.1)
@@ -356,3 +357,6 @@ DEPENDENCIES
   useragent!
   whenever
   will_paginate (~> 3.0.5)
+
+BUNDLED WITH
+   1.10.6

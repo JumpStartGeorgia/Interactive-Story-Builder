@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150320065345) do
+ActiveRecord::Schema.define(:version => 20161102100559) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -121,6 +121,17 @@ ActiveRecord::Schema.define(:version => 20150320065345) do
 
   add_index "embed_medium_translations", ["embed_medium_id"], :name => "index_embed_medium_translations_on_embed_medium_id"
   add_index "embed_medium_translations", ["locale"], :name => "index_embed_medium_translations_on_locale"
+
+  create_table "friendly_id_slugs", :force => true do |t|
+    t.string   "slug",                         :null => false
+    t.integer  "sluggable_id",                 :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
+  add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "impressions", :force => true do |t|
     t.string   "impressionable_type"
@@ -452,6 +463,7 @@ ActiveRecord::Schema.define(:version => 20150320065345) do
     t.integer  "translation_percent_complete", :limit => 1, :default => 0
     t.string   "translation_author"
     t.integer  "impressions_count",                         :default => 0
+    t.string   "slug"
   end
 
   add_index "story_translations", ["language_type"], :name => "index_story_translations_on_language_type"
@@ -459,6 +471,7 @@ ActiveRecord::Schema.define(:version => 20150320065345) do
   add_index "story_translations", ["permalink"], :name => "index_story_translations_on_permalink"
   add_index "story_translations", ["published"], :name => "index_story_translations_on_published"
   add_index "story_translations", ["published_at"], :name => "index_story_translations_on_published_at"
+  add_index "story_translations", ["slug"], :name => "index_story_translations_on_slug", :unique => true
   add_index "story_translations", ["story_id"], :name => "index_story_translations_on_story_id"
   add_index "story_translations", ["title"], :name => "index_story_translations_on_title"
 

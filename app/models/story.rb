@@ -3,21 +3,21 @@ class Story < ActiveRecord::Base
 
   @@TYPE = {story: 1, talk_show: 2, video: 3, photo: 4, infographic: 5}
 
-	translates :shortened_url, :title, :permalink, :permalink_staging, :author, :media_author, :about, 
+	translates :shortened_url, :title, :permalink, :permalink_staging, :author, :media_author, :about,
               :published, :published_at, :language_type, :translation_percent_complete, :translation_author
 
   # for likes
   acts_as_votable
-  
+
   # tagging system
   acts_as_taggable
-  
+
   # fields to search for in a story
   scoped_search :in => :story_translations, :on => [:title, :author, :media_author, :translation_author]
   scoped_search :in => :content_translations, :on => [:caption, :sub_caption, :text]
 
   # record public views
-  is_impressionable :counter_cache => true 
+  is_impressionable :counter_cache => true
 
   has_many :story_translation_progresses, :dependent => :destroy
   alias_attribute  :translation_progress, :story_translation_progresses
@@ -37,8 +37,8 @@ class Story < ActiveRecord::Base
 	has_many :sections, :order => 'position', dependent: :destroy
   has_many :story_users
   has_many :users, :through => :story_users, :dependent => :destroy
-	# has_one :asset,     
-	#   :conditions => "asset_type = #{Asset::TYPE[:story_thumbnail]}", 	 
+	# has_one :asset,
+	#   :conditions => "asset_type = #{Asset::TYPE[:story_thumbnail]}",
 	#   foreign_key: :item_id,
 	#   dependent: :destroy
 	has_many :content, :through => :sections
@@ -53,15 +53,15 @@ class Story < ActiveRecord::Base
   DEMO_ID = 2
 
   ROLE = {:editor => 0, :translator => 1}
-  
-  
+
+
   #################################
   ## Validations
   validates :story_type_id, :presence => true
 	validates :template_id, :presence => true
-	validates :story_locale, :presence => true 
+	validates :story_locale, :presence => true
   validates :authors, :length => { :minimum => 1, message: I18n.t('activerecord.errors.messages.story_authors')}
-  # validates :user_id, :presence => true 
+  # validates :user_id, :presence => true
 
 
   #################################
@@ -138,7 +138,7 @@ class Story < ActiveRecord::Base
   #   sql << "INNER JOIN story_translations as st ON st.story_id = s.id "
   #   sql << "inner join ( "
   #   sql << "  SELECT s2.story_type_id, max(st2.published_at) as published_at "
-  #   sql << "  FROM stories as s2 " 
+  #   sql << "  FROM stories as s2 "
   #   sql << "  INNER JOIN story_translations as st2 ON st2.story_id = s2.id "
   #   if options[:theme_id].present?
   #     sql << "  inner join story_themes as sth2 on sth2.story_id = s2.id "
@@ -155,7 +155,7 @@ class Story < ActiveRecord::Base
   #   joins(:story_type).where(:stories => {:id => matches.map{|x| x.id}}).order('story_types.sort_order')
   # end
 
-  
+
   # since there can be many language records for a story (thus many published_at dates, titles, etc), it is possible to get duplicate records for a story
   # so must use the uniq method
   def self.sorted
@@ -226,11 +226,12 @@ class Story < ActiveRecord::Base
 
   # override find by permalink method so that it does not require the current I18n.locale
   def self.find_by_permalink(permalink)
-    joins(:story_translations).where(:story_translations => {:permalink => permalink}).first
+    joins(:story_translations).where("`story_translations`.`slug` = ? or exists(select 'a' from `friendly_id_slugs` where `friendly_id_slugs`.`sluggable_type` = 'StoryTranslation' and `friendly_id_slugs`.`sluggable_id` = `story_translations`.`id` and `friendly_id_slugs`.`slug` = ?)", permalink, permalink).first
+    #joins(:story_translations).where((:story_translations => {:slug => permalink})).first
   end
 
   # def self.can_edit?(story_id, user_id)
-  #   x = select('id').where(:id => story_id).editable_user(user_id)  
+  #   x = select('id').where(:id => story_id).editable_user(user_id)
   #   return x.present?
   # end
 
@@ -295,11 +296,11 @@ class Story < ActiveRecord::Base
       return x
     end
 	end
-	
+
 	def self.demo
 	  fullsection(DEMO_ID)
 	end
-	
+
 	def self.by_language(locale)
 	  where(:story_locale => locale)
 	end
@@ -320,7 +321,7 @@ class Story < ActiveRecord::Base
 	def self.by_authors(ids)
     joins(:authors).where('authors.id in (?)', ids)
 	end
-	
+
   # get related stories that are published and in the same language
   def random_related_stories(number_to_return=3)
     themes_ids = self.themes.published.pluck(:id)
@@ -362,10 +363,10 @@ class Story < ActiveRecord::Base
       if pending.present?
         already_exists_emails << pending.map{|x| x.to_email}
       end
-      
+
       already_exists_ids.flatten!
       already_exists_emails.flatten!
-      
+
       sql = ""
       if already_exists_ids.present? && already_exists_emails.present?
         sql = "!(id in (:ids) or email in (:emails)) and "
@@ -375,13 +376,13 @@ class Story < ActiveRecord::Base
         sql = "!(email in (:emails)) and "
       end
       sql << "(nickname like :search or email_no_domain like :search)"
-      users = User.where([sql, 
+      users = User.where([sql,
           :ids => already_exists_ids.uniq,
           :emails => already_exists_emails.uniq,
           :search => "%#{q}%"])
-          .limit(limit)          
+          .limit(limit)
       return users
-    end  
+    end
   end
 
 
@@ -393,7 +394,7 @@ class Story < ActiveRecord::Base
 
 	def asset_exists?
 		self.asset.present? && self.asset.file.exists?
-	end  		
+	end
 
 	def transliterate_file_name
 	  if thumbnail_file_name.present?
@@ -417,9 +418,9 @@ class Story < ActiveRecord::Base
 
       # story thumbnail
       puts "$$$$$$$$$ clone successful - copying thumbnail"
-      if self.asset.present? && self.asset.file.exists? 
-        Dir.glob(self.asset.file.path.gsub('/original/', '/*/')).each do |file|       
-          copy_asset file, file.gsub("/thumbnail/#{original_id}/", "/thumbnail/#{new_id}/") 
+      if self.asset.present? && self.asset.file.exists?
+        Dir.glob(self.asset.file.path.gsub('/original/', '/*/')).each do |file|
+          copy_asset file, file.gsub("/thumbnail/#{original_id}/", "/thumbnail/#{new_id}/")
         end
       end
 
@@ -428,14 +429,14 @@ class Story < ActiveRecord::Base
       new_audio = clone.sections.map{|x| x.section_translations }.flatten.select{|x| x.asset.present? && x.asset.asset.exists?}.map{|x| x.asset }
       self.sections.map{|x| x.section_translations }.flatten.select{|x| x.asset.present? && x.asset.asset.exists?}.map{|x| x.asset }.each do |audio|
         # find matching record
-        record = new_audio.select{|x| x.asset_file_name == audio.asset_file_name && 
-                                      x.asset_content_type == audio.asset_content_type && 
-                                      x.asset_file_size == audio.asset_file_size && 
+        record = new_audio.select{|x| x.asset_file_name == audio.asset_file_name &&
+                                      x.asset_content_type == audio.asset_content_type &&
+                                      x.asset_file_size == audio.asset_file_size &&
                                       x.asset_updated_at == audio.asset_updated_at}.first
         # copy the file if match found
         if record.present?
           copy_asset audio.file.path, audio.file.path.gsub("/audio/#{original_id}/", "/audio/#{new_id}/")
-                                                        .gsub("/#{audio.id}__", "/#{record.id}__") 
+                                                        .gsub("/#{audio.id}__", "/#{record.id}__")
         end
       end
 
@@ -444,15 +445,15 @@ class Story < ActiveRecord::Base
       new_ss = clone.sections.select{|x| x.slideshow? && x.slideshow.present? }.map{|x| x.slideshow.slideshow_translations }.flatten.map{|x| x.asset_files }.flatten.select{|x| x.asset.exists? }
       self.sections.select{|x| x.slideshow? && x.slideshow.present? }.map{|x| x.slideshow.slideshow_translations }.flatten.map{|x| x.asset_files }.flatten.select{|x| x.asset.exists? }.each do |img|
         # find matching record
-        record = new_ss.select{|x| x.asset_file_name == img.asset_file_name && 
-                                      x.asset_content_type == img.asset_content_type && 
-                                      x.asset_file_size == img.asset_file_size && 
+        record = new_ss.select{|x| x.asset_file_name == img.asset_file_name &&
+                                      x.asset_content_type == img.asset_content_type &&
+                                      x.asset_file_size == img.asset_file_size &&
                                       x.asset_updated_at == img.asset_updated_at}.first
         # copy the file if match found
         if record.present?
-          Dir.glob(img.file.path.gsub('/original/', '/*/')).each do |file|       
-            copy_asset file, file.gsub("/slideshow/#{original_id}/", "/slideshow/#{new_id}/") 
-                                  .gsub("/#{img.id}__", "/#{record.id}__") 
+          Dir.glob(img.file.path.gsub('/original/', '/*/')).each do |file|
+            copy_asset file, file.gsub("/slideshow/#{original_id}/", "/slideshow/#{new_id}/")
+                                  .gsub("/#{img.id}__", "/#{record.id}__")
           end
         end
       end
@@ -462,15 +463,15 @@ class Story < ActiveRecord::Base
       new_img = clone.sections.select{|x| x.media? && x.media.present? }.map{ |x| x.media }.flatten.map{|x| x.medium_translations}.flatten.select{|x| x.image_exists? }.map{|x| x.image }
       self.sections.select{|x| x.media? && x.media.present? }.map{ |x| x.media }.flatten.map{|x| x.medium_translations}.flatten.select{|x| x.image_exists? }.map{|x| x.image }.each do |img|
         # find matching record
-        record = new_img.select{|x| x.asset_file_name == img.asset_file_name && 
-                                      x.asset_content_type == img.asset_content_type && 
-                                      x.asset_file_size == img.asset_file_size && 
+        record = new_img.select{|x| x.asset_file_name == img.asset_file_name &&
+                                      x.asset_content_type == img.asset_content_type &&
+                                      x.asset_file_size == img.asset_file_size &&
                                       x.asset_updated_at == img.asset_updated_at}.first
         # copy the file if match found
         if record.present?
-          Dir.glob(img.file.path.gsub('/original/', '/*/')).each do |file|       
-            copy_asset file, file.gsub("/images/#{original_id}/", "/images/#{new_id}/") 
-                                  .gsub("/#{img.id}__", "/#{record.id}__") 
+          Dir.glob(img.file.path.gsub('/original/', '/*/')).each do |file|
+            copy_asset file, file.gsub("/images/#{original_id}/", "/images/#{new_id}/")
+                                  .gsub("/#{img.id}__", "/#{record.id}__")
           end
         end
       end
@@ -480,9 +481,9 @@ class Story < ActiveRecord::Base
       new_video = clone.sections.select{|x| x.media? && x.media.present? }.map{ |x| x.media }.flatten.map{|x| x.medium_translations}.flatten.select{|x| x.video_exists? }.map{|x| x.video }
       self.sections.select{|x| x.media? && x.media.present? }.map{ |x| x.media }.flatten.map{|x| x.medium_translations}.flatten.select{|x| x.video_exists? }.map{|x| x.video }.each do |video|
         # find matching record
-        record = new_video.select{|x| x.asset_file_name == video.asset_file_name && 
-                                      x.asset_content_type == video.asset_content_type && 
-                                      x.asset_file_size == video.asset_file_size && 
+        record = new_video.select{|x| x.asset_file_name == video.asset_file_name &&
+                                      x.asset_content_type == video.asset_content_type &&
+                                      x.asset_file_size == video.asset_file_size &&
                                       x.asset_updated_at == video.asset_updated_at}.first
         # copy the file if match found
         if record.present?
@@ -491,14 +492,14 @@ class Story < ActiveRecord::Base
           basename = File.basename(video.file.path)
           name = File.basename(video.file.path, ext)
 
-          Dir.glob(video.file.path.gsub('/original/', '/*/').gsub(basename, "#{name}.*")).each do |file|       
-            copy_asset file, file.gsub("/video/#{original_id}/", "/video/#{new_id}/") 
-                                  .gsub("/#{video.id}__", "/#{record.id}__") 
+          Dir.glob(video.file.path.gsub('/original/', '/*/').gsub(basename, "#{name}.*")).each do |file|
+            copy_asset file, file.gsub("/video/#{original_id}/", "/video/#{new_id}/")
+                                  .gsub("/#{video.id}__", "/#{record.id}__")
           end
 
           # get the poster folder too
-          copy_asset video.file.path(:poster), video.file.path(:poster).gsub("/video/#{original_id}/", "/video/#{new_id}/") 
-                                .gsub("/#{video.id}__", "/#{record.id}__") 
+          copy_asset video.file.path(:poster), video.file.path(:poster).gsub("/video/#{original_id}/", "/video/#{new_id}/")
+                                .gsub("/#{video.id}__", "/#{record.id}__")
 
         end
       end
@@ -509,33 +510,33 @@ class Story < ActiveRecord::Base
       new_info = clone.sections.select{|x| x.infographic? && x.infographic.present? }.map{|x| x.infographic.infographic_translations  }.flatten.select{|x| x.image_exists?}.map{|x| x.image}
       self.sections.select{|x| x.infographic? && x.infographic.present? }.map{|x| x.infographic.infographic_translations  }.flatten.select{|x| x.image_exists?}.map{|x| x.image}.each do |img|
         # find matching record
-        record = new_info.select{|x| x.asset_file_name == img.asset_file_name && 
-                                      x.asset_content_type == img.asset_content_type && 
-                                      x.asset_file_size == img.asset_file_size && 
+        record = new_info.select{|x| x.asset_file_name == img.asset_file_name &&
+                                      x.asset_content_type == img.asset_content_type &&
+                                      x.asset_file_size == img.asset_file_size &&
                                       x.asset_updated_at == img.asset_updated_at}.first
         # copy the file if match found
         if record.present?
-          Dir.glob(img.file.path.gsub('/original/', '/*/')).each do |file|       
-            copy_asset file, file.gsub("/infographic/#{original_id}/", "/infographic/#{new_id}/") 
-                                  .gsub("/#{img.id}__", "/#{record.id}__") 
+          Dir.glob(img.file.path.gsub('/original/', '/*/')).each do |file|
+            copy_asset file, file.gsub("/infographic/#{original_id}/", "/infographic/#{new_id}/")
+                                  .gsub("/#{img.id}__", "/#{record.id}__")
           end
         end
       end
-      
+
       # infographic_dataset
       puts "$$$$$$$$$ clone successful - copying infographic_dataset"
       new_info_dataset = clone.sections.select{|x| x.infographic? && x.infographic.present? }.map{|x| x.infographic.infographic_translations  }.flatten.select{|x| x.dataset_file_exists?}.map{|x| x.dataset_file}
       self.sections.select{|x| x.infographic? && x.infographic.present? }.map{|x| x.infographic.infographic_translations  }.flatten.select{|x| x.dataset_file_exists?}.map{|x| x.dataset_file}.each do |img|
         # find matching record
-        record = new_info_dataset.select{|x| x.asset_file_name == img.asset_file_name && 
-                                      x.asset_content_type == img.asset_content_type && 
-                                      x.asset_file_size == img.asset_file_size && 
+        record = new_info_dataset.select{|x| x.asset_file_name == img.asset_file_name &&
+                                      x.asset_content_type == img.asset_content_type &&
+                                      x.asset_file_size == img.asset_file_size &&
                                       x.asset_updated_at == img.asset_updated_at}.first
         # copy the file if match found
         if record.present?
-          Dir.glob(img.file.path.gsub('/original/', '/*/')).each do |file|       
-            copy_asset file, file.gsub("/infographic_dataset/#{original_id}/", "/infographic_dataset/#{new_id}/") 
-                                  .gsub("/#{img.id}__", "/#{record.id}__") 
+          Dir.glob(img.file.path.gsub('/original/', '/*/')).each do |file|
+            copy_asset file, file.gsub("/infographic_dataset/#{original_id}/", "/infographic_dataset/#{new_id}/")
+                                  .gsub("/#{img.id}__", "/#{record.id}__")
           end
         end
       end
@@ -575,7 +576,7 @@ class Story < ActiveRecord::Base
 
   def asset_exists?
     asset.present? && asset.file.exists?
-  end     
+  end
 
   def show_asset
     if self.asset.nil?
@@ -605,18 +606,18 @@ class Story < ActiveRecord::Base
 
 
   ##############################
-  
+
   # when a comment occurs, update the count by 1
   def increment_comment_count
     self.comments_count += 1
     self.save
   end
-  
+
   # remove quotes from tags
   def tag_list_tokens=(tokens)
     self.tag_list = tokens.gsub("'", "")
-  end  
-  
+  end
+
 
   # get role of user for this story
   def user_role(user_id)
@@ -634,18 +635,18 @@ class Story < ActiveRecord::Base
   def published_locales
     StoryTranslation.where(:story_id => self.id, :published => true).pluck(:locale).uniq
   end
-  
+
 
   # get nicely formatted list of author names
   def story_author_names
     self.authors.map{|x| x.name}.to_sentence
   end
 
-private 
+private
 
   def copy_asset(original_path, new_path)
     # make sure new path directory structure exists
     FileUtils.mkdir_p(File.dirname(new_path))
     FileUtils.cp original_path, new_path
-  end  
+  end
 end
