@@ -1,5 +1,5 @@
-<% if @error.present? # if error%> 
-  popuper('<%= @error %>', 'error'); 
+<% if @error.present? # if error%>
+  popuper('<%= @error %>', 'error');
 <% else # otherwise %>
    <% if @which == 0 || @which == 1 %>
       which(1,"<%= escape_javascript( render :partial => @type, locals: {original: true}) %>");
@@ -9,14 +9,14 @@
       <% @item.current_locale = @to %>
       which(2,"<%= escape_javascript( render :partial => @type) %>");
    <% end %>
-   
-   $('form .selectpicker').selectpicker();   
-   
-   <% if @type == 'form' # for story %> 
-      // when the page loads, show the permalink if it exists  
+
+   $('form .selectpicker').selectpicker();
+
+   <% if @type == 'form' # for story %>
+      // when the page loads, show the permalink if it exists
       if ($('#story_permalink').length > 0 && $('input#storyPermalink').val().length > 0){
-         was_title_box_length = $('input#storyTitle').val().length;
-         was_permalink_box_length = $('input#storyPermalinkStaging').val().length;;
+         // was_title_box_length = $('input#storyTitle').val().length;
+         // was_permalink_box_length = $('input#storyPermalinkStaging').val().length;;
          show_story_permalink({'is_duplicate': false, 'permalink':$('input#storyPermalink').val()});
       }
     <% end %>
@@ -45,7 +45,7 @@
 
      });
 
-   <% elsif @type == 'slideshow' %> 
+   <% elsif @type == 'slideshow' %>
      // when indicate whether or not to use cloned asset, act accordingly
      $('form.form-translation').on('change', 'input.clone_asset', function(){
        var parent = $(this).closest('.image_asset_fields');
@@ -89,7 +89,7 @@
 
      });
 
-   <% elsif @type == 'media' %> 
+   <% elsif @type == 'media' %>
      // when indicate whether or not to use cloned asset, act accordingly
      $('form.form-translation').on('change', 'input#clone_image_asset', function(){
        if ($(this).is(':checked')){
@@ -136,7 +136,7 @@
 
      });
 
-   <% elsif @type == 'infographic' %> 
+   <% elsif @type == 'infographic' %>
      // when indicate whether or not to use cloned asset, act accordingly
      $('form.form-translation').on('change', 'input#clone_image_asset', function(){
        if ($(this).is(':checked')){

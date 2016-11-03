@@ -1,7 +1,7 @@
 class StoryTranslation < ActiveRecord::Base
 
   extend FriendlyId
-  friendly_id :friendly_slug_generator, use: [:slugged, :history]
+  friendly_id :friendly_slug_generator, use: [:slugged, :history, :scoped], slug_column: :permalink, :scope => :locale
 
   belongs_to :story
   belongs_to :language, :primary_key => :locale, :foreign_key => :locale
@@ -20,15 +20,15 @@ class StoryTranslation < ActiveRecord::Base
 
   attr_accessor :is_progress_increment, :progress_story_id
 
-  alias_attribute :permalink, :slug
   #################################
   ## Validations
   validates :title, :presence => true, length: { maximum: 100 }
 #  validates :author, :presence => true, length: { maximum: 255 }
   validates :permalink, :presence => true
+  validates_uniqueness_of :permalink, conditions: -> { where.not(story_id: self.story_id) }
   validates :media_author, length: { maximum: 255 }
   validates :translation_author, length: { maximum: 255 }
-  validates_uniqueness_of :story_id, scope: [:locale]
+  #validates_uniqueness_of :story_id, scope: [:locale]
 
 
 #  validates :shortened_url, :presence => true
@@ -142,7 +142,7 @@ class StoryTranslation < ActiveRecord::Base
       locale = I18n.default_locale if !I18n.available_locales.include?(self.locale.to_sym)
       puts "- locale = #{locale}"
 
-      long_url = URI.encode(UrlHelpers.storyteller_show_url(:id => self.slug, :locale => locale))
+      long_url = URI.encode(UrlHelpers.storyteller_show_url(:id => self.permalink, :locale => locale))
       url = "https://api-ssl.bitly.com/v3/shorten?access_token=#{token}&longUrl=#{long_url}"
       puts "- url = #{url}"
       begin
