@@ -66,7 +66,7 @@ az:
         permalink: Hekayənin URL-ı
         permalink_staging: Hekayənin URL-ı
         asset: *asset
-      story_translations: *story_translation      
+      story_translations: *story_translation
       section:
         has_marker: Naviqasiya Qısayolu
         type_id: Növ ("Yaz" if you mean the verb "to type")
@@ -143,7 +143,7 @@ az:
         description: təsvir
         dataset_url: Online Məlumat toplusu
         image_name: "Şəkil"
-        image: *asset     
+        image: *asset
         dataset_file: *asset
         dynamic_url: Fəal URL
       infographic_translations: *infographic_translation
@@ -179,7 +179,7 @@ az:
       story_type_translation: &story_type_translation
         name: Ad
         permalink: URL
-      story_type_translations: *story_type_translation      
+      story_type_translations: *story_type_translation
     errors:
       messages:
         required_field: tələb edilən sahədir.
@@ -379,7 +379,7 @@ az:
       app_intro_meta: "Çayxana, sərhəd-aşan jurnalistika təlimləri və Cənubi Qafqaz regionunda fərqli mövzular üzrə multimedia materialları üçün onlayn nəşr xidməti təmin edən QHT-dir."
       powered_by: xxx tərəfindən dəstəklənir
       powered_by_js: Jumpstart Georgia
-      powered_by_end: 
+      powered_by_end:
       embed_slogan: Hekayəni Çayxanayla hazırla
       added_on: "Əlavə edilib: %{date}"
       last_sign_in: 'Sonuncu dəfə daxil oldun: %{date}'
@@ -738,12 +738,18 @@ az:
       get_media: Onlayn Medianı Al
       preview: Onlayn medianın sınaq baxışı
       error: URL-ı emal etmək mümkün olmadı. Lütfən bir daha cəhd edin.
+      embed_source: Embed Source
+      embed_source_url: URL
+      embed_source_code: Code
       placeholder:
         title: Daxil Ediləsi Onlayn Medianın Sərlövhəsi
         url: Onlayn mediaya URL
+        code: "ex: <iframe ..."
       hint:
         title: Bu mətn hekayədə yox, yalnız sol paneldə görünəcək.
         url: 'Növbəti saytlar, onlayn medianı daxil etmək üçün istifadə edilə bilər: AUDİO: Soundcloud, Spotify; VİDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED'
+        code: "Code for online media (iframe embed object ...)"
+        embed_source: Is the embed object from a url or is it code
     youtube:
       form_title: YouTube Video Forması
       get_media: Youtube Videosunu Al

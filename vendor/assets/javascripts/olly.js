@@ -185,7 +185,7 @@
 
         imgur: '<img src="{{embedURL}}" class="embed-image embed-imgur"/>',
 
-        jsfiddle: '<iframe style="width: 100%; height: 300px" src="{{embedURL}}" class="embed-dev embed-jsfiddle"></iframe>', 
+        jsfiddle: '<iframe style="width: 100%; height: 300px" src="{{embedURL}}" class="embed-dev embed-jsfiddle"></iframe>',
 
         twitter_tweet: {
             markup: '<blockquote class="twitter-tweet" lang="en" class="embed-social embed-twitter_tweet"><p> <a href="{{embedURL}}"></a></blockquote>',
@@ -432,7 +432,7 @@
                 }
             };
         }
-*/        
+*/
     };
 
 }(typeof module !== 'undefined' && module.exports? module.exports : window.olly));
