@@ -764,18 +764,21 @@ end
   # params passed in are text, id, and sl (story_locale). If story locale does not exist, use I18n.locale
   def check_permalink
     output = {:permalink => nil, :is_duplicate => false}
+
     if params[:text].present?
+
       permalink_staging = params[:text]
       permalink_temp = permalink_normalize(permalink_staging)
       locale = params[:sl].present? ? params[:sl].strip : I18n.locale
-      story = StoryTranslation.select('permalink, permalink_staging').where(:story_id => params[:id], :locale => locale).first
+      story = StoryTranslation.where(:story_id => params[:id], :locale => locale).first
+
       # if the story could not be found, use an empty story
       logger.debug "*********** new staging = #{permalink_staging}; story = #{story.inspect}"
       if story.blank?
         logger.debug "*********** story blank"
         story = StoryTranslation.new(:permalink_staging => permalink_staging, :locale => locale)
-        story.generate_permalink
-        output = {:permalink => story.permalink, :is_duplicate => story.is_duplicate_permalink?}
+        vld = story.valid?
+        output = {:permalink => story.permalink, :is_duplicate => !vld}
 
       # if the permalink is the same, do nothing
       elsif story.permalink == permalink_temp
@@ -787,8 +790,9 @@ end
         logger.debug "*********** permalink different"
         story.permalink_staging = permalink_staging
         logger.debug "*********** - story = #{story.inspect}"
-        story.generate_permalink!
-        output = {:permalink => story.permalink, :is_duplicate => story.is_duplicate_permalink?}
+        vld = story.valid?
+
+        output = {:permalink => story.permalink, :is_duplicate => !vld}
       end
     end
 

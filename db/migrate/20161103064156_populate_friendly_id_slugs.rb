@@ -1,12 +1,19 @@
 class PopulateFriendlyIdSlugs < ActiveRecord::Migration
   def up
 
-    # Story translation have same permalink as 554 so we number added at the end
-    issue1 = StoryTranslation.find(555)
-    issue1.permalink_staging = "#{issue1.permalink_staging} 1"
-    issue1.save
-
+    puts "----------------------- StoryTranslation"
     StoryTranslation.find_each(&:save)
+    puts "----------------------- AuthorTranslation"
+    AuthorTranslation.find_each(&:save)
+    puts "----------------------- CategoryTranslation"
+    CategoryTranslation.find_each(&:save)
+    puts "----------------------- NewsTranslation"
+    NewsTranslation.find_each(&:save)
+    puts "----------------------- StoryTypeTranslation"
+    StoryTypeTranslation.find_each(&:save)
+    puts "----------------------- ThemeTranslation"
+    ThemeTranslation.find_each(&:save)
+    puts "----------------------- completed"
 
   end
 

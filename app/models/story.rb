@@ -229,15 +229,7 @@ class Story < ActiveRecord::Base
     joins(:story_translations).where("`story_translations`.`permalink` = ? or exists(select 'a' from `friendly_id_slugs` where `friendly_id_slugs`.`sluggable_type` = 'StoryTranslation' and `friendly_id_slugs`.`sluggable_id` = `story_translations`.`id` and `friendly_id_slugs`.`slug` = ?)", permalink, permalink).first
     #joins(:story_translations).where((:story_translations => {:slug => permalink})).first
   end
-  def generate_permalink!
 
-      # puts 'updating stories'
-      # Story.update_all(:permalink => nil)
-      # Story.all.each do |s|
-      #   s.generate_permalink!
-      #   s.save
-      # end
-  end
   # def self.can_edit?(story_id, user_id)
   #   x = select('id').where(:id => story_id).editable_user(user_id)
   #   return x.present?

@@ -635,18 +635,19 @@ function show_story_permalink(d){
   }
 
   // add the result
-  var html = "", is_dup;
-  if (d.is_duplicate == true){ html = gon.story_duplicate; }
+  var html = "", is_dup = d.is_duplicate;
+  if (is_dup){ html = gon.story_duplicate; }
   html += " " + gon.story_url + " /" + d.permalink;
 
-  t.toggleClass("duplicate", d.is_duplicate)
-    .toggleClass("not_duplicate", !d.is_duplicate)
+  t.toggleClass("duplicate", is_dup)
+    .toggleClass("not_duplicate", !is_dup)
     .html(html);
 }
 
 function check_story_permalink (text, locale){
   if (text != ""){
-    var data = {text: text}//,
+    var data = {text: text};
+    //,
       //url = window.location.href.split("/");
 
     // if (url[url.length-1] == "edit"){

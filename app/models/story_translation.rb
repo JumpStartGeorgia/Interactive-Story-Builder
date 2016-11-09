@@ -25,11 +25,23 @@ class StoryTranslation < ActiveRecord::Base
   validates :title, :presence => true, length: { maximum: 100 }
 #  validates :author, :presence => true, length: { maximum: 255 }
   validates :permalink, :presence => true
-  validates_uniqueness_of :permalink, conditions: -> { where.not(story_id: self.story_id) }
   validates :media_author, length: { maximum: 255 }
   validates :translation_author, length: { maximum: 255 }
   #validates_uniqueness_of :story_id, scope: [:locale]
 
+  validate :permalink_should_be_unique_across_other_stories
+
+  def permalink_should_be_unique_across_other_stories
+    if StoryTranslation.where(%{story_id != ? and (permalink = ? or
+      exists(select 'a' from `friendly_id_slugs` f where
+        f.`sluggable_type` = 'StoryTranslation' and
+        f.`sluggable_id` not in (select t.id from `story_translations` t where t.story_id = ?)
+        and f.`slug` = ?)) }, self.story_id, self.permalink, self.story_id, self.permalink).present?
+      errors.add :base, "Only one story can have '#{self.permalink}' permalink"
+    else
+      return true
+    end
+  end
 
 #  validates :shortened_url, :presence => true
 
