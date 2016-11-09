@@ -66,7 +66,7 @@ hy:
         permalink: "Նյութի URL"
         permalink_staging: "Նյութի URL"
         asset: *asset
-      story_translations: *story_translation      
+      story_translations: *story_translation
       section:
         has_marker: "Նավիգացիոն դյուրանցում"
         type_id: "Տեսակ"
@@ -143,7 +143,7 @@ hy:
         description: "Նկարագրություն"
         dataset_url: "Առցանց տվյալների հավաքագրում"
         image_name: "Նկար"
-        image: *asset     
+        image: *asset
         dataset_file: *asset
         dynamic_url: "Դինամիկ URL"
       infographic_translations: *infographic_translation
@@ -179,7 +179,7 @@ hy:
       story_type_translation: &story_type_translation
         name: "Անուն"
         permalink: URL
-      story_type_translations: *story_type_translation      
+      story_type_translations: *story_type_translation
     errors:
       messages:
         required_field: "Պարտադիր լրացման համար"
@@ -379,7 +379,7 @@ hy:
       app_intro_meta: "Չայխանա ՀԿ-ն կազմակերպում է դասընթացներ տարածաշրջանի լրագրողների համար և առցանց հրապարակում մուլտիմեդիա նյութեր հարավկովկասյան խնդիրների վերաբերյալ"
       powered_by: "Աջակցությամբ"
       powered_by_js: Jumpstart Georgia
-      powered_by_end: 
+      powered_by_end:
       embed_slogan: "Ստեղծեք Ձեր նյութը Չայխանայում"
       added_on: "Ավելացվել է: %{date}"
       last_sign_in: "Վերջին մուտքը: %{date}"
@@ -738,12 +738,18 @@ hy:
       get_media: "Բերել առցանց մեդիա"
       preview: "Առցանց մեդիայի նախադիտում"
       error: URL մշակումը չիրականացավ.խնդրում ենք կրկին փորձել
+      embed_source: Embed Source
+      embed_source_url: URL
+      embed_source_code: Code
       placeholder:
         title: "Ներդրվող մեդիայի վերնագիր"
         url: "Առցանց մեդիայի URL"
+        code: "ex: <iframe ..."
       hint:
         title: "Սույն տեքստը կերևա միայն աջ կողային վահանակի վրա, այն չի ներառվի նյութի մեջ"
         url: "Ներդրված բովանդակության համար կարող են օգտագործել հետևյալ կայքերը. Աուդիո՝ Soundcloud, Spotify; Վիդեո՝ YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
+        code: "Code for online media (iframe embed object ...)"
+        embed_source: Is the embed object from a url or is it code
     youtube:
       form_title: YouTube-ի վիդեոների ձև
       get_media: "Բերել վիդեոն Youtube-ից"

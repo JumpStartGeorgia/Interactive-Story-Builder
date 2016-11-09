@@ -22,7 +22,7 @@ en:
       asset: &asset
         asset_file_name: File
         asset_content_type: File Content Type
-        asset_file_size: File Size        
+        asset_file_size: File Size
       avatar: *asset
       user:
         email: Email Address
@@ -30,7 +30,7 @@ en:
         password_confirmation: Password Confirmation
         role: Role
         remember_me: Remember Me
-        default_story_locale: Default Language for Your Stories 
+        default_story_locale: Default Language for Your Stories
         about: Summary of You
         local_avatar: Avatar
         nickname: Nickname
@@ -42,7 +42,7 @@ en:
       author_translation: &author_translation
         name: Name
         about: About
-        permalink: Permalink        
+        permalink: Permalink
       author_translations: *author_translation
       story:
         user_id: Story Author
@@ -58,7 +58,7 @@ en:
       story_translation: &story_translation
         title: Story Title
         author: Author(s)
-        media_author: Photo and Video Author(s)  
+        media_author: Photo and Video Author(s)
         translation_author: Translation Author(s)
         published: Publish?
         published_at: Was Published
@@ -66,7 +66,7 @@ en:
         permalink: Story URL
         permalink_staging: Story URL
         asset: *asset
-      story_translations: *story_translation      
+      story_translations: *story_translation
       section:
         has_marker: Navigation Shortcut
         type_id: Type
@@ -78,7 +78,7 @@ en:
         asset: *asset
       section_translations:  *section_translation
       content_translation: &content_translation
-        title: Title          
+        title: Title
         caption: Heading
         sub_caption: Subheading
         content: Text
@@ -143,7 +143,7 @@ en:
         description: Description
         dataset_url: Online Dataset
         image_name: Image
-        image: *asset     
+        image: *asset
         dataset_file: *asset
         dynamic_url: Dynamic URL
       infographic_translations: *infographic_translation
@@ -179,11 +179,11 @@ en:
       story_type_translation: &story_type_translation
         name: Name
         permalink: URL
-      story_type_translations: *story_type_translation      
+      story_type_translations: *story_type_translation
     errors:
       messages:
         required_field: "is a required field."
-        already_exists: 'already exists in the database.'              
+        already_exists: 'already exists in the database.'
         story_authors: "must have at least one person selected."
         publish_theme: 'The theme cannot be published until at least one published item has been assigned to the theme.'
         not_provided: 'must be provided.'
@@ -281,8 +281,8 @@ en:
       youtube: YouTube
       subscribe: Subscribe
       user_settings: Settings
-      like: Like   
-      likes: Likes      
+      like: Like
+      likes: Likes
       comments: Comment on this story
       views: "%{num} views"
       tags: Tags
@@ -322,7 +322,7 @@ en:
       edit: "Edit %{model}"
       story_list: My Stories
     hints:
-      nickname: Your nickname is used in the URL to your published stories (e.g., nickname/story-title)        
+      nickname: Your nickname is used in the URL to your published stories (e.g., nickname/story-title)
       local_avatar: Image that is shown in the header bar and on your user page (png and jpg only).
       avatar: Image that is shown on the Author's page (png and jpg only).
       like: Like this story
@@ -384,13 +384,13 @@ en:
       added_on: "Added on: %{date}"
       last_sign_in: "Logged in last: %{date}"
       admin: Admin
-      sign_out: Sign Out    
+      sign_out: Sign Out
       jumpstart: JumpStart Georgia
       js_link_title: JumpStart Georgia - We communicate data better!
       js_link_text: Built by
       search: Search for Story ...
       build: Build Story
-      explore: Explore Stories      
+      explore: Explore Stories
       about_story: About
       likes: Likes
       comments: Comments
@@ -412,7 +412,7 @@ en:
       partial: Link to Story
       partial_text: Embed a link to the story that has the same look as the story links on the home page of Chai Khana (image, title, author, etc)
       full: Full Story
-      full_text: Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look. 
+      full_text: Embed the complete story on another website. We suggest you make the width as large as possible to produce the best look.
       feed: Chai Khana Feeds
       home: Home
       required: Required
@@ -427,7 +427,7 @@ en:
       success_updated: "%{obj} was successfully updated."
       success_publish: "%{obj} was successfully published."
       success_unpublish: "%{obj} was successfully unpublished."
-      success_clone: "%{obj} was successfully cloned to %{to}."      
+      success_clone: "%{obj} was successfully cloned to %{to}."
       error_created: "%{obj} wasn't created: %{err}"
       error_updated: "%{obj} wasn't updated: %{err}"
       error_publish: "%{obj} wasn't published: %{err}"
@@ -446,9 +446,9 @@ en:
       staff_unpick: The story has been unselected as a Staff Pick
       success_settings: Your settings were successfully updated.
       success_remove_avatar: Your Facebook avatar is now being used.
-      nickname_duplicate: This user URL already exists. 
+      nickname_duplicate: This user URL already exists.
       nickname_url: 'Your URL will be:'
-      story_duplicate: This story URL already exists. 
+      story_duplicate: This story URL already exists.
       story_url: 'Story URL will be:'
       update_translations: "Don't forget to translate this new item!"
       invitation:
@@ -505,13 +505,13 @@ en:
     slideshow:
       name: Image Slideshow
       description: Images in a horizontal slideshow
-    embed_media: 
+    embed_media:
       name: Embed Online Media
-      description: YouTube, Vimeo, etc   
-    youtube: 
+      description: YouTube, Vimeo, etc
+    youtube:
       name: YouTube Video
       description: YouTube video with ability to setting caption language
-    infographic: 
+    infographic:
       name: Infographic
       description: Infographic, interactive, or factoids with ability to add datasets and data sources
   story_role:
@@ -527,7 +527,7 @@ en:
     staff_pick: Staff Pick
     staff_pick_title: View stories that have been selected as Staff Picks
     staff_pick_title_active: Remove Staff Pick filter
-    sort_header: Sorted By    
+    sort_header: Sorted By
     sort_title: Indicate how the stories should be sorted
     filters: Filters
     all_stories: All Stories
@@ -538,7 +538,7 @@ en:
     category_header: Category
     category_title: View stories that belong to a category
     theme_header: Theme
-    theme_title: View stories that belong to a theme    
+    theme_title: View stories that belong to a theme
     language_header: Language
     language_title: View stories that are written in a particular language
     search: Find a Story
@@ -738,12 +738,18 @@ en:
       get_media: Get Online Media
       preview: Preview of Online Media
       error: The URL could not be processed. Please try again.
+      embed_source: Embed Source
+      embed_source_url: URL
+      embed_source_code: Code
       placeholder:
         title: Embed Online Media Title
         url: URL to online media
+        code: "ex: <iframe ..."
       hint:
         title: "This text only appears in the left sidebar, it will not show up in the story"
         url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
+        code: "Code for online media (iframe embed object ...)"
+        embed_source: Is the embed object from a url or is it code
     youtube:
       form_title: YouTube Video Form
       get_media: Get Youtube Video
@@ -763,7 +769,7 @@ en:
         info: "If checked, the title bar will be shown on top of the video"
         cc: "If checked, the video subtitles will be shown by default"
         menu_lang: "Language of the YouTube menu/controls"
-        cc_lang: "Language of the subtitles to show by default"           
+        cc_lang: "Language of the subtitles to show by default"
     infographic:
       form_title: Infographic Form
       add_datasource: Add Data Source
@@ -779,7 +785,7 @@ en:
         dataset_url: optional
         dynamic_url: Interactive URL
         dynamic_width: width
-        dynamic_height: height     
+        dynamic_height: height
       hint:
         title: This text only appears in the left sidebar, it will not show up in the story
         caption: "Heading of infographic will appear above the infographic image. If this Infographic Section is first in the story, you should leave this blank and use the Story Title field."
@@ -787,7 +793,7 @@ en:
         image: Only jpg and png format allowed; 8MB file size limit
         dataset_file: Please try to compress files to make for quicker download; 25MB file size limit
         dataset_url: URL to Dataset
-        subtype: "Static infographics are images, Dynamic infographics require a URL."        
+        subtype: "Static infographics are images, Dynamic infographics require a URL."
         dynamic_url: URL to web page with interactive infographic
         dynamic_size: Use these fields to indicate the space you want to reserve for showing this infographic. Leave the fields empty if you want the infographic to be fullscreen. The minimum value is 200.
         dynamic_render: The infographic can be rendered in the story or in a popup that appears after the user clicks on the infogaphic image in the story. Use the popup option if the infogaphic takes up the full screen or is very long.
@@ -816,9 +822,9 @@ en:
       facebook_avatar: This is your avatar from Facebook.
       use_facebook_avatar: Use Facebook Avatar
       hint:
-        about: Short summary about yourself.  This will be shown with the stories that you publish. 
+        about: Short summary about yourself.  This will be shown with the stories that you publish.
         default_story_locale: Select the language you want to use by default when creating a new story.
-      submit: Save Settings      
+      submit: Save Settings
     invitations:
       title: Collaboration Invitations
       no_invitations: At this time you have no invitations waiting for you.
@@ -849,7 +855,7 @@ en:
       following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image."
       following_not: "At this time, you are not following any users."
       following_title1: "Click to unfollow '%{name}'"
-      following_title2: "Click to follow '%{name}'"     
+      following_title2: "Click to follow '%{name}'"
       submit: Save Settings
   imageuploader:
     missing: "An error occurred while processing your image. Please try again."
