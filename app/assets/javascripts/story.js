@@ -1,7 +1,7 @@
- 
+
 /*********************************************************************************************
                                        prepare
-**********************************************************************************************/  
+**********************************************************************************************/
   var isMobile = function() { return /iPad|iPod|iPhone|Android/.test(navigator.userAgent) || document.location.hash == "#ipad"; }
   var isPhone = function() { return isMobile() && window.innerWidth < 768; }
 
@@ -9,9 +9,9 @@
   // so new classes with .ios .someclass path are used instead of basic ones
   if (isMobile()) { document.documentElement.className = document.documentElement.className + " ios mob";}
 
-  // array of functions added throught page which should be called at the end of page parsing with "await"  
+  // array of functions added throught page which should be called at the end of page parsing with "await"
   // function which is called at the bottom of the page
-  (function() {      
+  (function() {
     var defers = [];
     defer = function(f) { defers.push(f); };
     await = function() { defers.forEach(function(f,s) { f();}); };
@@ -19,7 +19,7 @@
 
   //collecting navigation sections and it's markers
   //binding click events on anchors and navigation section on resize and scroll
-  /*defer(function() {    
+  /*defer(function() {
       var anchor = d3.selectAll(".navigation-section").on("click", clicked),
           marker = d3.selectAll(".navigation-marker"),
           markerOffsets;
@@ -57,9 +57,9 @@
 
 /*********************************************************************************************
                                        mobile
-**********************************************************************************************/    
+**********************************************************************************************/
   if (isMobile())
-  {    
+  {
     mobileReorient();
     defer(function() {
       /* Only do if we're on iPad, iPhone or Android -- TG */
@@ -70,7 +70,7 @@
       var vpath = path.fullscreen.desktop.video;
       var ppath = path.fullscreen.desktop.poster;
 
-      if (isPhone()) { 
+      if (isPhone()) {
         ipath = ipath.replace("mobile_1024", "mobile_640");
         spath  = spath.replace("mobile_1024", "mobile_640");
       }
@@ -80,7 +80,7 @@
         .on("scroll", function() {
             d3.select(".navigation")
               .classed("navigation-solid", window.scrollY > 350)
-        }); 
+        });
 
       d3.select(".video-sequence:first-of-type").classed("ios-loaded", true);
 
@@ -88,7 +88,7 @@
 
         var video = d3.selectAll(".section.video-sequence .video")
           .datum(function() { return { video: this.getAttribute("data-video"), image: this.getAttribute("data-image"), }; });
-           
+
         var video_tag = video.select(".video-container").html("").filter(function(d) { return d.video; })
           .insert("video", ":first-child")
           .attr("preload", "none")
@@ -108,7 +108,7 @@
 
         if(!String.prototype.trim)
         {
-          String.prototype.trim = function(c) { 
+          String.prototype.trim = function(c) {
             var r = (!c) ? new RegExp('^\\s+|\\s+$', 'g') : new RegExp('^'+c+'+|'+c+'+$', 'g');
             return this.replace(r, '');
           };
@@ -144,7 +144,7 @@
   }
 /*********************************************************************************************
                                        desktop
-**********************************************************************************************/    
+**********************************************************************************************/
 
 /* this scripts included when device is not mobile */
     defer(function() {
@@ -185,7 +185,7 @@
 
 
     // Add for content to have audio track
-    // var section_content = d3.selectAll(".column")            
+    // var section_content = d3.selectAll(".column")
     //     .datum(function() {
     //       return {
     //         audio: this.getAttribute("data-audio")
@@ -195,7 +195,7 @@
     //       .on("statechange", sequencestatechanged));
 
 
-    var section_content = d3.selectAll(".section:not(.video-sequence)[data-audio]")            
+    var section_content = d3.selectAll(".section:not(.video-sequence)[data-audio]")
         .datum(function() {
           return {
             audio: this.getAttribute("data-audio")
@@ -208,7 +208,7 @@
         .attr("src", function(d) { return apath + d.audio + ".mp3"; })
         .property("loop", true);
     // content audio end
-      
+
 
 
     var section = d3.selectAll(".video")
@@ -289,7 +289,7 @@
       fadeBottom = Math.min(innerHeight - 200, fixTop + fixHeight);
       d3.select(".video-sequence:first-child").style("margin-top", fixTop + "px");
        //containerFixed.style("height", fixHeight + "px")
-      containerFixed.style("height", innerHeight+ "px").filter(function(d) { //fixHeight 
+      containerFixed.style("height", innerHeight+ "px").filter(function(d) { //fixHeight
         var rect = this.parentNode.getBoundingClientRect();
         return d.first ? rect.top < fixTop
             : d.last ? rect.bottom >= fixTop + fixHeight
@@ -308,9 +308,9 @@
             || (d.last && d3.event.rect.bottom >= 0 + fixHeight));
         d3.select(this.querySelector(".video-container"))
             .style("z-index", fixed ? 2 : 1)
-            .style("top", fixed ? "0px" : null)      
+            .style("top", fixed ? "0px" : null)
             .style("position", fixed ? "fixed" : "absolute");
-            
+
       }
 
       var section = d3.select(this),
@@ -378,7 +378,7 @@
             : opacityTop < fixTop - fixHeight ? 0 // video is fully covered by next video
             : opacityTop < fixTop - fixHeight / 2 ? Math.max(0, Math.min(1, (opacityTop - fixTop + fixHeight) / (fixHeight / 2)))
             : opacity;
-        if (d.first && d.sequence.first) scrollprompt.style("opacity",  volume == 1 ? 1 : (volume-0.7) > 0 ? (volume-0.7) : 0 );              
+        if (d.first && d.sequence.first) scrollprompt.style("opacity",  volume == 1 ? 1 : (volume-0.7) > 0 ? (volume-0.7) : 0 );
         //if (d.first && d.sequence.first) headline.style("opacity", 1 - volume);
       }
     }
@@ -392,7 +392,7 @@
               if (!this.paused) this.pause();
               if (this.currentTime) this.currentTime = 0;
             }
-          });                 
+          });
           if (d.first && d.sequence.first && !d3.event.state) scrollprompt.style("opacity", 1);
       //if (d.first && d.sequence.first && !d3.event.state) headline.style("opacity", null);
     }
@@ -407,12 +407,12 @@
       {
         d3.select("body").style("background", fade(opacity));
       }
-      d3.select(this).select("audio").property(muteVolume, 1 - opacity);         
+      d3.select(this).select("audio").property(muteVolume, 1 - opacity);
     }
 
     function sequencestatechanged() {
       var sequence = d3.select(this),
-          audio = sequence.select("audio");           
+          audio = sequence.select("audio");
       if (d3.event.state) {
         sequence.selectAll("video").each(function() { this.preload = "auto";});
         audio.each(function() { this.play();  });
@@ -435,7 +435,7 @@
 
 
 /*********************************************************************************************
-                                       slideshow 
+                                       slideshow
 **********************************************************************************************/
 if (!isMobile())
 {
@@ -477,11 +477,11 @@ if (!isMobile())
       container.append("div")
           .attr("class", "btn btn-next")
           .on("click", function() { stopPlay(); showNext(); })
-         .html("<svg class='arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M3,1.008L20.742,9.045L3,17.083L6,8.917Z'></path></svg>");  
+         .html("<svg class='arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M3,1.008L20.742,9.045L3,17.083L6,8.917Z'></path></svg>");
       container.append("div")
           .attr("class", "btn btn-prev")
           .on("click", function() { stopPlay(); showPrevious(); })
-        .html("<svg class='arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M18.742,0.758L1,8.795L18.742,16.833L15.742,8.667Z'></path></svg>");   
+        .html("<svg class='arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M18.742,0.758L1,8.795L18.742,16.833L15.742,8.667Z'></path></svg>");
       var thumb = container.insert("div", ".captions")
           .attr("class", "thumbs")
         .selectAll(".thumb")
@@ -489,7 +489,7 @@ if (!isMobile())
         .enter().append("img")
           .classed("thumb",true)
           .classed("active", function(d, i) { return (i === currentIndex); })
-          .attr("src",function(d) { return tpath + d.image; })      
+          .attr("src",function(d) { return tpath + d.image; })
           .on("click", function(d, i) { stopPlay(); show(i); });
       function firststatechanged() {
         if (d3.event.state) {
@@ -529,8 +529,8 @@ if (!isMobile())
   });
 }
 /*********************************************************************************************
-                                       watcher and starter 
-**********************************************************************************************/    
+                                       watcher and starter
+**********************************************************************************************/
 (function() {
   var watched = [];
   d3.behavior.watch = function() {
@@ -557,7 +557,12 @@ if (!isMobile())
         .on("scroll.watch", watch_scrolled)
         .on("DOMContentLoaded.watch", watch_scrolled);
   }
-  function watch_scrolled() {
+  d3.select(window).on("resize.reheight", reheight);
+  function reheight () {
+    var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    d3.selectAll(".section.embed.fullscreen .container > *:first-child").style("height", h + "px");
+  }
+  function watch_scrolled () {
     watched.forEach(function(watch) {
       var rect = watch.element.getBoundingClientRect();
       if (rect.top + rect.height < 0 || rect.bottom - rect.height - innerHeight > 0) {
@@ -569,13 +574,13 @@ if (!isMobile())
       }
     });
   }
-  function watch_scrolledStatic() {
+  function watch_scrolledStatic () {
     watched.forEach(function(watch) {
       watch_state(watch, 1);
       watch_dispatch(watch, {type: "scroll", offset: .5, rect: {top: 0}}); // XXX rect
     });
   }
-  function watch_state(watch, state1) {
+  function watch_state (watch, state1) {
     var state0 = watch.state;
     if (state0 !== state1) watch_dispatch(watch, {
       type: "statechange",
@@ -583,7 +588,7 @@ if (!isMobile())
       previousState: state0
     });
   }
-  function watch_dispatch(watch, event) {
+  function watch_dispatch (watch, event) {
     var element = watch.element,
         sourceEvent = event.sourceEvent = d3.event;
     try {
@@ -593,5 +598,6 @@ if (!isMobile())
       d3.event = sourceEvent;
     }
   }
-  await();       
+  await();
+  reheight();
 })();

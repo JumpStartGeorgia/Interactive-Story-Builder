@@ -112,6 +112,8 @@ ru:
         email: "Адрес электронной почты"
         message: "Письмо"
         message_type: "Тип отзыва"
+      embed_medium:
+        fullscreen: "Во весь экран"
       embed_medium_translation: &embed_medium_translation
         title: "Заглавок"
         url: Url к онлайн медии
@@ -742,7 +744,7 @@ ru:
       embed_source_url: URL
       embed_source_code: Code
       placeholder:
-        title: "Заглавок встроенного контента"
+        title: "Заголовок встроенного контента"
         url: URL к медиа контенту
         code: "ex: <iframe ..."
       hint:
@@ -750,6 +752,7 @@ ru:
         url: "Дла встроенного медиа контента могут быть использованы следующие сайты: Аудио: Soundcloud, Spotify; Видео: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
         code: "Code for online media (iframe embed object ...)"
         embed_source: Is the embed object from a url or is it code
+        fullscreen: "При выборе этого видео будет занимать весь экран"
     youtube:
       form_title: "Форма для видео из YouTube"
       get_media: "Получить видео из YouTube"

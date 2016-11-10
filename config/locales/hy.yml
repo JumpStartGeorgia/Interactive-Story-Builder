@@ -112,6 +112,8 @@ hy:
         email: "Էլեկտրոնային հասցե"
         message: "Նամակ"
         message_type: "Հետադարձ կապի տեսակը"
+      embed_medium:
+        fullscreen: "Ամբողջ էկրանով"
       embed_medium_translation: &embed_medium_translation
         title: "Վերնագիր"
         url: "Առցանց Media-ի Url"
@@ -750,6 +752,7 @@ hy:
         url: "Ներդրված բովանդակության համար կարող են օգտագործել հետևյալ կայքերը. Աուդիո՝ Soundcloud, Spotify; Վիդեո՝ YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
         code: "Code for online media (iframe embed object ...)"
         embed_source: Is the embed object from a url or is it code
+        fullscreen: "Նշելու դեպքում վիդեոն կցուցադրվի ողջ էկրանով"
     youtube:
       form_title: YouTube-ի վիդեոների ձև
       get_media: "Բերել վիդեոն Youtube-ից"

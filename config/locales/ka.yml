@@ -112,6 +112,8 @@ ka:
         email: "ელ. ფოსტის მისამართი"
         message: "გზავნილი"
         message_type: "გზავნილის მიზანი"
+      embed_medium:
+        fullscreen: "მთელ ეკრანზე გაშლილი"
       embed_medium_translation: &embed_medium_translation
         title: "სათაური"
         url: "ონლაინ აუდიოს/ვიდეოს ბმული"
@@ -750,6 +752,7 @@ ka:
         url: "ჩასასმელი ონლაინ აუდიო/ვიდეო ფაილისთვის შეგიძლიათ გამოიყენოთ შემდეგი საიტები: აუდიო: Soundcloud, Spotify; ვიდეო: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
         code: "Code for online media (iframe embed object ...)"
         embed_source: Is the embed object from a url or is it code
+        fullscreen: "თუ მონიშნულია ვიდეო დაიკავებს მთლიან ეკრანს"
     youtube:
       form_title: YouTube ვიდეოს ფორმა
       get_media: "მიიღეთ თქვენი Youtube ვიდეო"

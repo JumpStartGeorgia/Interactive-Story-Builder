@@ -24,13 +24,19 @@
         }
         .merge(( (isTO) ? {} : { hint: t('.hint.title'), placeholder: t('.placeholder.title') })) %>
 
+        <% if !@trans %>
+          <div class='one-line'>
+            <%= f.input :fullscreen, :as => :boolean, :hint => t('.hint.fullscreen'), :input_html => { id: "embedMediaFullcsreen" } %>
+          </div>
+        <% end %>
+
         <% if !isTO %>
           <div class="input form-group" >
             <label class="control-label">
               <%= t('.embed_source') %>
               <div class="help-inline" title="<%= t('.hint.embed_source') %>"><div>?</div></div>
             </label>
-            <% has_url = f_translation.object.url.present? %>
+            <% has_url = f_translation.object.url.present? ? true : f_translation.object.code.present? ? false : true %>
             <div>
                 <label for="embed_source_url" style="margin-right:16px;">
                   <input <%= has_url ? 'checked' : '' %> name="embed_source" id="embed_source_url" type="radio" value="url">

@@ -112,6 +112,8 @@ en:
         email: Email Address
         message: Message
         message_type: Feedback Type
+      embed_medium:
+        fullscreen: Fullscreen
       embed_medium_translation: &embed_medium_translation
         title: Title
         url: URL to Online Media
@@ -750,6 +752,7 @@ en:
         url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
         code: "Code for online media (iframe embed object ...)"
         embed_source: Is the embed object from a url or is it code
+        fullscreen: "If checked, the embed media will take up the entire screen"
     youtube:
       form_title: YouTube Video Form
       get_media: Get Youtube Video

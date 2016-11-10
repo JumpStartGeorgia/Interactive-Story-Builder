@@ -153,16 +153,16 @@
                 </div>
               </div>
             <% elsif section.embed_media? %>
-              <div class="section embed" <%= dataAudio.html_safe %>>
+              <div class="section embed<%= section.embed_medium.fullscreen ? ' fullscreen' : '' %>" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
-                <div class="embed-container">
+                <div class="container">
                   <%= section.embed_medium.code.html_safe %>
                 </div>
               </div>
             <% elsif section.youtube? %>
-              <div class="section youtube embed<%= section.youtube.fullscreen ? ' fullscreen' : '' %>" <%= dataAudio.html_safe %>>
+              <div class="section youtube<%= section.youtube.fullscreen ? ' fullscreen' : '' %>" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
