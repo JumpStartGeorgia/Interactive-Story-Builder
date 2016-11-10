@@ -1282,8 +1282,9 @@ body
 .section.embed .container {
   text-align:center;
 }
-.section.embed .container iframe {
+.section.embed .container > *:first-child {
   max-width: 640px;
+  width:100%;
 }
 .section.embed.fullscreen .container {
   width:100%;
