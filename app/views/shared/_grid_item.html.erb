@@ -1,10 +1,4 @@
 <%
-  if params[:sl].present?
-    story.current_locale = params[:sl].strip
-    Globalize.story_locale = params[:sl].strip
-  else
-    story.use_app_locale_if_translation_exists
-  end
   title = ""
   if story.about.present?
     title = truncate(strip_tags_nbsp(story.about), length: 160, separator: ' ')
@@ -111,7 +105,7 @@
         if about.present?
       %>
           <%= link_to truncate(about, length: truncate_length, separator: ' ').html_safe,
-              path, :title => about.html_safe, :lang => story.story_locale %>
+              path, :title => about.html_safe, :lang => story.current_locale %>
       <% end %>
     </div>
     <div class="story-misc">

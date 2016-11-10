@@ -57,15 +57,7 @@ class RootController < ApplicationController
                 story = Story.select('stories.id').is_published.in_published_theme.find_by_permalink(params[:id])
                 @story = Story.is_published.in_published_theme.fullsection(story.id) if story.present?
                 if @story.present?
-                  # set story locale
-                  # if param exists use that
-                  # else check if translation exists for current app locale
-                  if params[:sl].present?
-                    @story.current_locale = params[:sl].strip
-                    Globalize.story_locale = params[:sl].strip
-                  else
-                    @story.use_app_locale_if_translation_exists
-                  end
+                  @story.set_prime_locale(params[:sl])
                 end
                 # record if the user has liked this story
                 @user_likes = false

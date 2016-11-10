@@ -21,4 +21,15 @@ module TranslationOverride
     self.current_locale = I18n.locale.to_s if self.translated_locales.include?(I18n.locale)
     Globalize.story_locale = self.current_locale
   end
+
+  def set_prime_locale(sl)
+    trans_locales = self.translated_locales
+    loc = I18n.locale.to_s if trans_locales.include?(I18n.locale)
+    if sl.present?
+      sl.strip! if String === sl
+      loc = sl if trans_locales.include?(sl.to_sym)
+    end
+    self.current_locale = loc
+    Globalize.story_locale = loc
+  end
 end

@@ -27,7 +27,7 @@ module Globalize
       end
 
       def translations_for(v)
-        v.each{ |t| translation_for(t) }     
+        v.each{ |t| translation_for(t) }
       end
 
       # flag to indicate if translation is for story
@@ -62,7 +62,7 @@ module Globalize
             options = {:locale => options}
           end
           options = is_story_translation == true ? {:locale => current_locale}.merge(options) : {:locale => Globalize.locale}.merge(options)
-          
+
           # Dirty tracking, paraphrased from
           # ActiveRecord::AttributeMethods::Dirty#write_attribute.
           name_str = name.to_s
@@ -76,7 +76,7 @@ module Globalize
             old = old.clone if old.duplicable?
             changed_attributes[name_str] = old if value != old
           end
-          
+
           globalize.write(options[:locale], name, value)
         else
           super(name, value)
@@ -135,5 +135,4 @@ module Globalize
     end
   end
 end
-
 

@@ -16,7 +16,7 @@
     <% if !@export %>
       <%= render partial: "layouts/storybuilder_nav" if !@no_nav %>
     <% end %>
-    <div id='storyTeller'>
+    <div id='storyTeller' lang="<%= @story.current_locale %>">
       <%= render partial: "storyteller/template/#{@template}/content"%>
     </div>
   <% if !@export %>
@@ -72,7 +72,8 @@
       <div class="grid-wrapper">
         <div class="grid col-4">
           <% @stories.each_with_index do |story,s_i| %>
-            <div class="col n-3" lang="<%= story.story_locale %>">
+            <% story.set_prime_locale(params[:sl]) %>
+            <div class="col n-3" lang="<%= story.current_locale %>">
               <%= render partial: "shared/grid_item" , locals:{:story=>story} %>
             </div>
           <% end %>

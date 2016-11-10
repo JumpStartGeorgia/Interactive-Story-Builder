@@ -11,20 +11,12 @@ class StorytellerController < ApplicationController
 
     #Rails.logger.debug("------------------------------------------------------- storyteller-index ")
     @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css", "grid2.css")
-    @js.push("storyteller.js","modalos.js","follow.js")    
+    @js.push("storyteller.js","modalos.js","follow.js")
   	story = Story.select('stories.id').is_published.find_by_permalink(params[:id])
-  	@story = Story.is_published.fullsection(story.id) if story.present?  
+  	@story = Story.is_published.fullsection(story.id) if story.present?
 
   	if @story.present?
-      # set story locale 
-      # if param exists use that
-      # else check if translation exists for current app locale
-      if params[:sl].present?
-        @story.current_locale = params[:sl].strip 
-        Globalize.story_locale = params[:sl].strip 
-      else
-        @story.use_app_locale_if_translation_exists
-      end
+      @story.set_prime_locale(params[:sl])
       @stories = @story.random_related_stories
 #logger.debug "$$$$$$$$$$$ story current locale = #{@story.current_locale}; permalink = #{@story.permalink}"
 
@@ -35,9 +27,9 @@ class StorytellerController < ApplicationController
 
       if params[:n] == 'n'
           @no_nav = true
-      end    
-      respond_to do |format|     
-        format.html 
+      end
+      respond_to do |format|
+        format.html
       end
       # record the view count
       impressionist(@story, :unique => [:session_hash])
@@ -45,7 +37,7 @@ class StorytellerController < ApplicationController
       redirect_to root_path, :notice => t('app.msgs.does_not_exist')
     end
   end
-  
+
 
   def staff_pick
   	story = Story.is_published.find_by_permalink(params[:id])
@@ -53,21 +45,21 @@ class StorytellerController < ApplicationController
   	  story.staff_pick = true
   	  story.save(:validate => false)
   	end
-  	
-    respond_to do |format|     
-      format.json { render json: nil , status: :created } 
+
+    respond_to do |format|
+      format.json { render json: nil , status: :created }
     end
   end
-  
+
   def staff_unpick
   	story = Story.is_published.find_by_permalink(params[:id])
   	if story.present? && story.staff_pick
   	  story.staff_pick = false
   	  story.save(:validate => false)
   	end
-  	
-    respond_to do |format|     
-      format.json { render json: nil , status: :created } 
+
+    respond_to do |format|
+      format.json { render json: nil , status: :created }
     end
   end
 
@@ -75,30 +67,30 @@ class StorytellerController < ApplicationController
   def like
     story = Story.is_published.find_by_permalink(params[:id])
     story.liked_by current_user if story.present?
-  
-    respond_to do |format|     
-      format.json { render json: nil , status: :created } 
+
+    respond_to do |format|
+      format.json { render json: nil , status: :created }
     end
-  
+
   end
 
 
   def unlike
     story = Story.is_published.find_by_permalink(params[:id])
     story.unliked_by current_user if story.present?
-  
-    respond_to do |format|     
-      format.json { render json: nil , status: :created } 
+
+    respond_to do |format|
+      format.json { render json: nil , status: :created }
     end
   end
-  
+
   def record_comment
     story = Story.is_published.find_by_permalink(params[:id])
     story.increment_comment_count if story.present?
-  
-    respond_to do |format|     
-      format.json { render json: {count: story.present? ? story.comments_count : 0} , status: :created } 
+
+    respond_to do |format|
+      format.json { render json: {count: story.present? ? story.comments_count : 0} , status: :created }
     end
   end
-  
+
 end
