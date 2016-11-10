@@ -8,5 +8,9 @@ class StoryType < ActiveRecord::Base
 
   def self.sorted
     with_translations(I18n.locale).order('story_types.sort_order, story_type_translations.name')
-  end  
+  end
+
+  def self.find_by_permalink(permalink)
+    joins(:story_type_translations).where("`story_type_translations`.`permalink` = ? or exists(select 'a' from `friendly_id_slugs` where `friendly_id_slugs`.`sluggable_type` = 'StoryTypeTranslation' and `friendly_id_slugs`.`sluggable_id` = `story_type_translations`.`id` and `friendly_id_slugs`.`slug` = ?)", permalink, permalink).first
+  end
 end

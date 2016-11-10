@@ -5,13 +5,13 @@ class AddUserSettings < ActiveRecord::Migration
     add_column :users, :permalink, :string
     add_column :users, :avatar_file_name, :string
     add_index :users, :permalink
-    
+
     # add default locale, permalink, and avatar file name to all users
-    User.transaction do 
+    User.transaction do
       User.all.each do |user|
         user.default_story_locale = 'en'
-        user.generate_permalink!
-        user.save 
+        # user.generate_permalink!
+        user.save
       end
     end
   end

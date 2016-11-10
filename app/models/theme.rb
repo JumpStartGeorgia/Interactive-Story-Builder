@@ -35,8 +35,8 @@ class Theme < ActiveRecord::Base
   def check_if_can_publish
     if self.is_published_changed? && self.is_published? && self.published_item_count == 0
       self.errors.add(:base, I18n.t('activerecord.errors.messages.publish_theme'))
-    end    
-    return true 
+    end
+    return true
   end
 
   #################################
@@ -58,8 +58,10 @@ class Theme < ActiveRecord::Base
   # get the number of published items in this theme
   def published_item_count
     Theme.select('distinct stories.id').joins(:stories => :story_translations).where('story_translations.published = 1 and themes.id = ?', self.id).count
-  end  
+  end
 
-
+  def self.find_by_permalink(permalink)
+    joins(:theme_translations).where("`theme_translations`.`permalink` = ? or exists(select 'a' from `friendly_id_slugs` where `friendly_id_slugs`.`sluggable_type` = 'ThemeTranslation' and `friendly_id_slugs`.`sluggable_id` = `theme_translations`.`id` and `friendly_id_slugs`.`slug` = ?)", permalink, permalink).first
+  end
 
 end

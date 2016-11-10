@@ -1,8 +1,8 @@
 class Author < ActiveRecord::Base
   translates :name, :about, :permalink
 
-  has_one :avatar,     
-    :conditions => "asset_type = #{Asset::TYPE[:author_avatar]}",    
+  has_one :avatar,
+    :conditions => "asset_type = #{Asset::TYPE[:author_avatar]}",
     foreign_key: :item_id,
     class_name: "Asset",
     dependent: :destroy
@@ -32,4 +32,7 @@ class Author < ActiveRecord::Base
     end
   end
 
+  def self.find_by_permalink(permalink)
+    joins(:author_translations).where("`author_translations`.`permalink` = ? or exists(select 'a' from `friendly_id_slugs` where `friendly_id_slugs`.`sluggable_type` = 'AuthorTranslation' and `friendly_id_slugs`.`sluggable_id` = `author_translations`.`id` and `friendly_id_slugs`.`slug` = ?)", permalink, permalink).first
+  end
 end

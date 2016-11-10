@@ -1,19 +1,24 @@
 class CategoryTranslation < ActiveRecord::Base
 	belongs_to :category
-  has_permalink :create_permalink, true
+
+  # has_permalink :create_permalink, true
+  extend FriendlyId
+  friendly_id :create_permalink, use: [:slugged, :history], slug_column: :permalink
+
 
   attr_accessible :category_id, :name, :locale
 
   validates :name, :presence => true
   validates_uniqueness_of :category_id, scope: [:locale]
+
   def required_data_provided?
     provided = false
-    
+
     provided = self.name.present?
-    
+
     return provided
   end
-  
+
   def add_required_data(obj)
     self.name = obj.name if self.name.blank?
   end

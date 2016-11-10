@@ -1,5 +1,7 @@
 class NewsTranslation < ActiveRecord::Base
-  has_permalink :create_permalink, true
+  # has_permalink :create_permalink, true
+  extend FriendlyId
+  friendly_id :create_permalink, use: [:slugged, :history], slug_column: :permalink
 
 	belongs_to :news
   attr_accessible :news_id, :title, :content, :locale, :permalink
@@ -10,26 +12,26 @@ class NewsTranslation < ActiveRecord::Base
   before_save :check_title
 
   validates :title, :content, :presence => true
-  validates_uniqueness_of :news_id, scope: [:locale]    
-    
+  validates_uniqueness_of :news_id, scope: [:locale]
+
   def required_data_provided?
     provided = false
-    
+
     provided = self.title.present? && self.content.present?
-    
+
     return provided
   end
-  
+
   def add_required_data(obj)
     self.title = obj.title if self.title.blank?
     self.content = obj.content if self.content.blank?
   end
-  
-  def check_title
-    self.generate_permalink! if self.title_changed?
-    return true
-  end 
-  
+
+  # def check_title
+  #   self.generate_permalink! if self.title_changed?
+  #   return true
+  # end
+
   def create_permalink
     if self.news_id.present? && self.news.published_at.present? && self.news.is_published == true
       date = ''
@@ -38,5 +40,5 @@ class NewsTranslation < ActiveRecord::Base
       "#{date}#{self.title.dup}"
     end
   end
-  
+
 end

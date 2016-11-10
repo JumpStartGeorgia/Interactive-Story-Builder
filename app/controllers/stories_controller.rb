@@ -566,7 +566,7 @@ logger.debug "@@@@@@@@@@@@@ d height = #{params[:infographic][:dynamic_height]};
 
     @js.push("modalos.js")
     @css.push("modalos.css")
-
+    gon.story_id = @story.id
     # if there are no sections, show the content form by default
     gon.has_no_sections = @story.sections.blank?
     # else show story form by default
@@ -752,7 +752,9 @@ end
   # params passed in are text, id, and sl (story_locale). If story locale does not exist, use I18n.locale
   def check_permalink
     output = {:permalink => nil, :is_duplicate => false}
+
     if params[:text].present?
+
       permalink_staging = params[:text]
       permalink_temp = permalink_normalize(permalink_staging)
       locale = params[:sl].present? && I18n.available_locales.include?(params[:sl].strip.to_sym) ? params[:sl].strip : I18n.locale
@@ -762,9 +764,8 @@ end
       if story.blank?
         logger.debug "*********** story blank"
         story = StoryTranslation.new(:permalink_staging => permalink_staging, :locale => locale)
-        story.generate_permalink
-        output = {:permalink => story.permalink, :is_duplicate => story.is_duplicate_permalink?}
-
+        vld = story.valid?
+        output = {:permalink => story.permalink, :is_duplicate => !vld}
       # if the permalink is the same, do nothing
       elsif story.permalink == permalink_temp
         logger.debug "*********** permalink same"
@@ -775,8 +776,9 @@ end
         logger.debug "*********** permalink different"
         story.permalink_staging = permalink_staging
         logger.debug "*********** - story = #{story.inspect}"
-        story.generate_permalink!
-        output = {:permalink => story.permalink, :is_duplicate => story.is_duplicate_permalink?}
+        vld = story.valid?
+
+        output = {:permalink => story.permalink, :is_duplicate => !vld}
       end
     end
 
