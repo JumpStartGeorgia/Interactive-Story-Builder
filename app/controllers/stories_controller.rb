@@ -758,7 +758,7 @@ end
       permalink_staging = params[:text]
       permalink_temp = permalink_normalize(permalink_staging)
       locale = params[:sl].present? && I18n.available_locales.include?(params[:sl].strip.to_sym) ? params[:sl].strip : I18n.locale
-      story = StoryTranslation.select('permalink, permalink_staging').where(:story_id => params[:id], :locale => locale).first
+      story = StoryTranslation.where(:story_id => params[:id], :locale => locale).first
       # if the story could not be found, use an empty story
       logger.debug "*********** new staging = #{permalink_staging}; story = #{story.inspect}"
       if story.blank?
