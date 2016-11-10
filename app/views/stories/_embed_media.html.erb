@@ -30,35 +30,39 @@
           </div>
         <% end %>
 
+        <% has_url = f_translation.object.url.present? ? true : f_translation.object.code.present? ? false : true %>
         <% if !isTO %>
-          <div class="input form-group" >
+          <div class="input form-group<%= "#{@trans ? ' hidden' : ''}"%>" >
             <label class="control-label">
               <%= t('.embed_source') %>
               <div class="help-inline" title="<%= t('.hint.embed_source') %>"><div>?</div></div>
             </label>
-            <% has_url = f_translation.object.url.present? ? true : f_translation.object.code.present? ? false : true %>
             <div>
-                <label for="embed_source_url" style="margin-right:16px;">
-                  <input <%= has_url ? 'checked' : '' %> name="embed_source" id="embed_source_url" type="radio" value="url">
-                  <%= t('.embed_source_url') %>
-                </label>
-                <label for="embed_source_code">
-                  <input <%= !has_url ? 'checked' : '' %> name="embed_source" id="embed_source_code" type="radio" value="code">
-                  <%= t('.embed_source_code') %>
-                </label>
+              <label for="embed_source_url" style="margin-right:16px;">
+                <input <%= has_url ? 'checked' : '' %> name="embed_source" id="embed_source_url" type="radio" value="url">
+                <%= t('.embed_source_url') %>
+              </label>
+              <label for="embed_source_code">
+                <input <%= !has_url ? 'checked' : '' %> name="embed_source" id="embed_source_code" type="radio" value="code">
+                <%= t('.embed_source_code') %>
+              </label>
             </div>
           </div>
         <% end %>
 
         <%= f_translation.input :url, { :as => :url,
           :wrapper_html => { class: "embed_based_on_url#{has_url ? '' : ' hidden'}" },
-          :input_html => { id: (!isTO ? "embedMediaUrl" : nil) }
-          .merge(readonly)
+          :input_html => { id: (!isTO ? "embedMediaUrl" : nil) }.merge(readonly)
         }
         .merge(( (isTO) ? {} : { hint: t('.hint.url'), placeholder: t('.placeholder.url') })) %>
 
+        <%= f_translation.input :code, { :as => :string ,
+          :wrapper_html => { class: "embed_based_on_code#{!has_url ? '' : ' hidden'}" },
+          :input_html => { id: (!isTO ? "embedMediaCode" : nil) }.merge(readonly)
+        }
+        .merge(( (isTO) ? {} : { hint: t('.hint.code'), placeholder: t('.placeholder.code') })) %>
+
       <% if !isTO %>
-        <%= f_translation.input :code, :as => :string , :input_html => { :id => "embedMediaCode", :placeholder => t('.placeholder.code') }, :wrapper_html => { class: "embed_based_on_code#{!has_url ? '' : ' hidden'}" }  %>
         <button id="btnOlly" type="button" class="btn btn-info btn-xs" style="padding: 2px 6px"><%= t('.get_media') %></button>
       <% else %>
         <div class='dummy24'></div>
