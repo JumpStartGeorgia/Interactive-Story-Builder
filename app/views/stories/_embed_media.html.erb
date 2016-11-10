@@ -4,36 +4,66 @@
 <% if isTO %>
     <% readonly = { readonly:true , disabled: true } %>
 <% end %>
- 
+
   <h2 class="form-title"><%= t('.form_title') %></h2>
-  <%= semantic_form_for(@item, url: embed_media_story_path(id:params[:id],:format => :js), :html => {:id => "embedMediaForm"} ,remote: true) do |f| %>  
+  <%= semantic_form_for(@item, url: embed_media_story_path(id:params[:id],:format => :js), :html => {:id => "embedMediaForm"} ,remote: true) do |f| %>
     <%= f.inputs do %>
-      <% 
+      <%
         trans_record = @item.embed_medium_translations.select{|x| x.locale == @item.current_locale}.first
-        trans_record = @item.with_translation(@item.current_locale) if trans_record.blank? 
+        trans_record = @item.with_translation(@item.current_locale) if trans_record.blank?
       %>
       <%= f.fields_for :embed_medium_translations, trans_record do |f_translation| %>
 
         <%= (f_translation.input :locale , :as => :hidden) if !isTO %>
          <%= (hidden_field_tag :current_locale , @item.current_locale) if !isTO %>
 
-        <%= f_translation.input :title, 
-        { 
-          :input_html => { id: (!isTO ?  "embedMediaTitle" : nil) }      
-          .merge(readonly) 
+        <%= f_translation.input :title,
+        {
+          :input_html => { id: (!isTO ?  "embedMediaTitle" : nil) }
+          .merge(readonly)
         }
         .merge(( (isTO) ? {} : { hint: t('.hint.title'), placeholder: t('.placeholder.title') })) %>
 
+        <% if !@trans %>
+          <div class='one-line'>
+            <%= f.input :fullscreen, :as => :boolean, :hint => t('.hint.fullscreen'), :input_html => { id: "embedMediaFullcsreen" } %>
+          </div>
+        <% end %>
+
+        <% has_url = f_translation.object.url.present? ? true : f_translation.object.code.present? ? false : true %>
+        <% if !isTO %>
+          <div class="input form-group<%= "#{@trans ? ' hidden' : ''}"%>" >
+            <label class="control-label">
+              <%= t('.embed_source') %>
+              <div class="help-inline" title="<%= t('.hint.embed_source') %>"><div>?</div></div>
+            </label>
+            <div>
+              <label for="embed_source_url" style="margin-right:16px;">
+                <input <%= has_url ? 'checked' : '' %> name="embed_source" id="embed_source_url" type="radio" value="url">
+                <%= t('.embed_source_url') %>
+              </label>
+              <label for="embed_source_code">
+                <input <%= !has_url ? 'checked' : '' %> name="embed_source" id="embed_source_code" type="radio" value="code">
+                <%= t('.embed_source_code') %>
+              </label>
+            </div>
+          </div>
+        <% end %>
 
         <%= f_translation.input :url, { :as => :url,
-          :input_html => { id: (!isTO ? "embedMediaUrl" : nil) }      
-          .merge(readonly) 
+          :wrapper_html => { class: "embed_based_on_url#{has_url ? '' : ' hidden'}" },
+          :input_html => { id: (!isTO ? "embedMediaUrl" : nil) }.merge(readonly)
         }
         .merge(( (isTO) ? {} : { hint: t('.hint.url'), placeholder: t('.placeholder.url') })) %>
 
+        <%= f_translation.input :code, { :as => :string ,
+          :wrapper_html => { class: "embed_based_on_code#{!has_url ? '' : ' hidden'}" },
+          :input_html => { id: (!isTO ? "embedMediaCode" : nil) }.merge(readonly)
+        }
+        .merge(( (isTO) ? {} : { hint: t('.hint.code'), placeholder: t('.placeholder.code') })) %>
+
       <% if !isTO %>
         <button id="btnOlly" type="button" class="btn btn-info btn-xs" style="padding: 2px 6px"><%= t('.get_media') %></button>
-        <%= f_translation.input :code, :as => :hidden , :input_html => { :id => "embedMediaCode" }  %>
       <% else %>
         <div class='dummy24'></div>
       <% end %>
@@ -52,19 +82,19 @@
         <% if !isTO %>
           <%= f.input :section_id, :as => :hidden , :input_html => { :id => "embedMediaSection" }  %>
           <% if @item.id.present? %>
-            <%= f.input :id, :as => :hidden , :input_html => { :id => "embedMediaId" }  %>    
+            <%= f.input :id, :as => :hidden , :input_html => { :id => "embedMediaId" }  %>
           <% end %>
-        <% end %>    
+        <% end %>
     <% end %>
     <% end %>
 
     <% style = @item.code.blank? ? "style=display:none;" : "" %>
     <% if !isTO %>
-      <div class="pull-right spacer" id="embedMediaButtons" <%= style %>>    
+      <div class="pull-right spacer" id="embedMediaButtons" <%= style %>>
         <%= f.submit t('app.buttons.save'), :class => 'btn btn-default', :"data-disable-with"=> t('app.buttons.processing') %>
-        <%= f.submit t('app.buttons.save_and_next'), :class => 'btn btn-default', :name => "commit_and_next", :"data-disable-with"=> t('app.buttons.processing') %>         
-        <%= f.submit t('helpers.links.next'), :class => 'btn btn-default', :type => :button, :onclick => 'select_next();' %> 
-        <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>                
+        <%= f.submit t('app.buttons.save_and_next'), :class => 'btn btn-default', :name => "commit_and_next", :"data-disable-with"=> t('app.buttons.processing') %>
+        <%= f.submit t('helpers.links.next'), :class => 'btn btn-default', :type => :button, :onclick => 'select_next();' %>
+        <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>
       </div>
     <% end %>
   <% end %>

@@ -66,7 +66,7 @@ ka:
         permalink: "ამბის ბმული"
         permalink_staging: "ამბის ბმული"
         asset: *asset
-      story_translations: *story_translation      
+      story_translations: *story_translation
       section:
         has_marker: "სექციის გამოყოფა"
         type_id: "ტიპი"
@@ -112,6 +112,8 @@ ka:
         email: "ელ. ფოსტის მისამართი"
         message: "გზავნილი"
         message_type: "გზავნილის მიზანი"
+      embed_medium:
+        fullscreen: "მთელ ეკრანზე გაშლილი"
       embed_medium_translation: &embed_medium_translation
         title: "სათაური"
         url: "ონლაინ აუდიოს/ვიდეოს ბმული"
@@ -143,7 +145,7 @@ ka:
         description: Description
         dataset_url: Online Dataset
         image_name: Image
-        image: *asset     
+        image: *asset
         dataset_file: *asset
         dynamic_url: Dynamic URL
       infographic_translations: *infographic_translation
@@ -179,7 +181,7 @@ ka:
       story_type_translation: &story_type_translation
         name: "სათაური"
         permalink: URL-ი
-      story_type_translations: *story_type_translation      
+      story_type_translations: *story_type_translation
     errors:
       messages:
         required_field: "სავალდებულო ველი"
@@ -738,12 +740,19 @@ ka:
       get_media: "ონლაინ აუდიო/ვიდეო ფაილის ჩასმა"
       preview: "ონლაინ აუდიო/ვიდეო ფაილის ნახვა"
       error: "ბმული ვერ დამუშავდა. გთხოვთ, კიდევ სცადეთ."
+      embed_source: Embed Source
+      embed_source_url: URL
+      embed_source_code: Code
       placeholder:
         title: "ონლაინ აუდიო/ვიდეო ფაილის სათაური"
         url: "ონლაინ აუდიო/ვიდეო ფაილის ბმული"
+        code: "ex: <iframe ..."
       hint:
         title: "ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში"
         url: "ჩასასმელი ონლაინ აუდიო/ვიდეო ფაილისთვის შეგიძლიათ გამოიყენოთ შემდეგი საიტები: აუდიო: Soundcloud, Spotify; ვიდეო: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
+        code: "Code for online media (iframe embed object ...)"
+        embed_source: Is the embed object from a url or is it code
+        fullscreen: "თუ მონიშნულია ვიდეო დაიკავებს მთლიან ეკრანს"
     youtube:
       form_title: YouTube ვიდეოს ფორმა
       get_media: "მიიღეთ თქვენი Youtube ვიდეო"
@@ -802,7 +811,7 @@ ka:
     byline_media: "ფოტოსა და ვიდეოს ავტორი"
     byline_translator: "თარგმნა"
     source: "წყარო:"
-    by: 
+    by:
     related_stories: "მსგავსი ამბები"
     view_all_stories_in: "ყველა ამბის ნახვა"
     infographic:
