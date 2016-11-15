@@ -184,8 +184,8 @@
                 if s.youtube?
                   item[:type] = "youtube"
                   item[:videoId] = s.youtube.url.last(11)
-                  // item[:width] = 640
-                  // item[:height] = 360
+                  # item[:width] = 640
+                  # item[:height] = 360
                   item[:loop] = s.youtube.loop ? 1 : 0
                   item[:info] = s.youtube.info ? 1 : 0
                   item[:cc_load_policy] = s.youtube.cc ? 1 : 0
