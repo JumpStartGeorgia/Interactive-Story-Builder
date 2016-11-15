@@ -71,6 +71,7 @@ hy:
         has_marker: "Նավիգացիոն դյուրանցում"
         type_id: "Տեսակ"
         sort_order: "Դասակարգման հերթականություն"
+        background: Image Background Color
       section_translation:  &section_translation
         title: "Վերնագիր"
         audio: "Աուդիո"
@@ -516,6 +517,9 @@ hy:
     infographic:
       name: "Ինֆոգրաֆիկա"
       description: "Ինֆոգրաֆիկա, ինտերակտիվ կամ փաստեր՝ տվյալների հավաքագրման և աղբյուրներ ավելացնելու հնարավորությամբ"
+  section_background:
+    black: Black
+    white: White
   story_role:
     editor: "Խմբագիր"
     translator: "Թարգմանիչ"
@@ -699,6 +703,7 @@ hy:
         has_marker: "Նշելու դեպքում կլինի նավիգացիոն դյուրանցման հղում սույն բաժին գալու համար"
         audio: "Ֆոնային աուդիո բաժնի դիտման ժամանակ հնչելու համար (միայն mp3, առավելագույն ծավալ 10mb)"
         delete_audio: "Ընտրելու դեպքում սույն աուդիոֆայլը կջնջվի"
+        background: "If the image does not fit perfectly on the screen, space either on the top and bottom or left and right will be visible. Use this field to indicate what color to fill that space in with."
     content:
       form_title: "Տեքստի ձև"
       placeholder:

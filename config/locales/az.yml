@@ -71,6 +71,7 @@ az:
         has_marker: Naviqasiya Qısayolu
         type_id: Növ ("Yaz" if you mean the verb "to type")
         sort_order: Sıralama Qaydası
+        background: Image Background Color
       section_translation:  &section_translation
         title: Sərlövhə
         audio: Audio Cığırı
@@ -516,6 +517,9 @@ az:
     infographic:
       name: "İnfografik"
       description: Infographic, interactive, or factoids with ability to add datasets and data sources
+  section_background:
+    black: Black
+    white: White
   story_role:
     editor: Redaktor
     translator: Tərcüməçi
@@ -699,6 +703,7 @@ az:
         has_marker: Seçilibsə, naviqasıyada bu bölməyə qisayol keçidi olacaq.
         audio: Arxa planın audiosu bu bölmə izlənəndə çalacaq (yalnız mp3 fayl növü; böyüklüyü 10mb-a məhduddur)
         delete_audio: Seçilibsə, Audio Cığır silinəcək
+        background: "If the image does not fit perfectly on the screen, space either on the top and bottom or left and right will be visible. Use this field to indicate what color to fill that space in with."
     content:
       form_title: Mətn Forması
       placeholder:

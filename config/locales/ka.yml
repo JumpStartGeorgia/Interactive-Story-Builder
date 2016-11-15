@@ -71,6 +71,7 @@ ka:
         has_marker: "სექციის გამოყოფა"
         type_id: "ტიპი"
         sort_order: "დალაგება"
+        background: Image Background Color
       section_translation:  &section_translation
         title: "სათაური"
         audio: "აუდიო ფაილი"
@@ -516,6 +517,9 @@ ka:
     infographic:
       name: Infographic
       description: Infographic, interactive, or factoids with ability to add datasets and data sources
+  section_background:
+    black: Black
+    white: White
   story_role:
     editor: "რედაქტირება"
     translator: "თარგმნა"
@@ -699,6 +703,7 @@ ka:
         has_marker: "თუ მონიშნავთ, ეს სექცია გამოიყოფა და შესაძლებელი იქნება მასზე ცალკე ბმულით გადასვლა"
         audio: "მუსიკალური გაფორმება ამ სექციისთვის (დასაშვებია მხოლოდ mp3 ფორმატი; ფაილის მაქსიმალური ზომა 10MB)"
         delete_audio: "თუ მონიშნავთ, აუდიო ფაილი წაიშლება"
+        background: "If the image does not fit perfectly on the screen, space either on the top and bottom or left and right will be visible. Use this field to indicate what color to fill that space in with."
     content:
       form_title: "ტექსტის ფორმა"
       placeholder:

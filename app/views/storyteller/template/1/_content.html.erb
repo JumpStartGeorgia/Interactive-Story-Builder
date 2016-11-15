@@ -53,8 +53,9 @@
                     <% dataVideo = "data-image='#{File.basename(m.image.asset_file_name_formatted)}'".html_safe %>
                   <% end %>
                   <div class="video infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %>" <%= dataVideo.html_safe %>  <%= m.media_type == Medium::TYPE[:video] && m.video_loop ? "data-videoloop" : "" %>>
-                    <div class="video-container infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %>">
+                    <div class="video-container infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %> <%= "bg-#{section.background_type}"%>">
                       <% if m.media_type == Medium::TYPE[:image] %>
+                          <%# orientation_class = m.image.get_orientation_class class=" orientation_class" %>
                           <% if !@export %>
                             <img src="<%= m.image.file.url(:fullscreen) %>">
                           <% else %>

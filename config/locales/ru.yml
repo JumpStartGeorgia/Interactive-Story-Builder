@@ -71,6 +71,7 @@ ru:
         has_marker: "Навигационная ссылка"
         type_id: "Тип"
         sort_order: "Порядок Сортировки"
+        background: Image Background Color
       section_translation:  &section_translation
         title: "Название"
         audio: "Аудиофайл"
@@ -516,6 +517,9 @@ ru:
     infographic:
       name: "Инфографика"
       description: "Инфографики, интерактивных, или фактоиды, с возможностью добавления наборов и источников данных"
+  section_background:
+    black: Black
+    white: White
   story_role:
     editor: "Редактор"
     translator: "Переводчик"
@@ -699,6 +703,7 @@ ru:
         has_marker: "При выборе этого будет навигационная ссылка, чтобы перейти к этому разделу"
         audio: "Фоновый аудиофайл, для проигрывания во время просмотра этой сейции (формат - только MP3; предел размера файла - 10 МБ )"
         delete_audio: "При выборе этого аудиофайл будет удален"
+        background: "If the image does not fit perfectly on the screen, space either on the top and bottom or left and right will be visible. Use this field to indicate what color to fill that space in with."
     content:
       form_title: "Форма текста"
       placeholder:

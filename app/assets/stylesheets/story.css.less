@@ -272,10 +272,27 @@ body
     -webkit-backface-visibility:hidden;
   }
 
-  .video-container video,
-  .video-container img {
+  .video-container video {
     width: 100%;
     position: absolute;
+  }
+  .video-container img {
+    max-width:100%;
+    max-height:100%;
+    // width:100%;
+    // height:auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // &.horizontal-orientation {
+    //   width:100%;
+    //   height:auto;
+    // }
+    // &.vertical-orientation {
+    //   width:auto;
+    //   height:100%;
+    // }
   }
 
   .video-caption {
@@ -1707,4 +1724,10 @@ ul.dropdown-menu li a
   position: absolute;
   top: 0px;
   left: 0px;
+}
+.bg-black {
+  background-color: #000;
+}
+.bg-white {
+  background-color: #fff;
 }
