@@ -59,7 +59,7 @@ class Section < ActiveRecord::Base
   end
 
   before_validation :trigger_delete_audio
-
+  before_validation :reset_background
   # have to call this in section because delete_audio is not an attribute in the table
   # and so Dirty is not applied to it.
   # can catch the flag here and then call the translation method.
@@ -71,6 +71,9 @@ class Section < ActiveRecord::Base
       end
     end
     return true
+  end
+  def reset_background
+    self.background = 0 if !media?
   end
 
   #################################

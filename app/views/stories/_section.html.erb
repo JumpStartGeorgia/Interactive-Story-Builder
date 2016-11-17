@@ -72,7 +72,7 @@
         <%= f_translation.fields_for :asset, asset_record do |f_asset| %>
           <%= f_asset.input :asset_type, :as => :hidden %>
 
-          <div id='sectionAudioBox' style='display:inline-block;vertical-align:bottom;'  >
+          <div id='sectionAudioBox' class="input form-group" style='display:inline-block;vertical-align:bottom;'  >
             <label class=" control-label" for="modalAudio"><%= t('activerecord.attributes.section_translation.audio') %></label>
             <% if !isTO %>
               <% if !original %>
@@ -140,8 +140,9 @@
             <% end %>
           </div>
         <% end %>
-      <% if !@trans %>
-        <div class="radio_buttons input required form-group radio-indent radio-hide-button" id="section_background_input">
+      <% if !@trans || (!@item.new_record? && @item.type_id == Section::TYPE[:media]) %>
+      <%= @item.type_id %>
+        <div class="radio_buttons input required form-group radio-indent radio-hide-button<%= @item.type_id == Section::TYPE[:media] ? '' : ' hidden' %>" id="section_background_input">
           <label class="control-label" for="section_background">
             <%= model_class.human_attribute_name(:background) %>
             <abbr title="<%= t('app.common.required') %>">*</abbr>

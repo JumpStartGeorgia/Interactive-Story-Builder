@@ -131,7 +131,10 @@ $(document).ready(function() {
       $('input#infographicDynamicHeight').val('');
     }
   });
-
+  // when section type is media show background input else hide it
+  $(".story-viewer").on("change", "input[name='section[type_id]']:radio", function (){
+    $("#section_background_input").toggleClass("hidden", +$(this).val() !== 2);
+  });
 
   $(".builder-wrapper .workplace").on("click", "#embed_source_url, #embed_source_code", function () {
     var t = $(this),
