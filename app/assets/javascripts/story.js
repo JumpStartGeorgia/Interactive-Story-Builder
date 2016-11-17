@@ -106,7 +106,7 @@
 
 
         var video_tag = video.select(".video-container").filter(function(d) { return d.image; })
-          .select("> img")
+          .select(".re-aspect")
           .attr("src", function(d) { return  ipath + d.image; });
 
         if(!String.prototype.trim)
