@@ -473,7 +473,6 @@ ActiveRecord::Schema.define(:version => 20161116065826) do
   add_index "story_translations", ["language_type"], :name => "index_story_translations_on_language_type"
   add_index "story_translations", ["locale"], :name => "index_story_translations_on_locale"
   add_index "story_translations", ["permalink"], :name => "index_story_translations_on_permalink"
-  add_index "story_translations", ["permalink"], :name => "permalink"
   add_index "story_translations", ["published"], :name => "index_story_translations_on_published"
   add_index "story_translations", ["published_at"], :name => "index_story_translations_on_published_at"
   add_index "story_translations", ["story_id"], :name => "index_story_translations_on_story_id"
