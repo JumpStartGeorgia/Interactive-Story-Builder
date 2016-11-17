@@ -27,7 +27,7 @@
               <% @story.authors.each{|t| %>
                 <div class='author js-u-dib'>
                   <div class='avatar'>
-                    <%= link_to image_tag(t.avatar_url, :class=>"avatar"), "#" , :class => "avatar", :"data-toggle"=>"dropdown" %>
+                    <%= link_to image_tag(t.avatar_url, :class=>"avatar"),  author_path(t.permalink), :class => "avatar", :"data-toggle"=>"dropdown" %>
                   </div>
                   <div class='name'>
                     <%= link_to t.name, author_path(t.permalink), :title => t.name %>
