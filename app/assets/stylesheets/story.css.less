@@ -279,12 +279,12 @@ body
   .video-container img {
     max-width:100%;
     max-height:100%;
-    // width:100%;
-    // height:auto;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    &.hor { width:100%; }
+    &.ver { height: 100%; }
     // &.horizontal-orientation {
     //   width:100%;
     //   height:auto;
@@ -302,6 +302,7 @@ body
     font-family: 'dejavusans-b';
     font-size:16px;
     line-height: 29px;
+    background-color: rgba(0, 0, 0, 0.45);
   }
   .video-caption:lang(en)
   {
@@ -373,7 +374,7 @@ body
     left: 7%;
     bottom: 20%;
     width:350px;
-    padding:20px 0px;
+    padding:20px 10px;
   }
   .video-container.infobox-fixed .video-caption
   {
@@ -385,8 +386,7 @@ body
     padding:0px 7%;
     /*max-width:1024px;*/
     position: absolute;
-  bottom: 0px;
-  background-color: rgba(18, 18, 18, 0.9);
+    bottom: 0px;
   }
   .video-container.infobox-fixed .infobox
   {
@@ -532,6 +532,7 @@ body
     .ios .video-sequence .video,
     .ios .video-container  {
       overflow: visible;
+      min-height:auto;
     }
 
     .ios .video-container {
@@ -542,6 +543,7 @@ body
 
     .ios .video-container img {
       position: static;
+      transform: translate(0);
     }
 
     .ios .video-source {

@@ -57,9 +57,9 @@
                       <% if m.media_type == Medium::TYPE[:image] %>
                           <%# orientation_class = m.image.get_orientation_class class=" orientation_class" %>
                           <% if !@export %>
-                            <img src="<%= m.image.file.url(:fullscreen) %>">
+                            <img class="re-aspect" src="<%= m.image.file.url(:fullscreen) %>" data-aspectratio="<%= m.image.asset_aspectratio %>">
                           <% else %>
-                            <img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>">
+                            <img class="re-aspect" src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>" data-aspectratio="<%= m.image.asset_aspectratio %>">
                           <% end %>
                       <% elsif m.media_type == Medium::TYPE[:video] && !m.is_processed?  %>
                           <% if !@export %>
@@ -68,11 +68,13 @@
                             <img src="assets/png/video_being_processed_#{I18n.locale}.png">
                           <% end %>
                       <% elsif m.media_type == Medium::TYPE[:video] && m.is_processed?  %>
-                            <% if !@export %>
-                              <!--[if lte IE 8]><img src="<%= m.image.file.url(:fullscreen) %>"><![endif]-->
-                            <% else %>
-                              <!--[if lte IE 8]><img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>"><![endif]-->
-                            <% end %>
+                        <div class="temporary">
+                          <% if !@export %>
+                            <!--[if lte IE 8]><img src="<%= m.image.file.url(:fullscreen) %>"><![endif]-->
+                          <% else %>
+                            <!--[if lte IE 8]><img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>"><![endif]-->
+                          <% end %>
+                        </div>
                       <% end %>
                       <% if m.caption.present? || m.source.present? %>
                         <% if m.infobox_type == Medium::INFOBOX_TYPE[:floating] %>
@@ -90,7 +92,7 @@
                               </div>
                             <% end %>
                             <% if m.source.present? %>
-                               <div class="video-source"><%= m.source %></div>
+                              <div class="video-source"><%= m.source %></div>
                             <% end %>
                           </div>
                           <div class='space'></div>

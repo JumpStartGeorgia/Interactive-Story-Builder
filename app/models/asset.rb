@@ -73,7 +73,7 @@ class Asset < ActiveRecord::Base
   before_validation :set_processed_flag
   before_create :set_file_id
 
-  # after_post_process :set_orientation
+  after_save :set_aspectratio
 
 
   def init
@@ -261,10 +261,10 @@ class Asset < ActiveRecord::Base
     end
   end
 
-  #
-  # def set_orientation
-  #   asset_orientation = 1 if asset_type == TYPE[:media_image] && Paperclip::Geometry.from_file(asset).aspect >= 1
-  # end
+  def set_aspectratio
+    update_column(:asset_aspectratio, Paperclip::Geometry.from_file(self.asset.path(:fullscreen)).aspect.round(2)) if self.asset_type == TYPE[:media_image]
+    return true
+  end
 
   # def get_orientation_class
   #   asset_orientation == 0 ? "vertical-orientation" : "horizontal-orientation"

@@ -1,4 +1,5 @@
-
+/* global d3 */
+/*eslint no-console: "error"*/
 /*********************************************************************************************
                                        prepare
 **********************************************************************************************/
@@ -87,9 +88,11 @@
       setTimeout(function() {
 
         var video = d3.selectAll(".section.video-sequence .video")
-          .datum(function() { return { video: this.getAttribute("data-video"), image: this.getAttribute("data-image"), }; });
+          .datum(function() { return { video: this.getAttribute("data-video"), image: this.getAttribute("data-image") }; });
 
-        var video_tag = video.select(".video-container").html("").filter(function(d) { return d.video; })
+        var video_tags = video.select(".video-container").filter(function(d) { return d.video; });
+        video_tags.selectAll(".temporary").remove();
+        var video_tag = video_tags
           .insert("video", ":first-child")
           .attr("preload", "none")
           .attr("poster", function(d) { return  ppath + d.video + ".jpg"; })
@@ -103,7 +106,7 @@
 
 
         var video_tag = video.select(".video-container").filter(function(d) { return d.image; })
-          .append("img")
+          .select("> img")
           .attr("src", function(d) { return  ipath + d.image; });
 
         if(!String.prototype.trim)
@@ -158,7 +161,7 @@
 
     var mute = false,
         muteVolume = "volume",
-        fixRatio = 16 / 9,
+        fixRatio = innerWidth/innerHeight, //16 / 9,
         fixHeight = innerWidth / fixRatio,
         fixTop = Math.round((innerHeight - fixHeight) / 2),
         fadeTop = Math.max(200, fixTop),
@@ -232,7 +235,10 @@
 
     var container = section.select(".video-container");
 
-    var video = container.filter(function(d) { return d.video; }).insert("video", ":first-child")
+    var videos = container.filter(function(d) { return d.video; });
+      videos.selectAll(".temporary").remove();
+
+    var video = videos.insert("video", ":first-child")
         .attr("preload", "none")
         .attr("poster", function(d) { return  ppath + d.video + ".jpg"; })
         .property("loop", function(d) { return !d.animation; })
@@ -282,7 +288,7 @@
     }
 
     function resized() {
-
+      fixRatio = innerWidth/innerHeight;
       fixHeight = innerWidth / fixRatio;
       fixTop = Math.round((innerHeight - fixHeight) / 2);
       fadeTop = Math.max(200, fixTop);
@@ -295,6 +301,7 @@
             : d.last ? rect.bottom >= fixTop + fixHeight
             : true;
       }).style("top","0px");
+      sectionFixed.style("height", innerHeight+ "px");
       // append height for infographic if height class present
       // if this is a popup interactive, reduce the height more so iframe window is contained within screen
       d3.selectAll(".infographic iframe.height").attr("height", innerHeight);
@@ -559,7 +566,15 @@ if (!isMobile())
   }
   d3.select(window).on("resize.reheight", reheight);
   function reheight () {
-    var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    var h = (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight),
+      w = (window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth),
+      aspect_ratio = w/h;
+      d3.selectAll(".re-aspect").each(function() {
+        var img = d3.select(this),
+          image_ratio = +img.attr("data-aspectratio"),
+          ver = aspect_ratio > image_ratio;
+        img.classed("ver", ver).classed("hor", !ver);
+      });
     d3.selectAll(".section.embed.fullscreen .container > *:first-child").style("height", h + "px");
   }
   function watch_scrolled () {
