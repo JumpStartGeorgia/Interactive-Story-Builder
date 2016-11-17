@@ -71,6 +71,7 @@ en:
         has_marker: Navigation Shortcut
         type_id: Type
         sort_order: Sort Order
+        background: Image Background Color
       section_translation:  &section_translation
         title: Title
         audio: Audio Track
@@ -516,6 +517,9 @@ en:
     infographic:
       name: Infographic
       description: Infographic, interactive, or factoids with ability to add datasets and data sources
+  section_background:
+    black: Black
+    white: White
   story_role:
     editor: Editor
     translator: Translator
@@ -699,6 +703,7 @@ en:
         has_marker: "If checked, there will be a navigation shortcut link to go to this section"
         audio: "Background audio to play while this section is in view (mp3 format only; 10mb file size limit)"
         delete_audio: "If checked, the Audio Track will be deleted"
+        background: "If the image does not fit perfectly on the screen, space either on the top and bottom or left and right will be visible. Use this field to indicate what color to fill that space in with."
     content:
       form_title: Text Form
       placeholder:

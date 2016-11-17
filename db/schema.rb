@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20161110080513) do
+ActiveRecord::Schema.define(:version => 20161116065826) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20161110080513) do
     t.integer  "asset_clone_id"
     t.string   "avatar_id"
     t.integer  "story_id"
+    t.float    "asset_aspectratio"
   end
 
   add_index "assets", ["asset_clone_id"], :name => "index_assets_on_asset_clone_id"
@@ -345,6 +346,7 @@ ActiveRecord::Schema.define(:version => 20161110080513) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "has_marker", :default => true
+    t.integer  "background", :default => 0
   end
 
   add_index "sections", ["position"], :name => "index_sections_on_position"
