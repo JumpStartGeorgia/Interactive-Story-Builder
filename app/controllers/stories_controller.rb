@@ -763,7 +763,7 @@ end
       logger.debug "*********** new staging = #{permalink_staging}; story = #{story.inspect}"
       if story.blank?
         logger.debug "*********** story blank"
-        story = StoryTranslation.new(:permalink_staging => permalink_staging, :locale => locale)
+        story = StoryTranslation.new(:permalink_staging => permalink_staging, :locale => locale, title: "a")
         vld = story.valid?
         output = {:permalink => story.permalink, :is_duplicate => !vld}
       # if the permalink is the same, do nothing
