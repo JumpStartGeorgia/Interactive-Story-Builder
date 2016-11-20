@@ -1024,7 +1024,7 @@ function previewYoutubeVideo(t,loop,showinfo) // context
   if(typeof id !== 'undefined')
   {
     $.ajax({
-      url: "https://www.googleapis.com/youtube/v3/videos?key=AIzaSyA5DU2KQn3u4mzw6z1YNIHGGr9wadv9vZM&part=id&id=" + id,
+      url: "https://www.googleapis.com/youtube/v3/videos?key=" + gon.youtube_api_key + "&part=id&id=" + id,
       context: document.body,
       success: function(d){
          if(d.hasOwnProperty("items") && d.items.length > 0)
