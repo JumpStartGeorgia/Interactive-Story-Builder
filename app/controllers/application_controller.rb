@@ -65,23 +65,23 @@ class ApplicationController < ActionController::Base
   def default_url_options(options={})
     { :locale => I18n.locale }
   end
-  
+
 	def preload_global_variables
     @story_types = StoryType.sorted
     @themes_published = Theme.published.sorted
-    @languages = Language.app_locale_sorted #LANGUAGES # its an array that is initialized at rails app start Language.app_locale_sorted 
+    @languages = Language.app_locale_sorted #LANGUAGES # its an array that is initialized at rails app start Language.app_locale_sorted
     @languages_published = @languages.select{|x| x.has_published_stories == true}
 		# @categories = Category.sorted
   #   @categories_published = @categories.select{|x| x.has_published_stories == true}
-    @face_id = Rails.env.production? ? ENV['STORY_BUILDER_FACEBOOK_APP_ID'] : ENV['DEV_FACEBOOK_APP_ID']        
-    # for loading extra css/js files    
+    @face_id = Rails.env.production? ? ENV['STORY_BUILDER_FACEBOOK_APP_ID'] : ENV['DEV_FACEBOOK_APP_ID']
+    # for loading extra css/js files
 		@css = []
 		@js = []
 
     # variable to tell globalize which locale to use
     # - should be updated with correct locale after story is loaded
     @story_current_locale = I18n.locale
-    
+
     # have to insert devise styles/js here since no controllers exist
     if params[:controller].present? && params[:controller].start_with?('devise/')
       @css.push("navbar.css")
@@ -91,13 +91,13 @@ class ApplicationController < ActionController::Base
     # reset globalize story_locale
     Globalize.story_locale = Globalize.locale
 	end
-  
+
 
 	def initialize_gon
 		gon.set = true
 		gon.highlight_first_form_field = true
 
-    gon.page_filtered = false       
+    gon.page_filtered = false
     gon.filter_path = request.path + (params[:controller] == 'stories' ?  "/index" : "")
     gon.check_permalink = story_check_permalink_path
     gon.check_nickname = settings_check_nickname_path
@@ -113,7 +113,7 @@ class ApplicationController < ActionController::Base
     #gon.msgs_one_section_slideshow = I18n.t('app.msgs.one_section.slideshow')
     #gon.msgs_one_section_embed_media = I18n.t('app.msgs.one_section.embed_media')
     #gon.msgs_one_section_youtube = I18n.t('app.msgs.one_section.youtube')
-
+    gon.youtube_api_key = ENV['STORY_BUILDER_YOUTUBE_API_KEY']
 		if I18n.locale == :ka
 		  gon.datatable_i18n_url = "/datatable_ka.txt"
 		else
@@ -123,7 +123,7 @@ class ApplicationController < ActionController::Base
 	end
 
 
-  
+
   def layout_by_resource
     if !DEVISE_CONTROLLERS.index(params[:controller]).nil? && request.xhr?
       nil
@@ -133,13 +133,13 @@ class ApplicationController < ActionController::Base
   end
 
   ## process the filter requests
-  def process_filter_querystring(story_objects)    
-    gon.page_filtered = params[:sort].present? || 
+  def process_filter_querystring(story_objects)
+    gon.page_filtered = params[:sort].present? ||
                         params[:theme].present? ||
                         params[:language].present? ||
                         params[:q].present? ||
                         params[:following].present?
-    
+
     # not published (only available when users editing their stories)
     if params[:not_published].present?
       @story_filter_not_published = params[:not_published].to_bool
@@ -147,7 +147,7 @@ class ApplicationController < ActionController::Base
   		@story_filter_not_published = false
     end
     story_objects = story_objects.is_not_published if @story_filter_not_published
- 
+
     # sort
     @story_filter_sort_recent = true
     @story_filter_sort_permalink =  ""
@@ -169,13 +169,13 @@ class ApplicationController < ActionController::Base
       story_objects = story_objects.recent
 			@story_filter_sort = I18n.t("filters.sort.recent")
     end
-        
+
     # type
     @story_filter_type_all = true
     @story_filter_type_permalink =  ""
     index = params[:type].present? ? @story_types.index{|x| x.permalink.downcase == params[:type].downcase} : nil
     if index.present?
-      story_objects = story_objects.by_type(@story_types[index].id)    
+      story_objects = story_objects.by_type(@story_types[index].id)
       @story_filter_type = @story_types[index].name
       @story_filter_type_permalink =  @story_types[index].permalink
       @story_filter_type_all = false
@@ -189,7 +189,7 @@ class ApplicationController < ActionController::Base
     @story_filter_theme_permalink =  ""
     index = params[:theme].present? ? @themes_published.index{|x| x.permalink.downcase == params[:theme].downcase} : nil
     if index.present?
-      story_objects = story_objects.by_theme(@themes_published[index].id)    
+      story_objects = story_objects.by_theme(@themes_published[index].id)
       @story_filter_theme = @themes_published[index].name
       @story_filter_theme_permalink =  @themes_published[index].permalink
       @story_filter_theme_all = false
@@ -213,22 +213,22 @@ class ApplicationController < ActionController::Base
     # @story_filter_category_permalink =  ""
     # index = params[:category].present? ? @categories_published.index{|x| x.permalink.downcase == params[:category].downcase} : nil
     # if index.present?
-    #   story_objects = story_objects.by_category(@categories_published[index].id)    
+    #   story_objects = story_objects.by_category(@categories_published[index].id)
   		# @story_filter_category = @categories_published[index].name
     #   @story_filter_category_permalink =  @categories_published[index].permalink
     #   @story_filter_category_all = false
     # else
   		# @story_filter_category = I18n.t("filters.all")
     # end
-    
+
     #tags
     #if params[:tag].present?
     #  story_objects = story_objects.tagged_with(params[:tag])
   	#	@story_filter_tag = params[:tag].titlecase
     #else
   	#	@story_filter_tag = I18n.t("filters.all")
-    #end    
-    
+    #end
+
     # language
     #@story_filter_language_permalink =  ""
     #index = params[:language].present? ? @languages_published.index{|x| x.locale.downcase == params[:language].downcase} : nil
@@ -237,14 +237,14 @@ class ApplicationController < ActionController::Base
 #    end
     #@story_filter_language_all = true
     #if index.present?
-    #  story_objects = story_objects.by_language(@languages_published[index].locale)    
+    #  story_objects = story_objects.by_language(@languages_published[index].locale)
   	#	@story_filter_language = @languages_published[index].name
     #  @story_filter_language_permalink = @languages_published[index].locale
     #  @story_filter_language_all = false
     #else
   	#	@story_filter_language = I18n.t("filters.all")
     #end
-    
+
     # following users
     @story_filter_show_following = user_signed_in? && controller_action?('root','index')
     if user_signed_in?
@@ -252,12 +252,12 @@ class ApplicationController < ActionController::Base
       if @following_authors.present? && params[:following].present? && params[:following].to_bool == true
         story_objects = story_objects.by_authors(@following_authors.map{|x| x.id}.uniq)
         @story_filter_following = true
-      else 
+      else
         @story_filter_following = false
       end
     end
      # logger.debug "/////////////////// @story_filter_following = #{@story_filter_following}"
-        
+
     # search
     @q = ""
 		if params[:q].present?
@@ -282,7 +282,7 @@ class ApplicationController < ActionController::Base
 
 		session[:previous_urls] ||= []
 		# only record path if page is not for users (sign in, sign up, etc) and not for reporting problems
-		if session[:previous_urls].first != request.fullpath && 
+		if session[:previous_urls].first != request.fullpath &&
         params[:format] != 'js' && params[:format] != 'json' && !request.xhr? &&
         request.fullpath.index("/users/").nil?
 			session[:previous_urls].unshift request.fullpath
@@ -302,7 +302,7 @@ class ApplicationController < ActionController::Base
   def add_missing_translation_content(ary_trans)
     if ary_trans.present?
       default_trans = ary_trans.select{|x| x.locale == I18n.default_locale.to_s}.first
-  
+
       if default_trans.blank? || !default_trans.required_data_provided?
         # default locale does not have data so get first trans that does have data
         ary_trans.each do |trans|
@@ -353,7 +353,7 @@ class ApplicationController < ActionController::Base
 		render :file => "#{Rails.root}/public/500.html", :status => 500
 	end
 
- def flash_to_headers 	
+ def flash_to_headers
       return unless request.xhr?
       response.headers['X-Message'] = flash_message
       response.headers["X-Message-Type"] = flash_type.to_s
