@@ -247,7 +247,7 @@
         youtube: function (URL) {
             var structure = {
                 data: {
-                    embedURL: 'http://www.youtube.com/embed/' + URL.query.v
+                    embedURL: '//www.youtube.com/embed/' + URL.query.v
                 }
             };
             return structure;
@@ -258,7 +258,7 @@
             var structure = {
                 template: 'youtube',
                 data: {
-                    embedURL: 'http://www.youtube.com/embed/' + URL.pathname.slice(1, URL.pathname.length)
+                    embedURL: '//www.youtube.com/embed/' + URL.pathname.slice(1, URL.pathname.length)
                 }
             };
             return structure;
@@ -288,7 +288,7 @@
         dailymotion: function (URL) {
             var structure = {
                 data: {
-                   embedURL: 'http://www.dailymotion.com/embed/video/' + URL.pathchunks[1]
+                   embedURL: '//www.dailymotion.com/embed/video/' + URL.pathchunks[1]
                 }
             };
             return structure;
@@ -298,7 +298,7 @@
         liveleak: function (URL) {
             var structure = {
                 data: {
-                   embedURL: 'http://www.liveleak.com/e/' + URL.query.i
+                   embedURL: '//www.liveleak.com/e/' + URL.query.i
                 }
             };
             return structure;
@@ -308,7 +308,7 @@
         vine: function (URL) {
             var structure = {
                 data: {
-                   embedURL: 'https://vine.co/v/' + URL.pathchunks[1] + '/embed/simple'
+                   embedURL: '//vine.co/v/' + URL.pathchunks[1] + '/embed/simple'
                 }
             };
             return structure;
@@ -318,7 +318,7 @@
         ted: function (URL) {
             var structure = {
                 data: {
-                   embedURL: 'http://embed.ted.com/talks/' + URL.pathchunks[1] + '.html'
+                   embedURL: '//embed.ted.com/talks/' + URL.pathchunks[1] + '.html'
                 }
             };
             return structure;

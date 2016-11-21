@@ -183,7 +183,7 @@
                 item = {}
                 if s.youtube?
                   item[:type] = "youtube"
-                  item[:videoId] = s.youtube.url.last(11)
+                  item[:videoId] = s.youtube.code
                   item[:width] = 640
                   item[:height] = 360
                   item[:loop] = s.youtube.loop ? 1 : 0
