@@ -30,7 +30,14 @@
           </div>
         <% end %>
 
-        <% has_url = f_translation.object.url.present? ? true : f_translation.object.code.present? ? false : true %>
+        <%
+          if @trans && !isTO
+            has_url = @parent[:url].present? ? true : @parent[:code].present? ? false : true
+          else
+            has_url = f_translation.object.url.present? ? true : f_translation.object.code.present? ? false : true
+          end
+        %>
+
         <% if !isTO %>
           <div class="input form-group<%= "#{@trans ? ' hidden' : ''}"%>" >
             <label class="control-label">
