@@ -247,7 +247,7 @@
         youtube: function (URL) {
             var structure = {
                 data: {
-                    embedURL: 'http://www.youtube.com/embed/' + URL.query.v
+                    embedURL: '//www.youtube.com/embed/' + URL.query.v
                 }
             };
             return structure;
@@ -258,7 +258,7 @@
             var structure = {
                 template: 'youtube',
                 data: {
-                    embedURL: 'http://www.youtube.com/embed/' + URL.pathname.slice(1, URL.pathname.length)
+                    embedURL: '//www.youtube.com/embed/' + URL.pathname.slice(1, URL.pathname.length)
                 }
             };
             return structure;
