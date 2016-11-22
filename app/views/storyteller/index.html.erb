@@ -72,7 +72,7 @@
       <div class="grid-wrapper">
         <div class="grid col-4">
           <% @stories.each_with_index do |story,s_i| %>
-            <% story.set_prime_locale(params[:sl]) %>
+            <% story.set_to_app_locale %>
             <div class="col n-3" lang="<%= story.current_locale %>">
               <%= render partial: "shared/grid_item" , locals:{:story=>story} %>
             </div>

@@ -5,16 +5,16 @@
   <div class='js-row'>
   <% if !@export %>
     <div class="share">
-      <div class="addthis_native_toolbox"></div> 
+      <div class="addthis_native_toolbox"></div>
        <%= link_to '#', :'data-modalos-id' => "modalos-embed", :title => t('app.common.embed', locale: @story.current_locale), :class => "embed modalEmbed" do %>
-       <% end %> 
+       <% end %>
     </div>
-    <div class="views" title=""><%= t('app.common.views', locale: @story.current_locale) %>:&nbsp;<span><%= @story.impressions_count %></span></div>  
+    <div class="views" title=""><%= t('app.common.views', locale: @story.current_locale) %>:&nbsp;<span><%= @story.impressions_count %></span></div>
   <% end %>
-      <div class="r">  
-      <%  
+      <div class="r">
+      <%
        locales = @is_preview ? @story.story_locales : @story.published_locales
-       cur_locale = @story.current_locale 
+       cur_locale = @story.current_locale
        cur_lang = @languages.select{ |x| x.locale == cur_locale }.first
        locales-=[cur_locale]
       %>
@@ -23,16 +23,16 @@
          <div class="dropdown">
            <button class='btn btn-default dropdown-toggle<%= locales.size > 0 ? "" : " disabled" %>' type="button" id="translationsMenu" data-toggle="dropdown" aria-expanded="true">
              <%= cur_lang.present? ? cur_lang.name : cur_locale %>
-               <span class="caret"></span>                               
+               <span class="caret"></span>
            </button>
            <% if locales.size > 0 %>
              <ul class="dropdown-menu" role="menu" aria-labelledby="translationsMenu">
-               <%  locales.each do |t| 
+               <%  locales.each do |t|
                      @story.current_locale = t
                      l = @languages.select{|x| x.locale == t}.first
-                     if !@export 
-                      path = @is_preview ? preview_story_path(id: @story, sl: t) : storyteller_show_path(id: @story.permalink,sl: t)
-                    else 
+                     if !@export
+                      path = @is_preview ? preview_story_path(id: @story, sl: t, locale: t) : storyteller_show_path(id: @story.permalink, sl: t, locale: t)
+                    else
                       path = t + ".html"
                     end
                      if l.present?
@@ -44,7 +44,7 @@
            <% end %>
          </div>
        </div>
-      <% 
+      <%
        @story.current_locale = cur_locale
       %>
       <a href="#" class="navigation-volume"></a>

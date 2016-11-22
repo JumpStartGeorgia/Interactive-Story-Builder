@@ -121,7 +121,7 @@ class Story < ActiveRecord::Base
   scope :stories_by_author, -> (author_id) {
     joins(:authors).where(:authors => {:id => author_id})
   }
-
+  scope :by_locale, -> (with_locale) { joins(:story_translations).where(:story_translations => {:locale => with_locale }) }
 # SELECT a.*
 # FROM parallax_chca.stories AS a LEFT JOIN parallax_chca.stories AS b
 # ON (a.story_type_id = b.story_type_id AND a.published_at < b.published_at)
