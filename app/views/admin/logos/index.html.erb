@@ -24,7 +24,7 @@
     </thead>
     <tbody>
       <% @sponsors.each do |logo| %>
-        <tr>
+        <tr class="<%= logo.is_active? ? '' : 'logo-inactive' %>">
           <td>
             <div class='tools'>
               <button type='button' class='btn btn-sort btn-up' 
@@ -42,7 +42,9 @@
             <%= link_to logo.url, target: :blank %>
           </td>
           <td>
-            <%= logo.is_active? %>
+            <span class="<%= logo.is_active? ? '' : 'is-inactive' %>">
+              <%= logo.is_active? ? I18n.t('formtastic.yes') : I18n.t('formtastic.no') %>
+            </span>
           </td>
           <td>
             <%= link_to t('app.buttons.edit'),
@@ -80,7 +82,7 @@
     </thead>
     <tbody>
       <% @partners.each do |logo| %>
-        <tr>
+        <tr class="<%= logo.is_active? ? '' : 'logo-inactive' %>">
           <td>
             <div class='tools'>
               <button type='button' class='btn btn-sort btn-up' 
@@ -98,7 +100,9 @@
             <%= link_to logo.url, target: :blank %>
           </td>
           <td>
-            <%= logo.is_active? %>
+            <span class="<%= logo.is_active? ? '' : 'is-inactive' %>">
+              <%= logo.is_active? ? I18n.t('formtastic.yes') : I18n.t('formtastic.no') %>
+            </span>
           </td>
           <td>
             <%= link_to t('app.buttons.edit'),

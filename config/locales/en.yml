@@ -40,6 +40,7 @@ en:
         current_sign_in_at: Date Last Logged In
       logo:
         image: Image
+        url: URL
         logo_type: Type
         sort_order: Sort Order
         is_active: Is Active?

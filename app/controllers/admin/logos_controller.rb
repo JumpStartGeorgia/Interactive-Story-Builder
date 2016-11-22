@@ -112,7 +112,7 @@ class Admin::LogosController < ApplicationController
 protected
 
   def asset_filter
-    @css.push("navbar.css") 
+    @css.push("navbar.css", "logos.css") 
     @js.push('logos.js')  
   end 
 

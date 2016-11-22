@@ -40,6 +40,7 @@ ka:
         current_sign_in_at: "ბოლო შემოსვლის თარიღი"
       logo:
         image: Image
+        url: URL
         logo_type: Type
         sort_order: Sort Order
         is_active: Is Active?
