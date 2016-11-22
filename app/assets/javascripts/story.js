@@ -463,7 +463,8 @@ if (!isMobile())
       var caption = slideshow.select(".captions").selectAll(".caption")
           .datum(function() {
             return {
-              image: this.getAttribute("data-image")
+              image: this.getAttribute("data-image"),
+              aspect_ratio_class: this.getAttribute("data-aspect")
             };
           })
           .classed("active", function(d, i) { return i === currentIndex; });
@@ -476,7 +477,7 @@ if (!isMobile())
         .selectAll(".image")
           .data(images)
         .enter().append("img")
-          .attr("class", "image");
+          .attr("class", function(d,i) { return "image " + d.aspect_ratio_class; })
       image.filter(function(d, i) { return i === currentIndex; })
           .classed("active", true)
           .attr("src", function(d) { return spath + d.image; })
