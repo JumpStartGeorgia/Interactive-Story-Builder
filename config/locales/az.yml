@@ -18,6 +18,7 @@ az:
       story_type: Hekayə Növü
       author: Müəllif
       asset: fayl
+      logo: Logo
     attributes:
       asset: &asset
         asset_file_name: fayl
@@ -37,6 +38,11 @@ az:
         sign_in_count: Daxil Olmanın Sayı
         created_at: Yaradıldığı Tarix
         current_sign_in_at: Sonuncu Dəfə Daxil Olmanın Tarixi
+      logo:
+        image: Image
+        logo_type: Type
+        sort_order: Sort Order
+        is_active: Is Active?
       author:
         avatar: Avatar
       author_translation: &author_translation
@@ -278,6 +284,7 @@ az:
       themes: Mövzular
       story_types: Növlər
       languages: Dillər
+      logos: Logos
       follow: "İzlə"
       facebook: Facebook
       twitter: Twitter
@@ -423,6 +430,11 @@ az:
       clone_asset: Orijinal faylı istifadə et?
       embed: Daxil edilən kod
       scroll_top: Yuxarıya sürüşdür
+      logo_types: 
+        sponsor: Sponsor
+        sponsors: Sponsors
+        partner: Partner
+        partners: Partnyorlar
     msgs:
       does_not_exist: Siz mövcud olmayan səhifəyə daxil olmaq istədiniz.
       not_authorized: O sahifəyə daxil olmağa icazəniz yoxdur.
@@ -612,6 +624,10 @@ az:
         header_current_features: Featured Stories In the Order They Will Appear
         no_stories: No stories have been assigned to this theme yet.
         no_features: No stories have been selected to be features.
+    logos:
+      index:
+        no_sponsors: There are no sponsors.
+        no_partners: There are no partners.
   root:
     about:
       title: "Çayxana barədə"

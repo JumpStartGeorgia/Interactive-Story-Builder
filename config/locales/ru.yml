@@ -18,6 +18,7 @@ ru:
       story_type: "Тип истории"
       author: "Автор"
       asset: "Файл"
+      logo: Logo
     attributes:
       asset: &asset
         asset_file_name: "Файл"
@@ -37,6 +38,11 @@ ru:
         sign_in_count: "количество посещений на сайте"
         created_at: "Дата создания"
         current_sign_in_at: "Дата последнего посещения"
+      logo:
+        image: Image
+        logo_type: Type
+        sort_order: Sort Order
+        is_active: Is Active?
       author:
         avatar: "Аватар"
       author_translation: &author_translation
@@ -278,6 +284,7 @@ ru:
       themes: "Темы"
       story_types: "Типы"
       languages: "Языки"
+      logos: Logos
       follow: "Следовать"
       facebook: Facebook
       twitter: Twitter
@@ -423,6 +430,11 @@ ru:
       clone_asset: "Использывать оригинал?"
       embed: "Вставить код"
       scroll_top: "Прокрутить вверх"
+      logo_types: 
+        sponsor: Sponsor
+        sponsors: спонсор
+        partner: Partner
+        partners: Партнеры
     msgs:
       does_not_exist: "Вы пытались получить доступ к странице, которая не существует."
       not_authorized: "Вы не авторизованы для просмотра этой страницы"
@@ -612,6 +624,10 @@ ru:
         header_current_features: Featured Stories In the Order They Will Appear
         no_stories: No stories have been assigned to this theme yet.
         no_features: No stories have been selected to be features.
+    logos:
+      index:
+        no_sponsors: There are no sponsors.
+        no_partners: There are no partners.
   root:
     about:
       title: "О Чайхане"

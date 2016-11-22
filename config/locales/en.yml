@@ -18,6 +18,7 @@ en:
       story_type: Story Type
       author: Author
       asset: File
+      logo: Logo
     attributes:
       asset: &asset
         asset_file_name: File
@@ -37,6 +38,11 @@ en:
         sign_in_count: Number of Times Logged In
         created_at: Date Created
         current_sign_in_at: Date Last Logged In
+      logo:
+        image: Image
+        logo_type: Type
+        sort_order: Sort Order
+        is_active: Is Active?
       author:
         avatar: Avatar
       author_translation: &author_translation
@@ -278,6 +284,7 @@ en:
       themes: Themes
       story_types: Types
       languages: Languages
+      logos: Logos
       follow: Follow
       facebook: Facebook
       twitter: Twitter
@@ -423,6 +430,11 @@ en:
       clone_asset: Use the original file?
       embed: Embed Code
       scroll_top: Scroll to the top
+      logo_types: 
+        sponsor: Sponsor
+        sponsors: Sponsors
+        partner: Partner
+        partners: Partners
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
@@ -612,6 +624,10 @@ en:
         header_current_features: Featured Stories In the Order They Will Appear
         no_stories: No stories have been assigned to this theme yet.
         no_features: No stories have been selected to be features.
+    logos:
+      index:
+        no_sponsors: There are no sponsors.
+        no_partners: There are no partners.
   root:
     about:
       title: About Chai Khana

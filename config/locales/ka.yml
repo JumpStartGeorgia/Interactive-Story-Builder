@@ -18,6 +18,7 @@ ka:
       story_type: "ამბის ტიპი"
       author: "ავტორი"
       asset: File
+      logo: Logo
     attributes:
       asset: &asset
         asset_file_name: File
@@ -37,6 +38,11 @@ ka:
         sign_in_count: "შემოსვლის რაოდენობა"
         created_at: "შექმნის თარიღი"
         current_sign_in_at: "ბოლო შემოსვლის თარიღი"
+      logo:
+        image: Image
+        logo_type: Type
+        sort_order: Sort Order
+        is_active: Is Active?
       author:
         avatar: "პროფილის სურათი"
       author_translation: &author_translation
@@ -278,6 +284,7 @@ ka:
       themes: "თემა"
       story_types: "ტიპი"
       languages: "ენები"
+      logos: Logos
       follow: "მიყოლა"
       facebook: Facebook
       twitter: Twitter
@@ -423,6 +430,11 @@ ka:
       clone_asset: "გამოვიყენოთ საწყისი ფაილის?"
       embed: "კოდის ჩასმა"
       scroll_top: "მაღლა ასვლა"
+      logo_types: 
+        sponsor: Sponsor
+        sponsors: სპონსორები
+        partner: Partner
+        partners: პარტნიორები
     msgs:
       does_not_exist: "თქვენ ცდილობთ ისეთი გვერდის ნახვას, რომელიც არ არსებობს."
       not_authorized: "თქვენ არ გაქვთ ამ გვერდის ნახვის უფლება."
@@ -612,6 +624,10 @@ ka:
         header_current_features: Featured Stories In the Order They Will Appear
         no_stories: No stories have been assigned to this theme yet.
         no_features: No stories have been selected to be features.
+    logos:
+      index:
+        no_sponsors: There are no sponsors.
+        no_partners: There are no partners.
   root:
     about:
       title: "“ჩაი ხანას” შესახებ"

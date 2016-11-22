@@ -20,6 +20,12 @@ BootstrapStarter::Application.routes.draw do
       resources :languages
       resources :categories
 		  resources :story_types
+		  resources :logos do
+			  member do
+				  post :up
+				  post :down
+			  end
+		  end
 		  resources :themes do
 			  member do
 				  get :preview

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20161116065826) do
+ActiveRecord::Schema.define(:version => 20161122073103) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -232,6 +232,22 @@ ActiveRecord::Schema.define(:version => 20161116065826) do
   add_index "languages", ["has_published_stories"], :name => "index_languages_on_has_published_stories"
   add_index "languages", ["locale"], :name => "index_languages_on_locale"
   add_index "languages", ["name"], :name => "index_languages_on_name"
+
+  create_table "logos", :force => true do |t|
+    t.integer  "logo_type"
+    t.string   "url"
+    t.boolean  "is_active",          :default => true
+    t.integer  "position",           :default => 99
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "logos", ["is_active"], :name => "index_logos_on_is_active"
+  add_index "logos", ["position"], :name => "index_logos_on_position"
 
   create_table "media", :force => true do |t|
     t.integer  "section_id"

@@ -4,4 +4,31 @@
    <% if @page.present? %>
      <%= simple_format_no_tags(@page.content, {}, {sanitize: false}) %>
    <% end %>
+
+  <% if @sponsors.present? %>
+    <h2><%= t("app.common.logo_types.sponsors") %></h2>
+
+    <div class="about-logos">
+      <% @sponsors.each do |logo| %>
+        <div class="about-logo">
+          <p><a href="<%= logo.url %>" target="_blank"><img src="<%= logo.image.url(:medium) %>" /></a></p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+
+  <% if @partners.present? %>
+    <h2><%= t("app.common.logo_types.partners") %></h2>
+
+    <div class="about-logos">
+      <% @partners.each do |logo| %>
+        <div class="about-logo">
+          <p><a href="<%= logo.url %>" target="_blank"><img src="<%= logo.image.url(:medium) %>" /></a></p>
+        </div>
+      <% end %>
+    </div>
+
+  <% end %>
+
 </div>

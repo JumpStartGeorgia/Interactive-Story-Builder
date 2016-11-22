@@ -133,6 +133,9 @@ class RootController < ApplicationController
     @css.push("navbar.css", "about.css")
 
     @page = Page.by_name('about')
+    @partners = Logo.partners.sorted.active
+    @sponsors = Logo.sponsors.sorted.active
+
 
     if @page.present?
       respond_to do |format|
