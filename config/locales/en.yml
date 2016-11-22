@@ -862,8 +862,8 @@ en:
       following_sub_title: Chai Khana Users You Are Following
       following_label: "You will receive notifications whenever a user you are following publishes a story. To not receive notifications from a user, unfollow them by clicking on their image."
       following_not: "At this time, you are not following any users."
-      following_title1: "Click to unfollow '%{name}'"
-      following_title2: "Click to follow '%{name}'"
+      following_title1: "Click to unfollow '%{nickname}'"
+      following_title2: "Click to follow '%{nickname}'"
       submit: Save Settings
   imageuploader:
     missing: "An error occurred while processing your image. Please try again."
