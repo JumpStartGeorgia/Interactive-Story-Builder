@@ -30,7 +30,13 @@
           </div>
         <% end %>
 
-        <% has_url = f_translation.object.url.present? ? true : f_translation.object.code.present? ? false : true %>
+        <%
+          if @trans && !isTO
+            has_url = @parent[:url].present? ? true : @parent[:code].present? ? false : true
+          else
+            has_url = f_translation.object.url.present? ? true : f_translation.object.code.present? ? false : true
+          end
+        %>
         <% if !isTO %>
           <div class="input form-group<%= "#{@trans ? ' hidden' : ''}"%>" >
             <label class="control-label">
@@ -60,7 +66,7 @@
           :wrapper_html => { class: "embed_based_on_code#{!has_url ? '' : ' hidden'}" },
           :input_html => { id: (!isTO ? "embedMediaCode" : nil) }.merge(readonly)
         }
-        .merge(( (isTO) ? {} : { hint: t('.hint.code'), placeholder: t('.placeholder.code') })) %>
+        .merge(( (isTO) ? {} : { hint: t('.hint.code'), placeholder: t('.placeholder.code').html_safe })) %>
 
       <% if !isTO %>
         <button id="btnOlly" type="button" class="btn btn-info btn-xs" style="padding: 2px 6px"><%= t('.get_media') %></button>

@@ -5,8 +5,14 @@
       which(1,"<%= escape_javascript( render :partial => @type, locals: {original: true}) %>");
    <% end %>
 
-   <% if @trans && (@which == 0 || @which == 2) %>
-      <% @item.current_locale = @to %>
+  <% if @trans && (@which == 0 || @which == 2)
+    if @type == 'embed_media'
+      @parent = {
+        url: @item.url,
+        code: @item.code
+      }
+    end
+    @item.current_locale = @to %>
       which(2,"<%= escape_javascript( render :partial => @type) %>");
    <% end %>
 
