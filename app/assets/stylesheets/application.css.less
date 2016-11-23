@@ -1067,12 +1067,11 @@ i.colorbox {
   }
 }
 
-.tip
-{
+.tip {
   position:absolute;
   display:none;
-  .content
-  {
+  z-index: 1900;
+  .content {
     font-family: 'dejavusans';
     font-size:13px;
     color:#888;
@@ -1080,18 +1079,18 @@ i.colorbox {
     padding: 6px 10px;
     max-width: 400px;
     line-height: 18px;
-    &:lang(en)
-    {
-      font-family: 'opensans';
-    }
+    &:lang(en) { font-family: 'opensans'; }
   }
-  .pointer
-  {
+  .pointer {
+    display:none;
     width: 0;
     height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 10px solid #323232;
     margin: 0px auto;
   }
+  .pointer.down { border-top: 10px solid #323232; }
+  .pointer.up { border-bottom: 10px solid #323232; }
+  &[data-pointer='up'] .pointer.up { display:block; }
+  &[data-pointer='down'] .pointer.down { display:block; }
 }

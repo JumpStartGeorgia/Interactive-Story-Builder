@@ -4,6 +4,6 @@ class AddFullscreenToEmbedMedium < ActiveRecord::Migration
   end
 
   def down
-    remove_column :embed_media, :embed_media
+    remove_column :embed_media, :fullscreen
   end
 end

@@ -62,6 +62,7 @@ az:
         categories: Kateqoriyalar
         story_type: Növ
         in_theme_slider: Hekayəni Mövzu Slaydlarında Göstər
+        has_disclaimer: Show Disclaimer
       story_translation: &story_translation
         title: Hekayənin Sərlövhəsi
         author: Müəllif(lər)
@@ -431,7 +432,7 @@ az:
       clone_asset: Orijinal faylı istifadə et?
       embed: Daxil edilən kod
       scroll_top: Yuxarıya sürüşdür
-      logo_types: 
+      logo_types:
         sponsor: Sponsor
         sponsors: Sponsors
         partner: Partner
@@ -665,6 +666,7 @@ az:
         story_type: Hekayənin növünü seç.
         theme: Hekayənizə aid olan mövzuları seçin.
         in_theme_slider: Seçilibsə, bu hekayə mövzu səhifəsinin yuxarı panelində göstəriləcək.
+        has_disclaimer: "_has_disclaimer_"
     collaborators:
       title: "%{title}' Əməkdaşları"
       owner_header: Hekayə müəllifi
@@ -841,6 +843,8 @@ az:
       dataset: Related Items
       download: Download File
       online: View Data Online
+    disclaimer: Məsuliyyətdən imtina
+    disclaimer_text: "Məqalənin məzmununa görə məsuliyyəti müəllif daşıyır. Müəllifin mövqeyi ChaiKhana mövqeyi ilə üst üstə düşməyə bilər."
   settings:
     index:
       title: Parametrlər

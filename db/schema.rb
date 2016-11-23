@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20161122073103) do
+ActiveRecord::Schema.define(:version => 20161123125400) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -408,6 +408,7 @@ ActiveRecord::Schema.define(:version => 20161122073103) do
     t.integer  "cached_weighted_score", :default => 0
     t.integer  "comments_count",        :default => 0
     t.integer  "story_type_id"
+    t.boolean  "has_disclaimer",        :default => true
   end
 
   add_index "stories", ["cached_votes_down"], :name => "index_stories_on_cached_votes_down"
@@ -489,6 +490,7 @@ ActiveRecord::Schema.define(:version => 20161122073103) do
   add_index "story_translations", ["language_type"], :name => "index_story_translations_on_language_type"
   add_index "story_translations", ["locale"], :name => "index_story_translations_on_locale"
   add_index "story_translations", ["permalink"], :name => "index_story_translations_on_permalink"
+  add_index "story_translations", ["permalink"], :name => "permalink"
   add_index "story_translations", ["published"], :name => "index_story_translations_on_published"
   add_index "story_translations", ["published_at"], :name => "index_story_translations_on_published_at"
   add_index "story_translations", ["story_id"], :name => "index_story_translations_on_story_id"

@@ -62,6 +62,7 @@ ka:
         categories: "კატეგორიები"
         story_type: "ტიპი"
         in_theme_slider: "ამბის სლაიდერში ჩვენება"
+        has_disclaimer: Show Disclaimer
       story_translation: &story_translation
         title: "ამბის სათაური"
         author: "ავტორ(ებ)ი"
@@ -431,7 +432,7 @@ ka:
       clone_asset: "გამოვიყენოთ საწყისი ფაილის?"
       embed: "კოდის ჩასმა"
       scroll_top: "მაღლა ასვლა"
-      logo_types: 
+      logo_types:
         sponsor: Sponsor
         sponsors: სპონსორები
         partner: Partner
@@ -665,6 +666,7 @@ ka:
         story_type: "აირჩიეტ ამბის ტიპი"
         theme: "აირჩიეთ თემა, რომელსაც თქვენი ამბავი განეკუთვნება"
         in_theme_slider: "თუ მონიშნავთ ეს ამბავი გამოჩნდება სლაიდერში, თემის გვერდის ზედა ნაწილში"
+        has_disclaimer: "_has_disclaimer_"
     collaborators:
       title: "ამბის '%{title}' თანაავტორები"
       owner_header: "ამბის ავტორი"
@@ -841,6 +843,8 @@ ka:
       dataset: "მასალები ამ თემაზე"
       download: "ჩამოტვირთვა"
       online: "მონაცემთა ნახვა ონლაინ"
+    disclaimer: "განაცხადი"
+    disclaimer_text: "მასალა შეიძლება შეიცავდეს ტერმინებს, რომელიც არ აკმაყოფილებს კონფლიქტის ყველა მხარეს. გამოყენებული ტერმინები ეკუთვნის ავტორს/რესპონდენტს და არა ჩაი-ხანას."
   settings:
     index:
       title: "პარამეტრები"

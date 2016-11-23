@@ -62,6 +62,7 @@ hy:
         categories: "Կատեգորիաներ"
         story_type: "Տեսակ"
         in_theme_slider: "Ցույց տալ պատմությունը նույն թեմատիկ վահանակում"
+        has_disclaimer: Show Disclaimer
       story_translation: &story_translation
         title: "Վերնագիր"
         author: "Հեղինակ(ներ)"
@@ -431,7 +432,7 @@ hy:
       clone_asset: "Օգտագործել օրիգինալ ֆայլը?"
       embed: "Ներդրված կոդ"
       scroll_top: "Ոլորել վերև"
-      logo_types: 
+      logo_types:
         sponsor: Sponsor
         sponsors: Հովանավորներ
         partner: Partner
@@ -665,6 +666,7 @@ hy:
         story_type: "Ընտրել նյութի տեսակը"
         theme: "Ընտրել նյութի թեմաները"
         in_theme_slider: "Նշելու դեպքում նյութը կհայտնվի թեմայի էջի վերևի շարքում"
+        has_disclaimer: "_has_disclaimer_"
     collaborators:
       title: "%{title}' նյութի համագործակցողները"
       owner_header: "Նյութի հեղինակ"
@@ -841,6 +843,8 @@ hy:
       dataset: Related Items
       download: Download File
       online: View Data Online
+    disclaimer: Disclaimer
+    disclaimer_text: "Նյութում կարող են տեղ գտնել եզրեր, որոնք ընդունելի չեն կոնֆլիկտի բոլոր կողմերի համար։ Նյութում օգտագորված նման եզրերը բացառապես պատկանում են հեղինակին կամ հերոսներին, եւ ոչ Չայխանային:"
   settings:
     index:
       title: "Կարգավորումներ"

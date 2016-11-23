@@ -61,6 +61,7 @@ ru:
         categories: "Категории"
         story_type: "Тип"
         in_theme_slider: "Показать историю в тематическом слайдере"
+        has_disclaimer: Show Disclaimer
       story_translation: &story_translation
         title: "Название истории"
         author: "Автор(ы)"
@@ -430,7 +431,7 @@ ru:
       clone_asset: "Использывать оригинал?"
       embed: "Вставить код"
       scroll_top: "Прокрутить вверх"
-      logo_types: 
+      logo_types:
         sponsor: Sponsor
         sponsors: спонсор
         partner: Partner
@@ -664,6 +665,7 @@ ru:
         story_type: "Выберите тип вашей истории."
         theme: "Выберите тему(ы) Вашей истории"
         in_theme_slider: "При выборе этого, история появится в верхней ползунке тем."
+        has_disclaimer: "_has_disclaimer_"
     collaborators:
       title: "Сотрудники '%{title}'"
       owner_header: "Автор истории"
@@ -840,6 +842,8 @@ ru:
       dataset: Related Items
       download: Download File
       online: View Data Online
+    disclaimer: "Отказ от ответственности"
+    disclaimer_text: "Mатериал может содержать термины, которые могут не устраивать все стороны спора / конфликта. Использованные термины принадлежат автору, а не Чай-Хане."
   settings:
     index:
       title: "Настройки"

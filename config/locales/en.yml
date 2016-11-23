@@ -62,6 +62,7 @@ en:
         categories: Categories
         story_type: Type
         in_theme_slider: Show Story in Theme Slider
+        has_disclaimer: Show Disclaimer
       story_translation: &story_translation
         title: Story Title
         author: Author(s)
@@ -431,7 +432,7 @@ en:
       clone_asset: Use the original file?
       embed: Embed Code
       scroll_top: Scroll to the top
-      logo_types: 
+      logo_types:
         sponsor: Sponsor
         sponsors: Sponsors
         partner: Partner
@@ -665,6 +666,7 @@ en:
         story_type: Select the type of your story.
         theme: Select the theme(s) your story belongs to.
         in_theme_slider: "If checked, this story will appear in the slider at the top of the theme page."
+        has_disclaimer: "_has_disclaimer_"
     collaborators:
       title: "Collaborators for '%{title}'"
       owner_header: Story Author
@@ -841,6 +843,8 @@ en:
       dataset: Related Items
       download: Download File
       online: View Data Online
+    disclaimer: Disclaimer
+    disclaimer_text: "This material may contain terms, which are not favored by all the parties of the dispute/conflict. Terms used in a material belong to the author and not Chai-Khana."
   settings:
     index:
       title: Settings
