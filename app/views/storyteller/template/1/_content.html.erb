@@ -216,9 +216,6 @@
                       <%= item.dynamic_code.html_safe %>
                     </div>
                   <% end %>
-                  <% if isFirst && @story.story_type_id != 1 && @story.about.present? %>
-                    <div class='description'><%= @story.about.html_safe %></div>
-                  <% end %>
                   <div class="description"><%= item.description.html_safe %></div>
                   <% if item.datasources.present? %>
                     <div class="sources">
