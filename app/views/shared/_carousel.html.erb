@@ -6,7 +6,7 @@
       <ol class="carousel-indicators">
        <% @stories_for_slider.each_with_index { |t,i| %>
           <li data-target="#carousel-example-generic" data-slide-to="<%= i %>" class='<%= i == 0 ? " active" : "" %>'></li>
-        <% } %>  
+        <% } %>
       </ol>
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
@@ -29,7 +29,7 @@
               </div>
             </div>
           </div>
-        <% } %>      
+        <% } %>
       </div>
       <!-- Controls -->
       <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -42,12 +42,23 @@
       </a>
       <!-- Sticker -->
       <div class='sticker'>
-        <div class='sticker-wrapper'>
-          <%= link_to theme_path(@theme.permalink) do %>
-            <div class='title'><%= @theme.name.split.map(&:capitalize).join(' ') %></div>
-            <div class='descr'><%= @theme.description %></div>
-            <div class='sep'></div>
-            <div class='date'><%= @theme.edition %></div>  <!-- I18n.l(@theme.edition, :format => '%B %Y')  -->
+        <div class='sticker-container'>
+          <%
+            locale_line_width = {
+              title: { en: 30, ka: 26, ru: 30, az: 30, hy: 30 },
+              descr: { en: 40, ka: 30, ru: 40, az: 30, hy: 30 }
+            }
+            line_width_title = locale_line_width[:title][I18n.locale]
+            line_width_descr = locale_line_width[:descr][I18n.locale]
+            theme_title = word_wrap(@theme.name.split.map(&:capitalize).join(' '), line_width: line_width_title).gsub("\n", "<br/>").html_safe
+            theme_descr = word_wrap(@theme.description, line_width: line_width_descr).gsub("\n", "<br/>").html_safe
+            theme_date = word_wrap(@theme.edition, line_width: line_width_descr).gsub("\n", "<br/>").html_safe
+          %>
+          <%= link_to theme_path(@theme.permalink), class: "sticker-placeholder" do %>
+            <div class='title'><%= theme_title %></div><div class='descr'><%= theme_descr %></div><div class='sep'></div><div class='date'><%= theme_date %></div>
+          <% end %>
+          <%= link_to theme_path(@theme.permalink), class: "sticker-text" do %>
+            <div class='title'><%= theme_title %></div><div class='descr'><%= theme_descr %></div><div class='sep'></div><div class='date'><%= theme_date %></div>
           <% end %>
         </div>
       </div>
