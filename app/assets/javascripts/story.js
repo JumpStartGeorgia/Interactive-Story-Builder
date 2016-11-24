@@ -118,8 +118,8 @@
         }
 
         d3.selectAll(".slideshow").each(function() {
-          var wrapper =  d3.select(this).select(".wrapper");
-          var captions = wrapper.select('.captions');
+          var container =  d3.select(this).select(".container");
+          var captions = container.select('.captions');
 
           captions.selectAll(".caption").each(function(){
             var t = this;
@@ -129,7 +129,7 @@
             }
             captions.insert("div", function() { return t; }).classed("image",true).append("img").attr("src",function(d) { return spath + t.getAttribute("data-image"); });
           });
-          wrapper.insert(function(){ return wrapper.select('.description').remove()[0][0]; },".captions");
+          container.insert(function(){ return container.select('.description').remove()[0][0]; },".captions");
         });
       }, 200);
     });
@@ -456,7 +456,7 @@ if (!isMobile())
       var watch = d3.behavior.watch()
           .on("statechange.first", firststatechanged)
           .on("statechange", statechanged);
-      var slideshow = d3.select(this).select(".wrapper")
+      var slideshow = d3.select(this).select(".container")
           .on("mouseover", stopPlay)
           .on("mouseout", stopPlay)
           .call(watch);
@@ -471,7 +471,7 @@ if (!isMobile())
       var images = caption.data();
       var ln = images.length;
       var container = slideshow.insert("div", ".captions")
-          .attr("class", "container");
+          .attr("class", "inner-container");
       var image = container.append("div")
           .attr("class", "images")
         .selectAll(".image")
@@ -576,7 +576,7 @@ if (!isMobile())
           ver = aspect_ratio > image_ratio;
         img.classed("ver", ver).classed("hor", !ver);
       });
-    d3.selectAll(".section.embed.fullscreen .container > *:first-child").style("height", h + "px");
+    d3.selectAll(".section.dimension-fullscreen .container > *:first-child").style("height", h + "px");
   }
   function watch_scrolled () {
     watched.forEach(function(watch) {

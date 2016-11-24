@@ -114,7 +114,7 @@ en:
         message: Message
         message_type: Feedback Type
       embed_medium:
-        fullscreen: Fullscreen
+        dimension: Fullscreen
       embed_medium_translation: &embed_medium_translation
         title: Title
         url: URL to Online Media
@@ -748,6 +748,10 @@ en:
       embed_source: Embed Source
       embed_source_url: URL
       embed_source_code: Code
+      dimension: How to scale object
+      preserve: Preserve size
+      fullscreen: Fullscreen
+      fit: Fit to page
       placeholder:
         title: Embed Online Media Title
         url: URL to online media
@@ -757,7 +761,7 @@ en:
         url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
         code: "Code for online media (iframe embed object ...)"
         embed_source: Is the embed object from a url or is it code
-        fullscreen: "If checked, the embed media will take up the entire screen"
+        dimension: "_dimension_"
     youtube:
       form_title: YouTube Video Form
       get_media: Get Youtube Video
