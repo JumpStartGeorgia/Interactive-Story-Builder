@@ -62,7 +62,7 @@ ka:
         categories: "კატეგორიები"
         story_type: "ტიპი"
         in_theme_slider: "ამბის სლაიდერში ჩვენება"
-        has_disclaimer: Show Disclaimer
+        has_disclaimer: "Include Story Disclaimer?"
       story_translation: &story_translation
         title: "ამბის სათაური"
         author: "ავტორ(ებ)ი"
@@ -666,7 +666,7 @@ ka:
         story_type: "აირჩიეტ ამბის ტიპი"
         theme: "აირჩიეთ თემა, რომელსაც თქვენი ამბავი განეკუთვნება"
         in_theme_slider: "თუ მონიშნავთ ეს ამბავი გამოჩნდება სლაიდერში, თემის გვერდის ზედა ნაწილში"
-        has_disclaimer: "_has_disclaimer_"
+        has_disclaimer: "Selecting this field will show the story disclaimer at the top and bottom of the story next to the share links."
     collaborators:
       title: "ამბის '%{title}' თანაავტორები"
       owner_header: "ამბის ავტორი"

@@ -62,7 +62,7 @@ en:
         categories: Categories
         story_type: Type
         in_theme_slider: Show Story in Theme Slider
-        has_disclaimer: Show Disclaimer
+        has_disclaimer: "Include Story Disclaimer?"
       story_translation: &story_translation
         title: Story Title
         author: Author(s)
@@ -666,7 +666,7 @@ en:
         story_type: Select the type of your story.
         theme: Select the theme(s) your story belongs to.
         in_theme_slider: "If checked, this story will appear in the slider at the top of the theme page."
-        has_disclaimer: "_has_disclaimer_"
+        has_disclaimer: "Selecting this field will show the story disclaimer at the top and bottom of the story next to the share links."
     collaborators:
       title: "Collaborators for '%{title}'"
       owner_header: Story Author

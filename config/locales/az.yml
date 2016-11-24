@@ -62,7 +62,7 @@ az:
         categories: Kateqoriyalar
         story_type: Növ
         in_theme_slider: Hekayəni Mövzu Slaydlarında Göstər
-        has_disclaimer: Show Disclaimer
+        has_disclaimer: "Include Story Disclaimer?"
       story_translation: &story_translation
         title: Hekayənin Sərlövhəsi
         author: Müəllif(lər)
@@ -666,7 +666,7 @@ az:
         story_type: Hekayənin növünü seç.
         theme: Hekayənizə aid olan mövzuları seçin.
         in_theme_slider: Seçilibsə, bu hekayə mövzu səhifəsinin yuxarı panelində göstəriləcək.
-        has_disclaimer: "_has_disclaimer_"
+        has_disclaimer: "Selecting this field will show the story disclaimer at the top and bottom of the story next to the share links."
     collaborators:
       title: "%{title}' Əməkdaşları"
       owner_header: Hekayə müəllifi

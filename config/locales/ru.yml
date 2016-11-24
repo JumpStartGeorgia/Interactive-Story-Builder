@@ -61,7 +61,7 @@ ru:
         categories: "Категории"
         story_type: "Тип"
         in_theme_slider: "Показать историю в тематическом слайдере"
-        has_disclaimer: Show Disclaimer
+        has_disclaimer: "Include Story Disclaimer?"
       story_translation: &story_translation
         title: "Название истории"
         author: "Автор(ы)"
@@ -665,7 +665,7 @@ ru:
         story_type: "Выберите тип вашей истории."
         theme: "Выберите тему(ы) Вашей истории"
         in_theme_slider: "При выборе этого, история появится в верхней ползунке тем."
-        has_disclaimer: "_has_disclaimer_"
+        has_disclaimer: "Selecting this field will show the story disclaimer at the top and bottom of the story next to the share links."
     collaborators:
       title: "Сотрудники '%{title}'"
       owner_header: "Автор истории"
