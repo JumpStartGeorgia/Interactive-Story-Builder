@@ -9,7 +9,13 @@ header
   background-color:#1d1d1d;
   z-index:1034;
   color:#000;
-  -webkit-transform: translateZ(0);
+  // -webkit-transform: translateZ(0);
+  -webkit-transition: top 300ms; /* Safari */
+  transition: top 300ms;
+  top:0;
+  &.stealth {
+    top:-70px;
+  }
   a
   {
     color:#000;

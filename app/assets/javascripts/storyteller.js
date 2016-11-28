@@ -14,34 +14,22 @@ function story_new_comment_callback(url){
 
 
 $(document).ready(function(){
-    var is_mac = navigator.platform.indexOf('Mac') > -1;
-    if($(".navbar-storybuilder").length != 0)
+    var sbn_elem = $(".navbar-storybuilder");
+    if(sbn_elem.length != 0)
     {
-      //$(".navbar-story").css("top","54px");
-      var sbn_elem = $(".navbar-storybuilder"), sbn_in_animation = false, sbn_last_scroll;
-
-      addWheelListener(document, function (event) {
-        // console.log(event.deltaY);
-        if(event.deltaY !== -0 && event.deltaY !== 0) {
-          navbar_storybuilder_animate(event.deltaY > 0);
-        }
+      var lastScrollTop = 0;
+      $(window).on('scroll', function(e) {
+        // console.log(e);
+         st = $(this).scrollTop();
+         sbn_elem.toggleClass("stealth", st > lastScrollTop ? true : false );
+         lastScrollTop = st;
       });
-      function navbar_storybuilder_animate (dir) {
-        if(!sbn_in_animation) {
-          sbn_in_animation = true;
-          sbn_last_scroll = null;
-          sbn_elem.animate( dir ? { top: -1 * sbn_elem.height() } : { top:"0px" }, 300, function () {
-            sbn_in_animation = false;
-            if(sbn_last_scroll !== null) {
-              navbar_storybuilder_animate(sbn_last_scroll);
-            }
-
-          });
-        }
-        else {
-          sbn_last_scroll = dir;
-        }
-      }
+      // addWheelListener(document, function (event) {
+      //   console.log("1");
+      //   if(event.deltaY !== -0 && event.deltaY !== 0) {
+      //     sbn_elem.toggleClass("stealth", event.deltaY > 0 ? true : false );
+      //   }
+      // });
     }
 
       $('.section.infographic .container .content.infographic').click(function(){
