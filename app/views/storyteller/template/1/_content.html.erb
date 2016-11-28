@@ -12,8 +12,8 @@
               <div class="byline">
                       <span class="caption"><%= t('storyteller.byline', locale: @story.current_locale) %></span>
                       <span class="author">&nbsp;<%= @story.story_author_names %></span>
-                      <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
-                      <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
+                      <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media', locale: @story.current_locale)}</span>&nbsp;<span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                      <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator', locale: @story.current_locale)}</span>&nbsp;<span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
               </div>
             </div>
             <%= render partial: "storyteller/template/#{@template}/content_infotop", locals: {is_infographic: section.infographic?} %>
@@ -100,8 +100,8 @@
                       <div class="video-headline">
                         <div class="headline"><%= @story.title %>
                           <div class="byline">
-                            <span class="caption"><%= t('storyteller.byline', locale: @story.current_locale) %></span><span class="author">&nbsp;<%= @story.story_author_names %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
-                             <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
+                            <span class="caption"><%= t('storyteller.byline', locale: @story.current_locale) %></span><span class="author">&nbsp;<%= @story.story_author_names %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media', locale: @story.current_locale)}</span>&nbsp;<span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                             <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator', locale: @story.current_locale)}</span>&nbsp;<span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
                           </div>
                         </div>
                       </div>
@@ -140,7 +140,7 @@
                           <% if t.source.present? %>
 
                             <div class="source">
-                              <span><%= "#{t('storyteller.source')}" %></span>&nbsp;
+                              <span><%= "#{t('storyteller.source', locale: @story.current_locale)}" %></span>&nbsp;
                               <%= auto_link(t.source) %>
                             </div>
                           <% end %>
@@ -176,8 +176,8 @@
                   <div class="byline">
                           <span class="caption"><%= t('storyteller.byline', locale: @story.current_locale) %></span>
                           <span class="author">&nbsp;<%= @story.story_author_names %></span>
-                          <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
-                          <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator')}</span><span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
+                          <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media', locale: @story.current_locale)}</span>&nbsp;<span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+                          <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator', locale: @story.current_locale)}</span>&nbsp;<span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
                   </div>
                 </div>
                 <%= render partial: "storyteller/template/#{@template}/content_infotop" %>

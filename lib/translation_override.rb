@@ -29,7 +29,9 @@ module TranslationOverride
       sl.strip! if String === sl
       loc = sl if trans_locales.include?(sl.to_sym)
     end
-    self.current_locale = loc
-    Globalize.story_locale = loc
+    if loc.present?
+      self.current_locale = loc
+      Globalize.story_locale = loc
+    end
   end
 end
