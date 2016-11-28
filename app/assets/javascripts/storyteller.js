@@ -23,6 +23,7 @@ $(document).ready(function(){
       var sbn = true;
 
       addWheelListener(document, function (event) {
+        console.log(event.deltaY);
         if(event.deltaY !== -0 && event.deltaY !== 0) {
           if(is_mac && Math.abs(event.deltaY) < 10) { return; }
 
