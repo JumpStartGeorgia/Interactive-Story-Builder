@@ -97,19 +97,19 @@ $(document).ready(function(){
 
   //for dropdown menu to open on hover
 
-if(!mob){
-  $(document).on({
-    mouseenter: function () {
-      $(this).closest('.dropdown-menu').stop(true, true).show();
-      $(this).addClass('open');
-    },
-    mouseleave: function () {
-      $(this).closest('.dropdown-menu').stop(true, true).hide();
-      $(this).removeClass('open');
-    }
-  },'ul.nav li.dropdown-hover');
+// if(!mob){
+//   $(document).on({
+//     mouseenter: function () {
+//       $(this).closest('.dropdown-menu').stop(true, true).show();
+//       $(this).addClass('open');
+//     },
+//     mouseleave: function () {
+//       $(this).closest('.dropdown-menu').stop(true, true).hide();
+//       $(this).removeClass('open');
+//     }
+//   },'ul.nav li.dropdown-hover');
 
-}
+// }
 $(".navbar-collapse").swipe(function( direction, offset ) {
   if(direction.x == 'left')
     $('.navbar-toggle').trigger('click');
