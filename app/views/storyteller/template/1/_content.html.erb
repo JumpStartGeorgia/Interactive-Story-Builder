@@ -138,7 +138,7 @@
                   <!--[if lte IE 8]><img src="<%= section.slideshow.asset_files[0].file.url(:medium) %>" style="width:100%;"><![endif]-->
                   <div class="captions">
                     <% section.slideshow.asset_files.each_with_index do |t,t_i| %>
-                      <div class="caption" data-image="<%= t.asset_file_name_formatted %>" data-aspect="<%= Paperclip::Geometry.from_file(t.asset.path).aspect.round(2) > 1 ? 'w' : 'h'%>">
+                      <div class="caption" data-image="<%= t.asset_file_name_formatted %>" data-aspect="<%= t.asset.exists? && Paperclip::Geometry.from_file(t.asset.path).aspect.round(2) > 1 ? 'w' : 'h'%>">
                           <%= t.caption.html_safe %>
                           <% if t.source.present? %>
 
