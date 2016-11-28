@@ -49,7 +49,7 @@ class EmbedMedium < ActiveRecord::Base
     return @local_translations[locale]
   end
   def get_dimension_class
-    "dimension-#{DIMENSION_TYPE.index(self.dimension).to_s}"
+    "section-#{DIMENSION_TYPE.index(self.dimension).to_s}"
   end
 
 end

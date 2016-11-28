@@ -576,7 +576,7 @@ if (!isMobile())
           ver = aspect_ratio > image_ratio;
         img.classed("ver", ver).classed("hor", !ver);
       });
-    d3.selectAll(".section.dimension-fullscreen .container > *:first-child").style("height", h + "px");
+    d3.selectAll(".section.section-fullscreen .container > *:first-child").style("height", h + "px");
   }
   function watch_scrolled () {
     watched.forEach(function(watch) {
