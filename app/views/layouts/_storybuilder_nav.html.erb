@@ -1,88 +1,88 @@
-<nav class="navbar navbar-default navbar-static-top navbar-storybuilder" role="navigation">  
-  <div class="container-fluid">  
+<nav class="navbar navbar-default navbar-static-top navbar-storybuilder" role="navigation">
+  <div class="container-fluid">
     <div class="navbar-header">
-        <img src="<%= asset_path('svg/slogo.svg') %>" class="navbar-toggle navbar-slogo" data-toggle="collapse" data-target="#storybuilder-navbar-collapse" />        
-        <%= link_to(image_tag("svg/logo.svg",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name_not_trans')) , root_path(:locale => I18n.locale), title: t('app.common.app_name'), :class=>"navbar-logo link") %>          
+        <img src="<%= asset_path('svg/slogo.svg') %>" class="navbar-toggle navbar-slogo" data-toggle="collapse" data-target="#storybuilder-navbar-collapse" />
+        <%= link_to(image_tag("svg/logo.svg",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name_not_trans')) , root_path(:locale => I18n.locale), title: t('app.common.app_name'), :class=>"navbar-logo link") %>
     </div>
 
     <div class="collapse navbar-collapse" id="storybuilder-navbar-collapse">
 
     <ul class="nav navbar-nav navbar-left">
-      <li class="dropdown dropdown-hover">                    
-          <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= t('helpers.links.themes') %><i class="caret"></i></a>                  
-          <ul class="dropdown-menu">            
+      <li class="dropdown dropdown-hover">
+          <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= t('helpers.links.themes') %><i class="caret"></i></a>
+          <ul class="dropdown-menu">
             <% @themes_published.each do |theme| %>
               <li class="story-type">
                 <%= link_to theme.formatted_name, theme_path(theme.permalink) %>
               </li>
             <% end %>
           </ul>
-      </li>  
-      <div class="separator-hor"></div> 
-      <li class="dropdown dropdown-hover">                    
-          <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= t("app.language.#{locale}") %><i class="caret"></i></a>                  
+      </li>
+      <div class="separator-hor"></div>
+      <li class="dropdown dropdown-hover">
+          <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= t("app.language.#{locale}") %><i class="caret"></i></a>
           <ul class="dropdown-menu">
             <% I18n.available_locales.each do |locale| %>
               <% if locale != I18n.locale %>
                 <li class="lang-switch" lang="<%= locale %>"><%= link_to t("app.language.#{locale}"), params.merge(:locale =>  locale) %></li>
               <% end %>
-            <% end %>                             
+            <% end %>
           </ul>
-      </li>  
+      </li>
     </ul>
 
 
 
-      
-      <ul class="nav navbar-nav navbar-right">    
+
+      <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
-      <div class="separator-hor"></div> 
+      <div class="separator-hor"></div>
         <li class="dropdown dropdown-hover settings">
 
-          <%= link_to '#', :tabindex=>2, :class=>"dropdown-toggle avatar-link", :"data-toggle"=>"dropdown"  do %>         
-            <%= image_tag(current_user.avatar_url, :class=>"avatar link", :alt => current_user.nickname) %>           
+          <%= link_to '#', :tabindex=>2, :class=>"dropdown-toggle avatar-link", :"data-toggle"=>"dropdown"  do %>
+            <%= image_tag(current_user.avatar_url, :class=>"avatar link", :alt => current_user.nickname) %>
           <% end %>
-                      
+
           <ul class="dropdown-menu">
             <% if current_user.role? User::ROLES[:coordinator] %>
-              <li>              
-                <%= link_to stories_path do %>         
+              <li>
+                <%= link_to stories_path do %>
                   <i class="s i-mystories"></i>
                   <span><%= t('helpers.titles.story_list') %></span>
                 <% end %>
-              </li>  
+              </li>
               <li class="set-build">
-                <%= link_to new_story_path do %>         
+                <%= link_to new_story_path do %>
                 <i class="s i-build"></i><span><%= t('app.common.build') %></span>
-                <% end %>              
-              </li>              
-            <% end %>                
+                <% end %>
+              </li>
+            <% end %>
             <li>
-              <%= link_to settings_path do %>         
+              <%= link_to settings_path do %>
                <i class="s i-settings"></i><span><%= t('helpers.links.user_settings') %></span>
-              <% end %>              
-            </li>              
+              <% end %>
+            </li>
             <% if current_user.role? User::ROLES[:coordinator] %>
               <li>
-                <%= link_to admin_path do %>         
+                <%= link_to admin_path do %>
                   <i class="s i-users"></i><span><%= t('helpers.links.admin') %></span>
-                <% end %>    
+                <% end %>
               </li>
-            <% end %>               
+            <% end %>
             <li class="signout">
-              <%= link_to destroy_user_session_path , :method => :delete do %>         
+              <%= link_to destroy_user_session_path , :method => :delete do %>
                <i class="s i-signout"></i><span><%= t('helpers.links.sign_out') %></span>
-              <% end %>                
+              <% end %>
             </li>
           </ul>
         </li>
-     <% end %>   
-     <div class="separator-hor"></div> 
+     <% end %>
+     <div class="separator-hor"></div>
         <li class='about'><%= link_to t('helpers.links.about'), about_path, class:'link' %> </li>
-     <div class="separator-hor"></div>         
+     <div class="separator-hor"></div>
         <li class="separator-ver"></li>
-        <li class="dropdown dropdown-hover follow">                    
-            <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= t('helpers.links.follow') %><i class="caret"></i></a>                  
+        <li class="dropdown dropdown-hover follow">
+            <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= t('helpers.links.follow') %><i class="caret"></i></a>
             <ul class="dropdown-menu">
               <li class="facebook"><a href='https://www.facebook.com/pages/Chai-Khana/660466760721696' target="_blank"><%= t('helpers.links.facebook') %></a></li>
               <li class="twitter"><a href='https://twitter.com/Chaikhanaorg' target="_blank"><%= t('helpers.links.twitter') %></a></li>
@@ -94,15 +94,15 @@
                 <%= link_to t('helpers.links.subscribe'), settings_notifications_path %>
               </li>
             </ul>
-        </li>  
+        </li>
         <li class='li-search'>
           <%= form_tag root_path, :method => :get, :id => 'search-form',
           :class => "navbar-form navbar-left", :role => "search" do %>
-            <div class="form-group">            
+            <div class="form-group">
               <%= text_field_tag :q, params[:q], :placeholder => t('app.common.search'), :class=>"form-control search-input", :autocomplete=>'off', :tabindex => 1 %>
             </div>
         <% end %>
-        </li>      
+        </li>
       </ul>
     </div>
   </div>
