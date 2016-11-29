@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20161123125400) do
+ActiveRecord::Schema.define(:version => 20161129095042) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -106,7 +106,8 @@ ActiveRecord::Schema.define(:version => 20161123125400) do
     t.integer  "section_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "fullscreen", :default => false
+    t.integer  "dimension",  :limit => 1, :default => 0
+    t.boolean  "fullscreen",              :default => false
   end
 
   add_index "embed_media", ["section_id"], :name => "index_embed_media_on_section_id"
@@ -161,6 +162,31 @@ ActiveRecord::Schema.define(:version => 20161123125400) do
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], :name => "poly_session_index"
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], :name => "impressionable_type_message_index", :length => {"impressionable_type"=>nil, "message"=>255, "impressionable_id"=>nil}
   add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
+
+  create_table "impressions2", :force => true do |t|
+    t.string   "impressionable_type"
+    t.integer  "impressionable_id"
+    t.integer  "user_id"
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.string   "view_name"
+    t.string   "request_hash"
+    t.string   "ip_address"
+    t.string   "session_hash"
+    t.text     "message"
+    t.text     "referrer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "impressions2", ["controller_name", "action_name", "ip_address"], :name => "controlleraction_ip_index"
+  add_index "impressions2", ["controller_name", "action_name", "request_hash"], :name => "controlleraction_request_index"
+  add_index "impressions2", ["controller_name", "action_name", "session_hash"], :name => "controlleraction_session_index"
+  add_index "impressions2", ["impressionable_type", "impressionable_id", "ip_address"], :name => "poly_ip_index"
+  add_index "impressions2", ["impressionable_type", "impressionable_id", "request_hash"], :name => "poly_request_index"
+  add_index "impressions2", ["impressionable_type", "impressionable_id", "session_hash"], :name => "poly_session_index"
+  add_index "impressions2", ["impressionable_type", "message", "impressionable_id"], :name => "impressionable_type_message_index", :length => {"impressionable_type"=>nil, "message"=>255, "impressionable_id"=>nil}
+  add_index "impressions2", ["user_id"], :name => "index_impressions_on_user_id"
 
   create_table "infographic_datasources", :force => true do |t|
     t.integer  "infographic_translation_id"

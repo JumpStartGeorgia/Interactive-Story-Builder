@@ -17,7 +17,7 @@ class Story < ActiveRecord::Base
   scoped_search :in => :content_translations, :on => [:caption, :sub_caption, :text]
 
   # record public views
-  is_impressionable :counter_cache => true
+  is_impressionable :counter_cache => true, :unique => :session_hash
 
   has_many :story_translation_progresses, :dependent => :destroy
   alias_attribute  :translation_progress, :story_translation_progresses
