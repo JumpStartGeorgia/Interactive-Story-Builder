@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20161123125400) do
+ActiveRecord::Schema.define(:version => 20161124082147) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(:version => 20161123125400) do
     t.integer  "section_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "fullscreen", :default => false
+    t.integer  "dimension",  :limit => 1, :default => 0
   end
 
   add_index "embed_media", ["section_id"], :name => "index_embed_media_on_section_id"

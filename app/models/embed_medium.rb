@@ -7,8 +7,9 @@ class EmbedMedium < ActiveRecord::Base
 
   has_many :embed_medium_translations, :dependent => :destroy
   accepts_nested_attributes_for :embed_medium_translations
-  attr_accessible :section_id, :fullscreen, :embed_medium_translations_attributes
+  attr_accessible :section_id, :dimension, :embed_medium_translations_attributes
 
+  DIMENSION_TYPE = { preserve: 0, fullscreen: 1, fit: 2 }
 
   #################################
   ## Validations
@@ -47,6 +48,8 @@ class EmbedMedium < ActiveRecord::Base
     end
     return @local_translations[locale]
   end
-
+  def get_dimension_class
+    "section-#{DIMENSION_TYPE.index(self.dimension).to_s}"
+  end
 
 end
