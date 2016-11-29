@@ -8,18 +8,16 @@ class StorytellerController < ApplicationController
 
 
   def index
-    @story = Story.select('stories.id').is_published.find_by_permalink(params[:id])
+    @story = Story.is_published.find_by_permalink(params[:id])
 
     if @story.present?
       impressionist(@story, :unique => [:session_hash]) # record the view count
       @story.reload
-      Rails.logger.debug("--------------------------------------------before#{}")
-      @story.sections.includes([:media,:content,:embed_medium,:youtube,:slideshow])
-      Rails.logger.debug("--------------------------------------------after#{}")
 
-      # @story = Story.is_published.fullsection(story.id) if story.present?
-      #
       @story.set_prime_locale(params[:sl])
+
+      @story.sections.includes([:media,:content,:embed_medium,:youtube,:slideshow])
+
       @stories = @story.random_related_stories
 
       # record if the user has liked this story
