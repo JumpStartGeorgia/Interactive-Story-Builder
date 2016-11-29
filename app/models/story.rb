@@ -12,7 +12,7 @@ class Story < ActiveRecord::Base
   scoped_search :in => :content, :on => [:caption, :sub_caption, :content]
 
   # record public views
-  is_impressionable :counter_cache => true
+  is_impressionable :counter_cache => true, :unique => :session_hash
   # create permalink to story
   has_permalink :create_permalink, true
 

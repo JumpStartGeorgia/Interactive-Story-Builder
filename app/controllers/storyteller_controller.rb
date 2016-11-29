@@ -6,28 +6,29 @@ class StorytellerController < ApplicationController
     controller_instance.send(:valid_role?, User::ROLES[:staff_pick])
   end
 
-
   def index
+    @story = Story.is_not_deleted.is_published.find_by_permalink(params[:id])
 
-    @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css")
-    @js.push("storyteller.js","modalos.js","follow.js")
-  	story = Story.is_not_deleted.select('id').is_published.find_by_permalink(params[:id])
-  	@story = Story.is_not_deleted.is_published.fullsection(story.id) if story.present?
+    if @story.present?
+      impressionist(@story, :unique => [:session_hash]) # record the view count
+      @story.reload
 
-  	if @story.present?
+      @story.sections.includes([:media,:content,:embed_medium])
+
       # record if the user has liked this story
       @user_likes = false
-    	@user_likes = current_user.voted_up_on? @story if user_signed_in?
+      @user_likes = current_user.voted_up_on? @story if user_signed_in?
       @is_following = Notification.already_following_user(current_user.id, @story.user_id) if user_signed_in?
 
-      if params[:n] == 'n'
-          @no_nav = true
-      end
+      @no_nav = true if params[:n] == 'n'
+
+      @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css")
+      @js.push("storyteller.js","modalos.js","follow.js")
+
       respond_to do |format|
         format.html
       end
-      # record the view count
-      impressionist(@story)
+
     else
       redirect_to root_path, :notice => t('app.msgs.does_not_exist')
     end

@@ -5,7 +5,7 @@ gem "rails", "3.2.18"
 gem "mysql2", "~> 0.3.16" # this gem works better with utf-8
 
 gem "json"
-gem "jquery-rails", '~> 3.1.0' #"~> 1.0.19" 
+gem "jquery-rails", '~> 3.1.0' #"~> 1.0.19"
 gem "remotipart", '~> 1.2' # ajax file upload
 gem 'omniauth' # to login via facebook
 gem 'omniauth-facebook' # to login via facebook
@@ -34,7 +34,7 @@ gem "exception_notification", "~> 2.5.2" # send an email when exception occurs
 gem "useragent", :git => "https://github.com/jilion/useragent.git" # browser detection
 gem "rails_autolink", "~> 1.0.9" # convert string to link if it is url
 gem "subexec", "~> 0.2.3"
-gem "impressionist", "1.4.1" # keep track of views
+gem "impressionist", "1.4.13" # keep track of views
 gem 'active_attr', '~> 0.8.3' # to create tabless models; using for contact form
 gem "unidecoder", "~> 1.1.2" #convert utf8 to ascii for permalinks
 gem 'scoped_search', '~> 2.7.1' # search a model
@@ -55,7 +55,7 @@ group :assets do
   gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'  , branch: 'bootstrap3'
 #	gem "twitter-bootstrap-rails", "~> 2.2.8"
   gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
-  gem "jquery-ui-rails" , "~> 4.1.2"  
+  gem "jquery-ui-rails" , "~> 4.1.2"
 end
 
 group :development do
@@ -64,7 +64,7 @@ group :development do
   gem 'rb-inotify', '~> 0.9.5' # rails dev boost needs this
   gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git' # speed up loading page in dev mode
 # gem 'better_errors', '1.1.0'        # detailed exceptions view
-# gem 'binding_of_caller', '0.7.2'    # needed for better_errors advanced features  
+# gem 'binding_of_caller', '0.7.2'    # needed for better_errors advanced features
 end
 
 group :staging, :production do
