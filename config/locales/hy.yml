@@ -122,7 +122,7 @@ hy:
         message: "Նամակ"
         message_type: "Հետադարձ կապի տեսակը"
       embed_medium:
-        fullscreen: "Ամբողջ էկրանով"
+        dimension: Dimension
       embed_medium_translation: &embed_medium_translation
         title: "Վերնագիր"
         url: "Առցանց Media-ի Url"
@@ -767,6 +767,10 @@ hy:
       embed_source: Embed Source
       embed_source_url: URL
       embed_source_code: Code
+      dimension: How to fit the media on the page
+      preserve: Do not change size
+      fullscreen: Fullscreen
+      fit: Scale to fit page
       placeholder:
         title: "Ներդրվող մեդիայի վերնագիր"
         url: "Առցանց մեդիայի URL"
@@ -776,7 +780,7 @@ hy:
         url: "Ներդրված բովանդակության համար կարող են օգտագործել հետևյալ կայքերը. Աուդիո՝ Soundcloud, Spotify; Վիդեո՝ YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
         code: "Code for online media (iframe embed object ...)"
         embed_source: Is the embed object from a url or is it code
-        fullscreen: "Նշելու դեպքում վիդեոն կցուցադրվի ողջ էկրանով"
+        dimension: "Indicate how you want the embed online media to appear on the page. The first option will use whatever size is in the embed code. The second one will make the object fit the desired width. The last one will make it fullscreen."
     youtube:
       form_title: YouTube-ի վիդեոների ձև
       get_media: "Բերել վիդեոն Youtube-ից"

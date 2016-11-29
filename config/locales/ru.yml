@@ -121,7 +121,7 @@ ru:
         message: "Письмо"
         message_type: "Тип отзыва"
       embed_medium:
-        fullscreen: "Во весь экран"
+        dimension: Dimension
       embed_medium_translation: &embed_medium_translation
         title: "Заглавок"
         url: Url к онлайн медии
@@ -766,6 +766,10 @@ ru:
       embed_source: Embed Source
       embed_source_url: URL
       embed_source_code: Code
+      dimension: How to fit the media on the page
+      preserve: Do not change size
+      fullscreen: Fullscreen
+      fit: Scale to fit page
       placeholder:
         title: "Заголовок встроенного контента"
         url: URL к медиа контенту
@@ -775,7 +779,7 @@ ru:
         url: "Дла встроенного медиа контента могут быть использованы следующие сайты: Аудио: Soundcloud, Spotify; Видео: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
         code: "Code for online media (iframe embed object ...)"
         embed_source: Is the embed object from a url or is it code
-        fullscreen: "При выборе этого видео будет занимать весь экран"
+        dimension: "Indicate how you want the embed online media to appear on the page. The first option will use whatever size is in the embed code. The second one will make the object fit the desired width. The last one will make it fullscreen."
     youtube:
       form_title: "Форма для видео из YouTube"
       get_media: "Получить видео из YouTube"

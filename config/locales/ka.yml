@@ -122,7 +122,7 @@ ka:
         message: "გზავნილი"
         message_type: "გზავნილის მიზანი"
       embed_medium:
-        fullscreen: "მთელ ეკრანზე გაშლილი"
+        dimension: Dimension
       embed_medium_translation: &embed_medium_translation
         title: "სათაური"
         url: "ონლაინ აუდიოს/ვიდეოს ბმული"
@@ -767,6 +767,10 @@ ka:
       embed_source: Embed Source
       embed_source_url: URL
       embed_source_code: Code
+      dimension: How to fit the media on the page
+      preserve: Do not change size
+      fullscreen: Fullscreen
+      fit: Scale to fit page
       placeholder:
         title: "ონლაინ აუდიო/ვიდეო ფაილის სათაური"
         url: "ონლაინ აუდიო/ვიდეო ფაილის ბმული"
@@ -776,7 +780,7 @@ ka:
         url: "ჩასასმელი ონლაინ აუდიო/ვიდეო ფაილისთვის შეგიძლიათ გამოიყენოთ შემდეგი საიტები: აუდიო: Soundcloud, Spotify; ვიდეო: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
         code: "Code for online media (iframe embed object ...)"
         embed_source: Is the embed object from a url or is it code
-        fullscreen: "თუ მონიშნულია ვიდეო დაიკავებს მთლიან ეკრანს"
+        dimension: "Indicate how you want the embed online media to appear on the page. The first option will use whatever size is in the embed code. The second one will make the object fit the desired width. The last one will make it fullscreen."
     youtube:
       form_title: YouTube ვიდეოს ფორმა
       get_media: "მიიღეთ თქვენი Youtube ვიდეო"

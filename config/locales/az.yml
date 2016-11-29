@@ -122,7 +122,7 @@ az:
         message: Message
         message_type: Feedback Type
       embed_medium:
-        fullscreen: Tam ekran
+        dimension: Dimension
       embed_medium_translation: &embed_medium_translation
         title: Alt-başlıq
         url: Onlayn Mediaya URL
@@ -767,6 +767,10 @@ az:
       embed_source: Embed Source
       embed_source_url: URL
       embed_source_code: Code
+      dimension: How to fit the media on the page
+      preserve: Do not change size
+      fullscreen: Fullscreen
+      fit: Scale to fit page
       placeholder:
         title: Daxil Ediləsi Onlayn Medianın Sərlövhəsi
         url: Onlayn mediaya URL
@@ -776,7 +780,7 @@ az:
         url: 'Növbəti saytlar, onlayn medianı daxil etmək üçün istifadə edilə bilər: AUDİO: Soundcloud, Spotify; VİDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED'
         code: "Code for online media (iframe embed object ...)"
         embed_source: Is the embed object from a url or is it code
-        fullscreen: Seçilibsə, video tam ekranı əhatə edəcək
+        dimension: "Indicate how you want the embed online media to appear on the page. The first option will use whatever size is in the embed code. The second one will make the object fit the desired width. The last one will make it fullscreen."
     youtube:
       form_title: YouTube Video Forması
       get_media: Youtube Videosunu Al
