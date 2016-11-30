@@ -1,7 +1,7 @@
 class Admin::LogosController < ApplicationController
   before_filter :authenticate_user!
   before_filter do |controller_instance|
-    controller_instance.send(:valid_role?, User::ROLES[:site_admin])
+    controller_instance.send(:valid_role?, User::ROLES[:coordinator])
   end
   before_filter :asset_filter
 

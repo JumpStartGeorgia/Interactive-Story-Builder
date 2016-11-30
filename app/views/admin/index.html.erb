@@ -4,6 +4,9 @@
     <li>
      <%= link_to t('helpers.links.authors'), admin_authors_path %>
     </li>
+    <li>
+     <%= link_to t('helpers.links.logos'), admin_logos_path %>
+    </li>
     <% if current_user.role? User::ROLES[:site_admin] %>
       <li>
        <%= link_to t('helpers.links.users'), admin_users_path %>
@@ -13,9 +16,6 @@
       </li>
       <li>
        <%= link_to t('helpers.links.story_types'), admin_story_types_path %>
-      </li>
-      <li>
-       <%= link_to t('helpers.links.logos'), admin_logos_path %>
       </li>
  			<li>
        <%= link_to t('helpers.links.pages'), admin_pages_path %>
