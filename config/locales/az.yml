@@ -18,7 +18,7 @@ az:
       story_type: Hekayə Növü
       author: Müəllif
       asset: fayl
-      logo: Logo
+      logo: logo
     attributes:
       asset: &asset
         asset_file_name: fayl
@@ -39,11 +39,11 @@ az:
         created_at: Yaradıldığı Tarix
         current_sign_in_at: Sonuncu Dəfə Daxil Olmanın Tarixi
       logo:
-        image: Image
+        image: Şəkil
         url: URL
-        logo_type: Type
-        sort_order: Sort Order
-        is_active: Is Active?
+        logo_type: Növ
+        sort_order: Sıralama
+        is_active: Aktivdirmi?
       author:
         avatar: Avatar
       author_translation: &author_translation
@@ -79,7 +79,7 @@ az:
         has_marker: Naviqasiya Qısayolu
         type_id: Növ ("Yaz" if you mean the verb "to type")
         sort_order: Sıralama Qaydası
-        background: Image Background Color
+        background: Şəkilin fon rəngi
       section_translation:  &section_translation
         title: Sərlövhə
         audio: Audio Cığırı
@@ -120,7 +120,7 @@ az:
         name: Name
         email: Email Address
         message: Message
-        message_type: Feedback Type
+        message_type: Ölçü
       embed_medium:
         dimension: Dimension
       embed_medium_translation: &embed_medium_translation
@@ -147,7 +147,7 @@ az:
         subtype: "İnfografik növü"
         dynamic_width: en
         dynamic_height: hündürlük
-        dynamic_render: Show Infographic in Story or in Popup
+        dynamic_render: İnfoqrafiki Popup ya da Hekayə kimi göstər
       infographic_translation: &infographic_translation
         title: başlıq
         caption: Rubrika
@@ -178,7 +178,7 @@ az:
         published_at: Dərc Edilmə Tarixi
         show_home_page: Bu mövzunu ana səhifədə göstər?
         published_item_count: Dərc olunan məhsulların sayı
-        featured_stories: Featured Stories
+        featured_stories: Seçilmiş Hekayələr
       theme_translation: &theme_translation
         name: Ad
         edition: Buraxılış
@@ -197,7 +197,7 @@ az:
         already_exists: verilənlər bazası artıq mövcuddur.
         story_authors: "ən azı bir şəxs seçilməlidir."
         publish_theme: Dərc olunan maddə təyin edilməmiş qədər mövzu dərc edilə bilməz.
-        not_provided: must be provided.
+        not_provided: Təmin edilməlidir
   mailer:
     closing: Hörmətlə,
     signature: "Çayxana Komandası "
@@ -302,8 +302,8 @@ az:
       pages: Mətni Saytda Redaktə Et
       next: Növbəti
       feed: Xəbər Lenti
-      download: Download
-      previous: Previous
+      download: Yüklə
+      previous: Əvvəlki
       story_menu:
         link:
           story: Hekayə
@@ -383,7 +383,7 @@ az:
       reviewer_key: Hekayəni dərc etmədən öncə paylaşmaq üçün URL-ı al
       reviewer_key_published: Sənin hekayən artıq dərc edilibdir, beləcə bu dərc edilməmiş URL-ı paylaşmağa ehtiyac yoxdur
       explore: Araşdır
-      processing: Processing...
+      processing: Prosesdə olan
     common:
       app_name_not_trans: "Çayxana"
       app_name: "Çayxana"
@@ -467,7 +467,7 @@ az:
       nickname_url: 'Sizin URL-ınız:'
       story_duplicate: Bu hekayənin URL-ı artıq mövcuddur.
       story_url: 'Hekayənin URL-ı:'
-      update_translations: Don't forget to translate this new item!
+      update_translations: Bu yeni bəndi tərcümə etməyə unutma!
       invitation:
         accepted: "Sən '%{title}' üzrə əməkdaşlıq dəvətini qəbul etmisən"
         accepted_already: "Sən '%{title}' üzrə əməkdaşlıq dəvətini artıq qəbul etmisən"
@@ -508,7 +508,7 @@ az:
       nothing_selected: Lütfən silinəsi böməni/materialı seçin
       fail_delete: Bölməni/materialı silmək mümkün olmadı
       confirm_delete: Bu bölmənin/materialın silinməsindən əminsinizmi?
-      confirm_publish: Are you sure you want to publish story?
+      confirm_publish: Bu hekayəni dərc etməkdə əminsinizmi?
       video_processed: Sizin videonuz emal edildi
       video_not_processed: Sizin videonuz emal edilir
       not_found_for_update: Yenilənəcək qeyd verilənlər bazasında tapılmadı.
@@ -530,10 +530,10 @@ az:
       description: "Şəkilaltı imza dilinin dəyişmə qabiliyyəti olan YouTube videosu"
     infographic:
       name: "İnfografik"
-      description: Infographic, interactive, or factoids with ability to add datasets and data sources
+      description:  məlumat mənbələri və məlumat bazasını Infoqrafikaya, interaktiv ya da faktograflara əlavə etmək imkanı
   section_background:
-    black: Black
-    white: White
+    black: Qara
+    white: Ağ
   story_role:
     editor: Redaktor
     translator: Tərcüməçi
@@ -621,15 +621,15 @@ az:
         title: "İstifadəçinin detalları"
     themes:
       form:
-        header_features: Features
-        header_add_story: Select Story to be Feature
-        header_current_features: Featured Stories In the Order They Will Appear
-        no_stories: No stories have been assigned to this theme yet.
-        no_features: No stories have been selected to be features.
+        header_features: Xüsusi Hekayələr
+        header_add_story: Seçilmiş üçün hekayəni seç
+        header_current_features: Seçilmiş Hekayələr Qayda üzrə çıxacaq
+        no_stories: Heç bir hekayə bu mövzuya təyin edilməyib
+        no_features: Heç bir hekayə seçilmiş üçün seçilməyib
     logos:
       index:
-        no_sponsors: There are no sponsors.
-        no_partners: There are no partners.
+        no_sponsors: Heç bir sponsor yoxdu
+        no_partners: Heç bir tərəfdaş yoxdu
   root:
     about:
       title: "Çayxana barədə"
@@ -666,7 +666,7 @@ az:
         story_type: Hekayənin növünü seç.
         theme: Hekayənizə aid olan mövzuları seçin.
         in_theme_slider: Seçilibsə, bu hekayə mövzu səhifəsinin yuxarı panelində göstəriləcək.
-        has_disclaimer: "Selecting this field will show the story disclaimer at the top and bottom of the story next to the share links."
+        has_disclaimer: "Bu sahəni seçərkən hekayənin qeydi hekayənin üstündə ya da altında görünəcək."
     collaborators:
       title: "%{title}' Əməkdaşları"
       owner_header: Hekayə müəllifi
@@ -722,7 +722,7 @@ az:
         has_marker: Seçilibsə, naviqasıyada bu bölməyə qisayol keçidi olacaq.
         audio: Arxa planın audiosu bu bölmə izlənəndə çalacaq (yalnız mp3 fayl növü; böyüklüyü 10mb-a məhduddur)
         delete_audio: Seçilibsə, Audio Cığır silinəcək
-        background: "If the image does not fit perfectly on the screen, space either on the top and bottom or left and right will be visible. Use this field to indicate what color to fill that space in with."
+        background: "Əgər şəkil ekranda mükəmməl görünmürsə, bu halda yuxarda və aşağda ya da solda ya sağda boş bir yer görünəcək. Bu sahəni hansı rəngdə doldurmaq üçün istifadə elə"
     content:
       form_title: Mətn Forması
       placeholder:
@@ -764,31 +764,31 @@ az:
       get_media: Onlayn Medianı Al
       preview: Onlayn medianın sınaq baxışı
       error: URL-ı emal etmək mümkün olmadı. Lütfən bir daha cəhd edin.
-      embed_source: Embed Source
+      embed_source: Daxil edən mənbə
       embed_source_url: URL
-      embed_source_code: Code
-      dimension: How to fit the media on the page
-      preserve: Do not change size
-      fullscreen: Fullscreen
-      fit: Scale to fit page
+      embed_source_code: Kod
+      dimension: Mediyanı səhvəyə necə uyğunlaşdırmaq olar
+      preserve: Ölçünü dəyişdirməyin
+      fullscreen: Tam ekran
+      fit: Səhifəyə uyğunlaşdırın
       placeholder:
         title: Daxil Ediləsi Onlayn Medianın Sərlövhəsi
         url: Onlayn mediaya URL
-        code: "ex: <iframe ..."
+        code: "məs:<iframe…."
       hint:
         title: Bu mətn hekayədə yox, yalnız sol paneldə görünəcək.
         url: 'Növbəti saytlar, onlayn medianı daxil etmək üçün istifadə edilə bilər: AUDİO: Soundcloud, Spotify; VİDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED'
-        code: "Code for online media (iframe embed object ...)"
-        embed_source: Is the embed object from a url or is it code
-        dimension: "Indicate how you want the embed online media to appear on the page. The first option will use whatever size is in the embed code. The second one will make the object fit the desired width. The last one will make it fullscreen."
+        code: "Online Media üçün kod (iframe embed object...)"
+        embed_source: Daxil olan obyekt URLdəndir ya koddur
+        dimension: "Embed Online Mediyanı səhifədə necə görünmək istədiyinizi seçin. Embed kodun ölçüsü üçün birinci opsiyanı istifadə et. İkinci opsiya isə istədiyiniz ölçüyə uyğunlaşdıra bilərsiz. Sonuncu tam ekran imkanı verir"
     youtube:
       form_title: YouTube Video Forması
       get_media: Youtube Videosunu Al
       preview: YouTube Videosunun sinaq baxışı
       error: URL-ı emal etmək mümkün olmadı. Lütfən bir daha cəhd edin.
       generate_iframe:
-        missing_api_key: value can't be generated due to missing API key.
-        error: is not valid.
+        missing_api_key: Dəyər  APİ açarı əskik olsa yaradıla bilməz
+        error: etibarlı deyil
       placeholder:
         title: YouTube Sərlövhəsi
         url: YouTube video URL-ı
@@ -806,7 +806,7 @@ az:
       add_datasource: Məlumat mənbəsini əlavə etmək
       static: Statik
       dynamic: Fəal
-      inline: In Story
+      inline: Hekayədə
       popup: Popup
       label:
         dynamic_size: Infografikin ölçüləri en x hündürlük
@@ -820,20 +820,20 @@ az:
       hint:
         title: Bu mətn hekayə də yox, yalnız sol panel də görünür
         caption: 'infoqrafikin şəkili infoqrafikin yuxarısın da görünür. Əgər infoqrafikin bölməsi hekayə də birincidir, siz onu boş buraxıb Story Title bölməsini istifadə etməlisiz. '
-        description: The description will appear below the infographic. If this Infographic Section is first in the story, the Story Summary will appear below the infographic image so if the Story Summary and Infographic Description are the same, you should leave this field blank.
-        image: Only jpg and png format allowed; 8MB file size limit
-        dataset_file: Please try to compress files to make for quicker download; 25MB file size limit
-        dataset_url: URL to Dataset
-        subtype: Static infographics are images, Dynamic infographics require a URL.
-        dynamic_url: URL to web page with interactive infographic
-        dynamic_size: Use these fields to indicate the space you want to reserve for showing this infographic. Leave the fields empty if you want the infographic to be fullscreen. The minimum value is 200.
-        dynamic_render: The infographic can be rendered in the story or in a popup that appears after the user clicks on the infogaphic image in the story. Use the popup option if the infogaphic takes up the full screen or is very long.
+        description: Təsvir infoqrafikin aşağında görünəcək. Hekayədə İnfoqrafika sahəsi ilk gedirse, Hekayənin Ümümi təsviri infoqrafikanın aşağısında çıxacaq, bu səbəbə görə infoqrafikanın təsviri və hekayənin ümümi təsviri eyni gedirsə, bu halda bu sahəni boş buraxmalısız.
+        image: Yalnız jpg və png formatı istifadə oluna bilər. Limiti 8MB ilə.
+        dataset_file: Sürətli yükləmə üçün çalışın fayıları kompres edin
+        dataset_url: Dataset üçün URL
+        subtype: Statik infoqrafiklər - şəkildilər, Dinamik infoqrafiklər isə URL tələb edir
+        dynamic_url: İnteraktiv İnfoqrafikalı Web səhvəyə URL
+        dynamic_size: infoqrafiki göstərmək üçün istədiyiniz yerləri qeyd etmək üçün bu sahələrədən istifadə edin. Əgər infoqrafiki tam ekranlı görmək istəyirsinizsə bu sahələri boş buraxın. Minimum dəyər 200
+        dynamic_render: İnfografika hekayədə şəkilə basarkən göstərilə bilər ya da popup halında çıxa bilər. Əgər İnfoqrafika çox uzundursa ya ekrana yerləşmirsə Popup opsiyasını istifadə edin
     infographic_datasource_fields:
       placeholder:
-        url: optional
+        url: opsional
       hint:
-        name: Name of the data source
-        url: URL to the online data source
+        name: Data mənbənin adı
+        url: Online Data Mənbəyə URL
   storyteller:
     byline: Tərəfindən
     byline_media: "Şəkillər və videolar xxx tərəfindən hazırlanıb"

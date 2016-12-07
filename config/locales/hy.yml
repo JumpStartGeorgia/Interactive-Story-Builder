@@ -18,7 +18,7 @@ hy:
       story_type: "Տեսակ"
       author: "Հեղինակ"
       asset: "Ֆայլ"
-      logo: Logo
+      logo: Լոգո
     attributes:
       asset: &asset
         asset_file_name: "Ֆայլ"
@@ -39,11 +39,11 @@ hy:
         created_at: "Ստեղծվել է"
         current_sign_in_at: "Վերջին այցելությունը"
       logo:
-        image: Image
+        image: Լուսանկար
         url: URL
-        logo_type: Type
-        sort_order: Sort Order
-        is_active: Is Active?
+        logo_type: Տեսակ
+        sort_order: Դասակարգման հաջորդականությունը
+        is_active: Ակտի՞վ է
       author:
         avatar: "Ավատար"
       author_translation: &author_translation
@@ -79,7 +79,7 @@ hy:
         has_marker: "Նավիգացիոն դյուրանցում"
         type_id: "Տեսակ"
         sort_order: "Դասակարգման հերթականություն"
-        background: Image Background Color
+        background: Նկարի ֆոնի գույնը
       section_translation:  &section_translation
         title: "Վերնագիր"
         audio: "Աուդիո"
@@ -122,7 +122,7 @@ hy:
         message: "Նամակ"
         message_type: "Հետադարձ կապի տեսակը"
       embed_medium:
-        dimension: Dimension
+        dimension: Մեծությունը
       embed_medium_translation: &embed_medium_translation
         title: "Վերնագիր"
         url: "Առցանց Media-ի Url"
@@ -137,7 +137,7 @@ hy:
         menu_lang: "Խաղարկչի (փլեերի) լեզուն"
         cc: "Ցույց տալ ենթագրերը"
         cc_lang: "Ենթագրերի լեզուն"
-        code: Youtube Video Id
+        code: Յութուբ վիդեոյի ID-ին
       youtube_translations: *youtube_translation
       infographic:
         published_at: "Հրապարակման ամսաթիվը"
@@ -147,7 +147,7 @@ hy:
         subtype: "Ինֆոգրաֆիկայի տեսակը"
         dynamic_width: "Լայնություն"
         dynamic_height: "Բարձրություն"
-        dynamic_render: Show Infographic in Story or in Popup
+        dynamic_render: Ցույց տալ ինֆոգրաֆիկան նյութի մեջ կամ վերեւի պատուհանում
       infographic_translation: &infographic_translation
         title: "Վերնագիր"
         caption: "Խորագիր"
@@ -178,7 +178,7 @@ hy:
         published_at: "Հրապարակման ամսաթիվը"
         show_home_page: "Ցո՞ւյց տալ այս թեման գլխավոր էջում"
         published_item_count: "Հրապարակված օբյեկտների քանակը"
-        featured_stories: Featured Stories
+        featured_stories: Գլխավոր պատմությունները
       theme_translation: &theme_translation
         name: "Անուն"
         edition: "Ելից"
@@ -197,7 +197,7 @@ hy:
         already_exists: "Արդեն առկա է տվյալների բազայում"
         story_authors: "Անհրաժեշտ է ընտրել նվազագույնը մեկ հոգու"
         publish_theme: "Նյութը չի կարող հրապարակվել քանի դեռ նվազագույնը մեկ տպագրված օբյեկտ չի կցվել թեմային."
-        not_provided: must be provided.
+        not_provided: տրամադրել
   mailer:
     closing: "Հարգանքով,"
     signature: "Չայխանայի թիմ"
@@ -302,8 +302,8 @@ hy:
       pages: "Խմբագրել տեքստը կայքում"
       next: "Հաջորդը"
       feed: "Լրահոս"
-      download: Download
-      previous: Previous
+      download: Ներբեռնել
+      previous: Նախորդ
       story_menu:
         link:
           story: "Նյութ"
@@ -383,7 +383,7 @@ hy:
       reviewer_key: "Ստացիր URL-ը՝ տարածելու նյութը նախքան հրապարակելը"
       reviewer_key_published: "Ձեր նյութը հրապարակվել է, այլևս կարիք չկա տարածելու այս չհրապարակված URL-ը"
       explore: "Բացահայտել"
-      processing: Processing...
+      processing: Ընթացքի մեջ է
     common:
       app_name_not_trans: "Չայխանա"
       app_name: "Չայխանա"
@@ -433,9 +433,9 @@ hy:
       embed: "Ներդրված կոդ"
       scroll_top: "Ոլորել վերև"
       logo_types:
-        sponsor: Sponsor
+        sponsor: Հովանավոր
         sponsors: Հովանավորներ
-        partner: Partner
+        partner: Գործընկեր
         partners: Գործընկերներ
     msgs:
       does_not_exist: "Էջը գոյություն չունի"
@@ -467,7 +467,7 @@ hy:
       nickname_url: "Ձեր URL կլինի :"
       story_duplicate: "Այս Նյութի URL արդեն առկա է"
       story_url: "Նյութի URL կլինի:"
-      update_translations: Don't forget to translate this new item!
+      update_translations: Չմոռանաք թարգմանել այս նոր միույթը
       invitation:
         accepted: "Դուք ընդունել եք '%{title}'-ում համագործակցելու հրավերը"
         accepted_already: "Դուք արդեն ընդունել եք %{title}'-ում համագործակցելու հրավերը"
@@ -508,7 +508,7 @@ hy:
       nothing_selected: "Խնդրում ենք նշել ջնջելու ենթակա բաժինը/օբյեկտը"
       fail_delete: "Բաժինը/օբյեկտը ջնջել չհաջողվեց"
       confirm_delete: "Վստա՞հ եք, որ ցանկանում եք ջնջել բաժինը/օբյեկտը"
-      confirm_publish: Are you sure you want to publish story?
+      confirm_publish: Հրապարակե՞լ նյութը
       video_processed: "Ձեր վիդեոն մշակվեց"
       video_not_processed: "Ձեր վիդեոն մշակման փուլում է"
       not_found_for_update: "Թարմացվող գրառումը տվյալների բազայում հայտնաբերել չհաջողվեց "
@@ -532,8 +532,8 @@ hy:
       name: "Ինֆոգրաֆիկա"
       description: "Ինֆոգրաֆիկա, ինտերակտիվ կամ փաստեր՝ տվյալների հավաքագրման և աղբյուրներ ավելացնելու հնարավորությամբ"
   section_background:
-    black: Black
-    white: White
+    black: Սեւ
+    white: Սպիտակ
   story_role:
     editor: "Խմբագիր"
     translator: "Թարգմանիչ"
@@ -621,15 +621,15 @@ hy:
         title: "Օգտատերի տվյալները"
     themes:
       form:
-        header_features: Features
-        header_add_story: Select Story to be Feature
-        header_current_features: Featured Stories In the Order They Will Appear
-        no_stories: No stories have been assigned to this theme yet.
-        no_features: No stories have been selected to be features.
+        header_features: Գլխավորներ
+        header_add_story: Ընտրել գլխավոր պատմությունը
+        header_current_features: Գլխավոր պատմություններն ըստ հայտնվելու հաջորդականությամբ
+        no_stories: Դեռ ոչ մի նյութի չի ավելացվել այս թեմային
+        no_features: Ոչ մի պատմություն ընտրված չէ որպես գլխավոր
     logos:
       index:
-        no_sponsors: There are no sponsors.
-        no_partners: There are no partners.
+        no_sponsors: Հովանավորներ չկան
+        no_partners: Գործընկերներ չկան
   root:
     about:
       title: "Չայխանայի մասին"
@@ -666,7 +666,7 @@ hy:
         story_type: "Ընտրել նյութի տեսակը"
         theme: "Ընտրել նյութի թեմաները"
         in_theme_slider: "Նշելու դեպքում նյութը կհայտնվի թեմայի էջի վերևի շարքում"
-        has_disclaimer: "Selecting this field will show the story disclaimer at the top and bottom of the story next to the share links."
+        has_disclaimer: "Ընտրելով այս դաշտը «Զգուշացումը» կհայտնվի նյութի վերեւի կամ ներքեւի մասում"
     collaborators:
       title: "%{title}' նյութի համագործակցողները"
       owner_header: "Նյութի հեղինակ"
@@ -722,7 +722,7 @@ hy:
         has_marker: "Նշելու դեպքում կլինի նավիգացիոն դյուրանցման հղում սույն բաժին գալու համար"
         audio: "Ֆոնային աուդիո բաժնի դիտման ժամանակ հնչելու համար (միայն mp3, առավելագույն ծավալ 10mb)"
         delete_audio: "Ընտրելու դեպքում սույն աուդիոֆայլը կջնջվի"
-        background: "If the image does not fit perfectly on the screen, space either on the top and bottom or left and right will be visible. Use this field to indicate what color to fill that space in with."
+        background: "Եթե նկարը ամբողջությամբ չի տեղավորվում դաշտում և եզրերից երևում են հատվածներ, օգտագործեք այս դաշտը, որպեսզի նշեք, թե ինչ գույնի եք ցանկանում լինեն այդ հատվածները։"
     content:
       form_title: "Տեքստի ձև"
       placeholder:
@@ -764,13 +764,13 @@ hy:
       get_media: "Բերել առցանց մեդիա"
       preview: "Առցանց մեդիայի նախադիտում"
       error: URL մշակումը չիրականացավ.խնդրում ենք կրկին փորձել
-      embed_source: Embed Source
+      embed_source: Ներդրված աղբյուր
       embed_source_url: URL
-      embed_source_code: Code
-      dimension: How to fit the media on the page
-      preserve: Do not change size
-      fullscreen: Fullscreen
-      fit: Scale to fit page
+      embed_source_code: Կոդ
+      dimension: Ինչպես տեղավորել մեդիան էջում
+      preserve: Անփոփոխ պահել չափը
+      fullscreen: Ամբողջ էկրանով
+      fit: Համապատասխանացնել էջի չափին
       placeholder:
         title: "Ներդրվող մեդիայի վերնագիր"
         url: "Առցանց մեդիայի URL"
@@ -778,17 +778,17 @@ hy:
       hint:
         title: "Սույն տեքստը կերևա միայն աջ կողային վահանակի վրա, այն չի ներառվի նյութի մեջ"
         url: "Ներդրված բովանդակության համար կարող են օգտագործել հետևյալ կայքերը. Աուդիո՝ Soundcloud, Spotify; Վիդեո՝ YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
-        code: "Code for online media (iframe embed object ...)"
-        embed_source: Is the embed object from a url or is it code
-        dimension: "Indicate how you want the embed online media to appear on the page. The first option will use whatever size is in the embed code. The second one will make the object fit the desired width. The last one will make it fullscreen."
+        code: "Օնլայ մեդիայի կոդը (iframe embed object ...)"
+        embed_source: "Ներագուցված առարկան url  է, թե կոդ"
+        dimension: "Նշեք, թե ինչպես եք ցանկանում ներդնել մեդիան սույն էջում։ Առաջինը թույլ կտա տեղադրել այն ներդրված կոդով նախատեսված չափով, երկրորդը՝ ձեր ցանկացած չափով, իսկ երրորդը՝ ողջ էկրանով։"
     youtube:
       form_title: YouTube-ի վիդեոների ձև
       get_media: "Բերել վիդեոն Youtube-ից"
       preview: YouTube-ի վիդեոյի նախադիտում
       error: "Հղման մշակումը չիրականացավ. խնդրում ենք կրկին փորձել:"
       generate_iframe:
-        missing_api_key: value can't be generated due to missing API key.
-        error: is not valid.
+        missing_api_key: բացակայում է API բանալին
+        error: բացակայում է API բանալին
       placeholder:
         title: "Վերնագիրը YouTube-ում"
         url: YouTube-ի վիդեոյի URL-ը
@@ -806,8 +806,8 @@ hy:
       add_datasource: "Ավելացնել տվյալների աղբյուրը"
       static: "Ստատիկ"
       dynamic: "Ակտիվ"
-      inline: In Story
-      popup: Popup
+      inline: Նյութի մեջ
+      popup: Հավելյալ բացվող պատուհան
       label:
         dynamic_size: "Ինֆոգրաֆիլայի չափերը. լայնություն x բարձրություն"
       placeholder:
@@ -827,7 +827,7 @@ hy:
         subtype: "Ստատիկ ինֆոգրաֆիկաները նկարներն են, Ակտիվ ինֆոգրաֆիկաների համար անհրաժեշտ է URL."
         dynamic_url: "Ինտերակտիվ ինֆոգրաֆիկայով վեբ էջի URL-ը"
         dynamic_size: "Օգտագործել դաշտերը նշելու այն մակերեսը, որտեղ ցանկացնում եք ցույց տալ ինֆոգրաֆիկան: Մի նշեք դաշտերը, եթե ուզում եք ինֆոգրաֆիկան ամբոջ էկրանով լինի: Մինիմում արժեքը 200 է."
-        dynamic_render: The infographic can be rendered in the story or in a popup that appears after the user clicks on the infogaphic image in the story. Use the popup option if the infogaphic takes up the full screen or is very long.
+        dynamic_render: "Ինֆոգրաֆիկան կարող է ցուցադրվել նյութի մեջ, կամ հավելյալ բացվող պատուհանում այն բանից հետո, երբ այցելուները կսեղմեն այն։ Օգտագործեք հավելյալ պատուհանի հնարավորությունը, եթե ինֆոգրաֆիկան ամբողջ էկրանով է, կամ շատ մեծ է։"
     infographic_datasource_fields:
       placeholder:
         url: "ընտրովի"
