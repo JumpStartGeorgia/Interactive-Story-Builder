@@ -34,7 +34,7 @@
                      @story.current_locale = t
                      l = @languages.select{|x| x.locale == t}.first
                      if !@export
-                      path = @is_preview ? preview_story_path(id: @story, sl: t) : storyteller_show_path(id: @story.permalink,sl: t)
+                      path = @is_preview ? preview_story_path(id: @story, locale: t) : storyteller_show_path(id: @story.permalink, locale: t)
                     else
                       path = t + ".html"
                     end

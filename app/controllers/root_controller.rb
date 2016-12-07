@@ -4,11 +4,11 @@ class RootController < ApplicationController
     @js.push("filter.js")
     @css.push("navbar.css", "filter.css", "grid.css","root.css")
     p = (request.xhr? ? params[:page] : 1)
-    @stories = process_filter_querystring(Story.is_published.in_published_theme.paginate(:page => p, :per_page => per_page))
+    @stories = process_filter_querystring(Story.with_translations(I18n.locale).is_published.in_published_theme.paginate(:page => p, :per_page => per_page))
     @theme = Theme.for_homepage
 
 
-    @stories_for_slider = @theme.featured_stories if @theme.present?
+    @stories_for_slider = @theme.featured_stories.with_translations(I18n.locale) if @theme.present?
     @navbar_invisible = false
     respond_to do |format|
       format.html
@@ -23,7 +23,7 @@ class RootController < ApplicationController
     if @author.present?
       @js.push("filter.js","stories.js","follow.js")
       @css.push("navbar.css", "filter.css", "grid.css", "stories.css", "author.css")
-      @stories = process_filter_querystring(Story.by_authors(@author.id).in_published_theme.paginate(:page => params[:page], :per_page => per_page))
+      @stories = process_filter_querystring(Story.with_translations(I18n.locale).by_authors(@author.id).in_published_theme.paginate(:page => params[:page], :per_page => per_page))
       @editable = (user_signed_in? && current_user.id == @author.id)
 
       @is_following = Notification.already_following_user(current_user.id, @author.id) if user_signed_in?
@@ -42,33 +42,39 @@ class RootController < ApplicationController
   end
 
   def embed
-    @story = Story.is_published.in_published_theme.find_by_permalink(params[:story_id])
+    sl = params[:sl]
+    if sl.present? && I18n.locale.to_s != sl && I18n.available_locales.index(sl.to_sym)
+      params.delete(:sl)
+      redirect_to embed_path(params.merge({ locale: sl})), :notice => t('app.msgs.redirected_with_app_locale')
+    else
+      @story = Story.with_translations(I18n.locale).is_published.in_published_theme.find_by_permalink(params[:story_id])
 
-    respond_to do |format|
-      if @story.present?
-        if params[:type] == 'full'
-          @is_embed = true
-          @no_nav = true
-          @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css")
-          @js.push("storyteller.js","modalos.js", "follow.js")
+      respond_to do |format|
+        if @story.present?
+          if params[:type] == 'full'
+            @is_embed = true
+            @no_nav = true
+            @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css")
+            @js.push("storyteller.js","modalos.js", "follow.js")
 
-          impressionist(@story, :unique => [:session_hash]) # record the view count
-          @story.reload
+            @story.set_to_app_locale
 
-          @story.set_prime_locale(params[:sl])
+            impressionist(@story, :unique => [:session_hash]) # record the view count
+            @story.reload
 
-          @story.sections.includes([:media,:content,:embed_medium,:youtube,:slideshow])
+            @story.sections.includes([:media,:content,:embed_medium,:youtube,:slideshow])
 
-          # record if the user has liked this story
-          @user_likes = false
-          @user_likes = current_user.voted_up_on? @story if user_signed_in?
+            # record if the user has liked this story
+            @user_likes = false
+            @user_likes = current_user.voted_up_on? @story if user_signed_in?
 
-          format.html { render 'storyteller/index', :layout => false }
+            format.html { render 'storyteller/index', :layout => false }
+          else
+            format.html { render 'embed', layout: false }
+          end
         else
-          format.html { render 'embed', layout: false }
+          format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
         end
-      else
-        format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
       end
     end
   end
@@ -79,8 +85,8 @@ class RootController < ApplicationController
     @theme = Theme.published.find_by_permalink(params[:id])
 
     if @theme.present?
-      @stories = process_filter_querystring(Story.is_published.in_published_theme.by_theme(@theme.id).paginate(:page => params[:page], :per_page => per_page))
-      @stories_for_slider = @theme.featured_stories
+      @stories = process_filter_querystring(Story.with_translations(I18n.locale).is_published.in_published_theme.by_theme(@theme.id).paginate(:page => params[:page], :per_page => per_page))
+      @stories_for_slider = @theme.featured_stories.with_translations(I18n.locale)
 
       respond_to do |format|
         format.html
@@ -148,7 +154,7 @@ class RootController < ApplicationController
 
   def feed
     index = params[:category].present? ? @categories_published.index{|x| x.permalink.downcase == params[:category].downcase} : nil
-    @items =  Story.is_published.in_published_theme.recent
+    @items = Story.with_translations(I18n.locale).is_published.in_published_theme.recent
     @filtered_by_category = ""
     if index.present?
       @filtered_by_category = @categories_published[index].permalink

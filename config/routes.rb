@@ -43,9 +43,9 @@ BootstrapStarter::Application.routes.draw do
 		match "stories/:id/invite_collaborators" => "stories#invite_collaborators", as: 'story_invite_collaborators', :via => :post, :defaults => { :format => 'json' }
 		match "stories/:id/remove_collaborator" => "stories#remove_collaborator", as: 'story_remove_collaborator', :via => :post, :defaults => { :format => 'json' }
 		match "stories/:id/remove_invitation" => "stories#remove_invitation", as: 'story_remove_invitation', :via => :post, :defaults => { :format => 'json' }
-		match "stories/index" => "stories#index", as: 'index', :via => :post, :defaults => { :format => 'json' }
+		match "stories/index" => "stories#index"#, as: 'index', :via => :post, :defaults => { :format => 'json' }
 
-		resources :stories do	
+		resources :stories do
 
 			member do
 	        get 'preview'
@@ -63,35 +63,35 @@ BootstrapStarter::Application.routes.draw do
 	        delete 'remove', to: 'stories#destroy_tree_item'
 
 	        put 'media', to: 'stories#save_item'
-	        post 'media', to: 'stories#new_item'				
+	        post 'media', to: 'stories#new_item'
 
 	        put 'infographic', to: 'stories#save_item'
-	        post 'infographic', to: 'stories#new_item'				
+	        post 'infographic', to: 'stories#new_item'
 
 	        put 'section', to: 'stories#save_section'
-	        post 'section', to: 'stories#new_section'	
+	        post 'section', to: 'stories#new_section'
 	        post 'up', to: 'stories#up'
-	        post 'down', to: 'stories#down'	
+	        post 'down', to: 'stories#down'
 	        post 'up_slideshow', to: 'stories#up_slideshow'
-	        post 'down_slideshow', to: 'stories#down_slideshow'						
+	        post 'down_slideshow', to: 'stories#down_slideshow'
 
-	        get 'sections'    	
-	        get 'publish', to: 'stories#publish'    		
-	        get 'clone', to: 'stories#clone'    
-	        get 'export', to: 'stories#export' 		
+	        get 'sections'
+	        get 'publish', to: 'stories#publish'
+	        get 'clone', to: 'stories#clone'
+	        get 'export', to: 'stories#export'
 
 	        put 'slideshow', to: 'stories#save_item'
 	        post 'slideshow', to: 'stories#new_item'
 
 
 	        put 'embed_media', to: 'stories#save_item'
-	        post 'embed_media', to: 'stories#new_item'				
+	        post 'embed_media', to: 'stories#new_item'
 
 	        put 'youtube', to: 'stories#save_item'
 	        post 'youtube', to: 'stories#new_item'
 
 	        get 'get_embed_code', to: 'stories#get_embed_code'
-			end			
+			end
 		end
 		#match '/stories/:id/edit' => 'stories#get_story'
 
@@ -99,7 +99,7 @@ BootstrapStarter::Application.routes.draw do
 #		match "storyteller/:id/staff_pick" => "storyteller#staff_pick", as: 'storyteller_staff_pick'
 #		match "storyteller/:id/staff_unpick" => "storyteller#staff_unpick", as: 'storyteller_staff_unpick'
 
-		
+
     # user settings section
 		match "settings" => "settings#index", as: 'settings'
 		match "settings/notifications" => "settings#notifications", as: 'settings_notifications'
@@ -114,7 +114,7 @@ BootstrapStarter::Application.routes.draw do
     # root pages
 		match "about" => "root#about", as: 'about'
 		match "author/:user_id" => "root#author", as: 'author'
-		match "embed/:story_id" => "root#embed", as: 'embed'		
+		match "embed/:story_id" => "root#embed", as: 'embed'
 		match "feed" => "root#feed", as: 'feed', :format => 'atom'
 		match "theme/:id" => "root#theme", as: 'theme'
 		match "type/:id" => "root#story_type", as: 'story_type'

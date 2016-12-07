@@ -21,15 +21,15 @@ class Admin::ThemesController < ApplicationController
 
   def preview
     @js.push("filter.js")
-    @css.push("navbar.css", "filter.css", "grid.css","root.css")    
+    @css.push("navbar.css", "filter.css", "grid.css","root.css")
     @theme = Theme.find_by_id(params[:id])
-    @stories = process_filter_querystring(Story.is_published.by_theme(@theme.id).paginate(:page => params[:page], :per_page => per_page))      
-    @stories_for_slider = @theme.featured_stories if @theme.present?
+    @stories = process_filter_querystring(Story.with_translations(I18n.locale).is_published.by_theme(@theme.id).paginate(:page => params[:page], :per_page => per_page))
+    @stories_for_slider = @theme.featured_stories.with_translations(I18n.locale) if @theme.present?
 
     if @theme.present?
       respond_to do |format|
         format.html { render 'root/theme' }
-        format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}      
+        format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}
       end
     else
       redirect_to root_path, :notice => t('app.msgs.does_not_exist')
@@ -148,6 +148,6 @@ protected
 
   def asset_filter
     @css.push("navbar.css", 'themes.css')
-  end 
+  end
 
 end
