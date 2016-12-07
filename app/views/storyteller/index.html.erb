@@ -58,8 +58,8 @@
       </div>
       <% if !@stories.blank? %>
         <div class="related-links">
-          <div class="js-label h1"><%= t('storyteller.related_stories') %></div>
-          <div class="themes js-u-right">
+          <div class="h1"><%= t('storyteller.related_stories') %></div>
+          <div class="themes">
             <span><%= t('storyteller.view_all_stories_in') %>:&nbsp;</span>
             <% @story.themes.published.each { |t| %>
               <%= link_to t.name.split.map(&:capitalize).join(' '), theme_path(t.permalink) %>

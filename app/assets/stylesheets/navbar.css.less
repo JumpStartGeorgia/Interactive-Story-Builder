@@ -272,7 +272,7 @@ header
       }
       @media (max-width: 1120px) {
         &{
-          width: 200px;
+          width: 100%;
           min-width: inherit;
         }
       }
@@ -288,6 +288,18 @@ header
     -moz-transition: opacity 800ms ease-in 0ms;
     -o-transition: opacity 800ms ease-in 0ms;
     transition: opacity 800ms ease-in 0ms;
+  }
+  .nav
+  {
+    .dropdown
+    {
+      padding:0;
+      color:#646464;
+      &.open .dropdown-toggle
+      {
+        color:#adadad;
+      }
+    }
   }
   /* Custom, iPhone Retina */
   @media only screen and (min-width : 320px)
@@ -424,6 +436,7 @@ header
           display: inline-block;
           width: 100%;
           text-align:left;
+          white-space:normal;
           &:hover
           {
             opacity:1;
@@ -546,6 +559,9 @@ header
       {
         width:100% !important;
       }
+      > li > a {
+        white-space:nowrap;
+      }
     }
     // .dropdown.open > .dropdown-menu {
     //   display: block;
@@ -589,6 +605,12 @@ header
         display:block !important;
       }
     }
+    .nav {
+      .dropdown {
+        padding:0px 10px;
+      }
+    }
+
   }
    @media only screen and (min-width : 1200px)
    {
