@@ -88,6 +88,10 @@ module BootstrapStarter
     config.middleware.insert 0, HandleInvalidPercentEncoding
     config.middleware.insert 0, Rack::UTF8Sanitizer
 
+    # http://blog.gingerlime.com/2012/rails-ip-spoofing-vulnerabilities-and-protection/
+    # The fact that Rails checks for IP spoofing can be a nuisance for sites that do heavy traffic with cell phones, because their proxies don't generally set things up right.
+    config.action_dispatch.ip_spoofing_check = false
+
     # from: https://robots.thoughtbot.com/content-compression-with-rack-deflater
     # compress all html/json responses
     config.middleware.use Rack::Deflater
