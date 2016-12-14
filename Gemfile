@@ -4,7 +4,7 @@ ruby "2.1.2"
 
 gem 'bundler'
 gem "rails", "3.2.18"
-gem "mysql2", "~> 0.3.16" # this gem works better with utf-8
+gem "mysql2", "~> 0.3.21" # this gem works better with utf-8
 
 gem "json"
 gem "jquery-rails", '~> 3.1.0' #"~> 1.0.19"
