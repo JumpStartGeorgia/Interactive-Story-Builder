@@ -177,7 +177,7 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mysql2 (0.3.16)
+    mysql2 (0.3.21)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -334,7 +334,7 @@ DEPENDENCIES
   json
   less-rails!
   mailcatcher (= 0.5.12)
-  mysql2 (~> 0.3.16)
+  mysql2 (~> 0.3.21)
   omniauth
   omniauth-facebook
   paperclip (~> 3.4.0)
@@ -360,5 +360,8 @@ DEPENDENCIES
   whenever
   will_paginate (~> 3.0.5)
 
+RUBY VERSION
+   ruby 2.1.2p95
+
 BUNDLED WITH
-   1.10.6
+   1.13.6
