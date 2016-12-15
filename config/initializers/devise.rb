@@ -223,11 +223,7 @@ Devise.setup do |config|
   require "omniauth-facebook"
   
 
-  if Rails.env.production?
-    config.omniauth :facebook, ENV['STORY_BUILDER_FACEBOOK_APP_ID'], ENV['STORY_BUILDER_FACEBOOK_APP_SECRET']
-  else
-    config.omniauth :facebook, ENV['DEV_FACEBOOK_APP_ID'], ENV['DEV_FACEBOOK_APP_SECRET'] 
-  end  
+  config.omniauth :facebook, ENV['STORY_BUILDER_FACEBOOK_APP_ID'], ENV['STORY_BUILDER_FACEBOOK_APP_SECRET']
 
   I18n.enforce_available_locales = false
 
