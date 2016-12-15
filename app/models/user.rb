@@ -177,7 +177,7 @@ class User < ActiveRecord::Base
       user = User.create(  nickname: auth.info.nickname,
                            provider: auth.provider,
                            uid: auth.uid,
-                           email: auth.info.email.present? ? auth.info.email : "<%= Devise.friendly_token[0,10] %>@temp.com",
+                           email: auth.info.email.present? ? auth.info.email : "#{Devise.friendly_token[0,10]}@temp.com",
                            avatar: auth.info.image,
                            password: Devise.friendly_token[0,20]
                            )
