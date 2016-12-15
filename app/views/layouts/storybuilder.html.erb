@@ -24,15 +24,11 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script>
     <![endif]-->
 
-    <%= stylesheet_link_tag  *(@css.present? ? ["application",@css].flatten : ["application"]), :media => "all" %>      
+    <%= stylesheet_link_tag  *(@css.present? ? ["application",@css].flatten : ["application"]), :media => "all" %>
     <%= auto_discovery_link_tag(:atom, feed_path(:format => "atom")) %>
-  	<% if @usemap %>
-  		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
-  	<% end %>
-    
 
 		<!--[if IE 6]><%= stylesheet_link_tag 'ie6' %><![endif]-->
 	  <!--[if IE 7]><%= stylesheet_link_tag 'ie7' %><![endif]-->
@@ -42,51 +38,51 @@
     <%= favicon_link_tag '/favicon.ico', :rel => 'shortcut icon' %>
   </head>
   <body id="storybuilder_form">
-    <%= render partial: "layouts/storybuilder_nav"%>   
-    <%= render partial: "shared/story_nav"%>   
-		<div class="builder-wrapper">	
+    <%= render partial: "layouts/storybuilder_nav"%>
+    <%= render partial: "shared/story_nav"%>
+		<div class="builder-wrapper">
      <div class="toolbar">
-      <div class="story-title"><span title="<%= @story.title %>"><%= @story.title %></span></div>             
-        <div class='tools'>         
+      <div class="story-title"><span title="<%= @story.title %>"><%= @story.title %></span></div>
+        <div class='tools'>
           <div class="left-view">
-           <div class='view-wrapper'> 
+           <div class='view-wrapper'>
             <% if @tr %>
-              <div class="trans-source"><%= t('.source') %><span class="glyphicon glyphicon-play" ></span></div> 
+              <div class="trans-source"><%= t('.source') %><span class="glyphicon glyphicon-play" ></span></div>
             <% end %>
             <%= link_to '#', title: t('helpers.links.story_menu.link.story_settings') + ' - ' + t('helpers.links.story_menu.title.story_settings'), class: 'btn btn-edit-story' do %>
-                <span class="glyphicon glyphicon-edit" ></span>          
+                <span class="glyphicon glyphicon-edit" ></span>
               <% end %>
           <% if !@tr %>
             <%= link_to '#', title: t('app.buttons.add_section') , class: 'btn btn-create-section' do %>
-                <span class="glyphicon glyphicon-align-justify" ></span>          
+                <span class="glyphicon glyphicon-align-justify" ></span>
               <% end %>
           <% end %>
-              <%= link_to '#', title: t('helpers.links.story_menu.link.preview') + ' - ' + t('helpers.links.story_menu.title.preview'), id: 'btnPreview', class: 'preview btn btn-preview', 
-                  :'data-link' => preview_story_path(@story), 
+              <%= link_to '#', title: t('helpers.links.story_menu.link.preview') + ' - ' + t('helpers.links.story_menu.title.preview'), id: 'btnPreview', class: 'preview btn btn-preview',
+                  :'data-link' => preview_story_path(@story),
                   :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story' do %>
-                <span class="glyphicon glyphicon-eye-open" ></span>          
+                <span class="glyphicon glyphicon-eye-open" ></span>
               <% end %>
           <% if !@tr %>
-            <% if !@story.published %> 
+            <% if !@story.published %>
                 <%= link_to '#', title: t('helpers.links.story_menu.link.review') + ' - ' + t('helpers.links.story_menu.title.review'), id: 'btnReviewer', class: 'btn btn-review',
                     :'data-title' => @story.title, :'data-modalos-id' => 'modalos-reviewer', :'data-reviewer-key' => review_url(@story.reviewer_key) do %>
-                    <span class="glyphicon glyphicon-share" ></span>        
+                    <span class="glyphicon glyphicon-share" ></span>
                 <% end %>
             <% end %>
-              <% 
-                title = @story.published ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish') 
-                link_text = @story.published ? t('helpers.links.story_menu.link.unpublish') : t('helpers.links.story_menu.link.publish') 
+              <%
+                title = @story.published ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish')
+                link_text = @story.published ? t('helpers.links.story_menu.link.unpublish') : t('helpers.links.story_menu.link.publish')
               %>
               <%= link_to '#', title: link_text + ' - ' + title, class: 'btnPublish btn btn-publish' + (@story.published ? '' : '-disabled'), :'data-link' => publish_story_path(@story) do %>
                 <span class="glyphicon glyphicon-globe" ></span>
               <% end %>
-              <%= link_to @story, title: t('helpers.links.story_menu.link.delete_story') + ' - ' + t('helpers.links.story_menu.title.delete_story'), 
+              <%= link_to @story, title: t('helpers.links.story_menu.link.delete_story') + ' - ' + t('helpers.links.story_menu.title.delete_story'),
                class: 'preview btn btn-remove-story', confirm: t("helpers.links.confirm"), method: :delete do %>
                 <span class="glyphicon glyphicon-remove"></span>
               <% end %>
             <% end %>
             <% if @tr %>
-              <% 
+              <%
                 progress = @story.translation_progress
                 from_langs = []
                 @story.story_locales.each do |trans_locale|
@@ -100,7 +96,7 @@
                 end
 
                 to_langs = []
-                if @edit_story_role == Story::ROLE[:translator] 
+                if @edit_story_role == Story::ROLE[:translator]
                   @edit_translation_locales.each do |trans_locale|
                     l = @languages.select{|x| x.locale == trans_locale}.first
                     if l.present?
@@ -118,7 +114,7 @@
                     # if translation progress percent exists for this locale, add it
                     x.percent = compute_translation_progress_percent(x.locale, progress)
                     if !to_translated && params[:tr_to].nil? && x.percent.present? && x.locale != @from
-                      @to = x.locale 
+                      @to = x.locale
                       to_translated = true
                     end
                     to_langs << x
@@ -126,33 +122,33 @@
                 end
               %>
                <%= select_tag "translate-from", options_from_collection_for_select(from_langs, "locale", "name_with_translation_percent", @story.story_locale), include_blank: false,
-                     :id => "translateFrom", :class => "selectpicker", 
+                     :id => "translateFrom", :class => "selectpicker",
                      :'data-live-search' => "true", :'data-size' => "10"  %>
            <% end %>
           </div>
         </div>
-        <div class='right-view'>          
-          <div class='view-wrapper'> 
+        <div class='right-view'>
+          <div class='view-wrapper'>
             <% if @tr %>
-              <div class="trans-target"><%= t('.target') %><span class="glyphicon glyphicon-play" ></span></div> 
-              <%= select_tag "translate-to", options_from_collection_for_select(to_langs.select{ |lan|  lan.locale !=  @story.story_locale } , "locale", "name_with_translation_percent", @to), include_blank: false, :id => "translateTo", :class => "selectpicker", 
+              <div class="trans-target"><%= t('.target') %><span class="glyphicon glyphicon-play" ></span></div>
+              <%= select_tag "translate-to", options_from_collection_for_select(to_langs.select{ |lan|  lan.locale !=  @story.story_locale } , "locale", "name_with_translation_percent", @to), include_blank: false, :id => "translateTo", :class => "selectpicker",
                 :'data-live-search' => "true", :'data-size' => "10" %>
-              <%= link_to '#', title: t('helpers.links.story_menu.link.preview') + ' - ' + t('helpers.links.story_menu.title.preview'), id: 'btnPreview', class: 'preview btn btn-preview', 
-                :'data-link' =>  preview_story_path(@story), 
+              <%= link_to '#', title: t('helpers.links.story_menu.link.preview') + ' - ' + t('helpers.links.story_menu.title.preview'), id: 'btnPreview', class: 'preview btn btn-preview',
+                :'data-link' =>  preview_story_path(@story),
                 :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story', :'data-sl' => true do %>
-              
-                <span class="glyphicon glyphicon-eye-open" ></span>          
 
-              <% 
+                <span class="glyphicon glyphicon-eye-open" ></span>
+
+              <%
                 trans_story = @story.with_translation(@to)
-                title = trans_story.published ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish') 
-                link_text = trans_story.published ? t('helpers.links.story_menu.link.unpublish') : t('helpers.links.story_menu.link.publish') 
+                title = trans_story.published ? t('helpers.links.story_menu.title.unpublish') : t('helpers.links.story_menu.title.publish')
+                link_text = trans_story.published ? t('helpers.links.story_menu.link.unpublish') : t('helpers.links.story_menu.link.publish')
                 progress_from = progress.select{|x| x.locale == @story.story_locale}.first
                 progress_to = progress.select{|x| x.locale == @to}.first
                 btn_class = (trans_story.published || (progress_from.present? && progress_to.present? && progress_from.items_completed <= progress_to.items_completed)) ? '' : 'hide'
 
               %>
-              <%= link_to '#', title: link_text + ' - ' + title, class: "btnPublish btn #{btn_class} btn-publish" + (trans_story.published ? '' : '-disabled'), :'data-link' => publish_story_path(@story), :'data-sl' => true, 
+              <%= link_to '#', title: link_text + ' - ' + title, class: "btnPublish btn #{btn_class} btn-publish" + (trans_story.published ? '' : '-disabled'), :'data-link' => publish_story_path(@story), :'data-sl' => true,
                 :'data-percent' => compute_translation_progress_percent(@to, progress) do %>
                 <span class="glyphicon glyphicon-globe" ></span>
               <% end %>
@@ -160,7 +156,7 @@
             <% end %>
           </div>
         </div>
-      </div>      
+      </div>
       <div class="flash-message">
         <% flash.each do |key, msg| %>
           <div class="alert <%= flash_translation(key) %> fade in">
@@ -168,7 +164,7 @@
             <%= msg %>
           </div>
         <% end %>
-      </div>       
+      </div>
   </div>
 
 
@@ -182,21 +178,18 @@
           <div class='story-viewer story-page1 viewer' id='storyViewer'></div><% if @tr %><div class='story-page2 viewer'></div><% end %>
         </div>
       </div>
-    </div> 
-    <div class="copy-paste" title="<%= t('layouts.storybuilder.copy_paste') %>"></div>  
+    </div>
+    <div class="copy-paste" title="<%= t('layouts.storybuilder.copy_paste') %>"></div>
     <%= yield(:footer) %>
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag  *(@js.present? ? ["application", @js].flatten : ["application"]), :media => "all" %>      
+    <%= javascript_include_tag  *(@js.present? ? ["application", @js].flatten : ["application"]), :media => "all" %>
 		<script type="text/javascript">
 			I18n.defaultLocale = "<%= I18n.default_locale %>";
 			I18n.locale = "<%= I18n.locale %>";
       var reviewer = "<%= escape_javascript(render :partial => 'shared/story_nav_modals') %>";
 		</script>
-		<% if @usemap %>
-  		<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js" type="text/javascript"></script>
-		<% end %>
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
@@ -216,7 +209,7 @@
         ga('send', 'pageview');
 
       </script>
-		<% end %>  
+		<% end %>
     <%= yield(:js) %>
   </body>
 </html>
