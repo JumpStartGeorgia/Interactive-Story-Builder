@@ -7,7 +7,7 @@
           return /iPad|iPod|iPhone|Android/.test(navigator.userAgent) || document.location.hash == "#ipad";
         }
 
-        var isPhone = function() {    
+        var isPhone = function() {
           return isMobile() && window.innerWidth < 768;
         }
         if (isMobile()) {
@@ -18,7 +18,7 @@
 
       <!--[if lte IE 8]><style type="text/css">
       .video-container video,
-      .video-container img 
+      .video-container img
       {
         position: static;
       }
@@ -26,12 +26,12 @@
 
 
       <!-- ****************************************************
-      *  array of functions added throught page which should be called at the end of page parsing with "await"  
+      *  array of functions added throught page which should be called at the end of page parsing with "await"
       *  function which is called at the bottom of the page
       ********************************************************* -->
       <script>
 
-        (function() {      
+        (function() {
           var defers = [];
           defer = function(f) { defers.push(f); };
           await = function() { defers.forEach(function(f,s) { f();}); };
@@ -45,7 +45,7 @@
       ********************************************************* -->
       <script>
 
-          defer(function() {    
+          defer(function() {
               var anchor = d3.selectAll(".navigation-section").on("click", clicked),
                   marker = d3.selectAll(".navigation-marker"),
                   markerOffsets;
@@ -82,29 +82,29 @@
 
      <% alignment = { "left" => -1, "center" => 0, "right" => 1 }%>
     <div class="main">
-      <div class="article"> 
-        <% columnSectionCount = 0 %>                
+      <div class="article">
+        <% columnSectionCount = 0 %>
          <% @story.sections.select{|t| t.ok? }.sort_by{|p| p.position}.each_with_index do |section,s_i| %>
           <%  dataAudio = ''
-              if section.asset_exists?            
-                dataAudio = "data-audio='#{File.basename(section.asset.asset_file_name_formatted,'.mp3')}'".html_safe 
+              if section.asset_exists?
+                dataAudio = "data-audio='#{File.basename(section.asset.asset_file_name_formatted,'.mp3')}'".html_safe
               end
-           %>          
+           %>
               <% if section.content? %>
-              <div class="section column" <%= dataAudio.html_safe %>>    
+              <div class="section column" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                    <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
                 <% if columnSectionCount == 0 %>
-                  <div class='headline'><%= @story.title.downcase %></div>              
+                  <div class='headline'><%= @story.title.downcase %></div>
                   <div class="byline byline--first" style="margin-bottom:24px;">
                     <span class="caption"><%= t('storyteller.byline') %></span><span class="author">&nbsp;<%= @story.author %></span><%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media')}</span><span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
-                  </div>                 
-                <% end %>         
+                  </div>
+                <% end %>
                 <%= "<div class='column-caption'>#{section.content.caption}</div>".html_safe  if section.content.caption.present? %>
-                <%= "<div class='column-sub-caption'>#{section.content.sub_caption}</div>".html_safe  if section.content.sub_caption.present? %>                       
-                <%= section.content.content.html_safe %>   
-                <% if section.content.content.html_safe.lines.count == 1 %>   
+                <%= "<div class='column-sub-caption'>#{section.content.sub_caption}</div>".html_safe  if section.content.sub_caption.present? %>
+                <%= section.content.content.html_safe %>
+                <% if section.content.content.html_safe.lines.count == 1 %>
                   <p>&nbsp;</p>
                 <% end %>
               </div>
@@ -116,96 +116,96 @@
                 <% end %>
                 <% section.media.each_with_index do |m,m_i| %>
                   <% dataVideo = '' %>
-                  <% if m.media_type == Medium::TYPE[:video] && m.is_processed? %>                
+                  <% if m.media_type == Medium::TYPE[:video] && m.is_processed? %>
                     <% dataVideo = "data-video='#{File.basename(m.video.asset_file_name_formatted,'.*')}'".html_safe %>
-                  <% end %> 
+                  <% end %>
                   <div class="video"  <%= dataVideo.html_safe %>  <%= m.video_loop ? "data-videoloop" : "" %>>
                     <div class="video-container">
-                      <% if m.media_type == Medium::TYPE[:image] %>     
-                          <% if !@export %> 
+                      <% if m.media_type == Medium::TYPE[:image] %>
+                          <% if !@export %>
                             <img src="<%= m.image.asset.url(:fullscreen) %>">
                           <% else %>
                             <img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>">
                           <% end %>
-                      <% elsif m.media_type == Medium::TYPE[:video] && !m.is_processed?  %>                    
-                          <% if !@export %> 
+                      <% elsif m.media_type == Medium::TYPE[:video] && !m.is_processed?  %>
+                          <% if !@export %>
                             <%= image_tag "png/video_being_processed_#{I18n.locale}.png" %>
                           <% else %>
                             <img src="assets/png/video_being_processed_#{I18n.locale}.png">
                           <% end %>
-                      <% elsif m.media_type == Medium::TYPE[:video] && m.is_processed?  %>                    
-                          <% if !@export %>                           
+                      <% elsif m.media_type == Medium::TYPE[:video] && m.is_processed?  %>
+                          <% if !@export %>
                             <!--[if lte IE 8]><img src="<%= m.image.asset.url(:fullscreen) %>"><![endif]-->
                           <% else %>
                             <!--[if lte IE 8]><img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>"><![endif]-->
-                          <% end %>                                                          
-                        <% end %>  
+                          <% end %>
+                        <% end %>
                         <% if m.source.present? %>
-                           <div class="video-source"><%= m.source %></div>                       
-                        <% end %>                    
-                      </div>    
-                      <% caption_class = alignment.key(m.caption_align) %>               
+                           <div class="video-source"><%= m.source %></div>
+                        <% end %>
+                      </div>
+                      <% caption_class = alignment.key(m.caption_align) %>
                       <% if m.caption.present? %>
                         <% if m.caption.length < 160 %>
                             <% caption_class = alignment.key(m.caption_align) %>
                         <% else %>
                          <% caption_class = 'long' %>
-                        <% end %>                   
+                        <% end %>
                       <% end %>
 
                         <% if s_i == 0 && m_i == 0 %>
-                          <% caption_class = 'head' %>              
-                        <% end %> 
-                      
-                          <% if caption_class == 'head'  %>                      
+                          <% caption_class = 'head' %>
+                        <% end %>
+
+                          <% if caption_class == 'head'  %>
                             <div class="video-caption video-caption--<%= caption_class %>">
-                                <div class="video-headline headline"> 
+                                <div class="video-headline headline">
                                 <%  words = @story.title.split(' ') %>
                                 <span class="headline-line1"><%=  words[0].downcase %></span><br/><span class="headline-line2"><%=  words[1..words.length-1].join(' ').downcase %></span></div>
                                 <% if m.caption.present? %>
                                 <div class="video-summary"> <%= m.caption %> </div>
-                                <% end %> 
-                                <div class="scroll-prompt">                                                                                      
+                                <% end %>
+                                <div class="scroll-prompt">
                                       <svg  x="0px" y="0px" width="18.03px" height="18.042px" viewBox="7.516 6.5 18.03 18.042" enable-background="new 7.516 6.5 18.03 18.042"
                                          xml:space="preserve">
                                         <polygon points="16.531,22.763 8.52,14.963 7.695,15.766 16.531,24.367 25.367,15.766 24.544,14.963 "/>
                                         <polygon points="25.367,7.477 24.544,6.674 16.531,14.475 8.52,6.674 7.695,7.477 16.531,16.079 "/>
                                       </svg>
-                                </div>                   
-                              </div>                 
+                                </div>
+                              </div>
                           <% else %>
                             <% if m.caption.present? %>
                               <div class="video-caption video-caption--<%= caption_class %>">
                                 <%= m.caption  %>
                               </div>
-                            <% end %>       
-                          <% end %>  
-                                             
-                  </div>   
-                <% end %> 
+                            <% end %>
+                          <% end %>
+
+                  </div>
+                <% end %>
               </div>
 
-              <% elsif section.slideshow? %>  
+              <% elsif section.slideshow? %>
               <div class="section slideshow">
                  <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
-                    <% end %>   
+                    <% end %>
                 <% if s_i == 0 %>
-                  <div class='slideshow-headline'><%= @story.title %></div>              
-                <% end %>  
+                  <div class='slideshow-headline'><%= @story.title %></div>
+                <% end %>
                 <div class="slideshow-wrapper">
                       <% if section.slideshow.caption.present? %>
                         <h3><%= section.slideshow.caption %></h3>
-                      <% else %>                      
+                      <% else %>
                         <h3>&nbsp;</h3>
                       <% end %>
-                                
+
                   <!--[if lte IE 8]><img src="<%= section.slideshow.assets[0].asset.url(:medium) %>" style="width:100%;"><![endif]-->
                   <div class="slideshow-captions">
-                      <% section.slideshow.assets.each_with_index do |t,t_i| %>    
+                      <% section.slideshow.assets.each_with_index do |t,t_i| %>
                           <div class="slideshow-caption" data-slug="<%= t.asset_file_name_formatted %>">
                             <%= t.caption.html_safe %>
-                            <% if t.source.present? %> 
+                            <% if t.source.present? %>
                               <div class="source"><%= "#{t('storyteller.source')}" %> <%= auto_link(t.source) %></div>
                             <% end %>
                           </div>
@@ -213,33 +213,33 @@
                   </div>
                 </div>
               </div>
-            <% end %>                
-         <% end %>   
-         
+            <% end %>
+         <% end %>
+
 
 
       </div>
-    </div>  
+    </div>
 
     <!-- #modalAbout -->
-        <div class="section footer-section">        
-            <div class="left">                 
+        <div class="section footer-section">
+            <div class="left">
               <div><a href="http://www.jumpstart.ge" target="_blank" title="<%= t("app.common.js_link_title") %>" >
                 <img src='<%= (@export ? "" : "/") + "assets/svg/js_w.svg"%>' class="footer-logo"/></a>
               </div>
             </div>
             <div class="right">
               <a href="https://www.facebook.com/sharer/sharer.php" onclick="javascript:window.open(this.href,
-                    '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link"> <img src='<%= (@export ? "" : "/") + "assets/svg/facebook_w.svg"%>' /></a>          
+                    '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="link"> <img src='<%= (@export ? "" : "/") + "assets/svg/facebook_w.svg"%>' /></a>
               <a href='https://twitter.com/share?text=<%= "#{@story.title}" %>' onclick="javascript:window.open(this.href,
-                                  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "" : "/") + "assets/svg/twitter_w.svg"%>' /></a>    
+                                  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "" : "/") + "assets/svg/twitter_w.svg"%>' /></a>
               <a href="https://plus.google.com/share?url=<%= current_url %>" onclick="javascript:window.open(this.href,
-              '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "" : "/") + "assets/svg/google+_w.svg"%>' alt="Share on Google+" /></a>     
+              '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src='<%= (@export ? "" : "/") + "assets/svg/google+_w.svg"%>' alt="Share on Google+" /></a>
             </div>
           </div>
-        </div> 
+        </div>
         <div id="modalos-donate" style="display:none;" class="donate-window">
-          <div class="want_donate">           
+          <div class="want_donate">
             <a href="http://chca.org.ge/" style="float:left;" target="_blank"><img src='<%= (@export ? "" : "/template/#{@template}/") + "assets/png/chca.png"%>'></a>
             <p>If you would like to support these children, please donate to:</p>
             <p>TBC Bank Accunt: GE09TB0328336080101001</p>
@@ -249,18 +249,18 @@
         </div>
 
       <!-- ****************************************************
-      *  data hash for mobile devices , they use different images   
+      *  data hash for mobile devices , they use different images
       ********************************************************* -->
   <script>
 
-          <%  
+          <%
               output = []
-              secLength = @story.sections.length        
+              secLength = @story.sections.length
               @story.sections.select{|t| t.ok? }.sort_by{|v| v.position}.each_with_index do |s,s_i|
                 if s.media?
-                  subLength = s.media.length   
-                  s.media.each_with_index do |t,t_i| 
-                    
+                  subLength = s.media.length
+                  s.media.each_with_index do |t,t_i|
+
                     item = {}
 
                     item[:type] = "media"
@@ -271,32 +271,32 @@
                     if secLength == t_i+1
                       item[:hideRule] = true
                     end
-        
+
                     output<< item
                   end
                 elsif s.slideshow?
-                  subLength = s.slideshow.assets.length   
-                  s.slideshow.assets.each_with_index do |t,t_i| 
+                  subLength = s.slideshow.assets.length
+                  s.slideshow.assets.each_with_index do |t,t_i|
                     item = {}
 
                     item[:type] = "slideshow"
                     item[:file] = "mobile_1024/#{t.asset_file_name_formatted}"
                     item[:section] = s_i+1
                     item[:slide] = t_i+1
-                    
+
                     if secLength == t_i+1
                         item[:hideRule] = true
                     end
                     output<< item
                   end
-                end              
+                end
               end
           %>
 
            var mobileImages = <%=output.to_json.html_safe %>;
 
       </script>
-       
+
       <script>
 
         function mobileReorient() {
@@ -311,7 +311,7 @@
             firstVideo.querySelector(".video:first-of-type .video-container")[0].style.height = height + "px";
             firstVideo.querySelector(".video:first-of-type .video-caption--head")[0].style.height = height + "px";
           }
-          
+
         }
 
         (function() {
@@ -328,16 +328,16 @@
 
 
 
-        <% if !@export %>                           
+        <% if !@export %>
             var _mobile_assets =  "/system/places/images/<%= @story.id %>/";
             var _slideshow_assets = "/system/places/slideshow/<%= @story.id %>/";
           <% else %>
             var _mobile_assets =  "media/images/";
             var _slideshow_assets = "media/slideshow/";
-        <% end %>            
-        
+        <% end %>
 
-         
+
+
 
         d3.select(window)
           .on("resize", mobileReorient)
@@ -366,7 +366,7 @@
       scripts work with two devices phones and other devices like pads
       so it would 2 devices in the future phone and pad
 
-      with small delay loop through hash 
+      with small delay loop through hash
 
       if device is phone then replace values with phone inner values
     */
@@ -395,18 +395,18 @@
             image.url = _mobile_assets + image.file;
           }
           else if(image.type == "slideshow")
-          { 
-            image.url = _slideshow_assets + image.file; 
+          {
+            image.url = _slideshow_assets + image.file;
           }
 
 
 
-        
+
             var container;
-        /*  if slide number exicts 
+        /*  if slide number exicts
           find container
           if type not (map && hide) change html to img tag with url
-          if type not (hide) 
+          if type not (hide)
             if type map caption from file options without # (caption-)
             else caption- with first word of file options
           slide assign
@@ -449,11 +449,11 @@
                     temp.append("div").attr("class", "slideshow-images");
                 }
                 var tempImages =  d3.select(".article .section:nth-child(" + image.section + ") .slideshow-wrapper .slideshow-container .slideshow-images");
-                caption = container.select(".slideshow-captions .slideshow-caption:nth-of-type(" + image.slide + ")");             
+                caption = container.select(".slideshow-captions .slideshow-caption:nth-of-type(" + image.slide + ")");
                 tempImages.append("img").attr("src", image.url).attr("class","slideshow-image");
               }
             }
-        
+
 
         /* aligning by options */
             if (image.align) d3.select(".article .section:nth-child(" + image.section + ") .video:nth-of-type(" + image.slide + ") .video-caption")
@@ -461,7 +461,7 @@
                     return "align-" + dir
                   }).join(" "), true)
 
-        
+
             if (!image.hideRule && slide) slide.append("div")
                 .attr("class", "video-rule")
 
@@ -503,21 +503,21 @@
           })
 
           // added for donation pig
-              var secTemp = d3.selectAll(".article .section");          
-              var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
-              var lengthTemp = temp[0].length -1 ; 
+              var secTemp = d3.selectAll(".article .section");
+              var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");
+              var lengthTemp = temp[0].length -1 ;
               if(lengthTemp >= 0)
-              {              
+              {
                   var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
                   last_section.append("div").attr("class","donate").append("a").attr('href','#').attr('id','modalDonate').attr("data-modalos-id","modalos-donate");
-                  last_section.append("div").attr("class","pigy");              
+                  last_section.append("div").attr("class","pigy");
               }
-          // donation end  
+          // donation end
         }, 200)
 
 
         });</script>
-     
+
       <script>
      /* this scripts included when device is not mobile */
           defer(function() {
@@ -525,7 +525,7 @@
           /* Just skip if we're on iPad, iPhone or Android -- TG */
           if (isMobile()) return false;
 
-            <% if !@export %>                           
+            <% if !@export %>
                var _video_assets = "/system/places/video/<%= @story.id %>/processed/",
               _poster_assets = "/system/places/video/<%= @story.id %>/poster/",
               _image_assets = "/system/places/images/<%= @story.id %>/fullscreen/",
@@ -535,7 +535,7 @@
                   _poster_assets = "media/video/poster/",
                   _image_assets = "media/images/fullscreen/",
                   _audio_assets = "media/audio/";
-            <% end %> 
+            <% end %>
 
           var mute = false,
               muteVolume = "volume",
@@ -565,11 +565,11 @@
               .property("loop", true);
 
 
-              
-                  
+
+
 
           // Add for content to have audio track
-          var section_content = d3.selectAll(".column")            
+          var section_content = d3.selectAll(".column")
               .datum(function() {
                 return {
                   audio: this.getAttribute("data-audio")
@@ -582,7 +582,7 @@
               .attr("src", function(d) { return _audio_assets + d.audio + ".mp3"; })
               .property("loop", true);
           // content audio end
-            
+
 
 
           var section = d3.selectAll(".video")
@@ -648,16 +648,16 @@
           resized();
 
           // added for donation pig
-              var secTemp = d3.selectAll(".article .section");          
-              var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");          
-              var lengthTemp = temp[0].length -1 ; 
+              var secTemp = d3.selectAll(".article .section");
+              var temp = d3.select( secTemp[0][secTemp[0].length-1]).selectAll(".video-container");
+              var lengthTemp = temp[0].length -1 ;
               if(lengthTemp >= 0)
-              {              
+              {
                   var last_section = d3.select(temp[0][lengthTemp]).append("div").attr("class","last-section");
                   last_section.append("div").attr("class","donate").append("a").attr('href','#').attr('id','modalDonate').attr("data-modalos-id","modalos-donate");
-                  last_section.append("div").attr("class","pigy");              
+                  last_section.append("div").attr("class","pigy");
               }
-          // donation end  
+          // donation end
 
           function loaded() {
             video.attr("preload", function(d) { return d.first ? "auto" : "none"; });
@@ -763,7 +763,7 @@
                   : opacityTop < fixTop - fixHeight ? 0 // video is fully covered by next video
                   : opacityTop < fixTop - fixHeight / 2 ? Math.max(0, Math.min(1, (opacityTop - fixTop + fixHeight) / (fixHeight / 2)))
                   : opacity;
-              if (d.first && d.sequence.first) scrollprompt.style("opacity",  volume == 1 ? 1 : (volume-0.7) > 0 ? (volume-0.7) : 0 );              
+              if (d.first && d.sequence.first) scrollprompt.style("opacity",  volume == 1 ? 1 : (volume-0.7) > 0 ? (volume-0.7) : 0 );
               //if (d.first && d.sequence.first) headline.style("opacity", 1 - volume);
             }
           }
@@ -777,8 +777,8 @@
                     if (!this.paused) this.pause();
                     if (this.currentTime) this.currentTime = 0;
                   }
-                });   
-                if (d.first && d.sequence.first && !d3.event.state) scrollprompt.style("opacity", 1);              
+                });
+                if (d.first && d.sequence.first && !d3.event.state) scrollprompt.style("opacity", 1);
             //if (d.first && d.sequence.first && !d3.event.state) headline.style("opacity", null);
           }
 
@@ -792,12 +792,12 @@
             {
               d3.select("body").style("background", fade(opacity));
             }
-            d3.select(this).select("audio").property(muteVolume, 1 - opacity);         
+            d3.select(this).select("audio").property(muteVolume, 1 - opacity);
           }
 
           function sequencestatechanged() {
             var sequence = d3.select(this),
-                audio = sequence.select("audio");           
+                audio = sequence.select("audio");
             if (d3.event.state) {
               sequence.selectAll("video").each(function() { this.preload = "auto";});
               audio.each(function() { this.play();  });
@@ -824,12 +824,12 @@
 
 
 
-          <% if !@export %>                           
+          <% if !@export %>
               var assets = "/system/places/slideshow/<%= @story.id %>/slideshow/";
             <% else %>
-              var assets = "media/slideshow/slideshow/";              
-            <% end %> 
-      
+              var assets = "media/slideshow/slideshow/";
+            <% end %>
+
           /*" + (innerWidth * (window.devicePixelRatio || 1) * .7 > 900 ? "large" : "medium") + "*/
 
 
@@ -875,12 +875,12 @@
             container.append("div")
                 .attr("class", "slideshow-button slideshow-button--next")
                 .on("click", function() { stopPlay(); showNext(); })
-               .html("<svg class='slideshow-button-arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M3,1.008L20.742,9.045L3,17.083L6,8.917Z'></path></svg>");  
+               .html("<svg class='slideshow-button-arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M3,1.008L20.742,9.045L3,17.083L6,8.917Z'></path></svg>");
 
             container.append("div")
                 .attr("class", "slideshow-button slideshow-button--previous")
                 .on("click", function() { stopPlay(); showPrevious(); })
-              .html("<svg class='slideshow-button-arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M18.742,0.758L1,8.795L18.742,16.833L15.742,8.667Z'></path></svg>");   
+              .html("<svg class='slideshow-button-arrow' width='45' height='59' viewBox='-13 -21 45 59'><path d='M18.742,0.758L1,8.795L18.742,16.833L15.742,8.667Z'></path></svg>");
 
             var thumb = container.insert("div", ".slideshow-captions")
                 .attr("class", "slideshow-thumbs")
@@ -888,7 +888,7 @@
                 .data(images)
               .enter().append("img")
                 .attr("class", function(d, i) { return "slideshow-thumb" + (i === currentIndex ? " slideshow-thumb--active" : ""); })
-            <% if !@export %>    
+            <% if !@export %>
                 .attr("src", function(d) { return "/system/places/slideshow/<%= @story.id %>/thumbnail/" + d.slug; })
             <% else %>
                 .attr("src", function(d) { return "media/slideshow/thumbnail/" + d.slug; })
@@ -970,8 +970,8 @@
     <!--[if gt IE 8]><!-->
       <!-- ****************************************************
       *  D3 library
-      ********************************************************* -->  
-      <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>  
+      ********************************************************* -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>
 
     <script>
 
@@ -1047,8 +1047,8 @@
           }
         }
 
-            
-        await();             
+
+        await();
     })();</script>
 
-    <!--<![endif]-->  
+    <!--<![endif]-->
