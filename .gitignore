@@ -16,6 +16,7 @@
 
 # ignore file uploads
 /public/system/*
+/public/assets/*
 
 #ignore db config
 /config/database.yml
