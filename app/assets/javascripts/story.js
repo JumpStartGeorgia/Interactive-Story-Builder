@@ -1,4 +1,5 @@
-
+/* global d3 */
+/*eslint no-console: "error"*/
 /*********************************************************************************************
                                        prepare
 **********************************************************************************************/
@@ -87,9 +88,11 @@
       setTimeout(function() {
 
         var video = d3.selectAll(".section.video-sequence .video")
-          .datum(function() { return { video: this.getAttribute("data-video"), image: this.getAttribute("data-image"), }; });
+          .datum(function() { return { video: this.getAttribute("data-video"), image: this.getAttribute("data-image") }; });
 
-        var video_tag = video.select(".video-container").html("").filter(function(d) { return d.video; })
+        var video_tags = video.select(".video-container").filter(function(d) { return d.video; });
+        video_tags.selectAll(".temporary").remove();
+        var video_tag = video_tags
           .insert("video", ":first-child")
           .attr("preload", "none")
           .attr("poster", function(d) { return  ppath + d.video + ".jpg"; })
@@ -103,7 +106,7 @@
 
 
         var video_tag = video.select(".video-container").filter(function(d) { return d.image; })
-          .append("img")
+          .select(".re-aspect")
           .attr("src", function(d) { return  ipath + d.image; });
 
         if(!String.prototype.trim)
@@ -115,8 +118,8 @@
         }
 
         d3.selectAll(".slideshow").each(function() {
-          var wrapper =  d3.select(this).select(".wrapper");
-          var captions = wrapper.select('.captions');
+          var container =  d3.select(this).select(".container");
+          var captions = container.select('.captions');
 
           captions.selectAll(".caption").each(function(){
             var t = this;
@@ -126,7 +129,7 @@
             }
             captions.insert("div", function() { return t; }).classed("image",true).append("img").attr("src",function(d) { return spath + t.getAttribute("data-image"); });
           });
-          wrapper.insert(function(){ return wrapper.select('.description').remove()[0][0]; },".captions");
+          container.insert(function(){ return container.select('.description').remove()[0][0]; },".captions");
         });
       }, 200);
     });
@@ -158,7 +161,7 @@
 
     var mute = false,
         muteVolume = "volume",
-        fixRatio = 16 / 9,
+        fixRatio = innerWidth/innerHeight, //16 / 9,
         fixHeight = innerWidth / fixRatio,
         fixTop = Math.round((innerHeight - fixHeight) / 2),
         fadeTop = Math.max(200, fixTop),
@@ -232,7 +235,10 @@
 
     var container = section.select(".video-container");
 
-    var video = container.filter(function(d) { return d.video; }).insert("video", ":first-child")
+    var videos = container.filter(function(d) { return d.video; });
+      videos.selectAll(".temporary").remove();
+
+    var video = videos.insert("video", ":first-child")
         .attr("preload", "none")
         .attr("poster", function(d) { return  ppath + d.video + ".jpg"; })
         .property("loop", function(d) { return !d.animation; })
@@ -282,7 +288,7 @@
     }
 
     function resized() {
-
+      fixRatio = innerWidth/innerHeight;
       fixHeight = innerWidth / fixRatio;
       fixTop = Math.round((innerHeight - fixHeight) / 2);
       fadeTop = Math.max(200, fixTop);
@@ -295,6 +301,7 @@
             : d.last ? rect.bottom >= fixTop + fixHeight
             : true;
       }).style("top","0px");
+      sectionFixed.style("height", innerHeight+ "px");
       // append height for infographic if height class present
       // if this is a popup interactive, reduce the height more so iframe window is contained within screen
       d3.selectAll(".infographic iframe.height").attr("height", innerHeight);
@@ -449,27 +456,28 @@ if (!isMobile())
       var watch = d3.behavior.watch()
           .on("statechange.first", firststatechanged)
           .on("statechange", statechanged);
-      var slideshow = d3.select(this).select(".wrapper")
+      var slideshow = d3.select(this).select(".container")
           .on("mouseover", stopPlay)
           .on("mouseout", stopPlay)
           .call(watch);
       var caption = slideshow.select(".captions").selectAll(".caption")
           .datum(function() {
             return {
-              image: this.getAttribute("data-image")
+              image: this.getAttribute("data-image"),
+              aspect_ratio_class: this.getAttribute("data-aspect")
             };
           })
           .classed("active", function(d, i) { return i === currentIndex; });
       var images = caption.data();
       var ln = images.length;
       var container = slideshow.insert("div", ".captions")
-          .attr("class", "container");
+          .attr("class", "inner-container");
       var image = container.append("div")
           .attr("class", "images")
         .selectAll(".image")
           .data(images)
         .enter().append("img")
-          .attr("class", "image");
+          .attr("class", function(d,i) { return "image " + d.aspect_ratio_class; })
       image.filter(function(d, i) { return i === currentIndex; })
           .classed("active", true)
           .attr("src", function(d) { return spath + d.image; })
@@ -559,8 +567,16 @@ if (!isMobile())
   }
   d3.select(window).on("resize.reheight", reheight);
   function reheight () {
-    var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    d3.selectAll(".section.embed.fullscreen .container > *:first-child").style("height", h + "px");
+    var h = (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight),
+      w = (window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth),
+      aspect_ratio = w/h;
+      d3.selectAll(".re-aspect").each(function() {
+        var img = d3.select(this),
+          image_ratio = +img.attr("data-aspectratio"),
+          ver = aspect_ratio > image_ratio;
+        img.classed("ver", ver).classed("hor", !ver);
+      });
+    d3.selectAll(".section.section-fullscreen .container > *:first-child").style("height", h + "px");
   }
   function watch_scrolled () {
     watched.forEach(function(watch) {

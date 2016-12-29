@@ -17,12 +17,13 @@ ka:
       theme: "თემა"
       story_type: "ამბის ტიპი"
       author: "ავტორი"
-      asset: File
+      asset: ფაილი
+      logo: ლოგო
     attributes:
       asset: &asset
-        asset_file_name: File
-        asset_content_type: File Content Type
-        asset_file_size: File Size
+        asset_file_name: ფაილი
+        asset_content_type: ფაილის ტიპი
+        asset_file_size: ფაილის ზომა
       avatar: *asset
       user:
         email: "ელ. ფოსტა"
@@ -37,6 +38,12 @@ ka:
         sign_in_count: "შემოსვლის რაოდენობა"
         created_at: "შექმნის თარიღი"
         current_sign_in_at: "ბოლო შემოსვლის თარიღი"
+      logo:
+        image: სურათი
+        url: URL
+        logo_type: ტიპი
+        sort_order: დალაგება
+        is_active: აქტიურია?
       author:
         avatar: "პროფილის სურათი"
       author_translation: &author_translation
@@ -55,6 +62,7 @@ ka:
         categories: "კატეგორიები"
         story_type: "ტიპი"
         in_theme_slider: "ამბის სლაიდერში ჩვენება"
+        has_disclaimer: "Include Story Disclaimer?"
       story_translation: &story_translation
         title: "ამბის სათაური"
         author: "ავტორ(ებ)ი"
@@ -71,6 +79,7 @@ ka:
         has_marker: "სექციის გამოყოფა"
         type_id: "ტიპი"
         sort_order: "დალაგება"
+        background: სურათის ფონი
       section_translation:  &section_translation
         title: "სათაური"
         audio: "აუდიო ფაილი"
@@ -113,7 +122,7 @@ ka:
         message: "გზავნილი"
         message_type: "გზავნილის მიზანი"
       embed_medium:
-        fullscreen: "მთელ ეკრანზე გაშლილი"
+        dimension: ზომა
       embed_medium_translation: &embed_medium_translation
         title: "სათაური"
         url: "ონლაინ აუდიოს/ვიდეოს ბმული"
@@ -128,30 +137,30 @@ ka:
         menu_lang: "პლეერის პარამეტრების ენა"
         cc: "წარწერის/სუბტიტრების ჩვენება"
         cc_lang: "სუბტიტრების ენა"
-        code: Youtube Video Id
+        code: Youtube ვიდეოს ID
       youtube_translations: *youtube_translation
       infographic:
-        published_at: Date Published
-        image: Infographic Image
-        dataset_file: Related File
-        datasources: Data Sources
-        subtype: Infographic Type
-        dynamic_width: Width
-        dynamic_height: Height
-        dynamic_render: Show Infographic in Story or in Popup
+        published_at: გამოქვეყნების თარიღი
+        image: ინფოგრაფიკა
+        dataset_file: მსგავსი ფაილი
+        datasources: მონაცემის წყარო
+        subtype: ინფოგრაფიკის ტიპი
+        dynamic_width: სიგანე
+        dynamic_height: სიმაღლე
+        dynamic_render: ინფოგრაფიკის გამოჩენა ისტორიაში ან PopUp-ით
       infographic_translation: &infographic_translation
-        title: Title
-        caption: Heading
-        description: Description
-        dataset_url: Online Dataset
-        image_name: Image
+        title: სათაური
+        caption: სათაური
+        description: აღწერა
+        dataset_url: ონლაინ მონაცემები
+        image_name: სურათი
         image: *asset
         dataset_file: *asset
-        dynamic_url: Dynamic URL
+        dynamic_url: დინამიური URL
       infographic_translations: *infographic_translation
       infographic_datasource:
-        name: Data Source Name
-        url: Data Source URL
+        name: მონაცემის წყაროს სახელი
+        url: მონაცემის წყაროს URL
       language:
         locale: "ენის აღმნიშვნელი"
         name: "ენა"
@@ -169,7 +178,7 @@ ka:
         published_at: "გამოქვეყნების თარიღი"
         show_home_page: "ვაჩვენოთ ეს თემა მთავარ გვერდზე?"
         published_item_count: "გამოქვეყნებულ ამბავთა რაოდენობა"
-        featured_stories: Featured Stories
+        featured_stories: რჩეული ისტორიები
       theme_translation: &theme_translation
         name: "სათაური"
         edition: "გამოცემა"
@@ -188,7 +197,7 @@ ka:
         already_exists: "უკვე არსებობს მონაცემთა ბაზაში"
         story_authors: "საჭიროა ერთი ადამიანის ონიშვნა მაინც."
         publish_theme: "თემის გამოქვეყნება შეუძლებელია, თუ ამ თემას ერთი ამბავი მაინც არ აქვს მისადაგებული."
-        not_provided: must be provided.
+        not_provided: აუცილებელი ველი
   mailer:
     closing: "პატივისცემით,"
     signature: "“ჩაი ხანას” გუნდი"
@@ -277,6 +286,7 @@ ka:
       themes: "თემა"
       story_types: "ტიპი"
       languages: "ენები"
+      logos: Logos
       follow: "მიყოლა"
       facebook: Facebook
       twitter: Twitter
@@ -292,8 +302,8 @@ ka:
       pages: "საიტზე ტექსტის რედაქტირება"
       next: "შემდეგი"
       feed: "სიახლეების ველი"
-      download: Download
-      previous: Previous
+      download: გადმოწერა
+      previous: წინა
       story_menu:
         link:
           story: "ამბავი"
@@ -373,7 +383,7 @@ ka:
       reviewer_key: "მიიღეთ URL, რათა გააზიაროთ ამბავი მის გამოქვეყნებამდე"
       reviewer_key_published: "თქვენი ამბავი გამოქვეყნებულია, აღარაა საჭირო ამ ბმულის გამოყენება"
       explore: "დაათვალიერე"
-      processing: Processing...
+      processing: მუშავდება...
     common:
       app_name_not_trans: '"ჩაი ხანა"'
       app_name: "“ჩაი ხანა”"
@@ -422,6 +432,11 @@ ka:
       clone_asset: "გამოვიყენოთ საწყისი ფაილის?"
       embed: "კოდის ჩასმა"
       scroll_top: "მაღლა ასვლა"
+      logo_types:
+        sponsor: სპონსორი
+        sponsors: სპონსორები
+        partner: პარტნიორი
+        partners: პარტნიორები
     msgs:
       does_not_exist: "თქვენ ცდილობთ ისეთი გვერდის ნახვას, რომელიც არ არსებობს."
       not_authorized: "თქვენ არ გაქვთ ამ გვერდის ნახვის უფლება."
@@ -452,7 +467,7 @@ ka:
       nickname_url: "თქვენი მომხმარებლის ბმული იქნება:"
       story_duplicate: "ამ ამბის ბმული უკვე არსებობს."
       story_url: "ამ ამბის ბმული იქნება:"
-      update_translations: Don't forget to translate this new item!
+      update_translations: არ დაგავიწყდეთ ამ ახალი ტერმინის თარგმნა!
       invitation:
         accepted: "თქვენ დათანხმდით თანაავტორობის მოწვევას შემდეგ ამბავზე: '%{title}'"
         accepted_already: "თქვენ უკვე დათანხმდით თანაავტორობის მოწვევას შემდეგ ამბავზე: '%{title}'"
@@ -493,7 +508,7 @@ ka:
       nothing_selected: "გთხოვთ, აირჩიოთ სექცია/ერთეული წასაშლელად"
       fail_delete: "სექცია/ერთეული ვერ წაიშალა"
       confirm_delete: "დარწმუნებული ხართ, რომ გინდათ ამ სექციის/ერთეულის წაშლა?"
-      confirm_publish: Are you sure you want to publish story?
+      confirm_publish: დარწმუნებული ხართ, რომ ისტორიის გამოქვეყნება გსურთ?
       video_processed: "თქვენი ვიდეო დამუშავებულია"
       video_not_processed: "თქვენი ვიდეო დამუშავების პროცესშია"
       not_found_for_update: "მასალა რედაქტირებისთვის არ მოიძებნა."
@@ -511,11 +526,14 @@ ka:
       name: "ონლაინ აუდიო/ვიდეო ჩასმა"
       description: YouTube, Vimeo, და ა.შ.
     youtube:
-      name: YouTube Video
+      name: Youtube ვიდეო
       description: YouTube-ის ვედეო წარწერის დამატების შესაძლებლობით
     infographic:
-      name: Infographic
-      description: Infographic, interactive, or factoids with ability to add datasets and data sources
+      name: ინფოგრაფიკა
+      description: ინფოგრაფიკა, ინტერაქტივი ან ფაქტოიდები, მონაცემთა წყაროების დამატების საშუალებით
+  section_background:
+    black: შავი
+    white: თეთრი
   story_role:
     editor: "რედაქტირება"
     translator: "თარგმნა"
@@ -603,11 +621,15 @@ ka:
         title: "მომხმარებლის დეტალები"
     themes:
       form:
-        header_features: Features
-        header_add_story: Select Story to be Feature
-        header_current_features: Featured Stories In the Order They Will Appear
-        no_stories: No stories have been assigned to this theme yet.
-        no_features: No stories have been selected to be features.
+        header_features: თვისებები
+        header_add_story: აირჩიე ისტორია რჩეულებში
+        header_current_features: რჩეული ისტორიები გამოჩენის თანმიმდევრობით
+        no_stories: ამ თემაში არ არის ისტორიები
+        no_features: არ არის არჩეული რჩეული ისტორიები
+    logos:
+      index:
+        no_sponsors: არ არის სპონსორი.
+        no_partners: არ არის პარტნიორი.
   root:
     about:
       title: "“ჩაი ხანას” შესახებ"
@@ -644,6 +666,7 @@ ka:
         story_type: "აირჩიეტ ამბის ტიპი"
         theme: "აირჩიეთ თემა, რომელსაც თქვენი ამბავი განეკუთვნება"
         in_theme_slider: "თუ მონიშნავთ ეს ამბავი გამოჩნდება სლაიდერში, თემის გვერდის ზედა ნაწილში"
+        has_disclaimer: "ამ ველის მონიშვნით ისტორიის თავში და ბოლოში, გასაზიარებელი ღილაკების გვერდით, გამოჩნდება დისქლეიმერი."
     collaborators:
       title: "ამბის '%{title}' თანაავტორები"
       owner_header: "ამბის ავტორი"
@@ -699,6 +722,7 @@ ka:
         has_marker: "თუ მონიშნავთ, ეს სექცია გამოიყოფა და შესაძლებელი იქნება მასზე ცალკე ბმულით გადასვლა"
         audio: "მუსიკალური გაფორმება ამ სექციისთვის (დასაშვებია მხოლოდ mp3 ფორმატი; ფაილის მაქსიმალური ზომა 10MB)"
         delete_audio: "თუ მონიშნავთ, აუდიო ფაილი წაიშლება"
+        background: "თუ სურათი იდეალურად არ ჯდება ეკრანში, მაღლა, დაბლა, მარჯვნივ ან მარცხნივ დარჩება ფონი. ამ ველით აირჩიეთ ფონის ფერი."
     content:
       form_title: "ტექსტის ფორმა"
       placeholder:
@@ -740,27 +764,31 @@ ka:
       get_media: "ონლაინ აუდიო/ვიდეო ფაილის ჩასმა"
       preview: "ონლაინ აუდიო/ვიდეო ფაილის ნახვა"
       error: "ბმული ვერ დამუშავდა. გთხოვთ, კიდევ სცადეთ."
-      embed_source: Embed Source
+      embed_source: Embed წყარო
       embed_source_url: URL
-      embed_source_code: Code
+      embed_source_code: კოდი
+      dimension: როგორ ჩავსვათ მედია გვერდზე
+      preserve: არ შეცვალოთ ზომა
+      fullscreen: მთელი ეკრანი
+      fit: მოერგოს გვერდს
       placeholder:
         title: "ონლაინ აუდიო/ვიდეო ფაილის სათაური"
         url: "ონლაინ აუდიო/ვიდეო ფაილის ბმული"
-        code: "ex: <iframe ..."
+        code: "მაგ.: <iframe ..."
       hint:
         title: "ეს ტექსტი გამოჩნდება მხოლოდ მარცხენა პანელში, და არა თვითონ ამბავში"
         url: "ჩასასმელი ონლაინ აუდიო/ვიდეო ფაილისთვის შეგიძლიათ გამოიყენოთ შემდეგი საიტები: აუდიო: Soundcloud, Spotify; ვიდეო: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
-        code: "Code for online media (iframe embed object ...)"
-        embed_source: Is the embed object from a url or is it code
-        fullscreen: "თუ მონიშნულია ვიდეო დაიკავებს მთლიან ეკრანს"
+        code: "კოდი ონლაინ მედიისათვის (iframe embed object ...)"
+        embed_source: არის URL-დან მიღებული ობიექტი თუ კოდი
+        dimension: "მიუთითეთ, როგორ გსურთ embed ონლაინ მედიას გამოჩენა გვერდზე. პირველი ვარიანტი იმ ზომას გამოიყენებს, რაც კოდშია მითითებული. მეორე ვარიანტი მას სასურველ სიგანეში მოაქცევს. ბოლო ვარიანტი მას სრულ ეკრანზე გაშლის."
     youtube:
       form_title: YouTube ვიდეოს ფორმა
       get_media: "მიიღეთ თქვენი Youtube ვიდეო"
       preview: YouTube ვიდეოს წინასწარი ნახვა
       error: URL-ი ვერ დამუშავდა. გთხოვთ სცადოთ ხელახლა.
       generate_iframe:
-        missing_api_key: value can't be generated due to missing API key.
-        error: is not valid.
+        missing_api_key: მონაცემი არ გენერირდება APIს არქონის გამო
+        error: არ მუშაობს.
       placeholder:
         title: YouTube სათაური
         url: YouTube ვიდეოს Url
@@ -774,38 +802,38 @@ ka:
         menu_lang: YouTube მენიუს ენა
         cc_lang: "ავტომატური სუბტიტრების ენა"
     infographic:
-      form_title: Infographic Form
-      add_datasource: Add Data Source
-      static: Static
-      dynamic: Dynamic
-      inline: In Story
+      form_title: ინფოგრაფიკის ფორმა
+      add_datasource: მონაცემთა წყაროს დამატება
+      static: სტატიკური
+      dynamic: დინამიური
+      inline: ისტორიაში
       popup: Popup
       label:
-        dynamic_size: Infographic Dimensions in Width x Height
+        dynamic_size: "ინფოგრაფიკის ზომები: სიგანე X სიმაღლე"
       placeholder:
-        title: Title
-        caption: optional
-        dataset_url: optional
-        dynamic_url: Interactive URL
-        dynamic_width: width
-        dynamic_height: height
+        title: სათაური
+        caption: ნებაყოფლობითი
+        dataset_url: ნებაყოფლობითი
+        dynamic_url: ინტერაქტიული URL
+        dynamic_width: სიგანე
+        dynamic_height: სიმაღლე
       hint:
-        title: This text only appears in the left sidebar, it will not show up in the story
-        caption: Heading of infographic will appear above the infographic image. If this Infographic Section is first in the story, you should leave this blank and use the Story Title field.
-        description: The description will appear below the infographic. If this Infographic Section is first in the story, the Story Summary will appear below the infographic image so if the Story Summary and Infographic Description are the same, you should leave this field blank.
-        image: Only jpg and png format allowed; 8MB file size limit
-        dataset_file: Please try to compress files to make for quicker download; 25MB file size limit
-        dataset_url: URL to Dataset
-        subtype: Static infographics are images, Dynamic infographics require a URL.
-        dynamic_url: URL to web page with interactive infographic
-        dynamic_size: Use these fields to indicate the space you want to reserve for showing this infographic. Leave the fields empty if you want the infographic to be fullscreen. The minimum value is 200.
-        dynamic_render: The infographic can be rendered in the story or in a popup that appears after the user clicks on the infogaphic image in the story. Use the popup option if the infogaphic takes up the full screen or is very long.
+        title: ეს ტექსტი მხოლოდ მარცხნივ ჩანს და ისტორიაში არ გამოჩნდება
+        caption: ინფოგრაფიკის სათაური გამოჩნდება სურათის ტავზე. თუ ეს სექცია ისტორიაში პირბელია, დატოვეთ ცარიელი და გამოიყენეთ ისტორიის სათაურის ველი
+        description: აღწერა გამოჩნდება ინფოგრაფიკის ქვეშ. თუ ეს სექცია ისტორიაში პირველია, ისტორიის მოკლე შინაარსი გამოჩნდება ინფოგრაფიკის ქვეშ, ამიტომ თუ ისტორიის მოკლე შინაარსი და ინფოგრაფიკის აღწერა ერთი და იგივეა, ეს ველი ცარიელი დატოვეთ.
+        image: დაშვებულია მხოლოდ jpg და png, 8 MB-ზე ნაკლები ზომის
+        dataset_file: ეცადეთ ფაილების ზომის შემცირებას იმისათვის, რომ უფრო იოლად გადმოიწეროთ. ფაილის ზომის ლიმიტი 25 MB.
+        dataset_url: URL დატასეტისთვის
+        subtype: სტატიკური ინფოგრაფიკა სურათია, დინამიურ ინფოგრაფიკას URL სჭირდება.
+        dynamic_url: ინტერაქტიული ინფოგრაფიკის URL
+        dynamic_size: ეს ველები გამოიყენეთ ინფოგრაფიკისათვის საჭირო ადგილის დასარეზერვებლად. ეს ველი დატოვეთ ცარიელი, თუ გსურთ ინფოგრაფიკის სრულ ეკრანზე გამოტანა. მინიმუმი ნიშნული 200.
+        dynamic_render: ინფოგრაფიკა ჩაჯდება ისტორიაში ან ამოხტება popupით მას შემდეგ, რაც მკითხველი დააწკაპებს. გამოიყენეთ popup ფუნქცია იმ შემთხვევაში, თუ ინფოგრაფიკა მთელ ეკრანზე იშლება ან ძალიან გრძელია.
     infographic_datasource_fields:
       placeholder:
-        url: optional
+        url: ნებაყოფლობითი
       hint:
-        name: Name of the data source
-        url: URL to the online data source
+        name: მონაცემის წყაროს სახელი
+        url: მონაცემის წყაროს URL
   storyteller:
     byline: "ავტორი"
     byline_media: "ფოტოსა და ვიდეოს ავტორი"
@@ -819,6 +847,8 @@ ka:
       dataset: "მასალები ამ თემაზე"
       download: "ჩამოტვირთვა"
       online: "მონაცემთა ნახვა ონლაინ"
+    disclaimer: "განაცხადი"
+    disclaimer_text: "მასალა შეიძლება შეიცავდეს ტერმინებს, რომელიც არ აკმაყოფილებს კონფლიქტის ყველა მხარეს. გამოყენებული ტერმინები ეკუთვნის ავტორს/რესპონდენტს და არა ჩაი-ხანას."
   settings:
     index:
       title: "პარამეტრები"

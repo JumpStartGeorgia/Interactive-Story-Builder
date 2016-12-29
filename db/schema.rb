@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20161110080513) do
+ActiveRecord::Schema.define(:version => 20161129095042) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20161110080513) do
     t.integer  "asset_clone_id"
     t.string   "avatar_id"
     t.integer  "story_id"
+    t.float    "asset_aspectratio"
   end
 
   add_index "assets", ["asset_clone_id"], :name => "index_assets_on_asset_clone_id"
@@ -105,7 +106,7 @@ ActiveRecord::Schema.define(:version => 20161110080513) do
     t.integer  "section_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "fullscreen", :default => false
+    t.integer  "dimension",  :limit => 1, :default => 0
   end
 
   add_index "embed_media", ["section_id"], :name => "index_embed_media_on_section_id"
@@ -232,6 +233,22 @@ ActiveRecord::Schema.define(:version => 20161110080513) do
   add_index "languages", ["locale"], :name => "index_languages_on_locale"
   add_index "languages", ["name"], :name => "index_languages_on_name"
 
+  create_table "logos", :force => true do |t|
+    t.integer  "logo_type"
+    t.string   "url"
+    t.boolean  "is_active",          :default => true
+    t.integer  "position",           :default => 99
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "logos", ["is_active"], :name => "index_logos_on_is_active"
+  add_index "logos", ["position"], :name => "index_logos_on_position"
+
   create_table "media", :force => true do |t|
     t.integer  "section_id"
     t.integer  "media_type"
@@ -345,6 +362,7 @@ ActiveRecord::Schema.define(:version => 20161110080513) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "has_marker", :default => true
+    t.integer  "background", :default => 0
   end
 
   add_index "sections", ["position"], :name => "index_sections_on_position"
@@ -390,6 +408,7 @@ ActiveRecord::Schema.define(:version => 20161110080513) do
     t.integer  "cached_weighted_score", :default => 0
     t.integer  "comments_count",        :default => 0
     t.integer  "story_type_id"
+    t.boolean  "has_disclaimer",        :default => true
   end
 
   add_index "stories", ["cached_votes_down"], :name => "index_stories_on_cached_votes_down"

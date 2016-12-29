@@ -18,6 +18,7 @@ en:
       story_type: Story Type
       author: Author
       asset: File
+      logo: Logo
     attributes:
       asset: &asset
         asset_file_name: File
@@ -37,6 +38,12 @@ en:
         sign_in_count: Number of Times Logged In
         created_at: Date Created
         current_sign_in_at: Date Last Logged In
+      logo:
+        image: Image
+        url: URL
+        logo_type: Type
+        sort_order: Sort Order
+        is_active: Is Active?
       author:
         avatar: Avatar
       author_translation: &author_translation
@@ -55,6 +62,7 @@ en:
         categories: Categories
         story_type: Type
         in_theme_slider: Show Story in Theme Slider
+        has_disclaimer: "Include Story Disclaimer?"
       story_translation: &story_translation
         title: Story Title
         author: Author(s)
@@ -71,6 +79,7 @@ en:
         has_marker: Navigation Shortcut
         type_id: Type
         sort_order: Sort Order
+        background: Image Background Color
       section_translation:  &section_translation
         title: Title
         audio: Audio Track
@@ -113,7 +122,7 @@ en:
         message: Message
         message_type: Feedback Type
       embed_medium:
-        fullscreen: Fullscreen
+        dimension: Dimension
       embed_medium_translation: &embed_medium_translation
         title: Title
         url: URL to Online Media
@@ -277,6 +286,7 @@ en:
       themes: Themes
       story_types: Types
       languages: Languages
+      logos: Logos
       follow: Follow
       facebook: Facebook
       twitter: Twitter
@@ -422,6 +432,11 @@ en:
       clone_asset: Use the original file?
       embed: Embed Code
       scroll_top: Scroll to the top
+      logo_types:
+        sponsor: Sponsor
+        sponsors: Sponsors
+        partner: Partner
+        partners: Partners
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
@@ -516,6 +531,9 @@ en:
     infographic:
       name: Infographic
       description: Infographic, interactive, or factoids with ability to add datasets and data sources
+  section_background:
+    black: Black
+    white: White
   story_role:
     editor: Editor
     translator: Translator
@@ -608,6 +626,10 @@ en:
         header_current_features: Featured Stories In the Order They Will Appear
         no_stories: No stories have been assigned to this theme yet.
         no_features: No stories have been selected to be features.
+    logos:
+      index:
+        no_sponsors: There are no sponsors.
+        no_partners: There are no partners.
   root:
     about:
       title: About Chai Khana
@@ -644,6 +666,7 @@ en:
         story_type: Select the type of your story.
         theme: Select the theme(s) your story belongs to.
         in_theme_slider: "If checked, this story will appear in the slider at the top of the theme page."
+        has_disclaimer: "Selecting this field will show the story disclaimer at the top and bottom of the story next to the share links."
     collaborators:
       title: "Collaborators for '%{title}'"
       owner_header: Story Author
@@ -699,6 +722,7 @@ en:
         has_marker: "If checked, there will be a navigation shortcut link to go to this section"
         audio: "Background audio to play while this section is in view (mp3 format only; 10mb file size limit)"
         delete_audio: "If checked, the Audio Track will be deleted"
+        background: "If the image does not fit perfectly on the screen, space either on the top and bottom or left and right will be visible. Use this field to indicate what color to fill that space in with."
     content:
       form_title: Text Form
       placeholder:
@@ -743,6 +767,10 @@ en:
       embed_source: Embed Source
       embed_source_url: URL
       embed_source_code: Code
+      dimension: How to fit the media on the page
+      preserve: Do not change size
+      fullscreen: Fullscreen
+      fit: Scale to fit page
       placeholder:
         title: Embed Online Media Title
         url: URL to online media
@@ -752,7 +780,7 @@ en:
         url: "The following sites can be used for embeding online media: AUDIO: Soundcloud, Spotify; VIDEO: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
         code: "Code for online media (iframe embed object ...)"
         embed_source: Is the embed object from a url or is it code
-        fullscreen: "If checked, the embed media will take up the entire screen"
+        dimension: "Indicate how you want the embed online media to appear on the page. The first option will use whatever size is in the embed code. The second one will make the object fit the desired width. The last one will make it fullscreen."
     youtube:
       form_title: YouTube Video Form
       get_media: Get Youtube Video
@@ -819,6 +847,8 @@ en:
       dataset: Related Items
       download: Download File
       online: View Data Online
+    disclaimer: Disclaimer
+    disclaimer_text: "This material may contain terms, which are not favored by all the parties of the dispute/conflict. Terms used in a material belong to the author and not Chai-Khana."
   settings:
     index:
       title: Settings

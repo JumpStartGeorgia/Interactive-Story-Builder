@@ -17,7 +17,7 @@ class Story < ActiveRecord::Base
   scoped_search :in => :content_translations, :on => [:caption, :sub_caption, :text]
 
   # record public views
-  is_impressionable :counter_cache => true
+  is_impressionable :counter_cache => true, :unique => :session_hash
 
   has_many :story_translation_progresses, :dependent => :destroy
   alias_attribute  :translation_progress, :story_translation_progresses
@@ -49,6 +49,7 @@ class Story < ActiveRecord::Base
 
   attr_reader :tag_list_tokens
   attr_accessor :send_notification, :send_staff_pick_notification, :send_comment_notification
+  attr_accessible :has_disclaimer
 
   DEMO_ID = 2
 
@@ -121,7 +122,7 @@ class Story < ActiveRecord::Base
   scope :stories_by_author, -> (author_id) {
     joins(:authors).where(:authors => {:id => author_id})
   }
-
+  scope :by_locale, -> (with_locale) { joins(:story_translations).where(:story_translations => {:locale => with_locale }) }
 # SELECT a.*
 # FROM parallax_chca.stories AS a LEFT JOIN parallax_chca.stories AS b
 # ON (a.story_type_id = b.story_type_id AND a.published_at < b.published_at)

@@ -1,0 +1,27 @@
+<%= semantic_form_for([:admin, @logo]) do |f| %>
+  <%= f.error_messages %>
+
+  <label class=" control-label" for="logo_image"><%= t('activerecord.attributes.logo.image') %><abbr title="required">*</abbr></label>
+  <div class="image_container clear">
+    <%= image_tag @logo.image.url(:'medium') if @logo.image.exists? %>        
+    <div>
+      <%= f.input :image, :as => :file, :input_html => { accept:".jpg,.jpeg,.png" }, label: false  %> 
+    </div>
+  </div>
+
+  <% 
+    types = [] 
+    types << [I18n.t("app.common.logo_types.sponsor"), Logo::LOGO_TYPE[:sponsor]]
+    types << [I18n.t("app.common.logo_types.partner"), Logo::LOGO_TYPE[:partner]]
+  %>
+  <%= f.input :logo_type, as: :radio, collection: types %>
+  <%= f.input :url, as: :url %>
+  <%= f.input :is_active, as: :radio %>
+
+
+  <div>
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= f.submit t('helpers.links.reset'), :class => 'btn btn-warning', :type => :reset, :name => :reset %>
+    <%= link_to t('helpers.links.cancel'), admin_logos_path, :class => 'btn btn-xs btn-warning' %>
+  </div>
+<% end %>

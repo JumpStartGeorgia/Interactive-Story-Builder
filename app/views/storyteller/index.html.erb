@@ -43,9 +43,12 @@
         <% if @section_count != 1 %>
           <div class="r">
               <div class='share'>
-                     <div class="addthis_native_toolbox"></div>
-                      <%= link_to '#',   :'data-modalos-id' => "modalos-embed", :title => t('app.common.embed', locale: @story.current_locale), :class => "embed modalEmbed" do %>
-                      <% end %>
+               <div class="addthis_native_toolbox"></div>
+                <%= link_to '#',   :'data-modalos-id' => "modalos-embed", :title => t('app.common.embed', locale: @story.current_locale), :class => "embed modalEmbed" do %>
+                <% end %>
+                <% if @story.has_disclaimer %>
+                <div class="disclaimer" data-tip="<%= t('storyteller.disclaimer_text') %>"><%= t('storyteller.disclaimer') %></div>
+                <% end %>
               </div>
           </div>
         <% end %>
@@ -55,8 +58,8 @@
       </div>
       <% if !@stories.blank? %>
         <div class="related-links">
-          <div class="js-label h1"><%= t('storyteller.related_stories') %></div>
-          <div class="themes js-u-right">
+          <div class="h1"><%= t('storyteller.related_stories') %></div>
+          <div class="themes">
             <span><%= t('storyteller.view_all_stories_in') %>:&nbsp;</span>
             <% @story.themes.published.each { |t| %>
               <%= link_to t.name.split.map(&:capitalize).join(' '), theme_path(t.permalink) %>
@@ -72,7 +75,7 @@
       <div class="grid-wrapper">
         <div class="grid col-4">
           <% @stories.each_with_index do |story,s_i| %>
-            <% story.set_prime_locale(params[:sl]) %>
+            <% story.set_to_app_locale %>
             <div class="col n-3" lang="<%= story.current_locale %>">
               <%= render partial: "shared/grid_item" , locals:{:story=>story} %>
             </div>
@@ -85,7 +88,7 @@
        <%= link_to(image_tag("svg/slogo.svg",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name_not_trans')) , root_path(:locale => I18n.locale), title: t('app.common.app_name'), :class=>"slogo-bottom") %>
       <%= link_to(image_tag("svg/logo.svg",:style=>"vertical-align:middle;",:alt=>t('app.common.app_name_not_trans')) , root_path(:locale => I18n.locale), title: t('app.common.app_name'), :class=>"logo") %>
       <div class="powered-by">
-        <%= t("app.common.powered_by") %>&nbsp;&nbsp;<a href="http://www.jumpstart.ge" target="_blank" title="<%= t("app.common.js_link_title") %>"><%= t("app.common.powered_by_js") %></a><%= t("app.common.powered_by_end") %>
+        <%= t("app.common.powered_by") %>&nbsp;&nbsp;<a href="https://www.jumpstart.ge" target="_blank" title="<%= t("app.common.js_link_title") %>"><%= t("app.common.powered_by_js") %></a><%= t("app.common.powered_by_end") %>
       </div>
       <div class="center">
         <div><%= link_to t('helpers.links.about'), about_path %></div>
@@ -122,9 +125,9 @@
         </div>
       </div>
     </div>
-    <div class="tip"><div class="content"></div><div class="pointer"></div></div>
+    <div class="tip" data-pointer="down"><div class="pointer up"></div><div class="content"></div><div class="pointer down"></div></div>
   <% end %>
-      <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js" charset="utf-8"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js" charset="utf-8"></script>
       <script>
 /*********************************************************************************************
                                        data
@@ -184,8 +187,8 @@
                 if s.youtube?
                   item[:type] = "youtube"
                   item[:videoId] = s.youtube.code
-                  item[:width] = 640
-                  item[:height] = 360
+                  # item[:width] = 640
+                  # item[:height] = 360
                   item[:loop] = s.youtube.loop ? 1 : 0
                   item[:info] = s.youtube.info ? 1 : 0
                   item[:cc_load_policy] = s.youtube.cc ? 1 : 0
@@ -215,8 +218,10 @@
                         youtubeContainers[0][i],
                         {
                           videoId: d.videoId,
-                          width: d.width,
-                          height: d.height,
+                          // width: "100%",
+                          // height: "100%",
+                          // width: d.width,
+                          // height: d.height,
                           playerVars:{
                             showinfo: d.info,
                             loop: d.loop,
@@ -230,6 +235,7 @@
                     ));
                   }
               });
+              console.log(youtubePlayers);
             }
           }
           function onPlayerStateChange(event) {

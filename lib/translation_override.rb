@@ -22,6 +22,13 @@ module TranslationOverride
     Globalize.story_locale = self.current_locale
   end
 
+  def set_to_app_locale
+    if self.translated_locales.include?(I18n.locale)
+      self.current_locale = I18n.locale.to_s
+      Globalize.story_locale = self.current_locale
+    end
+  end
+
   def set_prime_locale(sl)
     trans_locales = self.translated_locales
     loc = I18n.locale.to_s if trans_locales.include?(I18n.locale)

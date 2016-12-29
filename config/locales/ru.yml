@@ -18,6 +18,7 @@ ru:
       story_type: "Тип истории"
       author: "Автор"
       asset: "Файл"
+      logo: Лого
     attributes:
       asset: &asset
         asset_file_name: "Файл"
@@ -37,6 +38,12 @@ ru:
         sign_in_count: "количество посещений на сайте"
         created_at: "Дата создания"
         current_sign_in_at: "Дата последнего посещения"
+      logo:
+        image: Изображение
+        url: URL
+        logo_type: Тип
+        sort_order: Последовательность
+        is_active: Активно?
       author:
         avatar: "Аватар"
       author_translation: &author_translation
@@ -55,6 +62,7 @@ ru:
         categories: "Категории"
         story_type: "Тип"
         in_theme_slider: "Показать историю в тематическом слайдере"
+        has_disclaimer: "Include Story Disclaimer?"
       story_translation: &story_translation
         title: "Название истории"
         author: "Автор(ы)"
@@ -71,6 +79,7 @@ ru:
         has_marker: "Навигационная ссылка"
         type_id: "Тип"
         sort_order: "Порядок Сортировки"
+        background: Цвет фона изображения
       section_translation:  &section_translation
         title: "Название"
         audio: "Аудиофайл"
@@ -113,7 +122,7 @@ ru:
         message: "Письмо"
         message_type: "Тип отзыва"
       embed_medium:
-        fullscreen: "Во весь экран"
+        dimension: измерение
       embed_medium_translation: &embed_medium_translation
         title: "Заглавок"
         url: Url к онлайн медии
@@ -128,7 +137,7 @@ ru:
         menu_lang: "Язык плеера"
         cc: "Показать субтитры"
         cc_lang: "Язык субтитров"
-        code: Youtube Video Id
+        code: Идентификатор видео Youtube
       youtube_translations: *youtube_translation
       infographic:
         published_at: "Дата публикации"
@@ -138,7 +147,7 @@ ru:
         subtype: "Тип инфографики"
         dynamic_width: "Ширина"
         dynamic_height: "Высота"
-        dynamic_render: Show Infographic in Story or in Popup
+        dynamic_render: Показать инфографики в истории или во всплывающем окне
       infographic_translation: &infographic_translation
         title: "Заголовок"
         caption: "Рубрика"
@@ -169,7 +178,7 @@ ru:
         published_at: "Дата опубликования"
         show_home_page: "Показать тему на главной странице"
         published_item_count: "Количество опубликованных объектов"
-        featured_stories: Featured Stories
+        featured_stories: Избранные истории
       theme_translation: &theme_translation
         name: "Имя"
         edition: "Выпуск"
@@ -188,7 +197,7 @@ ru:
         already_exists: "В базе данных уже существует."
         story_authors: "Должны выбрать по крайней мере одного человека."
         publish_theme: "Тема не может быть опубликованна если хотя бы одна деталь не будет добавлена."
-        not_provided: must be provided.
+        not_provided: должно быть предоставлено
   mailer:
     closing: "С уважением"
     signature: "Команда Чайхана"
@@ -277,6 +286,7 @@ ru:
       themes: "Темы"
       story_types: "Типы"
       languages: "Языки"
+      logos: Logos
       follow: "Следовать"
       facebook: Facebook
       twitter: Twitter
@@ -292,8 +302,8 @@ ru:
       pages: "Редактировать текст на сайте"
       next: "Следующий"
       feed: "Лента новостей"
-      download: Download
-      previous: Previous
+      download: Скачать
+      previous: Предыдущий
       story_menu:
         link:
           story: "История"
@@ -373,7 +383,7 @@ ru:
       reviewer_key: "Получить URL истории для обмена до публикации"
       reviewer_key_published: "Ваша история уже опубликована, и Вам птедтворительный URL уже не нужен"
       explore: "Просматривать"
-      processing: Processing...
+      processing: В процессе
     common:
       app_name_not_trans: "Чайхана"
       app_name: "Чайхана"
@@ -422,6 +432,11 @@ ru:
       clone_asset: "Использывать оригинал?"
       embed: "Вставить код"
       scroll_top: "Прокрутить вверх"
+      logo_types:
+        sponsor: спонсор
+        sponsors: спонсор
+        partner: партнер
+        partners: Партнеры
     msgs:
       does_not_exist: "Вы пытались получить доступ к странице, которая не существует."
       not_authorized: "Вы не авторизованы для просмотра этой страницы"
@@ -452,7 +467,7 @@ ru:
       nickname_url: "Ваш URL будет:"
       story_duplicate: "Такой URL истроии уже существует"
       story_url: 'URL Вашей истории будет:'
-      update_translations: Don't forget to translate this new item!
+      update_translations: Не забудьте перевести этот новый пункт!
       invitation:
         accepted: "Вы приняли приглашение на сотрудничество на '%{title}'"
         accepted_already: "Вы уже приняли приглашение на сотрудничество на '%{title}'"
@@ -493,7 +508,7 @@ ru:
       nothing_selected: "Пожалуйста, выберите раздел/объект чтобы удалить"
       fail_delete: "Раздел/объект не может быть удален"
       confirm_delete: "Вы уверены, что хотите удалить этот раздел/объект?"
-      confirm_publish: Are you sure you want to publish story?
+      confirm_publish: Вы уверены, что хотите опубликовать историю?
       video_processed: "Ваше видео обработано"
       video_not_processed: "Ваше видео в процессе обработки"
       not_found_for_update: "Запись для обновления не может быть найден в базе данных."
@@ -516,6 +531,9 @@ ru:
     infographic:
       name: "Инфографика"
       description: "Инфографики, интерактивных, или фактоиды, с возможностью добавления наборов и источников данных"
+  section_background:
+    black: черный
+    white: белый
   story_role:
     editor: "Редактор"
     translator: "Переводчик"
@@ -603,11 +621,15 @@ ru:
         title: "Данные и пользывателе"
     themes:
       form:
-        header_features: Features
-        header_add_story: Select Story to be Feature
-        header_current_features: Featured Stories In the Order They Will Appear
-        no_stories: No stories have been assigned to this theme yet.
-        no_features: No stories have been selected to be features.
+        header_features: Избранные истории
+        header_add_story: Выберите Историю, чтобы она была в избранных
+        header_current_features: Избранные истории в порядке их появления
+        no_stories: Историй в теме пока нет.
+        no_features: Истории не были выбраны
+    logos:
+      index:
+        no_sponsors: нет спонсоров.
+        no_partners: нет партнеров.
   root:
     about:
       title: "О Чайхане"
@@ -644,6 +666,7 @@ ru:
         story_type: "Выберите тип вашей истории."
         theme: "Выберите тему(ы) Вашей истории"
         in_theme_slider: "При выборе этого, история появится в верхней ползунке тем."
+        has_disclaimer: "При выборе этого поля отказ от ответственности будет отражаться в верхней или нижней части истории рядом с кнопкой 'делиться ссылками'."
     collaborators:
       title: "Сотрудники '%{title}'"
       owner_header: "Автор истории"
@@ -699,6 +722,7 @@ ru:
         has_marker: "При выборе этого будет навигационная ссылка, чтобы перейти к этому разделу"
         audio: "Фоновый аудиофайл, для проигрывания во время просмотра этой сейции (формат - только MP3; предел размера файла - 10 МБ )"
         delete_audio: "При выборе этого аудиофайл будет удален"
+        background: "Если изображение не выглядит идеально на экране,  пространство сверху и снизу или слева и справа будет видно. Используйте это поле, чтобы указать, какого цвета должно быть это пространство."
     content:
       form_title: "Форма текста"
       placeholder:
@@ -740,27 +764,31 @@ ru:
       get_media: "Получить медиа контент"
       preview: "Предтварительный просмотр контента"
       error: URL не может быть обработан. Пожалуйста, попробуйте еще раз.
-      embed_source: Embed Source
+      embed_source: Embed Источник
       embed_source_url: URL
-      embed_source_code: Code
+      embed_source_code: Embed Источник
+      dimension: Как установить медиа на странице
+      preserve: Не меняйте размер
+      fullscreen: Полноэкранный
+      fit: Масштабировать страницу
       placeholder:
         title: "Заголовок встроенного контента"
         url: URL к медиа контенту
-        code: "ex: <iframe ..."
+        code: "например: <iframe ..."
       hint:
         title: "Этот текст появляется только в левой боковой панели, он не будет отображаться в истории"
         url: "Дла встроенного медиа контента могут быть использованы следующие сайты: Аудио: Soundcloud, Spotify; Видео: YouTube, Vimeo, Twitch.TV, Dotsub, Dailymotion, LiveLeak, Vine, TED"
-        code: "Code for online media (iframe embed object ...)"
-        embed_source: Is the embed object from a url or is it code
-        fullscreen: "При выборе этого видео будет занимать весь экран"
+        code: "Код для интернет-СМИ (IFrame объект код вставки ...)"
+        embed_source: Является ли объект код вставки из URL или это код
+        dimension: "Укажите, как вы хотите видеть встраиваемое медиа, которое появиться на странице. Первый вариант будет использовать любой размер в коде встраивания. Второйсделает объект соответствующий с требуемой шириной. Последний сделает его на весь экран."
     youtube:
       form_title: "Форма для видео из YouTube"
       get_media: "Получить видео из YouTube"
       preview: "Предтварительный просмотр видео из YouTube"
       error: URL не может быть обработан. Пожалуйста, попробуйте еще раз.
       generate_iframe:
-        missing_api_key: value can't be generated due to missing API key.
-        error: is not valid.
+        missing_api_key: Значение не может быть создан из-за отсутствия ключа API.
+        error: не действительно
       placeholder:
         title: "Заглавок видео из YouTube"
         url: URL к видео на YouTube
@@ -778,7 +806,7 @@ ru:
       add_datasource: "Добавить источник данных"
       static: "Статичный"
       dynamic: "Активный"
-      inline: In Story
+      inline: В Истории
       popup: Popup
       label:
         dynamic_size: "Размеры инфографики: ширина х высота"
@@ -799,7 +827,7 @@ ru:
         subtype: "Статические инфографики это изображения, Динамические инфографика требуют URL."
         dynamic_url: URL к веб-странице с интерактивной инфографикой
         dynamic_size: "Используйте эти поля, чтобы зарезервировать площадь, для показа этой инфографики. Оставьте поля пустыми, если вы хотите инфографики быть полноэкранный.Минимальное значение 200."
-        dynamic_render: The infographic can be rendered in the story or in a popup that appears after the user clicks on the infogaphic image in the story. Use the popup option if the infogaphic takes up the full screen or is very long.
+        dynamic_render: Инфографика может быть вынесена в историю или во всплывающем окне, которое появляется после того, как пользователь нажимает на  изображение инфографики в истории. Используйте опцию всплывающего окна если инфографика занимает весь экран или не подходит по размеру.
     infographic_datasource_fields:
       placeholder:
         url: "опционально"
@@ -819,6 +847,8 @@ ru:
       dataset: Related Items
       download: Download File
       online: View Data Online
+    disclaimer: "Отказ от ответственности"
+    disclaimer_text: "Mатериал может содержать термины, которые могут не устраивать все стороны спора / конфликта. Использованные термины принадлежат автору, а не Чай-Хане."
   settings:
     index:
       title: "Настройки"

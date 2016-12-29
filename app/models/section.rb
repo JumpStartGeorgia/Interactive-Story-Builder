@@ -7,8 +7,8 @@ class Section < ActiveRecord::Base
   belongs_to :story
   has_one :content, dependent: :destroy
   has_one :slideshow, dependent: :destroy
-  # has_one :asset,     
-  #   :conditions => "asset_type = #{Asset::TYPE[:section_audio]}",    
+  # has_one :asset,
+  #   :conditions => "asset_type = #{Asset::TYPE[:section_audio]}",
   #   foreign_key: :item_id,
   #   dependent: :destroy
 
@@ -24,10 +24,12 @@ class Section < ActiveRecord::Base
   # attr_accessor :delete_audio
 
   TYPE = {content: 1, media: 2, slideshow: 3, embed_media: 4, youtube: 5, infographic: 6}
+  BACKGROUND_TYPE = { black: 0, white: 1 }
+
   ICONS = {
-    content: 'i-content-b', 
-    media: 'i-fullscreen-b', 
-    slideshow: 'i-slideshow-b', 
+    content: 'i-content-b',
+    media: 'i-fullscreen-b',
+    slideshow: 'i-slideshow-b',
     embed_media: 'i-embed-b',
     youtube: 'i-youtube-b',
     infographic: 'i-infographic-b'
@@ -44,7 +46,7 @@ class Section < ActiveRecord::Base
   #################################
   ## Validations
   validates :story_id, :presence => true
-  validates :type_id, :presence => true, :inclusion => { :in => TYPE.values }  
+  validates :type_id, :presence => true, :inclusion => { :in => TYPE.values }
 
   # #################################
   # ## Callbacks
@@ -57,7 +59,7 @@ class Section < ActiveRecord::Base
   end
 
   before_validation :trigger_delete_audio
-
+  before_validation :reset_background
   # have to call this in section because delete_audio is not an attribute in the table
   # and so Dirty is not applied to it.
   # can catch the flag here and then call the translation method.
@@ -69,6 +71,9 @@ class Section < ActiveRecord::Base
       end
     end
     return true
+  end
+  def reset_background
+    self.background = 0 if !media?
   end
 
   #################################
@@ -109,7 +114,7 @@ class Section < ActiveRecord::Base
 
   def asset_exists?
     asset.present? && asset.file.exists?
-  end     
+  end
 
   #################################
 
@@ -131,37 +136,39 @@ class Section < ActiveRecord::Base
   ##############################
 
   def content?
-  	 TYPE[:content] == self.type_id	
+  	 TYPE[:content] == self.type_id
   end
   def media?
-   	 TYPE[:media] == self.type_id	
+   	 TYPE[:media] == self.type_id
   end
   def slideshow?
-     TYPE[:slideshow] == self.type_id 
+     TYPE[:slideshow] == self.type_id
   end
   def embed_media?
-     TYPE[:embed_media] == self.type_id 
+     TYPE[:embed_media] == self.type_id
   end
   def youtube?
-     TYPE[:youtube] == self.type_id 
+     TYPE[:youtube] == self.type_id
   end
   def infographic?
-     TYPE[:infographic] == self.type_id 
+     TYPE[:infographic] == self.type_id
   end
-
+  def background_type
+    BACKGROUND_TYPE.key(self.background).to_s
+  end
 
   def ok?
     if content?
       return (self.content.present? && self.content.text.present?)
-    elsif media?        
+    elsif media?
         exists = []
         self.media.each_with_index do |m,m_i|
           if m.present?
             if m.media_type == Medium::TYPE[:image]
-              exists << m.image_exists?                                
+              exists << m.image_exists?
             elsif m.media_type == Medium::TYPE[:video]
               exists << (m.image_exists? && m.video_exists?)
-            end          
+            end
           else
             exists << false
           end
@@ -174,7 +181,7 @@ class Section < ActiveRecord::Base
     elsif youtube?
       return self.youtube.present? && self.youtube.code.present?
     elsif infographic?
-      return self.infographic.present? && 
+      return self.infographic.present? &&
             ((self.infographic.static_type? && self.infographic.image.present?) ||
             (self.infographic.dynamic_type? && self.infographic.dynamic_url.present?))
     end

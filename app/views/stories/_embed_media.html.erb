@@ -24,9 +24,35 @@
         }
         .merge(( (isTO) ? {} : { hint: t('.hint.title'), placeholder: t('.placeholder.title') })) %>
 
-        <% if !@trans %>
+        <% if false && !@trans %>
           <div class='one-line'>
             <%= f.input :fullscreen, :as => :boolean, :hint => t('.hint.fullscreen'), :input_html => { id: "embedMediaFullcsreen" } %>
+          </div>
+        <% end %>
+        <% if !@trans %>
+          <div class="radio_buttons input required form-group radio-indent radio-hide-button" id="embed_medium_dimension">
+            <label class="  control-label" for="embed_medium_dimension">
+              <%= t('.dimension') %>
+              <abbr title="<%= t('app.common.required') %>">*</abbr>
+              <div class="help-inline" title="<%= t('.hint.dimension')%>">
+                <div>?</div>
+              </div>
+            </label>
+            <% types = [[t('.preserve'), EmbedMedium::DIMENSION_TYPE[:preserve], 'glyphicon-resize-small'],
+                [t('.fit'), EmbedMedium::DIMENSION_TYPE[:fit], 'glyphicon-resize-full'],
+                [t('.fullscreen'), EmbedMedium::DIMENSION_TYPE[:fullscreen], 'glyphicon-fullscreen']] %>
+            <div class="radio-container">
+              <% types.each do |type| %>
+                <div class="radio">
+                  <% checked = (type[1] == EmbedMedium::DIMENSION_TYPE[:preserve] && @item.dimension.nil?) || type[1] == @item.dimension ? 'checked=checked' : '' %>
+                  <input <%= checked %> id="embed_medium_dimension_<%= type[1] %>" name="embed_medium[dimension]" type="radio" value="<%= type[1] %>">
+                  <label class="choice" for="embed_medium_dimension_<%= type[1] %>">
+                    <span class="glyphicon <%= type[2] %>"></span>
+                    <%= type[0] %>
+                  </label>
+                </div>
+              <% end %>
+            </div>
           </div>
         <% end %>
 
@@ -37,6 +63,7 @@
             has_url = f_translation.object.url.present? ? true : f_translation.object.code.present? ? false : true
           end
         %>
+
         <% if !isTO %>
           <div class="input form-group<%= "#{@trans ? ' hidden' : ''}"%>" >
             <label class="control-label">

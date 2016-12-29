@@ -53,12 +53,13 @@
                     <% dataVideo = "data-image='#{File.basename(m.image.asset_file_name_formatted)}'".html_safe %>
                   <% end %>
                   <div class="video infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %>" <%= dataVideo.html_safe %>  <%= m.media_type == Medium::TYPE[:video] && m.video_loop ? "data-videoloop" : "" %>>
-                    <div class="video-container infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %>">
+                    <div class="video-container infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %> <%= "bg-#{section.background_type}"%>">
                       <% if m.media_type == Medium::TYPE[:image] %>
+                          <%# orientation_class = m.image.get_orientation_class class=" orientation_class" %>
                           <% if !@export %>
-                            <img src="<%= m.image.file.url(:fullscreen) %>">
+                            <img class="re-aspect" src="<%= m.image.file.url(:fullscreen) %>" data-aspectratio="<%= m.image.asset_aspectratio %>">
                           <% else %>
-                            <img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>">
+                            <img class="re-aspect" src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>" data-aspectratio="<%= m.image.asset_aspectratio %>">
                           <% end %>
                       <% elsif m.media_type == Medium::TYPE[:video] && !m.is_processed?  %>
                           <% if !@export %>
@@ -67,11 +68,13 @@
                             <img src="assets/png/video_being_processed_#{I18n.locale}.png">
                           <% end %>
                       <% elsif m.media_type == Medium::TYPE[:video] && m.is_processed?  %>
-                            <% if !@export %>
-                              <!--[if lte IE 8]><img src="<%= m.image.file.url(:fullscreen) %>"><![endif]-->
-                            <% else %>
-                              <!--[if lte IE 8]><img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>"><![endif]-->
-                            <% end %>
+                        <div class="temporary">
+                          <% if !@export %>
+                            <!--[if lte IE 8]><img src="<%= m.image.file.url(:fullscreen) %>"><![endif]-->
+                          <% else %>
+                            <!--[if lte IE 8]><img src="media/images/fullscreen/<%= m.image.asset_file_name_formatted %>"><![endif]-->
+                          <% end %>
+                        </div>
                       <% end %>
                       <% if m.caption.present? || m.source.present? %>
                         <% if m.infobox_type == Medium::INFOBOX_TYPE[:floating] %>
@@ -89,7 +92,7 @@
                               </div>
                             <% end %>
                             <% if m.source.present? %>
-                               <div class="video-source"><%= m.source %></div>
+                              <div class="video-source"><%= m.source %></div>
                             <% end %>
                           </div>
                           <div class='space'></div>
@@ -126,16 +129,16 @@
                   <%= render partial: "storyteller/template/#{@template}/content_infotop"%>
                 <% end %>
             <% elsif section.slideshow? %>
-              <div class="section slideshow" <%= dataAudio.html_safe %>>
+              <div class="section slideshow section-fit" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %><a class="navigation-marker" id="<%= s_i + 1 %>"></a><% end %>
-                <div class="wrapper">
+                <div class="container">
                   <% if section.slideshow.caption.present? %>
                     <div class="headline"><%= section.slideshow.caption %></div>
                   <% end %>
                   <!--[if lte IE 8]><img src="<%= section.slideshow.asset_files[0].file.url(:medium) %>" style="width:100%;"><![endif]-->
                   <div class="captions">
                     <% section.slideshow.asset_files.each_with_index do |t,t_i| %>
-                      <div class="caption" data-image="<%= t.asset_file_name_formatted %>">
+                      <div class="caption" data-image="<%= t.asset_file_name_formatted %>" data-aspect="<%= t.asset.exists? && Paperclip::Geometry.from_file(t.asset.path).aspect.round(2) > 1 ? 'w' : 'h'%>">
                           <%= t.caption.html_safe %>
                           <% if t.source.present? %>
 
@@ -153,7 +156,7 @@
                 </div>
               </div>
             <% elsif section.embed_media? %>
-              <div class="section embed<%= section.embed_medium.fullscreen ? ' fullscreen' : '' %>" <%= dataAudio.html_safe %>>
+              <div class="section embed <%= section.embed_medium.get_dimension_class %>" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
@@ -162,7 +165,7 @@
                 </div>
               </div>
             <% elsif section.youtube? %>
-              <div class="section youtube<%= section.youtube.fullscreen ? ' fullscreen' : '' %>" <%= dataAudio.html_safe %>>
+              <div class="section youtube section-<%= section.youtube.fullscreen ? 'fullscreen' : 'fit' %>" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                        <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
@@ -213,9 +216,9 @@
                       <%= item.dynamic_code.html_safe %>
                     </div>
                   <% end %>
-                  <% if isFirst && @story.story_type_id != 1 && @story.about.present? %>
+                 <% if isFirst && @story.story_type_id == 3 && @story.about.present? %>
                     <div class='description'><%= @story.about.html_safe %></div>
-                  <% end %>
+                 <% end %>
                   <div class="description"><%= item.description.html_safe %></div>
                   <% if item.datasources.present? %>
                     <div class="sources">

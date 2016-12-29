@@ -1,0 +1,125 @@
+<%- model_class = Logo -%>
+<% title t '.title', :default => model_class.model_name.human.pluralize %>
+
+<div>
+  <%= link_to t('.new', :default => t("helpers.links.new")),
+              new_admin_logo_path,
+              :class => 'btn btn-primary' %>
+  <%= link_to t('helpers.links.admin'), admin_path,
+  :class => 'btn btn-default' %>
+</div>
+
+<h2><%= t('app.common.logo_types.sponsors') %></h2>
+
+<% if @sponsors.present? %>
+  <table class="table table-striped display table-logos">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th><%= model_class.human_attribute_name(:url) %></th>
+        <th><%= model_class.human_attribute_name(:is_active) %></th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sponsors.each do |logo| %>
+        <tr class="<%= logo.is_active? ? '' : 'logo-inactive' %>">
+          <td>
+            <div class='tools'>
+              <button type='button' class='btn btn-sort btn-up' 
+                data-direction='up' data-url='<%= up_admin_logo_path(logo.id) %>'
+                title='<%= t('app.buttons.up') %>'> <i class='glyphicon glyphicon-arrow-up' ></i> </button>
+              <button type='button' class='btn btn-sort btn-down' 
+                data-direction='down' data-url='<%= down_admin_logo_path(logo.id) %>'
+                title='<%= t('app.buttons.down') %>'> <i class='glyphicon glyphicon-arrow-down' ></i></button>
+            </div>
+          </td>
+          <td>
+            <%= image_tag logo.image.url('medium') %>
+          </td>
+          <td>
+            <%= link_to logo.url, target: :blank %>
+          </td>
+          <td>
+            <span class="<%= logo.is_active? ? '' : 'is-inactive' %>">
+              <%= logo.is_active? ? I18n.t('formtastic.yes') : I18n.t('formtastic.no') %>
+            </span>
+          </td>
+          <td>
+            <%= link_to t('app.buttons.edit'),
+                        edit_admin_logo_path(logo), :class => 'btn btn-xs btn-default' %>
+            <%= link_to t('app.buttons.delete'),
+                        admin_logo_path(logo),
+                        :method => :delete,
+                        :data => { :confirm => I18n.t("helpers.links.confirm") },
+                        :class => 'btn btn-xs btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="alert alert-warning">
+    <%= t('.no_sponsors') %>
+  </p>
+<% end %>
+
+
+<hr />
+
+<h2><%= t('app.common.logo_types.partners') %></h2>
+<% if @partners.present? %>
+  <table class="table table-striped display table-logos">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th><%= model_class.human_attribute_name(:url) %></th>
+        <th><%= model_class.human_attribute_name(:is_active) %></th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @partners.each do |logo| %>
+        <tr class="<%= logo.is_active? ? '' : 'logo-inactive' %>">
+          <td>
+            <div class='tools'>
+              <button type='button' class='btn btn-sort btn-up' 
+                data-direction='up' data-url='<%= up_admin_logo_path(logo.id) %>'
+                title='<%= t('app.buttons.up') %>'> <i class='glyphicon glyphicon-arrow-up' ></i> </button>
+              <button type='button' class='btn btn-sort btn-down' 
+                data-direction='down' data-url='<%= down_admin_logo_path(logo.id) %>'
+                title='<%= t('app.buttons.down') %>'> <i class='glyphicon glyphicon-arrow-down' ></i></button>
+            </div>
+          </td>        
+          <td>
+            <%= image_tag logo.image.url('medium') %>
+          </td>
+          <td>
+            <%= link_to logo.url, target: :blank %>
+          </td>
+          <td>
+            <span class="<%= logo.is_active? ? '' : 'is-inactive' %>">
+              <%= logo.is_active? ? I18n.t('formtastic.yes') : I18n.t('formtastic.no') %>
+            </span>
+          </td>
+          <td>
+            <%= link_to t('app.buttons.edit'),
+                        edit_admin_logo_path(logo), :class => 'btn btn-xs btn-default' %>
+            <%= link_to t('app.buttons.delete'),
+                        admin_logo_path(logo),
+                        :method => :delete,
+                        :data => { :confirm => I18n.t("helpers.links.confirm") },
+                        :class => 'btn btn-xs btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="alert alert-warning">
+    <%= t('.no_partners') %>
+  </p>
+<% end %>
+

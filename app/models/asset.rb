@@ -10,14 +10,14 @@ class Asset < ActiveRecord::Base
   belongs_to :slideshow_translation, foreign_key: :item_id
 #  belongs_to :media, foreign_key: :item_id
   belongs_to :image, foreign_key: :item_id, class_name: "MediumTranslation"
-  belongs_to :video, foreign_key: :item_id, class_name: "MediumTranslation"  
+  belongs_to :video, foreign_key: :item_id, class_name: "MediumTranslation"
   belongs_to :infographic_translation, foreign_key: :item_id, class_name: "InfographicTranslation"
-  belongs_to :dataset_file, foreign_key: :item_id, class_name: "InfographicTranslation"  
+  belongs_to :dataset_file, foreign_key: :item_id, class_name: "InfographicTranslation"
 
   acts_as_list scope: :slideshow_translation
   acts_as_list scope: [:item_id, :asset_type]
 
-  TYPE = {story_thumbnail: 1, section_audio: 2, content_image: 3, media_image: 4, media_video: 5, 
+  TYPE = {story_thumbnail: 1, section_audio: 2, content_image: 3, media_image: 4, media_video: 5,
           slideshow_image: 6, user_avatar: 7, author_avatar: 8, infographic: 9, infographic_dataset: 10}
 
 
@@ -32,36 +32,36 @@ class Asset < ActiveRecord::Base
   validates :asset_type, inclusion: { in: TYPE.values }
   validates_presence_of :asset, :unless => :asset_clone_id?
 
-  with_options :if => "self.asset_type == TYPE[:user_avatar]" do |t|    
-    t.validates_attachment :asset, {  :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}  
+  with_options :if => "self.asset_type == TYPE[:user_avatar]" do |t|
+    t.validates_attachment :asset, {  :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}
   end
-  with_options :if => "self.asset_type == TYPE[:author_avatar]" do |t|    
-    t.validates_attachment :asset, {  :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}  
+  with_options :if => "self.asset_type == TYPE[:author_avatar]" do |t|
+    t.validates_attachment :asset, {  :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}
   end
-  with_options :if => "self.asset_type == TYPE[:story_thumbnail]" do |t|    
-    t.validates_attachment :asset, {  :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}  
+  with_options :if => "self.asset_type == TYPE[:story_thumbnail]" do |t|
+    t.validates_attachment :asset, {  :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}
   end
-  with_options :if => "self.asset_type == TYPE[:section_audio]" do |t|      
-    t.validates_attachment :asset, {  :content_type => { :content_type => ["audio/mp3", "audio/mpeg"] }, :size => { :in => 0..10.megabytes }}  
+  with_options :if => "self.asset_type == TYPE[:section_audio]" do |t|
+    t.validates_attachment :asset, {  :content_type => { :content_type => ["audio/mp3", "audio/mpeg"] }, :size => { :in => 0..10.megabytes }}
   end
-  with_options :if => "self.asset_type == TYPE[:media_image]" do |t|      
-    t.validates_attachment :asset, { :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}  
+  with_options :if => "self.asset_type == TYPE[:media_image]" do |t|
+    t.validates_attachment :asset, { :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}
   end
-  with_options :if => "self.asset_type == TYPE[:media_video]" do |t|      
-    t.validates_attachment :asset, { :content_type => { :content_type => ["video/mp4", "video/quicktime", "video/webm", "video/ogg", "video/x-flv", "video/avi","video/x-msvideo","video/msvideo","application/x-troff-msvideo", "video/x-ms-wmv" ]}, :size => { :in => 0..25.megabytes }}    
+  with_options :if => "self.asset_type == TYPE[:media_video]" do |t|
+    t.validates_attachment :asset, { :content_type => { :content_type => ["video/mp4", "video/quicktime", "video/webm", "video/ogg", "video/x-flv", "video/avi","video/x-msvideo","video/msvideo","application/x-troff-msvideo", "video/x-ms-wmv" ]}, :size => { :in => 0..25.megabytes }}
   end
-  with_options :if => "self.asset_type == TYPE[:slideshow_image]" do |t|      
-    t.validates_attachment :asset, { :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}  
+  with_options :if => "self.asset_type == TYPE[:slideshow_image]" do |t|
+    t.validates_attachment :asset, { :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}
   end
-  with_options :if => "self.asset_type == TYPE[:infographic]" do |t|      
-    t.validates_attachment :asset, { :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..8.megabytes }}  
+  with_options :if => "self.asset_type == TYPE[:infographic]" do |t|
+    t.validates_attachment :asset, { :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..8.megabytes }}
   end
-  with_options :if => "self.asset_type == TYPE[:infographic_dataset]" do |t|      
-    t.validates_attachment :asset, { :size => { :in => 0..25.megabytes }}  
+  with_options :if => "self.asset_type == TYPE[:infographic_dataset]" do |t|
+    t.validates_attachment :asset, { :size => { :in => 0..25.megabytes }}
   end
 
 
-  
+
   #################################
   ## Callbacks
 
@@ -69,26 +69,29 @@ class Asset < ActiveRecord::Base
 
   before_post_process :init
   before_post_process :transliterate_file_name
-  
+
   before_validation :set_processed_flag
   before_create :set_file_id
+
+  after_save :set_aspectratio
+
 
   def init
     if self.init_called != true
       # flag to record if asset exists - is used in form so can edit caption without providing new file
       self.asset_exists = self.asset_file_name.present?
 
-      opt = {}    
+      opt = {}
       case self.asset_type
-        when TYPE[:user_avatar]        
-          opt = { 
+        when TYPE[:user_avatar]
+          opt = {
             :url => "/system/users/:style/:avatar_id.:extension",
             :styles => {
                 :'168x168' => {:geometry => "168x168#"},
                 :'50x50' => {:geometry => "50x50#"},
                 :'40x40' => {:geometry => "40x40#"}
             },
-            :convert_options => { 
+            :convert_options => {
               :'168x168' => '-quality 85',
               :'50x50' => '-quality 85',
               :'40x40' => '-quality 85'
@@ -96,15 +99,15 @@ class Asset < ActiveRecord::Base
             :default_url => "/assets/missing/user_avatar/:style/default_user.png"
           }
 
-        when TYPE[:author_avatar]        
-          opt = { 
+        when TYPE[:author_avatar]
+          opt = {
             :url => "/system/authors/:style/:avatar_id.:extension",
             :styles => {
                 :'168x168' => {:geometry => "168x168#"},
                 :'50x50' => {:geometry => "50x50#"},
                 :'40x40' => {:geometry => "40x40#"}
             },
-            :convert_options => { 
+            :convert_options => {
               :'168x168' => '-quality 85',
               :'50x50' => '-quality 85',
               :'40x40' => '-quality 85'
@@ -112,55 +115,55 @@ class Asset < ActiveRecord::Base
             :default_url => "/assets/missing/author_avatar/:style/default_user.png"
           }
 
-        when TYPE[:story_thumbnail]        
-          opt = { 
+        when TYPE[:story_thumbnail]
+          opt = {
             :url => "/system/places/thumbnail/:story_id/:style/:basename.:extension",
             :styles => {
                 :thumbnail => {:geometry => "459x328#"},
                 :slider => {:geometry => "1500>"}
-            },            
-            :convert_options => { 
+            },
+            :convert_options => {
               :thumbnail => '-quality 85',
               :slider => '-quality 85'
             },
             :default_url => "/assets/missing/story_thumbnail/missing.jpg"
           }
 
-        when  TYPE[:section_audio]         
-          opt = {:url => "/system/places/audio/:story_id/:id__:basename.:extension"}  
+        when  TYPE[:section_audio]
+          opt = {:url => "/system/places/audio/:story_id/:id__:basename.:extension"}
 
-        when  TYPE[:media_image]        
-          opt = { 
+        when  TYPE[:media_image]
+          opt = {
               :url => "/system/places/images/:story_id/:style/:id__:basename.:extension",
               :styles => {
                     :mobile_640 => {:geometry => "640x427"},
                     :mobile_1024 => {:geometry => "1024x623"},
                     :fullscreen => {:geometry => "1500>"}
             },
-            :convert_options => 
-            { 
+            :convert_options =>
+            {
               :mobile_640 => '-quality 85',
               :mobile_1024 => '-quality 85',
               :fullscreen => '-quality 85'
             },
-          }  
+          }
 
-        when  TYPE[:media_video]        
-          opt = {   
+        when  TYPE[:media_video]
+          opt = {
                   :url => "/system/places/video/:story_id/:style/:id__:basename.:extension",
-                  :styles => { 
+                  :styles => {
                     :poster => { :format => 'jpg', :time => 1 }
-                  }, 
+                  },
                   :processors => [:ffmpeg]
-          }  
+          }
 
-         when  TYPE[:slideshow_image]        
-          opt = {   
+         when  TYPE[:slideshow_image]
+          opt = {
             :url => "/system/places/slideshow/:story_id/:style/:id__:basename.:extension" ,
-            :styles => {                   
+            :styles => {
               :mobile_640 => {:geometry => "640x427"},
-              :mobile_1024 => {:geometry => "1024x623"}, 
-              :slideshow => {:geometry => "812x462"},                   
+              :mobile_1024 => {:geometry => "1024x623"},
+              :slideshow => {:geometry => "812x462"},
               :thumbnail => {:geometry => "44x44^"},
               :thumbnail_preview => {:geometry => "160x160^"},
               :fullscreen => {:geometry => "1500>"}
@@ -173,10 +176,10 @@ class Asset < ActiveRecord::Base
               :thumbnail_preview => "-quality 85 -gravity center -extent 160x160",
               :fullscreen => '-quality 85'
             }
-          }    
+          }
 
-        when  TYPE[:infographic]        
-          opt = {   
+        when  TYPE[:infographic]
+          opt = {
                   :url => "/system/places/infographic/:story_id/:style/:id__:basename.:extension",
                   :styles => {
                     :poster => {:geometry => "730x>"},
@@ -185,14 +188,14 @@ class Asset < ActiveRecord::Base
                     :poster => "-quality 85 -gravity north -crop 730x730+0+0"
                   },
                   :default_url => "/assets/missing/infographic/missing.jpg"
-          }  
+          }
 
-        when  TYPE[:infographic_dataset]        
-          opt = {   
+        when  TYPE[:infographic_dataset]
+          opt = {
                   :url => "/system/places/infographic_dataset/:story_id/:id__:basename.:extension"
-          }  
-              
-      end    
+          }
+
+      end
 
       self.asset.options.merge!(opt)
 
@@ -214,7 +217,7 @@ class Asset < ActiveRecord::Base
       self.asset.instance_write(:file_name, "#{transliterate(filename)}.#{transliterate(extension)}")
     end
   end
-  
+
 
   # if the flag is not already true
   # and if this is not a video, set the flag to true
@@ -222,43 +225,50 @@ class Asset < ActiveRecord::Base
     if read_attribute(:processed).present? && !read_attribute(:processed) && self.asset_type != TYPE[:media_video]
       self.processed = true
     end
-    return true   
+    return true
   end
 
   # for the assets that need the story id or asset id in the file path, set it
   def set_file_id
     case self.asset_type
-      when TYPE[:user_avatar]        
+      when TYPE[:user_avatar]
         self.avatar_id = SecureRandom.urlsafe_base64
 
-      when TYPE[:author_avatar]        
+      when TYPE[:author_avatar]
         self.avatar_id = SecureRandom.urlsafe_base64
 
-      when TYPE[:story_thumbnail]        
+      when TYPE[:story_thumbnail]
         self.story_id = self.story_translation.story_id
 
-      when  TYPE[:section_audio]         
+      when  TYPE[:section_audio]
         self.story_id = self.section_translation.section.story_id
 
-      when  TYPE[:media_image]        
+      when  TYPE[:media_image]
         self.story_id = self.image.medium.section.story_id
 
-      when  TYPE[:media_video]        
+      when  TYPE[:media_video]
         self.story_id = self.video.medium.section.story_id
 
-      when  TYPE[:slideshow_image]        
+      when  TYPE[:slideshow_image]
         self.story_id = self.slideshow_translation.slideshow.section.story_id if self.slideshow_translation.slideshow.section.present?
-            
-      when  TYPE[:infographic]        
+
+      when  TYPE[:infographic]
         self.story_id = self.infographic_translation.infographic.section.story_id
 
-      when  TYPE[:infographic_dataset]        
+      when  TYPE[:infographic_dataset]
         self.story_id = self.infographic_translation.infographic.section.story_id
 
-    end    
-  end  
-   
+    end
+  end
 
+  def set_aspectratio
+    update_column(:asset_aspectratio, Paperclip::Geometry.from_file(self.asset.path(:fullscreen)).aspect.round(2)) if self.asset_type == TYPE[:media_image]
+    return true
+  end
+
+  # def get_orientation_class
+  #   asset_orientation == 0 ? "vertical-orientation" : "horizontal-orientation"
+  # end
   #################################
   # settings to clone story
   amoeba do
@@ -317,12 +327,12 @@ class Asset < ActiveRecord::Base
     return f
   end
 
-  # if this record is cloning another, then user the clone 
+  # if this record is cloning another, then user the clone
   # else use this record
   def is_processed?
     self.asset_clone_id.present? && self.asset_clone.present? ? self.asset_clone.processed : self.processed
   end
-  
+
   # get the processed url of a video
   def media_video_processed_url
     if self.asset_type == TYPE[:media_video] && read_attribute(:processed).present? && self.processed == true
@@ -358,33 +368,33 @@ class Asset < ActiveRecord::Base
       end
     end
   end
-  
+
 
   def transliterate(str)
     # Based on permalink_fu by Rick Olsen
-   
+
     # Escape str by transliterating to UTF-8 with Iconv http://stackoverflow.com/questions/12947910/force-strings-to-utf-8-from-any-encoding
     #string.encode("UTF-8", :invalid => :replace, :undef => :replace, :replace => "?")
     #s = Iconv.iconv('ascii//ignore//translit', 'utf-8', str).to_s
      s = str.force_encoding("UTF-8")
     # Downcase string
     s.downcase!
-   
+
     # Remove apostrophes so isn't changes to isnt
     s.gsub!(/'/, '')
-   
+
     # Replace any non-letter or non-number character with a space
     s.gsub!(/[^A-Za-z0-9]+/, ' ')
-   
+
     # Remove spaces from beginning and end of string
     s.strip!
-   
+
     # Replace groups of spaces with single hyphen
     s.gsub!(/\ +/, '-')
-   
+
     return s
   end
- 
+
 
   # get all of the video records for a story
   def self.videos_for_story(story_id)
