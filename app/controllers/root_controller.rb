@@ -51,13 +51,13 @@ class RootController < ApplicationController
 
       respond_to do |format|
         if @story.present?
+          @story.set_to_app_locale
+
           if params[:type] == 'full'
             @is_embed = true
             @no_nav = true
             @css.push("navbar.css", "navbar2.css", "storyteller.css", "modalos.css")
             @js.push("storyteller.js","modalos.js", "follow.js")
-
-            @story.set_to_app_locale
 
             impressionist(@story, :unique => [:session_hash]) # record the view count
             @story.reload

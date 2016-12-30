@@ -3,6 +3,7 @@
   if story.about.present?
     title = truncate(strip_tags_nbsp(story.about), length: 160, separator: ' ')
   end
+
   path = @editable && !story.published ? preview_story_path(story, locale: story.current_locale) : storyteller_show_path(story.permalink, locale: story.current_locale)
 %>
 
