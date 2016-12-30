@@ -49,7 +49,7 @@ class Story < ActiveRecord::Base
 
   attr_reader :tag_list_tokens
   attr_accessor :send_notification, :send_staff_pick_notification, :send_comment_notification
-  attr_accessible :has_disclaimer
+#  attr_accessible :has_disclaimer
 
   DEMO_ID = 2
 
