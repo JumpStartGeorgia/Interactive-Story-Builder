@@ -262,7 +262,10 @@ class Asset < ActiveRecord::Base
   end
 
   def set_aspectratio
-    update_column(:asset_aspectratio, Paperclip::Geometry.from_file(self.asset.path(:fullscreen)).aspect.round(2)) if self.asset_type == TYPE[:media_image]
+    if self.asset_type == TYPE[:media_image] && self.asset_clone_id.nil?
+      update_column(:asset_aspectratio, Paperclip::Geometry.from_file(self.asset.path(:fullscreen)).aspect.round(2)) 
+    end
+
     return true
   end
 
