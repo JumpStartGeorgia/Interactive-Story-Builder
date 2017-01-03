@@ -19,12 +19,20 @@ class StorytellerController < ApplicationController
       if @story.present?
         @story.set_to_app_locale
 
+# logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@"
+# logger.debug "app locale = #{I18n.locale}; story locale = #{@story.current_locale}"        
+
         impressionist(@story, :unique => [:session_hash]) # record the view count
         @story.reload
+        @story.set_to_app_locale
 
         @story.sections.includes([:media,:content,:embed_medium,:youtube,:slideshow])
 
         @stories = @story.random_related_stories
+
+# logger.debug "after reload app locale = #{I18n.locale}; story locale = #{@story.current_locale}"        
+# logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@"
+
 
         # record if the user has liked this story
         @user_likes = false

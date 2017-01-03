@@ -61,6 +61,7 @@ class RootController < ApplicationController
 
             impressionist(@story, :unique => [:session_hash]) # record the view count
             @story.reload
+            @story.set_to_app_locale
 
             @story.sections.includes([:media,:content,:embed_medium,:youtube,:slideshow])
 
