@@ -4,7 +4,7 @@ class RootController < ApplicationController
     @js.push("filter.js")
     @css.push("navbar.css", "filter.css", "grid.css","root.css")
     p = (request.xhr? ? params[:page] : 1)
-    @stories = process_filter_querystring(Story.with_translations(I18n.locale).is_published.in_published_theme.paginate(:page => p, :per_page => per_page))
+    @stories = process_filter_querystring(Story.is_published.in_published_theme).with_translations(I18n.locale).paginate(:page => p, :per_page => per_page)
     @theme = Theme.for_homepage
 
 
@@ -23,7 +23,7 @@ class RootController < ApplicationController
     if @author.present?
       @js.push("filter.js","stories.js","follow.js")
       @css.push("navbar.css", "filter.css", "grid.css", "stories.css", "author.css")
-      @stories = process_filter_querystring(Story.with_translations(I18n.locale).by_authors(@author.id).in_published_theme.paginate(:page => params[:page], :per_page => per_page))
+      @stories = process_filter_querystring(Story.by_authors(@author.id).in_published_theme).with_translations(I18n.locale).paginate(:page => params[:page], :per_page => per_page)
       @editable = (user_signed_in? && current_user.id == @author.id)
 
       @is_following = Notification.already_following_user(current_user.id, @author.id) if user_signed_in?
@@ -86,7 +86,7 @@ class RootController < ApplicationController
     @theme = Theme.published.find_by_permalink(params[:id])
 
     if @theme.present?
-      @stories = process_filter_querystring(Story.with_translations(I18n.locale).is_published.in_published_theme.by_theme(@theme.id).paginate(:page => params[:page], :per_page => per_page))
+      @stories = process_filter_querystring(Story.is_published.in_published_theme.by_theme(@theme.id)).with_translations(I18n.locale).paginate(:page => params[:page], :per_page => per_page)
       @stories_for_slider = @theme.featured_stories.with_translations(I18n.locale)
 
       respond_to do |format|

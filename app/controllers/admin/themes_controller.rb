@@ -23,7 +23,7 @@ class Admin::ThemesController < ApplicationController
     @js.push("filter.js")
     @css.push("navbar.css", "filter.css", "grid.css","root.css")
     @theme = Theme.find_by_id(params[:id])
-    @stories = process_filter_querystring(Story.with_translations(I18n.locale).is_published.by_theme(@theme.id).paginate(:page => params[:page], :per_page => per_page))
+    @stories = process_filter_querystring(Story.is_published.by_theme(@theme.id)).with_translations(I18n.locale).paginate(:page => params[:page], :per_page => per_page)
     @stories_for_slider = @theme.featured_stories.with_translations(I18n.locale) if @theme.present?
 
     if @theme.present?
