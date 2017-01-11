@@ -25,14 +25,27 @@
       <li class="dropdown dropdown-hover">
           <a href="#" class="dropdown-toggle link" data-toggle="dropdown"><%= t("app.language.#{locale}") %><i class="caret"></i></a>
           <ul class="dropdown-menu">
+            <%
+              in_story = false
+              if controller_name == "storyteller" && action_name == "index" && @story.present?
+                story_locales = @story.published_locales
+                in_story = story_locales.present?
+                permalinks = @story.permalink_translations
+              end
+            %>
             <% I18n.available_locales.each do |locale| %>
               <% if locale != I18n.locale %>
-                <li class="lang-switch" lang="<%= locale %>"><%= link_to t("app.language.#{locale}"), params.merge(:locale =>  locale) %></li>
+                <%
+                  pars = params.dup
+                  pars[:id] = permalinks[locale] if in_story && story_locales.index(locale.to_s).present? && permalinks.key?(locale)
+                %>
+                <li class="lang-switch" lang="<%= locale %>"><%= link_to t("app.language.#{locale}"), pars.merge(:locale =>  locale) %></li>
               <% end %>
             <% end %>
           </ul>
       </li>
     </ul>
+
 
 
 
