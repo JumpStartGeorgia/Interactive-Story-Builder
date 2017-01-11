@@ -1,4 +1,5 @@
 //= require tinymce
+/* global tinyMCE */
 var section_id = -1;
 var item_id = -1;
 
@@ -638,7 +639,14 @@ $(document).ready(function() {
       to.val(from.val());
     }
   });
-
+  $(".builder-wrapper .workplace").scroll(function () {
+    var tinymceControl = tinyMCE.activeEditor.windowManager.editor.controlManager.controls;
+    Object.keys(tinymceControl).forEach(function (k) {
+      if(tinymceControl[k].hasOwnProperty("isMenuVisible") && tinymceControl[k]["isMenuVisible"] === 1) {
+        tinymceControl[k].hideMenu();
+      }
+    });
+  })
 });
 
 function show_story_permalink(d){
