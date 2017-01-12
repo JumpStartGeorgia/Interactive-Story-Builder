@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20161129095042) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "dimension",  :limit => 1, :default => 0
+    t.boolean  "fullscreen",              :default => false
   end
 
   add_index "embed_media", ["section_id"], :name => "index_embed_media_on_section_id"
@@ -490,6 +491,7 @@ ActiveRecord::Schema.define(:version => 20161129095042) do
   add_index "story_translations", ["language_type"], :name => "index_story_translations_on_language_type"
   add_index "story_translations", ["locale"], :name => "index_story_translations_on_locale"
   add_index "story_translations", ["permalink"], :name => "index_story_translations_on_permalink"
+  add_index "story_translations", ["permalink"], :name => "permalink"
   add_index "story_translations", ["published"], :name => "index_story_translations_on_published"
   add_index "story_translations", ["published_at"], :name => "index_story_translations_on_published_at"
   add_index "story_translations", ["story_id"], :name => "index_story_translations_on_story_id"
