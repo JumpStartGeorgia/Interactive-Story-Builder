@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20161129095042) do
+ActiveRecord::Schema.define(:version => 20170123081941) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20161129095042) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "dimension",  :limit => 1, :default => 0
+    t.boolean  "fullscreen",              :default => false
   end
 
   add_index "embed_media", ["section_id"], :name => "index_embed_media_on_section_id"
@@ -490,6 +491,7 @@ ActiveRecord::Schema.define(:version => 20161129095042) do
   add_index "story_translations", ["language_type"], :name => "index_story_translations_on_language_type"
   add_index "story_translations", ["locale"], :name => "index_story_translations_on_locale"
   add_index "story_translations", ["permalink"], :name => "index_story_translations_on_permalink"
+  add_index "story_translations", ["permalink"], :name => "permalink"
   add_index "story_translations", ["published"], :name => "index_story_translations_on_published"
   add_index "story_translations", ["published_at"], :name => "index_story_translations_on_published_at"
   add_index "story_translations", ["story_id"], :name => "index_story_translations_on_story_id"
@@ -576,13 +578,14 @@ ActiveRecord::Schema.define(:version => 20161129095042) do
 
   create_table "theme_translations", :force => true do |t|
     t.integer  "theme_id"
-    t.string   "locale",      :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "locale",                       :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.string   "name"
     t.string   "edition"
     t.text     "description"
     t.string   "permalink"
+    t.integer  "stories_count", :default => 0
   end
 
   add_index "theme_translations", ["locale"], :name => "index_theme_translations_on_locale"
