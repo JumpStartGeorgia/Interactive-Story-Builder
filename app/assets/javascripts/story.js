@@ -343,7 +343,7 @@
             videoNode.pause();
           }
         }
-        container.style("opacity", opacityTop >= fixTop - fixHeight ? 1 : 0);
+        // container.style("opacity", opacityTop >= fixTop - fixHeight ? 1 : 0);
       } else {
         container.style("opacity", opacity);
         if (videoNode) {
