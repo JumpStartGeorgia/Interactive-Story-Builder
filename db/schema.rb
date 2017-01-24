@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170123081941) do
+ActiveRecord::Schema.define(:version => 20170112115728) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -578,14 +578,13 @@ ActiveRecord::Schema.define(:version => 20170123081941) do
 
   create_table "theme_translations", :force => true do |t|
     t.integer  "theme_id"
-    t.string   "locale",                       :null => false
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.string   "locale",      :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "name"
     t.string   "edition"
     t.text     "description"
     t.string   "permalink"
-    t.integer  "stories_count", :default => 0
   end
 
   add_index "theme_translations", ["locale"], :name => "index_theme_translations_on_locale"
