@@ -62,6 +62,7 @@ class Story < ActiveRecord::Base
 	validates :template_id, :presence => true
 	validates :story_locale, :presence => true
   validates :authors, :length => { :minimum => 1, message: I18n.t('activerecord.errors.messages.story_authors')}
+  validates :themes, :length => { :minimum => 1, message: I18n.t('activerecord.errors.messages.not_provided')}
   # validates :user_id, :presence => true
 
 
