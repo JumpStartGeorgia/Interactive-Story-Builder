@@ -53,7 +53,7 @@
                     <% dataVideo = "data-image='#{File.basename(m.image.asset_file_name_formatted)}'".html_safe %>
                   <% end %>
                   <div class="video infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %>" <%= dataVideo.html_safe %>  <%= m.media_type == Medium::TYPE[:video] && m.video_loop ? "data-videoloop" : "" %>>
-                    <div class="video-container infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %> <%= "bg-#{section.background_type}"%>">
+                    <div class="video-container <%= isFirst ? 'video-container-first ' : '' %>infobox-<%= m.infobox_type == 0 ? 'floating' : 'fixed' %> <%= "bg-#{section.background_type}"%>">
                       <% if m.media_type == Medium::TYPE[:image] %>
                           <%# orientation_class = m.image.get_orientation_class class=" orientation_class" %>
                           <% if !@export %>
@@ -109,11 +109,10 @@
                         </div>
                       </div>
                       <div class="scroll-prompt">
-                       <svg  x="0px" y="0px" width="18.03px" height="18.042px" viewBox="7.516 6.5 18.03 18.042" enable-background="new 7.516 6.5 18.03 18.042"
-             xml:space="preserve">
-          <polygon points="16.531,22.763 8.52,14.963 7.695,15.766 16.531,24.367 25.367,15.766 24.544,14.963 "/>
-          <polygon points="25.367,7.477 24.544,6.674 16.531,14.475 8.52,6.674 7.695,7.477 16.531,16.079 "/>
-          </svg>
+                        <svg  x="0px" y="0px" width="18.03px" height="18.042px" viewBox="7.516 6.5 18.03 18.042" enable-background="new 7.516 6.5 18.03 18.042" xml:space="preserve">
+                          <polygon points="16.531,22.763 8.52,14.963 7.695,15.766 16.531,24.367 25.367,15.766 24.544,14.963 "/>
+                          <polygon points="25.367,7.477 24.544,6.674 16.531,14.475 8.52,6.674 7.695,7.477 16.531,16.079 "/>
+                        </svg>
                       </div>
                     <% end %>
                     <% if m.infobox_type == Medium::INFOBOX_TYPE[:floating] && m.caption.present? && !(isFirst && m_i == 0) %>
