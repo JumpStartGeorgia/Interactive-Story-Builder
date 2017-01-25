@@ -140,7 +140,7 @@
             <% end %>
           </div>
         <% end %>
-      <% if !@trans || (!@item.new_record? && @item.type_id == Section::TYPE[:media]) %>
+      <% if !@trans %> <%# || (!@item.new_record? && @item.type_id == Section::TYPE[:media]) %>
         <div class="radio_buttons input required form-group radio-indent radio-hide-button<%= @item.type_id == Section::TYPE[:media] ? '' : ' hidden' %>" id="section_background_input">
           <label class="control-label" for="section_background">
             <%= model_class.human_attribute_name(:background) %>
