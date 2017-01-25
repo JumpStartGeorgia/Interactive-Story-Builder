@@ -83,7 +83,7 @@ class RootController < ApplicationController
   def theme
     @js.push("filter.js")
     @css.push("navbar.css", "filter.css", "grid.css","root.css")
-    @theme = Theme.published.find_by_permalink(params[:id])
+    @theme = Theme.published.with_stories.find_by_permalink(params[:id])
 
     if @theme.present?
       @stories = process_filter_querystring(Story.is_published.in_published_theme.by_theme(@theme.id)).with_translations(I18n.locale).paginate(:page => params[:page], :per_page => per_page)
