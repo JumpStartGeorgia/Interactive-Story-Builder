@@ -2,12 +2,13 @@ class CreateContentSectionBasedOnStoryAboutForPhotoAndStoryType < ActiveRecord::
   def up
     require "./lib/text.rb"
     white = TextSimilarity::WhiteSimilarity.new
-    stories = Story.where(story_type_id: [2,3,4,5])#.where(id: 381)
+    stories = Story.where(story_type_id: [2,3,4,5])#.where(id: 359)
     puts "Stories to process: #{stories.length}"
     stories.each { |story|
       I18n.locale = story.story_locale
       story.current_locale = story.story_locale
-      story_about_orig = ActionController::Base.helpers.sanitize ActionController::Base.helpers.strip_tags story.about
+
+      story_about_orig = (Nokogiri::HTML.parse story.about).text # ActionController::Base.helpers.sanitize ActionController::Base.helpers.strip_tags
       puts "#{story.id} - #{story.title}"
       if !story.published || !story_about_orig.present?
         puts "--------- original about is missing"
@@ -20,7 +21,7 @@ class CreateContentSectionBasedOnStoryAboutForPhotoAndStoryType < ActiveRecord::
       if first_section.present?
         secs.each { |sec|
           if sec.content?
-            section_text = ActionController::Base.helpers.sanitize ActionController::Base.helpers.strip_tags sec.content.text
+            section_text = (Nokogiri::HTML.parse sec.content.text).text
             ratio = white.similarity(story_about_orig, section_text)
             similar_section = sec if ratio > 0.90
           end
@@ -46,7 +47,7 @@ class CreateContentSectionBasedOnStoryAboutForPhotoAndStoryType < ActiveRecord::
               new_content.current_locale = ls
               new_section.current_locale = ls
               if story.about.present?
-                story_about = "<p>" + (ActionController::Base.helpers.sanitize ActionController::Base.helpers.strip_tags story.about) + "</p>"
+                story_about = "<p>" + (Nokogiri::HTML.parse story.about).text + "</p>"
                 new_section.update_attributes({title: "story_about_text"})
                 new_content.update_attributes({title: "about", text: story_about })
               end
@@ -61,7 +62,7 @@ class CreateContentSectionBasedOnStoryAboutForPhotoAndStoryType < ActiveRecord::
               if story.about.present?
                 cont = first_section.infographic
                 cont.current_locale = ls
-                cont.update_attributes({description: "<p>" + (ActionController::Base.helpers.sanitize ActionController::Base.helpers.strip_tags story.about)  + "</p>" + cont.description })
+                cont.update_attributes({description: "<p>" + (Nokogiri::HTML.parse story.about).text  + "</p>" + cont.description })
               end
             }
           end
@@ -73,7 +74,7 @@ class CreateContentSectionBasedOnStoryAboutForPhotoAndStoryType < ActiveRecord::
   end
 
   def down
-    stories = Story.where(story_type_id: [2,3,4,5])#.where(id: 381)
+    stories = Story.where(story_type_id: [2,3,4,5])#.where(id: 359)
     puts "Stories to process: #{stories.length}"
     stories.each {|story|
       I18n.locale = story.story_locale
@@ -94,7 +95,7 @@ class CreateContentSectionBasedOnStoryAboutForPhotoAndStoryType < ActiveRecord::
             story.current_locale = ls
             first_section.current_locale = ls
             if story.about.present?
-              story_about_text = ActionController::Base.helpers.sanitize ActionController::Base.helpers.strip_tags story.about
+              story_about_text = (Nokogiri::HTML.parse story.about).text
               cont = first_section.infographic
               cont.current_locale = ls
               section_text = cont.description
