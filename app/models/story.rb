@@ -62,6 +62,7 @@ class Story < ActiveRecord::Base
 	validates :template_id, :presence => true
 	validates :story_locale, :presence => true
   validates :authors, :length => { :minimum => 1, message: I18n.t('activerecord.errors.messages.story_authors')}
+  validates :themes, :length => { :minimum => 1, message: I18n.t('activerecord.errors.messages.not_provided')}
   # validates :user_id, :presence => true
 
 
@@ -330,6 +331,12 @@ class Story < ActiveRecord::Base
     published_story_ids = StoryTranslation.where(locale: self.current_locale, published: true, story_id: story_ids).pluck(:story_id).uniq.shuffle[0..number_to_return]
     Story.where(:id => published_story_ids)
   end
+
+  # get all published locales for story
+  def all_published_locales
+    translations.where(published: true).map{|x| x.locale}.uniq.sort
+  end
+
 	# get all of the unique story locales for published stories
 	def self.all_published_locales
 	  joins(:story_translations).select('story_translations.locale').is_published.map{|x| x.locale}.uniq.sort

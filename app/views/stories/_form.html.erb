@@ -69,7 +69,7 @@
 
           <%= f.input :story_type_id, :as => :select, hint: t('.hint.story_type'),  :include_blank => false, collection: @story_types.map{|t|[t.name,t.id]} , :input_html => { :id => "storyType", :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "5", :title => t('app.common.nothing_selected')  }   %>
 
-          <%= f.input :themes, :as => :select, :hint => t('.hint.theme'), :collection => @themes.map{|x|[x.formatted_name, x.id]}, :multiple => true, :input_html => { :id => 'storyThemes', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "5", :title => t('app.common.nothing_selected') } %>
+          <%= f.input :themes, :as => :select, :hint => t('.hint.theme'), :required => true, :collection => @themes.map{|x|[x.formatted_name, x.id]}, :multiple => true, :input_html => { :id => 'storyThemes', :class => "selectpicker", :'data-live-search' => "true", :'data-selected-text-format' => "count>2", :'data-size' => "5", :title => t('app.common.nothing_selected') } %>
 
         <% end %>
 

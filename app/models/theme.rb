@@ -45,6 +45,10 @@ class Theme < ActiveRecord::Base
     with_translations(I18n.locale).order('themes.published_at desc, theme_translations.name')
   end
 
+  def self.with_stories
+    with_translations(I18n.locale).where("theme_translations.stories_count > 0")
+  end
+
   def self.for_homepage
     with_translations(I18n.locale).where(:is_published => true, :show_home_page => true).first
   end
@@ -62,6 +66,22 @@ class Theme < ActiveRecord::Base
 
   def self.find_by_permalink(permalink)
     joins(:theme_translations).where("`theme_translations`.`permalink` = ? or exists(select 'a' from `friendly_id_slugs` where `friendly_id_slugs`.`sluggable_type` = 'ThemeTranslation' and `friendly_id_slugs`.`sluggable_id` = `theme_translations`.`id` and `friendly_id_slugs`.`slug` = ?)", permalink, permalink).first
+  end
+
+  # code to calculate theme stories count
+  def self.stories_count_recalculate(meta)
+    theme_ids = meta[0]
+    locales = meta[1]
+    step = meta[2]
+
+    theme_ids.each{|theme_id|
+      item = Theme.find(theme_id)
+      locales.each{|locale|
+        theme_trans = item.translation_for(locale)
+        tmp = theme_trans.stories_count
+        theme_trans.update_attribute(:stories_count, tmp + step < 0 ? 0 : tmp + step)
+      }
+    }
   end
 
 end

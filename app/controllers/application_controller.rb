@@ -68,7 +68,7 @@ class ApplicationController < ActionController::Base
 
 	def preload_global_variables
     @story_types = StoryType.sorted
-    @themes_published = Theme.published.sorted
+    @themes_published = Theme.published.with_stories.sorted
     @languages = Language.app_locale_sorted #LANGUAGES # its an array that is initialized at rails app start Language.app_locale_sorted
     @languages_published = @languages.select{|x| x.has_published_stories == true}
 		# @categories = Category.sorted
