@@ -47,7 +47,7 @@ gem 'detect_language', '~> 1.0.7' # detect language story is in
 gem 'whenever', '~> 0.9.7' # schedule cron jobs
 gem 'rack-utf8_sanitizer', '~> 1.3.2' # prevent invalid encoding error
 gem 'json', '~> 2.0', '>= 2.0.2' # json parser faster than default
-
+gem 'nokogiri'
 gem 'test-unit', '~> 3.0' # required for running rails console
 
 # Gems used only for assets and not required

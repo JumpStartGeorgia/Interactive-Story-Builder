@@ -299,6 +299,7 @@ DEPENDENCIES
   json (~> 2.0, >= 2.0.2)
   less-rails (~> 2.6.0)
   mysql2 (~> 0.3.21)
+  nokogiri
   omniauth
   omniauth-facebook
   paperclip (~> 3.5.4)

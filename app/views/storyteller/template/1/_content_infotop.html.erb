@@ -53,9 +53,4 @@
       <a href="#" class="navigation-volume"></a>
     </div>
   </div>
-  <div class='js-row'>
-    <% if @story.story_type_id == 3 && @story.about.present? && !is_infographic %>
-      <div class='descr'><%= @story.about.html_safe %></div>
-    <% end %>
-  </div>
 </div>
