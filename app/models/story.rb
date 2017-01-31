@@ -15,7 +15,6 @@ class Story < ActiveRecord::Base
   # fields to search for in a story
   scoped_search :in => :story_translations, :on => [:title, :media_author, :translation_author]
   scoped_search :in => :content_translations, :on => [:caption, :sub_caption, :text]
-  scoped_search :in => :author_translations, :on => [:name]
 
   # record public views
   is_impressionable :counter_cache => true, :unique => :session_hash
@@ -31,7 +30,6 @@ class Story < ActiveRecord::Base
   has_many :theme_features, :dependent => :destroy
   has_many :story_authors
   has_many :authors, :through => :story_authors, :dependent => :destroy
-  has_many :author_translations, :through => :authors
 	belongs_to :user
   belongs_to :language, :primary_key => :locale, :foreign_key => :story_locale
 	belongs_to :template

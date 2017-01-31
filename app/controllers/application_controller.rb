@@ -262,7 +262,14 @@ class ApplicationController < ActionController::Base
     # search
     @q = ""
 		if params[:q].present?
-			story_objects = story_objects.search_for(params[:q])
+      # story_objects = story_objects.search_for(params[:q])
+      story_ids = (story_objects.search_for(params[:q])).map(&:id) #.pluck(:id)
+      # Rails.logger.debug("--------------------------------------------#{story_ids}")
+      author_ids = Author.search_for(params[:q]).map(&:id)
+      story_ids += story_objects.joins(:authors).where(:authors => {:id => author_ids}).pluck(:id)
+      # Rails.logger.debug("--------------------------------------------#{story_ids}")
+      story_objects = Story.where(id: story_ids)
+
 			gon.q = params[:q]
       @q = params[:q]
 		end
