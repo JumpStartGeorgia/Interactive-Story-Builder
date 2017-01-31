@@ -1,0 +1,9 @@
+<div class='info'>
+  <div class='headline'><%= @story.title %></div>
+  <div class="byline">
+    <span class="caption"><%= t('storyteller.byline', locale: @story.current_locale) %></span>
+    <span class="author">&nbsp;<%= @story.story_author_names %></span>
+    <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media', locale: @story.current_locale)}</span>&nbsp;<span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
+    <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator', locale: @story.current_locale)}</span>&nbsp;<span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
+  </div>
+</div>

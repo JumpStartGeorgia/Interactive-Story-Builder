@@ -6,16 +6,8 @@
         <% secs = @story.sections.select{|t| t.ok? }.sort_by{|p| p.position} %>
         <% @section_count = secs.count %>
         <% secs.each_with_index do |section,s_i| %>
-          <% if isFirst && !(section.media? || (section.youtube? && section.youtube.fullscreen)) %>
-            <div class='info'>
-              <div class='headline'><%= @story.title %></div>
-              <div class="byline">
-                      <span class="caption"><%= t('storyteller.byline', locale: @story.current_locale) %></span>
-                      <span class="author">&nbsp;<%= @story.story_author_names %></span>
-                      <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media', locale: @story.current_locale)}</span>&nbsp;<span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
-                      <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator', locale: @story.current_locale)}</span>&nbsp;<span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
-              </div>
-            </div>
+          <% if isFirst && !(section.media? || (section.youtube? && section.youtube.fullscreen) || (section.embed_media? && section.embed_medium.dimension == 1)) %>
+            <%= render partial: "storyteller/template/#{@template}/content_title" %>
             <%= render partial: "storyteller/template/#{@template}/content_infotop", locals: {is_infographic: section.infographic?} %>
           <% end %>
           <%  dataAudio = ''
@@ -163,6 +155,10 @@
                   <%= section.embed_medium.code.html_safe %>
                 </div>
               </div>
+              <% if isFirst && section.embed_medium.dimension == 1 %>
+                <%= render partial: "storyteller/template/#{@template}/content_title" %>
+                <%= render partial: "storyteller/template/#{@template}/content_infotop" %>
+              <% end %>
             <% elsif section.youtube? %>
               <div class="section youtube section-<%= section.youtube.fullscreen ? 'fullscreen' : 'fit' %>" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
@@ -173,15 +169,7 @@
                 </div>
               </div>
               <% if isFirst && section.youtube.fullscreen %>
-                <div class='info'>
-                  <div class='headline'><%= @story.title %></div>
-                  <div class="byline">
-                          <span class="caption"><%= t('storyteller.byline', locale: @story.current_locale) %></span>
-                          <span class="author">&nbsp;<%= @story.story_author_names %></span>
-                          <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_media', locale: @story.current_locale)}</span>&nbsp;<span class='author'>#{@story.media_author}</span>".html_safe if @story.media_author.present? %>
-                          <%= "<span class='caption'>,</span>&nbsp<span class='caption'>#{t('storyteller.byline_translator', locale: @story.current_locale)}</span>&nbsp;<span class='author'>#{@story.translation_author}</span>".html_safe if @story.translation_author.present? %>
-                  </div>
-                </div>
+                <%= render partial: "storyteller/template/#{@template}/content_title" %>
                 <%= render partial: "storyteller/template/#{@template}/content_infotop" %>
               <% end %>
             <% elsif section.infographic? %>
