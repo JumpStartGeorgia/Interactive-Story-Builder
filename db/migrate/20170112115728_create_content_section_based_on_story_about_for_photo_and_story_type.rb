@@ -12,7 +12,11 @@ class CreateContentSectionBasedOnStoryAboutForPhotoAndStoryType < ActiveRecord::
       story_about_clean = (Nokogiri::HTML.parse story_about_orig).text
       puts "#{story.id} - #{story.title}"
       if !story.published || !story_about_clean.present?
-        puts "--------- original about is missing"
+        puts "--------- not processing - not published or original about is missing"
+        next
+      end
+      if story.published_at >= Time.parse("2017-01-01")
+        puts "--------- not processing - published at > 2017-01-01"
         next
       end
 
@@ -79,7 +83,7 @@ class CreateContentSectionBasedOnStoryAboutForPhotoAndStoryType < ActiveRecord::
     puts "Stories to process: #{stories.length}"
     stories.each {|story|
       I18n.locale = story.story_locale
-      story.current_locale = story.story_locale
+      story.current_locale = story.story_locale\
 
       puts "  #{story.title}"
       secs = story.sections.select{|t| t.content? && t.title == "story_about_text" && t.content.title == "about" }.first
