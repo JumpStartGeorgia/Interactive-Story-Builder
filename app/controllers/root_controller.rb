@@ -94,7 +94,7 @@ class RootController < ApplicationController
         format.json { render :json => {:d => render_to_string("shared/_grid", :formats => [:html], :layout => false)}}
       end
     else
-      redirect_to root_path, :notice => t('app.msgs.does_not_exist')
+      redirect_to root_path#, :notice => t('app.msgs.does_not_exist')
     end
   end
 

@@ -20,7 +20,7 @@ class StorytellerController < ApplicationController
         @story.set_to_app_locale
 
 # logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@"
-# logger.debug "app locale = #{I18n.locale}; story locale = #{@story.current_locale}"        
+# logger.debug "app locale = #{I18n.locale}; story locale = #{@story.current_locale}"
 
         impressionist(@story, :unique => [:session_hash]) # record the view count
         @story.reload
@@ -30,7 +30,7 @@ class StorytellerController < ApplicationController
 
         @stories = @story.random_related_stories
 
-# logger.debug "after reload app locale = #{I18n.locale}; story locale = #{@story.current_locale}"        
+# logger.debug "after reload app locale = #{I18n.locale}; story locale = #{@story.current_locale}"
 # logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@"
 
 
@@ -49,7 +49,7 @@ class StorytellerController < ApplicationController
         end
 
       else
-        redirect_to root_path, :notice => t('app.msgs.does_not_exist')
+        redirect_to root_path #, :notice => t('app.msgs.does_not_exist')
       end
     end
   end
