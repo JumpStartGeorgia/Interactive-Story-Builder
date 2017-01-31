@@ -66,10 +66,11 @@ body
     line-height: 1.5;
   }
 
-  .column a{
+  .column a, .description a{
     text-decoration: underline;
   }
-  .column p,.column p span, .column div,.column div span
+  .column p,.column p span, .column div, .column div span,
+  .slideshow .description p,.slideshow .description p span, .slideshow .description div, .slideshow .description div span
   {
     font-family: dejavusans !important;
     -webkit-font-smoothing: antialiased;
@@ -78,7 +79,8 @@ body
     font-size: 16px !important;
     letter-spacing:normal !important;
   }
-  .column p:lang(en),.column p span:lang(en), .column div:lang(en),.column div span:lang(en)
+  .column p:lang(en),.column p span:lang(en), .column div:lang(en),.column div span:lang(en),
+  .slideshow .description p:lang(en),.slideshow .description p span:lang(en), .slideshow .description div:lang(en), .slideshow .description div span:lang(en)
   {
     font-family: 'opensans' !important;
   }
