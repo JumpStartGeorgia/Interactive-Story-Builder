@@ -6,7 +6,7 @@
         <% secs = @story.sections.select{|t| t.ok? }.sort_by{|p| p.position} %>
         <% @section_count = secs.count %>
         <% secs.each_with_index do |section,s_i| %>
-          <% if isFirst && !(section.media? || (section.youtube? && section.youtube.fullscreen) || (section.embed_media? && section.embed_medium.dimension == 1)) %>
+          <% if isFirst && !(section.media? || section.youtube? || section.embed_media?) %>
             <%= render partial: "storyteller/template/#{@template}/content_title" %>
             <%= render partial: "storyteller/template/#{@template}/content_infotop", locals: {is_infographic: section.infographic?} %>
           <% end %>
@@ -155,7 +155,7 @@
                   <%= section.embed_medium.code.html_safe %>
                 </div>
               </div>
-              <% if isFirst && section.embed_medium.dimension == 1 %>
+              <% if isFirst %>
                 <%= render partial: "storyteller/template/#{@template}/content_title" %>
                 <%= render partial: "storyteller/template/#{@template}/content_infotop" %>
               <% end %>
@@ -168,7 +168,7 @@
                   <div data-yid="<%= section.youtube.code %>"></div>
                 </div>
               </div>
-              <% if isFirst && section.youtube.fullscreen %>
+              <% if isFirst %>
                 <%= render partial: "storyteller/template/#{@template}/content_title" %>
                 <%= render partial: "storyteller/template/#{@template}/content_infotop" %>
               <% end %>
