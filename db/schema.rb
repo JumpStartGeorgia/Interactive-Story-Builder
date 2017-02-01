@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170123081941) do
+ActiveRecord::Schema.define(:version => 20170201140537) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -265,11 +265,11 @@ ActiveRecord::Schema.define(:version => 20170123081941) do
 
   create_table "medium_translations", :force => true do |t|
     t.integer  "medium_id"
-    t.string   "locale",                     :null => false
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.string   "locale",                       :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.string   "title"
-    t.string   "caption"
+    t.string   "caption",       :limit => 500
     t.integer  "caption_align"
     t.string   "source"
     t.integer  "infobox_type"
@@ -370,11 +370,11 @@ ActiveRecord::Schema.define(:version => 20170123081941) do
 
   create_table "slideshow_translations", :force => true do |t|
     t.integer  "slideshow_id"
-    t.string   "locale",       :null => false
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string   "locale",                      :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.string   "title"
-    t.string   "caption"
+    t.string   "caption",      :limit => 500
     t.text     "description"
   end
 
