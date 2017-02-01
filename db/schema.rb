@@ -82,12 +82,12 @@ ActiveRecord::Schema.define(:version => 20170201140537) do
 
   create_table "content_translations", :force => true do |t|
     t.integer  "content_id"
-    t.string   "locale",      :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "locale",                     :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.string   "title"
-    t.string   "caption"
-    t.string   "sub_caption"
+    t.string   "caption",     :limit => 500
+    t.string   "sub_caption", :limit => 500
     t.text     "text"
   end
 
@@ -174,11 +174,11 @@ ActiveRecord::Schema.define(:version => 20170201140537) do
 
   create_table "infographic_translations", :force => true do |t|
     t.integer  "infographic_id"
-    t.string   "locale",         :null => false
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.string   "locale",                        :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "title"
-    t.string   "caption"
+    t.string   "caption",        :limit => 500
     t.text     "description"
     t.string   "dataset_url"
     t.integer  "subtype"
