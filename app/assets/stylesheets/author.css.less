@@ -1,6 +1,6 @@
 /* author header */
-.header{            
-  width: 100%;    
+.header{
+  width: 100%;
   .author
   {
     padding:50px 10% 0px;
@@ -14,20 +14,19 @@
         height: 168px;
         border-radius: 150px;
         -webkit-border-radius: 150px;
-        -moz-border-radius: 150px;      
+        -moz-border-radius: 150px;
         font-family: 'dejavusans-b';
         font-size: 92px;
         color: #fff;
         margin: 5px auto;
         padding: 0px;
-        &:lang(en)
-        {
-          font-family: 'opensans-b';
-        }
+        &:lang(en) { font-family: 'opensans-b'; }
+        &:lang(az) { font-family: 'freesans-b'; }
+        &:lang(ru) { font-size: 94px; }
       }
-    }     
+    }
     .info
-    {    
+    {
       margin: 10px 0px 5px 20px;
       display:inline-block;
       text-align:left;
@@ -35,27 +34,26 @@
     .js-row
     {
       clear:both;
-      > div 
+      > div
       {
         display:inline-block;
       }
     }
-    .nickname 
+    .nickname
     {
       font-family: 'dejavusans';
       font-size: 25px;
       color: #878787;
-      padding: 0px;  
-      margin-right: 50px;  
+      padding: 0px;
+      margin-right: 50px;
       vertical-align:top;
-      padding-top: 4px;  
-      &:lang(en)
-      {
-        font-family: 'opensans';
-      }
+      padding-top: 4px;
+      &:lang(en) { font-family: 'opensans'; }
+      &:lang(az) { font-family: 'freesans'; }
+      &:lang(ru) { font-family: 27px; }
     }
     .follow
-    {        
+    {
       a
       {
         display:inline-block;
@@ -74,7 +72,7 @@
             width: 22px;
             height: 16px;
             content: "";
-            display: inline-block;        
+            display: inline-block;
             position: relative;
             top: 3px;
             right:4px;
@@ -82,22 +80,21 @@
         &:focus, &:hover{
           color:#fff;
           background-color:#9dac47;
-          cursor:pointer;         
+          cursor:pointer;
           &.follow-author:before{
             background:transparent url('/assets/svg/check_w.svg') 0% / 100% no-repeat;
           }
         }
-        &:lang(en)
-        {
-          font-family: opensans;
-        }
+        &:lang(en) { font-family: opensans; }
+        &:lang(az) { font-family: freesans; }
+        &:lang(ru) { font-size: 16px; }
       }
     }
     .build-story
-    {     
+    {
       a
       {
-    
+
         background: transparent url('/assets/svg/build_b.svg') center no-repeat;
         background-position: 3px 3px;
         display:inline-block;
@@ -112,37 +109,35 @@
         -moz-border-radius: 3px;
         border-radius: 3px;
         &:hover, &:focus
-        {      
-          background: transparent url('/assets/svg/build_w.svg') center no-repeat; 
+        {
+          background: transparent url('/assets/svg/build_w.svg') center no-repeat;
           background-position: 3px 3px;
           color:#fff;
           background-color:#9dac47;
-          cursor:pointer;   
+          cursor:pointer;
           -webkit-border-radius: 3px;
           -moz-border-radius: 3px;
-          border-radius: 3px; 
+          border-radius: 3px;
         }
-        &:lang(en)
-        {
-          font-family: opensans;
-        }
-      }      
+        &:lang(en) { font-family: opensans; }
+        &:lang(az) { font-family: freesans; }
+        &:lang(ru) { font-size: 16px; }
+      }
     }
-    .about 
+    .about
     {
-      font-family: 'dejavusans-el';  
+      font-family: 'dejavusans-el';
       font-size: 16px;
       color: #878787;
       margin: 13px auto;
-      padding: 0px;  
+      padding: 0px;
       text-align:left;
       max-width:900px;
       line-height: 20px;
-      :lang(en)
-      {
-        font-family: 'opensans-l';
-      }
+      &:lang(en) { font-family: 'opensans-l'; }
+      &:lang(az) { font-family: 'freesans'; }
+      &:lang(ru) { font-size: 18px; }
     }
-    
+
   }
 }
