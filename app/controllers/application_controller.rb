@@ -273,6 +273,8 @@ class ApplicationController < ActionController::Base
 			gon.q = params[:q]
       @q = params[:q]
 		end
+
+    gon.params = params.select { |k, v| [:sort, :type, :theme, :following, :not_published].include?(k.to_sym) }
     return story_objects
   end
 

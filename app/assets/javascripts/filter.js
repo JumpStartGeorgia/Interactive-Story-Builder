@@ -109,7 +109,17 @@ function url_update () {
 
 $(document).ready(function () {
 
-  if(gon.page_filtered) { scrolldown(false, "header"); }
+  if(gon.page_filtered) {
+    $.extend(f, gon.params);
+    var prop, v;
+    for (prop in f) {
+      v = f[prop];
+      if (f.hasOwnProperty(prop) && typeof v !== "undefined" && v !== null && v !== "") {
+        search_form.append("<input type='hidden' class='observer' name='" + prop + "' value='" + v + "'/>");
+      }
+    }
+    scrolldown(false, "header");
+  }
 
 
   $("[data-filter-type]").each(function (){ // collect all default values for ajax filtering
