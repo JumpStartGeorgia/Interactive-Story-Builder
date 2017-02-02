@@ -1,0 +1,42 @@
+<%- model_class = Highlight -%>
+<%- model_class_trans = HighlightTranslation -%>
+<% title t '.title', :default => model_class.model_name.human.pluralize %>
+
+<div>
+  <%= link_to t('.new', :default => t("helpers.links.new")),
+              new_admin_highlight_path,
+              :class => 'btn btn-primary' %>
+  <%= link_to t('helpers.links.admin'), admin_path,
+  :class => 'btn btn-default' %>
+</div>
+
+<table id="highlight-datatable" class="table table-striped display">
+  <thead>
+    <tr>
+      <th><%= model_class_trans.human_attribute_name(:caption) %></th>
+      <th><%= model_class.human_attribute_name(:picked) %></th>
+      <th><%= model_class_trans.human_attribute_name(:url) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.caption %></td>
+        <td><%= item.picked ? t(".picked") : "" %></td>
+        <td><%= item.url %></td>
+        <td>
+          <%= link_to t('app.buttons.edit'),
+                      edit_admin_highlight_path(item), :class => 'btn btn-xs btn-default' %>
+          <%= link_to t('app.buttons.delete'),
+                      admin_highlight_path(item),
+                      :method => :delete,
+                      :data => { :confirm => I18n.t("helpers.links.confirm") },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

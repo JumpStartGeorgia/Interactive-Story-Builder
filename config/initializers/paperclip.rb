@@ -14,6 +14,9 @@ end
 Paperclip.interpolates('avatar_id') do |attachment, style|
   attachment.instance.avatar_id
 end
+# Paperclip.interpolates('highlight_id') do |attachment, style|
+#   attachment.instance.highlight_id
+# end
 # Paperclip.interpolates('thumbnail_story_id') do |attachment, style|
 #   attachment.instance.story_translation.story_id
 # end

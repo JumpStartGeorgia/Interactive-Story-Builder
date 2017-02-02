@@ -14,6 +14,7 @@ BootstrapStarter::Application.routes.draw do
 
 		namespace :admin do
 		  resources :authors
+		  resources :highlights
       resources :pages
 			resources :users
       resources :news

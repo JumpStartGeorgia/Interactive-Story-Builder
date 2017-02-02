@@ -34,4 +34,14 @@ $(document).ready(function(){
        { orderable: false, targets: [0,-1] }
     ]
   });
+
+  $('#highlight-datatable').dataTable({
+    "order": [[1, 'asc']],
+    "language": {
+      "url": gon.datatable_i18n_url
+    },
+    "columnDefs": [
+       { orderable: false, targets: [0,-1] }
+    ]
+  });
 });

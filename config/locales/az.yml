@@ -630,6 +630,9 @@ az:
       index:
         no_sponsors: Heç bir sponsor yoxdu
         no_partners: Heç bir tərəfdaş yoxdu
+    highlights:
+      index:
+        picked: Picked
   root:
     about:
       title: "Çayxana barədə"
