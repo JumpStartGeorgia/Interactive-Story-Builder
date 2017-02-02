@@ -4,16 +4,18 @@ var sa = false, // flag for search box if it is active
   pf = {},    // previous filter values
   paging = false,
   grid_wrapper = $(".grid-wrapper"),
-  grid = grid_wrapper.find(".grid");
+  grid = grid_wrapper.find(".grid"),
+  search_form = $("#search-form"),
+  search_input = search_form.find("#q");
 
-function filter ()
-{
+function filter () {
   if(JSON.stringify(f) !== JSON.stringify(pf))
   {
     var ftmp = {}, prop;
 
     if(!paging) { f["page"] = ""; }
 
+    search_form.find("input[type='hidden'].observer").remove();
     for (prop in f) {
       var k = prop;
       var v = f[prop];
@@ -21,8 +23,14 @@ function filter ()
       if (typeof v !== "undefined" && v !== null && v !== "")
       {
         ftmp[k] = v;
+        search_form.append("<input type='hidden' class='observer' name='" + k + "' value='" + v + "'/>");
       }
     }
+    var q = search_input.val();
+    if (typeof q !== "undefined" && q !== null && q !== "") {
+      ftmp["q"] = q;
+    }
+
     if(!paging) grid.html("");
     if(!grid_wrapper.find(".loading").length) grid_wrapper.append("<div class='loading'></div>");
     if(!paging) grid_wrapper.find(".loading").addClass("space");
@@ -35,20 +43,14 @@ function filter ()
 
       setTimeout(function (){
         data = $(data.d);
-
         var len = data.find(".grid .col").length;
-
         grid_wrapper.find(".loading").remove();
-
         data.find(".grid .col").each(function (i, d)
         {
           setTimeout(function ()
           {
             grid.append($(d).hide().fadeIn(2000));
-            if(i == len-1)
-            {
-              paging = false;
-            }
+            if(i == len-1) { paging = false; }
           }, 300*i);
         });
         if(len == 0)
