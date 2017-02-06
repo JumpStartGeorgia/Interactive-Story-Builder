@@ -18,8 +18,7 @@ class Highlight < ActiveRecord::Base
   scope :only_picked, where(picked: true)
 
   def unselect_all_picks
-    self.picked_changed? && self.picked_was == false
-    Highlight.update_all(picked: false)
+    Highlight.update_all(picked: false) if self.picked_changed?
   end
   def self.sorted
     with_translations(I18n.locale).order("highlight_translations.updated_at asc")

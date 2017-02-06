@@ -26,13 +26,13 @@
       <% translation_objects = create_sorted_translation_objects(@item.highlight_translations) %>
       <ul class="nav nav-tabs" role="tablist">
         <% translation_objects.each_with_index do |trans, i| %>
-          <li role="presentation" class="<%= i == 0 ? 'active' : '' %>"><a href="#form-<%= trans.locale %>-tab-link" aria-controls="form-<%= trans.locale %>-tab-link" role="tab" data-toggle="tab"><%= t("app.language.#{trans.locale}") %></a></li>
+          <li role="presentation" class="<%= i == 0 ? 'active' : '' %>"><a href="#form-trans-<%= trans.locale %>-tab-link" aria-controls="form-trans-<%= trans.locale %>-tab-link" role="tab" data-toggle="tab"><%= t("app.language.#{trans.locale}") %></a></li>
         <% end %>
       </ul>
       <!-- Tab panes -->
       <div class="tab-content">
         <% translation_objects.each_with_index do |trans, i| %>
-          <div role="tabpanel" class="tab-pane<%= i == 0 ? ' active' : '' %>" id="form-<%= trans.locale %>-tab-link">
+          <div role="tabpanel" class="tab-pane<%= i == 0 ? ' active' : '' %>" id="form-trans-<%= trans.locale %>-tab-link">
             <%= f.fields_for :highlight_translations, trans do |translation| %>
                 <%= translation.input :caption %>
                 <%= translation.input :url %>

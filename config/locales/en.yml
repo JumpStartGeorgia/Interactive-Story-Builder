@@ -19,6 +19,7 @@ en:
       author: Author
       asset: File
       logo: Logo
+      highlight: Highlight
     attributes:
       asset: &asset
         asset_file_name: File

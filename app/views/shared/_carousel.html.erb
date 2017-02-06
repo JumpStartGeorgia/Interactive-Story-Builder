@@ -1,21 +1,37 @@
+<% has_highlight = @highlight.present? %>
 <% content_for(:header) { %>
 <header>
   <% if @stories_for_slider.present? %>
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
+      <% if has_highlight %>
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <% end %>
        <% @stories_for_slider.each_with_index { |t,i| %>
-          <li data-target="#carousel-example-generic" data-slide-to="<%= i %>" class='<%= i == 0 ? " active" : "" %>'></li>
+          <% slide_index = has_highlight ? i + 1 : i %>
+          <li data-target="#carousel-example-generic" data-slide-to="<%= slide_index %>" class='<%= slide_index == 0 ? " active" : "" %>'></li>
         <% } %>
       </ol>
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
-
+        <% if has_highlight %>
+          <div class="item active" data-is-highlight>
+            <% tmp = "<div class='img' style='background: url(/assets/png/thumbnail_mask.png) 100% 100% , url(#{@highlight.image.file.url(:slider)}) center center no-repeat; background-size:cover;'></div>".html_safe %>
+            <%= @highlight.url.present? ? (link_to @highlight.url do tmp end) : tmp %>
+            <div class="carousel-caption" lang="<%= I18n.locale %>">
+              <% tmp = "<div class='title'>#{@highlight.caption}</div>".html_safe %>
+              <%= @highlight.url.present? ? (link_to @highlight.url do tmp end) : tmp %>
+            </div>
+          </div>
+        <% end %>
         <% @stories_for_slider.each_with_index { |story,i| %>
+          <% slide_index = has_highlight ? i + 1 : i %>
           <% story.use_app_locale_if_translation_exists %>
-          <div class='item<%= i == 0 ? " active" : "" %>'>
-          <%= link_to storyteller_show_path(story.permalink) do %>
-            <div class='img' style="background: url(/assets/png/thumbnail_mask.png) 100% 100% , url(<%= story.show_asset.file.url(:slider) %>) center center no-repeat; background-size:cover;"></div> <% end %>
+          <div class='item<%= slide_index == 0 ? " active" : "" %>'>
+            <%= link_to storyteller_show_path(story.permalink) do %>
+              <div class='img' style="background: url(/assets/png/thumbnail_mask.png) 100% 100% , url(<%= story.show_asset.file.url(:slider) %>) center center no-repeat; background-size:cover;"></div>
+            <% end %>
             <div class="carousel-caption" lang="<%= story.current_locale %>">
               <%= link_to  storyteller_show_path(story.permalink) do %>
                 <div class='title'><%= story.title %></div>
@@ -41,7 +57,7 @@
         <span class="sr-only"><%= t('helpers.links.next') %></span>
       </a>
       <!-- Sticker -->
-      <div class='sticker'>
+      <div class='sticker' style="display: none;">
         <div class='sticker-container'>
           <%
             locale_line_width = {

@@ -19,6 +19,7 @@ ru:
       author: "Автор"
       asset: "Файл"
       logo: Лого
+      highlight: Highlight
     attributes:
       asset: &asset
         asset_file_name: "Файл"
@@ -51,6 +52,13 @@ ru:
         about: "Про нас"
         permalink: "Постоянная ссылка"
       author_translations: *author_translation
+      highlight:
+        picked: Pick highlight to show
+        image: Image to show in slider
+      highlight_translation: &highlight_translation
+        caption: Caption
+        url: Url redirect to
+      highlight_translations: *highlight_translation
       story:
         user_id: "Автор истории"
         user_ids: "Редакторы"
@@ -338,6 +346,7 @@ ru:
       nickname: "Ваш логин используется в URL ваших опубликованных историей (например, ник / история-название)"
       local_avatar: "Фото которое будет отображаться в строке заголовка и на вашу страницу пользователя (только png и jpg )."
       avatar: "Фото на странице автора (только .png и .jpg)"
+      highlight_image: Highlight image that is shown on main page as slider (png and jpg only).
       like: "Нравится эта история"
       unlike: Отменить "Нравится эта история"
       staff_pick: "Отметить как Избранная история"
@@ -631,6 +640,9 @@ ru:
       index:
         no_sponsors: нет спонсоров.
         no_partners: нет партнеров.
+    highlights:
+      index:
+        picked: Picked
   root:
     about:
       title: "О Чайхане"

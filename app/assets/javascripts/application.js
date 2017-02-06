@@ -194,8 +194,16 @@ $(".navbar-collapse").swipe(function( direction, offset ) {
     return false;
   });
 
-$.fn.carousel.defaults = { interval: 5000, pause: 'hover' };
-$('.carousel').carousel();
+  $.fn.carousel.defaults = { interval: 5000, pause: 'hover' };
+  var carousel = $('.carousel'),
+    sticker = carousel.find(".sticker");
+
+  carousel
+    .carousel()
+    .on('slide.bs.carousel', function (event) {
+      sticker.toggle(!event.relatedTarget.hasAttribute("data-is-highlight"));
+    });
+  if(!carousel.find("[data-is-highlight]").length) { sticker.show(); }
 
 //---------------------------------------------dev stuff-------------------------------------------------
 if(gon.dev)

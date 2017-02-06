@@ -273,7 +273,6 @@ class Asset < ActiveRecord::Base
         self.story_id = self.infographic_translation.infographic.section.story_id
 
       when  TYPE[:highlight]
-        puts "--------------------------#{self.highlight.id}"
         self.item_id = self.highlight.id
 
     end

@@ -19,6 +19,7 @@ hy:
       author: "Հեղինակ"
       asset: "Ֆայլ"
       logo: Լոգո
+      highlight: Highlight
     attributes:
       asset: &asset
         asset_file_name: "Ֆայլ"
@@ -51,6 +52,13 @@ hy:
         about: "Մեր մասին"
         permalink: "Պերմալինք"
       author_translations: *author_translation
+      highlight:
+        picked: Pick highlight to show
+        image: Image to show in slider
+      highlight_translation: &highlight_translation
+        caption: Caption
+        url: Url redirect to
+      highlight_translations: *highlight_translation
       story:
         user_id: "Հեղինակ"
         user_ids: "Խմբագիրներ"
@@ -338,6 +346,7 @@ hy:
       nickname: "Ձեր կեղծանունը օգտագործվում է URL-ում Ձեր հրապարակած նյութերի համար (Օր. կեղծանուն/ նյութ-վերնագիր)"
       local_avatar: "Նկար, որը կտեղադրվի վերին վահանակում և Ձեր էջում (միայն png և jpg)"
       avatar: "Հեղինակի էջի նկար (միայն png և jpg)"
+      highlight_image: Highlight image that is shown on main page as slider (png and jpg only).
       like: "Հավանել այս նյութը"
       unlike: "Չհավանել այս նյութը"
       staff_pick: "Նշել որպես «Ընտրանի»"
@@ -631,6 +640,9 @@ hy:
       index:
         no_sponsors: Հովանավորներ չկան
         no_partners: Գործընկերներ չկան
+    highlights:
+      index:
+        picked: Picked
   root:
     about:
       title: "Չայխանայի մասին"
