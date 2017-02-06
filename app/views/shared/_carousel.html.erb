@@ -18,10 +18,10 @@
         <% if has_highlight %>
           <div class="item active" data-is-highlight>
             <% tmp = "<div class='img' style='background: url(/assets/png/thumbnail_mask.png) 100% 100% , url(#{@highlight.image.file.url(:slider)}) center center no-repeat; background-size:cover;'></div>".html_safe %>
-            <%= @highlight.url.present? ? (link_to @highlight.url do tmp end) : tmp %>
+            <%= @highlight.url.present? ? (link_to(@highlight.url, target: '_blank') do tmp end) : tmp %>
             <div class="carousel-caption" lang="<%= I18n.locale %>">
               <% tmp = "<div class='title'>#{@highlight.caption}</div>".html_safe %>
-              <%= @highlight.url.present? ? (link_to @highlight.url do tmp end) : tmp %>
+              <%= @highlight.url.present? ? (link_to(@highlight.url, target: '_blank') do tmp end) : tmp %>
             </div>
           </div>
         <% end %>
