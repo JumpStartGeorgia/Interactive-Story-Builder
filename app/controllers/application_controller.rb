@@ -141,6 +141,21 @@ class ApplicationController < ActionController::Base
                         params[:q].present? ||
                         params[:following].present?
 
+    # search
+    @q = ""
+    if params[:q].present?
+      # story_objects = story_objects.search_for(params[:q])
+      story_ids = (story_objects.search_for(params[:q])).map(&:id) #.pluck(:id)
+      # Rails.logger.debug("--------------------------------------------#{story_ids}")
+      author_ids = Author.search_for(params[:q]).map(&:id)
+      story_ids += story_objects.joins(:authors).where(:authors => {:id => author_ids}).pluck(:id)
+      # Rails.logger.debug("--------------------------------------------#{story_ids}")
+      story_objects = Story.where(id: story_ids)
+
+      gon.q = params[:q]
+      @q = params[:q]
+    end
+
     # not published (only available when users editing their stories)
     if params[:not_published].present?
       @story_filter_not_published = params[:not_published].to_bool
@@ -152,6 +167,7 @@ class ApplicationController < ActionController::Base
     # sort
     @story_filter_sort_recent = true
     @story_filter_sort_permalink =  ""
+     # Rails.logger.fatal("fatal----------------------#{params[:sort].present?} - #{I18n.t('filters.sort').keys.map{|x| x.to_s}.include?(params[:sort])}")
     if params[:sort].present? && I18n.t('filters.sort').keys.map{|x| x.to_s}.include?(params[:sort])
       case params[:sort]
         when 'recent'
@@ -167,6 +183,7 @@ class ApplicationController < ActionController::Base
       end
 			@story_filter_sort = I18n.t("filters.sort.#{params[:sort]}")
     else
+       Rails.logger.fatal("fatal----------------------reeecent")
       story_objects = story_objects.recent
 			@story_filter_sort = I18n.t("filters.sort.recent")
     end
@@ -259,20 +276,6 @@ class ApplicationController < ActionController::Base
     end
      # logger.debug "/////////////////// @story_filter_following = #{@story_filter_following}"
 
-    # search
-    @q = ""
-		if params[:q].present?
-      # story_objects = story_objects.search_for(params[:q])
-      story_ids = (story_objects.search_for(params[:q])).map(&:id) #.pluck(:id)
-      # Rails.logger.debug("--------------------------------------------#{story_ids}")
-      author_ids = Author.search_for(params[:q]).map(&:id)
-      story_ids += story_objects.joins(:authors).where(:authors => {:id => author_ids}).pluck(:id)
-      # Rails.logger.debug("--------------------------------------------#{story_ids}")
-      story_objects = Story.where(id: story_ids)
-
-			gon.q = params[:q]
-      @q = params[:q]
-		end
 
     gon.params = params.select { |k, v| [:sort, :type, :theme, :following, :not_published].include?(k.to_sym) }
     return story_objects
