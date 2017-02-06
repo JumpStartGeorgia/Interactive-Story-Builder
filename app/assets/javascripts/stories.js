@@ -119,7 +119,7 @@ $(document).ready(function() {
   });
 
   // when infographic dynamic render changes, show the correct fields
-  $('.story-viewer').on('change','input[name="infographic[dynamic_render]"]:radio',function(){
+  $('.story-viewer #infographicDynamicBox').on('change','input[name="infographic[dynamic_render]"]:radio',function(){
     // 1 = inline, 2 = popup
     var b = $(this).val()==1;
     var form = $('form.infographic');
