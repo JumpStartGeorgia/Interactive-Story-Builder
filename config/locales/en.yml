@@ -53,11 +53,11 @@ en:
         permalink: Permalink
       author_translations: *author_translation
       highlight:
-        picked: Pick highlight to show
-        image: Image to show in slider
+        picked: Show on Homepage?
+        image: Image
       highlight_translation: &highlight_translation
         caption: Caption
-        url: Url redirect to
+        url: URL
       highlight_translations: *highlight_translation
       story:
         user_id: Story Author
@@ -346,7 +346,7 @@ en:
       nickname: Your nickname is used in the URL to your published stories (e.g., nickname/story-title)
       local_avatar: Image that is shown in the header bar and on your user page (png and jpg only).
       avatar: Image that is shown on the Author's page (png and jpg only).
-      highlight_image: Highlight image that is shown on main page as slider (png and jpg only).
+      highlight_image: Highlight image will be shown on homepage in the slider (png and jpg only).
       like: Like this story
       unlike: Unlike this story
       staff_pick: Select as Staff Pick
@@ -642,7 +642,7 @@ en:
         no_partners: There are no partners.
     highlights:
       index:
-        picked: Picked
+        picked: "Yes"
   root:
     about:
       title: About Chai Khana

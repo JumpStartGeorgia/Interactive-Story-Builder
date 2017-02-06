@@ -53,11 +53,11 @@ az:
         permalink: Daimi Keçid
       author_translations: *author_translation
       highlight:
-        picked: Pick highlight to show
-        image: Image to show in slider
+        picked: Show on Homepage?
+        image: Image
       highlight_translation: &highlight_translation
         caption: Caption
-        url: Url redirect to
+        url: URL
       highlight_translations: *highlight_translation
       story:
         user_id: Hekayənin Müəllifi
@@ -346,7 +346,7 @@ az:
       nickname: Dərc edimiş hekayələrinin URL-ında sənin ləqəbin istifadə edilir (məsələn, ləqəb/hekayə-sərlövhə)
       local_avatar: Sənin istifadəçi səhifənin başlıq panelində göstərilən şəkil (yalnız png və jpg).
       avatar: Müəllifin səhifəsində göstərilən şəkil (yalnız png və jpg).
-      highlight_image: Highlight image that is shown on main page as slider (png and jpg only).
+      highlight_image: Highlight image will be shown on homepage in the slider (png and jpg only).
       like: Bu hekayəni bəyən
       unlike: Bu hekayəni bəyənmə
       staff_pick: Redaksiya Heyətinin Seçimi kimi Seç
@@ -642,7 +642,7 @@ az:
         no_partners: Heç bir tərəfdaş yoxdu
     highlights:
       index:
-        picked: Picked
+        picked: "Yes"
   root:
     about:
       title: "Çayxana barədə"
