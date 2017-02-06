@@ -95,10 +95,9 @@
        font-family:'dejavusans-el';
        font-size:14px;
      }
-     > a:lang(en)
-     {
-        font-family:'opensans-l';
-     }
+     > a:lang(en) { font-family: 'opensans-l'; }
+     > a:lang(az) { font-family: 'freesans'; }
+     > a:lang(ru) { font-size: 16px; }
    }
 }
 .dropdown-menu > li > a {
@@ -108,10 +107,9 @@
   line-height:14px;
   padding:0px;
 
-  &:lang(en)
-  {
-    font-family:'opensans';
-  }
+  &:lang(en) { font-family: 'opensans'; }
+  &:lang(az) { font-family: 'freesans'; }
+  &:lang(ru) { font-size: 16px; }
 }
 
 .navbar.navbar-story,.navbar-header
@@ -133,14 +131,10 @@
       padding:0px 15px;
       font-family: 'dejavusans-el';
       font-size: 18px;
-      &:hover
-      {
-         background-color:transparent !important;
-      }
-      &:lang(en)
-      {
-        font-family:'opensans-l';
-      }
+      &:hover { background-color:transparent !important; }
+      &:lang(en) { font-family: 'opensans-l'; }
+      &:lang(az) { font-family: 'freesans'; }
+      &:lang(ru) { font-size: 20px; }
    }
 }
 .navbar-form
@@ -189,10 +183,9 @@
     font-family:'dejavusans-el';
     font-size:14px;
   }
-  span:lang(en),a:lang(en)
-  {
-    font-family:'opensans-l';
-  }
+  span:lang(en),a:lang(en) { font-family: 'opensans-l'; }
+  span:lang(az),a:lang(az) { font-family: 'freesans'; }
+  span:lang(ru),a:lang(ru) { font-size: 16px; }
 }
 .dropdown.open .dropdown-toggle,
 .dropdown-hover:hover .dropdown-toggle
@@ -312,13 +305,8 @@ body#grid-layout #wrapper{
   .carousel-inner .item .img
   {
     background-size:cover;
-  // background-repeat:no-repeat;
-height: 600px;
- // background-attachment: fixed;
-// background-position: center center;
-/* width: 100%; */
-// background-size: contain;
- }
+    height: 600px;
+  }
 
   .carousel-control
   {
@@ -365,10 +353,8 @@ height: 600px;
     right:10%;
     text-align:left;
     font-family:'dejavusans';
-    &:lang(en)
-    {
-      font-family: 'opensans';
-    }
+    &:lang(en) { font-family: 'opensans'; }
+    &:lang(az) { font-family: 'freesans'; }
     a{
       color:#fff;
       &:hover{
@@ -381,10 +367,9 @@ height: 600px;
         max-width:590px;
         padding-bottom:10px;
         line-height:1.3em;
-        &:lang(en)
-        {
-          font-family: 'opensans-b';
-        }
+        &:lang(en) { font-family: 'opensans-b'; }
+        &:lang(az) { font-family: 'freesans-b'; }
+        &:lang(ru) { font-size: 3.2em; }
       }
       .descr
       {
@@ -397,10 +382,8 @@ height: 600px;
     }
     .storytype
     {
-
       .storytype-label
       {
-
         font-size: 14px;
         color:#fff;
         line-height:34px;
@@ -471,16 +454,14 @@ height: 600px;
         }
         .title
         {
-
           font-size: 1.2em;
           line-height: 1.2em;
           color: #2d2d2d;
           padding-bottom: 10px;
           font-family:'dejavusans-b';
-          &:lang(en)
-          {
-            font-family: 'opensans-b';
-          }
+          &:lang(en) { font-family: 'opensans-b'; }
+          &:lang(az) { font-family: 'freesans-b'; }
+          &:lang(ru) { font-size: 1.4em; }
         }
         .descr
         {
@@ -489,22 +470,19 @@ height: 600px;
           color: #525252;
           padding-bottom: 15px;
           font-family:'dejavusans';
-          &:lang(en)
-          {
-            font-family: 'opensans';
-          }
+          &:lang(en) { font-family: 'opensans'; }
+          &:lang(az) { font-family: 'freesans'; }
+          &:lang(ru) { font-size: 1.1em; }
         }
         .date
         {
-
           font-size: 0.9em;
           padding-top: 12px;
           color: #7b7b7b;
           font-family:'dejavusans';
-          &:lang(en)
-          {
-            font-family: 'opensans';
-          }
+          &:lang(en) { font-family: 'opensans'; }
+          &:lang(az) { font-family: 'freesans'; }
+          &:lang(ru) { font-size: 1.1em; }
         }
       }
     }
@@ -523,14 +501,12 @@ height: 600px;
       {
         text-decoration:none;
       }
-
     }
 
   }
 }
 .storytype .storytype-logo,.story-link .type, .add-story .type, #feature-container .feature .feature-info .type
 {
-
   background-size: 34px 34px;
   width:34px;
   height:34px;
@@ -600,19 +576,19 @@ height: 600px;
         padding: 6px 10px;
         &:hover,&:focus
         {
-        -moz-transition-property: none;
-        -webkit-transition-property: none;
-        -o-transition-property: none;
-        transition-property: none;
+          -moz-transition-property: none;
+          -webkit-transition-property: none;
+          -o-transition-property: none;
+          transition-property: none;
           background-color: #eee;
           color:#000;
         }
         &:active
         {
-            -moz-transition-property: none;
-        -webkit-transition-property: none;
-        -o-transition-property: none;
-        transition-property: none;
+          -moz-transition-property: none;
+          -webkit-transition-property: none;
+          -o-transition-property: none;
+          transition-property: none;
           background-color: #e8e8e8;
           color:#000;
         }

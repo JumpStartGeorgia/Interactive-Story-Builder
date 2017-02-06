@@ -4,9 +4,9 @@
   height:250px;
   position:relative;
   display:block;
-  margin:0px;  
+  margin:0px;
   // max-width: 459px;
-  // max-height:329px;  
+  // max-height:329px;
   background-color: #242424;
   overflow:hidden;
    -webkit-transition:all .25s linear;
@@ -14,24 +14,24 @@
   -o-transition:all .25s linear;
   transition:all .25s linear;
 
-  &:after 
+  &:after
   {
     content: '';
     display: block;
     clear: both;
   }
   &:hover
-  {   
+  {
      -webkit-transition: color 0.25s ease-out 0s;
       -moz-transition: color 0.25s ease-out 0s;
       -o-transition: color 0.25s ease-out 0s;
-      transition: color 0.25s ease-out 0s;   
+      transition: color 0.25s ease-out 0s;
       transition-property:background-color;
       -moz-transition-property: background-color; /* Firefox 4 */
       -webkit-transition-property:background-color; /* Safari and Chrome */
       -o-transition-property:background-color; /* Opera */
       img
-      { 
+      {
         opacity:0.6;
         -ms-transform: scale(1);
         -webkit-transform: scale(1);
@@ -60,23 +60,23 @@
   }
 }
 .story-link
-{ 
-  position: absolute; 
+{
+  position: absolute;
   bottom:0px;
   left:0px;
-  overflow: hidden;  
+  overflow: hidden;
   padding:100px 21px 15px 15px;
-  text-align:left;  
+  text-align:left;
   // max-width: 459px;
-  // max-height:329px; 
-  width:100%; 
+  // max-height:329px;
+  width:100%;
   display:none;
   -webkit-box-shadow: inset 0px -117px 92px -60px rgba(0, 0, 0, 0.7);
   -moz-box-shadow: inset 0px -117px 92px -60px rgba(0, 0, 0, 0.7);
   box-shadow: inset 0px -117px 92px -60px rgba(0, 0, 0, 0.7);
-  @media only screen and (min-width : 1200px) 
-  {  
-    display:block;  
+  @media only screen and (min-width : 1200px)
+  {
+    display:block;
   }
   span
   {
@@ -95,10 +95,9 @@
     transition: opacity 0.35s, transform 0.35s;
     padding-left:10px;
   }
-  span:lang(en)
-  {
-    font-family: 'opensans-b' !important;
-  }
+  span:lang(en) { font-family: 'opensans-b' !important; }
+  span:lang(az) { font-family: 'freesans-b' !important; }
+  span:lang(ru) { font-size: 18px; }
 }
 .story-message
 {
@@ -136,17 +135,16 @@
         width:100%;
         font-family:dejavusans;
         font-size:14px;
-        color:#6b6b6b; 
+        color:#6b6b6b;
         line-height:19px;
         overflow:hidden !important;
         text-overflow: ellipsis;
         text-decoration: none;
     }
-    a:lang(en)
-    {
-      font-family:opensans;
-    }
-  }  
+    a:lang(en) { font-family: opensans; }
+    a:lang(az) { font-family: freesans; }
+    a:lang(ru) { font-size: 16px; }
+  }
 
   .story-misc
   {
@@ -162,18 +160,17 @@
     padding-left: 15px;
     text-align: left;
     vertical-align: middle;
-    &:lang(en)
-    {
-      font-family:opensans;
-    }
-    > div 
+    &:lang(en) { font-family: opensans; }
+    &:lang(az) { font-family: freesans; }
+    &:lang(ru) { font-size: 16px; }
+    > div
     {
       display: inline-block;
     }
     .sep
     {
       height:16px;
-      line-height:16px;  
+      line-height:16px;
       width:1px;
       background-color:#484848;
       margin:0px 9px;
@@ -223,7 +220,7 @@ input#user_nickname + div + span.check_nickname{
 .col-2 .col:nth-of-type(2n+1),.col-3 .col:nth-of-type(3n+1),.col-4 .col:nth-of-type(4n+1),.col-6 .col:nth-of-type(6n+1){clear:both}
 .grid.align-center{text-align:center}
 .grid.align-center .col{float:none;display:inline-block}
-.grid .col 
+.grid .col
 {
   background-color:#272727;
   .story-caption a { color:#8c8c8c; }
@@ -250,7 +247,7 @@ input#user_nickname + div + span.check_nickname{
 @media screen and (max-width:768px){
   .grid .col.n-3{width:100%}
 }
-.col 
+.col
 {
   *:hover { opacity: 1; }
   .story-info
@@ -258,7 +255,7 @@ input#user_nickname + div + span.check_nickname{
     height:112px;
     overflow:hidden;
     // max-width: 459px;
-    // max-height:329px;  
+    // max-height:329px;
     a
     {
         text-decoration:none;
@@ -277,11 +274,11 @@ input#user_nickname + div + span.check_nickname{
 {
   text-align: center;
   margin:0px auto;
-  width: 100%;  
+  width: 100%;
   text-decoration:none;
   color:#fafafa;
 
-  ul.pagination 
+  ul.pagination
   {
     list-style:none;
 
