@@ -174,7 +174,7 @@
               <% end %>
             <% elsif section.infographic? %>
               <% item = section.infographic %>
-              <div class="section infographic" <%= dataAudio.html_safe %>>
+              <div class="section infographic<%= item.static_type? && item.inline_render? ? ' infographic-inline' : ''%>" <%= dataAudio.html_safe %>>
                 <% if section.has_marker? %>
                   <a class="navigation-marker" id="<%= s_i + 1 %>"></a>
                 <% end %>
@@ -183,10 +183,13 @@
                   <div class="caption"><%= item.caption %></div>
                 <% end %>
                 <% if item.static_type? %>
-                  <div class="content infographic" data-original='<%= !@export ? item.image.file.url : "media/infographic/original/#{item.image.asset_file_name_formatted}" %>'>
+                  <% is_popup = item.popup_render? %>
+                  <div class="content infographic<%= is_popup ? '' : ' inline' %>" data-original='<%= !@export ? item.image.file.url : "media/infographic/original/#{item.image.asset_file_name_formatted}" %>'>
                     <% alt = item.alt_text.present? ? item.alt_text : isFirst ? @story.about : '' %>
-                    <img src='<%= !@export ? item.image.file.url(:poster) : "media/infographic/poster/#{item.image.asset_file_name_formatted}" %>' alt="<%= strip_tags_nbsp(alt) %>">
-                    <div class="bg"></div>
+                    <img src='<%= !@export ? item.image.file.url(is_popup ? :poster : :original) : "media/infographic/poster/#{item.image.asset_file_name_formatted}" %>' alt="<%= strip_tags_nbsp(alt) %>">
+                    <% if is_popup %>
+                      <div class="bg"></div>
+                    <% end %>
                   </div>
                 <% elsif item.dynamic_type? && item.popup_render? %>
                   <div class="content interactive">

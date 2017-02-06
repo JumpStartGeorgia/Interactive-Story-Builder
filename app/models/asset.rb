@@ -5,6 +5,7 @@ class Asset < ActiveRecord::Base
 
   belongs_to :user, foreign_key: :item_id
   belongs_to :author, foreign_key: :item_id
+  belongs_to :highlight, foreign_key: :item_id
   belongs_to :story_translation, foreign_key: :item_id
   belongs_to :section_translation, foreign_key: :item_id
   belongs_to :slideshow_translation, foreign_key: :item_id
@@ -18,7 +19,7 @@ class Asset < ActiveRecord::Base
   acts_as_list scope: [:item_id, :asset_type]
 
   TYPE = {story_thumbnail: 1, section_audio: 2, content_image: 3, media_image: 4, media_video: 5,
-          slideshow_image: 6, user_avatar: 7, author_avatar: 8, infographic: 9, infographic_dataset: 10}
+          slideshow_image: 6, user_avatar: 7, author_avatar: 8, infographic: 9, infographic_dataset: 10, highlight: 11}
 
 
   attr_accessor :init_called, :asset_exists, :stop_check_thumbnail, :process_video, :is_video_image, :is_amoeba
@@ -59,7 +60,9 @@ class Asset < ActiveRecord::Base
   with_options :if => "self.asset_type == TYPE[:infographic_dataset]" do |t|
     t.validates_attachment :asset, { :size => { :in => 0..25.megabytes }}
   end
-
+  with_options :if => "self.asset_type == TYPE[:highlight]" do |t|
+    t.validates_attachment :asset, { :content_type => { :content_type => ["image/jpeg", "image/png"] }, :size => { :in => 0..4.megabytes }}
+  end
 
 
   #################################
@@ -195,6 +198,17 @@ class Asset < ActiveRecord::Base
                   :url => "/system/places/infographic_dataset/:story_id/:id__:basename.:extension"
           }
 
+        when  TYPE[:highlight]
+          opt = {
+            :url => "/system/highlights/:style/:item_id.:extension",
+            :styles => {
+                :slider => {:geometry => "1500>"}
+            },
+            :convert_options => {
+              :slider => '-quality 85'
+            }
+          }
+
       end
 
       self.asset.options.merge!(opt)
@@ -258,12 +272,15 @@ class Asset < ActiveRecord::Base
       when  TYPE[:infographic_dataset]
         self.story_id = self.infographic_translation.infographic.section.story_id
 
+      when  TYPE[:highlight]
+        self.item_id = self.highlight.id
+
     end
   end
 
   def set_aspectratio
     if self.asset_type == TYPE[:media_image] && self.asset_clone_id.nil?
-      update_column(:asset_aspectratio, Paperclip::Geometry.from_file(self.asset.path(:fullscreen)).aspect.round(2)) 
+      update_column(:asset_aspectratio, Paperclip::Geometry.from_file(self.asset.path(:fullscreen)).aspect.round(2))
     end
 
     return true

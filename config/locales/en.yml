@@ -19,6 +19,7 @@ en:
       author: Author
       asset: File
       logo: Logo
+      highlight: Highlight
     attributes:
       asset: &asset
         asset_file_name: File
@@ -51,6 +52,13 @@ en:
         about: About
         permalink: Permalink
       author_translations: *author_translation
+      highlight:
+        picked: Show on Homepage?
+        image: Image
+      highlight_translation: &highlight_translation
+        caption: Caption
+        url: URL
+      highlight_translations: *highlight_translation
       story:
         user_id: Story Author
         user_ids: Editors
@@ -280,6 +288,7 @@ en:
       add_story: Add Story
       users: Users
       authors: Authors
+      highlights: Highlights
       feedback: Feedback
       about: About
       rss: RSS
@@ -337,6 +346,7 @@ en:
       nickname: Your nickname is used in the URL to your published stories (e.g., nickname/story-title)
       local_avatar: Image that is shown in the header bar and on your user page (png and jpg only).
       avatar: Image that is shown on the Author's page (png and jpg only).
+      highlight_image: Highlight image will be shown on homepage in the slider (png and jpg only).
       like: Like this story
       unlike: Unlike this story
       staff_pick: Select as Staff Pick
@@ -630,6 +640,9 @@ en:
       index:
         no_sponsors: There are no sponsors.
         no_partners: There are no partners.
+    highlights:
+      index:
+        picked: "Yes"
   root:
     about:
       title: About Chai Khana

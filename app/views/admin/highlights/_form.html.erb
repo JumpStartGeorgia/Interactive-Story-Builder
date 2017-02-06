@@ -1,0 +1,53 @@
+<%= semantic_form_for([:admin, @item]) do |f| %>
+  <%= f.error_messages %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :picked %>
+    </div>
+  </div>
+  <%
+    image_record = @item.image
+    image_record = Asset.new(:asset_type => Asset::TYPE[:highlight])
+  %>
+  <%= f.fields_for :image, image_record do |f_asset| %>
+    <%= f_asset.input :asset_type, :as => :hidden %>
+
+    <label class=" control-label" for="highlight_image_attributes_asset"><%= t('activerecord.attributes.highlight.image') %></label>
+    <div class="image_container clear">
+      <%= image_tag @item.image_url(:slider) if @item.image.present? %>
+      <div>
+        <%= f_asset.input :asset, :as => :file , hint: t('helpers.hints.highlight_image') , :input_html => { accept:".jpg,.jpeg,.png" }, label: false  %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <% translation_objects = create_sorted_translation_objects(@item.highlight_translations) %>
+      <ul class="nav nav-tabs" role="tablist">
+        <% translation_objects.each_with_index do |trans, i| %>
+          <li role="presentation" class="<%= i == 0 ? 'active' : '' %>"><a href="#form-trans-<%= trans.locale %>-tab-link" aria-controls="form-trans-<%= trans.locale %>-tab-link" role="tab" data-toggle="tab"><%= t("app.language.#{trans.locale}") %></a></li>
+        <% end %>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <% translation_objects.each_with_index do |trans, i| %>
+          <div role="tabpanel" class="tab-pane<%= i == 0 ? ' active' : '' %>" id="form-trans-<%= trans.locale %>-tab-link">
+            <%= f.fields_for :highlight_translations, trans do |translation| %>
+                <%= translation.input :caption %>
+                <%= translation.input :url %>
+                <%= translation.hidden_field :locale , :value => trans.locale %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row row-actions">
+    <div class="col-md-6">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= f.submit t('helpers.links.reset'), :class => 'btn btn-warning', :type => :reset, :name => :reset %>
+      <%= link_to t('helpers.links.cancel'), admin_highlights_path, :class => 'btn btn-warning' %>
+    </div>
+  </div>
+<% end %>

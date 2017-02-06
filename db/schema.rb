@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170201140537) do
+ActiveRecord::Schema.define(:version => 20170202122511) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -136,6 +136,26 @@ ActiveRecord::Schema.define(:version => 20170201140537) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type"
   add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "highlight_translations", :force => true do |t|
+    t.integer  "highlight_id"
+    t.string   "locale",       :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "caption"
+    t.string   "url"
+  end
+
+  add_index "highlight_translations", ["highlight_id"], :name => "index_highlight_translations_on_highlight_id"
+  add_index "highlight_translations", ["locale"], :name => "index_highlight_translations_on_locale"
+
+  create_table "highlights", :force => true do |t|
+    t.boolean  "picked",     :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "highlights", ["picked"], :name => "index_highlights_on_picked"
 
   create_table "impressions", :force => true do |t|
     t.string   "impressionable_type"

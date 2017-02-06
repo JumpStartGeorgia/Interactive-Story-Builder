@@ -19,6 +19,7 @@ ka:
       author: "ავტორი"
       asset: ფაილი
       logo: ლოგო
+      highlight: Highlight
     attributes:
       asset: &asset
         asset_file_name: ფაილი
@@ -51,6 +52,13 @@ ka:
         about: "შესახებ"
         permalink: "მუდმივი ბმული"
       author_translations: *author_translation
+      highlight:
+        picked: Show on Homepage?
+        image: Image
+      highlight_translation: &highlight_translation
+        caption: Caption
+        url: URL
+      highlight_translations: *highlight_translation
       story:
         user_id: "ამბის ავტორი"
         user_ids: "ამბის რედაქტორები"
@@ -280,6 +288,7 @@ ka:
       add_story: "ამბის დამატება"
       users: "მომხმარებლები"
       authors: "ავტორი"
+      highlights: Highlights
       feedback: "მოგვწერე"
       about: "ჩვენ შესახებ"
       rss: RSS-ი
@@ -337,6 +346,7 @@ ka:
       nickname: "თქვენი სახელი გამოყენებულია თქვენ მიერ გამოქვეყნებული ამბების ბმულში (მაგ., სახელი/ამბის-სათაური)"
       local_avatar: "ფოტო, რომელიც გამოჩნდება თქვენი გვერდის ზედა სექციაში (მხოლოდ png და jpg)."
       avatar: "ფოტო რომელიც გამოჩნდება ავტორის გვერდზე (მხოლოდ png და jpg)"
+      highlight_image: Highlight image will be shown on homepage in the slider (png and jpg only).
       like: "მოიწონეთ ამბავი"
       unlike: "აღარ მომწონს ეს ამბავი"
       staff_pick: "რჩეულებში დამატება"
@@ -630,6 +640,9 @@ ka:
       index:
         no_sponsors: არ არის სპონსორი.
         no_partners: არ არის პარტნიორი.
+    highlights:
+      index:
+        picked: "Yes"
   root:
     about:
       title: "“ჩაი ხანას” შესახებ"

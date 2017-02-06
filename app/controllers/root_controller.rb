@@ -7,7 +7,7 @@ class RootController < ApplicationController
     @stories = process_filter_querystring(Story.is_published.in_published_theme).with_translations(I18n.locale).paginate(:page => p, :per_page => per_page)
     @theme = Theme.for_homepage
 
-
+    @highlight = Highlight.picked
     @stories_for_slider = @theme.featured_stories.with_translations(I18n.locale) if @theme.present?
     @navbar_invisible = false
     respond_to do |format|

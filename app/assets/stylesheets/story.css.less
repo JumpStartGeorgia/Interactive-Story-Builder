@@ -1702,7 +1702,7 @@ ul.dropdown-menu li a
   position:relative;
   text-align:center;
 }
-.section.infographic .container .content:hover
+.section.infographic .container .content:not(.inline):hover
 {
   cursor:pointer;
 }
@@ -1788,6 +1788,14 @@ ul.dropdown-menu li a
   }
 }
 
+.section.infographic.infographic-inline .container .content,
+.section.infographic.infographic-inline .container .caption,
+.section.infographic.infographic-inline .container .description,
+.section.infographic.infographic-inline .container .sources,
+.section.infographic.infographic-inline .container .dataset {
+  width: 100%;
+  max-width: 100%;
+}
 @media screen and (min-width: 768px) {
   .section.slideshow {
     .inner-container .images {
@@ -1810,6 +1818,14 @@ ul.dropdown-menu li a
     &.section-preserve .container, &.section-fit .container {
       max-width: 640px;
     }
+  }
+  .section.infographic.infographic-inline .container .content,
+  .section.infographic.infographic-inline .container .caption,
+  .section.infographic.infographic-inline .container .description,
+  .section.infographic.infographic-inline .container .sources,
+  .section.infographic.infographic-inline .container .dataset {
+    width: 730px;
+    max-width: 730px;
   }
 }
 @media screen and (min-width: 1024px) and (min-height: 768px) {
@@ -1834,5 +1850,13 @@ ul.dropdown-menu li a
     &.section-preserve .container, &.section-fit .container {
       max-width: 992px;
     }
+  }
+  .section.infographic.infographic-inline .container .content,
+  .section.infographic.infographic-inline .container .caption,
+  .section.infographic.infographic-inline .container .description,
+  .section.infographic.infographic-inline .container .sources,
+  .section.infographic.infographic-inline .container .dataset {
+    width: 992px;
+    max-width: 992px;
   }
 }
