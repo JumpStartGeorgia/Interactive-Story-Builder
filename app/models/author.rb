@@ -15,6 +15,7 @@ class Author < ActiveRecord::Base
 
   attr_accessible :id, :author_translations_attributes, :avatar_attributes
 
+  scoped_search :in => :author_translations, :on => [:name]
 
   def self.sorted
     with_translations(I18n.locale).order("author_translations.name asc")

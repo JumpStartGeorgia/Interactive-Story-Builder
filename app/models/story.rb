@@ -13,7 +13,7 @@ class Story < ActiveRecord::Base
   acts_as_taggable
 
   # fields to search for in a story
-  scoped_search :in => :story_translations, :on => [:title, :author, :media_author, :translation_author]
+  scoped_search :in => :story_translations, :on => [:title, :media_author, :translation_author]
   scoped_search :in => :content_translations, :on => [:caption, :sub_caption, :text]
 
   # record public views

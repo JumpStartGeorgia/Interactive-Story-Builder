@@ -17,7 +17,7 @@ module TranslationOverride
   # if the record has a translation for the current app locale, switch to that,
   # else, leave the current_locale value as it is
   def use_app_locale_if_translation_exists
-    Rails.logger.debug "--------------- use_app_locale_if_translation_exists for #{self.class.name}; current locale = #{self.current_locale}"
+    # Rails.logger.debug "--------------- use_app_locale_if_translation_exists for #{self.class.name}; current locale = #{self.current_locale}"
     self.current_locale = I18n.locale.to_s if self.translated_locales.include?(I18n.locale)
     Globalize.story_locale = self.current_locale
   end
