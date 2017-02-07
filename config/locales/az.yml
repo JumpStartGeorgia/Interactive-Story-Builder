@@ -49,7 +49,7 @@ az:
         avatar: Avatar
       author_translation: &author_translation
         name: Ad
-        about: Haqqında
+        about: Haqqımızda
         permalink: Daimi Keçid
       author_translations: *author_translation
       highlight:
