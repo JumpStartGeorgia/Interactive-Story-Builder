@@ -293,13 +293,13 @@ hy:
       about: "Մեր մասին"
       rss: RSS
       themes: "Թեմաներ"
-      story_types: "Տեսակներ"
-      languages: "Լեզուներ"
+      story_types: "տեսակների"
+      languages: "լեզու"
       logos: Logos
-      follow: "Միանալ"
-      facebook: Facebook
-      twitter: Twitter
-      youtube: YouTube
+      follow: "Հետեւեք մեզ"
+      facebook: Facebook-ում
+      twitter: Twitter-ում
+      youtube: Youtube-ում
       subscribe: "Բաժանորդագրվել"
       user_settings: "Կարգավորումներ"
       like: "Հավանել"
@@ -310,7 +310,7 @@ hy:
       menu: "Մենյու"
       pages: "Խմբագրել տեքստը կայքում"
       next: "Հաջորդը"
-      feed: "Լրահոս"
+      feed: "Լրահոսում"
       download: Ներբեռնել
       previous: Նախորդ
       story_menu:
@@ -399,7 +399,7 @@ hy:
       app_name: "Չայխանա"
       app_intro: "Չայխանա ՀԿ-ն կազմակերպում է դասընթացներ տարածաշրջանի լրագրողների համար և առցանց հրապարակում մուլտիմեդիա նյութեր հարավկովկասյան խնդիրների վերաբերյալ"
       app_intro_meta: "Չայխանա ՀԿ-ն կազմակերպում է դասընթացներ տարածաշրջանի լրագրողների համար և առցանց հրապարակում մուլտիմեդիա նյութեր հարավկովկասյան խնդիրների վերաբերյալ"
-      powered_by: "Աջակցությամբ"
+      powered_by: ""
       powered_by_js: Jumpstart Georgia
       powered_by_end:
       embed_slogan: "Ստեղծեք Ձեր նյութը Չայխանայում"
@@ -410,19 +410,19 @@ hy:
       jumpstart: JumpStart Georgia
       js_link_title: JumpStart Georgia - Ավելի լավ ենք համադրում տվյալները
       js_link_text: "Ստեղծող"
-      search: "Փնտրել նյութը"
+      search: "որոնել"
       build: "Ստեղծել նյութ"
       explore: "Նայել նյութեր"
       about_story: "Մեր մասին"
       likes: "Հավանումներ"
       comments: "Մեկնաբանություններ"
       publish_date: "Հրապարակման ամսաթիվը"
-      follow: "Միանալ"
-      following: "Միացածները"
+      follow: "Հետեւեք մեզ"
+      following: "հետևորդներ"
       follow_link_title: "Սեղմեք, որպեսզի ստանաք ծանուցումներ այս օգտատիրոջ նոր հրապարակումների վերաբերյալ"
       unfollow_link_title: "Սեղմեք, որպեսզի դադարեք ստանալ ծանուցումներ այս օգտատիրոջ նոր հրապարակումների վերաբերյալ"
       email: "Էլեկտրոնային փոստ"
-      views: "Դիտումներ"
+      views: "դիտումներ`"
       permalink: "Պերմալինկ"
       shortened_url: "Կարճ URL"
       share_story: "Տարածել այս նյութը"
@@ -562,9 +562,9 @@ hy:
     filters: "Ֆիլտրեր"
     all_stories: "Բոլոր նյութերը"
     sort:
-      recent: "Վերջին դիտվածները"
-      reads: "Դիտումեր"
-      likes: "Հավանումներ"
+      recent: "վերջին դիտվածների"
+      reads: "դիտումերի"
+      likes: "հավանումների քանակի"
     category_header: "Դասակարգում"
     category_title: "Դիտել որոշակի դասակարգման նյութեր"
     theme_header: "Թեմա"
@@ -590,7 +590,7 @@ hy:
     application:
       copyright: "Հեղինակային իրավունքներ"
       copyright_text: "Նյութի հեղինակային իրավունքները պատկանում են «Չայխանա» ՀԿ-ին: Վերահրատարակումն առանց «Չայխանա»-յի համաձայնության, արգելվում է:"
-      disclaimer: Disclaimer
+      disclaimer: "Ուշադրություն"
       disclaimer_text: "Այս կայքը ստեղծվել է MYMEDIA շնորհիվ, որը DANIDA-յի կողմից ֆնանսավորվող ծրագիր է: Հրապարակումների բովանդակությունը միմիայն հեղինակների, համագործակցողների և միջազգային կազմակերպությունների պատասխատվության ներքո է և ոչ մի կերպ չեն արտահայտում MYMEDIA / DANIDA-ի պաշտոնական տեսակետը:"
     unsupported_browser:
       title: "Չսատարվող բրաուզեր"
@@ -848,13 +848,13 @@ hy:
         name: "Տվյալների աղբյուրի անունը"
         url: "Առցանց տվյալների աղբյուրի URL-ը"
   storyteller:
-    byline: "Կողմից"
+    byline: "հեղինակ`"
     byline_media: "Ֆոտոների և վիդեոների հեղինակ"
     byline_translator: "Թարգմանությունը"
     source: "Աղբյուր:"
     by: "կողմից"
     related_stories: "Առնչվող նյութեր"
-    view_all_stories_in: "Դիտել բոլոր նյութերը"
+    view_all_stories_in: "Դիտել բոլոր նյութերը`"
     infographic:
       source: Data Source
       dataset: Related Items

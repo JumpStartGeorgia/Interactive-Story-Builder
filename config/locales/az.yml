@@ -399,7 +399,7 @@ az:
       app_name: "Çayxana"
       app_intro: "Çayxana, sərhəd-aşan jurnalistika təlimləri və Cənubi Qafqaz regionunda fərqli mövzular üzrə multimedia materialları üçün onlayn nəşr xidməti təmin edən QHT-dir."
       app_intro_meta: "Çayxana, sərhəd-aşan jurnalistika təlimləri və Cənubi Qafqaz regionunda fərqli mövzular üzrə multimedia materialları üçün onlayn nəşr xidməti təmin edən QHT-dir."
-      powered_by: xxx tərəfindən dəstəklənir
+      powered_by: ""
       powered_by_js: Jumpstart Georgia
       powered_by_end:
       embed_slogan: Hekayəni Çayxanayla hazırla
@@ -552,7 +552,7 @@ az:
     feature: Yeni funksiya tələb et
     feedback: "Ümumi Qiymətləndirmə"
   filters:
-    all: Hər şey
+    all: bütün
     matches: Uyğun gələnlər
     staff_pick: Redaksiya Heyətinin Seçimi
     staff_pick_title: Redaksiya Heyətinin Seçimi kimi seçilən hekayələrə bax
@@ -853,7 +853,7 @@ az:
     byline_translator: xxx tərəfindən tərcümə edilib
     source: 'Mənbə:'
     by: tərəfindən
-    related_stories: Buna aid xəbərlərə bax
+    related_stories: Əlaqəli mövzular
     view_all_stories_in: Bütün hekayələrə bax
     infographic:
       source: Data Source

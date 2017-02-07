@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
 	# :registerable, :recoverable,
   has_and_belongs_to_many :stories
 
-	has_one :local_avatar,     
-	  :conditions => "asset_type = #{Asset::TYPE[:user_avatar]}", 	 
+	has_one :local_avatar,
+	  :conditions => "asset_type = #{Asset::TYPE[:user_avatar]}",
 	  foreign_key: :item_id,
     class_name: "Asset",
 	  dependent: :destroy
@@ -19,11 +19,11 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, 
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role,
                   :provider, :uid, :nickname, :avatar,
                   :about, :default_story_locale, :permalink, :local_avatar_attributes, :email_no_domain,
                   :wants_notification, :notification_language#, :avatar_file_name
-                  
+
   attr_accessor :send_notification
 
 #  has_permalink :create_permalink, true
@@ -33,11 +33,11 @@ class User < ActiveRecord::Base
   ROLES = {:user => 0, :coordinator => 50, :user_manager => 70, :site_admin => 80, :admin => 99}
 
   before_create :create_email_no_domain
-#  before_save :check_nickname_changed  
+#  before_save :check_nickname_changed
 #	before_save :generate_avatar_file_name
   before_save :set_notification_language
 
-  # email_no_domain is used in the search for collaborators 
+  # email_no_domain is used in the search for collaborators
   # so people cannot search using domain name to guess their email addresses
   def create_email_no_domain
     self.email_no_domain = self.email.split('@').first
@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   # if the nickname changes, then the permalink must also change
   def check_nickname_changed
     #logger.debug "************** checking nickname changed"
-    
+
     # if this is a create (id does not exist) make sure the nickname is unique
     fix_nickname_duplication if self.id.blank?
 
@@ -59,13 +59,13 @@ class User < ActiveRecord::Base
       #logger.debug "************** nickname changed, creating new permalink"
       # make sure there are no tags in the nickname
       self.nickname = new_nickname
-      self.generate_permalink! 
+      self.generate_permalink!
     end
     return true
   end
-  
+
   # if this nickname already exists, add a # to the end to make it unique
-  def fix_nickname_duplication 
+  def fix_nickname_duplication
     #logger.debug "************** fix_nickname_duplication "
     # if the nickname does not exist, populate with the first part of the email
     if read_attribute(:nickname).blank?
@@ -73,23 +73,23 @@ class User < ActiveRecord::Base
     end
 
     n = User.where(["nickname = ?", self.nickname]).count
-    
-    if n > 0 
+
+    if n > 0
       links = User.where(["nickname LIKE ?", "#{self.nickname}%"]).order("id")
       number = 0
-      
+
       links.each_with_index do |link, index|
         if link.nickname =~ /#{self.nickname}-\d*\.?\d+?$/
           new_number = link.nickname.match(/-(\d*\.?\d+?)$/)[1].to_i
           number = new_number if new_number > number
         end
-      end         
+      end
       self.nickname = "#{self.nickname}-#{number+1}"
-    end  
+    end
     #logger.debug "************** fix_nickname_duplication nickname now: #{self.nickname} "
   end
 
-  def create_permalink   
+  def create_permalink
     self.nickname.present? ? self.nickname.dup : nil
   end
 
@@ -98,7 +98,7 @@ class User < ActiveRecord::Base
   def has_provider_avatar?
     self.provider.present? && self.avatar.present?
   end
-  
+
   # see if the user has a local avatar saved
   def local_avatar_exists?
     self.local_avatar.present? && self.local_avatar.file.exists?
@@ -130,7 +130,7 @@ class User < ActiveRecord::Base
   end
 
 
-  # # create a random string for this user that will 
+  # # create a random string for this user that will
   # # be used for the filename for the avatar
   # def generate_avatar_file_name
   #   if self.avatar_file_name.blank?
@@ -157,20 +157,20 @@ class User < ActiveRecord::Base
     end
     return false
   end
-  
+
   def role_name
     name = ''
     index = ROLES.values.index(self.role)
     if index.present?
-      name = ROLES.keys[index].to_s 
+      name = ROLES.keys[index].to_s
     end
     return name
   end
-  
+
   def nickname
     read_attribute(:nickname).present? ? read_attribute(:nickname) : self.email.present? ? self.email.strip.split('@')[0] : nil
   end
-  
+
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
@@ -195,7 +195,7 @@ class User < ActiveRecord::Base
       end
     end
   end
-  
+
 	# if user logged in with omniauth, password is not required
 	def password_required?
 		super && provider.blank?
@@ -206,13 +206,13 @@ class User < ActiveRecord::Base
     self.notification_language = I18n.locale if self.has_attribute?('notification_language') && read_attribute("notification_language").blank?
     return true
   end
-  
+
   # get the notification language locale for a user
   def self.get_notification_language_locale(id)
     x = select('notification_language').find_by_id(id)
     return x.present? ? x.notification_language.to_sym : I18n.default_locale
   end
-  
+
   # get list of authors this user is following
   def following_authors
     following = []
@@ -222,7 +222,7 @@ class User < ActiveRecord::Base
       # get user object for each user following
       following = Author.where(:id => notifications.map{|x| x.identifier}.uniq)
     end
-    
+
     return following
   end
 

@@ -562,9 +562,9 @@ ka:
     filters: "ფილტრი"
     all_stories: "ყველა ამბავი"
     sort:
-      recent: "ბოლო"
-      reads: "ნახვა"
-      likes: "მოწონება"
+      recent: "ბოლოს გამოქვეყნებული"
+      reads: "ნახვების მიხედვით"
+      likes: "მოწონების მიხედვით"
     category_header: "კატეგორია"
     category_title: "იხილეთ ამბები კატეგორიიდან"
     theme_header: "თემა"

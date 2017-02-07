@@ -290,13 +290,13 @@ ru:
       authors: "Авторы"
       highlights: Highlights
       feedback: "Отзывы"
-      about: "О Чайхане"
+      about: "О нас"
       rss: RSS
       themes: "Темы"
       story_types: "Типы"
       languages: "Языки"
       logos: Logos
-      follow: "Следовать"
+      follow: "Присоединяйтесь"
       facebook: Facebook
       twitter: Twitter
       youtube: YouTube
@@ -557,14 +557,14 @@ ru:
     staff_pick: "Избранные историй"
     staff_pick_title: "Посмотреть Избранные историй"
     staff_pick_title_active: Удалить фильтр "Избранные историй"
-    sort_header: "Группировать по"
+    sort_header: "Сортировать по"
     sort_title: "Укажите признак группирования"
     filters: "Фильтры"
     all_stories: "Все истории"
     sort:
-      recent: "Последние"
-      reads: "Просмотры"
-      likes: Отметки "Нравится"
+      recent: "дате"
+      reads: "количеству просмотров"
+      likes: "количеству лайков"
     category_header: "Категория"
     category_title: "Прoсмотривать истории которые относятся к категории"
     theme_header: "Тема"
@@ -572,7 +572,7 @@ ru:
     language_header: "Язык"
     language_title: "Просмотривать истории созданные на определеннoм языке"
     search: "Найти историю"
-    following: "Подпосчики"
+    following: "Подписчики"
     following_title: "Просмотривать истории от пользывателей, к которым Вы подписаны"
     following_title_active: Удалить фильтр "Мои подписки"
     not_published: "Не опубликованные"
@@ -645,7 +645,7 @@ ru:
         picked: "Yes"
   root:
     about:
-      title: "О Чайхане"
+      title: "О нас"
     embed:
       home_link: "Создан на Чайхане"
   stories:
@@ -848,7 +848,7 @@ ru:
         name: "Название источника данных"
         url: URL для онлайн источника данных
   storyteller:
-    byline: Oт
+    byline: автор
     byline_media: "Фото и видео от"
     byline_translator: "Переводчик"
     source: "Источник"
