@@ -399,7 +399,7 @@ en:
       app_name: Chai Khana
       app_intro: Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.
       app_intro_meta: Chai Khana is an NGO that provides cross-border journalistic trainings and online publishing for issue-based multi-media coverage in the South Caucasus region.
-      powered_by: Powered by
+      powered_by: ""
       powered_by_js: Jumpstart Georgia
       powered_by_end: ""
       embed_slogan: Build your story with Chai Khana
@@ -423,6 +423,7 @@ en:
       unfollow_link_title: Click to stop receiving notifications whenever this author publishes new stories
       email: Email
       views: Views
+      views2: "Views:"
       permalink: Permalink
       shortened_url: Short URL
       share_story: Share this story
@@ -557,7 +558,7 @@ en:
     staff_pick: Staff Pick
     staff_pick_title: View stories that have been selected as Staff Picks
     staff_pick_title_active: Remove Staff Pick filter
-    sort_header: Sorted By
+    sort_header: "Sorted By:"
     sort_title: Indicate how the stories should be sorted
     filters: Filters
     all_stories: All Stories
@@ -854,7 +855,7 @@ en:
     source: "Source:"
     by: by
     related_stories: Related Stories
-    view_all_stories_in: View all stories in
+    view_all_stories_in: "View all stories in:"
     infographic:
       source: Data Source
       dataset: Related Items

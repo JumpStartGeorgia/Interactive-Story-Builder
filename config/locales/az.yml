@@ -423,6 +423,7 @@ az:
       unfollow_link_title: Bu istifadəçi yeni hekayələr paylaşanda bildirişləri dayandırmaq üçün bas
       email: E-poçt
       views: Baxışlar
+      views2: "Baxışlar:"
       permalink: Daimi Keçid
       shortened_url: Qısa URL
       share_story: Hekayəni paylaş
@@ -557,7 +558,7 @@ az:
     staff_pick: Redaksiya Heyətinin Seçimi
     staff_pick_title: Redaksiya Heyətinin Seçimi kimi seçilən hekayələrə bax
     staff_pick_title_active: Redaksiya Heyətinin Seçimi filtrini aradan qaldır
-    sort_header: xxx - Qaydası ilə Sırala
+    sort_header: "xxx - Qaydası ilə Sırala:"
     sort_title: Hekayələrin sıralama qaydasını göstər
     filters: Filtrlər
     all_stories: Bütün hekayələr
@@ -848,13 +849,13 @@ az:
         name: Data mənbənin adı
         url: Online Data Mənbəyə URL
   storyteller:
-    byline: Tərəfindən
+    byline: Müəllif
     byline_media: "Şəkillər və videolar xxx tərəfindən hazırlanıb"
     byline_translator: xxx tərəfindən tərcümə edilib
     source: 'Mənbə:'
-    by: tərəfindən
+    by: Müəllif
     related_stories: Əlaqəli mövzular
-    view_all_stories_in: Bütün hekayələrə bax
+    view_all_stories_in: "Bütün hekayələrə bax:"
     infographic:
       source: Data Source
       dataset: Related Items

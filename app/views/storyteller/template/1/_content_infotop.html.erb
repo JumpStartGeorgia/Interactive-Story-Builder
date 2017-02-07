@@ -12,7 +12,7 @@
     <% if @story.has_disclaimer %>
     <div class="disclaimer" data-tip="<%= t('storyteller.disclaimer_text') %>"><%= t('storyteller.disclaimer') %></div>
     <% end %>
-    <div class="views" title=""><%= t('app.common.views', locale: @story.current_locale) %>:&nbsp;<span><%= @story.impressions_count %></span></div>
+    <div class="views" title=""><%= t('app.common.views2', locale: @story.current_locale) %>&nbsp;<span><%= @story.impressions_count %></span></div>
   <% end %>
       <div class="r">
       <%
