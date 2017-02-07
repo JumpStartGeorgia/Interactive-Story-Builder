@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
 	# :registerable, :recoverable,
-  has_and_belongs_to_many :stories
+  has_many :story_users
+  has_many :stories, :through => :story_users, :dependent => :destroy
 
 	has_one :local_avatar,
 	  :conditions => "asset_type = #{Asset::TYPE[:user_avatar]}",
