@@ -4,8 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? "#{yield(:title)} | #{t('app.common.app_name_not_trans')}" :
-				t('app.common.app_name_not_trans') %></title>
+    <title><%= (content_for?(:title) ? "#{yield(:title)} | " : (content_for?(:meta_title) ? "#{yield(:meta_title)} | " : "")) + "#{t('app.common.app_name_not_trans')}" %></title>
     <%= csrf_meta_tags %>
 	  <%= include_gon %>
 

@@ -146,10 +146,8 @@ class ApplicationController < ActionController::Base
     if params[:q].present?
       # story_objects = story_objects.search_for(params[:q])
       story_ids = (story_objects.search_for(params[:q])).map(&:id) #.pluck(:id)
-      # Rails.logger.debug("--------------------------------------------#{story_ids}")
       author_ids = Author.search_for(params[:q]).map(&:id)
       story_ids += story_objects.joins(:authors).where(:authors => {:id => author_ids}).pluck(:id)
-      # Rails.logger.debug("--------------------------------------------#{story_ids}")
       story_objects = Story.where(id: story_ids)
 
       gon.q = params[:q]
@@ -167,7 +165,6 @@ class ApplicationController < ActionController::Base
     # sort
     @story_filter_sort_recent = true
     @story_filter_sort_permalink =  ""
-     # Rails.logger.fatal("fatal----------------------#{params[:sort].present?} - #{I18n.t('filters.sort').keys.map{|x| x.to_s}.include?(params[:sort])}")
     if params[:sort].present? && I18n.t('filters.sort').keys.map{|x| x.to_s}.include?(params[:sort])
       case params[:sort]
         when 'recent'
@@ -183,7 +180,6 @@ class ApplicationController < ActionController::Base
       end
 			@story_filter_sort = I18n.t("filters.sort.#{params[:sort]}")
     else
-       Rails.logger.fatal("fatal----------------------reeecent")
       story_objects = story_objects.recent
 			@story_filter_sort = I18n.t("filters.sort.recent")
     end
