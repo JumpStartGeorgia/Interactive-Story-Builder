@@ -332,19 +332,20 @@ class Story < ActiveRecord::Base
   #   Story.where(:id => published_story_ids)
   # end
 
- # get n next stories from list of all stories that are
+  # get n next stories from list of all stories that are
   # in same themes as current story, ordered by recent,
   #  if there is no next story get from beginning of the list
   def next_stories(n=4)
     themes_ids = self.themes.published.pluck(:id) # get current story themes ids
     story_ids = StoryTheme.where(:theme_id => themes_ids).pluck(:story_id).uniq # get all stories for themes only uniq
-    published_story_ids = StoryTranslation.where(locale: self.current_locale, published: true, story_id: story_ids).pluck(:story_id) # get story ids only published and where locale matches
+    story_ids = StoryTranslation
+                            .where(locale: self.current_locale, published: true, story_id: story_ids)
+                            .order("story_translations.published_at desc, story_translations.title asc")
+                            .pluck(:story_id) # get story ids only published and where locale matches ordered by recent
 
-    story_ids_ordered = Story.where(:id => published_story_ids).recent.pluck(:id) # list of story ids, by recent
-
-    current_story_index = story_ids_ordered.index(self.id) # current story position
-    right = story_ids_ordered.slice(current_story_index+1,story_ids_ordered.length) # everything on the right side from current story id
-    left = story_ids_ordered.slice(0,current_story_index) # everything on the left side from current story id
+    current_story_index = story_ids.index(self.id) # current story position
+    right = story_ids.slice(current_story_index+1,story_ids.length) # everything on the right side from current story id
+    left = story_ids.slice(0,current_story_index) # everything on the left side from current story id
 
     next_ids = right[0,n] # get n ids from right side
     next_ids += left[0,n-next_ids.length] if next_ids.length < n # if not enough get from left side
