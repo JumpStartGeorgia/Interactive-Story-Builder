@@ -15,7 +15,7 @@ class StoryTranslation < ActiveRecord::Base
 
   accepts_nested_attributes_for :asset, :reject_if => lambda { |c| c[:asset].blank? && c[:asset_clone_id].blank? }
 
-  attr_accessible :story_id, :locale, :shortened_url, :title, :permalink, :permalink_staging, :author, :media_author, :about,
+  attr_accessible :story_id, :locale, :shortened_url, :title, :permalink, :permalink_staging, :media_author, :about,
       :published, :published_at, :language_type, :translation_percent_complete, :translation_author, :asset_attributes
 
   attr_accessor :is_progress_increment, :progress_story_id
@@ -23,7 +23,6 @@ class StoryTranslation < ActiveRecord::Base
   #################################
   ## Validations
   validates :title, :presence => true, length: { maximum: 100 }
-#  validates :author, :presence => true, length: { maximum: 255 }
   validates :permalink, :presence => true
   validates :media_author, length: { maximum: 255 }
   validates :translation_author, length: { maximum: 255 }

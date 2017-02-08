@@ -3,7 +3,7 @@ class Story < ActiveRecord::Base
 
   @@TYPE = {story: 1, talk_show: 2, video: 3, photo: 4, infographic: 5}
 
-	translates :shortened_url, :title, :permalink, :permalink_staging, :author, :media_author, :about,
+	translates :shortened_url, :title, :permalink, :permalink_staging, :media_author, :about,
               :published, :published_at, :language_type, :translation_percent_complete, :translation_author
 
   # for likes

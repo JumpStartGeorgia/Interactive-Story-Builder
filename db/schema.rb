@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170202122511) do
+ActiveRecord::Schema.define(:version => 20170208063044) do
 
   create_table "assets", :force => true do |t|
     t.integer  "item_id"
@@ -496,7 +496,6 @@ ActiveRecord::Schema.define(:version => 20170202122511) do
     t.string   "title"
     t.string   "permalink"
     t.string   "permalink_staging"
-    t.string   "author"
     t.string   "media_author"
     t.text     "about"
     t.boolean  "published",                                 :default => false
