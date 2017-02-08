@@ -28,7 +28,7 @@ class StorytellerController < ApplicationController
 
         @story.sections.includes([:media,:content,:embed_medium,:youtube,:slideshow])
 
-        @stories = @story.random_related_stories
+        @stories = @story.next_stories # random_related_stories
 
 # logger.debug "after reload app locale = #{I18n.locale}; story locale = #{@story.current_locale}"
 # logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@"
