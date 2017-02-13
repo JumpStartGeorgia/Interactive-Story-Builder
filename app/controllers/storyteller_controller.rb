@@ -25,10 +25,11 @@ class StorytellerController < ApplicationController
         impressionist(@story, :unique => [:session_hash]) # record the view count
         @story.reload
         @story.set_to_app_locale
+        @stories = @story.next_stories # random_related_stories
+        @story.set_to_app_locale
 
         @story.sections.includes([:media,:content,:embed_medium,:youtube,:slideshow])
 
-        @stories = @story.next_stories # random_related_stories
 
 # logger.debug "after reload app locale = #{I18n.locale}; story locale = #{@story.current_locale}"
 # logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@"
