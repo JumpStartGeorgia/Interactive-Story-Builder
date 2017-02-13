@@ -10,8 +10,11 @@ atom_feed do |feed|
       item.categories.map {|t|
         entry.category term: t.permalink.downcase, label: t.name, scheme: feed_path(:category => t.permalink.downcase )
       }
-      entry.author do |author|
-        author.name item.author
+      # entry.author do |author|
+      #   author.name item.author
+      # end
+      entry.authors do |author|
+        item.authors.each { |a| author.name a.name }
       end
       #entry.logo image_tag(item.show_asset.file.url(:thumbnail)).html_safe
     end
