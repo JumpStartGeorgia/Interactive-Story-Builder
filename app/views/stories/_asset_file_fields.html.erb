@@ -1,12 +1,12 @@
-<% 
-  asset_record ||= nil 
-  original ||= false 
-  orig_asset_id ||= nil 
+<%
+  asset_record ||= nil
+  original ||= false
+  orig_asset_id ||= nil
 %>
 <div class="image_asset_form_container clear">
   <div class="preview_img">
     <% if asset_record.present? && asset_record.file.exists? %>
-    	<img src="<%= asset_record.file.url(:thumbnail_preview) %>"/>  
+    	<img src="<%= asset_record.file.url(:thumbnail_preview) %>"/>
   	<% end %>
   </div>
 
@@ -24,30 +24,30 @@
         </div>
 
         <div class="item-asset-clone">
-          <%= f.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id} %>
+          <%= f.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id}.merge(asset_record.asset_clone_id.present? ? { :value => orig_asset_id } : {}) %>
         </div>
         <% vis_class = asset_record.asset_clone_id.present? ? 'not-visible' : '' %>
         <div class="item-asset <%= vis_class %>">
-          <%= f.input :asset, :as => :file , hint: t('.hint.asset') , :input_html => { :id => "slideshowImage", accept:".jpg,.jpeg,.png" }, label: false %> 
+          <%= f.input :asset, :as => :file , hint: t('.hint.asset') , :input_html => { :id => "slideshowImage", accept:".jpg,.jpeg,.png" }, label: false %>
         </div>
       <% else %>
-        <%= f.input :asset, :as => :file , hint: t('.hint.asset') , :input_html => { :id => "slideshowImage", accept:".jpg,.jpeg,.png" }, label: false %> 
+        <%= f.input :asset, :as => :file , hint: t('.hint.asset') , :input_html => { :id => "slideshowImage", accept:".jpg,.jpeg,.png" }, label: false %>
       <% end %>
     <% else %>
       <div style="height: 80px;">&nbsp;</div>
     <% end %>
 
-    <%= f.input :caption, 
+    <%= f.input :caption,
     { :input_html => {}.merge(@readonly) }
     .merge(( (@isTO) ? {} : { hint: t('.hint.caption'), placeholder: t('.placeholder.caption') })) %>
 
-    <%= f.input :source, 
+    <%= f.input :source,
     { :input_html => {}.merge(@readonly) }
     .merge(( (@isTO) ? {} : { hint: t('.hint.source'), placeholder: t('.placeholder.source') })) %>
 
     <% if !@isTO %>
       <%= f.input :asset_type, :as => :hidden , :input_html => {:value => Asset::TYPE[:slideshow_image]} %>
-      <%= f.input :asset_exists, :as => :hidden %>      
+      <%= f.input :asset_exists, :as => :hidden %>
     <% end %>
 
   <% if !@trans %>

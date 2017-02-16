@@ -11,9 +11,9 @@
   <h2 class="form-title"><%= t('.form_title') %></h2>
   <%= semantic_form_for(@item, url: media_story_path(id:params[:id],:format => :js), :html => { :multipart=> true, :id => "mediaForm", :class => "#{form_class}" } , remote: true) do |f| %>
     <%= f.inputs do %>
-      <% 
+      <%
         trans_record = @item.medium_translations.select{|x| x.locale == @item.current_locale}.first
-        trans_record = @item.with_translation(@item.current_locale) if trans_record.blank? 
+        trans_record = @item.with_translation(@item.current_locale) if trans_record.blank?
       %>
       <%= f.fields_for :medium_translations, trans_record do |f_translation| %>
 
@@ -22,17 +22,17 @@
 
         <%= (f_translation.input :locale , :as => :hidden) if !isTO %>
 
-        <%= f_translation.input :title, 
-        { 
-          :required => !isTO, :input_html => { id: (!isTO ?  "mediaTitle" : nil) }      
-          .merge(readonly) 
+        <%= f_translation.input :title,
+        {
+          :required => !isTO, :input_html => { id: (!isTO ?  "mediaTitle" : nil) }
+          .merge(readonly)
         }
         .merge(( (isTO) ? {} : { hint: t('.hint.title'), placeholder: t('.placeholder.title') })) %>
 
         <% if @trans %>
           <%# need this hidden field so can properly set value in translation model %>
           <%= f.input :media_type, :as => :hidden %>
-          
+
         <% else %>
           <div class="radio_buttons input required form-group radio-indent radio-hide-button" id="medium_media_type_input">
             <label class="  control-label" for="medium_media_type">
@@ -69,7 +69,7 @@
         %>
         <%= f_translation.fields_for :image, image_asset_record do |f_image_asset| %>
           <%= f_image_asset.input :asset_type, :as => :hidden %>
-          <% 
+          <%
             asset_class = isTO ? 'original-image-asset' : 'translated-image-asset'
           %>
           <div id='mediaImageBox' <%=  @item.media_type == Medium::TYPE[:video]  ? "style=display:none;" : "" %> >
@@ -88,33 +88,37 @@
 
                 <% if image_asset_record.asset_clone_id.blank? && image_asset_record.file.exists? %>
                   <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url(:mobile_640)}" %>'><%= t('app.buttons.preview_image') %></a>
-                <% end %>  
+                <% end %>
 
                 <div id="item-image-asset-clone">
-                  <% 
+                  <%
+                    # orig = @item.with_translation(@from)
+                    # orig_asset_id = orig.image.id if orig.present? && orig.image.present?
                     orig = @item.with_translation(@from)
-                    orig_asset_id = orig.image.id if orig.present? && orig.image.present?                  
+                    if orig.present? && orig.image.present?
+                      orig_asset_id = orig.image.asset_clone_id.present? ? orig.image.asset_clone_id : orig.image.id
+                    end
                   %>
-                  <%= f_image_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id} %>
+                  <%= f_image_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id }.merge(image_asset_record.asset_clone_id.present? ? { :value => orig_asset_id } : {}) %>
                 </div>
 
                 <% vis_class = image_asset_record.asset_clone_id.present? ? 'not-visible' : '' %>
                 <div id="item-image-asset" class="item-asset <%= vis_class %>">
-                  <%= f_image_asset.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:".jpeg,.jpg,.png" }, label: false  %> 
+                  <%= f_image_asset.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:".jpeg,.jpg,.png" }, label: false  %>
                 </div>
               <% else %>
                 <% if image_asset_record.file.exists? %>
                   <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url(:mobile_640)}" %>'><%= t('app.buttons.preview_image') %></a>
-                <% end %>  
-                <%= f_image_asset.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:".jpeg,.jpg,.png" }, label: false  %> 
+                <% end %>
+                <%= f_image_asset.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:".jpeg,.jpg,.png" }, label: false  %>
               <% end %>
             <% else %>
               <div style="height: 35px;">&nbsp;</div>
               <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url(:mobile_640)}" %>'><%= t('app.buttons.preview_image') %></a>
               <div style="height: 28px;">&nbsp;</div>
-            <% end %>    
+            <% end %>
           </div>
-        <% end %> 
+        <% end %>
 
         <%
           video_asset_record = trans_record.video
@@ -124,7 +128,7 @@
         %>
         <%= f_translation.fields_for :video, video_asset_record do |f_video_asset| %>
           <%= f_video_asset.input :asset_type, :as => :hidden %>
-          <% 
+          <%
             asset_class = isTO ? 'original-video-asset' : 'translated-video-asset'
           %>
 
@@ -138,7 +142,7 @@
                     <%= t('app.msgs.video_processed') %>
                   </span>
                   <% preview = true %>
-                 
+
                 <% else %>
                   <span class="processed-msg not-processed">
                     <%= t('app.msgs.video_not_processed') %>
@@ -164,7 +168,7 @@
                     <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ video_asset_record.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
                   <% end %>
                   <div id="item-video-asset-clone">
-                    <% 
+                    <%
                       orig = @item.with_translation(@from)
                       orig_asset_id = orig.present? && orig.video.present? ? orig.video.id : nil
                     %>
@@ -179,7 +183,7 @@
               <% else %>
                 <% if video_asset_record.file.exists? && preview %>
                   <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ video_asset_record.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
-                <% end %>  
+                <% end %>
                 <%= f_video_asset.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:".mp4,.mov,.webm,.ogv,.flv,.avi,.wmv" }, label: false %>
               <% end %>
             <% else %>
@@ -190,14 +194,14 @@
               <% else %>
                 <div style="height: 66px;">&nbsp;</div>
               <% end %>
-            <% end %>    
+            <% end %>
           </div>
-        <% end %> 
+        <% end %>
 
-        <%= f_translation.input :caption, 
-        { 
-          :input_html => { id: (!isTO ?  "mediaCaption" : nil) }      
-          .merge(readonly) 
+        <%= f_translation.input :caption,
+        {
+          :input_html => { id: (!isTO ?  "mediaCaption" : nil) }
+          .merge(readonly)
         }
         .merge(( (isTO) ? {} : { hint: t('.hint.caption'), placeholder: t('.placeholder.caption') })) %>
 
@@ -234,7 +238,7 @@
             <div class="help-inline" title="<%= t('.hint.infobox_type')%>">
               <div>?</div>
             </div>
-          <% end %>          
+          <% end %>
         </label>
         <% infobox_types = [[t('.floating'),0, 'glyphicon-resize-vertical'], [t('.fixed'),1, 'glyphicon-pushpin']] %>
         <div class="radio-container">
@@ -253,27 +257,27 @@
         </div>
       </div>
 
-        <%= f_translation.input :source, 
-        { 
-          :input_html => { id: (!isTO ?  "mediaSource" : nil) }      
-          .merge(readonly) 
+        <%= f_translation.input :source,
+        {
+          :input_html => { id: (!isTO ?  "mediaSource" : nil) }
+          .merge(readonly)
         }
         .merge(( (isTO) ? {} : { hint: t('.hint.source'), placeholder: t('.placeholder.source') })) %>
 
         <% if !isTO %>
           <%= f.input :section_id, :as => :hidden , :input_html => { :id => "mediaSection" }  %>
           <% if @item.id.present? %>
-            <%= f.input :id, :as => :hidden , :input_html => { :id => "mediaId" }  %>    
+            <%= f.input :id, :as => :hidden , :input_html => { :id => "mediaId" }  %>
           <% end %>
         <% end %>
       <% end %>
     <% end %>
     <% if !isTO %>
-      <div class="pull-right spacer">  
+      <div class="pull-right spacer">
         <%= f.submit t('app.buttons.save'), :class => 'btn btn-default', :"data-disable-with"=> t('app.buttons.processing') %>
-        <%= f.submit t('app.buttons.save_and_next'), :class => 'btn btn-default', :name => "commit_and_next", :"data-disable-with"=> t('app.buttons.processing') %>             
-        <%= f.submit t('helpers.links.next'), :class => 'btn btn-default', :type => :button, :onclick => 'select_next();' %> 
-        <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>          
+        <%= f.submit t('app.buttons.save_and_next'), :class => 'btn btn-default', :name => "commit_and_next", :"data-disable-with"=> t('app.buttons.processing') %>
+        <%= f.submit t('helpers.links.next'), :class => 'btn btn-default', :type => :button, :onclick => 'select_next();' %>
+        <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>
       </div>
     <% end %>
   <% end %>
