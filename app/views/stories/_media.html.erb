@@ -169,10 +169,15 @@
                   <% end %>
                   <div id="item-video-asset-clone">
                     <%
+                      # orig = @item.with_translation(@from)
+                      # orig_asset_id = orig.present? && orig.video.present? ? orig.video.id : nil
+
                       orig = @item.with_translation(@from)
-                      orig_asset_id = orig.present? && orig.video.present? ? orig.video.id : nil
+                      if orig.present? && orig.video.present?
+                        orig_asset_id = orig.video.asset_clone_id.present? ? orig.video.asset_clone_id : orig.video.id
+                      end
                     %>
-                    <%= f_video_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id} %>
+                    <%= f_video_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id}.merge(video_asset_record.asset_clone_id.present? ? { :value => orig_asset_id } : {}) %>
                   </div>
 
                   <% vis_class = video_asset_record.asset_clone_id.present? ? 'not-visible' : '' %>

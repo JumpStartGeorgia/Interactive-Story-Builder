@@ -195,10 +195,15 @@
 
                 <div id="item-image-asset-clone">
                   <%
+                    # orig = @item.with_translation(@from)
+                    # orig_datasource_id = orig.image.id if orig.present? && orig.image.present?
+
                     orig = @item.with_translation(@from)
-                    orig_datasource_id = orig.image.id if orig.present? && orig.image.present?
+                    if orig.present? && orig.image.present?
+                      orig_datasource_id = orig.image.asset_clone_id.present? ? orig.image.asset_clone_id : orig.image.id
+                    end
                   %>
-                  <%= f_image_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_datasource_id} %>
+                  <%= f_image_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_datasource_id}.merge(image_asset_record.asset_clone_id.present? ? { :value => orig_datasource_id } : {}) %>
                 </div>
 
                 <% vis_class = image_asset_record.asset_clone_id.present? ? 'not-visible' : '' %>
@@ -253,8 +258,13 @@
             <% if !@isTO %>
               <% if !original %>
                 <%
+                  # orig = @item.with_translation(@from)
+                  # orig_datasource_id = orig.dataset_file.id if orig.present? && orig.dataset_file.present?
+
                   orig = @item.with_translation(@from)
-                  orig_datasource_id = orig.dataset_file.id if orig.present? && orig.dataset_file.present?
+                  if orig.present? && orig.dataset_file.present?
+                    orig_datasource_id = orig.dataset_file.asset_clone_id.present? ? orig.dataset_file.asset_clone_id : orig.dataset_file.id
+                  end
                 %>
 
                 <% if orig_datasource_id.present? %>
@@ -273,7 +283,7 @@
                       <a class='btn btn-default preview-translated <%= asset_class %>' id="infographic-dataset-preview" href='<%= "#{ dataset_asset_record.file.url}" %>'><%= t('helpers.links.download') %></a>
                     <% end %>
                     <div id="item-dataset-asset-clone">
-                      <%= f_dataset_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_datasource_id} %>
+                      <%= f_dataset_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_datasource_id}.merge(dataset_asset_record.asset_clone_id.present? ? { :value => orig_datasource_id } : {}) %>
                     </div>
 
                     <% vis_class = dataset_asset_record.asset_clone_id.present? ? 'not-visible' : '' %>
