@@ -392,6 +392,7 @@ class StoriesController < ApplicationController
           flash_success_updated(Section.model_name.human,@item.title)
           @select_next = params[:commit_and_next].present? ? true : false
           @story_progress = StoryTranslationProgress.get_progress(@item.story_id)
+          @tree_title = @item.title(@item.story.story_locale)
           format.js {render action: "build_tree", status: :created }
         else
           flash[:error] = u I18n.t('app.msgs.error_updated', obj:Section.model_name.human, err:@item.errors.full_messages.to_sentence)
@@ -450,6 +451,7 @@ logger.debug "@@@@@@@@@@@@@ d height = #{params[:infographic][:dynamic_height]};
           flash_success_updated(@item.class.model_name.human,@item.title)
           @select_next = params[:commit_and_next].present? ? true : false
           @story_progress = StoryTranslationProgress.get_progress(@item.section.story_id)
+          @tree_title = @item.title(@item.section.story.story_locale)
           format.js {render action: "build_tree", status: :created }
         else
         logger.debug "@@@@@@@@@@@@@@@ error = #{@item.errors.full_messages.to_sentence}"

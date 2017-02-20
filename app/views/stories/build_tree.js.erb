@@ -1,18 +1,18 @@
 <%= remotipart_response do %>
-  <% if remotipart_submitted? 
+  <% if remotipart_submitted?
       msg = ""
       msg_type = ""
-      [:success, :notice, :error, :alert].each do |type|        
+      [:success, :notice, :error, :alert].each do |type|
             msg = flash[type] unless flash[type].blank?
-            msg_type = type.to_s unless flash[type].blank?                       
-      end      
-    %>    
+            msg_type = type.to_s unless flash[type].blank?
+      end
+    %>
     <% if !msg.empty? %>
       popuper('<%= msg %>' , '<%= msg_type %>');
-    <% end %>   
+    <% end %>
   <% end %>
 <% end %>
-var f = $('.story-tree ul li.item[id='+ section_id + ']').find(item_id != -1 ? ' ul li.sub[id='+item_id+'] > div > .sub-l' : ' > .box > .title').text('<%= @item.title %>');
+var f = $('.story-tree ul li.item[id='+ section_id + ']').find(item_id != -1 ? ' ul li.sub[id='+item_id+'] > div > .sub-l' : ' > .box > .title').text('<%= @tree_title %>');
 <% @select_next ||= false %>
 <% if @select_next %>
   select_next();

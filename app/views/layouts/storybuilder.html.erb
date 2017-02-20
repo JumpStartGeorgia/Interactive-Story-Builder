@@ -59,7 +59,7 @@
           <% end %>
               <%= link_to '#', title: t('helpers.links.story_menu.link.preview') + ' - ' + t('helpers.links.story_menu.title.preview'), id: 'btnPreview', class: 'preview btn btn-preview',
                   :'data-link' => preview_story_path(@story),
-                  :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story' do %>
+                  :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story', :'data-sl' => @tr ? "from" : "" do %>
                 <span class="glyphicon glyphicon-eye-open" ></span>
               <% end %>
           <% if !@tr %>
@@ -135,7 +135,7 @@
                 :'data-live-search' => "true", :'data-size' => "10" %>
               <%= link_to '#', title: t('helpers.links.story_menu.link.preview') + ' - ' + t('helpers.links.story_menu.title.preview'), id: 'btnPreview', class: 'preview btn btn-preview',
                 :'data-link' =>  preview_story_path(@story),
-                :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story', :'data-sl' => true do %>
+                :'data-modalos-id' => 'modalos-preview', :'data-type' => 'story', :'data-sl' => "to" do %>
 
                 <span class="glyphicon glyphicon-eye-open" ></span>
 

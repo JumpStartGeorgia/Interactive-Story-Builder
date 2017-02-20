@@ -1,5 +1,5 @@
 //= require tinymce
-/* global tinyMCE */
+/* global tinyMCE, $ */
 var section_id = -1;
 var item_id = -1;
 
@@ -183,9 +183,9 @@ $(document).ready(function() {
   });
 
   $(document).on('click', '.btnPublish', function(e){
-      e.preventDefault();
-      if (!confirm(gon.confirm_publish)) return true;
-      var a = $(this);
+    e.preventDefault();
+    if (!confirm(gon.confirm_publish)) return true;
+    var a = $(this);
     var url = $(this).data('link');
     if ($(this).data('sl')){
       url += "?sl=" + $('.toolbar select#translateTo').val();
@@ -272,9 +272,9 @@ $(document).ready(function() {
       }
       else if(type=='story')
       {
-        var sl = "";
-        if($(this).attr('data-sl'))
-          sl = "&sl=" + gon.translate_to;
+        var sl = $(this).attr('data-sl');
+        if(sl)
+          sl = "&sl=" + gon["translate_" + sl];
 
          output = "<iframe height='100%' width='100%' src='"+$(this).data('link') + "?n=n"+ sl + "'></iframe>";
          opts = {
