@@ -98,8 +98,13 @@
           <% if !isTO %>
             <% if !original %>
               <%
+                # orig = @item.with_translation(@from)
+                # orig_asset_id = orig.asset.id if orig.present? && orig.asset.present?
+
                 orig = @item.with_translation(@from)
-                orig_asset_id = orig.asset.id if orig.present? && orig.asset.present?
+                if orig.present? && orig.asset.present?
+                  orig_asset_id = orig.asset.asset_clone_id.present? ? orig.asset.asset_clone_id : orig.asset.id
+                end
               %>
 
               <% if orig_asset_id.present? && orig.asset.file.exists? %>
@@ -121,7 +126,7 @@
                 <% end %>
 
                 <div id="item-asset-clone">
-                  <%= f_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id} %>
+                  <%= f_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id}.merge(asset_record.asset_clone_id.present? ? { :value => orig_asset_id } : {}) %>
                 </div>
                 <% style = asset_record.asset_clone_id.present? ? 'display:none;' : '' %>
                 <div id="item-asset" style="<%= style %>">

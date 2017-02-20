@@ -585,13 +585,13 @@ $(document).ready(function() {
   $('#translateFrom').change(function(){
       var fromLang = $(this).val();
       var toLang = $('#translateTo').val();
-      var which = 1;
+      // var which = 1;
       if(fromLang == toLang)
       {
          $('#translateTo option').each(function(i,d){
             if(d.value != fromLang)
             {
-            which = 0;
+              // which = 0;
                $('#translateTo').val(d.value);
                $('#translateTo').selectpicker('refresh');
                gon.translate_to = d.value;
@@ -600,7 +600,7 @@ $(document).ready(function() {
          });
       }
       gon.translate_from = fromLang;
-      getObject('select',selectedType, section_id, item_id, which);
+      getObject('select',selectedType, section_id, item_id, 0);
       // call new language
   });
     $('#translateTo').change(function(){

@@ -3,11 +3,11 @@
 <% tinyClass = "tinyEditor" %>
 <% if @trans %>
   <% if original %>
-    <%= tinymce readonly:1 %>      
+    <%= tinymce readonly:1 %>
     <% readonly = { readonly:true , disabled: true } %>
   <% else %>
     <%= tinymce editor_selector: 'tinyEditor2' %>
-    <% tinyClass = "tinyEditor2" %>   
+    <% tinyClass = "tinyEditor2" %>
   <% end %>
 <% else %>
    <%= tinymce %>
@@ -20,40 +20,40 @@
   <%= semantic_form_for(@item, url: slideshow_story_path(id:params[:id],:format => :js), :html => { :multipart=> true, :id => "slideshowForm", :class => "#{form_class}" } , remote: true) do |f| %>
     <%= f.inputs do %>
 
-      <% 
+      <%
         trans_record = @item.slideshow_translations.select{|x| x.locale == @item.current_locale}.first
-        trans_record = @item.with_translation(@item.current_locale) if trans_record.blank? 
+        trans_record = @item.with_translation(@item.current_locale) if trans_record.blank?
       %>
       <%= f.fields_for :slideshow_translations, trans_record do |f_translation| %>
 
         <%= (f_translation.input :locale , :as => :hidden) if !@isTO %>
         <%= (hidden_field_tag :current_locale , @item.current_locale) if !@isTO %>
-        
-        <%= f_translation.input :title, 
-        { 
-          :input_html => { id: (!@isTO ?  "slideshowTitle" : nil) }      
-          .merge(@readonly) 
+
+        <%= f_translation.input :title,
+        {
+          :input_html => { id: (!@isTO ?  "slideshowTitle" : nil) }
+          .merge(@readonly)
         }
         .merge(( (@isTO) ? {} : { hint: t('.hint.title'), placeholder: t('.placeholder.title') })) %>
 
-        <%= f_translation.input :caption, 
-        { 
-          :input_html => { id: (!@isTO ?  "slideshowCaption" : nil) }      
-          .merge(@readonly) 
+        <%= f_translation.input :caption,
+        {
+          :input_html => { id: (!@isTO ?  "slideshowCaption" : nil) }
+          .merge(@readonly)
         }
         .merge(( (@isTO) ? {} : { hint: t('.hint.caption'), placeholder: t('.placeholder.caption') })) %>
 
-        <%= f_translation.input :description, { :as => :text, :input_html => {id: tinyClass , :class => tinyClass, :rows => 15}.merge(@readonly) }.merge(( @isTO ? {} : { hint: t('.hint.description') }))  %>      
+        <%= f_translation.input :description, { :as => :text, :input_html => {id: tinyClass , :class => tinyClass, :rows => 15}.merge(@readonly) }.merge(( @isTO ? {} : { hint: t('.hint.description') }))  %>
 
         <% if @isTO %>
           <div style="height: 8px;">&nbsp;</div>
         <% end %>
-         
+
 
         <div id="slideshowAssetFiles" class="clear">
           <% if !@isTO %>
             <% if !original %>
-              <% 
+              <%
                 orig = @item.with_translation(@from)
                 orig_asset_files = nil
                 orig_asset_files = orig.asset_files if orig.present? && orig.asset_files.present?
@@ -74,34 +74,36 @@
                   end
                 end
               %>
-
-              <% trans_record.asset_files.each_with_index do |asset_record, i| %>  
+              <% trans_record.asset_files.each_with_index do |asset_record, i| %>
                  <div class="fields clear">
                     <%= f_translation.fields_for :asset_files, asset_record do |f_asset| %>
-                      <%= render :partial => 'asset_file_fields', :locals => {:f => f_asset, :asset_record => asset_record, original: original, orig_asset_id: orig_asset_files[i].id } %>
-                    <% end %> 
+                    <% if orig_asset_files[i].present?
+                        orig_asset_id = orig_asset_files[i].asset_clone_id.present? ? orig_asset_files[i].asset_clone_id : orig_asset_files[i].id
+                      end %>
+                      <%= render :partial => 'asset_file_fields', :locals => {:f => f_asset, :asset_record => asset_record, original: original, orig_asset_id: orig_asset_id } %>
+                    <% end %>
                   </div>
-              <% end %> 
+              <% end %>
             <% else %>
-              <% trans_record.asset_files.each_with_index do |asset_record, i| %>  
+              <% trans_record.asset_files.each_with_index do |asset_record, i| %>
                  <div class="fields clear">
                     <%= f_translation.fields_for :asset_files, asset_record do |f_asset| %>
                       <%= render :partial => 'asset_file_fields', :locals => {:f => f_asset, :asset_record => asset_record } %>
-                    <% end %> 
+                    <% end %>
                   </div>
-              <% end %> 
+              <% end %>
 
             <% end %>
           <% else %>
-            <% trans_record.asset_files.each_with_index do |asset_record, i| %>  
+            <% trans_record.asset_files.each_with_index do |asset_record, i| %>
                <div class="fields clear">
                   <%= f_translation.fields_for :asset_files, asset_record do |f_asset| %>
                     <%= render :partial => 'asset_file_fields', :locals => {:f => f_asset, :asset_record => asset_record } %>
-                  <% end %> 
+                  <% end %>
                 </div>
-            <% end %> 
+            <% end %>
 
-          <% end %>      
+          <% end %>
         </div>
 
         <% if !@trans %>
@@ -111,17 +113,17 @@
         <% end %>
         <%= (f.input :section_id, :as => :hidden , :input_html => { :id => "slideshowSection" }) if !@isTO %>
         <% if @item.id.present? %>
-          <%= (f.input :id, :as => :hidden , :input_html => { :id => "slideshowId" }) if !@isTO  %>    
+          <%= (f.input :id, :as => :hidden , :input_html => { :id => "slideshowId" }) if !@isTO  %>
         <% end %>
       <% end %>
     <% end %>
 
     <% if !@isTO %>
-      <div class="pull-right spacer">   
+      <div class="pull-right spacer">
         <%= f.submit t('app.buttons.save'), :class => 'btn btn-default', :"data-disable-with"=> t('app.buttons.processing') %>
-        <%= f.submit t('app.buttons.save_and_next'), :class => 'btn btn-default', :name => "commit_and_next", :"data-disable-with"=> t('app.buttons.processing') %>    
-        <%= f.submit t('helpers.links.next'), :class => 'btn btn-default', :type => :button, :onclick => 'select_next();' %> 
-        <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>               
+        <%= f.submit t('app.buttons.save_and_next'), :class => 'btn btn-default', :name => "commit_and_next", :"data-disable-with"=> t('app.buttons.processing') %>
+        <%= f.submit t('helpers.links.next'), :class => 'btn btn-default', :type => :button, :onclick => 'select_next();' %>
+        <%= f.submit t('helpers.links.reset'), :class => 'btn btn-default', :type => :reset, :name => :reset %>
       </div>
-    <% end %>    
+    <% end %>
   <% end %>
