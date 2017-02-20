@@ -2,6 +2,7 @@ class Asset < ActiveRecord::Base
   has_attached_file :asset
 
   belongs_to :asset_clone, foreign_key: :asset_clone_id, class_name: 'Asset'
+  after_destroy :destroy_orphaned_references
 
   belongs_to :user, foreign_key: :item_id
   belongs_to :author, foreign_key: :item_id
@@ -218,6 +219,9 @@ class Asset < ActiveRecord::Base
     end
   end
 
+  def destroy_orphaned_references
+    Asset.destroy_all(asset_clone_id: self.id) unless self.asset_clone_id.present?
+  end
 
   def transliterate_file_name
     if asset_file_name.present?
