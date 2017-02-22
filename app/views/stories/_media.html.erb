@@ -105,7 +105,7 @@
                         orig.image.present? ? orig.image.image.locale : @from
 
                       asset_clone_locale = image_asset_record.asset_clone.image.locale  %>
-                    <% if from_asset_clone_locale != asset_clone_locale && orig.image.id !=  %>
+                    <% if from_asset_clone_locale != asset_clone_locale %>
                       <% asset_different_locale = true
                         initial_orig_asset_id = orig_asset_id
                         orig_asset_id = image_asset_record.asset_clone.id
