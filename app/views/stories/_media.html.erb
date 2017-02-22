@@ -99,8 +99,13 @@
 
                 <% if image_asset_record.file.exists? # && %>
                   <% if image_asset_record.asset_clone_id.present? %>
-                    <% asset_clone_locale = image_asset_record.asset_clone.image.locale  %>
-                    <% if @from != asset_clone_locale %>
+                    <%
+                      from_asset_clone_locale = orig.image.asset_clone_id.present? ?
+                        orig.image.asset_clone.image.locale :
+                        orig.image.present? ? orig.image.image.locale : @from
+
+                      asset_clone_locale = image_asset_record.asset_clone.image.locale  %>
+                    <% if from_asset_clone_locale != asset_clone_locale && orig.image.id !=  %>
                       <% asset_different_locale = true
                         initial_orig_asset_id = orig_asset_id
                         orig_asset_id = image_asset_record.asset_clone.id
@@ -114,7 +119,7 @@
                             </div>
                           <% end %>
                         </label>
-                        <% asset_sources = [[t("app.language.#{asset_clone_locale}"), orig_asset_id, image_asset_record.file.url(:mobile_640)], [t("app.language.#{@from}"), initial_orig_asset_id, orig.image.file.url(:mobile_640)]] %>
+                        <% asset_sources = [[t("app.language.#{asset_clone_locale}"), orig_asset_id, image_asset_record.file.url(:mobile_640)], [t("app.language.#{from_asset_clone_locale}"), initial_orig_asset_id, orig.image.file.url(:mobile_640)]] %>
                         <div class="radio-container">
                           <% asset_sources.each_with_index do |asset_source, asset_source_i| %>
                             <div class="radio">
