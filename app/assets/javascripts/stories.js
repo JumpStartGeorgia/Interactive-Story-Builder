@@ -244,7 +244,8 @@ $(document).ready(function() {
 
         if(type == 'image')
         {
-          output = "<img src='" +  $(this).data('image-path') + "' style='width:640px;'/>";
+          console.log($(this).attr('data-image-path'));
+          output = "<img src='" +  $(this).attr('data-image-path') + "' style='width:640px;'/>";
         }
         else if(type == 'video')
         {

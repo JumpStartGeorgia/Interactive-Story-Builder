@@ -86,20 +86,61 @@
                   </label>
                 </div>
 
-                <% if image_asset_record.asset_clone_id.blank? && image_asset_record.file.exists? %>
-                  <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url(:mobile_640)}" %>'><%= t('app.buttons.preview_image') %></a>
+                <%
+                  # orig = @item.with_translation(@from)
+                  # orig_asset_id = orig.image.id if orig.present? && orig.image.present?
+
+                  orig = @item.with_translation(@from)
+                  if orig.present? && orig.image.present?
+                    orig_asset_id = orig.image.asset_clone_id.present? ? orig.image.asset_clone_id : orig.image.id
+                  end
+                  asset_different_locale = false
+                %>
+
+                <% if image_asset_record.file.exists? # && %>
+                  <% if image_asset_record.asset_clone_id.present? %>
+                    <% asset_clone_locale = image_asset_record.asset_clone.image.locale  %>
+                    <% if @from != asset_clone_locale %>
+                      <% asset_different_locale = true
+                        initial_orig_asset_id = orig_asset_id
+                        orig_asset_id = image_asset_record.asset_clone.id
+                      %>
+                      <div class="radio_buttons input optional form-group radio-indent radio-hide-button" id="clone_image_asset_sources">
+                        <label class="control-label" for="clone_image_asset_sources">
+                          <%= t('stories.form.source_to_use') %>
+                          <% if !isTO %>
+                            <div class="help-inline" title="<%= t('stories.form.hint.source_to_use')%>">
+                              <div>?</div>
+                            </div>
+                          <% end %>
+                        </label>
+                        <% asset_sources = [[t("app.language.#{asset_clone_locale}"), orig_asset_id, image_asset_record.file.url(:mobile_640)], [t("app.language.#{@from}"), initial_orig_asset_id, orig.image.file.url(:mobile_640)]] %>
+                        <div class="radio-container">
+                          <% asset_sources.each_with_index do |asset_source, asset_source_i| %>
+                            <div class="radio">
+                              <% checked = asset_source_i == 0 ? 'checked=checked' : '' %>
+                              <% if !isTO %>
+                              <input <%= checked %> id="clone_image_asset_source_<%= asset_source[1] %>" name="clone_image_asset_source" type="radio" value="<%= asset_source[1] %>" data-image-path='<%= "#{asset_source[2]}" %>'>
+                              <% end %>
+                              <label class="choice" <%= !isTO ? "for=clone_image_asset_source_#{ asset_source[1]}" : '' %> >
+                                <%= asset_source[0] %>
+                              </label>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end %>
+
+                  <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url(:mobile_640)}"  %>' data-init-path='<%= "#{image_asset_record.file.url(:mobile_640)}"  %>' data-orig-path='<%= "#{orig.image.file.url(:mobile_640)}" %>' data-is-cloned="<%= image_asset_record.asset_clone_id.present? %>" ><%= t('app.buttons.preview_image') %></a>
+                <% else %>
+                  <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{orig.image.file.url(:mobile_640)}" %>' data-image-new="true" style="display:none;"><%= t('app.buttons.preview_image') %></a>
                 <% end %>
 
                 <div id="item-image-asset-clone">
-                  <%
-                    # orig = @item.with_translation(@from)
-                    # orig_asset_id = orig.image.id if orig.present? && orig.image.present?
-                    orig = @item.with_translation(@from)
-                    if orig.present? && orig.image.present?
-                      orig_asset_id = orig.image.asset_clone_id.present? ? orig.image.asset_clone_id : orig.image.id
-                    end
-                  %>
-                  <%= f_image_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id }.merge(image_asset_record.asset_clone_id.present? ? { :value => orig_asset_id } : {}) %>
+                  <%# if !asset_different_locale %>
+                    <%= f_image_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id }.merge(image_asset_record.asset_clone_id.present? ? { :value => orig_asset_id } : {}) %>
+                  <%# end %>
                 </div>
 
                 <% vis_class = image_asset_record.asset_clone_id.present? ? 'not-visible' : '' %>

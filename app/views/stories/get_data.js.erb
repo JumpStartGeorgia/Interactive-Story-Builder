@@ -98,25 +98,33 @@
 
    <% elsif @type == 'media' %>
      // when indicate whether or not to use cloned asset, act accordingly
-     $('form.form-translation').on('change', 'input#clone_image_asset', function(){
-       if ($(this).is(':checked')){
-         // hide file field
-         $('form.form-translation #item-image-asset').addClass('not-visible');
-         // reset the field
-         $('form.form-translation #item-image-asset input[type="file"]').replaceWith($('form.form-translation #item-image-asset input[type="file"]').clone());
-         // save the clone id
-         $('form.form-translation #item-image-asset-clone input').val($('form.form-translation #item-image-asset-clone input').data('original-id'));
-         // hide preview
-         $('form.form-translation .translated-image-asset').hide();
-       }else{
-         // show file field
-         $('form.form-translation #item-image-asset').removeClass('not-visible');
-         // reset clone id
-         $('form.form-translation #item-image-asset-clone input').val('');
-         // show preview
-         $('form.form-translation .translated-image-asset').show();
-       }
-     });
+      var form_translation = $("form.form-translation"), translated_image_asset = form_translation.find('.translated-image-asset');
+
+      form_translation.on("change", "#clone_image_asset_sources input", function () {
+        var t = $(this), v = t.val(), img_path = t.attr("data-image-path");
+        translated_image_asset.attr("data-image-path", img_path);
+        form_translation.find('#item-image-asset-clone input').attr("data-original-id", v).val(v);
+      });
+
+      form_translation.on('change', 'input#clone_image_asset', function(){
+        var item_image_asset = form_translation.find('#item-image-asset'),
+        checked = $(this).is(':checked');
+
+        item_image_asset.toggleClass('not-visible', checked); // toggle file field, hide if original is used
+
+        if (checked) {
+          item_image_asset.find('input[type="file"]').replaceWith(form_translation.find('#item-image-asset input[type="file"]').clone()); // reset the field
+        }
+
+        form_translation.find('#item-image-asset-clone input').val(checked ? form_translation.find('#item-image-asset-clone input').data('original-id') : ''); // reset clone id
+        if(translated_image_asset.attr("data-image-new") || translated_image_asset.attr("data-is-cloned") === "true") {
+          translated_image_asset.toggle(checked);
+          form_translation.find("#clone_image_asset_sources").toggle(checked); // toggle preview, show if original is used
+        }
+
+
+        translated_image_asset.attr("data-image-path", translated_image_asset.attr("data-" + (checked?"orig":"init") + "-path"));
+      });
 
      $('form.form-translation').on('change', 'input#clone_video_asset', function(){
        if ($(this).is(':checked')){

@@ -655,6 +655,7 @@ en:
     edit:
       title: Story Settings Form
     form:
+      source_to_use: Source to use
       placeholder:
         title: Title of Story
         permalink: URL to the story
@@ -681,6 +682,7 @@ en:
         theme: Select the theme(s) your story belongs to.
         in_theme_slider: "If checked, this story will appear in the slider at the top of the theme page."
         has_disclaimer: "Selecting this field will show the story disclaimer at the top and bottom of the story next to the share links."
+        source_to_use: This file is currently coming from the first source in the list. You can change it to the second source if desired.
     collaborators:
       title: "Collaborators for '%{title}'"
       owner_header: Story Author
