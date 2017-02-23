@@ -5,16 +5,16 @@ class Medium < ActiveRecord::Base
 
   acts_as_list scope: :section
 
-	belongs_to :section	
-    
-  # has_one :image,     
-  #   :conditions => "asset_type = #{Asset::TYPE[:media_image]}",    
+	belongs_to :section
+
+  # has_one :image,
+  #   :conditions => "asset_type = #{Asset::TYPE[:media_image]}",
   #   foreign_key: :item_id,
   #   class_name: "Asset",
   #   dependent: :destroy
 
-  # has_one :video,     
-  #   :conditions => "asset_type = #{Asset::TYPE[:media_video]}",    
+  # has_one :video,
+  #   :conditions => "asset_type = #{Asset::TYPE[:media_video]}",
   #   foreign_key: :item_id,
   #   class_name: "Asset",
   #   dependent: :destroy
@@ -34,7 +34,7 @@ class Medium < ActiveRecord::Base
   #################################
   ## Validations
   validates :section_id, :presence => true
-  validates :media_type, :presence => true, :inclusion => { :in => TYPE.values }  
+  validates :media_type, :presence => true, :inclusion => { :in => TYPE.values }
 
   # validates :image, presence: true, if: :image_type?
   # validates :video, presence: true, if: :video_type?
@@ -63,9 +63,9 @@ class Medium < ActiveRecord::Base
 
     clone [:medium_translations]
   end
-  
+
   #################################
-        
+
 	def to_json(options={})
      options[:except] ||= [:created_at, :updated_at]
      super(options)
@@ -94,7 +94,7 @@ class Medium < ActiveRecord::Base
 
   def image_exists?
     image.present? && image.file.exists?
-  end     
+  end
 
   def video
     if @video.present?
@@ -110,7 +110,7 @@ class Medium < ActiveRecord::Base
 
   def video_exists?
     video.present? && video.file.exists?
-  end     
+  end
 
   def is_processed?
     if @processed.present?
@@ -143,11 +143,11 @@ class Medium < ActiveRecord::Base
     return @local_translations[locale]
   end
 
-private
-  def image_type?    
+  def image_type?
     self.media_type == TYPE[:image]
   end
-  def video_type?    
+  def video_type?
     self.media_type == TYPE[:video]
   end
+private
 end

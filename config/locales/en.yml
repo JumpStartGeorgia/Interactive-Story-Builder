@@ -206,6 +206,7 @@ en:
         story_authors: "must have at least one person selected."
         publish_theme: 'The theme cannot be published until at least one published item has been assigned to the theme.'
         not_provided: 'must be provided.'
+        missing_source: "The Source language does not have a translation for this content yet and, therefore, cannot be used as a source for the Target language."
   mailer:
     closing: "Sincerely,"
     signature: The Chai Khana Team

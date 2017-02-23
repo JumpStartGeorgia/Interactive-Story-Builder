@@ -229,7 +229,7 @@ $(document).ready(function() {
 
         var ml = $('#' + $(this).attr('data-modalos-id'));
         var v = $('.navbar-storybuilder');
-        var type = $(this).data('type');
+        var type = $(this).attr('data-type');
         var output = '';
         var opts = null;
         var opts_def =
@@ -244,14 +244,13 @@ $(document).ready(function() {
 
         if(type == 'image')
         {
-          console.log($(this).attr('data-image-path'));
           output = "<img src='" +  $(this).attr('data-image-path') + "' style='width:640px;'/>";
         }
         else if(type == 'video')
         {
          output = "<video preload='auto' width='640px' height='auto' controls>" +
                      "Your browser does not support this video." +
-                     "<source src='"+$(this).data('video-path')+ "' type='"+$(this).data('video-type')+"'>" +
+                     "<source src='"+$(this).attr('data-video-path')+ "' type='"+$(this).attr('data-video-type')+"'>" +
                      "</video>";
          opts = {
             before_close:function(t)
@@ -263,7 +262,7 @@ $(document).ready(function() {
         }
       else if(type == 'infographic')
       {
-        output = "<img src='" +  $(this).data('image-path') + "' style='width:640px;'/>";
+        output = "<img src='" +  $(this).attr('data-image-path') + "' style='width:640px;'/>";
         opts = { dragscroll: true };
       }
       else if(type == 'youtube')
@@ -277,7 +276,7 @@ $(document).ready(function() {
         if(sl)
           sl = "&sl=" + gon["translate_" + sl];
 
-         output = "<iframe height='100%' width='100%' src='"+$(this).data('link') + "?n=n"+ sl + "'></iframe>";
+         output = "<iframe height='100%' width='100%' src='"+$(this).attr('data-link') + "?n=n"+ sl + "'></iframe>";
          opts = {
             fullscreen:true,
             aspectratio:true,

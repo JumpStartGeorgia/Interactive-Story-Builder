@@ -1,20 +1,18 @@
-<%- model_class = Medium -%>
-<%- model_class_trans = MediumTranslation -%>
-<% original ||= false %>
-<% readonly = {} %>
-<% isTO = @trans && original # if mode is translate and screen is original(first) %>
-<% if isTO %>
-    <% readonly = { readonly:true , disabled: true } %>
-<% end %>
-<% form_class = @trans == true && original == false ? 'form-translation' : '' %>
+<%-
+  model_class = Medium
+  model_class_trans = MediumTranslation
+  original ||= false
+  readonly = {}
+  isTO = @trans && original # if mode is translate and screen is original(first)
+  readonly = { readonly:true , disabled: true } if isTO
+
+  form_class = @trans == true && original == false ? 'form-translation' : ''
+  trans_record = @trans_record
+-%>
 
   <h2 class="form-title"><%= t('.form_title') %></h2>
   <%= semantic_form_for(@item, url: media_story_path(id:params[:id],:format => :js), :html => { :multipart=> true, :id => "mediaForm", :class => "#{form_class}" } , remote: true) do |f| %>
     <%= f.inputs do %>
-      <%
-        trans_record = @item.medium_translations.select{|x| x.locale == @item.current_locale}.first
-        trans_record = @item.with_translation(@item.current_locale) if trans_record.blank?
-      %>
       <%= f.fields_for :medium_translations, trans_record do |f_translation| %>
 
         <%# need this hidden field so can test if user has access to edit the locale if user is translator %>
@@ -62,185 +60,216 @@
         <% end %>
 
         <%
-          image_asset_record = trans_record.image
-          if image_asset_record.blank?
-            image_asset_record = trans_record.build_image(:asset_type => Asset::TYPE[:media_image])
-          end
+          asset_record = trans_record.image
+          asset_record = trans_record.build_image(:asset_type => Asset::TYPE[:media_image]) if asset_record.blank?
+          asset_class = isTO ? 'original-image-asset' : 'translated-image-asset'
         %>
-        <%= f_translation.fields_for :image, image_asset_record do |f_image_asset| %>
-          <%= f_image_asset.input :asset_type, :as => :hidden %>
-          <%
-            asset_class = isTO ? 'original-image-asset' : 'translated-image-asset'
-          %>
-          <div id='mediaImageBox' <%=  @item.media_type == Medium::TYPE[:video]  ? "style=display:none;" : "" %> >
+        <%= f_translation.fields_for :image, asset_record do |f_asset| %>
+          <%= f_asset.input :asset_type, :as => :hidden %>
+          <div id='mediaImageBox' <%=  @item.video_type? ? "style=display:none;" : "" %> >
             <label class=" control-label" for="media-image-preview"><%= t('activerecord.attributes.medium.image') %></label>
+            <%
+              to_asset = asset_record
+              to_asset_exist = to_asset.file.exists?
+              to_is_cloned = false
+              to_asset_final_id = nil
+              to_asset_final_locale = @to
+              to_asset_url = ""
+
+              if to_asset_exist
+                to_is_cloned = to_asset.asset_clone_id.present?
+                to_asset_final_id = to_asset[to_is_cloned ? :asset_clone_id : :id]
+                to_asset_final_locale = to_is_cloned ? to_asset.asset_clone.image.locale : to_asset.image.locale
+                to_asset_url = to_asset.file.url(:mobile_640)
+              end
+
+            %>
             <% if !isTO %>
               <% if !original %>
+                <%
+                  from_object = @item.with_translation(@from)
+                  from_asset = from_object.image
+                  from_asset_exist = from_asset.file.exists?
+                  from_is_cloned = false
+                  from_asset_final_id = nil
+                  from_asset_final_locale = @from
+                  from_asset_url = ""
+
+                  if from_asset_exist #from_object.present? && from_object.image.present?
+                    from_is_cloned = from_asset.asset_clone_id.present?
+                    from_asset_final_id = from_asset[from_is_cloned ? :asset_clone_id : :id]
+                    from_asset_final_locale = from_is_cloned ? from_asset.asset_clone.image.locale : from_asset.image.locale
+                    from_asset_url = from_asset.file.url(:mobile_640)
+                  end
+                %>
                 <div class="boolean input optional checkbox" id="asset_clone_thumbnail">
                   <input name="clone_image_asset" type="hidden" value="0">
                   <label class="  control-label" for="clone_image_asset">
-                    <input id="clone_image_asset" name="clone_image_asset" type="checkbox" value="1" <%= image_asset_record.asset_clone_id.present? ? 'checked=checked' : '' %>><%= t('app.common.clone_asset') %>
+                    <input id="clone_image_asset" name="clone_image_asset" type="checkbox" value="1" <%= 'checked=checked' if to_is_cloned %>><%= t('app.common.clone_asset') %>
                     <div class="help-inline" original-title="<%= t('helpers.hints.clone_asset') %>">
                       <div>?</div>
                     </div>
                   </label>
                 </div>
 
-                <%
-                  # orig = @item.with_translation(@from)
-                  # orig_asset_id = orig.image.id if orig.present? && orig.image.present?
-
-                  orig = @item.with_translation(@from)
-                  if orig.present? && orig.image.present?
-                    orig_asset_id = orig.image.asset_clone_id.present? ? orig.image.asset_clone_id : orig.image.id
-                  end
-                  asset_different_locale = false
-                %>
-
-                <% if image_asset_record.file.exists? # && %>
-                  <% if image_asset_record.asset_clone_id.present? %>
-                    <%
-                      from_asset_clone_locale = orig.image.asset_clone_id.present? ?
-                        orig.image.asset_clone.image.locale :
-                        orig.image.present? ? orig.image.image.locale : @from
-
-                      asset_clone_locale = image_asset_record.asset_clone.image.locale  %>
-                    <% if from_asset_clone_locale != asset_clone_locale %>
-                      <% asset_different_locale = true
-                        initial_orig_asset_id = orig_asset_id
-                        orig_asset_id = image_asset_record.asset_clone.id
-                      %>
-                      <div class="radio_buttons input optional form-group radio-indent radio-hide-button" id="clone_image_asset_sources">
-                        <label class="control-label" for="clone_image_asset_sources">
-                          <%= t('stories.form.source_to_use') %>
-                          <% if !isTO %>
-                            <div class="help-inline" title="<%= t('stories.form.hint.source_to_use')%>">
-                              <div>?</div>
-                            </div>
-                          <% end %>
-                        </label>
-                        <% asset_sources = [[t("app.language.#{asset_clone_locale}"), orig_asset_id, image_asset_record.file.url(:mobile_640)], [t("app.language.#{from_asset_clone_locale}"), initial_orig_asset_id, orig.image.file.url(:mobile_640)]] %>
-                        <div class="radio-container">
-                          <% asset_sources.each_with_index do |asset_source, asset_source_i| %>
-                            <div class="radio">
-                              <% checked = asset_source_i == 0 ? 'checked=checked' : '' %>
-                              <% if !isTO %>
-                              <input <%= checked %> id="clone_image_asset_source_<%= asset_source[1] %>" name="clone_image_asset_source" type="radio" value="<%= asset_source[1] %>" data-image-path='<%= "#{asset_source[2]}" %>'>
-                              <% end %>
-                              <label class="choice" <%= !isTO ? "for=clone_image_asset_source_#{ asset_source[1]}" : '' %> >
-                                <%= asset_source[0] %>
-                              </label>
-                            </div>
-                          <% end %>
-                        </div>
+                <% if to_asset_exist %>
+                  <% if to_is_cloned && from_asset_final_locale != to_asset_final_locale
+                    asset_sources = [ [t("app.language.#{to_asset_final_locale}"), to_asset_final_id, to_asset_url]
+                    ]
+                    asset_sources << [t("app.language.#{from_asset_final_locale}"), from_asset_final_id, from_asset_url] if from_asset_exist
+                    %>
+                    <div class="radio_buttons input optional form-group radio-indent radio-hide-button" id="clone_image_asset_sources">
+                      <label class="control-label" for="clone_image_asset_sources">
+                        <%= t('stories.form.source_to_use') %>
+                          <div class="help-inline" title="<%= t('stories.form.hint.source_to_use')%>"><div>?</div></div>
+                      </label>
+                      <div class="radio-container">
+                        <% asset_sources.each_with_index do |asset_source, asset_source_i| %>
+                          <div class="radio">
+                            <input <%= asset_source_i == 0 ? 'checked=checked' : '' %> id="clone_image_asset_source_<%= asset_source[1] %>" name="clone_image_asset_source" type="radio" value="<%= asset_source[1] %>" data-image-path='<%= "#{asset_source[2]}" %>'>
+                            <label class="choice" for="clone_image_asset_source_<%= asset_source[1] %>"><%= asset_source[0] %></label>
+                          </div>
+                        <% end %>
                       </div>
-                    <% end %>
+                    </div>
                   <% end %>
-
-                  <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url(:mobile_640)}"  %>' data-init-path='<%= "#{image_asset_record.file.url(:mobile_640)}"  %>' data-orig-path='<%= "#{orig.image.file.url(:mobile_640)}" %>' data-is-cloned="<%= image_asset_record.asset_clone_id.present? %>" ><%= t('app.buttons.preview_image') %></a>
+                  <%= preview_image(asset_class, to_asset_url, { "init-path":  to_asset_url, "orig-path": from_asset_url, "is-cloned": to_is_cloned }) %>
                 <% else %>
-                  <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{orig.image.file.url(:mobile_640)}" %>' data-image-new="true" style="display:none;"><%= t('app.buttons.preview_image') %></a>
+                  <%= preview_image(asset_class, from_asset_url, { "image-new":  true}, false) %>
                 <% end %>
+
 
                 <div id="item-image-asset-clone">
-                  <%# if !asset_different_locale %>
-                    <%= f_image_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id }.merge(image_asset_record.asset_clone_id.present? ? { :value => orig_asset_id } : {}) %>
-                  <%# end %>
+                  <%= f_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => from_asset_final_id }.merge(to_is_cloned ? { :value => from_asset_final_id } : {}) %>
                 </div>
 
-                <% vis_class = image_asset_record.asset_clone_id.present? ? 'not-visible' : '' %>
-                <div id="item-image-asset" class="item-asset <%= vis_class %>">
-                  <%= f_image_asset.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:".jpeg,.jpg,.png" }, label: false  %>
+                <div id="item-image-asset" class="item-asset<%= ' not-visible' if to_is_cloned %>">
+                  <%= f_asset.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:".jpeg,.jpg,.png" }, label: false  %>
                 </div>
               <% else %>
-                <% if image_asset_record.file.exists? %>
-                  <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url(:mobile_640)}" %>'><%= t('app.buttons.preview_image') %></a>
+                <% if to_asset_exist %>
+                  <%= preview_image(asset_class, to_asset_url) %>
                 <% end %>
-                <%= f_image_asset.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:".jpeg,.jpg,.png" }, label: false  %>
+                <%= f_asset.input :asset, :as => :file , hint: t('.hint.image') , :input_html => { :id => "mediaImage", accept:".jpeg,.jpg,.png" }, label: false  %>
               <% end %>
             <% else %>
-              <div style="height: 35px;">&nbsp;</div>
-              <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-image-preview" data-modalos-id="modalos-preview" data-type="image" data-image-path='<%= "#{image_asset_record.file.url(:mobile_640)}" %>'><%= t('app.buttons.preview_image') %></a>
-              <div style="height: 28px;">&nbsp;</div>
+                <div style="height: 35px;">&nbsp;</div>
+                <%= preview_image(asset_class, to_asset_url) %>
+                <div style="height: 28px;">&nbsp;</div>
             <% end %>
           </div>
         <% end %>
 
+
         <%
-          video_asset_record = trans_record.video
-          if video_asset_record.blank?
-            video_asset_record = trans_record.build_video(:asset_type => Asset::TYPE[:media_video])
+          asset_record = trans_record.video
+          asset_record = trans_record.build_video(:asset_type => Asset::TYPE[:media_video]) if asset_record.blank?
+          asset_class = isTO ? 'original-video-asset' : 'translated-video-asset'
+
+          to_asset = asset_record
+          to_asset_exist = to_asset.file.exists?
+          to_is_cloned = false
+          to_asset_final_id = nil
+          to_asset_final_locale = @to
+          to_asset_url = ""
+          to_asset_processed = false
+
+          if to_asset_exist
+            to_is_cloned = to_asset.asset_clone_id.present?
+            to_asset_final_id = to_asset[to_is_cloned ? :asset_clone_id : :id]
+            to_asset_final_locale = to_is_cloned ? to_asset.asset_clone.video.locale : to_asset.video.locale
+            to_asset_processed = to_is_cloned ? to_asset.asset_clone.processed : to_asset.processed
+            to_asset_url = to_asset.video_url
           end
+
         %>
-        <%= f_translation.fields_for :video, video_asset_record do |f_video_asset| %>
-          <%= f_video_asset.input :asset_type, :as => :hidden %>
-          <%
-            asset_class = isTO ? 'original-video-asset' : 'translated-video-asset'
-          %>
-
-          <div id='mediaVideoBox' <%=  @item.media_type == Medium::TYPE[:image]  ? "style=display:none;" : "" %> >
+        <%= f_translation.fields_for :video, asset_record do |f_asset| %>
+          <%= f_asset.input :asset_type, :as => :hidden %>
+          <div id='mediaVideoBox' <%=  @item.image_type? ? "style=display:none;" : "" %> >
             <div>
-              <label class=" control-label" for="media-video-preview"><%= t('activerecord.attributes.medium.video') %></label>
-              <% preview = false %>
-              <% if  video_asset_record.file.exists? && video_asset_record.asset_clone_id.blank? %>
-                <% if video_asset_record.processed %>
-                  <span class="processed-msg processed">
-                    <%= t('app.msgs.video_processed') %>
-                  </span>
-                  <% preview = true %>
-
-                <% else %>
-                  <span class="processed-msg not-processed">
-                    <%= t('app.msgs.video_not_processed') %>
-                  </span>
+              <label class=" control-label" for="media-video-preview"><%= t('activerecord.attributes.medium.video') %>
+                <% if to_asset_exist && !to_is_cloned %>
+                  <% if to_asset_processed %>
+                    <span class="processed-msg processed"><%= t('app.msgs.video_processed') %></span>
+                  <% else %>
+                    <span class="processed-msg not-processed"><%= t('app.msgs.video_not_processed') %></span>
+                  <% end %>
                 <% end %>
-              <% end %>
+              </label>
             </div>
-
             <% if !isTO %>
               <% if !original %>
+                <%
+                  from_object = @item.with_translation(@from)
+                  from_asset = from_object.video
+                  from_asset_exist = from_asset.file.exists?
+                  from_is_cloned = false
+                  from_asset_final_id = nil
+                  from_asset_final_locale = @from
+                  from_asset_url = ""
+                  from_asset_processed = false
+
+                  if from_asset_exist #from_object.present? && from_object.image.present?
+                    from_is_cloned = from_asset.asset_clone_id.present?
+                    from_asset_final_id = from_asset[from_is_cloned ? :asset_clone_id : :id]
+                    from_asset_final_locale = from_is_cloned ? from_asset.asset_clone.video.locale : from_asset.video.locale
+                    from_asset_processed = from_is_cloned ? from_asset.asset_clone.processed : from_asset.processed
+                    from_asset_url = from_asset.video_url
+                  end
+                %>
                 <div class="boolean input optional checkbox" id="asset_clone_thumbnail">
                   <input name="clone_video_asset" type="hidden" value="0">
                   <label class="  control-label" for="clone_video_asset">
-                    <input id="clone_video_asset" name="clone_video_asset" type="checkbox" value="1" <%= video_asset_record.asset_clone_id.present? ? 'checked=checked' : '' %>><%= t('app.common.clone_asset') %>
+                    <input id="clone_video_asset" name="clone_video_asset" type="checkbox" value="1" <%= 'checked=checked' if to_is_cloned %>><%= t('app.common.clone_asset') %>
                     <div class="help-inline" original-title="<%= t('helpers.hints.clone_asset') %>">
                       <div>?</div>
                     </div>
                   </label>
                 </div>
-
-                <div class="js-row">
-                  <% if video_asset_record.asset_clone_id.blank? && preview %>
-                    <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ video_asset_record.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
-                  <% end %>
-                  <div id="item-video-asset-clone">
-                    <%
-                      # orig = @item.with_translation(@from)
-                      # orig_asset_id = orig.present? && orig.video.present? ? orig.video.id : nil
-
-                      orig = @item.with_translation(@from)
-                      if orig.present? && orig.video.present?
-                        orig_asset_id = orig.video.asset_clone_id.present? ? orig.video.asset_clone_id : orig.video.id
-                      end
+                <% if to_asset_exist %>
+                  <% if to_is_cloned && from_asset_final_locale != to_asset_final_locale
+                    asset_sources = [ [t("app.language.#{to_asset_final_locale}"), to_asset_final_id, to_asset_url]
+                    ]
+                    asset_sources << [t("app.language.#{from_asset_final_locale}"), from_asset_final_id, from_asset_url] if from_asset_exist
                     %>
-                    <%= f_video_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => orig_asset_id}.merge(video_asset_record.asset_clone_id.present? ? { :value => orig_asset_id } : {}) %>
-                  </div>
+                    <div class="radio_buttons input optional form-group radio-indent radio-hide-button" id="clone_video_asset_sources">
+                      <label class="control-label" for="clone_video_asset_sources">
+                        <%= t('stories.form.source_to_use') %>
+                          <div class="help-inline" title="<%= t('stories.form.hint.source_to_use')%>"><div>?</div></div>
+                      </label>
+                      <div class="radio-container">
+                        <% asset_sources.each_with_index do |asset_source, asset_source_i| %>
+                          <div class="radio">
+                            <input <%= asset_source_i == 0 ? 'checked=checked' : '' %> id="clone_video_asset_source_<%= asset_source[1] %>" name="clone_video_asset_source" type="radio" value="<%= asset_source[1] %>" data-video-path='<%= "#{asset_source[2]}" %>'>
+                            <label class="choice" for="clone_video_asset_source_<%= asset_source[1] %>"><%= asset_source[0] %></label>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
+                  <%= preview_video(asset_class, to_asset_url, to_asset_processed, { "init-path":  to_asset_url, "orig-path": from_asset_url, "is-cloned": to_is_cloned }) %>
+                <% else %>
+                  <%= preview_video(asset_class, from_asset_url, to_asset_processed, { "video-new":  true}, false) %>
+                <% end %>
 
-                  <% vis_class = video_asset_record.asset_clone_id.present? ? 'not-visible' : '' %>
-                  <div id="item-video-asset" class="item-asset <%= vis_class %>">
-                    <%= f_video_asset.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:".mp4,.mov,.webm,.ogv,.flv,.avi,.wmv" }, label: false %>
-                  </div>
+
+                <div id="item-video-asset-clone">
+                  <%= f_asset.input :asset_clone_id, :as => :hidden, :input_html => {:'data-original-id' => from_asset_final_id}.merge(to_is_cloned ? { :value => from_asset_final_id } : {}) %>
+                </div>
+
+                <div id="item-video-asset" class="item-asset<%= ' not-visible' if to_is_cloned %>">
+                  <%= f_asset.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:".mp4,.mov,.webm,.ogv,.flv,.avi,.wmv" }, label: false %>
                 </div>
               <% else %>
-                <% if video_asset_record.file.exists? && preview %>
-                  <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ video_asset_record.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
+                <% if to_asset_exist %>
+                  <%= preview_video(asset_class, to_asset_url, to_asset_processed) %>
                 <% end %>
-                <%= f_video_asset.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:".mp4,.mov,.webm,.ogv,.flv,.avi,.wmv" }, label: false %>
+                <%= f_asset.input :asset, :as => :file , hint: t('.hint.video') , :input_html => { :id => "mediaVideo", accept:".mp4,.mov,.webm,.ogv,.flv,.avi,.wmv" }, label: false %>
               <% end %>
             <% else %>
-              <% if video_asset_record.file.exists? && preview %>
+              <% if to_asset_exist %>
                 <div style="height: 35px;">&nbsp;</div>
-                <a class='btn btn-default preview preview-translated <%= asset_class %>' id="media-video-preview" data-modalos-id="modalos-preview" data-type="video" data-video-path='<%= "#{ video_asset_record.media_video_processed_url}" %>' data-video-type='video/mp4'><%= t('app.buttons.preview_video') %></a>
+                <%= preview_video(asset_class, to_asset_url, to_asset_processed) %>
                 <div style="height: 28px;">&nbsp;</div>
               <% else %>
                 <div style="height: 66px;">&nbsp;</div>

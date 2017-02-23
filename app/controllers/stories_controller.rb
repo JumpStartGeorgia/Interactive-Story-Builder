@@ -304,6 +304,8 @@ class StoriesController < ApplicationController
         @type = type
         @item.translations_for([@from,@to]) # get the translations for this item or build it if not exist yet
         @item.current_locale = @from
+        @trans_record = @item.translations.select{|x| x.locale == @item.current_locale}.first
+        @trans_record = @item.with_translation(@item.current_locale) if @trans_record.blank?
       else
         @error = I18n.t('app.msgs.error_get_data')
       end

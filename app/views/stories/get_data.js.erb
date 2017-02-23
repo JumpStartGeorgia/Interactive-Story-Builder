@@ -1,6 +1,11 @@
 <% if @error.present? # if error%>
   popuper('<%= @error %>', 'error');
+<% elsif @trans && @trans_record.new_record? %>
+  popuper("<%= t('activerecord.errors.messages.missing_source') %>", "notice");
+  which(1, "");
+  which(2, "<h2 class='form-title'><%= t('activerecord.errors.messages.missing_source') %></h2>");
 <% else # otherwise %>
+
    <% if @which == 0 || @which == 1 %>
       which(1,"<%= escape_javascript( render :partial => @type, locals: {original: true}) %>");
    <% end %>
@@ -12,7 +17,10 @@
           code: @item.code
         }
       end
-      @item.current_locale = @to %>
+      @item.current_locale = @to
+      @trans_record = @item.translations.select{|x| x.locale == @item.current_locale}.first
+      @trans_record = @item.with_translation(@item.current_locale) if @trans_record.blank?
+    %>
 
       which(2,"<%= escape_javascript( render :partial => @type) %>");
    <% end %>
@@ -98,7 +106,9 @@
 
    <% elsif @type == 'media' %>
      // when indicate whether or not to use cloned asset, act accordingly
-      var form_translation = $("form.form-translation"), translated_image_asset = form_translation.find('.translated-image-asset');
+      var form_translation = $("form.form-translation"),
+        translated_image_asset = form_translation.find('.translated-image-asset'),
+        translated_video_asset = form_translation.find('.translated-video-asset');
 
       form_translation.on("change", "#clone_image_asset_sources input", function () {
         var t = $(this), v = t.val(), img_path = t.attr("data-image-path");
@@ -113,7 +123,7 @@
         item_image_asset.toggleClass('not-visible', checked); // toggle file field, hide if original is used
 
         if (checked) {
-          item_image_asset.find('input[type="file"]').replaceWith(form_translation.find('#item-image-asset input[type="file"]').clone()); // reset the field
+          item_image_asset.find('input[type="file"]').replaceWith(item_image_asset.find('input[type="file"]').clone()); // reset the field
         }
 
         form_translation.find('#item-image-asset-clone input').val(checked ? form_translation.find('#item-image-asset-clone input').data('original-id') : ''); // reset clone id
@@ -126,30 +136,35 @@
         translated_image_asset.attr("data-image-path", translated_image_asset.attr("data-" + (checked?"orig":"init") + "-path"));
       });
 
-     $('form.form-translation').on('change', 'input#clone_video_asset', function(){
-       if ($(this).is(':checked')){
-         // hide file field
-         $('form.form-translation #item-video-asset').addClass('not-visible');
-         // reset the field
-         $('form.form-translation #item-video-asset input[type="file"]').replaceWith($('form.form-translation #item-video-asset input[type="file"]').clone());
-         // save the clone id
-         $('form.form-translation #item-video-asset-clone input').val($('form.form-translation #item-video-asset-clone input').data('original-id'));
-         $('form.form-translation #item-image-asset-clone input').val($('form.form-translation #item-image-asset-clone input').data('original-id'));
-         // hide preview
-         $('form.form-translation .translated-video-asset').hide();
-         // set clone_image_asset field
-         $('form.form-translation input#clone_image_asset').val(1);
-       }else{
-         // show file field
-         $('form.form-translation #item-video-asset').removeClass('not-visible');
-         // reset clone id
-         $('form.form-translation #item-video-asset-clone input').val('');
-         $('form.form-translation #item-image-asset-clone input').val('');
-         // show preview
-         $('form.form-translation .translated-video-asset').show();
-       }
+      form_translation.on("change", "#clone_video_asset_sources input", function () {
+        var t = $(this), v = t.val(), vid_path = t.attr("data-video-path");
+        translated_video_asset.attr("data-video-path", vid_path);
+        form_translation.find('#item-video-asset-clone input').attr("data-original-id", v).val(v);
+      });
 
-     });
+      form_translation.on('change', 'input#clone_video_asset', function(){
+        var item_image_asset = form_translation.find('#item-image-asset'),
+          item_video_asset = form_translation.find('#item-video-asset'),
+          checked = $(this).is(':checked');
+
+        item_video_asset.toggleClass('not-visible', checked); // toggle file field, hide if original is used
+
+        if (checked) {
+          item_video_asset.find('input[type="file"]').replaceWith(item_video_asset.find('input[type="file"]').clone()); // reset the field
+
+          form_translation.find('input#clone_image_asset').val(1); // set clone_image_asset field
+        }
+
+        form_translation.find('#item-video-asset-clone input').val(checked ? form_translation.find('#item-video-asset-clone input').data('original-id') : ''); // reset clone id
+        form_translation.find('#item-image-asset-clone input').val(checked ? form_translation.find('#item-image-asset-clone input').data('original-id') : ''); // reset clone id
+        if(translated_video_asset.attr("data-video-new") || translated_video_asset.attr("data-is-cloned") === "true") {
+          translated_video_asset.toggle(checked);
+          form_translation.find("#clone_video_asset_sources").toggle(checked); // toggle preview, show if original is used
+        }
+        console.log(translated_video_asset.attr("data-video-path"));
+        translated_video_asset.attr("data-video-path", translated_video_asset.attr("data-" + (checked?"orig":"init") + "-path"));
+        console.log(translated_video_asset.attr("data-video-path"));
+      });
 
    <% elsif @type == 'infographic' %>
      // when indicate whether or not to use cloned asset, act accordingly

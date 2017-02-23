@@ -357,6 +357,14 @@ class Asset < ActiveRecord::Base
     self.asset_clone_id.present? && self.asset_clone.present? ? self.asset_clone.processed : self.processed
   end
 
+  # get the processed url of a video either own or referenced one
+  def video_url
+    slf = self.asset_clone_id.present? ? self.asset_clone : self
+    if self.asset_type == TYPE[:media_video] && slf.processed?
+      slf.file.url(:processed,false).gsub(/\.[0-9a-zA-Z]+$/,".mp4")
+    end
+  end
+
   # get the processed url of a video
   def media_video_processed_url
     if self.asset_type == TYPE[:media_video] && read_attribute(:processed).present? && self.processed == true
