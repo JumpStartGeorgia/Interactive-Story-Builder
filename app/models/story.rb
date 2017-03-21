@@ -336,24 +336,38 @@ class Story < ActiveRecord::Base
   # in same themes as current story, ordered by recent,
   #  if there is no next story get from beginning of the list
   def next_stories(n=4)
+    next_ordered = nil
     themes_ids = self.themes.published.pluck(:id) # get current story themes ids
     story_ids = StoryTheme.where(:theme_id => themes_ids).pluck(:story_id).uniq # get all stories for themes only uniq
-    story_ids = StoryTranslation
-                            .where(locale: self.current_locale, published: true, story_id: story_ids)
-                            .order("story_translations.published_at desc, story_translations.title asc")
-                            .pluck(:story_id) # get story ids only published and where locale matches ordered by recent
+    if story_ids
+      story_ids = StoryTranslation
+                              .where(locale: self.current_locale, published: true, story_id: story_ids)
+                              .order("story_translations.published_at desc, story_translations.title asc")
+                              .pluck(:story_id) # get story ids only published and where locale matches ordered by recent
+      if story_ids
 
-    current_story_index = story_ids.index(self.id) # current story position
-    right = story_ids.slice(current_story_index+1,story_ids.length) # everything on the right side from current story id
-    left = story_ids.slice(0,current_story_index) # everything on the left side from current story id
+        current_story_index = story_ids.index(self.id) # current story position
+        if current_story_index
 
-    next_ids = right[0,n] # get n ids from right side
-    next_ids += left[0,n-next_ids.length] if next_ids.length < n # if not enough get from left side
+          right = story_ids.slice(current_story_index+1,story_ids.length) # everything on the right side from current story id
+          left = story_ids.slice(0,current_story_index) # everything on the left side from current story id
 
-    next_unordered = Story.where(:id => next_ids).to_a # get unordered list of stories
-    next_ordered = Array.new(next_unordered.length,nil) # prepaire to use for ordering
-    next_unordered.each{|e| next_ordered[(next_ids.index(e.id))] = e } # ordering as it should be
+          if right && left
 
+            next_ids = right[0,n] # get n ids from right side
+            next_ids += left[0,n-next_ids.length] if next_ids.length < n # if not enough get from left side
+
+            next_unordered = Story.where(:id => next_ids).to_a # get unordered list of stories
+            if next_unordered
+
+              next_ordered = Array.new(next_unordered.length,nil) # prepaire to use for ordering
+              next_unordered.each{|e| next_ordered[(next_ids.index(e.id))] = e } # ordering as it should be
+            end
+          end
+        end
+      end
+    end
+    
     next_ordered
   end
 
