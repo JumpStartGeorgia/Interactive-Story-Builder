@@ -96,6 +96,7 @@ BootstrapStarter::Application.routes.draw do
 
     # root pages
 		match "demo" => "root#demo", as: 'demo'
+    match "privacy" => "root#privacy", as: 'privacy'
 		match "news" => "root#news", as: 'news'
 		match "news/:id" => "root#news_show", as: 'news_show'
 		match 'feedback' => 'root#feedback', :as => 'feedback', :via => [:get, :post]

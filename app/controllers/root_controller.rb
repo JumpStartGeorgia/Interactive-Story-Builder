@@ -157,6 +157,22 @@ class RootController < ApplicationController
 =end
   end
 
+  def privacy
+    @css.push("todo.css","navbar.css")
+
+    @page = Page.by_name('privacy')
+
+    if @page.present?
+      respond_to do |format|
+        format.html
+      end
+    else
+      flash[:info] =  t('app.msgs.does_not_exist')
+      redirect_to root_path(:locale => I18n.locale)
+      return
+    end
+  end
+
   def feed
     index = params[:category].present? ? @categories_published.index{|x| x.permalink.downcase == params[:category].downcase} : nil
     @items =  Story.is_not_deleted.is_published_home_page.include_categories.recent

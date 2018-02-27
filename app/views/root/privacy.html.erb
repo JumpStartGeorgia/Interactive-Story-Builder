@@ -1,0 +1,6 @@
+<% title @page.title %>
+
+<div class="todo tinymce_format">
+  <%= simple_format_no_tags(@page.content, {}, {sanitize: false}) %>
+</div>
+
